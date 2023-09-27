@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp>with WidgetsBindingObserver {
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   final AppPreferences _appPreferences = instance<AppPreferences>();
   late final CurrentThemeCubit themeCubit;
   var auto = ThemeDataObject();
@@ -28,8 +28,7 @@ class _MyAppState extends State<MyApp>with WidgetsBindingObserver {
     auto.themeMode = ThemeMode.light;
     auto.themeType = ThemeType.light;
 
-
-    WidgetsBinding.instance.addObserver(this as WidgetsBindingObserver);
+    WidgetsBinding.instance.addObserver(this);
     themeCubit = CurrentThemeCubit(auto);
     // ignore: deprecated_member_use
     var window = WidgetsBinding.instance.window;
@@ -49,6 +48,7 @@ class _MyAppState extends State<MyApp>with WidgetsBindingObserver {
     };
     super.initState();
   }
+
   @override
   void didChangeDependencies() {
     _appPreferences.getLocal().then((local) => {context.setLocale(local)});
@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp>with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(360, 800),
+      designSize: const Size(390, 844),
       builder: (context, child) => MaterialApp.router(
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
