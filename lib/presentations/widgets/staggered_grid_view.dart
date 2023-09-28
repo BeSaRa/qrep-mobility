@@ -64,10 +64,10 @@ class _CustomStaggeredGridViewState extends State<CustomStaggeredGridView> {
               ),
               child: StaggeredGridItemWidget(
                 boxShadow: BoxShadow(
-                    color: ColorManager.black.withOpacity(0.06),
-                    blurRadius: AppSizeR.s11,
+                    offset: const Offset(1, 1),
                     spreadRadius: AppSizeR.s2,
-                    offset: Offset(AppSizeW.s1, AppSizeH.s1)),
+                    blurRadius: AppSizeR.s11,
+                    color: ColorManager.black.withAlpha(6)),
                 hasLinearGradient: true,
                 child: widget.gridItemChildBuilder(context, index),
               ),

@@ -33,7 +33,7 @@ class StaggeredGridItemWidget extends StatelessWidget {
         gradient: hasLinearGradient
             ? LinearGradient(
                 colors: [
-                  ColorManager.greyGradientColor,
+                  ColorManager.platinum,
                   ColorManager.white,
                 ],
                 begin: Alignment.topLeft,
