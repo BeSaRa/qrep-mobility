@@ -1,16 +1,19 @@
+
+import 'package:easy_localization/easy_localization.dart' as local;
+
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:ebla/presentations/resources/theme_manager.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../app/app_preferences.dart';
-import '../../app/depndency_injection.dart';
-import '../resources/color_manager.dart';
-import '../resources/theme_manager.dart';
-import '../resources/values_manager.dart';
-import '../widgets/custom_elevated_button.dart';
-import '../widgets/main_data_container.dart';
-import '../widgets/single_dropdown_widget.dart';
+import '../../../app/app_preferences.dart';
+import '../../../app/depndency_injection.dart';
+import '../../resources/color_manager.dart';
+import '../../resources/values_manager.dart';
+import '../../widgets/custom_elevated_button.dart';
+import '../../widgets/main_data_container.dart';
+import '../../widgets/single_dropdown_widget.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key, this.title = 'press'});
