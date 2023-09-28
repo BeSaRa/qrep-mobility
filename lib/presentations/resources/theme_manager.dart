@@ -12,6 +12,16 @@ ThemeData lightTheme() {
     colorSchemeSeed: const Color(0xFF8A1538),
     brightness: Brightness.light,
     useMaterial3: true,
+    bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: ColorManager.white,
+        elevation: 0,
+        showDragHandle: true,
+        modalElevation: 0,
+        modalBackgroundColor: ColorManager.white,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadiusDirectional.only(
+                topStart: Radius.circular(AppSizeR.s30),
+                topEnd: Radius.circular(AppSizeR.s30)))),
     textTheme: TextTheme(
       titleLarge: TextStyle(
           fontFamily: FontConstants.fontFamily,
