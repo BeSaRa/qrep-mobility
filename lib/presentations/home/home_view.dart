@@ -16,22 +16,20 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return MediaQuery(
-      data: MediaQueryData(),
-      child: Directionality(
-        textDirection:  TextDirection.ltr,
-        child: Scaffold(
-          appBar: AppBar(
-            // title: Text('test',style: TextStyle(fontSize: 12.sp),),
-          ),
-          body:Column(children: [
-             TextButton(onPressed: ()async{
+    return Directionality(
+      textDirection:  TextDirection.ltr,
+      child: Scaffold(
+        appBar: AppBar(backgroundColor: Theme.of(context).primaryColor,),
+        body:Column(children: [
+           TextButton(onPressed: ()async{
 
-             }, child: Text("press"))
+           }, child: Text("press",style: TextStyle(color: Theme.of(context).colorScheme.tertiary),)),
+Container(
+  height: 40,
+  width: 100,
+  color: Theme.of(context).colorScheme.tertiaryContainer,)
 
-
-          ],)
-        ),
+        ],)
       ),
     );
   }
