@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 class ColorManager {
   static const int _primaryValue = 0xFFFFFFF;
   static Color primary = Hex16Color.fromHex("#34AFE0");
+  static Color greyGradientColor = Hex16Color.fromHex('#CECECE');
+  static Color white = Colors.white;
+  static Color black = Colors.black;
 }
 
 extension Hex16Color on Color {
