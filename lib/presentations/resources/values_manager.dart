@@ -212,6 +212,7 @@ class AppSizeW {
   static double s30 = 30.0.w;
   static double s31 = 31.0.w;
   static double s32 = 32.0.w;
+  static double s33 = 33.0.w;
   static double s34 = 34.0.w;
   static double s35 = 35.0.w;
   static double s37 = 37.0.w;
