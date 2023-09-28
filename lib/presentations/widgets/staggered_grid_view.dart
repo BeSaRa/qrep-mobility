@@ -3,27 +3,30 @@ import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:ebla/presentations/widgets/staggered_grid_item_widget.dart';
 import 'package:flutter/widgets.dart';
 
-class CustomStaggeredGridView extends StatefulWidget {
+class StaggeredGridView extends StatefulWidget {
   final int itemsCount;
   final Widget Function(BuildContext context, int index) gridItemChildBuilder;
   final double rightSectionTopPadding;
   final double mainAxisSpacing;
   final double crossAxisSpacing;
-  const CustomStaggeredGridView({
+  final bool hasLinearGradient;
+  final Color? gridItemBackgroundColor;
+  const StaggeredGridView({
     super.key,
     required this.itemsCount,
     required this.gridItemChildBuilder,
     required this.rightSectionTopPadding,
     this.crossAxisSpacing = 0.0,
     this.mainAxisSpacing = 0.0,
-  });
+    required this.hasLinearGradient,
+    this.gridItemBackgroundColor,
+  }) : assert(!(gridItemBackgroundColor != null && hasLinearGradient));
 
   @override
-  State<CustomStaggeredGridView> createState() =>
-      _CustomStaggeredGridViewState();
+  State<StaggeredGridView> createState() => _StaggeredGridViewState();
 }
 
-class _CustomStaggeredGridViewState extends State<CustomStaggeredGridView> {
+class _StaggeredGridViewState extends State<StaggeredGridView> {
   List<Widget> rightSectionItems = [];
   List<Widget> leftSectionItems = [];
 
@@ -63,12 +66,13 @@ class _CustomStaggeredGridViewState extends State<CustomStaggeredGridView> {
                 bottom: getBottomPadding(index, widget.itemsCount),
               ),
               child: StaggeredGridItemWidget(
+                backgroundColor: widget.gridItemBackgroundColor,
                 boxShadow: BoxShadow(
                     offset: const Offset(1, 1),
                     spreadRadius: AppSizeR.s2,
                     blurRadius: AppSizeR.s11,
                     color: ColorManager.black.withAlpha(6)),
-                hasLinearGradient: true,
+                hasLinearGradient: widget.hasLinearGradient,
                 child: widget.gridItemChildBuilder(context, index),
               ),
             ));

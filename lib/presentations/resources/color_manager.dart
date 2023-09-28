@@ -12,7 +12,7 @@ class ColorManager {
   static Color grey = Hex16Color.fromHex('#E1E1E1');
   static Color darkGrey = Hex16Color.fromHex('#434343');
   static Color cloudyGrey = Hex16Color.fromHex('#676767');
-  static Color greyGradientColor = Hex16Color.fromHex('#CECECE');
+  static Color platinum = Hex16Color.fromHex('#CECECE');
 }
 
 extension Hex16Color on Color {
