@@ -20,7 +20,7 @@ class AppPreferences {
     if (language != null && language.isNotEmpty) {
       return language;
     } else {
-      return LanguageType.ENGLISH.getValue();
+      return LanguageType.ARABIC.getValue();
     }
   }
 
@@ -34,10 +34,11 @@ class AppPreferences {
 
   Future<Locale> getLocal() async {
     String currentLanguage = await getAppLanguage();
-    if (currentLanguage == LanguageType.ARABIC.getValue()) {
-      return ARABIC_LOCAL;
-    } else {
+
+    if (currentLanguage == LanguageType.ENGLISH.getValue()) {
       return ENGLISH_LOCAL;
+    } else {
+      return ARABIC_LOCAL;
     }
   }
 

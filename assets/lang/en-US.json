@@ -1,4 +1,8 @@
 {
-    "test": "Test"
-
+    "test": "Test",
+    "main" : "main",
+    "rent": "rent",
+    "sell": "sell",
+    "mortgage": "mortgage",
+    "more": "more"
 }
