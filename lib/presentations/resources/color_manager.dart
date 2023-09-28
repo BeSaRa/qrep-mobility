@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
 class ColorManager {
-  static const int _primaryValue = 0xFFFFFFF;
-  static Color primary = Hex16Color.fromHex("#34AFE0");
+  // static const int _primaryValue = 0xFFFFFFF;
+  static Color primary = Hex16Color.fromHex("#8A1538");
+  static Color white = Hex16Color.fromHex("#FFFFFF");
+  static Color porcelain = Hex16Color.fromHex("#F0F0F0");
+  static Color whiteSmoke = Hex16Color.fromHex("#F4F4F4");
+  static Color black = Hex16Color.fromHex("#000000");
+  static Color golden = Hex16Color.fromHex("#A29475");
+  static Color silver = Hex16Color.fromHex('#C1C1C1');
+  static Color grey = Hex16Color.fromHex('#E1E1E1');
+  static Color darkGrey = Hex16Color.fromHex('#434343');
+  static Color cloudyGrey = Hex16Color.fromHex('#676767');
   static Color greyGradientColor = Hex16Color.fromHex('#CECECE');
-  static Color white = Colors.white;
-  static Color black = Colors.black;
 }
 
 extension Hex16Color on Color {

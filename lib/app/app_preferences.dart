@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../presentations/resources/language_manager.dart';
 import '../presentations/resources/theme_cubit.dart';
+import '../presentations/resources/theme_manager.dart';
 
 class AppPreferences {
   final SharedPreferences _sharedPreferences;
@@ -11,7 +12,8 @@ class AppPreferences {
 
   String PREFS_KEY_LANG = 'PREFS_KEY_LANG';
   String PREFS_KEY_TOKEN = 'PREFS_KEY_TOKEN';
-  String PREFS_KEY_USER_THEME = "Prefs_key_user_theme";
+  // String PREFS_KEY_USER_THEME = "Prefs_key_user_theme";
+  String PREFS_KEY_THEME = 'PREFS_KEY_THEME';
 
   Future<String> getAppLanguage() async {
     String? language = _sharedPreferences.getString(PREFS_KEY_LANG);
@@ -48,33 +50,45 @@ class AppPreferences {
   }
 
   ///theme
-  Future<void> setUserTheme(int token) async {
-    _sharedPreferences.setInt(PREFS_KEY_USER_THEME, token);
-  }
+  // Future<void> setUserTheme(int token) async {
+  //   _sharedPreferences.setInt(PREFS_KEY_USER_THEME, token);
+  // }
 
-  Future<ThemeType> getUserTheme() async {
-    int themeNum =
-        _sharedPreferences.getInt(PREFS_KEY_USER_THEME) ?? 0;
-
-    switch (themeNum) {
-      case 1:
-        {
-          return ThemeType.auto;
-        }
-      case 2:
-        {
-          return ThemeType.dark;
-        }
-      case 3:
-        {
-          return ThemeType.light;
-        }
-      case 0:
-        {
-          return ThemeType.light;
-        }
+  ThemeData getTheme() {
+    String? theme = _sharedPreferences.getString(PREFS_KEY_THEME);
+    if (theme == ThemeDataType.dark.toString()) {
+      return darkTheme();
+    } else {
+      return lightTheme();
     }
-
-    return ThemeType.light;
   }
+
+  setTheme({required ThemeData themeData}) {
+    _sharedPreferences.setString(PREFS_KEY_THEME, themeData.getValue());
+  }
+
+  // Future<ThemeType> getUserTheme() async {
+  //   int themeNum = _sharedPreferences.getInt(PREFS_KEY_USER_THEME) ?? 0;
+
+  //   switch (themeNum) {
+  //     case 1:
+  //       {
+  //         return ThemeType.auto;
+  //       }
+  //     case 2:
+  //       {
+  //         return ThemeType.dark;
+  //       }
+  //     case 3:
+  //       {
+  //         return ThemeType.light;
+  //       }
+  //     case 0:
+  //       {
+  //         return ThemeType.light;
+  //       }
+  //   }
+
+  //   return ThemeType.light;
+  // }
 }
