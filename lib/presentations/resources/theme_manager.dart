@@ -22,6 +22,26 @@ ThemeData lightTheme() {
             borderRadius: BorderRadiusDirectional.only(
                 topStart: Radius.circular(AppSizeR.s30),
                 topEnd: Radius.circular(AppSizeR.s30)))),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+      foregroundColor: MaterialStateProperty.all(ColorManager.white),
+      textStyle: MaterialStatePropertyAll(
+        TextStyle(
+          fontFamily: FontConstants.fontFamily,
+          color: ColorManager.white,
+          fontSize: AppSizeSp.s16,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+      backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+      shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(AppSizeR.s5),
+          ),
+        ),
+      ),
+    )),
     textTheme: TextTheme(
       titleLarge: TextStyle(
           fontFamily: FontConstants.fontFamily,

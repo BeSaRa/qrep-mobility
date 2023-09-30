@@ -14,6 +14,7 @@ import '../../resources/values_manager.dart';
 import '../../widgets/bottom_sheet_filter_widget.dart';
 import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/main_data_container.dart';
+import '../../widgets/mutli_dropdown_widget.dart';
 import '../../widgets/single_dropdown_widget.dart';
 
 class HomeView extends StatefulWidget {
@@ -107,6 +108,17 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ],
             ),
+            const MultiDropDownValue(),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text('data'),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),

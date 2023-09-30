@@ -1,4 +1,5 @@
 import 'package:ebla/presentations/resources/color_manager.dart';
+import 'package:ebla/presentations/widgets/mutli_dropdown_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -39,7 +40,7 @@ class BosttomSheetFilterWidget extends StatelessWidget {
                       'المنطقة',
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
-                    const SingleDropDownValue(),
+                    const MultiDropDownValue(),
                   ],
                 ),
               ),
@@ -68,7 +69,7 @@ class BosttomSheetFilterWidget extends StatelessWidget {
                       'استخدام العقار',
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
-                    const SingleDropDownValue(),
+                    const MultiDropDownValue(),
                   ],
                 ),
               ),
