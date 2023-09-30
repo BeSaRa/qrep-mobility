@@ -1,9 +1,7 @@
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/widgets/mutli_dropdown_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-import '../features/home/home_view.dart';
 import '../resources/values_manager.dart';
 import 'custom_elevated_button.dart';
 import 'single_dropdown_widget.dart';

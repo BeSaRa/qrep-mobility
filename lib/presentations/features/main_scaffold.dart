@@ -60,9 +60,8 @@ class _MainScaffoldState extends State<MainScaffold>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: EblaNavigationBar(
-            controller: _controller,
-            screens: screens,
-            currentPage: currentPage));
+      bottomNavigationBar: EblaNavigationBar(
+          controller: _controller, screens: screens, currentPage: currentPage),
+    );
   }
 }

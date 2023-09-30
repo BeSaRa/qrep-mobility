@@ -42,6 +42,7 @@ ThemeData lightTheme() {
         ),
       ),
     )),
+    iconTheme: IconThemeData(color: ColorManager.primary),
     textTheme: TextTheme(
       titleLarge: TextStyle(
           fontFamily: FontConstants.fontFamily,
