@@ -67,9 +67,9 @@ class _StaggeredGridViewState extends State<StaggeredGridView> {
 
     for (var i = 0; i < mainList.length; i++) {
       if (i.isEven) {
-        leftSectionItems.add(mainList[i]);
-      } else {
         rightSectionItems.add(mainList[i]);
+      } else {
+        leftSectionItems.add(mainList[i]);
       }
     }
   }
