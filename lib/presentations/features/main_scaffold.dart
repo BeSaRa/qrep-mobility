@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/home/home_view.dart';
 import 'package:ebla/presentations/features/more/more_view.dart';
@@ -22,17 +21,27 @@ class MainScaffold extends StatefulWidget {
   State<MainScaffold> createState() => _MainScaffoldState();
 }
 
-class _MainScaffoldState extends State<MainScaffold>  with TickerProviderStateMixin{
+class _MainScaffoldState extends State<MainScaffold>
+    with TickerProviderStateMixin {
   late int currentPage;
   late TabController _controller;
-  final List<Widget> screens = [HomeView(),RentView(),SellView(),MortgageView(),MoreView()];
+  final List<Widget> screens = [
+    const HomeView(),
+    const RentView(),
+    const SellView(),
+    const MortgageView(),
+    const MoreView()
+  ];
 
   @override
   void initState() {
     currentPage = 0;
-    _controller =  TabController(length: 5, vsync: this, );
+    _controller = TabController(
+      length: 5,
+      vsync: this,
+    );
     _controller.animation!.addListener(
-          () {
+      () {
         final value = _controller.animation!.value.round();
         if (value != currentPage && mounted) {
           changePage(value);
@@ -41,7 +50,6 @@ class _MainScaffoldState extends State<MainScaffold>  with TickerProviderStateMi
     );
     super.initState();
   }
-
 
   void changePage(int newPage) {
     setState(() {
@@ -52,10 +60,9 @@ class _MainScaffoldState extends State<MainScaffold>  with TickerProviderStateMi
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: EblaNavigationBar(controller: _controller, screens: screens, currentPage: currentPage)
-    );
-
+        bottomNavigationBar: EblaNavigationBar(
+            controller: _controller,
+            screens: screens,
+            currentPage: currentPage));
   }
 }
-
-

@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import '../resources/color_manager.dart';
 import '../resources/values_manager.dart';
 
-class SingleDropDownValue extends StatefulWidget {
-  const SingleDropDownValue({super.key});
+class MultiDropDownValue extends StatefulWidget {
+  const MultiDropDownValue({super.key});
 
   @override
-  State<SingleDropDownValue> createState() => _SingleDropDownValue();
+  State<MultiDropDownValue> createState() => _MultiDropDownValue();
 }
 
-class _SingleDropDownValue extends State<SingleDropDownValue> {
+class _MultiDropDownValue extends State<MultiDropDownValue> {
+  List<String> selectedItems = [];
   final List<String> items = [
     'Item1',
     'Item2',
@@ -53,15 +54,48 @@ class _SingleDropDownValue extends State<SingleDropDownValue> {
             'Select Item',
             style: Theme.of(context).textTheme.labelSmall,
           ),
-          items: items
-              .map((String item) => DropdownMenuItem<String>(
-                    value: item,
-                    child: Text(
-                      item,
-                      style: Theme.of(context).textTheme.labelSmall,
+          items: items.map((String item) {
+            return DropdownMenuItem(
+              value: item,
+              //disable default onTap to avoid closing menu when selecting an item
+              enabled: false,
+              child: StatefulBuilder(
+                builder: (context, menuSetState) {
+                  final isSelected = selectedItems.contains(item);
+                  return InkWell(
+                    onTap: () {
+                      isSelected
+                          ? selectedItems.remove(item)
+                          : selectedItems.add(item);
+                      //This rebuilds the StatefulWidget to update the button's text
+                      setState(() {});
+                      //This rebuilds the dropdownMenu Widget to update the check mark
+                      menuSetState(() {});
+                    },
+                    child: Container(
+                      height: double.infinity,
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Row(
+                        children: [
+                          if (isSelected)
+                            const Icon(Icons.check_box_outlined)
+                          else
+                            const Icon(Icons.check_box_outline_blank),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: Text(
+                              item,
+                              style: Theme.of(context).textTheme.labelSmall,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ))
-              .toList(),
+                  );
+                },
+              ),
+            );
+          }).toList(),
           value: selectedValue,
           onChanged: (String? value) {
             setState(() {
