@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 
 class AppStrings {
-  String test = 'test'.tr();
+  String test = 'test';
   //main scaffold locals
-  String main = 'main'.tr();
-  String rent = 'rent'.tr();
-  String sell = 'sell'.tr();
-  String mortgage = 'mortgage'.tr();
-  String more = 'more'.tr();
+  String main = 'main';
+  String rent = 'rent';
+  String sell = 'sell';
+  String mortgage = 'mortgage';
+  String more = 'more';
 }

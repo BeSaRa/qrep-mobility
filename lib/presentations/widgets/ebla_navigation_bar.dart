@@ -85,7 +85,7 @@ class EblaNavigationBar extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    AppStrings().main,
+                    AppStrings().main.tr(),
                     style: TextStyle(
                       fontSize: 9.sp,
                       color: currentPage == 0
@@ -116,7 +116,7 @@ class EblaNavigationBar extends StatelessWidget {
                           .unselectedItemColor,
                 ),
                 Expanded(
-                    child: Text(AppStrings().rent,
+                    child: Text(AppStrings().rent.tr(),
                         style: TextStyle(
                           fontSize: 9.sp,
                           color: currentPage == 1
@@ -144,7 +144,7 @@ class EblaNavigationBar extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    AppStrings().sell,
+                    AppStrings().sell.tr(),
                     style: TextStyle(
                       fontSize: 9.sp,
                       color: currentPage == 2
@@ -174,7 +174,7 @@ class EblaNavigationBar extends StatelessWidget {
                 ),
                 Expanded(
                     child: Text(
-                  AppStrings().mortgage,
+                  AppStrings().mortgage.tr(),
                   style: TextStyle(
                       fontSize: 9.sp,
                       color: currentPage == 3
@@ -202,7 +202,7 @@ class EblaNavigationBar extends StatelessWidget {
                 ),
                 Expanded(
                     child: Text(
-                  AppStrings().more,
+                  AppStrings().more.tr(),
                   style: TextStyle(
                       fontSize: 9.sp,
                       color: currentPage == 4
