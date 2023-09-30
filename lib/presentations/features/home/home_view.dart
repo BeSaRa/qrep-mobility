@@ -111,6 +111,7 @@ class _HomeViewState extends State<HomeView> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
                     child: StaggeredGridView(
+                      // for development only: UniqueKey forces the rebuild of the widget on hot reload
                       key: UniqueKey(),
                       itemsCount: 4,
                       rightSectionTopPadding: AppSizeH.s17,
