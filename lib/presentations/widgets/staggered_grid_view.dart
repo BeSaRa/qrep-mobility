@@ -26,12 +26,6 @@ class _StaggeredGridViewState extends State<StaggeredGridView> {
   List<Widget> rightSectionItems = [];
   List<Widget> leftSectionItems = [];
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   distributeItems();
-  // }
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
