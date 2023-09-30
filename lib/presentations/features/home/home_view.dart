@@ -101,13 +101,6 @@ class _HomeViewState extends State<HomeView> {
             Expanded(
               child: ListView(
                 children: [
-                  TextButton(
-                      onPressed: () async {},
-                      child: Text(
-                        "press",
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.tertiary),
-                      )),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
                     child: StaggeredGridView(
@@ -198,6 +191,7 @@ class _HomeViewState extends State<HomeView> {
                       },
                     ),
                   ),
+                  SizedBox(height: AppSizeH.s30),
                   const MainDataContainer(
                     title: 'سعر البيع',
                     totalPrice: '4,032,530',
