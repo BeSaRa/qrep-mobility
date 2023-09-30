@@ -1,29 +1,39 @@
 import 'package:flutter/material.dart';
 
 class RangeSliderWidget extends StatefulWidget {
-  const RangeSliderWidget({super.key});
+  final RangeValues rangeValues;
+  final Function(RangeValues rangeValues) onChanged;
+  const RangeSliderWidget(
+      {super.key, required this.rangeValues, required this.onChanged});
 
   @override
   State<RangeSliderWidget> createState() => _RangeSliderWidgetState();
 }
 
 class _RangeSliderWidgetState extends State<RangeSliderWidget> {
-  double min = 1;
+  late double min;
+  late double max;
 
-  double max = 100;
+  @override
+  void initState() {
+    super.initState();
+    min = widget.rangeValues.start;
+    max = widget.rangeValues.end;
+  }
 
   @override
   Widget build(BuildContext context) {
     return RangeSlider(
       onChanged: (values) {
+        widget.onChanged(RangeValues(values.start, values.end));
         setState(() {
           min = values.start;
           max = values.end;
         });
       },
       values: RangeValues(min, max),
-      min: 1,
-      max: 100,
+      min: widget.rangeValues.start,
+      max: widget.rangeValues.end,
     );
   }
 }
@@ -69,7 +79,7 @@ class CustomThumbShape extends RangeSliderThumbShape {
     canvas.drawCircle(center, radius, paint);
 
     paint.color = isEnabled
-        ? (isPressed ? Colors.grey : sliderTheme.thumbColor!)
+        ? sliderTheme.thumbColor!
         : sliderTheme.disabledThumbColor!; // Adjust colors accordingly
     paint.style = PaintingStyle.fill;
 
@@ -79,11 +89,15 @@ class CustomThumbShape extends RangeSliderThumbShape {
 }
 
 class CustomRangeSliderTrackShape extends RangeSliderTrackShape {
-  final double trackHeight;
+  // rangeTrackHeight is the track between the thumbs
+  final double rangeTrackHeight;
+  // mainTrackHeight is the track that is behind the rangeTrackHeight
+  final double mainTrackHeight;
   final Color betweenThumbsColor;
 
   CustomRangeSliderTrackShape({
-    required this.trackHeight,
+    required this.rangeTrackHeight,
+    required this.mainTrackHeight,
     required this.betweenThumbsColor,
   });
 
@@ -96,9 +110,9 @@ class CustomRangeSliderTrackShape extends RangeSliderTrackShape {
     bool isDiscrete = false,
   }) {
     final double trackTop =
-        offset.dy + (parentBox.size.height - trackHeight) / 2;
+        offset.dy + (parentBox.size.height - mainTrackHeight) / 2;
     final double trackWidth = parentBox.size.width;
-    return Rect.fromLTWH(0, trackTop, trackWidth, trackHeight);
+    return Rect.fromLTWH(0, trackTop, trackWidth, mainTrackHeight);
   }
 
   @override
@@ -126,9 +140,9 @@ class CustomRangeSliderTrackShape extends RangeSliderTrackShape {
     // Calculate the rect for the track between thumbs
     final Rect betweenThumbsRect = Rect.fromLTRB(
       startThumbCenter.dx,
-      trackRect.top,
+      trackRect.top - rangeTrackHeight / 2,
       endThumbCenter.dx,
-      trackRect.bottom,
+      trackRect.bottom + rangeTrackHeight / 2,
     );
 
     final Paint paint = Paint()

@@ -198,7 +198,6 @@ class _HomeViewState extends State<HomeView> {
                       },
                     ),
                   ),
-                  const RangeSliderWidget(),
                   const MainDataContainer(
                     title: 'سعر البيع',
                     totalPrice: '4,032,530',
