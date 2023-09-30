@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+
 
 class AppStrings {
   String test = 'test';
@@ -8,4 +8,13 @@ class AppStrings {
   String sell = 'sell';
   String mortgage = 'mortgage';
   String more = 'more';
+
+
+
+
+
+  //more view locals
+ String moreTitle = 'more_title';
+
+
 }

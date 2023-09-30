@@ -12,6 +12,7 @@ ThemeData lightTheme() {
     colorSchemeSeed: const Color(0xFF8A1538),
     brightness: Brightness.light,
     useMaterial3: true,
+    scaffoldBackgroundColor: const Color(0xFFF9F9F9),
     textTheme: TextTheme(
       titleLarge: TextStyle(
           fontFamily: FontConstants.fontFamily,

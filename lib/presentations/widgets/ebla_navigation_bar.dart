@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../resources/assets_manager.dart';
 import '../resources/strings_manager.dart';
@@ -24,11 +25,14 @@ class EblaNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomBar(
       fit: StackFit.expand,
-      body: (context, controller) => TabBarView(
-        controller: _controller,
-        dragStartBehavior: DragStartBehavior.down,
-        physics: const BouncingScrollPhysics(),
-        children: screens,
+      body: (context, controller) => SizedBox(
+        height: MediaQuery.of(context).size.height-100,
+        child: TabBarView(
+          controller: _controller,
+          dragStartBehavior: DragStartBehavior.down,
+          physics: const BouncingScrollPhysics(),
+          children: screens,
+        ),
       ),
       borderRadius: BorderRadius.circular(500),
       duration: const Duration(seconds: 1),
@@ -38,10 +42,10 @@ class EblaNavigationBar extends StatelessWidget {
       barColor:  Colors.white,
       start: 2,
       barDecoration:BoxDecoration(boxShadow: [
-        BoxShadow(color: Theme.of(context).shadowColor.withOpacity(0.1),offset: Offset(1,1),blurRadius:15 ,blurStyle: BlurStyle.normal ),
-        BoxShadow(color: Theme.of(context).shadowColor.withOpacity(0.1),offset: Offset(-1,-1), blurRadius: 15 ,blurStyle: BlurStyle.normal),
-        BoxShadow(color: Theme.of(context).shadowColor.withOpacity(0.1),offset: Offset(1,-1), blurRadius: 15 ,blurStyle: BlurStyle.normal),
-        BoxShadow(color: Theme.of(context).shadowColor.withOpacity(0.1),offset: Offset(-1,1), blurRadius: 15 ,blurStyle: BlurStyle.normal),
+        BoxShadow(color: Theme.of(context).shadowColor.withOpacity(0.1),offset: const Offset(1,1),blurRadius:15 ,blurStyle: BlurStyle.normal ),
+        BoxShadow(color: Theme.of(context).shadowColor.withOpacity(0.1),offset: const Offset(-1,-1), blurRadius: 15 ,blurStyle: BlurStyle.normal),
+        BoxShadow(color: Theme.of(context).shadowColor.withOpacity(0.1),offset: const Offset(1,-1), blurRadius: 15 ,blurStyle: BlurStyle.normal),
+        BoxShadow(color: Theme.of(context).shadowColor.withOpacity(0.1),offset: const Offset(-1,1), blurRadius: 15 ,blurStyle: BlurStyle.normal),
       ]),
       child: TabBar(
         indicatorPadding: const EdgeInsets.all(2),
@@ -55,16 +59,18 @@ class EblaNavigationBar extends StatelessWidget {
             height: 55,
             child: Column(
               children: [
-                Spacer(),
-                Icon(
-                  Icons.home_outlined,
-                  color: currentPage == 0 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+                const Spacer(),
+                SizedBox(height: 24,
+                  child: SvgPicture.asset(
+                    IconAssets.homeIcon,
+                    // ignore: deprecated_member_use
+                    color:currentPage == 0 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor, ),
                 ),
                 Expanded(
                   child: Text(AppStrings().main.tr(),style: TextStyle(fontSize:9.sp,color:currentPage == 0 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
                   ),),
                 ),
-                Spacer()
+                const Spacer()
               ],
             ),
           ),
@@ -73,10 +79,16 @@ class EblaNavigationBar extends StatelessWidget {
 
             child: Column(
               children: [
-                Spacer(),
-                ImageIcon(AssetImage(IconAssets.keyIcon,),color: currentPage == 1 ? Theme.of(context).primaryColor : Theme.of(context)  .bottomNavigationBarTheme.unselectedItemColor,),
+                const Spacer(),
+            SizedBox(height: 24,
+              child: SvgPicture.asset(
+                  IconAssets.keyIcon,
+                 // ignore: deprecated_member_use
+                 color:currentPage == 1 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor, ),
+            ),
+
                 Expanded(child: Text(AppStrings().rent.tr(),style: TextStyle(fontSize:9.sp,color: currentPage == 1 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,))),
-                Spacer()
+                const Spacer()
               ],
             ),
           ),
@@ -85,16 +97,18 @@ class EblaNavigationBar extends StatelessWidget {
 
             child: Column(
               children: [
-                Spacer(),
-                Icon(
-                  Icons.sell_outlined,
-                  color: currentPage == 2  ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+                const Spacer(),
+                SizedBox(height: 24,
+                  child: SvgPicture.asset(
+                    IconAssets.sellIcon,
+                    // ignore: deprecated_member_use
+                    color:currentPage == 2 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor, ),
                 ),
                 Expanded(
                   child: Text(AppStrings().sell.tr(),style: TextStyle(fontSize:9.sp,color: currentPage == 2  ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
                   ),),
                 ),
-                Spacer()
+                const Spacer()
               ],
             ),
           ),
@@ -103,10 +117,17 @@ class EblaNavigationBar extends StatelessWidget {
 
             child: Column(
               children: [
-                Spacer(),
-                ImageIcon(AssetImage(IconAssets.realEstateIcon), color: currentPage == 3  ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor ,),
+                const Spacer(),
+
+                SizedBox(height: 24,
+                  child: SvgPicture.asset(
+                    IconAssets.realEstateIcon,
+                    // ignore: deprecated_member_use
+                    color:currentPage == 3  ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor  ),
+                ),
+
                 Expanded(child: Text(AppStrings().mortgage.tr(),style: TextStyle(fontSize:9.sp,color: currentPage == 3  ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor),)),
-                Spacer()
+                const Spacer()
               ],
             ),
           ),
@@ -116,10 +137,16 @@ class EblaNavigationBar extends StatelessWidget {
             child: Column(
               children: [
 
-                Spacer(),
-                ImageIcon(AssetImage(IconAssets.infoIcon), color: currentPage == 4 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor ,),
+                const Spacer(),
+                SizedBox(height: 22,
+                  width: 22,
+                  child: SvgPicture.asset(
+                      IconAssets.infoIcon,
+                    // ignore: deprecated_member_use
+                    color: currentPage == 4 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor),
+                ),
                 Expanded(child: Text(AppStrings().more.tr(),style: TextStyle(fontSize:9.sp,color:  currentPage == 4 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor),)),
-                Spacer()
+                const Spacer()
               ],
             ),
           ),
