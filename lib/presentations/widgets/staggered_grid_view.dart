@@ -1,6 +1,3 @@
-import 'package:ebla/presentations/resources/color_manager.dart';
-import 'package:ebla/presentations/resources/values_manager.dart';
-import 'package:ebla/presentations/widgets/staggered_grid_item_widget.dart';
 import 'package:flutter/widgets.dart';
 
 class StaggeredGridView extends StatefulWidget {
@@ -9,8 +6,8 @@ class StaggeredGridView extends StatefulWidget {
   final double rightSectionTopPadding;
   final double mainAxisSpacing;
   final double crossAxisSpacing;
-  final bool hasLinearGradient;
-  final Color? gridItemBackgroundColor;
+
+  final List<Widget>? stackChildren;
   const StaggeredGridView({
     super.key,
     required this.itemsCount,
@@ -18,9 +15,8 @@ class StaggeredGridView extends StatefulWidget {
     required this.rightSectionTopPadding,
     this.crossAxisSpacing = 0.0,
     this.mainAxisSpacing = 0.0,
-    required this.hasLinearGradient,
-    this.gridItemBackgroundColor,
-  }) : assert(!(gridItemBackgroundColor != null && hasLinearGradient));
+    this.stackChildren,
+  });
 
   @override
   State<StaggeredGridView> createState() => _StaggeredGridViewState();
@@ -33,31 +29,29 @@ class _StaggeredGridViewState extends State<StaggeredGridView> {
   @override
   void initState() {
     super.initState();
-    distribute();
+    distributeItems();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: SingleChildScrollView(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
-              children: [...leftSectionItems],
-            ),
-            SizedBox(
-              width: widget.crossAxisSpacing,
-            ),
-            Column(children: [...rightSectionItems]),
-          ],
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+          child: Column(
+            children: [...leftSectionItems],
+          ),
         ),
-      ),
+        SizedBox(
+          width: widget.crossAxisSpacing,
+        ),
+        Expanded(child: Column(children: [...rightSectionItems])),
+      ],
     );
   }
 
-  Future<void> distribute() async {
+  Future<void> distributeItems() async {
     List<Widget> mainList = List.generate(
         widget.itemsCount,
         (index) => Padding(
@@ -65,16 +59,7 @@ class _StaggeredGridViewState extends State<StaggeredGridView> {
                 top: getTopPadding(index, widget.itemsCount),
                 bottom: getBottomPadding(index, widget.itemsCount),
               ),
-              child: StaggeredGridItemWidget(
-                backgroundColor: widget.gridItemBackgroundColor,
-                boxShadow: BoxShadow(
-                    offset: const Offset(1, 1),
-                    spreadRadius: AppSizeR.s2,
-                    blurRadius: AppSizeR.s11,
-                    color: ColorManager.black.withAlpha(6)),
-                hasLinearGradient: widget.hasLinearGradient,
-                child: widget.gridItemChildBuilder(context, index),
-              ),
+              child: widget.gridItemChildBuilder(context, index),
             ));
 
     for (var i = 0; i < mainList.length; i++) {
