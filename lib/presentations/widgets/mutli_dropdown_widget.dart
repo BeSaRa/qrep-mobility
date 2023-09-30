@@ -86,9 +86,8 @@ class _MultiDropDownValue extends State<MultiDropDownValue> {
                             child: Text(
                               item,
                               style: Theme.of(context).textTheme.labelSmall,
+                              softWrap: false,
                               overflow: TextOverflow.ellipsis,
-                              softWrap: true,
-                              maxLines: 2,
                             ),
                           ),
                         ],
@@ -128,7 +127,7 @@ class _MultiDropDownValue extends State<MultiDropDownValue> {
                 color: ColorManager.primary,
               )),
           buttonStyleData: ButtonStyleData(
-            padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
+            // padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
             height: AppSizeH.s36,
             // width: 140,
           ),

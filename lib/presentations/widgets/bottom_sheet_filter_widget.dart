@@ -162,6 +162,7 @@ class BosttomSheetFilterWidget extends StatelessWidget {
             ),
           ]),
           SizedBox(width: AppSizeW.s23),
+          SizedBox(height: AppSizeH.s12),
         ],
       ),
     );

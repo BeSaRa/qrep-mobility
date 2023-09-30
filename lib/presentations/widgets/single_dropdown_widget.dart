@@ -91,7 +91,7 @@ class _SingleDropDownValue extends State<SingleDropDownValue> {
                 color: ColorManager.primary,
               )),
           buttonStyleData: ButtonStyleData(
-            padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
+            // padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
             height: AppSizeH.s36,
             // width: 140,
           ),
