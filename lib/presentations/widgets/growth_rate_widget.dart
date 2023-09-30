@@ -22,7 +22,7 @@ class GrowthRateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      alignment: AlignmentDirectional.topStart,
+      alignment: AlignmentDirectional.topEnd,
       children: [
         Container(
           decoration: BoxDecoration(
@@ -47,23 +47,21 @@ class GrowthRateWidget extends StatelessWidget {
             ),
             Row(
               children: [
-                SizedBox(
-                  width: AppSizeW.s30,
-                ),
-                SvgPicture.asset(
-                  //todo: get the redArrowDown from the design
-                  ImageAssets.greenArrowUp,
-                  height: AppSizeH.s17,
-                  width: AppSizeW.s27,
-                ),
-                SizedBox(width: AppSizeW.s17),
+                SizedBox(width: AppSizeW.s33),
                 Text(
                   growthRateData[index].growthRate,
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
                         fontSize: AppSizeSp.s13,
                       ),
                 ),
-                SizedBox(width: AppSizeW.s33),
+                SizedBox(width: AppSizeW.s17),
+                SvgPicture.asset(
+                  //todo: get the redArrowDown from the design
+                  ImageAssets.greenArrowUp,
+                  height: AppSizeH.s17,
+                  width: AppSizeW.s27,
+                ),
+                SizedBox(width: AppSizeW.s30),
               ],
             )
           ]),

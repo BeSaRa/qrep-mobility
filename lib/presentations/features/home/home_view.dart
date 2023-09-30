@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/theme_manager.dart';
+import 'package:ebla/presentations/widgets/growth_rate_widget.dart';
 import 'package:ebla/presentations/widgets/range_slider_widget.dart';
 
 import 'package:ebla/presentations/widgets/staggered_grid_view.dart';
@@ -61,6 +62,19 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         actions: [
+          IconButton(
+            onPressed: () {
+              bottomSheetWidget(
+                context,
+                child: const BosttomSheetFilterWidget(),
+              );
+            },
+            icon: Icon(
+              Icons.filter_list_rounded,
+              size: 40,
+              color: ColorManager.golden,
+            ),
+          ),
           ThemeSwitcher.withTheme(
             builder: (context, switcher, theme) {
               return CupertinoSwitch(
@@ -82,25 +96,12 @@ class _HomeViewState extends State<HomeView> {
         padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
         child: Column(
           children: [
-            Align(
-              alignment: AlignmentDirectional.topEnd,
-              child: IconButton(
-                onPressed: () {
-                  bottomSheetWidget(
-                    context,
-                    child: const BosttomSheetFilterWidget(),
-                  );
-                },
-                icon: Icon(
-                  Icons.filter_list_rounded,
-                  size: 40,
-                  color: ColorManager.golden,
-                ),
-              ),
-            ),
             Expanded(
               child: ListView(
                 children: [
+                  SizedBox(
+                    height: AppSizeH.s30,
+                  ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
                     child: StaggeredGridView(
@@ -191,7 +192,17 @@ class _HomeViewState extends State<HomeView> {
                       },
                     ),
                   ),
-                  SizedBox(height: AppSizeH.s30),
+                  SizedBox(height: AppSizeH.s20),
+                  Row(
+                    children: [
+                      const Expanded(child: GrowthRateWidget(index: 0)),
+                      SizedBox(
+                        width: AppSizeW.s20,
+                      ),
+                      const Expanded(child: GrowthRateWidget(index: 1)),
+                    ],
+                  ),
+                  SizedBox(height: AppSizeH.s20),
                   const MainDataContainer(
                     title: 'سعر البيع',
                     totalPrice: '4,032,530',
