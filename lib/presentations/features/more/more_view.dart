@@ -107,10 +107,11 @@ class _MoreViewState extends State<MoreView> {
                 widget: Directionality(
                     textDirection: TextDirection.rtl,
                     child: EblaTabBarWidget(
-                      initialIndex: instance<AppPreferences>().getTheme() ==
-                              theme.brightness
-                          ? 1
-                          : 0,
+                      initialIndex:
+                          instance<AppPreferences>().getTheme().brightness ==
+                                  Brightness.light
+                              ? 0
+                              : 1,
                       firstTab: AppStrings().light,
                       secondTab: AppStrings().dark,
                       onPressed: (index) {
