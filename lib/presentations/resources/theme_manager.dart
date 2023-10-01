@@ -1,3 +1,4 @@
+import 'package:ebla/presentations/widgets/range_slider_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'color_manager.dart';
@@ -12,6 +13,21 @@ ThemeData lightTheme() {
     colorSchemeSeed: const Color(0xFF8A1538),
     brightness: Brightness.light,
     useMaterial3: true,
+    sliderTheme: SliderThemeData(
+      rangeTrackShape: CustomRangeSliderTrackShape(
+          mainTrackHeight: AppSizeH.s1,
+          rangeTrackHeight: AppSizeH.s4,
+          betweenThumbsColor: ColorManager.golden),
+      thumbColor: ColorManager.white,
+      disabledThumbColor: ColorManager.white,
+      trackHeight: AppSizeH.s10,
+      rangeThumbShape: CustomThumbShape(
+          borderColor: ColorManager.golden,
+          borderThickness: 2,
+          thumbRadius: AppSizeR.s6),
+      activeTrackColor: ColorManager.golden,
+      inactiveTrackColor: ColorManager.lightSilver,
+    ),
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: ColorManager.white,
       elevation: 0,

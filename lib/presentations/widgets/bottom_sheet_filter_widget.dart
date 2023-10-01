@@ -1,5 +1,7 @@
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/widgets/mutli_dropdown_widget.dart';
+import 'package:ebla/presentations/widgets/range_slider_filter_widget.dart';
+
 import 'package:flutter/material.dart';
 
 import '../resources/values_manager.dart';
@@ -7,6 +9,9 @@ import 'custom_elevated_button.dart';
 import 'single_dropdown_widget.dart';
 
 class BosttomSheetFilterWidget extends StatelessWidget {
+  final double minPrice = 0.0;
+  final double maxPrice = 2000000.0;
+
   const BosttomSheetFilterWidget({
     super.key,
   });
@@ -132,17 +137,12 @@ class BosttomSheetFilterWidget extends StatelessWidget {
             ],
           ),
           SizedBox(height: AppSizeH.s12),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'وحدة القياس',
-                style: Theme.of(context).textTheme.labelMedium,
-              ),
-              SizedBox(height: AppSizeH.s5),
-              const ChooseUnitWidget(),
-            ],
-          ),
+          const RangeSliderFilterWidget(
+              title: 'قيمه العقار من - إلى',
+              rangeValues: RangeValues(0, 1000000)),
+          SizedBox(height: AppSizeH.s12),
+          const RangeSliderFilterWidget(
+              title: 'المساحة من - إلى', rangeValues: RangeValues(0, 1000000)),
           SizedBox(height: AppSizeH.s12),
           Row(children: [
             Expanded(
