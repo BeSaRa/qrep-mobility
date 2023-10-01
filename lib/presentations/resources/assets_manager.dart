@@ -6,6 +6,10 @@ class ImageAssets {
   //todo: remove this png image
   static const String soldOrRentedUnits =
       '${IMAGE_PATH}sold_or_rented_units.png';
+  static const String quatarTowerCitySplash =
+      '${IMAGE_PATH}qatar_city_tower_splash.png';
+  static const String ministryOfMunicipality =
+      '${IMAGE_PATH}ministry_of_municiplaity.png';
 }
 
 class IconAssets {

@@ -1,10 +1,8 @@
 import 'package:ebla/presentations/features/main_scaffold.dart';
+import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/home/home_view.dart';
-
-
-
 
 class RoutesNames {
   static const String splashRoute = '/';
@@ -27,7 +25,7 @@ class AppRouter {
         GoRoute(
           name: RoutesNames.splashRoute,
           path: RoutesPaths.splashRoute,
-          builder: (context, state) => const MainScaffold(),
+          builder: (context, state) => const SplashView(),
         )
       ]);
 }
