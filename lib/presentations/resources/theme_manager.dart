@@ -112,6 +112,11 @@ ThemeData lightTheme() {
           color: ColorManager.darkGrey,
           fontSize: AppSizeSp.s13,
           fontWeight: FontWeight.w400),
+      displayMedium: TextStyle(
+          fontFamily: FontConstants.fontFamily,
+          color: ColorManager.white,
+          fontSize: AppSizeSp.s33,
+          fontWeight: FontWeight.w700),
       displaySmall: TextStyle(
           fontFamily: FontConstants.fontFamily,
           color: ColorManager.white,

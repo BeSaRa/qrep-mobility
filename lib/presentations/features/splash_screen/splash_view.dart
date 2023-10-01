@@ -32,7 +32,6 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-
     Future.delayed(
       const Duration(milliseconds: 1500),
       () {
@@ -46,9 +45,9 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     Future.delayed(
       const Duration(milliseconds: 1),
       () {
-        context.goNamed(
-          RoutesNames.homeRoute,
-        );
+        // context.goNamed(
+        //   RoutesNames.homeRoute,
+        // );
       },
     );
   }
@@ -107,6 +106,7 @@ class _AnimatedTransparentContainerState
       children: [
         Expanded(
           child: Container(
+            alignment: Alignment.center,
             decoration: BoxDecoration(
                 color: ColorManager.primary,
                 borderRadius: BorderRadius.only(
@@ -116,13 +116,10 @@ class _AnimatedTransparentContainerState
               Text(
                 'المنصة العقارية\n لدولة قطر\n',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 33,
-                  fontFamily: 'Noto Sans',
-                  fontWeight: FontWeight.w700,
-                  height: 1,
-                ),
+                style: Theme.of(context)
+                    .textTheme
+                    .displayMedium!
+                    .copyWith(height: 1),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -131,7 +128,7 @@ class _AnimatedTransparentContainerState
                     width: 30,
                     height: 4,
                     decoration: BoxDecoration(
-                      color: Color(0xFFB6B6B6),
+                      color: ColorManager.greyCloud,
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
