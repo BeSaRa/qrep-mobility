@@ -2,8 +2,6 @@ import 'package:ebla/presentations/features/main_scaffold.dart';
 import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
 import 'package:go_router/go_router.dart';
 
-import '../features/home/home_view.dart';
-
 class RoutesNames {
   static const String splashRoute = 'splash';
   static const String homeRoute = 'home';
