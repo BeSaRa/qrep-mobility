@@ -108,17 +108,9 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ],
             ),
-            const MultiDropDownValue(),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('data'),
-                  ),
-                ),
-              ],
-            )
+            const SizedBox(height: 10),
+            // const MultiDropDownValue(),
+            const SizedBox(height: 10),
           ],
         ),
       ),

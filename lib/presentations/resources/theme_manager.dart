@@ -13,15 +13,17 @@ ThemeData lightTheme() {
     brightness: Brightness.light,
     useMaterial3: true,
     bottomSheetTheme: BottomSheetThemeData(
-        backgroundColor: ColorManager.white,
-        elevation: 0,
-        showDragHandle: true,
-        modalElevation: 0,
-        modalBackgroundColor: ColorManager.white,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadiusDirectional.only(
-                topStart: Radius.circular(AppSizeR.s30),
-                topEnd: Radius.circular(AppSizeR.s30)))),
+      backgroundColor: ColorManager.white,
+      elevation: 0,
+      showDragHandle: true,
+      modalElevation: 0,
+      modalBackgroundColor: ColorManager.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadiusDirectional.only(
+            topStart: Radius.circular(AppSizeR.s30),
+            topEnd: Radius.circular(AppSizeR.s30)),
+      ),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
       foregroundColor: MaterialStateProperty.all(ColorManager.white),
@@ -42,6 +44,7 @@ ThemeData lightTheme() {
         ),
       ),
     )),
+    iconTheme: IconThemeData(color: ColorManager.primary),
     textTheme: TextTheme(
       titleLarge: TextStyle(
           fontFamily: FontConstants.fontFamily,
@@ -106,6 +109,83 @@ ThemeData darkTheme() {
   return ThemeData(
       colorSchemeSeed: const Color(0xFF8A1538),
       brightness: Brightness.dark,
+      elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all(ColorManager.white),
+        textStyle: MaterialStatePropertyAll(
+          TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.white,
+            fontSize: AppSizeSp.s16,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(AppSizeR.s5),
+            ),
+          ),
+        ),
+      )),
+      textTheme: TextTheme(
+        titleLarge: TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.primary,
+            fontSize: AppSizeSp.s20,
+            fontWeight: FontWeight.w700),
+        titleMedium: TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.primary,
+            fontSize: AppSizeSp.s16,
+            fontWeight: FontWeight.w700),
+        titleSmall: TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.golden,
+            fontSize: AppSizeSp.s13,
+            fontWeight: FontWeight.w700),
+        headlineSmall: TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.primary,
+            fontSize: AppSizeSp.s23,
+            fontWeight: FontWeight.w700),
+        headlineMedium: TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.cloudyGrey,
+            fontSize: AppSizeSp.s13,
+            fontWeight: FontWeight.w700),
+        bodyLarge: TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.black,
+            fontSize: AppSizeSp.s23,
+            fontWeight: FontWeight.w700),
+        bodyMedium: TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.black,
+            fontSize: AppSizeSp.s13,
+            fontWeight: FontWeight.w700),
+        bodySmall: TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.black,
+            fontSize: AppSizeSp.s14,
+            fontWeight: FontWeight.w400),
+        labelMedium: TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.black,
+            fontSize: AppSizeSp.s16,
+            fontWeight: FontWeight.w400),
+        labelSmall: TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.darkGrey,
+            fontSize: AppSizeSp.s13,
+            fontWeight: FontWeight.w400),
+        displaySmall: TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.white,
+            fontSize: AppSizeSp.s16,
+            fontWeight: FontWeight.w400),
+      ),
       useMaterial3: true);
 }
 
