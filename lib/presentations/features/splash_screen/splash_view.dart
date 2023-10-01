@@ -32,14 +32,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-      Duration(seconds: 2),
-      () {
-        context.goNamed(
-          RoutesNames.homeRoute,
-        );
-      },
-    );
+
     Future.delayed(
       const Duration(milliseconds: 1500),
       () {
@@ -49,34 +42,48 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     );
   }
 
+  Future<void> navigateAfterDelay() async {
+    Future.delayed(
+      const Duration(milliseconds: 1),
+      () {
+        context.goNamed(
+          RoutesNames.homeRoute,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.white,
-      body: Column(
+      body: Stack(
         children: [
-          Expanded(
-            child: AnimatedOpacity(
-                duration: const Duration(milliseconds: 500),
-                opacity: _isVisible ? 1.0 : 0.0,
-                child: const AnimatedTransparentContainer()),
-          ),
-          SizedBox(
-            height: AppSizeH.s30,
-          ),
-          Expanded(
-            child: AnimatedScale(
-              scale: _scale,
-              duration: const Duration(milliseconds: 500),
-
-              // transform: Matrix4.diagonal3Values(_scale, _scale, 1.0),
-              alignment: FractionalOffset.bottomCenter,
-              child: Image.asset(
-                alignment: Alignment.bottomCenter,
-                ImageAssets.quatarTowerCitySplash,
-                // height: AppSizeH.s447,
+          Image.asset(ImageAssets.splashBackground),
+          Column(
+            children: [
+              Expanded(
+                child: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 500),
+                    opacity: _isVisible ? 1.0 : 0.0,
+                    child: const AnimatedTransparentContainer()),
               ),
-            ),
+              SizedBox(
+                height: AppSizeH.s30,
+              ),
+              Expanded(
+                child: AnimatedScale(
+                  scale: _scale,
+                  duration: const Duration(milliseconds: 500),
+                  alignment: FractionalOffset.bottomCenter,
+                  onEnd: navigateAfterDelay,
+                  child: Image.asset(
+                    alignment: Alignment.bottomCenter,
+                    ImageAssets.quatarTowerCitySplash,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -106,28 +113,6 @@ class _AnimatedTransparentContainerState
                     bottomLeft: Radius.circular(AppSizeR.s50),
                     bottomRight: Radius.circular(AppSizeR.s50))),
             child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-              // Text(
-              //   'المنصة العقارية',
-              //   textAlign: TextAlign.center,
-              //   style: TextStyle(
-              //     color: Colors.white,
-              //     fontSize: 33,
-              //     fontFamily: 'Noto Sans',
-              //     fontWeight: FontWeight.w700,
-              //   ),
-              // ),
-              // Text(
-              //   'لدولة قطر',
-              //   textAlign: TextAlign.center,
-              //   style: TextStyle(
-              //     color: Colors.white,
-              //     fontSize: 33,
-              //     height: 1,
-              //     fontFamily: 'Noto Sans',
-              //     fontWeight: FontWeight.w700,
-              //   ),
-              // ),
-
               Text(
                 'المنصة العقارية\n لدولة قطر\n',
                 textAlign: TextAlign.center,
@@ -139,9 +124,6 @@ class _AnimatedTransparentContainerState
                   height: 1,
                 ),
               ),
-              // SizedBox(
-              //   height: AppSizeH.s10,
-              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -166,7 +148,6 @@ class _AnimatedTransparentContainerState
         ),
         Image.asset(
           ImageAssets.ministryOfMunicipality,
-          // height: AppSizeH.s125,
         ),
       ],
     );

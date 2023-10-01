@@ -27,11 +27,8 @@ class _StaggeredGridViewState extends State<StaggeredGridView> {
   List<Widget> leftSectionItems = [];
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // we are calling this method here to avoid this exception when using Directionality.of(context):
-    // "dependOnInheritedWidgetOfExactType<Directionality>() or dependOnInheritedElement()
-    // was called before _StaggeredGridViewState.initState() completed."
+  void initState() {
+    super.initState();
     distributeItems();
   }
 

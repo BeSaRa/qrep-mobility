@@ -10,6 +10,7 @@ class ImageAssets {
       '${IMAGE_PATH}qatar_city_tower_splash.png';
   static const String ministryOfMunicipality =
       '${IMAGE_PATH}ministry_of_municiplaity.png';
+  static const String splashBackground = '${IMAGE_PATH}splash_backgroudn.png';
 }
 
 class IconAssets {
