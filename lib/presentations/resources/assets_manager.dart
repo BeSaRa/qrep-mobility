@@ -8,9 +8,15 @@ class ImageAssets {
 }
 
 class IconAssets {
+
+  //main scaffold
   static const String infoIcon = "${ICON_PATH}page_info.svg";
   static const String realEstateIcon = "${ICON_PATH}real_estate_agent.svg";
   static const String keyIcon = "${ICON_PATH}vpn_key.svg";
   static const String homeIcon = "${ICON_PATH}home.svg";
   static const String sellIcon = "${ICON_PATH}sell.svg";
+
+
+  //more
+  static const String supportIcon = "${ICON_PATH}support.svg";
 }

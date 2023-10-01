@@ -5,6 +5,7 @@ import 'package:ebla/presentations/features/more/more_view.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
 import 'package:ebla/presentations/features/rent/rent_view.dart';
 import 'package:ebla/presentations/features/sell/sell_view.dart';
+import 'package:flutter/gestures.dart';
 
 
 import 'package:flutter/material.dart';
@@ -49,6 +50,15 @@ class _MainScaffoldState extends State<MainScaffold>  with TickerProviderStateMi
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        body:  SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: TabBarView(
+            controller: _controller,
+            dragStartBehavior: DragStartBehavior.down,
+            physics: const BouncingScrollPhysics(),
+            children: screens,
+          ),
+        ),
       bottomNavigationBar: EblaNavigationBar(controller: _controller, screens: screens, currentPage: currentPage)
     );
 

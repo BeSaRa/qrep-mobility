@@ -1,5 +1,4 @@
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
@@ -67,7 +66,7 @@ class EblaNavigationBar extends StatelessWidget {
                     color:currentPage == 0 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor, ),
                 ),
                 Expanded(
-                  child: Text(AppStrings().main.tr(),style: TextStyle(fontSize:9.sp,color:currentPage == 0 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+                  child: Text(AppStrings().main,style: TextStyle(fontSize:9.sp,color:currentPage == 0 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
                   ),),
                 ),
                 const Spacer()
@@ -87,7 +86,7 @@ class EblaNavigationBar extends StatelessWidget {
                  color:currentPage == 1 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor, ),
             ),
 
-                Expanded(child: Text(AppStrings().rent.tr(),style: TextStyle(fontSize:9.sp,color: currentPage == 1 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,))),
+                Expanded(child: Text(AppStrings().rent ,style: TextStyle(fontSize:9.sp,color: currentPage == 1 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,))),
                 const Spacer()
               ],
             ),
@@ -105,7 +104,7 @@ class EblaNavigationBar extends StatelessWidget {
                     color:currentPage == 2 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor, ),
                 ),
                 Expanded(
-                  child: Text(AppStrings().sell.tr(),style: TextStyle(fontSize:9.sp,color: currentPage == 2  ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+                  child: Text(AppStrings().sell ,style: TextStyle(fontSize:9.sp,color: currentPage == 2  ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
                   ),),
                 ),
                 const Spacer()
@@ -126,7 +125,7 @@ class EblaNavigationBar extends StatelessWidget {
                     color:currentPage == 3  ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor  ),
                 ),
 
-                Expanded(child: Text(AppStrings().mortgage.tr(),style: TextStyle(fontSize:9.sp,color: currentPage == 3  ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor),)),
+                Expanded(child: Text(AppStrings().mortgage ,style: TextStyle(fontSize:9.sp,color: currentPage == 3  ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor),)),
                 const Spacer()
               ],
             ),
@@ -145,7 +144,7 @@ class EblaNavigationBar extends StatelessWidget {
                     // ignore: deprecated_member_use
                     color: currentPage == 4 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor),
                 ),
-                Expanded(child: Text(AppStrings().more.tr(),style: TextStyle(fontSize:9.sp,color:  currentPage == 4 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor),)),
+                Expanded(child: Text(AppStrings().more ,style: TextStyle(fontSize:9.sp,color:  currentPage == 4 ? Theme.of(context).primaryColor : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor),)),
                 const Spacer()
               ],
             ),

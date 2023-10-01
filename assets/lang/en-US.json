@@ -1,13 +1,16 @@
 {
-    "test": "Test",
-    "main" : "main",
-    "rent": "rent",
-    "sell": "sell",
-    "mortgage": "mortgage",
-    "more": "more",
-
-
-
-
-    "more_title": "Real estate platform for the State of Qatar"
+  "test": "Test",
+  "main": "main",
+  "rent": "rent",
+  "sell": "sell",
+  "mortgage": "mortgage",
+  "more": "more",
+  "more_title": "Real estate platform for the State of Qatar",
+  "support": "support",
+  "my_watch_list": "My Watchlist",
+  "login": "Login",
+  "theme": "Theme",
+  "language": "Language",
+  "dark": "Dark",
+  "light": "Light"
 }
