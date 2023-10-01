@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +26,10 @@ class EblaNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomBar(
       fit: StackFit.expand,
-      body: (context, controller) => body,
+      body: (context, controller) => Padding(
+        padding: EdgeInsets.only(bottom: AppSizeH.s80),
+        child: body,
+      ),
       borderRadius: BorderRadius.circular(500),
       duration: const Duration(seconds: 1),
       curve: Curves.decelerate,
