@@ -2,16 +2,18 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 
-class SellView extends StatefulWidget {
-  const SellView({super.key});
+class SalesView extends StatefulWidget {
+  const SalesView({super.key});
 
   @override
-  State<SellView> createState() => _SellViewState();
+  State<SalesView> createState() => _SalesViewState();
 }
 
-class _SellViewState extends State<SellView> {
+class _SalesViewState extends State<SalesView> {
   @override
   Widget build(BuildContext context) {
-    return  Placeholder(child: Text(AppStrings().sell.tr()),);
+    return Placeholder(
+      child: Text(AppStrings().sell.tr()),
+    );
   }
 }

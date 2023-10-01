@@ -45,7 +45,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
       const Duration(milliseconds: 1),
       () {
         context.goNamed(
-          RoutesNames.homeRoute,
+          RoutesNames.home,
         );
       },
     );

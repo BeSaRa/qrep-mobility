@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,27 +7,25 @@ import '../resources/assets_manager.dart';
 import '../resources/strings_manager.dart';
 
 class EblaNavigationBar extends StatelessWidget {
-  const EblaNavigationBar({
-    super.key,
-    required TabController controller,
-    required this.screens,
-    required this.currentPage,
-  }) : _controller = controller;
+  const EblaNavigationBar(
+      {super.key,
+      required TabController controller,
+      required this.currentPage,
+      required this.onTap,
+      required this.body})
+      : _controller = controller;
 
+  final Function(int index) onTap;
+  final Widget body;
   final TabController _controller;
-  final List<Widget> screens;
+
   final int currentPage;
 
   @override
   Widget build(BuildContext context) {
     return BottomBar(
       fit: StackFit.expand,
-      body: (context, controller) => TabBarView(
-        controller: _controller,
-        dragStartBehavior: DragStartBehavior.down,
-        physics: const BouncingScrollPhysics(),
-        children: screens,
-      ),
+      body: (context, controller) => body,
       borderRadius: BorderRadius.circular(500),
       duration: const Duration(seconds: 1),
       curve: Curves.decelerate,
@@ -59,6 +56,7 @@ class EblaNavigationBar extends StatelessWidget {
             blurStyle: BlurStyle.normal),
       ]),
       child: TabBar(
+        onTap: onTap,
         indicatorPadding: const EdgeInsets.all(2),
         controller: _controller,
         indicator: UnderlineTabIndicator(
