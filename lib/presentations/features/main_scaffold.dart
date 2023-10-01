@@ -40,7 +40,6 @@ class _MainScaffoldState extends State<MainScaffold>  with TickerProviderStateMi
     super.initState();
   }
 
-
   void changePage(int newPage) {
     setState(() {
       currentPage = newPage;

@@ -93,6 +93,7 @@ class AppSizeH {
   static double s115 = 115.0.h;
   static double s119 = 119.0.h;
   static double s120 = 120.0.h;
+  static double s123 = 123.0.h;
   static double s125 = 125.0.h;
   static double s126 = 126.0.h;
   static double s128 = 128.0.h;
@@ -105,6 +106,7 @@ class AppSizeH {
   static double s148 = 148.0.h;
   static double s150 = 150.0.h;
   static double s152 = 152.0.h;
+  static double s154 = 154.0.h;
   static double s156 = 156.0.h;
   static double s157 = 157.0.h;
   static double s160 = 160.0.h;
@@ -211,6 +213,7 @@ class AppSizeW {
   static double s30 = 30.0.w;
   static double s31 = 31.0.w;
   static double s32 = 32.0.w;
+  static double s33 = 33.0.w;
   static double s34 = 34.0.w;
   static double s35 = 35.0.w;
   static double s37 = 37.0.w;

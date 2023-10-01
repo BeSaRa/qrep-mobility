@@ -1,17 +1,28 @@
-
+import 'package:easy_localization/easy_localization.dart' as local;
 
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:ebla/presentations/features/rent/widgets/rent_grid_item_widget.dart';
+import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/theme_manager.dart';
+import 'package:ebla/presentations/widgets/growth_rate_widget.dart';
+import 'package:ebla/presentations/widgets/range_slider_widget.dart';
 
+import 'package:ebla/presentations/widgets/staggered_grid_view.dart';
+
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:ebla/presentations/widgets/bottom_sheet_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
 import '../../resources/color_manager.dart';
+import '../../resources/theme_manager.dart';
 import '../../resources/values_manager.dart';
+import '../../widgets/bottom_sheet_filter_widget.dart';
 import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/main_data_container.dart';
+import '../../widgets/mutli_dropdown_widget.dart';
 import '../../widgets/single_dropdown_widget.dart';
 
 class HomeView extends StatefulWidget {
@@ -23,115 +34,143 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   // bool _switchValue = false;
+
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-        textDirection: TextDirection.ltr,
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Theme.of(context).primaryColor,
-            actions: [
-              ThemeSwitcher.withTheme(
-                builder: (context, switcher, theme) {
-                  return CupertinoSwitch(
-                    value: theme.isDarkTheme,
-                    trackColor: ColorManager.whiteSmoke,
-                    onChanged: (value) {
-                      ThemeData newTheme = theme.brightness == Brightness.light
-                          ? darkTheme()
-                          : lightTheme();
-                      switcher.changeTheme(theme: newTheme);
-                      instance<AppPreferences>().setTheme(themeData: newTheme);
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
-          body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
-            child: Column(
-              children: [
-                TextButton(
-                    onPressed: () async {},
-                    child: Text(
-                      "press",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.tertiary),
-                    )),
-                const MainDataContainer(
-                  title: 'سعر البيع',
-                  totalPrice: '4,032,530',
-                  value: '1530',
-                  valueDescription: 'سعر القدم المربع',
-                  titleInfo: 'الحالة:',
-                  valueInfo: 'مباع',
-                  location: 'الدوحة',
-                  descripton: '2 Beds Apartment',
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const MainDataContainer(
-                  title: 'قيمة الايجار',
-                  totalPrice: '5,000',
-                  value: '3200',
-                  valueDescription: 'المساحة',
-                  titleInfo: 'عدد الغرف: ',
-                  valueInfo: '3',
-                  location: 'الدوحة',
-                  // descripton: '2 Beds Apartment',
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  children: [
-                    Expanded(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text('البلدية',
-                            style: Theme.of(context).textTheme.labelMedium),
-                        const SingleDropDownValue(),
-                      ],
-                    )),
-                    SizedBox(width: AppSizeW.s8),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'البلدية',
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
-                          const SingleDropDownValue(),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: AppSizeH.s60),
-                Row(
-                  children: [
-                    Expanded(
-                      child: CustomElevatedButton(
-                        isPrimary: false,
-                        title: 'إلغاء',
-                        onPress: () {},
-                      ),
-                    ),
-                    SizedBox(width: AppSizeW.s8),
-                    Expanded(
-                      child: CustomElevatedButton(
-                        isPrimary: true,
-                        title: 'بحث',
-                        onPress: () {},
-                      ),
-                    ),
-                  ],
-                )
-              ],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
+        actions: [
+          IconButton(
+            onPressed: () {
+              bottomSheetWidget(
+                context,
+                child: const BosttomSheetFilterWidget(),
+              );
+            },
+            icon: Icon(
+              Icons.filter_list_rounded,
+              size: 40,
+              color: ColorManager.golden,
             ),
           ),
-        ));
+          ThemeSwitcher.withTheme(
+            builder: (context, switcher, theme) {
+              return CupertinoSwitch(
+                value: theme.isDarkTheme,
+                trackColor: ColorManager.whiteSmoke,
+                onChanged: (value) {
+                  ThemeData newTheme = theme.brightness == Brightness.light
+                      ? darkTheme()
+                      : lightTheme();
+                  switcher.changeTheme(theme: newTheme);
+                  instance<AppPreferences>().setTheme(themeData: newTheme);
+                },
+              );
+            },
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView(
+                children: [
+                  SizedBox(
+                    height: AppSizeH.s30,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
+                    child: StaggeredGridView(
+                      // for development only: UniqueKey forces the rebuild of the widget on hot reload
+                      key: UniqueKey(),
+                      itemsCount: 4,
+                      rightSectionTopPadding: AppSizeH.s17,
+                      mainAxisSpacing: AppSizeH.s22,
+                      crossAxisSpacing: AppSizeW.s23,
+                      gridItemChildBuilder: (context, index) {
+                        return RentGridItemWidget(index: index);
+                      },
+                    ),
+                  ),
+                  SizedBox(height: AppSizeH.s20),
+                  Row(
+                    children: [
+                      const Expanded(child: GrowthRateWidget(index: 0)),
+                      SizedBox(
+                        width: AppSizeW.s20,
+                      ),
+                      const Expanded(child: GrowthRateWidget(index: 1)),
+                    ],
+                  ),
+                  SizedBox(height: AppSizeH.s20),
+                  const MainDataContainer(
+                    title: 'سعر البيع',
+                    totalPrice: '4,032,530',
+                    value: '1530',
+                    valueDescription: 'سعر القدم المربع',
+                    titleInfo: 'الحالة:',
+                    valueInfo: 'مباع',
+                    location: 'الدوحة',
+                    descripton: '2 Beds Apartment',
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const MainDataContainer(
+                    title: 'قيمة الايجار',
+                    totalPrice: '5,000',
+                    value: '3200',
+                    valueDescription: 'المساحة',
+                    titleInfo: 'عدد الغرف: ',
+                    valueInfo: '3',
+                    location: 'الدوحة',
+                    // descripton: '2 Beds Apartment',
+                  ),
+                  SizedBox(height: AppSizeH.s60),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CustomElevatedButton(
+                          isPrimary: true,
+                          title: 'بحث',
+                          onPress: () {
+                            bottomSheetWidget(
+                              context,
+                              child: const BosttomSheetFilterWidget(),
+                            );
+                          },
+                        ),
+                      ),
+                      SizedBox(width: AppSizeW.s8),
+                      Expanded(
+                        child: CustomElevatedButton(
+                          isPrimary: false,
+                          title: 'إلغاء',
+                          onPress: () {},
+                        ),
+                      ),
+                    ],
+                  ),
+                  const MultiDropDownValue(),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text('data'),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

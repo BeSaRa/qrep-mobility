@@ -38,7 +38,7 @@ class EblaNavigationBar extends StatelessWidget {
       curve: Curves.decelerate,
       showIcon: true,
       width: MediaQuery.of(context).size.width * 0.9,
-      barColor:  Colors.white,
+      barColor: Colors.white,
       start: 2,
       barDecoration:BoxDecoration(boxShadow: [
         BoxShadow(color: Theme.of(context).shadowColor.withOpacity(0.1),offset: const Offset(1,1),blurRadius:15 ,blurStyle: BlurStyle.normal ),
@@ -49,10 +49,14 @@ class EblaNavigationBar extends StatelessWidget {
       child: TabBar(
         indicatorPadding: const EdgeInsets.all(2),
         controller: _controller,
-        indicator:  UnderlineTabIndicator(
-          borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 6.0,),
+        indicator: UnderlineTabIndicator(
+          borderSide: BorderSide(
+            color: Theme.of(context).primaryColor,
+            width: 6.0,
+          ),
           borderRadius: const BorderRadius.all(Radius.circular(2)),
-          insets: const EdgeInsets.fromLTRB(25.0, 0.0, 25, 50.0),),
+          insets: const EdgeInsets.fromLTRB(25.0, 0.0, 25, 50.0),
+        ),
         tabs: [
           SizedBox(
             height: 55,
@@ -75,7 +79,6 @@ class EblaNavigationBar extends StatelessWidget {
           ),
           SizedBox(
             height: 55,
-
             child: Column(
               children: [
                 const Spacer(),
@@ -93,7 +96,6 @@ class EblaNavigationBar extends StatelessWidget {
           ),
           SizedBox(
             height: 55,
-
             child: Column(
               children: [
                 const Spacer(),
@@ -113,7 +115,6 @@ class EblaNavigationBar extends StatelessWidget {
           ),
           SizedBox(
             height: 55,
-
             child: Column(
               children: [
                 const Spacer(),
@@ -132,7 +133,6 @@ class EblaNavigationBar extends StatelessWidget {
           ),
           SizedBox(
             height: 55,
-
             child: Column(
               children: [
 
@@ -150,9 +150,7 @@ class EblaNavigationBar extends StatelessWidget {
             ),
           ),
         ],
-
       ),
-
     );
   }
 }
