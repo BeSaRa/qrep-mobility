@@ -2,6 +2,8 @@ import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import '../../resources/routes_manager.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -30,6 +32,14 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    Future.delayed(
+      Duration(seconds: 2),
+      () {
+        context.goNamed(
+          RoutesNames.homeRoute,
+        );
+      },
+    );
     Future.delayed(
       const Duration(milliseconds: 1500),
       () {
