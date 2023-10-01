@@ -1,3 +1,4 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/presentations/features/more/cubits/change_language_cubit.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
 import '../../resources/strings_manager.dart';
+import '../../resources/theme_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets/ebla_tab_bar.dart';
 
@@ -97,18 +99,31 @@ class _MoreViewState extends State<MoreView> {
             icon: Icons.login,
             title: AppStrings().login,
           ),
-          MoreWidgetButton(
-              icon: Icons.color_lens_outlined,
-              title: AppStrings().theme,
-              isButton: false,
-              widget: Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: EblaTabBarWidget(
-                    initialIndex: context.locale == ARABIC_LOCAL ? 0 : 1,
-                    firstTab: AppStrings().light,
-                    secondTab: AppStrings().dark,
-                    onPressed: (index) {},
-                  ))),
+          ThemeSwitcher.withTheme(builder: (context, switcher, theme) {
+            return MoreWidgetButton(
+                icon: Icons.color_lens_outlined,
+                title: AppStrings().theme,
+                isButton: false,
+                widget: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: EblaTabBarWidget(
+                      initialIndex: instance<AppPreferences>().getTheme() ==
+                              theme.brightness
+                          ? 1
+                          : 0,
+                      firstTab: AppStrings().light,
+                      secondTab: AppStrings().dark,
+                      onPressed: (index) {
+                        ThemeData newTheme =
+                            theme.brightness == Brightness.light
+                                ? darkTheme()
+                                : lightTheme();
+                        switcher.changeTheme(theme: newTheme);
+                        instance<AppPreferences>()
+                            .setTheme(themeData: newTheme);
+                      },
+                    )));
+          }),
           MoreWidgetButton(
             icon: Icons.language_outlined,
             title: AppStrings().language,
