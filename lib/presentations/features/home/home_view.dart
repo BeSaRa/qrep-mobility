@@ -13,6 +13,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ebla/presentations/widgets/bottom_sheet_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
 
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
@@ -23,6 +24,7 @@ import '../../widgets/bottom_sheet_filter_widget.dart';
 import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/main_data_container.dart';
 import '../../widgets/mutli_dropdown_widget.dart';
+import '../../widgets/news_item_widgets.dart';
 import '../../widgets/single_dropdown_widget.dart';
 
 class HomeView extends StatefulWidget {
@@ -105,30 +107,34 @@ class _HomeViewState extends State<HomeView> {
                       const Expanded(child: GrowthRateWidget(index: 1)),
                     ],
                   ),
-                  SizedBox(height: AppSizeH.s20),
-                  const MainDataContainer(
-                    title: 'سعر البيع',
-                    totalPrice: '4,032,530',
-                    value: '1530',
-                    valueDescription: 'سعر القدم المربع',
-                    titleInfo: 'الحالة:',
-                    valueInfo: 'مباع',
-                    location: 'الدوحة',
-                    descripton: '2 Beds Apartment',
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const MainDataContainer(
-                    title: 'قيمة الايجار',
-                    totalPrice: '5,000',
-                    value: '3200',
-                    valueDescription: 'المساحة',
-                    titleInfo: 'عدد الغرف: ',
-                    valueInfo: '3',
-                    location: 'الدوحة',
-                    // descripton: '2 Beds Apartment',
-                  ),
+                  // SizedBox(height: AppSizeH.s20),
+                  // const MainDataContainer(
+                  //   title: 'سعر البيع',
+                  //   totalPrice: '4,032,530',
+                  //   value: '1530',
+                  //   valueDescription: 'سعر القدم المربع',
+                  //   titleInfo: 'الحالة:',
+                  //   valueInfo: 'مباع',
+                  //   location: 'الدوحة',
+                  //   descripton: '2 Beds Apartment',
+                  // ),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // const MainDataContainer(
+                  //   title: 'قيمة الايجار',
+                  //   totalPrice: '5,000',
+                  //   value: '3200',
+                  //   valueDescription: 'المساحة',
+                  //   titleInfo: 'عدد الغرف: ',
+                  //   valueInfo: '3',
+                  //   location: 'الدوحة',
+                  //   // descripton: '2 Beds Apartment',
+                  // ),
+                  const NewsItemWidget(
+                      date: '15 مارس 2023',
+                      label:
+                          'وزارة البلدية تطلق المرحلة الأولى من مشروع المنصة العقارية لدولة قطر'),
                   SizedBox(height: AppSizeH.s60),
                   Row(
                     children: [

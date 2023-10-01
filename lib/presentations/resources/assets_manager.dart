@@ -11,6 +11,7 @@ class ImageAssets {
   static const String ministryOfMunicipality =
       '${IMAGE_PATH}ministry_of_municiplaity.png';
   static const String splashBackground = '${IMAGE_PATH}splash_backgroudn.png';
+  static const String test = '${IMAGE_PATH}qq.png';
 }
 
 class IconAssets {
