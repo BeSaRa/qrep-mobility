@@ -33,7 +33,7 @@ class _MultiDropDownValue extends State<MultiDropDownValue> {
     'qwe',
     'Itemasd8',
     'zxc',
-    'Itemxcvsd00',
+    'Itemxcvsd00Itemxcvsd00Itemxcvsd00',
     'asdq',
     'zxcqawe',
   ];
@@ -74,18 +74,20 @@ class _MultiDropDownValue extends State<MultiDropDownValue> {
                     },
                     child: Container(
                       height: double.infinity,
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      padding: EdgeInsets.symmetric(horizontal: AppSizeW.s11),
                       child: Row(
                         children: [
                           if (isSelected)
                             const Icon(Icons.check_box_outlined)
                           else
                             const Icon(Icons.check_box_outline_blank),
-                          const SizedBox(width: 16),
+                          SizedBox(width: AppSizeW.s11),
                           Expanded(
                             child: Text(
                               item,
                               style: Theme.of(context).textTheme.labelSmall,
+                              softWrap: false,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         ],
@@ -125,7 +127,7 @@ class _MultiDropDownValue extends State<MultiDropDownValue> {
                 color: ColorManager.primary,
               )),
           buttonStyleData: ButtonStyleData(
-            padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
+            // padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
             height: AppSizeH.s36,
             // width: 140,
           ),
