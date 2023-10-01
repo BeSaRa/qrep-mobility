@@ -61,6 +61,7 @@ ThemeData lightTheme() {
       ),
     )),
     iconTheme: IconThemeData(color: ColorManager.primary),
+    scaffoldBackgroundColor: const Color(0xFFF9F9F9),
     textTheme: TextTheme(
       titleLarge: TextStyle(
           fontFamily: FontConstants.fontFamily,

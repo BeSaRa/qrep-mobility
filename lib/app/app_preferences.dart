@@ -1,8 +1,9 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../presentations/resources/language_manager.dart';
-import '../presentations/resources/theme_cubit.dart';
 import '../presentations/resources/theme_manager.dart';
 
 class AppPreferences {

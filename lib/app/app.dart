@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../presentations/resources/routes_manager.dart';
-import '../presentations/resources/theme_cubit.dart';
 import '../presentations/resources/theme_manager.dart';
 import 'app_preferences.dart';
 import 'depndency_injection.dart';
