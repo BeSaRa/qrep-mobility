@@ -15,7 +15,7 @@ class AppStrings {
   String support = 'support'.tr();
   String watchList = 'my_watch_list'.tr();
   String login = 'login'.tr();
-  String theme = 'Theme'.tr();
+  String theme = 'theme'.tr();
   String language = 'language'.tr();
   String dark = 'dark'.tr();
   String light = 'light'.tr();
