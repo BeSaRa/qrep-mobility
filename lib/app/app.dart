@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          title: 'x-tech',
+          title: 'Real State Qatar',
           themeMode: theme.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
           theme: theme,
           // theme: themeCubit.state.firstTheme,
