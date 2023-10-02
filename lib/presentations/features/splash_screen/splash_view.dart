@@ -1,3 +1,4 @@
+import 'package:ebla/presentations/features/splash_screen/widgets/animated_transparent_container.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
@@ -13,33 +14,30 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
-  double _scale = 1.5; // Set the initial scale factor
-
-  void _animatePicture() {
-    setState(() {
-      _scale = 1; // Set the target scale factor for the animation
-    });
-  }
-
+  // scale: used for the towers image
+  double _scale = 1.5;
+  // backgroundImageBottomPosition: used for the golden background image
+  double backgroundImageBottomPosition = 0;
+  // isVisible: used for the transparent container
   bool _isVisible = false;
-
-  void _toggleVisibility() {
-    setState(() {
-      _isVisible = !_isVisible;
-    });
-  }
 
   @override
   void initState() {
     super.initState();
-
     Future.delayed(
-      const Duration(milliseconds: 1500),
+      const Duration(milliseconds: 1400),
       () {
-        _animatePicture();
-        _toggleVisibility();
+        _startAnimation();
       },
     );
+  }
+
+  void _startAnimation() {
+    setState(() {
+      _scale = 1;
+      _isVisible = !_isVisible;
+      backgroundImageBottomPosition = -15;
+    });
   }
 
   Future<void> navigateAfterDelay() async {
@@ -47,7 +45,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
       const Duration(milliseconds: 1),
       () {
         context.goNamed(
-          RoutesNames.homeRoute,
+          RoutesNames.home,
         );
       },
     );
@@ -59,7 +57,10 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
       backgroundColor: ColorManager.white,
       body: Stack(
         children: [
-          Image.asset(ImageAssets.splashBackground),
+          AnimatedPositioned(
+              top: backgroundImageBottomPosition,
+              duration: const Duration(milliseconds: 500),
+              child: Image.asset(ImageAssets.splashBackground)),
           Column(
             children: [
               Expanded(
@@ -87,69 +88,6 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
           ),
         ],
       ),
-    );
-  }
-}
-
-class AnimatedTransparentContainer extends StatefulWidget {
-  const AnimatedTransparentContainer({super.key});
-
-  @override
-  State<AnimatedTransparentContainer> createState() =>
-      _AnimatedTransparentContainerState();
-}
-
-class _AnimatedTransparentContainerState
-    extends State<AnimatedTransparentContainer> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-                color: ColorManager.primary,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(AppSizeR.s50),
-                    bottomRight: Radius.circular(AppSizeR.s50))),
-            child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-              Text(
-                'المنصة العقارية\n لدولة قطر\n',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 33,
-                  fontFamily: 'Noto Sans',
-                  fontWeight: FontWeight.w700,
-                  height: 1,
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 30,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFB6B6B6),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: AppSizeH.s34,
-              )
-            ]),
-          ),
-        ),
-        SizedBox(
-          height: AppSizeH.s50,
-        ),
-        Image.asset(
-          ImageAssets.ministryOfMunicipality,
-        ),
-      ],
     );
   }
 }
