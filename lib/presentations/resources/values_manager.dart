@@ -401,6 +401,7 @@ class AppSizeSp {
   static double s28_5 = 28.5.sp;
   static double s30 = 30.0.sp;
   static double s32 = 32.0.sp;
+  static double s33 = 33.0.sp;
   static double s34 = 34.0.sp;
   static double s40 = 40.0.sp;
   static double s45 = 45.0.sp;
