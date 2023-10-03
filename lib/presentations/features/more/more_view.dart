@@ -1,6 +1,7 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/presentations/features/more/cubits/change_language_cubit.dart';
+import 'package:ebla/presentations/features/more/login_view.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
@@ -36,7 +37,7 @@ class _MoreViewState extends State<MoreView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 100, // Set this height
+        toolbarHeight: AppSizeH.s100, // Set this height
         flexibleSpace: SvgPicture.asset(
           ImageAssets.appbarBg,
           fit: BoxFit.cover,
@@ -64,10 +65,10 @@ class _MoreViewState extends State<MoreView> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(8),
+                  padding: EdgeInsets.all(AppSizeW.s20),
                   decoration: BoxDecoration(
                       color: Theme.of(context).disabledColor.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(20)),
+                      borderRadius: BorderRadius.circular(AppSizeW.s20)),
                   child: Row(
                     children: [
                       Text(
@@ -75,8 +76,8 @@ class _MoreViewState extends State<MoreView> {
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
                       SizedBox(
-                        height: 30,
-                        width: 30,
+                        height: AppSizeW.s30,
+                        width: AppSizeW.s30,
                         child: SvgPicture.asset(
                           IconAssets.supportIcon,
                         ),
@@ -98,6 +99,12 @@ class _MoreViewState extends State<MoreView> {
           MoreWidgetButton(
             icon: Icons.login,
             title: AppStrings().login,
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => _buildPopupDialog(context),
+              );
+            },
           ),
           ThemeSwitcher.withTheme(builder: (context, switcher, theme) {
             return MoreWidgetButton(
@@ -150,6 +157,12 @@ class _MoreViewState extends State<MoreView> {
       ),
     );
   }
+
+  Widget _buildPopupDialog(BuildContext context) {
+    return Dialog(
+      child: LoginView(),
+    );
+  }
 }
 
 class MoreWidgetButton extends StatelessWidget {
@@ -178,14 +191,15 @@ class MoreWidgetButton extends StatelessWidget {
             }
           : null,
       child: Container(
-        height: 56,
-        padding: const EdgeInsets.all(8),
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+        height: AppSizeH.s56,
+        padding: EdgeInsets.all(AppSizeH.s8),
+        margin: EdgeInsets.symmetric(
+            horizontal: AppSizeH.s20, vertical: AppSizeW.s6),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: ColorManager.white,
           border: Border.all(
-            width: 2.0,
+            width: AppSizeW.s2,
             // assign the color to the border color
             color: ColorManager.grey,
           ),
@@ -197,7 +211,7 @@ class MoreWidgetButton extends StatelessWidget {
               color: Theme.of(context).primaryColor,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6),
+              padding: EdgeInsets.symmetric(horizontal: AppSizeH.s6),
               child: Text(title,
                   style: Theme.of(context)
                       .textTheme

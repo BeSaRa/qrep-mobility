@@ -12,5 +12,9 @@
   "theme": "الثيمات",
   "language": "اللغة",
   "dark": "ليلي",
-  "light": "نهاري"
+  "light": "نهاري",
+  "user_name": "اسم المستخدم",
+  "password": "كلمة المرور",
+  "forget_password": "هل نسيت كلمة المرور؟",
+  "activate_face_id": "تفعيل بصمة الوجه"
 }

@@ -19,4 +19,10 @@ class AppStrings {
   String language = 'language'.tr();
   String dark = 'dark'.tr();
   String light = 'light'.tr();
+
+  //login view locals
+  String userName = 'user_name'.tr();
+  String password = 'password'.tr();
+  String forgetPassword = 'forget_password'.tr();
+  String activateFaceId = 'activate_face_id'.tr();
 }
