@@ -12,5 +12,9 @@
   "theme": "Theme",
   "language": "Language",
   "dark": "Dark",
-  "light": "Light"
+  "light": "Light",
+  "user_name": "User name",
+  "password": "Password",
+  "forget_password": "Did you forget your password?",
+  "activate_face_id": "Activate face id"
 }
