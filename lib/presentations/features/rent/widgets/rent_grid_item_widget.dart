@@ -3,6 +3,7 @@ import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../../../resources/values_manager.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class RentGridItemWidget extends StatelessWidget {
   const RentGridItemWidget({super.key, required this.index});
@@ -11,24 +12,25 @@ class RentGridItemWidget extends StatelessWidget {
   //todo: this should be removed once we have real data from api
   final List<GridItemData> gridItemsData = const [
     GridItemData(
-        title: "إجمالي عدد  \nعقود الإيجار",
-        value: "983",
-        imagePath: 'imagePath',
-        valueUnit: ''),
-    GridItemData(
         title: "إجمالي عدد الوحدات \n العقارات المستأجرة \\",
         value: "983",
-        imagePath: 'imagePath',
+        imagePath: ImageAssets.soldOrRentedUnits,
         valueUnit: ''),
+    GridItemData(
+      title: "إجمالي عدد  \nعقود الإيجار",
+      value: "983",
+      imagePath: ImageAssets.totalNumRentContracts,
+      valueUnit: '',
+    ),
     GridItemData(
         title: "متوسط قيمة الإيجار\n لكل وحدة \\ عقار",
         value: "5,790",
-        imagePath: "imagePath",
+        imagePath: ImageAssets.averageRentUnitPrice,
         valueUnit: 'ر.ق'),
     GridItemData(
         title: "إجمالي قيمة عقود\n الإيجار",
         value: "716,104",
-        imagePath: "imagePath",
+        imagePath: ImageAssets.totalValRentContracts,
         valueUnit: 'ر.ق'),
   ];
 
@@ -61,8 +63,7 @@ class RentGridItemWidget extends StatelessWidget {
             Expanded(
               child: Text(gridItemsData[index].title,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: AppSizeSp.s13, fontWeight: FontWeight.w700)),
+                  style: Theme.of(context).textTheme.bodyMedium),
             ),
           ],
         ),
@@ -73,32 +74,32 @@ class RentGridItemWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(width: AppSizeW.s28),
+            SizedBox(width: AppSizeW.s24),
             Flexible(
               child: Wrap(
                 alignment: WrapAlignment.center,
                 children: [
                   FittedBox(
-                    child: Text(
-                      gridItemsData[index].value,
-                      style: TextStyle(
-                          fontSize: AppSizeSp.s18, fontWeight: FontWeight.w700),
-                    ),
+                    child: Text(gridItemsData[index].value,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(fontSize: AppSizeSp.s18)),
                   ),
-                  Text(
-                    gridItemsData[index].valueUnit,
-                    style: TextStyle(
-                        fontSize: AppSizeSp.s18, fontWeight: FontWeight.w700),
-                  ),
+                  Text(gridItemsData[index].valueUnit,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(fontSize: AppSizeSp.s18, height: 0.5)),
                 ],
               ),
             ),
-            Flexible(
-              child: Image.asset(
-                ImageAssets.soldOrRentedUnits,
-                height: AppSizeH.s65,
-                width: AppSizeW.s65,
-              ),
+            SizedBox(width: AppSizeW.s16),
+            SvgPicture.asset(
+              gridItemsData[index].imagePath,
+              height: AppSizeH.s70,
+              width: AppSizeW.s70,
+              color: ColorManager.primary,
             ),
           ],
         )
