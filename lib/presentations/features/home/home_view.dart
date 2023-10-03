@@ -25,6 +25,7 @@ import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/main_data_container.dart';
 import '../../widgets/mutli_dropdown_widget.dart';
 import '../../widgets/news_item_widgets.dart';
+import '../../widgets/search_text_field_widget.dart';
 import '../../widgets/single_dropdown_widget.dart';
 
 class HomeView extends StatefulWidget {
@@ -35,6 +36,19 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final _textController = TextEditingController();
+  // bool showInkWell = false;
+
+  @override
+  void initState() {
+    // _textController.addListener(() {
+    //   setState(() {
+    //     showInkWell = _textController.text.isNotEmpty;
+    //   });
+    // });
+    // TODO: implement initState
+    super.initState();
+  }
   // bool _switchValue = false;
 
   @override
@@ -77,6 +91,13 @@ class _HomeViewState extends State<HomeView> {
         padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
         child: Column(
           children: [
+            Row(
+              children: [
+                Expanded(
+                    child: SearchTextFieldWidget(controller: _textController)),
+                const Expanded(flex: 2, child: SizedBox())
+              ],
+            ),
             Expanded(
               child: ListView(
                 children: [
@@ -107,30 +128,6 @@ class _HomeViewState extends State<HomeView> {
                       const Expanded(child: GrowthRateWidget(index: 1)),
                     ],
                   ),
-                  // SizedBox(height: AppSizeH.s20),
-                  // const MainDataContainer(
-                  //   title: 'سعر البيع',
-                  //   totalPrice: '4,032,530',
-                  //   value: '1530',
-                  //   valueDescription: 'سعر القدم المربع',
-                  //   titleInfo: 'الحالة:',
-                  //   valueInfo: 'مباع',
-                  //   location: 'الدوحة',
-                  //   descripton: '2 Beds Apartment',
-                  // ),
-                  // const SizedBox(
-                  //   height: 20,
-                  // ),
-                  // const MainDataContainer(
-                  //   title: 'قيمة الايجار',
-                  //   totalPrice: '5,000',
-                  //   value: '3200',
-                  //   valueDescription: 'المساحة',
-                  //   titleInfo: 'عدد الغرف: ',
-                  //   valueInfo: '3',
-                  //   location: 'الدوحة',
-                  //   // descripton: '2 Beds Apartment',
-                  // ),
                   const NewsItemWidget(
                       date: '15 مارس 2023',
                       label:
