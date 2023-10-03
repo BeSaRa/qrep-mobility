@@ -6,9 +6,17 @@ const String ICON_PATH = 'assets/icons/';
 class ImageAssets {
   static const String greenArrowUp = '${IMAGE_PATH}green_arrow_up.svg';
 
-  //todo: remove this png image
+  //-------------------Rent----------------------
   static const String soldOrRentedUnits =
-      '${IMAGE_PATH}sold_or_rented_units.png';
+      '${IMAGE_PATH}sold_or_rented_units.svg';
+  static const String totalNumRentContracts =
+      "${IMAGE_PATH}total_num_rent_contracts.svg";
+  static const String totalValRentContracts =
+      "${IMAGE_PATH}total_val_rent_contracts.svg";
+  static const String averageRentUnitPrice =
+      "${IMAGE_PATH}average_rent_unit_price.svg";
+
+  //------------------------------------------------
   static const String quatarTowerCitySplash =
       '${IMAGE_PATH}qatar_city_tower_splash.png';
   static const String ministryOfMunicipality =
