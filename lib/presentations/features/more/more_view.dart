@@ -159,7 +159,7 @@ class _MoreViewState extends State<MoreView> {
   }
 
   Widget _buildPopupDialog(BuildContext context) {
-    return Dialog(
+    return const Dialog(
       child: LoginView(),
     );
   }
@@ -196,7 +196,7 @@ class MoreWidgetButton extends StatelessWidget {
         margin: EdgeInsets.symmetric(
             horizontal: AppSizeH.s20, vertical: AppSizeW.s6),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppSizeR.s20),
           color: ColorManager.white,
           border: Border.all(
             width: AppSizeW.s2,
@@ -213,19 +213,17 @@ class MoreWidgetButton extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: AppSizeH.s6),
               child: Text(title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(fontSize: 16.sp, fontWeight: FontWeight.w400)),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontSize: AppSizeSp.s16, fontWeight: FontWeight.w400)),
             ),
             const Spacer(),
             isButton
                 ? Icon(
                     Icons.arrow_forward_ios,
                     color: ColorManager.grey,
-                    size: 18.sp,
+                    size: AppSizeSp.s18,
                   )
-                : widget ?? Container()
+                : widget ?? const SizedBox()
           ],
         ),
       ),
