@@ -16,5 +16,7 @@
   "user_name": "اسم المستخدم",
   "password": "كلمة المرور",
   "forget_password": "هل نسيت كلمة المرور؟",
-  "activate_face_id": "تفعيل بصمة الوجه"
+  "activate_face_id": "تفعيل بصمة الوجه",
+  "noInternetError": "لا يوجد اتصال بالإنترنت",
+  "defaultError": "خطأ افتراضي"
 }

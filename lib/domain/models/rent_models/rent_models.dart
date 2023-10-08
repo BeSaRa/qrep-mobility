@@ -5,7 +5,7 @@ part 'rent_models.g.dart';
 
 @freezed
 abstract class RentLookupResponse with _$RentLookupResponse {
-  factory RentLookupResponse({
+  const factory RentLookupResponse({
     @Default([]) List<RentLookupModel> rooms,
     @Default([]) List<RentLookupModel> durations,
     @Default([]) List<RentLookupModel> halfYearDurations,

@@ -1,4 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:ebla/domain/usecases/rent_usecases/rent_usecases.dart';
+import 'package:ebla/presentations/features/rent/bloc/rent_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,4 +25,10 @@ Future<void> initAppModule() async {
       () => NetworkInfoImplementer(Connectivity()));
   instance.registerLazySingleton<Repository>(() => RepositoryImplementer(
       appServiceClient: instance(), networkInfo: instance()));
+
+  //Rent
+  instance.registerLazySingleton(() => GetRentLookupUseCase(instance()));
+
+  //Blocs
+  instance.registerFactory(() => RentBloc(getRentLookupUseCase: instance()));
 }

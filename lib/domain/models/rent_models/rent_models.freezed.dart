@@ -330,7 +330,7 @@ class __$$RentLookupResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RentLookupResponseImpl implements _RentLookupResponse {
-  _$RentLookupResponseImpl(
+  const _$RentLookupResponseImpl(
       {final List<RentLookupModel> rooms = const [],
       final List<RentLookupModel> durations = const [],
       final List<RentLookupModel> halfYearDurations = const [],
@@ -624,7 +624,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
 }
 
 abstract class _RentLookupResponse implements RentLookupResponse {
-  factory _RentLookupResponse(
+  const factory _RentLookupResponse(
       {final List<RentLookupModel> rooms,
       final List<RentLookupModel> durations,
       final List<RentLookupModel> halfYearDurations,

@@ -25,4 +25,8 @@ class AppStrings {
   String password = 'password'.tr();
   String forgetPassword = 'forget_password'.tr();
   String activateFaceId = 'activate_face_id'.tr();
+
+  //Errors
+  String noInternetError = 'noInternetError'.tr();
+  String defaultError = 'defaultError'.tr();
 }
