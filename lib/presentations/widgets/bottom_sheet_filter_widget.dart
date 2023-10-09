@@ -1,18 +1,17 @@
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/widgets/mutli_dropdown_widget.dart';
 import 'package:ebla/presentations/widgets/range_slider_filter_widget.dart';
-
 import 'package:flutter/material.dart';
 
 import '../resources/values_manager.dart';
 import 'custom_elevated_button.dart';
 import 'single_dropdown_widget.dart';
 
-class BosttomSheetFilterWidget extends StatelessWidget {
+class BottomSheetFilterWidget extends StatelessWidget {
   final double minPrice = 0.0;
   final double maxPrice = 2000000.0;
 
-  const BosttomSheetFilterWidget({
+  const BottomSheetFilterWidget({
     super.key,
   });
 
@@ -180,6 +179,7 @@ class ChooseUnitWidget extends StatefulWidget {
 
 class _ChooseUnitWidgetState extends State<ChooseUnitWidget> {
   int index = 1;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

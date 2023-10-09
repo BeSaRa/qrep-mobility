@@ -1,42 +1,34 @@
-import 'package:easy_localization/easy_localization.dart' as local;
-
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:ebla/presentations/features/rent/widgets/rent_grid_item_widget.dart';
-import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/theme_manager.dart';
-import 'package:ebla/presentations/widgets/growth_rate_widget.dart';
-import 'package:ebla/presentations/widgets/range_slider_widget.dart';
-
-import 'package:ebla/presentations/widgets/staggered_grid_view.dart';
-
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ebla/presentations/widgets/bottom_sheet_widget.dart';
+import 'package:ebla/presentations/widgets/growth_rate_widget.dart';
+import 'package:ebla/presentations/widgets/staggered_grid_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:readmore/readmore.dart';
 
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
 import '../../resources/color_manager.dart';
-import '../../resources/theme_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets/bottom_sheet_filter_widget.dart';
 import '../../widgets/custom_elevated_button.dart';
-import '../../widgets/main_data_container.dart';
 import '../../widgets/mutli_dropdown_widget.dart';
 import '../../widgets/news_item_widgets.dart';
 import '../../widgets/search_text_field_widget.dart';
-import '../../widgets/single_dropdown_widget.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key, this.title = 'press'});
+
   final String title;
+
   @override
   State<HomeView> createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
   final _textController = TextEditingController();
+
   // bool showInkWell = false;
 
   @override
@@ -49,6 +41,7 @@ class _HomeViewState extends State<HomeView> {
     // TODO: implement initState
     super.initState();
   }
+
   // bool _switchValue = false;
 
   @override
@@ -61,7 +54,7 @@ class _HomeViewState extends State<HomeView> {
             onPressed: () {
               bottomSheetWidget(
                 context,
-                child: const BosttomSheetFilterWidget(),
+                child: const BottomSheetFilterWidget(),
               );
             },
             icon: Icon(
@@ -142,7 +135,7 @@ class _HomeViewState extends State<HomeView> {
                           onPress: () {
                             bottomSheetWidget(
                               context,
-                              child: const BosttomSheetFilterWidget(),
+                              child: const BottomSheetFilterWidget(),
                             );
                           },
                         ),

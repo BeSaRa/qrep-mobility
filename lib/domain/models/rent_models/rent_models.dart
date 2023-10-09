@@ -4,6 +4,43 @@ part 'rent_models.freezed.dart';
 part 'rent_models.g.dart';
 
 @freezed
+abstract class RentDefault with _$RentDefault {
+  factory RentDefault(
+      {@Default(0) int issueYear,
+      @Default(0) int kpi10PreviousYear,
+      @Default(0) int kpi10Val,
+      @Default(0) int kpi13PreviousYear,
+      @Default(0) int kpi13Val,
+      @Default(0) int kpi16PreviousYear,
+      @Default(0) int kpi16Val,
+      @Default(0) int kpi16_2PreviousYear,
+      @Default(0) int kpi16_2Val,
+      @Default(0) int kpi1PreviousYear,
+      @Default(0) int kpi1Val,
+      @Default(0) int kpi4PreviousYear,
+      @Default(0) int kpi4Val,
+      @Default(0) int kpi7PreviousYear,
+      @Default(0) int kpi7Val,
+      @Default(0) int kpiYoY1,
+      @Default(0) int kpiYoY10,
+      @Default(0) int kpiYoY10Difference,
+      @Default(0) int kpiYoY13,
+      @Default(0) int kpiYoY13Difference,
+      @Default(0) int kpiYoY16,
+      @Default(0) int kpiYoY16Difference,
+      @Default(0) int kpiYoY16_2,
+      @Default(0) int kpiYoY16_2Difference,
+      @Default(0) int kpiYoY1Difference,
+      @Default(0) int kpiYoY4,
+      @Default(0) int kpiYoY4Difference,
+      @Default(0) int kpiYoY7,
+      @Default(0) int kpiYoY7Difference}) = _RentDefault;
+
+  factory RentDefault.fromJson(Map<String, dynamic> json) =>
+      _$RentDefaultFromJson(json);
+}
+
+@freezed
 abstract class RentLookupResponse with _$RentLookupResponse {
   factory RentLookupResponse({
     @Default([]) List<RentLookupModel> rooms,
@@ -25,6 +62,7 @@ abstract class RentLookupResponse with _$RentLookupResponse {
     @Default([]) List<RentLookupModel> ownerCategoryList,
     @Default([]) List<MaxParamsModel> maxParams,
   }) = _RentLookupResponse;
+
   factory RentLookupResponse.fromJson(Map<String, dynamic> json) =>
       _$RentLookupResponseFromJson(json);
 }
@@ -44,6 +82,7 @@ abstract class RentLookupModel with _$RentLookupModel {
     @Default(0) int municipalityId,
     @Default(false) bool isActive,
   }) = _RentLookupModel;
+
   factory RentLookupModel.fromJson(Map<String, dynamic> json) =>
       _$RentLookupModelFromJson(json);
 }
@@ -58,6 +97,7 @@ abstract class MaxParamsModel with _$MaxParamsModel {
     @Default('') String model,
     @Default(false) bool isActive,
   }) = _MaxParamsModel;
+
   factory MaxParamsModel.fromJson(Map<String, dynamic> json) =>
       _$MaxParamsModelFromJson(json);
 }

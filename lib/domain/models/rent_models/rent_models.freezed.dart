@@ -14,6 +14,789 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+RentDefault _$RentDefaultFromJson(Map<String, dynamic> json) {
+  return _RentDefault.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RentDefault {
+  int get issueYear => throw _privateConstructorUsedError;
+  int get kpi10PreviousYear => throw _privateConstructorUsedError;
+  int get kpi10Val => throw _privateConstructorUsedError;
+  int get kpi13PreviousYear => throw _privateConstructorUsedError;
+  int get kpi13Val => throw _privateConstructorUsedError;
+  int get kpi16PreviousYear => throw _privateConstructorUsedError;
+  int get kpi16Val => throw _privateConstructorUsedError;
+  int get kpi16_2PreviousYear => throw _privateConstructorUsedError;
+  int get kpi16_2Val => throw _privateConstructorUsedError;
+  int get kpi1PreviousYear => throw _privateConstructorUsedError;
+  int get kpi1Val => throw _privateConstructorUsedError;
+  int get kpi4PreviousYear => throw _privateConstructorUsedError;
+  int get kpi4Val => throw _privateConstructorUsedError;
+  int get kpi7PreviousYear => throw _privateConstructorUsedError;
+  int get kpi7Val => throw _privateConstructorUsedError;
+  int get kpiYoY1 => throw _privateConstructorUsedError;
+  int get kpiYoY10 => throw _privateConstructorUsedError;
+  int get kpiYoY10Difference => throw _privateConstructorUsedError;
+  int get kpiYoY13 => throw _privateConstructorUsedError;
+  int get kpiYoY13Difference => throw _privateConstructorUsedError;
+  int get kpiYoY16 => throw _privateConstructorUsedError;
+  int get kpiYoY16Difference => throw _privateConstructorUsedError;
+  int get kpiYoY16_2 => throw _privateConstructorUsedError;
+  int get kpiYoY16_2Difference => throw _privateConstructorUsedError;
+  int get kpiYoY1Difference => throw _privateConstructorUsedError;
+  int get kpiYoY4 => throw _privateConstructorUsedError;
+  int get kpiYoY4Difference => throw _privateConstructorUsedError;
+  int get kpiYoY7 => throw _privateConstructorUsedError;
+  int get kpiYoY7Difference => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RentDefaultCopyWith<RentDefault> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RentDefaultCopyWith<$Res> {
+  factory $RentDefaultCopyWith(
+          RentDefault value, $Res Function(RentDefault) then) =
+      _$RentDefaultCopyWithImpl<$Res, RentDefault>;
+  @useResult
+  $Res call(
+      {int issueYear,
+      int kpi10PreviousYear,
+      int kpi10Val,
+      int kpi13PreviousYear,
+      int kpi13Val,
+      int kpi16PreviousYear,
+      int kpi16Val,
+      int kpi16_2PreviousYear,
+      int kpi16_2Val,
+      int kpi1PreviousYear,
+      int kpi1Val,
+      int kpi4PreviousYear,
+      int kpi4Val,
+      int kpi7PreviousYear,
+      int kpi7Val,
+      int kpiYoY1,
+      int kpiYoY10,
+      int kpiYoY10Difference,
+      int kpiYoY13,
+      int kpiYoY13Difference,
+      int kpiYoY16,
+      int kpiYoY16Difference,
+      int kpiYoY16_2,
+      int kpiYoY16_2Difference,
+      int kpiYoY1Difference,
+      int kpiYoY4,
+      int kpiYoY4Difference,
+      int kpiYoY7,
+      int kpiYoY7Difference});
+}
+
+/// @nodoc
+class _$RentDefaultCopyWithImpl<$Res, $Val extends RentDefault>
+    implements $RentDefaultCopyWith<$Res> {
+  _$RentDefaultCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? issueYear = null,
+    Object? kpi10PreviousYear = null,
+    Object? kpi10Val = null,
+    Object? kpi13PreviousYear = null,
+    Object? kpi13Val = null,
+    Object? kpi16PreviousYear = null,
+    Object? kpi16Val = null,
+    Object? kpi16_2PreviousYear = null,
+    Object? kpi16_2Val = null,
+    Object? kpi1PreviousYear = null,
+    Object? kpi1Val = null,
+    Object? kpi4PreviousYear = null,
+    Object? kpi4Val = null,
+    Object? kpi7PreviousYear = null,
+    Object? kpi7Val = null,
+    Object? kpiYoY1 = null,
+    Object? kpiYoY10 = null,
+    Object? kpiYoY10Difference = null,
+    Object? kpiYoY13 = null,
+    Object? kpiYoY13Difference = null,
+    Object? kpiYoY16 = null,
+    Object? kpiYoY16Difference = null,
+    Object? kpiYoY16_2 = null,
+    Object? kpiYoY16_2Difference = null,
+    Object? kpiYoY1Difference = null,
+    Object? kpiYoY4 = null,
+    Object? kpiYoY4Difference = null,
+    Object? kpiYoY7 = null,
+    Object? kpiYoY7Difference = null,
+  }) {
+    return _then(_value.copyWith(
+      issueYear: null == issueYear
+          ? _value.issueYear
+          : issueYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi10PreviousYear: null == kpi10PreviousYear
+          ? _value.kpi10PreviousYear
+          : kpi10PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi10Val: null == kpi10Val
+          ? _value.kpi10Val
+          : kpi10Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi13PreviousYear: null == kpi13PreviousYear
+          ? _value.kpi13PreviousYear
+          : kpi13PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi13Val: null == kpi13Val
+          ? _value.kpi13Val
+          : kpi13Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi16PreviousYear: null == kpi16PreviousYear
+          ? _value.kpi16PreviousYear
+          : kpi16PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi16Val: null == kpi16Val
+          ? _value.kpi16Val
+          : kpi16Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi16_2PreviousYear: null == kpi16_2PreviousYear
+          ? _value.kpi16_2PreviousYear
+          : kpi16_2PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi16_2Val: null == kpi16_2Val
+          ? _value.kpi16_2Val
+          : kpi16_2Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi1PreviousYear: null == kpi1PreviousYear
+          ? _value.kpi1PreviousYear
+          : kpi1PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi1Val: null == kpi1Val
+          ? _value.kpi1Val
+          : kpi1Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi4PreviousYear: null == kpi4PreviousYear
+          ? _value.kpi4PreviousYear
+          : kpi4PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi4Val: null == kpi4Val
+          ? _value.kpi4Val
+          : kpi4Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi7PreviousYear: null == kpi7PreviousYear
+          ? _value.kpi7PreviousYear
+          : kpi7PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi7Val: null == kpi7Val
+          ? _value.kpi7Val
+          : kpi7Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY1: null == kpiYoY1
+          ? _value.kpiYoY1
+          : kpiYoY1 // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY10: null == kpiYoY10
+          ? _value.kpiYoY10
+          : kpiYoY10 // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY10Difference: null == kpiYoY10Difference
+          ? _value.kpiYoY10Difference
+          : kpiYoY10Difference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY13: null == kpiYoY13
+          ? _value.kpiYoY13
+          : kpiYoY13 // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY13Difference: null == kpiYoY13Difference
+          ? _value.kpiYoY13Difference
+          : kpiYoY13Difference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY16: null == kpiYoY16
+          ? _value.kpiYoY16
+          : kpiYoY16 // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY16Difference: null == kpiYoY16Difference
+          ? _value.kpiYoY16Difference
+          : kpiYoY16Difference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY16_2: null == kpiYoY16_2
+          ? _value.kpiYoY16_2
+          : kpiYoY16_2 // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY16_2Difference: null == kpiYoY16_2Difference
+          ? _value.kpiYoY16_2Difference
+          : kpiYoY16_2Difference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY1Difference: null == kpiYoY1Difference
+          ? _value.kpiYoY1Difference
+          : kpiYoY1Difference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY4: null == kpiYoY4
+          ? _value.kpiYoY4
+          : kpiYoY4 // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY4Difference: null == kpiYoY4Difference
+          ? _value.kpiYoY4Difference
+          : kpiYoY4Difference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY7: null == kpiYoY7
+          ? _value.kpiYoY7
+          : kpiYoY7 // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY7Difference: null == kpiYoY7Difference
+          ? _value.kpiYoY7Difference
+          : kpiYoY7Difference // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RentDefaultImplCopyWith<$Res>
+    implements $RentDefaultCopyWith<$Res> {
+  factory _$$RentDefaultImplCopyWith(
+          _$RentDefaultImpl value, $Res Function(_$RentDefaultImpl) then) =
+      __$$RentDefaultImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int issueYear,
+      int kpi10PreviousYear,
+      int kpi10Val,
+      int kpi13PreviousYear,
+      int kpi13Val,
+      int kpi16PreviousYear,
+      int kpi16Val,
+      int kpi16_2PreviousYear,
+      int kpi16_2Val,
+      int kpi1PreviousYear,
+      int kpi1Val,
+      int kpi4PreviousYear,
+      int kpi4Val,
+      int kpi7PreviousYear,
+      int kpi7Val,
+      int kpiYoY1,
+      int kpiYoY10,
+      int kpiYoY10Difference,
+      int kpiYoY13,
+      int kpiYoY13Difference,
+      int kpiYoY16,
+      int kpiYoY16Difference,
+      int kpiYoY16_2,
+      int kpiYoY16_2Difference,
+      int kpiYoY1Difference,
+      int kpiYoY4,
+      int kpiYoY4Difference,
+      int kpiYoY7,
+      int kpiYoY7Difference});
+}
+
+/// @nodoc
+class __$$RentDefaultImplCopyWithImpl<$Res>
+    extends _$RentDefaultCopyWithImpl<$Res, _$RentDefaultImpl>
+    implements _$$RentDefaultImplCopyWith<$Res> {
+  __$$RentDefaultImplCopyWithImpl(
+      _$RentDefaultImpl _value, $Res Function(_$RentDefaultImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? issueYear = null,
+    Object? kpi10PreviousYear = null,
+    Object? kpi10Val = null,
+    Object? kpi13PreviousYear = null,
+    Object? kpi13Val = null,
+    Object? kpi16PreviousYear = null,
+    Object? kpi16Val = null,
+    Object? kpi16_2PreviousYear = null,
+    Object? kpi16_2Val = null,
+    Object? kpi1PreviousYear = null,
+    Object? kpi1Val = null,
+    Object? kpi4PreviousYear = null,
+    Object? kpi4Val = null,
+    Object? kpi7PreviousYear = null,
+    Object? kpi7Val = null,
+    Object? kpiYoY1 = null,
+    Object? kpiYoY10 = null,
+    Object? kpiYoY10Difference = null,
+    Object? kpiYoY13 = null,
+    Object? kpiYoY13Difference = null,
+    Object? kpiYoY16 = null,
+    Object? kpiYoY16Difference = null,
+    Object? kpiYoY16_2 = null,
+    Object? kpiYoY16_2Difference = null,
+    Object? kpiYoY1Difference = null,
+    Object? kpiYoY4 = null,
+    Object? kpiYoY4Difference = null,
+    Object? kpiYoY7 = null,
+    Object? kpiYoY7Difference = null,
+  }) {
+    return _then(_$RentDefaultImpl(
+      issueYear: null == issueYear
+          ? _value.issueYear
+          : issueYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi10PreviousYear: null == kpi10PreviousYear
+          ? _value.kpi10PreviousYear
+          : kpi10PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi10Val: null == kpi10Val
+          ? _value.kpi10Val
+          : kpi10Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi13PreviousYear: null == kpi13PreviousYear
+          ? _value.kpi13PreviousYear
+          : kpi13PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi13Val: null == kpi13Val
+          ? _value.kpi13Val
+          : kpi13Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi16PreviousYear: null == kpi16PreviousYear
+          ? _value.kpi16PreviousYear
+          : kpi16PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi16Val: null == kpi16Val
+          ? _value.kpi16Val
+          : kpi16Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi16_2PreviousYear: null == kpi16_2PreviousYear
+          ? _value.kpi16_2PreviousYear
+          : kpi16_2PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi16_2Val: null == kpi16_2Val
+          ? _value.kpi16_2Val
+          : kpi16_2Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi1PreviousYear: null == kpi1PreviousYear
+          ? _value.kpi1PreviousYear
+          : kpi1PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi1Val: null == kpi1Val
+          ? _value.kpi1Val
+          : kpi1Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi4PreviousYear: null == kpi4PreviousYear
+          ? _value.kpi4PreviousYear
+          : kpi4PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi4Val: null == kpi4Val
+          ? _value.kpi4Val
+          : kpi4Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi7PreviousYear: null == kpi7PreviousYear
+          ? _value.kpi7PreviousYear
+          : kpi7PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi7Val: null == kpi7Val
+          ? _value.kpi7Val
+          : kpi7Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY1: null == kpiYoY1
+          ? _value.kpiYoY1
+          : kpiYoY1 // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY10: null == kpiYoY10
+          ? _value.kpiYoY10
+          : kpiYoY10 // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY10Difference: null == kpiYoY10Difference
+          ? _value.kpiYoY10Difference
+          : kpiYoY10Difference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY13: null == kpiYoY13
+          ? _value.kpiYoY13
+          : kpiYoY13 // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY13Difference: null == kpiYoY13Difference
+          ? _value.kpiYoY13Difference
+          : kpiYoY13Difference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY16: null == kpiYoY16
+          ? _value.kpiYoY16
+          : kpiYoY16 // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY16Difference: null == kpiYoY16Difference
+          ? _value.kpiYoY16Difference
+          : kpiYoY16Difference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY16_2: null == kpiYoY16_2
+          ? _value.kpiYoY16_2
+          : kpiYoY16_2 // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY16_2Difference: null == kpiYoY16_2Difference
+          ? _value.kpiYoY16_2Difference
+          : kpiYoY16_2Difference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY1Difference: null == kpiYoY1Difference
+          ? _value.kpiYoY1Difference
+          : kpiYoY1Difference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY4: null == kpiYoY4
+          ? _value.kpiYoY4
+          : kpiYoY4 // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY4Difference: null == kpiYoY4Difference
+          ? _value.kpiYoY4Difference
+          : kpiYoY4Difference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY7: null == kpiYoY7
+          ? _value.kpiYoY7
+          : kpiYoY7 // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoY7Difference: null == kpiYoY7Difference
+          ? _value.kpiYoY7Difference
+          : kpiYoY7Difference // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RentDefaultImpl implements _RentDefault {
+  _$RentDefaultImpl(
+      {this.issueYear = 0,
+      this.kpi10PreviousYear = 0,
+      this.kpi10Val = 0,
+      this.kpi13PreviousYear = 0,
+      this.kpi13Val = 0,
+      this.kpi16PreviousYear = 0,
+      this.kpi16Val = 0,
+      this.kpi16_2PreviousYear = 0,
+      this.kpi16_2Val = 0,
+      this.kpi1PreviousYear = 0,
+      this.kpi1Val = 0,
+      this.kpi4PreviousYear = 0,
+      this.kpi4Val = 0,
+      this.kpi7PreviousYear = 0,
+      this.kpi7Val = 0,
+      this.kpiYoY1 = 0,
+      this.kpiYoY10 = 0,
+      this.kpiYoY10Difference = 0,
+      this.kpiYoY13 = 0,
+      this.kpiYoY13Difference = 0,
+      this.kpiYoY16 = 0,
+      this.kpiYoY16Difference = 0,
+      this.kpiYoY16_2 = 0,
+      this.kpiYoY16_2Difference = 0,
+      this.kpiYoY1Difference = 0,
+      this.kpiYoY4 = 0,
+      this.kpiYoY4Difference = 0,
+      this.kpiYoY7 = 0,
+      this.kpiYoY7Difference = 0});
+
+  factory _$RentDefaultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RentDefaultImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int issueYear;
+  @override
+  @JsonKey()
+  final int kpi10PreviousYear;
+  @override
+  @JsonKey()
+  final int kpi10Val;
+  @override
+  @JsonKey()
+  final int kpi13PreviousYear;
+  @override
+  @JsonKey()
+  final int kpi13Val;
+  @override
+  @JsonKey()
+  final int kpi16PreviousYear;
+  @override
+  @JsonKey()
+  final int kpi16Val;
+  @override
+  @JsonKey()
+  final int kpi16_2PreviousYear;
+  @override
+  @JsonKey()
+  final int kpi16_2Val;
+  @override
+  @JsonKey()
+  final int kpi1PreviousYear;
+  @override
+  @JsonKey()
+  final int kpi1Val;
+  @override
+  @JsonKey()
+  final int kpi4PreviousYear;
+  @override
+  @JsonKey()
+  final int kpi4Val;
+  @override
+  @JsonKey()
+  final int kpi7PreviousYear;
+  @override
+  @JsonKey()
+  final int kpi7Val;
+  @override
+  @JsonKey()
+  final int kpiYoY1;
+  @override
+  @JsonKey()
+  final int kpiYoY10;
+  @override
+  @JsonKey()
+  final int kpiYoY10Difference;
+  @override
+  @JsonKey()
+  final int kpiYoY13;
+  @override
+  @JsonKey()
+  final int kpiYoY13Difference;
+  @override
+  @JsonKey()
+  final int kpiYoY16;
+  @override
+  @JsonKey()
+  final int kpiYoY16Difference;
+  @override
+  @JsonKey()
+  final int kpiYoY16_2;
+  @override
+  @JsonKey()
+  final int kpiYoY16_2Difference;
+  @override
+  @JsonKey()
+  final int kpiYoY1Difference;
+  @override
+  @JsonKey()
+  final int kpiYoY4;
+  @override
+  @JsonKey()
+  final int kpiYoY4Difference;
+  @override
+  @JsonKey()
+  final int kpiYoY7;
+  @override
+  @JsonKey()
+  final int kpiYoY7Difference;
+
+  @override
+  String toString() {
+    return 'RentDefault(issueYear: $issueYear, kpi10PreviousYear: $kpi10PreviousYear, kpi10Val: $kpi10Val, kpi13PreviousYear: $kpi13PreviousYear, kpi13Val: $kpi13Val, kpi16PreviousYear: $kpi16PreviousYear, kpi16Val: $kpi16Val, kpi16_2PreviousYear: $kpi16_2PreviousYear, kpi16_2Val: $kpi16_2Val, kpi1PreviousYear: $kpi1PreviousYear, kpi1Val: $kpi1Val, kpi4PreviousYear: $kpi4PreviousYear, kpi4Val: $kpi4Val, kpi7PreviousYear: $kpi7PreviousYear, kpi7Val: $kpi7Val, kpiYoY1: $kpiYoY1, kpiYoY10: $kpiYoY10, kpiYoY10Difference: $kpiYoY10Difference, kpiYoY13: $kpiYoY13, kpiYoY13Difference: $kpiYoY13Difference, kpiYoY16: $kpiYoY16, kpiYoY16Difference: $kpiYoY16Difference, kpiYoY16_2: $kpiYoY16_2, kpiYoY16_2Difference: $kpiYoY16_2Difference, kpiYoY1Difference: $kpiYoY1Difference, kpiYoY4: $kpiYoY4, kpiYoY4Difference: $kpiYoY4Difference, kpiYoY7: $kpiYoY7, kpiYoY7Difference: $kpiYoY7Difference)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RentDefaultImpl &&
+            (identical(other.issueYear, issueYear) ||
+                other.issueYear == issueYear) &&
+            (identical(other.kpi10PreviousYear, kpi10PreviousYear) ||
+                other.kpi10PreviousYear == kpi10PreviousYear) &&
+            (identical(other.kpi10Val, kpi10Val) ||
+                other.kpi10Val == kpi10Val) &&
+            (identical(other.kpi13PreviousYear, kpi13PreviousYear) ||
+                other.kpi13PreviousYear == kpi13PreviousYear) &&
+            (identical(other.kpi13Val, kpi13Val) ||
+                other.kpi13Val == kpi13Val) &&
+            (identical(other.kpi16PreviousYear, kpi16PreviousYear) ||
+                other.kpi16PreviousYear == kpi16PreviousYear) &&
+            (identical(other.kpi16Val, kpi16Val) ||
+                other.kpi16Val == kpi16Val) &&
+            (identical(other.kpi16_2PreviousYear, kpi16_2PreviousYear) ||
+                other.kpi16_2PreviousYear == kpi16_2PreviousYear) &&
+            (identical(other.kpi16_2Val, kpi16_2Val) ||
+                other.kpi16_2Val == kpi16_2Val) &&
+            (identical(other.kpi1PreviousYear, kpi1PreviousYear) ||
+                other.kpi1PreviousYear == kpi1PreviousYear) &&
+            (identical(other.kpi1Val, kpi1Val) || other.kpi1Val == kpi1Val) &&
+            (identical(other.kpi4PreviousYear, kpi4PreviousYear) ||
+                other.kpi4PreviousYear == kpi4PreviousYear) &&
+            (identical(other.kpi4Val, kpi4Val) || other.kpi4Val == kpi4Val) &&
+            (identical(other.kpi7PreviousYear, kpi7PreviousYear) ||
+                other.kpi7PreviousYear == kpi7PreviousYear) &&
+            (identical(other.kpi7Val, kpi7Val) || other.kpi7Val == kpi7Val) &&
+            (identical(other.kpiYoY1, kpiYoY1) || other.kpiYoY1 == kpiYoY1) &&
+            (identical(other.kpiYoY10, kpiYoY10) ||
+                other.kpiYoY10 == kpiYoY10) &&
+            (identical(other.kpiYoY10Difference, kpiYoY10Difference) ||
+                other.kpiYoY10Difference == kpiYoY10Difference) &&
+            (identical(other.kpiYoY13, kpiYoY13) ||
+                other.kpiYoY13 == kpiYoY13) &&
+            (identical(other.kpiYoY13Difference, kpiYoY13Difference) ||
+                other.kpiYoY13Difference == kpiYoY13Difference) &&
+            (identical(other.kpiYoY16, kpiYoY16) ||
+                other.kpiYoY16 == kpiYoY16) &&
+            (identical(other.kpiYoY16Difference, kpiYoY16Difference) ||
+                other.kpiYoY16Difference == kpiYoY16Difference) &&
+            (identical(other.kpiYoY16_2, kpiYoY16_2) ||
+                other.kpiYoY16_2 == kpiYoY16_2) &&
+            (identical(other.kpiYoY16_2Difference, kpiYoY16_2Difference) ||
+                other.kpiYoY16_2Difference == kpiYoY16_2Difference) &&
+            (identical(other.kpiYoY1Difference, kpiYoY1Difference) ||
+                other.kpiYoY1Difference == kpiYoY1Difference) &&
+            (identical(other.kpiYoY4, kpiYoY4) || other.kpiYoY4 == kpiYoY4) &&
+            (identical(other.kpiYoY4Difference, kpiYoY4Difference) ||
+                other.kpiYoY4Difference == kpiYoY4Difference) &&
+            (identical(other.kpiYoY7, kpiYoY7) || other.kpiYoY7 == kpiYoY7) &&
+            (identical(other.kpiYoY7Difference, kpiYoY7Difference) ||
+                other.kpiYoY7Difference == kpiYoY7Difference));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        issueYear,
+        kpi10PreviousYear,
+        kpi10Val,
+        kpi13PreviousYear,
+        kpi13Val,
+        kpi16PreviousYear,
+        kpi16Val,
+        kpi16_2PreviousYear,
+        kpi16_2Val,
+        kpi1PreviousYear,
+        kpi1Val,
+        kpi4PreviousYear,
+        kpi4Val,
+        kpi7PreviousYear,
+        kpi7Val,
+        kpiYoY1,
+        kpiYoY10,
+        kpiYoY10Difference,
+        kpiYoY13,
+        kpiYoY13Difference,
+        kpiYoY16,
+        kpiYoY16Difference,
+        kpiYoY16_2,
+        kpiYoY16_2Difference,
+        kpiYoY1Difference,
+        kpiYoY4,
+        kpiYoY4Difference,
+        kpiYoY7,
+        kpiYoY7Difference
+      ]);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RentDefaultImplCopyWith<_$RentDefaultImpl> get copyWith =>
+      __$$RentDefaultImplCopyWithImpl<_$RentDefaultImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RentDefaultImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RentDefault implements RentDefault {
+  factory _RentDefault(
+      {final int issueYear,
+      final int kpi10PreviousYear,
+      final int kpi10Val,
+      final int kpi13PreviousYear,
+      final int kpi13Val,
+      final int kpi16PreviousYear,
+      final int kpi16Val,
+      final int kpi16_2PreviousYear,
+      final int kpi16_2Val,
+      final int kpi1PreviousYear,
+      final int kpi1Val,
+      final int kpi4PreviousYear,
+      final int kpi4Val,
+      final int kpi7PreviousYear,
+      final int kpi7Val,
+      final int kpiYoY1,
+      final int kpiYoY10,
+      final int kpiYoY10Difference,
+      final int kpiYoY13,
+      final int kpiYoY13Difference,
+      final int kpiYoY16,
+      final int kpiYoY16Difference,
+      final int kpiYoY16_2,
+      final int kpiYoY16_2Difference,
+      final int kpiYoY1Difference,
+      final int kpiYoY4,
+      final int kpiYoY4Difference,
+      final int kpiYoY7,
+      final int kpiYoY7Difference}) = _$RentDefaultImpl;
+
+  factory _RentDefault.fromJson(Map<String, dynamic> json) =
+      _$RentDefaultImpl.fromJson;
+
+  @override
+  int get issueYear;
+  @override
+  int get kpi10PreviousYear;
+  @override
+  int get kpi10Val;
+  @override
+  int get kpi13PreviousYear;
+  @override
+  int get kpi13Val;
+  @override
+  int get kpi16PreviousYear;
+  @override
+  int get kpi16Val;
+  @override
+  int get kpi16_2PreviousYear;
+  @override
+  int get kpi16_2Val;
+  @override
+  int get kpi1PreviousYear;
+  @override
+  int get kpi1Val;
+  @override
+  int get kpi4PreviousYear;
+  @override
+  int get kpi4Val;
+  @override
+  int get kpi7PreviousYear;
+  @override
+  int get kpi7Val;
+  @override
+  int get kpiYoY1;
+  @override
+  int get kpiYoY10;
+  @override
+  int get kpiYoY10Difference;
+  @override
+  int get kpiYoY13;
+  @override
+  int get kpiYoY13Difference;
+  @override
+  int get kpiYoY16;
+  @override
+  int get kpiYoY16Difference;
+  @override
+  int get kpiYoY16_2;
+  @override
+  int get kpiYoY16_2Difference;
+  @override
+  int get kpiYoY1Difference;
+  @override
+  int get kpiYoY4;
+  @override
+  int get kpiYoY4Difference;
+  @override
+  int get kpiYoY7;
+  @override
+  int get kpiYoY7Difference;
+  @override
+  @JsonKey(ignore: true)
+  _$$RentDefaultImplCopyWith<_$RentDefaultImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 RentLookupResponse _$RentLookupResponseFromJson(Map<String, dynamic> json) {
   return _RentLookupResponse.fromJson(json);
 }

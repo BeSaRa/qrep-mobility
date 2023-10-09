@@ -65,7 +65,8 @@ class _MoreViewState extends State<MoreView> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(AppSizeW.s20),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: AppSizeW.s12, vertical: AppSizeH.s10),
                   decoration: BoxDecoration(
                       color: Theme.of(context).disabledColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(AppSizeW.s20)),
@@ -159,7 +160,7 @@ class _MoreViewState extends State<MoreView> {
   }
 
   Widget _buildPopupDialog(BuildContext context) {
-    return Dialog(
+    return const Dialog(
       child: LoginView(),
     );
   }
