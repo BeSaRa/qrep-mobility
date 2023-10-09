@@ -25,7 +25,8 @@ class DioFactory {
     Map<String, String> headers = {
       CONTENT_TYPE: APPLICATION_JSON,
       ACCEPT: APPLICATION_JSON,
-      AUTHORIZATION: 'Bearer ${await _appPreferences.getUserToken()}',
+      // AUTHORIZATION: 'Bearer ${await _appPreferences.getUserToken()}',
+      AUTHORIZATION: 'Bearer lyHWSTHj1SBm9IRECnLAHviNHnXGaS27',
       DEFAULT_LANGUAGE: language,
     };
     dio.options = BaseOptions(

@@ -11,10 +11,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   EasyLocalization.logger.enableBuildModes = [];
-
+  await initRentModule();
   await initAppModule().then((value) {
     Bloc.observer = MyBlocObserver();
-
 
     runApp(EasyLocalization(
         supportedLocales: supportedLocales,
@@ -22,7 +21,3 @@ Future<void> main() async {
         child: const MyApp()));
   });
 }
-
-
-
-

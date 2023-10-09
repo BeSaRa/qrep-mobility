@@ -1,4 +1,5 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:ebla/presentations/features/rent/bloc/rent_bloc.dart';
 import 'package:ebla/presentations/features/rent/widgets/rent_grid_item_widget.dart';
 import 'package:ebla/presentations/resources/theme_manager.dart';
 import 'package:ebla/presentations/widgets/growth_rate_widget.dart';
@@ -6,6 +7,7 @@ import 'package:ebla/presentations/widgets/staggered_grid_view.dart';
 import 'package:ebla/presentations/widgets/bottom_sheet_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
 import '../../resources/color_manager.dart';
@@ -25,7 +27,14 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  late RentBloc rentBloc;
   final _textController = TextEditingController();
+
+  @override
+  void initState() {
+    rentBloc = instance<RentBloc>()..add(const RentEvent.getRentLookupEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +44,11 @@ class _HomeViewState extends State<HomeView> {
         actions: [
           IconButton(
             onPressed: () {
-              bottomSheetWidget(
-                context,
-                child: const BosttomSheetFilterWidget(),
-              );
+              rentBloc.add(const RentEvent.getRentLookupEvent());
+              // bottomSheetWidget(
+              //   context,
+              //   child: const BosttomSheetFilterWidget(),
+              // );
             },
             icon: Icon(
               Icons.filter_list_rounded,
@@ -146,17 +156,6 @@ class _HomeViewState extends State<HomeView> {
                       ),
                     ],
                   ),
-                  const MultiDropDownValue(),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: const Text('data'),
-                        ),
-                      ),
-                    ],
-                  )
                 ],
               ),
             ),

@@ -16,5 +16,7 @@
   "user_name": "User name",
   "password": "Password",
   "forget_password": "Did you forget your password?",
-  "activate_face_id": "Activate face id"
+  "activate_face_id": "Activate face id",
+  "noInternetError": "No internet connection",
+  "defaultError": "Default error"
 }
