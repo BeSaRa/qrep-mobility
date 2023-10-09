@@ -165,31 +165,31 @@ abstract class _GetRentLookupEvent implements RentEvent {
 
 /// @nodoc
 mixin _$RentState {
-  bool get isLoadingRentLoockUp => throw _privateConstructorUsedError;
-  bool get isHasErrorRentLoockUp => throw _privateConstructorUsedError;
-  String get errorMessageRentLoockUp => throw _privateConstructorUsedError;
-  RentLookupResponse get rentLoockUp => throw _privateConstructorUsedError;
+  bool get isLoadingRentLookup => throw _privateConstructorUsedError;
+  bool get isHasErrorRentLookup => throw _privateConstructorUsedError;
+  String get errorMessageRentLookup => throw _privateConstructorUsedError;
+  RentLookupResponse get rentLookup => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            bool isLoadingRentLoockUp,
-            bool isHasErrorRentLoockUp,
-            String errorMessageRentLoockUp,
-            RentLookupResponse rentLoockUp)
+            bool isLoadingRentLookup,
+            bool isHasErrorRentLookup,
+            String errorMessageRentLookup,
+            RentLookupResponse rentLookup)
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoadingRentLoockUp, bool isHasErrorRentLoockUp,
-            String errorMessageRentLoockUp, RentLookupResponse rentLoockUp)?
+    TResult? Function(bool isLoadingRentLookup, bool isHasErrorRentLookup,
+            String errorMessageRentLookup, RentLookupResponse rentLookup)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoadingRentLoockUp, bool isHasErrorRentLoockUp,
-            String errorMessageRentLoockUp, RentLookupResponse rentLoockUp)?
+    TResult Function(bool isLoadingRentLookup, bool isHasErrorRentLookup,
+            String errorMessageRentLookup, RentLookupResponse rentLookup)?
         initial,
     required TResult orElse(),
   }) =>
@@ -222,12 +222,12 @@ abstract class $RentStateCopyWith<$Res> {
       _$RentStateCopyWithImpl<$Res, RentState>;
   @useResult
   $Res call(
-      {bool isLoadingRentLoockUp,
-      bool isHasErrorRentLoockUp,
-      String errorMessageRentLoockUp,
-      RentLookupResponse rentLoockUp});
+      {bool isLoadingRentLookup,
+      bool isHasErrorRentLookup,
+      String errorMessageRentLookup,
+      RentLookupResponse rentLookup});
 
-  $RentLookupResponseCopyWith<$Res> get rentLoockUp;
+  $RentLookupResponseCopyWith<$Res> get rentLookup;
 }
 
 /// @nodoc
@@ -243,36 +243,36 @@ class _$RentStateCopyWithImpl<$Res, $Val extends RentState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoadingRentLoockUp = null,
-    Object? isHasErrorRentLoockUp = null,
-    Object? errorMessageRentLoockUp = null,
-    Object? rentLoockUp = null,
+    Object? isLoadingRentLookup = null,
+    Object? isHasErrorRentLookup = null,
+    Object? errorMessageRentLookup = null,
+    Object? rentLookup = null,
   }) {
     return _then(_value.copyWith(
-      isLoadingRentLoockUp: null == isLoadingRentLoockUp
-          ? _value.isLoadingRentLoockUp
-          : isLoadingRentLoockUp // ignore: cast_nullable_to_non_nullable
+      isLoadingRentLookup: null == isLoadingRentLookup
+          ? _value.isLoadingRentLookup
+          : isLoadingRentLookup // ignore: cast_nullable_to_non_nullable
               as bool,
-      isHasErrorRentLoockUp: null == isHasErrorRentLoockUp
-          ? _value.isHasErrorRentLoockUp
-          : isHasErrorRentLoockUp // ignore: cast_nullable_to_non_nullable
+      isHasErrorRentLookup: null == isHasErrorRentLookup
+          ? _value.isHasErrorRentLookup
+          : isHasErrorRentLookup // ignore: cast_nullable_to_non_nullable
               as bool,
-      errorMessageRentLoockUp: null == errorMessageRentLoockUp
-          ? _value.errorMessageRentLoockUp
-          : errorMessageRentLoockUp // ignore: cast_nullable_to_non_nullable
+      errorMessageRentLookup: null == errorMessageRentLookup
+          ? _value.errorMessageRentLookup
+          : errorMessageRentLookup // ignore: cast_nullable_to_non_nullable
               as String,
-      rentLoockUp: null == rentLoockUp
-          ? _value.rentLoockUp
-          : rentLoockUp // ignore: cast_nullable_to_non_nullable
+      rentLookup: null == rentLookup
+          ? _value.rentLookup
+          : rentLookup // ignore: cast_nullable_to_non_nullable
               as RentLookupResponse,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RentLookupResponseCopyWith<$Res> get rentLoockUp {
-    return $RentLookupResponseCopyWith<$Res>(_value.rentLoockUp, (value) {
-      return _then(_value.copyWith(rentLoockUp: value) as $Val);
+  $RentLookupResponseCopyWith<$Res> get rentLookup {
+    return $RentLookupResponseCopyWith<$Res>(_value.rentLookup, (value) {
+      return _then(_value.copyWith(rentLookup: value) as $Val);
     });
   }
 }
@@ -286,13 +286,13 @@ abstract class _$$InitialImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isLoadingRentLoockUp,
-      bool isHasErrorRentLoockUp,
-      String errorMessageRentLoockUp,
-      RentLookupResponse rentLoockUp});
+      {bool isLoadingRentLookup,
+      bool isHasErrorRentLookup,
+      String errorMessageRentLookup,
+      RentLookupResponse rentLookup});
 
   @override
-  $RentLookupResponseCopyWith<$Res> get rentLoockUp;
+  $RentLookupResponseCopyWith<$Res> get rentLookup;
 }
 
 /// @nodoc
@@ -306,27 +306,27 @@ class __$$InitialImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoadingRentLoockUp = null,
-    Object? isHasErrorRentLoockUp = null,
-    Object? errorMessageRentLoockUp = null,
-    Object? rentLoockUp = null,
+    Object? isLoadingRentLookup = null,
+    Object? isHasErrorRentLookup = null,
+    Object? errorMessageRentLookup = null,
+    Object? rentLookup = null,
   }) {
     return _then(_$InitialImpl(
-      isLoadingRentLoockUp: null == isLoadingRentLoockUp
-          ? _value.isLoadingRentLoockUp
-          : isLoadingRentLoockUp // ignore: cast_nullable_to_non_nullable
+      isLoadingRentLookup: null == isLoadingRentLookup
+          ? _value.isLoadingRentLookup
+          : isLoadingRentLookup // ignore: cast_nullable_to_non_nullable
               as bool,
-      isHasErrorRentLoockUp: null == isHasErrorRentLoockUp
-          ? _value.isHasErrorRentLoockUp
-          : isHasErrorRentLoockUp // ignore: cast_nullable_to_non_nullable
+      isHasErrorRentLookup: null == isHasErrorRentLookup
+          ? _value.isHasErrorRentLookup
+          : isHasErrorRentLookup // ignore: cast_nullable_to_non_nullable
               as bool,
-      errorMessageRentLoockUp: null == errorMessageRentLoockUp
-          ? _value.errorMessageRentLoockUp
-          : errorMessageRentLoockUp // ignore: cast_nullable_to_non_nullable
+      errorMessageRentLookup: null == errorMessageRentLookup
+          ? _value.errorMessageRentLookup
+          : errorMessageRentLookup // ignore: cast_nullable_to_non_nullable
               as String,
-      rentLoockUp: null == rentLoockUp
-          ? _value.rentLoockUp
-          : rentLoockUp // ignore: cast_nullable_to_non_nullable
+      rentLookup: null == rentLookup
+          ? _value.rentLookup
+          : rentLookup // ignore: cast_nullable_to_non_nullable
               as RentLookupResponse,
     ));
   }
@@ -336,27 +336,27 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 class _$InitialImpl implements _Initial {
   const _$InitialImpl(
-      {this.isLoadingRentLoockUp = false,
-      this.isHasErrorRentLoockUp = false,
-      this.errorMessageRentLoockUp = '',
-      this.rentLoockUp = const RentLookupResponse()});
+      {this.isLoadingRentLookup = false,
+      this.isHasErrorRentLookup = false,
+      this.errorMessageRentLookup = '',
+      this.rentLookup = const RentLookupResponse()});
 
   @override
   @JsonKey()
-  final bool isLoadingRentLoockUp;
+  final bool isLoadingRentLookup;
   @override
   @JsonKey()
-  final bool isHasErrorRentLoockUp;
+  final bool isHasErrorRentLookup;
   @override
   @JsonKey()
-  final String errorMessageRentLoockUp;
+  final String errorMessageRentLookup;
   @override
   @JsonKey()
-  final RentLookupResponse rentLoockUp;
+  final RentLookupResponse rentLookup;
 
   @override
   String toString() {
-    return 'RentState.initial(isLoadingRentLoockUp: $isLoadingRentLoockUp, isHasErrorRentLoockUp: $isHasErrorRentLoockUp, errorMessageRentLoockUp: $errorMessageRentLoockUp, rentLoockUp: $rentLoockUp)';
+    return 'RentState.initial(isLoadingRentLookup: $isLoadingRentLookup, isHasErrorRentLookup: $isHasErrorRentLookup, errorMessageRentLookup: $errorMessageRentLookup, rentLookup: $rentLookup)';
   }
 
   @override
@@ -364,20 +364,19 @@ class _$InitialImpl implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
-            (identical(other.isLoadingRentLoockUp, isLoadingRentLoockUp) ||
-                other.isLoadingRentLoockUp == isLoadingRentLoockUp) &&
-            (identical(other.isHasErrorRentLoockUp, isHasErrorRentLoockUp) ||
-                other.isHasErrorRentLoockUp == isHasErrorRentLoockUp) &&
-            (identical(
-                    other.errorMessageRentLoockUp, errorMessageRentLoockUp) ||
-                other.errorMessageRentLoockUp == errorMessageRentLoockUp) &&
-            (identical(other.rentLoockUp, rentLoockUp) ||
-                other.rentLoockUp == rentLoockUp));
+            (identical(other.isLoadingRentLookup, isLoadingRentLookup) ||
+                other.isLoadingRentLookup == isLoadingRentLookup) &&
+            (identical(other.isHasErrorRentLookup, isHasErrorRentLookup) ||
+                other.isHasErrorRentLookup == isHasErrorRentLookup) &&
+            (identical(other.errorMessageRentLookup, errorMessageRentLookup) ||
+                other.errorMessageRentLookup == errorMessageRentLookup) &&
+            (identical(other.rentLookup, rentLookup) ||
+                other.rentLookup == rentLookup));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoadingRentLoockUp,
-      isHasErrorRentLoockUp, errorMessageRentLoockUp, rentLoockUp);
+  int get hashCode => Object.hash(runtimeType, isLoadingRentLookup,
+      isHasErrorRentLookup, errorMessageRentLookup, rentLookup);
 
   @JsonKey(ignore: true)
   @override
@@ -389,38 +388,38 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            bool isLoadingRentLoockUp,
-            bool isHasErrorRentLoockUp,
-            String errorMessageRentLoockUp,
-            RentLookupResponse rentLoockUp)
+            bool isLoadingRentLookup,
+            bool isHasErrorRentLookup,
+            String errorMessageRentLookup,
+            RentLookupResponse rentLookup)
         initial,
   }) {
-    return initial(isLoadingRentLoockUp, isHasErrorRentLoockUp,
-        errorMessageRentLoockUp, rentLoockUp);
+    return initial(isLoadingRentLookup, isHasErrorRentLookup,
+        errorMessageRentLookup, rentLookup);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoadingRentLoockUp, bool isHasErrorRentLoockUp,
-            String errorMessageRentLoockUp, RentLookupResponse rentLoockUp)?
+    TResult? Function(bool isLoadingRentLookup, bool isHasErrorRentLookup,
+            String errorMessageRentLookup, RentLookupResponse rentLookup)?
         initial,
   }) {
-    return initial?.call(isLoadingRentLoockUp, isHasErrorRentLoockUp,
-        errorMessageRentLoockUp, rentLoockUp);
+    return initial?.call(isLoadingRentLookup, isHasErrorRentLookup,
+        errorMessageRentLookup, rentLookup);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoadingRentLoockUp, bool isHasErrorRentLoockUp,
-            String errorMessageRentLoockUp, RentLookupResponse rentLoockUp)?
+    TResult Function(bool isLoadingRentLookup, bool isHasErrorRentLookup,
+            String errorMessageRentLookup, RentLookupResponse rentLookup)?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(isLoadingRentLoockUp, isHasErrorRentLoockUp,
-          errorMessageRentLoockUp, rentLoockUp);
+      return initial(isLoadingRentLookup, isHasErrorRentLookup,
+          errorMessageRentLookup, rentLookup);
     }
     return orElse();
   }
@@ -456,19 +455,19 @@ class _$InitialImpl implements _Initial {
 
 abstract class _Initial implements RentState {
   const factory _Initial(
-      {final bool isLoadingRentLoockUp,
-      final bool isHasErrorRentLoockUp,
-      final String errorMessageRentLoockUp,
-      final RentLookupResponse rentLoockUp}) = _$InitialImpl;
+      {final bool isLoadingRentLookup,
+      final bool isHasErrorRentLookup,
+      final String errorMessageRentLookup,
+      final RentLookupResponse rentLookup}) = _$InitialImpl;
 
   @override
-  bool get isLoadingRentLoockUp;
+  bool get isLoadingRentLookup;
   @override
-  bool get isHasErrorRentLoockUp;
+  bool get isHasErrorRentLookup;
   @override
-  String get errorMessageRentLoockUp;
+  String get errorMessageRentLookup;
   @override
-  RentLookupResponse get rentLoockUp;
+  RentLookupResponse get rentLookup;
   @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>

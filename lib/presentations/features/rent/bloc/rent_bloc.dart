@@ -15,26 +15,26 @@ class RentBloc extends Bloc<RentEvent, RentState> {
       await event.map(
         getRentLookupEvent: (value) async {
           emit(state.copyWith(
-            isLoadingRentLoockUp: true,
-            isHasErrorRentLoockUp: false,
-            rentLoockUp: const RentLookupResponse(),
+            isLoadingRentLookup: true,
+            isHasErrorRentLookup: false,
+            rentLookup: const RentLookupResponse(),
           ));
           final failureOrSuccess = await getRentLookupUseCase.execute();
           failureOrSuccess.when((success) {
             emit(
               state.copyWith(
-                rentLoockUp: success,
-                isLoadingRentLoockUp: false,
-                isHasErrorRentLoockUp: false,
+                rentLookup: success,
+                isLoadingRentLookup: false,
+                isHasErrorRentLookup: false,
               ),
             );
           }, (error) {
             emit(
               state.copyWith(
-                isLoadingRentLoockUp: false,
-                isHasErrorRentLoockUp: true,
-                errorMessageRentLoockUp: error.message,
-                rentLoockUp: const RentLookupResponse(),
+                isLoadingRentLookup: false,
+                isHasErrorRentLookup: true,
+                errorMessageRentLookup: error.message,
+                rentLookup: const RentLookupResponse(),
               ),
             );
           });
