@@ -31,10 +31,30 @@ Future<void> initAppModule() async {
 
 Future<void> initRentModule() async {
 //Usecases
-  instance.registerLazySingleton(() => GetRentLookupUseCase(instance()));
-  instance.registerLazySingleton(() => MeanValueUsecase(instance()));
+  if (!GetIt.I.isRegistered<GetRentLookupUseCase>()) {
+    instance.registerFactory<GetRentLookupUseCase>(
+        () => GetRentLookupUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<MeanValueUsecase>()) {
+    instance
+        .registerFactory<MeanValueUsecase>(() => MeanValueUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<MeanValuePurposeUsecase>()) {
+    instance.registerFactory<MeanValuePurposeUsecase>(
+        () => MeanValuePurposeUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<MeanValuePropertyUsecase>()) {
+    instance.registerFactory<MeanValuePropertyUsecase>(
+        () => MeanValuePropertyUsecase(instance()));
+  }
 
 //Blocs
   instance.registerFactory(() => RentBloc(getRentLookupUseCase: instance()));
-  instance.registerFactory(() => MeanValueBloc(meanValueUsecase: instance()));
+  instance.registerFactory(
+    () => MeanValueBloc(
+      meanValueUsecase: instance(),
+      meanValuePurposeUsecase: instance(),
+      meanValuePropertyUsecase: instance(),
+    ),
+  );
 }
