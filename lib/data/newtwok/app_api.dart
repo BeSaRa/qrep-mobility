@@ -11,4 +11,6 @@ abstract class AppServiceClient {
 
   @GET(EndPoints.lockupRent)
   Future<HttpResponse<RentLookupResponse>> getLockupRent();
+  @POST(EndPoints.totalContracts)
+  Future<HttpResponse<List<BaseRentResponse>>> totalContract();
 }

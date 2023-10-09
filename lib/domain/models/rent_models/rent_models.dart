@@ -61,3 +61,18 @@ abstract class MaxParamsModel with _$MaxParamsModel {
   factory MaxParamsModel.fromJson(Map<String, dynamic> json) =>
       _$MaxParamsModelFromJson(json);
 }
+
+@freezed
+abstract class BaseRentResponse with _$BaseRentResponse {
+  factory BaseRentResponse({
+    @Default(0) int issueYear,
+    @Default(0) int kpiPreviousYear,
+    @Default(0) int kpiVal,
+    @Default(0) int kpiYoYDifference,
+    @Default(0) int kpiYoYVal,
+    @Default(0) int purposeId,
+    @Default(0) int propertyTypeId,
+  }) = _BaseRentResponse;
+  factory BaseRentResponse.fromJson(Map<String, dynamic> json) =>
+      _$BaseRentResponseFromJson(json);
+}
