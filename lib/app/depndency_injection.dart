@@ -25,10 +25,12 @@ Future<void> initAppModule() async {
       () => NetworkInfoImplementer(Connectivity()));
   instance.registerLazySingleton<Repository>(() => RepositoryImplementer(
       appServiceClient: instance(), networkInfo: instance()));
+}
 
-  //Rent
+Future<void> initRentModule() async {
+//Usecases
   instance.registerLazySingleton(() => GetRentLookupUseCase(instance()));
 
-  //Blocs
+//Blocs
   instance.registerFactory(() => RentBloc(getRentLookupUseCase: instance()));
 }
