@@ -8,8 +8,6 @@ abstract class Repository {
   Future<Result<RentLookupResponse, FailureModel>> getLockupRent();
   Future<Result<List<BaseRentResponse>, FailureModel>> meanValue(
       RequestMeanValue requestMeanValue);
-  Future<Result<List<BaseRentResponse>, FailureModel>> meanValuePurpose(
-      RequestMeanValue requestMeanValue);
-  Future<Result<List<BaseRentResponse>, FailureModel>> meanValueProperty(
+  Future<Result<List<MeanAreaResponse>, FailureModel>> meanArea(
       RequestMeanValue requestMeanValue);
 }
