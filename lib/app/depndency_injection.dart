@@ -39,22 +39,12 @@ Future<void> initRentModule() async {
     instance
         .registerFactory<MeanValueUsecase>(() => MeanValueUsecase(instance()));
   }
-  if (!GetIt.I.isRegistered<MeanValuePurposeUsecase>()) {
-    instance.registerFactory<MeanValuePurposeUsecase>(
-        () => MeanValuePurposeUsecase(instance()));
-  }
-  if (!GetIt.I.isRegistered<MeanValuePropertyUsecase>()) {
-    instance.registerFactory<MeanValuePropertyUsecase>(
-        () => MeanValuePropertyUsecase(instance()));
-  }
 
 //Blocs
   instance.registerFactory(() => RentBloc(getRentLookupUseCase: instance()));
   instance.registerFactory(
     () => MeanValueBloc(
       meanValueUsecase: instance(),
-      meanValuePurposeUsecase: instance(),
-      meanValuePropertyUsecase: instance(),
     ),
   );
 }

@@ -17,27 +17,3 @@ class MeanValueUsecase
     return await repository.meanValue(input);
   }
 }
-
-class MeanValuePurposeUsecase
-    implements BaseUseCase<RequestMeanValue, List<BaseRentResponse>> {
-  final Repository repository;
-
-  MeanValuePurposeUsecase(this.repository);
-  @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> execute(
-      RequestMeanValue input) async {
-    return await repository.meanValuePurpose(input);
-  }
-}
-
-class MeanValuePropertyUsecase
-    implements BaseUseCase<RequestMeanValue, List<BaseRentResponse>> {
-  final Repository repository;
-
-  MeanValuePropertyUsecase(this.repository);
-  @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> execute(
-      RequestMeanValue input) async {
-    return await repository.meanValueProperty(input);
-  }
-}

@@ -11,12 +11,9 @@ part 'mean_value_bloc.freezed.dart';
 
 class MeanValueBloc extends Bloc<MeanValueEvent, MeanValueState> {
   final MeanValueUsecase meanValueUsecase;
-  final MeanValuePurposeUsecase meanValuePurposeUsecase;
-  final MeanValuePropertyUsecase meanValuePropertyUsecase;
+
   MeanValueBloc({
     required this.meanValueUsecase,
-    required this.meanValuePurposeUsecase,
-    required this.meanValuePropertyUsecase,
   }) : super(const _Initial()) {
     on<MeanValueEvent>((event, emit) async {
       await event.map(
@@ -36,47 +33,6 @@ class MeanValueBloc extends Bloc<MeanValueEvent, MeanValueState> {
                 isHasErrorMeanValue: true,
                 errorMessageMeanValue: error.message,
                 meanValueResponse: []));
-          });
-        },
-        getMeanPropertyValue: (value) async {
-          emit(
-            state.copyWith(
-              isLoadingMeanValueProperty: true,
-              isHasErrorMeanValueProperty: false,
-            ),
-          );
-          final failureOrSuccess =
-              await meanValuePropertyUsecase.execute(value.request);
-          failureOrSuccess.when((success) {
-            emit(state.copyWith(
-                isLoadingMeanValueProperty: false,
-                isHasErrorMeanValueProperty: false,
-                meanValueResponseProperty: success));
-          }, (error) {
-            emit(state.copyWith(
-                isLoadingMeanValueProperty: false,
-                isHasErrorMeanValueProperty: true,
-                errorMessageMeanValueProperty: error.message,
-                meanValueResponseProperty: []));
-          });
-        },
-        getMeanPurposeValue: (value) async {
-          emit(state.copyWith(
-              isLoadingMeanValuePurpose: true,
-              isHasErrorMeanValuePurpose: false));
-          final failureOrSuccess =
-              await meanValuePurposeUsecase.execute(value.request);
-          failureOrSuccess.when((success) {
-            emit(state.copyWith(
-                isLoadingMeanValuePurpose: false,
-                isHasErrorMeanValuePurpose: false,
-                meanValueResponsePurpose: success));
-          }, (error) {
-            emit(state.copyWith(
-                isLoadingMeanValuePurpose: false,
-                isHasErrorMeanValuePurpose: true,
-                errorMessageMeanValuePurpose: error.message,
-                meanValueResponsePurpose: []));
           });
         },
       );

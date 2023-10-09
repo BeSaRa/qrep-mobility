@@ -20,46 +20,32 @@ mixin _$MeanValueEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(RequestMeanValue request) getMeanValue,
-    required TResult Function(RequestMeanValue request) getMeanPurposeValue,
-    required TResult Function(RequestMeanValue request) getMeanPropertyValue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(RequestMeanValue request)? getMeanValue,
-    TResult? Function(RequestMeanValue request)? getMeanPurposeValue,
-    TResult? Function(RequestMeanValue request)? getMeanPropertyValue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(RequestMeanValue request)? getMeanValue,
-    TResult Function(RequestMeanValue request)? getMeanPurposeValue,
-    TResult Function(RequestMeanValue request)? getMeanPropertyValue,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetMeanValueEvent value) getMeanValue,
-    required TResult Function(_GetMeanPurposeValueEvent value)
-        getMeanPurposeValue,
-    required TResult Function(_GetMeanPropertyValueEvent value)
-        getMeanPropertyValue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetMeanValueEvent value)? getMeanValue,
-    TResult? Function(_GetMeanPurposeValueEvent value)? getMeanPurposeValue,
-    TResult? Function(_GetMeanPropertyValueEvent value)? getMeanPropertyValue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetMeanValueEvent value)? getMeanValue,
-    TResult Function(_GetMeanPurposeValueEvent value)? getMeanPurposeValue,
-    TResult Function(_GetMeanPropertyValueEvent value)? getMeanPropertyValue,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -183,8 +169,6 @@ class _$GetMeanValueEventImpl implements _GetMeanValueEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(RequestMeanValue request) getMeanValue,
-    required TResult Function(RequestMeanValue request) getMeanPurposeValue,
-    required TResult Function(RequestMeanValue request) getMeanPropertyValue,
   }) {
     return getMeanValue(request);
   }
@@ -193,8 +177,6 @@ class _$GetMeanValueEventImpl implements _GetMeanValueEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(RequestMeanValue request)? getMeanValue,
-    TResult? Function(RequestMeanValue request)? getMeanPurposeValue,
-    TResult? Function(RequestMeanValue request)? getMeanPropertyValue,
   }) {
     return getMeanValue?.call(request);
   }
@@ -203,8 +185,6 @@ class _$GetMeanValueEventImpl implements _GetMeanValueEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(RequestMeanValue request)? getMeanValue,
-    TResult Function(RequestMeanValue request)? getMeanPurposeValue,
-    TResult Function(RequestMeanValue request)? getMeanPropertyValue,
     required TResult orElse(),
   }) {
     if (getMeanValue != null) {
@@ -217,10 +197,6 @@ class _$GetMeanValueEventImpl implements _GetMeanValueEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetMeanValueEvent value) getMeanValue,
-    required TResult Function(_GetMeanPurposeValueEvent value)
-        getMeanPurposeValue,
-    required TResult Function(_GetMeanPropertyValueEvent value)
-        getMeanPropertyValue,
   }) {
     return getMeanValue(this);
   }
@@ -229,8 +205,6 @@ class _$GetMeanValueEventImpl implements _GetMeanValueEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetMeanValueEvent value)? getMeanValue,
-    TResult? Function(_GetMeanPurposeValueEvent value)? getMeanPurposeValue,
-    TResult? Function(_GetMeanPropertyValueEvent value)? getMeanPropertyValue,
   }) {
     return getMeanValue?.call(this);
   }
@@ -239,8 +213,6 @@ class _$GetMeanValueEventImpl implements _GetMeanValueEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetMeanValueEvent value)? getMeanValue,
-    TResult Function(_GetMeanPurposeValueEvent value)? getMeanPurposeValue,
-    TResult Function(_GetMeanPropertyValueEvent value)? getMeanPropertyValue,
     required TResult orElse(),
   }) {
     if (getMeanValue != null) {
@@ -260,312 +232,6 @@ abstract class _GetMeanValueEvent implements MeanValueEvent {
   @JsonKey(ignore: true)
   _$$GetMeanValueEventImplCopyWith<_$GetMeanValueEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$GetMeanPurposeValueEventImplCopyWith<$Res>
-    implements $MeanValueEventCopyWith<$Res> {
-  factory _$$GetMeanPurposeValueEventImplCopyWith(
-          _$GetMeanPurposeValueEventImpl value,
-          $Res Function(_$GetMeanPurposeValueEventImpl) then) =
-      __$$GetMeanPurposeValueEventImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({RequestMeanValue request});
-
-  @override
-  $RequestMeanValueCopyWith<$Res> get request;
-}
-
-/// @nodoc
-class __$$GetMeanPurposeValueEventImplCopyWithImpl<$Res>
-    extends _$MeanValueEventCopyWithImpl<$Res, _$GetMeanPurposeValueEventImpl>
-    implements _$$GetMeanPurposeValueEventImplCopyWith<$Res> {
-  __$$GetMeanPurposeValueEventImplCopyWithImpl(
-      _$GetMeanPurposeValueEventImpl _value,
-      $Res Function(_$GetMeanPurposeValueEventImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? request = null,
-  }) {
-    return _then(_$GetMeanPurposeValueEventImpl(
-      request: null == request
-          ? _value.request
-          : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$GetMeanPurposeValueEventImpl implements _GetMeanPurposeValueEvent {
-  const _$GetMeanPurposeValueEventImpl({required this.request});
-
-  @override
-  final RequestMeanValue request;
-
-  @override
-  String toString() {
-    return 'MeanValueEvent.getMeanPurposeValue(request: $request)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetMeanPurposeValueEventImpl &&
-            (identical(other.request, request) || other.request == request));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, request);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GetMeanPurposeValueEventImplCopyWith<_$GetMeanPurposeValueEventImpl>
-      get copyWith => __$$GetMeanPurposeValueEventImplCopyWithImpl<
-          _$GetMeanPurposeValueEventImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) getMeanValue,
-    required TResult Function(RequestMeanValue request) getMeanPurposeValue,
-    required TResult Function(RequestMeanValue request) getMeanPropertyValue,
-  }) {
-    return getMeanPurposeValue(request);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? getMeanValue,
-    TResult? Function(RequestMeanValue request)? getMeanPurposeValue,
-    TResult? Function(RequestMeanValue request)? getMeanPropertyValue,
-  }) {
-    return getMeanPurposeValue?.call(request);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? getMeanValue,
-    TResult Function(RequestMeanValue request)? getMeanPurposeValue,
-    TResult Function(RequestMeanValue request)? getMeanPropertyValue,
-    required TResult orElse(),
-  }) {
-    if (getMeanPurposeValue != null) {
-      return getMeanPurposeValue(request);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetMeanValueEvent value) getMeanValue,
-    required TResult Function(_GetMeanPurposeValueEvent value)
-        getMeanPurposeValue,
-    required TResult Function(_GetMeanPropertyValueEvent value)
-        getMeanPropertyValue,
-  }) {
-    return getMeanPurposeValue(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetMeanValueEvent value)? getMeanValue,
-    TResult? Function(_GetMeanPurposeValueEvent value)? getMeanPurposeValue,
-    TResult? Function(_GetMeanPropertyValueEvent value)? getMeanPropertyValue,
-  }) {
-    return getMeanPurposeValue?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetMeanValueEvent value)? getMeanValue,
-    TResult Function(_GetMeanPurposeValueEvent value)? getMeanPurposeValue,
-    TResult Function(_GetMeanPropertyValueEvent value)? getMeanPropertyValue,
-    required TResult orElse(),
-  }) {
-    if (getMeanPurposeValue != null) {
-      return getMeanPurposeValue(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetMeanPurposeValueEvent implements MeanValueEvent {
-  const factory _GetMeanPurposeValueEvent(
-          {required final RequestMeanValue request}) =
-      _$GetMeanPurposeValueEventImpl;
-
-  @override
-  RequestMeanValue get request;
-  @override
-  @JsonKey(ignore: true)
-  _$$GetMeanPurposeValueEventImplCopyWith<_$GetMeanPurposeValueEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$GetMeanPropertyValueEventImplCopyWith<$Res>
-    implements $MeanValueEventCopyWith<$Res> {
-  factory _$$GetMeanPropertyValueEventImplCopyWith(
-          _$GetMeanPropertyValueEventImpl value,
-          $Res Function(_$GetMeanPropertyValueEventImpl) then) =
-      __$$GetMeanPropertyValueEventImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({RequestMeanValue request});
-
-  @override
-  $RequestMeanValueCopyWith<$Res> get request;
-}
-
-/// @nodoc
-class __$$GetMeanPropertyValueEventImplCopyWithImpl<$Res>
-    extends _$MeanValueEventCopyWithImpl<$Res, _$GetMeanPropertyValueEventImpl>
-    implements _$$GetMeanPropertyValueEventImplCopyWith<$Res> {
-  __$$GetMeanPropertyValueEventImplCopyWithImpl(
-      _$GetMeanPropertyValueEventImpl _value,
-      $Res Function(_$GetMeanPropertyValueEventImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? request = null,
-  }) {
-    return _then(_$GetMeanPropertyValueEventImpl(
-      request: null == request
-          ? _value.request
-          : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$GetMeanPropertyValueEventImpl implements _GetMeanPropertyValueEvent {
-  const _$GetMeanPropertyValueEventImpl({required this.request});
-
-  @override
-  final RequestMeanValue request;
-
-  @override
-  String toString() {
-    return 'MeanValueEvent.getMeanPropertyValue(request: $request)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetMeanPropertyValueEventImpl &&
-            (identical(other.request, request) || other.request == request));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, request);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GetMeanPropertyValueEventImplCopyWith<_$GetMeanPropertyValueEventImpl>
-      get copyWith => __$$GetMeanPropertyValueEventImplCopyWithImpl<
-          _$GetMeanPropertyValueEventImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) getMeanValue,
-    required TResult Function(RequestMeanValue request) getMeanPurposeValue,
-    required TResult Function(RequestMeanValue request) getMeanPropertyValue,
-  }) {
-    return getMeanPropertyValue(request);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? getMeanValue,
-    TResult? Function(RequestMeanValue request)? getMeanPurposeValue,
-    TResult? Function(RequestMeanValue request)? getMeanPropertyValue,
-  }) {
-    return getMeanPropertyValue?.call(request);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? getMeanValue,
-    TResult Function(RequestMeanValue request)? getMeanPurposeValue,
-    TResult Function(RequestMeanValue request)? getMeanPropertyValue,
-    required TResult orElse(),
-  }) {
-    if (getMeanPropertyValue != null) {
-      return getMeanPropertyValue(request);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetMeanValueEvent value) getMeanValue,
-    required TResult Function(_GetMeanPurposeValueEvent value)
-        getMeanPurposeValue,
-    required TResult Function(_GetMeanPropertyValueEvent value)
-        getMeanPropertyValue,
-  }) {
-    return getMeanPropertyValue(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetMeanValueEvent value)? getMeanValue,
-    TResult? Function(_GetMeanPurposeValueEvent value)? getMeanPurposeValue,
-    TResult? Function(_GetMeanPropertyValueEvent value)? getMeanPropertyValue,
-  }) {
-    return getMeanPropertyValue?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetMeanValueEvent value)? getMeanValue,
-    TResult Function(_GetMeanPurposeValueEvent value)? getMeanPurposeValue,
-    TResult Function(_GetMeanPropertyValueEvent value)? getMeanPropertyValue,
-    required TResult orElse(),
-  }) {
-    if (getMeanPropertyValue != null) {
-      return getMeanPropertyValue(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetMeanPropertyValueEvent implements MeanValueEvent {
-  const factory _GetMeanPropertyValueEvent(
-          {required final RequestMeanValue request}) =
-      _$GetMeanPropertyValueEventImpl;
-
-  @override
-  RequestMeanValue get request;
-  @override
-  @JsonKey(ignore: true)
-  _$$GetMeanPropertyValueEventImplCopyWith<_$GetMeanPropertyValueEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
