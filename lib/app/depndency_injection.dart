@@ -1,6 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ebla/domain/usecases/rent_usecases/rent_usecases.dart';
-import 'package:ebla/presentations/features/rent/bloc/rent_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,6 +8,9 @@ import '../data/newtwok/dio_factory.dart';
 import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
+import '../domain/usecases/rent_usecases/mean_value_usecases/mean_value_usecases.dart';
+import '../presentations/features/rent/blocs/mean_value_bloc/mean_value_bloc.dart';
+import '../presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
 import 'app_preferences.dart';
 
 final instance = GetIt.instance;
@@ -30,7 +32,9 @@ Future<void> initAppModule() async {
 Future<void> initRentModule() async {
 //Usecases
   instance.registerLazySingleton(() => GetRentLookupUseCase(instance()));
+  instance.registerLazySingleton(() => MeanValueUsecase(instance()));
 
 //Blocs
   instance.registerFactory(() => RentBloc(getRentLookupUseCase: instance()));
+  instance.registerFactory(() => MeanValueBloc(meanValueUsecase: instance()));
 }

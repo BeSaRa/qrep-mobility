@@ -1,42 +1,20 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
+import '../../domain/models/rent_models/rent_models.dart';
 import '../resources/color_manager.dart';
 import '../resources/values_manager.dart';
 
 class SingleDropDownValue extends StatefulWidget {
-  const SingleDropDownValue({super.key});
+  final List<RentLookupModel> list;
+  const SingleDropDownValue({super.key, required this.list});
 
   @override
   State<SingleDropDownValue> createState() => _SingleDropDownValue();
 }
 
 class _SingleDropDownValue extends State<SingleDropDownValue> {
-  final List<String> items = [
-    'Item1',
-    'Item2',
-    'Item3',
-    'Item4',
-    'Item5',
-    'Item6',
-    'Item7',
-    'Item8',
-    'Item9',
-    'Item00',
-    'Item89',
-    'Item678',
-    'Item123',
-    'Item32',
-    '43',
-    'dfasdqwe',
-    'qwe',
-    'Itemasd8',
-    'zxc',
-    'Itemxcvsd00',
-    'asdq',
-    'zxcqawe',
-  ];
-  String? selectedValue;
+  RentLookupModel? selectedValue;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,25 +24,27 @@ class _SingleDropDownValue extends State<SingleDropDownValue> {
           borderRadius: BorderRadius.circular(AppSizeR.s5),
           border: Border.all(width: 1, color: ColorManager.silver)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton2<String>(
+        child: DropdownButton2<RentLookupModel>(
           isExpanded: true,
           isDense: true,
           hint: Text(
             'Select Item',
             style: Theme.of(context).textTheme.labelSmall,
           ),
-          items: items
-              .map((String item) => DropdownMenuItem<String>(
+          items: widget.list
+              .map((RentLookupModel item) => DropdownMenuItem<RentLookupModel>(
                     value: item,
                     child: Text(
-                      item,
+                      item.arName,
                       style: Theme.of(context).textTheme.labelSmall,
                     ),
                   ))
               .toList(),
+          // value: selectedValue?.enName ?? '',
           value: selectedValue,
-          onChanged: (String? value) {
+          onChanged: (RentLookupModel? value) {
             setState(() {
+              // selectedValue?.copyWith(enName: value ?? '');
               selectedValue = value;
             });
           },
