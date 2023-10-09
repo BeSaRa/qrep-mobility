@@ -13,6 +13,6 @@ class GetRentLookupUseCase
   GetRentLookupUseCase(this.repository);
   @override
   Future<Result<RentLookupResponse, FailureModel>> execute() async {
-    return repository.getLockupRent();
+    return await repository.getLockupRent();
   }
 }

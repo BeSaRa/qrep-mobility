@@ -27,136 +27,139 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  late RentBloc rentBloc;
   final _textController = TextEditingController();
 
   @override
+  void initState() {
+    rentBloc = instance<RentBloc>()..add(const RentEvent.getRentLookupEvent());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          instance<RentBloc>()..add(const RentEvent.getRentLookupEvent()),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).primaryColor,
-          actions: [
-            IconButton(
-              onPressed: () {
-                bottomSheetWidget(
-                  context,
-                  child: const BosttomSheetFilterWidget(),
-                );
-              },
-              icon: Icon(
-                Icons.filter_list_rounded,
-                size: 40,
-                color: ColorManager.golden,
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
+        actions: [
+          IconButton(
+            onPressed: () {
+              rentBloc.add(const RentEvent.getRentLookupEvent());
+              // bottomSheetWidget(
+              //   context,
+              //   child: const BosttomSheetFilterWidget(),
+              // );
+            },
+            icon: Icon(
+              Icons.filter_list_rounded,
+              size: 40,
+              color: ColorManager.golden,
             ),
-            ThemeSwitcher.withTheme(
-              builder: (context, switcher, theme) {
-                return CupertinoSwitch(
-                  value: theme.isDarkTheme,
-                  trackColor: ColorManager.whiteSmoke,
-                  onChanged: (value) {
-                    ThemeData newTheme = theme.brightness == Brightness.light
-                        ? darkTheme()
-                        : lightTheme();
-                    switcher.changeTheme(theme: newTheme);
-                    instance<AppPreferences>().setTheme(themeData: newTheme);
-                  },
-                );
-              },
+          ),
+          ThemeSwitcher.withTheme(
+            builder: (context, switcher, theme) {
+              return CupertinoSwitch(
+                value: theme.isDarkTheme,
+                trackColor: ColorManager.whiteSmoke,
+                onChanged: (value) {
+                  ThemeData newTheme = theme.brightness == Brightness.light
+                      ? darkTheme()
+                      : lightTheme();
+                  switcher.changeTheme(theme: newTheme);
+                  instance<AppPreferences>().setTheme(themeData: newTheme);
+                },
+              );
+            },
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                    child: SearchTextFieldWidget(controller: _textController)),
+                const Expanded(flex: 2, child: SizedBox())
+              ],
             ),
-          ],
-        ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
-          child: Column(
-            children: [
-              Row(
+            Expanded(
+              child: ListView(
                 children: [
-                  Expanded(
-                      child:
-                          SearchTextFieldWidget(controller: _textController)),
-                  const Expanded(flex: 2, child: SizedBox())
+                  SizedBox(
+                    height: AppSizeH.s30,
+                  ),
+                  StatisticsRentWidget(statistics: [
+                    StatisticsModel(title: 'فريج بن محمود', number: '820'),
+                    StatisticsModel(title: 'المطار العتيق', number: '819'),
+                    StatisticsModel(
+                        title: 'القطيفية + القصار + عنيزة', number: '720'),
+                    StatisticsModel(title: 'ام غو يلينه', number: '680'),
+                    StatisticsModel(
+                        title: 'المنصورة + فريج بن درهم', number: '540'),
+                    StatisticsModel(
+                        title:
+                            'فريج بن عمران + فريج الهتمي الجديد + مدينة حمد الطبية',
+                        number: '451'),
+                  ]),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
+                    child: StaggeredGridView(
+                      // for development only: UniqueKey forces the rebuild of the widget on hot reload
+                      key: UniqueKey(),
+                      itemsCount: 4,
+                      rightSectionTopPadding: AppSizeH.s17,
+                      mainAxisSpacing: AppSizeH.s22,
+                      crossAxisSpacing: AppSizeW.s23,
+                      gridItemChildBuilder: (context, index) {
+                        return RentGridItemWidget(index: index);
+                      },
+                    ),
+                  ),
+                  SizedBox(height: AppSizeH.s20),
+                  Row(
+                    children: [
+                      const Expanded(child: GrowthRateWidget(index: 0)),
+                      SizedBox(
+                        width: AppSizeW.s20,
+                      ),
+                      const Expanded(child: GrowthRateWidget(index: 1)),
+                    ],
+                  ),
+                  const NewsItemWidget(
+                      date: '15 مارس 2023',
+                      label:
+                          'وزارة البلدية تطلق المرحلة الأولى من مشروع المنصة العقارية لدولة قطر'),
+                  SizedBox(height: AppSizeH.s60),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CustomElevatedButton(
+                          isPrimary: true,
+                          title: 'بحث',
+                          onPress: () {
+                            bottomSheetWidget(
+                              context,
+                              child: const BosttomSheetFilterWidget(),
+                            );
+                          },
+                        ),
+                      ),
+                      SizedBox(width: AppSizeW.s8),
+                      Expanded(
+                        child: CustomElevatedButton(
+                          isPrimary: false,
+                          title: 'إلغاء',
+                          onPress: () {},
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
-              Expanded(
-                child: ListView(
-                  children: [
-                    SizedBox(
-                      height: AppSizeH.s30,
-                    ),
-                    StatisticsRentWidget(statistics: [
-                      StatisticsModel(title: 'فريج بن محمود', number: '820'),
-                      StatisticsModel(title: 'المطار العتيق', number: '819'),
-                      StatisticsModel(
-                          title: 'القطيفية + القصار + عنيزة', number: '720'),
-                      StatisticsModel(title: 'ام غو يلينه', number: '680'),
-                      StatisticsModel(
-                          title: 'المنصورة + فريج بن درهم', number: '540'),
-                      StatisticsModel(
-                          title:
-                              'فريج بن عمران + فريج الهتمي الجديد + مدينة حمد الطبية',
-                          number: '451'),
-                    ]),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
-                      child: StaggeredGridView(
-                        // for development only: UniqueKey forces the rebuild of the widget on hot reload
-                        key: UniqueKey(),
-                        itemsCount: 4,
-                        rightSectionTopPadding: AppSizeH.s17,
-                        mainAxisSpacing: AppSizeH.s22,
-                        crossAxisSpacing: AppSizeW.s23,
-                        gridItemChildBuilder: (context, index) {
-                          return RentGridItemWidget(index: index);
-                        },
-                      ),
-                    ),
-                    SizedBox(height: AppSizeH.s20),
-                    Row(
-                      children: [
-                        const Expanded(child: GrowthRateWidget(index: 0)),
-                        SizedBox(
-                          width: AppSizeW.s20,
-                        ),
-                        const Expanded(child: GrowthRateWidget(index: 1)),
-                      ],
-                    ),
-                    const NewsItemWidget(
-                        date: '15 مارس 2023',
-                        label:
-                            'وزارة البلدية تطلق المرحلة الأولى من مشروع المنصة العقارية لدولة قطر'),
-                    SizedBox(height: AppSizeH.s60),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: CustomElevatedButton(
-                            isPrimary: true,
-                            title: 'بحث',
-                            onPress: () {
-                              bottomSheetWidget(
-                                context,
-                                child: const BosttomSheetFilterWidget(),
-                              );
-                            },
-                          ),
-                        ),
-                        SizedBox(width: AppSizeW.s8),
-                        Expanded(
-                          child: CustomElevatedButton(
-                            isPrimary: false,
-                            title: 'إلغاء',
-                            onPress: () {},
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
