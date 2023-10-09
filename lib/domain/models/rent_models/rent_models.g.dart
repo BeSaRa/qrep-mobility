@@ -225,3 +225,27 @@ Map<String, dynamic> _$$MaxParamsModelImplToJson(
       'model': instance.model,
       'isActive': instance.isActive,
     };
+
+_$BaseRentResponseImpl _$$BaseRentResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$BaseRentResponseImpl(
+      issueYear: json['issueYear'] as int? ?? 0,
+      kpiPreviousYear: json['kpiPreviousYear'] as int? ?? 0,
+      kpiVal: json['kpiVal'] as int? ?? 0,
+      kpiYoYDifference: json['kpiYoYDifference'] as int? ?? 0,
+      kpiYoYVal: json['kpiYoYVal'] as int? ?? 0,
+      purposeId: json['purposeId'] as int? ?? 0,
+      propertyTypeId: json['propertyTypeId'] as int? ?? 0,
+    );
+
+Map<String, dynamic> _$$BaseRentResponseImplToJson(
+        _$BaseRentResponseImpl instance) =>
+    <String, dynamic>{
+      'issueYear': instance.issueYear,
+      'kpiPreviousYear': instance.kpiPreviousYear,
+      'kpiVal': instance.kpiVal,
+      'kpiYoYDifference': instance.kpiYoYDifference,
+      'kpiYoYVal': instance.kpiYoYVal,
+      'purposeId': instance.purposeId,
+      'propertyTypeId': instance.propertyTypeId,
+    };

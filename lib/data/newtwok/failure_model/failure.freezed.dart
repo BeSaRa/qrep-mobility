@@ -20,8 +20,9 @@ FailureModel _$FailureModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FailureModel {
+  List<String> get errorDescription => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  String get code => throw _privateConstructorUsedError;
+  int get statusCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $FailureModelCopyWith<$Res> {
           FailureModel value, $Res Function(FailureModel) then) =
       _$FailureModelCopyWithImpl<$Res, FailureModel>;
   @useResult
-  $Res call({String message, String code});
+  $Res call({List<String> errorDescription, String message, int statusCode});
 }
 
 /// @nodoc
@@ -51,18 +52,23 @@ class _$FailureModelCopyWithImpl<$Res, $Val extends FailureModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? errorDescription = null,
     Object? message = null,
-    Object? code = null,
+    Object? statusCode = null,
   }) {
     return _then(_value.copyWith(
+      errorDescription: null == errorDescription
+          ? _value.errorDescription
+          : errorDescription // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String,
+      statusCode: null == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -75,7 +81,7 @@ abstract class _$$FailureModelImplCopyWith<$Res>
       __$$FailureModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String message, String code});
+  $Res call({List<String> errorDescription, String message, int statusCode});
 }
 
 /// @nodoc
@@ -89,18 +95,23 @@ class __$$FailureModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? errorDescription = null,
     Object? message = null,
-    Object? code = null,
+    Object? statusCode = null,
   }) {
     return _then(_$FailureModelImpl(
+      errorDescription: null == errorDescription
+          ? _value._errorDescription
+          : errorDescription // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String,
+      statusCode: null == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -108,21 +119,35 @@ class __$$FailureModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FailureModelImpl implements _FailureModel {
-  const _$FailureModelImpl({this.message = '', this.code = ''});
+  const _$FailureModelImpl(
+      {final List<String> errorDescription = const [],
+      this.message = '',
+      this.statusCode = 0})
+      : _errorDescription = errorDescription;
 
   factory _$FailureModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$FailureModelImplFromJson(json);
+
+  final List<String> _errorDescription;
+  @override
+  @JsonKey()
+  List<String> get errorDescription {
+    if (_errorDescription is EqualUnmodifiableListView)
+      return _errorDescription;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_errorDescription);
+  }
 
   @override
   @JsonKey()
   final String message;
   @override
   @JsonKey()
-  final String code;
+  final int statusCode;
 
   @override
   String toString() {
-    return 'FailureModel(message: $message, code: $code)';
+    return 'FailureModel(errorDescription: $errorDescription, message: $message, statusCode: $statusCode)';
   }
 
   @override
@@ -130,13 +155,20 @@ class _$FailureModelImpl implements _FailureModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FailureModelImpl &&
+            const DeepCollectionEquality()
+                .equals(other._errorDescription, _errorDescription) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.code, code) || other.code == code));
+            (identical(other.statusCode, statusCode) ||
+                other.statusCode == statusCode));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, message, code);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_errorDescription),
+      message,
+      statusCode);
 
   @JsonKey(ignore: true)
   @override
@@ -153,16 +185,20 @@ class _$FailureModelImpl implements _FailureModel {
 }
 
 abstract class _FailureModel implements FailureModel {
-  const factory _FailureModel({final String message, final String code}) =
-      _$FailureModelImpl;
+  const factory _FailureModel(
+      {final List<String> errorDescription,
+      final String message,
+      final int statusCode}) = _$FailureModelImpl;
 
   factory _FailureModel.fromJson(Map<String, dynamic> json) =
       _$FailureModelImpl.fromJson;
 
   @override
+  List<String> get errorDescription;
+  @override
   String get message;
   @override
-  String get code;
+  int get statusCode;
   @override
   @JsonKey(ignore: true)
   _$$FailureModelImplCopyWith<_$FailureModelImpl> get copyWith =>

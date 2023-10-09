@@ -1113,7 +1113,7 @@ class __$$RentLookupResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RentLookupResponseImpl implements _RentLookupResponse {
-  _$RentLookupResponseImpl(
+  const _$RentLookupResponseImpl(
       {final List<RentLookupModel> rooms = const [],
       final List<RentLookupModel> durations = const [],
       final List<RentLookupModel> halfYearDurations = const [],
@@ -1407,7 +1407,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
 }
 
 abstract class _RentLookupResponse implements RentLookupResponse {
-  factory _RentLookupResponse(
+  const factory _RentLookupResponse(
       {final List<RentLookupModel> rooms,
       final List<RentLookupModel> durations,
       final List<RentLookupModel> halfYearDurations,
@@ -2077,5 +2077,280 @@ abstract class _MaxParamsModel implements MaxParamsModel {
   @override
   @JsonKey(ignore: true)
   _$$MaxParamsModelImplCopyWith<_$MaxParamsModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+BaseRentResponse _$BaseRentResponseFromJson(Map<String, dynamic> json) {
+  return _BaseRentResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BaseRentResponse {
+  int get issueYear => throw _privateConstructorUsedError;
+  int get kpiPreviousYear => throw _privateConstructorUsedError;
+  int get kpiVal => throw _privateConstructorUsedError;
+  int get kpiYoYDifference => throw _privateConstructorUsedError;
+  int get kpiYoYVal => throw _privateConstructorUsedError;
+  int get purposeId => throw _privateConstructorUsedError;
+  int get propertyTypeId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BaseRentResponseCopyWith<BaseRentResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BaseRentResponseCopyWith<$Res> {
+  factory $BaseRentResponseCopyWith(
+          BaseRentResponse value, $Res Function(BaseRentResponse) then) =
+      _$BaseRentResponseCopyWithImpl<$Res, BaseRentResponse>;
+  @useResult
+  $Res call(
+      {int issueYear,
+      int kpiPreviousYear,
+      int kpiVal,
+      int kpiYoYDifference,
+      int kpiYoYVal,
+      int purposeId,
+      int propertyTypeId});
+}
+
+/// @nodoc
+class _$BaseRentResponseCopyWithImpl<$Res, $Val extends BaseRentResponse>
+    implements $BaseRentResponseCopyWith<$Res> {
+  _$BaseRentResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? issueYear = null,
+    Object? kpiPreviousYear = null,
+    Object? kpiVal = null,
+    Object? kpiYoYDifference = null,
+    Object? kpiYoYVal = null,
+    Object? purposeId = null,
+    Object? propertyTypeId = null,
+  }) {
+    return _then(_value.copyWith(
+      issueYear: null == issueYear
+          ? _value.issueYear
+          : issueYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiPreviousYear: null == kpiPreviousYear
+          ? _value.kpiPreviousYear
+          : kpiPreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiVal: null == kpiVal
+          ? _value.kpiVal
+          : kpiVal // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoYDifference: null == kpiYoYDifference
+          ? _value.kpiYoYDifference
+          : kpiYoYDifference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoYVal: null == kpiYoYVal
+          ? _value.kpiYoYVal
+          : kpiYoYVal // ignore: cast_nullable_to_non_nullable
+              as int,
+      purposeId: null == purposeId
+          ? _value.purposeId
+          : purposeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      propertyTypeId: null == propertyTypeId
+          ? _value.propertyTypeId
+          : propertyTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BaseRentResponseImplCopyWith<$Res>
+    implements $BaseRentResponseCopyWith<$Res> {
+  factory _$$BaseRentResponseImplCopyWith(_$BaseRentResponseImpl value,
+          $Res Function(_$BaseRentResponseImpl) then) =
+      __$$BaseRentResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int issueYear,
+      int kpiPreviousYear,
+      int kpiVal,
+      int kpiYoYDifference,
+      int kpiYoYVal,
+      int purposeId,
+      int propertyTypeId});
+}
+
+/// @nodoc
+class __$$BaseRentResponseImplCopyWithImpl<$Res>
+    extends _$BaseRentResponseCopyWithImpl<$Res, _$BaseRentResponseImpl>
+    implements _$$BaseRentResponseImplCopyWith<$Res> {
+  __$$BaseRentResponseImplCopyWithImpl(_$BaseRentResponseImpl _value,
+      $Res Function(_$BaseRentResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? issueYear = null,
+    Object? kpiPreviousYear = null,
+    Object? kpiVal = null,
+    Object? kpiYoYDifference = null,
+    Object? kpiYoYVal = null,
+    Object? purposeId = null,
+    Object? propertyTypeId = null,
+  }) {
+    return _then(_$BaseRentResponseImpl(
+      issueYear: null == issueYear
+          ? _value.issueYear
+          : issueYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiPreviousYear: null == kpiPreviousYear
+          ? _value.kpiPreviousYear
+          : kpiPreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiVal: null == kpiVal
+          ? _value.kpiVal
+          : kpiVal // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoYDifference: null == kpiYoYDifference
+          ? _value.kpiYoYDifference
+          : kpiYoYDifference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoYVal: null == kpiYoYVal
+          ? _value.kpiYoYVal
+          : kpiYoYVal // ignore: cast_nullable_to_non_nullable
+              as int,
+      purposeId: null == purposeId
+          ? _value.purposeId
+          : purposeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      propertyTypeId: null == propertyTypeId
+          ? _value.propertyTypeId
+          : propertyTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BaseRentResponseImpl implements _BaseRentResponse {
+  _$BaseRentResponseImpl(
+      {this.issueYear = 0,
+      this.kpiPreviousYear = 0,
+      this.kpiVal = 0,
+      this.kpiYoYDifference = 0,
+      this.kpiYoYVal = 0,
+      this.purposeId = 0,
+      this.propertyTypeId = 0});
+
+  factory _$BaseRentResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BaseRentResponseImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int issueYear;
+  @override
+  @JsonKey()
+  final int kpiPreviousYear;
+  @override
+  @JsonKey()
+  final int kpiVal;
+  @override
+  @JsonKey()
+  final int kpiYoYDifference;
+  @override
+  @JsonKey()
+  final int kpiYoYVal;
+  @override
+  @JsonKey()
+  final int purposeId;
+  @override
+  @JsonKey()
+  final int propertyTypeId;
+
+  @override
+  String toString() {
+    return 'BaseRentResponse(issueYear: $issueYear, kpiPreviousYear: $kpiPreviousYear, kpiVal: $kpiVal, kpiYoYDifference: $kpiYoYDifference, kpiYoYVal: $kpiYoYVal, purposeId: $purposeId, propertyTypeId: $propertyTypeId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BaseRentResponseImpl &&
+            (identical(other.issueYear, issueYear) ||
+                other.issueYear == issueYear) &&
+            (identical(other.kpiPreviousYear, kpiPreviousYear) ||
+                other.kpiPreviousYear == kpiPreviousYear) &&
+            (identical(other.kpiVal, kpiVal) || other.kpiVal == kpiVal) &&
+            (identical(other.kpiYoYDifference, kpiYoYDifference) ||
+                other.kpiYoYDifference == kpiYoYDifference) &&
+            (identical(other.kpiYoYVal, kpiYoYVal) ||
+                other.kpiYoYVal == kpiYoYVal) &&
+            (identical(other.purposeId, purposeId) ||
+                other.purposeId == purposeId) &&
+            (identical(other.propertyTypeId, propertyTypeId) ||
+                other.propertyTypeId == propertyTypeId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, issueYear, kpiPreviousYear,
+      kpiVal, kpiYoYDifference, kpiYoYVal, purposeId, propertyTypeId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BaseRentResponseImplCopyWith<_$BaseRentResponseImpl> get copyWith =>
+      __$$BaseRentResponseImplCopyWithImpl<_$BaseRentResponseImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BaseRentResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BaseRentResponse implements BaseRentResponse {
+  factory _BaseRentResponse(
+      {final int issueYear,
+      final int kpiPreviousYear,
+      final int kpiVal,
+      final int kpiYoYDifference,
+      final int kpiYoYVal,
+      final int purposeId,
+      final int propertyTypeId}) = _$BaseRentResponseImpl;
+
+  factory _BaseRentResponse.fromJson(Map<String, dynamic> json) =
+      _$BaseRentResponseImpl.fromJson;
+
+  @override
+  int get issueYear;
+  @override
+  int get kpiPreviousYear;
+  @override
+  int get kpiVal;
+  @override
+  int get kpiYoYDifference;
+  @override
+  int get kpiYoYVal;
+  @override
+  int get purposeId;
+  @override
+  int get propertyTypeId;
+  @override
+  @JsonKey(ignore: true)
+  _$$BaseRentResponseImplCopyWith<_$BaseRentResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
