@@ -8,6 +8,7 @@ import '../data/newtwok/dio_factory.dart';
 import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
+import '../domain/usecases/rent_usecases/mean_area_usecase.dart/mean_area_usecase.dart';
 import '../domain/usecases/rent_usecases/mean_value_usecases/mean_value_usecases.dart';
 import '../presentations/features/rent/blocs/mean_value_bloc/mean_value_bloc.dart';
 import '../presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
@@ -38,6 +39,10 @@ Future<void> initRentModule() async {
   if (!GetIt.I.isRegistered<MeanValueUsecase>()) {
     instance
         .registerFactory<MeanValueUsecase>(() => MeanValueUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<MeanAreaUsecase>()) {
+    instance
+        .registerFactory<MeanAreaUsecase>(() => MeanAreaUsecase(instance()));
   }
 
 //Blocs
