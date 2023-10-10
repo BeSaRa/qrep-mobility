@@ -1,6 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:ebla/presentations/resources/strings_manager.dart';
+import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class SalesView extends StatefulWidget {
   const SalesView({super.key});
@@ -12,8 +12,13 @@ class SalesView extends StatefulWidget {
 class _SalesViewState extends State<SalesView> {
   @override
   Widget build(BuildContext context) {
-    return Placeholder(
-      child: Text(AppStrings().sell.tr()),
+    return SizedBox(
+      height: MediaQuery.of(context).size.height / 2,
+      width: 200,
+      child: Lottie.asset(
+        ImageAssets.comingSoon,
+        fit: BoxFit.contain,
+      ),
     );
   }
 }
