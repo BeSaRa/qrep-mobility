@@ -24,4 +24,8 @@ abstract class AppServiceClient {
 
   @POST(EndPoints.totalContracts)
   Future<HttpResponse<List<BaseRentResponse>>> totalContract();
+
+  @POST(EndPoints.totalRentedUnits)
+  Future<HttpResponse<List<BaseRentResponse>>> getTotalRentedUnits(
+      @Body() RequestMeanValue requestMeanValue);
 }

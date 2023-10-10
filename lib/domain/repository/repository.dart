@@ -14,4 +14,7 @@ abstract class Repository {
 
   Future<Result<List<MeanAreaResponse>, FailureModel>> meanArea(
       RequestMeanValue requestMeanValue);
+
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedUnits(
+      RequestMeanValue requestMeanValue);
 }
