@@ -1,8 +1,9 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:ebla/presentations/features/rent/bloc/rent_bloc.dart';
+import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
 import 'package:ebla/presentations/features/rent/widgets/rent_grid_item_widget.dart';
 import 'package:ebla/presentations/resources/theme_manager.dart';
 import 'package:ebla/presentations/widgets/growth_rate_widget.dart';
+import 'package:ebla/presentations/widgets/single_dropdown_widget.dart';
 import 'package:ebla/presentations/widgets/staggered_grid_view.dart';
 import 'package:ebla/presentations/widgets/bottom_sheet_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
+import '../../../domain/models/rent_models/rent_models.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets/bottom_sheet_filter_widget.dart';
@@ -18,6 +20,8 @@ import '../../widgets/mutli_dropdown_widget.dart';
 import '../../widgets/news_item_widgets.dart';
 import '../../widgets/search_text_field_widget.dart';
 import '../../widgets/statistics_rent_widget.dart';
+import '../rent/blocs/mean_value_bloc/mean_value_bloc.dart';
+import '../rent/blocs/rent_bloc/rent_bloc.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key, this.title = 'press'});
@@ -28,11 +32,14 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   late RentBloc rentBloc;
+  late MeanValueBloc meanValueBloc;
   final _textController = TextEditingController();
 
   @override
   void initState() {
     rentBloc = instance<RentBloc>()..add(const RentEvent.getRentLookupEvent());
+    meanValueBloc = instance<MeanValueBloc>();
+
     super.initState();
   }
 
@@ -44,11 +51,27 @@ class _HomeViewState extends State<HomeView> {
         actions: [
           IconButton(
             onPressed: () {
-              rentBloc.add(const RentEvent.getRentLookupEvent());
+              // rentBloc.add(const RentEvent.getRentLookupEvent());
               // bottomSheetWidget(
               //   context,
               //   child: const BosttomSheetFilterWidget(),
               // );
+              meanValueBloc.add(
+                MeanValueEvent.getMeanValue(
+                  request: RequestMeanValue(
+                    municipalityId: 1,
+                    propertyTypeList: [-1],
+                    purposeList: [-1],
+                    issueDateQuarterList: [1, 2, 3, 4],
+                    furnitureStatus: -1,
+                    issueDateYear: 2023,
+                    issueDateStartMonth: 1,
+                    issueDateEndMonth: 10,
+                    zoneId: -1,
+                    limit: 5,
+                  ),
+                ),
+              );
             },
             icon: Icon(
               Icons.filter_list_rounded,
@@ -77,6 +100,19 @@ class _HomeViewState extends State<HomeView> {
         padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
         child: Column(
           children: [
+            BlocBuilder(
+              bloc: rentBloc,
+              builder: (context, RentState state) {
+                if (state.isLoadingRentLookup) {
+                  return const LinearProgressIndicator();
+                }
+                if (state.rentLookup != const RentLookupResponse()) {
+                  return SingleDropDownValue(
+                      list: state.rentLookup.municipalityList);
+                }
+                return const Text('Error');
+              },
+            ),
             Row(
               children: [
                 Expanded(
