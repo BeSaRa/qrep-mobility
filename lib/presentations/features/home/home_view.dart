@@ -6,11 +6,10 @@ import 'package:ebla/presentations/widgets/bottom_sheet_widget.dart';
 import 'package:ebla/presentations/widgets/growth_rate_widget.dart';
 import 'package:ebla/presentations/widgets/single_dropdown_widget.dart';
 import 'package:ebla/presentations/widgets/staggered_grid_view.dart';
-import 'package:ebla/presentations/widgets/bottom_sheet_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
 import '../../../domain/models/rent_models/rent_models.dart';
@@ -18,7 +17,6 @@ import '../../resources/color_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets/bottom_sheet_filter_widget.dart';
 import '../../widgets/custom_elevated_button.dart';
-import '../../widgets/mutli_dropdown_widget.dart';
 import '../../widgets/news_item_widgets.dart';
 import '../../widgets/search_text_field_widget.dart';
 import '../../widgets/statistics_rent_widget.dart';

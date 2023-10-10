@@ -10,6 +10,7 @@ part 'app_api.g.dart';
 
 //*******************genereate command************************************
 //dart run build_runner build  --delete-conflicting-outputs
+// flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
 //********************************************************************** */
 @RestApi(baseUrl: Constant.baseUrl)
 abstract class AppServiceClient {
@@ -24,10 +25,15 @@ abstract class AppServiceClient {
   @POST(EndPoints.meanValue)
   Future<HttpResponse<List<BaseRentResponse>>> meanValue(
       @Body() RequestMeanValue requestMeanValue);
+
   @POST(EndPoints.meanArea)
   Future<HttpResponse<List<MeanAreaResponse>>> meanArea(
       @Body() RequestMeanValue requestMeanValue);
 
   @POST(EndPoints.totalContracts)
   Future<HttpResponse<List<BaseRentResponse>>> totalContract();
+
+  @POST(EndPoints.contractValue)
+  Future<HttpResponse<List<BaseRentResponse>>> contractValue(
+      @Body() RequestMeanValue requestMeanValue);
 }

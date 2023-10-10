@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import '../resources/values_manager.dart';
 import 'custom_elevated_button.dart';
-import 'single_dropdown_widget.dart';
 
 class BottomSheetFilterWidget extends StatelessWidget {
   final double minPrice = 0.0;
