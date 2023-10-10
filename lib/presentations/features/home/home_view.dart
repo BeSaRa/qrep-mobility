@@ -2,13 +2,14 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
 import 'package:ebla/presentations/features/rent/widgets/rent_grid_item_widget.dart';
 import 'package:ebla/presentations/resources/theme_manager.dart';
+import 'package:ebla/presentations/widgets/bottom_sheet_widget.dart';
 import 'package:ebla/presentations/widgets/growth_rate_widget.dart';
 import 'package:ebla/presentations/widgets/single_dropdown_widget.dart';
 import 'package:ebla/presentations/widgets/staggered_grid_view.dart';
-import 'package:ebla/presentations/widgets/bottom_sheet_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
 import '../../../domain/models/rent_models/rent_models.dart';
@@ -30,7 +31,9 @@ import '../rent/blocs/rent_bloc/rent_bloc.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key, this.title = 'press'});
+
   final String title;
+
   @override
   State<HomeView> createState() => _HomeViewState();
 }
@@ -40,6 +43,8 @@ class _HomeViewState extends State<HomeView> {
   late MeanValueBloc meanValueBloc;
 
   final _textController = TextEditingController();
+  // bool showInkWell = false;
+
   @override
   void initState() {
     // rentBloc = instance<RentBloc>()..add(const RentEvent.getRentLookupEvent());
@@ -47,6 +52,8 @@ class _HomeViewState extends State<HomeView> {
 
     super.initState();
   }
+
+  // bool _switchValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +174,7 @@ class _HomeViewState extends State<HomeView> {
                           onPress: () {
                             bottomSheetWidget(
                               context,
-                              child: const BosttomSheetFilterWidget(),
+                              child: const BottomSheetFilterWidget(),
                             );
                           },
                         ),

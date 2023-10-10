@@ -10,6 +10,8 @@ import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecases/rent_usecases/certificate_contract_usecases/certificate_usecase.dart';
 import '../domain/usecases/rent_usecases/certificate_contract_usecases/contract_usecase.dart';
+import '../domain/usecases/contract_value_kpi7/contract_value_usecase.dart';
+import '../domain/usecases/rent_usecases/defualt_rent_usecase.dart';
 import '../domain/usecases/rent_usecases/mean_area_usecase.dart/mean_area_usecase.dart';
 import '../domain/usecases/rent_usecases/mean_value_usecases/mean_value_usecases.dart';
 import '../presentations/features/rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
@@ -50,6 +52,12 @@ Future<void> initRentModule() async {
   if (!GetIt.I.isRegistered<CertificateCountUsecase>()) {
     instance.registerFactory<CertificateCountUsecase>(
         () => CertificateCountUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<RentDefaultUseCase>()) {
+    instance.registerLazySingleton(() => RentDefaultUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<ContractValueUseCase>()) {
+    instance.registerLazySingleton(() => ContractValueUseCase(instance()));
   }
 
 //Blocs

@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 class GrowthRateWidget extends StatelessWidget {
   //todo: remove the index because the index is only for the dummy data
   const GrowthRateWidget({super.key, required this.index});
+
   final int index;
 
   //todo: remove this dummy data and replace it with real data
@@ -47,7 +48,7 @@ class GrowthRateWidget extends StatelessWidget {
             ),
             Row(
               children: [
-                SizedBox(width: AppSizeW.s33),
+                SizedBox(width: AppSizeW.s20),
                 Text(
                   growthRateData[index].growthRate,
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
@@ -81,6 +82,7 @@ class GrowthRateData {
   final String value;
   final String description;
   final String growthRate;
+
   const GrowthRateData(
       {required this.value,
       required this.description,

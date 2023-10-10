@@ -6,6 +6,72 @@ part of 'rent_models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$RentDefaultImpl _$$RentDefaultImplFromJson(Map<String, dynamic> json) =>
+    _$RentDefaultImpl(
+      issueYear: json['issueYear'] as int? ?? 0,
+      kpi10PreviousYear: json['kpi10PreviousYear'] as int? ?? 0,
+      kpi10Val: json['kpi10Val'] as int? ?? 0,
+      kpi13PreviousYear: json['kpi13PreviousYear'] as int? ?? 0,
+      kpi13Val: json['kpi13Val'] as int? ?? 0,
+      kpi16PreviousYear: json['kpi16PreviousYear'] as int? ?? 0,
+      kpi16Val: json['kpi16Val'] as int? ?? 0,
+      kpi16_2PreviousYear: json['kpi16_2PreviousYear'] as int? ?? 0,
+      kpi16_2Val: json['kpi16_2Val'] as int? ?? 0,
+      kpi1PreviousYear: json['kpi1PreviousYear'] as int? ?? 0,
+      kpi1Val: json['kpi1Val'] as int? ?? 0,
+      kpi4PreviousYear: json['kpi4PreviousYear'] as int? ?? 0,
+      kpi4Val: json['kpi4Val'] as int? ?? 0,
+      kpi7PreviousYear: json['kpi7PreviousYear'] as int? ?? 0,
+      kpi7Val: json['kpi7Val'] as int? ?? 0,
+      kpiYoY1: json['kpiYoY1'] as int? ?? 0,
+      kpiYoY10: json['kpiYoY10'] as int? ?? 0,
+      kpiYoY10Difference: json['kpiYoY10Difference'] as int? ?? 0,
+      kpiYoY13: json['kpiYoY13'] as int? ?? 0,
+      kpiYoY13Difference: json['kpiYoY13Difference'] as int? ?? 0,
+      kpiYoY16: json['kpiYoY16'] as int? ?? 0,
+      kpiYoY16Difference: json['kpiYoY16Difference'] as int? ?? 0,
+      kpiYoY16_2: json['kpiYoY16_2'] as int? ?? 0,
+      kpiYoY16_2Difference: json['kpiYoY16_2Difference'] as int? ?? 0,
+      kpiYoY1Difference: json['kpiYoY1Difference'] as int? ?? 0,
+      kpiYoY4: json['kpiYoY4'] as int? ?? 0,
+      kpiYoY4Difference: json['kpiYoY4Difference'] as int? ?? 0,
+      kpiYoY7: json['kpiYoY7'] as int? ?? 0,
+      kpiYoY7Difference: json['kpiYoY7Difference'] as int? ?? 0,
+    );
+
+Map<String, dynamic> _$$RentDefaultImplToJson(_$RentDefaultImpl instance) =>
+    <String, dynamic>{
+      'issueYear': instance.issueYear,
+      'kpi10PreviousYear': instance.kpi10PreviousYear,
+      'kpi10Val': instance.kpi10Val,
+      'kpi13PreviousYear': instance.kpi13PreviousYear,
+      'kpi13Val': instance.kpi13Val,
+      'kpi16PreviousYear': instance.kpi16PreviousYear,
+      'kpi16Val': instance.kpi16Val,
+      'kpi16_2PreviousYear': instance.kpi16_2PreviousYear,
+      'kpi16_2Val': instance.kpi16_2Val,
+      'kpi1PreviousYear': instance.kpi1PreviousYear,
+      'kpi1Val': instance.kpi1Val,
+      'kpi4PreviousYear': instance.kpi4PreviousYear,
+      'kpi4Val': instance.kpi4Val,
+      'kpi7PreviousYear': instance.kpi7PreviousYear,
+      'kpi7Val': instance.kpi7Val,
+      'kpiYoY1': instance.kpiYoY1,
+      'kpiYoY10': instance.kpiYoY10,
+      'kpiYoY10Difference': instance.kpiYoY10Difference,
+      'kpiYoY13': instance.kpiYoY13,
+      'kpiYoY13Difference': instance.kpiYoY13Difference,
+      'kpiYoY16': instance.kpiYoY16,
+      'kpiYoY16Difference': instance.kpiYoY16Difference,
+      'kpiYoY16_2': instance.kpiYoY16_2,
+      'kpiYoY16_2Difference': instance.kpiYoY16_2Difference,
+      'kpiYoY1Difference': instance.kpiYoY1Difference,
+      'kpiYoY4': instance.kpiYoY4,
+      'kpiYoY4Difference': instance.kpiYoY4Difference,
+      'kpiYoY7': instance.kpiYoY7,
+      'kpiYoY7Difference': instance.kpiYoY7Difference,
+    };
+
 _$RentLookupResponseImpl _$$RentLookupResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$RentLookupResponseImpl(

@@ -6,7 +6,6 @@ import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../app/app_preferences.dart';
@@ -65,7 +64,8 @@ class _MoreViewState extends State<MoreView> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(AppSizeW.s20),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: AppSizeW.s12, vertical: AppSizeH.s10),
                   decoration: BoxDecoration(
                       color: Theme.of(context).disabledColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(AppSizeW.s20)),
