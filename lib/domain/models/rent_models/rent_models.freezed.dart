@@ -2354,3 +2354,330 @@ abstract class _BaseRentResponse implements BaseRentResponse {
   _$$BaseRentResponseImplCopyWith<_$BaseRentResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+MeanAreaResponse _$MeanAreaResponseFromJson(Map<String, dynamic> json) {
+  return _MeanAreaResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$MeanAreaResponse {
+  int get issueYear => throw _privateConstructorUsedError;
+  int get kpi2PreviousYear => throw _privateConstructorUsedError;
+  int get kpi2Val => throw _privateConstructorUsedError;
+  int get kpi2YoYDifference => throw _privateConstructorUsedError;
+  int get kpi2YoYVal => throw _privateConstructorUsedError;
+  int get kpiPreviousYear => throw _privateConstructorUsedError;
+  int get kpiVal => throw _privateConstructorUsedError;
+  int get kpiYoYDifference => throw _privateConstructorUsedError;
+  int get kpiYoYVal => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $MeanAreaResponseCopyWith<MeanAreaResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MeanAreaResponseCopyWith<$Res> {
+  factory $MeanAreaResponseCopyWith(
+          MeanAreaResponse value, $Res Function(MeanAreaResponse) then) =
+      _$MeanAreaResponseCopyWithImpl<$Res, MeanAreaResponse>;
+  @useResult
+  $Res call(
+      {int issueYear,
+      int kpi2PreviousYear,
+      int kpi2Val,
+      int kpi2YoYDifference,
+      int kpi2YoYVal,
+      int kpiPreviousYear,
+      int kpiVal,
+      int kpiYoYDifference,
+      int kpiYoYVal});
+}
+
+/// @nodoc
+class _$MeanAreaResponseCopyWithImpl<$Res, $Val extends MeanAreaResponse>
+    implements $MeanAreaResponseCopyWith<$Res> {
+  _$MeanAreaResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? issueYear = null,
+    Object? kpi2PreviousYear = null,
+    Object? kpi2Val = null,
+    Object? kpi2YoYDifference = null,
+    Object? kpi2YoYVal = null,
+    Object? kpiPreviousYear = null,
+    Object? kpiVal = null,
+    Object? kpiYoYDifference = null,
+    Object? kpiYoYVal = null,
+  }) {
+    return _then(_value.copyWith(
+      issueYear: null == issueYear
+          ? _value.issueYear
+          : issueYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi2PreviousYear: null == kpi2PreviousYear
+          ? _value.kpi2PreviousYear
+          : kpi2PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi2Val: null == kpi2Val
+          ? _value.kpi2Val
+          : kpi2Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi2YoYDifference: null == kpi2YoYDifference
+          ? _value.kpi2YoYDifference
+          : kpi2YoYDifference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi2YoYVal: null == kpi2YoYVal
+          ? _value.kpi2YoYVal
+          : kpi2YoYVal // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiPreviousYear: null == kpiPreviousYear
+          ? _value.kpiPreviousYear
+          : kpiPreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiVal: null == kpiVal
+          ? _value.kpiVal
+          : kpiVal // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoYDifference: null == kpiYoYDifference
+          ? _value.kpiYoYDifference
+          : kpiYoYDifference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoYVal: null == kpiYoYVal
+          ? _value.kpiYoYVal
+          : kpiYoYVal // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$MeanAreaResponseImplCopyWith<$Res>
+    implements $MeanAreaResponseCopyWith<$Res> {
+  factory _$$MeanAreaResponseImplCopyWith(_$MeanAreaResponseImpl value,
+          $Res Function(_$MeanAreaResponseImpl) then) =
+      __$$MeanAreaResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int issueYear,
+      int kpi2PreviousYear,
+      int kpi2Val,
+      int kpi2YoYDifference,
+      int kpi2YoYVal,
+      int kpiPreviousYear,
+      int kpiVal,
+      int kpiYoYDifference,
+      int kpiYoYVal});
+}
+
+/// @nodoc
+class __$$MeanAreaResponseImplCopyWithImpl<$Res>
+    extends _$MeanAreaResponseCopyWithImpl<$Res, _$MeanAreaResponseImpl>
+    implements _$$MeanAreaResponseImplCopyWith<$Res> {
+  __$$MeanAreaResponseImplCopyWithImpl(_$MeanAreaResponseImpl _value,
+      $Res Function(_$MeanAreaResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? issueYear = null,
+    Object? kpi2PreviousYear = null,
+    Object? kpi2Val = null,
+    Object? kpi2YoYDifference = null,
+    Object? kpi2YoYVal = null,
+    Object? kpiPreviousYear = null,
+    Object? kpiVal = null,
+    Object? kpiYoYDifference = null,
+    Object? kpiYoYVal = null,
+  }) {
+    return _then(_$MeanAreaResponseImpl(
+      issueYear: null == issueYear
+          ? _value.issueYear
+          : issueYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi2PreviousYear: null == kpi2PreviousYear
+          ? _value.kpi2PreviousYear
+          : kpi2PreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi2Val: null == kpi2Val
+          ? _value.kpi2Val
+          : kpi2Val // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi2YoYDifference: null == kpi2YoYDifference
+          ? _value.kpi2YoYDifference
+          : kpi2YoYDifference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpi2YoYVal: null == kpi2YoYVal
+          ? _value.kpi2YoYVal
+          : kpi2YoYVal // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiPreviousYear: null == kpiPreviousYear
+          ? _value.kpiPreviousYear
+          : kpiPreviousYear // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiVal: null == kpiVal
+          ? _value.kpiVal
+          : kpiVal // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoYDifference: null == kpiYoYDifference
+          ? _value.kpiYoYDifference
+          : kpiYoYDifference // ignore: cast_nullable_to_non_nullable
+              as int,
+      kpiYoYVal: null == kpiYoYVal
+          ? _value.kpiYoYVal
+          : kpiYoYVal // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$MeanAreaResponseImpl implements _MeanAreaResponse {
+  const _$MeanAreaResponseImpl(
+      {this.issueYear = 0,
+      this.kpi2PreviousYear = 0,
+      this.kpi2Val = 0,
+      this.kpi2YoYDifference = 0,
+      this.kpi2YoYVal = 0,
+      this.kpiPreviousYear = 0,
+      this.kpiVal = 0,
+      this.kpiYoYDifference = 0,
+      this.kpiYoYVal = 0});
+
+  factory _$MeanAreaResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MeanAreaResponseImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int issueYear;
+  @override
+  @JsonKey()
+  final int kpi2PreviousYear;
+  @override
+  @JsonKey()
+  final int kpi2Val;
+  @override
+  @JsonKey()
+  final int kpi2YoYDifference;
+  @override
+  @JsonKey()
+  final int kpi2YoYVal;
+  @override
+  @JsonKey()
+  final int kpiPreviousYear;
+  @override
+  @JsonKey()
+  final int kpiVal;
+  @override
+  @JsonKey()
+  final int kpiYoYDifference;
+  @override
+  @JsonKey()
+  final int kpiYoYVal;
+
+  @override
+  String toString() {
+    return 'MeanAreaResponse(issueYear: $issueYear, kpi2PreviousYear: $kpi2PreviousYear, kpi2Val: $kpi2Val, kpi2YoYDifference: $kpi2YoYDifference, kpi2YoYVal: $kpi2YoYVal, kpiPreviousYear: $kpiPreviousYear, kpiVal: $kpiVal, kpiYoYDifference: $kpiYoYDifference, kpiYoYVal: $kpiYoYVal)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeanAreaResponseImpl &&
+            (identical(other.issueYear, issueYear) ||
+                other.issueYear == issueYear) &&
+            (identical(other.kpi2PreviousYear, kpi2PreviousYear) ||
+                other.kpi2PreviousYear == kpi2PreviousYear) &&
+            (identical(other.kpi2Val, kpi2Val) || other.kpi2Val == kpi2Val) &&
+            (identical(other.kpi2YoYDifference, kpi2YoYDifference) ||
+                other.kpi2YoYDifference == kpi2YoYDifference) &&
+            (identical(other.kpi2YoYVal, kpi2YoYVal) ||
+                other.kpi2YoYVal == kpi2YoYVal) &&
+            (identical(other.kpiPreviousYear, kpiPreviousYear) ||
+                other.kpiPreviousYear == kpiPreviousYear) &&
+            (identical(other.kpiVal, kpiVal) || other.kpiVal == kpiVal) &&
+            (identical(other.kpiYoYDifference, kpiYoYDifference) ||
+                other.kpiYoYDifference == kpiYoYDifference) &&
+            (identical(other.kpiYoYVal, kpiYoYVal) ||
+                other.kpiYoYVal == kpiYoYVal));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      issueYear,
+      kpi2PreviousYear,
+      kpi2Val,
+      kpi2YoYDifference,
+      kpi2YoYVal,
+      kpiPreviousYear,
+      kpiVal,
+      kpiYoYDifference,
+      kpiYoYVal);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeanAreaResponseImplCopyWith<_$MeanAreaResponseImpl> get copyWith =>
+      __$$MeanAreaResponseImplCopyWithImpl<_$MeanAreaResponseImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$MeanAreaResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _MeanAreaResponse implements MeanAreaResponse {
+  const factory _MeanAreaResponse(
+      {final int issueYear,
+      final int kpi2PreviousYear,
+      final int kpi2Val,
+      final int kpi2YoYDifference,
+      final int kpi2YoYVal,
+      final int kpiPreviousYear,
+      final int kpiVal,
+      final int kpiYoYDifference,
+      final int kpiYoYVal}) = _$MeanAreaResponseImpl;
+
+  factory _MeanAreaResponse.fromJson(Map<String, dynamic> json) =
+      _$MeanAreaResponseImpl.fromJson;
+
+  @override
+  int get issueYear;
+  @override
+  int get kpi2PreviousYear;
+  @override
+  int get kpi2Val;
+  @override
+  int get kpi2YoYDifference;
+  @override
+  int get kpi2YoYVal;
+  @override
+  int get kpiPreviousYear;
+  @override
+  int get kpiVal;
+  @override
+  int get kpiYoYDifference;
+  @override
+  int get kpiYoYVal;
+  @override
+  @JsonKey(ignore: true)
+  _$$MeanAreaResponseImplCopyWith<_$MeanAreaResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

@@ -5,4 +5,6 @@ class EndPoints {
   static const String rentDefault = '/kpi/rent/default';
   static const String rentTotalContracts = '/kpi/rent/kpi2/total-contracts/pu'
       'rpose';
+  static const String meanValue = '/kpi/rent/kpi13/mean-value';
+  static const String meanArea = '/kpi/rent/kpi16/mean-area';
 }

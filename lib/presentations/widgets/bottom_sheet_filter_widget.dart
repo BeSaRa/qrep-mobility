@@ -28,7 +28,7 @@ class BottomSheetFilterWidget extends StatelessWidget {
                   children: [
                     Text('البلدية',
                         style: Theme.of(context).textTheme.labelMedium),
-                    const SingleDropDownValue(),
+                    // const SingleDropDownValue(),
                   ],
                 ),
               ),
@@ -57,7 +57,7 @@ class BottomSheetFilterWidget extends StatelessWidget {
                   children: [
                     Text('نوع العقار',
                         style: Theme.of(context).textTheme.labelMedium),
-                    const SingleDropDownValue(),
+                    // const SingleDropDownValue(),
                   ],
                 ),
               ),
@@ -86,7 +86,7 @@ class BottomSheetFilterWidget extends StatelessWidget {
                   children: [
                     Text('عدد الغرف',
                         style: Theme.of(context).textTheme.labelMedium),
-                    const SingleDropDownValue(),
+                    // const SingleDropDownValue(),
                   ],
                 ),
               ),
@@ -100,7 +100,7 @@ class BottomSheetFilterWidget extends StatelessWidget {
                       'المدة الزمنية',
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
-                    const SingleDropDownValue(),
+                    // const SingleDropDownValue(),
                   ],
                 ),
               ),
@@ -115,7 +115,7 @@ class BottomSheetFilterWidget extends StatelessWidget {
                   children: [
                     Text('تفاصيل المدة الزمنية',
                         style: Theme.of(context).textTheme.labelMedium),
-                    const SingleDropDownValue(),
+                    // const SingleDropDownValue(),
                   ],
                 ),
               ),
@@ -129,7 +129,7 @@ class BottomSheetFilterWidget extends StatelessWidget {
                       '',
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
-                    const SingleDropDownValue(),
+                    // const SingleDropDownValue(),
                   ],
                 ),
               ),

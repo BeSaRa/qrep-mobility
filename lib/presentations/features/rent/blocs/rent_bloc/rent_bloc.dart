@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../domain/models/rent_models/rent_models.dart';
-import '../../../../domain/usecases/rent_usecases/rent_usecases.dart';
+import '../../../../../domain/models/rent_models/rent_models.dart';
+import '../../../../../domain/usecases/rent_usecases/rent_usecases.dart';
 
 part 'rent_event.dart';
 part 'rent_state.dart';

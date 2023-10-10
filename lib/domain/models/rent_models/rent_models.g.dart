@@ -249,3 +249,31 @@ Map<String, dynamic> _$$BaseRentResponseImplToJson(
       'purposeId': instance.purposeId,
       'propertyTypeId': instance.propertyTypeId,
     };
+
+_$MeanAreaResponseImpl _$$MeanAreaResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$MeanAreaResponseImpl(
+      issueYear: json['issueYear'] as int? ?? 0,
+      kpi2PreviousYear: json['kpi2PreviousYear'] as int? ?? 0,
+      kpi2Val: json['kpi2Val'] as int? ?? 0,
+      kpi2YoYDifference: json['kpi2YoYDifference'] as int? ?? 0,
+      kpi2YoYVal: json['kpi2YoYVal'] as int? ?? 0,
+      kpiPreviousYear: json['kpiPreviousYear'] as int? ?? 0,
+      kpiVal: json['kpiVal'] as int? ?? 0,
+      kpiYoYDifference: json['kpiYoYDifference'] as int? ?? 0,
+      kpiYoYVal: json['kpiYoYVal'] as int? ?? 0,
+    );
+
+Map<String, dynamic> _$$MeanAreaResponseImplToJson(
+        _$MeanAreaResponseImpl instance) =>
+    <String, dynamic>{
+      'issueYear': instance.issueYear,
+      'kpi2PreviousYear': instance.kpi2PreviousYear,
+      'kpi2Val': instance.kpi2Val,
+      'kpi2YoYDifference': instance.kpi2YoYDifference,
+      'kpi2YoYVal': instance.kpi2YoYVal,
+      'kpiPreviousYear': instance.kpiPreviousYear,
+      'kpiVal': instance.kpiVal,
+      'kpiYoYDifference': instance.kpiYoYDifference,
+      'kpiYoYVal': instance.kpiYoYVal,
+    };

@@ -117,3 +117,20 @@ abstract class BaseRentResponse with _$BaseRentResponse {
   factory BaseRentResponse.fromJson(Map<String, dynamic> json) =>
       _$BaseRentResponseFromJson(json);
 }
+
+@freezed
+abstract class MeanAreaResponse with _$MeanAreaResponse {
+  const factory MeanAreaResponse({
+    @Default(0) int issueYear,
+    @Default(0) int kpi2PreviousYear,
+    @Default(0) int kpi2Val,
+    @Default(0) int kpi2YoYDifference,
+    @Default(0) int kpi2YoYVal,
+    @Default(0) int kpiPreviousYear,
+    @Default(0) int kpiVal,
+    @Default(0) int kpiYoYDifference,
+    @Default(0) int kpiYoYVal,
+  }) = _MeanAreaResponse;
+  factory MeanAreaResponse.fromJson(Map<String, dynamic> json) =>
+      _$MeanAreaResponseFromJson(json);
+}
