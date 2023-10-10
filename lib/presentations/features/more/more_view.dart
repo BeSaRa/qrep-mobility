@@ -192,7 +192,8 @@ class MoreWidgetButton extends StatelessWidget {
           : null,
       child: Container(
         height: AppSizeH.s56,
-        padding: EdgeInsets.all(AppSizeH.s8),
+        padding:
+            EdgeInsetsDirectional.only(start: AppSizeW.s19, end: AppSizeW.s7),
         margin: EdgeInsets.symmetric(
             horizontal: AppSizeH.s20, vertical: AppSizeW.s6),
         decoration: BoxDecoration(

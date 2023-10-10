@@ -6,7 +6,11 @@ import 'package:ebla/presentations/features/rent/rent_view.dart';
 import 'package:ebla/presentations/features/sell/sell_view.dart';
 import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../app/depndency_injection.dart';
+import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
 
 class RoutesNames {
   static const String splash = 'splash';
@@ -47,7 +51,11 @@ class AppRouter {
               GoRoute(
                 path: RoutesPaths.home,
                 name: RoutesNames.home,
-                builder: (context, state) => const HomeView(),
+                builder: (context, state) => BlocProvider(
+                  create: (context) => instance<RentBloc>()
+                    ..add(const RentEvent.getRentLookupEvent()),
+                  child: const HomeView(),
+                ),
               ),
             ]),
             StatefulShellBranch(routes: [
