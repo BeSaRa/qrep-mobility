@@ -12,14 +12,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
 import '../../../domain/models/rent_models/rent_models.dart';
+import '../../../utils/global_functions.dart';
 import '../../resources/color_manager.dart';
+import '../../resources/strings_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets/bottom_sheet_filter_widget.dart';
 import '../../widgets/custom_elevated_button.dart';
+import '../../widgets/ebla_tab_bar.dart';
 import '../../widgets/mutli_dropdown_widget.dart';
 import '../../widgets/news_item_widgets.dart';
 import '../../widgets/search_text_field_widget.dart';
 import '../../widgets/statistics_rent_widget.dart';
+import '../more/more_view.dart';
+import '../rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import '../rent/blocs/mean_value_bloc/mean_value_bloc.dart';
 import '../rent/blocs/rent_bloc/rent_bloc.dart';
 
@@ -31,13 +36,13 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  late RentBloc rentBloc;
+  // late RentBloc rentBloc;
   late MeanValueBloc meanValueBloc;
-  final _textController = TextEditingController();
 
+  final _textController = TextEditingController();
   @override
   void initState() {
-    rentBloc = instance<RentBloc>()..add(const RentEvent.getRentLookupEvent());
+    // rentBloc = instance<RentBloc>()..add(const RentEvent.getRentLookupEvent());
     meanValueBloc = instance<MeanValueBloc>();
 
     super.initState();
@@ -101,7 +106,7 @@ class _HomeViewState extends State<HomeView> {
         child: Column(
           children: [
             BlocBuilder(
-              bloc: rentBloc,
+              bloc: context.read<RentBloc>(),
               builder: (context, RentState state) {
                 if (state.isLoadingRentLookup) {
                   return const LinearProgressIndicator();
@@ -123,22 +128,7 @@ class _HomeViewState extends State<HomeView> {
             Expanded(
               child: ListView(
                 children: [
-                  SizedBox(
-                    height: AppSizeH.s30,
-                  ),
-                  StatisticsRentWidget(statistics: [
-                    StatisticsModel(title: 'فريج بن محمود', number: '820'),
-                    StatisticsModel(title: 'المطار العتيق', number: '819'),
-                    StatisticsModel(
-                        title: 'القطيفية + القصار + عنيزة', number: '720'),
-                    StatisticsModel(title: 'ام غو يلينه', number: '680'),
-                    StatisticsModel(
-                        title: 'المنصورة + فريج بن درهم', number: '540'),
-                    StatisticsModel(
-                        title:
-                            'فريج بن عمران + فريج الهتمي الجديد + مدينة حمد الطبية',
-                        number: '451'),
-                  ]),
+                  const StatisTicsWidget(),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
                     child: StaggeredGridView(
@@ -197,6 +187,163 @@ class _HomeViewState extends State<HomeView> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class StatisTicsWidget extends StatefulWidget {
+  const StatisTicsWidget({super.key});
+
+  @override
+  State<StatisTicsWidget> createState() => _StatisTicsWidgetState();
+}
+
+class _StatisTicsWidgetState extends State<StatisTicsWidget> {
+  int indexx = 0;
+  late CertificateContractBloc certificateContractBloc;
+  @override
+  void initState() {
+    certificateContractBloc = instance<CertificateContractBloc>();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener(
+      bloc: context.read<RentBloc>(),
+      listener: (context, RentState state) {
+        if (state.rentLookup != const RentLookupResponse()) {
+          certificateContractBloc
+              .add(CertificateContractEvent.certificateCountEvent(
+            request: RequestMeanValue(
+              municipalityId: 1,
+              propertyTypeList: [-1],
+              purposeList: [-1],
+              issueDateQuarterList: [1, 2, 3, 4],
+              furnitureStatus: -1,
+              issueDateYear: 2023,
+              issueDateStartMonth: 1,
+              issueDateEndMonth: 10,
+              zoneId: -1,
+              limit: 5,
+            ),
+          ));
+        }
+      },
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: AppSizeW.s50),
+                  child: EblaTabBarWidget(
+                    initialIndex: indexx,
+                    firstTab: 'عدد عقود الإيجار',
+                    secondTab: 'عدد الوحدات',
+                    onPressed: (index) {
+                      indexx == index
+                          ? null
+                          : index == 0
+                              ? certificateContractBloc.add(
+                                  CertificateContractEvent
+                                      .certificateCountEvent(
+                                  request: RequestMeanValue(
+                                    municipalityId: 1,
+                                    propertyTypeList: [-1],
+                                    purposeList: [-1],
+                                    issueDateQuarterList: [1, 2, 3, 4],
+                                    furnitureStatus: -1,
+                                    issueDateYear: 2023,
+                                    issueDateStartMonth: 1,
+                                    issueDateEndMonth: 10,
+                                    zoneId: -1,
+                                    limit: 5,
+                                  ),
+                                ))
+                              : certificateContractBloc.add(
+                                  CertificateContractEvent.contractCountEvent(
+                                  request: RequestMeanValue(
+                                    municipalityId: 1,
+                                    propertyTypeList: [-1],
+                                    purposeList: [-1],
+                                    issueDateQuarterList: [1, 2, 3, 4],
+                                    furnitureStatus: -1,
+                                    issueDateYear: 2023,
+                                    issueDateStartMonth: 1,
+                                    issueDateEndMonth: 10,
+                                    zoneId: -1,
+                                    limit: 5,
+                                  ),
+                                ));
+                      setState(() {
+                        indexx = index;
+                      });
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: AppSizeH.s30,
+          ),
+          BlocBuilder(
+            bloc: certificateContractBloc,
+            builder: (context, CertificateContractState state) {
+              if (state.isLoadingCertificate || state.isLoadingContract) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              if (state.isHasErrorCertificate || state.isHasErrorContract) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(state.errorMessageCertificate),
+                    IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.refresh_outlined))
+                  ],
+                );
+              }
+              if (state.certificateCountResponse.isNotEmpty && indexx == 0) {
+                return StatisticsRentWidget(
+                    statistics: state.certificateCountResponse.map((e) {
+                  return StatisticsModel(
+                      title: getObjectByLookupKey(
+                                  context
+                                      .read<RentBloc>()
+                                      .loockUpRent!
+                                      .zoneList,
+                                  e.zoneId.toInt())
+                              ?.arName ??
+                          '',
+                      number: e.kpiVal.toString());
+                }).toList());
+              }
+              if (state.contractCountResponse.isNotEmpty && indexx == 1) {
+                return StatisticsRentWidget(
+                    statistics: state.certificateCountResponse.map((e) {
+                  return StatisticsModel(
+                      title: getObjectByLookupKey(
+                                  context
+                                      .read<RentBloc>()
+                                      .loockUpRent!
+                                      .zoneList,
+                                  e.zoneId.toInt())
+                              ?.arName ??
+                          '',
+                      number: e.kpiVal.toString());
+                }).toList());
+              }
+              return const SizedBox();
+            },
+          ),
+        ],
       ),
     );
   }
