@@ -113,6 +113,7 @@ abstract class BaseRentResponse with _$BaseRentResponse {
     @Default(0) int purposeId,
     @Default(0) int propertyTypeId,
   }) = _BaseRentResponse;
+
   factory BaseRentResponse.fromJson(Map<String, dynamic> json) =>
       _$BaseRentResponseFromJson(json);
 }

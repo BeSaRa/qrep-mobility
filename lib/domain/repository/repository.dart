@@ -5,4 +5,6 @@ import '../models/rent_models/rent_models.dart';
 
 abstract class Repository {
   Future<Result<RentLookupResponse, FailureModel>> getLockupRent();
+
+  Future<Result<RentDefault, FailureModel>> getRentDefault();
 }

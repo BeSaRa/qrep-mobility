@@ -1,5 +1,5 @@
+import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,35 +27,51 @@ class EblaNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomBar(
       fit: StackFit.expand,
-      body: (context, controller) => Padding(
-        padding: EdgeInsets.only(bottom: AppSizeH.s90),
-        child: body,
-      ),
+      body: (context, controller) =>
+          Padding(
+            padding: EdgeInsets.only(bottom: AppSizeH.s90),
+            child: body,
+          ),
       borderRadius: BorderRadius.circular(500),
       duration: const Duration(seconds: 1),
       curve: Curves.decelerate,
       showIcon: true,
-      width: MediaQuery.of(context).size.width * 0.9,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width * 0.9,
       barColor: Colors.white,
       start: 2,
       barDecoration: BoxDecoration(boxShadow: [
         BoxShadow(
-            color: Theme.of(context).shadowColor.withOpacity(0.1),
+            color: Theme
+                .of(context)
+                .shadowColor
+                .withOpacity(0.1),
             offset: const Offset(1, 1),
             blurRadius: 15,
             blurStyle: BlurStyle.normal),
         BoxShadow(
-            color: Theme.of(context).shadowColor.withOpacity(0.1),
+            color: Theme
+                .of(context)
+                .shadowColor
+                .withOpacity(0.1),
             offset: const Offset(-1, -1),
             blurRadius: 15,
             blurStyle: BlurStyle.normal),
         BoxShadow(
-            color: Theme.of(context).shadowColor.withOpacity(0.1),
+            color: Theme
+                .of(context)
+                .shadowColor
+                .withOpacity(0.1),
             offset: const Offset(1, -1),
             blurRadius: 15,
             blurStyle: BlurStyle.normal),
         BoxShadow(
-            color: Theme.of(context).shadowColor.withOpacity(0.1),
+            color: Theme
+                .of(context)
+                .shadowColor
+                .withOpacity(0.1),
             offset: const Offset(-1, 1),
             blurRadius: 15,
             blurStyle: BlurStyle.normal),
@@ -66,7 +82,7 @@ class EblaNavigationBar extends StatelessWidget {
         controller: _controller,
         indicator: UnderlineTabIndicator(
           borderSide: BorderSide(
-            color: Theme.of(context).primaryColor,
+            color: ColorManager.golden,
             width: 6.0,
           ),
           borderRadius: const BorderRadius.all(Radius.circular(2)),
@@ -84,10 +100,14 @@ class EblaNavigationBar extends StatelessWidget {
                     IconAssets.homeIcon,
                     // ignore: deprecated_member_use
                     color: currentPage == 0
-                        ? Theme.of(context).primaryColor
-                        : Theme.of(context)
-                            .bottomNavigationBarTheme
-                            .unselectedItemColor,
+                        ? Theme
+                        .of(context)
+                        .primaryColor
+                        : Theme
+                        .of(context)
+                        .bottomNavigationBarTheme
+                        .unselectedItemColor,
+
                   ),
                 ),
                 Expanded(
@@ -96,10 +116,13 @@ class EblaNavigationBar extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 9.sp,
                       color: currentPage == 0
-                          ? Theme.of(context).primaryColor
-                          : Theme.of(context)
-                              .bottomNavigationBarTheme
-                              .unselectedItemColor,
+                          ? Theme
+                          .of(context)
+                          .primaryColor
+                          : Theme
+                          .of(context)
+                          .bottomNavigationBarTheme
+                          .unselectedItemColor,
                     ),
                   ),
                 ),
@@ -118,10 +141,13 @@ class EblaNavigationBar extends StatelessWidget {
                     IconAssets.keyIcon,
                     // ignore: deprecated_member_use
                     color: currentPage == 1
-                        ? Theme.of(context).primaryColor
-                        : Theme.of(context)
-                            .bottomNavigationBarTheme
-                            .unselectedItemColor,
+                        ? Theme
+                        .of(context)
+                        .primaryColor
+                        : Theme
+                        .of(context)
+                        .bottomNavigationBarTheme
+                        .unselectedItemColor,
                   ),
                 ),
                 Expanded(
@@ -129,10 +155,13 @@ class EblaNavigationBar extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 9.sp,
                           color: currentPage == 1
-                              ? Theme.of(context).primaryColor
-                              : Theme.of(context)
-                                  .bottomNavigationBarTheme
-                                  .unselectedItemColor,
+                              ? Theme
+                              .of(context)
+                              .primaryColor
+                              : Theme
+                              .of(context)
+                              .bottomNavigationBarTheme
+                              .unselectedItemColor,
                         ))),
                 const Spacer()
               ],
@@ -149,10 +178,13 @@ class EblaNavigationBar extends StatelessWidget {
                     IconAssets.sellIcon,
                     // ignore: deprecated_member_use
                     color: currentPage == 2
-                        ? Theme.of(context).primaryColor
-                        : Theme.of(context)
-                            .bottomNavigationBarTheme
-                            .unselectedItemColor,
+                        ? Theme
+                        .of(context)
+                        .primaryColor
+                        : Theme
+                        .of(context)
+                        .bottomNavigationBarTheme
+                        .unselectedItemColor,
                   ),
                 ),
                 Expanded(
@@ -161,10 +193,13 @@ class EblaNavigationBar extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 9.sp,
                       color: currentPage == 2
-                          ? Theme.of(context).primaryColor
-                          : Theme.of(context)
-                              .bottomNavigationBarTheme
-                              .unselectedItemColor,
+                          ? Theme
+                          .of(context)
+                          .primaryColor
+                          : Theme
+                          .of(context)
+                          .bottomNavigationBarTheme
+                          .unselectedItemColor,
                     ),
                   ),
                 ),
@@ -182,22 +217,28 @@ class EblaNavigationBar extends StatelessWidget {
                   child: SvgPicture.asset(IconAssets.realEstateIcon,
                       // ignore: deprecated_member_use
                       color: currentPage == 3
-                          ? Theme.of(context).primaryColor
-                          : Theme.of(context)
-                              .bottomNavigationBarTheme
-                              .unselectedItemColor),
+                          ? Theme
+                          .of(context)
+                          .primaryColor
+                          : Theme
+                          .of(context)
+                          .bottomNavigationBarTheme
+                          .unselectedItemColor),
                 ),
                 Expanded(
                     child: Text(
-                  AppStrings().mortgage,
-                  style: TextStyle(
-                      fontSize: 9.sp,
-                      color: currentPage == 3
-                          ? Theme.of(context).primaryColor
-                          : Theme.of(context)
+                      AppStrings().mortgage,
+                      style: TextStyle(
+                          fontSize: 9.sp,
+                          color: currentPage == 3
+                              ? Theme
+                              .of(context)
+                              .primaryColor
+                              : Theme
+                              .of(context)
                               .bottomNavigationBarTheme
                               .unselectedItemColor),
-                )),
+                    )),
                 const Spacer()
               ],
             ),
@@ -213,22 +254,28 @@ class EblaNavigationBar extends StatelessWidget {
                   child: SvgPicture.asset(IconAssets.infoIcon,
                       // ignore: deprecated_member_use
                       color: currentPage == 4
-                          ? Theme.of(context).primaryColor
-                          : Theme.of(context)
-                              .bottomNavigationBarTheme
-                              .unselectedItemColor),
+                          ? Theme
+                          .of(context)
+                          .primaryColor
+                          : Theme
+                          .of(context)
+                          .bottomNavigationBarTheme
+                          .unselectedItemColor),
                 ),
                 Expanded(
                     child: Text(
-                  AppStrings().more,
-                  style: TextStyle(
-                      fontSize: 9.sp,
-                      color: currentPage == 4
-                          ? Theme.of(context).primaryColor
-                          : Theme.of(context)
+                      AppStrings().more,
+                      style: TextStyle(
+                          fontSize: 9.sp,
+                          color: currentPage == 4
+                              ? Theme
+                              .of(context)
+                              .primaryColor
+                              : Theme
+                              .of(context)
                               .bottomNavigationBarTheme
                               .unselectedItemColor),
-                )),
+                    )),
                 const Spacer()
               ],
             ),

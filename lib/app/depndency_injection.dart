@@ -9,6 +9,7 @@ import '../data/newtwok/dio_factory.dart';
 import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
+import '../domain/usecases/rent_usecases/defualt_rent_usecase.dart';
 import 'app_preferences.dart';
 
 final instance = GetIt.instance;
@@ -29,7 +30,12 @@ Future<void> initAppModule() async {
 
 Future<void> initRentModule() async {
 //Usecases
-  instance.registerLazySingleton(() => GetRentLookupUseCase(instance()));
+  if (!GetIt.I.isRegistered<GetRentLookupUseCase>()) {
+    instance.registerLazySingleton(() => GetRentLookupUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<RentDefaultUseCase>()) {
+    instance.registerLazySingleton(() => RentDefaultUseCase(instance()));
+  }
 
 //Blocs
   instance.registerFactory(() => RentBloc(getRentLookupUseCase: instance()));
