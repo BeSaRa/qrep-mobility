@@ -79,6 +79,53 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
+  Future<Result<List<BaseRentResponse>, FailureModel>> certificateCount(
+      RequestMeanValue requestMeanValue) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await appServiceClient.certificateCount(requestMeanValue);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        print('ar ${e.toString()}');
+
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        print('ar ${e.toString()}');
+
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<List<BaseRentResponse>, FailureModel>> contractCount(
+      RequestMeanValue requestMeanValue) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.contractCount(requestMeanValue);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
   Future<Result<RentDefault, FailureModel>> getRentDefault() async {
     if (await networkInfo.isConnected) {
       try {
@@ -104,6 +151,7 @@ class RepositoryImplementer extends Repository {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.contractValue(requestMeanValue);
+
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
