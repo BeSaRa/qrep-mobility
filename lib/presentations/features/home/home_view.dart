@@ -1,5 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
+import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/rent/widgets/rent_grid_item_widget.dart';
 import 'package:ebla/presentations/resources/theme_manager.dart';
 import 'package:ebla/presentations/widgets/bottom_sheet_widget.dart';
@@ -146,7 +147,10 @@ class _HomeViewState extends State<HomeView> {
                       mainAxisSpacing: AppSizeH.s22,
                       crossAxisSpacing: AppSizeW.s23,
                       gridItemChildBuilder: (context, index) {
-                        return RentGridItemWidget(index: index);
+                        return RentGridItemWidget(
+                          index: index,
+                          kpi: KPI.totalRentedUntis,
+                        );
                       },
                     ),
                   ),

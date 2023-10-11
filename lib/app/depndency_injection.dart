@@ -1,4 +1,8 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:ebla/domain/usecases/rent_usecases/rent_usecases.dart';
+import 'package:ebla/domain/usecases/rent_usecases/total_contracts_usecase.dart';
+import 'package:ebla/domain/usecases/rent_usecases/total_rented_units_usecase.dart';
+
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,6 +15,8 @@ import '../domain/usecases/usecases.dart';
 import '../presentations/features/rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import '../presentations/features/rent/blocs/mean_value_bloc/mean_value_bloc.dart';
 import '../presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
+
+import '../presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 import 'app_preferences.dart';
 
 final instance = GetIt.instance;
@@ -56,7 +62,14 @@ Future<void> initRentModule() async {
   if (!GetIt.I.isRegistered<RentSummeryUseCase>()) {
     instance.registerFactory(() => RentSummeryUseCase(instance()));
   }
-
+  if (!GetIt.I.isRegistered<TotalContractsUseCase>()) {
+    instance.registerFactory<TotalContractsUseCase>(
+        () => TotalContractsUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<TotalRentedUnitsUseCase>()) {
+    instance.registerFactory<TotalRentedUnitsUseCase>(
+        () => TotalRentedUnitsUseCase(instance()));
+  }
 //Blocs
   instance.registerFactory(() => RentBloc(getRentLookupUseCase: instance()));
   instance.registerFactory(
@@ -66,4 +79,10 @@ Future<void> initRentModule() async {
   );
   instance.registerFactory(() => CertificateContractBloc(
       certificateCountUsecase: instance(), contractCountUsecase: instance()));
+  instance.registerFactory(
+    () => RentGridKPIsBloc(
+      totalRentedUnitsUseCase: instance(),
+      totalContractsUseCase: instance(),
+    ),
+  );
 }
