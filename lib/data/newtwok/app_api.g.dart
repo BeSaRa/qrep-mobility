@@ -205,7 +205,7 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<HttpResponse<List<BaseRentResponse>>> totalContract(
+  Future<HttpResponse<List<BaseRentResponse>>> contractValue(
       RequestMeanValue requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -219,7 +219,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/kpi/rent/kpi1/total-contracts',
+              '/kpi/rent/kpi7/contract-value',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -237,7 +237,7 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<HttpResponse<List<BaseRentResponse>>> contractValue(
+  Future<HttpResponse<List<BaseRentResponse>>> totalContract(
       RequestMeanValue requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -251,7 +251,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/kpi/rent/kpi7/contract-value',
+              '/kpi/rent/kpi1/total-contracts',
               queryParameters: queryParameters,
               data: _data,
             )
