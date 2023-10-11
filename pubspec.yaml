@@ -39,6 +39,7 @@ dependencies:
   readmore: ^2.2.0
   retrofit: ^4.0.1
   shared_preferences: ^2.2.1
+  lottie: ^2.6.0
 
 
 dev_dependencies:

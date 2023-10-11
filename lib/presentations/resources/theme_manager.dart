@@ -13,7 +13,7 @@ ThemeData lightTheme() {
     colorSchemeSeed: const Color(0xFF8A1538),
     brightness: Brightness.light,
     useMaterial3: true,
-    dialogTheme: DialogTheme(
+    dialogTheme: const DialogTheme(
       backgroundColor: Colors.transparent,
     ),
     inputDecorationTheme: InputDecorationTheme(
@@ -24,10 +24,9 @@ ThemeData lightTheme() {
       focusedBorder: UnderlineInputBorder(
         borderSide: BorderSide(color: ColorManager.primary),
       ),
-      errorBorder: UnderlineInputBorder(
+      errorBorder: const UnderlineInputBorder(
         borderSide: BorderSide(color: Colors.red),
       ),
-
     ),
     sliderTheme: SliderThemeData(
       rangeTrackShape: CustomRangeSliderTrackShape(
@@ -58,24 +57,24 @@ ThemeData lightTheme() {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          foregroundColor: MaterialStateProperty.all(ColorManager.white),
-          textStyle: MaterialStatePropertyAll(
-            TextStyle(
-              fontFamily: FontConstants.fontFamily,
-              color: ColorManager.white,
-              fontSize: AppSizeSp.s16,
-              fontWeight: FontWeight.w400,
-            ),
+      foregroundColor: MaterialStateProperty.all(ColorManager.white),
+      textStyle: MaterialStatePropertyAll(
+        TextStyle(
+          fontFamily: FontConstants.fontFamily,
+          color: ColorManager.white,
+          fontSize: AppSizeSp.s16,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+      backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+      shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(AppSizeR.s5),
           ),
-          backgroundColor: MaterialStateProperty.all(ColorManager.primary),
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(AppSizeR.s5),
-              ),
-            ),
-          ),
-        )),
+        ),
+      ),
+    )),
     iconTheme: IconThemeData(color: ColorManager.primary),
     scaffoldBackgroundColor: const Color(0xFFF9F9F9),
     textTheme: TextTheme(
@@ -149,24 +148,24 @@ ThemeData darkTheme() {
       brightness: Brightness.dark,
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(ColorManager.white),
-            textStyle: MaterialStatePropertyAll(
-              TextStyle(
-                fontFamily: FontConstants.fontFamily,
-                color: ColorManager.white,
-                fontSize: AppSizeSp.s16,
-                fontWeight: FontWeight.w400,
-              ),
+        foregroundColor: MaterialStateProperty.all(ColorManager.white),
+        textStyle: MaterialStatePropertyAll(
+          TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.white,
+            fontSize: AppSizeSp.s16,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(AppSizeR.s5),
             ),
-            backgroundColor: MaterialStateProperty.all(ColorManager.primary),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(AppSizeR.s5),
-                ),
-              ),
-            ),
-          )),
+          ),
+        ),
+      )),
       textTheme: TextTheme(
         titleLarge: TextStyle(
             fontFamily: FontConstants.fontFamily,

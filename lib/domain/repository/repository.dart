@@ -10,6 +10,7 @@ abstract class Repository {
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContracts(
       RequestMeanValue requestMeanValue);
 
+
   Future<Result<List<BaseRentResponse>, FailureModel>> meanValue(
       RequestMeanValue requestMeanValue);
 
@@ -17,5 +18,13 @@ abstract class Repository {
       RequestMeanValue requestMeanValue);
 
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedUnits(
+      RequestMeanValue requestMeanValue);
+  Future<Result<List<BaseRentResponse>, FailureModel>> certificateCount(
+      RequestMeanValue requestMeanValue);
+  Future<Result<List<BaseRentResponse>, FailureModel>> contractCount(
+      RequestMeanValue requestMeanValue);
+  Future<Result<RentDefault, FailureModel>> getRentDefault();
+
+  Future<Result<List<BaseRentResponse>, FailureModel>> contractValue(
       RequestMeanValue requestMeanValue);
 }

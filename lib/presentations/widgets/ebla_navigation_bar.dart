@@ -1,8 +1,7 @@
+import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../resources/assets_manager.dart';
@@ -66,22 +65,25 @@ class EblaNavigationBar extends StatelessWidget {
         controller: _controller,
         indicator: UnderlineTabIndicator(
           borderSide: BorderSide(
-            color: Theme.of(context).primaryColor,
-            width: 6.0,
+            color: ColorManager.golden,
+            width: AppSizeW.s6,
           ),
           borderRadius: const BorderRadius.all(Radius.circular(2)),
-          insets: const EdgeInsets.fromLTRB(25.0, 0.0, 25, 50.0),
+          insets: EdgeInsets.fromLTRB(
+              AppSizeH.s25, 0.0, AppSizeH.s25, AppSizeH.s50),
         ),
         tabs: [
           SizedBox(
-            height: 55,
+            height: AppSizeH.s56,
             child: Column(
               children: [
                 const Spacer(),
                 SizedBox(
-                  height: 24,
+                  height: AppSizeH.s24,
                   child: SvgPicture.asset(
-                    IconAssets.homeIcon,
+                    currentPage == 0
+                        ? IconAssets.homeIconFill
+                        : IconAssets.homeIcon,
                     // ignore: deprecated_member_use
                     color: currentPage == 0
                         ? Theme.of(context).primaryColor
@@ -94,7 +96,7 @@ class EblaNavigationBar extends StatelessWidget {
                   child: Text(
                     AppStrings().main,
                     style: TextStyle(
-                      fontSize: 9.sp,
+                      fontSize: AppSizeSp.s9,
                       color: currentPage == 0
                           ? Theme.of(context).primaryColor
                           : Theme.of(context)
@@ -108,14 +110,16 @@ class EblaNavigationBar extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 55,
+            height: AppSizeH.s56,
             child: Column(
               children: [
                 const Spacer(),
                 SizedBox(
-                  height: 24,
+                  height: AppSizeH.s24,
                   child: SvgPicture.asset(
-                    IconAssets.keyIcon,
+                    currentPage == 1
+                        ? IconAssets.keyIconFill
+                        : IconAssets.keyIcon,
                     // ignore: deprecated_member_use
                     color: currentPage == 1
                         ? Theme.of(context).primaryColor
@@ -127,7 +131,7 @@ class EblaNavigationBar extends StatelessWidget {
                 Expanded(
                     child: Text(AppStrings().rent,
                         style: TextStyle(
-                          fontSize: 9.sp,
+                          fontSize: AppSizeSp.s9,
                           color: currentPage == 1
                               ? Theme.of(context).primaryColor
                               : Theme.of(context)
@@ -139,14 +143,16 @@ class EblaNavigationBar extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 55,
+            height: AppSizeH.s56,
             child: Column(
               children: [
                 const Spacer(),
                 SizedBox(
-                  height: 24,
+                  height: AppSizeH.s24,
                   child: SvgPicture.asset(
-                    IconAssets.sellIcon,
+                    currentPage == 2
+                        ? IconAssets.sellIconFill
+                        : IconAssets.sellIcon,
                     // ignore: deprecated_member_use
                     color: currentPage == 2
                         ? Theme.of(context).primaryColor
@@ -159,7 +165,7 @@ class EblaNavigationBar extends StatelessWidget {
                   child: Text(
                     AppStrings().sell,
                     style: TextStyle(
-                      fontSize: 9.sp,
+                      fontSize: AppSizeSp.s9,
                       color: currentPage == 2
                           ? Theme.of(context).primaryColor
                           : Theme.of(context)
@@ -173,13 +179,16 @@ class EblaNavigationBar extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 55,
+            height: AppSizeH.s56,
             child: Column(
               children: [
                 const Spacer(),
                 SizedBox(
-                  height: 24,
-                  child: SvgPicture.asset(IconAssets.realEstateIcon,
+                  height: AppSizeH.s24,
+                  child: SvgPicture.asset(
+                      currentPage == 3
+                          ? IconAssets.realEstateIconFill
+                          : IconAssets.realEstateIcon,
                       // ignore: deprecated_member_use
                       color: currentPage == 3
                           ? Theme.of(context).primaryColor
@@ -191,7 +200,7 @@ class EblaNavigationBar extends StatelessWidget {
                     child: Text(
                   AppStrings().mortgage,
                   style: TextStyle(
-                      fontSize: 9.sp,
+                      fontSize: AppSizeSp.s9,
                       color: currentPage == 3
                           ? Theme.of(context).primaryColor
                           : Theme.of(context)
@@ -203,14 +212,16 @@ class EblaNavigationBar extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 55,
+            height: AppSizeH.s56,
             child: Column(
               children: [
                 const Spacer(),
                 SizedBox(
-                  height: 22,
-                  width: 22,
-                  child: SvgPicture.asset(IconAssets.infoIcon,
+                  height: AppSizeH.s24,
+                  child: SvgPicture.asset(
+                      currentPage == 4
+                          ? IconAssets.infoIconFill
+                          : IconAssets.infoIcon,
                       // ignore: deprecated_member_use
                       color: currentPage == 4
                           ? Theme.of(context).primaryColor
@@ -222,7 +233,7 @@ class EblaNavigationBar extends StatelessWidget {
                     child: Text(
                   AppStrings().more,
                   style: TextStyle(
-                      fontSize: 9.sp,
+                      fontSize: AppSizeSp.s9,
                       color: currentPage == 4
                           ? Theme.of(context).primaryColor
                           : Theme.of(context)

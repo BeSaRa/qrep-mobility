@@ -24,15 +24,22 @@ class ImageAssets {
   static const String splashBackground = '${IMAGE_PATH}splash_backgroudn.png';
   static const String test = '${IMAGE_PATH}qq.png';
   static const String appbarBg = "${IMAGE_PATH}bg_appbar.svg";
+  static const String comingSoon = "${IMAGE_PATH}coming-soon.json";
 }
 
 class IconAssets {
   //main scaffold
   static const String infoIcon = "${ICON_PATH}page_info.svg";
+  static const String infoIconFill = "${ICON_PATH}page_info-dark.svg";
   static const String realEstateIcon = "${ICON_PATH}real_estate_agent.svg";
+  static const String realEstateIconFill =
+      "${ICON_PATH}real_estate_agent-dark.svg";
   static const String keyIcon = "${ICON_PATH}vpn_key.svg";
+  static const String keyIconFill = "${ICON_PATH}vpn_key-dark.svg";
   static const String homeIcon = "${ICON_PATH}home.svg";
+  static const String homeIconFill = "${ICON_PATH}home-dark.svg";
   static const String sellIcon = "${ICON_PATH}sell.svg";
+  static const String sellIconFill = "${ICON_PATH}sell-dark.svg";
 
   //more
   static const String supportIcon = "${ICON_PATH}support.svg";
