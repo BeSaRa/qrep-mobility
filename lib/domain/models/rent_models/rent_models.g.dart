@@ -279,3 +279,55 @@ Map<String, dynamic> _$$MeanAreaResponseImplToJson(
       'kpiYoYDifference': instance.kpiYoYDifference,
       'kpiYoYVal': instance.kpiYoYVal,
     };
+
+_$RentListSummaryImpl _$$RentListSummaryImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RentListSummaryImpl(
+      count: json['count'] ?? 0,
+      transactionList: json['transactionList'] ?? const [],
+    );
+
+Map<String, dynamic> _$$RentListSummaryImplToJson(
+        _$RentListSummaryImpl instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'transactionList': instance.transactionList,
+    };
+
+_$RentSummaryObjectImpl _$$RentSummaryObjectImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RentSummaryObjectImpl(
+      area: json['area'] ?? 0,
+      bedRoomsCount: json['bedRoomsCount'] ?? 0,
+      endDate: json['endDate'] ?? '',
+      issueYear: json['issueYear'] ?? 0,
+      municipalityid: json['municipalityid'] ?? 0,
+      propertyTypeId: json['propertyTypeId'] ?? 0,
+      rentPaymentMeterMT: json['rentPaymentMeterMT'] ?? 0,
+      rentPaymentMeterSQT: json['rentPaymentMeterSQT'] ?? 0,
+      rentPaymentMonthly: json['rentPaymentMonthly'] ?? 0,
+      startDate: json['startDate'] ?? '',
+      unitBroker: json['unitBroker'] ?? '',
+      unitNo: json['unitNo'] ?? '',
+      unitOwner: json['unitOwner'] ?? '',
+      unitTenant: json['unitTenant'] ?? '',
+    );
+
+Map<String, dynamic> _$$RentSummaryObjectImplToJson(
+        _$RentSummaryObjectImpl instance) =>
+    <String, dynamic>{
+      'area': instance.area,
+      'bedRoomsCount': instance.bedRoomsCount,
+      'endDate': instance.endDate,
+      'issueYear': instance.issueYear,
+      'municipalityid': instance.municipalityid,
+      'propertyTypeId': instance.propertyTypeId,
+      'rentPaymentMeterMT': instance.rentPaymentMeterMT,
+      'rentPaymentMeterSQT': instance.rentPaymentMeterSQT,
+      'rentPaymentMonthly': instance.rentPaymentMonthly,
+      'startDate': instance.startDate,
+      'unitBroker': instance.unitBroker,
+      'unitNo': instance.unitNo,
+      'unitOwner': instance.unitOwner,
+      'unitTenant': instance.unitTenant,
+    };

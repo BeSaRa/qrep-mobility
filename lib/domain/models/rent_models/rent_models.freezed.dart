@@ -2702,3 +2702,566 @@ abstract class _MeanAreaResponse implements MeanAreaResponse {
   _$$MeanAreaResponseImplCopyWith<_$MeanAreaResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+RentListSummary _$RentListSummaryFromJson(Map<String, dynamic> json) {
+  return _RentListSummary.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RentListSummary {
+  dynamic get count => throw _privateConstructorUsedError;
+  dynamic get transactionList => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RentListSummaryCopyWith<RentListSummary> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RentListSummaryCopyWith<$Res> {
+  factory $RentListSummaryCopyWith(
+          RentListSummary value, $Res Function(RentListSummary) then) =
+      _$RentListSummaryCopyWithImpl<$Res, RentListSummary>;
+  @useResult
+  $Res call({dynamic count, dynamic transactionList});
+}
+
+/// @nodoc
+class _$RentListSummaryCopyWithImpl<$Res, $Val extends RentListSummary>
+    implements $RentListSummaryCopyWith<$Res> {
+  _$RentListSummaryCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? count = freezed,
+    Object? transactionList = freezed,
+  }) {
+    return _then(_value.copyWith(
+      count: freezed == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      transactionList: freezed == transactionList
+          ? _value.transactionList
+          : transactionList // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RentListSummaryImplCopyWith<$Res>
+    implements $RentListSummaryCopyWith<$Res> {
+  factory _$$RentListSummaryImplCopyWith(_$RentListSummaryImpl value,
+          $Res Function(_$RentListSummaryImpl) then) =
+      __$$RentListSummaryImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({dynamic count, dynamic transactionList});
+}
+
+/// @nodoc
+class __$$RentListSummaryImplCopyWithImpl<$Res>
+    extends _$RentListSummaryCopyWithImpl<$Res, _$RentListSummaryImpl>
+    implements _$$RentListSummaryImplCopyWith<$Res> {
+  __$$RentListSummaryImplCopyWithImpl(
+      _$RentListSummaryImpl _value, $Res Function(_$RentListSummaryImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? count = freezed,
+    Object? transactionList = freezed,
+  }) {
+    return _then(_$RentListSummaryImpl(
+      count: freezed == count ? _value.count! : count,
+      transactionList: freezed == transactionList
+          ? _value.transactionList!
+          : transactionList,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RentListSummaryImpl implements _RentListSummary {
+  const _$RentListSummaryImpl(
+      {this.count = 0, this.transactionList = const []});
+
+  factory _$RentListSummaryImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RentListSummaryImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final dynamic count;
+  @override
+  @JsonKey()
+  final dynamic transactionList;
+
+  @override
+  String toString() {
+    return 'RentListSummary(count: $count, transactionList: $transactionList)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RentListSummaryImpl &&
+            const DeepCollectionEquality().equals(other.count, count) &&
+            const DeepCollectionEquality()
+                .equals(other.transactionList, transactionList));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(count),
+      const DeepCollectionEquality().hash(transactionList));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RentListSummaryImplCopyWith<_$RentListSummaryImpl> get copyWith =>
+      __$$RentListSummaryImplCopyWithImpl<_$RentListSummaryImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RentListSummaryImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RentListSummary implements RentListSummary {
+  const factory _RentListSummary(
+      {final dynamic count,
+      final dynamic transactionList}) = _$RentListSummaryImpl;
+
+  factory _RentListSummary.fromJson(Map<String, dynamic> json) =
+      _$RentListSummaryImpl.fromJson;
+
+  @override
+  dynamic get count;
+  @override
+  dynamic get transactionList;
+  @override
+  @JsonKey(ignore: true)
+  _$$RentListSummaryImplCopyWith<_$RentListSummaryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+RentSummaryObject _$RentSummaryObjectFromJson(Map<String, dynamic> json) {
+  return _RentSummaryObject.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RentSummaryObject {
+  dynamic get area => throw _privateConstructorUsedError;
+  dynamic get bedRoomsCount => throw _privateConstructorUsedError;
+  dynamic get endDate => throw _privateConstructorUsedError;
+  dynamic get issueYear => throw _privateConstructorUsedError;
+  dynamic get municipalityid => throw _privateConstructorUsedError;
+  dynamic get propertyTypeId => throw _privateConstructorUsedError;
+  dynamic get rentPaymentMeterMT => throw _privateConstructorUsedError;
+  dynamic get rentPaymentMeterSQT => throw _privateConstructorUsedError;
+  dynamic get rentPaymentMonthly => throw _privateConstructorUsedError;
+  dynamic get startDate => throw _privateConstructorUsedError;
+  dynamic get unitBroker => throw _privateConstructorUsedError;
+  dynamic get unitNo => throw _privateConstructorUsedError;
+  dynamic get unitOwner => throw _privateConstructorUsedError;
+  dynamic get unitTenant => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RentSummaryObjectCopyWith<RentSummaryObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RentSummaryObjectCopyWith<$Res> {
+  factory $RentSummaryObjectCopyWith(
+          RentSummaryObject value, $Res Function(RentSummaryObject) then) =
+      _$RentSummaryObjectCopyWithImpl<$Res, RentSummaryObject>;
+  @useResult
+  $Res call(
+      {dynamic area,
+      dynamic bedRoomsCount,
+      dynamic endDate,
+      dynamic issueYear,
+      dynamic municipalityid,
+      dynamic propertyTypeId,
+      dynamic rentPaymentMeterMT,
+      dynamic rentPaymentMeterSQT,
+      dynamic rentPaymentMonthly,
+      dynamic startDate,
+      dynamic unitBroker,
+      dynamic unitNo,
+      dynamic unitOwner,
+      dynamic unitTenant});
+}
+
+/// @nodoc
+class _$RentSummaryObjectCopyWithImpl<$Res, $Val extends RentSummaryObject>
+    implements $RentSummaryObjectCopyWith<$Res> {
+  _$RentSummaryObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? area = freezed,
+    Object? bedRoomsCount = freezed,
+    Object? endDate = freezed,
+    Object? issueYear = freezed,
+    Object? municipalityid = freezed,
+    Object? propertyTypeId = freezed,
+    Object? rentPaymentMeterMT = freezed,
+    Object? rentPaymentMeterSQT = freezed,
+    Object? rentPaymentMonthly = freezed,
+    Object? startDate = freezed,
+    Object? unitBroker = freezed,
+    Object? unitNo = freezed,
+    Object? unitOwner = freezed,
+    Object? unitTenant = freezed,
+  }) {
+    return _then(_value.copyWith(
+      area: freezed == area
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      bedRoomsCount: freezed == bedRoomsCount
+          ? _value.bedRoomsCount
+          : bedRoomsCount // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      issueYear: freezed == issueYear
+          ? _value.issueYear
+          : issueYear // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      municipalityid: freezed == municipalityid
+          ? _value.municipalityid
+          : municipalityid // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      propertyTypeId: freezed == propertyTypeId
+          ? _value.propertyTypeId
+          : propertyTypeId // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      rentPaymentMeterMT: freezed == rentPaymentMeterMT
+          ? _value.rentPaymentMeterMT
+          : rentPaymentMeterMT // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      rentPaymentMeterSQT: freezed == rentPaymentMeterSQT
+          ? _value.rentPaymentMeterSQT
+          : rentPaymentMeterSQT // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      rentPaymentMonthly: freezed == rentPaymentMonthly
+          ? _value.rentPaymentMonthly
+          : rentPaymentMonthly // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      unitBroker: freezed == unitBroker
+          ? _value.unitBroker
+          : unitBroker // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      unitNo: freezed == unitNo
+          ? _value.unitNo
+          : unitNo // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      unitOwner: freezed == unitOwner
+          ? _value.unitOwner
+          : unitOwner // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      unitTenant: freezed == unitTenant
+          ? _value.unitTenant
+          : unitTenant // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RentSummaryObjectImplCopyWith<$Res>
+    implements $RentSummaryObjectCopyWith<$Res> {
+  factory _$$RentSummaryObjectImplCopyWith(_$RentSummaryObjectImpl value,
+          $Res Function(_$RentSummaryObjectImpl) then) =
+      __$$RentSummaryObjectImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {dynamic area,
+      dynamic bedRoomsCount,
+      dynamic endDate,
+      dynamic issueYear,
+      dynamic municipalityid,
+      dynamic propertyTypeId,
+      dynamic rentPaymentMeterMT,
+      dynamic rentPaymentMeterSQT,
+      dynamic rentPaymentMonthly,
+      dynamic startDate,
+      dynamic unitBroker,
+      dynamic unitNo,
+      dynamic unitOwner,
+      dynamic unitTenant});
+}
+
+/// @nodoc
+class __$$RentSummaryObjectImplCopyWithImpl<$Res>
+    extends _$RentSummaryObjectCopyWithImpl<$Res, _$RentSummaryObjectImpl>
+    implements _$$RentSummaryObjectImplCopyWith<$Res> {
+  __$$RentSummaryObjectImplCopyWithImpl(_$RentSummaryObjectImpl _value,
+      $Res Function(_$RentSummaryObjectImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? area = freezed,
+    Object? bedRoomsCount = freezed,
+    Object? endDate = freezed,
+    Object? issueYear = freezed,
+    Object? municipalityid = freezed,
+    Object? propertyTypeId = freezed,
+    Object? rentPaymentMeterMT = freezed,
+    Object? rentPaymentMeterSQT = freezed,
+    Object? rentPaymentMonthly = freezed,
+    Object? startDate = freezed,
+    Object? unitBroker = freezed,
+    Object? unitNo = freezed,
+    Object? unitOwner = freezed,
+    Object? unitTenant = freezed,
+  }) {
+    return _then(_$RentSummaryObjectImpl(
+      area: freezed == area ? _value.area! : area,
+      bedRoomsCount:
+          freezed == bedRoomsCount ? _value.bedRoomsCount! : bedRoomsCount,
+      endDate: freezed == endDate ? _value.endDate! : endDate,
+      issueYear: freezed == issueYear ? _value.issueYear! : issueYear,
+      municipalityid:
+          freezed == municipalityid ? _value.municipalityid! : municipalityid,
+      propertyTypeId:
+          freezed == propertyTypeId ? _value.propertyTypeId! : propertyTypeId,
+      rentPaymentMeterMT: freezed == rentPaymentMeterMT
+          ? _value.rentPaymentMeterMT!
+          : rentPaymentMeterMT,
+      rentPaymentMeterSQT: freezed == rentPaymentMeterSQT
+          ? _value.rentPaymentMeterSQT!
+          : rentPaymentMeterSQT,
+      rentPaymentMonthly: freezed == rentPaymentMonthly
+          ? _value.rentPaymentMonthly!
+          : rentPaymentMonthly,
+      startDate: freezed == startDate ? _value.startDate! : startDate,
+      unitBroker: freezed == unitBroker ? _value.unitBroker! : unitBroker,
+      unitNo: freezed == unitNo ? _value.unitNo! : unitNo,
+      unitOwner: freezed == unitOwner ? _value.unitOwner! : unitOwner,
+      unitTenant: freezed == unitTenant ? _value.unitTenant! : unitTenant,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RentSummaryObjectImpl implements _RentSummaryObject {
+  const _$RentSummaryObjectImpl(
+      {this.area = 0,
+      this.bedRoomsCount = 0,
+      this.endDate = '',
+      this.issueYear = 0,
+      this.municipalityid = 0,
+      this.propertyTypeId = 0,
+      this.rentPaymentMeterMT = 0,
+      this.rentPaymentMeterSQT = 0,
+      this.rentPaymentMonthly = 0,
+      this.startDate = '',
+      this.unitBroker = '',
+      this.unitNo = '',
+      this.unitOwner = '',
+      this.unitTenant = ''});
+
+  factory _$RentSummaryObjectImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RentSummaryObjectImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final dynamic area;
+  @override
+  @JsonKey()
+  final dynamic bedRoomsCount;
+  @override
+  @JsonKey()
+  final dynamic endDate;
+  @override
+  @JsonKey()
+  final dynamic issueYear;
+  @override
+  @JsonKey()
+  final dynamic municipalityid;
+  @override
+  @JsonKey()
+  final dynamic propertyTypeId;
+  @override
+  @JsonKey()
+  final dynamic rentPaymentMeterMT;
+  @override
+  @JsonKey()
+  final dynamic rentPaymentMeterSQT;
+  @override
+  @JsonKey()
+  final dynamic rentPaymentMonthly;
+  @override
+  @JsonKey()
+  final dynamic startDate;
+  @override
+  @JsonKey()
+  final dynamic unitBroker;
+  @override
+  @JsonKey()
+  final dynamic unitNo;
+  @override
+  @JsonKey()
+  final dynamic unitOwner;
+  @override
+  @JsonKey()
+  final dynamic unitTenant;
+
+  @override
+  String toString() {
+    return 'RentSummaryObject(area: $area, bedRoomsCount: $bedRoomsCount, endDate: $endDate, issueYear: $issueYear, municipalityid: $municipalityid, propertyTypeId: $propertyTypeId, rentPaymentMeterMT: $rentPaymentMeterMT, rentPaymentMeterSQT: $rentPaymentMeterSQT, rentPaymentMonthly: $rentPaymentMonthly, startDate: $startDate, unitBroker: $unitBroker, unitNo: $unitNo, unitOwner: $unitOwner, unitTenant: $unitTenant)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RentSummaryObjectImpl &&
+            const DeepCollectionEquality().equals(other.area, area) &&
+            const DeepCollectionEquality()
+                .equals(other.bedRoomsCount, bedRoomsCount) &&
+            const DeepCollectionEquality().equals(other.endDate, endDate) &&
+            const DeepCollectionEquality().equals(other.issueYear, issueYear) &&
+            const DeepCollectionEquality()
+                .equals(other.municipalityid, municipalityid) &&
+            const DeepCollectionEquality()
+                .equals(other.propertyTypeId, propertyTypeId) &&
+            const DeepCollectionEquality()
+                .equals(other.rentPaymentMeterMT, rentPaymentMeterMT) &&
+            const DeepCollectionEquality()
+                .equals(other.rentPaymentMeterSQT, rentPaymentMeterSQT) &&
+            const DeepCollectionEquality()
+                .equals(other.rentPaymentMonthly, rentPaymentMonthly) &&
+            const DeepCollectionEquality().equals(other.startDate, startDate) &&
+            const DeepCollectionEquality()
+                .equals(other.unitBroker, unitBroker) &&
+            const DeepCollectionEquality().equals(other.unitNo, unitNo) &&
+            const DeepCollectionEquality().equals(other.unitOwner, unitOwner) &&
+            const DeepCollectionEquality()
+                .equals(other.unitTenant, unitTenant));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(area),
+      const DeepCollectionEquality().hash(bedRoomsCount),
+      const DeepCollectionEquality().hash(endDate),
+      const DeepCollectionEquality().hash(issueYear),
+      const DeepCollectionEquality().hash(municipalityid),
+      const DeepCollectionEquality().hash(propertyTypeId),
+      const DeepCollectionEquality().hash(rentPaymentMeterMT),
+      const DeepCollectionEquality().hash(rentPaymentMeterSQT),
+      const DeepCollectionEquality().hash(rentPaymentMonthly),
+      const DeepCollectionEquality().hash(startDate),
+      const DeepCollectionEquality().hash(unitBroker),
+      const DeepCollectionEquality().hash(unitNo),
+      const DeepCollectionEquality().hash(unitOwner),
+      const DeepCollectionEquality().hash(unitTenant));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RentSummaryObjectImplCopyWith<_$RentSummaryObjectImpl> get copyWith =>
+      __$$RentSummaryObjectImplCopyWithImpl<_$RentSummaryObjectImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RentSummaryObjectImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RentSummaryObject implements RentSummaryObject {
+  const factory _RentSummaryObject(
+      {final dynamic area,
+      final dynamic bedRoomsCount,
+      final dynamic endDate,
+      final dynamic issueYear,
+      final dynamic municipalityid,
+      final dynamic propertyTypeId,
+      final dynamic rentPaymentMeterMT,
+      final dynamic rentPaymentMeterSQT,
+      final dynamic rentPaymentMonthly,
+      final dynamic startDate,
+      final dynamic unitBroker,
+      final dynamic unitNo,
+      final dynamic unitOwner,
+      final dynamic unitTenant}) = _$RentSummaryObjectImpl;
+
+  factory _RentSummaryObject.fromJson(Map<String, dynamic> json) =
+      _$RentSummaryObjectImpl.fromJson;
+
+  @override
+  dynamic get area;
+  @override
+  dynamic get bedRoomsCount;
+  @override
+  dynamic get endDate;
+  @override
+  dynamic get issueYear;
+  @override
+  dynamic get municipalityid;
+  @override
+  dynamic get propertyTypeId;
+  @override
+  dynamic get rentPaymentMeterMT;
+  @override
+  dynamic get rentPaymentMeterSQT;
+  @override
+  dynamic get rentPaymentMonthly;
+  @override
+  dynamic get startDate;
+  @override
+  dynamic get unitBroker;
+  @override
+  dynamic get unitNo;
+  @override
+  dynamic get unitOwner;
+  @override
+  dynamic get unitTenant;
+  @override
+  @JsonKey(ignore: true)
+  _$$RentSummaryObjectImplCopyWith<_$RentSummaryObjectImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

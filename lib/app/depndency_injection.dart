@@ -1,5 +1,4 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:ebla/domain/usecases/rent_usecases/rent_usecases.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,12 +7,7 @@ import '../data/newtwok/dio_factory.dart';
 import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
-import '../domain/usecases/rent_usecases/certificate_contract_usecases/certificate_usecase.dart';
-import '../domain/usecases/rent_usecases/certificate_contract_usecases/contract_usecase.dart';
-import '../domain/usecases/contract_value_kpi7/contract_value_usecase.dart';
-import '../domain/usecases/rent_usecases/defualt_rent_usecase.dart';
-import '../domain/usecases/rent_usecases/mean_area_usecase.dart/mean_area_usecase.dart';
-import '../domain/usecases/rent_usecases/mean_value_usecases/mean_value_usecases.dart';
+import '../domain/usecases/usecases.dart';
 import '../presentations/features/rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import '../presentations/features/rent/blocs/mean_value_bloc/mean_value_bloc.dart';
 import '../presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
@@ -54,10 +48,13 @@ Future<void> initRentModule() async {
         () => CertificateCountUsecase(instance()));
   }
   if (!GetIt.I.isRegistered<RentDefaultUseCase>()) {
-    instance.registerLazySingleton(() => RentDefaultUseCase(instance()));
+    instance.registerFactory(() => RentDefaultUseCase(instance()));
   }
   if (!GetIt.I.isRegistered<ContractValueUseCase>()) {
-    instance.registerLazySingleton(() => ContractValueUseCase(instance()));
+    instance.registerFactory(() => ContractValueUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<RentSummeryUseCase>()) {
+    instance.registerFactory(() => RentSummeryUseCase(instance()));
   }
 
 //Blocs

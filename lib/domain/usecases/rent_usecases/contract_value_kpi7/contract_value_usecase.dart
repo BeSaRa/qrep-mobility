@@ -1,10 +1,10 @@
 import 'package:multiple_result/multiple_result.dart';
 
-import '../../../data/newtwok/failure_model/failure.dart';
-import '../../models/rent_models/rent_models.dart';
-import '../../models/requests/rent_requests/request_mean_value.dart';
-import '../../repository/repository.dart';
-import '../base_usecases/base_usecase.dart';
+import '../../../../data/newtwok/failure_model/failure.dart';
+import '../../../models/rent_models/rent_models.dart';
+import '../../../models/requests/rent_requests/request_mean_value.dart';
+import '../../../repository/repository.dart';
+import '../../base_usecases/base_usecase.dart';
 
 class ContractValueUseCase
     implements BaseUseCase<RequestMeanValue, List<BaseRentResponse>> {
