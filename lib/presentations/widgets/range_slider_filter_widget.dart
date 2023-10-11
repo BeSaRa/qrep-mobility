@@ -86,7 +86,7 @@ class _RangeSliderFilterWidgetState extends State<RangeSliderFilterWidget> {
   }
 }
 
-extension NumberFormatting on int {
+extension NumberFormatting on num {
   String formatWithCommas() {
     return toString().replaceAllMapped(
         RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},');

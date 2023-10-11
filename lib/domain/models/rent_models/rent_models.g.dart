@@ -163,13 +163,13 @@ Map<String, dynamic> _$$MaxParamsModelImplToJson(
 _$BaseRentResponseImpl _$$BaseRentResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$BaseRentResponseImpl(
-      issueYear: json['issueYear'] as int? ?? 0,
-      kpiPreviousYear: json['kpiPreviousYear'] as int? ?? 0,
-      kpiVal: json['kpiVal'] as int? ?? 0,
-      kpiYoYDifference: json['kpiYoYDifference'] as int? ?? 0,
-      kpiYoYVal: json['kpiYoYVal'] as int? ?? 0,
-      purposeId: json['purposeId'] as int? ?? 0,
-      propertyTypeId: json['propertyTypeId'] as int? ?? 0,
+      issueYear: json['issueYear'] as num? ?? 0,
+      kpiPreviousYear: json['kpiPreviousYear'] as num? ?? 0,
+      kpiVal: json['kpiVal'] as num? ?? 0,
+      kpiYoYDifference: json['kpiYoYDifference'] as num? ?? 0,
+      kpiYoYVal: json['kpiYoYVal'] as num? ?? 0,
+      purposeId: json['purposeId'] as num? ?? 0,
+      propertyTypeId: json['propertyTypeId'] as num? ?? 0,
     );
 
 Map<String, dynamic> _$$BaseRentResponseImplToJson(

@@ -5,7 +5,6 @@ import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
 
 import 'package:multiple_result/multiple_result.dart';
-
 import '../../domain/repository/repository.dart';
 import '../../presentations/resources/strings_manager.dart';
 import '../newtwok/app_api.dart';
@@ -81,11 +80,11 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>>
-      getTotalContracts() async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContracts(
+      RequestMeanValue requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await appServiceClient.totalContract();
+        final response = await appServiceClient.totalContract(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -116,6 +115,7 @@ class RepositoryImplementer extends Repository {
       } on DioException catch (e) {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
+        print(e);
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {

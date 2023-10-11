@@ -113,11 +113,12 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<HttpResponse<List<BaseRentResponse>>> totalContract() async {
+  Future<HttpResponse<List<BaseRentResponse>>> totalContract(
+      RequestMeanValue requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    final _data = requestMeanValue;
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
       method: 'POST',

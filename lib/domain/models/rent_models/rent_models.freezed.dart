@@ -1303,13 +1303,13 @@ BaseRentResponse _$BaseRentResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BaseRentResponse {
-  int get issueYear => throw _privateConstructorUsedError;
-  int get kpiPreviousYear => throw _privateConstructorUsedError;
-  int get kpiVal => throw _privateConstructorUsedError;
-  int get kpiYoYDifference => throw _privateConstructorUsedError;
-  int get kpiYoYVal => throw _privateConstructorUsedError;
-  int get purposeId => throw _privateConstructorUsedError;
-  int get propertyTypeId => throw _privateConstructorUsedError;
+  num get issueYear => throw _privateConstructorUsedError;
+  num get kpiPreviousYear => throw _privateConstructorUsedError;
+  num get kpiVal => throw _privateConstructorUsedError;
+  num get kpiYoYDifference => throw _privateConstructorUsedError;
+  num get kpiYoYVal => throw _privateConstructorUsedError;
+  num get purposeId => throw _privateConstructorUsedError;
+  num get propertyTypeId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1324,13 +1324,13 @@ abstract class $BaseRentResponseCopyWith<$Res> {
       _$BaseRentResponseCopyWithImpl<$Res, BaseRentResponse>;
   @useResult
   $Res call(
-      {int issueYear,
-      int kpiPreviousYear,
-      int kpiVal,
-      int kpiYoYDifference,
-      int kpiYoYVal,
-      int purposeId,
-      int propertyTypeId});
+      {num issueYear,
+      num kpiPreviousYear,
+      num kpiVal,
+      num kpiYoYDifference,
+      num kpiYoYVal,
+      num purposeId,
+      num propertyTypeId});
 }
 
 /// @nodoc
@@ -1358,31 +1358,31 @@ class _$BaseRentResponseCopyWithImpl<$Res, $Val extends BaseRentResponse>
       issueYear: null == issueYear
           ? _value.issueYear
           : issueYear // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       kpiPreviousYear: null == kpiPreviousYear
           ? _value.kpiPreviousYear
           : kpiPreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       kpiVal: null == kpiVal
           ? _value.kpiVal
           : kpiVal // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       kpiYoYDifference: null == kpiYoYDifference
           ? _value.kpiYoYDifference
           : kpiYoYDifference // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       kpiYoYVal: null == kpiYoYVal
           ? _value.kpiYoYVal
           : kpiYoYVal // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       purposeId: null == purposeId
           ? _value.purposeId
           : purposeId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       propertyTypeId: null == propertyTypeId
           ? _value.propertyTypeId
           : propertyTypeId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
     ) as $Val);
   }
 }
@@ -1396,13 +1396,13 @@ abstract class _$$BaseRentResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int issueYear,
-      int kpiPreviousYear,
-      int kpiVal,
-      int kpiYoYDifference,
-      int kpiYoYVal,
-      int purposeId,
-      int propertyTypeId});
+      {num issueYear,
+      num kpiPreviousYear,
+      num kpiVal,
+      num kpiYoYDifference,
+      num kpiYoYVal,
+      num purposeId,
+      num propertyTypeId});
 }
 
 /// @nodoc
@@ -1428,31 +1428,31 @@ class __$$BaseRentResponseImplCopyWithImpl<$Res>
       issueYear: null == issueYear
           ? _value.issueYear
           : issueYear // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       kpiPreviousYear: null == kpiPreviousYear
           ? _value.kpiPreviousYear
           : kpiPreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       kpiVal: null == kpiVal
           ? _value.kpiVal
           : kpiVal // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       kpiYoYDifference: null == kpiYoYDifference
           ? _value.kpiYoYDifference
           : kpiYoYDifference // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       kpiYoYVal: null == kpiYoYVal
           ? _value.kpiYoYVal
           : kpiYoYVal // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       purposeId: null == purposeId
           ? _value.purposeId
           : purposeId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       propertyTypeId: null == propertyTypeId
           ? _value.propertyTypeId
           : propertyTypeId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
     ));
   }
 }
@@ -1474,25 +1474,25 @@ class _$BaseRentResponseImpl implements _BaseRentResponse {
 
   @override
   @JsonKey()
-  final int issueYear;
+  final num issueYear;
   @override
   @JsonKey()
-  final int kpiPreviousYear;
+  final num kpiPreviousYear;
   @override
   @JsonKey()
-  final int kpiVal;
+  final num kpiVal;
   @override
   @JsonKey()
-  final int kpiYoYDifference;
+  final num kpiYoYDifference;
   @override
   @JsonKey()
-  final int kpiYoYVal;
+  final num kpiYoYVal;
   @override
   @JsonKey()
-  final int purposeId;
+  final num purposeId;
   @override
   @JsonKey()
-  final int propertyTypeId;
+  final num propertyTypeId;
 
   @override
   String toString() {
@@ -1541,31 +1541,31 @@ class _$BaseRentResponseImpl implements _BaseRentResponse {
 
 abstract class _BaseRentResponse implements BaseRentResponse {
   factory _BaseRentResponse(
-      {final int issueYear,
-      final int kpiPreviousYear,
-      final int kpiVal,
-      final int kpiYoYDifference,
-      final int kpiYoYVal,
-      final int purposeId,
-      final int propertyTypeId}) = _$BaseRentResponseImpl;
+      {final num issueYear,
+      final num kpiPreviousYear,
+      final num kpiVal,
+      final num kpiYoYDifference,
+      final num kpiYoYVal,
+      final num purposeId,
+      final num propertyTypeId}) = _$BaseRentResponseImpl;
 
   factory _BaseRentResponse.fromJson(Map<String, dynamic> json) =
       _$BaseRentResponseImpl.fromJson;
 
   @override
-  int get issueYear;
+  num get issueYear;
   @override
-  int get kpiPreviousYear;
+  num get kpiPreviousYear;
   @override
-  int get kpiVal;
+  num get kpiVal;
   @override
-  int get kpiYoYDifference;
+  num get kpiYoYDifference;
   @override
-  int get kpiYoYVal;
+  num get kpiYoYVal;
   @override
-  int get purposeId;
+  num get purposeId;
   @override
-  int get propertyTypeId;
+  num get propertyTypeId;
   @override
   @JsonKey(ignore: true)
   _$$BaseRentResponseImplCopyWith<_$BaseRentResponseImpl> get copyWith =>

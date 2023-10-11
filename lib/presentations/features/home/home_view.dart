@@ -1,5 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
+import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/rent/widgets/rent_grid_item_widget.dart';
 import 'package:ebla/presentations/resources/theme_manager.dart';
 import 'package:ebla/presentations/widgets/growth_rate_widget.dart';
@@ -16,7 +17,7 @@ import '../../resources/color_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets/bottom_sheet_filter_widget.dart';
 import '../../widgets/custom_elevated_button.dart';
-import '../../widgets/mutli_dropdown_widget.dart';
+
 import '../../widgets/news_item_widgets.dart';
 import '../../widgets/search_text_field_widget.dart';
 import '../../widgets/statistics_rent_widget.dart';
@@ -149,7 +150,10 @@ class _HomeViewState extends State<HomeView> {
                       mainAxisSpacing: AppSizeH.s22,
                       crossAxisSpacing: AppSizeW.s23,
                       gridItemChildBuilder: (context, index) {
-                        return RentGridItemWidget(index: index);
+                        return RentGridItemWidget(
+                          index: index,
+                          kpi: KPI.totalRentedUntis,
+                        );
                       },
                     ),
                   ),
