@@ -27,16 +27,23 @@ class _SingleDropDownValue extends State<SingleDropDownValue> {
         child: DropdownButton2<RentLookupModel>(
           isExpanded: true,
           isDense: true,
-          hint: Text(
-            'Select Item',
-            style: Theme.of(context).textTheme.labelSmall,
+          hint: Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppSizeW.s10),
+            child: Text(
+              'Select Item',
+              style: Theme.of(context).textTheme.labelSmall,
+            ),
           ),
           items: widget.list
               .map((RentLookupModel item) => DropdownMenuItem<RentLookupModel>(
                     value: item,
-                    child: Text(
-                      item.arName,
-                      style: Theme.of(context).textTheme.labelSmall,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: AppSizeW.s11),
+                      child: Text(
+                        item.arName,
+                        style: Theme.of(context).textTheme.labelSmall,
+                        softWrap: true,
+                      ),
                     ),
                   ))
               .toList(),
@@ -49,7 +56,8 @@ class _SingleDropDownValue extends State<SingleDropDownValue> {
             });
           },
           dropdownStyleData: DropdownStyleData(
-            maxHeight: AppSizeH.s200,
+            maxHeight: AppSizeH.s200, width: double.infinity, useSafeArea: true,
+
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppSizeR.s5),
               color: ColorManager.whiteSmoke,
@@ -77,6 +85,7 @@ class _SingleDropDownValue extends State<SingleDropDownValue> {
           ),
           menuItemStyleData: MenuItemStyleData(
             height: AppSizeH.s40,
+            padding: EdgeInsets.symmetric(vertical: AppSizeH.s4),
           ),
         ),
       ),

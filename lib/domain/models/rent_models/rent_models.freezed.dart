@@ -816,6 +816,8 @@ mixin _$RentLookupResponse {
   List<RentLookupModel> get rentPurposeList =>
       throw _privateConstructorUsedError;
   List<RentLookupModel> get zoneList => throw _privateConstructorUsedError;
+  List<RentLookupModel> get periodTime => throw _privateConstructorUsedError;
+  List<RentLookupModel> get bedRooms => throw _privateConstructorUsedError;
   List<RentLookupModel> get districtList => throw _privateConstructorUsedError;
   List<RentLookupModel> get municipalityList =>
       throw _privateConstructorUsedError;
@@ -854,6 +856,8 @@ abstract class $RentLookupResponseCopyWith<$Res> {
       List<RentLookupModel> propertyTypeList,
       List<RentLookupModel> rentPurposeList,
       List<RentLookupModel> zoneList,
+      List<RentLookupModel> periodTime,
+      List<RentLookupModel> bedRooms,
       List<RentLookupModel> districtList,
       List<RentLookupModel> municipalityList,
       List<RentLookupModel> furnitureStatusList,
@@ -887,6 +891,8 @@ class _$RentLookupResponseCopyWithImpl<$Res, $Val extends RentLookupResponse>
     Object? propertyTypeList = null,
     Object? rentPurposeList = null,
     Object? zoneList = null,
+    Object? periodTime = null,
+    Object? bedRooms = null,
     Object? districtList = null,
     Object? municipalityList = null,
     Object? furnitureStatusList = null,
@@ -933,6 +939,14 @@ class _$RentLookupResponseCopyWithImpl<$Res, $Val extends RentLookupResponse>
       zoneList: null == zoneList
           ? _value.zoneList
           : zoneList // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
+      periodTime: null == periodTime
+          ? _value.periodTime
+          : periodTime // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
+      bedRooms: null == bedRooms
+          ? _value.bedRooms
+          : bedRooms // ignore: cast_nullable_to_non_nullable
               as List<RentLookupModel>,
       districtList: null == districtList
           ? _value.districtList
@@ -992,6 +1006,8 @@ abstract class _$$RentLookupResponseImplCopyWith<$Res>
       List<RentLookupModel> propertyTypeList,
       List<RentLookupModel> rentPurposeList,
       List<RentLookupModel> zoneList,
+      List<RentLookupModel> periodTime,
+      List<RentLookupModel> bedRooms,
       List<RentLookupModel> districtList,
       List<RentLookupModel> municipalityList,
       List<RentLookupModel> furnitureStatusList,
@@ -1023,6 +1039,8 @@ class __$$RentLookupResponseImplCopyWithImpl<$Res>
     Object? propertyTypeList = null,
     Object? rentPurposeList = null,
     Object? zoneList = null,
+    Object? periodTime = null,
+    Object? bedRooms = null,
     Object? districtList = null,
     Object? municipalityList = null,
     Object? furnitureStatusList = null,
@@ -1069,6 +1087,14 @@ class __$$RentLookupResponseImplCopyWithImpl<$Res>
       zoneList: null == zoneList
           ? _value._zoneList
           : zoneList // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
+      periodTime: null == periodTime
+          ? _value._periodTime
+          : periodTime // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
+      bedRooms: null == bedRooms
+          ? _value._bedRooms
+          : bedRooms // ignore: cast_nullable_to_non_nullable
               as List<RentLookupModel>,
       districtList: null == districtList
           ? _value._districtList
@@ -1123,6 +1149,22 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
       final List<RentLookupModel> propertyTypeList = const [],
       final List<RentLookupModel> rentPurposeList = const [],
       final List<RentLookupModel> zoneList = const [],
+      final List<RentLookupModel> periodTime = const [
+        RentLookupModel(arName: 'سنوي', id: 1),
+        RentLookupModel(arName: 'نصف سنوي', id: 2),
+        RentLookupModel(arName: 'ربع سنوي ', id: 3),
+        RentLookupModel(arName: 'شهري', id: 4),
+        RentLookupModel(arName: ' فترة محددة', id: 5)
+      ],
+      final List<RentLookupModel> bedRooms = const [
+        RentLookupModel(arName: 'استوديو', id: 6),
+        RentLookupModel(arName: 'غرفة', id: 1),
+        RentLookupModel(arName: 'غرفتين', id: 2),
+        RentLookupModel(arName: '3 غرف', id: 3),
+        RentLookupModel(arName: '4 غرف', id: 4),
+        RentLookupModel(arName: '5 غرف', id: 5),
+        RentLookupModel(arName: 'الكل', id: -1)
+      ],
       final List<RentLookupModel> districtList = const [],
       final List<RentLookupModel> municipalityList = const [],
       final List<RentLookupModel> furnitureStatusList = const [],
@@ -1141,6 +1183,8 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
         _propertyTypeList = propertyTypeList,
         _rentPurposeList = rentPurposeList,
         _zoneList = zoneList,
+        _periodTime = periodTime,
+        _bedRooms = bedRooms,
         _districtList = districtList,
         _municipalityList = municipalityList,
         _furnitureStatusList = furnitureStatusList,
@@ -1238,6 +1282,24 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
     return EqualUnmodifiableListView(_zoneList);
   }
 
+  final List<RentLookupModel> _periodTime;
+  @override
+  @JsonKey()
+  List<RentLookupModel> get periodTime {
+    if (_periodTime is EqualUnmodifiableListView) return _periodTime;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_periodTime);
+  }
+
+  final List<RentLookupModel> _bedRooms;
+  @override
+  @JsonKey()
+  List<RentLookupModel> get bedRooms {
+    if (_bedRooms is EqualUnmodifiableListView) return _bedRooms;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bedRooms);
+  }
+
   final List<RentLookupModel> _districtList;
   @override
   @JsonKey()
@@ -1325,7 +1387,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
 
   @override
   String toString() {
-    return 'RentLookupResponse(rooms: $rooms, durations: $durations, halfYearDurations: $halfYearDurations, quarterYearDurations: $quarterYearDurations, spaces: $spaces, unitStatus: $unitStatus, propertyTypeList: $propertyTypeList, rentPurposeList: $rentPurposeList, zoneList: $zoneList, districtList: $districtList, municipalityList: $municipalityList, furnitureStatusList: $furnitureStatusList, nationalityList: $nationalityList, nationalityCategoryList: $nationalityCategoryList, genderList: $genderList, ageCategoryList: $ageCategoryList, ownerCategoryList: $ownerCategoryList, maxParams: $maxParams)';
+    return 'RentLookupResponse(rooms: $rooms, durations: $durations, halfYearDurations: $halfYearDurations, quarterYearDurations: $quarterYearDurations, spaces: $spaces, unitStatus: $unitStatus, propertyTypeList: $propertyTypeList, rentPurposeList: $rentPurposeList, zoneList: $zoneList, periodTime: $periodTime, bedRooms: $bedRooms, districtList: $districtList, municipalityList: $municipalityList, furnitureStatusList: $furnitureStatusList, nationalityList: $nationalityList, nationalityCategoryList: $nationalityCategoryList, genderList: $genderList, ageCategoryList: $ageCategoryList, ownerCategoryList: $ownerCategoryList, maxParams: $maxParams)';
   }
 
   @override
@@ -1349,6 +1411,9 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
                 .equals(other._rentPurposeList, _rentPurposeList) &&
             const DeepCollectionEquality().equals(other._zoneList, _zoneList) &&
             const DeepCollectionEquality()
+                .equals(other._periodTime, _periodTime) &&
+            const DeepCollectionEquality().equals(other._bedRooms, _bedRooms) &&
+            const DeepCollectionEquality()
                 .equals(other._districtList, _districtList) &&
             const DeepCollectionEquality()
                 .equals(other._municipalityList, _municipalityList) &&
@@ -1370,26 +1435,29 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_rooms),
-      const DeepCollectionEquality().hash(_durations),
-      const DeepCollectionEquality().hash(_halfYearDurations),
-      const DeepCollectionEquality().hash(_quarterYearDurations),
-      const DeepCollectionEquality().hash(_spaces),
-      const DeepCollectionEquality().hash(_unitStatus),
-      const DeepCollectionEquality().hash(_propertyTypeList),
-      const DeepCollectionEquality().hash(_rentPurposeList),
-      const DeepCollectionEquality().hash(_zoneList),
-      const DeepCollectionEquality().hash(_districtList),
-      const DeepCollectionEquality().hash(_municipalityList),
-      const DeepCollectionEquality().hash(_furnitureStatusList),
-      const DeepCollectionEquality().hash(_nationalityList),
-      const DeepCollectionEquality().hash(_nationalityCategoryList),
-      const DeepCollectionEquality().hash(_genderList),
-      const DeepCollectionEquality().hash(_ageCategoryList),
-      const DeepCollectionEquality().hash(_ownerCategoryList),
-      const DeepCollectionEquality().hash(_maxParams));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        const DeepCollectionEquality().hash(_rooms),
+        const DeepCollectionEquality().hash(_durations),
+        const DeepCollectionEquality().hash(_halfYearDurations),
+        const DeepCollectionEquality().hash(_quarterYearDurations),
+        const DeepCollectionEquality().hash(_spaces),
+        const DeepCollectionEquality().hash(_unitStatus),
+        const DeepCollectionEquality().hash(_propertyTypeList),
+        const DeepCollectionEquality().hash(_rentPurposeList),
+        const DeepCollectionEquality().hash(_zoneList),
+        const DeepCollectionEquality().hash(_periodTime),
+        const DeepCollectionEquality().hash(_bedRooms),
+        const DeepCollectionEquality().hash(_districtList),
+        const DeepCollectionEquality().hash(_municipalityList),
+        const DeepCollectionEquality().hash(_furnitureStatusList),
+        const DeepCollectionEquality().hash(_nationalityList),
+        const DeepCollectionEquality().hash(_nationalityCategoryList),
+        const DeepCollectionEquality().hash(_genderList),
+        const DeepCollectionEquality().hash(_ageCategoryList),
+        const DeepCollectionEquality().hash(_ownerCategoryList),
+        const DeepCollectionEquality().hash(_maxParams)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -1417,6 +1485,8 @@ abstract class _RentLookupResponse implements RentLookupResponse {
       final List<RentLookupModel> propertyTypeList,
       final List<RentLookupModel> rentPurposeList,
       final List<RentLookupModel> zoneList,
+      final List<RentLookupModel> periodTime,
+      final List<RentLookupModel> bedRooms,
       final List<RentLookupModel> districtList,
       final List<RentLookupModel> municipalityList,
       final List<RentLookupModel> furnitureStatusList,
@@ -1448,6 +1518,10 @@ abstract class _RentLookupResponse implements RentLookupResponse {
   List<RentLookupModel> get rentPurposeList;
   @override
   List<RentLookupModel> get zoneList;
+  @override
+  List<RentLookupModel> get periodTime;
+  @override
+  List<RentLookupModel> get bedRooms;
   @override
   List<RentLookupModel> get districtList;
   @override
@@ -1687,7 +1761,7 @@ class __$$RentLookupModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RentLookupModelImpl implements _RentLookupModel {
-  _$RentLookupModelImpl(
+  const _$RentLookupModelImpl(
       {this.value = 0,
       this.yoy = 0,
       this.selected = false,
@@ -1786,7 +1860,7 @@ class _$RentLookupModelImpl implements _RentLookupModel {
 }
 
 abstract class _RentLookupModel implements RentLookupModel {
-  factory _RentLookupModel(
+  const factory _RentLookupModel(
       {final int value,
       final int yoy,
       final bool selected,

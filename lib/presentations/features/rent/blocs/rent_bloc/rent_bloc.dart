@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../domain/models/rent_models/rent_models.dart';
+import '../../../../../domain/models/requests/rent_requests/request_mean_value.dart';
 import '../../../../../domain/usecases/rent_usecases/rent_usecases.dart';
 
 part 'rent_event.dart';
@@ -44,4 +45,16 @@ class RentBloc extends Bloc<RentEvent, RentState> {
       );
     });
   }
+  RequestMeanValue requestMeanValue = RequestMeanValue(
+    municipalityId: 1,
+    propertyTypeList: [-1],
+    purposeList: [-1],
+    issueDateQuarterList: [1, 2, 3, 4],
+    furnitureStatus: -1,
+    issueDateYear: 2023,
+    issueDateStartMonth: 1,
+    issueDateEndMonth: 10,
+    zoneId: -1,
+    limit: 5,
+  );
 }

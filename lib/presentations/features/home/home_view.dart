@@ -63,27 +63,12 @@ class _HomeViewState extends State<HomeView> {
         actions: [
           IconButton(
             onPressed: () {
-              // rentBloc.add(const RentEvent.getRentLookupEvent());
-              // bottomSheetWidget(
-              //   context,
-              //   child: const BosttomSheetFilterWidget(),
-              // );
-              meanValueBloc.add(
-                MeanValueEvent.getMeanValue(
-                  request: RequestMeanValue(
-                    municipalityId: 1,
-                    propertyTypeList: [-1],
-                    purposeList: [-1],
-                    issueDateQuarterList: [1, 2, 3, 4],
-                    furnitureStatus: -1,
-                    issueDateYear: 2023,
-                    issueDateStartMonth: 1,
-                    issueDateEndMonth: 10,
-                    zoneId: -1,
-                    limit: 5,
-                  ),
-                ),
-              );
+              // context
+              //     .read<RentBloc>()
+              //     .add(const RentEvent.getRentLookupEvent());
+
+              // meanValueBloc.add(MeanValueEvent.getMeanValue(
+              //     request: context.read<RentBloc>().requestMeanValue));
             },
             icon: Icon(
               Icons.filter_list_rounded,
@@ -112,6 +97,17 @@ class _HomeViewState extends State<HomeView> {
         padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
         child: Column(
           children: [
+            ElevatedButton(
+                onPressed: () {
+                  bottomSheetWidget(
+                    context,
+                    child: BlocProvider.value(
+                      value: context.read<RentBloc>(),
+                      child: const BottomSheetFilterWidget(),
+                    ),
+                  );
+                },
+                child: const Text('data')),
             BlocBuilder(
               bloc: context.read<RentBloc>(),
               builder: (context, RentState state) {
@@ -222,21 +218,9 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
       bloc: context.read<RentBloc>(),
       listener: (context, RentState state) {
         if (state.rentLookup != const RentLookupResponse()) {
-          certificateContractBloc
-              .add(CertificateContractEvent.certificateCountEvent(
-            request: RequestMeanValue(
-              municipalityId: 1,
-              propertyTypeList: [-1],
-              purposeList: [-1],
-              issueDateQuarterList: [1, 2, 3, 4],
-              furnitureStatus: -1,
-              issueDateYear: 2023,
-              issueDateStartMonth: 1,
-              issueDateEndMonth: 10,
-              zoneId: -1,
-              limit: 5,
-            ),
-          ));
+          certificateContractBloc.add(
+              CertificateContractEvent.certificateCountEvent(
+                  request: context.read<RentBloc>().requestMeanValue));
         }
       },
       child: Column(
@@ -257,34 +241,15 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                               ? certificateContractBloc.add(
                                   CertificateContractEvent
                                       .certificateCountEvent(
-                                  request: RequestMeanValue(
-                                    municipalityId: 1,
-                                    propertyTypeList: [-1],
-                                    purposeList: [-1],
-                                    issueDateQuarterList: [1, 2, 3, 4],
-                                    furnitureStatus: -1,
-                                    issueDateYear: 2023,
-                                    issueDateStartMonth: 1,
-                                    issueDateEndMonth: 10,
-                                    zoneId: -1,
-                                    limit: 5,
-                                  ),
-                                ))
+                                          request: context
+                                              .read<RentBloc>()
+                                              .requestMeanValue))
                               : certificateContractBloc.add(
                                   CertificateContractEvent.contractCountEvent(
-                                  request: RequestMeanValue(
-                                    municipalityId: 1,
-                                    propertyTypeList: [-1],
-                                    purposeList: [-1],
-                                    issueDateQuarterList: [1, 2, 3, 4],
-                                    furnitureStatus: -1,
-                                    issueDateYear: 2023,
-                                    issueDateStartMonth: 1,
-                                    issueDateEndMonth: 10,
-                                    zoneId: -1,
-                                    limit: 5,
-                                  ),
-                                ));
+                                      request: context
+                                          .read<RentBloc>()
+                                          .requestMeanValue),
+                                );
                       setState(() {
                         indexx = index;
                       });

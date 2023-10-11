@@ -111,6 +111,28 @@ _$RentLookupResponseImpl _$$RentLookupResponseImplFromJson(
               ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      periodTime: (json['periodTime'] as List<dynamic>?)
+              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [
+            RentLookupModel(arName: 'سنوي', id: 1),
+            RentLookupModel(arName: 'نصف سنوي', id: 2),
+            RentLookupModel(arName: 'ربع سنوي ', id: 3),
+            RentLookupModel(arName: 'شهري', id: 4),
+            RentLookupModel(arName: ' فترة محددة', id: 5)
+          ],
+      bedRooms: (json['bedRooms'] as List<dynamic>?)
+              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [
+            RentLookupModel(arName: 'استوديو', id: 6),
+            RentLookupModel(arName: 'غرفة', id: 1),
+            RentLookupModel(arName: 'غرفتين', id: 2),
+            RentLookupModel(arName: '3 غرف', id: 3),
+            RentLookupModel(arName: '4 غرف', id: 4),
+            RentLookupModel(arName: '5 غرف', id: 5),
+            RentLookupModel(arName: 'الكل', id: -1)
+          ],
       districtList: (json['districtList'] as List<dynamic>?)
               ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -162,6 +184,8 @@ Map<String, dynamic> _$$RentLookupResponseImplToJson(
       'propertyTypeList': instance.propertyTypeList,
       'rentPurposeList': instance.rentPurposeList,
       'zoneList': instance.zoneList,
+      'periodTime': instance.periodTime,
+      'bedRooms': instance.bedRooms,
       'districtList': instance.districtList,
       'municipalityList': instance.municipalityList,
       'furnitureStatusList': instance.furnitureStatusList,

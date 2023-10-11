@@ -52,6 +52,24 @@ abstract class RentLookupResponse with _$RentLookupResponse {
     @Default([]) List<RentLookupModel> propertyTypeList,
     @Default([]) List<RentLookupModel> rentPurposeList,
     @Default([]) List<RentLookupModel> zoneList,
+    @Default([
+      RentLookupModel(arName: 'سنوي', id: 1),
+      RentLookupModel(arName: 'نصف سنوي', id: 2),
+      RentLookupModel(arName: 'ربع سنوي ', id: 3),
+      RentLookupModel(arName: 'شهري', id: 4),
+      RentLookupModel(arName: ' فترة محددة', id: 5),
+    ])
+    List<RentLookupModel> periodTime,
+    @Default([
+      RentLookupModel(arName: 'استوديو', id: 6),
+      RentLookupModel(arName: 'غرفة', id: 1),
+      RentLookupModel(arName: 'غرفتين', id: 2),
+      RentLookupModel(arName: '3 غرف', id: 3),
+      RentLookupModel(arName: '4 غرف', id: 4),
+      RentLookupModel(arName: '5 غرف', id: 5),
+      RentLookupModel(arName: 'الكل', id: -1)
+    ])
+    List<RentLookupModel> bedRooms,
     @Default([]) List<RentLookupModel> districtList,
     @Default([]) List<RentLookupModel> municipalityList,
     @Default([]) List<RentLookupModel> furnitureStatusList,
@@ -69,7 +87,7 @@ abstract class RentLookupResponse with _$RentLookupResponse {
 
 @freezed
 abstract class RentLookupModel with _$RentLookupModel {
-  factory RentLookupModel({
+  const factory RentLookupModel({
     @Default(0) int value,
     @Default(0) int yoy,
     @Default(false) bool selected,
