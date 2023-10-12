@@ -19,6 +19,8 @@
   "activate_face_id": "Activate face id",
   "noInternetError": "No internet connection",
   "defaultError": "Default error",
+  "confirm": "Confirm",
+  "cancel": "Cancel",
   "----------------------------------------------------RENT--------------------------":"",
   "total_rental_contracts_number": "The total number of lease contracts",
   "the_total_number_of_properties_units_rented": "The total number of properties / units rented",

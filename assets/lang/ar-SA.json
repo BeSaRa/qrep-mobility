@@ -19,6 +19,8 @@
   "activate_face_id": "تفعيل بصمة الوجه",
   "noInternetError": "لا يوجد اتصال بالإنترنت",
   "defaultError": "خطأ افتراضي",
+  "confirm": "تأكيد",
+  "cancel": "إلغاء",
   "----------------------------------------------------RENT--------------------------":"",
   "total_rental_contracts_number": "إجمالي عدد عقود الإيجار",
   "the_total_number_of_properties_units_rented": "إجمالي عدد الوحدات\n \\ العقارات المستأجرة",
