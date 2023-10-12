@@ -5,6 +5,7 @@ import 'package:ebla/presentations/widgets/range_slider_filter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../resources/strings_manager.dart';
 import '../../../resources/values_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -70,7 +71,7 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
         ),
       ),
       child: Column(children: [
-        SizedBox(height: AppSizeH.s16),
+        SizedBox(height: AppSizeH.s20),
         Row(
           children: [
             Expanded(
@@ -81,7 +82,7 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
           ],
         ),
         SizedBox(
-          height: AppSizeH.s14,
+          height: AppSizeH.s17,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,13 +144,11 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                   } else if (state.hasError) {
                     return Text(state.errorMessage);
                   }
-                  return FittedBox(
-                    child: Text('default value',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: AppSizeSp.s18)),
-                  );
+                  return Text(AppStrings.dataBeingCollectedAndAudited,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(fontSize: AppSizeSp.s10));
                 },
               ),
             ),
