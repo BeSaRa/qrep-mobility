@@ -10,6 +10,14 @@ class AppStrings {
   String mortgage = 'mortgage'.tr();
   String more = 'more'.tr();
 
+  //rent
+  String totalRentalContractsNumber = 'total_rental_contracts_number'.tr();
+  String totalPropertiesUnitsRented =
+      'the_total_number_of_properties_units_rented'.tr();
+  String averageRentalPricePerUnitProperty =
+      'average_rental_price_per_unit_property'.tr();
+  String totalValueOfLeaseContracts = 'the_total_value_of_lease_contracts'.tr();
+
   //more view locals
   String moreTitle = 'more_title'.tr();
   String support = 'support'.tr();

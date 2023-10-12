@@ -135,23 +135,6 @@ class _HomeViewState extends State<HomeView> {
               child: ListView(
                 children: [
                   const StatisTicsWidget(),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
-                    child: StaggeredGridView(
-                      // for development only: UniqueKey forces the rebuild of the widget on hot reload
-                      key: UniqueKey(),
-                      itemsCount: 4,
-                      rightSectionTopPadding: AppSizeH.s17,
-                      mainAxisSpacing: AppSizeH.s22,
-                      crossAxisSpacing: AppSizeW.s23,
-                      gridItemChildBuilder: (context, index) {
-                        return RentGridItemWidget(
-                          index: index,
-                          kpi: KPI.totalRentedUntis,
-                        );
-                      },
-                    ),
-                  ),
                   SizedBox(height: AppSizeH.s20),
                   Row(
                     children: [
