@@ -5,16 +5,27 @@ import '../../domain/models/rent_models/rent_models.dart';
 import '../resources/color_manager.dart';
 import '../resources/values_manager.dart';
 
-class SingleDropDownValue extends StatefulWidget {
-  final List<RentLookupModel> list;
-  const SingleDropDownValue({super.key, required this.list});
+class SingleDropDownValue<T> extends StatefulWidget {
+  final List<T> list;
+  final T? value;
+  final Function(T?)? onChanged;
+
+  const SingleDropDownValue(
+      {super.key, required this.list, this.value, this.onChanged});
 
   @override
-  State<SingleDropDownValue> createState() => _SingleDropDownValue();
+  State<SingleDropDownValue<T>> createState() => _SingleDropDownValue<T>();
 }
 
-class _SingleDropDownValue extends State<SingleDropDownValue> {
-  RentLookupModel? selectedValue;
+class _SingleDropDownValue<T> extends State<SingleDropDownValue<T>> {
+  // T? selectedValue;
+
+  @override
+  void initState() {
+    // selectedValue = widget.value;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,9 +35,9 @@ class _SingleDropDownValue extends State<SingleDropDownValue> {
           borderRadius: BorderRadius.circular(AppSizeR.s5),
           border: Border.all(width: 1, color: ColorManager.silver)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton2<RentLookupModel>(
+        child: DropdownButton2<T>(
           isExpanded: true,
-          isDense: true,
+          // isDense: true,
           hint: Padding(
             padding: EdgeInsets.symmetric(horizontal: AppSizeW.s10),
             child: Text(
@@ -35,12 +46,16 @@ class _SingleDropDownValue extends State<SingleDropDownValue> {
             ),
           ),
           items: widget.list
-              .map((RentLookupModel item) => DropdownMenuItem<RentLookupModel>(
+              .map((T item) => DropdownMenuItem<T>(
                     value: item,
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: AppSizeW.s11),
                       child: Text(
-                        item.arName,
+                        item is RentLookupModel
+                            ? item.arName
+                            : item is PeriodTimeDetails
+                                ? item.name
+                                : '$item',
                         style: Theme.of(context).textTheme.labelSmall,
                         softWrap: true,
                       ),
@@ -48,13 +63,14 @@ class _SingleDropDownValue extends State<SingleDropDownValue> {
                   ))
               .toList(),
           // value: selectedValue?.enName ?? '',
-          value: selectedValue,
-          onChanged: (RentLookupModel? value) {
-            setState(() {
-              // selectedValue?.copyWith(enName: value ?? '');
-              selectedValue = value;
-            });
-          },
+          value: widget.value,
+          // onChanged: (T? value) {
+          //   setState(() {
+          //     // selectedValue?.copyWith(enName: value ?? '');
+          //     selectedValue = value;
+          //   });
+          // },
+          onChanged: widget.onChanged,
           dropdownStyleData: DropdownStyleData(
             maxHeight: AppSizeH.s200, width: double.infinity, useSafeArea: true,
 

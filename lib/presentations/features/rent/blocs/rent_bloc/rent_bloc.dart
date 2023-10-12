@@ -45,6 +45,7 @@ class RentBloc extends Bloc<RentEvent, RentState> {
       );
     });
   }
+
   RequestMeanValue requestMeanValue = RequestMeanValue(
     municipalityId: 1,
     propertyTypeList: [-1],
