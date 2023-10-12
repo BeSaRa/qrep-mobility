@@ -28,6 +28,11 @@ class AppStrings {
   static String language = 'language'.tr();
   static String dark = 'dark'.tr();
   static String light = 'light'.tr();
+  static String confirm = 'confirm'.tr();
+  static String cancel = 'cancel'.tr();
+  static String dataBeingCollectedAndAudited =
+      'data_is_being_collected_and_audited'.tr();
+
   //login view locals
   static String userName = 'user_name'.tr();
   static String password = 'password'.tr();
