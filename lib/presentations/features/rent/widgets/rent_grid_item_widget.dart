@@ -70,7 +70,7 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
         ),
       ),
       child: Column(children: [
-        SizedBox(height: AppSizeH.s16),
+        SizedBox(height: AppSizeH.s20),
         Row(
           children: [
             Expanded(
@@ -81,7 +81,7 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
           ],
         ),
         SizedBox(
-          height: AppSizeH.s14,
+          height: AppSizeH.s17,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,13 +143,11 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                   } else if (state.hasError) {
                     return Text(state.errorMessage);
                   }
-                  return FittedBox(
-                    child: Text('default value',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: AppSizeSp.s18)),
-                  );
+                  return Text("data_is_being_collected_and_audited".tr(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(fontSize: AppSizeSp.s10));
                 },
               ),
             ),
