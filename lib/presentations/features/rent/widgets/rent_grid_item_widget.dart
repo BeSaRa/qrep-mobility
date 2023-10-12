@@ -1,35 +1,49 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
+import 'package:ebla/presentations/widgets/range_slider_filter_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../resources/strings_manager.dart';
 import '../../../resources/values_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class RentGridItemWidget extends StatelessWidget {
-  const RentGridItemWidget({super.key, required this.index});
+import '../blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
+
+class RentGridItemWidget extends StatefulWidget {
+  final KPI kpi;
+
+  const RentGridItemWidget({
+    super.key,
+    required this.kpi,
+    required this.index,
+  });
 
   final int index;
+
+  @override
+  State<RentGridItemWidget> createState() => _RentGridItemWidgetState();
+}
+
+class _RentGridItemWidgetState extends State<RentGridItemWidget> {
   //todo: this should be removed once we have real data from api
   final List<GridItemData> gridItemsData = const [
     GridItemData(
-        title: "إجمالي عدد الوحدات \n العقارات المستأجرة \\",
-        value: "983",
+        title: "the_total_number_of_properties_units_rented",
         imagePath: ImageAssets.soldOrRentedUnits,
         valueUnit: ''),
     GridItemData(
-      title: "إجمالي عدد  \nعقود الإيجار",
-      value: "983",
+      title: "total_rental_contracts_number",
       imagePath: ImageAssets.totalNumRentContracts,
       valueUnit: '',
     ),
     GridItemData(
-        title: "متوسط قيمة الإيجار\n لكل وحدة \\ عقار",
-        value: "5,790",
+        title: "average_rental_price_per_unit_property",
         imagePath: ImageAssets.averageRentUnitPrice,
         valueUnit: 'ر.ق'),
     GridItemData(
-        title: "إجمالي قيمة عقود\n الإيجار",
-        value: "716,104",
+        title: "the_total_value_of_lease_contracts",
         imagePath: ImageAssets.totalValRentContracts,
         valueUnit: 'ر.ق'),
   ];
@@ -57,18 +71,18 @@ class RentGridItemWidget extends StatelessWidget {
         ),
       ),
       child: Column(children: [
-        SizedBox(height: AppSizeH.s16),
+        SizedBox(height: AppSizeH.s20),
         Row(
           children: [
             Expanded(
-              child: Text(gridItemsData[index].title,
+              child: Text(gridItemsData[widget.index].title.tr(),
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyMedium),
             ),
           ],
         ),
         SizedBox(
-          height: AppSizeH.s14,
+          height: AppSizeH.s17,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,27 +90,71 @@ class RentGridItemWidget extends StatelessWidget {
           children: [
             SizedBox(width: AppSizeW.s24),
             Flexible(
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                children: [
-                  FittedBox(
-                    child: Text(gridItemsData[index].value,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: AppSizeSp.s18)),
-                  ),
-                  Text(gridItemsData[index].valueUnit,
+              child: BlocBuilder<RentGridKPIsBloc, RentGridKPIsState>(
+                bloc: context.read<RentGridKPIsBloc>(),
+                builder: (context, state) {
+                  if (state.isLoading) {
+                    return const CircularProgressIndicator();
+                  } else if (state.totalContracts.isNotEmpty &&
+                      widget.kpi == KPI.totalContracts) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FittedBox(
+                          child: Text(
+                              state.totalContracts.first.kpiVal
+                                  .formatWithCommas()
+                                  .toString(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(fontSize: AppSizeSp.s18)),
+                        ),
+                        Text(gridItemsData[widget.index].valueUnit,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                    fontSize: AppSizeSp.s18, height: 0.5)),
+                      ],
+                    );
+                  } else if (state.totalRentedUnits.isNotEmpty &&
+                      widget.kpi == KPI.totalRentedUntis) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FittedBox(
+                          child: Text(
+                              state.totalRentedUnits.first.kpiVal
+                                  .formatWithCommas()
+                                  .toString(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(fontSize: AppSizeSp.s18)),
+                        ),
+                        Text(gridItemsData[widget.index].valueUnit,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                    fontSize: AppSizeSp.s18, height: 0.5)),
+                      ],
+                    );
+                  } else if (state.hasError) {
+                    return Text(state.errorMessage);
+                  }
+                  return Text(AppStrings.dataBeingCollectedAndAudited,
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
-                          .copyWith(fontSize: AppSizeSp.s18, height: 0.5)),
-                ],
+                          .copyWith(fontSize: AppSizeSp.s10));
+                },
               ),
             ),
             SizedBox(width: AppSizeW.s16),
             SvgPicture.asset(
-              gridItemsData[index].imagePath,
+              gridItemsData[widget.index].imagePath,
               height: AppSizeH.s70,
               width: AppSizeW.s70,
               color: ColorManager.primary,
@@ -111,13 +169,10 @@ class RentGridItemWidget extends StatelessWidget {
 // todo: remove this once you have real data
 class GridItemData {
   final String title;
-  final String value;
+
   final String imagePath;
   final String valueUnit;
 
   const GridItemData(
-      {required this.title,
-      required this.value,
-      required this.imagePath,
-      required this.valueUnit});
+      {required this.title, required this.imagePath, required this.valueUnit});
 }

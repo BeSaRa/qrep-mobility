@@ -1,11 +1,13 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+
 import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
-import 'package:ebla/presentations/features/rent/widgets/rent_grid_item_widget.dart';
+
 import 'package:ebla/presentations/resources/theme_manager.dart';
 import 'package:ebla/presentations/widgets/bottom_sheet_widget.dart';
+import 'package:ebla/presentations/widgets/date_range_picker.dart';
 import 'package:ebla/presentations/widgets/growth_rate_widget.dart';
 import 'package:ebla/presentations/widgets/single_dropdown_widget.dart';
-import 'package:ebla/presentations/widgets/staggered_grid_view.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,16 +17,16 @@ import '../../../app/depndency_injection.dart';
 import '../../../domain/models/rent_models/rent_models.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/color_manager.dart';
-import '../../resources/strings_manager.dart';
+
 import '../../resources/values_manager.dart';
 import '../../widgets/bottom_sheet_filter_widget.dart';
 import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/ebla_tab_bar.dart';
-import '../../widgets/mutli_dropdown_widget.dart';
+
 import '../../widgets/news_item_widgets.dart';
 import '../../widgets/search_text_field_widget.dart';
 import '../../widgets/statistics_rent_widget.dart';
-import '../more/more_view.dart';
+
 import '../rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import '../rent/blocs/mean_value_bloc/mean_value_bloc.dart';
 import '../rent/blocs/rent_bloc/rent_bloc.dart';
@@ -109,19 +111,24 @@ class _HomeViewState extends State<HomeView> {
                   );
                 },
                 child: const Text('data')),
-            // BlocBuilder(
-            //   bloc: context.read<RentBloc>(),
-            //   builder: (context, RentState state) {
-            //     if (state.isLoadingRentLookup) {
-            //       return const LinearProgressIndicator();
-            //     }
-            //     if (state.rentLookup != const RentLookupResponse()) {
-            //       return SingleDropDownValue<RentLookupModel>(
-            //           list: state.rentLookup.municipalityList);
-            //     }
-            //     return const Text('Error');
-            //   },
-            // ),
+            IconButton(
+                onPressed: () {
+                  showDatePickerPopup(context);
+                },
+                icon: const Icon(Icons.calendar_month)),
+            BlocBuilder(
+              bloc: context.read<RentBloc>(),
+              builder: (context, RentState state) {
+                if (state.isLoadingRentLookup) {
+                  return const LinearProgressIndicator();
+                }
+                if (state.rentLookup != const RentLookupResponse()) {
+                  return SingleDropDownValue(
+                      list: state.rentLookup.municipalityList);
+                }
+                return const Text('Error');
+              },
+            ),
             Row(
               children: [
                 Expanded(
@@ -133,20 +140,6 @@ class _HomeViewState extends State<HomeView> {
               child: ListView(
                 children: [
                   const StatisTicsWidget(),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),
-                    child: StaggeredGridView(
-                      // for development only: UniqueKey forces the rebuild of the widget on hot reload
-                      key: UniqueKey(),
-                      itemsCount: 4,
-                      rightSectionTopPadding: AppSizeH.s17,
-                      mainAxisSpacing: AppSizeH.s22,
-                      crossAxisSpacing: AppSizeW.s23,
-                      gridItemChildBuilder: (context, index) {
-                        return RentGridItemWidget(index: index);
-                      },
-                    ),
-                  ),
                   SizedBox(height: AppSizeH.s20),
                   Row(
                     children: [

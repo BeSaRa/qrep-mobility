@@ -29,10 +29,10 @@ class RepositoryImplementer extends Repository {
       } on DioException catch (e) {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        return Error(FailureModel(message: AppStrings().defaultError));
+        return Error(FailureModel(message: AppStrings.defaultError));
       }
     } else {
-      return Error(FailureModel(message: AppStrings().noInternetError));
+      return Error(FailureModel(message: AppStrings.noInternetError));
     }
   }
 
@@ -50,10 +50,10 @@ class RepositoryImplementer extends Repository {
       } on DioException catch (e) {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        return Error(FailureModel(message: AppStrings().defaultError));
+        return Error(FailureModel(message: AppStrings.defaultError));
       }
     } else {
-      return Error(FailureModel(message: AppStrings().noInternetError));
+      return Error(FailureModel(message: AppStrings.noInternetError));
     }
   }
 
@@ -71,10 +71,10 @@ class RepositoryImplementer extends Repository {
       } on DioException catch (e) {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        return Error(FailureModel(message: AppStrings().defaultError));
+        return Error(FailureModel(message: AppStrings.defaultError));
       }
     } else {
-      return Error(FailureModel(message: AppStrings().noInternetError));
+      return Error(FailureModel(message: AppStrings.noInternetError));
     }
   }
 
@@ -97,10 +97,10 @@ class RepositoryImplementer extends Repository {
       } catch (e) {
         print('ar ${e.toString()}');
 
-        return Error(FailureModel(message: AppStrings().defaultError));
+        return Error(FailureModel(message: AppStrings.defaultError));
       }
     } else {
-      return Error(FailureModel(message: AppStrings().noInternetError));
+      return Error(FailureModel(message: AppStrings.noInternetError));
     }
   }
 
@@ -118,10 +118,10 @@ class RepositoryImplementer extends Repository {
       } on DioException catch (e) {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        return Error(FailureModel(message: AppStrings().defaultError));
+        return Error(FailureModel(message: AppStrings.defaultError));
       }
     } else {
-      return Error(FailureModel(message: AppStrings().noInternetError));
+      return Error(FailureModel(message: AppStrings.noInternetError));
     }
   }
 
@@ -138,10 +138,10 @@ class RepositoryImplementer extends Repository {
       } on DioException catch (e) {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        return Error(FailureModel(message: AppStrings().defaultError));
+        return Error(FailureModel(message: AppStrings.defaultError));
       }
     } else {
-      return Error(FailureModel(message: AppStrings().noInternetError));
+      return Error(FailureModel(message: AppStrings.noInternetError));
     }
   }
 
@@ -160,10 +160,54 @@ class RepositoryImplementer extends Repository {
       } on DioException catch (e) {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        return Error(FailureModel(message: AppStrings().defaultError));
+        return Error(FailureModel(message: AppStrings.defaultError));
       }
     } else {
-      return Error(FailureModel(message: AppStrings().noInternetError));
+      return Error(FailureModel(message: AppStrings.noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContracts(
+      RequestMeanValue requestMeanValue) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.totalContract(requestMeanValue);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings.defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings.noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedUnits(
+      RequestMeanValue requestMeanValue) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await appServiceClient.getTotalRentedUnits(requestMeanValue);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        print(e);
+        return Error(FailureModel(message: AppStrings.defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings.noInternetError));
     }
   }
 }

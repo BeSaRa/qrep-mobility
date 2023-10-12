@@ -25,40 +25,29 @@ class _LoginViewState extends State<LoginView> {
           vertical: AppSizeH.s30, horizontal: AppSizeW.s30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppSizeW.s15),
-        color: Theme
-            .of(context)
-            .scaffoldBackgroundColor,
+        color: Theme.of(context).scaffoldBackgroundColor,
       ),
       child: Column(children: [
         Text(
-          AppStrings().login,
-          style: Theme
-              .of(context)
-              .textTheme
-              .bodyLarge,
+          AppStrings.login,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         SizedBox(
           height: AppSizeH.s20,
         ),
         TextFormField(
-          style: Theme
-              .of(context)
-              .textTheme
-              .bodyMedium,
+          style: Theme.of(context).textTheme.bodyMedium,
           decoration: InputDecoration(
-            hintText: AppStrings().userName,
+            hintText: AppStrings.userName,
             prefixIcon: const Icon(
               Icons.person_outline_outlined,
             ),
           ),
         ),
         TextFormField(
-          style: Theme
-              .of(context)
-              .textTheme
-              .bodyMedium,
+          style: Theme.of(context).textTheme.bodyMedium,
           decoration: InputDecoration(
-            hintText: AppStrings().password,
+            hintText: AppStrings.password,
             prefixIcon: const Icon(
               Icons.lock_outline,
             ),
@@ -67,9 +56,8 @@ class _LoginViewState extends State<LoginView> {
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            AppStrings().forgetPassword,
-            style: Theme
-                .of(context)
+            AppStrings.forgetPassword,
+            style: Theme.of(context)
                 .textTheme
                 .titleMedium
                 ?.copyWith(fontSize: 12.sp),
@@ -80,38 +68,24 @@ class _LoginViewState extends State<LoginView> {
             SvgPicture.asset(
               IconAssets.faceIdIcon,
               // ignore: deprecated_member_use
-              color: Theme
-                  .of(context)
+              color: Theme.of(context)
                   .bottomNavigationBarTheme
                   .unselectedItemColor,
             ),
             Text(
-              AppStrings().activateFaceId,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .bodyMedium,
+              AppStrings.activateFaceId,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
             const Spacer(),
             Switch(
               // This bool value toggles the switch.
               value: light,
-              activeColor: Theme
-                  .of(context)
-                  .primaryColor,
+              activeColor: Theme.of(context).primaryColor,
               activeTrackColor:
-              Theme
-                  .of(context)
-                  .unselectedWidgetColor
-                  .withOpacity(0.2),
-              inactiveThumbColor: Theme
-                  .of(context)
-                  .primaryColor,
+                  Theme.of(context).unselectedWidgetColor.withOpacity(0.2),
+              inactiveThumbColor: Theme.of(context).primaryColor,
               inactiveTrackColor:
-              Theme
-                  .of(context)
-                  .unselectedWidgetColor
-                  .withOpacity(0.2),
+                  Theme.of(context).unselectedWidgetColor.withOpacity(0.2),
 
               onChanged: (bool value) {
                 // This is called when the user toggles the switch.
@@ -126,7 +100,7 @@ class _LoginViewState extends State<LoginView> {
         CupertinoButton.filled(
           onPressed: () {},
           child: Text(
-            AppStrings().login,
+            AppStrings.login,
           ),
         ),
       ]),

@@ -1,6 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+
+import '../../resources/assets_manager.dart';
 
 class MortgageView extends StatefulWidget {
   const MortgageView({super.key});
@@ -12,8 +13,13 @@ class MortgageView extends StatefulWidget {
 class _MortagageViewState extends State<MortgageView> {
   @override
   Widget build(BuildContext context) {
-    return  Placeholder(
-      child: Text(AppStrings().mortgage.tr()),
+    return SizedBox(
+      height: MediaQuery.of(context).size.height / 2,
+      width: 200,
+      child: Lottie.asset(
+        ImageAssets.comingSoon,
+        fit: BoxFit.contain,
+      ),
     );
   }
 }
