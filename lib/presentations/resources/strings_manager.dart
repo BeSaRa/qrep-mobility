@@ -29,4 +29,7 @@ class AppStrings {
   //Errors
   String noInternetError = 'noInternetError'.tr();
   String defaultError = 'defaultError'.tr();
+
+  //rent view locals
+  String rentContractList = 'rent_contract_list'.tr();
 }

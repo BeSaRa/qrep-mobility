@@ -140,7 +140,8 @@ abstract class MeanAreaResponse with _$MeanAreaResponse {
 @freezed
 abstract class RentListSummary with _$RentListSummary {
   const factory RentListSummary(
-      {@Default(0) count, @Default([]) transactionList}) = _RentListSummary;
+      {@Default(0) count,
+      @Default([]) List<RentSummaryObject> transactionList}) = _RentListSummary;
 
   factory RentListSummary.fromJson(Map<String, dynamic> json) =>
       _$RentListSummaryFromJson(json);
@@ -149,20 +150,20 @@ abstract class RentListSummary with _$RentListSummary {
 @freezed
 abstract class RentSummaryObject with _$RentSummaryObject {
   const factory RentSummaryObject(
-      {@Default(0) area,
-      @Default(0) bedRoomsCount,
-      @Default('') endDate,
-      @Default(0) issueYear,
-      @Default(0) municipalityid,
-      @Default(0) propertyTypeId,
-      @Default(0) rentPaymentMeterMT,
-      @Default(0) rentPaymentMeterSQT,
-      @Default(0) rentPaymentMonthly,
-      @Default('') startDate,
-      @Default('') unitBroker,
-      @Default('') unitNo,
-      @Default('') unitOwner,
-      @Default('') unitTenant}) = _RentSummaryObject;
+      {@Default(0) int area,
+      @Default(0) int bedRoomsCount,
+      @Default('') String endDate,
+      @Default(0) int issueYear,
+      @Default(0) int municipalityid,
+      @Default(0) int propertyTypeId,
+      @Default(0) int rentPaymentMeterMT,
+      @Default(0) int rentPaymentMeterSQT,
+      @Default(0) int rentPaymentMonthly,
+      @Default('') String startDate,
+      @Default('') String unitBroker,
+      @Default('') String unitNo,
+      @Default('') String unitOwner,
+      @Default('') String unitTenant}) = _RentSummaryObject;
 
   factory RentSummaryObject.fromJson(Map<String, dynamic> json) =>
       _$RentSummaryObjectFromJson(json);

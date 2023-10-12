@@ -35,63 +35,41 @@ class _MoreViewState extends State<MoreView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: AppSizeH.s100, // Set this height
-        flexibleSpace: SvgPicture.asset(
-          ImageAssets.appbarBg,
-          fit: BoxFit.cover,
-        ),
-        backgroundColor: Colors.transparent,
-        title: Column(
-          children: [
-            SizedBox(
-              height: AppSizeH.s40,
-            ),
-            Row(
+      appBar: const TitleAppBar(),
+      body: Column(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height / 3.50,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: SizedBox(
-                    height: AppSizeH.s50,
+                Container(
+                  width: AppSizeW.s80,
+                  height: AppSizeW.s80,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(AppSizeH.s25),
+                      gradient: LinearGradient(
+                        colors: [
+                          Theme.of(context).shadowColor.withOpacity(0.7),
+                          Theme.of(context).primaryColor,
+                          Theme.of(context).primaryColor.withOpacity(0.8),
+                        ],
+                      )),
+                  child: Center(
                     child: Text(
-                      AppStrings().moreTitle,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontSize: context.locale == ARABIC_LOCAL
-                              ? AppSizeSp.s20
-                              : AppSizeSp.s16),
+                      'G',
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          fontSize: AppSizeSp.s18, fontWeight: FontWeight.w800),
                     ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: AppSizeW.s12, vertical: AppSizeH.s10),
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).disabledColor.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(AppSizeW.s20)),
-                  child: Row(
-                    children: [
-                      Text(
-                        AppStrings().support,
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                      SizedBox(
-                        height: AppSizeW.s30,
-                        width: AppSizeW.s30,
-                        child: SvgPicture.asset(
-                          IconAssets.supportIcon,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                Text(
+                  'Guest',
+                  style: Theme.of(context).textTheme.titleMedium,
+                )
               ],
             ),
-          ],
-        ),
-      ),
-      body: Column(
-        children: [
+          ),
           MoreWidgetButton(
             icon: Icons.remove_red_eye_outlined,
             title: AppStrings().watchList,
@@ -163,6 +141,74 @@ class _MoreViewState extends State<MoreView> {
       child: LoginView(),
     );
   }
+}
+
+class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const TitleAppBar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      toolbarHeight: AppSizeH.s100, // Set this height
+      flexibleSpace: SvgPicture.asset(
+        ImageAssets.appbarBg,
+        fit: BoxFit.cover,
+      ),
+      backgroundColor: Colors.transparent,
+      title: Column(
+        children: [
+          SizedBox(
+            height: AppSizeH.s40,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  height: AppSizeH.s50,
+                  child: Text(
+                    AppStrings().moreTitle,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontSize: context.locale == ARABIC_LOCAL
+                            ? AppSizeSp.s20
+                            : AppSizeSp.s16),
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: AppSizeW.s12, vertical: AppSizeH.s10),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).disabledColor.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(AppSizeW.s20)),
+                child: Row(
+                  children: [
+                    Text(
+                      AppStrings().support,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    SizedBox(
+                      height: AppSizeW.s30,
+                      width: AppSizeW.s30,
+                      child: SvgPicture.asset(
+                        IconAssets.supportIcon,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => Size(double.infinity, AppSizeH.s100);
 }
 
 class MoreWidgetButton extends StatelessWidget {

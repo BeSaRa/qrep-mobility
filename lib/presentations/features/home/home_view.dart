@@ -16,16 +16,13 @@ import '../../../app/depndency_injection.dart';
 import '../../../domain/models/rent_models/rent_models.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/color_manager.dart';
-import '../../resources/strings_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets/bottom_sheet_filter_widget.dart';
 import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/ebla_tab_bar.dart';
-import '../../widgets/mutli_dropdown_widget.dart';
 import '../../widgets/news_item_widgets.dart';
 import '../../widgets/search_text_field_widget.dart';
 import '../../widgets/statistics_rent_widget.dart';
-import '../more/more_view.dart';
 import '../rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import '../rent/blocs/mean_value_bloc/mean_value_bloc.dart';
 import '../rent/blocs/rent_bloc/rent_bloc.dart';
@@ -44,6 +41,7 @@ class _HomeViewState extends State<HomeView> {
   late MeanValueBloc meanValueBloc;
 
   final _textController = TextEditingController();
+
   // bool showInkWell = false;
 
   @override
@@ -213,6 +211,7 @@ class StatisTicsWidget extends StatefulWidget {
 class _StatisTicsWidgetState extends State<StatisTicsWidget> {
   int indexx = 0;
   late CertificateContractBloc certificateContractBloc;
+
   @override
   void initState() {
     certificateContractBloc = instance<CertificateContractBloc>();

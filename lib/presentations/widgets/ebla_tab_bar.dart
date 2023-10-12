@@ -42,7 +42,7 @@ class _EblaTabBarWidgetState extends State<EblaTabBarWidget> {
           physics: const NeverScrollableScrollPhysics(),
           indicator: BoxDecoration(
             shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(AppSizeR.s8),
             color: Theme.of(context).primaryColor,
           ),
           indicatorSize: TabBarIndicatorSize.tab,

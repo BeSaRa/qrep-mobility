@@ -1,8 +1,4 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:ebla/domain/usecases/rent_usecases/rent_usecases.dart';
-import 'package:ebla/domain/usecases/rent_usecases/total_contracts_usecase.dart';
-import 'package:ebla/domain/usecases/rent_usecases/total_rented_units_usecase.dart';
-
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,8 +11,8 @@ import '../domain/usecases/usecases.dart';
 import '../presentations/features/rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import '../presentations/features/rent/blocs/mean_value_bloc/mean_value_bloc.dart';
 import '../presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
-
 import '../presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
+import '../presentations/features/rent/blocs/summery_bloc/rent_summery_bloc.dart';
 import 'app_preferences.dart';
 
 final instance = GetIt.instance;
@@ -85,4 +81,5 @@ Future<void> initRentModule() async {
       totalContractsUseCase: instance(),
     ),
   );
+  instance.registerFactory(() => RentSummeryBloc(instance()));
 }

@@ -18,5 +18,6 @@
   "forget_password": "هل نسيت كلمة المرور؟",
   "activate_face_id": "تفعيل بصمة الوجه",
   "noInternetError": "لا يوجد اتصال بالإنترنت",
-  "defaultError": "خطأ افتراضي"
+  "defaultError": "خطأ افتراضي",
+  "rent_contract_list": "قائمة معاملات الإيجار"
 }

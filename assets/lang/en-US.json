@@ -18,5 +18,6 @@
   "forget_password": "Did you forget your password?",
   "activate_face_id": "Activate face id",
   "noInternetError": "No internet connection",
-  "defaultError": "Default error"
+  "defaultError": "Default error",
+  "rent_contract_list": "Rent contracts list"
 }

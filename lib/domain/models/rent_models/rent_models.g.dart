@@ -284,7 +284,11 @@ _$RentListSummaryImpl _$$RentListSummaryImplFromJson(
         Map<String, dynamic> json) =>
     _$RentListSummaryImpl(
       count: json['count'] ?? 0,
-      transactionList: json['transactionList'] ?? const [],
+      transactionList: (json['transactionList'] as List<dynamic>?)
+              ?.map(
+                  (e) => RentSummaryObject.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$RentListSummaryImplToJson(
@@ -297,20 +301,20 @@ Map<String, dynamic> _$$RentListSummaryImplToJson(
 _$RentSummaryObjectImpl _$$RentSummaryObjectImplFromJson(
         Map<String, dynamic> json) =>
     _$RentSummaryObjectImpl(
-      area: json['area'] ?? 0,
-      bedRoomsCount: json['bedRoomsCount'] ?? 0,
-      endDate: json['endDate'] ?? '',
-      issueYear: json['issueYear'] ?? 0,
-      municipalityid: json['municipalityid'] ?? 0,
-      propertyTypeId: json['propertyTypeId'] ?? 0,
-      rentPaymentMeterMT: json['rentPaymentMeterMT'] ?? 0,
-      rentPaymentMeterSQT: json['rentPaymentMeterSQT'] ?? 0,
-      rentPaymentMonthly: json['rentPaymentMonthly'] ?? 0,
-      startDate: json['startDate'] ?? '',
-      unitBroker: json['unitBroker'] ?? '',
-      unitNo: json['unitNo'] ?? '',
-      unitOwner: json['unitOwner'] ?? '',
-      unitTenant: json['unitTenant'] ?? '',
+      area: json['area'] as int? ?? 0,
+      bedRoomsCount: json['bedRoomsCount'] as int? ?? 0,
+      endDate: json['endDate'] as String? ?? '',
+      issueYear: json['issueYear'] as int? ?? 0,
+      municipalityid: json['municipalityid'] as int? ?? 0,
+      propertyTypeId: json['propertyTypeId'] as int? ?? 0,
+      rentPaymentMeterMT: json['rentPaymentMeterMT'] as int? ?? 0,
+      rentPaymentMeterSQT: json['rentPaymentMeterSQT'] as int? ?? 0,
+      rentPaymentMonthly: json['rentPaymentMonthly'] as int? ?? 0,
+      startDate: json['startDate'] as String? ?? '',
+      unitBroker: json['unitBroker'] as String? ?? '',
+      unitNo: json['unitNo'] as String? ?? '',
+      unitOwner: json['unitOwner'] as String? ?? '',
+      unitTenant: json['unitTenant'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$RentSummaryObjectImplToJson(

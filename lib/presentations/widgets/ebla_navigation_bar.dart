@@ -79,7 +79,7 @@ class EblaNavigationBar extends StatelessWidget {
               children: [
                 const Spacer(),
                 SizedBox(
-                  height: AppSizeH.s24,
+                  height: AppSizeH.s22,
                   child: SvgPicture.asset(
                     currentPage == 0
                         ? IconAssets.homeIconFill
@@ -115,7 +115,7 @@ class EblaNavigationBar extends StatelessWidget {
               children: [
                 const Spacer(),
                 SizedBox(
-                  height: AppSizeH.s24,
+                  height: AppSizeH.s22,
                   child: SvgPicture.asset(
                     currentPage == 1
                         ? IconAssets.keyIconFill
@@ -148,7 +148,7 @@ class EblaNavigationBar extends StatelessWidget {
               children: [
                 const Spacer(),
                 SizedBox(
-                  height: AppSizeH.s24,
+                  height: AppSizeH.s22,
                   child: SvgPicture.asset(
                     currentPage == 2
                         ? IconAssets.sellIconFill
@@ -184,7 +184,7 @@ class EblaNavigationBar extends StatelessWidget {
               children: [
                 const Spacer(),
                 SizedBox(
-                  height: AppSizeH.s24,
+                  height: AppSizeH.s22,
                   child: SvgPicture.asset(
                       currentPage == 3
                           ? IconAssets.realEstateIconFill
@@ -217,7 +217,7 @@ class EblaNavigationBar extends StatelessWidget {
               children: [
                 const Spacer(),
                 SizedBox(
-                  height: AppSizeH.s24,
+                  height: AppSizeH.s22,
                   child: SvgPicture.asset(
                       currentPage == 4
                           ? IconAssets.infoIconFill
