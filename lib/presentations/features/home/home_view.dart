@@ -1,6 +1,13 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+
 import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
+
 import 'package:ebla/presentations/resources/theme_manager.dart';
+import 'package:ebla/presentations/widgets/bottom_sheet_widget.dart';
+import 'package:ebla/presentations/widgets/date_range_picker.dart';
+import 'package:ebla/presentations/widgets/growth_rate_widget.dart';
+import 'package:ebla/presentations/widgets/single_dropdown_widget.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +17,7 @@ import '../../../app/depndency_injection.dart';
 import '../../../domain/models/rent_models/rent_models.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/color_manager.dart';
+
 import '../../resources/values_manager.dart';
 import '../../widgets/widgets.dart';
 import '../rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
@@ -51,27 +59,12 @@ class _HomeViewState extends State<HomeView> {
         actions: [
           IconButton(
             onPressed: () {
-              // rentBloc.add(const RentEvent.getRentLookupEvent());
-              // bottomSheetWidget(
-              //   context,
-              //   child: const BosttomSheetFilterWidget(),
-              // );
-              meanValueBloc.add(
-                MeanValueEvent.getMeanValue(
-                  request: RequestMeanValue(
-                    municipalityId: 1,
-                    propertyTypeList: [-1],
-                    purposeList: [-1],
-                    issueDateQuarterList: [1, 2, 3, 4],
-                    furnitureStatus: -1,
-                    issueDateYear: 2023,
-                    issueDateStartMonth: 1,
-                    issueDateEndMonth: 10,
-                    zoneId: -1,
-                    limit: 5,
-                  ),
-                ),
-              );
+              // context
+              //     .read<RentBloc>()
+              //     .add(const RentEvent.getRentLookupEvent());
+
+              // meanValueBloc.add(MeanValueEvent.getMeanValue(
+              //     request: context.read<RentBloc>().requestMeanValue));
             },
             icon: Icon(
               Icons.filter_list_rounded,
@@ -100,6 +93,23 @@ class _HomeViewState extends State<HomeView> {
         padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
         child: Column(
           children: [
+            ElevatedButton(
+                onPressed: () {
+                  // print(getAllMonthsInYear());
+                  bottomSheetWidget(
+                    context,
+                    child: BlocProvider.value(
+                      value: context.read<RentBloc>(),
+                      child: const BottomSheetFilterWidget(),
+                    ),
+                  );
+                },
+                child: const Text('data')),
+            IconButton(
+                onPressed: () {
+                  showDatePickerPopup(context);
+                },
+                icon: const Icon(Icons.calendar_month)),
             BlocBuilder(
               bloc: context.read<RentBloc>(),
               builder: (context, RentState state) {
@@ -197,21 +207,9 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
       bloc: context.read<RentBloc>(),
       listener: (context, RentState state) {
         if (state.rentLookup != const RentLookupResponse()) {
-          certificateContractBloc
-              .add(CertificateContractEvent.certificateCountEvent(
-            request: RequestMeanValue(
-              municipalityId: 1,
-              propertyTypeList: [-1],
-              purposeList: [-1],
-              issueDateQuarterList: [1, 2, 3, 4],
-              furnitureStatus: -1,
-              issueDateYear: 2023,
-              issueDateStartMonth: 1,
-              issueDateEndMonth: 10,
-              zoneId: -1,
-              limit: 5,
-            ),
-          ));
+          certificateContractBloc.add(
+              CertificateContractEvent.certificateCountEvent(
+                  request: context.read<RentBloc>().requestMeanValue));
         }
       },
       child: Column(
@@ -232,34 +230,15 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                               ? certificateContractBloc.add(
                                   CertificateContractEvent
                                       .certificateCountEvent(
-                                  request: RequestMeanValue(
-                                    municipalityId: 1,
-                                    propertyTypeList: [-1],
-                                    purposeList: [-1],
-                                    issueDateQuarterList: [1, 2, 3, 4],
-                                    furnitureStatus: -1,
-                                    issueDateYear: 2023,
-                                    issueDateStartMonth: 1,
-                                    issueDateEndMonth: 10,
-                                    zoneId: -1,
-                                    limit: 5,
-                                  ),
-                                ))
+                                          request: context
+                                              .read<RentBloc>()
+                                              .requestMeanValue))
                               : certificateContractBloc.add(
                                   CertificateContractEvent.contractCountEvent(
-                                  request: RequestMeanValue(
-                                    municipalityId: 1,
-                                    propertyTypeList: [-1],
-                                    purposeList: [-1],
-                                    issueDateQuarterList: [1, 2, 3, 4],
-                                    furnitureStatus: -1,
-                                    issueDateYear: 2023,
-                                    issueDateStartMonth: 1,
-                                    issueDateEndMonth: 10,
-                                    zoneId: -1,
-                                    limit: 5,
-                                  ),
-                                ));
+                                      request: context
+                                          .read<RentBloc>()
+                                          .requestMeanValue),
+                                );
                       setState(() {
                         indexx = index;
                       });

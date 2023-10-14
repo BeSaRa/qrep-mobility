@@ -16,4 +16,4 @@ class FailureModel with _$FailureModel {
       _$FailureModelFromJson(json);
 }
 
-Map<String, String> defaultError = {'message': AppStrings().defaultError};
+Map<String, String> defaultError = {'message': AppStrings.defaultError};

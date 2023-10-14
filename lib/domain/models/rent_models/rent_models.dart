@@ -52,6 +52,36 @@ abstract class RentLookupResponse with _$RentLookupResponse {
     @Default([]) List<RentLookupModel> propertyTypeList,
     @Default([]) List<RentLookupModel> rentPurposeList,
     @Default([]) List<RentLookupModel> zoneList,
+    @Default([
+      PeriodTimeDetails(name: 'نصف اول', value: [1, 2]),
+      PeriodTimeDetails(name: 'نصف ثاني', value: [3, 4])
+    ])
+    List<PeriodTimeDetails> halfYearList,
+    @Default([
+      PeriodTimeDetails(name: 'ربع اول', value: [1]),
+      PeriodTimeDetails(name: 'ربع ثاني', value: [2]),
+      PeriodTimeDetails(name: 'ربع ثالث', value: [3]),
+      PeriodTimeDetails(name: 'ربع اخير', value: [4])
+    ])
+    List<PeriodTimeDetails> quarterYearList,
+    @Default([
+      RentLookupModel(arName: 'سنوي', id: 1),
+      RentLookupModel(arName: 'نصف سنوي', id: 2),
+      RentLookupModel(arName: 'ربع سنوي ', id: 3),
+      RentLookupModel(arName: 'شهري', id: 4),
+      RentLookupModel(arName: ' فترة محددة', id: 5),
+    ])
+    List<RentLookupModel> periodTime,
+    @Default([
+      RentLookupModel(arName: 'استوديو', id: 6),
+      RentLookupModel(arName: 'غرفة', id: 1),
+      RentLookupModel(arName: 'غرفتين', id: 2),
+      RentLookupModel(arName: '3 غرف', id: 3),
+      RentLookupModel(arName: '4 غرف', id: 4),
+      RentLookupModel(arName: '5 غرف', id: 5),
+      RentLookupModel(arName: 'الكل', id: -1)
+    ])
+    List<RentLookupModel> bedRooms,
     @Default([]) List<RentLookupModel> districtList,
     @Default([]) List<RentLookupModel> municipalityList,
     @Default([]) List<RentLookupModel> furnitureStatusList,
@@ -69,7 +99,7 @@ abstract class RentLookupResponse with _$RentLookupResponse {
 
 @freezed
 abstract class RentLookupModel with _$RentLookupModel {
-  factory RentLookupModel({
+  const factory RentLookupModel({
     @Default(0) int value,
     @Default(0) int yoy,
     @Default(false) bool selected,
@@ -85,6 +115,16 @@ abstract class RentLookupModel with _$RentLookupModel {
 
   factory RentLookupModel.fromJson(Map<String, dynamic> json) =>
       _$RentLookupModelFromJson(json);
+}
+
+@freezed
+abstract class PeriodTimeDetails with _$PeriodTimeDetails {
+  const factory PeriodTimeDetails({
+    @Default('') String name,
+    @Default([]) List<int> value,
+  }) = _PeriodTimeDetails;
+  factory PeriodTimeDetails.fromJson(Map<String, dynamic> json) =>
+      _$PeriodTimeDetailsFromJson(json);
 }
 
 @freezed
