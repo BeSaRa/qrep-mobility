@@ -49,11 +49,13 @@ class CertificateContractBloc
                 isHasErrorContract: false,
                 contractCountResponse: success));
           }, (error) {
-            emit(state.copyWith(
-                isLoadingContract: false,
-                isHasErrorContract: true,
-                errorMessageContract: error.message,
-                contractCountResponse: []));
+            emit(
+              state.copyWith(
+                  isLoadingContract: false,
+                  isHasErrorContract: true,
+                  errorMessageContract: error.message,
+                  contractCountResponse: []),
+            );
           });
         },
       );
