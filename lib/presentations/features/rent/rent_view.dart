@@ -3,8 +3,6 @@ import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/summery_bloc/rent_summery_bloc.dart';
-import 'package:ebla/presentations/resources/language_manager.dart';
-import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:ebla/presentations/widgets/main_data_container.dart';
 import 'package:ebla/presentations/widgets/staggered_grid_view.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +12,8 @@ import 'package:lottie/lottie.dart';
 import '../../../app/depndency_injection.dart';
 import '../../../domain/models/requests/rent_requests/request_mean_value.dart';
 import '../../../utils/global_functions.dart';
-import '../../resources/assets_manager.dart';
-import '../../resources/values_manager.dart';
+import '../../resources/resources.dart';
+import '../home/home_view.dart';
 import 'widgets/rent_grid_item_widget.dart';
 
 class RentView extends StatefulWidget {
@@ -73,6 +71,25 @@ class _RentViewState extends State<RentView> {
             horizontal: AppSizeW.s16, vertical: AppSizeH.s50),
         child: ListView(
           children: [
+            Center(
+              child: Text(
+                AppStrings().currentPerformanceSummary,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ),
+            SizedBox(
+              height: AppSizeH.s20,
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: AppSizeW.s150),
+              height: AppSizeH.s5,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(AppSizeR.s5),
+                  color: ColorManager.lightSilver),
+            ),
+            SizedBox(
+              height: AppSizeH.s20,
+            ),
             StaggeredGridView(
               // for development only: UniqueKey forces the rebuild of the widget on hot reload
               key: UniqueKey(),
@@ -90,6 +107,10 @@ class _RentViewState extends State<RentView> {
                 );
               },
             ),
+            SizedBox(
+              height: AppSizeH.s20,
+            ),
+            const StatisTicsWidget(),
             SizedBox(
               height: AppSizeH.s20,
             ),
@@ -112,13 +133,13 @@ class _RentViewState extends State<RentView> {
                       itemBuilder: (context, index) {
                         //todo check the location
                         return MainDataContainer(
-                          title: AppStrings.rentValue,
+                          title: AppStrings().rentValue,
                           totalPrice:
-                              "${state.rentSummery.transactionList[index].rentPaymentMeterMT.toStringAsFixed(3)} ${AppStrings.currency} ",
+                              "${state.rentSummery.transactionList[index].rentPaymentMeterMT.toStringAsFixed(3)} ${AppStrings().currency} ",
                           value: state.rentSummery.transactionList[index].area
                               .toStringAsFixed(0),
-                          valueDescription: AppStrings.rentArea,
-                          titleInfo: AppStrings.roomsCount,
+                          valueDescription: AppStrings().rentArea,
+                          titleInfo: AppStrings().roomsCount,
                           valueInfo: state
                               .rentSummery.transactionList[index].bedRoomsCount
                               .toString(),
@@ -152,9 +173,35 @@ class _RentViewState extends State<RentView> {
                 }
                 if (state.isHasErrorRentSummery) {
                   return SizedBox(
-                      height: AppSizeH.s150,
-                      width: AppSizeH.s150,
-                      child: Lottie.asset(ImageAssets.animationError));
+                      height: AppSizeH.s200,
+                      width: AppSizeH.s200,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                              height: AppSizeH.s130,
+                              width: AppSizeH.s130,
+                              child: Lottie.asset(ImageAssets.animationError)),
+                          IconButton(
+                              onPressed: () {
+                                rentSummeryBloc
+                                    .add(RentSummeryEvent.getRentSummary(
+                                  request: RequestMeanValue(
+                                    municipalityId: 1,
+                                    propertyTypeList: [-1],
+                                    purposeList: [-1],
+                                    issueDateQuarterList: [1, 2, 3, 4],
+                                    furnitureStatus: -1,
+                                    issueDateYear: 2023,
+                                    issueDateStartMonth: 1,
+                                    issueDateEndMonth: 10,
+                                    zoneId: -1,
+                                    limit: 5,
+                                  ),
+                                ));
+                              },
+                              icon: const Icon(Icons.refresh))
+                        ],
+                      ));
                 }
                 return ListView.builder(
                     itemCount: 3,

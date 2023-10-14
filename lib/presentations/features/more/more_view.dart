@@ -6,7 +6,6 @@ import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
@@ -72,11 +71,11 @@ class _MoreViewState extends State<MoreView> {
           ),
           MoreWidgetButton(
             icon: Icons.remove_red_eye_outlined,
-            title: AppStrings.watchList,
+            title: AppStrings().watchList,
           ),
           MoreWidgetButton(
             icon: Icons.login,
-            title: AppStrings.login,
+            title: AppStrings().login,
             onPressed: () {
               showDialog(
                 context: context,
@@ -87,7 +86,7 @@ class _MoreViewState extends State<MoreView> {
           ThemeSwitcher.withTheme(builder: (context, switcher, theme) {
             return MoreWidgetButton(
                 icon: Icons.color_lens_outlined,
-                title: AppStrings.theme,
+                title: AppStrings().theme,
                 isButton: false,
                 widget: Directionality(
                     textDirection: TextDirection.rtl,
@@ -97,8 +96,8 @@ class _MoreViewState extends State<MoreView> {
                                   Brightness.light
                               ? 0
                               : 1,
-                      firstTab: AppStrings.light,
-                      secondTab: AppStrings.dark,
+                      firstTab: AppStrings().light,
+                      secondTab: AppStrings().dark,
                       onPressed: (index) {
                         ThemeData newTheme =
                             theme.brightness == Brightness.light
@@ -112,7 +111,7 @@ class _MoreViewState extends State<MoreView> {
           }),
           MoreWidgetButton(
             icon: Icons.language_outlined,
-            title: AppStrings.language,
+            title: AppStrings().language,
             isButton: false,
             widget: EblaTabBarWidget(
               initialIndex: context.locale == ARABIC_LOCAL ? 0 : 1,
@@ -152,9 +151,13 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       toolbarHeight: AppSizeH.s100, // Set this height
-      flexibleSpace: SvgPicture.asset(
-        ImageAssets.appbarBg,
-        fit: BoxFit.cover,
+      flexibleSpace: Image(
+        height: AppSizeH.s50,
+        width: double.infinity,
+        image: const AssetImage(
+          ImageAssets.appbarBg,
+        ),
+        fit: BoxFit.fill,
       ),
       backgroundColor: Colors.transparent,
       title: Column(
@@ -168,7 +171,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: SizedBox(
                   height: AppSizeH.s50,
                   child: Text(
-                    AppStrings.moreTitle,
+                    AppStrings().moreTitle,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -187,14 +190,19 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: Row(
                   children: [
                     Text(
-                      AppStrings.support,
+                      AppStrings().support,
                       style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    SizedBox(
+                      width: AppSizeW.s2,
                     ),
                     SizedBox(
                       height: AppSizeW.s30,
                       width: AppSizeW.s30,
-                      child: SvgPicture.asset(
-                        IconAssets.supportIcon,
+                      child: const Image(
+                        image: AssetImage(
+                          IconAssets.supportIcon,
+                        ),
                       ),
                     ),
                   ],

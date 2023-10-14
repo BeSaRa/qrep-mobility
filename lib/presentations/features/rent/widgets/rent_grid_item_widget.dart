@@ -4,11 +4,10 @@ import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/widgets/range_slider_filter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../resources/strings_manager.dart';
 import '../../../resources/values_manager.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 
 class RentGridItemWidget extends StatefulWidget {
@@ -144,7 +143,7 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                   } else if (state.hasError) {
                     return Text(state.errorMessage);
                   }
-                  return Text(AppStrings.dataBeingCollectedAndAudited,
+                  return Text(AppStrings().dataBeingCollectedAndAudited,
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!

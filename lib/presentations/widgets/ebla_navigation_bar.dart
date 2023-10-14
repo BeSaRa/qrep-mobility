@@ -27,7 +27,7 @@ class EblaNavigationBar extends StatelessWidget {
     return BottomBar(
       fit: StackFit.expand,
       body: (context, controller) => Padding(
-        padding: EdgeInsets.only(bottom: AppSizeH.s90),
+        padding: EdgeInsets.only(bottom: AppSizeH.s30),
         child: body,
       ),
       borderRadius: BorderRadius.circular(500),
@@ -94,7 +94,7 @@ class EblaNavigationBar extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    AppStrings.main,
+                    AppStrings().main,
                     style: TextStyle(
                       fontSize: AppSizeSp.s9,
                       color: currentPage == 0
@@ -129,7 +129,7 @@ class EblaNavigationBar extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                    child: Text(AppStrings.rent,
+                    child: Text(AppStrings().rent,
                         style: TextStyle(
                           fontSize: AppSizeSp.s9,
                           color: currentPage == 1
@@ -163,7 +163,7 @@ class EblaNavigationBar extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    AppStrings.sell,
+                    AppStrings().sell,
                     style: TextStyle(
                       fontSize: AppSizeSp.s9,
                       color: currentPage == 2
@@ -198,7 +198,7 @@ class EblaNavigationBar extends StatelessWidget {
                 ),
                 Expanded(
                     child: Text(
-                  AppStrings.mortgage,
+                  AppStrings().mortgage,
                   style: TextStyle(
                       fontSize: AppSizeSp.s9,
                       color: currentPage == 3
@@ -231,7 +231,7 @@ class EblaNavigationBar extends StatelessWidget {
                 ),
                 Expanded(
                     child: Text(
-                  AppStrings.more,
+                  AppStrings().more,
                   style: TextStyle(
                       fontSize: AppSizeSp.s9,
                       color: currentPage == 4

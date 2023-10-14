@@ -5,7 +5,7 @@
   "sell": "sell",
   "mortgage": "mortgage",
   "more": "more",
-  "more_title": "Real estate platform for the State of Qatar",
+  "more_title": "Qatar Real Estate Platform",
   "support": "support",
   "my_watch_list": "My Watchlist",
   "login": "Login",
@@ -32,6 +32,7 @@
   "room_count": "Rooms",
   "rent_value": "Rent Value",
   "currency": "QARََ",
+  "current_performance_summary": "Current performance summary",
   "----------------------------------------------------SELL--------------------------": "",
   "----------------------------------------------------MORTGAGE--------------------------": "",
   "----------------------------------------------------OWNERSHIP--------------------------": ""

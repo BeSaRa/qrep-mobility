@@ -1,17 +1,14 @@
-import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:ebla/presentations/resources/theme_manager.dart';
-import 'package:ebla/presentations/widgets/date_range_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
-import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
 import '../../../domain/models/rent_models/rent_models.dart';
 import '../../../utils/global_functions.dart';
-import '../../resources/color_manager.dart';
+import '../../resources/assets_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets/widgets.dart';
+import '../more/more_view.dart';
 import '../rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import '../rent/blocs/mean_value_bloc/mean_value_bloc.dart';
 import '../rent/blocs/rent_bloc/rent_bloc.dart';
@@ -46,132 +43,107 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        actions: [
-          IconButton(
-            onPressed: () {
-              // context
-              //     .read<RentBloc>()
-              //     .add(const RentEvent.getRentLookupEvent());
-
-              // meanValueBloc.add(MeanValueEvent.getMeanValue(
-              //     request: context.read<RentBloc>().requestMeanValue));
-            },
-            icon: Icon(
-              Icons.filter_list_rounded,
-              size: 40,
-              color: ColorManager.golden,
+        appBar: const TitleAppBar(),
+        body: Center(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height / 2,
+            child: Lottie.asset(
+              ImageAssets.comingSoon,
+              fit: BoxFit.contain,
             ),
           ),
-          ThemeSwitcher.withTheme(
-            builder: (context, switcher, theme) {
-              return CupertinoSwitch(
-                value: theme.isDarkTheme,
-                trackColor: ColorManager.whiteSmoke,
-                onChanged: (value) {
-                  ThemeData newTheme = theme.brightness == Brightness.light
-                      ? darkTheme()
-                      : lightTheme();
-                  switcher.changeTheme(theme: newTheme);
-                  instance<AppPreferences>().setTheme(themeData: newTheme);
-                },
-              );
-            },
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
-        child: Column(
-          children: [
-            ElevatedButton(
-                onPressed: () {
-                  // print(getAllMonthsInYear());
-                  bottomSheetWidget(
-                    context,
-                    child: BlocProvider.value(
-                      value: context.read<RentBloc>(),
-                      child: const BottomSheetFilterWidget(),
-                    ),
-                  );
-                },
-                child: const Text('data')),
-            IconButton(
-                onPressed: () {
-                  showDatePickerPopup(context);
-                },
-                icon: const Icon(Icons.calendar_month)),
-            BlocBuilder(
-              bloc: context.read<RentBloc>(),
-              builder: (context, RentState state) {
-                if (state.isLoadingRentLookup) {
-                  return const LinearProgressIndicator();
-                }
-                if (state.rentLookup != const RentLookupResponse()) {
-                  return SingleDropDownValue(
-                      list: state.rentLookup.municipalityList);
-                }
-                return const Text('Error');
-              },
-            ),
-            Row(
-              children: [
-                Expanded(
-                    child: SearchTextFieldWidget(controller: _textController)),
-                const Expanded(flex: 2, child: SizedBox())
-              ],
-            ),
-            Expanded(
-              child: ListView(
-                children: [
-                  const StatisTicsWidget(),
-                  SizedBox(height: AppSizeH.s20),
-                  Row(
-                    children: [
-                      const Expanded(child: GrowthRateWidget(index: 0)),
-                      SizedBox(
-                        width: AppSizeW.s20,
-                      ),
-                      const Expanded(child: GrowthRateWidget(index: 1)),
-                    ],
-                  ),
-                  const NewsItemWidget(
-                      date: '15 مارس 2023',
-                      label:
-                          'وزارة البلدية تطلق المرحلة الأولى من مشروع المنصة العقارية لدولة قطر'),
-                  SizedBox(height: AppSizeH.s60),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: CustomElevatedButton(
-                          isPrimary: true,
-                          title: 'بحث',
-                          onPress: () {
-                            bottomSheetWidget(
-                              context,
-                              child: const BottomSheetFilterWidget(),
-                            );
-                          },
-                        ),
-                      ),
-                      SizedBox(width: AppSizeW.s8),
-                      Expanded(
-                        child: CustomElevatedButton(
-                          isPrimary: false,
-                          title: 'إلغاء',
-                          onPress: () {},
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+        )
+        // Padding(
+        //   padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
+        //   child: Column(
+        //     children: [
+        //       ElevatedButton(
+        //           onPressed: () {
+        //             // print(getAllMonthsInYear());
+        //             bottomSheetWidget(
+        //               context,
+        //               child: BlocProvider.value(
+        //                 value: context.read<RentBloc>(),
+        //                 child: const BottomSheetFilterWidget(),
+        //               ),
+        //             );
+        //           },
+        //           child: const Text('data')),
+        //       IconButton(
+        //           onPressed: () {
+        //             showDatePickerPopup(context);
+        //           },
+        //           icon: const Icon(Icons.calendar_month)),
+        //       BlocBuilder(
+        //         bloc: context.read<RentBloc>(),
+        //         builder: (context, RentState state) {
+        //           if (state.isLoadingRentLookup) {
+        //             return const LinearProgressIndicator();
+        //           }
+        //           if (state.rentLookup != const RentLookupResponse()) {
+        //             return SingleDropDownValue(
+        //                 list: state.rentLookup.municipalityList);
+        //           }
+        //           return const Text('Error');
+        //         },
+        //       ),
+        //       Row(
+        //         children: [
+        //           Expanded(
+        //               child: SearchTextFieldWidget(controller: _textController)),
+        //           const Expanded(flex: 2, child: SizedBox())
+        //         ],
+        //       ),
+        //       Expanded(
+        //         child: ListView(
+        //           children: [
+        //             const StatisTicsWidget(),
+        //             SizedBox(height: AppSizeH.s20),
+        //             Row(
+        //               children: [
+        //                 const Expanded(child: GrowthRateWidget(index: 0)),
+        //                 SizedBox(
+        //                   width: AppSizeW.s20,
+        //                 ),
+        //                 const Expanded(child: GrowthRateWidget(index: 1)),
+        //               ],
+        //             ),
+        //             const NewsItemWidget(
+        //                 date: '15 مارس 2023',
+        //                 label:
+        //                     'وزارة البلدية تطلق المرحلة الأولى من مشروع المنصة العقارية لدولة قطر'),
+        //             SizedBox(height: AppSizeH.s60),
+        //             Row(
+        //               children: [
+        //                 Expanded(
+        //                   child: CustomElevatedButton(
+        //                     isPrimary: true,
+        //                     title: 'بحث',
+        //                     onPress: () {
+        //                       bottomSheetWidget(
+        //                         context,
+        //                         child: const BottomSheetFilterWidget(),
+        //                       );
+        //                     },
+        //                   ),
+        //                 ),
+        //                 SizedBox(width: AppSizeW.s8),
+        //                 Expanded(
+        //                   child: CustomElevatedButton(
+        //                     isPrimary: false,
+        //                     title: 'إلغاء',
+        //                     onPress: () {},
+        //                   ),
+        //                 ),
+        //               ],
+        //             ),
+        //           ],
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        );
   }
 }
 

@@ -29,7 +29,7 @@ class _LoginViewState extends State<LoginView> {
       ),
       child: Column(children: [
         Text(
-          AppStrings.login,
+          AppStrings().login,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
         SizedBox(
@@ -38,7 +38,7 @@ class _LoginViewState extends State<LoginView> {
         TextFormField(
           style: Theme.of(context).textTheme.bodyMedium,
           decoration: InputDecoration(
-            hintText: AppStrings.userName,
+            hintText: AppStrings().userName,
             prefixIcon: const Icon(
               Icons.person_outline_outlined,
             ),
@@ -47,7 +47,7 @@ class _LoginViewState extends State<LoginView> {
         TextFormField(
           style: Theme.of(context).textTheme.bodyMedium,
           decoration: InputDecoration(
-            hintText: AppStrings.password,
+            hintText: AppStrings().password,
             prefixIcon: const Icon(
               Icons.lock_outline,
             ),
@@ -56,7 +56,7 @@ class _LoginViewState extends State<LoginView> {
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            AppStrings.forgetPassword,
+            AppStrings().forgetPassword,
             style: Theme.of(context)
                 .textTheme
                 .titleMedium
@@ -73,7 +73,7 @@ class _LoginViewState extends State<LoginView> {
                   .unselectedItemColor,
             ),
             Text(
-              AppStrings.activateFaceId,
+              AppStrings().activateFaceId,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             const Spacer(),
@@ -100,7 +100,7 @@ class _LoginViewState extends State<LoginView> {
         CupertinoButton.filled(
           onPressed: () {},
           child: Text(
-            AppStrings.login,
+            AppStrings().login,
           ),
         ),
       ]),

@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../presentations/resources/strings_manager.dart';
+
 part 'failure.freezed.dart';
 part 'failure.g.dart';
 
@@ -16,4 +17,4 @@ class FailureModel with _$FailureModel {
       _$FailureModelFromJson(json);
 }
 
-Map<String, String> defaultError = {'message': AppStrings.defaultError};
+Map<String, String> defaultError = {'message': AppStrings().defaultError};

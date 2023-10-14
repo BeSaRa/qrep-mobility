@@ -1,7 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../resources/strings_manager.dart';
@@ -21,8 +19,8 @@ void showDatePickerPopup(BuildContext context) {
             minDate: DateTime(2019),
             maxDate: DateTime.now(),
             showActionButtons: true,
-            confirmText: AppStrings.confirm,
-            cancelText: AppStrings.cancel,
+            confirmText: AppStrings().confirm,
+            cancelText: AppStrings().cancel,
             onSubmit: (val) {
               PickerDateRange selection = val as PickerDateRange;
               if (selection.startDate != null && selection.endDate != null) {

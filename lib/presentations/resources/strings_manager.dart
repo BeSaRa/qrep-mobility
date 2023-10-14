@@ -1,55 +1,54 @@
 import 'package:easy_localization/easy_localization.dart';
 
 class AppStrings {
-  static String test = 'test';
+  String test = 'test';
 
   //main scaffold locals
-  static String main = 'main'.tr();
-  static String rent = 'rent'.tr();
-  static String sell = 'sell'.tr();
-  static String mortgage = 'mortgage'.tr();
-  static String more = 'more'.tr();
+  String main = 'main'.tr();
+  String rent = 'rent'.tr();
+  String sell = 'sell'.tr();
+  String mortgage = 'mortgage'.tr();
+  String more = 'more'.tr();
 
   //rent
-  static String totalRentalContractsNumber =
-  'total_rental_contracts_number'.tr();
-  static String totalPropertiesUnitsRented =
-  'the_total_number_of_properties_units_rented'.tr();
-  static String averageRentalPricePerUnitProperty =
-  'average_rental_price_per_unit_property'.tr();
-  static String totalValueOfLeaseContracts =
-  'the_total_value_of_lease_contracts'.tr();
 
-  static String rentContractList = 'rent_contract_list'.tr();
+  String currentPerformanceSummary = "current_performance_summary".tr();
 
-  static String rentArea = 'rent_area'.tr();
-  static String roomsCount = 'room_count'.tr();
-  static String rentValue = 'rent_value'.tr();
-  static String currency = "currency".tr();
+  String totalRentalContractsNumber = 'total_rental_contracts_number'.tr();
+  String totalPropertiesUnitsRented =
+      'the_total_number_of_properties_units_rented'.tr();
+  String averageRentalPricePerUnitProperty =
+      'average_rental_price_per_unit_property'.tr();
+  String totalValueOfLeaseContracts = 'the_total_value_of_lease_contracts'.tr();
+
+  String rentContractList = 'rent_contract_list'.tr();
+
+  String rentArea = 'rent_area'.tr();
+  String roomsCount = 'room_count'.tr();
+  String rentValue = 'rent_value'.tr();
+  String currency = "currency".tr();
 
   //more view locals
-  static String moreTitle = 'more_title'.tr();
-  static String support = 'support'.tr();
-  static String watchList = 'my_watch_list'.tr();
-  static String login = 'login'.tr();
-  static String theme = 'theme'.tr();
-  static String language = 'language'.tr();
-  static String dark = 'dark'.tr();
-  static String light = 'light'.tr();
-  static String confirm = 'confirm'.tr();
-  static String cancel = 'cancel'.tr();
-  static String dataBeingCollectedAndAudited =
-  'data_is_being_collected_and_audited'.tr();
+  String moreTitle = 'more_title'.tr();
+  String support = 'support'.tr();
+  String watchList = 'my_watch_list'.tr();
+  String login = 'login'.tr();
+  String theme = 'theme'.tr();
+  String language = 'language'.tr();
+  String dark = 'dark'.tr();
+  String light = 'light'.tr();
+  String confirm = 'confirm'.tr();
+  String cancel = 'cancel'.tr();
+  String dataBeingCollectedAndAudited =
+      'data_is_being_collected_and_audited'.tr();
 
   //login view locals
-  static String userName = 'user_name'.tr();
-  static String password = 'password'.tr();
-  static String forgetPassword = 'forget_password'.tr();
-  static String activateFaceId = 'activate_face_id'.tr();
+  String userName = 'user_name'.tr();
+  String password = 'password'.tr();
+  String forgetPassword = 'forget_password'.tr();
+  String activateFaceId = 'activate_face_id'.tr();
 
   //Errors
-  static String noInternetError = 'noInternetError'.tr();
-  static String defaultError = 'defaultError'.tr();
-
-
+  String noInternetError = 'noInternetError'.tr();
+  String defaultError = 'defaultError'.tr();
 }
