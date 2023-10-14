@@ -11,11 +11,11 @@ part 'rent_summery_state.dart';
 
 class RentSummeryBloc extends Bloc<RentSummeryEvent, RentSummeryState> {
   final RentSummeryUseCase rentSummeryUseCase;
-  RentListSummary? loockUpRent;
+  RentListSummary? rentSummery;
 
   RentSummeryBloc(this.rentSummeryUseCase) : super(const _Initial()) {
     on<RentSummeryEvent>((event, emit) async {
-      event.map(
+      await event.map(
         getRentSummary: (_RentSummaryEvent value) async {
           emit(state.copyWith(
             isLoadingRentSummery: true,
@@ -25,7 +25,7 @@ class RentSummeryBloc extends Bloc<RentSummeryEvent, RentSummeryState> {
           final failureOrSuccess =
               await rentSummeryUseCase.execute(event.request);
           failureOrSuccess.when((success) {
-            loockUpRent = success;
+            rentSummery = success;
             emit(
               state.copyWith(
                 rentSummery: success,
@@ -34,6 +34,7 @@ class RentSummeryBloc extends Bloc<RentSummeryEvent, RentSummeryState> {
               ),
             );
           }, (error) {
+            print("this is the error $error");
             emit(
               state.copyWith(
                 isLoadingRentSummery: false,

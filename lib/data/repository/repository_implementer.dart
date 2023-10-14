@@ -228,11 +228,14 @@ class RepositoryImplementer extends Repository {
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
+          print("the error in else ");
           return Error(FailureModel.fromJson(response.response.data));
         }
       } on DioException catch (e) {
+        print("the error in dio $e");
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
+        print("the error in out dio $e");
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {

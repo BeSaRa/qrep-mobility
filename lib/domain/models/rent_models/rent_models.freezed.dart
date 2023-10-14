@@ -2709,7 +2709,7 @@ RentListSummary _$RentListSummaryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RentListSummary {
-  dynamic get count => throw _privateConstructorUsedError;
+  int get count => throw _privateConstructorUsedError;
   List<RentSummaryObject> get transactionList =>
       throw _privateConstructorUsedError;
 
@@ -2725,7 +2725,7 @@ abstract class $RentListSummaryCopyWith<$Res> {
           RentListSummary value, $Res Function(RentListSummary) then) =
       _$RentListSummaryCopyWithImpl<$Res, RentListSummary>;
   @useResult
-  $Res call({dynamic count, List<RentSummaryObject> transactionList});
+  $Res call({int count, List<RentSummaryObject> transactionList});
 }
 
 /// @nodoc
@@ -2741,14 +2741,14 @@ class _$RentListSummaryCopyWithImpl<$Res, $Val extends RentListSummary>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? count = freezed,
+    Object? count = null,
     Object? transactionList = null,
   }) {
     return _then(_value.copyWith(
-      count: freezed == count
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as int,
       transactionList: null == transactionList
           ? _value.transactionList
           : transactionList // ignore: cast_nullable_to_non_nullable
@@ -2765,7 +2765,7 @@ abstract class _$$RentListSummaryImplCopyWith<$Res>
       __$$RentListSummaryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({dynamic count, List<RentSummaryObject> transactionList});
+  $Res call({int count, List<RentSummaryObject> transactionList});
 }
 
 /// @nodoc
@@ -2779,11 +2779,14 @@ class __$$RentListSummaryImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? count = freezed,
+    Object? count = null,
     Object? transactionList = null,
   }) {
     return _then(_$RentListSummaryImpl(
-      count: freezed == count ? _value.count! : count,
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
       transactionList: null == transactionList
           ? _value._transactionList
           : transactionList // ignore: cast_nullable_to_non_nullable
@@ -2805,7 +2808,7 @@ class _$RentListSummaryImpl implements _RentListSummary {
 
   @override
   @JsonKey()
-  final dynamic count;
+  final int count;
   final List<RentSummaryObject> _transactionList;
   @override
   @JsonKey()
@@ -2825,16 +2828,14 @@ class _$RentListSummaryImpl implements _RentListSummary {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RentListSummaryImpl &&
-            const DeepCollectionEquality().equals(other.count, count) &&
+            (identical(other.count, count) || other.count == count) &&
             const DeepCollectionEquality()
                 .equals(other._transactionList, _transactionList));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(count),
+  int get hashCode => Object.hash(runtimeType, count,
       const DeepCollectionEquality().hash(_transactionList));
 
   @JsonKey(ignore: true)
@@ -2854,14 +2855,14 @@ class _$RentListSummaryImpl implements _RentListSummary {
 
 abstract class _RentListSummary implements RentListSummary {
   const factory _RentListSummary(
-      {final dynamic count,
+      {final int count,
       final List<RentSummaryObject> transactionList}) = _$RentListSummaryImpl;
 
   factory _RentListSummary.fromJson(Map<String, dynamic> json) =
       _$RentListSummaryImpl.fromJson;
 
   @override
-  dynamic get count;
+  int get count;
   @override
   List<RentSummaryObject> get transactionList;
   @override
@@ -2876,15 +2877,15 @@ RentSummaryObject _$RentSummaryObjectFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RentSummaryObject {
-  int get area => throw _privateConstructorUsedError;
+  double get area => throw _privateConstructorUsedError;
   int get bedRoomsCount => throw _privateConstructorUsedError;
   String get endDate => throw _privateConstructorUsedError;
   int get issueYear => throw _privateConstructorUsedError;
   int get municipalityid => throw _privateConstructorUsedError;
   int get propertyTypeId => throw _privateConstructorUsedError;
-  int get rentPaymentMeterMT => throw _privateConstructorUsedError;
-  int get rentPaymentMeterSQT => throw _privateConstructorUsedError;
-  int get rentPaymentMonthly => throw _privateConstructorUsedError;
+  double get rentPaymentMeterMT => throw _privateConstructorUsedError;
+  double get rentPaymentMeterSQT => throw _privateConstructorUsedError;
+  double get rentPaymentMonthly => throw _privateConstructorUsedError;
   String get startDate => throw _privateConstructorUsedError;
   String get unitBroker => throw _privateConstructorUsedError;
   String get unitNo => throw _privateConstructorUsedError;
@@ -2904,15 +2905,15 @@ abstract class $RentSummaryObjectCopyWith<$Res> {
       _$RentSummaryObjectCopyWithImpl<$Res, RentSummaryObject>;
   @useResult
   $Res call(
-      {int area,
+      {double area,
       int bedRoomsCount,
       String endDate,
       int issueYear,
       int municipalityid,
       int propertyTypeId,
-      int rentPaymentMeterMT,
-      int rentPaymentMeterSQT,
-      int rentPaymentMonthly,
+      double rentPaymentMeterMT,
+      double rentPaymentMeterSQT,
+      double rentPaymentMonthly,
       String startDate,
       String unitBroker,
       String unitNo,
@@ -2952,7 +2953,7 @@ class _$RentSummaryObjectCopyWithImpl<$Res, $Val extends RentSummaryObject>
       area: null == area
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       bedRoomsCount: null == bedRoomsCount
           ? _value.bedRoomsCount
           : bedRoomsCount // ignore: cast_nullable_to_non_nullable
@@ -2976,15 +2977,15 @@ class _$RentSummaryObjectCopyWithImpl<$Res, $Val extends RentSummaryObject>
       rentPaymentMeterMT: null == rentPaymentMeterMT
           ? _value.rentPaymentMeterMT
           : rentPaymentMeterMT // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       rentPaymentMeterSQT: null == rentPaymentMeterSQT
           ? _value.rentPaymentMeterSQT
           : rentPaymentMeterSQT // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       rentPaymentMonthly: null == rentPaymentMonthly
           ? _value.rentPaymentMonthly
           : rentPaymentMonthly // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       startDate: null == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -3018,15 +3019,15 @@ abstract class _$$RentSummaryObjectImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int area,
+      {double area,
       int bedRoomsCount,
       String endDate,
       int issueYear,
       int municipalityid,
       int propertyTypeId,
-      int rentPaymentMeterMT,
-      int rentPaymentMeterSQT,
-      int rentPaymentMonthly,
+      double rentPaymentMeterMT,
+      double rentPaymentMeterSQT,
+      double rentPaymentMonthly,
       String startDate,
       String unitBroker,
       String unitNo,
@@ -3064,7 +3065,7 @@ class __$$RentSummaryObjectImplCopyWithImpl<$Res>
       area: null == area
           ? _value.area
           : area // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       bedRoomsCount: null == bedRoomsCount
           ? _value.bedRoomsCount
           : bedRoomsCount // ignore: cast_nullable_to_non_nullable
@@ -3088,15 +3089,15 @@ class __$$RentSummaryObjectImplCopyWithImpl<$Res>
       rentPaymentMeterMT: null == rentPaymentMeterMT
           ? _value.rentPaymentMeterMT
           : rentPaymentMeterMT // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       rentPaymentMeterSQT: null == rentPaymentMeterSQT
           ? _value.rentPaymentMeterSQT
           : rentPaymentMeterSQT // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       rentPaymentMonthly: null == rentPaymentMonthly
           ? _value.rentPaymentMonthly
           : rentPaymentMonthly // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       startDate: null == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -3145,7 +3146,7 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
 
   @override
   @JsonKey()
-  final int area;
+  final double area;
   @override
   @JsonKey()
   final int bedRoomsCount;
@@ -3163,13 +3164,13 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
   final int propertyTypeId;
   @override
   @JsonKey()
-  final int rentPaymentMeterMT;
+  final double rentPaymentMeterMT;
   @override
   @JsonKey()
-  final int rentPaymentMeterSQT;
+  final double rentPaymentMeterSQT;
   @override
   @JsonKey()
-  final int rentPaymentMonthly;
+  final double rentPaymentMonthly;
   @override
   @JsonKey()
   final String startDate;
@@ -3259,15 +3260,15 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
 
 abstract class _RentSummaryObject implements RentSummaryObject {
   const factory _RentSummaryObject(
-      {final int area,
+      {final double area,
       final int bedRoomsCount,
       final String endDate,
       final int issueYear,
       final int municipalityid,
       final int propertyTypeId,
-      final int rentPaymentMeterMT,
-      final int rentPaymentMeterSQT,
-      final int rentPaymentMonthly,
+      final double rentPaymentMeterMT,
+      final double rentPaymentMeterSQT,
+      final double rentPaymentMonthly,
       final String startDate,
       final String unitBroker,
       final String unitNo,
@@ -3278,7 +3279,7 @@ abstract class _RentSummaryObject implements RentSummaryObject {
       _$RentSummaryObjectImpl.fromJson;
 
   @override
-  int get area;
+  double get area;
   @override
   int get bedRoomsCount;
   @override
@@ -3290,11 +3291,11 @@ abstract class _RentSummaryObject implements RentSummaryObject {
   @override
   int get propertyTypeId;
   @override
-  int get rentPaymentMeterMT;
+  double get rentPaymentMeterMT;
   @override
-  int get rentPaymentMeterSQT;
+  double get rentPaymentMeterSQT;
   @override
-  int get rentPaymentMonthly;
+  double get rentPaymentMonthly;
   @override
   String get startDate;
   @override

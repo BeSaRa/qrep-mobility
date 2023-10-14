@@ -15,6 +15,7 @@ class ImageAssets {
       "${IMAGE_PATH}total_val_rent_contracts.svg";
   static const String averageRentUnitPrice =
       "${IMAGE_PATH}average_rent_unit_price.svg";
+
   //------------------------------------------------
   static const String quatarTowerCitySplash =
       '${IMAGE_PATH}qatar_city_tower_splash.png';
@@ -22,8 +23,10 @@ class ImageAssets {
       '${IMAGE_PATH}ministry_of_municiplaity.png';
   static const String splashBackground = '${IMAGE_PATH}splash_backgroudn.png';
   static const String test = '${IMAGE_PATH}qq.png';
+
   static const String appbarBg = "${IMAGE_PATH}bg_appbar.svg";
   static const String comingSoon = "${IMAGE_PATH}coming-soon.json";
+  static const String animationError = "${IMAGE_PATH}animation_error.json";
 }
 
 class IconAssets {

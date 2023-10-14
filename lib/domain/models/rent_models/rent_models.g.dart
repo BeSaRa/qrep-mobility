@@ -283,7 +283,7 @@ Map<String, dynamic> _$$MeanAreaResponseImplToJson(
 _$RentListSummaryImpl _$$RentListSummaryImplFromJson(
         Map<String, dynamic> json) =>
     _$RentListSummaryImpl(
-      count: json['count'] ?? 0,
+      count: json['count'] as int? ?? 0,
       transactionList: (json['transactionList'] as List<dynamic>?)
               ?.map(
                   (e) => RentSummaryObject.fromJson(e as Map<String, dynamic>))
@@ -301,15 +301,16 @@ Map<String, dynamic> _$$RentListSummaryImplToJson(
 _$RentSummaryObjectImpl _$$RentSummaryObjectImplFromJson(
         Map<String, dynamic> json) =>
     _$RentSummaryObjectImpl(
-      area: json['area'] as int? ?? 0,
+      area: (json['area'] as num?)?.toDouble() ?? 0,
       bedRoomsCount: json['bedRoomsCount'] as int? ?? 0,
       endDate: json['endDate'] as String? ?? '',
       issueYear: json['issueYear'] as int? ?? 0,
       municipalityid: json['municipalityid'] as int? ?? 0,
       propertyTypeId: json['propertyTypeId'] as int? ?? 0,
-      rentPaymentMeterMT: json['rentPaymentMeterMT'] as int? ?? 0,
-      rentPaymentMeterSQT: json['rentPaymentMeterSQT'] as int? ?? 0,
-      rentPaymentMonthly: json['rentPaymentMonthly'] as int? ?? 0,
+      rentPaymentMeterMT: (json['rentPaymentMeterMT'] as num?)?.toDouble() ?? 0,
+      rentPaymentMeterSQT:
+          (json['rentPaymentMeterSQT'] as num?)?.toDouble() ?? 0,
+      rentPaymentMonthly: (json['rentPaymentMonthly'] as num?)?.toDouble() ?? 0,
       startDate: json['startDate'] as String? ?? '',
       unitBroker: json['unitBroker'] as String? ?? '',
       unitNo: json['unitNo'] as String? ?? '',

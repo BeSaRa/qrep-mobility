@@ -140,7 +140,7 @@ abstract class MeanAreaResponse with _$MeanAreaResponse {
 @freezed
 abstract class RentListSummary with _$RentListSummary {
   const factory RentListSummary(
-      {@Default(0) count,
+      {@Default(0) int count,
       @Default([]) List<RentSummaryObject> transactionList}) = _RentListSummary;
 
   factory RentListSummary.fromJson(Map<String, dynamic> json) =>
@@ -150,15 +150,15 @@ abstract class RentListSummary with _$RentListSummary {
 @freezed
 abstract class RentSummaryObject with _$RentSummaryObject {
   const factory RentSummaryObject(
-      {@Default(0) int area,
+      {@Default(0) double area,
       @Default(0) int bedRoomsCount,
       @Default('') String endDate,
       @Default(0) int issueYear,
       @Default(0) int municipalityid,
       @Default(0) int propertyTypeId,
-      @Default(0) int rentPaymentMeterMT,
-      @Default(0) int rentPaymentMeterSQT,
-      @Default(0) int rentPaymentMonthly,
+      @Default(0) double rentPaymentMeterMT,
+      @Default(0) double rentPaymentMeterSQT,
+      @Default(0) double rentPaymentMonthly,
       @Default('') String startDate,
       @Default('') String unitBroker,
       @Default('') String unitNo,

@@ -17,6 +17,9 @@ class AppStrings {
   String averageRentalPricePerUnitProperty =
       'average_rental_price_per_unit_property'.tr();
   String totalValueOfLeaseContracts = 'the_total_value_of_lease_contracts'.tr();
+  String rentArea = 'rent_area'.tr();
+  String roomsCount = 'room_count'.tr();
+  String rentValue = 'rent_value'.tr();
 
   //more view locals
   String moreTitle = 'more_title'.tr();
