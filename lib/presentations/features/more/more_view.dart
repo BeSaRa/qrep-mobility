@@ -38,7 +38,7 @@ class _MoreViewState extends State<MoreView> {
       appBar: const TitleAppBar(),
       body: Column(
         children: [
-          Container(
+          SizedBox(
             height: MediaQuery.of(context).size.height / 3.50,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -168,7 +168,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: SizedBox(
                   height: AppSizeH.s50,
                   child: Text(
-                    AppStrings().moreTitle,
+                    AppStrings.moreTitle,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -187,7 +187,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: Row(
                   children: [
                     Text(
-                      AppStrings().support,
+                      AppStrings.support,
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     SizedBox(

@@ -22,7 +22,7 @@
   "confirm": "Confirm",
   "cancel": "Cancel",
   "data_is_being_collected_and_audited": "Data is being collected and audited",
-  "----------------------------------------------------RENT--------------------------":"",
+  "----------------------------------------------------RENT--------------------------": "",
   "total_rental_contracts_number": "The total number of lease contracts",
   "the_total_number_of_properties_units_rented": "The total number of properties / units rented",
   "average_rental_price_per_unit_property": "Average rental price per unit / property",
@@ -31,6 +31,7 @@
   "rent_area": "Area",
   "room_count": "Rooms",
   "rent_value": "Rent Value",
+  "currency": "QARََ",
   "----------------------------------------------------SELL--------------------------": "",
   "----------------------------------------------------MORTGAGE--------------------------": "",
   "----------------------------------------------------OWNERSHIP--------------------------": ""

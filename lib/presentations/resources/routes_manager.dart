@@ -62,7 +62,11 @@ class AppRouter {
               GoRoute(
                 path: RoutesPaths.rent,
                 name: RoutesNames.rent,
-                builder: (context, state) => const RentView(),
+                builder: (context, state) => BlocProvider(
+                  create: (context) => instance<RentBloc>()
+                    ..add(const RentEvent.getRentLookupEvent()),
+                  child: const RentView(),
+                ),
               ),
             ]),
             StatefulShellBranch(routes: [

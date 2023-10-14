@@ -108,35 +108,45 @@ class _RentViewState extends State<RentView> {
                   return ListView.builder(
                       itemCount: 3,
                       shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         //todo check the location
                         return MainDataContainer(
-                          title: AppStrings().rentValue,
-                          totalPrice: state.rentSummery.transactionList[index]
-                              .rentPaymentMeterMT
-                              .toStringAsFixed(4),
+                          title: AppStrings.rentValue,
+                          totalPrice:
+                              "${state.rentSummery.transactionList[index].rentPaymentMeterMT.toStringAsFixed(3)} ${AppStrings.currency} ",
                           value: state.rentSummery.transactionList[index].area
                               .toStringAsFixed(0),
-                          valueDescription: AppStrings().rentArea,
-                          titleInfo: AppStrings().roomsCount,
+                          valueDescription: AppStrings.rentArea,
+                          titleInfo: AppStrings.roomsCount,
                           valueInfo: state
                               .rentSummery.transactionList[index].bedRoomsCount
                               .toString(),
-                          location: context.locale == ARABIC_LOCAL ?
-                          getObjectById(context
-                              .read<RentBloc>()
-                              .loockUpRent
-                              ?.municipalityList ?? [],
-                              state
-                                  .rentSummery.transactionList[index]
-                                  .municipalityid)!.arName : getObjectById(
-                              context
-                                  .read<RentBloc>()
-                                  .loockUpRent
-                                  ?.municipalityList ?? [],
-                              state
-                                  .rentSummery.transactionList[index]
-                                  .municipalityid)!.enName,
+                          location: context.locale == ARABIC_LOCAL
+                              ? getObjectById(
+                                          context
+                                                  .read<RentBloc>()
+                                                  .loockUpRent
+                                                  ?.municipalityList ??
+                                              [],
+                                          state
+                                              .rentSummery
+                                              .transactionList[index]
+                                              .municipalityid)
+                                      ?.arName ??
+                                  ''
+                              : getObjectById(
+                                          context
+                                                  .read<RentBloc>()
+                                                  .loockUpRent
+                                                  ?.municipalityList ??
+                                              [],
+                                          state
+                                              .rentSummery
+                                              .transactionList[index]
+                                              .municipalityid)
+                                      ?.enName ??
+                                  '',
                         );
                       });
                 }

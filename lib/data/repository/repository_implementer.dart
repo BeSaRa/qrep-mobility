@@ -211,10 +211,10 @@ class RepositoryImplementer extends Repository {
         if (kDebugMode) {
           print(e);
         }
-        return Error(FailureModel(message: AppStrings().defaultError));
+        return Error(FailureModel(message: AppStrings.defaultError));
       }
     } else {
-      return Error(FailureModel(message: AppStrings().noInternetError));
+      return Error(FailureModel(message: AppStrings.noInternetError));
     }
   }
 
@@ -236,7 +236,7 @@ class RepositoryImplementer extends Repository {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
         print("the error in out dio $e");
-        return Error(FailureModel(message: AppStrings().defaultError));
+        return Error(FailureModel(message: AppStrings.defaultError));
       }
     } else {
       return Error(FailureModel(message: AppStrings.noInternetError));
