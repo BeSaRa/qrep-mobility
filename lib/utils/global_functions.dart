@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../domain/models/rent_models/rent_models.dart';
 
@@ -15,6 +16,17 @@ RentLookupModel? getObjectById(List<RentLookupModel> objects, int id) {
 RentLookupModel? getObjectByLookupKey(List<RentLookupModel> objects, int id) {
   RentLookupModel item = objects.firstWhere((item) => item.lookupKey == id,
       orElse: () => const RentLookupModel());
+  if (item != const RentLookupModel()) {
+    return item;
+  } else {
+    return null;
+  }
+}
+
+PeriodTimeDetails? getObjectByList(
+    List<PeriodTimeDetails> objects, List<int> value) {
+  PeriodTimeDetails item = objects.firstWhere((item) => item.value == value,
+      orElse: () => const PeriodTimeDetails());
   if (item != const RentLookupModel()) {
     return item;
   } else {
@@ -39,11 +51,12 @@ List<int> generateYears(int startYear, int endYear) {
   return years;
 }
 
-List<PeriodTimeDetails> getAllMonthsInYear() {
+List<PeriodTimeDetails> getAllMonthsInYear(BuildContext context) {
   List<PeriodTimeDetails> months = [];
   for (int i = 1; i <= 12; i++) {
     DateTime date = DateTime(DateTime.now().year, i);
-    String monthName = DateFormat('MMMM').format(date);
+    String monthName =
+        DateFormat('MMMM', context.locale.toString()).format(date);
     months.add(PeriodTimeDetails(name: monthName, value: [i]));
   }
   return months;

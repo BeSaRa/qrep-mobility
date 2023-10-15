@@ -144,7 +144,7 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                   } else if (state.hasError) {
                     return Text(state.errorMessage);
                   }
-                  return Text(AppStrings.dataBeingCollectedAndAudited,
+                  return Text(AppStrings().dataBeingCollectedAndAudited,
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
