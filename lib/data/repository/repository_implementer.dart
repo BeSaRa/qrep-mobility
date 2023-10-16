@@ -131,10 +131,12 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<RentDefault, FailureModel>> getRentDefault() async {
+  Future<Result<List<RentDefault>, FailureModel>> getRentDefault(
+      RequestMeanValue requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await appServiceClient.getRentDefault();
+        final response =
+            await appServiceClient.getRentDefault(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {

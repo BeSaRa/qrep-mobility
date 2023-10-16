@@ -16,8 +16,9 @@ part 'app_api.g.dart';
 abstract class AppServiceClient {
   factory AppServiceClient(Dio dio, {String baseUrl}) = _AppServiceClient;
 
-  @GET(EndPoints.rentDefault)
-  Future<HttpResponse<RentDefault>> getRentDefault();
+  @POST(EndPoints.rentDefault)
+  Future<HttpResponse<List<RentDefault>>> getRentDefault(
+      @Body() RequestMeanValue requestMeanValue);
 
   @GET(EndPoints.lockupRent)
   Future<HttpResponse<RentLookupResponse>> getLockupRent();

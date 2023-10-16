@@ -22,6 +22,7 @@ class AppStrings {
   String totalValueOfLeaseContracts = 'the_total_value_of_lease_contracts'.tr();
 
   String rentContractList = 'rent_contract_list'.tr();
+  String rentTopTen = 'rent_top_ten'.tr();
 
   String rentArea = 'rent_area'.tr();
   String roomsCount = 'room_count'.tr();

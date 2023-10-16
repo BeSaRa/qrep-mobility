@@ -27,7 +27,7 @@ class EblaNavigationBar extends StatelessWidget {
     return BottomBar(
       fit: StackFit.expand,
       body: (context, controller) => Padding(
-        padding: EdgeInsets.only(bottom: AppSizeH.s30),
+        padding: EdgeInsets.only(bottom: AppSizeH.s80, top: AppSizeH.s10),
         child: body,
       ),
       borderRadius: BorderRadius.circular(500),

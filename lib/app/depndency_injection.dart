@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:ebla/presentations/features/rent/blocs/default_bloc/rent_default_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -82,4 +83,5 @@ Future<void> initRentModule() async {
     ),
   );
   instance.registerFactory(() => RentSummeryBloc(instance()));
+  instance.registerFactory(() => RentDefaultBloc(instance()));
 }

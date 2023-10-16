@@ -6,35 +6,35 @@ part 'rent_models.g.dart';
 @freezed
 abstract class RentDefault with _$RentDefault {
   factory RentDefault(
-      {@Default(0) int issueYear,
-      @Default(0) int kpi10PreviousYear,
-      @Default(0) int kpi10Val,
-      @Default(0) int kpi13PreviousYear,
-      @Default(0) int kpi13Val,
-      @Default(0) int kpi16PreviousYear,
-      @Default(0) int kpi16Val,
-      @Default(0) int kpi16_2PreviousYear,
-      @Default(0) int kpi16_2Val,
-      @Default(0) int kpi1PreviousYear,
-      @Default(0) int kpi1Val,
-      @Default(0) int kpi4PreviousYear,
-      @Default(0) int kpi4Val,
-      @Default(0) int kpi7PreviousYear,
-      @Default(0) int kpi7Val,
-      @Default(0) int kpiYoY1,
-      @Default(0) int kpiYoY10,
-      @Default(0) int kpiYoY10Difference,
-      @Default(0) int kpiYoY13,
-      @Default(0) int kpiYoY13Difference,
-      @Default(0) int kpiYoY16,
-      @Default(0) int kpiYoY16Difference,
-      @Default(0) int kpiYoY16_2,
-      @Default(0) int kpiYoY16_2Difference,
-      @Default(0) int kpiYoY1Difference,
-      @Default(0) int kpiYoY4,
-      @Default(0) int kpiYoY4Difference,
-      @Default(0) int kpiYoY7,
-      @Default(0) int kpiYoY7Difference}) = _RentDefault;
+      {@Default(0) int? issueYear,
+      @Default(0) double? kpi10PreviousYear,
+      @Default(0) double? kpi10Val,
+      @Default(0) double? kpi13PreviousYear,
+      @Default(0) double? kpi13Val,
+      @Default(0) double? kpi16PreviousYear,
+      @Default(0) double? kpi16Val,
+      @Default(0) double? kpi16_2PreviousYear,
+      @Default(0) double? kpi16_2Val,
+      @Default(0) double? kpi1PreviousYear,
+      @Default(0) double? kpi1Val,
+      @Default(0) double? kpi4PreviousYear,
+      @Default(0) double? kpi4Val,
+      @Default(0) double? kpi7PreviousYear,
+      @Default(0) double? kpi7Val,
+      @Default(0) double? kpiYoY1,
+      @Default(0) double? kpiYoY10,
+      @Default(0) double? kpiYoY10Difference,
+      @Default(0) double? kpiYoY13,
+      @Default(0) double? kpiYoY13Difference,
+      @Default(0) double? kpiYoY16,
+      @Default(0) double? kpiYoY16Difference,
+      @Default(0) double? kpiYoY16_2,
+      @Default(0) double? kpiYoY16_2Difference,
+      @Default(0) double? kpiYoY1Difference,
+      @Default(0) double? kpiYoY4,
+      @Default(0) double? kpiYoY4Difference,
+      @Default(0) double? kpiYoY7,
+      @Default(0) double? kpiYoY7Difference}) = _RentDefault;
 
   factory RentDefault.fromJson(Map<String, dynamic> json) =>
       _$RentDefaultFromJson(json);
@@ -123,6 +123,7 @@ abstract class PeriodTimeDetails with _$PeriodTimeDetails {
     @Default('') String name,
     @Default([]) List<int> value,
   }) = _PeriodTimeDetails;
+
   factory PeriodTimeDetails.fromJson(Map<String, dynamic> json) =>
       _$PeriodTimeDetailsFromJson(json);
 }
@@ -190,20 +191,20 @@ abstract class RentListSummary with _$RentListSummary {
 @freezed
 abstract class RentSummaryObject with _$RentSummaryObject {
   const factory RentSummaryObject(
-      {@Default(0) double area,
-      @Default(0) int bedRoomsCount,
-      @Default('') String endDate,
-      @Default(0) int issueYear,
-      @Default(0) int municipalityid,
-      @Default(0) int propertyTypeId,
-      @Default(0) double rentPaymentMeterMT,
-      @Default(0) double rentPaymentMeterSQT,
-      @Default(0) double rentPaymentMonthly,
-      @Default('') String startDate,
-      @Default('') String unitBroker,
-      @Default('') String unitNo,
-      @Default('') String unitOwner,
-      @Default('') String unitTenant}) = _RentSummaryObject;
+      {@Default(0) double? area,
+      @Default(0) int? bedRoomsCount,
+      @Default('') String? endDate,
+      @Default(0) int? issueYear,
+      @Default(0) int? municipalityid,
+      @Default(0) int? propertyTypeId,
+      @Default(0) double? rentPaymentMeterMT,
+      @Default(0) double? rentPaymentMeterSQT,
+      @Default(0) double? rentPaymentMonthly,
+      @Default('') String? startDate,
+      @Default('') String? unitBroker,
+      @Default('') String? unitNo,
+      @Default('') String? unitOwner,
+      @Default('') String? unitTenant}) = _RentSummaryObject;
 
   factory RentSummaryObject.fromJson(Map<String, dynamic> json) =>
       _$RentSummaryObjectFromJson(json);

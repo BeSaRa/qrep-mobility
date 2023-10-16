@@ -23,6 +23,7 @@ class ImageAssets {
       '${IMAGE_PATH}ministry_of_municiplaity.png';
   static const String splashBackground = '${IMAGE_PATH}splash_backgroudn.png';
   static const String test = '${IMAGE_PATH}qq.png';
+  static const String logoPng = '${IMAGE_PATH}splash_logo_trimmed.png';
 
   static const String appbarBg = "${IMAGE_PATH}bg_appbar.png";
   static const String comingSoon = "${IMAGE_PATH}coming-soon.json";
