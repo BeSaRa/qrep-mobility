@@ -1,14 +1,26 @@
+import 'dart:math';
+
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 
 import 'package:ebla/presentations/widgets/range_slider_widget.dart';
 import 'package:flutter/material.dart';
 
+typedef ValueChangedCallback = void Function(num startValue, num endValue);
+
 class RangeSliderFilterWidget extends StatefulWidget {
   final String title;
   final RangeValues rangeValues;
+  final double min;
+  final double max;
+  final ValueChangedCallback onValueChanged;
   const RangeSliderFilterWidget(
-      {super.key, required this.title, required this.rangeValues});
+      {super.key,
+      required this.title,
+      required this.rangeValues,
+      required this.onValueChanged,
+      required this.min,
+      required this.max});
 
   @override
   State<RangeSliderFilterWidget> createState() =>
@@ -35,12 +47,15 @@ class _RangeSliderFilterWidgetState extends State<RangeSliderFilterWidget> {
           children: [
             Text(widget.title, style: Theme.of(context).textTheme.labelMedium),
             RangeSliderWidget(
+                min: widget.min,
+                max: widget.max,
                 rangeValues: widget.rangeValues,
                 onChanged: (rangeValues) {
                   setState(() {
                     start = rangeValues.start;
                     end = rangeValues.end;
                   });
+                  widget.onValueChanged(start, end);
                 }),
           ],
         ),

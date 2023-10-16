@@ -1,6 +1,7 @@
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/utils/global_functions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class ValuesFiltersCubit extends Cubit<RentLookupModel> {
   ValuesFiltersCubit(super.initialState);
@@ -60,7 +61,8 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
 
   //---------------------------BedRooms Count-------------------------------
   // List<RentLookupModel> bedRoomsList = [];
-  RentLookupModel bedRoom = const RentLookupModel(id: -1, arName: "الكل");
+  // RentLookupModel bedRoom = const RentLookupModel(id: -1, arName: "الكل");
+  RentLookupModel bedRoom = const RentLookupModel();
   void changeBedRooms(RentLookupModel newBedRoom) {
     bedRoom = newBedRoom;
     emit(bedRoom);
@@ -68,7 +70,7 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
 
 //-------------------------Preiod Time---------------------------------------------
 
-  RentLookupModel periodTime = const RentLookupModel(arName: 'سنوي', id: 1);
+  RentLookupModel periodTime = const RentLookupModel();
 
   void changePeriodTime(RentLookupModel period) {
     periodTime = period;
@@ -97,8 +99,8 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
   //--------------------------quarter Year----------------------------------------
   List<PeriodTimeDetails> quarterYear = [];
 
-  PeriodTimeDetails periodTimeQuarterDetails =
-      const PeriodTimeDetails(name: 'ربع اول', value: [1]);
+  // PeriodTimeDetails periodTimeQuarterDetails =
+  //     const PeriodTimeDetails(name: 'ربع اول', value: [1]);
 
   //--------------------Month------------------------------------------------------
   void changeMonth(PeriodTimeDetails newMonth) {
@@ -118,12 +120,18 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
   }
 
   //---------------------------PaymentMonthlyPerUnit-------------------------------
-  num rentPaymentMonthlyPerUnitFrom = 0;
-  num rentPaymentMonthlyPerUnitTo = 0;
-  void changePaymentMonthlyPerUnit(num start, num end) {
-    rentPaymentMonthlyPerUnitFrom = start;
-    rentPaymentMonthlyPerUnitTo = end;
-    emit(RentLookupModel(id: start.toInt()));
-  }
+  num? rentPaymentMonthlyPerUnitFrom;
+  num? rentPaymentMonthlyPerUnitTo;
+  // void changePaymentMonthlyPerUnit(num start, num end) {
+  //   rentPaymentMonthlyPerUnitFrom = start;
+  //   rentPaymentMonthlyPerUnitTo = end;
+  //   emit(RentLookupModel(id: start.toInt(), value: end.toInt()));
+  // }
+
   //---------------------------Area-------------------------------
+  num? areaFrom;
+  num? areaTo;
+
+  //----------------------Range DateTime-------------------------
+  PickerDateRange? pickerDateRange;
 }

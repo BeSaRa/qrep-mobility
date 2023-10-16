@@ -53,10 +53,17 @@ class RentBloc extends Bloc<RentEvent, RentState> {
     issueDateQuarterList: [1, 4],
     furnitureStatus: -1,
     issueDateYear: 2023,
-    issueDateStartMonth: 1,
-    issueDateEndMonth: 10,
+    issueDateStartMonth: 4,
+    issueDateEndMonth: 5,
     zoneId: -1,
     limit: 5,
-    unit: 2,
+    periodId: 4,
+    // issueDateFrom: "2023-10-01T00:00:00.000",
+    // issueDateTo: "2023-10-04T00:00:00.000",
+
+    // rentPaymentMonthlyPerUnitFrom: 100000,
+    // rentPaymentMonthlyPerUnitTo: 700000,
+    // areaFrom: 5740103,
+    // areaTo: 25358497,
   );
 }

@@ -113,7 +113,7 @@ class _HomeViewState extends State<HomeView> {
                 child: const Text('data')),
             IconButton(
                 onPressed: () {
-                  // showDatePickerPopup(context);
+                  print(context.read<RentBloc>().requestMeanValue);
                 },
                 icon: const Icon(Icons.calendar_month)),
             BlocBuilder(

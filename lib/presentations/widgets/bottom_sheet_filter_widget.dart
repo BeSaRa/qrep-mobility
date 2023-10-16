@@ -16,7 +16,7 @@ import '../resources/values_manager.dart';
 import 'custom_elevated_button.dart';
 import 'multi_choose_dropdown.dart';
 
-enum PeriodTime { year, halfYear, quarterYear, monthly, specificPeriod }
+// enum PeriodTime { year, halfYear, quarterYear, monthly, specificPeriod }
 
 class BottomSheetFilterWidget extends StatefulWidget {
   const BottomSheetFilterWidget({
@@ -29,18 +29,49 @@ class BottomSheetFilterWidget extends StatefulWidget {
 }
 
 class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
-  PickerDateRange? pickerDateRange;
+  // PickerDateRange? pickerDateRange;
+
+  List<int>? getissueDateQuarterList(int id) {
+    switch (id) {
+      case 1:
+        return [1, 2, 3, 4];
+      case 2:
+        return valuesFiltersCubit.periodTimeHalfDetails.value;
+      case 3:
+        List<int> values = [];
+        for (var element in valuesFiltersCubit.quarterYear) {
+          values.add(element.value[0]);
+        }
+        return values;
+      //       break;
+      default:
+        return null;
+    }
+  }
+
   Widget getPeriodTimeById(
     int id,
     RentLookupResponse success,
   ) {
     switch (id) {
       case 1:
+        valuesFiltersCubit.pickerDateRange = null;
+        valuesFiltersCubit.month = const PeriodTimeDetails();
+        valuesFiltersCubit.quarterYear.clear();
+        valuesFiltersCubit.periodTimeHalfDetails = const PeriodTimeDetails();
         return const SizedBox();
       case 2:
         return BlocBuilder(
           bloc: valuesFiltersCubit,
           builder: (context, state) {
+            valuesFiltersCubit.pickerDateRange = null;
+            valuesFiltersCubit.month = const PeriodTimeDetails();
+            valuesFiltersCubit.quarterYear.clear();
+            valuesFiltersCubit.periodTimeHalfDetails ==
+                    const PeriodTimeDetails()
+                ? valuesFiltersCubit.periodTimeHalfDetails =
+                    success.halfYearList.first
+                : null;
             return SingleDropDownValue<PeriodTimeDetails>(
                 onChanged: (halfYear) {
                   valuesFiltersCubit.changehalfYear(halfYear!);
@@ -53,6 +84,10 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
         return BlocBuilder(
           bloc: valuesFiltersCubit,
           builder: (context, state) {
+            valuesFiltersCubit.pickerDateRange = null;
+            valuesFiltersCubit.month = const PeriodTimeDetails();
+            valuesFiltersCubit.periodTimeHalfDetails =
+                const PeriodTimeDetails();
             valuesFiltersCubit.quarterYear.isEmpty
                 ? valuesFiltersCubit.quarterYear
                     .add(success.quarterYearList.first)
@@ -67,9 +102,22 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
         return BlocBuilder(
           bloc: valuesFiltersCubit,
           builder: (context, state) {
+            valuesFiltersCubit.pickerDateRange = null;
+            valuesFiltersCubit.periodTimeHalfDetails =
+                const PeriodTimeDetails();
+            valuesFiltersCubit.quarterYear.clear();
             valuesFiltersCubit.months = getAllMonthsInYear(context);
             if (valuesFiltersCubit.month == const PeriodTimeDetails()) {
-              valuesFiltersCubit.month = valuesFiltersCubit.months.first;
+              context.read<RentBloc>().requestMeanValue.issueDateEndMonth !=
+                      null
+                  ? valuesFiltersCubit.month = valuesFiltersCubit.months
+                      .firstWhere((element) =>
+                          element.value[0] ==
+                          context
+                              .read<RentBloc>()
+                              .requestMeanValue
+                              .issueDateEndMonth)
+                  : valuesFiltersCubit.month = valuesFiltersCubit.months.first;
             }
 
             return SingleDropDownValue<PeriodTimeDetails>(
@@ -81,37 +129,52 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           },
         );
       case 5:
-        return Container(
-          alignment: AlignmentDirectional.centerStart,
-          height: AppSizeH.s40,
-          padding: EdgeInsets.symmetric(
-              vertical: AppSizeH.s4, horizontal: AppSizeW.s11),
-          decoration: BoxDecoration(
-              color: ColorManager.whiteSmoke,
-              borderRadius: BorderRadius.circular(AppSizeR.s5),
-              border: Border.all(width: 1, color: ColorManager.silver)),
-          child: InkWell(
-            onTap: () async {
-              pickerDateRange =
-                  await showDatePickerPopup(context, pickerDateRange);
-              setState(() {});
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: FittedBox(
-                    child: Text(
-                      '${pickerDateRange?.startDate.toFormattedString()}---${pickerDateRange?.endDate.toFormattedString()}',
-                      style: Theme.of(context).textTheme.labelSmall,
+        return BlocBuilder(
+          bloc: valuesFiltersCubit,
+          builder: (context, state) {
+            valuesFiltersCubit.month = const PeriodTimeDetails();
+            valuesFiltersCubit.periodTimeHalfDetails =
+                const PeriodTimeDetails();
+            valuesFiltersCubit.quarterYear.clear();
+            return Container(
+              alignment: AlignmentDirectional.centerStart,
+              height: AppSizeH.s40,
+              padding: EdgeInsets.symmetric(
+                  vertical: AppSizeH.s4, horizontal: AppSizeW.s11),
+              decoration: BoxDecoration(
+                  color: ColorManager.whiteSmoke,
+                  borderRadius: BorderRadius.circular(AppSizeR.s5),
+                  border: Border.all(width: 1, color: ColorManager.silver)),
+              child: InkWell(
+                onTap: () async {
+                  valuesFiltersCubit.pickerDateRange =
+                      await showDatePickerPopup(
+                          context, valuesFiltersCubit.pickerDateRange);
+                  setState(() {});
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: FittedBox(
+                        child: valuesFiltersCubit.pickerDateRange != null
+                            ? Text(
+                                '${valuesFiltersCubit.pickerDateRange?.startDate.toFormattedString()}---${valuesFiltersCubit.pickerDateRange?.endDate.toFormattedString()}',
+                                style: Theme.of(context).textTheme.labelSmall,
+                              )
+                            : Text(
+                                'حدد تاريخ',
+                                style: Theme.of(context).textTheme.labelSmall,
+                              ),
+                      ),
                     ),
-                  ),
+                    SizedBox(width: AppSizeW.s4),
+                    const Icon(Icons.calendar_month),
+                  ],
                 ),
-                SizedBox(width: AppSizeW.s4),
-                const Icon(Icons.calendar_month),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         );
 
       default:
@@ -126,7 +189,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     valuesFiltersCubit = ValuesFiltersCubit(const RentLookupModel());
     generateYears(2019, DateTime.now().year).forEach((element) {
       valuesFiltersCubit.yearsLists
-          .add(RentLookupModel(arName: element.toString()));
+          .add(RentLookupModel(arName: element.toString(), id: element));
     });
 
     valuesFiltersCubit.municapility = getObjectById(
@@ -162,10 +225,34 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           -1,
         ) ??
         const RentLookupModel();
+    valuesFiltersCubit.periodTime = getObjectById(
+          context.read<RentBloc>().loockUpRent?.periodTime ?? [],
+          context.read<RentBloc>().requestMeanValue.periodId,
+        ) ??
+        const RentLookupModel();
     valuesFiltersCubit.year = valuesFiltersCubit.yearsLists.last;
 
-    // valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom = num.parse(
-    //     context.read<RentBloc>().loockUpRent?.maxParams[1].minVal.toString());
+    valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom =
+        context.read<RentBloc>().requestMeanValue.rentPaymentMonthlyPerUnitFrom;
+    valuesFiltersCubit.rentPaymentMonthlyPerUnitTo =
+        context.read<RentBloc>().requestMeanValue.rentPaymentMonthlyPerUnitTo;
+    valuesFiltersCubit.areaFrom =
+        context.read<RentBloc>().requestMeanValue.areaFrom;
+    valuesFiltersCubit.areaTo =
+        context.read<RentBloc>().requestMeanValue.areaTo;
+
+    valuesFiltersCubit.pickerDateRange = (context
+                    .read<RentBloc>()
+                    .requestMeanValue
+                    .issueDateFrom !=
+                null &&
+            context.read<RentBloc>().requestMeanValue.issueDateTo != null)
+        ? PickerDateRange(
+            DateTime.parse(
+                context.read<RentBloc>().requestMeanValue.issueDateFrom ?? ''),
+            DateTime.parse(
+                context.read<RentBloc>().requestMeanValue.issueDateTo ?? ''))
+        : null;
     super.initState();
   }
 
@@ -199,6 +286,8 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                   onChanged: (municapility) {
                                     valuesFiltersCubit
                                         .changeMunicapility(municapility!);
+                                    valuesFiltersCubit.changeZone(
+                                        state.rentLookup.zoneList.first);
                                   },
                                   list: state.rentLookup.municipalityList);
                             },
@@ -474,29 +563,141 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
             child: const ChooseUnitWidget(),
           ),
           SizedBox(height: AppSizeH.s4),
-          const RangeSliderFilterWidget(
+          RangeSliderFilterWidget(
+              min: context
+                      .read<RentBloc>()
+                      .loockUpRent
+                      ?.maxParams[1]
+                      .minVal
+                      .toDouble() ??
+                  0,
+              max: context
+                      .read<RentBloc>()
+                      .loockUpRent
+                      ?.maxParams[1]
+                      .maxVal
+                      .toDouble() ??
+                  1000000,
+              onValueChanged: (startValue, endValue) {
+                valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom = startValue;
+                valuesFiltersCubit.rentPaymentMonthlyPerUnitTo = endValue;
+              },
               title: 'قيمه العقار من - إلى',
-              rangeValues: RangeValues(0, 1000000)),
+              rangeValues: RangeValues(
+                  valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom
+                          ?.toDouble() ??
+                      context
+                          .read<RentBloc>()
+                          .loockUpRent
+                          ?.maxParams[1]
+                          .minVal
+                          .toDouble() ??
+                      0,
+                  valuesFiltersCubit.rentPaymentMonthlyPerUnitTo?.toDouble() ??
+                      context
+                          .read<RentBloc>()
+                          .loockUpRent
+                          ?.maxParams[1]
+                          .maxVal
+                          .toDouble() ??
+                      1000000)),
           SizedBox(height: AppSizeH.s12),
-          const RangeSliderFilterWidget(
-              title: 'المساحة من - إلى', rangeValues: RangeValues(0, 1000000)),
+          RangeSliderFilterWidget(
+              min: context
+                      .read<RentBloc>()
+                      .loockUpRent
+                      ?.maxParams[0]
+                      .minVal
+                      .toDouble() ??
+                  0,
+              max: context
+                      .read<RentBloc>()
+                      .loockUpRent
+                      ?.maxParams[0]
+                      .maxVal
+                      .toDouble() ??
+                  1000000,
+              onValueChanged: (startValue, endValue) {
+                valuesFiltersCubit.areaFrom = startValue;
+                valuesFiltersCubit.areaTo = endValue;
+              },
+              title: 'المساحة من - إلى',
+              rangeValues: RangeValues(
+                  valuesFiltersCubit.areaFrom?.toDouble() ??
+                      context
+                          .read<RentBloc>()
+                          .loockUpRent
+                          ?.maxParams[0]
+                          .minVal
+                          .toDouble() ??
+                      0,
+                  valuesFiltersCubit.areaTo?.toDouble() ??
+                      context
+                          .read<RentBloc>()
+                          .loockUpRent
+                          ?.maxParams[0]
+                          .maxVal
+                          .toDouble() ??
+                      1000000)),
           SizedBox(height: AppSizeH.s12),
           Row(children: [
-            Expanded(
-              child: CustomElevatedButton(
-                isPrimary: true,
-                title: 'بحث',
-                onPress: () {
-                  print(valuesFiltersCubit.unit);
-                },
-              ),
+            BlocBuilder(
+              bloc: valuesFiltersCubit,
+              builder: (context, state) {
+                return Expanded(
+                  child: CustomElevatedButton(
+                    isPrimary: true,
+                    title: 'بحث',
+                    onPress: () {
+                      context.read<RentBloc>().requestMeanValue = context.read<RentBloc>().requestMeanValue.copyWith(
+                          areaFrom: valuesFiltersCubit.areaFrom,
+                          areaTo: valuesFiltersCubit.areaTo,
+                          bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
+                              ? 0
+                              : valuesFiltersCubit.bedRoom.id,
+                          municipalityId: valuesFiltersCubit.municapility.id,
+                          zoneId: valuesFiltersCubit.zone.lookupKey,
+                          rentPaymentMonthlyPerUnitFrom:
+                              valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom,
+                          rentPaymentMonthlyPerUnitTo:
+                              valuesFiltersCubit.rentPaymentMonthlyPerUnitTo,
+                          unit: valuesFiltersCubit.unit,
+                          issueDateYear: valuesFiltersCubit.year.id,
+                          issueDateQuarterList: getissueDateQuarterList(
+                              valuesFiltersCubit.periodTime.id),
+                          issueDateStartMonth: valuesFiltersCubit.periodTime.id == 4
+                              ? valuesFiltersCubit.month.value[0] - 1
+                              : null,
+                          issueDateEndMonth: valuesFiltersCubit.periodTime.id == 4
+                              ? valuesFiltersCubit.month.value[0]
+                              : null,
+                          periodId: valuesFiltersCubit.periodTime.id,
+                          issueDateFrom: valuesFiltersCubit.periodTime.id == 5
+                              ? valuesFiltersCubit.pickerDateRange?.startDate
+                                  ?.toIso8601String()
+                              : null,
+                          issueDateTo: valuesFiltersCubit.periodTime.id == 5
+                              ? valuesFiltersCubit.pickerDateRange?.endDate
+                                  ?.toIso8601String()
+                              : null,
+                          purposeList: valuesFiltersCubit.rentPurposeList
+                              .map((e) => e.id)
+                              .toList(),
+                          propertyTypeList:
+                              valuesFiltersCubit.propertyTypeList.map((e) => e.lookupKey).toList());
+                    },
+                  ),
+                );
+              },
             ),
             SizedBox(width: AppSizeW.s8),
             Expanded(
               child: CustomElevatedButton(
                 isPrimary: false,
                 title: 'إلغاء',
-                onPress: () {},
+                onPress: () {
+                  Navigator.of(context).pop();
+                },
               ),
             ),
           ]),

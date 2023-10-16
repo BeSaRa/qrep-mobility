@@ -36,6 +36,7 @@ _$RequestMeanValueImpl _$$RequestMeanValueImplFromJson(
       streetNo: json['streetNo'] as int?,
       zoneId: json['zoneId'] as int?,
       unit: json['unit'] as int? ?? 1,
+      periodId: json['periodId'] as int? ?? 1,
     );
 
 Map<String, dynamic> _$$RequestMeanValueImplToJson(
@@ -61,4 +62,5 @@ Map<String, dynamic> _$$RequestMeanValueImplToJson(
       'streetNo': instance.streetNo,
       'zoneId': instance.zoneId,
       'unit': instance.unit,
+      'periodId': instance.periodId,
     };
