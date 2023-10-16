@@ -12,6 +12,7 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import '../../domain/models/rent_models/rent_models.dart';
 import '../features/rent/blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
 import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
+import '../features/rent/widgets/choose_unit_filters_widget.dart';
 import '../resources/values_manager.dart';
 import 'custom_elevated_button.dart';
 import 'multi_choose_dropdown.dart';
@@ -712,96 +713,6 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           SizedBox(height: AppSizeW.s12),
         ],
       ),
-    );
-  }
-}
-
-class ChooseUnitWidget extends StatefulWidget {
-  const ChooseUnitWidget({
-    super.key,
-  });
-
-  @override
-  State<ChooseUnitWidget> createState() => _ChooseUnitWidgetState();
-}
-
-class _ChooseUnitWidgetState extends State<ChooseUnitWidget> {
-  @override
-  void initState() {
-    context.read<ValuesFiltersCubit>().unit =
-        context.read<RentBloc>().requestMeanValue.unit;
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder(
-      bloc: context.read<ValuesFiltersCubit>(),
-      builder: (context, state) {
-        return SizedBox(
-          height: AppSizeH.s36,
-          child: Row(
-            children: [
-              Expanded(
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(AppSizeR.s25),
-                  onTap: () {
-                    context.read<ValuesFiltersCubit>().changeUnit(1);
-                  },
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: context.read<ValuesFiltersCubit>().unit == 1
-                          ? ColorManager.golden
-                          : ColorManager.whiteSmoke,
-                      border: Border.all(width: 1, color: ColorManager.silver),
-                      borderRadius: BorderRadius.circular(AppSizeR.s25),
-                    ),
-                    child: Text(
-                      'متر',
-                      style: context.read<ValuesFiltersCubit>().unit == 1
-                          ? Theme.of(context).textTheme.displaySmall
-                          : Theme.of(context)
-                              .textTheme
-                              .headlineMedium!
-                              .copyWith(fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(width: AppSizeW.s8),
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    context.read<ValuesFiltersCubit>().changeUnit(2);
-                  },
-                  borderRadius: BorderRadius.circular(AppSizeR.s25),
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: context.read<ValuesFiltersCubit>().unit == 2
-                          ? ColorManager.golden
-                          : ColorManager.whiteSmoke,
-                      border: Border.all(width: 1, color: ColorManager.silver),
-                      borderRadius: BorderRadius.circular(AppSizeR.s25),
-                    ),
-                    child: Text(
-                      'قدم',
-                      style: context.read<ValuesFiltersCubit>().unit == 2
-                          ? Theme.of(context).textTheme.displaySmall
-                          : Theme.of(context)
-                              .textTheme
-                              .headlineMedium!
-                              .copyWith(fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        );
-      },
     );
   }
 }
