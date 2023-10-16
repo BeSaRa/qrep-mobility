@@ -230,7 +230,15 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           context.read<RentBloc>().requestMeanValue.periodId,
         ) ??
         const RentLookupModel();
-    valuesFiltersCubit.year = valuesFiltersCubit.yearsLists.last;
+    valuesFiltersCubit.year =
+        context.read<RentBloc>().requestMeanValue.issueDateYear != null
+            ? getObjectById(
+                  valuesFiltersCubit.yearsLists,
+                  context.read<RentBloc>().requestMeanValue.issueDateYear ??
+                      DateTime.now().year,
+                ) ??
+                valuesFiltersCubit.yearsLists.last
+            : valuesFiltersCubit.yearsLists.last;
 
     valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom =
         context.read<RentBloc>().requestMeanValue.rentPaymentMonthlyPerUnitFrom;
