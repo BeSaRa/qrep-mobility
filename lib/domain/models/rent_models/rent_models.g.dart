@@ -9,34 +9,36 @@ part of 'rent_models.dart';
 _$RentDefaultImpl _$$RentDefaultImplFromJson(Map<String, dynamic> json) =>
     _$RentDefaultImpl(
       issueYear: json['issueYear'] as int? ?? 0,
-      kpi10PreviousYear: json['kpi10PreviousYear'] as int? ?? 0,
-      kpi10Val: json['kpi10Val'] as int? ?? 0,
-      kpi13PreviousYear: json['kpi13PreviousYear'] as int? ?? 0,
-      kpi13Val: json['kpi13Val'] as int? ?? 0,
-      kpi16PreviousYear: json['kpi16PreviousYear'] as int? ?? 0,
-      kpi16Val: json['kpi16Val'] as int? ?? 0,
-      kpi16_2PreviousYear: json['kpi16_2PreviousYear'] as int? ?? 0,
-      kpi16_2Val: json['kpi16_2Val'] as int? ?? 0,
-      kpi1PreviousYear: json['kpi1PreviousYear'] as int? ?? 0,
-      kpi1Val: json['kpi1Val'] as int? ?? 0,
-      kpi4PreviousYear: json['kpi4PreviousYear'] as int? ?? 0,
-      kpi4Val: json['kpi4Val'] as int? ?? 0,
-      kpi7PreviousYear: json['kpi7PreviousYear'] as int? ?? 0,
-      kpi7Val: json['kpi7Val'] as int? ?? 0,
-      kpiYoY1: json['kpiYoY1'] as int? ?? 0,
-      kpiYoY10: json['kpiYoY10'] as int? ?? 0,
-      kpiYoY10Difference: json['kpiYoY10Difference'] as int? ?? 0,
-      kpiYoY13: json['kpiYoY13'] as int? ?? 0,
-      kpiYoY13Difference: json['kpiYoY13Difference'] as int? ?? 0,
-      kpiYoY16: json['kpiYoY16'] as int? ?? 0,
-      kpiYoY16Difference: json['kpiYoY16Difference'] as int? ?? 0,
-      kpiYoY16_2: json['kpiYoY16_2'] as int? ?? 0,
-      kpiYoY16_2Difference: json['kpiYoY16_2Difference'] as int? ?? 0,
-      kpiYoY1Difference: json['kpiYoY1Difference'] as int? ?? 0,
-      kpiYoY4: json['kpiYoY4'] as int? ?? 0,
-      kpiYoY4Difference: json['kpiYoY4Difference'] as int? ?? 0,
-      kpiYoY7: json['kpiYoY7'] as int? ?? 0,
-      kpiYoY7Difference: json['kpiYoY7Difference'] as int? ?? 0,
+      kpi10PreviousYear: (json['kpi10PreviousYear'] as num?)?.toDouble() ?? 0,
+      kpi10Val: (json['kpi10Val'] as num?)?.toDouble() ?? 0,
+      kpi13PreviousYear: (json['kpi13PreviousYear'] as num?)?.toDouble() ?? 0,
+      kpi13Val: (json['kpi13Val'] as num?)?.toDouble() ?? 0,
+      kpi16PreviousYear: (json['kpi16PreviousYear'] as num?)?.toDouble() ?? 0,
+      kpi16Val: (json['kpi16Val'] as num?)?.toDouble() ?? 0,
+      kpi16_2PreviousYear:
+          (json['kpi16_2PreviousYear'] as num?)?.toDouble() ?? 0,
+      kpi16_2Val: (json['kpi16_2Val'] as num?)?.toDouble() ?? 0,
+      kpi1PreviousYear: (json['kpi1PreviousYear'] as num?)?.toDouble() ?? 0,
+      kpi1Val: (json['kpi1Val'] as num?)?.toDouble() ?? 0,
+      kpi4PreviousYear: (json['kpi4PreviousYear'] as num?)?.toDouble() ?? 0,
+      kpi4Val: (json['kpi4Val'] as num?)?.toDouble() ?? 0,
+      kpi7PreviousYear: (json['kpi7PreviousYear'] as num?)?.toDouble() ?? 0,
+      kpi7Val: (json['kpi7Val'] as num?)?.toDouble() ?? 0,
+      kpiYoY1: (json['kpiYoY1'] as num?)?.toDouble() ?? 0,
+      kpiYoY10: (json['kpiYoY10'] as num?)?.toDouble() ?? 0,
+      kpiYoY10Difference: (json['kpiYoY10Difference'] as num?)?.toDouble() ?? 0,
+      kpiYoY13: (json['kpiYoY13'] as num?)?.toDouble() ?? 0,
+      kpiYoY13Difference: (json['kpiYoY13Difference'] as num?)?.toDouble() ?? 0,
+      kpiYoY16: (json['kpiYoY16'] as num?)?.toDouble() ?? 0,
+      kpiYoY16Difference: (json['kpiYoY16Difference'] as num?)?.toDouble() ?? 0,
+      kpiYoY16_2: (json['kpiYoY16_2'] as num?)?.toDouble() ?? 0,
+      kpiYoY16_2Difference:
+          (json['kpiYoY16_2Difference'] as num?)?.toDouble() ?? 0,
+      kpiYoY1Difference: (json['kpiYoY1Difference'] as num?)?.toDouble() ?? 0,
+      kpiYoY4: (json['kpiYoY4'] as num?)?.toDouble() ?? 0,
+      kpiYoY4Difference: (json['kpiYoY4Difference'] as num?)?.toDouble() ?? 0,
+      kpiYoY7: (json['kpiYoY7'] as num?)?.toDouble() ?? 0,
+      kpiYoY7Difference: (json['kpiYoY7Difference'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$RentDefaultImplToJson(_$RentDefaultImpl instance) =>
@@ -337,4 +339,61 @@ Map<String, dynamic> _$$MeanAreaResponseImplToJson(
       'kpiVal': instance.kpiVal,
       'kpiYoYDifference': instance.kpiYoYDifference,
       'kpiYoYVal': instance.kpiYoYVal,
+    };
+
+_$RentListSummaryImpl _$$RentListSummaryImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RentListSummaryImpl(
+      count: json['count'] as int? ?? 0,
+      transactionList: (json['transactionList'] as List<dynamic>?)
+              ?.map(
+                  (e) => RentSummaryObject.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$$RentListSummaryImplToJson(
+        _$RentListSummaryImpl instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'transactionList': instance.transactionList,
+    };
+
+_$RentSummaryObjectImpl _$$RentSummaryObjectImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RentSummaryObjectImpl(
+      area: (json['area'] as num?)?.toDouble() ?? 0,
+      bedRoomsCount: json['bedRoomsCount'] as int? ?? 0,
+      endDate: json['endDate'] as String? ?? '',
+      issueYear: json['issueYear'] as int? ?? 0,
+      municipalityid: json['municipalityid'] as int? ?? 0,
+      propertyTypeId: json['propertyTypeId'] as int? ?? 0,
+      rentPaymentMeterMT: (json['rentPaymentMeterMT'] as num?)?.toDouble() ?? 0,
+      rentPaymentMeterSQT:
+          (json['rentPaymentMeterSQT'] as num?)?.toDouble() ?? 0,
+      rentPaymentMonthly: (json['rentPaymentMonthly'] as num?)?.toDouble() ?? 0,
+      startDate: json['startDate'] as String? ?? '',
+      unitBroker: json['unitBroker'] as String? ?? '',
+      unitNo: json['unitNo'] as String? ?? '',
+      unitOwner: json['unitOwner'] as String? ?? '',
+      unitTenant: json['unitTenant'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$RentSummaryObjectImplToJson(
+        _$RentSummaryObjectImpl instance) =>
+    <String, dynamic>{
+      'area': instance.area,
+      'bedRoomsCount': instance.bedRoomsCount,
+      'endDate': instance.endDate,
+      'issueYear': instance.issueYear,
+      'municipalityid': instance.municipalityid,
+      'propertyTypeId': instance.propertyTypeId,
+      'rentPaymentMeterMT': instance.rentPaymentMeterMT,
+      'rentPaymentMeterSQT': instance.rentPaymentMeterSQT,
+      'rentPaymentMonthly': instance.rentPaymentMonthly,
+      'startDate': instance.startDate,
+      'unitBroker': instance.unitBroker,
+      'unitNo': instance.unitNo,
+      'unitOwner': instance.unitOwner,
+      'unitTenant': instance.unitTenant,
     };

@@ -16,8 +16,9 @@ part 'app_api.g.dart';
 abstract class AppServiceClient {
   factory AppServiceClient(Dio dio, {String baseUrl}) = _AppServiceClient;
 
-  @GET(EndPoints.rentDefault)
-  Future<HttpResponse<RentDefault>> getRentDefault();
+  @POST(EndPoints.rentDefault)
+  Future<HttpResponse<List<RentDefault>>> getRentDefault(
+      @Body() RequestMeanValue requestMeanValue);
 
   @GET(EndPoints.lockupRent)
   Future<HttpResponse<RentLookupResponse>> getLockupRent();
@@ -29,9 +30,11 @@ abstract class AppServiceClient {
   @POST(EndPoints.meanArea)
   Future<HttpResponse<List<MeanAreaResponse>>> meanArea(
       @Body() RequestMeanValue requestMeanValue);
+
   @POST(EndPoints.certificateCount)
   Future<HttpResponse<List<BaseRentResponse>>> certificateCount(
       @Body() RequestMeanValue requestMeanValue);
+
   @POST(EndPoints.contractCount)
   Future<HttpResponse<List<BaseRentResponse>>> contractCount(
       @Body() RequestMeanValue requestMeanValue);
@@ -46,5 +49,9 @@ abstract class AppServiceClient {
 
   @POST(EndPoints.totalRentedUnits)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalRentedUnits(
+      @Body() RequestMeanValue requestMeanValue);
+
+  @POST(EndPoints.rentSummary)
+  Future<HttpResponse<RentListSummary>> rentSummary(
       @Body() RequestMeanValue requestMeanValue);
 }

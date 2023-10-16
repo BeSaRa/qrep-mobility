@@ -28,6 +28,8 @@ class MainDataContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin:
+          EdgeInsets.symmetric(vertical: AppSizeH.s4, horizontal: AppSizeH.s20),
       padding: EdgeInsets.symmetric(vertical: AppSizeH.s12),
       decoration: BoxDecoration(
         color: ColorManager.white,

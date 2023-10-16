@@ -1,0 +1,548 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'rent_summery_bloc.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+mixin _$RentSummeryEvent {
+  RequestMeanValue get request => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(RequestMeanValue request) getRentSummary,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(RequestMeanValue request)? getRentSummary,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(RequestMeanValue request)? getRentSummary,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RentSummaryEvent value) getRentSummary,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RentSummaryEvent value)? getRentSummary,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RentSummaryEvent value)? getRentSummary,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RentSummeryEventCopyWith<RentSummeryEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RentSummeryEventCopyWith<$Res> {
+  factory $RentSummeryEventCopyWith(
+          RentSummeryEvent value, $Res Function(RentSummeryEvent) then) =
+      _$RentSummeryEventCopyWithImpl<$Res, RentSummeryEvent>;
+  @useResult
+  $Res call({RequestMeanValue request});
+
+  $RequestMeanValueCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class _$RentSummeryEventCopyWithImpl<$Res, $Val extends RentSummeryEvent>
+    implements $RentSummeryEventCopyWith<$Res> {
+  _$RentSummeryEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? request = null,
+  }) {
+    return _then(_value.copyWith(
+      request: null == request
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as RequestMeanValue,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RequestMeanValueCopyWith<$Res> get request {
+    return $RequestMeanValueCopyWith<$Res>(_value.request, (value) {
+      return _then(_value.copyWith(request: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$RentSummaryEventImplCopyWith<$Res>
+    implements $RentSummeryEventCopyWith<$Res> {
+  factory _$$RentSummaryEventImplCopyWith(_$RentSummaryEventImpl value,
+          $Res Function(_$RentSummaryEventImpl) then) =
+      __$$RentSummaryEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({RequestMeanValue request});
+
+  @override
+  $RequestMeanValueCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class __$$RentSummaryEventImplCopyWithImpl<$Res>
+    extends _$RentSummeryEventCopyWithImpl<$Res, _$RentSummaryEventImpl>
+    implements _$$RentSummaryEventImplCopyWith<$Res> {
+  __$$RentSummaryEventImplCopyWithImpl(_$RentSummaryEventImpl _value,
+      $Res Function(_$RentSummaryEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? request = null,
+  }) {
+    return _then(_$RentSummaryEventImpl(
+      request: null == request
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as RequestMeanValue,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RentSummaryEventImpl implements _RentSummaryEvent {
+  const _$RentSummaryEventImpl({required this.request});
+
+  @override
+  final RequestMeanValue request;
+
+  @override
+  String toString() {
+    return 'RentSummeryEvent.getRentSummary(request: $request)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RentSummaryEventImpl &&
+            (identical(other.request, request) || other.request == request));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, request);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RentSummaryEventImplCopyWith<_$RentSummaryEventImpl> get copyWith =>
+      __$$RentSummaryEventImplCopyWithImpl<_$RentSummaryEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(RequestMeanValue request) getRentSummary,
+  }) {
+    return getRentSummary(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(RequestMeanValue request)? getRentSummary,
+  }) {
+    return getRentSummary?.call(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(RequestMeanValue request)? getRentSummary,
+    required TResult orElse(),
+  }) {
+    if (getRentSummary != null) {
+      return getRentSummary(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RentSummaryEvent value) getRentSummary,
+  }) {
+    return getRentSummary(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RentSummaryEvent value)? getRentSummary,
+  }) {
+    return getRentSummary?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RentSummaryEvent value)? getRentSummary,
+    required TResult orElse(),
+  }) {
+    if (getRentSummary != null) {
+      return getRentSummary(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RentSummaryEvent implements RentSummeryEvent {
+  const factory _RentSummaryEvent({required final RequestMeanValue request}) =
+      _$RentSummaryEventImpl;
+
+  @override
+  RequestMeanValue get request;
+  @override
+  @JsonKey(ignore: true)
+  _$$RentSummaryEventImplCopyWith<_$RentSummaryEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$RentSummeryState {
+  bool get isLoadingRentSummery => throw _privateConstructorUsedError;
+  bool get isHasErrorRentSummery => throw _privateConstructorUsedError;
+  String get errorMessageRentSummery => throw _privateConstructorUsedError;
+  RentListSummary get rentSummery => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            bool isLoadingRentSummery,
+            bool isHasErrorRentSummery,
+            String errorMessageRentSummery,
+            RentListSummary rentSummery)
+        initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isLoadingRentSummery, bool isHasErrorRentSummery,
+            String errorMessageRentSummery, RentListSummary rentSummery)?
+        initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isLoadingRentSummery, bool isHasErrorRentSummery,
+            String errorMessageRentSummery, RentListSummary rentSummery)?
+        initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RentSummeryStateCopyWith<RentSummeryState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RentSummeryStateCopyWith<$Res> {
+  factory $RentSummeryStateCopyWith(
+          RentSummeryState value, $Res Function(RentSummeryState) then) =
+      _$RentSummeryStateCopyWithImpl<$Res, RentSummeryState>;
+  @useResult
+  $Res call(
+      {bool isLoadingRentSummery,
+      bool isHasErrorRentSummery,
+      String errorMessageRentSummery,
+      RentListSummary rentSummery});
+
+  $RentListSummaryCopyWith<$Res> get rentSummery;
+}
+
+/// @nodoc
+class _$RentSummeryStateCopyWithImpl<$Res, $Val extends RentSummeryState>
+    implements $RentSummeryStateCopyWith<$Res> {
+  _$RentSummeryStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoadingRentSummery = null,
+    Object? isHasErrorRentSummery = null,
+    Object? errorMessageRentSummery = null,
+    Object? rentSummery = null,
+  }) {
+    return _then(_value.copyWith(
+      isLoadingRentSummery: null == isLoadingRentSummery
+          ? _value.isLoadingRentSummery
+          : isLoadingRentSummery // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isHasErrorRentSummery: null == isHasErrorRentSummery
+          ? _value.isHasErrorRentSummery
+          : isHasErrorRentSummery // ignore: cast_nullable_to_non_nullable
+              as bool,
+      errorMessageRentSummery: null == errorMessageRentSummery
+          ? _value.errorMessageRentSummery
+          : errorMessageRentSummery // ignore: cast_nullable_to_non_nullable
+              as String,
+      rentSummery: null == rentSummery
+          ? _value.rentSummery
+          : rentSummery // ignore: cast_nullable_to_non_nullable
+              as RentListSummary,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RentListSummaryCopyWith<$Res> get rentSummery {
+    return $RentListSummaryCopyWith<$Res>(_value.rentSummery, (value) {
+      return _then(_value.copyWith(rentSummery: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$InitialImplCopyWith<$Res>
+    implements $RentSummeryStateCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool isLoadingRentSummery,
+      bool isHasErrorRentSummery,
+      String errorMessageRentSummery,
+      RentListSummary rentSummery});
+
+  @override
+  $RentListSummaryCopyWith<$Res> get rentSummery;
+}
+
+/// @nodoc
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$RentSummeryStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoadingRentSummery = null,
+    Object? isHasErrorRentSummery = null,
+    Object? errorMessageRentSummery = null,
+    Object? rentSummery = null,
+  }) {
+    return _then(_$InitialImpl(
+      isLoadingRentSummery: null == isLoadingRentSummery
+          ? _value.isLoadingRentSummery
+          : isLoadingRentSummery // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isHasErrorRentSummery: null == isHasErrorRentSummery
+          ? _value.isHasErrorRentSummery
+          : isHasErrorRentSummery // ignore: cast_nullable_to_non_nullable
+              as bool,
+      errorMessageRentSummery: null == errorMessageRentSummery
+          ? _value.errorMessageRentSummery
+          : errorMessageRentSummery // ignore: cast_nullable_to_non_nullable
+              as String,
+      rentSummery: null == rentSummery
+          ? _value.rentSummery
+          : rentSummery // ignore: cast_nullable_to_non_nullable
+              as RentListSummary,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl(
+      {this.isLoadingRentSummery = false,
+      this.isHasErrorRentSummery = false,
+      this.errorMessageRentSummery = '',
+      this.rentSummery = const RentListSummary()});
+
+  @override
+  @JsonKey()
+  final bool isLoadingRentSummery;
+  @override
+  @JsonKey()
+  final bool isHasErrorRentSummery;
+  @override
+  @JsonKey()
+  final String errorMessageRentSummery;
+  @override
+  @JsonKey()
+  final RentListSummary rentSummery;
+
+  @override
+  String toString() {
+    return 'RentSummeryState.initial(isLoadingRentSummery: $isLoadingRentSummery, isHasErrorRentSummery: $isHasErrorRentSummery, errorMessageRentSummery: $errorMessageRentSummery, rentSummery: $rentSummery)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitialImpl &&
+            (identical(other.isLoadingRentSummery, isLoadingRentSummery) ||
+                other.isLoadingRentSummery == isLoadingRentSummery) &&
+            (identical(other.isHasErrorRentSummery, isHasErrorRentSummery) ||
+                other.isHasErrorRentSummery == isHasErrorRentSummery) &&
+            (identical(
+                    other.errorMessageRentSummery, errorMessageRentSummery) ||
+                other.errorMessageRentSummery == errorMessageRentSummery) &&
+            (identical(other.rentSummery, rentSummery) ||
+                other.rentSummery == rentSummery));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isLoadingRentSummery,
+      isHasErrorRentSummery, errorMessageRentSummery, rentSummery);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            bool isLoadingRentSummery,
+            bool isHasErrorRentSummery,
+            String errorMessageRentSummery,
+            RentListSummary rentSummery)
+        initial,
+  }) {
+    return initial(isLoadingRentSummery, isHasErrorRentSummery,
+        errorMessageRentSummery, rentSummery);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isLoadingRentSummery, bool isHasErrorRentSummery,
+            String errorMessageRentSummery, RentListSummary rentSummery)?
+        initial,
+  }) {
+    return initial?.call(isLoadingRentSummery, isHasErrorRentSummery,
+        errorMessageRentSummery, rentSummery);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isLoadingRentSummery, bool isHasErrorRentSummery,
+            String errorMessageRentSummery, RentListSummary rentSummery)?
+        initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(isLoadingRentSummery, isHasErrorRentSummery,
+          errorMessageRentSummery, rentSummery);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Initial implements RentSummeryState {
+  const factory _Initial(
+      {final bool isLoadingRentSummery,
+      final bool isHasErrorRentSummery,
+      final String errorMessageRentSummery,
+      final RentListSummary rentSummery}) = _$InitialImpl;
+
+  @override
+  bool get isLoadingRentSummery;
+  @override
+  bool get isHasErrorRentSummery;
+  @override
+  String get errorMessageRentSummery;
+  @override
+  RentListSummary get rentSummery;
+  @override
+  @JsonKey(ignore: true)
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

@@ -12,4 +12,5 @@ class EndPoints {
       '/kpi/rent/kpi30/stats/certificate-count';
   static const String contractCount = '/kpi/rent/kpi30_1/stats/contract-count';
   static const String contractValue = '/kpi/rent/kpi7/contract-value';
+  static const String rentSummary = '/kpi/rent/kpi29/summary';
 }

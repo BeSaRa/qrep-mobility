@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:ebla/data/newtwok/failure_model/failure.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
+import 'package:flutter/foundation.dart';
 import 'package:multiple_result/src/result.dart';
 
 import '../../domain/repository/repository.dart';
@@ -91,11 +92,15 @@ class RepositoryImplementer extends Repository {
           return Error(FailureModel.fromJson(response.response.data));
         }
       } on DioException catch (e) {
-        print('ar ${e.toString()}');
+        if (kDebugMode) {
+          print('ar ${e.toString()}');
+        }
 
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        print('ar ${e.toString()}');
+        if (kDebugMode) {
+          print('ar ${e.toString()}');
+        }
 
         return Error(FailureModel(message: AppStrings().defaultError));
       }
@@ -126,10 +131,12 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<RentDefault, FailureModel>> getRentDefault() async {
+  Future<Result<List<RentDefault>, FailureModel>> getRentDefault(
+      RequestMeanValue requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await appServiceClient.getRentDefault();
+        final response =
+            await appServiceClient.getRentDefault(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -203,7 +210,34 @@ class RepositoryImplementer extends Repository {
       } on DioException catch (e) {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        print(e);
+        if (kDebugMode) {
+          print(e);
+        }
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<RentListSummary, FailureModel>> getRentSummary(
+      RequestMeanValue requestMeanValue) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.rentSummary(requestMeanValue);
+
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          print("the error in else ");
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        print("the error in dio $e");
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        print("the error in out dio $e");
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {

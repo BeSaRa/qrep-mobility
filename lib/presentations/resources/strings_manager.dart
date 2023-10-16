@@ -10,12 +10,23 @@ class AppStrings {
   String more = 'more'.tr();
 
   //rent
+
+  String currentPerformanceSummary = "current_performance_summary".tr();
+
   String totalRentalContractsNumber = 'total_rental_contracts_number'.tr();
   String totalPropertiesUnitsRented =
       'the_total_number_of_properties_units_rented'.tr();
   String averageRentalPricePerUnitProperty =
       'average_rental_price_per_unit_property'.tr();
   String totalValueOfLeaseContracts = 'the_total_value_of_lease_contracts'.tr();
+
+  String rentContractList = 'rent_contract_list'.tr();
+  String rentTopTen = 'rent_top_ten'.tr();
+
+  String rentArea = 'rent_area'.tr();
+  String roomsCount = 'room_count'.tr();
+  String rentValue = 'rent_value'.tr();
+  String currency = "currency".tr();
 
   //more view locals
   String moreTitle = 'more_title'.tr();

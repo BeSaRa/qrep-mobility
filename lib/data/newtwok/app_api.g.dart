@@ -21,14 +21,15 @@ class _AppServiceClient implements AppServiceClient {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<RentDefault>> getRentDefault() async {
+  Future<HttpResponse<List<RentDefault>>> getRentDefault(
+      RequestMeanValue requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<RentDefault>>(Options(
-      method: 'GET',
+    final _data = requestMeanValue;
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<HttpResponse<List<RentDefault>>>(Options(
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )
@@ -43,7 +44,9 @@ class _AppServiceClient implements AppServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = RentDefault.fromJson(_result.data!);
+    var value = _result.data!
+        .map((dynamic i) => RentDefault.fromJson(i as Map<String, dynamic>))
+        .toList();
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -296,6 +299,35 @@ class _AppServiceClient implements AppServiceClient {
         .map(
             (dynamic i) => BaseRentResponse.fromJson(i as Map<String, dynamic>))
         .toList();
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<RentListSummary>> rentSummary(
+      RequestMeanValue requestMeanValue) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = requestMeanValue;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<RentListSummary>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/kpi/rent/kpi29/summary',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = RentListSummary.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

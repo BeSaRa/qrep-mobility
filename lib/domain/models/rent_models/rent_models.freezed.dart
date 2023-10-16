@@ -20,35 +20,35 @@ RentDefault _$RentDefaultFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RentDefault {
-  int get issueYear => throw _privateConstructorUsedError;
-  int get kpi10PreviousYear => throw _privateConstructorUsedError;
-  int get kpi10Val => throw _privateConstructorUsedError;
-  int get kpi13PreviousYear => throw _privateConstructorUsedError;
-  int get kpi13Val => throw _privateConstructorUsedError;
-  int get kpi16PreviousYear => throw _privateConstructorUsedError;
-  int get kpi16Val => throw _privateConstructorUsedError;
-  int get kpi16_2PreviousYear => throw _privateConstructorUsedError;
-  int get kpi16_2Val => throw _privateConstructorUsedError;
-  int get kpi1PreviousYear => throw _privateConstructorUsedError;
-  int get kpi1Val => throw _privateConstructorUsedError;
-  int get kpi4PreviousYear => throw _privateConstructorUsedError;
-  int get kpi4Val => throw _privateConstructorUsedError;
-  int get kpi7PreviousYear => throw _privateConstructorUsedError;
-  int get kpi7Val => throw _privateConstructorUsedError;
-  int get kpiYoY1 => throw _privateConstructorUsedError;
-  int get kpiYoY10 => throw _privateConstructorUsedError;
-  int get kpiYoY10Difference => throw _privateConstructorUsedError;
-  int get kpiYoY13 => throw _privateConstructorUsedError;
-  int get kpiYoY13Difference => throw _privateConstructorUsedError;
-  int get kpiYoY16 => throw _privateConstructorUsedError;
-  int get kpiYoY16Difference => throw _privateConstructorUsedError;
-  int get kpiYoY16_2 => throw _privateConstructorUsedError;
-  int get kpiYoY16_2Difference => throw _privateConstructorUsedError;
-  int get kpiYoY1Difference => throw _privateConstructorUsedError;
-  int get kpiYoY4 => throw _privateConstructorUsedError;
-  int get kpiYoY4Difference => throw _privateConstructorUsedError;
-  int get kpiYoY7 => throw _privateConstructorUsedError;
-  int get kpiYoY7Difference => throw _privateConstructorUsedError;
+  int? get issueYear => throw _privateConstructorUsedError;
+  double? get kpi10PreviousYear => throw _privateConstructorUsedError;
+  double? get kpi10Val => throw _privateConstructorUsedError;
+  double? get kpi13PreviousYear => throw _privateConstructorUsedError;
+  double? get kpi13Val => throw _privateConstructorUsedError;
+  double? get kpi16PreviousYear => throw _privateConstructorUsedError;
+  double? get kpi16Val => throw _privateConstructorUsedError;
+  double? get kpi16_2PreviousYear => throw _privateConstructorUsedError;
+  double? get kpi16_2Val => throw _privateConstructorUsedError;
+  double? get kpi1PreviousYear => throw _privateConstructorUsedError;
+  double? get kpi1Val => throw _privateConstructorUsedError;
+  double? get kpi4PreviousYear => throw _privateConstructorUsedError;
+  double? get kpi4Val => throw _privateConstructorUsedError;
+  double? get kpi7PreviousYear => throw _privateConstructorUsedError;
+  double? get kpi7Val => throw _privateConstructorUsedError;
+  double? get kpiYoY1 => throw _privateConstructorUsedError;
+  double? get kpiYoY10 => throw _privateConstructorUsedError;
+  double? get kpiYoY10Difference => throw _privateConstructorUsedError;
+  double? get kpiYoY13 => throw _privateConstructorUsedError;
+  double? get kpiYoY13Difference => throw _privateConstructorUsedError;
+  double? get kpiYoY16 => throw _privateConstructorUsedError;
+  double? get kpiYoY16Difference => throw _privateConstructorUsedError;
+  double? get kpiYoY16_2 => throw _privateConstructorUsedError;
+  double? get kpiYoY16_2Difference => throw _privateConstructorUsedError;
+  double? get kpiYoY1Difference => throw _privateConstructorUsedError;
+  double? get kpiYoY4 => throw _privateConstructorUsedError;
+  double? get kpiYoY4Difference => throw _privateConstructorUsedError;
+  double? get kpiYoY7 => throw _privateConstructorUsedError;
+  double? get kpiYoY7Difference => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,35 +63,35 @@ abstract class $RentDefaultCopyWith<$Res> {
       _$RentDefaultCopyWithImpl<$Res, RentDefault>;
   @useResult
   $Res call(
-      {int issueYear,
-      int kpi10PreviousYear,
-      int kpi10Val,
-      int kpi13PreviousYear,
-      int kpi13Val,
-      int kpi16PreviousYear,
-      int kpi16Val,
-      int kpi16_2PreviousYear,
-      int kpi16_2Val,
-      int kpi1PreviousYear,
-      int kpi1Val,
-      int kpi4PreviousYear,
-      int kpi4Val,
-      int kpi7PreviousYear,
-      int kpi7Val,
-      int kpiYoY1,
-      int kpiYoY10,
-      int kpiYoY10Difference,
-      int kpiYoY13,
-      int kpiYoY13Difference,
-      int kpiYoY16,
-      int kpiYoY16Difference,
-      int kpiYoY16_2,
-      int kpiYoY16_2Difference,
-      int kpiYoY1Difference,
-      int kpiYoY4,
-      int kpiYoY4Difference,
-      int kpiYoY7,
-      int kpiYoY7Difference});
+      {int? issueYear,
+      double? kpi10PreviousYear,
+      double? kpi10Val,
+      double? kpi13PreviousYear,
+      double? kpi13Val,
+      double? kpi16PreviousYear,
+      double? kpi16Val,
+      double? kpi16_2PreviousYear,
+      double? kpi16_2Val,
+      double? kpi1PreviousYear,
+      double? kpi1Val,
+      double? kpi4PreviousYear,
+      double? kpi4Val,
+      double? kpi7PreviousYear,
+      double? kpi7Val,
+      double? kpiYoY1,
+      double? kpiYoY10,
+      double? kpiYoY10Difference,
+      double? kpiYoY13,
+      double? kpiYoY13Difference,
+      double? kpiYoY16,
+      double? kpiYoY16Difference,
+      double? kpiYoY16_2,
+      double? kpiYoY16_2Difference,
+      double? kpiYoY1Difference,
+      double? kpiYoY4,
+      double? kpiYoY4Difference,
+      double? kpiYoY7,
+      double? kpiYoY7Difference});
 }
 
 /// @nodoc
@@ -107,153 +107,153 @@ class _$RentDefaultCopyWithImpl<$Res, $Val extends RentDefault>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? issueYear = null,
-    Object? kpi10PreviousYear = null,
-    Object? kpi10Val = null,
-    Object? kpi13PreviousYear = null,
-    Object? kpi13Val = null,
-    Object? kpi16PreviousYear = null,
-    Object? kpi16Val = null,
-    Object? kpi16_2PreviousYear = null,
-    Object? kpi16_2Val = null,
-    Object? kpi1PreviousYear = null,
-    Object? kpi1Val = null,
-    Object? kpi4PreviousYear = null,
-    Object? kpi4Val = null,
-    Object? kpi7PreviousYear = null,
-    Object? kpi7Val = null,
-    Object? kpiYoY1 = null,
-    Object? kpiYoY10 = null,
-    Object? kpiYoY10Difference = null,
-    Object? kpiYoY13 = null,
-    Object? kpiYoY13Difference = null,
-    Object? kpiYoY16 = null,
-    Object? kpiYoY16Difference = null,
-    Object? kpiYoY16_2 = null,
-    Object? kpiYoY16_2Difference = null,
-    Object? kpiYoY1Difference = null,
-    Object? kpiYoY4 = null,
-    Object? kpiYoY4Difference = null,
-    Object? kpiYoY7 = null,
-    Object? kpiYoY7Difference = null,
+    Object? issueYear = freezed,
+    Object? kpi10PreviousYear = freezed,
+    Object? kpi10Val = freezed,
+    Object? kpi13PreviousYear = freezed,
+    Object? kpi13Val = freezed,
+    Object? kpi16PreviousYear = freezed,
+    Object? kpi16Val = freezed,
+    Object? kpi16_2PreviousYear = freezed,
+    Object? kpi16_2Val = freezed,
+    Object? kpi1PreviousYear = freezed,
+    Object? kpi1Val = freezed,
+    Object? kpi4PreviousYear = freezed,
+    Object? kpi4Val = freezed,
+    Object? kpi7PreviousYear = freezed,
+    Object? kpi7Val = freezed,
+    Object? kpiYoY1 = freezed,
+    Object? kpiYoY10 = freezed,
+    Object? kpiYoY10Difference = freezed,
+    Object? kpiYoY13 = freezed,
+    Object? kpiYoY13Difference = freezed,
+    Object? kpiYoY16 = freezed,
+    Object? kpiYoY16Difference = freezed,
+    Object? kpiYoY16_2 = freezed,
+    Object? kpiYoY16_2Difference = freezed,
+    Object? kpiYoY1Difference = freezed,
+    Object? kpiYoY4 = freezed,
+    Object? kpiYoY4Difference = freezed,
+    Object? kpiYoY7 = freezed,
+    Object? kpiYoY7Difference = freezed,
   }) {
     return _then(_value.copyWith(
-      issueYear: null == issueYear
+      issueYear: freezed == issueYear
           ? _value.issueYear
           : issueYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi10PreviousYear: null == kpi10PreviousYear
+              as int?,
+      kpi10PreviousYear: freezed == kpi10PreviousYear
           ? _value.kpi10PreviousYear
           : kpi10PreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi10Val: null == kpi10Val
+              as double?,
+      kpi10Val: freezed == kpi10Val
           ? _value.kpi10Val
           : kpi10Val // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi13PreviousYear: null == kpi13PreviousYear
+              as double?,
+      kpi13PreviousYear: freezed == kpi13PreviousYear
           ? _value.kpi13PreviousYear
           : kpi13PreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi13Val: null == kpi13Val
+              as double?,
+      kpi13Val: freezed == kpi13Val
           ? _value.kpi13Val
           : kpi13Val // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi16PreviousYear: null == kpi16PreviousYear
+              as double?,
+      kpi16PreviousYear: freezed == kpi16PreviousYear
           ? _value.kpi16PreviousYear
           : kpi16PreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi16Val: null == kpi16Val
+              as double?,
+      kpi16Val: freezed == kpi16Val
           ? _value.kpi16Val
           : kpi16Val // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi16_2PreviousYear: null == kpi16_2PreviousYear
+              as double?,
+      kpi16_2PreviousYear: freezed == kpi16_2PreviousYear
           ? _value.kpi16_2PreviousYear
           : kpi16_2PreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi16_2Val: null == kpi16_2Val
+              as double?,
+      kpi16_2Val: freezed == kpi16_2Val
           ? _value.kpi16_2Val
           : kpi16_2Val // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi1PreviousYear: null == kpi1PreviousYear
+              as double?,
+      kpi1PreviousYear: freezed == kpi1PreviousYear
           ? _value.kpi1PreviousYear
           : kpi1PreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi1Val: null == kpi1Val
+              as double?,
+      kpi1Val: freezed == kpi1Val
           ? _value.kpi1Val
           : kpi1Val // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi4PreviousYear: null == kpi4PreviousYear
+              as double?,
+      kpi4PreviousYear: freezed == kpi4PreviousYear
           ? _value.kpi4PreviousYear
           : kpi4PreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi4Val: null == kpi4Val
+              as double?,
+      kpi4Val: freezed == kpi4Val
           ? _value.kpi4Val
           : kpi4Val // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi7PreviousYear: null == kpi7PreviousYear
+              as double?,
+      kpi7PreviousYear: freezed == kpi7PreviousYear
           ? _value.kpi7PreviousYear
           : kpi7PreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi7Val: null == kpi7Val
+              as double?,
+      kpi7Val: freezed == kpi7Val
           ? _value.kpi7Val
           : kpi7Val // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY1: null == kpiYoY1
+              as double?,
+      kpiYoY1: freezed == kpiYoY1
           ? _value.kpiYoY1
           : kpiYoY1 // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY10: null == kpiYoY10
+              as double?,
+      kpiYoY10: freezed == kpiYoY10
           ? _value.kpiYoY10
           : kpiYoY10 // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY10Difference: null == kpiYoY10Difference
+              as double?,
+      kpiYoY10Difference: freezed == kpiYoY10Difference
           ? _value.kpiYoY10Difference
           : kpiYoY10Difference // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY13: null == kpiYoY13
+              as double?,
+      kpiYoY13: freezed == kpiYoY13
           ? _value.kpiYoY13
           : kpiYoY13 // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY13Difference: null == kpiYoY13Difference
+              as double?,
+      kpiYoY13Difference: freezed == kpiYoY13Difference
           ? _value.kpiYoY13Difference
           : kpiYoY13Difference // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY16: null == kpiYoY16
+              as double?,
+      kpiYoY16: freezed == kpiYoY16
           ? _value.kpiYoY16
           : kpiYoY16 // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY16Difference: null == kpiYoY16Difference
+              as double?,
+      kpiYoY16Difference: freezed == kpiYoY16Difference
           ? _value.kpiYoY16Difference
           : kpiYoY16Difference // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY16_2: null == kpiYoY16_2
+              as double?,
+      kpiYoY16_2: freezed == kpiYoY16_2
           ? _value.kpiYoY16_2
           : kpiYoY16_2 // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY16_2Difference: null == kpiYoY16_2Difference
+              as double?,
+      kpiYoY16_2Difference: freezed == kpiYoY16_2Difference
           ? _value.kpiYoY16_2Difference
           : kpiYoY16_2Difference // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY1Difference: null == kpiYoY1Difference
+              as double?,
+      kpiYoY1Difference: freezed == kpiYoY1Difference
           ? _value.kpiYoY1Difference
           : kpiYoY1Difference // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY4: null == kpiYoY4
+              as double?,
+      kpiYoY4: freezed == kpiYoY4
           ? _value.kpiYoY4
           : kpiYoY4 // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY4Difference: null == kpiYoY4Difference
+              as double?,
+      kpiYoY4Difference: freezed == kpiYoY4Difference
           ? _value.kpiYoY4Difference
           : kpiYoY4Difference // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY7: null == kpiYoY7
+              as double?,
+      kpiYoY7: freezed == kpiYoY7
           ? _value.kpiYoY7
           : kpiYoY7 // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY7Difference: null == kpiYoY7Difference
+              as double?,
+      kpiYoY7Difference: freezed == kpiYoY7Difference
           ? _value.kpiYoY7Difference
           : kpiYoY7Difference // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double?,
     ) as $Val);
   }
 }
@@ -267,35 +267,35 @@ abstract class _$$RentDefaultImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int issueYear,
-      int kpi10PreviousYear,
-      int kpi10Val,
-      int kpi13PreviousYear,
-      int kpi13Val,
-      int kpi16PreviousYear,
-      int kpi16Val,
-      int kpi16_2PreviousYear,
-      int kpi16_2Val,
-      int kpi1PreviousYear,
-      int kpi1Val,
-      int kpi4PreviousYear,
-      int kpi4Val,
-      int kpi7PreviousYear,
-      int kpi7Val,
-      int kpiYoY1,
-      int kpiYoY10,
-      int kpiYoY10Difference,
-      int kpiYoY13,
-      int kpiYoY13Difference,
-      int kpiYoY16,
-      int kpiYoY16Difference,
-      int kpiYoY16_2,
-      int kpiYoY16_2Difference,
-      int kpiYoY1Difference,
-      int kpiYoY4,
-      int kpiYoY4Difference,
-      int kpiYoY7,
-      int kpiYoY7Difference});
+      {int? issueYear,
+      double? kpi10PreviousYear,
+      double? kpi10Val,
+      double? kpi13PreviousYear,
+      double? kpi13Val,
+      double? kpi16PreviousYear,
+      double? kpi16Val,
+      double? kpi16_2PreviousYear,
+      double? kpi16_2Val,
+      double? kpi1PreviousYear,
+      double? kpi1Val,
+      double? kpi4PreviousYear,
+      double? kpi4Val,
+      double? kpi7PreviousYear,
+      double? kpi7Val,
+      double? kpiYoY1,
+      double? kpiYoY10,
+      double? kpiYoY10Difference,
+      double? kpiYoY13,
+      double? kpiYoY13Difference,
+      double? kpiYoY16,
+      double? kpiYoY16Difference,
+      double? kpiYoY16_2,
+      double? kpiYoY16_2Difference,
+      double? kpiYoY1Difference,
+      double? kpiYoY4,
+      double? kpiYoY4Difference,
+      double? kpiYoY7,
+      double? kpiYoY7Difference});
 }
 
 /// @nodoc
@@ -309,153 +309,153 @@ class __$$RentDefaultImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? issueYear = null,
-    Object? kpi10PreviousYear = null,
-    Object? kpi10Val = null,
-    Object? kpi13PreviousYear = null,
-    Object? kpi13Val = null,
-    Object? kpi16PreviousYear = null,
-    Object? kpi16Val = null,
-    Object? kpi16_2PreviousYear = null,
-    Object? kpi16_2Val = null,
-    Object? kpi1PreviousYear = null,
-    Object? kpi1Val = null,
-    Object? kpi4PreviousYear = null,
-    Object? kpi4Val = null,
-    Object? kpi7PreviousYear = null,
-    Object? kpi7Val = null,
-    Object? kpiYoY1 = null,
-    Object? kpiYoY10 = null,
-    Object? kpiYoY10Difference = null,
-    Object? kpiYoY13 = null,
-    Object? kpiYoY13Difference = null,
-    Object? kpiYoY16 = null,
-    Object? kpiYoY16Difference = null,
-    Object? kpiYoY16_2 = null,
-    Object? kpiYoY16_2Difference = null,
-    Object? kpiYoY1Difference = null,
-    Object? kpiYoY4 = null,
-    Object? kpiYoY4Difference = null,
-    Object? kpiYoY7 = null,
-    Object? kpiYoY7Difference = null,
+    Object? issueYear = freezed,
+    Object? kpi10PreviousYear = freezed,
+    Object? kpi10Val = freezed,
+    Object? kpi13PreviousYear = freezed,
+    Object? kpi13Val = freezed,
+    Object? kpi16PreviousYear = freezed,
+    Object? kpi16Val = freezed,
+    Object? kpi16_2PreviousYear = freezed,
+    Object? kpi16_2Val = freezed,
+    Object? kpi1PreviousYear = freezed,
+    Object? kpi1Val = freezed,
+    Object? kpi4PreviousYear = freezed,
+    Object? kpi4Val = freezed,
+    Object? kpi7PreviousYear = freezed,
+    Object? kpi7Val = freezed,
+    Object? kpiYoY1 = freezed,
+    Object? kpiYoY10 = freezed,
+    Object? kpiYoY10Difference = freezed,
+    Object? kpiYoY13 = freezed,
+    Object? kpiYoY13Difference = freezed,
+    Object? kpiYoY16 = freezed,
+    Object? kpiYoY16Difference = freezed,
+    Object? kpiYoY16_2 = freezed,
+    Object? kpiYoY16_2Difference = freezed,
+    Object? kpiYoY1Difference = freezed,
+    Object? kpiYoY4 = freezed,
+    Object? kpiYoY4Difference = freezed,
+    Object? kpiYoY7 = freezed,
+    Object? kpiYoY7Difference = freezed,
   }) {
     return _then(_$RentDefaultImpl(
-      issueYear: null == issueYear
+      issueYear: freezed == issueYear
           ? _value.issueYear
           : issueYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi10PreviousYear: null == kpi10PreviousYear
+              as int?,
+      kpi10PreviousYear: freezed == kpi10PreviousYear
           ? _value.kpi10PreviousYear
           : kpi10PreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi10Val: null == kpi10Val
+              as double?,
+      kpi10Val: freezed == kpi10Val
           ? _value.kpi10Val
           : kpi10Val // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi13PreviousYear: null == kpi13PreviousYear
+              as double?,
+      kpi13PreviousYear: freezed == kpi13PreviousYear
           ? _value.kpi13PreviousYear
           : kpi13PreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi13Val: null == kpi13Val
+              as double?,
+      kpi13Val: freezed == kpi13Val
           ? _value.kpi13Val
           : kpi13Val // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi16PreviousYear: null == kpi16PreviousYear
+              as double?,
+      kpi16PreviousYear: freezed == kpi16PreviousYear
           ? _value.kpi16PreviousYear
           : kpi16PreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi16Val: null == kpi16Val
+              as double?,
+      kpi16Val: freezed == kpi16Val
           ? _value.kpi16Val
           : kpi16Val // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi16_2PreviousYear: null == kpi16_2PreviousYear
+              as double?,
+      kpi16_2PreviousYear: freezed == kpi16_2PreviousYear
           ? _value.kpi16_2PreviousYear
           : kpi16_2PreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi16_2Val: null == kpi16_2Val
+              as double?,
+      kpi16_2Val: freezed == kpi16_2Val
           ? _value.kpi16_2Val
           : kpi16_2Val // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi1PreviousYear: null == kpi1PreviousYear
+              as double?,
+      kpi1PreviousYear: freezed == kpi1PreviousYear
           ? _value.kpi1PreviousYear
           : kpi1PreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi1Val: null == kpi1Val
+              as double?,
+      kpi1Val: freezed == kpi1Val
           ? _value.kpi1Val
           : kpi1Val // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi4PreviousYear: null == kpi4PreviousYear
+              as double?,
+      kpi4PreviousYear: freezed == kpi4PreviousYear
           ? _value.kpi4PreviousYear
           : kpi4PreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi4Val: null == kpi4Val
+              as double?,
+      kpi4Val: freezed == kpi4Val
           ? _value.kpi4Val
           : kpi4Val // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi7PreviousYear: null == kpi7PreviousYear
+              as double?,
+      kpi7PreviousYear: freezed == kpi7PreviousYear
           ? _value.kpi7PreviousYear
           : kpi7PreviousYear // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpi7Val: null == kpi7Val
+              as double?,
+      kpi7Val: freezed == kpi7Val
           ? _value.kpi7Val
           : kpi7Val // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY1: null == kpiYoY1
+              as double?,
+      kpiYoY1: freezed == kpiYoY1
           ? _value.kpiYoY1
           : kpiYoY1 // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY10: null == kpiYoY10
+              as double?,
+      kpiYoY10: freezed == kpiYoY10
           ? _value.kpiYoY10
           : kpiYoY10 // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY10Difference: null == kpiYoY10Difference
+              as double?,
+      kpiYoY10Difference: freezed == kpiYoY10Difference
           ? _value.kpiYoY10Difference
           : kpiYoY10Difference // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY13: null == kpiYoY13
+              as double?,
+      kpiYoY13: freezed == kpiYoY13
           ? _value.kpiYoY13
           : kpiYoY13 // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY13Difference: null == kpiYoY13Difference
+              as double?,
+      kpiYoY13Difference: freezed == kpiYoY13Difference
           ? _value.kpiYoY13Difference
           : kpiYoY13Difference // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY16: null == kpiYoY16
+              as double?,
+      kpiYoY16: freezed == kpiYoY16
           ? _value.kpiYoY16
           : kpiYoY16 // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY16Difference: null == kpiYoY16Difference
+              as double?,
+      kpiYoY16Difference: freezed == kpiYoY16Difference
           ? _value.kpiYoY16Difference
           : kpiYoY16Difference // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY16_2: null == kpiYoY16_2
+              as double?,
+      kpiYoY16_2: freezed == kpiYoY16_2
           ? _value.kpiYoY16_2
           : kpiYoY16_2 // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY16_2Difference: null == kpiYoY16_2Difference
+              as double?,
+      kpiYoY16_2Difference: freezed == kpiYoY16_2Difference
           ? _value.kpiYoY16_2Difference
           : kpiYoY16_2Difference // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY1Difference: null == kpiYoY1Difference
+              as double?,
+      kpiYoY1Difference: freezed == kpiYoY1Difference
           ? _value.kpiYoY1Difference
           : kpiYoY1Difference // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY4: null == kpiYoY4
+              as double?,
+      kpiYoY4: freezed == kpiYoY4
           ? _value.kpiYoY4
           : kpiYoY4 // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY4Difference: null == kpiYoY4Difference
+              as double?,
+      kpiYoY4Difference: freezed == kpiYoY4Difference
           ? _value.kpiYoY4Difference
           : kpiYoY4Difference // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY7: null == kpiYoY7
+              as double?,
+      kpiYoY7: freezed == kpiYoY7
           ? _value.kpiYoY7
           : kpiYoY7 // ignore: cast_nullable_to_non_nullable
-              as int,
-      kpiYoY7Difference: null == kpiYoY7Difference
+              as double?,
+      kpiYoY7Difference: freezed == kpiYoY7Difference
           ? _value.kpiYoY7Difference
           : kpiYoY7Difference // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double?,
     ));
   }
 }
@@ -499,91 +499,91 @@ class _$RentDefaultImpl implements _RentDefault {
 
   @override
   @JsonKey()
-  final int issueYear;
+  final int? issueYear;
   @override
   @JsonKey()
-  final int kpi10PreviousYear;
+  final double? kpi10PreviousYear;
   @override
   @JsonKey()
-  final int kpi10Val;
+  final double? kpi10Val;
   @override
   @JsonKey()
-  final int kpi13PreviousYear;
+  final double? kpi13PreviousYear;
   @override
   @JsonKey()
-  final int kpi13Val;
+  final double? kpi13Val;
   @override
   @JsonKey()
-  final int kpi16PreviousYear;
+  final double? kpi16PreviousYear;
   @override
   @JsonKey()
-  final int kpi16Val;
+  final double? kpi16Val;
   @override
   @JsonKey()
-  final int kpi16_2PreviousYear;
+  final double? kpi16_2PreviousYear;
   @override
   @JsonKey()
-  final int kpi16_2Val;
+  final double? kpi16_2Val;
   @override
   @JsonKey()
-  final int kpi1PreviousYear;
+  final double? kpi1PreviousYear;
   @override
   @JsonKey()
-  final int kpi1Val;
+  final double? kpi1Val;
   @override
   @JsonKey()
-  final int kpi4PreviousYear;
+  final double? kpi4PreviousYear;
   @override
   @JsonKey()
-  final int kpi4Val;
+  final double? kpi4Val;
   @override
   @JsonKey()
-  final int kpi7PreviousYear;
+  final double? kpi7PreviousYear;
   @override
   @JsonKey()
-  final int kpi7Val;
+  final double? kpi7Val;
   @override
   @JsonKey()
-  final int kpiYoY1;
+  final double? kpiYoY1;
   @override
   @JsonKey()
-  final int kpiYoY10;
+  final double? kpiYoY10;
   @override
   @JsonKey()
-  final int kpiYoY10Difference;
+  final double? kpiYoY10Difference;
   @override
   @JsonKey()
-  final int kpiYoY13;
+  final double? kpiYoY13;
   @override
   @JsonKey()
-  final int kpiYoY13Difference;
+  final double? kpiYoY13Difference;
   @override
   @JsonKey()
-  final int kpiYoY16;
+  final double? kpiYoY16;
   @override
   @JsonKey()
-  final int kpiYoY16Difference;
+  final double? kpiYoY16Difference;
   @override
   @JsonKey()
-  final int kpiYoY16_2;
+  final double? kpiYoY16_2;
   @override
   @JsonKey()
-  final int kpiYoY16_2Difference;
+  final double? kpiYoY16_2Difference;
   @override
   @JsonKey()
-  final int kpiYoY1Difference;
+  final double? kpiYoY1Difference;
   @override
   @JsonKey()
-  final int kpiYoY4;
+  final double? kpiYoY4;
   @override
   @JsonKey()
-  final int kpiYoY4Difference;
+  final double? kpiYoY4Difference;
   @override
   @JsonKey()
-  final int kpiYoY7;
+  final double? kpiYoY7;
   @override
   @JsonKey()
-  final int kpiYoY7Difference;
+  final double? kpiYoY7Difference;
 
   @override
   String toString() {
@@ -700,97 +700,97 @@ class _$RentDefaultImpl implements _RentDefault {
 
 abstract class _RentDefault implements RentDefault {
   factory _RentDefault(
-      {final int issueYear,
-      final int kpi10PreviousYear,
-      final int kpi10Val,
-      final int kpi13PreviousYear,
-      final int kpi13Val,
-      final int kpi16PreviousYear,
-      final int kpi16Val,
-      final int kpi16_2PreviousYear,
-      final int kpi16_2Val,
-      final int kpi1PreviousYear,
-      final int kpi1Val,
-      final int kpi4PreviousYear,
-      final int kpi4Val,
-      final int kpi7PreviousYear,
-      final int kpi7Val,
-      final int kpiYoY1,
-      final int kpiYoY10,
-      final int kpiYoY10Difference,
-      final int kpiYoY13,
-      final int kpiYoY13Difference,
-      final int kpiYoY16,
-      final int kpiYoY16Difference,
-      final int kpiYoY16_2,
-      final int kpiYoY16_2Difference,
-      final int kpiYoY1Difference,
-      final int kpiYoY4,
-      final int kpiYoY4Difference,
-      final int kpiYoY7,
-      final int kpiYoY7Difference}) = _$RentDefaultImpl;
+      {final int? issueYear,
+      final double? kpi10PreviousYear,
+      final double? kpi10Val,
+      final double? kpi13PreviousYear,
+      final double? kpi13Val,
+      final double? kpi16PreviousYear,
+      final double? kpi16Val,
+      final double? kpi16_2PreviousYear,
+      final double? kpi16_2Val,
+      final double? kpi1PreviousYear,
+      final double? kpi1Val,
+      final double? kpi4PreviousYear,
+      final double? kpi4Val,
+      final double? kpi7PreviousYear,
+      final double? kpi7Val,
+      final double? kpiYoY1,
+      final double? kpiYoY10,
+      final double? kpiYoY10Difference,
+      final double? kpiYoY13,
+      final double? kpiYoY13Difference,
+      final double? kpiYoY16,
+      final double? kpiYoY16Difference,
+      final double? kpiYoY16_2,
+      final double? kpiYoY16_2Difference,
+      final double? kpiYoY1Difference,
+      final double? kpiYoY4,
+      final double? kpiYoY4Difference,
+      final double? kpiYoY7,
+      final double? kpiYoY7Difference}) = _$RentDefaultImpl;
 
   factory _RentDefault.fromJson(Map<String, dynamic> json) =
       _$RentDefaultImpl.fromJson;
 
   @override
-  int get issueYear;
+  int? get issueYear;
   @override
-  int get kpi10PreviousYear;
+  double? get kpi10PreviousYear;
   @override
-  int get kpi10Val;
+  double? get kpi10Val;
   @override
-  int get kpi13PreviousYear;
+  double? get kpi13PreviousYear;
   @override
-  int get kpi13Val;
+  double? get kpi13Val;
   @override
-  int get kpi16PreviousYear;
+  double? get kpi16PreviousYear;
   @override
-  int get kpi16Val;
+  double? get kpi16Val;
   @override
-  int get kpi16_2PreviousYear;
+  double? get kpi16_2PreviousYear;
   @override
-  int get kpi16_2Val;
+  double? get kpi16_2Val;
   @override
-  int get kpi1PreviousYear;
+  double? get kpi1PreviousYear;
   @override
-  int get kpi1Val;
+  double? get kpi1Val;
   @override
-  int get kpi4PreviousYear;
+  double? get kpi4PreviousYear;
   @override
-  int get kpi4Val;
+  double? get kpi4Val;
   @override
-  int get kpi7PreviousYear;
+  double? get kpi7PreviousYear;
   @override
-  int get kpi7Val;
+  double? get kpi7Val;
   @override
-  int get kpiYoY1;
+  double? get kpiYoY1;
   @override
-  int get kpiYoY10;
+  double? get kpiYoY10;
   @override
-  int get kpiYoY10Difference;
+  double? get kpiYoY10Difference;
   @override
-  int get kpiYoY13;
+  double? get kpiYoY13;
   @override
-  int get kpiYoY13Difference;
+  double? get kpiYoY13Difference;
   @override
-  int get kpiYoY16;
+  double? get kpiYoY16;
   @override
-  int get kpiYoY16Difference;
+  double? get kpiYoY16Difference;
   @override
-  int get kpiYoY16_2;
+  double? get kpiYoY16_2;
   @override
-  int get kpiYoY16_2Difference;
+  double? get kpiYoY16_2Difference;
   @override
-  int get kpiYoY1Difference;
+  double? get kpiYoY1Difference;
   @override
-  int get kpiYoY4;
+  double? get kpiYoY4;
   @override
-  int get kpiYoY4Difference;
+  double? get kpiYoY4Difference;
   @override
-  int get kpiYoY7;
+  double? get kpiYoY7;
   @override
-  int get kpiYoY7Difference;
+  double? get kpiYoY7Difference;
   @override
   @JsonKey(ignore: true)
   _$$RentDefaultImplCopyWith<_$RentDefaultImpl> get copyWith =>
@@ -3008,5 +3008,614 @@ abstract class _MeanAreaResponse implements MeanAreaResponse {
   @override
   @JsonKey(ignore: true)
   _$$MeanAreaResponseImplCopyWith<_$MeanAreaResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+RentListSummary _$RentListSummaryFromJson(Map<String, dynamic> json) {
+  return _RentListSummary.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RentListSummary {
+  int get count => throw _privateConstructorUsedError;
+  List<RentSummaryObject> get transactionList =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RentListSummaryCopyWith<RentListSummary> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RentListSummaryCopyWith<$Res> {
+  factory $RentListSummaryCopyWith(
+          RentListSummary value, $Res Function(RentListSummary) then) =
+      _$RentListSummaryCopyWithImpl<$Res, RentListSummary>;
+  @useResult
+  $Res call({int count, List<RentSummaryObject> transactionList});
+}
+
+/// @nodoc
+class _$RentListSummaryCopyWithImpl<$Res, $Val extends RentListSummary>
+    implements $RentListSummaryCopyWith<$Res> {
+  _$RentListSummaryCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? count = null,
+    Object? transactionList = null,
+  }) {
+    return _then(_value.copyWith(
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      transactionList: null == transactionList
+          ? _value.transactionList
+          : transactionList // ignore: cast_nullable_to_non_nullable
+              as List<RentSummaryObject>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RentListSummaryImplCopyWith<$Res>
+    implements $RentListSummaryCopyWith<$Res> {
+  factory _$$RentListSummaryImplCopyWith(_$RentListSummaryImpl value,
+          $Res Function(_$RentListSummaryImpl) then) =
+      __$$RentListSummaryImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int count, List<RentSummaryObject> transactionList});
+}
+
+/// @nodoc
+class __$$RentListSummaryImplCopyWithImpl<$Res>
+    extends _$RentListSummaryCopyWithImpl<$Res, _$RentListSummaryImpl>
+    implements _$$RentListSummaryImplCopyWith<$Res> {
+  __$$RentListSummaryImplCopyWithImpl(
+      _$RentListSummaryImpl _value, $Res Function(_$RentListSummaryImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? count = null,
+    Object? transactionList = null,
+  }) {
+    return _then(_$RentListSummaryImpl(
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      transactionList: null == transactionList
+          ? _value._transactionList
+          : transactionList // ignore: cast_nullable_to_non_nullable
+              as List<RentSummaryObject>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RentListSummaryImpl implements _RentListSummary {
+  const _$RentListSummaryImpl(
+      {this.count = 0,
+      final List<RentSummaryObject> transactionList = const []})
+      : _transactionList = transactionList;
+
+  factory _$RentListSummaryImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RentListSummaryImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int count;
+  final List<RentSummaryObject> _transactionList;
+  @override
+  @JsonKey()
+  List<RentSummaryObject> get transactionList {
+    if (_transactionList is EqualUnmodifiableListView) return _transactionList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_transactionList);
+  }
+
+  @override
+  String toString() {
+    return 'RentListSummary(count: $count, transactionList: $transactionList)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RentListSummaryImpl &&
+            (identical(other.count, count) || other.count == count) &&
+            const DeepCollectionEquality()
+                .equals(other._transactionList, _transactionList));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, count,
+      const DeepCollectionEquality().hash(_transactionList));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RentListSummaryImplCopyWith<_$RentListSummaryImpl> get copyWith =>
+      __$$RentListSummaryImplCopyWithImpl<_$RentListSummaryImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RentListSummaryImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RentListSummary implements RentListSummary {
+  const factory _RentListSummary(
+      {final int count,
+      final List<RentSummaryObject> transactionList}) = _$RentListSummaryImpl;
+
+  factory _RentListSummary.fromJson(Map<String, dynamic> json) =
+      _$RentListSummaryImpl.fromJson;
+
+  @override
+  int get count;
+  @override
+  List<RentSummaryObject> get transactionList;
+  @override
+  @JsonKey(ignore: true)
+  _$$RentListSummaryImplCopyWith<_$RentListSummaryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+RentSummaryObject _$RentSummaryObjectFromJson(Map<String, dynamic> json) {
+  return _RentSummaryObject.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RentSummaryObject {
+  double? get area => throw _privateConstructorUsedError;
+  int? get bedRoomsCount => throw _privateConstructorUsedError;
+  String? get endDate => throw _privateConstructorUsedError;
+  int? get issueYear => throw _privateConstructorUsedError;
+  int? get municipalityid => throw _privateConstructorUsedError;
+  int? get propertyTypeId => throw _privateConstructorUsedError;
+  double? get rentPaymentMeterMT => throw _privateConstructorUsedError;
+  double? get rentPaymentMeterSQT => throw _privateConstructorUsedError;
+  double? get rentPaymentMonthly => throw _privateConstructorUsedError;
+  String? get startDate => throw _privateConstructorUsedError;
+  String? get unitBroker => throw _privateConstructorUsedError;
+  String? get unitNo => throw _privateConstructorUsedError;
+  String? get unitOwner => throw _privateConstructorUsedError;
+  String? get unitTenant => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RentSummaryObjectCopyWith<RentSummaryObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RentSummaryObjectCopyWith<$Res> {
+  factory $RentSummaryObjectCopyWith(
+          RentSummaryObject value, $Res Function(RentSummaryObject) then) =
+      _$RentSummaryObjectCopyWithImpl<$Res, RentSummaryObject>;
+  @useResult
+  $Res call(
+      {double? area,
+      int? bedRoomsCount,
+      String? endDate,
+      int? issueYear,
+      int? municipalityid,
+      int? propertyTypeId,
+      double? rentPaymentMeterMT,
+      double? rentPaymentMeterSQT,
+      double? rentPaymentMonthly,
+      String? startDate,
+      String? unitBroker,
+      String? unitNo,
+      String? unitOwner,
+      String? unitTenant});
+}
+
+/// @nodoc
+class _$RentSummaryObjectCopyWithImpl<$Res, $Val extends RentSummaryObject>
+    implements $RentSummaryObjectCopyWith<$Res> {
+  _$RentSummaryObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? area = freezed,
+    Object? bedRoomsCount = freezed,
+    Object? endDate = freezed,
+    Object? issueYear = freezed,
+    Object? municipalityid = freezed,
+    Object? propertyTypeId = freezed,
+    Object? rentPaymentMeterMT = freezed,
+    Object? rentPaymentMeterSQT = freezed,
+    Object? rentPaymentMonthly = freezed,
+    Object? startDate = freezed,
+    Object? unitBroker = freezed,
+    Object? unitNo = freezed,
+    Object? unitOwner = freezed,
+    Object? unitTenant = freezed,
+  }) {
+    return _then(_value.copyWith(
+      area: freezed == area
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as double?,
+      bedRoomsCount: freezed == bedRoomsCount
+          ? _value.bedRoomsCount
+          : bedRoomsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      issueYear: freezed == issueYear
+          ? _value.issueYear
+          : issueYear // ignore: cast_nullable_to_non_nullable
+              as int?,
+      municipalityid: freezed == municipalityid
+          ? _value.municipalityid
+          : municipalityid // ignore: cast_nullable_to_non_nullable
+              as int?,
+      propertyTypeId: freezed == propertyTypeId
+          ? _value.propertyTypeId
+          : propertyTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      rentPaymentMeterMT: freezed == rentPaymentMeterMT
+          ? _value.rentPaymentMeterMT
+          : rentPaymentMeterMT // ignore: cast_nullable_to_non_nullable
+              as double?,
+      rentPaymentMeterSQT: freezed == rentPaymentMeterSQT
+          ? _value.rentPaymentMeterSQT
+          : rentPaymentMeterSQT // ignore: cast_nullable_to_non_nullable
+              as double?,
+      rentPaymentMonthly: freezed == rentPaymentMonthly
+          ? _value.rentPaymentMonthly
+          : rentPaymentMonthly // ignore: cast_nullable_to_non_nullable
+              as double?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitBroker: freezed == unitBroker
+          ? _value.unitBroker
+          : unitBroker // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitNo: freezed == unitNo
+          ? _value.unitNo
+          : unitNo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitOwner: freezed == unitOwner
+          ? _value.unitOwner
+          : unitOwner // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitTenant: freezed == unitTenant
+          ? _value.unitTenant
+          : unitTenant // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RentSummaryObjectImplCopyWith<$Res>
+    implements $RentSummaryObjectCopyWith<$Res> {
+  factory _$$RentSummaryObjectImplCopyWith(_$RentSummaryObjectImpl value,
+          $Res Function(_$RentSummaryObjectImpl) then) =
+      __$$RentSummaryObjectImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {double? area,
+      int? bedRoomsCount,
+      String? endDate,
+      int? issueYear,
+      int? municipalityid,
+      int? propertyTypeId,
+      double? rentPaymentMeterMT,
+      double? rentPaymentMeterSQT,
+      double? rentPaymentMonthly,
+      String? startDate,
+      String? unitBroker,
+      String? unitNo,
+      String? unitOwner,
+      String? unitTenant});
+}
+
+/// @nodoc
+class __$$RentSummaryObjectImplCopyWithImpl<$Res>
+    extends _$RentSummaryObjectCopyWithImpl<$Res, _$RentSummaryObjectImpl>
+    implements _$$RentSummaryObjectImplCopyWith<$Res> {
+  __$$RentSummaryObjectImplCopyWithImpl(_$RentSummaryObjectImpl _value,
+      $Res Function(_$RentSummaryObjectImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? area = freezed,
+    Object? bedRoomsCount = freezed,
+    Object? endDate = freezed,
+    Object? issueYear = freezed,
+    Object? municipalityid = freezed,
+    Object? propertyTypeId = freezed,
+    Object? rentPaymentMeterMT = freezed,
+    Object? rentPaymentMeterSQT = freezed,
+    Object? rentPaymentMonthly = freezed,
+    Object? startDate = freezed,
+    Object? unitBroker = freezed,
+    Object? unitNo = freezed,
+    Object? unitOwner = freezed,
+    Object? unitTenant = freezed,
+  }) {
+    return _then(_$RentSummaryObjectImpl(
+      area: freezed == area
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as double?,
+      bedRoomsCount: freezed == bedRoomsCount
+          ? _value.bedRoomsCount
+          : bedRoomsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      issueYear: freezed == issueYear
+          ? _value.issueYear
+          : issueYear // ignore: cast_nullable_to_non_nullable
+              as int?,
+      municipalityid: freezed == municipalityid
+          ? _value.municipalityid
+          : municipalityid // ignore: cast_nullable_to_non_nullable
+              as int?,
+      propertyTypeId: freezed == propertyTypeId
+          ? _value.propertyTypeId
+          : propertyTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      rentPaymentMeterMT: freezed == rentPaymentMeterMT
+          ? _value.rentPaymentMeterMT
+          : rentPaymentMeterMT // ignore: cast_nullable_to_non_nullable
+              as double?,
+      rentPaymentMeterSQT: freezed == rentPaymentMeterSQT
+          ? _value.rentPaymentMeterSQT
+          : rentPaymentMeterSQT // ignore: cast_nullable_to_non_nullable
+              as double?,
+      rentPaymentMonthly: freezed == rentPaymentMonthly
+          ? _value.rentPaymentMonthly
+          : rentPaymentMonthly // ignore: cast_nullable_to_non_nullable
+              as double?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitBroker: freezed == unitBroker
+          ? _value.unitBroker
+          : unitBroker // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitNo: freezed == unitNo
+          ? _value.unitNo
+          : unitNo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitOwner: freezed == unitOwner
+          ? _value.unitOwner
+          : unitOwner // ignore: cast_nullable_to_non_nullable
+              as String?,
+      unitTenant: freezed == unitTenant
+          ? _value.unitTenant
+          : unitTenant // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RentSummaryObjectImpl implements _RentSummaryObject {
+  const _$RentSummaryObjectImpl(
+      {this.area = 0,
+      this.bedRoomsCount = 0,
+      this.endDate = '',
+      this.issueYear = 0,
+      this.municipalityid = 0,
+      this.propertyTypeId = 0,
+      this.rentPaymentMeterMT = 0,
+      this.rentPaymentMeterSQT = 0,
+      this.rentPaymentMonthly = 0,
+      this.startDate = '',
+      this.unitBroker = '',
+      this.unitNo = '',
+      this.unitOwner = '',
+      this.unitTenant = ''});
+
+  factory _$RentSummaryObjectImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RentSummaryObjectImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final double? area;
+  @override
+  @JsonKey()
+  final int? bedRoomsCount;
+  @override
+  @JsonKey()
+  final String? endDate;
+  @override
+  @JsonKey()
+  final int? issueYear;
+  @override
+  @JsonKey()
+  final int? municipalityid;
+  @override
+  @JsonKey()
+  final int? propertyTypeId;
+  @override
+  @JsonKey()
+  final double? rentPaymentMeterMT;
+  @override
+  @JsonKey()
+  final double? rentPaymentMeterSQT;
+  @override
+  @JsonKey()
+  final double? rentPaymentMonthly;
+  @override
+  @JsonKey()
+  final String? startDate;
+  @override
+  @JsonKey()
+  final String? unitBroker;
+  @override
+  @JsonKey()
+  final String? unitNo;
+  @override
+  @JsonKey()
+  final String? unitOwner;
+  @override
+  @JsonKey()
+  final String? unitTenant;
+
+  @override
+  String toString() {
+    return 'RentSummaryObject(area: $area, bedRoomsCount: $bedRoomsCount, endDate: $endDate, issueYear: $issueYear, municipalityid: $municipalityid, propertyTypeId: $propertyTypeId, rentPaymentMeterMT: $rentPaymentMeterMT, rentPaymentMeterSQT: $rentPaymentMeterSQT, rentPaymentMonthly: $rentPaymentMonthly, startDate: $startDate, unitBroker: $unitBroker, unitNo: $unitNo, unitOwner: $unitOwner, unitTenant: $unitTenant)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RentSummaryObjectImpl &&
+            (identical(other.area, area) || other.area == area) &&
+            (identical(other.bedRoomsCount, bedRoomsCount) ||
+                other.bedRoomsCount == bedRoomsCount) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.issueYear, issueYear) ||
+                other.issueYear == issueYear) &&
+            (identical(other.municipalityid, municipalityid) ||
+                other.municipalityid == municipalityid) &&
+            (identical(other.propertyTypeId, propertyTypeId) ||
+                other.propertyTypeId == propertyTypeId) &&
+            (identical(other.rentPaymentMeterMT, rentPaymentMeterMT) ||
+                other.rentPaymentMeterMT == rentPaymentMeterMT) &&
+            (identical(other.rentPaymentMeterSQT, rentPaymentMeterSQT) ||
+                other.rentPaymentMeterSQT == rentPaymentMeterSQT) &&
+            (identical(other.rentPaymentMonthly, rentPaymentMonthly) ||
+                other.rentPaymentMonthly == rentPaymentMonthly) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.unitBroker, unitBroker) ||
+                other.unitBroker == unitBroker) &&
+            (identical(other.unitNo, unitNo) || other.unitNo == unitNo) &&
+            (identical(other.unitOwner, unitOwner) ||
+                other.unitOwner == unitOwner) &&
+            (identical(other.unitTenant, unitTenant) ||
+                other.unitTenant == unitTenant));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      area,
+      bedRoomsCount,
+      endDate,
+      issueYear,
+      municipalityid,
+      propertyTypeId,
+      rentPaymentMeterMT,
+      rentPaymentMeterSQT,
+      rentPaymentMonthly,
+      startDate,
+      unitBroker,
+      unitNo,
+      unitOwner,
+      unitTenant);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RentSummaryObjectImplCopyWith<_$RentSummaryObjectImpl> get copyWith =>
+      __$$RentSummaryObjectImplCopyWithImpl<_$RentSummaryObjectImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RentSummaryObjectImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RentSummaryObject implements RentSummaryObject {
+  const factory _RentSummaryObject(
+      {final double? area,
+      final int? bedRoomsCount,
+      final String? endDate,
+      final int? issueYear,
+      final int? municipalityid,
+      final int? propertyTypeId,
+      final double? rentPaymentMeterMT,
+      final double? rentPaymentMeterSQT,
+      final double? rentPaymentMonthly,
+      final String? startDate,
+      final String? unitBroker,
+      final String? unitNo,
+      final String? unitOwner,
+      final String? unitTenant}) = _$RentSummaryObjectImpl;
+
+  factory _RentSummaryObject.fromJson(Map<String, dynamic> json) =
+      _$RentSummaryObjectImpl.fromJson;
+
+  @override
+  double? get area;
+  @override
+  int? get bedRoomsCount;
+  @override
+  String? get endDate;
+  @override
+  int? get issueYear;
+  @override
+  int? get municipalityid;
+  @override
+  int? get propertyTypeId;
+  @override
+  double? get rentPaymentMeterMT;
+  @override
+  double? get rentPaymentMeterSQT;
+  @override
+  double? get rentPaymentMonthly;
+  @override
+  String? get startDate;
+  @override
+  String? get unitBroker;
+  @override
+  String? get unitNo;
+  @override
+  String? get unitOwner;
+  @override
+  String? get unitTenant;
+  @override
+  @JsonKey(ignore: true)
+  _$$RentSummaryObjectImplCopyWith<_$RentSummaryObjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

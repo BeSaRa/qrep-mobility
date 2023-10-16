@@ -28,18 +28,23 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(390, 844),
-      builder: (context, child) => ThemeProvider(
-        initTheme: instance<AppPreferences>().getTheme(),
-        builder: (p0, theme) => MaterialApp.router(
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          title: 'Real State Qatar',
-          themeMode: theme.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          theme: theme,
-          routerConfig: AppRouter.router,
-        ),
-      ),
+      builder: (context, child) =>
+          ThemeProvider(
+            initTheme: instance<AppPreferences>().getTheme(),
+            builder: (p0, theme) =>
+                MaterialApp.router(
+
+                  debugShowCheckedModeBanner: false,
+                  localizationsDelegates: context.localizationDelegates,
+                  supportedLocales: context.supportedLocales,
+                  locale: context.locale,
+                  title: 'Real State Qatar',
+                  themeMode: theme.isDarkTheme ? ThemeMode.dark : ThemeMode
+                      .light,
+                  theme: theme,
+                  routerConfig: AppRouter.router,
+                ),
+          ),
     );
   }
 }

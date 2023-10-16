@@ -1,7 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../resources/strings_manager.dart';

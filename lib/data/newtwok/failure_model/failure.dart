@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../presentations/resources/strings_manager.dart';
+
 part 'failure.freezed.dart';
 part 'failure.g.dart';
 

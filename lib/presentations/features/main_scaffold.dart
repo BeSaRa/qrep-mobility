@@ -5,6 +5,7 @@ import '../widgets/ebla_navigation_bar.dart';
 
 class MainScaffold extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
+
   const MainScaffold({super.key, required this.navigationShell});
 
   @override
@@ -29,6 +30,7 @@ class _MainScaffoldState extends State<MainScaffold>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       bottomNavigationBar: EblaNavigationBar(
         onTap: (index) {
           widget.navigationShell.goBranch(
