@@ -13,6 +13,7 @@ import '../../domain/models/rent_models/rent_models.dart';
 import '../features/rent/blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
 import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
 import '../features/rent/widgets/choose_unit_filters_widget.dart';
+import '../features/rent/widgets/slider_filter_widget.dart';
 import '../resources/values_manager.dart';
 import 'custom_elevated_button.dart';
 import 'multi_choose_dropdown.dart';
@@ -919,133 +920,6 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           SizedBox(height: AppSizeW.s12),
         ],
       ),
-    );
-  }
-}
-
-class SliderWidget extends StatefulWidget {
-  final Function(RangeValues)? onChanges;
-  final RangeValues values;
-  final double min;
-  final double max;
-  final String startValue;
-  final String endValue;
-  final String title;
-  const SliderWidget(
-      {super.key,
-      this.onChanges,
-      required this.values,
-      required this.min,
-      required this.max,
-      required this.startValue,
-      required this.endValue,
-      required this.title});
-
-  @override
-  State<SliderWidget> createState() => _SliderWidgetState();
-}
-
-class _SliderWidgetState extends State<SliderWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: AppSizeH.s12),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(widget.title, style: Theme.of(context).textTheme.labelMedium),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppSizeW.s8),
-              child: RangeSlider(
-                onChanged: widget.onChanges,
-                //  (values) {
-                // valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom =
-                //     values.start;
-                // valuesFiltersCubit.rentPaymentMonthlyPerUnitTo = values.end;
-                // setState(() {});
-                // },
-                values: widget.values,
-                // valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit ??
-                //     RangeValues(
-                //         valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom
-                //                 ?.toDouble() ??
-                //             context
-                //                 .read<RentBloc>()
-                //                 .loockUpRent
-                //                 ?.maxParams[1]
-                //                 .minVal
-                //                 .toDouble() ??
-                //             0,
-                //         valuesFiltersCubit.rentPaymentMonthlyPerUnitTo
-                //                 ?.toDouble() ??
-                //             context
-                //                 .read<RentBloc>()
-                //                 .loockUpRent
-                //                 ?.maxParams[1]
-                //                 .maxVal
-                //                 .toDouble() ??
-                //             1000000),
-                min: widget.min,
-                // context
-                //         .read<RentBloc>()
-                //         .loockUpRent
-                //         ?.maxParams[1]
-                //         .minVal
-                //         .toDouble() ??
-                //     0,
-                max: widget.max,
-                // context
-                //         .read<RentBloc>()
-                //         .loockUpRent
-                //         ?.maxParams[1]
-                //         .maxVal
-                //         .toDouble() ??
-                //     1000000,
-              ),
-            ),
-          ],
-        ),
-        Row(children: [
-          Expanded(
-            child: Container(
-              height: AppSizeH.s36,
-              decoration: ShapeDecoration(
-                  color: ColorManager.whiteSmoke,
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 1, color: ColorManager.silver),
-                    borderRadius: BorderRadius.circular(AppSizeR.s5),
-                  )),
-              child: Center(
-                child: Text(
-                  widget.startValue,
-                  // '${(valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom?.toDouble() ?? context.read<RentBloc>().loockUpRent?.maxParams[1].minVal.toDouble())?.toInt().formatWithCommas()}',
-                  style: Theme.of(context).textTheme.labelSmall,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: AppSizeW.s8),
-          Expanded(
-            child: Container(
-              height: AppSizeH.s36,
-              decoration: ShapeDecoration(
-                  color: ColorManager.whiteSmoke,
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 1, color: ColorManager.silver),
-                    borderRadius: BorderRadius.circular(AppSizeR.s5),
-                  )),
-              child: Center(
-                child: Text(
-                  widget.endValue,
-                  // '${(valuesFiltersCubit.rentPaymentMonthlyPerUnitTo?.toDouble() ?? context.read<RentBloc>().loockUpRent?.maxParams[1].maxVal.toDouble())?.toInt().formatWithCommas()}',
-                  style: Theme.of(context).textTheme.labelSmall,
-                ),
-              ),
-            ),
-          ),
-        ]),
-      ],
     );
   }
 }
