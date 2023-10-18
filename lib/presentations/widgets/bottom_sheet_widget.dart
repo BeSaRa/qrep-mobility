@@ -5,6 +5,8 @@ Future<dynamic> bottomSheetWidget(BuildContext context, {Widget? child}) {
   return showModalBottomSheet(
     context: context,
     isScrollControlled: true,
+    useSafeArea: true,
+    showDragHandle: true,
     builder: (context) => Container(
         padding: EdgeInsets.symmetric(
           horizontal: AppSizeW.s15,

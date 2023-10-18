@@ -374,7 +374,6 @@ class _HomeContainer extends StatelessWidget {
   final bool isShadow;
 
   const _HomeContainer({
-    super.key,
     required this.isBig,
     required this.title,
     required this.color,
@@ -499,14 +498,7 @@ class StatisTicsWidget extends StatefulWidget {
 
 class _StatisTicsWidgetState extends State<StatisTicsWidget> {
   int indexx = 0;
-  late CertificateContractBloc certificateContractBloc;
-
-  @override
-  void initState() {
-    certificateContractBloc = instance<CertificateContractBloc>();
-    // TODO: implement initState
-    super.initState();
-  }
+  int index = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -514,52 +506,176 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
       bloc: context.read<RentBloc>(),
       listener: (context, RentState state) {
         if (state.rentLookup != const RentLookupResponse()) {
-          certificateContractBloc.add(
+          context.read<CertificateContractBloc>().add(
               CertificateContractEvent.certificateCountEvent(
                   request: context.read<RentBloc>().requestMeanValue));
         }
       },
       child: Column(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: AppSizeW.s50),
-                  child: EblaTabBarWidget(
-                    initialIndex: indexx,
-                    firstTab: 'عدد عقود الإيجار',
-                    secondTab: 'عدد الوحدات',
-                    onPressed: (index) {
-                      indexx == index
-                          ? null
-                          : index == 0
-                              ? certificateContractBloc.add(
-                                  CertificateContractEvent
-                                      .certificateCountEvent(
-                                          request: context
-                                              .read<RentBloc>()
-                                              .requestMeanValue))
-                              : certificateContractBloc.add(
+          BlocBuilder(
+            bloc: context.read<CertificateContractBloc>(),
+            builder: (context, CertificateContractState state) {
+              if (state.isLoadingContract || state.isLoadingCertificate) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: AppSizeW.s6, vertical: AppSizeH.s6),
+                      decoration: BoxDecoration(
+                        color: ColorManager.grey,
+                        borderRadius: BorderRadius.circular(AppSizeR.s12),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: AppSizeW.s10,
+                                vertical: AppSizeH.s6),
+                            decoration: BoxDecoration(
+                                color: index == 1
+                                    ? ColorManager.primary
+                                    : Colors.transparent,
+                                borderRadius:
+                                    BorderRadius.circular(AppSizeR.s10)),
+                            child: Text(
+                              'عدد عقود الإيجار',
+                              style: index == 1
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .displayMedium!
+                                      .copyWith(fontSize: AppSizeSp.s12)
+                                  : Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium!
+                                      .copyWith(fontSize: AppSizeSp.s12),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: AppSizeW.s10,
+                                vertical: AppSizeH.s6),
+                            decoration: BoxDecoration(
+                                color: index == 2
+                                    ? ColorManager.primary
+                                    : Colors.transparent,
+                                borderRadius:
+                                    BorderRadius.circular(AppSizeR.s10)),
+                            child: Text(
+                              'عدد الوحدات',
+                              style: index == 2
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .displayMedium!
+                                      .copyWith(fontSize: AppSizeSp.s12)
+                                  : Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium!
+                                      .copyWith(fontSize: AppSizeSp.s12),
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                );
+              }
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: AppSizeW.s6, vertical: AppSizeH.s6),
+                    decoration: BoxDecoration(
+                      color: ColorManager.grey,
+                      borderRadius: BorderRadius.circular(AppSizeR.s12),
+                    ),
+                    child: Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              index = 1;
+                            });
+                            context.read<CertificateContractBloc>().add(
+                                CertificateContractEvent.certificateCountEvent(
+                                    request: context
+                                        .read<RentBloc>()
+                                        .requestMeanValue));
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: AppSizeW.s10,
+                                vertical: AppSizeH.s6),
+                            decoration: BoxDecoration(
+                                color: index == 1
+                                    ? ColorManager.primary
+                                    : Colors.transparent,
+                                borderRadius:
+                                    BorderRadius.circular(AppSizeR.s10)),
+                            child: Text(
+                              'عدد عقود الإيجار',
+                              style: index == 1
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .displayMedium!
+                                      .copyWith(fontSize: AppSizeSp.s12)
+                                  : Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium!
+                                      .copyWith(fontSize: AppSizeSp.s12),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              index = 2;
+                            });
+                            context.read<CertificateContractBloc>().add(
                                   CertificateContractEvent.contractCountEvent(
                                       request: context
                                           .read<RentBloc>()
                                           .requestMeanValue),
                                 );
-                      setState(() {
-                        indexx = index;
-                      });
-                    },
-                  ),
-                ),
-              ),
-            ],
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: AppSizeW.s10,
+                                vertical: AppSizeH.s6),
+                            decoration: BoxDecoration(
+                                color: index == 2
+                                    ? ColorManager.primary
+                                    : Colors.transparent,
+                                borderRadius:
+                                    BorderRadius.circular(AppSizeR.s10)),
+                            child: Text(
+                              'عدد الوحدات',
+                              style: index == 2
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .displayMedium!
+                                      .copyWith(fontSize: AppSizeSp.s12)
+                                  : Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium!
+                                      .copyWith(fontSize: AppSizeSp.s12),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              );
+            },
           ),
           SizedBox(
             height: AppSizeH.s30,
           ),
           BlocBuilder(
-            bloc: certificateContractBloc,
+            bloc: context.read<CertificateContractBloc>(),
             builder: (context, CertificateContractState state) {
               if (state.isLoadingCertificate || state.isLoadingContract) {
                 return const Center(
@@ -578,7 +694,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                   ],
                 );
               }
-              if (state.certificateCountResponse.isNotEmpty && indexx == 0) {
+              if (state.certificateCountResponse.isNotEmpty && index == 1) {
                 return StatisticsRentWidget(
                     statistics: state.certificateCountResponse.map((e) {
                   return StatisticsModel(
@@ -593,7 +709,27 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                       number: e.kpiVal.toString());
                 }).toList());
               }
-              if (state.contractCountResponse.isNotEmpty && indexx == 1) {
+              if (state.certificateCountResponse.isEmpty && index == 1) {
+                return Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(
+                      vertical: AppSizeH.s13, horizontal: AppSizeW.s21),
+                  decoration: BoxDecoration(
+                      color: ColorManager.white,
+                      borderRadius: BorderRadius.circular(AppSizeR.s12),
+                      boxShadow: [
+                        BoxShadow(
+                            offset: const Offset(1, 1),
+                            spreadRadius: AppSizeR.s2,
+                            blurRadius: AppSizeR.s11,
+                            color: ColorManager.black.withAlpha(6))
+                      ]),
+                  child: const Text('لا يوجد عقود إيجار'),
+                );
+              }
+
+              if (state.contractCountResponse.isNotEmpty && index == 2) {
                 return StatisticsRentWidget(
                     statistics: state.certificateCountResponse.map((e) {
                   return StatisticsModel(
@@ -607,6 +743,25 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                           '',
                       number: e.kpiVal.toString());
                 }).toList());
+              }
+              if (state.contractCountResponse.isEmpty && index == 2) {
+                return Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(
+                      vertical: AppSizeH.s13, horizontal: AppSizeW.s21),
+                  decoration: BoxDecoration(
+                      color: ColorManager.white,
+                      borderRadius: BorderRadius.circular(AppSizeR.s12),
+                      boxShadow: [
+                        BoxShadow(
+                            offset: const Offset(1, 1),
+                            spreadRadius: AppSizeR.s2,
+                            blurRadius: AppSizeR.s11,
+                            color: ColorManager.black.withAlpha(6))
+                      ]),
+                  child: const Text('لا يوجد وحدات'),
+                );
               }
               return const SizedBox();
             },
