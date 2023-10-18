@@ -77,10 +77,10 @@ class _HomeViewState extends State<HomeView> {
                             _HomeContainer(
                               isBig: false,
                               title: AppStrings().mortgageIndicators,
-                              color: ColorManager.cloudyGrey.withOpacity(0.4),
+                              color: ColorManager.silver,
                               image: IconAssets.mortagageHome,
                               iconColor: ColorManager.white,
-                              isShadow: false,
+                              isShadow: true,
                             ),
                           ],
                         ),
@@ -101,9 +101,9 @@ class _HomeViewState extends State<HomeView> {
                             _HomeContainer(
                               isBig: true,
                               title: AppStrings().realEstateBrokers,
-                              color: Colors.white.withOpacity(0.6),
+                              color: Colors.white.withOpacity(0.8),
                               image: IconAssets.inMiddleHome,
-                              isShadow: false,
+                              isShadow: true,
                             ),
                           ],
                         ),
@@ -331,24 +331,33 @@ class StaticPagesContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: AppSizeH.s125,
+      width: AppSizeW.s100,
       padding: EdgeInsets.symmetric(
           horizontal: AppSizeH.s15, vertical: AppSizeH.s10),
       decoration: BoxDecoration(
           color: ColorManager.white,
           borderRadius: BorderRadius.circular(AppSizeW.s14),
           border: Border.all(color: ColorManager.golden, width: AppSizeH.s1)),
-      child: Column(
-        children: [
-          SvgPicture.asset(
-            icon,
-            height: AppSizeH.s60,
-            width: AppSizeW.s60,
-          ),
-          Text(
-            title,
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-        ],
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              icon,
+              height: AppSizeH.s60,
+              width: AppSizeW.s60,
+            ),
+            Text(
+              title,
+              style: Theme.of(context).textTheme.bodyMedium,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              softWrap: true,
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -386,20 +395,18 @@ class _HomeContainer extends StatelessWidget {
           color: color,
           borderRadius: BorderRadius.circular(AppSizeR.s20),
           border: isShadow ? null : Border.all(color: ColorManager.grey),
-          boxShadow: isShadow
-              ? [
-                  BoxShadow(
-                      color: ColorManager.grey,
-                      offset: const Offset(1, 1),
-                      blurRadius: AppSizeW.s2,
-                      spreadRadius: AppSizeW.s1),
-                  BoxShadow(
-                      color: ColorManager.grey,
-                      offset: const Offset(-1, -1),
-                      blurRadius: AppSizeW.s2,
-                      spreadRadius: AppSizeW.s1),
-                ]
-              : []),
+          boxShadow: [
+            BoxShadow(
+                color: ColorManager.grey,
+                offset: const Offset(1, 1),
+                blurRadius: AppSizeW.s2,
+                spreadRadius: AppSizeW.s1),
+            BoxShadow(
+                color: ColorManager.grey,
+                offset: const Offset(-1, -1),
+                blurRadius: AppSizeW.s2,
+                spreadRadius: AppSizeW.s1),
+          ]),
       child: Row(
         children: [
           if (!isBig)
@@ -414,7 +421,7 @@ class _HomeContainer extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium
-                      ?.copyWith(color: textColor),
+                      ?.copyWith(color: textColor, fontWeight: FontWeight.w800),
                 ),
               ),
             ),
@@ -466,7 +473,10 @@ class _HomeContainer extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         softWrap: true,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w700),
                       ),
                     ),
                   ),
