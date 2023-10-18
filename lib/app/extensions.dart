@@ -13,3 +13,10 @@ extension DateTimeExtension on DateTime? {
     return DateFormat('yyyy-MM-dd').format(this!);
   }
 }
+
+extension NumberFormatting on num {
+  String formatWithCommas() {
+    return toString().replaceAllMapped(
+        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},');
+  }
+}

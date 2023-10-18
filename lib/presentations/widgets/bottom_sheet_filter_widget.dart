@@ -16,6 +16,7 @@ import '../features/rent/widgets/choose_unit_filters_widget.dart';
 import '../resources/values_manager.dart';
 import 'custom_elevated_button.dart';
 import 'multi_choose_dropdown.dart';
+import 'range_slider_widget.dart';
 
 // enum PeriodTime { year, halfYear, quarterYear, monthly, specificPeriod }
 
@@ -89,10 +90,28 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
             valuesFiltersCubit.month = const PeriodTimeDetails();
             valuesFiltersCubit.periodTimeHalfDetails =
                 const PeriodTimeDetails();
-            valuesFiltersCubit.quarterYear.isEmpty
-                ? valuesFiltersCubit.quarterYear
-                    .add(success.quarterYearList.first)
-                : null;
+
+            if (context.read<RentBloc>().requestMeanValue.periodId != 3) {
+              valuesFiltersCubit.quarterYear.clear();
+              valuesFiltersCubit.quarterYear.add(success.quarterYearList.first);
+            } else {
+              valuesFiltersCubit.quarterYear.clear();
+              context
+                  .read<RentBloc>()
+                  .loockUpRent
+                  ?.quarterYearList
+                  .forEach((element) {
+                if (context
+                        .read<RentBloc>()
+                        .requestMeanValue
+                        .issueDateQuarterList
+                        ?.contains(element.value[0]) ??
+                    false) {
+                  valuesFiltersCubit.quarterYear.add(element);
+                }
+              });
+            }
+
             return MultiDropDownValue<PeriodTimeDetails>(
               list: success.quarterYearList,
               selectedItems: valuesFiltersCubit.quarterYear,
@@ -195,7 +214,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
 
     valuesFiltersCubit.municapility = getObjectById(
           context.read<RentBloc>().loockUpRent?.municipalityList ?? [],
-          context.read<RentBloc>().requestMeanValue.municipalityId ?? 0,
+          context.read<RentBloc>().requestMeanValue.municipalityId ?? 1,
         ) ??
         const RentLookupModel();
     valuesFiltersCubit.zone = getObjectByLookupKey(
@@ -223,7 +242,9 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     });
     valuesFiltersCubit.bedRoom = getObjectById(
           context.read<RentBloc>().loockUpRent?.bedRooms ?? [],
-          -1,
+          context.read<RentBloc>().requestMeanValue.bedRoomsCount == 0
+              ? -1
+              : context.read<RentBloc>().requestMeanValue.bedRoomsCount ?? -1,
         ) ??
         const RentLookupModel();
     valuesFiltersCubit.periodTime = getObjectById(
@@ -240,15 +261,50 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                 ) ??
                 valuesFiltersCubit.yearsLists.last
             : valuesFiltersCubit.yearsLists.last;
-
-    valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom =
-        context.read<RentBloc>().requestMeanValue.rentPaymentMonthlyPerUnitFrom;
-    valuesFiltersCubit.rentPaymentMonthlyPerUnitTo =
-        context.read<RentBloc>().requestMeanValue.rentPaymentMonthlyPerUnitTo;
-    valuesFiltersCubit.areaFrom =
-        context.read<RentBloc>().requestMeanValue.areaFrom;
-    valuesFiltersCubit.areaTo =
-        context.read<RentBloc>().requestMeanValue.areaTo;
+    context.read<RentBloc>().requestMeanValue.periodId == 2
+        ? valuesFiltersCubit.periodTimeHalfDetails = context
+                .read<RentBloc>()
+                .loockUpRent
+                ?.halfYearList
+                .firstWhere((element) =>
+                    context
+                        .read<RentBloc>()
+                        .requestMeanValue
+                        .issueDateQuarterList ==
+                    element.value) ??
+            const PeriodTimeDetails()
+        : null;
+    if (context
+                .read<RentBloc>()
+                .requestMeanValue
+                .rentPaymentMonthlyPerUnitFrom !=
+            null &&
+        context.read<RentBloc>().requestMeanValue.rentPaymentMonthlyPerUnitTo !=
+            null) {
+      valuesFiltersCubit.changeRangeRentPaymentMonthlyPerUnit(RangeValues(
+          context
+              .read<RentBloc>()
+              .requestMeanValue
+              .rentPaymentMonthlyPerUnitFrom!
+              .toDouble(),
+          context
+              .read<RentBloc>()
+              .requestMeanValue
+              .rentPaymentMonthlyPerUnitTo!
+              .toDouble()));
+    }
+    if (context.read<RentBloc>().requestMeanValue.areaFrom != null &&
+        context.read<RentBloc>().requestMeanValue.areaTo != null) {
+      valuesFiltersCubit.changeRangeValuesArea(RangeValues(
+          context.read<RentBloc>().requestMeanValue.areaFrom!.toDouble(),
+          context.read<RentBloc>().requestMeanValue.areaTo!.toDouble()));
+    }
+    // valuesFiltersCubit.rentPaymentMonthlyPerUnitTo =
+    //     context.read<RentBloc>().requestMeanValue.rentPaymentMonthlyPerUnitTo;
+    // valuesFiltersCubit.areaFrom =
+    //     context.read<RentBloc>().requestMeanValue.areaFrom;
+    // valuesFiltersCubit.areaTo =
+    //     context.read<RentBloc>().requestMeanValue.areaTo;
 
     valuesFiltersCubit.pickerDateRange = (context
                     .read<RentBloc>()
@@ -271,6 +327,124 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              InkWell(
+                onTap: () {
+                  // setState(() {
+                  valuesFiltersCubit
+                      .changeRangeRentPaymentMonthlyPerUnitReset();
+                  valuesFiltersCubit.bedRoom =
+                      const RentLookupModel(arName: 'الكل', id: -1);
+                  valuesFiltersCubit.municapility = getObjectById(
+                        context
+                                .read<RentBloc>()
+                                .loockUpRent
+                                ?.municipalityList ??
+                            [],
+                        1,
+                      ) ??
+                      const RentLookupModel();
+                  valuesFiltersCubit.zone = getObjectByLookupKey(
+                        context.read<RentBloc>().loockUpRent?.zoneList ?? [],
+                        -1,
+                      ) ??
+                      const RentLookupModel();
+                  valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom = null;
+                  valuesFiltersCubit.rentPaymentMonthlyPerUnitTo = null;
+                  valuesFiltersCubit.unit = 1;
+                  valuesFiltersCubit.year = valuesFiltersCubit.yearsLists.last;
+                  valuesFiltersCubit.periodTime = getObjectById(
+                        context.read<RentBloc>().loockUpRent?.periodTime ?? [],
+                        1,
+                      ) ??
+                      const RentLookupModel();
+                  valuesFiltersCubit.rentPurposeList.clear();
+                  valuesFiltersCubit.rentPurposeList.add(getObjectByLookupKey(
+                        context.read<RentBloc>().loockUpRent?.rentPurposeList ??
+                            [],
+                        -1,
+                      ) ??
+                      const RentLookupModel());
+                  valuesFiltersCubit.propertyTypeList.clear();
+                  valuesFiltersCubit.propertyTypeList.add(getObjectByLookupKey(
+                        context
+                                .read<RentBloc>()
+                                .loockUpRent
+                                ?.propertyTypeList ??
+                            [],
+                        -1,
+                      ) ??
+                      const RentLookupModel());
+                  valuesFiltersCubit.changeUnit(1);
+                  // });
+                  context.read<RentBloc>().requestMeanValue = context
+                      .read<RentBloc>()
+                      .requestMeanValue
+                      .copyWith(
+                          areaFrom: valuesFiltersCubit.areaFrom,
+                          areaTo: valuesFiltersCubit.areaTo,
+                          bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
+                              ? 0
+                              : valuesFiltersCubit.bedRoom.id,
+                          municipalityId: valuesFiltersCubit.municapility.id,
+                          zoneId: valuesFiltersCubit.zone.lookupKey,
+                          rentPaymentMonthlyPerUnitFrom:
+                              valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom,
+                          rentPaymentMonthlyPerUnitTo:
+                              valuesFiltersCubit.rentPaymentMonthlyPerUnitTo,
+                          unit: valuesFiltersCubit.unit,
+                          issueDateYear: valuesFiltersCubit.year.id,
+                          issueDateQuarterList: getissueDateQuarterList(
+                              valuesFiltersCubit.periodTime.id),
+                          issueDateStartMonth:
+                              valuesFiltersCubit.periodTime.id == 4
+                                  ? valuesFiltersCubit.month.value[0] - 1
+                                  : 1,
+                          issueDateEndMonth:
+                              valuesFiltersCubit.periodTime.id == 4
+                                  ? valuesFiltersCubit.month.value[0]
+                                  : valuesFiltersCubit.periodTime.id == 1
+                                      ? DateTime.now().month
+                                      : 12,
+                          periodId: valuesFiltersCubit.periodTime.id,
+                          issueDateFrom: valuesFiltersCubit.periodTime.id == 5
+                              ? valuesFiltersCubit.pickerDateRange?.startDate
+                                  ?.toIso8601String()
+                              : null,
+                          issueDateTo: valuesFiltersCubit.periodTime.id == 5
+                              ? valuesFiltersCubit.pickerDateRange?.endDate
+                                  ?.toIso8601String()
+                              : null,
+                          purposeList: valuesFiltersCubit.rentPurposeList
+                              .map((e) => e.lookupKey)
+                              .toList(),
+                          propertyTypeList: valuesFiltersCubit.propertyTypeList
+                              .map((e) => e.lookupKey)
+                              .toList());
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.replay_outlined,
+                      color: ColorManager.golden,
+                      size: AppSizeSp.s15,
+                    ),
+                    Text(
+                      'إعادة ضبط',
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelSmall!
+                          .copyWith(color: ColorManager.golden),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+          SizedBox(height: AppSizeH.s8),
           Row(
             children: [
               Expanded(
@@ -572,82 +746,104 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
             child: const ChooseUnitWidget(),
           ),
           SizedBox(height: AppSizeH.s4),
-          RangeSliderFilterWidget(
-              min: context
-                      .read<RentBloc>()
-                      .loockUpRent
-                      ?.maxParams[1]
-                      .minVal
-                      .toDouble() ??
-                  0,
-              max: context
-                      .read<RentBloc>()
-                      .loockUpRent
-                      ?.maxParams[1]
-                      .maxVal
-                      .toDouble() ??
-                  1000000,
-              onValueChanged: (startValue, endValue) {
-                valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom = startValue;
-                valuesFiltersCubit.rentPaymentMonthlyPerUnitTo = endValue;
-              },
-              title: 'قيمه العقار من - إلى',
-              rangeValues: RangeValues(
-                  valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom
-                          ?.toDouble() ??
-                      context
-                          .read<RentBloc>()
-                          .loockUpRent
-                          ?.maxParams[1]
-                          .minVal
-                          .toDouble() ??
-                      0,
-                  valuesFiltersCubit.rentPaymentMonthlyPerUnitTo?.toDouble() ??
-                      context
-                          .read<RentBloc>()
-                          .loockUpRent
-                          ?.maxParams[1]
-                          .maxVal
-                          .toDouble() ??
-                      1000000)),
+          BlocBuilder(
+            bloc: valuesFiltersCubit,
+            builder: (context, state) {
+              return SliderWidget(
+                title: 'قيمه العقار من - إلى',
+                startValue:
+                    '${(valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit?.start.toDouble() ?? context.read<RentBloc>().loockUpRent?.maxParams[1].minVal.toDouble())?.toInt().formatWithCommas()}',
+                endValue:
+                    '${(valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit?.end.toDouble() ?? context.read<RentBloc>().loockUpRent?.maxParams[1].maxVal.toDouble())?.toInt().formatWithCommas()}',
+                values: valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit ??
+                    RangeValues(
+                        valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom
+                                ?.toDouble() ??
+                            context
+                                .read<RentBloc>()
+                                .loockUpRent
+                                ?.maxParams[1]
+                                .minVal
+                                .toDouble() ??
+                            0,
+                        valuesFiltersCubit.rentPaymentMonthlyPerUnitTo
+                                ?.toDouble() ??
+                            context
+                                .read<RentBloc>()
+                                .loockUpRent
+                                ?.maxParams[1]
+                                .maxVal
+                                .toDouble() ??
+                            1000000),
+                onChanges: (rangeValues) {
+                  valuesFiltersCubit
+                      .changeRangeRentPaymentMonthlyPerUnit(rangeValues);
+                },
+                min: context
+                        .read<RentBloc>()
+                        .loockUpRent
+                        ?.maxParams[1]
+                        .minVal
+                        .toDouble() ??
+                    0,
+                max: context
+                        .read<RentBloc>()
+                        .loockUpRent
+                        ?.maxParams[1]
+                        .maxVal
+                        .toDouble() ??
+                    1000000,
+              );
+            },
+          ),
           SizedBox(height: AppSizeH.s12),
-          RangeSliderFilterWidget(
-              min: context
-                      .read<RentBloc>()
-                      .loockUpRent
-                      ?.maxParams[0]
-                      .minVal
-                      .toDouble() ??
-                  0,
-              max: context
-                      .read<RentBloc>()
-                      .loockUpRent
-                      ?.maxParams[0]
-                      .maxVal
-                      .toDouble() ??
-                  1000000,
-              onValueChanged: (startValue, endValue) {
-                valuesFiltersCubit.areaFrom = startValue;
-                valuesFiltersCubit.areaTo = endValue;
-              },
-              title: 'المساحة من - إلى',
-              rangeValues: RangeValues(
-                  valuesFiltersCubit.areaFrom?.toDouble() ??
-                      context
-                          .read<RentBloc>()
-                          .loockUpRent
-                          ?.maxParams[0]
-                          .minVal
-                          .toDouble() ??
-                      0,
-                  valuesFiltersCubit.areaTo?.toDouble() ??
-                      context
-                          .read<RentBloc>()
-                          .loockUpRent
-                          ?.maxParams[0]
-                          .maxVal
-                          .toDouble() ??
-                      1000000)),
+          BlocBuilder(
+            bloc: valuesFiltersCubit,
+            builder: (context, state) {
+              return SliderWidget(
+                title: 'المساحة من - إلى',
+                startValue:
+                    '${(valuesFiltersCubit.rangeValuesArea?.start.toDouble() ?? context.read<RentBloc>().loockUpRent?.maxParams[0].minVal.toDouble())?.toInt().formatWithCommas()}',
+                endValue:
+                    '${(valuesFiltersCubit.rangeValuesArea?.end.toDouble() ?? context.read<RentBloc>().loockUpRent?.maxParams[0].maxVal.toDouble())?.toInt().formatWithCommas()}',
+                values: valuesFiltersCubit.rangeValuesArea ??
+                    RangeValues(
+                        valuesFiltersCubit.areaFrom?.toDouble() ??
+                            context
+                                .read<RentBloc>()
+                                .loockUpRent
+                                ?.maxParams[0]
+                                .minVal
+                                .toDouble() ??
+                            0,
+                        valuesFiltersCubit.areaTo?.toDouble() ??
+                            context
+                                .read<RentBloc>()
+                                .loockUpRent
+                                ?.maxParams[0]
+                                .maxVal
+                                .toDouble() ??
+                            1000000),
+                onChanges: (rangeValues) {
+                  valuesFiltersCubit.changeRangeValuesArea(rangeValues);
+                },
+                min: context
+                        .read<RentBloc>()
+                        .loockUpRent
+                        ?.maxParams[0]
+                        .minVal
+                        .toDouble() ??
+                    0,
+                max: context
+                        .read<RentBloc>()
+                        .loockUpRent
+                        ?.maxParams[0]
+                        .maxVal
+                        .toDouble() ??
+                    1000000,
+              );
+            },
+          ),
           SizedBox(height: AppSizeH.s12),
           Row(children: [
             BlocBuilder(
@@ -658,42 +854,52 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                     isPrimary: true,
                     title: 'بحث',
                     onPress: () {
-                      context.read<RentBloc>().requestMeanValue = context.read<RentBloc>().requestMeanValue.copyWith(
-                          areaFrom: valuesFiltersCubit.areaFrom,
-                          areaTo: valuesFiltersCubit.areaTo,
-                          bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
-                              ? 0
-                              : valuesFiltersCubit.bedRoom.id,
-                          municipalityId: valuesFiltersCubit.municapility.id,
-                          zoneId: valuesFiltersCubit.zone.lookupKey,
-                          rentPaymentMonthlyPerUnitFrom:
-                              valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom,
-                          rentPaymentMonthlyPerUnitTo:
-                              valuesFiltersCubit.rentPaymentMonthlyPerUnitTo,
-                          unit: valuesFiltersCubit.unit,
-                          issueDateYear: valuesFiltersCubit.year.id,
-                          issueDateQuarterList: getissueDateQuarterList(
-                              valuesFiltersCubit.periodTime.id),
-                          issueDateStartMonth: valuesFiltersCubit.periodTime.id == 4
-                              ? valuesFiltersCubit.month.value[0] - 1
-                              : null,
-                          issueDateEndMonth: valuesFiltersCubit.periodTime.id == 4
-                              ? valuesFiltersCubit.month.value[0]
-                              : null,
-                          periodId: valuesFiltersCubit.periodTime.id,
-                          issueDateFrom: valuesFiltersCubit.periodTime.id == 5
-                              ? valuesFiltersCubit.pickerDateRange?.startDate
-                                  ?.toIso8601String()
-                              : null,
-                          issueDateTo: valuesFiltersCubit.periodTime.id == 5
-                              ? valuesFiltersCubit.pickerDateRange?.endDate
-                                  ?.toIso8601String()
-                              : null,
-                          purposeList: valuesFiltersCubit.rentPurposeList
-                              .map((e) => e.id)
-                              .toList(),
-                          propertyTypeList:
-                              valuesFiltersCubit.propertyTypeList.map((e) => e.lookupKey).toList());
+                      // print(
+                      //     'before request ${context.read<RentBloc>().requestMeanValue}');
+                      context.read<RentBloc>().requestMeanValue = context
+                          .read<RentBloc>()
+                          .requestMeanValue
+                          .copyWith(
+                              areaFrom:
+                                  valuesFiltersCubit.rangeValuesArea?.start,
+                              areaTo: valuesFiltersCubit.rangeValuesArea?.end,
+                              rentPaymentMonthlyPerUnitFrom: valuesFiltersCubit
+                                  .rangeRentPaymentMonthlyPerUnit?.start,
+                              rentPaymentMonthlyPerUnitTo: valuesFiltersCubit
+                                  .rangeRentPaymentMonthlyPerUnit?.end,
+                              bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
+                                  ? 0
+                                  : valuesFiltersCubit.bedRoom.id,
+                              municipalityId:
+                                  valuesFiltersCubit.municapility.id,
+                              zoneId: valuesFiltersCubit.zone.lookupKey,
+                              unit: valuesFiltersCubit.unit,
+                              issueDateYear: valuesFiltersCubit.year.id,
+                              issueDateQuarterList: getissueDateQuarterList(
+                                  valuesFiltersCubit.periodTime.id),
+                              issueDateStartMonth:
+                                  valuesFiltersCubit.periodTime.id == 4
+                                      ? valuesFiltersCubit.month.value[0] - 1
+                                      : 1,
+                              issueDateEndMonth:
+                                  valuesFiltersCubit.periodTime.id == 4
+                                      ? valuesFiltersCubit.month.value[0]
+                                      : valuesFiltersCubit.periodTime.id == 1
+                                          ? DateTime.now().month
+                                          : 12,
+                              periodId: valuesFiltersCubit.periodTime.id,
+                              issueDateFrom: valuesFiltersCubit.periodTime.id == 5
+                                  ? valuesFiltersCubit.pickerDateRange?.startDate
+                                      ?.toIso8601String()
+                                  : null,
+                              issueDateTo: valuesFiltersCubit.periodTime.id == 5
+                                  ? valuesFiltersCubit.pickerDateRange?.endDate?.toIso8601String()
+                                  : null,
+                              purposeList: valuesFiltersCubit.rentPurposeList.map((e) => e.lookupKey).toList(),
+                              propertyTypeList: valuesFiltersCubit.propertyTypeList.map((e) => e.lookupKey).toList());
+                      Navigator.of(context).pop(true);
+                      // print(
+                      //     'after request ${context.read<RentBloc>().requestMeanValue}');
                     },
                   ),
                 );
@@ -713,6 +919,133 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           SizedBox(height: AppSizeW.s12),
         ],
       ),
+    );
+  }
+}
+
+class SliderWidget extends StatefulWidget {
+  final Function(RangeValues)? onChanges;
+  final RangeValues values;
+  final double min;
+  final double max;
+  final String startValue;
+  final String endValue;
+  final String title;
+  const SliderWidget(
+      {super.key,
+      this.onChanges,
+      required this.values,
+      required this.min,
+      required this.max,
+      required this.startValue,
+      required this.endValue,
+      required this.title});
+
+  @override
+  State<SliderWidget> createState() => _SliderWidgetState();
+}
+
+class _SliderWidgetState extends State<SliderWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(height: AppSizeH.s12),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(widget.title, style: Theme.of(context).textTheme.labelMedium),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppSizeW.s8),
+              child: RangeSlider(
+                onChanged: widget.onChanges,
+                //  (values) {
+                // valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom =
+                //     values.start;
+                // valuesFiltersCubit.rentPaymentMonthlyPerUnitTo = values.end;
+                // setState(() {});
+                // },
+                values: widget.values,
+                // valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit ??
+                //     RangeValues(
+                //         valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom
+                //                 ?.toDouble() ??
+                //             context
+                //                 .read<RentBloc>()
+                //                 .loockUpRent
+                //                 ?.maxParams[1]
+                //                 .minVal
+                //                 .toDouble() ??
+                //             0,
+                //         valuesFiltersCubit.rentPaymentMonthlyPerUnitTo
+                //                 ?.toDouble() ??
+                //             context
+                //                 .read<RentBloc>()
+                //                 .loockUpRent
+                //                 ?.maxParams[1]
+                //                 .maxVal
+                //                 .toDouble() ??
+                //             1000000),
+                min: widget.min,
+                // context
+                //         .read<RentBloc>()
+                //         .loockUpRent
+                //         ?.maxParams[1]
+                //         .minVal
+                //         .toDouble() ??
+                //     0,
+                max: widget.max,
+                // context
+                //         .read<RentBloc>()
+                //         .loockUpRent
+                //         ?.maxParams[1]
+                //         .maxVal
+                //         .toDouble() ??
+                //     1000000,
+              ),
+            ),
+          ],
+        ),
+        Row(children: [
+          Expanded(
+            child: Container(
+              height: AppSizeH.s36,
+              decoration: ShapeDecoration(
+                  color: ColorManager.whiteSmoke,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(width: 1, color: ColorManager.silver),
+                    borderRadius: BorderRadius.circular(AppSizeR.s5),
+                  )),
+              child: Center(
+                child: Text(
+                  widget.startValue,
+                  // '${(valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom?.toDouble() ?? context.read<RentBloc>().loockUpRent?.maxParams[1].minVal.toDouble())?.toInt().formatWithCommas()}',
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: AppSizeW.s8),
+          Expanded(
+            child: Container(
+              height: AppSizeH.s36,
+              decoration: ShapeDecoration(
+                  color: ColorManager.whiteSmoke,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(width: 1, color: ColorManager.silver),
+                    borderRadius: BorderRadius.circular(AppSizeR.s5),
+                  )),
+              child: Center(
+                child: Text(
+                  widget.endValue,
+                  // '${(valuesFiltersCubit.rentPaymentMonthlyPerUnitTo?.toDouble() ?? context.read<RentBloc>().loockUpRent?.maxParams[1].maxVal.toDouble())?.toInt().formatWithCommas()}',
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
+              ),
+            ),
+          ),
+        ]),
+      ],
     );
   }
 }

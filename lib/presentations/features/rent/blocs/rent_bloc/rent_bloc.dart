@@ -47,23 +47,17 @@ class RentBloc extends Bloc<RentEvent, RentState> {
   }
 
   RequestMeanValue requestMeanValue = RequestMeanValue(
-    municipalityId: 2,
+    municipalityId: 1,
     propertyTypeList: [-1],
     purposeList: [-1],
-    issueDateQuarterList: [1, 4],
+    issueDateQuarterList: [1, 2, 3, 4],
     furnitureStatus: -1,
     issueDateYear: 2023,
-    issueDateStartMonth: 4,
-    issueDateEndMonth: 5,
+    issueDateStartMonth: 1,
+    issueDateEndMonth: DateTime.now().month,
     zoneId: -1,
     limit: 5,
-    periodId: 4,
-    // issueDateFrom: "2023-10-01T00:00:00.000",
-    // issueDateTo: "2023-10-04T00:00:00.000",
-
-    // rentPaymentMonthlyPerUnitFrom: 100000,
-    // rentPaymentMonthlyPerUnitTo: 700000,
-    // areaFrom: 5740103,
-    // areaTo: 25358497,
+    periodId: 1,
+    offset: 0,
   );
 }

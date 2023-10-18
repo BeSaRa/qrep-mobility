@@ -1,5 +1,6 @@
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/utils/global_functions.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
@@ -122,6 +123,22 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
   //---------------------------PaymentMonthlyPerUnit-------------------------------
   num? rentPaymentMonthlyPerUnitFrom;
   num? rentPaymentMonthlyPerUnitTo;
+  RangeValues? rangeRentPaymentMonthlyPerUnit;
+  void changeRangeRentPaymentMonthlyPerUnitReset() {
+    rentPaymentMonthlyPerUnitFrom = null;
+    rentPaymentMonthlyPerUnitTo = null;
+    rangeRentPaymentMonthlyPerUnit = null;
+    areaFrom = null;
+    areaTo = null;
+    rangeValuesArea = null;
+    emit(const RentLookupModel(id: 8, lookupKey: 7));
+  }
+
+  void changeRangeRentPaymentMonthlyPerUnit(RangeValues values) {
+    rangeRentPaymentMonthlyPerUnit = values;
+    emit(RentLookupModel(
+        id: values.start.toInt(), lookupKey: values.end.toInt()));
+  }
   // void changePaymentMonthlyPerUnit(num start, num end) {
   //   rentPaymentMonthlyPerUnitFrom = start;
   //   rentPaymentMonthlyPerUnitTo = end;
@@ -131,6 +148,13 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
   //---------------------------Area-------------------------------
   num? areaFrom;
   num? areaTo;
+  RangeValues? rangeValuesArea;
+
+  void changeRangeValuesArea(RangeValues values) {
+    rangeValuesArea = values;
+    emit(RentLookupModel(
+        id: values.start.toInt(), lookupKey: values.end.toInt()));
+  }
 
   //----------------------Range DateTime-------------------------
   PickerDateRange? pickerDateRange;
