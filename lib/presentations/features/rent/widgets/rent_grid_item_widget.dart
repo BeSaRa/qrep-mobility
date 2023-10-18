@@ -142,6 +142,52 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                     );
                   } else if (state.hasError) {
                     return Text(state.errorMessage);
+                  } else if (state.meanValue.isNotEmpty &&
+                      widget.kpi == KPI.meanRentUnitValue) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FittedBox(
+                          child: Text(
+                              state.meanValue.first.kpiVal
+                                  .formatWithCommas()
+                                  .toString(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(fontSize: AppSizeSp.s18)),
+                        ),
+                        Text(gridItemsData[widget.index].valueUnit,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                    fontSize: AppSizeSp.s18, height: 0.5)),
+                      ],
+                    );
+                  } else if (state.meanValue.isNotEmpty &&
+                      widget.kpi == KPI.totalContractsValue) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FittedBox(
+                          child: Text(
+                              state.contractsValue.first.kpiVal
+                                  .formatWithCommas()
+                                  .toString(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(fontSize: AppSizeSp.s18)),
+                        ),
+                        Text(gridItemsData[widget.index].valueUnit,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                    fontSize: AppSizeSp.s18, height: 0.5)),
+                      ],
+                    );
                   }
                   return Text(AppStrings().dataBeingCollectedAndAudited,
                       style: Theme.of(context)
