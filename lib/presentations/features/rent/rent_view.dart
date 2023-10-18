@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/presentations/features/rent/blocs/get_location_name_cubit.dart';
@@ -14,7 +16,10 @@ import '../../../app/depndency_injection.dart';
 import '../../../domain/models/requests/rent_requests/request_mean_value.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
+import '../../widgets/bottom_sheet_filter_widget.dart';
+import '../../widgets/bottom_sheet_widget.dart';
 import '../home/home_view.dart';
+import 'blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import 'blocs/default_bloc/rent_default_bloc.dart';
 import 'widgets/rent_grid_item_widget.dart';
 
@@ -30,55 +35,21 @@ class _RentViewState extends State<RentView> {
 
   late RentSummeryBloc rentSummeryBloc;
   late RentDefaultBloc rentDefaultBloc;
-
+  late CertificateContractBloc certificateContractBloc;
   @override
   void initState() {
     rentDefaultBloc = instance<RentDefaultBloc>()
       ..add(RentDefaultEvent.started(
-        request: RequestMeanValue(
-          municipalityId: 1,
-          propertyTypeList: [-1],
-          purposeList: [-1],
-          issueDateQuarterList: [1, 2, 3, 4],
-          furnitureStatus: -1,
-          issueDateYear: 2023,
-          issueDateStartMonth: 1,
-          issueDateEndMonth: 10,
-          zoneId: -1,
-          limit: 5,
-        ),
-      ));
+          request: context.read<RentBloc>().requestMeanValue));
     rentGridKPIsBloc = instance<RentGridKPIsBloc>()
       ..add(RentGridKPIsEvent.getData(
-        request: RequestMeanValue(
-          municipalityId: 1,
-          propertyTypeList: [-1],
-          purposeList: [-1],
-          issueDateQuarterList: [1, 2, 3, 4],
-          furnitureStatus: -1,
-          issueDateYear: 2023,
-          issueDateStartMonth: 1,
-          issueDateEndMonth: 10,
-          zoneId: -1,
-          limit: 5,
-        ),
-      ));
+          request: context.read<RentBloc>().requestMeanValue));
     rentSummeryBloc = instance<RentSummeryBloc>()
       ..add(RentSummeryEvent.getRentSummary(
-        request: RequestMeanValue(
-          municipalityId: 1,
-          propertyTypeList: [-1],
-          purposeList: [-1],
-          issueDateQuarterList: [1, 2, 3, 4],
-          furnitureStatus: -1,
-          issueDateYear: 2023,
-          issueDateStartMonth: 1,
-          issueDateEndMonth: 10,
-          zoneId: -1,
-          limit: 5,
-        ),
-      ));
-
+          request: context.read<RentBloc>().requestMeanValue));
+    certificateContractBloc = instance<CertificateContractBloc>();
+    // ..add(CertificateContractEvent.certificateCountEvent(
+    //     request: context.read<RentBloc>().requestMeanValue));
     super.initState();
   }
 
@@ -98,6 +69,54 @@ class _RentViewState extends State<RentView> {
                           image: AssetImage(ImageAssets.appbarBg),
                           fit: BoxFit.fill,
                         ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional.topEnd,
+                      child: BlocBuilder(
+                        bloc: context.read<RentBloc>(),
+                        builder: (context, RentState state) {
+                          if (state.isLoadingRentLookup) {
+                            return Icon(
+                              Icons.filter_list_sharp,
+                              color: ColorManager.golden,
+                            );
+                          }
+                          return IconButton(
+                              onPressed: () async {
+                                var res = await bottomSheetWidget(
+                                  context,
+                                  child: BlocProvider.value(
+                                    value: context.read<RentBloc>(),
+                                    child: const BottomSheetFilterWidget(),
+                                  ),
+                                );
+                                if (res != null && res) {
+                                  rentGridKPIsBloc.add(
+                                      RentGridKPIsEvent.getData(
+                                          request: context
+                                              .read<RentBloc>()
+                                              .requestMeanValue));
+                                  rentSummeryBloc
+                                      .add(RentSummeryEvent.getRentSummary(
+                                    request: context
+                                        .read<RentBloc>()
+                                        .requestMeanValue,
+                                  ));
+                                  certificateContractBloc.add(
+                                    CertificateContractEvent
+                                        .certificateCountEvent(
+                                            request: context
+                                                .read<RentBloc>()
+                                                .requestMeanValue),
+                                  );
+                                }
+                              },
+                              icon: Icon(
+                                Icons.filter_list_sharp,
+                                color: ColorManager.golden,
+                              ));
+                        },
                       ),
                     ),
                     Center(
@@ -137,7 +156,13 @@ class _RentViewState extends State<RentView> {
                       ),
                     ),
                     const GreyLinerContainer(),
-                    const StatisTicsWidget(),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
+                      child: BlocProvider.value(
+                        value: certificateContractBloc,
+                        child: const StatisTicsWidget(),
+                      ),
+                    ),
                     SizedBox(
                       height: AppSizeH.s20,
                     ),
@@ -223,19 +248,9 @@ class _RentViewState extends State<RentView> {
                                       onPressed: () {
                                         rentSummeryBloc.add(
                                             RentSummeryEvent.getRentSummary(
-                                          request: RequestMeanValue(
-                                            municipalityId: 1,
-                                            propertyTypeList: [-1],
-                                            purposeList: [-1],
-                                            issueDateQuarterList: [1, 2, 3, 4],
-                                            furnitureStatus: -1,
-                                            issueDateYear: 2023,
-                                            issueDateStartMonth: 1,
-                                            issueDateEndMonth: 10,
-                                            zoneId: -1,
-                                            limit: 5,
-                                          ),
-                                        ));
+                                                request: context
+                                                    .read<RentBloc>()
+                                                    .requestMeanValue));
                                       },
                                       icon: const Icon(Icons.refresh))
                                 ],
@@ -338,7 +353,16 @@ class _AnimatedPulesLogoState extends State<AnimatedPulesLogo>
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      color: Theme.of(context).primaryColor,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+        colors: [
+          ColorManager.primary,
+          ColorManager.white,
+        ],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        stops: const [0.2, 1.0],
+      )),
       child: Center(
           child: SizedBox(
         height: AppSizeW.s200,
@@ -421,8 +445,6 @@ class _MainContainerWithBlocState extends State<MainContainerWithBloc> {
     return BlocListener(
       bloc: context.read<RentBloc>(),
       listener: (context, state) {
-        print(
-            'the rent bloc state ${context.read<RentBloc>().loockUpRent?.municipalityList}');
         if (context.read<RentBloc>().loockUpRent?.municipalityList != []) {
           getLocationNameCubit.save(widget.location);
         }
@@ -430,7 +452,6 @@ class _MainContainerWithBlocState extends State<MainContainerWithBloc> {
       child: BlocBuilder<GetLocationNameCubit, String>(
         bloc: getLocationNameCubit,
         builder: (context, state) {
-          print(state);
           if (state == '') {
             getLocationNameCubit.save(widget.location);
           }

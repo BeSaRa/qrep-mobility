@@ -41,6 +41,7 @@ dependencies:
   shared_preferences: ^2.2.1
   lottie: ^2.6.0
   syncfusion_flutter_datepicker: ^23.1.40
+  smooth_page_indicator: ^1.1.0
 
 
 dev_dependencies:

@@ -24,6 +24,7 @@ class ImageAssets {
   static const String splashBackground = '${IMAGE_PATH}splash_backgroudn.png';
   static const String test = '${IMAGE_PATH}qq.png';
   static const String logoPng = '${IMAGE_PATH}splash_logo_trimmed.png';
+  static const String homeBg = '${IMAGE_PATH}home_bg.png';
 
   static const String appbarBg = "${IMAGE_PATH}bg_appbar.png";
   static const String comingSoon = "${IMAGE_PATH}coming-soon.json";
@@ -49,4 +50,13 @@ class IconAssets {
 
   //login
   static const String faceIdIcon = "${ICON_PATH}face_id.svg";
+
+  //home
+  static const String inMiddleHome = "${ICON_PATH}in_middle_home.svg";
+  static const String mortagageHome = "${ICON_PATH}mortagage_home.svg";
+  static const String rentHome = "${ICON_PATH}rent_home.svg";
+  static const String sellHome = "${ICON_PATH}sell_home.svg";
+  static const String aboutHome = "${ICON_PATH}about.svg";
+  static const String faqHome = "${ICON_PATH}faq.svg";
+  static const String lawsHome = "${ICON_PATH}laws.svg";
 }

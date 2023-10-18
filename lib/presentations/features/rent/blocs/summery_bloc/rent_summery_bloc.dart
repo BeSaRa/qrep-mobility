@@ -34,7 +34,6 @@ class RentSummeryBloc extends Bloc<RentSummeryEvent, RentSummeryState> {
               ),
             );
           }, (error) {
-            print("this is the error $error");
             emit(
               state.copyWith(
                 isLoadingRentSummery: false,

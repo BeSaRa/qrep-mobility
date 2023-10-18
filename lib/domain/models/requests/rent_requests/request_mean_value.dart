@@ -6,8 +6,8 @@ part 'request_mean_value.g.dart';
 @freezed
 abstract class RequestMeanValue with _$RequestMeanValue {
   factory RequestMeanValue({
-    int? areaFrom,
-    int? areaTo,
+    num? areaFrom,
+    num? areaTo,
     int? bedRoomsCount,
     int? furnitureStatus,
     int? issueDateEndMonth,
@@ -21,10 +21,12 @@ abstract class RequestMeanValue with _$RequestMeanValue {
     int? offset,
     List<int>? propertyTypeList,
     List<int>? purposeList,
-    int? rentPaymentMonthlyPerUnitFrom,
-    int? rentPaymentMonthlyPerUnitTo,
+    num? rentPaymentMonthlyPerUnitFrom,
+    num? rentPaymentMonthlyPerUnitTo,
     int? streetNo,
     int? zoneId,
+    @Default(1) int unit,
+    @Default(1) int periodId,
   }) = _RequestMeanValue;
   factory RequestMeanValue.fromJson(Map<String, dynamic> json) =>
       _$RequestMeanValueFromJson(json);

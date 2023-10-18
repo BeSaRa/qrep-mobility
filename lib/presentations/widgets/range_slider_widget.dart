@@ -3,22 +3,28 @@ import 'package:flutter/material.dart';
 class RangeSliderWidget extends StatefulWidget {
   final RangeValues rangeValues;
   final Function(RangeValues rangeValues) onChanged;
+  final double min;
+  final double max;
   const RangeSliderWidget(
-      {super.key, required this.rangeValues, required this.onChanged});
+      {super.key,
+      required this.rangeValues,
+      required this.onChanged,
+      required this.min,
+      required this.max});
 
   @override
   State<RangeSliderWidget> createState() => _RangeSliderWidgetState();
 }
 
 class _RangeSliderWidgetState extends State<RangeSliderWidget> {
-  late double min;
-  late double max;
+  late double start;
+  late double end;
 
   @override
   void initState() {
     super.initState();
-    min = widget.rangeValues.start;
-    max = widget.rangeValues.end;
+    start = widget.rangeValues.start;
+    end = widget.rangeValues.end;
   }
 
   @override
@@ -27,13 +33,13 @@ class _RangeSliderWidgetState extends State<RangeSliderWidget> {
       onChanged: (values) {
         widget.onChanged(RangeValues(values.start, values.end));
         setState(() {
-          min = values.start;
-          max = values.end;
+          start = values.start;
+          end = values.end;
         });
       },
-      values: RangeValues(min, max),
-      min: widget.rangeValues.start,
-      max: widget.rangeValues.end,
+      values: RangeValues(start, end),
+      min: widget.min,
+      max: widget.max,
     );
   }
 }

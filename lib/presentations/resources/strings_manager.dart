@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 
 class AppStrings {
   String test = 'test';
-
   //main scaffold locals
   String main = 'main'.tr();
   String rent = 'rent'.tr();
@@ -52,4 +51,14 @@ class AppStrings {
   //Errors
   String noInternetError = 'noInternetError'.tr();
   String defaultError = 'defaultError'.tr();
+
+  //home
+  String news = 'home_news'.tr();
+  String mortgageIndicators = 'mortgage_indicator'.tr();
+  String rentIndicators = 'rent_indicator'.tr();
+  String sellIndicators = 'sell_indicator'.tr();
+  String realEstateBrokers = 'real_estate_broker'.tr();
+  String aboutUs = 'about_us'.tr();
+  String faqs = 'faqs'.tr();
+  String lawsAndDecisions = 'laws_and_decisions'.tr();
 }

@@ -185,7 +185,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
                 padding: EdgeInsets.symmetric(
                     horizontal: AppSizeW.s12, vertical: AppSizeH.s10),
                 decoration: BoxDecoration(
-                    color: Theme.of(context).disabledColor.withOpacity(0.1),
+                    color: ColorManager.mercury,
                     borderRadius: BorderRadius.circular(AppSizeW.s20)),
                 child: Row(
                   children: [
