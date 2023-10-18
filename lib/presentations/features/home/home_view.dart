@@ -1,13 +1,15 @@
+import 'dart:math' as math;
+
+import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../app/depndency_injection.dart';
 import '../../../domain/models/rent_models/rent_models.dart';
 import '../../../utils/global_functions.dart';
-import '../../resources/assets_manager.dart';
 import '../../resources/resources.dart';
-import '../../resources/values_manager.dart';
 import '../../widgets/widgets.dart';
 import '../more/more_view.dart';
 import '../rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
@@ -29,7 +31,8 @@ class _HomeViewState extends State<HomeView> {
 
   final _textController = TextEditingController();
 
-  // bool showInkWell = false;
+  final PageController _pageController = PageController();
+  int _indexCubit = 0;
 
   @override
   void initState() {
@@ -39,21 +42,187 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
   }
 
-  // bool _switchValue = false;
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Container(
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(ImageAssets.homeBg), fit: BoxFit.fill)),
+      child: Scaffold(
         appBar: const TitleAppBar(),
-        body: Center(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height / 2,
-            child: Lottie.asset(
-              ImageAssets.comingSoon,
-              fit: BoxFit.contain,
+        backgroundColor: Colors.transparent,
+        body: ListView(
+          children: [
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height / 2.5,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          children: [
+                            _HomeContainer(
+                              isBig: true,
+                              title: AppStrings().sellIndicators,
+                              color: ColorManager.white,
+                              image: IconAssets.sellHome,
+                              isShadow: true,
+                            ),
+                            _HomeContainer(
+                              isBig: false,
+                              title: AppStrings().mortgageIndicators,
+                              color: ColorManager.cloudyGrey.withOpacity(0.4),
+                              image: IconAssets.mortagageHome,
+                              iconColor: ColorManager.white,
+                              isShadow: false,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            _HomeContainer(
+                              isBig: false,
+                              title: AppStrings().rentIndicators,
+                              color: ColorManager.cloudyGrey,
+                              image: IconAssets.rentHome,
+                              imageColor: ColorManager.white,
+                              textColor: ColorManager.white,
+                              iconColor: ColorManager.silver,
+                              isShadow: true,
+                            ),
+                            _HomeContainer(
+                              isBig: true,
+                              title: AppStrings().realEstateBrokers,
+                              color: Colors.white.withOpacity(0.6),
+                              image: IconAssets.inMiddleHome,
+                              isShadow: false,
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                )),
+            SizedBox(
+              height: AppSizeH.s10,
             ),
-          ),
-        )
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: AppSizeW.s20, vertical: AppSizeH.s14),
+              child: Row(
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        AppStrings().news,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium
+                            ?.copyWith(fontWeight: FontWeight.w800),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: AppSizeW.s10),
+                        height: AppSizeH.s5,
+                        width: AppSizeW.s40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(AppSizeR.s5),
+                            color: ColorManager.lightSilver),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: AppSizeW.s14, vertical: AppSizeH.s2),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: ColorManager.golden),
+                        borderRadius: BorderRadius.circular(AppSizeR.s20)),
+                    child: Row(
+                      children: [
+                        Text(
+                          AppStrings().more,
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: ColorManager.golden,
+                          size: AppSizeH.s14,
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: AppSizeH.s100,
+              child: PageView.builder(
+                  controller: _pageController,
+                  itemCount: 3,
+                  onPageChanged: (index) {
+                    setState(() {
+                      _indexCubit = index;
+                    });
+                  },
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: AppSizeW.s20, vertical: AppSizeH.s4),
+                      child: const NewsItemWidget(
+                          date: '15 مارس 2023',
+                          label: 'وزارة البلدية تطلق المرحلة الأولى '
+                              'من مشروع المنصة العقارية لدولة قطر'),
+                    );
+                  }),
+            ),
+            SizedBox(
+              height: AppSizeH.s10,
+            ),
+            Center(
+              child: AnimatedSmoothIndicator(
+                activeIndex: _indexCubit,
+                count: 3,
+                textDirection: TextDirection.rtl,
+                effect: ExpandingDotsEffect(
+                    dotColor: ColorManager.silver,
+                    activeDotColor: Theme.of(context).primaryColor,
+                    dotHeight: AppSizeH.s6,
+                    dotWidth: AppSizeW.s6),
+              ),
+            ),
+            SizedBox(
+              height: AppSizeH.s20,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  StaticPagesContainer(
+                    icon: IconAssets.aboutHome,
+                    title: AppStrings().aboutUs,
+                  ),
+                  StaticPagesContainer(
+                    icon: IconAssets.lawsHome,
+                    title: AppStrings().lawsAndDecisions,
+                  ),
+                  StaticPagesContainer(
+                    icon: IconAssets.faqHome,
+                    title: AppStrings().faqs,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
         // Padding(
         //   padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
         //   child: Column(
@@ -144,7 +313,169 @@ class _HomeViewState extends State<HomeView> {
         //     ],
         //   ),
         // ),
-        );
+      ),
+    );
+  }
+}
+
+class StaticPagesContainer extends StatelessWidget {
+  final String icon;
+  final String title;
+
+  const StaticPagesContainer({
+    super.key,
+    required this.icon,
+    required this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+          horizontal: AppSizeH.s15, vertical: AppSizeH.s10),
+      decoration: BoxDecoration(
+          color: ColorManager.white,
+          borderRadius: BorderRadius.circular(AppSizeW.s14),
+          border: Border.all(color: ColorManager.golden, width: AppSizeH.s1)),
+      child: Column(
+        children: [
+          SvgPicture.asset(
+            icon,
+            height: AppSizeH.s60,
+            width: AppSizeW.s60,
+          ),
+          Text(
+            title,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _HomeContainer extends StatelessWidget {
+  final bool isBig;
+  final String title;
+  final Color color;
+  final String image;
+  final Color? imageColor;
+  final Color? iconColor;
+  final Color? textColor;
+  final bool isShadow;
+
+  const _HomeContainer({
+    required this.isBig,
+    required this.title,
+    required this.color,
+    required this.image,
+    this.imageColor,
+    this.iconColor,
+    this.textColor,
+    required this.isShadow,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(
+          horizontal: AppSizeW.s10, vertical: AppSizeH.s10),
+      height:
+          (MediaQuery.of(context).size.height / 2.5) * (isBig ? 0.50 : 0.36),
+      decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(AppSizeR.s20),
+          border: isShadow ? null : Border.all(color: ColorManager.grey),
+          boxShadow: isShadow
+              ? [
+                  BoxShadow(
+                      color: ColorManager.grey,
+                      offset: const Offset(1, 1),
+                      blurRadius: AppSizeW.s2,
+                      spreadRadius: AppSizeW.s1),
+                  BoxShadow(
+                      color: ColorManager.grey,
+                      offset: const Offset(-1, -1),
+                      blurRadius: AppSizeW.s2,
+                      spreadRadius: AppSizeW.s1),
+                ]
+              : []),
+      child: Row(
+        children: [
+          if (!isBig)
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  title,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 6,
+                  softWrap: true,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: textColor),
+                ),
+              ),
+            ),
+          if (!isBig)
+            SizedBox(
+              width: AppSizeH.s4,
+            ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment:
+                  isBig ? CrossAxisAlignment.center : CrossAxisAlignment.end,
+              children: [
+                Align(
+                  alignment: context.locale == ARABIC_LOCAL
+                      ? Alignment.topLeft
+                      : Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Transform.rotate(
+                        angle: context.locale == ARABIC_LOCAL
+                            ? -45
+                            : 45 * math.pi / 180,
+                        child: Icon(
+                          Icons.arrow_upward_rounded,
+                          color: isBig ? ColorManager.greyCloud : iconColor,
+                        )),
+                  ),
+                ),
+                if (!isBig)
+                  SizedBox(
+                    height: AppSizeH.s10,
+                  ),
+                Align(
+                  alignment: isBig ? Alignment.center : Alignment.bottomLeft,
+                  child: SvgPicture.asset(
+                    image,
+                    height: AppSizeH.s70,
+                    width: AppSizeW.s70,
+                    color: imageColor ?? Theme.of(context).primaryColor,
+                    fit: BoxFit.scaleDown,
+                  ),
+                ),
+                if (isBig)
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        title,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        softWrap: true,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -254,14 +585,14 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                       children: [
                         InkWell(
                           onTap: () {
+                            setState(() {
+                              index = 1;
+                            });
                             context.read<CertificateContractBloc>().add(
                                 CertificateContractEvent.certificateCountEvent(
                                     request: context
                                         .read<RentBloc>()
                                         .requestMeanValue));
-                            setState(() {
-                              index = 1;
-                            });
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(
@@ -289,15 +620,15 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                         ),
                         InkWell(
                           onTap: () {
+                            setState(() {
+                              index = 2;
+                            });
                             context.read<CertificateContractBloc>().add(
                                   CertificateContractEvent.contractCountEvent(
                                       request: context
                                           .read<RentBloc>()
                                           .requestMeanValue),
                                 );
-                            setState(() {
-                              index = 2;
-                            });
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(
@@ -353,7 +684,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                   ],
                 );
               }
-              if (state.certificateCountResponse.isNotEmpty && indexx == 0) {
+              if (state.certificateCountResponse.isNotEmpty && index == 1) {
                 return StatisticsRentWidget(
                     statistics: state.certificateCountResponse.map((e) {
                   return StatisticsModel(
@@ -368,7 +699,27 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                       number: e.kpiVal.toString());
                 }).toList());
               }
-              if (state.contractCountResponse.isNotEmpty && indexx == 1) {
+              if (state.certificateCountResponse.isEmpty && index == 1) {
+                return Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(
+                      vertical: AppSizeH.s13, horizontal: AppSizeW.s21),
+                  decoration: BoxDecoration(
+                      color: ColorManager.white,
+                      borderRadius: BorderRadius.circular(AppSizeR.s12),
+                      boxShadow: [
+                        BoxShadow(
+                            offset: const Offset(1, 1),
+                            spreadRadius: AppSizeR.s2,
+                            blurRadius: AppSizeR.s11,
+                            color: ColorManager.black.withAlpha(6))
+                      ]),
+                  child: const Text('لا يوجد عقود إيجار'),
+                );
+              }
+
+              if (state.contractCountResponse.isNotEmpty && index == 2) {
                 return StatisticsRentWidget(
                     statistics: state.certificateCountResponse.map((e) {
                   return StatisticsModel(
@@ -382,6 +733,25 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                           '',
                       number: e.kpiVal.toString());
                 }).toList());
+              }
+              if (state.contractCountResponse.isEmpty && index == 2) {
+                return Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(
+                      vertical: AppSizeH.s13, horizontal: AppSizeW.s21),
+                  decoration: BoxDecoration(
+                      color: ColorManager.white,
+                      borderRadius: BorderRadius.circular(AppSizeR.s12),
+                      boxShadow: [
+                        BoxShadow(
+                            offset: const Offset(1, 1),
+                            spreadRadius: AppSizeR.s2,
+                            blurRadius: AppSizeR.s11,
+                            color: ColorManager.black.withAlpha(6))
+                      ]),
+                  child: const Text('لا يوجد وحدات'),
+                );
               }
               return const SizedBox();
             },
