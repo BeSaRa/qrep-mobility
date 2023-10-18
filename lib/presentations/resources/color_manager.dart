@@ -15,6 +15,7 @@ class ColorManager {
   static Color darkGrey = Hex16Color.fromHex("#434343");
   static Color primary = Hex16Color.fromHex("#8A1538");
   static Color black = Hex16Color.fromHex("#000000");
+  static Color blue = Hex16Color.fromHex("#287CFA");
 }
 
 extension Hex16Color on Color {

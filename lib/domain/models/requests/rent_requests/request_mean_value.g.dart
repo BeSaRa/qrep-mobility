@@ -9,8 +9,8 @@ part of 'request_mean_value.dart';
 _$RequestMeanValueImpl _$$RequestMeanValueImplFromJson(
         Map<String, dynamic> json) =>
     _$RequestMeanValueImpl(
-      areaFrom: json['areaFrom'] as int?,
-      areaTo: json['areaTo'] as int?,
+      areaFrom: json['areaFrom'] as num?,
+      areaTo: json['areaTo'] as num?,
       bedRoomsCount: json['bedRoomsCount'] as int?,
       furnitureStatus: json['furnitureStatus'] as int?,
       issueDateEndMonth: json['issueDateEndMonth'] as int?,
@@ -31,10 +31,12 @@ _$RequestMeanValueImpl _$$RequestMeanValueImplFromJson(
           ?.map((e) => e as int)
           .toList(),
       rentPaymentMonthlyPerUnitFrom:
-          json['rentPaymentMonthlyPerUnitFrom'] as int?,
-      rentPaymentMonthlyPerUnitTo: json['rentPaymentMonthlyPerUnitTo'] as int?,
+          json['rentPaymentMonthlyPerUnitFrom'] as num?,
+      rentPaymentMonthlyPerUnitTo: json['rentPaymentMonthlyPerUnitTo'] as num?,
       streetNo: json['streetNo'] as int?,
       zoneId: json['zoneId'] as int?,
+      unit: json['unit'] as int? ?? 1,
+      periodId: json['periodId'] as int? ?? 1,
     );
 
 Map<String, dynamic> _$$RequestMeanValueImplToJson(
@@ -59,4 +61,6 @@ Map<String, dynamic> _$$RequestMeanValueImplToJson(
       'rentPaymentMonthlyPerUnitTo': instance.rentPaymentMonthlyPerUnitTo,
       'streetNo': instance.streetNo,
       'zoneId': instance.zoneId,
+      'unit': instance.unit,
+      'periodId': instance.periodId,
     };

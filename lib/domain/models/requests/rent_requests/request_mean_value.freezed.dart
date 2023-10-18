@@ -20,8 +20,8 @@ RequestMeanValue _$RequestMeanValueFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RequestMeanValue {
-  int? get areaFrom => throw _privateConstructorUsedError;
-  int? get areaTo => throw _privateConstructorUsedError;
+  num? get areaFrom => throw _privateConstructorUsedError;
+  num? get areaTo => throw _privateConstructorUsedError;
   int? get bedRoomsCount => throw _privateConstructorUsedError;
   int? get furnitureStatus => throw _privateConstructorUsedError;
   int? get issueDateEndMonth => throw _privateConstructorUsedError;
@@ -35,10 +35,12 @@ mixin _$RequestMeanValue {
   int? get offset => throw _privateConstructorUsedError;
   List<int>? get propertyTypeList => throw _privateConstructorUsedError;
   List<int>? get purposeList => throw _privateConstructorUsedError;
-  int? get rentPaymentMonthlyPerUnitFrom => throw _privateConstructorUsedError;
-  int? get rentPaymentMonthlyPerUnitTo => throw _privateConstructorUsedError;
+  num? get rentPaymentMonthlyPerUnitFrom => throw _privateConstructorUsedError;
+  num? get rentPaymentMonthlyPerUnitTo => throw _privateConstructorUsedError;
   int? get streetNo => throw _privateConstructorUsedError;
   int? get zoneId => throw _privateConstructorUsedError;
+  int get unit => throw _privateConstructorUsedError;
+  int get periodId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,8 +55,8 @@ abstract class $RequestMeanValueCopyWith<$Res> {
       _$RequestMeanValueCopyWithImpl<$Res, RequestMeanValue>;
   @useResult
   $Res call(
-      {int? areaFrom,
-      int? areaTo,
+      {num? areaFrom,
+      num? areaTo,
       int? bedRoomsCount,
       int? furnitureStatus,
       int? issueDateEndMonth,
@@ -68,10 +70,12 @@ abstract class $RequestMeanValueCopyWith<$Res> {
       int? offset,
       List<int>? propertyTypeList,
       List<int>? purposeList,
-      int? rentPaymentMonthlyPerUnitFrom,
-      int? rentPaymentMonthlyPerUnitTo,
+      num? rentPaymentMonthlyPerUnitFrom,
+      num? rentPaymentMonthlyPerUnitTo,
       int? streetNo,
-      int? zoneId});
+      int? zoneId,
+      int unit,
+      int periodId});
 }
 
 /// @nodoc
@@ -106,16 +110,18 @@ class _$RequestMeanValueCopyWithImpl<$Res, $Val extends RequestMeanValue>
     Object? rentPaymentMonthlyPerUnitTo = freezed,
     Object? streetNo = freezed,
     Object? zoneId = freezed,
+    Object? unit = null,
+    Object? periodId = null,
   }) {
     return _then(_value.copyWith(
       areaFrom: freezed == areaFrom
           ? _value.areaFrom
           : areaFrom // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as num?,
       areaTo: freezed == areaTo
           ? _value.areaTo
           : areaTo // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as num?,
       bedRoomsCount: freezed == bedRoomsCount
           ? _value.bedRoomsCount
           : bedRoomsCount // ignore: cast_nullable_to_non_nullable
@@ -171,11 +177,11 @@ class _$RequestMeanValueCopyWithImpl<$Res, $Val extends RequestMeanValue>
       rentPaymentMonthlyPerUnitFrom: freezed == rentPaymentMonthlyPerUnitFrom
           ? _value.rentPaymentMonthlyPerUnitFrom
           : rentPaymentMonthlyPerUnitFrom // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as num?,
       rentPaymentMonthlyPerUnitTo: freezed == rentPaymentMonthlyPerUnitTo
           ? _value.rentPaymentMonthlyPerUnitTo
           : rentPaymentMonthlyPerUnitTo // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as num?,
       streetNo: freezed == streetNo
           ? _value.streetNo
           : streetNo // ignore: cast_nullable_to_non_nullable
@@ -184,6 +190,14 @@ class _$RequestMeanValueCopyWithImpl<$Res, $Val extends RequestMeanValue>
           ? _value.zoneId
           : zoneId // ignore: cast_nullable_to_non_nullable
               as int?,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as int,
+      periodId: null == periodId
+          ? _value.periodId
+          : periodId // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -197,8 +211,8 @@ abstract class _$$RequestMeanValueImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? areaFrom,
-      int? areaTo,
+      {num? areaFrom,
+      num? areaTo,
       int? bedRoomsCount,
       int? furnitureStatus,
       int? issueDateEndMonth,
@@ -212,10 +226,12 @@ abstract class _$$RequestMeanValueImplCopyWith<$Res>
       int? offset,
       List<int>? propertyTypeList,
       List<int>? purposeList,
-      int? rentPaymentMonthlyPerUnitFrom,
-      int? rentPaymentMonthlyPerUnitTo,
+      num? rentPaymentMonthlyPerUnitFrom,
+      num? rentPaymentMonthlyPerUnitTo,
       int? streetNo,
-      int? zoneId});
+      int? zoneId,
+      int unit,
+      int periodId});
 }
 
 /// @nodoc
@@ -248,16 +264,18 @@ class __$$RequestMeanValueImplCopyWithImpl<$Res>
     Object? rentPaymentMonthlyPerUnitTo = freezed,
     Object? streetNo = freezed,
     Object? zoneId = freezed,
+    Object? unit = null,
+    Object? periodId = null,
   }) {
     return _then(_$RequestMeanValueImpl(
       areaFrom: freezed == areaFrom
           ? _value.areaFrom
           : areaFrom // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as num?,
       areaTo: freezed == areaTo
           ? _value.areaTo
           : areaTo // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as num?,
       bedRoomsCount: freezed == bedRoomsCount
           ? _value.bedRoomsCount
           : bedRoomsCount // ignore: cast_nullable_to_non_nullable
@@ -313,11 +331,11 @@ class __$$RequestMeanValueImplCopyWithImpl<$Res>
       rentPaymentMonthlyPerUnitFrom: freezed == rentPaymentMonthlyPerUnitFrom
           ? _value.rentPaymentMonthlyPerUnitFrom
           : rentPaymentMonthlyPerUnitFrom // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as num?,
       rentPaymentMonthlyPerUnitTo: freezed == rentPaymentMonthlyPerUnitTo
           ? _value.rentPaymentMonthlyPerUnitTo
           : rentPaymentMonthlyPerUnitTo // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as num?,
       streetNo: freezed == streetNo
           ? _value.streetNo
           : streetNo // ignore: cast_nullable_to_non_nullable
@@ -326,6 +344,14 @@ class __$$RequestMeanValueImplCopyWithImpl<$Res>
           ? _value.zoneId
           : zoneId // ignore: cast_nullable_to_non_nullable
               as int?,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as int,
+      periodId: null == periodId
+          ? _value.periodId
+          : periodId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -352,7 +378,9 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
       this.rentPaymentMonthlyPerUnitFrom,
       this.rentPaymentMonthlyPerUnitTo,
       this.streetNo,
-      this.zoneId})
+      this.zoneId,
+      this.unit = 1,
+      this.periodId = 1})
       : _issueDateQuarterList = issueDateQuarterList,
         _propertyTypeList = propertyTypeList,
         _purposeList = purposeList;
@@ -361,9 +389,9 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
       _$$RequestMeanValueImplFromJson(json);
 
   @override
-  final int? areaFrom;
+  final num? areaFrom;
   @override
-  final int? areaTo;
+  final num? areaTo;
   @override
   final int? bedRoomsCount;
   @override
@@ -417,17 +445,23 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
   }
 
   @override
-  final int? rentPaymentMonthlyPerUnitFrom;
+  final num? rentPaymentMonthlyPerUnitFrom;
   @override
-  final int? rentPaymentMonthlyPerUnitTo;
+  final num? rentPaymentMonthlyPerUnitTo;
   @override
   final int? streetNo;
   @override
   final int? zoneId;
+  @override
+  @JsonKey()
+  final int unit;
+  @override
+  @JsonKey()
+  final int periodId;
 
   @override
   String toString() {
-    return 'RequestMeanValue(areaFrom: $areaFrom, areaTo: $areaTo, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, propertyTypeList: $propertyTypeList, purposeList: $purposeList, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, streetNo: $streetNo, zoneId: $zoneId)';
+    return 'RequestMeanValue(areaFrom: $areaFrom, areaTo: $areaTo, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, propertyTypeList: $propertyTypeList, purposeList: $purposeList, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, streetNo: $streetNo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
   }
 
   @override
@@ -472,7 +506,10 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
                     rentPaymentMonthlyPerUnitTo) &&
             (identical(other.streetNo, streetNo) ||
                 other.streetNo == streetNo) &&
-            (identical(other.zoneId, zoneId) || other.zoneId == zoneId));
+            (identical(other.zoneId, zoneId) || other.zoneId == zoneId) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
+            (identical(other.periodId, periodId) ||
+                other.periodId == periodId));
   }
 
   @JsonKey(ignore: true)
@@ -497,7 +534,9 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
         rentPaymentMonthlyPerUnitFrom,
         rentPaymentMonthlyPerUnitTo,
         streetNo,
-        zoneId
+        zoneId,
+        unit,
+        periodId
       ]);
 
   @JsonKey(ignore: true)
@@ -517,8 +556,8 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
 
 abstract class _RequestMeanValue implements RequestMeanValue {
   factory _RequestMeanValue(
-      {final int? areaFrom,
-      final int? areaTo,
+      {final num? areaFrom,
+      final num? areaTo,
       final int? bedRoomsCount,
       final int? furnitureStatus,
       final int? issueDateEndMonth,
@@ -532,18 +571,20 @@ abstract class _RequestMeanValue implements RequestMeanValue {
       final int? offset,
       final List<int>? propertyTypeList,
       final List<int>? purposeList,
-      final int? rentPaymentMonthlyPerUnitFrom,
-      final int? rentPaymentMonthlyPerUnitTo,
+      final num? rentPaymentMonthlyPerUnitFrom,
+      final num? rentPaymentMonthlyPerUnitTo,
       final int? streetNo,
-      final int? zoneId}) = _$RequestMeanValueImpl;
+      final int? zoneId,
+      final int unit,
+      final int periodId}) = _$RequestMeanValueImpl;
 
   factory _RequestMeanValue.fromJson(Map<String, dynamic> json) =
       _$RequestMeanValueImpl.fromJson;
 
   @override
-  int? get areaFrom;
+  num? get areaFrom;
   @override
-  int? get areaTo;
+  num? get areaTo;
   @override
   int? get bedRoomsCount;
   @override
@@ -571,13 +612,17 @@ abstract class _RequestMeanValue implements RequestMeanValue {
   @override
   List<int>? get purposeList;
   @override
-  int? get rentPaymentMonthlyPerUnitFrom;
+  num? get rentPaymentMonthlyPerUnitFrom;
   @override
-  int? get rentPaymentMonthlyPerUnitTo;
+  num? get rentPaymentMonthlyPerUnitTo;
   @override
   int? get streetNo;
   @override
   int? get zoneId;
+  @override
+  int get unit;
+  @override
+  int get periodId;
   @override
   @JsonKey(ignore: true)
   _$$RequestMeanValueImplCopyWith<_$RequestMeanValueImpl> get copyWith =>

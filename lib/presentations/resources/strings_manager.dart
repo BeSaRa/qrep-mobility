@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 
 class AppStrings {
   String test = 'test';
-
   //main scaffold locals
   String main = 'main'.tr();
   String rent = 'rent'.tr();

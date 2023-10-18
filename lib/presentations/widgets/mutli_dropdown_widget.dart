@@ -36,7 +36,7 @@ class _MultiDropDownValue<T> extends State<MultiDropDownValue<T>> {
           isDense: true,
           hint: Text(
             widget.selectedItems.map((e) {
-              return e is RentLookupModel ? e.arName : e;
+              return e is PeriodTimeDetails ? e.name : e;
             }).join(','),
             style: Theme.of(context).textTheme.labelSmall,
             softWrap: false,
@@ -72,7 +72,7 @@ class _MultiDropDownValue<T> extends State<MultiDropDownValue<T>> {
                           SizedBox(width: AppSizeW.s11),
                           Expanded(
                             child: Text(
-                              item is RentLookupModel ? item.arName : '$item',
+                              item is PeriodTimeDetails ? item.name : '$item',
                               style: Theme.of(context).textTheme.labelSmall,
                               softWrap: true,
                               // overflow: TextOverflow.ellipsis,
@@ -87,11 +87,7 @@ class _MultiDropDownValue<T> extends State<MultiDropDownValue<T>> {
             );
           }).toList(),
           // value: selectedValue,
-          onChanged: (T? value) {
-            // setState(() {
-            //   widget.selectedValue = value;
-            // });
-          },
+          onChanged: (T? value) {},
           dropdownStyleData: DropdownStyleData(
             maxHeight: AppSizeH.s200, width: double.infinity, useSafeArea: true,
             decoration: BoxDecoration(
