@@ -66,15 +66,13 @@ flutter:
     - assets/icons/
     - assets/lang/
   fonts:
-    - family: NotoSans
+    - family: Lusail
       fonts:
-        - asset: assets/fonts/NotoSans-Bold.ttf
+        - asset: assets/fonts/Lusail-Bold.otf
           weight: 700
-        - asset: assets/fonts/NotoSans-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/NotoSans-Medium.ttf
+        - asset: assets/fonts/Lusail-Medium.otf
           weight: 500
-        - asset: assets/fonts/NotoSans-Regular.ttf
+        - asset: assets/fonts/Lusail-Regular.otf
           weight: 400
-        - asset: assets/fonts/NotoSans-Light.ttf
+        - asset: assets/fonts/Lusail-Light.otf
           weight: 300
