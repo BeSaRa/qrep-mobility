@@ -1,3 +1,4 @@
+import 'package:countup/countup.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
@@ -100,18 +101,112 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                 child: BlocBuilder<RentGridKPIsBloc, RentGridKPIsState>(
                   bloc: context.read<RentGridKPIsBloc>(),
                   builder: (context, state) {
-                    if (state.isLoading) {
-                      return const CircularProgressIndicator();
+                    // animate from 0 to default value
+                    // if the state is loading show the default value
+                    // if the state is done animate from the default value to the new value if it is different
+                    if (state.isLoading || state.hasError) {
+                      if (widget.kpi == KPI.totalContracts) {
+                        // KPI1
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FittedBox(
+                              child: Text(
+                                  (widget.response.kpi1Val ?? 0)
+                                      .formatWithCommas(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(fontSize: AppSizeSp.s18)),
+                            ),
+                            Text(gridItemsData[widget.index].valueUnit,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        fontSize: AppSizeSp.s18, height: 0.5)),
+                          ],
+                        );
+                      } else if (widget.kpi == KPI.totalRentedUntis) {
+                        // KPI4
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FittedBox(
+                              child: Text(
+                                  (widget.response.kpi4Val ?? 0)
+                                      .formatWithCommas(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(fontSize: AppSizeSp.s18)),
+                            ),
+                            Text(gridItemsData[widget.index].valueUnit,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        fontSize: AppSizeSp.s18, height: 0.5)),
+                          ],
+                        );
+                      } else if (widget.kpi == KPI.meanRentUnitValue) {
+                        // KPI13
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FittedBox(
+                              child: Text(
+                                  (widget.response.kpi13Val ?? 0)
+                                      .formatWithCommas(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(fontSize: AppSizeSp.s18)),
+                            ),
+                            Text(gridItemsData[widget.index].valueUnit,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        fontSize: AppSizeSp.s18, height: 0.5)),
+                          ],
+                        );
+                      } else if (widget.kpi == KPI.totalContractsValue) {
+                        // KPI7
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FittedBox(
+                              child: Text(
+                                  (widget.response.kpi7Val ?? 0)
+                                      .formatWithCommas(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(fontSize: AppSizeSp.s18)),
+                            ),
+                            Text(gridItemsData[widget.index].valueUnit,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        fontSize: AppSizeSp.s18, height: 0.5)),
+                          ],
+                        );
+                      }
                     } else if (state.totalContracts.isNotEmpty &&
                         widget.kpi == KPI.totalContracts) {
+                      // KPI1
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           FittedBox(
-                            child: Text(
-                                state.totalContracts.first.kpiVal
-                                    .formatWithCommas()
-                                    .toString(),
+                            child: Countup(
+                                duration: const Duration(seconds: 1),
+                                separator: ',',
+                                begin: widget.response.kpi1Val ?? 0,
+                                end: state.totalContracts.first.kpiVal
+                                    .toDouble(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!
@@ -127,14 +222,17 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                       );
                     } else if (state.totalRentedUnits.isNotEmpty &&
                         widget.kpi == KPI.totalRentedUntis) {
+                      // KPI4
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           FittedBox(
-                            child: Text(
-                                state.totalRentedUnits.first.kpiVal
-                                    .formatWithCommas()
-                                    .toString(),
+                            child: Countup(
+                                duration: const Duration(seconds: 1),
+                                separator: ',',
+                                begin: widget.response.kpi1Val ?? 0,
+                                end: state.totalRentedUnits.first.kpiVal
+                                    .toDouble(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!
@@ -148,18 +246,22 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                                       fontSize: AppSizeSp.s18, height: 0.5)),
                         ],
                       );
-                    } else if (state.hasError) {
-                      return Text(state.errorMessage);
-                    } else if (state.meanValue.isNotEmpty &&
+                    }
+                    //  else if (state.hasError) {
+                    //   return Text(state.errorMessage);
+                    // }
+                    else if (state.meanValue.isNotEmpty &&
                         widget.kpi == KPI.meanRentUnitValue) {
+                      // KPI13
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           FittedBox(
-                            child: Text(
-                                state.meanValue.first.kpiVal
-                                    .formatWithCommas()
-                                    .toString(),
+                            child: Countup(
+                                duration: const Duration(seconds: 1),
+                                separator: ',',
+                                begin: widget.response.kpi1Val ?? 0,
+                                end: state.meanValue.first.kpiVal.toDouble(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!
@@ -175,14 +277,17 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                       );
                     } else if (state.meanValue.isNotEmpty &&
                         widget.kpi == KPI.totalContractsValue) {
+                      // KPI17
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           FittedBox(
-                            child: Text(
-                                state.contractsValue.first.kpiVal
-                                    .formatWithCommas()
-                                    .toString(),
+                            child: Countup(
+                                duration: const Duration(seconds: 1),
+                                separator: ',',
+                                begin: widget.response.kpi1Val ?? 0,
+                                end: state.contractsValue.first.kpiVal
+                                    .toDouble(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!

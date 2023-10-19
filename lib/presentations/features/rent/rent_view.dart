@@ -2,15 +2,21 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
+import 'package:ebla/presentations/features/rent/blocs/cubits/cubit/change_status_cubit.dart';
 import 'package:ebla/presentations/features/rent/blocs/get_location_name_cubit.dart';
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/summery_bloc/rent_summery_bloc.dart';
+import 'package:ebla/presentations/features/rent/widgets/selected_municipality_widget.dart';
+import 'package:ebla/presentations/features/rent/widgets/selected_period_widget.dart';
+import 'package:ebla/presentations/features/rent/widgets/selected_year_widget.dart';
 import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:ebla/presentations/widgets/main_data_container.dart';
 import 'package:ebla/presentations/widgets/staggered_grid_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../app/depndency_injection.dart';
@@ -37,6 +43,7 @@ class _RentViewState extends State<RentView> {
   late RentSummeryBloc rentSummeryBloc;
   late RentDefaultBloc rentDefaultBloc;
   late CertificateContractBloc certificateContractBloc;
+  late ChangeStatusCubit changeStatusCubit;
 
   @override
   void initState() {
@@ -46,6 +53,7 @@ class _RentViewState extends State<RentView> {
     rentGridKPIsBloc = instance<RentGridKPIsBloc>();
     rentSummeryBloc = instance<RentSummeryBloc>();
     certificateContractBloc = instance<CertificateContractBloc>();
+    changeStatusCubit = ChangeStatusCubit();
 
     super.initState();
   }
@@ -110,57 +118,135 @@ class _RentViewState extends State<RentView> {
                               },
                               child: ListView(
                                 children: [
-                                  Align(
-                                    alignment: AlignmentDirectional.topEnd,
-                                    child: BlocBuilder(
-                                      bloc: context.read<RentBloc>(),
-                                      builder: (context, RentState state) {
-                                        if (state.isLoadingRentLookup) {
-                                          return Icon(
-                                            Icons.filter_list_sharp,
-                                            color: ColorManager.golden,
-                                          );
-                                        }
-                                        return IconButton(
-                                            onPressed: () async {
-                                              var res = await bottomSheetWidget(
-                                                context,
-                                                child: BlocProvider.value(
-                                                  value:
-                                                      context.read<RentBloc>(),
-                                                  child:
-                                                      const BottomSheetFilterWidget(),
-                                                ),
-                                              );
-                                              if (res != null && res) {
-                                                rentGridKPIsBloc.add(
-                                                    RentGridKPIsEvent.getData(
-                                                        request: context
-                                                            .read<RentBloc>()
-                                                            .requestMeanValue));
-                                                rentSummeryBloc.add(
-                                                    RentSummeryEvent
-                                                        .getRentSummary(
-                                                  request: context
+                                  BlocBuilder(
+                                    bloc: changeStatusCubit,
+                                    builder: (context, state) {
+                                      return Column(children: [
+                                        Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              SizedBox(width: AppSizeW.s16),
+                                              SelectedMunicipality(
+                                                model: getObjectById(
+                                                        context
+                                                                .read<
+                                                                    RentBloc>()
+                                                                .loockUpRent
+                                                                ?.municipalityList ??
+                                                            [],
+                                                        context
+                                                                .read<
+                                                                    RentBloc>()
+                                                                .requestMeanValue
+                                                                .municipalityId ??
+                                                            1) ??
+                                                    RentLookupModel(),
+                                              ),
+                                              SizedBox(width: AppSizeW.s5),
+                                              SelectedYearWidget(
+                                                  year: context
                                                       .read<RentBloc>()
-                                                      .requestMeanValue,
-                                                ));
-                                                certificateContractBloc.add(
-                                                  CertificateContractEvent
-                                                      .certificateCountEvent(
-                                                          request: context
-                                                              .read<RentBloc>()
-                                                              .requestMeanValue),
-                                                );
-                                              }
-                                            },
-                                            icon: Icon(
-                                              Icons.filter_list_sharp,
-                                              color: ColorManager.golden,
-                                            ));
-                                      },
-                                    ),
+                                                      .requestMeanValue
+                                                      .issueDateYear
+                                                      .toString()),
+                                              SizedBox(width: AppSizeW.s7),
+                                              BlocBuilder(
+                                                bloc: context.read<RentBloc>(),
+                                                builder:
+                                                    (context, RentState state) {
+                                                  if (state
+                                                      .isLoadingRentLookup) {
+                                                    return Icon(
+                                                      Icons.filter_list_sharp,
+                                                      color:
+                                                          ColorManager.golden,
+                                                    );
+                                                  }
+                                                  return IconButton(
+                                                      onPressed: () async {
+                                                        var res =
+                                                            await bottomSheetWidget(
+                                                          context,
+                                                          child: BlocProvider
+                                                              .value(
+                                                            value: context.read<
+                                                                RentBloc>(),
+                                                            child:
+                                                                const BottomSheetFilterWidget(),
+                                                          ),
+                                                        );
+                                                        if (res != null &&
+                                                            res) {
+                                                          changeStatusCubit
+                                                              .changeStatus();
+
+                                                          rentGridKPIsBloc.add(
+                                                              RentGridKPIsEvent.getData(
+                                                                  request: context
+                                                                      .read<
+                                                                          RentBloc>()
+                                                                      .requestMeanValue));
+                                                          rentSummeryBloc.add(
+                                                              RentSummeryEvent
+                                                                  .getRentSummary(
+                                                            request: context
+                                                                .read<
+                                                                    RentBloc>()
+                                                                .requestMeanValue,
+                                                          ));
+                                                          certificateContractBloc
+                                                              .add(
+                                                            CertificateContractEvent
+                                                                .certificateCountEvent(
+                                                                    request: context
+                                                                        .read<
+                                                                            RentBloc>()
+                                                                        .requestMeanValue),
+                                                          );
+                                                        }
+                                                      },
+                                                      icon: Icon(
+                                                        size: AppSizeW.s32,
+                                                        Icons.filter_list_sharp,
+                                                        color:
+                                                            ColorManager.golden,
+                                                      ));
+                                                },
+                                              ),
+                                              SizedBox(
+                                                width: AppSizeW.s7,
+                                              ),
+                                            ]),
+                                        SizedBox(height: AppSizeH.s12),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: AppSizeW.s11,
+                                          ),
+                                          child: SizedBox(
+                                              height: AppSizeH.s26,
+                                              child: Row(
+                                                  children: context
+                                                          .read<RentBloc>()
+                                                          .loockUpRent
+                                                          ?.periodTime
+                                                          .map((e) {
+                                                        return e.id != 5
+                                                            ? ChosenPeriodWidget(
+                                                                id: e.id,
+                                                                enName:
+                                                                    e.enName,
+                                                                arName:
+                                                                    e.arName,
+                                                              )
+                                                            : const SizedBox();
+                                                      }).toList() ??
+                                                      [])),
+                                        ),
+                                      ]);
+                                    },
                                   ),
+                                  SizedBox(height: AppSizeH.s22),
                                   Center(
                                     child: Text(
                                       AppStrings().currentPerformanceSummary,
@@ -172,7 +258,7 @@ class _RentViewState extends State<RentView> {
                                   const GreyLinerContainer(),
                                   Padding(
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: AppSizeH.s20),
+                                        horizontal: AppSizeW.s20),
                                     child: StaggeredGridView(
                                       // for development only: UniqueKey forces the rebuild of the widget on hot reload
                                       key: UniqueKey(),
@@ -206,7 +292,7 @@ class _RentViewState extends State<RentView> {
                                   const GreyLinerContainer(),
                                   Padding(
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: AppSizeH.s20),
+                                        horizontal: AppSizeW.s20),
                                     child: BlocProvider.value(
                                       value: certificateContractBloc,
                                       child: const StatisTicsWidget(),
@@ -423,6 +509,8 @@ class _AnimatedPulesLogoState extends State<AnimatedPulesLogo>
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: ColorManager.primary));
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
