@@ -118,40 +118,47 @@ _$RentLookupResponseImpl _$$RentLookupResponseImplFromJson(
                   (e) => PeriodTimeDetails.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [
-            PeriodTimeDetails(name: 'نصف اول', value: [1, 2]),
-            PeriodTimeDetails(name: 'نصف ثاني', value: [3, 4])
+            PeriodTimeDetails(
+                name: 'نصف اول', value: [1, 2], enName: 'First Half'),
+            PeriodTimeDetails(
+                name: 'نصف ثاني', value: [3, 4], enName: 'Last Half')
           ],
       quarterYearList: (json['quarterYearList'] as List<dynamic>?)
               ?.map(
                   (e) => PeriodTimeDetails.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [
-            PeriodTimeDetails(name: 'ربع اول', value: [1]),
-            PeriodTimeDetails(name: 'ربع ثاني', value: [2]),
-            PeriodTimeDetails(name: 'ربع ثالث', value: [3]),
-            PeriodTimeDetails(name: 'ربع اخير', value: [4])
+            PeriodTimeDetails(
+                name: 'ربع اول', value: [1], enName: 'First Quarter'),
+            PeriodTimeDetails(
+                name: 'ربع ثاني', value: [2], enName: 'Second Quarter'),
+            PeriodTimeDetails(
+                name: 'ربع ثالث', value: [3], enName: 'Third Quarter'),
+            PeriodTimeDetails(
+                name: 'ربع اخير', value: [4], enName: 'Last Quarter')
           ],
       periodTime: (json['periodTime'] as List<dynamic>?)
               ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [
-            RentLookupModel(arName: 'سنوي', id: 1),
-            RentLookupModel(arName: 'نصف سنوي', id: 2),
-            RentLookupModel(arName: 'ربع سنوي ', id: 3),
-            RentLookupModel(arName: 'شهري', id: 4),
-            RentLookupModel(arName: ' فترة محددة', id: 5)
+            RentLookupModel(arName: 'سنوي', id: 1, enName: 'Yearly'),
+            RentLookupModel(arName: 'نصف سنوي', id: 2, enName: 'Half Yearly'),
+            RentLookupModel(
+                arName: 'ربع سنوي ', id: 3, enName: 'Quarter Yearly'),
+            RentLookupModel(arName: 'شهري', id: 4, enName: 'Monthly'),
+            RentLookupModel(arName: ' فترة محددة', id: 5, enName: 'Duration')
           ],
       bedRooms: (json['bedRooms'] as List<dynamic>?)
               ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [
-            RentLookupModel(arName: 'استوديو', id: 6),
-            RentLookupModel(arName: 'غرفة', id: 1),
-            RentLookupModel(arName: 'غرفتين', id: 2),
-            RentLookupModel(arName: '3 غرف', id: 3),
-            RentLookupModel(arName: '4 غرف', id: 4),
-            RentLookupModel(arName: '5 غرف', id: 5),
-            RentLookupModel(arName: 'الكل', id: -1)
+            RentLookupModel(arName: 'استوديو', id: 6, enName: 'studio'),
+            RentLookupModel(arName: 'غرفة', id: 1, enName: 'one room'),
+            RentLookupModel(arName: 'غرفتين', id: 2, enName: '2 rooms'),
+            RentLookupModel(arName: '3 غرف', id: 3, enName: '3 rooms'),
+            RentLookupModel(arName: '4 غرف', id: 4, enName: '4 rooms'),
+            RentLookupModel(arName: '5 غرف', id: 5, enName: '5 rooms'),
+            RentLookupModel(arName: 'الكل', id: -1, enName: 'ALL')
           ],
       districtList: (json['districtList'] as List<dynamic>?)
               ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
@@ -255,6 +262,7 @@ _$PeriodTimeDetailsImpl _$$PeriodTimeDetailsImplFromJson(
         Map<String, dynamic> json) =>
     _$PeriodTimeDetailsImpl(
       name: json['name'] as String? ?? '',
+      enName: json['enName'] as String? ?? '',
       value: (json['value'] as List<dynamic>?)?.map((e) => e as int).toList() ??
           const [],
     );
@@ -263,6 +271,7 @@ Map<String, dynamic> _$$PeriodTimeDetailsImplToJson(
         _$PeriodTimeDetailsImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'enName': instance.enName,
       'value': instance.value,
     };
 

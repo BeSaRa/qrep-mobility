@@ -1,16 +1,18 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../resources/color_manager.dart';
+import '../resources/resources.dart';
 import '../resources/values_manager.dart';
 
 class MultiChooseDropDownWidget extends StatefulWidget {
   final List<RentLookupModel> list;
   final List<RentLookupModel> selectedItems;
+
   // final RentLookupModel? selectedValue;
   final bool? isPurpose;
 
@@ -53,7 +55,9 @@ class _MultiChooseDropDownWidgetState extends State<MultiChooseDropDownWidget> {
                           .read<ValuesFiltersCubit>()
                           .rentPurposeList
                           .map((e) {
-                        return e.arName;
+                        return context.locale == ARABIC_LOCAL
+                            ? e.arName
+                            : e.enName;
                       }).join(','),
                       style: Theme.of(ctxt).textTheme.labelSmall,
                       softWrap: false,
@@ -64,7 +68,9 @@ class _MultiChooseDropDownWidgetState extends State<MultiChooseDropDownWidget> {
                           .read<ValuesFiltersCubit>()
                           .propertyTypeList
                           .map((e) {
-                        return e.arName;
+                        return context.locale == ARABIC_LOCAL
+                            ? e.arName
+                            : e.enName;
                       }).join(','),
                       style: Theme.of(ctxt).textTheme.labelSmall,
                       softWrap: false,
@@ -157,7 +163,9 @@ class _MultiChooseDropDownWidgetState extends State<MultiChooseDropDownWidget> {
                                 SizedBox(width: AppSizeW.s11),
                                 Expanded(
                                   child: Text(
-                                    item.arName,
+                                    context.locale == ARABIC_LOCAL
+                                        ? item.arName
+                                        : item.enName,
                                     style:
                                         Theme.of(context).textTheme.labelSmall,
                                     softWrap: true,
@@ -180,7 +188,9 @@ class _MultiChooseDropDownWidgetState extends State<MultiChooseDropDownWidget> {
                                 SizedBox(width: AppSizeW.s11),
                                 Expanded(
                                   child: Text(
-                                    item.arName,
+                                    context.locale == ARABIC_LOCAL
+                                        ? item.arName
+                                        : item.enName,
                                     style:
                                         Theme.of(context).textTheme.labelSmall,
                                     softWrap: true,
@@ -197,7 +207,9 @@ class _MultiChooseDropDownWidgetState extends State<MultiChooseDropDownWidget> {
           }).toList(),
           onChanged: (RentLookupModel? value) {},
           dropdownStyleData: DropdownStyleData(
-            maxHeight: AppSizeH.s200, width: double.infinity, useSafeArea: true,
+            maxHeight: AppSizeH.s200,
+            width: double.infinity,
+            useSafeArea: true,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppSizeR.s5),
               color: ColorManager.whiteSmoke,
