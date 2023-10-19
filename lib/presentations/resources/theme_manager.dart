@@ -5,7 +5,7 @@ import 'color_manager.dart';
 import 'values_manager.dart';
 
 class FontConstants {
-  static const String fontFamily = "NotoSans";
+  static const String fontFamily = "Lusail";
 }
 
 ThemeData lightTheme() {
