@@ -59,7 +59,7 @@ class _EblaTabBarWidgetState extends State<EblaTabBarWidget> {
           labelStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
               fontSize: MediaQuery.of(context).size.width > 620 ? 8.sp : 9.sp),
           onTap: (index) {
-            // widget.onPressed(index);
+            widget.onPressed(index);
           },
           isScrollable: false,
           tabs: [

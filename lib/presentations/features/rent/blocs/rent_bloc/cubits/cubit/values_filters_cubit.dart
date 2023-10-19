@@ -1,5 +1,4 @@
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
-import 'package:ebla/utils/global_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
@@ -9,6 +8,7 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
 
 // -------------------------Municaplity Filters------------------------------------------
   RentLookupModel municapility = const RentLookupModel();
+
   void changeMunicapility(RentLookupModel newmunicapility) {
     municapility = newmunicapility;
     emit(municapility);
@@ -24,6 +24,7 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
 
 //-----------------------Property Type Filters------------------------------------------
   List<RentLookupModel> propertyTypeList = [];
+
   void addToPropertyList(RentLookupModel newPropertyType) {
     propertyTypeList.add(newPropertyType);
     emit(RentLookupModel(arName: newPropertyType.arName));
@@ -39,6 +40,7 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
   }
 
   RentLookupModel propertyType = const RentLookupModel();
+
   // RentLookupModel propertyType = const RentLookupModel(
   //     lookupKey: -1, arName: "الكل", enName: "All", isActive: true);
 
@@ -46,6 +48,7 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
   List<RentLookupModel> rentPurposeList = [];
   RentLookupModel purposeType = const RentLookupModel(
       id: 6, lookupKey: -1, arName: "الكل", enName: "All", isActive: true);
+
   void addToPurposeList(RentLookupModel newPurposeType) {
     rentPurposeList.add(newPurposeType);
     emit(RentLookupModel(arName: newPurposeType.arName));
@@ -64,6 +67,7 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
   // List<RentLookupModel> bedRoomsList = [];
   // RentLookupModel bedRoom = const RentLookupModel(id: -1, arName: "الكل");
   RentLookupModel bedRoom = const RentLookupModel();
+
   void changeBedRooms(RentLookupModel newBedRoom) {
     bedRoom = newBedRoom;
     emit(bedRoom);
@@ -81,6 +85,7 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
   //-------------------------Year-------------------------------
   RentLookupModel year = const RentLookupModel();
   List<RentLookupModel> yearsLists = [];
+
   void changeYear(RentLookupModel newYear) {
     year = newYear;
     emit(year);
@@ -88,12 +93,14 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
 
   //------------------------halfYear------------------------------
   List<PeriodTimeDetails> halfYear = [];
+
   void changehalfYear(PeriodTimeDetails newhalfYear) {
     periodTimeHalfDetails = newhalfYear;
     emit(RentLookupModel(arName: periodTimeHalfDetails.name));
   }
 
   PeriodTimeDetails periodTimeHalfDetails = const PeriodTimeDetails();
+
   // PeriodTimeDetails periodTimeHalfDetails =
   // const PeriodTimeDetails(name: 'نصف اول', value: [1, 2]);
 
@@ -124,6 +131,7 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
   num? rentPaymentMonthlyPerUnitFrom;
   num? rentPaymentMonthlyPerUnitTo;
   RangeValues? rangeRentPaymentMonthlyPerUnit;
+
   void changeRangeRentPaymentMonthlyPerUnitReset() {
     rentPaymentMonthlyPerUnitFrom = null;
     rentPaymentMonthlyPerUnitTo = null;
@@ -139,6 +147,7 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
     emit(RentLookupModel(
         id: values.start.toInt(), lookupKey: values.end.toInt()));
   }
+
   // void changePaymentMonthlyPerUnit(num start, num end) {
   //   rentPaymentMonthlyPerUnitFrom = start;
   //   rentPaymentMonthlyPerUnitTo = end;

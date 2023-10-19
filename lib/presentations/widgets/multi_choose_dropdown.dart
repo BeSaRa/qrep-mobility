@@ -1,7 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,6 +10,7 @@ import '../resources/values_manager.dart';
 class MultiChooseDropDownWidget extends StatefulWidget {
   final List<RentLookupModel> list;
   final List<RentLookupModel> selectedItems;
+
   // final RentLookupModel? selectedValue;
   final bool? isPurpose;
 
@@ -197,7 +197,9 @@ class _MultiChooseDropDownWidgetState extends State<MultiChooseDropDownWidget> {
           }).toList(),
           onChanged: (RentLookupModel? value) {},
           dropdownStyleData: DropdownStyleData(
-            maxHeight: AppSizeH.s200, width: double.infinity, useSafeArea: true,
+            maxHeight: AppSizeH.s200,
+            width: double.infinity,
+            useSafeArea: true,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppSizeR.s5),
               color: ColorManager.whiteSmoke,

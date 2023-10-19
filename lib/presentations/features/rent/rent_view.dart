@@ -36,6 +36,7 @@ class _RentViewState extends State<RentView> {
   late RentSummeryBloc rentSummeryBloc;
   late RentDefaultBloc rentDefaultBloc;
   late CertificateContractBloc certificateContractBloc;
+
   @override
   void initState() {
     rentDefaultBloc = instance<RentDefaultBloc>()
@@ -493,6 +494,12 @@ class _MainContainerWithBlocState extends State<MainContainerWithBloc> {
   }
 
   @override
+  void didChangeDependencies() {
+    getLocationNameCubit.save(widget.location);
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocListener(
       bloc: context.read<RentBloc>(),
@@ -512,7 +519,7 @@ class _MainContainerWithBlocState extends State<MainContainerWithBloc> {
             totalPrice: widget.price,
             value: widget.area,
             valueDescription: AppStrings().rentArea,
-            titleInfo: AppStrings().roomsCount,
+            titleInfo: "${AppStrings().roomsCount}:",
             valueInfo: widget.bedCount,
             location: state,
           );
