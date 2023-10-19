@@ -36,6 +36,7 @@ class _RentViewState extends State<RentView> {
   late RentSummeryBloc rentSummeryBloc;
   late RentDefaultBloc rentDefaultBloc;
   late CertificateContractBloc certificateContractBloc;
+
   @override
   void initState() {
     rentDefaultBloc = instance<RentDefaultBloc>()

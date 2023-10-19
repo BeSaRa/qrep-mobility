@@ -43,19 +43,67 @@ class AppRouter {
       initialLocation: RoutesPaths.splash,
       routes: [
         StatefulShellRoute.indexedStack(
-          builder: (context, state, navigationShell) {
-            return MainScaffold(navigationShell: navigationShell);
+          pageBuilder: (context, state, navigationShell) {
+            return CustomTransitionPage(
+              transitionDuration: const Duration(milliseconds: 1140),
+              child: MainScaffold(
+                navigationShell: navigationShell,
+              ),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0.0, -1.0),
+                    end: const Offset(0.0, 0.0),
+                  ).animate(
+                    CurvedAnimation(
+                      parent: animation,
+                      curve: const Cubic(0.74, 0.01, 0.01, 0.98),
+                    ),
+                  ),
+                  child: child,
+                );
+              },
+            );
           },
           branches: [
             StatefulShellBranch(routes: [
               GoRoute(
                 path: RoutesPaths.home,
                 name: RoutesNames.home,
-                builder: (context, state) => BlocProvider(
-                  create: (context) => instance<RentBloc>()
-                    ..add(const RentEvent.getRentLookupEvent()),
-                  child: const HomeView(),
-                ),
+                // parentNavigatorKey: GlobalKey(),
+                pageBuilder: (context, state) {
+                  return CustomTransitionPage(
+                    transitionDuration: const Duration(milliseconds: 1140),
+                    child: BlocProvider(
+                      create: (context) => instance<RentBloc>()
+                        ..add(const RentEvent.getRentLookupEvent()),
+                      child: const HomeView(),
+                    ),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return SlideTransition(
+                        position: Tween<Offset>(
+                          begin: const Offset(0.0, -1.0),
+                          end: const Offset(0.0, 0.0),
+                        ).animate(
+                          CurvedAnimation(
+                            parent: animation,
+                            curve: const Cubic(0.74, 0.01, 0.01, 0.98),
+                          ),
+                        ),
+                        child: child,
+                      );
+                    },
+                  );
+                },
+                // builder: (context, state) {
+                //   return BlocProvider(
+                //     create: (context) => instance<RentBloc>()
+                //       ..add(const RentEvent.getRentLookupEvent()),
+                //     child: const HomeView(),
+                //   );
+                // },
               ),
             ]),
             StatefulShellBranch(routes: [
