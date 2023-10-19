@@ -14,18 +14,19 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
+  // late AnimationController _animationController;
   // scale: used for the towers image
   double _scale = 1.5;
   // backgroundImageBottomPosition: used for the golden background image
   double backgroundImageBottomPosition = 0;
   // isVisible: used for the transparent container
   bool _isVisible = false;
-
+  bool isRed = false;
   @override
   void initState() {
     super.initState();
     Future.delayed(
-      const Duration(milliseconds: 1400),
+      const Duration(milliseconds: 200),
       () {
         _startAnimation();
       },
@@ -40,54 +41,77 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     });
   }
 
-  Future<void> navigateAfterDelay() async {
-    Future.delayed(
-      const Duration(milliseconds: 1),
-      () {
-        context.goNamed(
-          RoutesNames.home,
-        );
-      },
-    );
+  void navigateAfterDelay() {
+    Future.delayed(const Duration(milliseconds: 200))
+        .then((value) => context.goNamed(RoutesNames.home));
+  }
+
+  Future<void> showRedScreenAfterDelay() async {
+    await Future.delayed(const Duration(milliseconds: 1500))
+        .then((value) => showRedScreen());
+  }
+
+  Future<void> showRedScreen() async {
+    setState(() {
+      isRed = !isRed;
+    });
+
+    await Future.delayed(const Duration(milliseconds: 800))
+        .then((value) => navigateAfterDelay());
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorManager.white,
-      body: Stack(
-        children: [
-          AnimatedPositioned(
-              top: backgroundImageBottomPosition,
-              duration: const Duration(milliseconds: 500),
-              child: Image.asset(ImageAssets.splashBackground)),
-          Column(
-            children: [
-              Expanded(
-                child: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 500),
-                    opacity: _isVisible ? 1.0 : 0.0,
-                    child: const AnimatedTransparentContainer()),
-              ),
-              SizedBox(
-                height: AppSizeH.s30,
-              ),
-              Expanded(
-                child: AnimatedScale(
-                  scale: _scale,
-                  duration: const Duration(milliseconds: 500),
-                  alignment: FractionalOffset.bottomCenter,
-                  onEnd: navigateAfterDelay,
-                  child: Image.asset(
-                    alignment: Alignment.bottomCenter,
-                    ImageAssets.quatarTowerCitySplash,
-                  ),
+    return AnimatedSwitcher(
+        switchInCurve: Curves.easeInOut,
+        duration: const Duration(milliseconds: 800),
+        child: !isRed
+            ? Scaffold(
+                backgroundColor: ColorManager.white,
+                body: Stack(
+                  children: [
+                    AnimatedPositioned(
+                        top: backgroundImageBottomPosition,
+                        duration: const Duration(milliseconds: 800),
+                        child: Image.asset(ImageAssets.splashBackground)),
+                    Column(
+                      children: [
+                        Expanded(
+                          child: AnimatedOpacity(
+                              duration: const Duration(milliseconds: 800),
+                              opacity: _isVisible ? 1.0 : 0.0,
+                              child: const AnimatedTransparentContainer()),
+                        ),
+                        SizedBox(
+                          height: AppSizeH.s30,
+                        ),
+                        Expanded(
+                          child: AnimatedScale(
+                            scale: _scale,
+                            duration: const Duration(milliseconds: 800),
+                            alignment: FractionalOffset.bottomCenter,
+                            onEnd: navigateAfterDelay,
+                            // onEnd: showRedScreenAfterDelay,
+                            child: Image.asset(
+                              alignment: Alignment.bottomCenter,
+                              ImageAssets.quatarTowerCitySplash,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+              )
+            : Scaffold(
+                key: UniqueKey(),
+                backgroundColor: ColorManager.primary,
+              ));
   }
+
+  // @override
+  // void dispose() {
+  //   _animationController.dispose();
+  //   super.dispose();
+  // }
 }
