@@ -150,14 +150,16 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      toolbarHeight: AppSizeH.s100, // Set this height
+      surfaceTintColor: Colors.transparent,
+      toolbarHeight: AppSizeH.s100,
+      // Set this height
       flexibleSpace: Image(
         height: AppSizeH.s50,
         width: double.infinity,
         image: const AssetImage(
           ImageAssets.appbarBg,
         ),
-        fit: BoxFit.fill,
+        fit: BoxFit.cover,
       ),
       backgroundColor: Colors.transparent,
       title: Column(
