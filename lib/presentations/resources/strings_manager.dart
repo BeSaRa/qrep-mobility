@@ -28,6 +28,10 @@ class AppStrings {
   String roomsCount = 'room_count'.tr();
   String rentValue = 'rent_value'.tr();
   String currency = "currency".tr();
+  String noLeaseContracts = "no_lease_contracts".tr();
+  String noPropertiesUnits = "no_properties_units".tr();
+  String countLeaseContracts = "count_lease_contracts".tr();
+  String countPropertiesUnits = "count_properties_units".tr();
 
   //more view locals
   String moreTitle = 'more_title'.tr();
@@ -64,7 +68,7 @@ class AppStrings {
   String lawsAndDecisions = 'laws_and_decisions'.tr();
 
   //filter
-  String measuringUnit = 'measuring_unit'; // وحدة القياس
+  String measuringUnit = 'measuring_unit'.tr(); // وحدة القياس
   String meter = 'square_meter'.tr(); //متر مربع
   String foot = 'square_foot'.tr(); //قدم مربع
   String chooseDate = 'choose_date'.tr(); // اختار

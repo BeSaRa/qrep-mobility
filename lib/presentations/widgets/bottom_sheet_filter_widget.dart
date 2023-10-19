@@ -206,8 +206,8 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
   void initState() {
     valuesFiltersCubit = ValuesFiltersCubit(const RentLookupModel());
     generateYears(2019, DateTime.now().year).forEach((element) {
-      valuesFiltersCubit.yearsLists
-          .add(RentLookupModel(arName: element.toString(), id: element));
+      valuesFiltersCubit.yearsLists.add(RentLookupModel(
+          arName: element.toString(), id: element, enName: element.toString()));
     });
 
     valuesFiltersCubit.municapility = getObjectById(
@@ -334,10 +334,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   valuesFiltersCubit
                       .changeRangeRentPaymentMonthlyPerUnitReset();
                   valuesFiltersCubit.bedRoom = const RentLookupModel(
-                      arName: 'الكل',
-                      id: -1,
-                      enName: 'A'
-                          'LL');
+                      arName: 'الكل', id: -1, enName: 'ALL');
                   valuesFiltersCubit.municapility = getObjectById(
                         context
                                 .read<RentBloc>()

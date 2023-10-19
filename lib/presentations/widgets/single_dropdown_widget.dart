@@ -1,8 +1,10 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/models/rent_models/rent_models.dart';
 import '../resources/color_manager.dart';
+import '../resources/resources.dart';
 import '../resources/values_manager.dart';
 
 class SingleDropDownValue<T> extends StatefulWidget {
@@ -52,9 +54,13 @@ class _SingleDropDownValue<T> extends State<SingleDropDownValue<T>> {
                       padding: EdgeInsets.symmetric(horizontal: AppSizeW.s11),
                       child: Text(
                         item is RentLookupModel
-                            ? item.arName
+                            ? context.locale == ARABIC_LOCAL
+                                ? item.arName
+                                : item.enName
                             : item is PeriodTimeDetails
-                                ? item.name
+                                ? context.locale == ARABIC_LOCAL
+                                    ? item.name
+                                    : item.enName
                                 : '$item',
                         style: Theme.of(context).textTheme.labelSmall,
                         softWrap: true,
