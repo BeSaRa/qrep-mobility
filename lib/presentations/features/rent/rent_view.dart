@@ -187,7 +187,11 @@ class _RentViewState extends State<RentView> {
                         }
                         if (state.rentSummery != const RentListSummary()) {
                           return ListView.builder(
-                              itemCount: 3,
+                              itemCount:
+                                  state.rentSummery.transactionList.length > 3
+                                      ? 3
+                                      : state
+                                          .rentSummery.transactionList.length,
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (context, index) {
