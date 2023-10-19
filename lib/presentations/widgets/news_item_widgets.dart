@@ -26,12 +26,12 @@ class NewsItemWidget extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                   color: ColorManager.silver,
-                  offset: Offset(2, 2),
+                  offset: const Offset(2, 2),
                   spreadRadius: 0.5,
                   blurRadius: AppSizeW.s4),
               BoxShadow(
                   color: ColorManager.silver,
-                  offset: Offset(-2, 2),
+                  offset: const Offset(-2, 2),
                   spreadRadius: 0.5,
                   blurRadius: AppSizeW.s4),
             ]),
