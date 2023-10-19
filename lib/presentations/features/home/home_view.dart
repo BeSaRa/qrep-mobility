@@ -505,11 +505,11 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
     return BlocListener(
       bloc: context.read<RentBloc>(),
       listener: (context, RentState state) {
-        if (state.rentLookup != const RentLookupResponse()) {
-          context.read<CertificateContractBloc>().add(
-              CertificateContractEvent.certificateCountEvent(
-                  request: context.read<RentBloc>().requestMeanValue));
-        }
+        // if (state.rentLookup != const RentLookupResponse()) {
+        //   context.read<CertificateContractBloc>().add(
+        //       CertificateContractEvent.certificateCountEvent(
+        //           request: context.read<RentBloc>().requestMeanValue));
+        // }
       },
       child: Column(
         children: [
