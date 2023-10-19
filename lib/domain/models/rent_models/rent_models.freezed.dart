@@ -1178,30 +1178,32 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
       final List<RentLookupModel> rentPurposeList = const [],
       final List<RentLookupModel> zoneList = const [],
       final List<PeriodTimeDetails> halfYearList = const [
-        PeriodTimeDetails(name: 'نصف اول', value: [1, 2]),
-        PeriodTimeDetails(name: 'نصف ثاني', value: [3, 4])
+        PeriodTimeDetails(name: 'نصف اول', value: [1, 2], enName: 'First Half'),
+        PeriodTimeDetails(name: 'نصف ثاني', value: [3, 4], enName: 'Last Half')
       ],
       final List<PeriodTimeDetails> quarterYearList = const [
-        PeriodTimeDetails(name: 'ربع اول', value: [1]),
-        PeriodTimeDetails(name: 'ربع ثاني', value: [2]),
-        PeriodTimeDetails(name: 'ربع ثالث', value: [3]),
-        PeriodTimeDetails(name: 'ربع اخير', value: [4])
+        PeriodTimeDetails(name: 'ربع اول', value: [1], enName: 'First Quarter'),
+        PeriodTimeDetails(
+            name: 'ربع ثاني', value: [2], enName: 'Second Quarter'),
+        PeriodTimeDetails(
+            name: 'ربع ثالث', value: [3], enName: 'Third Quarter'),
+        PeriodTimeDetails(name: 'ربع اخير', value: [4], enName: 'Last Quarter')
       ],
       final List<RentLookupModel> periodTime = const [
-        RentLookupModel(arName: 'سنوي', id: 1),
-        RentLookupModel(arName: 'نصف سنوي', id: 2),
-        RentLookupModel(arName: 'ربع سنوي ', id: 3),
-        RentLookupModel(arName: 'شهري', id: 4),
-        RentLookupModel(arName: ' فترة محددة', id: 5)
+        RentLookupModel(arName: 'سنوي', id: 1, enName: 'Yearly'),
+        RentLookupModel(arName: 'نصف سنوي', id: 2, enName: 'Half Yearly'),
+        RentLookupModel(arName: 'ربع سنوي ', id: 3, enName: 'Quarter Yearly'),
+        RentLookupModel(arName: 'شهري', id: 4, enName: 'Monthly'),
+        RentLookupModel(arName: ' فترة محددة', id: 5, enName: 'Duration')
       ],
       final List<RentLookupModel> bedRooms = const [
-        RentLookupModel(arName: 'استوديو', id: 6),
-        RentLookupModel(arName: 'غرفة', id: 1),
-        RentLookupModel(arName: 'غرفتين', id: 2),
-        RentLookupModel(arName: '3 غرف', id: 3),
-        RentLookupModel(arName: '4 غرف', id: 4),
-        RentLookupModel(arName: '5 غرف', id: 5),
-        RentLookupModel(arName: 'الكل', id: -1)
+        RentLookupModel(arName: 'استوديو', id: 6, enName: 'studio'),
+        RentLookupModel(arName: 'غرفة', id: 1, enName: 'one room'),
+        RentLookupModel(arName: 'غرفتين', id: 2, enName: '2 rooms'),
+        RentLookupModel(arName: '3 غرف', id: 3, enName: '3 rooms'),
+        RentLookupModel(arName: '4 غرف', id: 4, enName: '4 rooms'),
+        RentLookupModel(arName: '5 غرف', id: 5, enName: '5 rooms'),
+        RentLookupModel(arName: 'الكل', id: -1, enName: 'ALL')
       ],
       final List<RentLookupModel> districtList = const [],
       final List<RentLookupModel> municipalityList = const [],
@@ -1981,6 +1983,7 @@ PeriodTimeDetails _$PeriodTimeDetailsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PeriodTimeDetails {
   String get name => throw _privateConstructorUsedError;
+  String get enName => throw _privateConstructorUsedError;
   List<int> get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1995,7 +1998,7 @@ abstract class $PeriodTimeDetailsCopyWith<$Res> {
           PeriodTimeDetails value, $Res Function(PeriodTimeDetails) then) =
       _$PeriodTimeDetailsCopyWithImpl<$Res, PeriodTimeDetails>;
   @useResult
-  $Res call({String name, List<int> value});
+  $Res call({String name, String enName, List<int> value});
 }
 
 /// @nodoc
@@ -2012,12 +2015,17 @@ class _$PeriodTimeDetailsCopyWithImpl<$Res, $Val extends PeriodTimeDetails>
   @override
   $Res call({
     Object? name = null,
+    Object? enName = null,
     Object? value = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      enName: null == enName
+          ? _value.enName
+          : enName // ignore: cast_nullable_to_non_nullable
               as String,
       value: null == value
           ? _value.value
@@ -2035,7 +2043,7 @@ abstract class _$$PeriodTimeDetailsImplCopyWith<$Res>
       __$$PeriodTimeDetailsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, List<int> value});
+  $Res call({String name, String enName, List<int> value});
 }
 
 /// @nodoc
@@ -2050,12 +2058,17 @@ class __$$PeriodTimeDetailsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
+    Object? enName = null,
     Object? value = null,
   }) {
     return _then(_$PeriodTimeDetailsImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      enName: null == enName
+          ? _value.enName
+          : enName // ignore: cast_nullable_to_non_nullable
               as String,
       value: null == value
           ? _value._value
@@ -2069,7 +2082,7 @@ class __$$PeriodTimeDetailsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PeriodTimeDetailsImpl implements _PeriodTimeDetails {
   const _$PeriodTimeDetailsImpl(
-      {this.name = '', final List<int> value = const []})
+      {this.name = '', this.enName = '', final List<int> value = const []})
       : _value = value;
 
   factory _$PeriodTimeDetailsImpl.fromJson(Map<String, dynamic> json) =>
@@ -2078,6 +2091,9 @@ class _$PeriodTimeDetailsImpl implements _PeriodTimeDetails {
   @override
   @JsonKey()
   final String name;
+  @override
+  @JsonKey()
+  final String enName;
   final List<int> _value;
   @override
   @JsonKey()
@@ -2089,7 +2105,7 @@ class _$PeriodTimeDetailsImpl implements _PeriodTimeDetails {
 
   @override
   String toString() {
-    return 'PeriodTimeDetails(name: $name, value: $value)';
+    return 'PeriodTimeDetails(name: $name, enName: $enName, value: $value)';
   }
 
   @override
@@ -2098,13 +2114,14 @@ class _$PeriodTimeDetailsImpl implements _PeriodTimeDetails {
         (other.runtimeType == runtimeType &&
             other is _$PeriodTimeDetailsImpl &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.enName, enName) || other.enName == enName) &&
             const DeepCollectionEquality().equals(other._value, _value));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(_value));
+      runtimeType, name, enName, const DeepCollectionEquality().hash(_value));
 
   @JsonKey(ignore: true)
   @override
@@ -2122,14 +2139,18 @@ class _$PeriodTimeDetailsImpl implements _PeriodTimeDetails {
 }
 
 abstract class _PeriodTimeDetails implements PeriodTimeDetails {
-  const factory _PeriodTimeDetails({final String name, final List<int> value}) =
-      _$PeriodTimeDetailsImpl;
+  const factory _PeriodTimeDetails(
+      {final String name,
+      final String enName,
+      final List<int> value}) = _$PeriodTimeDetailsImpl;
 
   factory _PeriodTimeDetails.fromJson(Map<String, dynamic> json) =
       _$PeriodTimeDetailsImpl.fromJson;
 
   @override
   String get name;
+  @override
+  String get enName;
   @override
   List<int> get value;
   @override

@@ -7,8 +7,8 @@ class RentGridKPIsEvent with _$RentGridKPIsEvent {
 }
 
 enum KPI {
-  totalContracts,
   totalRentedUntis,
+  totalContracts,
+  meanRentUnitValue,
   totalContractsValue,
-  meanRentUnitValue
 }
