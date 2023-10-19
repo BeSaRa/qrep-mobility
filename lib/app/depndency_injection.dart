@@ -80,6 +80,8 @@ Future<void> initRentModule() async {
     () => RentGridKPIsBloc(
       totalRentedUnitsUseCase: instance(),
       totalContractsUseCase: instance(),
+      meanValueUsecase: instance(),
+      contractValueUseCase: instance(),
     ),
   );
   instance.registerFactory(() => RentSummeryBloc(instance()));
