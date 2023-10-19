@@ -68,7 +68,7 @@ class AppStrings {
   String lawsAndDecisions = 'laws_and_decisions'.tr();
 
   //filter
-  String measuringUnit = 'measuring_unit'; // وحدة القياس
+  String measuringUnit = 'measuring_unit'.tr(); // وحدة القياس
   String meter = 'square_meter'.tr(); //متر مربع
   String foot = 'square_foot'.tr(); //قدم مربع
   String chooseDate = 'choose_date'.tr(); // اختار

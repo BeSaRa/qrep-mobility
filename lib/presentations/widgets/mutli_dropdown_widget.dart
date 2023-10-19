@@ -1,8 +1,10 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/models/rent_models/rent_models.dart';
 import '../resources/color_manager.dart';
+import '../resources/resources.dart';
 import '../resources/values_manager.dart';
 
 class MultiDropDownValue<T> extends StatefulWidget {
@@ -36,7 +38,11 @@ class _MultiDropDownValue<T> extends State<MultiDropDownValue<T>> {
           isDense: true,
           hint: Text(
             widget.selectedItems.map((e) {
-              return e is PeriodTimeDetails ? e.name : e;
+              return e is PeriodTimeDetails
+                  ? context.locale == ARABIC_LOCAL
+                      ? e.name
+                      : e.enName
+                  : e;
             }).join(','),
             style: Theme.of(context).textTheme.labelSmall,
             softWrap: false,
@@ -53,7 +59,9 @@ class _MultiDropDownValue<T> extends State<MultiDropDownValue<T>> {
                   return InkWell(
                     onTap: () {
                       isSelected
-                          ? widget.selectedItems.remove(item)
+                          ? widget.selectedItems.length == 1
+                              ? null
+                              : widget.selectedItems.remove(item)
                           : widget.selectedItems.add(item);
                       //This rebuilds the StatefulWidget to update the button's text
                       setState(() {});
@@ -72,7 +80,11 @@ class _MultiDropDownValue<T> extends State<MultiDropDownValue<T>> {
                           SizedBox(width: AppSizeW.s11),
                           Expanded(
                             child: Text(
-                              item is PeriodTimeDetails ? item.name : '$item',
+                              item is PeriodTimeDetails
+                                  ? context.locale == ARABIC_LOCAL
+                                      ? item.name
+                                      : item.enName
+                                  : '$item',
                               style: Theme.of(context).textTheme.labelSmall,
                               softWrap: true,
                               // overflow: TextOverflow.ellipsis,
