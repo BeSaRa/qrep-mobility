@@ -27,6 +27,10 @@ class AppStrings {
   String roomsCount = 'room_count'.tr();
   String rentValue = 'rent_value'.tr();
   String currency = "currency".tr();
+  String noLeaseContracts = "no_lease_contracts".tr();
+  String noPropertiesUnits = "no_properties_units".tr();
+  String countLeaseContracts = "count_lease_contracts".tr();
+  String countPropertiesUnits = "count_properties_units".tr();
 
   //more view locals
   String moreTitle = 'more_title'.tr();

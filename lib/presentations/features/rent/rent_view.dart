@@ -6,6 +6,7 @@ import 'package:ebla/presentations/features/rent/blocs/get_location_name_cubit.d
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/summery_bloc/rent_summery_bloc.dart';
+import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:ebla/presentations/widgets/main_data_container.dart';
 import 'package:ebla/presentations/widgets/staggered_grid_view.dart';
 import 'package:flutter/material.dart';
@@ -72,6 +73,16 @@ class _RentViewState extends State<RentView> {
           builder: (context, RentState state) {
             if (state.isLoadingRentLookup) {
               return const AnimatedPulesLogo();
+            }
+            if (state.isHasErrorRentLookup) {
+              return ErrorGlobalWidget(
+                message: state.errorMessageRentLookup,
+                onPressed: () {
+                  context
+                      .read<RentBloc>()
+                      .add(const RentEvent.getRentLookupEvent());
+                },
+              );
             }
             return BlocConsumer<RentDefaultBloc, RentDefaultState>(
               bloc: rentDefaultBloc,
@@ -318,34 +329,43 @@ class _RentViewState extends State<RentView> {
                           ),
                         ],
                       ),
-                  error: (String message) => SizedBox(
-                        height: MediaQuery.of(context).size.height,
-                        width: MediaQuery.of(context).size.width,
-                        child: Center(
-                          child: SizedBox(
-                              height: AppSizeH.s200,
-                              width: AppSizeH.s200,
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                      height: AppSizeH.s130,
-                                      width: AppSizeH.s130,
-                                      child: Lottie.asset(
-                                          ImageAssets.animationError)),
-                                  IconButton(
-                                      onPressed: () {
-                                        rentDefaultBloc
-                                            .add(RentDefaultEvent.started(
-                                          request: context
-                                              .read<RentBloc>()
-                                              .requestDefault,
-                                        ));
-                                      },
-                                      icon: const Icon(Icons.refresh))
-                                ],
-                              )),
-                        ),
-                      )),
+                  error: (String message) => ErrorGlobalWidget(
+                        message: message,
+                        onPressed: () {
+                          rentDefaultBloc.add(RentDefaultEvent.started(
+                            request: context.read<RentBloc>().requestDefault,
+                          ));
+                        },
+                      )
+                  //  SizedBox(
+                  //       height: MediaQuery.of(context).size.height,
+                  //       width: MediaQuery.of(context).size.width,
+                  //       child: Center(
+                  //         child: SizedBox(
+                  //             height: AppSizeH.s200,
+                  //             width: AppSizeH.s200,
+                  //             child: Column(
+                  //               children: [
+                  //                 SizedBox(
+                  //                     height: AppSizeH.s130,
+                  //                     width: AppSizeH.s130,
+                  //                     child: Lottie.asset(
+                  //                         ImageAssets.animationError)),
+                  //                 IconButton(
+                  //                     onPressed: () {
+                  //                       rentDefaultBloc
+                  //                           .add(RentDefaultEvent.started(
+                  //                         request: context
+                  //                             .read<RentBloc>()
+                  //                             .requestDefault,
+                  //                       ));
+                  //                     },
+                  //                     icon: const Icon(Icons.refresh))
+                  //               ],
+                  //             )),
+                  //       ),
+                  //     )
+                  ),
               listener: (BuildContext context, RentDefaultState state) {},
             );
           },

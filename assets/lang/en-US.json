@@ -43,6 +43,10 @@
   "currency": "QARََ",
   "current_performance_summary": "Current performance summary",
   "rent_top_ten": "Top 10 areas",
+  "count_lease_contracts":"Count lease contracts",
+  "no_lease_contracts":"No lease contracts",
+  "count_properties_units":"Count units rented",
+  "no_properties_units":"No properties / units rented",
   "----------------------------------------------------SELL--------------------------": "",
   "----------------------------------------------------MORTGAGE--------------------------": "",
   "----------------------------------------------------OWNERSHIP--------------------------": ""
