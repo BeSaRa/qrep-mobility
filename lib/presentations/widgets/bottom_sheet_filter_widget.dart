@@ -1,8 +1,7 @@
 import 'package:ebla/app/extensions.dart';
-import 'package:ebla/presentations/resources/color_manager.dart';
+import 'package:ebla/presentations/resources/resources.dart';
 import 'package:ebla/presentations/widgets/date_range_picker.dart';
 import 'package:ebla/presentations/widgets/mutli_dropdown_widget.dart';
-import 'package:ebla/presentations/widgets/range_slider_filter_widget.dart';
 import 'package:ebla/presentations/widgets/single_dropdown_widget.dart';
 import 'package:ebla/utils/global_functions.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +13,8 @@ import '../features/rent/blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart'
 import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
 import '../features/rent/widgets/choose_unit_filters_widget.dart';
 import '../features/rent/widgets/slider_filter_widget.dart';
-import '../resources/values_manager.dart';
 import 'custom_elevated_button.dart';
 import 'multi_choose_dropdown.dart';
-import 'range_slider_widget.dart';
 
 // enum PeriodTime { year, halfYear, quarterYear, monthly, specificPeriod }
 
@@ -184,7 +181,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 style: Theme.of(context).textTheme.labelSmall,
                               )
                             : Text(
-                                'حدد تاريخ',
+                                AppStrings().chooseDate,
                                 style: Theme.of(context).textTheme.labelSmall,
                               ),
                       ),
@@ -336,8 +333,11 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   // setState(() {
                   valuesFiltersCubit
                       .changeRangeRentPaymentMonthlyPerUnitReset();
-                  valuesFiltersCubit.bedRoom =
-                      const RentLookupModel(arName: 'الكل', id: -1);
+                  valuesFiltersCubit.bedRoom = const RentLookupModel(
+                      arName: 'الكل',
+                      id: -1,
+                      enName: 'A'
+                          'LL');
                   valuesFiltersCubit.municapility = getObjectById(
                         context
                                 .read<RentBloc>()
@@ -434,7 +434,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                       size: AppSizeSp.s15,
                     ),
                     Text(
-                      'إعادة ضبط',
+                      AppStrings().reset,
                       style: Theme.of(context)
                           .textTheme
                           .labelSmall!
@@ -452,7 +452,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('البلدية',
+                    Text(AppStrings().municipal,
                         style: Theme.of(context).textTheme.labelMedium),
                     // const SingleDropDownValue(),
                     BlocBuilder(
@@ -490,7 +490,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'المنطقة',
+                      AppStrings().zone,
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                     BlocBuilder(
@@ -529,7 +529,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('نوع العقار',
+                    Text(AppStrings().propertyType,
                         style: Theme.of(context).textTheme.labelMedium),
                     // const SingleDropDownValue(),
                     BlocBuilder(
@@ -572,7 +572,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'استخدام العقار',
+                      AppStrings().propertyUsage,
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                     BlocBuilder(
@@ -616,7 +616,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('عدد الغرف',
+                    Text(AppStrings().numberOfRooms,
                         style: Theme.of(context).textTheme.labelMedium),
                     // const SingleDropDownValue(),
                     BlocBuilder(
@@ -652,7 +652,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'المدة الزمنية',
+                      AppStrings().duration,
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                     BlocBuilder(
@@ -692,7 +692,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   // mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text('تفاصيل المدة الزمنية',
+                    Text(AppStrings().durationDetails,
                         style: Theme.of(context).textTheme.labelMedium),
                     // const SingleDropDownValue(),
 
@@ -740,7 +740,8 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
             ],
           ),
           SizedBox(height: AppSizeH.s12),
-          Text('وحدة القياس', style: Theme.of(context).textTheme.labelMedium),
+          Text(AppStrings().measuringUnit,
+              style: Theme.of(context).textTheme.labelMedium),
           SizedBox(height: AppSizeH.s12),
           BlocProvider.value(
             value: valuesFiltersCubit,
@@ -751,7 +752,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
             bloc: valuesFiltersCubit,
             builder: (context, state) {
               return SliderWidget(
-                title: 'قيمه العقار من - إلى',
+                title: AppStrings().rentValueFromTo,
                 startValue:
                     '${(valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit?.start.toDouble() ?? context.read<RentBloc>().loockUpRent?.maxParams[1].minVal.toDouble())?.toInt().formatWithCommas()}',
                 endValue:
@@ -802,7 +803,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
             bloc: valuesFiltersCubit,
             builder: (context, state) {
               return SliderWidget(
-                title: 'المساحة من - إلى',
+                title: AppStrings().areaFromTo,
                 startValue:
                     '${(valuesFiltersCubit.rangeValuesArea?.start.toDouble() ?? context.read<RentBloc>().loockUpRent?.maxParams[0].minVal.toDouble())?.toInt().formatWithCommas()}',
                 endValue:
@@ -853,7 +854,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                 return Expanded(
                   child: CustomElevatedButton(
                     isPrimary: true,
-                    title: 'بحث',
+                    title: AppStrings().search,
                     onPress: () {
                       // print(
                       //     'before request ${context.read<RentBloc>().requestMeanValue}');
@@ -910,7 +911,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
             Expanded(
               child: CustomElevatedButton(
                 isPrimary: false,
-                title: 'إلغاء',
+                title: AppStrings().cancel,
                 onPress: () {
                   Navigator.of(context).pop();
                 },

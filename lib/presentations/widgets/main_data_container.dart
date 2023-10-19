@@ -89,6 +89,9 @@ class MainDataContainer extends StatelessWidget {
                         titleInfo,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
+                      SizedBox(
+                        width: AppSizeW.s2,
+                      ),
                       Text(
                         valueInfo,
                         style: Theme.of(context).textTheme.bodyMedium,

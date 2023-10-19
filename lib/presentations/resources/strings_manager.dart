@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 class AppStrings {
   String test = 'test';
+
   //main scaffold locals
   String main = 'main'.tr();
   String rent = 'rent'.tr();
@@ -65,4 +66,21 @@ class AppStrings {
   String aboutUs = 'about_us'.tr();
   String faqs = 'faqs'.tr();
   String lawsAndDecisions = 'laws_and_decisions'.tr();
+
+  //filter
+  String measuringUnit = 'measuring_unit'; // وحدة القياس
+  String meter = 'square_meter'.tr(); //متر مربع
+  String foot = 'square_foot'.tr(); //قدم مربع
+  String chooseDate = 'choose_date'.tr(); // اختار
+  String reset = 'reset'.tr(); // إعادة ضبط
+  String municipal = 'municipal'.tr(); // البلدية
+  String zone = 'zone'.tr(); //المنطقة
+  String propertyType = 'property_type'.tr(); // نوع العقار
+  String propertyUsage = 'property_usage'.tr(); // استخدام العقار
+  String numberOfRooms = 'number_of_rooms'.tr(); //عدد الغرف
+  String duration = 'duration'.tr(); // المدة الزمنية
+  String durationDetails = 'duration_details'.tr(); //
+  String rentValueFromTo = 'rent_value_from_to'.tr(); //قيمه العقار من - إلى
+  String areaFromTo = 'area_from_to'.tr(); //'المساحة من - إلى'
+  String search = 'search'.tr(); // 'بحث'
 }

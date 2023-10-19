@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../resources/resources.dart';
@@ -49,7 +48,7 @@ class _ChooseUnitWidgetState extends State<ChooseUnitWidget> {
                       borderRadius: BorderRadius.circular(AppSizeR.s25),
                     ),
                     child: Text(
-                      'متر',
+                      AppStrings().meter,
                       style: context.read<ValuesFiltersCubit>().unit == 1
                           ? Theme.of(context).textTheme.displaySmall
                           : Theme.of(context)
@@ -77,7 +76,7 @@ class _ChooseUnitWidgetState extends State<ChooseUnitWidget> {
                       borderRadius: BorderRadius.circular(AppSizeR.s25),
                     ),
                     child: Text(
-                      'قدم',
+                      AppStrings().foot,
                       style: context.read<ValuesFiltersCubit>().unit == 2
                           ? Theme.of(context).textTheme.displaySmall
                           : Theme.of(context)
