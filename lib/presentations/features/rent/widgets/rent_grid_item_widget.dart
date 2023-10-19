@@ -7,17 +7,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../domain/models/rent_models/rent_models.dart';
 import '../../../resources/strings_manager.dart';
 import '../../../resources/values_manager.dart';
+import '../blocs/default_bloc/rent_default_bloc.dart';
 import '../blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 
 class RentGridItemWidget extends StatefulWidget {
   final KPI kpi;
+  final RentDefault response;
 
   const RentGridItemWidget({
     super.key,
     required this.kpi,
     required this.index,
+    required this.response,
   });
 
   final int index;
