@@ -5,13 +5,11 @@ import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../domain/models/rent_models/rent_models.dart';
 import '../../../resources/strings_manager.dart';
 import '../../../resources/values_manager.dart';
-import '../blocs/default_bloc/rent_default_bloc.dart';
 import '../blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 
 class RentGridItemWidget extends StatefulWidget {
@@ -33,7 +31,7 @@ class RentGridItemWidget extends StatefulWidget {
 
 class _RentGridItemWidgetState extends State<RentGridItemWidget> {
   //todo: this should be removed once we have real data from api
-  final List<GridItemData> gridItemsData = const [
+  final List<GridItemData> gridItemsData = [
     GridItemData(
         title: "the_total_number_of_properties_units_rented",
         imagePath: ImageAssets.soldOrRentedUnits,
@@ -46,11 +44,11 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
     GridItemData(
         title: "average_rental_price_per_unit_property",
         imagePath: ImageAssets.averageRentUnitPrice,
-        valueUnit: 'ر.ق'),
+        valueUnit: AppStrings().currency),
     GridItemData(
         title: "the_total_value_of_lease_contracts",
         imagePath: ImageAssets.totalValRentContracts,
-        valueUnit: 'ر.ق'),
+        valueUnit: AppStrings().currency),
   ];
 
   @override

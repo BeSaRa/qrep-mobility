@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
@@ -101,8 +103,12 @@ class NewsItemWidget extends StatelessWidget {
                         padding: EdgeInsets.all(AppSizeW.s5),
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: ColorManager.golden),
-                        child: Icon(Icons.arrow_back_ios_new_rounded,
-                            size: AppSizeSp.s12, color: ColorManager.white),
+                        child: Icon(
+                            context.locale == ARABIC_LOCAL
+                                ? Icons.arrow_back_ios_new_rounded
+                                : Icons.arrow_forward_ios_rounded,
+                            size: AppSizeSp.s12,
+                            color: ColorManager.white),
                       ),
                     ],
                   )

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:flutter/material.dart';
 
@@ -5,6 +6,7 @@ import '../../../resources/resources.dart';
 
 class SelectedMunicipality extends StatefulWidget {
   final RentLookupModel model;
+
   const SelectedMunicipality({super.key, required this.model});
 
   @override
@@ -34,7 +36,9 @@ class _SelectedMunicipalityState extends State<SelectedMunicipality> {
             borderRadius: BorderRadius.circular(AppSizeR.s25),
           ),
           child: Text(
-            widget.model.arName,
+            context.locale == ARABIC_LOCAL
+                ? widget.model.arName
+                : widget.model.enName,
             style: Theme.of(context).textTheme.labelSmall,
           )),
     );
