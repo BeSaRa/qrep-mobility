@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/app/translations_assets_loader/translations_assets_loader.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,10 +19,15 @@ Future<void> main() async {
   );
   EasyLocalization.logger.enableBuildModes = [];
   await initRentModule();
+  await initTranslationsModule();
   await initAppModule().then((value) {
     Bloc.observer = MyBlocObserver();
 
     runApp(EasyLocalization(
+        assetLoader: TranslationsAssetsLoader(
+          loadRemoteAssets: true,
+          updateInterval: const Duration(days: 3),
+        ),
         supportedLocales: supportedLocales,
         path: ASSETS_PATH_LOCALISATION,
         child: const MyApp()));

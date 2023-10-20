@@ -14,6 +14,8 @@ class AppPreferences {
   String PREFS_KEY_LANG = 'PREFS_KEY_LANG';
   String PREFS_KEY_TOKEN = 'PREFS_KEY_TOKEN';
   String PREFS_KEY_THEME = 'PREFS_KEY_THEME';
+  String PREFS_KEY_LOCALIZATIONS_LAST_UPDATE =
+      'PREFS_KEY_LOCALIZATIONS_LAST_UPDATE';
 
   Future<String> getAppLanguage() async {
     String? language = _sharedPreferences.getString(PREFS_KEY_LANG);
@@ -40,6 +42,18 @@ class AppPreferences {
     } else {
       return ARABIC_LOCAL;
     }
+  }
+
+  Future<DateTime?> getLocalizationsLastUpdate() async {
+    String dateString =
+        _sharedPreferences.getString(PREFS_KEY_LOCALIZATIONS_LAST_UPDATE) ?? '';
+    DateTime? date = DateTime.tryParse(dateString);
+    return date;
+  }
+
+  Future<void> setLocalizationsLastUpdate({required DateTime date}) async {
+    _sharedPreferences.setString(
+        PREFS_KEY_LOCALIZATIONS_LAST_UPDATE, date.toString());
   }
 
   Future<void> setUserToken(String token) async {
