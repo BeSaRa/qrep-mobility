@@ -186,11 +186,12 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                             unit: gridItemsData[widget.index].valueUnit,
                           );
                         }
-                        return Text(AppStrings().dataBeingCollectedAndAudited,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(fontSize: AppSizeSp.s10));
+                        return ValueWithUnit(
+                          countUp: false,
+                          begin: 0,
+                          end: 0,
+                          unit: gridItemsData[widget.index].valueUnit,
+                        );
                       },
                     ),
                     SizedBox(width: AppSizeW.s16),
