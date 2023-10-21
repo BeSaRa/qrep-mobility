@@ -4,17 +4,22 @@ import 'package:path_provider/path_provider.dart';
 
 class FileUtils {
   static Future<void> writeToFile(String fileName, String content) async {
-    // Get the document directory using path_provider
-    Directory appDocDir = await getApplicationDocumentsDirectory();
-    String appDocPath = appDocDir.path;
+    try {
+      // Get the document directory using path_provider
+      Directory appDocDir = await getApplicationDocumentsDirectory();
+      String appDocPath = appDocDir.path;
 
-    // Create a File object with the desired file name
-    File file = File('$appDocPath/$fileName');
+      // Create a File object with the desired file name
+      File file = File('$appDocPath/$fileName');
 
-    // Write to the file
-    await file.writeAsString(content);
+      // Write to the file
+      await file.writeAsString(content);
 
-    print('File saved at: ${file.path}');
+      print('File saved at: ${file.path}');
+    } catch (e) {
+      print('Error saving file: $e');
+      // Handle the error or throw it again based on your requirements
+    }
   }
 
   //----------------------------------------
