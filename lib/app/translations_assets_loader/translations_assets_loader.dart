@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -48,8 +49,8 @@ class TranslationsAssetsLoader extends AssetLoader {
     result.addAll(bundledTranslations);
 
     if (loadRemoteAssets) {
-      if (await FileUtils.fileExists(localizationFileName) &&
-          (!await shouldUpdate())) {
+      if ((!await shouldUpdate()) &&
+          await FileUtils.fileExists(localizationFileName)) {
         // get the localization file from the application documents directory
         String fileContents =
             await FileUtils.readFromFile(localizationFileName);

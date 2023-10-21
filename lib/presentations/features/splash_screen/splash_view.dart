@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/splash_screen/widgets/animated_transparent_container.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:go_router/go_router.dart';
 import '../../resources/routes_manager.dart';
 
@@ -25,15 +27,17 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-      const Duration(milliseconds: 200),
-      () {
-        _startAnimation();
-      },
-    );
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Future.delayed(
+        const Duration(milliseconds: 200),
+        () {
+          _startAnimation();
+        },
+      );
+    });
   }
 
-  void _startAnimation() {
+  Future<void> _startAnimation() async {
     setState(() {
       _scale = 1;
       _isVisible = !_isVisible;
