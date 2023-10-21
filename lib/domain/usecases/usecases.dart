@@ -9,3 +9,4 @@ export 'rent_usecases/rent_summary/rent_summery_usecase.dart';
 export 'rent_usecases/rent_usecases.dart';
 export 'rent_usecases/total_contracts_usecase.dart';
 export 'rent_usecases/total_rented_units_usecase.dart';
+export 'translations_usecase/translations_usecase.dart';

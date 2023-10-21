@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+
 import 'package:ebla/presentations/features/rent/blocs/default_bloc/rent_default_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,10 +27,21 @@ Future<void> initAppModule() async {
 
   final dio = await instance<DioFactory>().getDio();
   instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(dio));
+  instance.registerLazySingleton<TranslationsServiceClient>(
+      () => TranslationsServiceClient(dio));
   instance.registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImplementer(Connectivity()));
   instance.registerLazySingleton<Repository>(() => RepositoryImplementer(
-      appServiceClient: instance(), networkInfo: instance()));
+      appServiceClient: instance(),
+      translationsServiceClient: instance(),
+      networkInfo: instance()));
+}
+
+Future<void> initTranslationsModule() async {
+  if (!GetIt.I.isRegistered<TranslationsUseCase>()) {
+    instance.registerFactory<TranslationsUseCase>(
+        () => TranslationsUseCase(instance()));
+  }
 }
 
 Future<void> initRentModule() async {
