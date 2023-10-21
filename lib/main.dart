@@ -10,6 +10,7 @@ import 'app/depndency_injection.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await EasyLocalization.ensureInitialized();
   SystemChrome.setPreferredOrientations(
     [
@@ -18,9 +19,10 @@ Future<void> main() async {
   );
   EasyLocalization.logger.enableBuildModes = [];
   await initRentModule();
-  await initAppModule().then((value) {
+  await initAppModule().then((value) async {
     Bloc.observer = MyBlocObserver();
-
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    await Future.delayed(const Duration(milliseconds: 150));
     runApp(EasyLocalization(
         supportedLocales: supportedLocales,
         path: ASSETS_PATH_LOCALISATION,
