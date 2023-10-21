@@ -1,9 +1,11 @@
 import 'dart:math' as math;
 
 import 'package:easy_localization/easy_localization.dart' as local;
+import 'package:ebla/presentations/features/rent/blocs/active_nav_bar_index_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../app/depndency_injection.dart';
@@ -67,20 +69,30 @@ class _HomeViewState extends State<HomeView> {
                       Expanded(
                         child: Column(
                           children: [
-                            _HomeContainer(
-                              isBig: true,
-                              title: AppStrings().sellIndicators,
-                              color: ColorManager.white,
-                              image: IconAssets.sellHome,
-                              isShadow: true,
+                            GestureDetector(
+                              onTap: () {
+                                context.goNamed(RoutesNames.sales);
+                              },
+                              child: _HomeContainer(
+                                isBig: true,
+                                title: AppStrings().sellIndicators,
+                                color: ColorManager.white,
+                                image: IconAssets.sellHome,
+                                isShadow: true,
+                              ),
                             ),
-                            _HomeContainer(
-                              isBig: false,
-                              title: AppStrings().mortgageIndicators,
-                              color: ColorManager.silver,
-                              image: IconAssets.mortagageHome,
-                              iconColor: ColorManager.white,
-                              isShadow: true,
+                            GestureDetector(
+                              onTap: () {
+                                context.goNamed(RoutesNames.mortgage);
+                              },
+                              child: _HomeContainer(
+                                isBig: false,
+                                title: AppStrings().mortgageIndicators,
+                                color: ColorManager.silver,
+                                image: IconAssets.mortagageHome,
+                                iconColor: ColorManager.white,
+                                isShadow: true,
+                              ),
                             ),
                           ],
                         ),
@@ -88,15 +100,20 @@ class _HomeViewState extends State<HomeView> {
                       Expanded(
                         child: Column(
                           children: [
-                            _HomeContainer(
-                              isBig: false,
-                              title: AppStrings().rentIndicators,
-                              color: ColorManager.cloudyGrey,
-                              image: IconAssets.rentHome,
-                              imageColor: ColorManager.white,
-                              textColor: ColorManager.white,
-                              iconColor: ColorManager.silver,
-                              isShadow: true,
+                            GestureDetector(
+                              onTap: () {
+                                context.goNamed(RoutesNames.rent);
+                              },
+                              child: _HomeContainer(
+                                isBig: false,
+                                title: AppStrings().rentIndicators,
+                                color: ColorManager.cloudyGrey,
+                                image: IconAssets.rentHome,
+                                imageColor: ColorManager.white,
+                                textColor: ColorManager.white,
+                                iconColor: ColorManager.silver,
+                                isShadow: true,
+                              ),
                             ),
                             _HomeContainer(
                               isBig: true,
