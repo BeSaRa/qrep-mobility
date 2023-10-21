@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../resources/resources.dart';
+
 class LawsDecisionsView extends StatefulWidget {
   const LawsDecisionsView({super.key});
 
@@ -10,6 +12,14 @@ class LawsDecisionsView extends StatefulWidget {
 class _LawsDecisionsViewState extends State<LawsDecisionsView> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        leading: BackButton(color: ColorManager.white),
+        title: Text('Laws and decisions',
+            style: Theme.of(context).textTheme.displayMedium),
+        centerTitle: true,
+        backgroundColor: ColorManager.primary,
+      ),
+    );
   }
 }
