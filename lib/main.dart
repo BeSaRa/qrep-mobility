@@ -4,7 +4,6 @@ import 'package:ebla/app/translations_assets_loader/translations_assets_loader.d
 import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'app/app.dart';
 import 'app/bloc_observer.dart';
@@ -22,7 +21,7 @@ Future<void> main() async {
   EasyLocalization.logger.enableBuildModes = [];
   await initRentModule();
   await initTranslationsModule();
-  await initAppModule().then((value) async{
+  await initAppModule().then((value) async {
     Bloc.observer = MyBlocObserver();
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     await Future.delayed(const Duration(milliseconds: 150));
