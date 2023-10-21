@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../widgets/ebla_navigation_bar.dart';
@@ -20,6 +21,7 @@ class _MainScaffoldState extends State<MainScaffold>
   @override
   void initState() {
     super.initState();
+
     currentPage = widget.navigationShell.currentIndex;
     _controller = TabController(
       length: 5,
@@ -29,8 +31,9 @@ class _MainScaffoldState extends State<MainScaffold>
 
   @override
   Widget build(BuildContext context) {
+    _controller.animateTo(widget.navigationShell.currentIndex,
+        duration: kTabScrollDuration, curve: Curves.ease);
     return Scaffold(
-
       bottomNavigationBar: EblaNavigationBar(
         onTap: (index) {
           widget.navigationShell.goBranch(
