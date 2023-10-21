@@ -40,8 +40,12 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
 
       failureOrSuccessTotalRentedUnits.when(
         (success) {
-          emit(state.copyWith(
-              isLoading: false, hasError: false, totalRentedUnits: success));
+          success.isEmpty
+              ? emit(state.copyWith(isLoading: true, hasError: false))
+              : emit(state.copyWith(
+                  isLoading: false,
+                  hasError: false,
+                  totalRentedUnits: success));
         },
         (error) {
           emit(state.copyWith(
@@ -54,8 +58,10 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
 
       failureOrSuccessTotalContracts.when(
         (success) {
-          emit(state.copyWith(
-              isLoading: false, hasError: false, totalContracts: success));
+          success.isEmpty
+              ? emit(state.copyWith(isLoading: true, hasError: false))
+              : emit(state.copyWith(
+                  isLoading: false, hasError: false, totalContracts: success));
         },
         (error) {
           emit(state.copyWith(
@@ -68,8 +74,10 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
 
       failureOrSuccessMeanValue.when(
         (success) {
-          emit(state.copyWith(
-              isLoading: false, hasError: false, meanValue: success));
+          success.isEmpty
+              ? emit(state.copyWith(isLoading: true, hasError: false))
+              : emit(state.copyWith(
+                  isLoading: false, hasError: false, meanValue: success));
         },
         (error) {
           emit(state.copyWith(
@@ -82,8 +90,10 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
 
       failureOrSuccessContractValueUseCase.when(
         (success) {
-          emit(state.copyWith(
-              isLoading: false, hasError: false, contractsValue: success));
+          success.isEmpty
+              ? emit(state.copyWith(isLoading: true, hasError: false))
+              : emit(state.copyWith(
+                  isLoading: false, hasError: false, contractsValue: success));
         },
         (error) {
           emit(state.copyWith(
