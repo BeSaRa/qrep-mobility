@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/newtwok/end_points.dart';
-
 import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -56,12 +55,18 @@ abstract class AppServiceClient {
   @POST(EndPoints.rentSummary)
   Future<HttpResponse<RentListSummary>> rentSummary(
       @Body() RequestMeanValue requestMeanValue);
+
+
+  //sell
+  @POST(EndPoints.sellDefault)
+  Future<HttpResponse<List<RentDefault>>> getSellDefault(
+      @Body() RequestMeanValue requestMeanValue);
 }
 
 @RestApi(baseUrl: Constant.secondaryBaseUrl)
 abstract class TranslationsServiceClient {
   factory TranslationsServiceClient(Dio dio, {String baseUrl}) =
-      _TranslationsServiceClient;
+  _TranslationsServiceClient;
 
   @GET(EndPoints.translations)
   Future<HttpResponse<TranslationsModel>> getTranslations(
