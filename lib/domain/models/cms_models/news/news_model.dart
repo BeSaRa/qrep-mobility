@@ -5,6 +5,13 @@ part 'news_model.freezed.dart';
 part 'news_model.g.dart';
 
 @freezed
+abstract class NewsResponse with _$NewsResponse {
+  factory NewsResponse({@Default([]) List<NewsModel> data}) = _NewsResponse;
+  factory NewsResponse.fromJson(Map<String, dynamic> json) =>
+      _$NewsResponseFromJson(json);
+}
+
+@freezed
 abstract class NewsModel with _$NewsModel {
   factory NewsModel({
     @Default(0) int id,

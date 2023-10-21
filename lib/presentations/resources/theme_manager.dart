@@ -10,6 +10,7 @@ class FontConstants {
 
 ThemeData lightTheme() {
   return ThemeData(
+    // colorSchemeSeed: const Color(0xFF8A1538),
     colorScheme: ColorScheme.light(
       primary: ColorManager.primary,
       brightness: Brightness.light,
@@ -147,6 +148,7 @@ ThemeData lightTheme() {
 
 ThemeData darkTheme() {
   return ThemeData(
+      // colorSchemeSeed: const Color(0xFF8A1538),
       colorScheme: ColorScheme.dark(
         primary: ColorManager.primary,
         brightness: Brightness.dark,

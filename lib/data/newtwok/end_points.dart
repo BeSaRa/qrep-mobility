@@ -1,4 +1,10 @@
 class EndPoints {
+  //CMS
+  static const String translations = '/translations';
+  static const String news = '/items/news';
+  static const String laws = '/items/laws';
+  static const String about = '/items/about';
+  static const String faq = '/items/FAQ';
   //rent
   static const String lockupRent = '/kpi/rent/lookup';
   static const String totalContracts = '/kpi/rent/kpi1/total-contracts';

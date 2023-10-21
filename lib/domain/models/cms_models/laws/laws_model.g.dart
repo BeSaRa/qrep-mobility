@@ -6,6 +6,19 @@ part of 'laws_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$LawsResponseImpl _$$LawsResponseImplFromJson(Map<String, dynamic> json) =>
+    _$LawsResponseImpl(
+      data: (json['data'] as List<dynamic>?)
+              ?.map((e) => LawsModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$$LawsResponseImplToJson(_$LawsResponseImpl instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+    };
+
 _$LawsModelImpl _$$LawsModelImplFromJson(Map<String, dynamic> json) =>
     _$LawsModelImpl(
       id: json['id'] as int? ?? 0,

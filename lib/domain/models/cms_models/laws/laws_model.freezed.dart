@@ -14,6 +14,149 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+LawsResponse _$LawsResponseFromJson(Map<String, dynamic> json) {
+  return _LawsResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LawsResponse {
+  List<LawsModel> get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LawsResponseCopyWith<LawsResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LawsResponseCopyWith<$Res> {
+  factory $LawsResponseCopyWith(
+          LawsResponse value, $Res Function(LawsResponse) then) =
+      _$LawsResponseCopyWithImpl<$Res, LawsResponse>;
+  @useResult
+  $Res call({List<LawsModel> data});
+}
+
+/// @nodoc
+class _$LawsResponseCopyWithImpl<$Res, $Val extends LawsResponse>
+    implements $LawsResponseCopyWith<$Res> {
+  _$LawsResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<LawsModel>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LawsResponseImplCopyWith<$Res>
+    implements $LawsResponseCopyWith<$Res> {
+  factory _$$LawsResponseImplCopyWith(
+          _$LawsResponseImpl value, $Res Function(_$LawsResponseImpl) then) =
+      __$$LawsResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<LawsModel> data});
+}
+
+/// @nodoc
+class __$$LawsResponseImplCopyWithImpl<$Res>
+    extends _$LawsResponseCopyWithImpl<$Res, _$LawsResponseImpl>
+    implements _$$LawsResponseImplCopyWith<$Res> {
+  __$$LawsResponseImplCopyWithImpl(
+      _$LawsResponseImpl _value, $Res Function(_$LawsResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$LawsResponseImpl(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<LawsModel>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LawsResponseImpl implements _LawsResponse {
+  _$LawsResponseImpl({final List<LawsModel> data = const []}) : _data = data;
+
+  factory _$LawsResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LawsResponseImplFromJson(json);
+
+  final List<LawsModel> _data;
+  @override
+  @JsonKey()
+  List<LawsModel> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  String toString() {
+    return 'LawsResponse(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LawsResponseImpl &&
+            const DeepCollectionEquality().equals(other._data, _data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LawsResponseImplCopyWith<_$LawsResponseImpl> get copyWith =>
+      __$$LawsResponseImplCopyWithImpl<_$LawsResponseImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LawsResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LawsResponse implements LawsResponse {
+  factory _LawsResponse({final List<LawsModel> data}) = _$LawsResponseImpl;
+
+  factory _LawsResponse.fromJson(Map<String, dynamic> json) =
+      _$LawsResponseImpl.fromJson;
+
+  @override
+  List<LawsModel> get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$LawsResponseImplCopyWith<_$LawsResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 LawsModel _$LawsModelFromJson(Map<String, dynamic> json) {
   return _LawsModel.fromJson(json);
 }

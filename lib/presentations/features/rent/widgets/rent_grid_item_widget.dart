@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:countup/countup.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/extensions.dart';
@@ -5,6 +7,7 @@ import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../domain/models/rent_models/rent_models.dart';
@@ -56,6 +59,7 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
     return AspectRatio(
       aspectRatio: 1.1,
       child: Container(
+        height: AppSizeH.s136,
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(AppSizeR.s20)),
@@ -76,248 +80,192 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
             stops: const [0.2, 1.0],
           ),
         ),
-        child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-          SizedBox(height: AppSizeH.s20),
-          Row(
-            children: [
-              Expanded(
-                child: Text(gridItemsData[widget.index].title.tr(),
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyMedium),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: AppSizeH.s17,
-          ),
-          Row(
+        child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(width: AppSizeW.s24),
+              SizedBox(height: AppSizeH.s20),
               Flexible(
-                child: BlocBuilder<RentGridKPIsBloc, RentGridKPIsState>(
-                  bloc: context.read<RentGridKPIsBloc>(),
-                  builder: (context, state) {
-                    // animate from 0 to default value
-                    // if the state is loading show the default value
-                    // if the state is done animate from the default value to the new value if it is different
-                    if (state.isLoading || state.hasError) {
-                      if (widget.kpi == KPI.totalContracts) {
-                        // KPI1
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FittedBox(
-                              child: Text(
-                                  (widget.response.kpi1Val ?? 0)
-                                      .formatWithCommas(),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(fontSize: AppSizeSp.s18)),
-                            ),
-                            Text(gridItemsData[widget.index].valueUnit,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontSize: AppSizeSp.s18, height: 0.5)),
-                          ],
-                        );
-                      } else if (widget.kpi == KPI.totalRentedUntis) {
-                        // KPI4
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FittedBox(
-                              child: Text(
-                                  (widget.response.kpi4Val ?? 0)
-                                      .formatWithCommas(),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(fontSize: AppSizeSp.s18)),
-                            ),
-                            Text(gridItemsData[widget.index].valueUnit,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontSize: AppSizeSp.s18, height: 0.5)),
-                          ],
-                        );
-                      } else if (widget.kpi == KPI.meanRentUnitValue) {
-                        // KPI13
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FittedBox(
-                              child: Text(
-                                  (widget.response.kpi13Val ?? 0)
-                                      .formatWithCommas(),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(fontSize: AppSizeSp.s18)),
-                            ),
-                            Text(gridItemsData[widget.index].valueUnit,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontSize: AppSizeSp.s18, height: 0.5)),
-                          ],
-                        );
-                      } else if (widget.kpi == KPI.totalContractsValue) {
-                        // KPI7
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FittedBox(
-                              child: Text(
-                                  (widget.response.kpi7Val ?? 0)
-                                      .formatWithCommas(),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(fontSize: AppSizeSp.s18)),
-                            ),
-                            Text(gridItemsData[widget.index].valueUnit,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontSize: AppSizeSp.s18, height: 0.5)),
-                          ],
-                        );
-                      }
-                    } else if (state.totalContracts.isNotEmpty &&
-                        widget.kpi == KPI.totalContracts) {
-                      // KPI1
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          FittedBox(
-                            child: Countup(
-                                duration: const Duration(seconds: 1),
-                                separator: ',',
-                                begin: widget.response.kpi1Val ?? 0,
-                                end: state.totalContracts.first.kpiVal
-                                    .toDouble(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(fontSize: AppSizeSp.s18)),
-                          ),
-                          Text(gridItemsData[widget.index].valueUnit,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(
-                                      fontSize: AppSizeSp.s18, height: 0.5)),
-                        ],
-                      );
-                    } else if (state.totalRentedUnits.isNotEmpty &&
-                        widget.kpi == KPI.totalRentedUntis) {
-                      // KPI4
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          FittedBox(
-                            child: Countup(
-                                duration: const Duration(seconds: 1),
-                                separator: ',',
-                                begin: widget.response.kpi1Val ?? 0,
-                                end: state.totalRentedUnits.first.kpiVal
-                                    .toDouble(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(fontSize: AppSizeSp.s18)),
-                          ),
-                          Text(gridItemsData[widget.index].valueUnit,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(
-                                      fontSize: AppSizeSp.s18, height: 0.5)),
-                        ],
-                      );
-                    }
-                    //  else if (state.hasError) {
-                    //   return Text(state.errorMessage);
-                    // }
-                    else if (state.meanValue.isNotEmpty &&
-                        widget.kpi == KPI.meanRentUnitValue) {
-                      // KPI13
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          FittedBox(
-                            child: Countup(
-                                duration: const Duration(seconds: 1),
-                                separator: ',',
-                                begin: widget.response.kpi1Val ?? 0,
-                                end: state.meanValue.first.kpiVal.toDouble(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(fontSize: AppSizeSp.s18)),
-                          ),
-                          Text(gridItemsData[widget.index].valueUnit,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(
-                                      fontSize: AppSizeSp.s18, height: 0.5)),
-                        ],
-                      );
-                    } else if (state.meanValue.isNotEmpty &&
-                        widget.kpi == KPI.totalContractsValue) {
-                      // KPI17
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          FittedBox(
-                            child: Countup(
-                                duration: const Duration(seconds: 1),
-                                separator: ',',
-                                begin: widget.response.kpi1Val ?? 0,
-                                end: state.contractsValue.first.kpiVal
-                                    .toDouble(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(fontSize: AppSizeSp.s18)),
-                          ),
-                          Text(gridItemsData[widget.index].valueUnit,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(
-                                      fontSize: AppSizeSp.s18, height: 0.5)),
-                        ],
-                      );
-                    }
-                    return Text(AppStrings().dataBeingCollectedAndAudited,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: AppSizeSp.s10));
-                  },
+                flex: 1,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: AppSizeW.s20),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Text(gridItemsData[widget.index].title.tr(),
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.bodyMedium),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              SizedBox(width: AppSizeW.s16),
-              SvgPicture.asset(
-                gridItemsData[widget.index].imagePath,
-                height: AppSizeH.s70,
-                width: AppSizeW.s70,
-                color: ColorManager.primary,
+              SizedBox(
+                height: AppSizeH.s17,
               ),
-            ],
-          )
-        ]),
+              Expanded(
+                flex: 2,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    SizedBox(width: AppSizeW.s24),
+                    BlocBuilder<RentGridKPIsBloc, RentGridKPIsState>(
+                      bloc: context.read<RentGridKPIsBloc>(),
+                      builder: (context, state) {
+                        if (state.isLoading || state.hasError) {
+                          if (widget.kpi == KPI.totalContracts) {
+                            // KPI1
+                            return ValueWithUnit(
+                              countUp: false,
+                              value: (widget.response.kpi1Val ?? 0)
+                                  .formatWithCommas(),
+                              unit: gridItemsData[widget.index].valueUnit,
+                            );
+                          } else if (widget.kpi == KPI.totalRentedUntis) {
+                            // KPI4
+                            return ValueWithUnit(
+                              countUp: false,
+                              value: (widget.response.kpi4Val ?? 0)
+                                  .formatWithCommas(),
+                              unit: gridItemsData[widget.index].valueUnit,
+                            );
+                          } else if (widget.kpi == KPI.meanRentUnitValue) {
+                            // KPI13
+                            return ValueWithUnit(
+                              countUp: false,
+                              value: (widget.response.kpi13Val ?? 0)
+                                  .formatWithCommas(),
+                              unit: gridItemsData[widget.index].valueUnit,
+                            );
+                          } else if (widget.kpi == KPI.totalContractsValue) {
+                            // KPI7
+                            return ValueWithUnit(
+                              countUp: false,
+                              value: (widget.response.kpi7Val ?? 0)
+                                  .formatWithCommas(),
+                              unit: gridItemsData[widget.index].valueUnit,
+                            );
+                          }
+                        } else if (state.totalContracts.isNotEmpty &&
+                            widget.kpi == KPI.totalContracts) {
+                          // KPI1
+                          return ValueWithUnit(
+                            countUp: true,
+                            duration: 1,
+                            begin: widget.response.kpi1Val ?? 0,
+                            end: state.totalContracts.first.kpiVal.toDouble(),
+                          );
+                        } else if (state.totalRentedUnits.isNotEmpty &&
+                            widget.kpi == KPI.totalRentedUntis) {
+                          // KPI4
+                          return ValueWithUnit(
+                            countUp: true,
+                            duration: 1,
+                            begin: widget.response.kpi1Val ?? 0,
+                            end: state.totalRentedUnits.first.kpiVal.toDouble(),
+                          );
+                        } else if (state.meanValue.isNotEmpty &&
+                            widget.kpi == KPI.meanRentUnitValue) {
+                          // KPI13
+                          return ValueWithUnit(
+                            countUp: true,
+                            duration: 1,
+                            begin: widget.response.kpi1Val ?? 0,
+                            end: state.meanValue.first.kpiVal.toDouble(),
+                            unit: gridItemsData[widget.index].valueUnit,
+                          );
+                        } else if (state.meanValue.isNotEmpty &&
+                            widget.kpi == KPI.totalContractsValue) {
+                          // KPI17
+                          return ValueWithUnit(
+                            countUp: true,
+                            duration: 1,
+                            begin: widget.response.kpi1Val ?? 0,
+                            end: state.contractsValue.first.kpiVal.toDouble(),
+                            unit: gridItemsData[widget.index].valueUnit,
+                          );
+                        }
+                        return Text(AppStrings().dataBeingCollectedAndAudited,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(fontSize: AppSizeSp.s10));
+                      },
+                    ),
+                    SizedBox(width: AppSizeW.s16),
+                    SvgPicture.asset(
+                      gridItemsData[widget.index].imagePath,
+                      height: AppSizeH.s70,
+                      width: AppSizeW.s70,
+                      color: ColorManager.primary,
+                    ),
+                  ],
+                ),
+              )
+            ]),
+      ),
+    );
+  }
+}
+
+class ValueWithUnit extends StatelessWidget {
+  final bool countUp;
+  final int duration;
+  final String value;
+  final String unit;
+  final double begin;
+  final double end;
+  const ValueWithUnit(
+      {super.key,
+      this.value = '',
+      this.unit = '',
+      required this.countUp,
+      this.duration = 1,
+      this.begin = 0,
+      this.end = 0});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 1,
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Flexible(
+            child: Visibility(
+              visible: !countUp,
+              replacement: Countup(
+                  duration: Duration(seconds: duration),
+                  separator: ',',
+                  begin: begin,
+                  end: end,
+                  maxLines: 3,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: AppSizeSp.s18, height: 1)),
+              child: Text(value,
+                  textAlign: TextAlign.center,
+                  maxLines: 3,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: AppSizeSp.s18, height: 1)),
+            ),
+          ),
+          Text(unit,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: AppSizeSp.s18, height: 1)),
+          // SizedBox(
+          //   height: AppSizeW.s25,
+          // )
+        ],
       ),
     );
   }
