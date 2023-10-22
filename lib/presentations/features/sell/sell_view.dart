@@ -57,6 +57,7 @@ class _SalesViewState extends State<SalesView> {
               body: SingleChildScrollView(
                 child: Column(
                   children: [
+                    SizedBox(height: AppSizeW.s30),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: AppSizeW.s31),
                       child: StaggeredGridView(

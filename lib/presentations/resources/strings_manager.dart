@@ -13,7 +13,7 @@ class AppStrings {
   //rent
 
   String currentPerformanceSummary = "current_performance_summary".tr();
-
+  // grid
   String totalRentalContractsNumber = 'total_rental_contracts_number'.tr();
   String totalPropertiesUnitsRented =
       'the_total_number_of_properties_units_rented'.tr();
@@ -83,4 +83,13 @@ class AppStrings {
   String rentValueFromTo = 'rent_value_from_to'.tr(); //قيمه العقار من - إلى
   String areaFromTo = 'area_from_to'.tr(); //'المساحة من - إلى'
   String search = 'search'.tr(); // 'بحث'
+
+  //---------------- sell ----------
+  // grid
+  String totalNumberOfPropertiesUnitsSold =
+      "the_total_number_of_properties_units_sold".tr();
+  String totalSellContractsNumber = "the_total_number_of_sell_contracts".tr();
+  String averageSellPricePerUnitProperty =
+      "average_sell_price_per_unit_property".tr();
+  String totalSellContractsValue = "the_total_value_of_sell_contracts".tr();
 }
