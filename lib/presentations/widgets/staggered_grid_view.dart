@@ -38,7 +38,7 @@ class _StaggeredGridViewState extends State<StaggeredGridView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Expanded(
+        Flexible(
           child: Column(
             children: [...leftSectionItems],
           ),
@@ -46,7 +46,7 @@ class _StaggeredGridViewState extends State<StaggeredGridView> {
         SizedBox(
           width: widget.crossAxisSpacing,
         ),
-        Expanded(child: Column(children: [...rightSectionItems])),
+        Flexible(child: Column(children: [...rightSectionItems])),
       ],
     );
   }
