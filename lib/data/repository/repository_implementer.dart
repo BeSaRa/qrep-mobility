@@ -347,6 +347,27 @@ class RepositoryImplementer extends Repository {
   }
 
   // ------------------------------sell----------------------------------------
+
+  @override
+  Future<Result<RentLookupResponse, FailureModel>> getLockupSell() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.getLockupSell();
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
   // KPI1
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContractsSell(
