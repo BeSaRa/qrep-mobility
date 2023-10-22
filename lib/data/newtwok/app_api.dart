@@ -3,7 +3,7 @@ import 'package:ebla/data/newtwok/end_points.dart';
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
-
+import 'package:ebla/domain/models/sell_models/sell_models.dart';
 import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -67,23 +67,29 @@ abstract class AppServiceClient {
   @POST(EndPoints.totalContractsSell)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalContractsSell(
       @Body() RequestMeanValue requestMeanValue);
+
   // KPI4
   @POST(EndPoints.totalSoldUnits)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalSoldUnits(
       @Body() RequestMeanValue requestMeanValue);
+
   // KPI7
   @POST(EndPoints.totalTransactionsSell)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalTransactionsSell(
       @Body() RequestMeanValue requestMeanValue);
+
   // KPI13
   @POST(EndPoints.meanValueSell)
   Future<HttpResponse<List<BaseRentResponse>>> getMeanValueSell(
       @Body() RequestMeanValue requestMeanValue);
 
-
   //sell
   @POST(EndPoints.sellDefault)
   Future<HttpResponse<List<RentDefault>>> getSellDefault(
+      @Body() RequestMeanValue requestMeanValue);
+
+  @POST(EndPoints.sellTransactions)
+  Future<HttpResponse<SellTransactionResponse>> getSellTransactions(
       @Body() RequestMeanValue requestMeanValue);
 }
 
@@ -91,15 +97,18 @@ abstract class AppServiceClient {
 @RestApi(baseUrl: Constant.secondaryBaseUrl)
 abstract class TranslationsServiceClient {
   factory TranslationsServiceClient(Dio dio, {String baseUrl}) =
-  _TranslationsServiceClient;
+      _TranslationsServiceClient;
 
   @GET(EndPoints.translations)
   Future<HttpResponse<TranslationsModel>> getTranslations(
       @Query("limit") int limit);
+
   @GET(EndPoints.about)
   Future<HttpResponse<AboutResponse>> getAbout();
+
   @GET(EndPoints.news)
   Future<HttpResponse<NewsResponse>> getNews();
+
   @GET(EndPoints.laws)
   Future<HttpResponse<LawsResponse>> getLaws();
 }

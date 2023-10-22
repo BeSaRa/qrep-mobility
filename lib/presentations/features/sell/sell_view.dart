@@ -1,8 +1,9 @@
 import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
-import 'package:ebla/presentations/resources/assets_manager.dart';
+import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
+
+import '../../../app/depndency_injection.dart';import '../rent/blocs/rent_bloc/rent_bloc.dart';
 
 class SalesView extends StatefulWidget {
   const SalesView({super.key});
@@ -12,6 +13,17 @@ class SalesView extends StatefulWidget {
 }
 
 class _SalesViewState extends State<SalesView> {
+  late SellDefaultBloc sellDefaultBloc;
+
+  @override
+  void initState() {
+    //todo remove rent bloc from
+    sellDefaultBloc = instance<SellDefaultBloc>()
+      ..add(SellDefaultEvent.started(
+          request: context.read<RentBloc>().requestDefault));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
