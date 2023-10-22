@@ -1,58 +1,58 @@
 import 'package:bloc/bloc.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
-import 'package:ebla/domain/usecases/rent_usecases/contract_value_kpi7/contract_value_usecase.dart';
-import 'package:ebla/domain/usecases/rent_usecases/mean_value_usecases/mean_value_usecases.dart';
-import 'package:ebla/domain/usecases/rent_usecases/total_contracts_usecase.dart';
-import 'package:ebla/domain/usecases/rent_usecases/total_rented_units_usecase.dart';
+
+import 'package:ebla/domain/usecases/usecases.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'rent_grid_kpis_state.dart';
-part 'rent_grid_kpis_event.dart';
-part 'rent_grid_kpis_bloc.freezed.dart';
+part 'sell_grid_kpis_state.dart';
+part 'sell_grid_kpis_event.dart';
+part 'sell_grid_kpis_bloc.freezed.dart';
 
-class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
-  final TotalContractsUseCase totalContractsUseCase;
-  final TotalRentedUnitsUseCase totalRentedUnitsUseCase;
-  final MeanValueUsecase meanValueUsecase;
-  final ContractValueUseCase contractValueUseCase;
+class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
+  // KPI1
+  final TotalContractsSellUseCase totalContractsSellUseCase;
+  // KPI4
+  final TotalSoldUnitsUseCase totalSoldUnitsUseCase;
+  // KPI7
+  final TotalTransactionSellUseCase totalTransactionSellUseCase;
+  // KPI13
+  final MeanValueSellUsecase meanValueSellUsecase;
 
-  RentGridKPIsBloc({
-    required this.totalContractsUseCase,
-    required this.totalRentedUnitsUseCase,
-    required this.meanValueUsecase,
-    required this.contractValueUseCase,
-  }) : super(const RentGridKPIsState.initialState()) {
-    on<RentGridKPIsEvent>((event, emit) async {
+  SellGridKPIsBloc({
+    required this.totalContractsSellUseCase,
+    required this.totalSoldUnitsUseCase,
+    required this.totalTransactionSellUseCase,
+    required this.meanValueSellUsecase,
+  }) : super(const SellGridKPIsState.initialState()) {
+    on<SellGridKPIsEvent>((event, emit) async {
       emit(state.copyWith(isLoading: true, hasError: false));
       // KPI1
       final failureOrSuccessTotalContracts =
-          await totalContractsUseCase.execute(event.request);
+          await totalContractsSellUseCase.execute(event.request);
       // KPI4
-      final failureOrSuccessTotalRentedUnits =
-          await totalRentedUnitsUseCase.execute(event.request);
+      final failureOrSuccessTotalSoldUnits =
+          await totalSoldUnitsUseCase.execute(event.request);
       // KPI7
-      final failureOrSuccessContractValueUseCase =
-          await contractValueUseCase.execute(event.request);
+      final failureOrSuccessTotalTransactions =
+          await totalTransactionSellUseCase.execute(event.request);
       // KPI13
       final failureOrSuccessMeanValue =
-          await meanValueUsecase.execute(event.request);
+          await meanValueSellUsecase.execute(event.request);
 
-      failureOrSuccessTotalRentedUnits.when(
+      failureOrSuccessTotalSoldUnits.when(
         (success) {
           success.isEmpty
               ? emit(state.copyWith(isLoading: true, hasError: false))
               : emit(state.copyWith(
-                  isLoading: false,
-                  hasError: false,
-                  totalRentedUnits: success));
+                  isLoading: false, hasError: false, totalSoldUnits: success));
         },
         (error) {
           emit(state.copyWith(
               isLoading: false,
               hasError: true,
               errorMessage: error.message,
-              totalRentedUnits: []));
+              totalSoldUnits: []));
         },
       );
 
@@ -88,7 +88,7 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
         },
       );
 
-      failureOrSuccessContractValueUseCase.when(
+      failureOrSuccessTotalTransactions.when(
         (success) {
           success.isEmpty
               ? emit(state.copyWith(isLoading: true, hasError: false))

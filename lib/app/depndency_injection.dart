@@ -2,6 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ebla/presentations/features/home/blocs/news_bloc/news_bloc.dart';
 
 import 'package:ebla/presentations/features/rent/blocs/default_bloc/rent_default_bloc.dart';
+import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -117,4 +118,34 @@ Future<void> initRentModule() async {
   );
   instance.registerFactory(() => RentSummeryBloc(instance()));
   instance.registerFactory(() => RentDefaultBloc(instance()));
+}
+
+Future<void> initSellModule() async {
+  //------------usecases--------------------
+  // KPI1
+  if (!GetIt.I.isRegistered<TotalContractsSellUseCase>()) {
+    instance.registerFactory<TotalContractsSellUseCase>(
+        () => TotalContractsSellUseCase(instance()));
+  }
+  // KPI4
+  if (!GetIt.I.isRegistered<TotalSoldUnitsUseCase>()) {
+    instance.registerFactory<TotalSoldUnitsUseCase>(
+        () => TotalSoldUnitsUseCase(instance()));
+  }
+  // KPI7
+  if (!GetIt.I.isRegistered<TotalTransactionSellUseCase>()) {
+    instance.registerFactory<TotalTransactionSellUseCase>(
+        () => TotalTransactionSellUseCase(instance()));
+  }
+  // KPI13
+  if (!GetIt.I.isRegistered<MeanValueSellUsecase>()) {
+    instance.registerFactory<MeanValueSellUsecase>(
+        () => MeanValueSellUsecase(instance()));
+  }
+  //--------------blocs---------------------
+  instance.registerFactory<SellGridKPIsBloc>(() => SellGridKPIsBloc(
+      totalContractsSellUseCase: instance(),
+      totalSoldUnitsUseCase: instance(),
+      totalTransactionSellUseCase: instance(),
+      meanValueSellUsecase: instance()));
 }

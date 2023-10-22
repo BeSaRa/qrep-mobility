@@ -42,4 +42,18 @@ abstract class Repository {
 
   Future<Result<RentListSummary, FailureModel>> getRentSummary(
       RequestMeanValue requestMeanValue);
+
+  //----------------------------sell---------------------------------------
+  // KPI1
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContractsSell(
+      RequestMeanValue requestMeanValue);
+  // KPI4
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalSoldUnits(
+      RequestMeanValue requestMeanValue);
+  // KPI7
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalTransactionsSell(
+      RequestMeanValue requestMeanValue);
+  // KPI13
+  Future<Result<List<BaseRentResponse>, FailureModel>> getMeanValueSell(
+      RequestMeanValue requestMeanValue);
 }

@@ -59,6 +59,24 @@ abstract class AppServiceClient {
   @POST(EndPoints.rentSummary)
   Future<HttpResponse<RentListSummary>> rentSummary(
       @Body() RequestMeanValue requestMeanValue);
+
+  //-----------------------------sell-------------------------------------------
+  // KPI1
+  @POST(EndPoints.totalContractsSell)
+  Future<HttpResponse<List<BaseRentResponse>>> getTotalContractsSell(
+      @Body() RequestMeanValue requestMeanValue);
+  // KPI4
+  @POST(EndPoints.totalSoldUnits)
+  Future<HttpResponse<List<BaseRentResponse>>> getTotalSoldUnits(
+      @Body() RequestMeanValue requestMeanValue);
+  // KPI7
+  @POST(EndPoints.totalTransactionsSell)
+  Future<HttpResponse<List<BaseRentResponse>>> getTotalTransactionsSell(
+      @Body() RequestMeanValue requestMeanValue);
+  // KPI13
+  @POST(EndPoints.meanValueSell)
+  Future<HttpResponse<List<BaseRentResponse>>> getMeanValueSell(
+      @Body() RequestMeanValue requestMeanValue);
 }
 
 @RestApi(baseUrl: Constant.secondaryBaseUrl)
