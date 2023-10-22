@@ -61,8 +61,24 @@ abstract class AppServiceClient {
       @Body() RequestMeanValue requestMeanValue);
 //-----Sell
 
-  @GET(EndPoints.lockupSell)
+  @GET(EndPoints.lookupSell)
   Future<HttpResponse<RentLookupResponse>> getLockupSell();
+  // KPI1
+  @POST(EndPoints.totalContractsSell)
+  Future<HttpResponse<List<BaseRentResponse>>> getTotalContractsSell(
+      @Body() RequestMeanValue requestMeanValue);
+  // KPI4
+  @POST(EndPoints.totalSoldUnits)
+  Future<HttpResponse<List<BaseRentResponse>>> getTotalSoldUnits(
+      @Body() RequestMeanValue requestMeanValue);
+  // KPI7
+  @POST(EndPoints.totalTransactionsSell)
+  Future<HttpResponse<List<BaseRentResponse>>> getTotalTransactionsSell(
+      @Body() RequestMeanValue requestMeanValue);
+  // KPI13
+  @POST(EndPoints.meanValueSell)
+  Future<HttpResponse<List<BaseRentResponse>>> getMeanValueSell(
+      @Body() RequestMeanValue requestMeanValue);
 }
 
 //----------------------------------CMS-------------------------------------------------------

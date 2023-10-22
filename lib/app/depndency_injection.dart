@@ -20,6 +20,7 @@ import '../presentations/features/rent/blocs/mean_value_bloc/mean_value_bloc.dar
 import '../presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
 import '../presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 import '../presentations/features/rent/blocs/summery_bloc/rent_summery_bloc.dart';
+import '../presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'app_preferences.dart';
 
 final instance = GetIt.instance;
@@ -71,8 +72,33 @@ Future<void> initSellModule() async {
     instance.registerFactory<GetSellLookupUseCase>(
         () => GetSellLookupUseCase(instance()));
   }
+  // KPI1
+  if (!GetIt.I.isRegistered<TotalContractsSellUseCase>()) {
+    instance.registerFactory<TotalContractsSellUseCase>(
+        () => TotalContractsSellUseCase(instance()));
+  }
+  // KPI4
+  if (!GetIt.I.isRegistered<TotalSoldUnitsUseCase>()) {
+    instance.registerFactory<TotalSoldUnitsUseCase>(
+        () => TotalSoldUnitsUseCase(instance()));
+  }
+  // KPI7
+  if (!GetIt.I.isRegistered<TotalTransactionSellUseCase>()) {
+    instance.registerFactory<TotalTransactionSellUseCase>(
+        () => TotalTransactionSellUseCase(instance()));
+  }
+  // KPI13
+  if (!GetIt.I.isRegistered<MeanValueSellUsecase>()) {
+    instance.registerFactory<MeanValueSellUsecase>(
+        () => MeanValueSellUsecase(instance()));
+  }
+  //-------------- Bloc's---------------------
+  instance.registerFactory<SellGridKPIsBloc>(() => SellGridKPIsBloc(
+      totalContractsSellUseCase: instance(),
+      totalSoldUnitsUseCase: instance(),
+      totalTransactionSellUseCase: instance(),
+      meanValueSellUsecase: instance()));
 
-  //Bloc's
   instance.registerFactory(() => SellBloc(getSellLookupUseCase: instance()));
 }
 

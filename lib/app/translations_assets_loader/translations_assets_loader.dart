@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -49,24 +48,36 @@ class TranslationsAssetsLoader extends AssetLoader {
     result.addAll(bundledTranslations);
 
     if (loadRemoteAssets) {
-      if ((!await shouldUpdate()) &&
-          await FileUtils.fileExists(localizationFileName)) {
-        // get the localization file from the application documents directory
-        String fileContents =
-            await FileUtils.readFromFile(localizationFileName);
-        remoteTranslations = json.decode(fileContents);
-      } else {
-        // get the local from server
-        remoteTranslations =
-            await getTranslations(limit: 1000, selectedLocale: locale);
-        // write it to application documents directory
-        await FileUtils.writeToFile(
-            localizationFileName, json.encode(remoteTranslations));
-        await appPreferences.setLocalizationsLastUpdate(date: DateTime.now());
-      }
-      result.addAll(remoteTranslations);
-    }
+      try {
+        if ((!await shouldUpdate()) &&
+            await FileUtils.fileExists(localizationFileName)) {
+          // get the localization file from the application documents directory
+          String fileContents =
+              await FileUtils.readFromFile(localizationFileName);
 
+          remoteTranslations = extractSelectedLocaleFromFile(
+              fileContents: fileContents, locale: locale);
+        } else {
+          // get translations from server
+          List<Map<String, dynamic>> translations =
+              await getTranslations(limit: 1000);
+          // get translations for selected locale
+          remoteTranslations = extractSelectedLocaleFromList(
+              translations: translations, locale: locale);
+
+          // write it to application documents directory
+          if (translations.isNotEmpty) {
+            await FileUtils.writeToFile(
+                localizationFileName, json.encode(translations));
+          }
+          await appPreferences.setLocalizationsLastUpdate(date: DateTime.now());
+        }
+        result.addAll(remoteTranslations);
+      } catch (e) {
+        print(
+            "something wrong happened while writing/reading/fetching remote translations ");
+      }
+    }
     return result;
   }
 
@@ -80,38 +91,57 @@ class TranslationsAssetsLoader extends AssetLoader {
   }
 
   //--------------------------------------------------------
-  Future<Map<String, dynamic>> getTranslations(
-      {required int limit, required Locale selectedLocale}) async {
-    Map<String, dynamic> translations = {};
+  Future<List<Map<String, dynamic>>> getTranslations({
+    required int limit,
+  }) async {
+    List<Map<String, dynamic>> translations = [];
 
     Result<TranslationsModel, FailureModel> result =
-        await getRemoteTranslations(limit: limit);
+        await translationsUseCase.execute(limit);
 
-    translations = result.when(
-        (success) => extractSelectedLocale(
-            locale: selectedLocale, translations: success),
-        (error) => {});
+    translations = result.when((success) {
+      for (var element in success.data) {
+        translations.add(element.toJson());
+      }
+      return translations;
+    }, (error) => []);
 
     return translations;
   }
 
-  Map<String, dynamic> extractSelectedLocale({
-    required TranslationsModel translations,
+  Map<String, dynamic> extractSelectedLocaleFromList({
+    required List<Map<String, dynamic>> translations,
     required Locale locale,
   }) {
     Map<String, dynamic> selectedLocale = {};
-    for (var element in translations.data) {
-      if (element.language == "${locale.languageCode}-${locale.countryCode}" &&
-          element.key != null &&
-          element.value != null) {
-        selectedLocale[element.key ?? ''] = element.value ?? '';
+    for (var element in translations) {
+      TranslationDataItem item = TranslationDataItem.fromJson(element);
+      if (item.language == "${locale.languageCode}-${locale.countryCode}" &&
+          item.key != null &&
+          item.value != null) {
+        selectedLocale[item.key ?? ''] = item.value ?? '';
       }
     }
     return selectedLocale;
   }
 
-  Future<Result<TranslationsModel, FailureModel>> getRemoteTranslations(
-      {required int limit}) async {
-    return await translationsUseCase.execute(limit);
+  Map<String, dynamic> extractSelectedLocaleFromFile(
+      {required String fileContents, required Locale locale}) {
+    Map<String, dynamic> selectedLocaleFromFile = {};
+    var translations = json.decode(fileContents);
+    try {
+      if (translations is List) {
+        for (var element in translations) {
+          TranslationDataItem item = TranslationDataItem.fromJson(element);
+          if (item.language == "${locale.languageCode}-${locale.countryCode}" &&
+              item.key != null &&
+              item.value != null) {
+            selectedLocaleFromFile[item.key ?? ''] = item.value ?? '';
+          }
+        }
+      }
+    } catch (e) {}
+
+    return selectedLocaleFromFile;
   }
 }
