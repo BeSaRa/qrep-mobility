@@ -18,7 +18,6 @@ class FileUtils {
       print('File saved at: ${file.path}');
     } catch (e) {
       print('Error saving file: $e');
-      // Handle the error or throw it again based on your requirements
     }
   }
 
