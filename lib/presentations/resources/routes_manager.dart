@@ -1,4 +1,7 @@
 import 'package:ebla/presentations/features/home/home_view.dart';
+import 'package:ebla/presentations/features/info/blocs/about_bloc/about_bloc.dart';
+import 'package:ebla/presentations/features/info/views/about_us_view.dart';
+import 'package:ebla/presentations/features/info/views/faq_view.dart';
 import 'package:ebla/presentations/features/main_scaffold.dart';
 import 'package:ebla/presentations/features/more/more_view.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
@@ -10,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/depndency_injection.dart';
+import '../features/info/views/laws_decisions_view.dart';
 import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
 
 class RoutesNames {
@@ -20,6 +24,9 @@ class RoutesNames {
   static const String sales = 'sales';
   static const String mortgage = 'mortgage';
   static const String more = 'more';
+  static const String about = 'about';
+  static const String laws = 'laws and decisions';
+  static const String faq = 'FAQ';
 }
 
 class RoutesPaths {
@@ -30,6 +37,9 @@ class RoutesPaths {
   static const String sales = '/sales';
   static const String mortgage = '/mortgage';
   static const String more = '/more';
+  static const String about = '/about';
+  static const String laws = '/laws&decisions';
+  static const String faq = '/FAQ';
 }
 
 class NavigationKeys {
@@ -69,42 +79,43 @@ class AppRouter {
           branches: [
             StatefulShellBranch(routes: [
               GoRoute(
-                path: RoutesPaths.home,
-                name: RoutesNames.home,
-                // parentNavigatorKey: GlobalKey(),
-                pageBuilder: (context, state) {
-                  return CustomTransitionPage(
-                    transitionDuration: const Duration(milliseconds: 1140),
-                    child: BlocProvider(
-                      create: (context) => instance<RentBloc>()
-                        ..add(const RentEvent.getRentLookupEvent()),
-                      child: const HomeView(),
-                    ),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      return SlideTransition(
-                        position: Tween<Offset>(
-                          begin: const Offset(0.0, -1.0),
-                          end: const Offset(0.0, 0.0),
-                        ).animate(
-                          CurvedAnimation(
-                            parent: animation,
-                            curve: const Cubic(0.74, 0.01, 0.01, 0.98),
+                  path: RoutesPaths.home,
+                  name: RoutesNames.home,
+                  // parentNavigatorKey: GlobalKey(),
+                  pageBuilder: (context, state) {
+                    return CustomTransitionPage(
+                      transitionDuration: const Duration(milliseconds: 1140),
+                      child: BlocProvider(
+                        create: (context) => instance<RentBloc>()
+                          ..add(const RentEvent.getRentLookupEvent()),
+                        child: const HomeView(),
+                      ),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        return SlideTransition(
+                          position: Tween<Offset>(
+                            begin: const Offset(0.0, -1.0),
+                            end: const Offset(0.0, 0.0),
+                          ).animate(
+                            CurvedAnimation(
+                              parent: animation,
+                              curve: const Cubic(0.74, 0.01, 0.01, 0.98),
+                            ),
                           ),
-                        ),
-                        child: child,
-                      );
-                    },
-                  );
-                },
-                // builder: (context, state) {
-                //   return BlocProvider(
-                //     create: (context) => instance<RentBloc>()
-                //       ..add(const RentEvent.getRentLookupEvent()),
-                //     child: const HomeView(),
-                //   );
-                // },
-              ),
+                          child: child,
+                        );
+                      },
+                    );
+                  },
+                  routes: const []
+                  // builder: (context, state) {
+                  //   return BlocProvider(
+                  //     create: (context) => instance<RentBloc>()
+                  //       ..add(const RentEvent.getRentLookupEvent()),
+                  //     child: const HomeView(),
+                  //   );
+                  // },
+                  ),
             ]),
             StatefulShellBranch(routes: [
               GoRoute(
@@ -139,6 +150,28 @@ class AppRouter {
               ),
             ]),
           ],
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.about,
+          path: RoutesPaths.about,
+          builder: (context, state) => BlocProvider(
+            create: (context) =>
+                instance<AboutBloc>()..add(const AboutEvent.getAbout()),
+            child: const AboutUsView(),
+          ),
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.laws,
+          path: RoutesPaths.laws,
+          builder: (context, state) => const LawsDecisionsView(),
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.faq,
+          path: RoutesPaths.faq,
+          builder: (context, state) => const FAQView(),
         ),
         GoRoute(
           name: RoutesNames.splash,

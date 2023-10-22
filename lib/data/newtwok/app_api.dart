@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/newtwok/end_points.dart';
+import 'package:ebla/domain/models/cms_models/about/about_model.dart';
+import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
+import 'package:ebla/domain/models/cms_models/news/news_model.dart';
 
 import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:retrofit/retrofit.dart';
@@ -66,4 +69,10 @@ abstract class TranslationsServiceClient {
   @GET(EndPoints.translations)
   Future<HttpResponse<TranslationsModel>> getTranslations(
       @Query("limit") int limit);
+  @GET(EndPoints.about)
+  Future<HttpResponse<AboutResponse>> getAbout();
+  @GET(EndPoints.news)
+  Future<HttpResponse<NewsResponse>> getNews();
+  @GET(EndPoints.laws)
+  Future<HttpResponse<LawsResponse>> getLaws();
 }
