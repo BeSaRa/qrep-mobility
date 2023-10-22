@@ -23,7 +23,6 @@ Future<void> main() async {
   await initTranslationsModule();
   await initAppModule().then((value) async {
     await initHomeModule();
-    await initSellModule();
     Bloc.observer = MyBlocObserver();
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     await Future.delayed(const Duration(milliseconds: 150));
