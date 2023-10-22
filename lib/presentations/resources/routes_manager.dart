@@ -6,6 +6,7 @@ import 'package:ebla/presentations/features/main_scaffold.dart';
 import 'package:ebla/presentations/features/more/more_view.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
 import 'package:ebla/presentations/features/rent/rent_view.dart';
+import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/sell_view.dart';
 import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -79,43 +80,35 @@ class AppRouter {
           branches: [
             StatefulShellBranch(routes: [
               GoRoute(
-                  path: RoutesPaths.home,
-                  name: RoutesNames.home,
-                  // parentNavigatorKey: GlobalKey(),
-                  pageBuilder: (context, state) {
-                    return CustomTransitionPage(
-                      transitionDuration: const Duration(milliseconds: 1140),
-                      child: BlocProvider(
-                        create: (context) => instance<RentBloc>()
-                          ..add(const RentEvent.getRentLookupEvent()),
-                        child: const HomeView(),
-                      ),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) {
-                        return SlideTransition(
-                          position: Tween<Offset>(
-                            begin: const Offset(0.0, -1.0),
-                            end: const Offset(0.0, 0.0),
-                          ).animate(
-                            CurvedAnimation(
-                              parent: animation,
-                              curve: const Cubic(0.74, 0.01, 0.01, 0.98),
-                            ),
+                path: RoutesPaths.home,
+                name: RoutesNames.home,
+                // parentNavigatorKey: GlobalKey(),
+                pageBuilder: (context, state) {
+                  return CustomTransitionPage(
+                    transitionDuration: const Duration(milliseconds: 1140),
+                    child: BlocProvider(
+                      create: (context) => instance<RentBloc>()
+                        ..add(const RentEvent.getRentLookupEvent()),
+                      child: const HomeView(),
+                    ),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return SlideTransition(
+                        position: Tween<Offset>(
+                          begin: const Offset(0.0, -1.0),
+                          end: const Offset(0.0, 0.0),
+                        ).animate(
+                          CurvedAnimation(
+                            parent: animation,
+                            curve: const Cubic(0.74, 0.01, 0.01, 0.98),
                           ),
-                          child: child,
-                        );
-                      },
-                    );
-                  },
-                  routes: const []
-                  // builder: (context, state) {
-                  //   return BlocProvider(
-                  //     create: (context) => instance<RentBloc>()
-                  //       ..add(const RentEvent.getRentLookupEvent()),
-                  //     child: const HomeView(),
-                  //   );
-                  // },
-                  ),
+                        ),
+                        child: child,
+                      );
+                    },
+                  );
+                },
+              ),
             ]),
             StatefulShellBranch(routes: [
               GoRoute(
@@ -130,10 +123,16 @@ class AppRouter {
             ]),
             StatefulShellBranch(routes: [
               GoRoute(
-                path: RoutesPaths.sales,
-                name: RoutesNames.sales,
-                builder: (context, state) => const SalesView(),
-              ),
+                  path: RoutesPaths.sales,
+                  name: RoutesNames.sales,
+                  builder: (context, state) {
+                    initSellModule();
+                    return BlocProvider(
+                      create: (context) => instance<SellBloc>()
+                        ..add(const SellEvent.getSellLookupEvent()),
+                      child: const SalesView(),
+                    );
+                  }),
             ]),
             StatefulShellBranch(routes: [
               GoRoute(

@@ -6,7 +6,7 @@ class EndPoints {
   static const String laws = '/items/laws';
   static const String about = '/items/about';
   static const String faq = '/items/FAQ';
-  //rent
+  //-------------------Rent----------------------------------------------------------
   static const String lockupRent = '/kpi/rent/lookup';
   static const String rentDefault = '/kpi/rent/default';
   static const String totalContracts = '/kpi/rent/kpi1/total-contracts';
