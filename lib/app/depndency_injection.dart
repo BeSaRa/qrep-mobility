@@ -4,6 +4,7 @@ import 'package:ebla/presentations/features/rent/blocs/default_bloc/rent_default
 import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
+import 'package:ebla/presentations/features/sell/blocs/sell_transaction/sell_transaction_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -123,6 +124,8 @@ Future<void> initSellModule() async {
       totalSoldUnitsUseCase: instance(),
       totalTransactionSellUseCase: instance(),
       meanValueSellUsecase: instance()));
+
+  instance.registerFactory(() => SellTransactionBloc(instance()));
 }
 
 Future<void> initRentModule() async {

@@ -10,6 +10,7 @@ import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:multiple_result/multiple_result.dart';
 
+import '../../domain/models/requests/sell_requests/request_sell_values.dart';
 import '../../domain/repository/repository.dart';
 import '../../presentations/resources/strings_manager.dart';
 import '../newtwok/app_api.dart';
@@ -20,10 +21,9 @@ class RepositoryImplementer extends Repository {
   final TranslationsServiceClient translationsServiceClient;
   final NetworkInfo networkInfo;
 
-  RepositoryImplementer(
-      {required this.appServiceClient,
-      required this.translationsServiceClient,
-      required this.networkInfo});
+  RepositoryImplementer({required this.appServiceClient,
+    required this.translationsServiceClient,
+    required this.networkInfo});
 
   @override
   Future<Result<TranslationsModel, FailureModel>> getTranslations(
@@ -114,7 +114,7 @@ class RepositoryImplementer extends Repository {
     if (await networkInfo.isConnected) {
       try {
         final response =
-            await appServiceClient.certificateCount(requestMeanValue);
+        await appServiceClient.certificateCount(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -165,7 +165,7 @@ class RepositoryImplementer extends Repository {
     if (await networkInfo.isConnected) {
       try {
         final response =
-            await appServiceClient.getRentDefault(requestMeanValue);
+        await appServiceClient.getRentDefault(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -230,7 +230,7 @@ class RepositoryImplementer extends Repository {
     if (await networkInfo.isConnected) {
       try {
         final response =
-            await appServiceClient.getTotalRentedUnits(requestMeanValue);
+        await appServiceClient.getTotalRentedUnits(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -259,14 +259,11 @@ class RepositoryImplementer extends Repository {
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
-          print("the error in else ");
           return Error(FailureModel.fromJson(response.response.data));
         }
       } on DioException catch (e) {
-        print("the error in dio $e");
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        print("the error in out dio $e");
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {
@@ -283,14 +280,11 @@ class RepositoryImplementer extends Repository {
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
-          print("the error in else ");
           return Error(FailureModel.fromJson(response.response.data));
         }
       } on DioException catch (e) {
-        print("the error in dio $e");
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        print("the error in out dio $e");
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {
@@ -307,14 +301,11 @@ class RepositoryImplementer extends Repository {
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
-          print("the error in else ");
           return Error(FailureModel.fromJson(response.response.data));
         }
       } on DioException catch (e) {
-        print("the error in dio $e");
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        print("the error in out dio $e");
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {
@@ -331,14 +322,11 @@ class RepositoryImplementer extends Repository {
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
-          print("the error in else ");
           return Error(FailureModel.fromJson(response.response.data));
         }
       } on DioException catch (e) {
-        print("the error in dio $e");
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        print("the error in out dio $e");
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {
@@ -375,7 +363,7 @@ class RepositoryImplementer extends Repository {
     if (await networkInfo.isConnected) {
       try {
         final response =
-            await appServiceClient.getTotalContractsSell(requestMeanValue);
+        await appServiceClient.getTotalContractsSell(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -398,7 +386,7 @@ class RepositoryImplementer extends Repository {
     if (await networkInfo.isConnected) {
       try {
         final response =
-            await appServiceClient.getTotalSoldUnits(requestMeanValue);
+        await appServiceClient.getTotalSoldUnits(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -421,7 +409,7 @@ class RepositoryImplementer extends Repository {
     if (await networkInfo.isConnected) {
       try {
         final response =
-            await appServiceClient.getTotalTransactionsSell(requestMeanValue);
+        await appServiceClient.getTotalTransactionsSell(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -444,7 +432,7 @@ class RepositoryImplementer extends Repository {
     if (await networkInfo.isConnected) {
       try {
         final response =
-            await appServiceClient.getMeanValueSell(requestMeanValue);
+        await appServiceClient.getMeanValueSell(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -462,11 +450,11 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<List<RentDefault>, FailureModel>> getSellDefault(
-      RequestMeanValue requestMeanValue) async {
+      RequestSellValues requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response =
-            await appServiceClient.getRentDefault(requestMeanValue);
+        await appServiceClient.getSellDefault(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -484,11 +472,11 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<SellTransactionResponse, FailureModel>> getSellTransaction(
-      RequestMeanValue requestMeanValue) async {
+      RequestSellValues requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response =
-            await appServiceClient.getSellTransactions(requestMeanValue);
+        await appServiceClient.getSellTransactions(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {

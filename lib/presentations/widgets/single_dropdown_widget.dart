@@ -3,9 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/models/rent_models/rent_models.dart';
-import '../resources/color_manager.dart';
 import '../resources/resources.dart';
-import '../resources/values_manager.dart';
 
 class SingleDropDownValue<T> extends StatefulWidget {
   final List<T> list;
@@ -78,7 +76,9 @@ class _SingleDropDownValue<T> extends State<SingleDropDownValue<T>> {
           // },
           onChanged: widget.onChanged,
           dropdownStyleData: DropdownStyleData(
-            maxHeight: AppSizeH.s200, width: double.infinity, useSafeArea: true,
+            maxHeight: AppSizeH.s200,
+            width: double.infinity,
+            useSafeArea: true,
 
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppSizeR.s5),

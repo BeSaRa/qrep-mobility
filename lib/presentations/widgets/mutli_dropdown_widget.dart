@@ -3,13 +3,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/models/rent_models/rent_models.dart';
-import '../resources/color_manager.dart';
 import '../resources/resources.dart';
-import '../resources/values_manager.dart';
 
 class MultiDropDownValue<T> extends StatefulWidget {
   final List<T> list;
   final List<T> selectedItems;
+
   const MultiDropDownValue({
     super.key,
     required this.list,
@@ -24,6 +23,7 @@ class _MultiDropDownValue<T> extends State<MultiDropDownValue<T>> {
   // List<T> selectedItems = [];
 
   T? selectedValue;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -101,7 +101,9 @@ class _MultiDropDownValue<T> extends State<MultiDropDownValue<T>> {
           // value: selectedValue,
           onChanged: (T? value) {},
           dropdownStyleData: DropdownStyleData(
-            maxHeight: AppSizeH.s200, width: double.infinity, useSafeArea: true,
+            maxHeight: AppSizeH.s200,
+            width: double.infinity,
+            useSafeArea: true,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppSizeR.s5),
               color: ColorManager.whiteSmoke,

@@ -1,21 +1,16 @@
 import 'dart:math' as math;
 
 import 'package:easy_localization/easy_localization.dart' as local;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../app/depndency_injection.dart';
-import '../../../domain/models/rent_models/rent_models.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../../widgets/widgets.dart';
 import '../more/more_view.dart';
 import '../rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
-import '../rent/blocs/mean_value_bloc/mean_value_bloc.dart';
 import '../rent/blocs/rent_bloc/rent_bloc.dart';
 import 'widgets/news_widget.dart';
 

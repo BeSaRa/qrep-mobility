@@ -8,6 +8,7 @@ import 'package:multiple_result/multiple_result.dart';
 import '../../data/newtwok/failure_model/failure.dart';
 import '../models/rent_models/rent_models.dart';
 import '../models/requests/rent_requests/request_mean_value.dart';
+import '../models/requests/sell_requests/request_sell_values.dart';
 
 abstract class Repository {
   //-------------CMS
@@ -51,6 +52,7 @@ abstract class Repository {
 
   //----------------------------sell---------------------------------------
   Future<Result<RentLookupResponse, FailureModel>> getLockupSell();
+
   // KPI1
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContractsSell(
       RequestMeanValue requestMeanValue);
@@ -68,8 +70,8 @@ abstract class Repository {
       RequestMeanValue requestMeanValue);
 
   Future<Result<List<RentDefault>, FailureModel>> getSellDefault(
-      RequestMeanValue requestMeanValue);
+      RequestSellValues requestMeanValue);
 
   Future<Result<SellTransactionResponse, FailureModel>> getSellTransaction(
-      RequestMeanValue requestMeanValue);
+      RequestSellValues requestMeanValue);
 }

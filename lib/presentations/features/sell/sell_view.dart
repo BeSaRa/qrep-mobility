@@ -3,7 +3,7 @@ import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../app/depndency_injection.dart';import '../rent/blocs/rent_bloc/rent_bloc.dart';
+import '../../../app/depndency_injection.dart';
 
 class SalesView extends StatefulWidget {
   const SalesView({super.key});
@@ -17,10 +17,9 @@ class _SalesViewState extends State<SalesView> {
 
   @override
   void initState() {
-    //todo remove rent bloc from
     sellDefaultBloc = instance<SellDefaultBloc>()
       ..add(SellDefaultEvent.started(
-          request: context.read<RentBloc>().requestDefault));
+          request: context.read<SellBloc>().requestSellDefault));
     super.initState();
   }
 

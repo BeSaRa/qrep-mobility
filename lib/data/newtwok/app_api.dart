@@ -10,6 +10,7 @@ import 'package:retrofit/retrofit.dart';
 import '../../app/constants.dart';
 import '../../domain/models/rent_models/rent_models.dart';
 import '../../domain/models/requests/rent_requests/request_mean_value.dart';
+import '../../domain/models/requests/sell_requests/request_sell_values.dart';
 
 part 'app_api.g.dart';
 
@@ -59,10 +60,12 @@ abstract class AppServiceClient {
   @POST(EndPoints.rentSummary)
   Future<HttpResponse<RentListSummary>> rentSummary(
       @Body() RequestMeanValue requestMeanValue);
+
 //-----Sell
 
   @GET(EndPoints.lookupSell)
   Future<HttpResponse<RentLookupResponse>> getLockupSell();
+
   // KPI1
   @POST(EndPoints.totalContractsSell)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalContractsSell(
@@ -86,11 +89,11 @@ abstract class AppServiceClient {
   //sell
   @POST(EndPoints.sellDefault)
   Future<HttpResponse<List<RentDefault>>> getSellDefault(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RequestSellValues requestMeanValue);
 
   @POST(EndPoints.sellTransactions)
   Future<HttpResponse<SellTransactionResponse>> getSellTransactions(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RequestSellValues requestMeanValue);
 }
 
 //----------------------------------CMS-------------------------------------------------------

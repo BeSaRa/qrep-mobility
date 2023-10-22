@@ -490,7 +490,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<List<RentDefault>>> getSellDefault(
-      RequestMeanValue requestMeanValue) async {
+      RequestSellValues requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -521,7 +521,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<SellTransactionResponse>> getSellTransactions(
-      RequestMeanValue requestMeanValue) async {
+      RequestSellValues requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -578,8 +578,6 @@ class _AppServiceClient implements AppServiceClient {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
-
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _TranslationsServiceClient implements TranslationsServiceClient {
   _TranslationsServiceClient(

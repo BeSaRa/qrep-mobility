@@ -1,4 +1,3 @@
-import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
 import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:ebla/domain/repository/repository.dart';
 import 'package:ebla/domain/usecases/usecases.dart';

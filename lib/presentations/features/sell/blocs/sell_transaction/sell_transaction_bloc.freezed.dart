@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'sell_default_bloc.dart';
+part of 'sell_transaction_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SellDefaultEvent {
+mixin _$SellTransactionEvent {
   RequestSellValues get request => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -51,15 +51,15 @@ mixin _$SellDefaultEvent {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SellDefaultEventCopyWith<SellDefaultEvent> get copyWith =>
+  $SellTransactionEventCopyWith<SellTransactionEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SellDefaultEventCopyWith<$Res> {
-  factory $SellDefaultEventCopyWith(
-          SellDefaultEvent value, $Res Function(SellDefaultEvent) then) =
-      _$SellDefaultEventCopyWithImpl<$Res, SellDefaultEvent>;
+abstract class $SellTransactionEventCopyWith<$Res> {
+  factory $SellTransactionEventCopyWith(SellTransactionEvent value,
+          $Res Function(SellTransactionEvent) then) =
+      _$SellTransactionEventCopyWithImpl<$Res, SellTransactionEvent>;
   @useResult
   $Res call({RequestSellValues request});
 
@@ -67,9 +67,10 @@ abstract class $SellDefaultEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SellDefaultEventCopyWithImpl<$Res, $Val extends SellDefaultEvent>
-    implements $SellDefaultEventCopyWith<$Res> {
-  _$SellDefaultEventCopyWithImpl(this._value, this._then);
+class _$SellTransactionEventCopyWithImpl<$Res,
+        $Val extends SellTransactionEvent>
+    implements $SellTransactionEventCopyWith<$Res> {
+  _$SellTransactionEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -100,7 +101,7 @@ class _$SellDefaultEventCopyWithImpl<$Res, $Val extends SellDefaultEvent>
 
 /// @nodoc
 abstract class _$$StartedImplCopyWith<$Res>
-    implements $SellDefaultEventCopyWith<$Res> {
+    implements $SellTransactionEventCopyWith<$Res> {
   factory _$$StartedImplCopyWith(
           _$StartedImpl value, $Res Function(_$StartedImpl) then) =
       __$$StartedImplCopyWithImpl<$Res>;
@@ -114,7 +115,7 @@ abstract class _$$StartedImplCopyWith<$Res>
 
 /// @nodoc
 class __$$StartedImplCopyWithImpl<$Res>
-    extends _$SellDefaultEventCopyWithImpl<$Res, _$StartedImpl>
+    extends _$SellTransactionEventCopyWithImpl<$Res, _$StartedImpl>
     implements _$$StartedImplCopyWith<$Res> {
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
@@ -144,7 +145,7 @@ class _$StartedImpl implements _Started {
 
   @override
   String toString() {
-    return 'SellDefaultEvent.started(request: $request)';
+    return 'SellTransactionEvent.started(request: $request)';
   }
 
   @override
@@ -221,7 +222,7 @@ class _$StartedImpl implements _Started {
   }
 }
 
-abstract class _Started implements SellDefaultEvent {
+abstract class _Started implements SellTransactionEvent {
   const factory _Started({required final RequestSellValues request}) =
       _$StartedImpl;
 
@@ -234,12 +235,12 @@ abstract class _Started implements SellDefaultEvent {
 }
 
 /// @nodoc
-mixin _$SellDefaultState {
+mixin _$SellTransactionState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RentDefault response) done,
+    required TResult Function(SellTransactionResponse response) success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -247,7 +248,7 @@ mixin _$SellDefaultState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RentDefault response)? done,
+    TResult? Function(SellTransactionResponse response)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -255,7 +256,7 @@ mixin _$SellDefaultState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RentDefault response)? done,
+    TResult Function(SellTransactionResponse response)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -264,7 +265,7 @@ mixin _$SellDefaultState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Done value) done,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -272,7 +273,7 @@ mixin _$SellDefaultState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Done value)? done,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -280,7 +281,7 @@ mixin _$SellDefaultState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Done value)? done,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -288,16 +289,17 @@ mixin _$SellDefaultState {
 }
 
 /// @nodoc
-abstract class $SellDefaultStateCopyWith<$Res> {
-  factory $SellDefaultStateCopyWith(
-          SellDefaultState value, $Res Function(SellDefaultState) then) =
-      _$SellDefaultStateCopyWithImpl<$Res, SellDefaultState>;
+abstract class $SellTransactionStateCopyWith<$Res> {
+  factory $SellTransactionStateCopyWith(SellTransactionState value,
+          $Res Function(SellTransactionState) then) =
+      _$SellTransactionStateCopyWithImpl<$Res, SellTransactionState>;
 }
 
 /// @nodoc
-class _$SellDefaultStateCopyWithImpl<$Res, $Val extends SellDefaultState>
-    implements $SellDefaultStateCopyWith<$Res> {
-  _$SellDefaultStateCopyWithImpl(this._value, this._then);
+class _$SellTransactionStateCopyWithImpl<$Res,
+        $Val extends SellTransactionState>
+    implements $SellTransactionStateCopyWith<$Res> {
+  _$SellTransactionStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -314,7 +316,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$SellDefaultStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$SellTransactionStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -328,7 +330,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'SellDefaultState.initial()';
+    return 'SellTransactionState.initial()';
   }
 
   @override
@@ -345,7 +347,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RentDefault response) done,
+    required TResult Function(SellTransactionResponse response) success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -356,7 +358,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RentDefault response)? done,
+    TResult? Function(SellTransactionResponse response)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -367,7 +369,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RentDefault response)? done,
+    TResult Function(SellTransactionResponse response)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -382,7 +384,7 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Done value) done,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -393,7 +395,7 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Done value)? done,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -404,7 +406,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Done value)? done,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -415,7 +417,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements SellDefaultState {
+abstract class _Initial implements SellTransactionState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -428,7 +430,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$SellDefaultStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$SellTransactionStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -442,7 +444,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'SellDefaultState.loading()';
+    return 'SellTransactionState.loading()';
   }
 
   @override
@@ -459,7 +461,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RentDefault response) done,
+    required TResult Function(SellTransactionResponse response) success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -470,7 +472,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RentDefault response)? done,
+    TResult? Function(SellTransactionResponse response)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -481,7 +483,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RentDefault response)? done,
+    TResult Function(SellTransactionResponse response)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -496,7 +498,7 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Done value) done,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -507,7 +509,7 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Done value)? done,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -518,7 +520,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Done value)? done,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -529,26 +531,27 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements SellDefaultState {
+abstract class _Loading implements SellTransactionState {
   const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$DoneImplCopyWith<$Res> {
-  factory _$$DoneImplCopyWith(
-          _$DoneImpl value, $Res Function(_$DoneImpl) then) =
-      __$$DoneImplCopyWithImpl<$Res>;
+abstract class _$$SuccessImplCopyWith<$Res> {
+  factory _$$SuccessImplCopyWith(
+          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
+      __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({RentDefault response});
+  $Res call({SellTransactionResponse response});
 
-  $RentDefaultCopyWith<$Res> get response;
+  $SellTransactionResponseCopyWith<$Res> get response;
 }
 
 /// @nodoc
-class __$$DoneImplCopyWithImpl<$Res>
-    extends _$SellDefaultStateCopyWithImpl<$Res, _$DoneImpl>
-    implements _$$DoneImplCopyWith<$Res> {
-  __$$DoneImplCopyWithImpl(_$DoneImpl _value, $Res Function(_$DoneImpl) _then)
+class __$$SuccessImplCopyWithImpl<$Res>
+    extends _$SellTransactionStateCopyWithImpl<$Res, _$SuccessImpl>
+    implements _$$SuccessImplCopyWith<$Res> {
+  __$$SuccessImplCopyWithImpl(
+      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -556,18 +559,18 @@ class __$$DoneImplCopyWithImpl<$Res>
   $Res call({
     Object? response = null,
   }) {
-    return _then(_$DoneImpl(
+    return _then(_$SuccessImpl(
       null == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as RentDefault,
+              as SellTransactionResponse,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RentDefaultCopyWith<$Res> get response {
-    return $RentDefaultCopyWith<$Res>(_value.response, (value) {
+  $SellTransactionResponseCopyWith<$Res> get response {
+    return $SellTransactionResponseCopyWith<$Res>(_value.response, (value) {
       return _then(_value.copyWith(response: value));
     });
   }
@@ -575,22 +578,22 @@ class __$$DoneImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DoneImpl implements _Done {
-  const _$DoneImpl(this.response);
+class _$SuccessImpl implements _Success {
+  const _$SuccessImpl(this.response);
 
   @override
-  final RentDefault response;
+  final SellTransactionResponse response;
 
   @override
   String toString() {
-    return 'SellDefaultState.done(response: $response)';
+    return 'SellTransactionState.success(response: $response)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DoneImpl &&
+            other is _$SuccessImpl &&
             (identical(other.response, response) ||
                 other.response == response));
   }
@@ -601,18 +604,18 @@ class _$DoneImpl implements _Done {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DoneImplCopyWith<_$DoneImpl> get copyWith =>
-      __$$DoneImplCopyWithImpl<_$DoneImpl>(this, _$identity);
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RentDefault response) done,
+    required TResult Function(SellTransactionResponse response) success,
     required TResult Function(String message) error,
   }) {
-    return done(response);
+    return success(response);
   }
 
   @override
@@ -620,10 +623,10 @@ class _$DoneImpl implements _Done {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RentDefault response)? done,
+    TResult? Function(SellTransactionResponse response)? success,
     TResult? Function(String message)? error,
   }) {
-    return done?.call(response);
+    return success?.call(response);
   }
 
   @override
@@ -631,12 +634,12 @@ class _$DoneImpl implements _Done {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RentDefault response)? done,
+    TResult Function(SellTransactionResponse response)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
-    if (done != null) {
-      return done(response);
+    if (success != null) {
+      return success(response);
     }
     return orElse();
   }
@@ -646,10 +649,10 @@ class _$DoneImpl implements _Done {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Done value) done,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
   }) {
-    return done(this);
+    return success(this);
   }
 
   @override
@@ -657,10 +660,10 @@ class _$DoneImpl implements _Done {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Done value)? done,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
   }) {
-    return done?.call(this);
+    return success?.call(this);
   }
 
   @override
@@ -668,23 +671,24 @@ class _$DoneImpl implements _Done {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Done value)? done,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (done != null) {
-      return done(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class _Done implements SellDefaultState {
-  const factory _Done(final RentDefault response) = _$DoneImpl;
+abstract class _Success implements SellTransactionState {
+  const factory _Success(final SellTransactionResponse response) =
+      _$SuccessImpl;
 
-  RentDefault get response;
+  SellTransactionResponse get response;
   @JsonKey(ignore: true)
-  _$$DoneImplCopyWith<_$DoneImpl> get copyWith =>
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -699,7 +703,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$SellDefaultStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$SellTransactionStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -729,7 +733,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'SellDefaultState.error(message: $message)';
+    return 'SellTransactionState.error(message: $message)';
   }
 
   @override
@@ -754,7 +758,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RentDefault response) done,
+    required TResult Function(SellTransactionResponse response) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -765,7 +769,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RentDefault response)? done,
+    TResult? Function(SellTransactionResponse response)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -776,7 +780,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RentDefault response)? done,
+    TResult Function(SellTransactionResponse response)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -791,7 +795,7 @@ class _$ErrorImpl implements _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Done value) done,
+    required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -802,7 +806,7 @@ class _$ErrorImpl implements _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Done value)? done,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -813,7 +817,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Done value)? done,
+    TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -824,7 +828,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements SellDefaultState {
+abstract class _Error implements SellTransactionState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;
