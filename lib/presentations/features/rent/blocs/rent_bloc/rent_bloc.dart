@@ -53,7 +53,7 @@ class RentBloc extends Bloc<RentEvent, RentState> {
     furnitureStatus: -1,
     issueDateYear: 2023,
     issueDateStartMonth: 1,
-    issueDateEndMonth: 10,
+    issueDateEndMonth: DateTime.now().month,
     zoneId: -1,
     limit: 5,
   );
