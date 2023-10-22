@@ -1,5 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/newtwok/end_points.dart';
+import 'package:ebla/domain/models/cms_models/about/about_model.dart';
+import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
+import 'package:ebla/domain/models/cms_models/news/news_model.dart';
+
 import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -56,6 +60,24 @@ abstract class AppServiceClient {
   Future<HttpResponse<RentListSummary>> rentSummary(
       @Body() RequestMeanValue requestMeanValue);
 
+  //-----------------------------sell-------------------------------------------
+  // KPI1
+  @POST(EndPoints.totalContractsSell)
+  Future<HttpResponse<List<BaseRentResponse>>> getTotalContractsSell(
+      @Body() RequestMeanValue requestMeanValue);
+  // KPI4
+  @POST(EndPoints.totalSoldUnits)
+  Future<HttpResponse<List<BaseRentResponse>>> getTotalSoldUnits(
+      @Body() RequestMeanValue requestMeanValue);
+  // KPI7
+  @POST(EndPoints.totalTransactionsSell)
+  Future<HttpResponse<List<BaseRentResponse>>> getTotalTransactionsSell(
+      @Body() RequestMeanValue requestMeanValue);
+  // KPI13
+  @POST(EndPoints.meanValueSell)
+  Future<HttpResponse<List<BaseRentResponse>>> getMeanValueSell(
+      @Body() RequestMeanValue requestMeanValue);
+
 
   //sell
   @POST(EndPoints.sellDefault)
@@ -71,4 +93,10 @@ abstract class TranslationsServiceClient {
   @GET(EndPoints.translations)
   Future<HttpResponse<TranslationsModel>> getTranslations(
       @Query("limit") int limit);
+  @GET(EndPoints.about)
+  Future<HttpResponse<AboutResponse>> getAbout();
+  @GET(EndPoints.news)
+  Future<HttpResponse<NewsResponse>> getNews();
+  @GET(EndPoints.laws)
+  Future<HttpResponse<LawsResponse>> getLaws();
 }

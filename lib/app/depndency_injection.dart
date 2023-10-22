@@ -1,6 +1,8 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:ebla/presentations/features/home/blocs/news_bloc/news_bloc.dart';
 
 import 'package:ebla/presentations/features/rent/blocs/default_bloc/rent_default_bloc.dart';
+import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,7 +11,9 @@ import '../data/newtwok/dio_factory.dart';
 import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
+import '../domain/usecases/CMS/cms_usecases.dart';
 import '../domain/usecases/usecases.dart';
+import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import '../presentations/features/rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import '../presentations/features/rent/blocs/mean_value_bloc/mean_value_bloc.dart';
 import '../presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
@@ -42,6 +46,22 @@ Future<void> initTranslationsModule() async {
     instance.registerFactory<TranslationsUseCase>(
         () => TranslationsUseCase(instance()));
   }
+}
+
+Future<void> initHomeModule() async {
+  if (!GetIt.I.isRegistered<AboutUsecase>()) {
+    instance.registerFactory<AboutUsecase>(() => AboutUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<NewsUsecase>()) {
+    instance.registerFactory<NewsUsecase>(() => NewsUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<LawsUsecase>()) {
+    instance.registerFactory<LawsUsecase>(() => LawsUsecase(instance()));
+  }
+
+  //Bloc's
+  instance.registerFactory(() => AboutBloc(aboutUsecase: instance()));
+  instance.registerFactory(() => NewsBloc(newsUsecase: instance()));
 }
 
 Future<void> initRentModule() async {
@@ -98,4 +118,34 @@ Future<void> initRentModule() async {
   );
   instance.registerFactory(() => RentSummeryBloc(instance()));
   instance.registerFactory(() => RentDefaultBloc(instance()));
+}
+
+Future<void> initSellModule() async {
+  //------------usecases--------------------
+  // KPI1
+  if (!GetIt.I.isRegistered<TotalContractsSellUseCase>()) {
+    instance.registerFactory<TotalContractsSellUseCase>(
+        () => TotalContractsSellUseCase(instance()));
+  }
+  // KPI4
+  if (!GetIt.I.isRegistered<TotalSoldUnitsUseCase>()) {
+    instance.registerFactory<TotalSoldUnitsUseCase>(
+        () => TotalSoldUnitsUseCase(instance()));
+  }
+  // KPI7
+  if (!GetIt.I.isRegistered<TotalTransactionSellUseCase>()) {
+    instance.registerFactory<TotalTransactionSellUseCase>(
+        () => TotalTransactionSellUseCase(instance()));
+  }
+  // KPI13
+  if (!GetIt.I.isRegistered<MeanValueSellUsecase>()) {
+    instance.registerFactory<MeanValueSellUsecase>(
+        () => MeanValueSellUsecase(instance()));
+  }
+  //--------------blocs---------------------
+  instance.registerFactory<SellGridKPIsBloc>(() => SellGridKPIsBloc(
+      totalContractsSellUseCase: instance(),
+      totalSoldUnitsUseCase: instance(),
+      totalTransactionSellUseCase: instance(),
+      meanValueSellUsecase: instance()));
 }
