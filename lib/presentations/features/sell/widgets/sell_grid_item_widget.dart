@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:countup/countup.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/extensions.dart';
+import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:flutter/material.dart';
@@ -13,13 +14,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../domain/models/rent_models/rent_models.dart';
 import '../../../resources/strings_manager.dart';
 import '../../../resources/values_manager.dart';
-import '../blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 
-class RentGridItemWidget extends StatefulWidget {
-  final KPI kpi;
+class SellGridItemWidget extends StatefulWidget {
+  final SellGridKPIs kpi;
   final RentDefault response;
 
-  const RentGridItemWidget({
+  const SellGridItemWidget({
     super.key,
     required this.kpi,
     required this.index,
@@ -29,10 +29,10 @@ class RentGridItemWidget extends StatefulWidget {
   final int index;
 
   @override
-  State<RentGridItemWidget> createState() => _RentGridItemWidgetState();
+  State<SellGridItemWidget> createState() => _SellGridItemWidgetState();
 }
 
-class _RentGridItemWidgetState extends State<RentGridItemWidget> {
+class _SellGridItemWidgetState extends State<SellGridItemWidget> {
   //todo: this should be removed once we have real data from api
   final List<GridItemData> gridItemsData = [
     GridItemData(
@@ -89,9 +89,11 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(gridItemsData[widget.index].title.tr(),
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyMedium),
+                Expanded(
+                  child: Text(gridItemsData[widget.index].title.tr(),
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyMedium),
+                ),
               ],
             ),
           ),
@@ -106,11 +108,11 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               SizedBox(width: AppSizeW.s24),
-              BlocBuilder<RentGridKPIsBloc, RentGridKPIsState>(
-                bloc: context.read<RentGridKPIsBloc>(),
+              BlocBuilder<SellGridKPIsBloc, SellGridKPIsState>(
+                bloc: context.read<SellGridKPIsBloc>(),
                 builder: (context, state) {
                   if (state.isLoading || state.hasError) {
-                    if (widget.kpi == KPI.totalContracts) {
+                    if (widget.kpi == SellGridKPIs.totalContracts) {
                       // KPI1
                       return ValueWithUnit(
                         countUp: false,
@@ -118,7 +120,7 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                             (widget.response.kpi1Val ?? 0).formatWithCommas(),
                         unit: gridItemsData[widget.index].valueUnit,
                       );
-                    } else if (widget.kpi == KPI.totalRentedUntis) {
+                    } else if (widget.kpi == SellGridKPIs.totalSoldUnits) {
                       // KPI4
                       return ValueWithUnit(
                         countUp: false,
@@ -126,7 +128,7 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                             (widget.response.kpi4Val ?? 0).formatWithCommas(),
                         unit: gridItemsData[widget.index].valueUnit,
                       );
-                    } else if (widget.kpi == KPI.meanRentUnitValue) {
+                    } else if (widget.kpi == SellGridKPIs.meanSellValue) {
                       // KPI13
                       return ValueWithUnit(
                         countUp: false,
@@ -134,7 +136,7 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                             (widget.response.kpi13Val ?? 0).formatWithCommas(),
                         unit: gridItemsData[widget.index].valueUnit,
                       );
-                    } else if (widget.kpi == KPI.totalContractsValue) {
+                    } else if (widget.kpi == SellGridKPIs.totalTransactions) {
                       // KPI7
                       return ValueWithUnit(
                         countUp: false,
@@ -144,7 +146,7 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                       );
                     }
                   } else if (state.totalContracts.isNotEmpty &&
-                      widget.kpi == KPI.totalContracts) {
+                      widget.kpi == SellGridKPIs.totalContracts) {
                     // KPI1
                     return ValueWithUnit(
                       countUp: true,
@@ -152,17 +154,17 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                       begin: widget.response.kpi1Val ?? 0,
                       end: state.totalContracts.first.kpiVal.toDouble(),
                     );
-                  } else if (state.totalRentedUnits.isNotEmpty &&
-                      widget.kpi == KPI.totalRentedUntis) {
+                  } else if (state.totalSoldUnits.isNotEmpty &&
+                      widget.kpi == SellGridKPIs.totalSoldUnits) {
                     // KPI4
                     return ValueWithUnit(
                       countUp: true,
                       duration: 1,
                       begin: widget.response.kpi1Val ?? 0,
-                      end: state.totalRentedUnits.first.kpiVal.toDouble(),
+                      end: state.totalSoldUnits.first.kpiVal.toDouble(),
                     );
                   } else if (state.meanValue.isNotEmpty &&
-                      widget.kpi == KPI.meanRentUnitValue) {
+                      widget.kpi == SellGridKPIs.meanSellValue) {
                     // KPI13
                     return ValueWithUnit(
                       countUp: true,
@@ -172,7 +174,7 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                       unit: gridItemsData[widget.index].valueUnit,
                     );
                   } else if (state.meanValue.isNotEmpty &&
-                      widget.kpi == KPI.totalContractsValue) {
+                      widget.kpi == SellGridKPIs.totalTransactions) {
                     // KPI17
                     return ValueWithUnit(
                       countUp: true,
