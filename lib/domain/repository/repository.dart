@@ -9,11 +9,13 @@ import '../models/rent_models/rent_models.dart';
 import '../models/requests/rent_requests/request_mean_value.dart';
 
 abstract class Repository {
+  //-------------CMS
   Future<Result<TranslationsModel, FailureModel>> getTranslations(int limit);
   Future<Result<AboutResponse, FailureModel>> getAbout();
   Future<Result<NewsResponse, FailureModel>> getNews();
   Future<Result<LawsResponse, FailureModel>> getLaws();
 
+//-------------Rent----------------
   Future<Result<RentLookupResponse, FailureModel>> getLockupRent();
 
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContracts(
@@ -44,6 +46,7 @@ abstract class Repository {
       RequestMeanValue requestMeanValue);
 
   //----------------------------sell---------------------------------------
+  Future<Result<RentLookupResponse, FailureModel>> getLockupSell();
   // KPI1
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContractsSell(
       RequestMeanValue requestMeanValue);
