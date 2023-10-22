@@ -1,5 +1,7 @@
+import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
 class SalesView extends StatefulWidget {
@@ -12,13 +14,29 @@ class SalesView extends StatefulWidget {
 class _SalesViewState extends State<SalesView> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height / 2,
-      width: 200,
-      child: Lottie.asset(
-        ImageAssets.comingSoon,
-        fit: BoxFit.contain,
-      ),
+    return BlocBuilder(
+      bloc: context.read<SellBloc>(),
+      builder: (context, SellState state) {
+        return state.map(
+          loadingSellLookup: (value) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+          loadedSellLookup: (value) {
+            return const Center(
+              child: Text('Success LookUp Sell '),
+            );
+          },
+          errorSellLookUp: (value) {
+            return Center(
+              child: Container(
+                child: const Text('Error LookUp Sell '),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }

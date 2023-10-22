@@ -2,6 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ebla/presentations/features/home/blocs/news_bloc/news_bloc.dart';
 
 import 'package:ebla/presentations/features/rent/blocs/default_bloc/rent_default_bloc.dart';
+import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,6 +12,7 @@ import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecases/CMS/cms_usecases.dart';
+import '../domain/usecases/sell_usecases/sell_usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import '../presentations/features/rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
@@ -61,6 +63,17 @@ Future<void> initHomeModule() async {
   //Bloc's
   instance.registerFactory(() => AboutBloc(aboutUsecase: instance()));
   instance.registerFactory(() => NewsBloc(newsUsecase: instance()));
+}
+
+Future<void> initSellModule() async {
+  //Usecases
+  if (!GetIt.I.isRegistered<GetSellLookupUseCase>()) {
+    instance.registerFactory<GetSellLookupUseCase>(
+        () => GetSellLookupUseCase(instance()));
+  }
+
+  //Bloc's
+  instance.registerFactory(() => SellBloc(getSellLookupUseCase: instance()));
 }
 
 Future<void> initRentModule() async {

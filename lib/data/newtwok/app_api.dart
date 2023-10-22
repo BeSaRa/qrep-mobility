@@ -59,8 +59,13 @@ abstract class AppServiceClient {
   @POST(EndPoints.rentSummary)
   Future<HttpResponse<RentListSummary>> rentSummary(
       @Body() RequestMeanValue requestMeanValue);
+//-----Sell
+
+  @GET(EndPoints.lockupSell)
+  Future<HttpResponse<RentLookupResponse>> getLockupSell();
 }
 
+//----------------------------------CMS-------------------------------------------------------
 @RestApi(baseUrl: Constant.secondaryBaseUrl)
 abstract class TranslationsServiceClient {
   factory TranslationsServiceClient(Dio dio, {String baseUrl}) =

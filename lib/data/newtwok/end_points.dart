@@ -5,7 +5,7 @@ class EndPoints {
   static const String laws = '/items/laws';
   static const String about = '/items/about';
   static const String faq = '/items/FAQ';
-  //rent
+  //-------------------Rent----------------------------------------------------------
   static const String lockupRent = '/kpi/rent/lookup';
   static const String totalContracts = '/kpi/rent/kpi1/total-contracts';
   static const String totalRentedUnits = '/kpi/rent/kpi4/total-units';
@@ -19,4 +19,7 @@ class EndPoints {
   static const String contractCount = '/kpi/rent/kpi30_1/stats/contract-count';
   static const String contractValue = '/kpi/rent/kpi7/contract-value';
   static const String rentSummary = '/kpi/rent/kpi29/summary';
+
+  //-------------------Sell----------------------------------------------------------
+  static const String lockupSell = '/kpi/sell/lookup';
 }
