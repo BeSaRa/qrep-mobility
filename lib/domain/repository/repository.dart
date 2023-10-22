@@ -1,3 +1,6 @@
+import 'package:ebla/domain/models/cms_models/about/about_model.dart';
+import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
+import 'package:ebla/domain/models/cms_models/news/news_model.dart';
 import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:multiple_result/multiple_result.dart';
 
@@ -7,6 +10,9 @@ import '../models/requests/rent_requests/request_mean_value.dart';
 
 abstract class Repository {
   Future<Result<TranslationsModel, FailureModel>> getTranslations(int limit);
+  Future<Result<AboutResponse, FailureModel>> getAbout();
+  Future<Result<NewsResponse, FailureModel>> getNews();
+  Future<Result<LawsResponse, FailureModel>> getLaws();
 
   Future<Result<RentLookupResponse, FailureModel>> getLockupRent();
 

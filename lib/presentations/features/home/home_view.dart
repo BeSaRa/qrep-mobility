@@ -17,6 +17,7 @@ import '../more/more_view.dart';
 import '../rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import '../rent/blocs/mean_value_bloc/mean_value_bloc.dart';
 import '../rent/blocs/rent_bloc/rent_bloc.dart';
+import 'widgets/news_widget.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key, this.title = 'press'});
@@ -28,26 +29,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  // late RentBloc rentBloc;
-  late MeanValueBloc meanValueBloc;
-
-  final _textController = TextEditingController();
-
-  final PageController _pageController = PageController();
-  int _indexCubit = 0;
-
-  @override
-  void initState() {
-    // rentBloc = instance<RentBloc>()..add(const RentEvent.getRentLookupEvent());
-    meanValueBloc = instance<MeanValueBloc>();
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  // final PageController _pageController = PageController();
+  // final int _indexCubit = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -179,42 +162,7 @@ class _HomeViewState extends State<HomeView> {
                 ],
               ),
             ),
-            SizedBox(
-              height: AppSizeH.s100,
-              child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: 3,
-                  onPageChanged: (index) {
-                    setState(() {
-                      _indexCubit = index;
-                    });
-                  },
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: AppSizeW.s20, vertical: AppSizeH.s4),
-                      child: const NewsItemWidget(
-                          date: '15 مارس 2023',
-                          label: 'وزارة البلدية تطلق المرحلة الأولى '
-                              'من مشروع المنصة العقارية لدولة قطر'),
-                    );
-                  }),
-            ),
-            SizedBox(
-              height: AppSizeH.s10,
-            ),
-            Center(
-              child: AnimatedSmoothIndicator(
-                activeIndex: _indexCubit,
-                count: 3,
-                textDirection: TextDirection.rtl,
-                effect: ExpandingDotsEffect(
-                    dotColor: ColorManager.silver,
-                    activeDotColor: Theme.of(context).primaryColor,
-                    dotHeight: AppSizeH.s6,
-                    dotWidth: AppSizeW.s6),
-              ),
-            ),
+            SizedBox(height: AppSizeH.s120, child: const NewsWidget()),
             SizedBox(
               height: AppSizeH.s20,
             ),
@@ -223,113 +171,38 @@ class _HomeViewState extends State<HomeView> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  StaticPagesContainer(
-                    icon: IconAssets.aboutHome,
-                    title: AppStrings().aboutUs,
+                  InkWell(
+                    onTap: () {
+                      context.pushNamed(RoutesNames.about);
+                    },
+                    child: StaticPagesContainer(
+                      icon: IconAssets.aboutHome,
+                      title: AppStrings().aboutUs,
+                    ),
                   ),
-                  StaticPagesContainer(
-                    icon: IconAssets.lawsHome,
-                    title: AppStrings().lawsAndDecisions,
+                  InkWell(
+                    onTap: () {
+                      context.pushNamed(RoutesNames.laws);
+                    },
+                    child: StaticPagesContainer(
+                      icon: IconAssets.lawsHome,
+                      title: AppStrings().lawsAndDecisions,
+                    ),
                   ),
-                  StaticPagesContainer(
-                    icon: IconAssets.faqHome,
-                    title: AppStrings().faqs,
+                  InkWell(
+                    onTap: () {
+                      context.pushNamed(RoutesNames.faq);
+                    },
+                    child: StaticPagesContainer(
+                      icon: IconAssets.faqHome,
+                      title: AppStrings().faqs,
+                    ),
                   ),
                 ],
               ),
             )
           ],
         ),
-        // Padding(
-        //   padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
-        //   child: Column(
-        //     children: [
-        //       ElevatedButton(
-        //           onPressed: () {
-        //             // print(getAllMonthsInYear());
-        //             bottomSheetWidget(
-        //               context,
-        //               child: BlocProvider.value(
-        //                 value: context.read<RentBloc>(),
-        //                 child: const BottomSheetFilterWidget(),
-        //               ),
-        //             );
-        //           },
-        //           child: const Text('data')),
-        //       IconButton(
-        //           onPressed: () {
-        //             showDatePickerPopup(context);
-        //           },
-        //           icon: const Icon(Icons.calendar_month)),
-        //       BlocBuilder(
-        //         bloc: context.read<RentBloc>(),
-        //         builder: (context, RentState state) {
-        //           if (state.isLoadingRentLookup) {
-        //             return const LinearProgressIndicator();
-        //           }
-        //           if (state.rentLookup != const RentLookupResponse()) {
-        //             return SingleDropDownValue(
-        //                 list: state.rentLookup.municipalityList);
-        //           }
-        //           return const Text('Error');
-        //         },
-        //       ),
-        //       Row(
-        //         children: [
-        //           Expanded(
-        //               child: SearchTextFieldWidget(controller: _textController)),
-        //           const Expanded(flex: 2, child: SizedBox())
-        //         ],
-        //       ),
-        //       Expanded(
-        //         child: ListView(
-        //           children: [
-        //             const StatisTicsWidget(),
-        //             SizedBox(height: AppSizeH.s20),
-        //             Row(
-        //               children: [
-        //                 const Expanded(child: GrowthRateWidget(index: 0)),
-        //                 SizedBox(
-        //                   width: AppSizeW.s20,
-        //                 ),
-        //                 const Expanded(child: GrowthRateWidget(index: 1)),
-        //               ],
-        //             ),
-        //             const NewsItemWidget(
-        //                 date: '15 مارس 2023',
-        //                 label:
-        //                     'وزارة البلدية تطلق المرحلة الأولى من مشروع المنصة العقارية لدولة قطر'),
-        //             SizedBox(height: AppSizeH.s60),
-        //             Row(
-        //               children: [
-        //                 Expanded(
-        //                   child: CustomElevatedButton(
-        //                     isPrimary: true,
-        //                     title: 'بحث',
-        //                     onPress: () {
-        //                       bottomSheetWidget(
-        //                         context,
-        //                         child: const BottomSheetFilterWidget(),
-        //                       );
-        //                     },
-        //                   ),
-        //                 ),
-        //                 SizedBox(width: AppSizeW.s8),
-        //                 Expanded(
-        //                   child: CustomElevatedButton(
-        //                     isPrimary: false,
-        //                     title: 'إلغاء',
-        //                     onPress: () {},
-        //                   ),
-        //                 ),
-        //               ],
-        //             ),
-        //           ],
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
       ),
     );
   }
