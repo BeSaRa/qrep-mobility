@@ -7,7 +7,7 @@ import 'package:ebla/presentations/features/rent/blocs/get_location_name_cubit.d
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/summery_bloc/rent_summery_bloc.dart';
-import 'package:ebla/presentations/features/rent/widgets/selected_year_widget.dart';
+import 'package:ebla/presentations/widgets/selected_year_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -21,7 +21,7 @@ import '../../widgets/widgets.dart';
 import 'blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import 'blocs/default_bloc/rent_default_bloc.dart';
 import 'widgets/rent_grid_item_widget.dart';
-import 'widgets/selected_municipality_widget.dart';
+import '../../widgets/selected_municipality_widget.dart';
 import 'widgets/selected_period_widget.dart';
 import 'widgets/statistics_rent_widget.dart';
 
@@ -124,6 +124,23 @@ class _RentViewState extends State<RentView> {
                                         children: [
                                           SizedBox(width: AppSizeW.s16),
                                           SelectedMunicipality(
+                                            list: context
+                                                    .read<RentBloc>()
+                                                    .loockUpRent
+                                                    ?.municipalityList ??
+                                                [],
+                                            value: getObjectById(
+                                                    context
+                                                            .read<RentBloc>()
+                                                            .loockUpRent
+                                                            ?.municipalityList ??
+                                                        [],
+                                                    context
+                                                            .read<RentBloc>()
+                                                            .requestMeanValue
+                                                            .municipalityId ??
+                                                        1) ??
+                                                const RentLookupModel(),
                                             onChanged: (municipal) {
                                               context
                                                       .read<RentBloc>()
@@ -166,18 +183,6 @@ class _RentViewState extends State<RentView> {
                                                                       RentBloc>()
                                                                   .requestMeanValue));
                                             },
-                                            model: getObjectById(
-                                                    context
-                                                            .read<RentBloc>()
-                                                            .loockUpRent
-                                                            ?.municipalityList ??
-                                                        [],
-                                                    context
-                                                            .read<RentBloc>()
-                                                            .requestMeanValue
-                                                            .municipalityId ??
-                                                        1) ??
-                                                const RentLookupModel(),
                                           ),
                                           SizedBox(width: AppSizeW.s5),
                                           SelectedYearWidget(

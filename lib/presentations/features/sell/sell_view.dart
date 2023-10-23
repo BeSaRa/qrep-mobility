@@ -1,7 +1,7 @@
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
-import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
+import 'package:ebla/domain/models/requests/sell_requests/request_sell_values.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_transaction/sell_transaction_bloc.dart';
@@ -12,7 +12,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../../utils/global_functions.dart';
+import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
 import '../rent/rent_view.dart';
+import '../../widgets/selected_municipality_widget.dart';
+import '../../widgets/selected_year_widget.dart';
+import 'blocs/sell_bloc/sell_bloc.dart';
+import 'widgets/bottom_sheet_filter_sell.dart';
 
 class SalesView extends StatefulWidget {
   const SalesView({super.key});
@@ -25,29 +31,17 @@ class _SalesViewState extends State<SalesView> {
   late SellGridKPIsBloc sellGridKPIsBloc;
   late SellDefaultBloc sellDefaultBloc;
   late SellTransactionBloc sellTransactionBloc;
+  late ChangeStatusCubit changeStatusCubit;
 
   @override
   void initState() {
-    sellGridKPIsBloc = instance<SellGridKPIsBloc>()
-      ..add(SellGridKPIsEvent.getData(
-          request: RequestMeanValue(
-        municipalityId: 1,
-        propertyTypeList: [-1],
-        purposeList: [-1],
-        issueDateQuarterList: [1, 2, 3, 4],
-        furnitureStatus: -1,
-        issueDateYear: 2023,
-        issueDateStartMonth: 1,
-        issueDateEndMonth: DateTime.now().month,
-        zoneId: -1,
-        limit: 5,
-        periodId: 1,
-        offset: 0,
-      )));
+    sellGridKPIsBloc = instance<SellGridKPIsBloc>();
     sellDefaultBloc = instance<SellDefaultBloc>()
       ..add(SellDefaultEvent.started(
           request: context.read<SellBloc>().requestSellDefault));
     sellTransactionBloc = instance<SellTransactionBloc>();
+    changeStatusCubit = ChangeStatusCubit();
+
     super.initState();
   }
 
@@ -57,8 +51,8 @@ class _SalesViewState extends State<SalesView> {
       listener: (context, SellState state) {
         state.mapOrNull(
           loadedSellLookup: (value) {
-            // sellGridKPIsBloc.add(SellGridKPIsEvent.getData(
-            //     request: context.read<SellBloc>().requestSellDefault));
+            sellGridKPIsBloc.add(SellGridKPIsEvent.getData(
+                request: context.read<SellBloc>().requestSell));
             sellTransactionBloc.add(SellTransactionEvent.started(
                 request: context.read<SellBloc>().requestSellDefault));
           },
@@ -74,7 +68,7 @@ class _SalesViewState extends State<SalesView> {
             return BlocBuilder<SellDefaultBloc, SellDefaultState>(
                 bloc: sellDefaultBloc,
                 builder: (context, state) => state.when(
-                    initial: () => Container(),
+                    initial: () => const SizedBox(),
                     loading: () => const AnimatedPulesLogo(),
                     done: (done) => Column(
                           children: [
@@ -97,6 +91,163 @@ class _SalesViewState extends State<SalesView> {
                                 child: SingleChildScrollView(
                                   child: Column(
                                     children: [
+                                      BlocBuilder(
+                                        bloc: changeStatusCubit,
+                                        builder: (context, state) {
+                                          return Column(children: [
+                                            Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  SizedBox(width: AppSizeW.s16),
+                                                  SelectedMunicipality(
+                                                    value: getObjectByLookupKey(
+                                                            context
+                                                                    .read<
+                                                                        SellBloc>()
+                                                                    .loockUpSell
+                                                                    ?.municipalityList ??
+                                                                [],
+                                                            context
+                                                                    .read<
+                                                                        SellBloc>()
+                                                                    .requestSell
+                                                                    .municipalityId ??
+                                                                4) ??
+                                                        const RentLookupModel(),
+                                                    list: context
+                                                            .read<SellBloc>()
+                                                            .loockUpSell
+                                                            ?.municipalityList ??
+                                                        [],
+                                                    onChanged: (municipal) {
+                                                      context
+                                                              .read<SellBloc>()
+                                                              .requestSell =
+                                                          context
+                                                              .read<SellBloc>()
+                                                              .requestSell
+                                                              .copyWith(
+                                                                  municipalityId:
+                                                                      municipal
+                                                                          ?.lookupKey,
+                                                                  areaCode: -1);
+                                                      changeStatusCubit
+                                                          .changeStatus();
+                                                    },
+                                                  ),
+                                                  SizedBox(width: AppSizeW.s5),
+                                                  SelectedYearWidget(
+                                                    value: context
+                                                            .read<SellBloc>()
+                                                            .requestSell
+                                                            .issueDateYear ??
+                                                        DateTime.now().year,
+                                                    onChanged: (year) {
+                                                      context
+                                                              .read<SellBloc>()
+                                                              .requestSell =
+                                                          context
+                                                              .read<SellBloc>()
+                                                              .requestSell
+                                                              .copyWith(
+                                                                  issueDateYear:
+                                                                      year);
+                                                      changeStatusCubit
+                                                          .changeStatus();
+                                                    },
+                                                  ),
+                                                  SizedBox(width: AppSizeW.s7),
+                                                  BlocBuilder(
+                                                    bloc: context
+                                                        .read<SellBloc>(),
+                                                    builder: (context,
+                                                        SellState state) {
+                                                      return state.map(
+                                                        loadingSellLookup:
+                                                            (value) {
+                                                          return Icon(
+                                                            Icons
+                                                                .filter_list_sharp,
+                                                            color: ColorManager
+                                                                .golden,
+                                                          );
+                                                        },
+                                                        loadedSellLookup:
+                                                            (value) {
+                                                          return IconButton(
+                                                              onPressed:
+                                                                  () async {
+                                                                var res =
+                                                                    await bottomSheetWidget(
+                                                                  context,
+                                                                  child:
+                                                                      BlocProvider
+                                                                          .value(
+                                                                    value: context
+                                                                        .read<
+                                                                            SellBloc>(),
+                                                                    child:
+                                                                        const BottomSheetFilterSellWidget(),
+                                                                  ),
+                                                                );
+                                                                if (res !=
+                                                                        null &&
+                                                                    res) {
+                                                                  // changeStatusCubit
+                                                                  //     .changeStatus();
+                                                                }
+                                                              },
+                                                              icon: Icon(
+                                                                size: AppSizeW
+                                                                    .s32,
+                                                                Icons
+                                                                    .filter_list_sharp,
+                                                                color:
+                                                                    ColorManager
+                                                                        .golden,
+                                                              ));
+                                                        },
+                                                        errorSellLookUp:
+                                                            (value) {
+                                                          return const SizedBox();
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
+                                                  SizedBox(
+                                                    width: AppSizeW.s7,
+                                                  ),
+                                                ]),
+                                            // SizedBox(height: AppSizeH.s12),
+                                            // Padding(
+                                            //   padding: EdgeInsets.symmetric(
+                                            //     horizontal: AppSizeW.s11,
+                                            //   ),
+                                            //   child: SizedBox(
+                                            //       height: AppSizeH.s26,
+                                            //       child: Row(
+                                            //           children: context
+                                            //                   .read<RentBloc>()
+                                            //                   .loockUpRent
+                                            //                   ?.periodTime
+                                            //                   .map((e) {
+                                            //                 return e.id != 5
+                                            //                     ? ChosenPeriodWidget(
+                                            //                         id: e.id,
+                                            //                         enName: e
+                                            //                             .enName,
+                                            //                         arName: e
+                                            //                             .arName,
+                                            //                       )
+                                            //                     : const SizedBox();
+                                            //               }).toList() ??
+                                            //               [])),
+                                            // ),
+                                          ]);
+                                        },
+                                      ),
+                                      SizedBox(height: AppSizeH.s22),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: AppSizeW.s31),
@@ -123,6 +274,9 @@ class _SalesViewState extends State<SalesView> {
                                             );
                                           },
                                         ),
+                                      ),
+                                      SizedBox(
+                                        height: AppSizeH.s20,
                                       ),
                                       Center(
                                         child: Text(

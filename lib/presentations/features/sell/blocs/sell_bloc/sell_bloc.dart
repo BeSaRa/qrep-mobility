@@ -39,6 +39,7 @@ class SellBloc extends Bloc<SellEvent, SellState> {
     issueDateEndMonth: DateTime.now().month,
     zoneId: -1,
     limit: 5,
+    offset: 0,
   );
   RequestSellValues requestSell = RequestSellValues(
     municipalityId: 4,
@@ -50,5 +51,6 @@ class SellBloc extends Bloc<SellEvent, SellState> {
     issueDateEndMonth: DateTime.now().month,
     zoneId: -1,
     limit: 5,
+    offset: 0,
   );
 }

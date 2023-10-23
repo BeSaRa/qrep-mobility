@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../utils/global_functions.dart';
-import '../../../resources/resources.dart';
-import '../blocs/rent_bloc/rent_bloc.dart';
+import '../../utils/global_functions.dart';
+import '../resources/resources.dart';
+import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
 import 'selected_municipality_widget.dart';
 
 class SelectedYearWidget extends StatefulWidget {
