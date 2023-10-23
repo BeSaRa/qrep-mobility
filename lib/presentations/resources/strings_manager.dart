@@ -83,4 +83,12 @@ class AppStrings {
   String rentValueFromTo = 'rent_value_from_to'.tr(); //قيمه العقار من - إلى
   String areaFromTo = 'area_from_to'.tr(); //'المساحة من - إلى'
   String search = 'search'.tr(); // 'بحث'
+
+  //Pagination
+  String nextPage = 'next_page'.tr();
+  String page = 'page'.tr();
+  String previousPage = 'previous_page'.tr();
+  String lastPage = 'last_page'.tr();
+  String firstPage = 'first_page'.tr();
+  String of = 'of'.tr();
 }
