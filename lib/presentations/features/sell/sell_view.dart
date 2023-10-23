@@ -1,6 +1,7 @@
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
+import 'package:ebla/domain/models/requests/sell_requests/request_sell_values.dart';
 import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
@@ -30,12 +31,11 @@ class _SalesViewState extends State<SalesView> {
   void initState() {
     sellGridKPIsBloc = instance<SellGridKPIsBloc>()
       ..add(SellGridKPIsEvent.getData(
-          request: RequestMeanValue(
+          request: RequestSellValues(
         municipalityId: 1,
         propertyTypeList: [-1],
         purposeList: [-1],
         issueDateQuarterList: [1, 2, 3, 4],
-        furnitureStatus: -1,
         issueDateYear: 2023,
         issueDateStartMonth: 1,
         issueDateEndMonth: DateTime.now().month,
@@ -64,12 +64,11 @@ class _SalesViewState extends State<SalesView> {
           },
           loadedSellLookup: (value) {
             return BlocBuilder<SellDefaultBloc, SellDefaultState>(
-              bloc: sellDefaultBloc,
-              builder: (context, state) => state.when(
-                   initial: () => Container(),
+                bloc: sellDefaultBloc,
+                builder: (context, state) => state.when(
+                    initial: () => Container(),
                     loading: () => const AnimatedPulesLogo(),
-                    done: (done) =>
-                        Scaffold(
+                    done: (done) => Scaffold(
                           body: SingleChildScrollView(
                             child: Column(
                               children: [
@@ -83,8 +82,7 @@ class _SalesViewState extends State<SalesView> {
                                   ),
                                 ),
                                 Padding(
-                                  padding:
-                                  EdgeInsets.symmetric(
+                                  padding: EdgeInsets.symmetric(
                                       horizontal: AppSizeW.s31),
                                   child: StaggeredGridView(
                                     // for development only: UniqueKey forces the rebuild of the widget on hot reload
@@ -112,98 +110,82 @@ class _SalesViewState extends State<SalesView> {
                                 Center(
                                   child: Text(
                                     AppStrings().rentContractList,
-                                    style: Theme
-                                        .of(context)
-                                        .textTheme
-                                        .titleLarge,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
                                   ),
                                 ),
                                 const GreyLinerContainer(),
-                                BlocBuilder<
-                                    SellTransactionBloc,
-                                    SellTransactionState>(
+                                BlocBuilder<SellTransactionBloc,
+                                        SellTransactionState>(
                                     bloc: sellTransactionBloc,
-                                    builder: (context, state) =>
-                                        state.when(
-                                            initial: () => Container(),
-                                            loading: () =>
-                                                Center(
-                                                  child: SizedBox(
-                                                      width: AppSizeW.s50,
-                                                      height: AppSizeW.s50,
-                                                      child:
+                                    builder: (context, state) => state.when(
+                                        initial: () => Container(),
+                                        loading: () => Center(
+                                              child: SizedBox(
+                                                  width: AppSizeW.s50,
+                                                  height: AppSizeW.s50,
+                                                  child:
                                                       const CircularProgressIndicator()),
-                                                ),
-                                            success: (success) =>
-                                                ListView.builder(
-                                                    itemCount:
-                                                    success.transactionList
-                                                        .length > 3
-                                                        ? 3
-                                                        : success
+                                            ),
+                                        success: (success) => ListView.builder(
+                                            itemCount:
+                                                success.transactionList.length >
+                                                        3
+                                                    ? 3
+                                                    : success
                                                         .transactionList.length,
-                                                    shrinkWrap: true,
-                                                    physics:
-                                                    const NeverScrollableScrollPhysics(),
-                                                    itemBuilder: (context,
-                                                        index) {
-                                                      return MainContainerWithBloc(
-                                                          price:
-                                                          "${success
-                                                              .transactionList[index]
-                                                              .realEstateMT
-                                                              ?.toStringAsFixed(
-                                                              3)} ${AppStrings()
-                                                              .currency}",
-                                                          area: success
-                                                              .transactionList[index]
-                                                              .realEstateValue
-                                                              ?.toStringAsFixed(
+                                            shrinkWrap: true,
+                                            physics:
+                                                const NeverScrollableScrollPhysics(),
+                                            itemBuilder: (context, index) {
+                                              return MainContainerWithBloc(
+                                                  price:
+                                                      "${success.transactionList[index].realEstateMT?.toStringAsFixed(3)} ${AppStrings().currency}",
+                                                  area: success
+                                                          .transactionList[
+                                                              index]
+                                                          .realEstateValue
+                                                          ?.toStringAsFixed(
                                                               0) ??
-                                                              '0',
-                                                          bedCount: success
-                                                              .transactionList[index]
-                                                              .roi
-                                                              ?.toStringAsFixed(
+                                                      '0',
+                                                  bedCount: success
+                                                          .transactionList[
+                                                              index]
+                                                          .roi
+                                                          ?.toStringAsFixed(
                                                               0) ??
-                                                              '0',
-                                                          location: '');
-                                                    }),
-                                            error: (String message) =>
+                                                      '0',
+                                                  location: '');
+                                            }),
+                                        error: (String message) => SizedBox(
+                                            height: AppSizeH.s200,
+                                            width: AppSizeH.s200,
+                                            child: Column(
+                                              children: [
                                                 SizedBox(
-                                                    height: AppSizeH.s200,
-                                                    width: AppSizeH.s200,
-                                                    child: Column(
-                                                      children: [
-                                                        SizedBox(
-                                                            height: AppSizeH
-                                                                .s130,
-                                                            width: AppSizeH
-                                                                .s130,
-                                                            child: Lottie.asset(
-                                                                ImageAssets
-                                                                    .animationError)),
-                                                        IconButton(
-                                                            onPressed: () {
-                                                              sellTransactionBloc
-                                                                  .add(
-                                                                  SellTransactionEvent
-                                                                      .started(
-                                                                      request: context
-                                                                          .read<
-                                                                          SellBloc>()
-                                                                          .requestSellDefault));
-                                                            },
-                                                            icon: const Icon(
-                                                                Icons.refresh))
-                                                      ],
-                                                    ))))
+                                                    height: AppSizeH.s130,
+                                                    width: AppSizeH.s130,
+                                                    child: Lottie.asset(
+                                                        ImageAssets
+                                                            .animationError)),
+                                                IconButton(
+                                                    onPressed: () {
+                                                      sellTransactionBloc.add(
+                                                          SellTransactionEvent.started(
+                                                              request: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSellDefault));
+                                                    },
+                                                    icon: const Icon(
+                                                        Icons.refresh))
+                                              ],
+                                            ))))
                               ],
                             ),
                           ),
                         ),
-                    error: (String message) =>
-                        ErrorGlobalWidget(
+                    error: (String message) => ErrorGlobalWidget(
                           message: message,
                           onPressed: () {
                             sellDefaultBloc.add(SellDefaultEvent.started(
@@ -211,11 +193,7 @@ class _SalesViewState extends State<SalesView> {
                                     .read<SellBloc>()
                                     .requestSellDefault));
                           },
-                        )
-              )
-
-
-            );
+                        )));
           },
           errorSellLookUp: (value) {
             return Center(
