@@ -65,12 +65,19 @@ class _LoginViewState extends State<LoginView> {
         ),
         Row(
           children: [
-            SvgPicture.asset(
-              IconAssets.faceIdIcon,
-              // ignore: deprecated_member_use
-              color: Theme.of(context)
-                  .bottomNavigationBarTheme
-                  .unselectedItemColor,
+            SizedBox(
+              height: AppSizeW.s20,
+              width: AppSizeW.s20,
+              child: SvgPicture.asset(
+                IconAssets.faceIdIcon,
+                // ignore: deprecated_member_use
+                color: Theme.of(context)
+                    .bottomNavigationBarTheme
+                    .unselectedItemColor,
+              ),
+            ),
+            SizedBox(
+              width: AppSizeW.s5,
             ),
             Text(
               AppStrings().activateFaceId,

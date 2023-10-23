@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
 class FileUtils {
@@ -15,9 +16,13 @@ class FileUtils {
       // Write to the file
       await file.writeAsString(content);
 
-      print('File saved at: ${file.path}');
+      if (kDebugMode) {
+        print('File saved at: ${file.path}');
+      }
     } catch (e) {
-      print('Error saving file: $e');
+      if (kDebugMode) {
+        print('Error saving file: $e');
+      }
     }
   }
 
@@ -36,11 +41,15 @@ class FileUtils {
         String content = await File(filePath).readAsString();
         return content;
       } else {
-        print('File not found: $filePath');
+        if (kDebugMode) {
+          print('File not found: $filePath');
+        }
         return ''; // Return an empty string if the file does not exist
       }
     } catch (e) {
-      print('Error reading file: $e');
+      if (kDebugMode) {
+        print('Error reading file: $e');
+      }
       return ''; // Return an empty string if there's an error
     }
   }
@@ -60,13 +69,19 @@ class FileUtils {
         // Delete the file
         await file.delete();
 
-        print('File deleted: ${file.path}');
+        if (kDebugMode) {
+          print('File deleted: ${file.path}');
+        }
       } else {
-        print('File not found: ${file.path}');
+        if (kDebugMode) {
+          print('File not found: ${file.path}');
+        }
       }
     } catch (e) {
       // Handle errors, e.g., if there's an issue accessing the file system
-      print('Error deleting file: $e');
+      if (kDebugMode) {
+        print('Error deleting file: $e');
+      }
     }
   }
 
@@ -83,7 +98,9 @@ class FileUtils {
       return await file.exists();
     } catch (e) {
       // Handle errors, e.g., if there's an issue accessing the file system
-      print('Error checking file existence: $e');
+      if (kDebugMode) {
+        print('Error checking file existence: $e');
+      }
       return false;
     }
   }

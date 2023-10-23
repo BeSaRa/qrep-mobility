@@ -1,6 +1,7 @@
 class EndPoints {
   //CMS
   static const String translations = '/translations';
+
   static const String news = '/items/news';
   static const String laws = '/items/laws';
   static const String about = '/items/about';
@@ -19,23 +20,35 @@ class EndPoints {
   static const String certificateCount =
       '/kpi/rent/kpi30/stats/certificate-count';
   static const String contractCount = '/kpi/rent/kpi30_1/stats/contract-count';
+
   //----------------------------------------sell-------------------------------
   static const String lookupSell = '/kpi/sell/lookup';
+
   // اجمالي عدد معاملات البيع
   static const String totalContractsSell = '/kpi/sell/kpi1/total-contracts';
+
   // اجمالي عدد العقارات / الوحدات المباعة
   static const String totalSoldUnits = '/kpi/sell/kpi4/total-units';
+
   // اجمالي قيمة معاملات البيع
   static const String totalTransactionsSell =
       '/kpi/sell/kpi7/total-transactions';
+
   // متوسط سعر الوحدة
   static const String meanValueSell = '/kpi/sell/kpi13/mean-value';
+
   // قائمة معاملات البيع
   static const String sellSummary = '/kpi/sell/kpi29/transactions';
+
   // أفضل عشر مناطق من حيث عدد العقود
   static const String certificateCountSell =
       '/kpi/sell/kpi19/chart/certificate-count';
+
   // أفضل عشر مناطق من حيث عدد الوحدات المباعة
   static const String contractsCountSell =
       '/kpi/sell/kpi30/zones/transactions-number';
+
+  static const String sellDefault = '/kpi/sell/default';
+
+  static const String sellTransactions = '/kpi/sell/kpi29/transactions';
 }

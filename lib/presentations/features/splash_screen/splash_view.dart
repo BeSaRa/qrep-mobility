@@ -1,11 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/splash_screen/widgets/animated_transparent_container.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../resources/routes_manager.dart';
 
 class SplashView extends StatefulWidget {
@@ -19,11 +18,14 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   // late AnimationController _animationController;
   // scale: used for the towers image
   double _scale = 1.5;
+
   // backgroundImageBottomPosition: used for the golden background image
   double backgroundImageBottomPosition = 0;
+
   // isVisible: used for the transparent container
   bool _isVisible = false;
   bool isRed = false;
+
   @override
   void initState() {
     super.initState();
@@ -113,9 +115,9 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
               ));
   }
 
-  // @override
-  // void dispose() {
-  //   _animationController.dispose();
-  //   super.dispose();
-  // }
+// @override
+// void dispose() {
+//   _animationController.dispose();
+//   super.dispose();
+// }
 }

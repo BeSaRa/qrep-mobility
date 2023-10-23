@@ -3,9 +3,6 @@ import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:ebla/presentations/widgets/shimmer_placeholder.dart';
 import 'package:flutter/material.dart';
-import 'package:readmore/readmore.dart';
-import 'package:shimmer/shimmer.dart';
-
 import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
 import '../resources/values_manager.dart';

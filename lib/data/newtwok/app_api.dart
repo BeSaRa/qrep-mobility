@@ -3,13 +3,14 @@ import 'package:ebla/data/newtwok/end_points.dart';
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
-
+import 'package:ebla/domain/models/sell_models/sell_models.dart';
 import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../app/constants.dart';
 import '../../domain/models/rent_models/rent_models.dart';
 import '../../domain/models/requests/rent_requests/request_mean_value.dart';
+import '../../domain/models/requests/sell_requests/request_sell_values.dart';
 
 part 'app_api.g.dart';
 
@@ -59,26 +60,40 @@ abstract class AppServiceClient {
   @POST(EndPoints.rentSummary)
   Future<HttpResponse<RentListSummary>> rentSummary(
       @Body() RequestMeanValue requestMeanValue);
+
 //-----Sell
 
   @GET(EndPoints.lookupSell)
   Future<HttpResponse<RentLookupResponse>> getLockupSell();
+
   // KPI1
   @POST(EndPoints.totalContractsSell)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalContractsSell(
       @Body() RequestMeanValue requestMeanValue);
+
   // KPI4
   @POST(EndPoints.totalSoldUnits)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalSoldUnits(
       @Body() RequestMeanValue requestMeanValue);
+
   // KPI7
   @POST(EndPoints.totalTransactionsSell)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalTransactionsSell(
       @Body() RequestMeanValue requestMeanValue);
+
   // KPI13
   @POST(EndPoints.meanValueSell)
   Future<HttpResponse<List<BaseRentResponse>>> getMeanValueSell(
       @Body() RequestMeanValue requestMeanValue);
+
+  //sell
+  @POST(EndPoints.sellDefault)
+  Future<HttpResponse<List<RentDefault>>> getSellDefault(
+      @Body() RequestSellValues requestMeanValue);
+
+  @POST(EndPoints.sellTransactions)
+  Future<HttpResponse<SellTransactionResponse>> getSellTransactions(
+      @Body() RequestSellValues requestMeanValue);
 }
 
 //----------------------------------CMS-------------------------------------------------------
@@ -90,10 +105,13 @@ abstract class TranslationsServiceClient {
   @GET(EndPoints.translations)
   Future<HttpResponse<TranslationsModel>> getTranslations(
       @Query("limit") int limit);
+
   @GET(EndPoints.about)
   Future<HttpResponse<AboutResponse>> getAbout();
+
   @GET(EndPoints.news)
   Future<HttpResponse<NewsResponse>> getNews();
+
   @GET(EndPoints.laws)
   Future<HttpResponse<LawsResponse>> getLaws();
 }
