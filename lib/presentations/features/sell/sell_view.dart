@@ -9,6 +9,12 @@ import 'package:ebla/presentations/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../utils/global_functions.dart';
+import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
+import '../rent/widgets/selected_municipality_widget.dart';
+import '../rent/widgets/selected_period_widget.dart';
+import '../rent/widgets/selected_year_widget.dart';
+
 class SalesView extends StatefulWidget {
   const SalesView({super.key});
 
@@ -18,9 +24,11 @@ class SalesView extends StatefulWidget {
 
 class _SalesViewState extends State<SalesView> {
   late SellGridKPIsBloc sellGridKPIsBloc;
-
+  late ChangeStatusCubit changeStatusCubit;
   @override
   void initState() {
+    changeStatusCubit = ChangeStatusCubit();
+
     sellGridKPIsBloc = instance<SellGridKPIsBloc>()
       ..add(SellGridKPIsEvent.getData(
           request: RequestMeanValue(
@@ -56,6 +64,158 @@ class _SalesViewState extends State<SalesView> {
               body: SingleChildScrollView(
                 child: Column(
                   children: [
+                    Container(
+                      alignment: AlignmentDirectional.bottomCenter,
+                      height: AppSizeH.s40,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(ImageAssets.appbarBg),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    BlocBuilder(
+                      bloc: changeStatusCubit,
+                      builder: (context, state) {
+                        return Column(children: [
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                SizedBox(width: AppSizeW.s16),
+                                // SelectedMunicipality(
+                                //   onChanged: (municipal) {
+                                //     context
+                                //             .read<SellBloc>()
+                                //             .requestSellDefault =
+                                //         context
+                                //             .read<SellBloc>()
+                                //             .requestSellDefault
+                                //             .copyWith(
+                                //                 municipalityId:
+                                //                     municipal?.lookupKey,
+                                //                 zoneId: -1);
+                                //     changeStatusCubit.changeStatus();
+                                //   },
+                                //   model: getObjectById(
+                                //           context
+                                //                   .read<SellBloc>()
+                                //                   .loockUpSell
+                                //                   ?.municipalityList ??
+                                //               [],
+                                //           context
+                                //                   .read<SellBloc>()
+                                //                   .requestSellDefault
+                                //                   .municipalityId ??
+                                //               1) ??
+                                //       const RentLookupModel(),
+                                // ),
+                                SizedBox(width: AppSizeW.s5),
+                                SelectedYearWidget(
+                                  value: context
+                                          .read<SellBloc>()
+                                          .requestSellDefault
+                                          .issueDateYear ??
+                                      DateTime.now().year,
+                                  onChanged: (year) {
+                                    context
+                                            .read<SellBloc>()
+                                            .requestSellDefault =
+                                        context
+                                            .read<SellBloc>()
+                                            .requestSellDefault
+                                            .copyWith(issueDateYear: year);
+                                  },
+                                ),
+                                SizedBox(width: AppSizeW.s7),
+                                BlocBuilder(
+                                  bloc: context.read<SellBloc>(),
+                                  builder: (context, SellState state) {
+                                    return state.map(
+                                      loadingSellLookup: (value) {
+                                        return Icon(
+                                          Icons.filter_list_sharp,
+                                          color: ColorManager.golden,
+                                        );
+                                      },
+                                      loadedSellLookup: (value) {
+                                        return IconButton(
+                                            onPressed: () async {
+                                              var res = await bottomSheetWidget(
+                                                context,
+                                                child: BlocProvider.value(
+                                                  value:
+                                                      context.read<SellBloc>(),
+                                                  child:
+                                                      const BottomSheetFilterWidget(),
+                                                ),
+                                              );
+                                              if (res != null && res) {
+                                                // changeStatusCubit
+                                                //     .changeStatus();
+
+                                                // rentGridKPIsBloc.add(
+                                                //     RentGridKPIsEvent.getData(
+                                                //         request: context
+                                                //             .read<RentBloc>()
+                                                //             .requestMeanValue));
+                                                // rentSummeryBloc.add(
+                                                //     RentSummeryEvent
+                                                //         .getRentSummary(
+                                                //   request: context
+                                                //       .read<RentBloc>()
+                                                //       .requestMeanValue,
+                                                // ));
+                                                // certificateContractBloc.add(
+                                                //   CertificateContractEvent
+                                                //       .certificateCountEvent(
+                                                //           request: context
+                                                //               .read<RentBloc>()
+                                                //               .requestMeanValue),
+                                                // );
+                                              }
+                                            },
+                                            icon: Icon(
+                                              size: AppSizeW.s32,
+                                              Icons.filter_list_sharp,
+                                              color: ColorManager.golden,
+                                            ));
+                                      },
+                                      errorSellLookUp: (value) {
+                                        return const SizedBox();
+                                      },
+                                    );
+                                  },
+                                ),
+                                SizedBox(
+                                  width: AppSizeW.s7,
+                                ),
+                              ]),
+                          SizedBox(height: AppSizeH.s12),
+                          // Padding(
+                          //   padding: EdgeInsets.symmetric(
+                          //     horizontal: AppSizeW.s11,
+                          //   ),
+                          //   child: SizedBox(
+                          //       height: AppSizeH.s26,
+                          //       child: Row(
+                          //           children: context
+                          //                   .read<SellBloc>()
+                          //                   .loockUpSell
+                          //                   ?.periodTime
+                          //                   .map((e) {
+                          //                 return e.id != 5
+                          //                     ? ChosenPeriodWidget(
+                          //                         id: e.id,
+                          //                         enName: e.enName,
+                          //                         arName: e.arName,
+                          //                       )
+                          //                     : const SizedBox();
+                          //               }).toList() ??
+                          //               [])),
+                          // ),
+                        ]);
+                      },
+                    ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: AppSizeW.s31),
                       child: StaggeredGridView(

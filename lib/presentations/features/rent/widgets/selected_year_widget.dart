@@ -8,8 +8,8 @@ import 'selected_municipality_widget.dart';
 
 class SelectedYearWidget extends StatefulWidget {
   final Function(int?)? onChanged;
-
-  const SelectedYearWidget({super.key, this.onChanged});
+  final int value;
+  const SelectedYearWidget({super.key, this.onChanged, required this.value});
 
   @override
   State<SelectedYearWidget> createState() => _SelectedYearWidgetState();
@@ -48,7 +48,7 @@ class _SelectedYearWidgetState extends State<SelectedYearWidget> {
         ),
         child: SingleDrowDown<int>(
           list: years,
-          value: context.read<RentBloc>().requestMeanValue.issueDateYear,
+          value: widget.value,
           onChanged: widget.onChanged,
         ),
       ),

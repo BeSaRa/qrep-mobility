@@ -181,6 +181,11 @@ class _RentViewState extends State<RentView> {
                                           ),
                                           SizedBox(width: AppSizeW.s5),
                                           SelectedYearWidget(
+                                            value: context
+                                                    .read<RentBloc>()
+                                                    .requestMeanValue
+                                                    .issueDateYear ??
+                                                DateTime.now().year,
                                             onChanged: (year) {
                                               context
                                                       .read<RentBloc>()
