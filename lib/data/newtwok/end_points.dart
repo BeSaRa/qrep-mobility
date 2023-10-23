@@ -54,23 +54,9 @@ class EndPoints {
   // KPI1
   static const totalMortgageTransactions =
       '/kpi/mortgage/kpi1/transaction-number';
-  //'total_mortgage_transactions';
   // KPI3
   static const totalNumberOfMortgageUnits = '/kpi/mortgage/kpi3/unit-num';
-  // "the_total_number_of_mortgaged_units";
   // KPI5
   static const totalValueOfMortgageTransactions =
       '/kpi/mortgage/kpi5/stats/transaction-value';
-  // 'total_value_of_mortgage_transactions';
 }
-
-  // loadMortgageRoots(criteria: Partial<MortgageCriteriaContract>): Observable<KpiModel[]> {
-  //   return forkJoin([
-  //     this.http.post<KpiModel[]>(this.urlService.URLS.MORT_KPI1, criteria),
-  //     this.http.post<KpiModel[]>(this.urlService.URLS.MORT_KPI3, criteria),
-  //     this.http.post<KpiModel[]>(this.urlService.URLS.MORT_KPI5, criteria),
-  //   ]).pipe(
-  //     map(([first, second, third]) => {
-  //       return [first[0], second[0], third[0]];
-  //     })
-  //   );
