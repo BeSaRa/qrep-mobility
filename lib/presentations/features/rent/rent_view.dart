@@ -14,8 +14,6 @@ import 'package:lottie/lottie.dart';
 import '../../../app/depndency_injection.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
-import '../../widgets/bottom_sheet_filter_widget.dart';
-import '../../widgets/bottom_sheet_widget.dart';
 import '../../widgets/pagination_widget/pagination_widget.dart';
 import '../../widgets/widgets.dart';
 import 'blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
@@ -423,178 +421,201 @@ class _RentViewState extends State<RentView> {
                                   }
                                   if (state.rentSummery !=
                                       const RentListSummary()) {
-                                    return Column(
-                                      children: [
-                                        ListView.builder(
-                                            itemCount: state
+                                    if(state.rentSummery.transactionList.isEmpty){
+                                      return Text(AppStrings().noRentContracts,);
+                                    }else {
+                                      return Column(
+                                        children: [
+                                          ListView.builder(
+                                              itemCount: state
+                                                          .rentSummery
+                                                          .transactionList
+                                                          .length >
+                                                      3
+                                                  ? 3
+                                                  : state.rentSummery
+                                                      .transactionList.length,
+                                              shrinkWrap: true,
+                                              physics:
+                                                  const NeverScrollableScrollPhysics(),
+                                              itemBuilder: (context, index) {
+                                                return
+                                                  MainDataContainer(
+                                                    title: AppStrings().rentValue,
+                                                    totalPrice: "${state.rentSummery.transactionList[index].rentPaymentMeterMT?.toStringAsFixed(3)} ${AppStrings().currency}",
+
+                                                    value: state
                                                         .rentSummery
-                                                        .transactionList
-                                                        .length >
-                                                    3
-                                                ? 3
-                                                : state.rentSummery
-                                                    .transactionList.length,
-                                            shrinkWrap: true,
-                                            physics:
-                                                const NeverScrollableScrollPhysics(),
-                                            itemBuilder: (context, index) {
-                                              return MainContainerWithBloc(
-                                                price:
-                                                    "${state.rentSummery.transactionList[index].rentPaymentMeterMT?.toStringAsFixed(3)} ${AppStrings().currency}",
-                                                area: state
-                                                        .rentSummery
-                                                        .transactionList[index]
+                                                        .transactionList[
+                                                    index]
                                                         .area
-                                                        ?.toStringAsFixed(0) ??
-                                                    '0',
-                                                bedCount: state
+                                                        ?.toStringAsFixed(
+                                                        0) ??
+                                                        '0',
+                                                    valueDescription: AppStrings().rentArea,
+                                                    titleInfo: "${AppStrings().roomsCount}:",
+                                                    valueInfo: state
                                                         .rentSummery
-                                                        .transactionList[index]
+                                                        .transactionList[
+                                                    index]
                                                         .bedRoomsCount
-                                                        ?.toStringAsFixed(0) ??
-                                                    '0',
-                                                location: context.locale ==
+                                                        ?.toStringAsFixed(
+                                                        0) ??
+                                                        '0',
+                                                    location:  context.locale ==
                                                         ARABIC_LOCAL
-                                                    ? getObjectById(
-                                                                context
-                                                                        .read<
-                                                                            RentBloc>()
-                                                                        .loockUpRent
-                                                                        ?.municipalityList ??
-                                                                    [],
-                                                                state
-                                                                        .rentSummery
-                                                                        .transactionList[
-                                                                            index]
-                                                                        .municipalityid ??
-                                                                    0)
-                                                            ?.arName ??
+                                                        ? getObjectById(
+                                                        context
+                                                            .read<
+                                                            RentBloc>()
+                                                            .loockUpRent
+                                                            ?.municipalityList ??
+                                                            [],
+                                                        state
+                                                            .rentSummery
+                                                            .transactionList[
+                                                        index]
+                                                            .municipalityid ??
+                                                            0)
+                                                        ?.arName ??
                                                         ''
-                                                    : getObjectById(
-                                                                context
-                                                                        .read<
-                                                                            RentBloc>()
-                                                                        .loockUpRent
-                                                                        ?.municipalityList ??
-                                                                    [],
-                                                                state
-                                                                        .rentSummery
-                                                                        .transactionList[
-                                                                            index]
-                                                                        .municipalityid ??
-                                                                    0)
-                                                            ?.enName ??
+                                                        : getObjectById(
+                                                        context
+                                                            .read<
+                                                            RentBloc>()
+                                                            .loockUpRent
+                                                            ?.municipalityList ??
+                                                            [],
+                                                        state
+                                                            .rentSummery
+                                                            .transactionList[
+                                                        index]
+                                                            .municipalityid ??
+                                                            0)
+                                                        ?.enName ??
                                                         '',
-                                              );
-                                            }),
-                                        SizedBox(height: AppSizeH.s6),
-                                        Wrap(
-                                          alignment: WrapAlignment.center,
-                                          children: [
-                                            FlutterCustomPagination(
-                                              currentPage: context
+                                                  );
+
+                                              }),
+                                          SizedBox(height: AppSizeH.s6),
+                                          Wrap(
+                                            alignment: WrapAlignment.center,
+                                            children: [
+                                              FlutterCustomPagination(
+                                                currentPage: context
+                                                            .read<RentBloc>()
+                                                            .requestMeanValue
+                                                            .offset ==
+                                                        0
+                                                    ? 1
+                                                    : context
+                                                            .read<RentBloc>()
+                                                            .requestMeanValue
+                                                            .offset ??
+                                                        0 + 1,
+                                                limitPerPage: 3,
+                                                totalDataCount: rentSummeryBloc
+                                                        .rentSummery?.count ??
+                                                    0,
+                                                onPreviousPage: (previousPage) {
+                                                  context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue =
+                                                      context
                                                           .read<RentBloc>()
                                                           .requestMeanValue
-                                                          .offset ==
-                                                      0
-                                                  ? 1
-                                                  : context
+                                                          .copyWith(
+                                                              offset:
+                                                                  previousPage);
+                                                  rentSummeryBloc.add(
+                                                      RentSummeryEvent
+                                                          .getRentSummary(
+                                                              request: context
+                                                                  .read<
+                                                                      RentBloc>()
+                                                                  .requestMeanValue));
+                                                },
+                                                onBackToFirstPage: (firstPage) {
+                                                  context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue =
+                                                      context
                                                           .read<RentBloc>()
                                                           .requestMeanValue
-                                                          .offset ??
-                                                      0 + 1,
-                                              limitPerPage: 3,
-                                              totalDataCount: rentSummeryBloc
-                                                      .rentSummery?.count ??
-                                                  0,
-                                              onPreviousPage: (previousPage) {
-                                                context
-                                                        .read<RentBloc>()
-                                                        .requestMeanValue =
-                                                    context
-                                                        .read<RentBloc>()
-                                                        .requestMeanValue
-                                                        .copyWith(
-                                                            offset:
-                                                                previousPage);
-                                                rentSummeryBloc.add(
-                                                    RentSummeryEvent.getRentSummary(
-                                                        request: context
-                                                            .read<RentBloc>()
-                                                            .requestMeanValue));
-                                              },
-                                              onBackToFirstPage: (firstPage) {
-                                                context
-                                                        .read<RentBloc>()
-                                                        .requestMeanValue =
-                                                    context
-                                                        .read<RentBloc>()
-                                                        .requestMeanValue
-                                                        .copyWith(
-                                                            offset: firstPage);
-                                                rentSummeryBloc.add(
-                                                    RentSummeryEvent.getRentSummary(
-                                                        request: context
-                                                            .read<RentBloc>()
-                                                            .requestMeanValue));
-                                              },
-                                              onNextPage: (nextPage) {
-                                                context
-                                                        .read<RentBloc>()
-                                                        .requestMeanValue =
-                                                    context
-                                                        .read<RentBloc>()
-                                                        .requestMeanValue
-                                                        .copyWith(
-                                                            offset: nextPage);
-                                                rentSummeryBloc.add(
-                                                    RentSummeryEvent.getRentSummary(
-                                                        request: context
-                                                            .read<RentBloc>()
-                                                            .requestMeanValue));
-                                              },
-                                              onGoToLastPage: (lastPage) {
-                                                context
-                                                        .read<RentBloc>()
-                                                        .requestMeanValue =
-                                                    context
-                                                        .read<RentBloc>()
-                                                        .requestMeanValue
-                                                        .copyWith(
-                                                            offset: lastPage);
-                                                rentSummeryBloc.add(
-                                                    RentSummeryEvent.getRentSummary(
-                                                        request: context
-                                                            .read<RentBloc>()
-                                                            .requestMeanValue));
-                                              },
-                                              backgroundColor: Theme.of(context)
-                                                  .colorScheme
-                                                  .background,
-                                              // textStyle: Theme.of(context)
-                                              //     .textTheme
-                                              //     .labelSmall,
-                                              previousPageIcon: context
-                                                          .locale ==
-                                                      ARABIC_LOCAL
-                                                  ? Icons
-                                                      .keyboard_arrow_right_sharp
-                                                  : Icons
-                                                      .keyboard_arrow_left_sharp,
-                                              backToFirstPageIcon:
-                                                  Icons.first_page,
-                                              nextPageIcon: context.locale ==
-                                                      ARABIC_LOCAL
-                                                  ? Icons
-                                                      .keyboard_arrow_left_sharp
-                                                  : Icons
-                                                      .keyboard_arrow_right_sharp,
-                                              goToLastPageIcon: Icons.last_page,
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    );
+                                                          .copyWith(
+                                                              offset:
+                                                                  firstPage);
+                                                  rentSummeryBloc.add(
+                                                      RentSummeryEvent
+                                                          .getRentSummary(
+                                                              request: context
+                                                                  .read<
+                                                                      RentBloc>()
+                                                                  .requestMeanValue));
+                                                },
+                                                onNextPage: (nextPage) {
+                                                  context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue =
+                                                      context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue
+                                                          .copyWith(
+                                                              offset: nextPage);
+                                                  rentSummeryBloc.add(
+                                                      RentSummeryEvent
+                                                          .getRentSummary(
+                                                              request: context
+                                                                  .read<
+                                                                      RentBloc>()
+                                                                  .requestMeanValue));
+                                                },
+                                                onGoToLastPage: (lastPage) {
+                                                  context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue =
+                                                      context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue
+                                                          .copyWith(
+                                                              offset: lastPage);
+                                                  rentSummeryBloc.add(
+                                                      RentSummeryEvent
+                                                          .getRentSummary(
+                                                              request: context
+                                                                  .read<
+                                                                      RentBloc>()
+                                                                  .requestMeanValue));
+                                                },
+                                                backgroundColor:
+                                                    Theme.of(context)
+                                                        .colorScheme
+                                                        .background,
+                                                // textStyle: Theme.of(context)
+                                                //     .textTheme
+                                                //     .labelSmall,
+                                                previousPageIcon: context.locale ==
+                                                        ARABIC_LOCAL
+                                                    ? Icons
+                                                        .keyboard_arrow_right_sharp
+                                                    : Icons
+                                                        .keyboard_arrow_left_sharp,
+                                                backToFirstPageIcon:
+                                                    Icons.first_page,
+                                                nextPageIcon: context.locale ==
+                                                        ARABIC_LOCAL
+                                                    ? Icons
+                                                        .keyboard_arrow_left_sharp
+                                                    : Icons
+                                                        .keyboard_arrow_right_sharp,
+                                                goToLastPageIcon:
+                                                    Icons.last_page,
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      );
+                                    }
                                   }
                                   if (state.isHasErrorRentSummery) {
                                     return SizedBox(
@@ -677,64 +698,4 @@ class _RentViewState extends State<RentView> {
   }
 }
 
-class MainContainerWithBloc extends StatefulWidget {
-  final String price;
-  final String area;
-  final String bedCount;
-  final String location;
 
-  const MainContainerWithBloc(
-      {super.key,
-      required this.price,
-      required this.area,
-      required this.bedCount,
-      required this.location});
-
-  @override
-  State<MainContainerWithBloc> createState() => _MainContainerWithBlocState();
-}
-
-class _MainContainerWithBlocState extends State<MainContainerWithBloc> {
-  late GetLocationNameCubit getLocationNameCubit;
-
-  @override
-  void initState() {
-    getLocationNameCubit = GetLocationNameCubit(widget.location);
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    getLocationNameCubit.save(widget.location);
-    super.didChangeDependencies();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocListener(
-      bloc: context.read<RentBloc>(),
-      listener: (context, state) {
-        if (context.read<RentBloc>().loockUpRent?.municipalityList != []) {
-          getLocationNameCubit.save(widget.location);
-        }
-      },
-      child: BlocBuilder<GetLocationNameCubit, String>(
-        bloc: getLocationNameCubit,
-        builder: (context, state) {
-          if (state == '') {
-            getLocationNameCubit.save(widget.location);
-          }
-          return MainDataContainer(
-            title: AppStrings().rentValue,
-            totalPrice: widget.price,
-            value: widget.area,
-            valueDescription: AppStrings().rentArea,
-            titleInfo: "${AppStrings().roomsCount}:",
-            valueInfo: widget.bedCount,
-            location: state,
-          );
-        },
-      ),
-    );
-  }
-}

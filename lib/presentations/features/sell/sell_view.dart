@@ -1,6 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
-import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
+
 import 'package:ebla/domain/models/requests/sell_requests/request_sell_values.dart';
 import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
@@ -13,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../../utils/global_functions.dart';
 import '../rent/rent_view.dart';
 
 class SalesView extends StatefulWidget {
@@ -138,24 +140,53 @@ class _SalesViewState extends State<SalesView> {
                                             physics:
                                                 const NeverScrollableScrollPhysics(),
                                             itemBuilder: (context, index) {
-                                              return MainContainerWithBloc(
-                                                  price:
-                                                      "${success.transactionList[index].realEstateMT?.toStringAsFixed(3)} ${AppStrings().currency}",
-                                                  area: success
-                                                          .transactionList[
-                                                              index]
-                                                          .realEstateValue
-                                                          ?.toStringAsFixed(
-                                                              0) ??
-                                                      '0',
-                                                  bedCount: success
-                                                          .transactionList[
-                                                              index]
-                                                          .roi
-                                                          ?.toStringAsFixed(
-                                                              0) ??
-                                                      '0',
-                                                  location: '');
+                                              //todo
+                                              return     MainDataContainer(
+                                                title: AppStrings().sellPrice,
+                                                totalPrice: "${success.transactionList[index].priceMT?.toStringAsFixed(3)} ${AppStrings().currency}",
+
+                                                value: success
+                                                    .transactionList[index].unitNo?.toStringAsFixed(0) ?? '0',
+                                                valueDescription: AppStrings().rentArea,
+                                                titleInfo: "${AppStrings().theUnitPrice}:",
+                                                valueInfo: success
+                                                    .transactionList[
+                                                index]
+                                                    .realEstateSQT
+                                                    ?.toStringAsFixed(
+                                                    0) ??
+                                                    '0',
+                                                location:  context.locale ==
+                                                    ARABIC_LOCAL
+                                                    ? getObjectById(
+                                                    context
+                                                        .read<
+                                                        SellBloc>()
+                                                        .loockUpSell
+                                                        ?.municipalityList ??
+                                                        [],
+                                                  success
+                                                        .transactionList[
+                                                    index]
+                                                        .municipalityId ??
+                                                        0)
+                                                    ?.arName ??
+                                                    ''
+                                                    : getObjectById(
+                                                    context
+                                                        .read<
+                                                        SellBloc>()
+                                                        .loockUpSell
+                                                        ?.municipalityList ??
+                                                        [],
+                                                    success
+                                                        .transactionList[
+                                                    index]
+                                                        .municipalityId ??
+                                                        0)
+                                                    ?.enName ??
+                                                    '',
+                                              );
                                             }),
                                         error: (String message) => SizedBox(
                                             height: AppSizeH.s200,
