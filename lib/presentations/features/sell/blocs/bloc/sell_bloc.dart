@@ -11,6 +11,7 @@ part 'sell_bloc.freezed.dart';
 
 class SellBloc extends Bloc<SellEvent, SellState> {
   final GetSellLookupUseCase getSellLookupUseCase;
+  RentLookupResponse? loockUpSell;
   SellBloc({required this.getSellLookupUseCase})
       : super(const SellState.loadingSellLookup()) {
     on<SellEvent>((event, emit) async {
@@ -19,6 +20,7 @@ class SellBloc extends Bloc<SellEvent, SellState> {
           emit(const SellState.loadingSellLookup());
           final failureOrSuccess = await getSellLookupUseCase.execute();
           failureOrSuccess.when((sellLookup) {
+            loockUpSell = sellLookup;
             emit(SellState.loadedSellLookup(sellLookup: sellLookup));
           }, (error) {
             emit(SellState.errorSellLookUp(message: error.message));
