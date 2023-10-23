@@ -379,7 +379,7 @@ class _$RequestSellValuesImpl implements _RequestSellValues {
       this.realEstateValueTo,
       this.streetNo,
       this.zoneId,
-      this.unit = 1,
+      this.unit = 2,
       this.periodId = 1})
       : _issueDateQuarterList = issueDateQuarterList,
         _propertyTypeList = propertyTypeList,

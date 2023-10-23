@@ -40,4 +40,15 @@ class SellBloc extends Bloc<SellEvent, SellState> {
     zoneId: -1,
     limit: 5,
   );
+  RequestSellValues requestSell = RequestSellValues(
+    municipalityId: 4,
+    propertyTypeList: [-1],
+    purposeList: [-1],
+    issueDateQuarterList: [1, 2, 3, 4],
+    issueDateYear: 2023,
+    issueDateStartMonth: 1,
+    issueDateEndMonth: DateTime.now().month,
+    zoneId: -1,
+    limit: 5,
+  );
 }

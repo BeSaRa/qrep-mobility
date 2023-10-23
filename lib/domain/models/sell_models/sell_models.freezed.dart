@@ -20,17 +20,17 @@ SellTransaction _$SellTransactionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SellTransaction {
-  int get areaCode => throw _privateConstructorUsedError;
-  String get issueDate => throw _privateConstructorUsedError;
-  int get municipalityId => throw _privateConstructorUsedError;
-  int get priceMT => throw _privateConstructorUsedError;
-  int get realEstateMT => throw _privateConstructorUsedError;
-  int get realEstateSQT => throw _privateConstructorUsedError;
-  int get realEstateValue => throw _privateConstructorUsedError;
-  int get roi => throw _privateConstructorUsedError;
-  String get soldTo => throw _privateConstructorUsedError;
-  dynamic get unitNo => throw _privateConstructorUsedError;
-  dynamic get unitStatus => throw _privateConstructorUsedError;
+  int? get areaCode => throw _privateConstructorUsedError;
+  String? get issueDate => throw _privateConstructorUsedError;
+  int? get municipalityId => throw _privateConstructorUsedError;
+  int? get priceMT => throw _privateConstructorUsedError;
+  int? get realEstateMT => throw _privateConstructorUsedError;
+  int? get realEstateSQT => throw _privateConstructorUsedError;
+  int? get realEstateValue => throw _privateConstructorUsedError;
+  int? get roi => throw _privateConstructorUsedError;
+  String? get soldTo => throw _privateConstructorUsedError;
+  int? get unitNo => throw _privateConstructorUsedError;
+  int? get unitStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,17 +45,17 @@ abstract class $SellTransactionCopyWith<$Res> {
       _$SellTransactionCopyWithImpl<$Res, SellTransaction>;
   @useResult
   $Res call(
-      {int areaCode,
-      String issueDate,
-      int municipalityId,
-      int priceMT,
-      int realEstateMT,
-      int realEstateSQT,
-      int realEstateValue,
-      int roi,
-      String soldTo,
-      dynamic unitNo,
-      dynamic unitStatus});
+      {int? areaCode,
+      String? issueDate,
+      int? municipalityId,
+      int? priceMT,
+      int? realEstateMT,
+      int? realEstateSQT,
+      int? realEstateValue,
+      int? roi,
+      String? soldTo,
+      int? unitNo,
+      int? unitStatus});
 }
 
 /// @nodoc
@@ -71,63 +71,63 @@ class _$SellTransactionCopyWithImpl<$Res, $Val extends SellTransaction>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? areaCode = null,
-    Object? issueDate = null,
-    Object? municipalityId = null,
-    Object? priceMT = null,
-    Object? realEstateMT = null,
-    Object? realEstateSQT = null,
-    Object? realEstateValue = null,
-    Object? roi = null,
-    Object? soldTo = null,
+    Object? areaCode = freezed,
+    Object? issueDate = freezed,
+    Object? municipalityId = freezed,
+    Object? priceMT = freezed,
+    Object? realEstateMT = freezed,
+    Object? realEstateSQT = freezed,
+    Object? realEstateValue = freezed,
+    Object? roi = freezed,
+    Object? soldTo = freezed,
     Object? unitNo = freezed,
     Object? unitStatus = freezed,
   }) {
     return _then(_value.copyWith(
-      areaCode: null == areaCode
+      areaCode: freezed == areaCode
           ? _value.areaCode
           : areaCode // ignore: cast_nullable_to_non_nullable
-              as int,
-      issueDate: null == issueDate
+              as int?,
+      issueDate: freezed == issueDate
           ? _value.issueDate
           : issueDate // ignore: cast_nullable_to_non_nullable
-              as String,
-      municipalityId: null == municipalityId
+              as String?,
+      municipalityId: freezed == municipalityId
           ? _value.municipalityId
           : municipalityId // ignore: cast_nullable_to_non_nullable
-              as int,
-      priceMT: null == priceMT
+              as int?,
+      priceMT: freezed == priceMT
           ? _value.priceMT
           : priceMT // ignore: cast_nullable_to_non_nullable
-              as int,
-      realEstateMT: null == realEstateMT
+              as int?,
+      realEstateMT: freezed == realEstateMT
           ? _value.realEstateMT
           : realEstateMT // ignore: cast_nullable_to_non_nullable
-              as int,
-      realEstateSQT: null == realEstateSQT
+              as int?,
+      realEstateSQT: freezed == realEstateSQT
           ? _value.realEstateSQT
           : realEstateSQT // ignore: cast_nullable_to_non_nullable
-              as int,
-      realEstateValue: null == realEstateValue
+              as int?,
+      realEstateValue: freezed == realEstateValue
           ? _value.realEstateValue
           : realEstateValue // ignore: cast_nullable_to_non_nullable
-              as int,
-      roi: null == roi
+              as int?,
+      roi: freezed == roi
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
-              as int,
-      soldTo: null == soldTo
+              as int?,
+      soldTo: freezed == soldTo
           ? _value.soldTo
           : soldTo // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       unitNo: freezed == unitNo
           ? _value.unitNo
           : unitNo // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as int?,
       unitStatus: freezed == unitStatus
           ? _value.unitStatus
           : unitStatus // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as int?,
     ) as $Val);
   }
 }
@@ -141,17 +141,17 @@ abstract class _$$SellTransactionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int areaCode,
-      String issueDate,
-      int municipalityId,
-      int priceMT,
-      int realEstateMT,
-      int realEstateSQT,
-      int realEstateValue,
-      int roi,
-      String soldTo,
-      dynamic unitNo,
-      dynamic unitStatus});
+      {int? areaCode,
+      String? issueDate,
+      int? municipalityId,
+      int? priceMT,
+      int? realEstateMT,
+      int? realEstateSQT,
+      int? realEstateValue,
+      int? roi,
+      String? soldTo,
+      int? unitNo,
+      int? unitStatus});
 }
 
 /// @nodoc
@@ -165,57 +165,63 @@ class __$$SellTransactionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? areaCode = null,
-    Object? issueDate = null,
-    Object? municipalityId = null,
-    Object? priceMT = null,
-    Object? realEstateMT = null,
-    Object? realEstateSQT = null,
-    Object? realEstateValue = null,
-    Object? roi = null,
-    Object? soldTo = null,
+    Object? areaCode = freezed,
+    Object? issueDate = freezed,
+    Object? municipalityId = freezed,
+    Object? priceMT = freezed,
+    Object? realEstateMT = freezed,
+    Object? realEstateSQT = freezed,
+    Object? realEstateValue = freezed,
+    Object? roi = freezed,
+    Object? soldTo = freezed,
     Object? unitNo = freezed,
     Object? unitStatus = freezed,
   }) {
     return _then(_$SellTransactionImpl(
-      areaCode: null == areaCode
+      areaCode: freezed == areaCode
           ? _value.areaCode
           : areaCode // ignore: cast_nullable_to_non_nullable
-              as int,
-      issueDate: null == issueDate
+              as int?,
+      issueDate: freezed == issueDate
           ? _value.issueDate
           : issueDate // ignore: cast_nullable_to_non_nullable
-              as String,
-      municipalityId: null == municipalityId
+              as String?,
+      municipalityId: freezed == municipalityId
           ? _value.municipalityId
           : municipalityId // ignore: cast_nullable_to_non_nullable
-              as int,
-      priceMT: null == priceMT
+              as int?,
+      priceMT: freezed == priceMT
           ? _value.priceMT
           : priceMT // ignore: cast_nullable_to_non_nullable
-              as int,
-      realEstateMT: null == realEstateMT
+              as int?,
+      realEstateMT: freezed == realEstateMT
           ? _value.realEstateMT
           : realEstateMT // ignore: cast_nullable_to_non_nullable
-              as int,
-      realEstateSQT: null == realEstateSQT
+              as int?,
+      realEstateSQT: freezed == realEstateSQT
           ? _value.realEstateSQT
           : realEstateSQT // ignore: cast_nullable_to_non_nullable
-              as int,
-      realEstateValue: null == realEstateValue
+              as int?,
+      realEstateValue: freezed == realEstateValue
           ? _value.realEstateValue
           : realEstateValue // ignore: cast_nullable_to_non_nullable
-              as int,
-      roi: null == roi
+              as int?,
+      roi: freezed == roi
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
-              as int,
-      soldTo: null == soldTo
+              as int?,
+      soldTo: freezed == soldTo
           ? _value.soldTo
           : soldTo // ignore: cast_nullable_to_non_nullable
-              as String,
-      unitNo: freezed == unitNo ? _value.unitNo! : unitNo,
-      unitStatus: freezed == unitStatus ? _value.unitStatus! : unitStatus,
+              as String?,
+      unitNo: freezed == unitNo
+          ? _value.unitNo
+          : unitNo // ignore: cast_nullable_to_non_nullable
+              as int?,
+      unitStatus: freezed == unitStatus
+          ? _value.unitStatus
+          : unitStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -241,37 +247,37 @@ class _$SellTransactionImpl implements _SellTransaction {
 
   @override
   @JsonKey()
-  final int areaCode;
+  final int? areaCode;
   @override
   @JsonKey()
-  final String issueDate;
+  final String? issueDate;
   @override
   @JsonKey()
-  final int municipalityId;
+  final int? municipalityId;
   @override
   @JsonKey()
-  final int priceMT;
+  final int? priceMT;
   @override
   @JsonKey()
-  final int realEstateMT;
+  final int? realEstateMT;
   @override
   @JsonKey()
-  final int realEstateSQT;
+  final int? realEstateSQT;
   @override
   @JsonKey()
-  final int realEstateValue;
+  final int? realEstateValue;
   @override
   @JsonKey()
-  final int roi;
+  final int? roi;
   @override
   @JsonKey()
-  final String soldTo;
+  final String? soldTo;
   @override
   @JsonKey()
-  final dynamic unitNo;
+  final int? unitNo;
   @override
   @JsonKey()
-  final dynamic unitStatus;
+  final int? unitStatus;
 
   @override
   String toString() {
@@ -298,9 +304,9 @@ class _$SellTransactionImpl implements _SellTransaction {
                 other.realEstateValue == realEstateValue) &&
             (identical(other.roi, roi) || other.roi == roi) &&
             (identical(other.soldTo, soldTo) || other.soldTo == soldTo) &&
-            const DeepCollectionEquality().equals(other.unitNo, unitNo) &&
-            const DeepCollectionEquality()
-                .equals(other.unitStatus, unitStatus));
+            (identical(other.unitNo, unitNo) || other.unitNo == unitNo) &&
+            (identical(other.unitStatus, unitStatus) ||
+                other.unitStatus == unitStatus));
   }
 
   @JsonKey(ignore: true)
@@ -316,8 +322,8 @@ class _$SellTransactionImpl implements _SellTransaction {
       realEstateValue,
       roi,
       soldTo,
-      const DeepCollectionEquality().hash(unitNo),
-      const DeepCollectionEquality().hash(unitStatus));
+      unitNo,
+      unitStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -336,43 +342,43 @@ class _$SellTransactionImpl implements _SellTransaction {
 
 abstract class _SellTransaction implements SellTransaction {
   const factory _SellTransaction(
-      {final int areaCode,
-      final String issueDate,
-      final int municipalityId,
-      final int priceMT,
-      final int realEstateMT,
-      final int realEstateSQT,
-      final int realEstateValue,
-      final int roi,
-      final String soldTo,
-      final dynamic unitNo,
-      final dynamic unitStatus}) = _$SellTransactionImpl;
+      {final int? areaCode,
+      final String? issueDate,
+      final int? municipalityId,
+      final int? priceMT,
+      final int? realEstateMT,
+      final int? realEstateSQT,
+      final int? realEstateValue,
+      final int? roi,
+      final String? soldTo,
+      final int? unitNo,
+      final int? unitStatus}) = _$SellTransactionImpl;
 
   factory _SellTransaction.fromJson(Map<String, dynamic> json) =
       _$SellTransactionImpl.fromJson;
 
   @override
-  int get areaCode;
+  int? get areaCode;
   @override
-  String get issueDate;
+  String? get issueDate;
   @override
-  int get municipalityId;
+  int? get municipalityId;
   @override
-  int get priceMT;
+  int? get priceMT;
   @override
-  int get realEstateMT;
+  int? get realEstateMT;
   @override
-  int get realEstateSQT;
+  int? get realEstateSQT;
   @override
-  int get realEstateValue;
+  int? get realEstateValue;
   @override
-  int get roi;
+  int? get roi;
   @override
-  String get soldTo;
+  String? get soldTo;
   @override
-  dynamic get unitNo;
+  int? get unitNo;
   @override
-  dynamic get unitStatus;
+  int? get unitStatus;
   @override
   @JsonKey(ignore: true)
   _$$SellTransactionImplCopyWith<_$SellTransactionImpl> get copyWith =>
