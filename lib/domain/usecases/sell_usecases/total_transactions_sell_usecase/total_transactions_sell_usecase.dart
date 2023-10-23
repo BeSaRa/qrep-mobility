@@ -1,20 +1,21 @@
+import 'package:ebla/domain/models/requests/sell_requests/request_sell_values.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 import '../../../../data/newtwok/failure_model/failure.dart';
 import '../../../models/rent_models/rent_models.dart';
-import '../../../models/requests/rent_requests/request_mean_value.dart';
+
 import '../../../repository/repository.dart';
 import '../../base_usecases/base_usecase.dart';
 
 class TotalTransactionSellUseCase
-    implements BaseUseCase<RequestMeanValue, List<BaseRentResponse>> {
+    implements BaseUseCase<RequestSellValues, List<BaseRentResponse>> {
   final Repository repository;
 
   TotalTransactionSellUseCase(this.repository);
 
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> execute(
-      RequestMeanValue input) async {
+      RequestSellValues input) async {
     return await repository.getTotalTransactionsSell(input);
   }
 }

@@ -24,6 +24,8 @@ class EndPoints {
   //----------------------------------------sell-------------------------------
   static const String lookupSell = '/kpi/sell/lookup';
 
+  static const String sellDefault = '/kpi/sell/default';
+
   // اجمالي عدد معاملات البيع
   static const String totalContractsSell = '/kpi/sell/kpi1/total-contracts';
 
@@ -38,7 +40,7 @@ class EndPoints {
   static const String meanValueSell = '/kpi/sell/kpi13/mean-value';
 
   // قائمة معاملات البيع
-  static const String sellSummary = '/kpi/sell/kpi29/transactions';
+  static const String sellTransactions = '/kpi/sell/kpi29/transactions';
 
   // أفضل عشر مناطق من حيث عدد العقود
   static const String certificateCountSell =
@@ -48,7 +50,13 @@ class EndPoints {
   static const String contractsCountSell =
       '/kpi/sell/kpi30/zones/transactions-number';
 
-  static const String sellDefault = '/kpi/sell/default';
-
-  static const String sellTransactions = '/kpi/sell/kpi29/transactions';
+  //---------------------------------------------mortgage-----------------------
+  // KPI1
+  static const totalMortgageTransactions =
+      '/kpi/mortgage/kpi1/transaction-number';
+  // KPI3
+  static const totalNumberOfMortgageUnits = '/kpi/mortgage/kpi3/unit-num';
+  // KPI5
+  static const totalValueOfMortgageTransactions =
+      '/kpi/mortgage/kpi5/stats/transaction-value';
 }

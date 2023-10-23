@@ -55,23 +55,35 @@ abstract class Repository {
 
   // KPI1
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContractsSell(
-      RequestMeanValue requestMeanValue);
+      RequestSellValues requestSellValues);
 
   // KPI4
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalSoldUnits(
-      RequestMeanValue requestMeanValue);
+      RequestSellValues requestSellValues);
 
   // KPI7
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalTransactionsSell(
-      RequestMeanValue requestMeanValue);
+      RequestSellValues requestSellValues);
 
   // KPI13
   Future<Result<List<BaseRentResponse>, FailureModel>> getMeanValueSell(
-      RequestMeanValue requestMeanValue);
+      RequestSellValues requestSellValues);
 
   Future<Result<List<RentDefault>, FailureModel>> getSellDefault(
-      RequestSellValues requestMeanValue);
+      RequestSellValues requestSellValues);
 
   Future<Result<SellTransactionResponse, FailureModel>> getSellTransaction(
-      RequestSellValues requestMeanValue);
+      RequestSellValues requestSellValues);
+  //----------------------------Mortgage----------------------------------------
+  // KPI1
+  Future<Result<List<BaseRentResponse>, FailureModel>>
+      getTotalMortgageTransactions(RequestSellValues requestSellValues);
+
+  // KPI3
+  Future<Result<List<BaseRentResponse>, FailureModel>>
+      getTotalNumberOfMortgageUnits(RequestSellValues requestSellValues);
+
+  // KPI5
+  Future<Result<List<BaseRentResponse>, FailureModel>>
+      getTotalValueOfMortgageTransactions(RequestSellValues requestSellValues);
 }
