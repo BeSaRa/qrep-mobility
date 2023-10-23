@@ -16,10 +16,11 @@ import '../../../app/depndency_injection.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../../widgets/widgets.dart';
-import '../home/home_view.dart';
 import 'blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import 'blocs/default_bloc/rent_default_bloc.dart';
 import 'widgets/rent_grid_item_widget.dart';
+import 'widgets/selected_municipality_widget.dart';
+import 'widgets/selected_period_widget.dart';
 import 'widgets/statistics_rent_widget.dart';
 
 class RentView extends StatefulWidget {
@@ -504,101 +505,6 @@ class _RentViewState extends State<RentView> {
           },
         ),
       ),
-    );
-  }
-}
-
-class AnimatedPulesLogo extends StatefulWidget {
-  const AnimatedPulesLogo({super.key});
-
-  @override
-  State<AnimatedPulesLogo> createState() => _AnimatedPulesLogoState();
-}
-
-class _AnimatedPulesLogoState extends State<AnimatedPulesLogo>
-    with TickerProviderStateMixin {
-  late AnimationController motionController;
-
-  double size = 20;
-
-  @override
-  void initState() {
-    super.initState();
-    motionController = AnimationController(
-      duration: const Duration(seconds: 1),
-      vsync: this,
-      lowerBound: 0.5,
-    );
-    motionController.forward();
-    motionController.addListener(() {
-      setState(() {
-        size = motionController.value * 250;
-      });
-    });
-    motionController.addStatusListener((status) {
-      setState(() {
-        if (status == AnimationStatus.completed) {
-          motionController.reverse();
-        } else if (status == AnimationStatus.dismissed) {
-          motionController.forward();
-        }
-      });
-    });
-    // motionController.forward();
-  }
-
-  @override
-  void dispose() {
-    motionController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: ColorManager.primary));
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-        colors: [
-          ColorManager.primary,
-          ColorManager.white,
-        ],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        stops: const [0.2, 1.0],
-      )),
-      child: Center(
-          child: SizedBox(
-        height: AppSizeW.s200,
-        child: Stack(children: <Widget>[
-          Center(
-            child: Container(
-              height: size - AppSizeW.s5,
-              padding: EdgeInsets.all(AppSizeW.s5 * (0.009 * size)),
-              decoration: BoxDecoration(
-                  color: ColorManager.white.withOpacity(0.4),
-                  shape: BoxShape.circle),
-              child: Container(
-                height: size - AppSizeW.s5,
-                padding: EdgeInsets.all(AppSizeW.s5 * (0.007 * size)),
-                decoration: BoxDecoration(
-                    color: ColorManager.white.withOpacity(0.6),
-                    shape: BoxShape.circle),
-                child: Container(
-                  padding: EdgeInsets.all(AppSizeW.s5),
-                  decoration: BoxDecoration(
-                      color: ColorManager.white, shape: BoxShape.circle),
-                  height: size,
-                  child: Image.asset(ImageAssets.logoPng),
-                ),
-              ),
-            ),
-          )
-        ]),
-      )),
     );
   }
 }
