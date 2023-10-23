@@ -6,17 +6,17 @@ part 'sell_models.g.dart';
 @freezed
 abstract class SellTransaction with _$SellTransaction {
   const factory SellTransaction(
-      {@Default(0) int areaCode,
-      @Default('') String issueDate,
-      @Default(0) int municipalityId,
-      @Default(0) int priceMT,
-      @Default(0) int realEstateMT,
-      @Default(0) int realEstateSQT,
-      @Default(0) int realEstateValue,
-      @Default(0) int roi,
-      @Default('') String soldTo,
-      @Default(0) unitNo,
-      @Default(0) unitStatus}) = _SellTransaction;
+      {@Default(0) int? areaCode,
+      @Default('') String? issueDate,
+      @Default(0) int? municipalityId,
+      @Default(0) int? priceMT,
+      @Default(0) int? realEstateMT,
+      @Default(0) int? realEstateSQT,
+      @Default(0) int? realEstateValue,
+      @Default(0) int? roi,
+      @Default('') String? soldTo,
+      @Default(0) int? unitNo,
+      @Default(0) int? unitStatus}) = _SellTransaction;
 
   factory SellTransaction.fromJson(Map<String, dynamic> json) =>
       _$SellTransactionFromJson(json);

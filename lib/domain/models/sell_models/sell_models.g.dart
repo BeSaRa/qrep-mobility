@@ -18,8 +18,8 @@ _$SellTransactionImpl _$$SellTransactionImplFromJson(
       realEstateValue: json['realEstateValue'] as int? ?? 0,
       roi: json['roi'] as int? ?? 0,
       soldTo: json['soldTo'] as String? ?? '',
-      unitNo: json['unitNo'] ?? 0,
-      unitStatus: json['unitStatus'] ?? 0,
+      unitNo: json['unitNo'] as int? ?? 0,
+      unitStatus: json['unitStatus'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$$SellTransactionImplToJson(

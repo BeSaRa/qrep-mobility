@@ -509,24 +509,6 @@ class _RentViewState extends State<RentView> {
   }
 }
 
-class GreyLinerContainer extends StatelessWidget {
-  const GreyLinerContainer({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(
-          horizontal: AppSizeW.s170, vertical: AppSizeH.s20),
-      height: AppSizeH.s5,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(AppSizeR.s5),
-          color: ColorManager.lightSilver),
-    );
-  }
-}
-
 class MainContainerWithBloc extends StatefulWidget {
   final String price;
   final String area;
