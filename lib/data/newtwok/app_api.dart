@@ -67,35 +67,46 @@ abstract class AppServiceClient {
   // KPI1
   @POST(EndPoints.totalContractsSell)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalContractsSell(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RequestSellValues requestSellValues);
 
   // KPI4
   @POST(EndPoints.totalSoldUnits)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalSoldUnits(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RequestSellValues requestSellValues);
 
   // KPI7
   @POST(EndPoints.totalTransactionsSell)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalTransactionsSell(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RequestSellValues requestSellValues);
 
   // KPI13
   @POST(EndPoints.meanValueSell)
   Future<HttpResponse<List<BaseRentResponse>>> getMeanValueSell(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RequestSellValues requestSellValues);
 
   //sell
   @POST(EndPoints.sellDefault)
   Future<HttpResponse<List<RentDefault>>> getSellDefault(
-      @Body() RequestSellValues requestMeanValue);
+      @Body() RequestSellValues requestSellValues);
 
   @POST(EndPoints.sellTransactions)
   Future<HttpResponse<SellTransactionResponse>> getSellTransactions(
-      @Body() RequestSellValues requestMeanValue);
+      @Body() RequestSellValues requestSellValues);
   //----------------------------------Mortgage----------------------------------
   // KPI1
+  @POST(EndPoints.totalMortgageTransactions)
+  Future<HttpResponse<List<BaseRentResponse>>> getTotalMortgageTransactions(
+      @Body() RequestSellValues requestSellValues);
+
   // KPI3
+  @POST(EndPoints.totalNumberOfMortgageUnits)
+  Future<HttpResponse<List<BaseRentResponse>>> getTotalNumberOfMortgageUnits(
+      @Body() RequestSellValues requestSellValues);
   // KPI5
+  @POST(EndPoints.totalValueOfMortgageTransactions)
+  Future<HttpResponse<List<BaseRentResponse>>>
+      getTotalValueOfMortgageTransactions(
+          @Body() RequestSellValues requestSellValues);
 }
 
 //----------------------------------CMS-----------------------------------------

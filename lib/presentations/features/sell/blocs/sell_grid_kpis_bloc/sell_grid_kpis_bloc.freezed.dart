@@ -448,20 +448,20 @@ abstract class _InitialState implements SellGridKPIsState {
 
 /// @nodoc
 mixin _$SellGridKPIsEvent {
-  RequestMeanValue get request => throw _privateConstructorUsedError;
+  RequestSellValues get request => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) getData,
+    required TResult Function(RequestSellValues request) getData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? getData,
+    TResult? Function(RequestSellValues request)? getData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? getData,
+    TResult Function(RequestSellValues request)? getData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -493,9 +493,9 @@ abstract class $SellGridKPIsEventCopyWith<$Res> {
           SellGridKPIsEvent value, $Res Function(SellGridKPIsEvent) then) =
       _$SellGridKPIsEventCopyWithImpl<$Res, SellGridKPIsEvent>;
   @useResult
-  $Res call({RequestMeanValue request});
+  $Res call({RequestSellValues request});
 
-  $RequestMeanValueCopyWith<$Res> get request;
+  $RequestSellValuesCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -517,14 +517,14 @@ class _$SellGridKPIsEventCopyWithImpl<$Res, $Val extends SellGridKPIsEvent>
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
+              as RequestSellValues,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RequestMeanValueCopyWith<$Res> get request {
-    return $RequestMeanValueCopyWith<$Res>(_value.request, (value) {
+  $RequestSellValuesCopyWith<$Res> get request {
+    return $RequestSellValuesCopyWith<$Res>(_value.request, (value) {
       return _then(_value.copyWith(request: value) as $Val);
     });
   }
@@ -538,10 +538,10 @@ abstract class _$$SellGridKPIsEventImplCopyWith<$Res>
       __$$SellGridKPIsEventImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RequestMeanValue request});
+  $Res call({RequestSellValues request});
 
   @override
-  $RequestMeanValueCopyWith<$Res> get request;
+  $RequestSellValuesCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -561,7 +561,7 @@ class __$$SellGridKPIsEventImplCopyWithImpl<$Res>
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
+              as RequestSellValues,
     ));
   }
 }
@@ -572,7 +572,7 @@ class _$SellGridKPIsEventImpl implements _SellGridKPIsEvent {
   const _$SellGridKPIsEventImpl({required this.request});
 
   @override
-  final RequestMeanValue request;
+  final RequestSellValues request;
 
   @override
   String toString() {
@@ -600,7 +600,7 @@ class _$SellGridKPIsEventImpl implements _SellGridKPIsEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) getData,
+    required TResult Function(RequestSellValues request) getData,
   }) {
     return getData(request);
   }
@@ -608,7 +608,7 @@ class _$SellGridKPIsEventImpl implements _SellGridKPIsEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? getData,
+    TResult? Function(RequestSellValues request)? getData,
   }) {
     return getData?.call(request);
   }
@@ -616,7 +616,7 @@ class _$SellGridKPIsEventImpl implements _SellGridKPIsEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? getData,
+    TResult Function(RequestSellValues request)? getData,
     required TResult orElse(),
   }) {
     if (getData != null) {
@@ -655,11 +655,11 @@ class _$SellGridKPIsEventImpl implements _SellGridKPIsEvent {
 }
 
 abstract class _SellGridKPIsEvent implements SellGridKPIsEvent {
-  const factory _SellGridKPIsEvent({required final RequestMeanValue request}) =
+  const factory _SellGridKPIsEvent({required final RequestSellValues request}) =
       _$SellGridKPIsEventImpl;
 
   @override
-  RequestMeanValue get request;
+  RequestSellValues get request;
   @override
   @JsonKey(ignore: true)
   _$$SellGridKPIsEventImplCopyWith<_$SellGridKPIsEventImpl> get copyWith =>

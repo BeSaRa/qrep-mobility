@@ -1,6 +1,7 @@
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
+import 'package:ebla/domain/models/requests/sell_requests/request_sell_values.dart';
 import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/sell/widgets/sell_grid_item_widget.dart';
@@ -23,12 +24,11 @@ class _SalesViewState extends State<SalesView> {
   void initState() {
     sellGridKPIsBloc = instance<SellGridKPIsBloc>()
       ..add(SellGridKPIsEvent.getData(
-          request: RequestMeanValue(
+          request: RequestSellValues(
         municipalityId: 1,
         propertyTypeList: [-1],
         purposeList: [-1],
         issueDateQuarterList: [1, 2, 3, 4],
-        furnitureStatus: -1,
         issueDateYear: 2023,
         issueDateStartMonth: 1,
         issueDateEndMonth: DateTime.now().month,
