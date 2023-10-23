@@ -114,16 +114,8 @@ Future<void> initSellModule() async {
       meanValueSellUsecase: instance()));
 
   instance.registerFactory(() => SellBloc(getSellLookupUseCase: instance()));
-
   //blocs
   instance.registerFactory(() => SellDefaultBloc(instance()));
-
-  //--------------blocs---------------------
-  instance.registerFactory<SellGridKPIsBloc>(() => SellGridKPIsBloc(
-      totalContractsSellUseCase: instance(),
-      totalSoldUnitsUseCase: instance(),
-      totalTransactionSellUseCase: instance(),
-      meanValueSellUsecase: instance()));
 
   instance.registerFactory(() => SellTransactionBloc(instance()));
 }
