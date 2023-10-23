@@ -5,12 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../utils/global_functions.dart';
+
 import '../../resources/resources.dart';
-import '../../widgets/widgets.dart';
+
 import '../more/more_view.dart';
-import '../rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
-import '../rent/blocs/rent_bloc/rent_bloc.dart';
+
 import 'widgets/news_widget.dart';
 
 class HomeView extends StatefulWidget {
