@@ -14,6 +14,7 @@ class CertificateContractBloc
     extends Bloc<CertificateContractEvent, CertificateContractState> {
   final CertificateCountUsecase certificateCountUsecase;
   final ContractCountUsecase contractCountUsecase;
+  int index = 1;
   CertificateContractBloc(
       {required this.certificateCountUsecase,
       required this.contractCountUsecase})
@@ -21,6 +22,7 @@ class CertificateContractBloc
     on<CertificateContractEvent>((event, emit) async {
       await event.map(
         certificateCountEvent: (value) async {
+          index = 1;
           emit(state.copyWith(
               isLoadingCertificate: true, isHasErrorCertificate: false));
           final failureOrSuccess =
@@ -39,6 +41,7 @@ class CertificateContractBloc
           });
         },
         contractCountEvent: (value) async {
+          index = 2;
           emit(state.copyWith(
               isLoadingContract: true, isHasErrorContract: false));
           final failureOrSuccess =
