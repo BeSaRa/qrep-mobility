@@ -96,8 +96,8 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
                             scale: _scale,
                             duration: const Duration(milliseconds: 800),
                             alignment: FractionalOffset.bottomCenter,
-                            onEnd: navigateAfterDelay,
-                            // onEnd: showRedScreenAfterDelay,
+                            // onEnd: navigateAfterDelay,
+                            onEnd: showRedScreenAfterDelay,
                             child: Image.asset(
                               alignment: Alignment.bottomCenter,
                               ImageAssets.quatarTowerCitySplash,
