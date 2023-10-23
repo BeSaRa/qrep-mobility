@@ -1,10 +1,9 @@
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
+import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/sell/widgets/sell_grid_item_widget.dart';
-import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
-
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:ebla/presentations/widgets/widgets.dart';
 import 'package:flutter/material.dart';

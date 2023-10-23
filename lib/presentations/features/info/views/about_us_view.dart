@@ -1,11 +1,10 @@
 import 'package:ebla/presentations/features/info/blocs/about_bloc/about_bloc.dart';
-import 'package:ebla/presentations/resources/color_manager.dart';
-import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 
-import '../../rent/rent_view.dart';
+import '../../../resources/resources.dart';
+import '../../../widgets/animated_pulse_logo.dart';
 
 class AboutUsView extends StatefulWidget {
   const AboutUsView({super.key});
@@ -21,7 +20,7 @@ class _AboutUsViewState extends State<AboutUsView> {
       appBar: AppBar(
         leading: BackButton(color: ColorManager.white),
         title: Text(
-          'About Us',
+          AppStrings().aboutUs,
           style: Theme.of(context).textTheme.displayMedium,
         ),
         centerTitle: true,

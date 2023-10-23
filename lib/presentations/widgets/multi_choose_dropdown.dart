@@ -5,9 +5,7 @@ import 'package:ebla/presentations/features/rent/blocs/rent_bloc/cubits/cubit/va
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../resources/color_manager.dart';
 import '../resources/resources.dart';
-import '../resources/values_manager.dart';
 
 class MultiChooseDropDownWidget extends StatefulWidget {
   final List<RentLookupModel> list;
