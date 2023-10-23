@@ -110,6 +110,7 @@ class AppSizeH {
   static double s156 = 156.0.h;
   static double s157 = 157.0.h;
   static double s160 = 160.0.h;
+  static double s162 = 162.0.h;
   static double s164 = 164.0.h;
   static double s165 = 165.0.h;
   static double s167 = 167.0.h;
