@@ -74,16 +74,21 @@ abstract class Repository {
 
   Future<Result<SellTransactionResponse, FailureModel>> getSellTransaction(
       RequestSellValues requestSellValues);
+
   //----------------------------Mortgage----------------------------------------
+
+  //look up
+  Future<Result<RentLookupResponse, FailureModel>> getLockupMortgage();
+
   // KPI1
   Future<Result<List<BaseRentResponse>, FailureModel>>
-      getTotalMortgageTransactions(RequestSellValues requestSellValues);
+  getTotalMortgageTransactions(RequestSellValues requestSellValues);
 
   // KPI3
   Future<Result<List<BaseRentResponse>, FailureModel>>
-      getTotalNumberOfMortgageUnits(RequestSellValues requestSellValues);
+  getTotalNumberOfMortgageUnits(RequestSellValues requestSellValues);
 
   // KPI5
   Future<Result<List<BaseRentResponse>, FailureModel>>
-      getTotalValueOfMortgageTransactions(RequestSellValues requestSellValues);
+  getTotalValueOfMortgageTransactions(RequestSellValues requestSellValues);
 }

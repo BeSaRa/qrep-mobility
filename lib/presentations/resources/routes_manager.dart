@@ -4,6 +4,7 @@ import 'package:ebla/presentations/features/info/views/about_us_view.dart';
 import 'package:ebla/presentations/features/info/views/faq_view.dart';
 import 'package:ebla/presentations/features/main_scaffold.dart';
 import 'package:ebla/presentations/features/more/more_view.dart';
+import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
 import 'package:ebla/presentations/features/rent/rent_view.dart';
 import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
@@ -138,7 +139,10 @@ class AppRouter {
               GoRoute(
                 path: RoutesPaths.mortgage,
                 name: RoutesNames.mortgage,
-                builder: (context, state) => const MortgageView(),
+                builder: (context, state) => BlocProvider(
+                  create: (context) => instance<MortgageBloc>(),
+                  child: const MortgageView(),
+                ),
               ),
             ]),
             StatefulShellBranch(routes: [

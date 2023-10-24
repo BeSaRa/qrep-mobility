@@ -6,6 +6,7 @@ class EndPoints {
   static const String laws = '/items/laws';
   static const String about = '/items/about';
   static const String faq = '/items/FAQ';
+
   //-------------------Rent----------------------------------------------------------
   static const String lockupRent = '/kpi/rent/lookup';
   static const String rentDefault = '/kpi/rent/default';
@@ -51,12 +52,20 @@ class EndPoints {
       '/kpi/sell/kpi30/zones/transactions-number';
 
   //---------------------------------------------mortgage-----------------------
+  //look up
+  static const mortgageLookUp = 'kpi/mortgage/lookup';
+
   // KPI1
   static const totalMortgageTransactions =
       '/kpi/mortgage/kpi1/transaction-number';
+
   // KPI3
   static const totalNumberOfMortgageUnits = '/kpi/mortgage/kpi3/unit-num';
+
   // KPI5
   static const totalValueOfMortgageTransactions =
       '/kpi/mortgage/kpi5/stats/transaction-value';
+
+  //KPI7
+  static const mortgageTransactions = '/kpi/mortgage/kpi7/detail/transaction';
 }

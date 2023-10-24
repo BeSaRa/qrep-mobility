@@ -1,5 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:ebla/domain/usecases/mortgage_usecases/lookup_mortgage_usecase.dart';
 import 'package:ebla/presentations/features/home/blocs/news_bloc/news_bloc.dart';
+import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/default_bloc/rent_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
@@ -174,4 +176,18 @@ Future<void> initRentModule() async {
   );
   instance.registerFactory(() => RentSummeryBloc(instance()));
   instance.registerFactory(() => RentDefaultBloc(instance()));
+}
+
+Future<void> initMortgageModule() async {
+  //usecase
+  if (!GetIt.I.isRegistered<LookUpMortgageUseCase>()) {
+    instance.registerFactory<LookUpMortgageUseCase>(
+        () => LookUpMortgageUseCase(instance()));
+  }
+
+  //blocs
+  if (!GetIt.I.isRegistered<MortgageBloc>()) {
+    instance.registerFactory<LookUpMortgageUseCase>(
+        () => LookUpMortgageUseCase(instance()));
+  }
 }

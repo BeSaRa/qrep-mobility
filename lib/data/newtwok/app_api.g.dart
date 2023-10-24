@@ -549,6 +549,34 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
+  Future<HttpResponse<RentLookupResponse>> getLockupMortgage() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<RentLookupResponse>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'kpi/mortgage/lookup',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = RentLookupResponse.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
   Future<HttpResponse<List<BaseRentResponse>>> getTotalMortgageTransactions(
       RequestSellValues requestSellValues) async {
     const _extra = <String, dynamic>{};
@@ -616,6 +644,38 @@ class _AppServiceClient implements AppServiceClient {
   Future<HttpResponse<List<BaseRentResponse>>>
       getTotalValueOfMortgageTransactions(
           RequestSellValues requestSellValues) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = requestSellValues;
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/kpi/mortgage/kpi5/stats/transaction-value',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data!
+        .map(
+            (dynamic i) => BaseRentResponse.fromJson(i as Map<String, dynamic>))
+        .toList();
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<List<BaseRentResponse>>> getMortgageTransactions(
+      dynamic requestSellValues) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

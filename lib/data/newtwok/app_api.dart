@@ -60,6 +60,7 @@ abstract class AppServiceClient {
   @POST(EndPoints.rentSummary)
   Future<HttpResponse<RentListSummary>> rentSummary(
       @Body() RequestMeanValue requestMeanValue);
+
   //----------------------------------Sell--------------------------------------
   @GET(EndPoints.lookupSell)
   Future<HttpResponse<RentLookupResponse>> getLockupSell();
@@ -92,7 +93,11 @@ abstract class AppServiceClient {
   @POST(EndPoints.sellTransactions)
   Future<HttpResponse<SellTransactionResponse>> getSellTransactions(
       @Body() RequestSellValues requestSellValues);
+
   //----------------------------------Mortgage----------------------------------
+  @GET(EndPoints.mortgageLookUp)
+  Future<HttpResponse<RentLookupResponse>> getLockupMortgage();
+
   // KPI1
   @POST(EndPoints.totalMortgageTransactions)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalMortgageTransactions(
@@ -102,18 +107,26 @@ abstract class AppServiceClient {
   @POST(EndPoints.totalNumberOfMortgageUnits)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalNumberOfMortgageUnits(
       @Body() RequestSellValues requestSellValues);
+
   // KPI5
   @POST(EndPoints.totalValueOfMortgageTransactions)
   Future<HttpResponse<List<BaseRentResponse>>>
-      getTotalValueOfMortgageTransactions(
-          @Body() RequestSellValues requestSellValues);
+  getTotalValueOfMortgageTransactions(
+      @Body() RequestSellValues requestSellValues);
+
+//kpi7
+  @POST(EndPoints.totalValueOfMortgageTransactions)
+  Future<HttpResponse<List<BaseRentResponse>>>
+  getMortgageTransactions(@Body() requestSellValues);
+
+
 }
 
 //----------------------------------CMS-----------------------------------------
 @RestApi(baseUrl: Constant.secondaryBaseUrl)
 abstract class TranslationsServiceClient {
   factory TranslationsServiceClient(Dio dio, {String baseUrl}) =
-      _TranslationsServiceClient;
+  _TranslationsServiceClient;
 
   @GET(EndPoints.translations)
   Future<HttpResponse<TranslationsModel>> getTranslations(
