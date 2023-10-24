@@ -95,10 +95,10 @@ class AppStrings {
   String averageSellPricePerUnitProperty =
       "average_sell_price_per_unit_property".tr();
   String totalSellContractsValue = "the_total_value_of_sell_contracts".tr();
-  String sellPrice= "sell_price".tr();
+  String sellPrice = "sell_price".tr();
   String theUnitPrice = "the_unit_price".tr();
-
-
+  String sellContractList = "sell_contract_list".tr();
+  String noTransactionFound = "no_transaction_found".tr();
 
   //Pagination
   String nextPage = 'next_page'.tr();

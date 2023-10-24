@@ -22,6 +22,7 @@ import '../rent/blocs/summery_bloc/rent_summery_bloc.dart';
 import '../rent/rent_view.dart';
 import '../../widgets/selected_municipality_widget.dart';
 import '../../widgets/selected_year_widget.dart';
+import '../rent/widgets/selected_period_widget.dart';
 import 'blocs/sell_bloc/sell_bloc.dart';
 import 'widgets/bottom_sheet_filter_sell.dart';
 
@@ -262,31 +263,36 @@ class _SalesViewState extends State<SalesView> {
                                                     width: AppSizeW.s7,
                                                   ),
                                                 ]),
-                                            // SizedBox(height: AppSizeH.s12),
-                                            // Padding(
-                                            //   padding: EdgeInsets.symmetric(
-                                            //     horizontal: AppSizeW.s11,
-                                            //   ),
-                                            //   child: SizedBox(
-                                            //       height: AppSizeH.s26,
-                                            //       child: Row(
-                                            //           children: context
-                                            //                   .read<RentBloc>()
-                                            //                   .loockUpRent
-                                            //                   ?.periodTime
-                                            //                   .map((e) {
-                                            //                 return e.id != 5
-                                            //                     ? ChosenPeriodWidget(
-                                            //                         id: e.id,
-                                            //                         enName: e
-                                            //                             .enName,
-                                            //                         arName: e
-                                            //                             .arName,
-                                            //                       )
-                                            //                     : const SizedBox();
-                                            //               }).toList() ??
-                                            //               [])),
-                                            // ),
+                                            SizedBox(height: AppSizeH.s12),
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: AppSizeW.s11,
+                                              ),
+                                              child: SizedBox(
+                                                  height: AppSizeH.s26,
+                                                  child: Row(
+                                                      children: context
+                                                              .read<SellBloc>()
+                                                              .loockUpSell
+                                                              ?.periodTime
+                                                              .map((e) {
+                                                            return e.id != 5
+                                                                ? ChosenPeriodWidget(
+                                                                    periodId: context
+                                                                        .read<
+                                                                            SellBloc>()
+                                                                        .requestSell
+                                                                        .periodId,
+                                                                    id: e.id,
+                                                                    enName: e
+                                                                        .enName,
+                                                                    arName: e
+                                                                        .arName,
+                                                                  )
+                                                                : const SizedBox();
+                                                          }).toList() ??
+                                                          [])),
+                                            ),
                                           ]);
                                         },
                                       ),
@@ -317,7 +323,7 @@ class _SalesViewState extends State<SalesView> {
                                       SizedBox(height: AppSizeH.s20),
                                       Center(
                                         child: Text(
-                                          AppStrings().rentContractList,
+                                          AppStrings().sellContractList,
                                           style: Theme.of(context)
                                               .textTheme
                                               .titleLarge,
@@ -486,6 +492,16 @@ class _SalesViewState extends State<SalesView> {
                                               );
                                             },
                                             success: (value) {
+                                              if (value.response.transactionList
+                                                  .isEmpty) {
+                                                return Text(
+                                                  AppStrings()
+                                                      .noTransactionFound,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge,
+                                                );
+                                              }
                                               return FlutterCustomPagination(
                                                 currentPage: context
                                                             .read<SellBloc>()
