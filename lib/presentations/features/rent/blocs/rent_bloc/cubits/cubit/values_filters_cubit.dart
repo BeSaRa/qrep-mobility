@@ -167,4 +167,25 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
 
   //----------------------Range DateTime-------------------------
   PickerDateRange? pickerDateRange;
+
+  //Sell----------------------RealEstateValue Range------------------
+  num? realEstateValueFrom;
+  num? realEstateValueTo;
+  RangeValues? rangerealEstateValue;
+
+  void changeRangeRealEstateValueReset() {
+    realEstateValueFrom = null;
+    realEstateValueTo = null;
+    rangerealEstateValue = null;
+    areaFrom = null;
+    areaTo = null;
+    rangeValuesArea = null;
+    emit(const RentLookupModel(id: 8, lookupKey: 7));
+  }
+
+  void changeRangeRealEstateValue(RangeValues values) {
+    rangerealEstateValue = values;
+    emit(RentLookupModel(
+        id: values.start.toInt(), lookupKey: values.end.toInt()));
+  }
 }

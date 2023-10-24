@@ -19,6 +19,7 @@ class RentSummeryBloc extends Bloc<RentSummeryEvent, RentSummeryState> {
         getRentSummary: (_RentSummaryEvent value) async {
           emit(state.copyWith(
             isLoadingRentSummery: true,
+            isEmptyRentSummery: false,
             isHasErrorRentSummery: false,
             rentSummery: const RentListSummary(),
           ));
@@ -26,18 +27,31 @@ class RentSummeryBloc extends Bloc<RentSummeryEvent, RentSummeryState> {
               await rentSummeryUseCase.execute(event.request);
           failureOrSuccess.when((success) {
             rentSummery = success;
-            emit(
-              state.copyWith(
-                rentSummery: success,
-                isLoadingRentSummery: false,
-                isHasErrorRentSummery: false,
-              ),
-            );
+            if (success.transactionList.isEmpty) {
+              emit(
+                state.copyWith(
+                  rentSummery: success,
+                  isEmptyRentSummery: true,
+                  isLoadingRentSummery: false,
+                  isHasErrorRentSummery: false,
+                ),
+              );
+            } else {
+              emit(
+                state.copyWith(
+                  rentSummery: success,
+                  isEmptyRentSummery: false,
+                  isLoadingRentSummery: false,
+                  isHasErrorRentSummery: false,
+                ),
+              );
+            }
           }, (error) {
             emit(
               state.copyWith(
                 isLoadingRentSummery: false,
                 isHasErrorRentSummery: true,
+                isEmptyRentSummery: false,
                 errorMessageRentSummery: error.message,
                 rentSummery: const RentListSummary(),
               ),

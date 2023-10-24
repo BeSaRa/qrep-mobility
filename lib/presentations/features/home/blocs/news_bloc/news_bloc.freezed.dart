@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$NewsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getAbout,
+    required TResult Function() getNewsEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getAbout,
+    TResult? Function()? getNewsEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getAbout,
+    TResult Function()? getNewsEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetNewsEvent value) getAbout,
+    required TResult Function(_GetNewsEvent value) getNewsEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetNewsEvent value)? getAbout,
+    TResult? Function(_GetNewsEvent value)? getNewsEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetNewsEvent value)? getAbout,
+    TResult Function(_GetNewsEvent value)? getNewsEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -90,7 +90,7 @@ class _$GetNewsEventImpl implements _GetNewsEvent {
 
   @override
   String toString() {
-    return 'NewsEvent.getAbout()';
+    return 'NewsEvent.getNewsEvent()';
   }
 
   @override
@@ -105,27 +105,27 @@ class _$GetNewsEventImpl implements _GetNewsEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getAbout,
+    required TResult Function() getNewsEvent,
   }) {
-    return getAbout();
+    return getNewsEvent();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getAbout,
+    TResult? Function()? getNewsEvent,
   }) {
-    return getAbout?.call();
+    return getNewsEvent?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getAbout,
+    TResult Function()? getNewsEvent,
     required TResult orElse(),
   }) {
-    if (getAbout != null) {
-      return getAbout();
+    if (getNewsEvent != null) {
+      return getNewsEvent();
     }
     return orElse();
   }
@@ -133,27 +133,27 @@ class _$GetNewsEventImpl implements _GetNewsEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetNewsEvent value) getAbout,
+    required TResult Function(_GetNewsEvent value) getNewsEvent,
   }) {
-    return getAbout(this);
+    return getNewsEvent(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetNewsEvent value)? getAbout,
+    TResult? Function(_GetNewsEvent value)? getNewsEvent,
   }) {
-    return getAbout?.call(this);
+    return getNewsEvent?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetNewsEvent value)? getAbout,
+    TResult Function(_GetNewsEvent value)? getNewsEvent,
     required TResult orElse(),
   }) {
-    if (getAbout != null) {
-      return getAbout(this);
+    if (getNewsEvent != null) {
+      return getNewsEvent(this);
     }
     return orElse();
   }

@@ -238,6 +238,7 @@ abstract class _RentSummaryEvent implements RentSummeryEvent {
 mixin _$RentSummeryState {
   bool get isLoadingRentSummery => throw _privateConstructorUsedError;
   bool get isHasErrorRentSummery => throw _privateConstructorUsedError;
+  bool get isEmptyRentSummery => throw _privateConstructorUsedError;
   String get errorMessageRentSummery => throw _privateConstructorUsedError;
   RentListSummary get rentSummery => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -245,6 +246,7 @@ mixin _$RentSummeryState {
     required TResult Function(
             bool isLoadingRentSummery,
             bool isHasErrorRentSummery,
+            bool isEmptyRentSummery,
             String errorMessageRentSummery,
             RentListSummary rentSummery)
         initial,
@@ -252,15 +254,23 @@ mixin _$RentSummeryState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoadingRentSummery, bool isHasErrorRentSummery,
-            String errorMessageRentSummery, RentListSummary rentSummery)?
+    TResult? Function(
+            bool isLoadingRentSummery,
+            bool isHasErrorRentSummery,
+            bool isEmptyRentSummery,
+            String errorMessageRentSummery,
+            RentListSummary rentSummery)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoadingRentSummery, bool isHasErrorRentSummery,
-            String errorMessageRentSummery, RentListSummary rentSummery)?
+    TResult Function(
+            bool isLoadingRentSummery,
+            bool isHasErrorRentSummery,
+            bool isEmptyRentSummery,
+            String errorMessageRentSummery,
+            RentListSummary rentSummery)?
         initial,
     required TResult orElse(),
   }) =>
@@ -296,6 +306,7 @@ abstract class $RentSummeryStateCopyWith<$Res> {
   $Res call(
       {bool isLoadingRentSummery,
       bool isHasErrorRentSummery,
+      bool isEmptyRentSummery,
       String errorMessageRentSummery,
       RentListSummary rentSummery});
 
@@ -317,6 +328,7 @@ class _$RentSummeryStateCopyWithImpl<$Res, $Val extends RentSummeryState>
   $Res call({
     Object? isLoadingRentSummery = null,
     Object? isHasErrorRentSummery = null,
+    Object? isEmptyRentSummery = null,
     Object? errorMessageRentSummery = null,
     Object? rentSummery = null,
   }) {
@@ -328,6 +340,10 @@ class _$RentSummeryStateCopyWithImpl<$Res, $Val extends RentSummeryState>
       isHasErrorRentSummery: null == isHasErrorRentSummery
           ? _value.isHasErrorRentSummery
           : isHasErrorRentSummery // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isEmptyRentSummery: null == isEmptyRentSummery
+          ? _value.isEmptyRentSummery
+          : isEmptyRentSummery // ignore: cast_nullable_to_non_nullable
               as bool,
       errorMessageRentSummery: null == errorMessageRentSummery
           ? _value.errorMessageRentSummery
@@ -360,6 +376,7 @@ abstract class _$$InitialImplCopyWith<$Res>
   $Res call(
       {bool isLoadingRentSummery,
       bool isHasErrorRentSummery,
+      bool isEmptyRentSummery,
       String errorMessageRentSummery,
       RentListSummary rentSummery});
 
@@ -380,6 +397,7 @@ class __$$InitialImplCopyWithImpl<$Res>
   $Res call({
     Object? isLoadingRentSummery = null,
     Object? isHasErrorRentSummery = null,
+    Object? isEmptyRentSummery = null,
     Object? errorMessageRentSummery = null,
     Object? rentSummery = null,
   }) {
@@ -391,6 +409,10 @@ class __$$InitialImplCopyWithImpl<$Res>
       isHasErrorRentSummery: null == isHasErrorRentSummery
           ? _value.isHasErrorRentSummery
           : isHasErrorRentSummery // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isEmptyRentSummery: null == isEmptyRentSummery
+          ? _value.isEmptyRentSummery
+          : isEmptyRentSummery // ignore: cast_nullable_to_non_nullable
               as bool,
       errorMessageRentSummery: null == errorMessageRentSummery
           ? _value.errorMessageRentSummery
@@ -410,6 +432,7 @@ class _$InitialImpl implements _Initial {
   const _$InitialImpl(
       {this.isLoadingRentSummery = false,
       this.isHasErrorRentSummery = false,
+      this.isEmptyRentSummery = false,
       this.errorMessageRentSummery = '',
       this.rentSummery = const RentListSummary()});
 
@@ -421,6 +444,9 @@ class _$InitialImpl implements _Initial {
   final bool isHasErrorRentSummery;
   @override
   @JsonKey()
+  final bool isEmptyRentSummery;
+  @override
+  @JsonKey()
   final String errorMessageRentSummery;
   @override
   @JsonKey()
@@ -428,7 +454,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'RentSummeryState.initial(isLoadingRentSummery: $isLoadingRentSummery, isHasErrorRentSummery: $isHasErrorRentSummery, errorMessageRentSummery: $errorMessageRentSummery, rentSummery: $rentSummery)';
+    return 'RentSummeryState.initial(isLoadingRentSummery: $isLoadingRentSummery, isHasErrorRentSummery: $isHasErrorRentSummery, isEmptyRentSummery: $isEmptyRentSummery, errorMessageRentSummery: $errorMessageRentSummery, rentSummery: $rentSummery)';
   }
 
   @override
@@ -440,6 +466,8 @@ class _$InitialImpl implements _Initial {
                 other.isLoadingRentSummery == isLoadingRentSummery) &&
             (identical(other.isHasErrorRentSummery, isHasErrorRentSummery) ||
                 other.isHasErrorRentSummery == isHasErrorRentSummery) &&
+            (identical(other.isEmptyRentSummery, isEmptyRentSummery) ||
+                other.isEmptyRentSummery == isEmptyRentSummery) &&
             (identical(
                     other.errorMessageRentSummery, errorMessageRentSummery) ||
                 other.errorMessageRentSummery == errorMessageRentSummery) &&
@@ -448,8 +476,13 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoadingRentSummery,
-      isHasErrorRentSummery, errorMessageRentSummery, rentSummery);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoadingRentSummery,
+      isHasErrorRentSummery,
+      isEmptyRentSummery,
+      errorMessageRentSummery,
+      rentSummery);
 
   @JsonKey(ignore: true)
   @override
@@ -463,36 +496,45 @@ class _$InitialImpl implements _Initial {
     required TResult Function(
             bool isLoadingRentSummery,
             bool isHasErrorRentSummery,
+            bool isEmptyRentSummery,
             String errorMessageRentSummery,
             RentListSummary rentSummery)
         initial,
   }) {
     return initial(isLoadingRentSummery, isHasErrorRentSummery,
-        errorMessageRentSummery, rentSummery);
+        isEmptyRentSummery, errorMessageRentSummery, rentSummery);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoadingRentSummery, bool isHasErrorRentSummery,
-            String errorMessageRentSummery, RentListSummary rentSummery)?
+    TResult? Function(
+            bool isLoadingRentSummery,
+            bool isHasErrorRentSummery,
+            bool isEmptyRentSummery,
+            String errorMessageRentSummery,
+            RentListSummary rentSummery)?
         initial,
   }) {
     return initial?.call(isLoadingRentSummery, isHasErrorRentSummery,
-        errorMessageRentSummery, rentSummery);
+        isEmptyRentSummery, errorMessageRentSummery, rentSummery);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoadingRentSummery, bool isHasErrorRentSummery,
-            String errorMessageRentSummery, RentListSummary rentSummery)?
+    TResult Function(
+            bool isLoadingRentSummery,
+            bool isHasErrorRentSummery,
+            bool isEmptyRentSummery,
+            String errorMessageRentSummery,
+            RentListSummary rentSummery)?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
       return initial(isLoadingRentSummery, isHasErrorRentSummery,
-          errorMessageRentSummery, rentSummery);
+          isEmptyRentSummery, errorMessageRentSummery, rentSummery);
     }
     return orElse();
   }
@@ -530,6 +572,7 @@ abstract class _Initial implements RentSummeryState {
   const factory _Initial(
       {final bool isLoadingRentSummery,
       final bool isHasErrorRentSummery,
+      final bool isEmptyRentSummery,
       final String errorMessageRentSummery,
       final RentListSummary rentSummery}) = _$InitialImpl;
 
@@ -537,6 +580,8 @@ abstract class _Initial implements RentSummeryState {
   bool get isLoadingRentSummery;
   @override
   bool get isHasErrorRentSummery;
+  @override
+  bool get isEmptyRentSummery;
   @override
   String get errorMessageRentSummery;
   @override

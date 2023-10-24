@@ -6,7 +6,6 @@ import 'package:ebla/presentations/features/main_scaffold.dart';
 import 'package:ebla/presentations/features/more/more_view.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
 import 'package:ebla/presentations/features/rent/rent_view.dart';
-import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/sell_view.dart';
 import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +15,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/depndency_injection.dart';
 import '../features/info/views/laws_decisions_view.dart';
 import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
+import '../features/sell/blocs/sell_bloc/sell_bloc.dart';
 
 class RoutesNames {
   static const String splash = 'splash';

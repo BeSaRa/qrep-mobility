@@ -297,6 +297,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           context.read<RentBloc>().requestMeanValue.areaFrom!.toDouble(),
           context.read<RentBloc>().requestMeanValue.areaTo!.toDouble()));
     }
+    valuesFiltersCubit.unit = context.read<RentBloc>().requestMeanValue.unit;
     // valuesFiltersCubit.rentPaymentMonthlyPerUnitTo =
     //     context.read<RentBloc>().requestMeanValue.rentPaymentMonthlyPerUnitTo;
     // valuesFiltersCubit.areaFrom =
@@ -335,7 +336,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                       .changeRangeRentPaymentMonthlyPerUnitReset();
                   valuesFiltersCubit.bedRoom = const RentLookupModel(
                       arName: 'الكل', id: -1, enName: 'ALL');
-                  valuesFiltersCubit.municapility = getObjectById(
+                  valuesFiltersCubit.municapility = getObjectByLookupKey(
                         context
                                 .read<RentBloc>()
                                 .loockUpRent
@@ -381,46 +382,47 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                       .read<RentBloc>()
                       .requestMeanValue
                       .copyWith(
-                          areaFrom: valuesFiltersCubit.areaFrom,
-                          areaTo: valuesFiltersCubit.areaTo,
-                          bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
-                              ? 0
-                              : valuesFiltersCubit.bedRoom.id,
-                          municipalityId: valuesFiltersCubit.municapility.id,
-                          zoneId: valuesFiltersCubit.zone.lookupKey,
-                          rentPaymentMonthlyPerUnitFrom:
-                              valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom,
-                          rentPaymentMonthlyPerUnitTo:
-                              valuesFiltersCubit.rentPaymentMonthlyPerUnitTo,
-                          unit: valuesFiltersCubit.unit,
-                          issueDateYear: valuesFiltersCubit.year.id,
-                          issueDateQuarterList: getissueDateQuarterList(
-                              valuesFiltersCubit.periodTime.id),
-                          issueDateStartMonth:
-                              valuesFiltersCubit.periodTime.id == 4
-                                  ? valuesFiltersCubit.month.value[0] - 1
-                                  : 1,
-                          issueDateEndMonth:
-                              valuesFiltersCubit.periodTime.id == 4
-                                  ? valuesFiltersCubit.month.value[0]
-                                  : valuesFiltersCubit.periodTime.id == 1
-                                      ? DateTime.now().month
-                                      : 12,
-                          periodId: valuesFiltersCubit.periodTime.id,
-                          issueDateFrom: valuesFiltersCubit.periodTime.id == 5
-                              ? valuesFiltersCubit.pickerDateRange?.startDate
-                                  ?.toIso8601String()
-                              : null,
-                          issueDateTo: valuesFiltersCubit.periodTime.id == 5
-                              ? valuesFiltersCubit.pickerDateRange?.endDate
-                                  ?.toIso8601String()
-                              : null,
-                          purposeList: valuesFiltersCubit.rentPurposeList
-                              .map((e) => e.lookupKey)
-                              .toList(),
-                          propertyTypeList: valuesFiltersCubit.propertyTypeList
-                              .map((e) => e.lookupKey)
-                              .toList());
+                        areaFrom: valuesFiltersCubit.areaFrom,
+                        areaTo: valuesFiltersCubit.areaTo,
+                        bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
+                            ? 0
+                            : valuesFiltersCubit.bedRoom.id,
+                        municipalityId:
+                            valuesFiltersCubit.municapility.lookupKey,
+                        zoneId: valuesFiltersCubit.zone.lookupKey,
+                        rentPaymentMonthlyPerUnitFrom:
+                            valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom,
+                        rentPaymentMonthlyPerUnitTo:
+                            valuesFiltersCubit.rentPaymentMonthlyPerUnitTo,
+                        unit: valuesFiltersCubit.unit,
+                        issueDateYear: valuesFiltersCubit.year.id,
+                        issueDateQuarterList: getissueDateQuarterList(
+                            valuesFiltersCubit.periodTime.id),
+                        issueDateStartMonth:
+                            valuesFiltersCubit.periodTime.id == 4
+                                ? valuesFiltersCubit.month.value[0] - 1
+                                : 1,
+                        issueDateEndMonth: valuesFiltersCubit.periodTime.id == 4
+                            ? valuesFiltersCubit.month.value[0]
+                            : valuesFiltersCubit.periodTime.id == 1
+                                ? DateTime.now().month
+                                : 12,
+                        periodId: valuesFiltersCubit.periodTime.id,
+                        issueDateFrom: valuesFiltersCubit.periodTime.id == 5
+                            ? valuesFiltersCubit.pickerDateRange?.startDate
+                                ?.toIso8601String()
+                            : null,
+                        issueDateTo: valuesFiltersCubit.periodTime.id == 5
+                            ? valuesFiltersCubit.pickerDateRange?.endDate
+                                ?.toIso8601String()
+                            : null,
+                        purposeList: valuesFiltersCubit.rentPurposeList
+                            .map((e) => e.lookupKey)
+                            .toList(),
+                        propertyTypeList: valuesFiltersCubit.propertyTypeList
+                            .map((e) => e.lookupKey)
+                            .toList(),
+                      );
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -859,43 +861,49 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                           .read<RentBloc>()
                           .requestMeanValue
                           .copyWith(
-                              areaFrom:
-                                  valuesFiltersCubit.rangeValuesArea?.start,
-                              areaTo: valuesFiltersCubit.rangeValuesArea?.end,
-                              rentPaymentMonthlyPerUnitFrom: valuesFiltersCubit
-                                  .rangeRentPaymentMonthlyPerUnit?.start,
-                              rentPaymentMonthlyPerUnitTo: valuesFiltersCubit
-                                  .rangeRentPaymentMonthlyPerUnit?.end,
-                              bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
-                                  ? 0
-                                  : valuesFiltersCubit.bedRoom.id,
-                              municipalityId:
-                                  valuesFiltersCubit.municapility.id,
-                              zoneId: valuesFiltersCubit.zone.lookupKey,
-                              unit: valuesFiltersCubit.unit,
-                              issueDateYear: valuesFiltersCubit.year.id,
-                              issueDateQuarterList: getissueDateQuarterList(
-                                  valuesFiltersCubit.periodTime.id),
-                              issueDateStartMonth:
-                                  valuesFiltersCubit.periodTime.id == 4
-                                      ? valuesFiltersCubit.month.value[0] - 1
-                                      : 1,
-                              issueDateEndMonth:
-                                  valuesFiltersCubit.periodTime.id == 4
-                                      ? valuesFiltersCubit.month.value[0]
-                                      : valuesFiltersCubit.periodTime.id == 1
-                                          ? DateTime.now().month
-                                          : 12,
-                              periodId: valuesFiltersCubit.periodTime.id,
-                              issueDateFrom: valuesFiltersCubit.periodTime.id == 5
-                                  ? valuesFiltersCubit.pickerDateRange?.startDate
-                                      ?.toIso8601String()
-                                  : null,
-                              issueDateTo: valuesFiltersCubit.periodTime.id == 5
-                                  ? valuesFiltersCubit.pickerDateRange?.endDate?.toIso8601String()
-                                  : null,
-                              purposeList: valuesFiltersCubit.rentPurposeList.map((e) => e.lookupKey).toList(),
-                              propertyTypeList: valuesFiltersCubit.propertyTypeList.map((e) => e.lookupKey).toList());
+                            areaFrom: valuesFiltersCubit.rangeValuesArea?.start,
+                            areaTo: valuesFiltersCubit.rangeValuesArea?.end,
+                            rentPaymentMonthlyPerUnitFrom: valuesFiltersCubit
+                                .rangeRentPaymentMonthlyPerUnit?.start,
+                            rentPaymentMonthlyPerUnitTo: valuesFiltersCubit
+                                .rangeRentPaymentMonthlyPerUnit?.end,
+                            bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
+                                ? 0
+                                : valuesFiltersCubit.bedRoom.id,
+                            municipalityId: valuesFiltersCubit.municapility.id,
+                            zoneId: valuesFiltersCubit.zone.lookupKey,
+                            unit: valuesFiltersCubit.unit,
+                            issueDateYear: valuesFiltersCubit.year.id,
+                            issueDateQuarterList: getissueDateQuarterList(
+                                valuesFiltersCubit.periodTime.id),
+                            issueDateStartMonth:
+                                valuesFiltersCubit.periodTime.id == 4
+                                    ? valuesFiltersCubit.month.value[0] - 1
+                                    : 1,
+                            issueDateEndMonth:
+                                valuesFiltersCubit.periodTime.id == 4
+                                    ? valuesFiltersCubit.month.value[0]
+                                    : valuesFiltersCubit.periodTime.id == 1
+                                        ? DateTime.now().month
+                                        : 12,
+                            periodId: valuesFiltersCubit.periodTime.id,
+                            issueDateFrom: valuesFiltersCubit.periodTime.id == 5
+                                ? valuesFiltersCubit.pickerDateRange?.startDate
+                                    ?.toIso8601String()
+                                : null,
+                            issueDateTo: valuesFiltersCubit.periodTime.id == 5
+                                ? valuesFiltersCubit.pickerDateRange?.endDate
+                                    ?.toIso8601String()
+                                : null,
+                            purposeList: valuesFiltersCubit.rentPurposeList
+                                .map((e) => e.lookupKey)
+                                .toList(),
+                            propertyTypeList: valuesFiltersCubit
+                                .propertyTypeList
+                                .map((e) => e.lookupKey)
+                                .toList(),
+                            offset: 0,
+                          );
                       Navigator.of(context).pop(true);
                       // print(
                       //     'after request ${context.read<RentBloc>().requestMeanValue}');
