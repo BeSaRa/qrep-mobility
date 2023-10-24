@@ -47,6 +47,8 @@ class _AnimatedPulesLogoState extends State<AnimatedPulesLogo>
   @override
   void dispose() {
     motionController.dispose();
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     super.dispose();
   }
 

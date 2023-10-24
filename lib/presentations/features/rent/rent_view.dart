@@ -319,7 +319,7 @@ class _RentViewState extends State<RentView> {
                               const GreyLinerContainer(),
                               Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: AppSizeW.s20),
+                                    horizontal: AppSizeW.s31),
                                 child: StaggeredGridView(
                                   // for development only: UniqueKey forces the rebuild of the widget on hot reload
                                   key: UniqueKey(),
