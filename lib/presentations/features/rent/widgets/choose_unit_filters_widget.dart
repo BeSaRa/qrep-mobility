@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../resources/resources.dart';
 import '../blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
-import '../blocs/rent_bloc/rent_bloc.dart';
 
 class ChooseUnitWidget extends StatefulWidget {
   const ChooseUnitWidget({
@@ -15,14 +14,6 @@ class ChooseUnitWidget extends StatefulWidget {
 }
 
 class _ChooseUnitWidgetState extends State<ChooseUnitWidget> {
-  @override
-  void initState() {
-    context.read<ValuesFiltersCubit>().unit =
-        context.read<RentBloc>().requestMeanValue.unit;
-    // TODO: implement initState
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(

@@ -297,6 +297,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           context.read<RentBloc>().requestMeanValue.areaFrom!.toDouble(),
           context.read<RentBloc>().requestMeanValue.areaTo!.toDouble()));
     }
+    valuesFiltersCubit.unit = context.read<RentBloc>().requestMeanValue.unit;
     // valuesFiltersCubit.rentPaymentMonthlyPerUnitTo =
     //     context.read<RentBloc>().requestMeanValue.rentPaymentMonthlyPerUnitTo;
     // valuesFiltersCubit.areaFrom =
@@ -335,7 +336,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                       .changeRangeRentPaymentMonthlyPerUnitReset();
                   valuesFiltersCubit.bedRoom = const RentLookupModel(
                       arName: 'الكل', id: -1, enName: 'ALL');
-                  valuesFiltersCubit.municapility = getObjectById(
+                  valuesFiltersCubit.municapility = getObjectByLookupKey(
                         context
                                 .read<RentBloc>()
                                 .loockUpRent
@@ -386,7 +387,8 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                           bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
                               ? 0
                               : valuesFiltersCubit.bedRoom.id,
-                          municipalityId: valuesFiltersCubit.municapility.id,
+                          municipalityId:
+                              valuesFiltersCubit.municapility.lookupKey,
                           zoneId: valuesFiltersCubit.zone.lookupKey,
                           rentPaymentMonthlyPerUnitFrom:
                               valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom,

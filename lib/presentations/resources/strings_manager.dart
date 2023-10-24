@@ -81,6 +81,8 @@ class AppStrings {
   String duration = 'duration'.tr(); // المدة الزمنية
   String durationDetails = 'duration_details'.tr(); //
   String rentValueFromTo = 'rent_value_from_to'.tr(); //قيمه العقار من - إلى
+  String realStateValueFromTo =
+      'real_state_value_from_to'.tr(); //sell قيمه العقار من - إلى
   String areaFromTo = 'area_from_to'.tr(); //'المساحة من - إلى'
   String search = 'search'.tr(); // 'بحث'
 
