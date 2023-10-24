@@ -6,12 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../utils/global_functions.dart';
 import '../../../resources/resources.dart';
-import '../../../widgets/widgets.dart';
 import '../blocs/rent_bloc/rent_bloc.dart';
 
 class SelectedMunicipality extends StatefulWidget {
   final RentLookupModel model;
   final Function(RentLookupModel?)? onChanged;
+
   const SelectedMunicipality({super.key, required this.model, this.onChanged});
 
   @override
@@ -106,6 +106,7 @@ class SingleDrowDown<T> extends StatefulWidget {
   final List<T> list;
   final T? value;
   final Function(T?)? onChanged;
+
   const SingleDrowDown(
       {super.key, required this.list, this.value, this.onChanged});
 
@@ -158,7 +159,9 @@ class _SingleDrowDownState<T> extends State<SingleDrowDown<T>> {
         // },
         onChanged: widget.onChanged,
         dropdownStyleData: DropdownStyleData(
-          maxHeight: AppSizeH.s200, width: double.infinity, useSafeArea: true,
+          maxHeight: AppSizeH.s200,
+          width: double.infinity,
+          useSafeArea: true,
 
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppSizeR.s5),

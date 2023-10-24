@@ -9,13 +9,13 @@ abstract class SellTransaction with _$SellTransaction {
       {@Default(0) int? areaCode,
       @Default('') String? issueDate,
       @Default(0) int? municipalityId,
-      @Default(0) int? priceMT,
-      @Default(0) int? realEstateMT,
-      @Default(0) int? realEstateSQT,
-      @Default(0) int? realEstateValue,
-      @Default(0) int? roi,
+      @Default(0) double? priceMT,
+      @Default(0) double? realEstateMT,
+      @Default(0) double? realEstateSQT,
+      @Default(0) double? realEstateValue,
+      @Default(0) double? roi,
       @Default('') String? soldTo,
-      @Default(0) int? unitNo,
+      @Default(0) double? unitNo,
       @Default(0) int? unitStatus}) = _SellTransaction;
 
   factory SellTransaction.fromJson(Map<String, dynamic> json) =>

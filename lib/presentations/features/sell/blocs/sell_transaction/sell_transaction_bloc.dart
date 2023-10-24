@@ -20,8 +20,10 @@ class SellTransactionBloc
         final failureOrSuccess =
             await sellTransactionUseCase.execute(event.request);
         failureOrSuccess.when((success) {
+          print("this  is success fatina $success");
           emit(SellTransactionState.success(success));
         }, (error) {
+          print("this  is error fatina $error");
           emit(SellTransactionState.error(error.message));
         });
       });

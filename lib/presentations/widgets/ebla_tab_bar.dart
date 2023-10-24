@@ -5,12 +5,11 @@ import '../resources/color_manager.dart';
 import '../resources/values_manager.dart';
 
 class EblaTabBarWidget extends StatefulWidget {
-  const EblaTabBarWidget(
-      {super.key,
-      required this.onPressed,
-      this.initialIndex = 0,
-      required this.firstTab,
-      required this.secondTab});
+  const EblaTabBarWidget({super.key,
+    required this.onPressed,
+    this.initialIndex = 0,
+    required this.firstTab,
+    required this.secondTab});
 
   final Function onPressed;
   final int initialIndex;
@@ -38,26 +37,44 @@ class _EblaTabBarWidgetState extends State<EblaTabBarWidget> {
           color: ColorManager.grey,
         ),
         child: TabBar(
+
           automaticIndicatorColorAdjustment: false,
           physics: const NeverScrollableScrollPhysics(),
+          indicatorColor: Colors.transparent,
           indicator: BoxDecoration(
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(AppSizeR.s8),
-            color: Theme.of(context).primaryColor,
+            color: Theme
+                .of(context)
+                .primaryColor,
           ),
           indicatorSize: TabBarIndicatorSize.tab,
           labelColor: ColorManager.white,
-          unselectedLabelColor: Theme.of(context).colorScheme.primary,
-          unselectedLabelStyle: Theme.of(context)
+          unselectedLabelColor: Theme
+              .of(context)
+              .colorScheme
+              .primary,
+          unselectedLabelStyle: Theme
+              .of(context)
               .textTheme
               .titleLarge!
               .copyWith(
-                  color: ColorManager.white,
-                  fontSize:
-                      MediaQuery.of(context).size.width > 620 ? 8.sp : 10.sp),
+              color: ColorManager.white,
+              fontSize:
+              MediaQuery
+                  .of(context)
+                  .size
+                  .width > 620 ? 8.sp : 10.sp),
           //text theme
-          labelStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
-              fontSize: MediaQuery.of(context).size.width > 620 ? 8.sp : 9.sp),
+          labelStyle: Theme
+              .of(context)
+              .textTheme
+              .labelMedium
+              ?.copyWith(
+              fontSize: MediaQuery
+                  .of(context)
+                  .size
+                  .width > 620 ? 8.sp : 9.sp),
           onTap: (index) {
             widget.onPressed(index);
           },

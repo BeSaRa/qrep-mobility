@@ -32,6 +32,7 @@ class AppStrings {
   String noPropertiesUnits = "no_properties_units".tr();
   String countLeaseContracts = "count_lease_contracts".tr();
   String countPropertiesUnits = "count_properties_units".tr();
+  String noRentContracts = "no_contracts_found".tr();
 
   //more view locals
   String moreTitle = 'more_title'.tr();
@@ -92,6 +93,11 @@ class AppStrings {
   String averageSellPricePerUnitProperty =
       "average_sell_price_per_unit_property".tr();
   String totalSellContractsValue = "the_total_value_of_sell_contracts".tr();
+  String sellPrice= "sell_price".tr();
+  String theUnitPrice = "the_unit_price".tr();
+
+
+
   //Pagination
   String nextPage = 'next_page'.tr();
   String page = 'page'.tr();
