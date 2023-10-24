@@ -4,15 +4,17 @@ import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../utils/global_functions.dart';
-import '../../../resources/resources.dart';
-import '../blocs/rent_bloc/rent_bloc.dart';
+import '../../utils/global_functions.dart';
+import '../resources/resources.dart';
+import 'widgets.dart';
+import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
 
 class SelectedMunicipality extends StatefulWidget {
-  final RentLookupModel model;
+  final List<RentLookupModel> list;
+  final RentLookupModel? value;
   final Function(RentLookupModel?)? onChanged;
-
-  const SelectedMunicipality({super.key, required this.model, this.onChanged});
+  const SelectedMunicipality(
+      {super.key, this.onChanged, this.value, required this.list});
 
   @override
   State<SelectedMunicipality> createState() => _SelectedMunicipalityState();
@@ -40,63 +42,17 @@ class _SelectedMunicipalityState extends State<SelectedMunicipality> {
           border: Border.all(style: BorderStyle.none),
           borderRadius: BorderRadius.circular(AppSizeR.s25),
         ),
-        child: BlocBuilder(
-            bloc: context.read<RentBloc>(),
-            builder: (context, RentState state) {
-              if (state.isLoadingRentLookup) {
-                return const LinearProgressIndicator();
-              }
-              if (state.rentLookup != const RentLookupResponse()) {
-                return SingleDrowDown<RentLookupModel>(
-                    onChanged: widget.onChanged,
-                    //  (municipal) {
-                    //   context.read<RentBloc>().requestMeanValue = context
-                    //       .read<RentBloc>()
-                    //       .requestMeanValue
-                    //       .copyWith(
-                    //           municipalityId: municipal?.lookupKey, zoneId: -1);
-
-                    //   setState(() {});
-                    // },
-                    value: getObjectById(
-                            context
-                                    .read<RentBloc>()
-                                    .loockUpRent
-                                    ?.municipalityList ??
-                                [],
-                            context
-                                    .read<RentBloc>()
-                                    .requestMeanValue
-                                    .municipalityId ??
-                                1) ??
-                        const RentLookupModel(),
-                    list: context
-                            .read<RentBloc>()
-                            .loockUpRent
-                            ?.municipalityList ??
-                        []);
-                //       SingleDropDownValue<RentLookupModel>(
-                // value: context
-                //         .read<RentBloc>()
-                //         .loockUpRent
-                //         ?.municipalityList[0] ??
-                //               const RentLookupModel(),
-                //           onChanged: (municapility) {
-                //             // valuesFiltersCubit.changeMunicapility(municapility!);
-                //             // valuesFiltersCubit
-                //             //     .changeZone(state.rentLookup.zoneList.first);
-                //           },
-                //           list: state.rentLookup.municipalityList);
-                //     }
-              }
-              return const Text('Error');
-            }),
-        // Text(
-        //   context.locale == ARABIC_LOCAL
-        //       ? widget.model.arName
-        //       : widget.model.enName,
-        //   style: Theme.of(context).textTheme.labelSmall,
-        // ),
+        child: SingleDrowDown<RentLookupModel>(
+            onChanged: widget.onChanged,
+            value: widget.value,
+            // getObjectById(
+            //         context.read<RentBloc>().loockUpRent?.municipalityList ?? [],
+            //         context.read<RentBloc>().requestMeanValue.municipalityId ??
+            //             1) ??
+            //     const RentLookupModel(),
+            list: widget.list
+            // context.read<RentBloc>().loockUpRent?.municipalityList ?? [],
+            ),
       ),
     );
   }

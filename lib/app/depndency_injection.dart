@@ -3,7 +3,6 @@ import 'package:ebla/domain/usecases/mortgage_usecases/lookup_mortgage_usecase.d
 import 'package:ebla/presentations/features/home/blocs/news_bloc/news_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/default_bloc/rent_default_bloc.dart';
-import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_transaction/sell_transaction_bloc.dart';
@@ -23,6 +22,7 @@ import '../presentations/features/rent/blocs/mean_value_bloc/mean_value_bloc.dar
 import '../presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
 import '../presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 import '../presentations/features/rent/blocs/summery_bloc/rent_summery_bloc.dart';
+import '../presentations/features/sell/blocs/sell_bloc/sell_bloc.dart';
 import 'app_preferences.dart';
 
 final instance = GetIt.instance;
@@ -109,17 +109,25 @@ Future<void> initSellModule() async {
   }
 
   //-------------- Bloc's---------------------
-  instance.registerFactory<SellGridKPIsBloc>(() => SellGridKPIsBloc(
-      totalContractsSellUseCase: instance(),
-      totalSoldUnitsUseCase: instance(),
-      totalTransactionSellUseCase: instance(),
-      meanValueSellUsecase: instance()));
 
-  instance.registerFactory(() => SellBloc(getSellLookupUseCase: instance()));
+  if (!GetIt.I.isRegistered<SellGridKPIsBloc>()) {
+    instance.registerFactory<SellGridKPIsBloc>(() => SellGridKPIsBloc(
+        totalContractsSellUseCase: instance(),
+        totalSoldUnitsUseCase: instance(),
+        totalTransactionSellUseCase: instance(),
+        meanValueSellUsecase: instance()));
+  }
+  if (!GetIt.I.isRegistered<SellBloc>()) {
+    instance.registerFactory(() => SellBloc(getSellLookupUseCase: instance()));
+  }
+  if (!GetIt.I.isRegistered<SellTransactionBloc>()) {
+    instance.registerFactory(() => SellTransactionBloc(instance()));
+  }
+  if (!GetIt.I.isRegistered<SellDefaultBloc>()) {
+    instance.registerFactory(() => SellDefaultBloc(instance()));
+  }
+
   //blocs
-  instance.registerFactory(() => SellDefaultBloc(instance()));
-
-  instance.registerFactory(() => SellTransactionBloc(instance()));
 }
 
 Future<void> initRentModule() async {

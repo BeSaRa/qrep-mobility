@@ -20,7 +20,7 @@ class _NewsWidgetState extends State<NewsWidget> {
   int index = 0;
   @override
   void initState() {
-    newsBloc = instance<NewsBloc>()..add(const NewsEvent.getAbout());
+    newsBloc = instance<NewsBloc>()..add(const NewsEvent.getNewsEvent());
     // TODO: implement initState
     super.initState();
   }
@@ -51,7 +51,7 @@ class _NewsWidgetState extends State<NewsWidget> {
                           padding: EdgeInsets.symmetric(
                               horizontal: AppSizeW.s20, vertical: AppSizeH.s4),
                           child: const NewsItemWidget(
-                              date: '', label: '', isLoading: true),
+                              image: '', date: '', label: '', isLoading: true),
                         );
                       }),
                 ),
@@ -93,6 +93,7 @@ class _NewsWidgetState extends State<NewsWidget> {
                           padding: EdgeInsets.symmetric(
                               horizontal: AppSizeW.s20, vertical: AppSizeH.s4),
                           child: NewsItemWidget(
+                              image: value.news[index].image,
                               date: value.news[index].dateCreated,
                               label: value.news[index].title),
                         );

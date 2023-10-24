@@ -21,29 +21,18 @@ SellTransaction _$SellTransactionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SellTransaction {
   int? get areaCode => throw _privateConstructorUsedError;
-
   String? get issueDate => throw _privateConstructorUsedError;
-
   int? get municipalityId => throw _privateConstructorUsedError;
-
   double? get priceMT => throw _privateConstructorUsedError;
-
   double? get realEstateMT => throw _privateConstructorUsedError;
-
   double? get realEstateSQT => throw _privateConstructorUsedError;
-
   double? get realEstateValue => throw _privateConstructorUsedError;
-
   double? get roi => throw _privateConstructorUsedError;
-
   String? get soldTo => throw _privateConstructorUsedError;
-
   double? get unitNo => throw _privateConstructorUsedError;
-
   int? get unitStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $SellTransactionCopyWith<SellTransaction> get copyWith =>
       throw _privateConstructorUsedError;
@@ -54,7 +43,6 @@ abstract class $SellTransactionCopyWith<$Res> {
   factory $SellTransactionCopyWith(
           SellTransaction value, $Res Function(SellTransaction) then) =
       _$SellTransactionCopyWithImpl<$Res, SellTransaction>;
-
   @useResult
   $Res call(
       {int? areaCode,
@@ -77,7 +65,6 @@ class _$SellTransactionCopyWithImpl<$Res, $Val extends SellTransaction>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -151,7 +138,6 @@ abstract class _$$SellTransactionImplCopyWith<$Res>
   factory _$$SellTransactionImplCopyWith(_$SellTransactionImpl value,
           $Res Function(_$SellTransactionImpl) then) =
       __$$SellTransactionImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -373,37 +359,26 @@ abstract class _SellTransaction implements SellTransaction {
 
   @override
   int? get areaCode;
-
   @override
   String? get issueDate;
-
   @override
   int? get municipalityId;
-
   @override
   double? get priceMT;
-
   @override
   double? get realEstateMT;
-
   @override
   double? get realEstateSQT;
-
   @override
   double? get realEstateValue;
-
   @override
   double? get roi;
-
   @override
   String? get soldTo;
-
   @override
   double? get unitNo;
-
   @override
   int? get unitStatus;
-
   @override
   @JsonKey(ignore: true)
   _$$SellTransactionImplCopyWith<_$SellTransactionImpl> get copyWith =>
@@ -418,12 +393,10 @@ SellTransactionResponse _$SellTransactionResponseFromJson(
 /// @nodoc
 mixin _$SellTransactionResponse {
   int get count => throw _privateConstructorUsedError;
-
   List<SellTransaction> get transactionList =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $SellTransactionResponseCopyWith<SellTransactionResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -434,7 +407,6 @@ abstract class $SellTransactionResponseCopyWith<$Res> {
   factory $SellTransactionResponseCopyWith(SellTransactionResponse value,
           $Res Function(SellTransactionResponse) then) =
       _$SellTransactionResponseCopyWithImpl<$Res, SellTransactionResponse>;
-
   @useResult
   $Res call({int count, List<SellTransaction> transactionList});
 }
@@ -447,7 +419,6 @@ class _$SellTransactionResponseCopyWithImpl<$Res,
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -476,7 +447,6 @@ abstract class _$$SellResponseImplCopyWith<$Res>
   factory _$$SellResponseImplCopyWith(
           _$SellResponseImpl value, $Res Function(_$SellResponseImpl) then) =
       __$$SellResponseImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call({int count, List<SellTransaction> transactionList});
@@ -523,7 +493,6 @@ class _$SellResponseImpl implements _SellResponse {
   @JsonKey()
   final int count;
   final List<SellTransaction> _transactionList;
-
   @override
   @JsonKey()
   List<SellTransaction> get transactionList {
@@ -576,10 +545,8 @@ abstract class _SellResponse implements SellTransactionResponse {
 
   @override
   int get count;
-
   @override
   List<SellTransaction> get transactionList;
-
   @override
   @JsonKey(ignore: true)
   _$$SellResponseImplCopyWith<_$SellResponseImpl> get copyWith =>
