@@ -63,6 +63,7 @@
   "no_lease_contracts":"No lease contracts",
   "count_properties_units":"Count units rented",
   "no_properties_units":"No properties / units rented",
+  "no_contracts_found": "No rent contracts Found",
   "----------------------------------------------------SELL--------------------------": "",
   "the_total_number_of_properties_units_sold":"The total number of properties / units sold",
   "the_total_number_of_sell_contracts": "The total number of \n sell contracts",
@@ -70,6 +71,8 @@
   "the_total_value_of_sell_contracts": "The total value of sell contracts",
   "real_state_value_from_to":"Real state value from - to",
 
+  "sell_price": "Sell price",
+  "the_unit_price": "unit price",
   "----------------------------------------------------MORTGAGE--------------------------": "",
   "----------------------------------------------------OWNERSHIP--------------------------": "",
   "----------------------------------------------Pagination-------------------------------:":"",

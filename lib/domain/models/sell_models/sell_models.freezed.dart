@@ -23,13 +23,13 @@ mixin _$SellTransaction {
   int? get areaCode => throw _privateConstructorUsedError;
   String? get issueDate => throw _privateConstructorUsedError;
   int? get municipalityId => throw _privateConstructorUsedError;
-  int? get priceMT => throw _privateConstructorUsedError;
-  int? get realEstateMT => throw _privateConstructorUsedError;
-  int? get realEstateSQT => throw _privateConstructorUsedError;
-  int? get realEstateValue => throw _privateConstructorUsedError;
-  int? get roi => throw _privateConstructorUsedError;
+  double? get priceMT => throw _privateConstructorUsedError;
+  double? get realEstateMT => throw _privateConstructorUsedError;
+  double? get realEstateSQT => throw _privateConstructorUsedError;
+  double? get realEstateValue => throw _privateConstructorUsedError;
+  double? get roi => throw _privateConstructorUsedError;
   String? get soldTo => throw _privateConstructorUsedError;
-  int? get unitNo => throw _privateConstructorUsedError;
+  double? get unitNo => throw _privateConstructorUsedError;
   int? get unitStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,13 +48,13 @@ abstract class $SellTransactionCopyWith<$Res> {
       {int? areaCode,
       String? issueDate,
       int? municipalityId,
-      int? priceMT,
-      int? realEstateMT,
-      int? realEstateSQT,
-      int? realEstateValue,
-      int? roi,
+      double? priceMT,
+      double? realEstateMT,
+      double? realEstateSQT,
+      double? realEstateValue,
+      double? roi,
       String? soldTo,
-      int? unitNo,
+      double? unitNo,
       int? unitStatus});
 }
 
@@ -99,23 +99,23 @@ class _$SellTransactionCopyWithImpl<$Res, $Val extends SellTransaction>
       priceMT: freezed == priceMT
           ? _value.priceMT
           : priceMT // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       realEstateMT: freezed == realEstateMT
           ? _value.realEstateMT
           : realEstateMT // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       realEstateSQT: freezed == realEstateSQT
           ? _value.realEstateSQT
           : realEstateSQT // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       realEstateValue: freezed == realEstateValue
           ? _value.realEstateValue
           : realEstateValue // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       roi: freezed == roi
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       soldTo: freezed == soldTo
           ? _value.soldTo
           : soldTo // ignore: cast_nullable_to_non_nullable
@@ -123,7 +123,7 @@ class _$SellTransactionCopyWithImpl<$Res, $Val extends SellTransaction>
       unitNo: freezed == unitNo
           ? _value.unitNo
           : unitNo // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       unitStatus: freezed == unitStatus
           ? _value.unitStatus
           : unitStatus // ignore: cast_nullable_to_non_nullable
@@ -144,13 +144,13 @@ abstract class _$$SellTransactionImplCopyWith<$Res>
       {int? areaCode,
       String? issueDate,
       int? municipalityId,
-      int? priceMT,
-      int? realEstateMT,
-      int? realEstateSQT,
-      int? realEstateValue,
-      int? roi,
+      double? priceMT,
+      double? realEstateMT,
+      double? realEstateSQT,
+      double? realEstateValue,
+      double? roi,
       String? soldTo,
-      int? unitNo,
+      double? unitNo,
       int? unitStatus});
 }
 
@@ -193,23 +193,23 @@ class __$$SellTransactionImplCopyWithImpl<$Res>
       priceMT: freezed == priceMT
           ? _value.priceMT
           : priceMT // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       realEstateMT: freezed == realEstateMT
           ? _value.realEstateMT
           : realEstateMT // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       realEstateSQT: freezed == realEstateSQT
           ? _value.realEstateSQT
           : realEstateSQT // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       realEstateValue: freezed == realEstateValue
           ? _value.realEstateValue
           : realEstateValue // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       roi: freezed == roi
           ? _value.roi
           : roi // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       soldTo: freezed == soldTo
           ? _value.soldTo
           : soldTo // ignore: cast_nullable_to_non_nullable
@@ -217,7 +217,7 @@ class __$$SellTransactionImplCopyWithImpl<$Res>
       unitNo: freezed == unitNo
           ? _value.unitNo
           : unitNo // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       unitStatus: freezed == unitStatus
           ? _value.unitStatus
           : unitStatus // ignore: cast_nullable_to_non_nullable
@@ -256,25 +256,25 @@ class _$SellTransactionImpl implements _SellTransaction {
   final int? municipalityId;
   @override
   @JsonKey()
-  final int? priceMT;
+  final double? priceMT;
   @override
   @JsonKey()
-  final int? realEstateMT;
+  final double? realEstateMT;
   @override
   @JsonKey()
-  final int? realEstateSQT;
+  final double? realEstateSQT;
   @override
   @JsonKey()
-  final int? realEstateValue;
+  final double? realEstateValue;
   @override
   @JsonKey()
-  final int? roi;
+  final double? roi;
   @override
   @JsonKey()
   final String? soldTo;
   @override
   @JsonKey()
-  final int? unitNo;
+  final double? unitNo;
   @override
   @JsonKey()
   final int? unitStatus;
@@ -345,13 +345,13 @@ abstract class _SellTransaction implements SellTransaction {
       {final int? areaCode,
       final String? issueDate,
       final int? municipalityId,
-      final int? priceMT,
-      final int? realEstateMT,
-      final int? realEstateSQT,
-      final int? realEstateValue,
-      final int? roi,
+      final double? priceMT,
+      final double? realEstateMT,
+      final double? realEstateSQT,
+      final double? realEstateValue,
+      final double? roi,
       final String? soldTo,
-      final int? unitNo,
+      final double? unitNo,
       final int? unitStatus}) = _$SellTransactionImpl;
 
   factory _SellTransaction.fromJson(Map<String, dynamic> json) =
@@ -364,19 +364,19 @@ abstract class _SellTransaction implements SellTransaction {
   @override
   int? get municipalityId;
   @override
-  int? get priceMT;
+  double? get priceMT;
   @override
-  int? get realEstateMT;
+  double? get realEstateMT;
   @override
-  int? get realEstateSQT;
+  double? get realEstateSQT;
   @override
-  int? get realEstateValue;
+  double? get realEstateValue;
   @override
-  int? get roi;
+  double? get roi;
   @override
   String? get soldTo;
   @override
-  int? get unitNo;
+  double? get unitNo;
   @override
   int? get unitStatus;
   @override

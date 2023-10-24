@@ -12,16 +12,20 @@ part 'sell_transaction_state.dart';
 class SellTransactionBloc
     extends Bloc<SellTransactionEvent, SellTransactionState> {
   SellTransactionUseCase sellTransactionUseCase;
-
+  SellTransactionResponse? sellTransaction;
   SellTransactionBloc(this.sellTransactionUseCase)
       : super(const SellTransactionState.initial()) {
     on<SellTransactionEvent>((event, emit) async {
       await event.map(started: (_Started value) async {
+        emit(const SellTransactionState.loading());
         final failureOrSuccess =
             await sellTransactionUseCase.execute(event.request);
         failureOrSuccess.when((success) {
+          sellTransaction = success;
+          print("this  is success fatina $success");
           emit(SellTransactionState.success(success));
         }, (error) {
+          print("this  is error fatina $error");
           emit(SellTransactionState.error(error.message));
         });
       });

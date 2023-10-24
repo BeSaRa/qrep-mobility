@@ -62,6 +62,7 @@ class SingleDrowDown<T> extends StatefulWidget {
   final List<T> list;
   final T? value;
   final Function(T?)? onChanged;
+
   const SingleDrowDown(
       {super.key, required this.list, this.value, this.onChanged});
 
@@ -114,7 +115,9 @@ class _SingleDrowDownState<T> extends State<SingleDrowDown<T>> {
         // },
         onChanged: widget.onChanged,
         dropdownStyleData: DropdownStyleData(
-          maxHeight: AppSizeH.s200, width: double.infinity, useSafeArea: true,
+          maxHeight: AppSizeH.s200,
+          width: double.infinity,
+          useSafeArea: true,
 
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppSizeR.s5),

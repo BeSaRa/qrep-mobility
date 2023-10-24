@@ -1,6 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
-import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
 import 'package:ebla/domain/models/requests/sell_requests/request_sell_values.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
@@ -13,7 +15,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../utils/global_functions.dart';
+import '../../widgets/pagination_widget/pagination_widget.dart';
 import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
+import '../rent/blocs/rent_bloc/rent_bloc.dart';
+import '../rent/blocs/summery_bloc/rent_summery_bloc.dart';
 import '../rent/rent_view.dart';
 import '../../widgets/selected_municipality_widget.dart';
 import '../../widgets/selected_year_widget.dart';
@@ -35,13 +40,15 @@ class _SalesViewState extends State<SalesView> {
 
   @override
   void initState() {
+    // sellGridKPIsBloc = instance<SellGridKPIsBloc>();
     sellGridKPIsBloc = instance<SellGridKPIsBloc>();
     sellDefaultBloc = instance<SellDefaultBloc>()
       ..add(SellDefaultEvent.started(
           request: context.read<SellBloc>().requestSellDefault));
     sellTransactionBloc = instance<SellTransactionBloc>();
     changeStatusCubit = ChangeStatusCubit();
-
+    // sellTransactionBloc.add(SellTransactionEvent.started(
+    //     request: context.read<SellBloc>().requestSellDefault));
     super.initState();
   }
 
@@ -54,7 +61,7 @@ class _SalesViewState extends State<SalesView> {
             sellGridKPIsBloc.add(SellGridKPIsEvent.getData(
                 request: context.read<SellBloc>().requestSell));
             sellTransactionBloc.add(SellTransactionEvent.started(
-                request: context.read<SellBloc>().requestSellDefault));
+                request: context.read<SellBloc>().requestSell));
           },
         );
       },
@@ -73,7 +80,7 @@ class _SalesViewState extends State<SalesView> {
                     done: (done) => Column(
                           children: [
                             Container(
-                              height: AppSizeH.s40,
+                              height: AppSizeH.s50,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage(ImageAssets.appbarBg),
@@ -128,12 +135,25 @@ class _SalesViewState extends State<SalesView> {
                                                               .read<SellBloc>()
                                                               .requestSell
                                                               .copyWith(
+                                                                  offset: 0,
                                                                   municipalityId:
                                                                       municipal
                                                                           ?.lookupKey,
                                                                   areaCode: -1);
                                                       changeStatusCubit
                                                           .changeStatus();
+                                                      sellGridKPIsBloc.add(
+                                                          SellGridKPIsEvent.getData(
+                                                              request: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSell));
+                                                      sellTransactionBloc.add(
+                                                          SellTransactionEvent.started(
+                                                              request: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSell));
                                                     },
                                                   ),
                                                   SizedBox(width: AppSizeW.s5),
@@ -151,10 +171,23 @@ class _SalesViewState extends State<SalesView> {
                                                               .read<SellBloc>()
                                                               .requestSell
                                                               .copyWith(
+                                                                  offset: 0,
                                                                   issueDateYear:
                                                                       year);
                                                       changeStatusCubit
                                                           .changeStatus();
+                                                      sellGridKPIsBloc.add(
+                                                          SellGridKPIsEvent.getData(
+                                                              request: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSell));
+                                                      sellTransactionBloc.add(
+                                                          SellTransactionEvent.started(
+                                                              request: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSell));
                                                     },
                                                   ),
                                                   SizedBox(width: AppSizeW.s7),
@@ -194,8 +227,18 @@ class _SalesViewState extends State<SalesView> {
                                                                 if (res !=
                                                                         null &&
                                                                     res) {
-                                                                  // changeStatusCubit
-                                                                  //     .changeStatus();
+                                                                  changeStatusCubit
+                                                                      .changeStatus();
+                                                                  sellGridKPIsBloc.add(SellGridKPIsEvent.getData(
+                                                                      request: context
+                                                                          .read<
+                                                                              SellBloc>()
+                                                                          .requestSell));
+                                                                  sellTransactionBloc.add(SellTransactionEvent.started(
+                                                                      request: context
+                                                                          .read<
+                                                                              SellBloc>()
+                                                                          .requestSell));
                                                                 }
                                                               },
                                                               icon: Icon(
@@ -263,11 +306,7 @@ class _SalesViewState extends State<SalesView> {
                                             return BlocProvider.value(
                                               value: sellGridKPIsBloc,
                                               child: SellGridItemWidget(
-                                                response: RentDefault(
-                                                    kpi1Val: 100,
-                                                    kpi4Val: 400,
-                                                    kpi7Val: 700,
-                                                    kpi13Val: 1300),
+                                                response: done,
                                                 kpi: SellGridKPIs.values[index],
                                                 index: index,
                                               ),
@@ -275,9 +314,7 @@ class _SalesViewState extends State<SalesView> {
                                           },
                                         ),
                                       ),
-                                      SizedBox(
-                                        height: AppSizeH.s20,
-                                      ),
+                                      SizedBox(height: AppSizeH.s20),
                                       Center(
                                         child: Text(
                                           AppStrings().rentContractList,
@@ -288,82 +325,284 @@ class _SalesViewState extends State<SalesView> {
                                       ),
                                       const GreyLinerContainer(),
                                       BlocBuilder<SellTransactionBloc,
-                                              SellTransactionState>(
-                                          bloc: sellTransactionBloc,
-                                          builder: (context, state) =>
-                                              state.when(
-                                                  initial: () => Container(),
-                                                  loading: () => Center(
-                                                        child: SizedBox(
-                                                            width: AppSizeW.s50,
-                                                            height:
-                                                                AppSizeW.s50,
-                                                            child:
-                                                                const CircularProgressIndicator()),
-                                                      ),
-                                                  success: (success) =>
-                                                      ListView.builder(
-                                                          itemCount: success
-                                                                      .transactionList
-                                                                      .length >
-                                                                  3
-                                                              ? 3
-                                                              : success
-                                                                  .transactionList
-                                                                  .length,
-                                                          shrinkWrap: true,
-                                                          physics:
-                                                              const NeverScrollableScrollPhysics(),
-                                                          itemBuilder:
-                                                              (context, index) {
-                                                            return MainContainerWithBloc(
-                                                                price:
-                                                                    "${success.transactionList[index].realEstateMT?.toStringAsFixed(3)} ${AppStrings().currency}",
-                                                                area: success
-                                                                        .transactionList[
-                                                                            index]
-                                                                        .realEstateValue
-                                                                        ?.toStringAsFixed(
-                                                                            0) ??
-                                                                    '0',
-                                                                bedCount: success
-                                                                        .transactionList[
-                                                                            index]
-                                                                        .roi
-                                                                        ?.toStringAsFixed(
-                                                                            0) ??
-                                                                    '0',
-                                                                location: '');
-                                                          }),
-                                                  error: (String message) =>
-                                                      SizedBox(
-                                                          height: AppSizeH.s200,
-                                                          width: AppSizeH.s200,
-                                                          child: Column(
-                                                            children: [
-                                                              SizedBox(
-                                                                  height:
-                                                                      AppSizeH
-                                                                          .s130,
-                                                                  width:
-                                                                      AppSizeH
-                                                                          .s130,
-                                                                  child: Lottie.asset(
-                                                                      ImageAssets
-                                                                          .animationError)),
-                                                              IconButton(
-                                                                  onPressed:
-                                                                      () {
-                                                                    sellTransactionBloc.add(SellTransactionEvent.started(
-                                                                        request: context
-                                                                            .read<SellBloc>()
-                                                                            .requestSellDefault));
-                                                                  },
-                                                                  icon: const Icon(
-                                                                      Icons
-                                                                          .refresh))
-                                                            ],
-                                                          ))))
+                                          SellTransactionState>(
+                                        bloc: sellTransactionBloc,
+                                        builder: (context, state) => state.when(
+                                          initial: () => const SizedBox(),
+                                          loading: () {
+                                            return ListView.builder(
+                                                itemCount: 3,
+                                                shrinkWrap: true,
+                                                physics:
+                                                    const NeverScrollableScrollPhysics(),
+                                                itemBuilder: (context, index) {
+                                                  return const ShimmerMainContainer();
+                                                });
+                                          },
+                                          success: (success) =>
+                                              ListView.builder(
+                                                  itemCount: success
+                                                              .transactionList
+                                                              .length >
+                                                          3
+                                                      ? 3
+                                                      : success.transactionList
+                                                          .length,
+                                                  shrinkWrap: true,
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return MainDataContainer(
+                                                      title: AppStrings()
+                                                          .sellPrice,
+                                                      totalPrice:
+                                                          "${success.transactionList[index].priceMT?.toStringAsFixed(3)} ${AppStrings().currency}",
+                                                      value: success
+                                                              .transactionList[
+                                                                  index]
+                                                              .unitNo
+                                                              ?.toStringAsFixed(
+                                                                  0) ??
+                                                          '0',
+                                                      valueDescription:
+                                                          AppStrings().rentArea,
+                                                      titleInfo:
+                                                          "${AppStrings().theUnitPrice}:",
+                                                      valueInfo: success
+                                                              .transactionList[
+                                                                  index]
+                                                              .realEstateSQT
+                                                              ?.toStringAsFixed(
+                                                                  0) ??
+                                                          '0',
+                                                      location: context.locale ==
+                                                              ARABIC_LOCAL
+                                                          ? getObjectByLookupKey(
+                                                                      context
+                                                                              .read<
+                                                                                  SellBloc>()
+                                                                              .loockUpSell
+                                                                              ?.municipalityList ??
+                                                                          [],
+                                                                      success.transactionList[index].municipalityId ??
+                                                                          0)
+                                                                  ?.arName ??
+                                                              ''
+                                                          : getObjectByLookupKey(
+                                                                      context
+                                                                              .read<
+                                                                                  SellBloc>()
+                                                                              .loockUpSell
+                                                                              ?.municipalityList ??
+                                                                          [],
+                                                                      success.transactionList[index]
+                                                                              .municipalityId ??
+                                                                          0)
+                                                                  ?.enName ??
+                                                              '',
+                                                    );
+                                                  }),
+                                          error: (String message) => SizedBox(
+                                            height: AppSizeH.s200,
+                                            width: AppSizeH.s200,
+                                            child: Column(
+                                              children: [
+                                                SizedBox(
+                                                    height: AppSizeH.s130,
+                                                    width: AppSizeH.s130,
+                                                    child: Lottie.asset(
+                                                        ImageAssets
+                                                            .animationError)),
+                                                IconButton(
+                                                    onPressed: () {
+                                                      sellTransactionBloc.add(
+                                                          SellTransactionEvent.started(
+                                                              request: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSell));
+                                                    },
+                                                    icon: const Icon(
+                                                        Icons.refresh))
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      BlocBuilder(
+                                        bloc: sellTransactionBloc,
+                                        builder: (context,
+                                            SellTransactionState state) {
+                                          return state.maybeMap(
+                                            loading: (value) {
+                                              return FlutterCustomPagination(
+                                                currentPage: context
+                                                            .read<SellBloc>()
+                                                            .requestSell
+                                                            .offset ==
+                                                        0
+                                                    ? 1
+                                                    : context
+                                                            .read<SellBloc>()
+                                                            .requestSell
+                                                            .offset ??
+                                                        0 + 1,
+                                                limitPerPage: 3,
+                                                totalDataCount:
+                                                    sellTransactionBloc
+                                                            .sellTransaction
+                                                            ?.count ??
+                                                        0,
+                                                onPreviousPage:
+                                                    (previousPage) {},
+                                                onBackToFirstPage:
+                                                    (firstPage) {},
+                                                onNextPage: (nextPage) {},
+                                                onGoToLastPage: (lastPage) {},
+                                                backgroundColor:
+                                                    Theme.of(context)
+                                                        .colorScheme
+                                                        .background,
+                                                // textStyle: Theme.of(context)
+                                                //     .textTheme
+                                                //     .labelSmall,
+                                                previousPageIcon: context.locale ==
+                                                        ARABIC_LOCAL
+                                                    ? Icons
+                                                        .keyboard_arrow_right_sharp
+                                                    : Icons
+                                                        .keyboard_arrow_left_sharp,
+                                                backToFirstPageIcon:
+                                                    Icons.first_page,
+                                                nextPageIcon: context.locale ==
+                                                        ARABIC_LOCAL
+                                                    ? Icons
+                                                        .keyboard_arrow_left_sharp
+                                                    : Icons
+                                                        .keyboard_arrow_right_sharp,
+                                                goToLastPageIcon:
+                                                    Icons.last_page,
+                                              );
+                                            },
+                                            success: (value) {
+                                              return FlutterCustomPagination(
+                                                currentPage: context
+                                                            .read<SellBloc>()
+                                                            .requestSell
+                                                            .offset ==
+                                                        0
+                                                    ? 1
+                                                    : context
+                                                            .read<SellBloc>()
+                                                            .requestSell
+                                                            .offset ??
+                                                        0 + 1,
+                                                limitPerPage: 3,
+                                                totalDataCount:
+                                                    sellTransactionBloc
+                                                            .sellTransaction
+                                                            ?.count ??
+                                                        0,
+                                                onPreviousPage: (previousPage) {
+                                                  context
+                                                          .read<SellBloc>()
+                                                          .requestSell =
+                                                      context
+                                                          .read<SellBloc>()
+                                                          .requestSell
+                                                          .copyWith(
+                                                              offset:
+                                                                  previousPage);
+                                                  sellTransactionBloc.add(
+                                                      SellTransactionEvent
+                                                          .started(
+                                                              request: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSell));
+                                                },
+                                                onBackToFirstPage: (firstPage) {
+                                                  context
+                                                          .read<SellBloc>()
+                                                          .requestSell =
+                                                      context
+                                                          .read<SellBloc>()
+                                                          .requestSell
+                                                          .copyWith(
+                                                              offset:
+                                                                  firstPage);
+                                                  sellTransactionBloc.add(
+                                                      SellTransactionEvent
+                                                          .started(
+                                                              request: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSell));
+                                                },
+                                                onNextPage: (nextPage) {
+                                                  context
+                                                          .read<SellBloc>()
+                                                          .requestSell =
+                                                      context
+                                                          .read<SellBloc>()
+                                                          .requestSell
+                                                          .copyWith(
+                                                              offset: nextPage);
+                                                  sellTransactionBloc.add(
+                                                      SellTransactionEvent
+                                                          .started(
+                                                              request: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSell));
+                                                },
+                                                onGoToLastPage: (lastPage) {
+                                                  context
+                                                          .read<SellBloc>()
+                                                          .requestSell =
+                                                      context
+                                                          .read<SellBloc>()
+                                                          .requestSell
+                                                          .copyWith(
+                                                              offset: lastPage);
+                                                  sellTransactionBloc.add(
+                                                      SellTransactionEvent
+                                                          .started(
+                                                              request: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSell));
+                                                },
+                                                backgroundColor:
+                                                    Theme.of(context)
+                                                        .colorScheme
+                                                        .background,
+                                                // textStyle: Theme.of(context)
+                                                //     .textTheme
+                                                //     .labelSmall,
+                                                previousPageIcon: context.locale ==
+                                                        ARABIC_LOCAL
+                                                    ? Icons
+                                                        .keyboard_arrow_right_sharp
+                                                    : Icons
+                                                        .keyboard_arrow_left_sharp,
+                                                backToFirstPageIcon:
+                                                    Icons.first_page,
+                                                nextPageIcon: context.locale ==
+                                                        ARABIC_LOCAL
+                                                    ? Icons
+                                                        .keyboard_arrow_left_sharp
+                                                    : Icons
+                                                        .keyboard_arrow_right_sharp,
+                                                goToLastPageIcon:
+                                                    Icons.last_page,
+                                              );
+                                            },
+                                            orElse: () => const SizedBox(),
+                                          );
+                                        },
+                                      )
                                     ],
                                   ),
                                 ),
