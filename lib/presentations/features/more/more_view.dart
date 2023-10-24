@@ -38,10 +38,7 @@ class _MoreViewState extends State<MoreView> {
       body: Column(
         children: [
           SizedBox(
-            height: MediaQuery
-                .of(context)
-                .size
-                .height / 3.50,
+            height: MediaQuery.of(context).size.height / 3.50,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -52,37 +49,22 @@ class _MoreViewState extends State<MoreView> {
                       borderRadius: BorderRadius.circular(AppSizeH.s25),
                       gradient: LinearGradient(
                         colors: [
-                          Theme
-                              .of(context)
-                              .shadowColor
-                              .withOpacity(0.7),
-                          Theme
-                              .of(context)
-                              .primaryColor,
-                          Theme
-                              .of(context)
-                              .primaryColor
-                              .withOpacity(0.8),
+                          Theme.of(context).shadowColor.withOpacity(0.7),
+                          Theme.of(context).primaryColor,
+                          Theme.of(context).primaryColor.withOpacity(0.8),
                         ],
                       )),
                   child: Center(
                     child: Text(
                       'G',
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .displaySmall
-                          ?.copyWith(
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontSize: AppSizeSp.s18, fontWeight: FontWeight.w800),
                     ),
                   ),
                 ),
                 Text(
                   'Guest',
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .titleMedium,
+                  style: Theme.of(context).textTheme.titleMedium,
                 )
               ],
             ),
@@ -110,32 +92,30 @@ class _MoreViewState extends State<MoreView> {
                     textDirection: TextDirection.rtl,
                     child: EblaTabBarWidget(
                       initialIndex:
-                      instance<AppPreferences>()
-                          .getTheme()
-                          .brightness ==
-                          Brightness.light
-                          ? 0
-                          : 1,
+                          instance<AppPreferences>().getTheme().brightness ==
+                                  Brightness.light
+                              ? 0
+                              : 1,
                       firstTab: AppStrings().light,
                       secondTab: AppStrings().dark,
                       onPressed: (index) {
                         if (theme.brightness == Brightness.light &&
                             index == 1) {
                           ThemeData newTheme =
-                          (theme.brightness == Brightness.light &&
-                              index == 1)
-                              ? darkTheme()
-                              : lightTheme();
+                              (theme.brightness == Brightness.light &&
+                                      index == 1)
+                                  ? darkTheme()
+                                  : lightTheme();
                           switcher.changeTheme(theme: newTheme);
                           instance<AppPreferences>()
                               .setTheme(themeData: newTheme);
                         } else if (theme.brightness == Brightness.dark &&
                             index == 0) {
                           ThemeData newTheme =
-                          (theme.brightness == Brightness.light &&
-                              index == 1)
-                              ? darkTheme()
-                              : lightTheme();
+                              (theme.brightness == Brightness.light &&
+                                      index == 1)
+                                  ? darkTheme()
+                                  : lightTheme();
                           switcher.changeTheme(theme: newTheme);
                           instance<AppPreferences>()
                               .setTheme(themeData: newTheme);
@@ -206,20 +186,21 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
               Expanded(
                 child: SizedBox(
                   height: AppSizeH.s50,
-                  child: Text(
-                    AppStrings().moreTitle,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .titleLarge
-                        ?.copyWith(
-                        fontSize: context.locale == ARABIC_LOCAL
-                            ? AppSizeSp.s20
-                            : AppSizeSp.s16),
+                  child: Center(
+                    child: Text(
+                      AppStrings().moreTitle,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontSize: context.locale == ARABIC_LOCAL
+                              ? AppSizeSp.s20
+                              : AppSizeSp.s16),
+                    ),
                   ),
                 ),
+              ),
+              SizedBox(
+                width: AppSizeW.s50,
               ),
               Container(
                 padding: EdgeInsets.symmetric(
@@ -231,10 +212,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
                   children: [
                     Text(
                       AppStrings().support,
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .titleSmall,
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                     SizedBox(
                       width: AppSizeW.s2,
@@ -284,13 +262,13 @@ class MoreWidgetButton extends StatelessWidget {
     return InkWell(
       onTap: isButton
           ? () {
-        onPressed!();
-      }
+              onPressed!();
+            }
           : null,
       child: Container(
         height: AppSizeH.s56,
         padding:
-        EdgeInsetsDirectional.only(start: AppSizeW.s19, end: AppSizeW.s7),
+            EdgeInsetsDirectional.only(start: AppSizeW.s19, end: AppSizeW.s7),
         margin: EdgeInsets.symmetric(
             horizontal: AppSizeH.s20, vertical: AppSizeW.s6),
         decoration: BoxDecoration(
@@ -306,27 +284,21 @@ class MoreWidgetButton extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: Theme
-                  .of(context)
-                  .primaryColor,
+              color: Theme.of(context).primaryColor,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: AppSizeH.s6),
               child: Text(title,
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontSize: AppSizeSp.s16, fontWeight: FontWeight.w400)),
             ),
             const Spacer(),
             isButton
                 ? Icon(
-              Icons.arrow_forward_ios,
-              color: ColorManager.grey,
-              size: AppSizeSp.s18,
-            )
+                    Icons.arrow_forward_ios,
+                    color: ColorManager.grey,
+                    size: AppSizeSp.s18,
+                  )
                 : widget ?? const SizedBox()
           ],
         ),

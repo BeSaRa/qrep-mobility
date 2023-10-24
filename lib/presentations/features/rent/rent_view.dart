@@ -3,7 +3,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/presentations/features/rent/blocs/cubits/cubit/change_status_cubit.dart';
-import 'package:ebla/presentations/features/rent/blocs/get_location_name_cubit.dart';
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/summery_bloc/rent_summery_bloc.dart';
@@ -11,6 +10,7 @@ import 'package:ebla/presentations/features/rent/widgets/selected_year_widget.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+
 import '../../../app/depndency_injection.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
@@ -93,7 +93,7 @@ class _RentViewState extends State<RentView> {
                 success: (RentDefault response) => Column(
                   children: [
                     Container(
-                      height: AppSizeH.s40,
+                      height: AppSizeH.s50,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage(ImageAssets.appbarBg),
@@ -421,9 +421,12 @@ class _RentViewState extends State<RentView> {
                                   }
                                   if (state.rentSummery !=
                                       const RentListSummary()) {
-                                    if(state.rentSummery.transactionList.isEmpty){
-                                      return Text(AppStrings().noRentContracts,);
-                                    }else {
+                                    if (state
+                                        .rentSummery.transactionList.isEmpty) {
+                                      return Text(
+                                        AppStrings().noRentContracts,
+                                      );
+                                    } else {
                                       return Column(
                                         children: [
                                           ListView.builder(
@@ -439,63 +442,63 @@ class _RentViewState extends State<RentView> {
                                               physics:
                                                   const NeverScrollableScrollPhysics(),
                                               itemBuilder: (context, index) {
-                                                return
-                                                  MainDataContainer(
-                                                    title: AppStrings().rentValue,
-                                                    totalPrice: "${state.rentSummery.transactionList[index].rentPaymentMeterMT?.toStringAsFixed(3)} ${AppStrings().currency}",
-
-                                                    value: state
-                                                        .rentSummery
-                                                        .transactionList[
-                                                    index]
-                                                        .area
-                                                        ?.toStringAsFixed(
-                                                        0) ??
-                                                        '0',
-                                                    valueDescription: AppStrings().rentArea,
-                                                    titleInfo: "${AppStrings().roomsCount}:",
-                                                    valueInfo: state
-                                                        .rentSummery
-                                                        .transactionList[
-                                                    index]
-                                                        .bedRoomsCount
-                                                        ?.toStringAsFixed(
-                                                        0) ??
-                                                        '0',
-                                                    location:  context.locale ==
-                                                        ARABIC_LOCAL
-                                                        ? getObjectById(
-                                                        context
-                                                            .read<
-                                                            RentBloc>()
-                                                            .loockUpRent
-                                                            ?.municipalityList ??
-                                                            [],
-                                                        state
-                                                            .rentSummery
-                                                            .transactionList[
-                                                        index]
-                                                            .municipalityid ??
-                                                            0)
-                                                        ?.arName ??
-                                                        ''
-                                                        : getObjectById(
-                                                        context
-                                                            .read<
-                                                            RentBloc>()
-                                                            .loockUpRent
-                                                            ?.municipalityList ??
-                                                            [],
-                                                        state
-                                                            .rentSummery
-                                                            .transactionList[
-                                                        index]
-                                                            .municipalityid ??
-                                                            0)
-                                                        ?.enName ??
-                                                        '',
-                                                  );
-
+                                                return MainDataContainer(
+                                                  title: AppStrings().rentValue,
+                                                  totalPrice:
+                                                      "${state.rentSummery.transactionList[index].rentPaymentMeterMT?.toStringAsFixed(3)} ${AppStrings().currency}",
+                                                  value: state
+                                                          .rentSummery
+                                                          .transactionList[
+                                                              index]
+                                                          .area
+                                                          ?.toStringAsFixed(
+                                                              0) ??
+                                                      '0',
+                                                  valueDescription:
+                                                      AppStrings().rentArea,
+                                                  titleInfo:
+                                                      "${AppStrings().roomsCount}:",
+                                                  valueInfo: state
+                                                          .rentSummery
+                                                          .transactionList[
+                                                              index]
+                                                          .bedRoomsCount
+                                                          ?.toStringAsFixed(
+                                                              0) ??
+                                                      '0',
+                                                  location: context.locale ==
+                                                          ARABIC_LOCAL
+                                                      ? getObjectById(
+                                                                  context
+                                                                          .read<
+                                                                              RentBloc>()
+                                                                          .loockUpRent
+                                                                          ?.municipalityList ??
+                                                                      [],
+                                                                  state
+                                                                          .rentSummery
+                                                                          .transactionList[
+                                                                              index]
+                                                                          .municipalityid ??
+                                                                      0)
+                                                              ?.arName ??
+                                                          ''
+                                                      : getObjectById(
+                                                                  context
+                                                                          .read<
+                                                                              RentBloc>()
+                                                                          .loockUpRent
+                                                                          ?.municipalityList ??
+                                                                      [],
+                                                                  state
+                                                                          .rentSummery
+                                                                          .transactionList[
+                                                                              index]
+                                                                          .municipalityid ??
+                                                                      0)
+                                                              ?.enName ??
+                                                          '',
+                                                );
                                               }),
                                           SizedBox(height: AppSizeH.s6),
                                           Wrap(
@@ -697,5 +700,3 @@ class _RentViewState extends State<RentView> {
     );
   }
 }
-
-

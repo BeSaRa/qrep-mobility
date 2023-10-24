@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
-
 import 'package:ebla/domain/models/requests/sell_requests/request_sell_values.dart';
 import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
@@ -15,7 +14,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../utils/global_functions.dart';
-import '../rent/rent_view.dart';
 
 class SalesView extends StatefulWidget {
   const SalesView({super.key});
@@ -34,22 +32,30 @@ class _SalesViewState extends State<SalesView> {
     sellGridKPIsBloc = instance<SellGridKPIsBloc>()
       ..add(SellGridKPIsEvent.getData(
           request: RequestSellValues(
-        municipalityId: 1,
-        propertyTypeList: [-1],
-        purposeList: [-1],
-        issueDateQuarterList: [1, 2, 3, 4],
-        issueDateYear: 2023,
-        issueDateStartMonth: 1,
-        issueDateEndMonth: DateTime.now().month,
-        zoneId: -1,
-        limit: 5,
-        periodId: 1,
-        offset: 0,
-      )));
+            municipalityId: 1,
+            propertyTypeList: [-1],
+            purposeList: [-1],
+            issueDateQuarterList: [1, 2, 3, 4],
+            issueDateYear: 2023,
+            issueDateStartMonth: 1,
+            issueDateEndMonth: DateTime
+                .now()
+                .month,
+            zoneId: -1,
+            limit: 5,
+            periodId: 1,
+            offset: 0,
+          )));
     sellDefaultBloc = instance<SellDefaultBloc>()
       ..add(SellDefaultEvent.started(
-          request: context.read<SellBloc>().requestSellDefault));
+          request: context
+              .read<SellBloc>()
+              .requestSellDefault));
     sellTransactionBloc = instance<SellTransactionBloc>();
+    sellTransactionBloc.add(SellTransactionEvent.started(
+        request: context
+            .read<SellBloc>()
+            .requestSellDefault));
     super.initState();
   }
 
@@ -65,166 +71,211 @@ class _SalesViewState extends State<SalesView> {
             );
           },
           loadedSellLookup: (value) {
-            return BlocBuilder<SellDefaultBloc, SellDefaultState>(
+            return BlocConsumer<SellDefaultBloc, SellDefaultState>(
+                listener: (context, state) =>
+                    state.when(
+                        initial: () {},
+                        loading: () {},
+                        done: (done) =>
+                            sellTransactionBloc.add(
+                                SellTransactionEvent.started(
+                                    request:
+                                    context
+                                        .read<SellBloc>()
+                                        .requestSellDefault)),
+                        error: (String message) {}),
                 bloc: sellDefaultBloc,
-                builder: (context, state) => state.when(
-                    initial: () => Container(),
-                    loading: () => const AnimatedPulesLogo(),
-                    done: (done) => Scaffold(
-                          body: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: AppSizeH.s40,
-                                  decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(ImageAssets.appbarBg),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: AppSizeW.s31),
-                                  child: StaggeredGridView(
-                                    // for development only: UniqueKey forces the rebuild of the widget on hot reload
-                                    key: UniqueKey(),
-                                    itemsCount: 4,
-                                    rightSectionTopPadding: AppSizeH.s17,
-                                    mainAxisSpacing: AppSizeH.s22,
-                                    crossAxisSpacing: AppSizeW.s23,
-                                    gridItemChildBuilder: (context, index) {
-                                      return BlocProvider.value(
-                                        value: sellGridKPIsBloc,
-                                        child: SellGridItemWidget(
-                                          response: RentDefault(
-                                              kpi1Val: 100,
-                                              kpi4Val: 400,
-                                              kpi7Val: 700,
-                                              kpi13Val: 1300),
-                                          kpi: SellGridKPIs.values[index],
-                                          index: index,
+                builder: (context, state) =>
+                    state.when(
+                        initial: () => Container(),
+                        loading: () => const AnimatedPulesLogo(),
+                        done: (done) =>
+                            Scaffold(
+                              body: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: AppSizeH.s50,
+                                      decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              ImageAssets.appbarBg),
+                                          fit: BoxFit.cover,
                                         ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                Center(
-                                  child: Text(
-                                    AppStrings().rentContractList,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
-                                  ),
-                                ),
-                                const GreyLinerContainer(),
-                                BlocBuilder<SellTransactionBloc,
-                                        SellTransactionState>(
-                                    bloc: sellTransactionBloc,
-                                    builder: (context, state) => state.when(
-                                        initial: () => Container(),
-                                        loading: () => Center(
-                                              child: SizedBox(
-                                                  width: AppSizeW.s50,
-                                                  height: AppSizeW.s50,
-                                                  child:
-                                                      const CircularProgressIndicator()),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: AppSizeW.s31),
+                                      child: StaggeredGridView(
+                                        // for development only: UniqueKey forces the rebuild of the widget on hot reload
+                                        key: UniqueKey(),
+                                        itemsCount: 4,
+                                        rightSectionTopPadding: AppSizeH.s17,
+                                        mainAxisSpacing: AppSizeH.s22,
+                                        crossAxisSpacing: AppSizeW.s23,
+                                        gridItemChildBuilder: (context, index) {
+                                          return BlocProvider.value(
+                                            value: sellGridKPIsBloc,
+                                            child: SellGridItemWidget(
+                                              response: RentDefault(
+                                                  kpi1Val: 100,
+                                                  kpi4Val: 400,
+                                                  kpi7Val: 700,
+                                                  kpi13Val: 1300),
+                                              kpi: SellGridKPIs.values[index],
+                                              index: index,
                                             ),
-                                        success: (success) => ListView.builder(
-                                            itemCount:
-                                                success.transactionList.length >
-                                                        3
-                                                    ? 3
-                                                    : success
-                                                        .transactionList.length,
-                                            shrinkWrap: true,
-                                            physics:
-                                                const NeverScrollableScrollPhysics(),
-                                            itemBuilder: (context, index) {
-                                              //todo
-                                              return     MainDataContainer(
-                                                title: AppStrings().sellPrice,
-                                                totalPrice: "${success.transactionList[index].priceMT?.toStringAsFixed(3)} ${AppStrings().currency}",
-
-                                                value: success
-                                                    .transactionList[index].unitNo?.toStringAsFixed(0) ?? '0',
-                                                valueDescription: AppStrings().rentArea,
-                                                titleInfo: "${AppStrings().theUnitPrice}:",
-                                                valueInfo: success
-                                                    .transactionList[
-                                                index]
-                                                    .realEstateSQT
-                                                    ?.toStringAsFixed(
-                                                    0) ??
-                                                    '0',
-                                                location:  context.locale ==
-                                                    ARABIC_LOCAL
-                                                    ? getObjectById(
-                                                    context
-                                                        .read<
-                                                        SellBloc>()
-                                                        .loockUpSell
-                                                        ?.municipalityList ??
-                                                        [],
-                                                  success
-                                                        .transactionList[
-                                                    index]
-                                                        .municipalityId ??
-                                                        0)
-                                                    ?.arName ??
-                                                    ''
-                                                    : getObjectById(
-                                                    context
-                                                        .read<
-                                                        SellBloc>()
-                                                        .loockUpSell
-                                                        ?.municipalityList ??
-                                                        [],
-                                                    success
-                                                        .transactionList[
-                                                    index]
-                                                        .municipalityId ??
-                                                        0)
-                                                    ?.enName ??
-                                                    '',
-                                              );
-                                            }),
-                                        error: (String message) => SizedBox(
-                                            height: AppSizeH.s200,
-                                            width: AppSizeH.s200,
-                                            child: Column(
-                                              children: [
-                                                SizedBox(
-                                                    height: AppSizeH.s130,
-                                                    width: AppSizeH.s130,
-                                                    child: Lottie.asset(
-                                                        ImageAssets
-                                                            .animationError)),
-                                                IconButton(
-                                                    onPressed: () {
-                                                      sellTransactionBloc.add(
-                                                          SellTransactionEvent.started(
-                                                              request: context
-                                                                  .read<
-                                                                      SellBloc>()
-                                                                  .requestSellDefault));
-                                                    },
-                                                    icon: const Icon(
-                                                        Icons.refresh))
-                                              ],
-                                            ))))
-                              ],
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        AppStrings().rentContractList,
+                                        style:
+                                        Theme
+                                            .of(context)
+                                            .textTheme
+                                            .titleLarge,
+                                      ),
+                                    ),
+                                    const GreyLinerContainer(),
+                                    BlocBuilder<SellTransactionBloc,
+                                        SellTransactionState>(
+                                        bloc: sellTransactionBloc,
+                                        builder: (context, state) =>
+                                            state.when(
+                                                initial: () => Container(),
+                                                loading: () =>
+                                                    Center(
+                                                      child: SizedBox(
+                                                          width: AppSizeW.s50,
+                                                          height: AppSizeW.s50,
+                                                          child:
+                                                          const CircularProgressIndicator()),
+                                                    ),
+                                                success: (success) =>
+                                                    ListView.builder(
+                                                        itemCount:
+                                                        success.transactionList
+                                                            .length >
+                                                            3
+                                                            ? 3
+                                                            : success
+                                                            .transactionList
+                                                            .length,
+                                                        shrinkWrap: true,
+                                                        physics:
+                                                        const NeverScrollableScrollPhysics(),
+                                                        itemBuilder: (context,
+                                                            index) {
+                                                          return MainDataContainer(
+                                                            title: AppStrings()
+                                                                .sellPrice,
+                                                            totalPrice:
+                                                            "${success
+                                                                .transactionList[index]
+                                                                .priceMT
+                                                                ?.toStringAsFixed(
+                                                                3)} ${AppStrings()
+                                                                .currency}",
+                                                            value: success
+                                                                .transactionList[index]
+                                                                .unitNo
+                                                                ?.toStringAsFixed(
+                                                                0) ??
+                                                                '0',
+                                                            valueDescription:
+                                                            AppStrings()
+                                                                .rentArea,
+                                                            titleInfo:
+                                                            "${AppStrings()
+                                                                .theUnitPrice}:",
+                                                            valueInfo: success
+                                                                .transactionList[index]
+                                                                .realEstateSQT
+                                                                ?.toStringAsFixed(
+                                                                0) ??
+                                                                '0',
+                                                            location: context
+                                                                .locale ==
+                                                                ARABIC_LOCAL
+                                                                ? getObjectByLookupKey(
+                                                                context
+                                                                    .read<
+                                                                    SellBloc>()
+                                                                    .loockUpSell
+                                                                    ?.municipalityList ??
+                                                                    [],
+                                                                success
+                                                                    .transactionList[
+                                                                index]
+                                                                    .municipalityId ??
+                                                                    0)
+                                                                ?.arName ??
+                                                                ''
+                                                                : getObjectByLookupKey(
+                                                                context
+                                                                    .read<
+                                                                    SellBloc>()
+                                                                    .loockUpSell
+                                                                    ?.municipalityList ??
+                                                                    [],
+                                                                success
+                                                                    .transactionList[
+                                                                index]
+                                                                    .municipalityId ??
+                                                                    0)
+                                                                ?.enName ??
+                                                                '',
+                                                          );
+                                                        }),
+                                                error: (String message) =>
+                                                    SizedBox(
+                                                        height: AppSizeH.s200,
+                                                        width: AppSizeH.s200,
+                                                        child: Column(
+                                                          children: [
+                                                            SizedBox(
+                                                                height: AppSizeH
+                                                                    .s130,
+                                                                width: AppSizeH
+                                                                    .s130,
+                                                                child: Lottie
+                                                                    .asset(
+                                                                    ImageAssets
+                                                                        .animationError)),
+                                                            IconButton(
+                                                                onPressed: () {
+                                                                  sellTransactionBloc
+                                                                      .add(
+                                                                      SellTransactionEvent
+                                                                          .started(
+                                                                          request: context
+                                                                              .read<
+                                                                              SellBloc>()
+                                                                              .requestSellDefault));
+                                                                },
+                                                                icon: const Icon(
+                                                                    Icons
+                                                                        .refresh))
+                                                          ],
+                                                        ))))
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                    error: (String message) => ErrorGlobalWidget(
-                          message: message,
-                          onPressed: () {
-                            sellDefaultBloc.add(SellDefaultEvent.started(
-                                request: context
-                                    .read<SellBloc>()
-                                    .requestSellDefault));
-                          },
-                        )));
+                        error: (String message) =>
+                            ErrorGlobalWidget(
+                              message: message,
+                              onPressed: () {
+                                sellDefaultBloc.add(SellDefaultEvent.started(
+                                    request: context
+                                        .read<SellBloc>()
+                                        .requestSellDefault));
+                              },
+                            )));
           },
           errorSellLookUp: (value) {
             return Center(

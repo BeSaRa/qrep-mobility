@@ -14,12 +14,14 @@ ThemeData lightTheme() {
     colorScheme: ColorScheme.light(
       primary: ColorManager.primary,
       brightness: Brightness.light,
+      surfaceVariant: Colors.transparent,
     ),
     brightness: Brightness.light,
     useMaterial3: true,
     dialogTheme: const DialogTheme(
       backgroundColor: Colors.transparent,
     ),
+    dividerColor: Colors.transparent,
     inputDecorationTheme: InputDecorationTheme(
       prefixIconColor: ColorManager.primary,
       enabledBorder: UnderlineInputBorder(
@@ -152,7 +154,9 @@ ThemeData darkTheme() {
       colorScheme: ColorScheme.dark(
         primary: ColorManager.primary,
         brightness: Brightness.dark,
+        surfaceVariant: Colors.transparent,
       ),
+      dividerColor: Colors.transparent,
       brightness: Brightness.dark,
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
