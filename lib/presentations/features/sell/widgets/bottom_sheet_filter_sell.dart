@@ -323,8 +323,13 @@ class _BottomSheetFilterSellWidgetState
                 onTap: () {
                   // setState(() {
                   valuesFiltersCubit.changeRangeRealEstateValueReset();
-                  valuesFiltersCubit.bedRoom = const RentLookupModel(
-                      arName: 'الكل', id: -1, enName: 'ALL');
+                  // valuesFiltersCubit.bedRoom = const RentLookupModel(
+                  //     arName: 'الكل', id: -1, enName: 'ALL');
+                  valuesFiltersCubit.bedRoom = getObjectById(
+                        context.read<SellBloc>().loockUpSell?.bedRooms ?? [],
+                        -1,
+                      ) ??
+                      const RentLookupModel();
                   valuesFiltersCubit.municapility = getObjectByLookupKey(
                         context
                                 .read<SellBloc>()
