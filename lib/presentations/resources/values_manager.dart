@@ -52,6 +52,7 @@ class AppSizeH {
   static double s34 = 34.0.h;
   static double s35 = 35.0.h;
   static double s36 = 36.0.h;
+  static double s37 = 37.0.h;
   static double s37_5 = 37.5.h;
   static double s38 = 38.0.h;
   static double s40 = 40.0.h;

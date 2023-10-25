@@ -55,6 +55,7 @@ class RentBloc extends Bloc<RentEvent, RentState> {
     issueDateStartMonth: 1,
     issueDateEndMonth: DateTime.now().month,
     zoneId: -1,
+    nationalityCode: -1,
     limit: 5,
   );
   RequestMeanValue requestMeanValue = RequestMeanValue(
@@ -67,6 +68,7 @@ class RentBloc extends Bloc<RentEvent, RentState> {
     issueDateStartMonth: 1,
     issueDateEndMonth: DateTime.now().month,
     zoneId: -1,
+    nationalityCode: -1,
     limit: 5,
     periodId: 1,
     offset: 0,

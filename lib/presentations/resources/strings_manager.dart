@@ -85,7 +85,9 @@ class AppStrings {
   String realStateValueFromTo =
       'real_state_value_from_to'.tr(); //sell قيمه العقار من - إلى
   String areaFromTo = 'area_from_to'.tr(); //'المساحة من - إلى'
-  String search = 'search'.tr(); // 'بحث'
+  String search = 'search'.tr();
+  String furnitureStatus = 'furniture_status'.tr(); // 'حالة الاثاث'
+  String street = 'street'.tr(); // 'الشارع'
 
   //---------------- sell ----------
   // grid
