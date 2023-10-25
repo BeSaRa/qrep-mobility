@@ -7,6 +7,7 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import '../../../../domain/models/rent_models/rent_models.dart';
 import '../../../../utils/global_functions.dart';
 import '../../../resources/resources.dart';
+import '../../../widgets/text_field_filter_widget.dart';
 import '../../../widgets/widgets.dart';
 import '../../rent/blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
 import '../../rent/widgets/choose_unit_filters_widget.dart';
@@ -22,6 +23,7 @@ class BottomSheetFilterSellWidget extends StatefulWidget {
 
 class _BottomSheetFilterSellWidgetState
     extends State<BottomSheetFilterSellWidget> {
+  final streetController = TextEditingController();
   late ValuesFiltersCubit valuesFiltersCubit;
   List<int>? getissueDateQuarterList(int id) {
     switch (id) {
@@ -297,12 +299,19 @@ class _BottomSheetFilterSellWidgetState
           context.read<SellBloc>().requestSell.areaFrom!.toDouble(),
           context.read<SellBloc>().requestSell.areaTo!.toDouble()));
     }
+
+    //Street
+    context.read<SellBloc>().requestSell.streetNo != null
+        ? streetController.text =
+            context.read<SellBloc>().requestSell.streetNo.toString()
+        : null;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -356,13 +365,16 @@ class _BottomSheetFilterSellWidgetState
                         -1,
                       ) ??
                       const RentLookupModel());
-                  valuesFiltersCubit.unit = 2;
+
                   valuesFiltersCubit.changeUnit(2);
+                  // valuesFiltersCubit.unit = 2;
                   // });
+                  streetController.clear();
                   context.read<SellBloc>().requestSell = context
                       .read<SellBloc>()
                       .requestSell
                       .copyWith(
+                          streetNo: null,
                           areaFrom: valuesFiltersCubit.areaFrom,
                           areaTo: valuesFiltersCubit.areaTo,
                           areaCode: valuesFiltersCubit.zone.lookupKey,
@@ -627,7 +639,22 @@ class _BottomSheetFilterSellWidgetState
           ),
           SizedBox(height: AppSizeH.s12),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppStrings().street,
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
+                    TextFilterWidget(controller: streetController),
+                  ],
+                ),
+              ),
+              SizedBox(width: AppSizeW.s8),
               BlocBuilder(
                 bloc: valuesFiltersCubit,
                 builder: (context, states) {
@@ -640,7 +667,6 @@ class _BottomSheetFilterSellWidgetState
                   );
                 },
               ),
-              const Expanded(child: SizedBox()),
             ],
           ),
           SizedBox(height: AppSizeH.s12),
@@ -764,51 +790,49 @@ class _BottomSheetFilterSellWidgetState
                           .read<SellBloc>()
                           .requestSell
                           .copyWith(
-                            areaFrom: valuesFiltersCubit.rangeValuesArea?.start,
-                            areaTo: valuesFiltersCubit.rangeValuesArea?.end,
-                            realEstateValueFrom:
-                                valuesFiltersCubit.rangerealEstateValue?.start,
-                            realEstateValueTo:
-                                valuesFiltersCubit.rangerealEstateValue?.end,
-                            // bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
-                            //     ? 0
-                            //     : valuesFiltersCubit.bedRoom.id,
-                            municipalityId:
-                                valuesFiltersCubit.municapility.lookupKey,
-                            // zoneId: valuesFiltersCubit.zone.lookupKey,
-                            areaCode: valuesFiltersCubit.zone.lookupKey,
-                            unit: valuesFiltersCubit.unit,
-                            issueDateYear: valuesFiltersCubit.year.id,
-                            issueDateQuarterList: getissueDateQuarterList(
-                                valuesFiltersCubit.periodTime.id),
-                            issueDateStartMonth:
-                                valuesFiltersCubit.periodTime.id == 4
-                                    ? valuesFiltersCubit.month.value[0] - 1
-                                    : 1,
-                            issueDateEndMonth:
-                                valuesFiltersCubit.periodTime.id == 4
-                                    ? valuesFiltersCubit.month.value[0]
-                                    : valuesFiltersCubit.periodTime.id == 1
-                                        ? DateTime.now().month
-                                        : 12,
-                            periodId: valuesFiltersCubit.periodTime.id,
-                            issueDateFrom: valuesFiltersCubit.periodTime.id == 5
-                                ? valuesFiltersCubit.pickerDateRange?.startDate
-                                    ?.toIso8601String()
-                                : null,
-                            issueDateTo: valuesFiltersCubit.periodTime.id == 5
-                                ? valuesFiltersCubit.pickerDateRange?.endDate
-                                    ?.toIso8601String()
-                                : null,
-                            purposeList: valuesFiltersCubit.rentPurposeList
-                                .map((e) => e.lookupKey)
-                                .toList(),
-                            propertyTypeList: valuesFiltersCubit
-                                .propertyTypeList
-                                .map((e) => e.lookupKey)
-                                .toList(),
-                            offset: 0,
-                          );
+                              areaFrom:
+                                  valuesFiltersCubit.rangeValuesArea?.start,
+                              areaTo: valuesFiltersCubit.rangeValuesArea?.end,
+                              realEstateValueFrom: valuesFiltersCubit
+                                  .rangerealEstateValue?.start,
+                              realEstateValueTo:
+                                  valuesFiltersCubit.rangerealEstateValue?.end,
+                              // bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
+                              //     ? 0
+                              //     : valuesFiltersCubit.bedRoom.id,
+                              municipalityId:
+                                  valuesFiltersCubit.municapility.lookupKey,
+                              // zoneId: valuesFiltersCubit.zone.lookupKey,
+                              areaCode: valuesFiltersCubit.zone.lookupKey,
+                              unit: valuesFiltersCubit.unit,
+                              issueDateYear: valuesFiltersCubit.year.id,
+                              issueDateQuarterList: getissueDateQuarterList(
+                                  valuesFiltersCubit.periodTime.id),
+                              issueDateStartMonth:
+                                  valuesFiltersCubit.periodTime.id == 4
+                                      ? valuesFiltersCubit.month.value[0] - 1
+                                      : 1,
+                              issueDateEndMonth:
+                                  valuesFiltersCubit.periodTime.id == 4
+                                      ? valuesFiltersCubit.month.value[0]
+                                      : valuesFiltersCubit.periodTime.id == 1
+                                          ? DateTime.now().month
+                                          : 12,
+                              periodId: valuesFiltersCubit.periodTime.id,
+                              issueDateFrom: valuesFiltersCubit.periodTime.id == 5
+                                  ? valuesFiltersCubit.pickerDateRange?.startDate
+                                      ?.toIso8601String()
+                                  : null,
+                              issueDateTo: valuesFiltersCubit.periodTime.id == 5
+                                  ? valuesFiltersCubit.pickerDateRange?.endDate
+                                      ?.toIso8601String()
+                                  : null,
+                              purposeList: valuesFiltersCubit.rentPurposeList
+                                  .map((e) => e.lookupKey)
+                                  .toList(),
+                              propertyTypeList: valuesFiltersCubit.propertyTypeList.map((e) => e.lookupKey).toList(),
+                              offset: 0,
+                              streetNo: streetController.text.isEmpty ? null : int.parse(streetController.text));
                       Navigator.of(context).pop(true);
 
                       // print(

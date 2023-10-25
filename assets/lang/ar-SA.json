@@ -42,6 +42,8 @@
   "property_type": "نوع العقار",
   "property_usage": "استخدام العقار",
   "number_of_rooms": "عدد الغرف",
+  "furniture_status":"حالة الآثاث",
+  "street":"الشارع",
   "duration": "المدة الزمنية",
   "duration_details": "تفاصيل المدة الزمنية",
   "rent_value_from_to": "قيمه العقار من - إلى",

@@ -62,8 +62,12 @@ Future<void> initHomeModule() async {
   }
 
   //Bloc's
-  instance.registerFactory(() => AboutBloc(aboutUsecase: instance()));
-  instance.registerFactory(() => NewsBloc(newsUsecase: instance()));
+  if (!GetIt.I.isRegistered<AboutBloc>()) {
+    instance.registerFactory(() => AboutBloc(aboutUsecase: instance()));
+  }
+  if (!GetIt.I.isRegistered<NewsBloc>()) {
+    instance.registerFactory(() => NewsBloc(newsUsecase: instance()));
+  }
 }
 
 Future<void> initSellModule() async {
@@ -164,22 +168,27 @@ Future<void> initRentModule() async {
         () => TotalRentedUnitsUseCase(instance()));
   }
 //Blocs
-  instance.registerFactory(() => RentBloc(getRentLookupUseCase: instance()));
-  instance.registerFactory(
-    () => MeanValueBloc(
-      meanValueUsecase: instance(),
-    ),
-  );
-  instance.registerFactory(() => CertificateContractBloc(
-      certificateCountUsecase: instance(), contractCountUsecase: instance()));
-  instance.registerFactory(
-    () => RentGridKPIsBloc(
-      totalRentedUnitsUseCase: instance(),
-      totalContractsUseCase: instance(),
-      meanValueUsecase: instance(),
-      contractValueUseCase: instance(),
-    ),
-  );
-  instance.registerFactory(() => RentSummeryBloc(instance()));
-  instance.registerFactory(() => RentDefaultBloc(instance()));
+  if (!GetIt.I.isRegistered<RentBloc>()) {
+    instance.registerFactory(() => RentBloc(getRentLookupUseCase: instance()));
+  }
+  if (!GetIt.I.isRegistered<CertificateContractBloc>()) {
+    instance.registerFactory(() => CertificateContractBloc(
+        certificateCountUsecase: instance(), contractCountUsecase: instance()));
+  }
+  if (!GetIt.I.isRegistered<MeanValueBloc>()) {
+    instance.registerFactory(() => MeanValueBloc(meanValueUsecase: instance()));
+  }
+  if (!GetIt.I.isRegistered<RentGridKPIsBloc>()) {
+    instance.registerFactory(() => RentGridKPIsBloc(
+        totalRentedUnitsUseCase: instance(),
+        totalContractsUseCase: instance(),
+        meanValueUsecase: instance(),
+        contractValueUseCase: instance()));
+  }
+  if (!GetIt.I.isRegistered<RentSummeryBloc>()) {
+    instance.registerFactory(() => RentSummeryBloc(instance()));
+  }
+  if (!GetIt.I.isRegistered<RentDefaultBloc>()) {
+    instance.registerFactory(() => RentDefaultBloc(instance()));
+  }
 }

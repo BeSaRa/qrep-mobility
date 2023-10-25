@@ -84,13 +84,10 @@ class AppRouter {
                 name: RoutesNames.home,
                 // parentNavigatorKey: GlobalKey(),
                 pageBuilder: (context, state) {
+                  initHomeModule();
                   return CustomTransitionPage(
                     transitionDuration: const Duration(milliseconds: 1140),
-                    child: BlocProvider(
-                      create: (context) => instance<RentBloc>()
-                        ..add(const RentEvent.getRentLookupEvent()),
-                      child: const HomeView(),
-                    ),
+                    child: const HomeView(),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                       return SlideTransition(
@@ -114,11 +111,14 @@ class AppRouter {
               GoRoute(
                 path: RoutesPaths.rent,
                 name: RoutesNames.rent,
-                builder: (context, state) => BlocProvider(
-                  create: (context) => instance<RentBloc>()
-                    ..add(const RentEvent.getRentLookupEvent()),
-                  child: const RentView(),
-                ),
+                builder: (context, state) {
+                  initRentModule();
+                  return BlocProvider(
+                    create: (context) => instance<RentBloc>()
+                      ..add(const RentEvent.getRentLookupEvent()),
+                    child: const RentView(),
+                  );
+                },
               ),
             ]),
             StatefulShellBranch(routes: [

@@ -119,6 +119,22 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
   List<PeriodTimeDetails> months = [];
   PeriodTimeDetails month = const PeriodTimeDetails();
 
+  // -------------------------Nationality Filters------------------------------------------
+  RentLookupModel nationality = const RentLookupModel();
+
+  void changeNationality(RentLookupModel newnationality) {
+    nationality = newnationality;
+    emit(nationality);
+  }
+
+  // --------------------------Furniture status Filter----------------------------------
+  RentLookupModel furniture = const RentLookupModel();
+
+  void changeFurniture(RentLookupModel newfurniture) {
+    furniture = newfurniture;
+    emit(furniture);
+  }
+
   //--------------------------Unit---------------------------------------------
   int unit = 1;
 

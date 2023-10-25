@@ -39,6 +39,8 @@
   "reset": "Reset",
   "municipal": "Municipal",
   "zone": "Zone",
+  "furniture_status":"Furniture status",
+  "street":"Street",
   "property_type": "Property type",
   "property_usage": "Property usage",
   "number_of_rooms": "Number of rooms",

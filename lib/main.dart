@@ -19,21 +19,21 @@ Future<void> main() async {
     ],
   );
   EasyLocalization.logger.enableBuildModes = [];
-  await initRentModule();
   await initTranslationsModule();
   await initAppModule().then((value) async {
-    await initHomeModule();
-
     Bloc.observer = MyBlocObserver();
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     await Future.delayed(const Duration(milliseconds: 150));
-    runApp(EasyLocalization(
+    return runApp(
+      EasyLocalization(
         assetLoader: TranslationsAssetsLoader(
           loadRemoteAssets: false,
           updateInterval: const Duration(days: 3),
         ),
         supportedLocales: supportedLocales,
         path: ASSETS_PATH_LOCALISATION,
-        child: const MyApp()));
+        child: const MyApp(),
+      ),
+    );
   });
 }
