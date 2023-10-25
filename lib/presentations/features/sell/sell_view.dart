@@ -22,7 +22,7 @@ import '../rent/blocs/summery_bloc/rent_summery_bloc.dart';
 import '../rent/rent_view.dart';
 import '../../widgets/selected_municipality_widget.dart';
 import '../../widgets/selected_year_widget.dart';
-import '../rent/widgets/selected_period_widget.dart';
+import '../../widgets/selected_period_widget.dart';
 import 'blocs/sell_bloc/sell_bloc.dart';
 import 'widgets/bottom_sheet_filter_sell.dart';
 
@@ -444,16 +444,10 @@ class _SalesViewState extends State<SalesView> {
                                             loading: (value) {
                                               return FlutterCustomPagination(
                                                 currentPage: context
-                                                            .read<SellBloc>()
-                                                            .requestSell
-                                                            .offset ==
-                                                        0
-                                                    ? 1
-                                                    : context
-                                                            .read<SellBloc>()
-                                                            .requestSell
-                                                            .offset ??
-                                                        0 + 1,
+                                                        .read<SellBloc>()
+                                                        .requestSell
+                                                        .offset ??
+                                                    0,
                                                 limitPerPage: 3,
                                                 totalDataCount:
                                                     sellTransactionBloc
@@ -504,16 +498,10 @@ class _SalesViewState extends State<SalesView> {
                                               }
                                               return FlutterCustomPagination(
                                                 currentPage: context
-                                                            .read<SellBloc>()
-                                                            .requestSell
-                                                            .offset ==
-                                                        0
-                                                    ? 1
-                                                    : context
-                                                            .read<SellBloc>()
-                                                            .requestSell
-                                                            .offset ??
-                                                        0 + 1,
+                                                        .read<SellBloc>()
+                                                        .requestSell
+                                                        .offset ??
+                                                    0,
                                                 limitPerPage: 3,
                                                 totalDataCount:
                                                     sellTransactionBloc

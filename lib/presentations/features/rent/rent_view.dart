@@ -20,7 +20,7 @@ import 'blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import 'blocs/default_bloc/rent_default_bloc.dart';
 import 'widgets/rent_grid_item_widget.dart';
 import '../../widgets/selected_municipality_widget.dart';
-import 'widgets/selected_period_widget.dart';
+import '../../widgets/selected_period_widget.dart';
 import 'widgets/statistics_rent_widget.dart';
 
 class RentView extends StatefulWidget {
@@ -502,16 +502,10 @@ class _RentViewState extends State<RentView> {
                                   if (state.isLoadingRentSummery) {
                                     return FlutterCustomPagination(
                                       currentPage: context
-                                                  .read<RentBloc>()
-                                                  .requestMeanValue
-                                                  .offset ==
-                                              0
-                                          ? 1
-                                          : context
-                                                  .read<RentBloc>()
-                                                  .requestMeanValue
-                                                  .offset ??
-                                              0 + 1,
+                                              .read<RentBloc>()
+                                              .requestMeanValue
+                                              .offset ??
+                                          0,
                                       limitPerPage: 3,
                                       totalDataCount:
                                           rentSummeryBloc.rentSummery?.count ??
@@ -523,9 +517,6 @@ class _RentViewState extends State<RentView> {
                                       backgroundColor: Theme.of(context)
                                           .colorScheme
                                           .background,
-                                      // textStyle: Theme.of(context)
-                                      //     .textTheme
-                                      //     .labelSmall,
                                       previousPageIcon:
                                           context.locale == ARABIC_LOCAL
                                               ? Icons.keyboard_arrow_right_sharp
@@ -549,21 +540,16 @@ class _RentViewState extends State<RentView> {
                                       const RentListSummary()) {
                                     return FlutterCustomPagination(
                                       currentPage: context
-                                                  .read<RentBloc>()
-                                                  .requestMeanValue
-                                                  .offset ==
-                                              0
-                                          ? 1
-                                          : context
-                                                  .read<RentBloc>()
-                                                  .requestMeanValue
-                                                  .offset ??
-                                              0 + 1,
+                                              .read<RentBloc>()
+                                              .requestMeanValue
+                                              .offset ??
+                                          0,
                                       limitPerPage: 3,
                                       totalDataCount:
                                           rentSummeryBloc.rentSummery?.count ??
                                               0,
                                       onPreviousPage: (previousPage) {
+                                        print('previousPage$previousPage');
                                         context
                                                 .read<RentBloc>()
                                                 .requestMeanValue =
@@ -578,13 +564,15 @@ class _RentViewState extends State<RentView> {
                                                     .requestMeanValue));
                                       },
                                       onBackToFirstPage: (firstPage) {
+                                        print('firstPage$firstPage');
+
                                         context
                                                 .read<RentBloc>()
                                                 .requestMeanValue =
                                             context
                                                 .read<RentBloc>()
                                                 .requestMeanValue
-                                                .copyWith(offset: firstPage);
+                                                .copyWith(offset: 0);
                                         rentSummeryBloc.add(
                                             RentSummeryEvent.getRentSummary(
                                                 request: context
@@ -592,13 +580,15 @@ class _RentViewState extends State<RentView> {
                                                     .requestMeanValue));
                                       },
                                       onNextPage: (nextPage) {
+                                        print('nextPage$nextPage');
+
                                         context
                                                 .read<RentBloc>()
                                                 .requestMeanValue =
                                             context
                                                 .read<RentBloc>()
                                                 .requestMeanValue
-                                                .copyWith(offset: nextPage);
+                                                .copyWith(offset: (nextPage));
                                         rentSummeryBloc.add(
                                             RentSummeryEvent.getRentSummary(
                                                 request: context
@@ -606,6 +596,8 @@ class _RentViewState extends State<RentView> {
                                                     .requestMeanValue));
                                       },
                                       onGoToLastPage: (lastPage) {
+                                        print('lastPage$lastPage');
+
                                         context
                                                 .read<RentBloc>()
                                                 .requestMeanValue =

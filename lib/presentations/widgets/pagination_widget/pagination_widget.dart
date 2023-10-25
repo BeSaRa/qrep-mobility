@@ -17,7 +17,7 @@ class FlutterCustomPagination extends StatelessWidget {
     this.nextPageIcon = Icons.keyboard_arrow_right,
     this.backToFirstPageIcon = Icons.first_page,
     this.goToLastPageIcon = Icons.last_page,
-  })  : assert(currentPage > 0, 'currentPage must be greater than 0'),
+  })  : assert(currentPage >= 0, 'currentPage must be greater than 0'),
         assert(limitPerPage > 0, 'limitPerPage must be greater than 0'),
         assert(totalDataCount >= 0,
             'totalDataCount must be greater than or equal to 0');
@@ -51,7 +51,7 @@ class FlutterCustomPagination extends StatelessWidget {
     assert(currentPage <= lastPage,
         'currentPage must be less than or equal to the last page number');
 
-    bool hasPrevPage = currentPage > 1;
+    bool hasPrevPage = currentPage > 0;
     bool hasNextPage = currentPage < lastPage;
 
     return Wrap(
@@ -65,8 +65,8 @@ class FlutterCustomPagination extends StatelessWidget {
           child: IconButton(
             onPressed: hasPrevPage
                 ? () => (onBackToFirstPage != null
-                    ? onBackToFirstPage!(1)
-                    : onPreviousPage(1))
+                    ? onBackToFirstPage!(0)
+                    : onPreviousPage(0))
                 : null,
             iconSize: iconSize,
             splashRadius: iconSize + 4,
@@ -97,15 +97,14 @@ class FlutterCustomPagination extends StatelessWidget {
         ),
         SizedBox(width: textStyle?.fontSize ?? 14),
         Text(
-          '${AppStrings().page} $currentPage ${AppStrings().of} $lastPage',
+          '${AppStrings().page} ${currentPage + 1}  ${AppStrings().of} ${lastPage + 1}',
           style: Theme.of(context).textTheme.bodySmall,
         ),
         SizedBox(width: textStyle?.fontSize ?? 14),
         Tooltip(
           message: AppStrings().nextPage,
           child: IconButton(
-            onPressed:
-                hasNextPage ? () => onPreviousPage(currentPage + 1) : null,
+            onPressed: hasNextPage ? () => onNextPage(currentPage + 1) : null,
             iconSize: iconSize,
             splashRadius: iconSize + 4,
             icon: Icon(
