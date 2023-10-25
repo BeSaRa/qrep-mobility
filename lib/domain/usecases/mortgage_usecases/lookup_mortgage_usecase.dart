@@ -13,6 +13,6 @@ class LookUpMortgageUseCase
 
   @override
   Future<Result<RentLookupResponse, FailureModel>> execute() async {
-    return await repository.getLockupSell();
+    return await repository.getLockupMortgage();
   }
 }

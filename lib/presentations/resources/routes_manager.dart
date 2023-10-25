@@ -137,13 +137,16 @@ class AppRouter {
             ]),
             StatefulShellBranch(routes: [
               GoRoute(
-                path: RoutesPaths.mortgage,
-                name: RoutesNames.mortgage,
-                builder: (context, state) => BlocProvider(
-                  create: (context) => instance<MortgageBloc>(),
-                  child: const MortgageView(),
-                ),
-              ),
+                  path: RoutesPaths.mortgage,
+                  name: RoutesNames.mortgage,
+                  builder: (context, state) {
+                    initMortgageModule();
+                    return BlocProvider(
+                      create: (context) => instance<MortgageBloc>()
+                        ..add(const MortgageEvent.started()),
+                      child: const MortgageView(),
+                    );
+                  }),
             ]),
             StatefulShellBranch(routes: [
               GoRoute(

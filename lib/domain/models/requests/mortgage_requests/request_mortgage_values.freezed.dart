@@ -21,14 +21,14 @@ RequestMortgageValues _$RequestMortgageValuesFromJson(
 
 /// @nodoc
 mixin _$RequestMortgageValues {
-  num get areaCode => throw _privateConstructorUsedError;
   num? get areaFrom => throw _privateConstructorUsedError;
   num? get areaTo => throw _privateConstructorUsedError;
+  int? get bedRoomsCount => throw _privateConstructorUsedError;
+  int? get furnitureStatus => throw _privateConstructorUsedError;
   int? get issueDateEndMonth => throw _privateConstructorUsedError;
   String? get issueDateFrom => throw _privateConstructorUsedError;
   List<int>? get issueDateQuarterList => throw _privateConstructorUsedError;
   int? get issueDateStartMonth => throw _privateConstructorUsedError;
-  int? get issueDateMonth => throw _privateConstructorUsedError;
   String? get issueDateTo => throw _privateConstructorUsedError;
   int? get issueDateYear => throw _privateConstructorUsedError;
   int? get limit => throw _privateConstructorUsedError;
@@ -36,8 +36,8 @@ mixin _$RequestMortgageValues {
   int? get offset => throw _privateConstructorUsedError;
   List<int>? get propertyTypeList => throw _privateConstructorUsedError;
   List<int>? get purposeList => throw _privateConstructorUsedError;
-  num? get realEstateValueFrom => throw _privateConstructorUsedError;
-  num? get realEstateValueTo => throw _privateConstructorUsedError;
+  num? get rentPaymentMonthlyPerUnitFrom => throw _privateConstructorUsedError;
+  num? get rentPaymentMonthlyPerUnitTo => throw _privateConstructorUsedError;
   int? get streetNo => throw _privateConstructorUsedError;
   int? get zoneId => throw _privateConstructorUsedError;
   int get unit => throw _privateConstructorUsedError;
@@ -56,14 +56,14 @@ abstract class $RequestMortgageValuesCopyWith<$Res> {
       _$RequestMortgageValuesCopyWithImpl<$Res, RequestMortgageValues>;
   @useResult
   $Res call(
-      {num areaCode,
-      num? areaFrom,
+      {num? areaFrom,
       num? areaTo,
+      int? bedRoomsCount,
+      int? furnitureStatus,
       int? issueDateEndMonth,
       String? issueDateFrom,
       List<int>? issueDateQuarterList,
       int? issueDateStartMonth,
-      int? issueDateMonth,
       String? issueDateTo,
       int? issueDateYear,
       int? limit,
@@ -71,8 +71,8 @@ abstract class $RequestMortgageValuesCopyWith<$Res> {
       int? offset,
       List<int>? propertyTypeList,
       List<int>? purposeList,
-      num? realEstateValueFrom,
-      num? realEstateValueTo,
+      num? rentPaymentMonthlyPerUnitFrom,
+      num? rentPaymentMonthlyPerUnitTo,
       int? streetNo,
       int? zoneId,
       int unit,
@@ -93,14 +93,14 @@ class _$RequestMortgageValuesCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? areaCode = null,
     Object? areaFrom = freezed,
     Object? areaTo = freezed,
+    Object? bedRoomsCount = freezed,
+    Object? furnitureStatus = freezed,
     Object? issueDateEndMonth = freezed,
     Object? issueDateFrom = freezed,
     Object? issueDateQuarterList = freezed,
     Object? issueDateStartMonth = freezed,
-    Object? issueDateMonth = freezed,
     Object? issueDateTo = freezed,
     Object? issueDateYear = freezed,
     Object? limit = freezed,
@@ -108,18 +108,14 @@ class _$RequestMortgageValuesCopyWithImpl<$Res,
     Object? offset = freezed,
     Object? propertyTypeList = freezed,
     Object? purposeList = freezed,
-    Object? realEstateValueFrom = freezed,
-    Object? realEstateValueTo = freezed,
+    Object? rentPaymentMonthlyPerUnitFrom = freezed,
+    Object? rentPaymentMonthlyPerUnitTo = freezed,
     Object? streetNo = freezed,
     Object? zoneId = freezed,
     Object? unit = null,
     Object? periodId = null,
   }) {
     return _then(_value.copyWith(
-      areaCode: null == areaCode
-          ? _value.areaCode
-          : areaCode // ignore: cast_nullable_to_non_nullable
-              as num,
       areaFrom: freezed == areaFrom
           ? _value.areaFrom
           : areaFrom // ignore: cast_nullable_to_non_nullable
@@ -128,6 +124,14 @@ class _$RequestMortgageValuesCopyWithImpl<$Res,
           ? _value.areaTo
           : areaTo // ignore: cast_nullable_to_non_nullable
               as num?,
+      bedRoomsCount: freezed == bedRoomsCount
+          ? _value.bedRoomsCount
+          : bedRoomsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      furnitureStatus: freezed == furnitureStatus
+          ? _value.furnitureStatus
+          : furnitureStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
       issueDateEndMonth: freezed == issueDateEndMonth
           ? _value.issueDateEndMonth
           : issueDateEndMonth // ignore: cast_nullable_to_non_nullable
@@ -143,10 +147,6 @@ class _$RequestMortgageValuesCopyWithImpl<$Res,
       issueDateStartMonth: freezed == issueDateStartMonth
           ? _value.issueDateStartMonth
           : issueDateStartMonth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      issueDateMonth: freezed == issueDateMonth
-          ? _value.issueDateMonth
-          : issueDateMonth // ignore: cast_nullable_to_non_nullable
               as int?,
       issueDateTo: freezed == issueDateTo
           ? _value.issueDateTo
@@ -176,13 +176,13 @@ class _$RequestMortgageValuesCopyWithImpl<$Res,
           ? _value.purposeList
           : purposeList // ignore: cast_nullable_to_non_nullable
               as List<int>?,
-      realEstateValueFrom: freezed == realEstateValueFrom
-          ? _value.realEstateValueFrom
-          : realEstateValueFrom // ignore: cast_nullable_to_non_nullable
+      rentPaymentMonthlyPerUnitFrom: freezed == rentPaymentMonthlyPerUnitFrom
+          ? _value.rentPaymentMonthlyPerUnitFrom
+          : rentPaymentMonthlyPerUnitFrom // ignore: cast_nullable_to_non_nullable
               as num?,
-      realEstateValueTo: freezed == realEstateValueTo
-          ? _value.realEstateValueTo
-          : realEstateValueTo // ignore: cast_nullable_to_non_nullable
+      rentPaymentMonthlyPerUnitTo: freezed == rentPaymentMonthlyPerUnitTo
+          ? _value.rentPaymentMonthlyPerUnitTo
+          : rentPaymentMonthlyPerUnitTo // ignore: cast_nullable_to_non_nullable
               as num?,
       streetNo: freezed == streetNo
           ? _value.streetNo
@@ -214,14 +214,14 @@ abstract class _$$RequestMortgageValuesImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {num areaCode,
-      num? areaFrom,
+      {num? areaFrom,
       num? areaTo,
+      int? bedRoomsCount,
+      int? furnitureStatus,
       int? issueDateEndMonth,
       String? issueDateFrom,
       List<int>? issueDateQuarterList,
       int? issueDateStartMonth,
-      int? issueDateMonth,
       String? issueDateTo,
       int? issueDateYear,
       int? limit,
@@ -229,8 +229,8 @@ abstract class _$$RequestMortgageValuesImplCopyWith<$Res>
       int? offset,
       List<int>? propertyTypeList,
       List<int>? purposeList,
-      num? realEstateValueFrom,
-      num? realEstateValueTo,
+      num? rentPaymentMonthlyPerUnitFrom,
+      num? rentPaymentMonthlyPerUnitTo,
       int? streetNo,
       int? zoneId,
       int unit,
@@ -249,14 +249,14 @@ class __$$RequestMortgageValuesImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? areaCode = null,
     Object? areaFrom = freezed,
     Object? areaTo = freezed,
+    Object? bedRoomsCount = freezed,
+    Object? furnitureStatus = freezed,
     Object? issueDateEndMonth = freezed,
     Object? issueDateFrom = freezed,
     Object? issueDateQuarterList = freezed,
     Object? issueDateStartMonth = freezed,
-    Object? issueDateMonth = freezed,
     Object? issueDateTo = freezed,
     Object? issueDateYear = freezed,
     Object? limit = freezed,
@@ -264,18 +264,14 @@ class __$$RequestMortgageValuesImplCopyWithImpl<$Res>
     Object? offset = freezed,
     Object? propertyTypeList = freezed,
     Object? purposeList = freezed,
-    Object? realEstateValueFrom = freezed,
-    Object? realEstateValueTo = freezed,
+    Object? rentPaymentMonthlyPerUnitFrom = freezed,
+    Object? rentPaymentMonthlyPerUnitTo = freezed,
     Object? streetNo = freezed,
     Object? zoneId = freezed,
     Object? unit = null,
     Object? periodId = null,
   }) {
     return _then(_$RequestMortgageValuesImpl(
-      areaCode: null == areaCode
-          ? _value.areaCode
-          : areaCode // ignore: cast_nullable_to_non_nullable
-              as num,
       areaFrom: freezed == areaFrom
           ? _value.areaFrom
           : areaFrom // ignore: cast_nullable_to_non_nullable
@@ -284,6 +280,14 @@ class __$$RequestMortgageValuesImplCopyWithImpl<$Res>
           ? _value.areaTo
           : areaTo // ignore: cast_nullable_to_non_nullable
               as num?,
+      bedRoomsCount: freezed == bedRoomsCount
+          ? _value.bedRoomsCount
+          : bedRoomsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      furnitureStatus: freezed == furnitureStatus
+          ? _value.furnitureStatus
+          : furnitureStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
       issueDateEndMonth: freezed == issueDateEndMonth
           ? _value.issueDateEndMonth
           : issueDateEndMonth // ignore: cast_nullable_to_non_nullable
@@ -299,10 +303,6 @@ class __$$RequestMortgageValuesImplCopyWithImpl<$Res>
       issueDateStartMonth: freezed == issueDateStartMonth
           ? _value.issueDateStartMonth
           : issueDateStartMonth // ignore: cast_nullable_to_non_nullable
-              as int?,
-      issueDateMonth: freezed == issueDateMonth
-          ? _value.issueDateMonth
-          : issueDateMonth // ignore: cast_nullable_to_non_nullable
               as int?,
       issueDateTo: freezed == issueDateTo
           ? _value.issueDateTo
@@ -332,13 +332,13 @@ class __$$RequestMortgageValuesImplCopyWithImpl<$Res>
           ? _value._purposeList
           : purposeList // ignore: cast_nullable_to_non_nullable
               as List<int>?,
-      realEstateValueFrom: freezed == realEstateValueFrom
-          ? _value.realEstateValueFrom
-          : realEstateValueFrom // ignore: cast_nullable_to_non_nullable
+      rentPaymentMonthlyPerUnitFrom: freezed == rentPaymentMonthlyPerUnitFrom
+          ? _value.rentPaymentMonthlyPerUnitFrom
+          : rentPaymentMonthlyPerUnitFrom // ignore: cast_nullable_to_non_nullable
               as num?,
-      realEstateValueTo: freezed == realEstateValueTo
-          ? _value.realEstateValueTo
-          : realEstateValueTo // ignore: cast_nullable_to_non_nullable
+      rentPaymentMonthlyPerUnitTo: freezed == rentPaymentMonthlyPerUnitTo
+          ? _value.rentPaymentMonthlyPerUnitTo
+          : rentPaymentMonthlyPerUnitTo // ignore: cast_nullable_to_non_nullable
               as num?,
       streetNo: freezed == streetNo
           ? _value.streetNo
@@ -364,14 +364,14 @@ class __$$RequestMortgageValuesImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
   _$RequestMortgageValuesImpl(
-      {this.areaCode = -1,
-      this.areaFrom,
+      {this.areaFrom,
       this.areaTo,
+      this.bedRoomsCount,
+      this.furnitureStatus,
       this.issueDateEndMonth,
       this.issueDateFrom,
       final List<int>? issueDateQuarterList,
       this.issueDateStartMonth,
-      this.issueDateMonth,
       this.issueDateTo,
       this.issueDateYear,
       this.limit,
@@ -379,11 +379,11 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
       this.offset,
       final List<int>? propertyTypeList,
       final List<int>? purposeList,
-      this.realEstateValueFrom,
-      this.realEstateValueTo,
+      this.rentPaymentMonthlyPerUnitFrom,
+      this.rentPaymentMonthlyPerUnitTo,
       this.streetNo,
       this.zoneId,
-      this.unit = 2,
+      this.unit = 1,
       this.periodId = 1})
       : _issueDateQuarterList = issueDateQuarterList,
         _propertyTypeList = propertyTypeList,
@@ -393,12 +393,13 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
       _$$RequestMortgageValuesImplFromJson(json);
 
   @override
-  @JsonKey()
-  final num areaCode;
-  @override
   final num? areaFrom;
   @override
   final num? areaTo;
+  @override
+  final int? bedRoomsCount;
+  @override
+  final int? furnitureStatus;
   @override
   final int? issueDateEndMonth;
   @override
@@ -416,8 +417,6 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
 
   @override
   final int? issueDateStartMonth;
-  @override
-  final int? issueDateMonth;
   @override
   final String? issueDateTo;
   @override
@@ -450,9 +449,9 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
   }
 
   @override
-  final num? realEstateValueFrom;
+  final num? rentPaymentMonthlyPerUnitFrom;
   @override
-  final num? realEstateValueTo;
+  final num? rentPaymentMonthlyPerUnitTo;
   @override
   final int? streetNo;
   @override
@@ -466,7 +465,7 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
 
   @override
   String toString() {
-    return 'RequestMortgageValues(areaCode: $areaCode, areaFrom: $areaFrom, areaTo: $areaTo, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateMonth: $issueDateMonth, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, propertyTypeList: $propertyTypeList, purposeList: $purposeList, realEstateValueFrom: $realEstateValueFrom, realEstateValueTo: $realEstateValueTo, streetNo: $streetNo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
+    return 'RequestMortgageValues(areaFrom: $areaFrom, areaTo: $areaTo, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, propertyTypeList: $propertyTypeList, purposeList: $purposeList, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, streetNo: $streetNo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
   }
 
   @override
@@ -474,11 +473,13 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RequestMortgageValuesImpl &&
-            (identical(other.areaCode, areaCode) ||
-                other.areaCode == areaCode) &&
             (identical(other.areaFrom, areaFrom) ||
                 other.areaFrom == areaFrom) &&
             (identical(other.areaTo, areaTo) || other.areaTo == areaTo) &&
+            (identical(other.bedRoomsCount, bedRoomsCount) ||
+                other.bedRoomsCount == bedRoomsCount) &&
+            (identical(other.furnitureStatus, furnitureStatus) ||
+                other.furnitureStatus == furnitureStatus) &&
             (identical(other.issueDateEndMonth, issueDateEndMonth) ||
                 other.issueDateEndMonth == issueDateEndMonth) &&
             (identical(other.issueDateFrom, issueDateFrom) ||
@@ -487,8 +488,6 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
                 .equals(other._issueDateQuarterList, _issueDateQuarterList) &&
             (identical(other.issueDateStartMonth, issueDateStartMonth) ||
                 other.issueDateStartMonth == issueDateStartMonth) &&
-            (identical(other.issueDateMonth, issueDateMonth) ||
-                other.issueDateMonth == issueDateMonth) &&
             (identical(other.issueDateTo, issueDateTo) ||
                 other.issueDateTo == issueDateTo) &&
             (identical(other.issueDateYear, issueDateYear) ||
@@ -501,10 +500,14 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
                 .equals(other._propertyTypeList, _propertyTypeList) &&
             const DeepCollectionEquality()
                 .equals(other._purposeList, _purposeList) &&
-            (identical(other.realEstateValueFrom, realEstateValueFrom) ||
-                other.realEstateValueFrom == realEstateValueFrom) &&
-            (identical(other.realEstateValueTo, realEstateValueTo) ||
-                other.realEstateValueTo == realEstateValueTo) &&
+            (identical(other.rentPaymentMonthlyPerUnitFrom,
+                    rentPaymentMonthlyPerUnitFrom) ||
+                other.rentPaymentMonthlyPerUnitFrom ==
+                    rentPaymentMonthlyPerUnitFrom) &&
+            (identical(other.rentPaymentMonthlyPerUnitTo,
+                    rentPaymentMonthlyPerUnitTo) ||
+                other.rentPaymentMonthlyPerUnitTo ==
+                    rentPaymentMonthlyPerUnitTo) &&
             (identical(other.streetNo, streetNo) ||
                 other.streetNo == streetNo) &&
             (identical(other.zoneId, zoneId) || other.zoneId == zoneId) &&
@@ -517,14 +520,14 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        areaCode,
         areaFrom,
         areaTo,
+        bedRoomsCount,
+        furnitureStatus,
         issueDateEndMonth,
         issueDateFrom,
         const DeepCollectionEquality().hash(_issueDateQuarterList),
         issueDateStartMonth,
-        issueDateMonth,
         issueDateTo,
         issueDateYear,
         limit,
@@ -532,8 +535,8 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
         offset,
         const DeepCollectionEquality().hash(_propertyTypeList),
         const DeepCollectionEquality().hash(_purposeList),
-        realEstateValueFrom,
-        realEstateValueTo,
+        rentPaymentMonthlyPerUnitFrom,
+        rentPaymentMonthlyPerUnitTo,
         streetNo,
         zoneId,
         unit,
@@ -557,14 +560,14 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
 
 abstract class _RequestMortgageValues implements RequestMortgageValues {
   factory _RequestMortgageValues(
-      {final num areaCode,
-      final num? areaFrom,
+      {final num? areaFrom,
       final num? areaTo,
+      final int? bedRoomsCount,
+      final int? furnitureStatus,
       final int? issueDateEndMonth,
       final String? issueDateFrom,
       final List<int>? issueDateQuarterList,
       final int? issueDateStartMonth,
-      final int? issueDateMonth,
       final String? issueDateTo,
       final int? issueDateYear,
       final int? limit,
@@ -572,8 +575,8 @@ abstract class _RequestMortgageValues implements RequestMortgageValues {
       final int? offset,
       final List<int>? propertyTypeList,
       final List<int>? purposeList,
-      final num? realEstateValueFrom,
-      final num? realEstateValueTo,
+      final num? rentPaymentMonthlyPerUnitFrom,
+      final num? rentPaymentMonthlyPerUnitTo,
       final int? streetNo,
       final int? zoneId,
       final int unit,
@@ -583,11 +586,13 @@ abstract class _RequestMortgageValues implements RequestMortgageValues {
       _$RequestMortgageValuesImpl.fromJson;
 
   @override
-  num get areaCode;
-  @override
   num? get areaFrom;
   @override
   num? get areaTo;
+  @override
+  int? get bedRoomsCount;
+  @override
+  int? get furnitureStatus;
   @override
   int? get issueDateEndMonth;
   @override
@@ -596,8 +601,6 @@ abstract class _RequestMortgageValues implements RequestMortgageValues {
   List<int>? get issueDateQuarterList;
   @override
   int? get issueDateStartMonth;
-  @override
-  int? get issueDateMonth;
   @override
   String? get issueDateTo;
   @override
@@ -613,9 +616,9 @@ abstract class _RequestMortgageValues implements RequestMortgageValues {
   @override
   List<int>? get purposeList;
   @override
-  num? get realEstateValueFrom;
+  num? get rentPaymentMonthlyPerUnitFrom;
   @override
-  num? get realEstateValueTo;
+  num? get rentPaymentMonthlyPerUnitTo;
   @override
   int? get streetNo;
   @override

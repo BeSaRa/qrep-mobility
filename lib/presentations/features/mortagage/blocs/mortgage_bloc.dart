@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:ebla/domain/models/requests/mortgage_requests/request_mortgage_values.dart';
 import 'package:ebla/domain/usecases/mortgage_usecases/lookup_mortgage_usecase.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -29,4 +30,31 @@ class MortgageBloc extends Bloc<MortgageEvent, MortgageState> {
       );
     });
   }
+
+  RequestMortgageValues requestDefault = RequestMortgageValues(
+    municipalityId: 1,
+    propertyTypeList: [-1],
+    purposeList: [-1],
+    issueDateQuarterList: [1, 2, 3, 4],
+    furnitureStatus: -1,
+    issueDateYear: 2023,
+    issueDateStartMonth: 1,
+    issueDateEndMonth: DateTime.now().month,
+    zoneId: -1,
+    limit: 5,
+  );
+  RequestMortgageValues requestMeanValue = RequestMortgageValues(
+    municipalityId: 1,
+    propertyTypeList: [-1],
+    purposeList: [-1],
+    issueDateQuarterList: [1, 2, 3, 4],
+    furnitureStatus: -1,
+    issueDateYear: 2023,
+    issueDateStartMonth: 1,
+    issueDateEndMonth: DateTime.now().month,
+    zoneId: -1,
+    limit: 5,
+    periodId: 1,
+    offset: 0,
+  );
 }

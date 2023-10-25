@@ -53,7 +53,7 @@ class EndPoints {
 
   //---------------------------------------------mortgage-----------------------
   //look up
-  static const mortgageLookUp = 'kpi/mortgage/lookup';
+  static const mortgageLookUp = '/kpi/mortgage/lookup';
 
   // KPI1
   static const totalMortgageTransactions =

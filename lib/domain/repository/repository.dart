@@ -1,12 +1,14 @@
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
+import 'package:ebla/domain/models/mrtgage_models/mortgage_models.dart';
 import 'package:ebla/domain/models/sell_models/sell_models.dart';
 import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 import '../../data/newtwok/failure_model/failure.dart';
 import '../models/rent_models/rent_models.dart';
+import '../models/requests/mortgage_requests/request_mortgage_values.dart';
 import '../models/requests/rent_requests/request_mean_value.dart';
 import '../models/requests/sell_requests/request_sell_values.dart';
 
@@ -82,13 +84,18 @@ abstract class Repository {
 
   // KPI1
   Future<Result<List<BaseRentResponse>, FailureModel>>
-  getTotalMortgageTransactions(RequestSellValues requestSellValues);
+      getTotalMortgageTransactions(RequestMortgageValues requestSellValues);
 
   // KPI3
   Future<Result<List<BaseRentResponse>, FailureModel>>
-  getTotalNumberOfMortgageUnits(RequestSellValues requestSellValues);
+      getTotalNumberOfMortgageUnits(RequestMortgageValues requestSellValues);
 
   // KPI5
   Future<Result<List<BaseRentResponse>, FailureModel>>
-  getTotalValueOfMortgageTransactions(RequestSellValues requestSellValues);
+      getTotalValueOfMortgageTransactions(
+          RequestMortgageValues requestSellValues);
+
+  //KPI7
+  Future<Result<MortgageTransactionResponse, FailureModel>>
+      getMortgageTransactions(RequestMortgageValues requestSellValues);
 }

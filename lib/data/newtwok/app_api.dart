@@ -3,6 +3,8 @@ import 'package:ebla/data/newtwok/end_points.dart';
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
+import 'package:ebla/domain/models/mrtgage_models/mortgage_models.dart';
+import 'package:ebla/domain/models/requests/mortgage_requests/request_mortgage_values.dart';
 import 'package:ebla/domain/models/sell_models/sell_models.dart';
 import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:retrofit/retrofit.dart';
@@ -101,32 +103,30 @@ abstract class AppServiceClient {
   // KPI1
   @POST(EndPoints.totalMortgageTransactions)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalMortgageTransactions(
-      @Body() RequestSellValues requestSellValues);
+      @Body() RequestMortgageValues requestSellValues);
 
   // KPI3
   @POST(EndPoints.totalNumberOfMortgageUnits)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalNumberOfMortgageUnits(
-      @Body() RequestSellValues requestSellValues);
+      @Body() RequestMortgageValues requestSellValues);
 
   // KPI5
   @POST(EndPoints.totalValueOfMortgageTransactions)
   Future<HttpResponse<List<BaseRentResponse>>>
-  getTotalValueOfMortgageTransactions(
-      @Body() RequestSellValues requestSellValues);
+      getTotalValueOfMortgageTransactions(
+          @Body() RequestMortgageValues requestSellValues);
 
 //kpi7
-  @POST(EndPoints.totalValueOfMortgageTransactions)
-  Future<HttpResponse<List<BaseRentResponse>>>
-  getMortgageTransactions(@Body() requestSellValues);
-
-
+  @POST(EndPoints.mortgageTransactions)
+  Future<HttpResponse<MortgageTransactionResponse>> getMortgageTransactions(
+      @Body() RequestMortgageValues requestMortgageValues);
 }
 
 //----------------------------------CMS-----------------------------------------
 @RestApi(baseUrl: Constant.secondaryBaseUrl)
 abstract class TranslationsServiceClient {
   factory TranslationsServiceClient(Dio dio, {String baseUrl}) =
-  _TranslationsServiceClient;
+      _TranslationsServiceClient;
 
   @GET(EndPoints.translations)
   Future<HttpResponse<TranslationsModel>> getTranslations(

@@ -562,7 +562,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'kpi/mortgage/lookup',
+              '/kpi/mortgage/lookup',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -578,7 +578,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<List<BaseRentResponse>>> getTotalMortgageTransactions(
-      RequestSellValues requestSellValues) async {
+      RequestMortgageValues requestSellValues) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -610,7 +610,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<List<BaseRentResponse>>> getTotalNumberOfMortgageUnits(
-      RequestSellValues requestSellValues) async {
+      RequestMortgageValues requestSellValues) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -643,7 +643,7 @@ class _AppServiceClient implements AppServiceClient {
   @override
   Future<HttpResponse<List<BaseRentResponse>>>
       getTotalValueOfMortgageTransactions(
-          RequestSellValues requestSellValues) async {
+          RequestMortgageValues requestSellValues) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -674,21 +674,21 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<HttpResponse<List<BaseRentResponse>>> getMortgageTransactions(
-      dynamic requestSellValues) async {
+  Future<HttpResponse<MortgageTransactionResponse>> getMortgageTransactions(
+      RequestMortgageValues requestMortgageValues) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestSellValues;
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
+    final _data = requestMortgageValues;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<MortgageTransactionResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/kpi/mortgage/kpi5/stats/transaction-value',
+              '/kpi/mortgage/kpi7/detail/transaction',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -697,10 +697,7 @@ class _AppServiceClient implements AppServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    var value = _result.data!
-        .map(
-            (dynamic i) => BaseRentResponse.fromJson(i as Map<String, dynamic>))
-        .toList();
+    final value = MortgageTransactionResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
