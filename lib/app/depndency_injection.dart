@@ -1,5 +1,9 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:ebla/domain/usecases/mortgage_usecases/lookup_mortgage_usecase.dart';
+import 'package:ebla/domain/usecases/mortgage_usecases/transactions_mortgage_usecase.dart';
 import 'package:ebla/presentations/features/home/blocs/news_bloc/news_bloc.dart';
+import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
+import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/default_bloc/rent_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
@@ -168,6 +172,7 @@ Future<void> initRentModule() async {
         () => TotalRentedUnitsUseCase(instance()));
   }
 //Blocs
+
   if (!GetIt.I.isRegistered<RentBloc>()) {
     instance.registerFactory(() => RentBloc(getRentLookupUseCase: instance()));
   }
@@ -190,5 +195,26 @@ Future<void> initRentModule() async {
   }
   if (!GetIt.I.isRegistered<RentDefaultBloc>()) {
     instance.registerFactory(() => RentDefaultBloc(instance()));
+  }
+}
+
+Future<void> initMortgageModule() async {
+  //usecase
+  if (!GetIt.I.isRegistered<LookUpMortgageUseCase>()) {
+    instance.registerFactory<LookUpMortgageUseCase>(
+        () => LookUpMortgageUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<MortgageTransactionUseCase>()) {
+    instance.registerFactory<MortgageTransactionUseCase>(
+        () => MortgageTransactionUseCase(instance()));
+  }
+
+  //blocs
+  if (!GetIt.I.isRegistered<MortgageBloc>()) {
+    instance.registerFactory<MortgageBloc>(() => MortgageBloc(instance()));
+  }
+  if (!GetIt.I.isRegistered<MortgageTransactionsBloc>()) {
+    instance.registerFactory<MortgageTransactionsBloc>(
+        () => MortgageTransactionsBloc(instance()));
   }
 }
