@@ -13,7 +13,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   NewsBloc({required this.newsUsecase}) : super(const NewsState.loading()) {
     on<NewsEvent>((event, emit) async {
       await event.map(
-        getAbout: (value) async {
+        getNewsEvent: (value) async {
           emit(const NewsState.loading());
           final failureOrSuccess = await newsUsecase.execute();
           failureOrSuccess.when((news) {

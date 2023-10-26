@@ -3,6 +3,8 @@ import 'package:ebla/data/newtwok/end_points.dart';
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
+import 'package:ebla/domain/models/mrtgage_models/mortgage_models.dart';
+import 'package:ebla/domain/models/requests/mortgage_requests/request_mortgage_values.dart';
 import 'package:ebla/domain/models/sell_models/sell_models.dart';
 import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:retrofit/retrofit.dart';
@@ -60,6 +62,7 @@ abstract class AppServiceClient {
   @POST(EndPoints.rentSummary)
   Future<HttpResponse<RentListSummary>> rentSummary(
       @Body() RequestMeanValue requestMeanValue);
+
   //----------------------------------Sell--------------------------------------
   @GET(EndPoints.lookupSell)
   Future<HttpResponse<RentLookupResponse>> getLockupSell();
@@ -92,21 +95,31 @@ abstract class AppServiceClient {
   @POST(EndPoints.sellTransactions)
   Future<HttpResponse<SellTransactionResponse>> getSellTransactions(
       @Body() RequestSellValues requestSellValues);
+
   //----------------------------------Mortgage----------------------------------
+  @GET(EndPoints.mortgageLookUp)
+  Future<HttpResponse<RentLookupResponse>> getLockupMortgage();
+
   // KPI1
   @POST(EndPoints.totalMortgageTransactions)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalMortgageTransactions(
-      @Body() RequestSellValues requestSellValues);
+      @Body() RequestMortgageValues requestSellValues);
 
   // KPI3
   @POST(EndPoints.totalNumberOfMortgageUnits)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalNumberOfMortgageUnits(
-      @Body() RequestSellValues requestSellValues);
+      @Body() RequestMortgageValues requestSellValues);
+
   // KPI5
   @POST(EndPoints.totalValueOfMortgageTransactions)
   Future<HttpResponse<List<BaseRentResponse>>>
       getTotalValueOfMortgageTransactions(
-          @Body() RequestSellValues requestSellValues);
+          @Body() RequestMortgageValues requestSellValues);
+
+//kpi7
+  @POST(EndPoints.mortgageTransactions)
+  Future<HttpResponse<MortgageTransactionResponse>> getMortgageTransactions(
+      @Body() RequestMortgageValues requestMortgageValues);
 }
 
 //----------------------------------CMS-----------------------------------------

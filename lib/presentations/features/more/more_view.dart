@@ -186,16 +186,21 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
               Expanded(
                 child: SizedBox(
                   height: AppSizeH.s50,
-                  child: Text(
-                    AppStrings().moreTitle,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontSize: context.locale == ARABIC_LOCAL
-                            ? AppSizeSp.s20
-                            : AppSizeSp.s16),
+                  child: Center(
+                    child: Text(
+                      AppStrings().moreTitle,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontSize: context.locale == ARABIC_LOCAL
+                              ? AppSizeSp.s20
+                              : AppSizeSp.s16),
+                    ),
                   ),
                 ),
+              ),
+              SizedBox(
+                width: AppSizeW.s50,
               ),
               Container(
                 padding: EdgeInsets.symmetric(
@@ -254,59 +259,48 @@ class MoreWidgetButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding:
-          EdgeInsets.symmetric(horizontal: AppSizeH.s20, vertical: AppSizeW.s6),
-      child: InkWell(
-        splashFactory: InkSparkle.constantTurbulenceSeedSplashFactory,
-        splashColor: ColorManager.primary.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(AppSizeR.s20),
-        onTap: isButton
-            ? () {
-                onPressed!();
-              }
-            : null,
-        child: Ink(
-          height: AppSizeH.s56,
-          padding:
-              EdgeInsetsDirectional.only(start: AppSizeW.s19, end: AppSizeW.s7),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(AppSizeR.s20),
-            color: Colors.transparent,
-            border: Border.all(
-              width: AppSizeW.s2,
-              // assign the color to the border color
-              color: ColorManager.grey,
-            ),
+    return InkWell(
+      onTap: isButton
+          ? () {
+              onPressed!();
+            }
+          : null,
+      child: Container(
+        height: AppSizeH.s56,
+        padding:
+            EdgeInsetsDirectional.only(start: AppSizeW.s19, end: AppSizeW.s7),
+        margin: EdgeInsets.symmetric(
+            horizontal: AppSizeH.s20, vertical: AppSizeW.s6),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppSizeR.s20),
+          color: ColorManager.white,
+          border: Border.all(
+            width: AppSizeW.s2,
+            // assign the color to the border color
+            color: ColorManager.grey,
           ),
-          child: Container(
-            color: Colors.transparent,
-            margin: EdgeInsets.symmetric(
-                horizontal: AppSizeH.s20, vertical: AppSizeW.s6),
-            child: Row(
-              children: [
-                Icon(
-                  icon,
-                  color: Theme.of(context).primaryColor,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: AppSizeH.s6),
-                  child: Text(title,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontSize: AppSizeSp.s16,
-                          fontWeight: FontWeight.w400)),
-                ),
-                const Spacer(),
-                isButton
-                    ? Icon(
-                        Icons.arrow_forward_ios,
-                        color: ColorManager.grey,
-                        size: AppSizeSp.s18,
-                      )
-                    : widget ?? const SizedBox()
-              ],
+        ),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              color: Theme.of(context).primaryColor,
             ),
-          ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppSizeH.s6),
+              child: Text(title,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontSize: AppSizeSp.s16, fontWeight: FontWeight.w400)),
+            ),
+            const Spacer(),
+            isButton
+                ? Icon(
+                    Icons.arrow_forward_ios,
+                    color: ColorManager.grey,
+                    size: AppSizeSp.s18,
+                  )
+                : widget ?? const SizedBox()
+          ],
         ),
       ),
     );

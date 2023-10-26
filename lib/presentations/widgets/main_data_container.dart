@@ -203,7 +203,7 @@ class ShimmerMainContainer extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: AppSizeH.s20),
+          SizedBox(height: AppSizeH.s21),
           Padding(
             padding: EdgeInsetsDirectional.symmetric(horizontal: AppSizeW.s14),
             child: Row(

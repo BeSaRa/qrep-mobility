@@ -119,6 +119,22 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
   List<PeriodTimeDetails> months = [];
   PeriodTimeDetails month = const PeriodTimeDetails();
 
+  // -------------------------Nationality Filters------------------------------------------
+  RentLookupModel nationality = const RentLookupModel();
+
+  void changeNationality(RentLookupModel newnationality) {
+    nationality = newnationality;
+    emit(nationality);
+  }
+
+  // --------------------------Furniture status Filter----------------------------------
+  RentLookupModel furniture = const RentLookupModel();
+
+  void changeFurniture(RentLookupModel newfurniture) {
+    furniture = newfurniture;
+    emit(furniture);
+  }
+
   //--------------------------Unit---------------------------------------------
   int unit = 1;
 
@@ -167,4 +183,25 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
 
   //----------------------Range DateTime-------------------------
   PickerDateRange? pickerDateRange;
+
+  //Sell----------------------RealEstateValue Range------------------
+  num? realEstateValueFrom;
+  num? realEstateValueTo;
+  RangeValues? rangerealEstateValue;
+
+  void changeRangeRealEstateValueReset() {
+    realEstateValueFrom = null;
+    realEstateValueTo = null;
+    rangerealEstateValue = null;
+    areaFrom = null;
+    areaTo = null;
+    rangeValuesArea = null;
+    emit(const RentLookupModel(id: 8, lookupKey: 7));
+  }
+
+  void changeRangeRealEstateValue(RangeValues values) {
+    rangerealEstateValue = values;
+    emit(RentLookupModel(
+        id: values.start.toInt(), lookupKey: values.end.toInt()));
+  }
 }

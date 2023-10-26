@@ -7,9 +7,9 @@ import 'package:ebla/presentations/features/info/views/faq_view.dart';
 import 'package:ebla/presentations/features/info/views/laws_details_view.dart';
 import 'package:ebla/presentations/features/main_scaffold.dart';
 import 'package:ebla/presentations/features/more/more_view.dart';
+import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
 import 'package:ebla/presentations/features/rent/rent_view.dart';
-import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/sell_view.dart';
 import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +19,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/depndency_injection.dart';
 import '../features/info/views/laws_decisions_view.dart';
 import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
+import '../features/sell/blocs/sell_bloc/sell_bloc.dart';
 
 class RoutesNames {
   static const String splash = 'splash';
@@ -89,13 +90,10 @@ class AppRouter {
                 name: RoutesNames.home,
                 // parentNavigatorKey: GlobalKey(),
                 pageBuilder: (context, state) {
+                  initHomeModule();
                   return CustomTransitionPage(
                     transitionDuration: const Duration(milliseconds: 1140),
-                    child: BlocProvider(
-                      create: (context) => instance<RentBloc>()
-                        ..add(const RentEvent.getRentLookupEvent()),
-                      child: const HomeView(),
-                    ),
+                    child: const HomeView(),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                       return SlideTransition(
@@ -119,11 +117,14 @@ class AppRouter {
               GoRoute(
                 path: RoutesPaths.rent,
                 name: RoutesNames.rent,
-                builder: (context, state) => BlocProvider(
-                  create: (context) => instance<RentBloc>()
-                    ..add(const RentEvent.getRentLookupEvent()),
-                  child: const RentView(),
-                ),
+                builder: (context, state) {
+                  initRentModule();
+                  return BlocProvider(
+                    create: (context) => instance<RentBloc>()
+                      ..add(const RentEvent.getRentLookupEvent()),
+                    child: const RentView(),
+                  );
+                },
               ),
             ]),
             StatefulShellBranch(routes: [
@@ -141,10 +142,16 @@ class AppRouter {
             ]),
             StatefulShellBranch(routes: [
               GoRoute(
-                path: RoutesPaths.mortgage,
-                name: RoutesNames.mortgage,
-                builder: (context, state) => const MortgageView(),
-              ),
+                  path: RoutesPaths.mortgage,
+                  name: RoutesNames.mortgage,
+                  builder: (context, state) {
+                    initMortgageModule();
+                    return BlocProvider(
+                      create: (context) => instance<MortgageBloc>()
+                        ..add(const MortgageEvent.started()),
+                      child: const MortgageView(),
+                    );
+                  }),
             ]),
             StatefulShellBranch(routes: [
               GoRoute(

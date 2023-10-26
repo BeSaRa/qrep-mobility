@@ -202,9 +202,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
           bloc: context.read<CertificateContractBloc>(),
           builder: (context, CertificateContractState state) {
             if (state.isLoadingCertificate || state.isLoadingContract) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const StatisticsShimmerWidget();
             }
             if (state.isHasErrorCertificate || state.isHasErrorContract) {
               return Column(

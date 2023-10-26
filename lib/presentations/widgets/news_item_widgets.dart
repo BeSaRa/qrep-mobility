@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/app/constants.dart';
 import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:ebla/presentations/widgets/shimmer_placeholder.dart';
@@ -10,6 +12,7 @@ import '../resources/values_manager.dart';
 class NewsItemWidget extends StatelessWidget {
   final String label;
   final String date;
+  final String image;
   final bool? isLoading;
 
   const NewsItemWidget({
@@ -17,6 +20,7 @@ class NewsItemWidget extends StatelessWidget {
     required this.label,
     required this.date,
     this.isLoading,
+    required this.image,
   });
 
   @override
@@ -69,14 +73,41 @@ class NewsItemWidget extends StatelessWidget {
                         border:
                             Border.all(width: 1, color: ColorManager.golden),
                       ),
-                      child: const Image(
-                        image: AssetImage(
-                          ImageAssets.test,
-                        ),
-                        fit: BoxFit.fill,
+                      child: CachedNetworkImage(
+                        imageUrl: '${Constant.secondaryBaseUrl}/assets/$image',
+                        progressIndicatorBuilder: (context, url, progress) {
+                          return const ShimmerPlaceholder(
+                            child: Image(
+                              image: AssetImage(
+                                ImageAssets.test,
+                              ),
+                              fit: BoxFit.fill,
+                            ),
+                          );
+                        },
+                        errorWidget: (context, url, error) {
+                          return const ShimmerPlaceholder(
+                            child: Image(
+                              image: AssetImage(
+                                ImageAssets.test,
+                              ),
+                              fit: BoxFit.fill,
+                            ),
+                          );
+                        },
+                        imageBuilder: (context, imageProvider) {
+                          return Container(
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.circular(AppSizeR.s10),
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.fill,
+                                )),
+                          );
+                        },
                       ),
-                    ),
-                  ),
+                    )),
             SizedBox(width: AppSizeW.s14),
             isLoading ?? false
                 ? Expanded(

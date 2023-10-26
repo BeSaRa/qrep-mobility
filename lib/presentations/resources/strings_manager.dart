@@ -32,6 +32,7 @@ class AppStrings {
   String noPropertiesUnits = "no_properties_units".tr();
   String countLeaseContracts = "count_lease_contracts".tr();
   String countPropertiesUnits = "count_properties_units".tr();
+  String noRentContracts = "no_contracts_found".tr();
 
   //more view locals
   String moreTitle = 'more_title'.tr();
@@ -85,8 +86,12 @@ class AppStrings {
   String duration = 'duration'.tr(); // المدة الزمنية
   String durationDetails = 'duration_details'.tr(); //
   String rentValueFromTo = 'rent_value_from_to'.tr(); //قيمه العقار من - إلى
+  String realStateValueFromTo =
+      'real_state_value_from_to'.tr(); //sell قيمه العقار من - إلى
   String areaFromTo = 'area_from_to'.tr(); //'المساحة من - إلى'
-  String search = 'search'.tr(); // 'بحث'
+  String search = 'search'.tr();
+  String furnitureStatus = 'furniture_status'.tr(); // 'حالة الاثاث'
+  String street = 'street'.tr(); // 'الشارع'
 
   //---------------- sell ----------
   // grid
@@ -96,6 +101,11 @@ class AppStrings {
   String averageSellPricePerUnitProperty =
       "average_sell_price_per_unit_property".tr();
   String totalSellContractsValue = "the_total_value_of_sell_contracts".tr();
+  String sellPrice = "sell_price".tr();
+  String theUnitPrice = "the_unit_price".tr();
+  String sellContractList = "sell_contract_list".tr();
+  String noTransactionFound = "no_transaction_found".tr();
+
   //Pagination
   String nextPage = 'next_page'.tr();
   String page = 'page'.tr();

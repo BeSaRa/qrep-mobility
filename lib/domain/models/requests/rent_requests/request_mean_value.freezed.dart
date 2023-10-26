@@ -33,6 +33,7 @@ mixin _$RequestMeanValue {
   int? get limit => throw _privateConstructorUsedError;
   int? get municipalityId => throw _privateConstructorUsedError;
   int? get offset => throw _privateConstructorUsedError;
+  int? get nationalityCode => throw _privateConstructorUsedError;
   List<int>? get propertyTypeList => throw _privateConstructorUsedError;
   List<int>? get purposeList => throw _privateConstructorUsedError;
   num? get rentPaymentMonthlyPerUnitFrom => throw _privateConstructorUsedError;
@@ -68,6 +69,7 @@ abstract class $RequestMeanValueCopyWith<$Res> {
       int? limit,
       int? municipalityId,
       int? offset,
+      int? nationalityCode,
       List<int>? propertyTypeList,
       List<int>? purposeList,
       num? rentPaymentMonthlyPerUnitFrom,
@@ -104,6 +106,7 @@ class _$RequestMeanValueCopyWithImpl<$Res, $Val extends RequestMeanValue>
     Object? limit = freezed,
     Object? municipalityId = freezed,
     Object? offset = freezed,
+    Object? nationalityCode = freezed,
     Object? propertyTypeList = freezed,
     Object? purposeList = freezed,
     Object? rentPaymentMonthlyPerUnitFrom = freezed,
@@ -166,6 +169,10 @@ class _$RequestMeanValueCopyWithImpl<$Res, $Val extends RequestMeanValue>
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
               as int?,
+      nationalityCode: freezed == nationalityCode
+          ? _value.nationalityCode
+          : nationalityCode // ignore: cast_nullable_to_non_nullable
+              as int?,
       propertyTypeList: freezed == propertyTypeList
           ? _value.propertyTypeList
           : propertyTypeList // ignore: cast_nullable_to_non_nullable
@@ -224,6 +231,7 @@ abstract class _$$RequestMeanValueImplCopyWith<$Res>
       int? limit,
       int? municipalityId,
       int? offset,
+      int? nationalityCode,
       List<int>? propertyTypeList,
       List<int>? purposeList,
       num? rentPaymentMonthlyPerUnitFrom,
@@ -258,6 +266,7 @@ class __$$RequestMeanValueImplCopyWithImpl<$Res>
     Object? limit = freezed,
     Object? municipalityId = freezed,
     Object? offset = freezed,
+    Object? nationalityCode = freezed,
     Object? propertyTypeList = freezed,
     Object? purposeList = freezed,
     Object? rentPaymentMonthlyPerUnitFrom = freezed,
@@ -320,6 +329,10 @@ class __$$RequestMeanValueImplCopyWithImpl<$Res>
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
               as int?,
+      nationalityCode: freezed == nationalityCode
+          ? _value.nationalityCode
+          : nationalityCode // ignore: cast_nullable_to_non_nullable
+              as int?,
       propertyTypeList: freezed == propertyTypeList
           ? _value._propertyTypeList
           : propertyTypeList // ignore: cast_nullable_to_non_nullable
@@ -373,6 +386,7 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
       this.limit,
       this.municipalityId,
       this.offset,
+      this.nationalityCode,
       final List<int>? propertyTypeList,
       final List<int>? purposeList,
       this.rentPaymentMonthlyPerUnitFrom,
@@ -423,6 +437,8 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
   final int? municipalityId;
   @override
   final int? offset;
+  @override
+  final int? nationalityCode;
   final List<int>? _propertyTypeList;
   @override
   List<int>? get propertyTypeList {
@@ -461,7 +477,7 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
 
   @override
   String toString() {
-    return 'RequestMeanValue(areaFrom: $areaFrom, areaTo: $areaTo, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, propertyTypeList: $propertyTypeList, purposeList: $purposeList, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, streetNo: $streetNo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
+    return 'RequestMeanValue(areaFrom: $areaFrom, areaTo: $areaTo, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, nationalityCode: $nationalityCode, propertyTypeList: $propertyTypeList, purposeList: $purposeList, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, streetNo: $streetNo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
   }
 
   @override
@@ -492,6 +508,8 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
             (identical(other.municipalityId, municipalityId) ||
                 other.municipalityId == municipalityId) &&
             (identical(other.offset, offset) || other.offset == offset) &&
+            (identical(other.nationalityCode, nationalityCode) ||
+                other.nationalityCode == nationalityCode) &&
             const DeepCollectionEquality()
                 .equals(other._propertyTypeList, _propertyTypeList) &&
             const DeepCollectionEquality()
@@ -529,6 +547,7 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
         limit,
         municipalityId,
         offset,
+        nationalityCode,
         const DeepCollectionEquality().hash(_propertyTypeList),
         const DeepCollectionEquality().hash(_purposeList),
         rentPaymentMonthlyPerUnitFrom,
@@ -569,6 +588,7 @@ abstract class _RequestMeanValue implements RequestMeanValue {
       final int? limit,
       final int? municipalityId,
       final int? offset,
+      final int? nationalityCode,
       final List<int>? propertyTypeList,
       final List<int>? purposeList,
       final num? rentPaymentMonthlyPerUnitFrom,
@@ -607,6 +627,8 @@ abstract class _RequestMeanValue implements RequestMeanValue {
   int? get municipalityId;
   @override
   int? get offset;
+  @override
+  int? get nationalityCode;
   @override
   List<int>? get propertyTypeList;
   @override

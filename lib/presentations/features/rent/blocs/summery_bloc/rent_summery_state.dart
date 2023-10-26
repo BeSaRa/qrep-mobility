@@ -5,6 +5,7 @@ class RentSummeryState with _$RentSummeryState {
   const factory RentSummeryState.initial({
     @Default(false) bool isLoadingRentSummery,
     @Default(false) bool isHasErrorRentSummery,
+    @Default(false) bool isEmptyRentSummery,
     @Default('') String errorMessageRentSummery,
     @Default(RentListSummary()) RentListSummary rentSummery,
   }) = _Initial;

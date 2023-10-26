@@ -19,6 +19,7 @@ abstract class RequestMeanValue with _$RequestMeanValue {
     int? limit,
     int? municipalityId,
     int? offset,
+    int? nationalityCode,
     List<int>? propertyTypeList,
     List<int>? purposeList,
     num? rentPaymentMonthlyPerUnitFrom,

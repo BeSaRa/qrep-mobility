@@ -1,8 +1,11 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:ebla/domain/usecases/mortgage_usecases/lookup_mortgage_usecase.dart';
+import 'package:ebla/domain/usecases/mortgage_usecases/transactions_mortgage_usecase.dart';
 import 'package:ebla/presentations/features/home/blocs/news_bloc/news_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
+import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
+import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/default_bloc/rent_default_bloc.dart';
-import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_transaction/sell_transaction_bloc.dart';
@@ -22,6 +25,7 @@ import '../presentations/features/rent/blocs/mean_value_bloc/mean_value_bloc.dar
 import '../presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
 import '../presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 import '../presentations/features/rent/blocs/summery_bloc/rent_summery_bloc.dart';
+import '../presentations/features/sell/blocs/sell_bloc/sell_bloc.dart';
 import 'app_preferences.dart';
 
 final instance = GetIt.instance;
@@ -63,9 +67,15 @@ Future<void> initHomeModule() async {
   }
 
   //Bloc's
-  instance.registerFactory(() => AboutBloc(aboutUsecase: instance()));
-  instance.registerFactory(() => NewsBloc(newsUsecase: instance()));
-  instance.registerFactory(() => LawsBloc(lawsUsecase: instance()));
+  if (!GetIt.I.isRegistered<AboutBloc>()) {
+    instance.registerFactory(() => AboutBloc(aboutUsecase: instance()));
+  }
+  if (!GetIt.I.isRegistered<NewsBloc>()) {
+    instance.registerFactory(() => NewsBloc(newsUsecase: instance()));
+  }
+  if (!GetIt.I.isRegistered<LawsBloc>()) {
+    instance.registerFactory(() => LawsBloc(lawsUsecase: instance()));
+  }
 }
 
 Future<void> initSellModule() async {
@@ -109,17 +119,25 @@ Future<void> initSellModule() async {
   }
 
   //-------------- Bloc's---------------------
-  instance.registerFactory<SellGridKPIsBloc>(() => SellGridKPIsBloc(
-      totalContractsSellUseCase: instance(),
-      totalSoldUnitsUseCase: instance(),
-      totalTransactionSellUseCase: instance(),
-      meanValueSellUsecase: instance()));
 
-  instance.registerFactory(() => SellBloc(getSellLookupUseCase: instance()));
+  if (!GetIt.I.isRegistered<SellGridKPIsBloc>()) {
+    instance.registerFactory<SellGridKPIsBloc>(() => SellGridKPIsBloc(
+        totalContractsSellUseCase: instance(),
+        totalSoldUnitsUseCase: instance(),
+        totalTransactionSellUseCase: instance(),
+        meanValueSellUsecase: instance()));
+  }
+  if (!GetIt.I.isRegistered<SellBloc>()) {
+    instance.registerFactory(() => SellBloc(getSellLookupUseCase: instance()));
+  }
+  if (!GetIt.I.isRegistered<SellTransactionBloc>()) {
+    instance.registerFactory(() => SellTransactionBloc(instance()));
+  }
+  if (!GetIt.I.isRegistered<SellDefaultBloc>()) {
+    instance.registerFactory(() => SellDefaultBloc(instance()));
+  }
+
   //blocs
-  instance.registerFactory(() => SellDefaultBloc(instance()));
-
-  instance.registerFactory(() => SellTransactionBloc(instance()));
 }
 
 Future<void> initRentModule() async {
@@ -158,22 +176,49 @@ Future<void> initRentModule() async {
         () => TotalRentedUnitsUseCase(instance()));
   }
 //Blocs
-  instance.registerFactory(() => RentBloc(getRentLookupUseCase: instance()));
-  instance.registerFactory(
-    () => MeanValueBloc(
-      meanValueUsecase: instance(),
-    ),
-  );
-  instance.registerFactory(() => CertificateContractBloc(
-      certificateCountUsecase: instance(), contractCountUsecase: instance()));
-  instance.registerFactory(
-    () => RentGridKPIsBloc(
-      totalRentedUnitsUseCase: instance(),
-      totalContractsUseCase: instance(),
-      meanValueUsecase: instance(),
-      contractValueUseCase: instance(),
-    ),
-  );
-  instance.registerFactory(() => RentSummeryBloc(instance()));
-  instance.registerFactory(() => RentDefaultBloc(instance()));
+
+  if (!GetIt.I.isRegistered<RentBloc>()) {
+    instance.registerFactory(() => RentBloc(getRentLookupUseCase: instance()));
+  }
+  if (!GetIt.I.isRegistered<CertificateContractBloc>()) {
+    instance.registerFactory(() => CertificateContractBloc(
+        certificateCountUsecase: instance(), contractCountUsecase: instance()));
+  }
+  if (!GetIt.I.isRegistered<MeanValueBloc>()) {
+    instance.registerFactory(() => MeanValueBloc(meanValueUsecase: instance()));
+  }
+  if (!GetIt.I.isRegistered<RentGridKPIsBloc>()) {
+    instance.registerFactory(() => RentGridKPIsBloc(
+        totalRentedUnitsUseCase: instance(),
+        totalContractsUseCase: instance(),
+        meanValueUsecase: instance(),
+        contractValueUseCase: instance()));
+  }
+  if (!GetIt.I.isRegistered<RentSummeryBloc>()) {
+    instance.registerFactory(() => RentSummeryBloc(instance()));
+  }
+  if (!GetIt.I.isRegistered<RentDefaultBloc>()) {
+    instance.registerFactory(() => RentDefaultBloc(instance()));
+  }
+}
+
+Future<void> initMortgageModule() async {
+  //usecase
+  if (!GetIt.I.isRegistered<LookUpMortgageUseCase>()) {
+    instance.registerFactory<LookUpMortgageUseCase>(
+        () => LookUpMortgageUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<MortgageTransactionUseCase>()) {
+    instance.registerFactory<MortgageTransactionUseCase>(
+        () => MortgageTransactionUseCase(instance()));
+  }
+
+  //blocs
+  if (!GetIt.I.isRegistered<MortgageBloc>()) {
+    instance.registerFactory<MortgageBloc>(() => MortgageBloc(instance()));
+  }
+  if (!GetIt.I.isRegistered<MortgageTransactionsBloc>()) {
+    instance.registerFactory<MortgageTransactionsBloc>(
+        () => MortgageTransactionsBloc(instance()));
+  }
 }
