@@ -159,6 +159,158 @@ abstract class _LawsResponse implements LawsResponse {
       throw _privateConstructorUsedError;
 }
 
+LawByIdResponse _$LawByIdResponseFromJson(Map<String, dynamic> json) {
+  return _LawByIdResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LawByIdResponse {
+  LawsModel get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LawByIdResponseCopyWith<LawByIdResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LawByIdResponseCopyWith<$Res> {
+  factory $LawByIdResponseCopyWith(
+          LawByIdResponse value, $Res Function(LawByIdResponse) then) =
+      _$LawByIdResponseCopyWithImpl<$Res, LawByIdResponse>;
+  @useResult
+  $Res call({LawsModel data});
+
+  $LawsModelCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class _$LawByIdResponseCopyWithImpl<$Res, $Val extends LawByIdResponse>
+    implements $LawByIdResponseCopyWith<$Res> {
+  _$LawByIdResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as LawsModel,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LawsModelCopyWith<$Res> get data {
+    return $LawsModelCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$LawByIdResponseImplCopyWith<$Res>
+    implements $LawByIdResponseCopyWith<$Res> {
+  factory _$$LawByIdResponseImplCopyWith(_$LawByIdResponseImpl value,
+          $Res Function(_$LawByIdResponseImpl) then) =
+      __$$LawByIdResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({LawsModel data});
+
+  @override
+  $LawsModelCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$$LawByIdResponseImplCopyWithImpl<$Res>
+    extends _$LawByIdResponseCopyWithImpl<$Res, _$LawByIdResponseImpl>
+    implements _$$LawByIdResponseImplCopyWith<$Res> {
+  __$$LawByIdResponseImplCopyWithImpl(
+      _$LawByIdResponseImpl _value, $Res Function(_$LawByIdResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$LawByIdResponseImpl(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as LawsModel,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LawByIdResponseImpl implements _LawByIdResponse {
+  const _$LawByIdResponseImpl({this.data = const LawsModel()});
+
+  factory _$LawByIdResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LawByIdResponseImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final LawsModel data;
+
+  @override
+  String toString() {
+    return 'LawByIdResponse(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LawByIdResponseImpl &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LawByIdResponseImplCopyWith<_$LawByIdResponseImpl> get copyWith =>
+      __$$LawByIdResponseImplCopyWithImpl<_$LawByIdResponseImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LawByIdResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LawByIdResponse implements LawByIdResponse {
+  const factory _LawByIdResponse({final LawsModel data}) =
+      _$LawByIdResponseImpl;
+
+  factory _LawByIdResponse.fromJson(Map<String, dynamic> json) =
+      _$LawByIdResponseImpl.fromJson;
+
+  @override
+  LawsModel get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$LawByIdResponseImplCopyWith<_$LawByIdResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 LawsModel _$LawsModelFromJson(Map<String, dynamic> json) {
   return _LawsModel.fromJson(json);
 }

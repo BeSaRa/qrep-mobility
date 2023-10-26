@@ -14,6 +14,14 @@ abstract class LawsResponse with _$LawsResponse {
 }
 
 @freezed
+abstract class LawByIdResponse with _$LawByIdResponse {
+  const factory LawByIdResponse({@Default(LawsModel()) LawsModel data}) =
+      _LawByIdResponse;
+  factory LawByIdResponse.fromJson(Map<String, dynamic> json) =>
+      _$LawByIdResponseFromJson(json);
+}
+
+@freezed
 abstract class LawsModel with _$LawsModel {
   const factory LawsModel(
       {@Default(0) int id,

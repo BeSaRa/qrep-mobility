@@ -9,7 +9,9 @@ part 'laws_state.dart';
 
 class LawsBloc extends Bloc<LawsEvent, LawsState> {
   final LawsUsecase lawsUsecase;
-  LawsBloc({required this.lawsUsecase}) : super(const _Initial()) {
+  final LawByIdUsecase lawByIdUsecase;
+  LawsBloc({required this.lawsUsecase, required this.lawByIdUsecase})
+      : super(const _Initial()) {
     on<LawsEvent>((event, emit) async {
       await event.map(getLaws: (value) async {
         emit(state.copyWith(
@@ -18,8 +20,9 @@ class LawsBloc extends Bloc<LawsEvent, LawsState> {
           lawsResponse: const LawsResponse(),
         ));
 
-        final failureOrSuccess = await lawsUsecase.execute();
-        failureOrSuccess.when((success) {
+        final failureOrSuccessAllLaws = await lawsUsecase.execute();
+
+        failureOrSuccessAllLaws.when((success) {
           emit(
             state.copyWith(
               isLoading: false,
@@ -34,6 +37,32 @@ class LawsBloc extends Bloc<LawsEvent, LawsState> {
               hasError: true,
               errorMessage: error.message,
               lawsResponse: const LawsResponse(),
+            ),
+          );
+        });
+      }, getLawById: (value) async {
+        emit(state.copyWith(
+          isLoading: true,
+          hasError: false,
+          lawByIdResponse: const LawByIdResponse(),
+        ));
+
+        final failureOrSuccessLawById = await lawByIdUsecase.execute(value.id);
+        failureOrSuccessLawById.when((success) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              hasError: false,
+              lawByIdResponse: success,
+            ),
+          );
+        }, (error) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              hasError: true,
+              errorMessage: error.message,
+              lawByIdResponse: const LawByIdResponse(),
             ),
           );
         });

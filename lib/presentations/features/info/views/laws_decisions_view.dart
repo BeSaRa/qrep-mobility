@@ -5,6 +5,7 @@ import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart'
 import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
 import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,6 +27,11 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            systemNavigationBarIconBrightness: Brightness.light,
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.light,
+          ),
           leading: BackButton(color: ColorManager.white),
           title: Text('Laws and decisions',
               style: Theme.of(context).textTheme.displayMedium),
@@ -70,7 +76,11 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
 
 class LawWidget extends StatefulWidget {
   final LawsModel law;
-  const LawWidget({super.key, required this.law});
+
+  const LawWidget({
+    super.key,
+    required this.law,
+  });
 
   @override
   State<LawWidget> createState() => _LawWidgetState();
@@ -92,7 +102,6 @@ class _LawWidgetState extends State<LawWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print(AppStrings().issueDate);
     return Padding(
       padding: EdgeInsets.symmetric(vertical: AppSizeH.s4),
       child: InkWell(
@@ -100,7 +109,8 @@ class _LawWidgetState extends State<LawWidget> {
         splashColor: ColorManager.primary.withOpacity(0.1),
         borderRadius: BorderRadius.circular(AppSizeR.s20),
         onTap: () {
-          context.pushNamed(RoutesNames.lawsDetails, extra: widget.law);
+          context.pushNamed(RoutesNames.lawsDetails,
+              pathParameters: {'id': widget.law.id.toString()});
         },
         child: Ink(
           height: AppSizeH.s110,
