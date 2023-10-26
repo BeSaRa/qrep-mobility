@@ -137,6 +137,9 @@ abstract class TranslationsServiceClient {
 
   @GET(EndPoints.news)
   Future<HttpResponse<NewsResponse>> getNews();
+  @GET(EndPoints.newsById)
+  Future<HttpResponse<NewsByIdResponse>> getNewsById(
+      {@Path('id') required int id});
 
   @GET(EndPoints.laws)
   Future<HttpResponse<LawsResponse>> getLaws();

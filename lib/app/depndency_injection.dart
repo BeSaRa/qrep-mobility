@@ -1,7 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ebla/domain/usecases/mortgage_usecases/lookup_mortgage_usecase.dart';
 import 'package:ebla/domain/usecases/mortgage_usecases/transactions_mortgage_usecase.dart';
-import 'package:ebla/presentations/features/home/blocs/news_bloc/news_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/default_bloc/rent_default_bloc.dart';
@@ -19,6 +18,8 @@ import '../domain/repository/repository.dart';
 import '../domain/usecases/CMS/cms_usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
+import '../presentations/features/info/views/news/blocs/news_bloc/news_bloc.dart';
+import '../presentations/features/info/views/news/blocs/news_item_bloc/news_item_bloc.dart';
 import '../presentations/features/rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import '../presentations/features/rent/blocs/mean_value_bloc/mean_value_bloc.dart';
 import '../presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
@@ -61,6 +62,10 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<NewsUsecase>()) {
     instance.registerFactory<NewsUsecase>(() => NewsUsecase(instance()));
   }
+  if (!GetIt.I.isRegistered<NewsByIdUsecase>()) {
+    instance
+        .registerFactory<NewsByIdUsecase>(() => NewsByIdUsecase(instance()));
+  }
   if (!GetIt.I.isRegistered<LawsUsecase>()) {
     instance.registerFactory<LawsUsecase>(() => LawsUsecase(instance()));
   }
@@ -71,6 +76,9 @@ Future<void> initHomeModule() async {
   }
   if (!GetIt.I.isRegistered<NewsBloc>()) {
     instance.registerFactory(() => NewsBloc(newsUsecase: instance()));
+  }
+  if (!GetIt.I.isRegistered<NewsItemBloc>()) {
+    instance.registerFactory(() => NewsItemBloc(newsByIdUsecase: instance()));
   }
 }
 

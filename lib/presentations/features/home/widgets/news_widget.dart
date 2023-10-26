@@ -1,11 +1,12 @@
 import 'package:ebla/app/depndency_injection.dart';
-import 'package:ebla/presentations/features/home/blocs/news_bloc/news_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../resources/resources.dart';
 import '../../../widgets/widgets.dart';
+import '../../info/views/news/blocs/news_bloc/news_bloc.dart';
 
 class NewsWidget extends StatefulWidget {
   const NewsWidget({super.key});
@@ -92,10 +93,18 @@ class _NewsWidgetState extends State<NewsWidget> {
                         return Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: AppSizeW.s20, vertical: AppSizeH.s4),
-                          child: NewsItemWidget(
-                              image: value.news[index].image,
-                              date: value.news[index].dateCreated,
-                              label: value.news[index].title),
+                          child: InkWell(
+                            onTap: () {
+                              context.pushNamed(RoutesNames.newsbyId,
+                                  pathParameters: {
+                                    "id": value.news[index].id.toString()
+                                  });
+                            },
+                            child: NewsItemWidget(
+                                image: value.news[index].image,
+                                date: value.news[index].dateCreated,
+                                label: value.news[index].title),
+                          ),
                         );
                       }),
                 ),

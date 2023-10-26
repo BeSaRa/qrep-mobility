@@ -15,6 +15,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../app/depndency_injection.dart';
 import '../features/info/views/laws_decisions_view.dart';
+import '../features/info/views/news/news_item_view.dart';
 import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
 import '../features/sell/blocs/sell_bloc/sell_bloc.dart';
 
@@ -29,6 +30,7 @@ class RoutesNames {
   static const String about = 'about';
   static const String laws = 'laws and decisions';
   static const String faq = 'FAQ';
+  static const String newsbyId = 'news item';
 }
 
 class RoutesPaths {
@@ -42,6 +44,7 @@ class RoutesPaths {
   static const String about = '/about';
   static const String laws = '/laws&decisions';
   static const String faq = '/FAQ';
+  static const String newsbyId = '/news/:id';
 }
 
 class NavigationKeys {
@@ -178,6 +181,14 @@ class AppRouter {
           name: RoutesNames.faq,
           path: RoutesPaths.faq,
           builder: (context, state) => const FAQView(),
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.newsbyId,
+          path: RoutesPaths.newsbyId,
+          builder: (context, state) => NewsItemView(
+            id: int.parse(state.pathParameters['id'] ?? '0'),
+          ),
         ),
         GoRoute(
           name: RoutesNames.splash,

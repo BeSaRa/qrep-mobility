@@ -19,6 +19,20 @@ Map<String, dynamic> _$$NewsResponseImplToJson(_$NewsResponseImpl instance) =>
       'data': instance.data,
     };
 
+_$NewsByIdResponseImpl _$$NewsByIdResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$NewsByIdResponseImpl(
+      data: json['data'] == null
+          ? const NewsModel()
+          : NewsModel.fromJson(json['data'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$NewsByIdResponseImplToJson(
+        _$NewsByIdResponseImpl instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+    };
+
 _$NewsModelImpl _$$NewsModelImplFromJson(Map<String, dynamic> json) =>
     _$NewsModelImpl(
       id: json['id'] as int? ?? 0,

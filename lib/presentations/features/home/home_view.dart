@@ -6,7 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../resources/resources.dart';
-import '../more/more_view.dart';import 'widgets/news_widget.dart';
+import '../more/more_view.dart';
+import 'widgets/news_widget.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key, this.title = 'press'});
