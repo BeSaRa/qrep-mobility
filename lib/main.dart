@@ -4,6 +4,7 @@ import 'package:ebla/app/translations_assets_loader/translations_assets_loader.d
 import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'app/app.dart';
 import 'app/bloc_observer.dart';
@@ -11,6 +12,7 @@ import 'app/depndency_injection.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await ScreenUtil.ensureScreenSize();
 
   await EasyLocalization.ensureInitialized();
   SystemChrome.setPreferredOrientations(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../widgets/ebla_navigation_bar.dart';
@@ -30,6 +31,13 @@ class _MainScaffoldState extends State<MainScaffold>
 
   @override
   Widget build(BuildContext context) {
+    print("building");
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      // todo: when dark mode is ready change statusBarIconBrightness according to the theme
+      statusBarColor: Colors.transparent,
+
+      statusBarIconBrightness: Brightness.dark,
+    ));
     _controller.animateTo(widget.navigationShell.currentIndex,
         duration: kTabScrollDuration, curve: Curves.ease);
     return Scaffold(

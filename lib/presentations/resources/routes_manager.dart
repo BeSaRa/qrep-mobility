@@ -1,7 +1,10 @@
+import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/presentations/features/home/home_view.dart';
 import 'package:ebla/presentations/features/info/blocs/about_bloc/about_bloc.dart';
+import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/info/views/about_us_view.dart';
 import 'package:ebla/presentations/features/info/views/faq_view.dart';
+import 'package:ebla/presentations/features/info/views/laws_details_view.dart';
 import 'package:ebla/presentations/features/main_scaffold.dart';
 import 'package:ebla/presentations/features/more/more_view.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
@@ -27,6 +30,7 @@ class RoutesNames {
   static const String more = 'more';
   static const String about = 'about';
   static const String laws = 'laws and decisions';
+  static const String lawsDetails = 'laws details';
   static const String faq = 'FAQ';
 }
 
@@ -40,6 +44,7 @@ class RoutesPaths {
   static const String more = '/more';
   static const String about = '/about';
   static const String laws = '/laws&decisions';
+  static const String lawsDetails = 'laws_details';
   static const String faq = '/FAQ';
 }
 
@@ -161,11 +166,35 @@ class AppRouter {
           ),
         ),
         GoRoute(
-          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
-          name: RoutesNames.laws,
-          path: RoutesPaths.laws,
-          builder: (context, state) => const LawsDecisionsView(),
-        ),
+            parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+            name: RoutesNames.laws,
+            path: RoutesPaths.laws,
+            builder: (context, state) => BlocProvider(
+                  create: (context) =>
+                      instance<LawsBloc>()..add(const LawsEvent.getLaws()),
+                  child: const LawsDecisionsView(),
+                ),
+            routes: [
+              GoRoute(
+                parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+                name: RoutesNames.lawsDetails,
+                path: RoutesPaths.lawsDetails,
+                builder: (context, state) {
+                  // state.extra might be _Map<String, dynamic> when inspecting widgets while in LawsDetailsView
+                  // because of issue: https://github.com/flutter/flutter/issues/99099
+                  if (state.extra is LawsModel) {
+                    return LawsDetailsView(
+                      law: state.extra as LawsModel,
+                    );
+                  }
+                  return Scaffold(
+                    body: Center(
+                        child: Text('something wrong happened',
+                            style: Theme.of(context).textTheme.titleLarge)),
+                  );
+                },
+              ),
+            ]),
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.faq,

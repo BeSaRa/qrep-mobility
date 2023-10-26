@@ -21,6 +21,12 @@ class _AnimatedPulesLogoState extends State<AnimatedPulesLogo>
   @override
   void initState() {
     super.initState();
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+          // todo: when dark mode is ready change statusBarIconBrightness according to the theme
+          statusBarColor: ColorManager.primary,
+          statusBarIconBrightness: Brightness.light),
+    );
     motionController = AnimationController(
       duration: const Duration(seconds: 1),
       vsync: this,
@@ -47,57 +53,61 @@ class _AnimatedPulesLogoState extends State<AnimatedPulesLogo>
   @override
   void dispose() {
     motionController.dispose();
-    SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      // todo: when dark mode is ready change statusBarIconBrightness according to the theme
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ));
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: ColorManager.primary));
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-        colors: [
-          ColorManager.primary,
-          ColorManager.white,
-        ],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        stops: const [0.2, 1.0],
-      )),
-      child: Center(
-          child: SizedBox(
-        height: AppSizeW.s200,
-        child: Stack(children: <Widget>[
-          Center(
-            child: Container(
-              height: size - AppSizeW.s5,
-              padding: EdgeInsets.all(AppSizeW.s5 * (0.009 * size)),
-              decoration: BoxDecoration(
-                  color: ColorManager.white.withOpacity(0.4),
-                  shape: BoxShape.circle),
+    return Scaffold(
+      backgroundColor: ColorManager.primary,
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+          colors: [
+            ColorManager.primary,
+            ColorManager.white,
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          stops: const [0.2, 1.0],
+        )),
+        child: Center(
+            child: SizedBox(
+          height: AppSizeW.s200,
+          child: Stack(children: <Widget>[
+            Center(
               child: Container(
                 height: size - AppSizeW.s5,
-                padding: EdgeInsets.all(AppSizeW.s5 * (0.007 * size)),
+                padding: EdgeInsets.all(AppSizeW.s5 * (0.009 * size)),
                 decoration: BoxDecoration(
-                    color: ColorManager.white.withOpacity(0.6),
+                    color: ColorManager.white.withOpacity(0.4),
                     shape: BoxShape.circle),
                 child: Container(
-                  padding: EdgeInsets.all(AppSizeW.s5),
+                  height: size - AppSizeW.s5,
+                  padding: EdgeInsets.all(AppSizeW.s5 * (0.007 * size)),
                   decoration: BoxDecoration(
-                      color: ColorManager.white, shape: BoxShape.circle),
-                  height: size,
-                  child: Image.asset(ImageAssets.logoPng),
+                      color: ColorManager.white.withOpacity(0.6),
+                      shape: BoxShape.circle),
+                  child: Container(
+                    padding: EdgeInsets.all(AppSizeW.s5),
+                    decoration: BoxDecoration(
+                        color: ColorManager.white, shape: BoxShape.circle),
+                    height: size,
+                    child: Image.asset(ImageAssets.logoPng),
+                  ),
                 ),
               ),
-            ),
-          )
-        ]),
-      )),
+            )
+          ]),
+        )),
+      ),
     );
   }
 }

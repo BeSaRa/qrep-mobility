@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ebla/presentations/features/home/blocs/news_bloc/news_bloc.dart';
+import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/default_bloc/rent_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
@@ -64,6 +65,7 @@ Future<void> initHomeModule() async {
   //Bloc's
   instance.registerFactory(() => AboutBloc(aboutUsecase: instance()));
   instance.registerFactory(() => NewsBloc(newsUsecase: instance()));
+  instance.registerFactory(() => LawsBloc(lawsUsecase: instance()));
 }
 
 Future<void> initSellModule() async {

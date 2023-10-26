@@ -26,7 +26,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestMeanValue;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestMeanValue.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<RentDefault>>>(Options(
       method: 'POST',
@@ -85,7 +86,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestMeanValue;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestMeanValue.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
       method: 'POST',
@@ -117,7 +119,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestMeanValue;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestMeanValue.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<MeanAreaResponse>>>(Options(
       method: 'POST',
@@ -149,7 +152,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestMeanValue;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestMeanValue.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
       method: 'POST',
@@ -181,7 +185,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestMeanValue;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestMeanValue.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
       method: 'POST',
@@ -213,7 +218,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestMeanValue;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestMeanValue.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
       method: 'POST',
@@ -245,7 +251,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestMeanValue;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestMeanValue.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
       method: 'POST',
@@ -277,7 +284,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestMeanValue;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestMeanValue.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
       method: 'POST',
@@ -309,7 +317,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestMeanValue;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestMeanValue.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<RentListSummary>>(Options(
       method: 'POST',
@@ -366,7 +375,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestSellValues;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestSellValues.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
       method: 'POST',
@@ -398,7 +408,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestSellValues;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestSellValues.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
       method: 'POST',
@@ -430,7 +441,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestSellValues;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestSellValues.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
       method: 'POST',
@@ -462,7 +474,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestSellValues;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestSellValues.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
       method: 'POST',
@@ -494,7 +507,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestSellValues;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestSellValues.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<RentDefault>>>(Options(
       method: 'POST',
@@ -525,7 +539,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestSellValues;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestSellValues.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<SellTransactionResponse>>(Options(
       method: 'POST',
@@ -554,7 +569,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestSellValues;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestSellValues.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
       method: 'POST',
@@ -586,7 +602,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestSellValues;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestSellValues.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
       method: 'POST',
@@ -619,7 +636,8 @@ class _AppServiceClient implements AppServiceClient {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = requestSellValues;
+    final _data = <String, dynamic>{};
+    _data.addAll(requestSellValues.toJson());
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
       method: 'POST',

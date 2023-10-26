@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LawsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() getLaws,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function()? getLaws,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? getLaws,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Started value) getLaws,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_Started value)? getLaws,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Started value)? getLaws,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -90,7 +90,7 @@ class _$StartedImpl implements _Started {
 
   @override
   String toString() {
-    return 'LawsEvent.started()';
+    return 'LawsEvent.getLaws()';
   }
 
   @override
@@ -105,27 +105,27 @@ class _$StartedImpl implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() getLaws,
   }) {
-    return started();
+    return getLaws();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function()? getLaws,
   }) {
-    return started?.call();
+    return getLaws?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? getLaws,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (getLaws != null) {
+      return getLaws();
     }
     return orElse();
   }
@@ -133,27 +133,27 @@ class _$StartedImpl implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Started value) getLaws,
   }) {
-    return started(this);
+    return getLaws(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_Started value)? getLaws,
   }) {
-    return started?.call(this);
+    return getLaws?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Started value)? getLaws,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (getLaws != null) {
+      return getLaws(this);
     }
     return orElse();
   }
@@ -165,19 +165,29 @@ abstract class _Started implements LawsEvent {
 
 /// @nodoc
 mixin _$LawsState {
+  bool get isLoading => throw _privateConstructorUsedError;
+  bool get hasError => throw _privateConstructorUsedError;
+  String get errorMessage => throw _privateConstructorUsedError;
+  LawsResponse get lawsResponse => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(bool isLoading, bool hasError,
+            String errorMessage, LawsResponse lawsResponse)
+        initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(bool isLoading, bool hasError, String errorMessage,
+            LawsResponse lawsResponse)?
+        initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool isLoading, bool hasError, String errorMessage,
+            LawsResponse lawsResponse)?
+        initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -197,12 +207,24 @@ mixin _$LawsState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $LawsStateCopyWith<LawsState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LawsStateCopyWith<$Res> {
   factory $LawsStateCopyWith(LawsState value, $Res Function(LawsState) then) =
       _$LawsStateCopyWithImpl<$Res, LawsState>;
+  @useResult
+  $Res call(
+      {bool isLoading,
+      bool hasError,
+      String errorMessage,
+      LawsResponse lawsResponse});
+
+  $LawsResponseCopyWith<$Res> get lawsResponse;
 }
 
 /// @nodoc
@@ -214,13 +236,60 @@ class _$LawsStateCopyWithImpl<$Res, $Val extends LawsState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? hasError = null,
+    Object? errorMessage = null,
+    Object? lawsResponse = null,
+  }) {
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasError: null == hasError
+          ? _value.hasError
+          : hasError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      lawsResponse: null == lawsResponse
+          ? _value.lawsResponse
+          : lawsResponse // ignore: cast_nullable_to_non_nullable
+              as LawsResponse,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LawsResponseCopyWith<$Res> get lawsResponse {
+    return $LawsResponseCopyWith<$Res>(_value.lawsResponse, (value) {
+      return _then(_value.copyWith(lawsResponse: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
+abstract class _$$InitialImplCopyWith<$Res>
+    implements $LawsStateCopyWith<$Res> {
   factory _$$InitialImplCopyWith(
           _$InitialImpl value, $Res Function(_$InitialImpl) then) =
       __$$InitialImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool isLoading,
+      bool hasError,
+      String errorMessage,
+      LawsResponse lawsResponse});
+
+  @override
+  $LawsResponseCopyWith<$Res> get lawsResponse;
 }
 
 /// @nodoc
@@ -230,51 +299,118 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? hasError = null,
+    Object? errorMessage = null,
+    Object? lawsResponse = null,
+  }) {
+    return _then(_$InitialImpl(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasError: null == hasError
+          ? _value.hasError
+          : hasError // ignore: cast_nullable_to_non_nullable
+              as bool,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      lawsResponse: null == lawsResponse
+          ? _value.lawsResponse
+          : lawsResponse // ignore: cast_nullable_to_non_nullable
+              as LawsResponse,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+  const _$InitialImpl(
+      {this.isLoading = false,
+      this.hasError = false,
+      this.errorMessage = '',
+      this.lawsResponse = const LawsResponse()});
+
+  @override
+  @JsonKey()
+  final bool isLoading;
+  @override
+  @JsonKey()
+  final bool hasError;
+  @override
+  @JsonKey()
+  final String errorMessage;
+  @override
+  @JsonKey()
+  final LawsResponse lawsResponse;
 
   @override
   String toString() {
-    return 'LawsState.initial()';
+    return 'LawsState.initial(isLoading: $isLoading, hasError: $hasError, errorMessage: $errorMessage, lawsResponse: $lawsResponse)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$InitialImpl &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.hasError, hasError) ||
+                other.hasError == hasError) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage) &&
+            (identical(other.lawsResponse, lawsResponse) ||
+                other.lawsResponse == lawsResponse));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, hasError, errorMessage, lawsResponse);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function(bool isLoading, bool hasError,
+            String errorMessage, LawsResponse lawsResponse)
+        initial,
   }) {
-    return initial();
+    return initial(isLoading, hasError, errorMessage, lawsResponse);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function(bool isLoading, bool hasError, String errorMessage,
+            LawsResponse lawsResponse)?
+        initial,
   }) {
-    return initial?.call();
+    return initial?.call(isLoading, hasError, errorMessage, lawsResponse);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function(bool isLoading, bool hasError, String errorMessage,
+            LawsResponse lawsResponse)?
+        initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial();
+      return initial(isLoading, hasError, errorMessage, lawsResponse);
     }
     return orElse();
   }
@@ -309,5 +445,22 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements LawsState {
-  const factory _Initial() = _$InitialImpl;
+  const factory _Initial(
+      {final bool isLoading,
+      final bool hasError,
+      final String errorMessage,
+      final LawsResponse lawsResponse}) = _$InitialImpl;
+
+  @override
+  bool get isLoading;
+  @override
+  bool get hasError;
+  @override
+  String get errorMessage;
+  @override
+  LawsResponse get lawsResponse;
+  @override
+  @JsonKey(ignore: true)
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -97,7 +97,8 @@ class __$$LawsResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LawsResponseImpl implements _LawsResponse {
-  _$LawsResponseImpl({final List<LawsModel> data = const []}) : _data = data;
+  const _$LawsResponseImpl({final List<LawsModel> data = const []})
+      : _data = data;
 
   factory _$LawsResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$LawsResponseImplFromJson(json);
@@ -144,7 +145,8 @@ class _$LawsResponseImpl implements _LawsResponse {
 }
 
 abstract class _LawsResponse implements LawsResponse {
-  factory _LawsResponse({final List<LawsModel> data}) = _$LawsResponseImpl;
+  const factory _LawsResponse({final List<LawsModel> data}) =
+      _$LawsResponseImpl;
 
   factory _LawsResponse.fromJson(Map<String, dynamic> json) =
       _$LawsResponseImpl.fromJson;
