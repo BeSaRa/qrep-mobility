@@ -9,16 +9,16 @@ part of 'request_mortgage_values.dart';
 _$RequestMortgageValuesImpl _$$RequestMortgageValuesImplFromJson(
         Map<String, dynamic> json) =>
     _$RequestMortgageValuesImpl(
+      areaCode: json['areaCode'] as num? ?? -1,
       areaFrom: json['areaFrom'] as num?,
       areaTo: json['areaTo'] as num?,
-      bedRoomsCount: json['bedRoomsCount'] as int?,
-      furnitureStatus: json['furnitureStatus'] as int?,
       issueDateEndMonth: json['issueDateEndMonth'] as int?,
       issueDateFrom: json['issueDateFrom'] as String?,
       issueDateQuarterList: (json['issueDateQuarterList'] as List<dynamic>?)
           ?.map((e) => e as int)
           .toList(),
       issueDateStartMonth: json['issueDateStartMonth'] as int?,
+      issueDateMonth: json['issueDateMonth'] as int?,
       issueDateTo: json['issueDateTo'] as String?,
       issueDateYear: json['issueDateYear'] as int?,
       limit: json['limit'] as int?,
@@ -30,26 +30,25 @@ _$RequestMortgageValuesImpl _$$RequestMortgageValuesImplFromJson(
       purposeList: (json['purposeList'] as List<dynamic>?)
           ?.map((e) => e as int)
           .toList(),
-      rentPaymentMonthlyPerUnitFrom:
-          json['rentPaymentMonthlyPerUnitFrom'] as num?,
-      rentPaymentMonthlyPerUnitTo: json['rentPaymentMonthlyPerUnitTo'] as num?,
+      realEstateValueFrom: json['realEstateValueFrom'] as num?,
+      realEstateValueTo: json['realEstateValueTo'] as num?,
       streetNo: json['streetNo'] as int?,
       zoneId: json['zoneId'] as int?,
-      unit: json['unit'] as int? ?? 1,
+      unit: json['unit'] as int? ?? 2,
       periodId: json['periodId'] as int? ?? 1,
     );
 
 Map<String, dynamic> _$$RequestMortgageValuesImplToJson(
         _$RequestMortgageValuesImpl instance) =>
     <String, dynamic>{
+      'areaCode': instance.areaCode,
       'areaFrom': instance.areaFrom,
       'areaTo': instance.areaTo,
-      'bedRoomsCount': instance.bedRoomsCount,
-      'furnitureStatus': instance.furnitureStatus,
       'issueDateEndMonth': instance.issueDateEndMonth,
       'issueDateFrom': instance.issueDateFrom,
       'issueDateQuarterList': instance.issueDateQuarterList,
       'issueDateStartMonth': instance.issueDateStartMonth,
+      'issueDateMonth': instance.issueDateMonth,
       'issueDateTo': instance.issueDateTo,
       'issueDateYear': instance.issueDateYear,
       'limit': instance.limit,
@@ -57,8 +56,8 @@ Map<String, dynamic> _$$RequestMortgageValuesImplToJson(
       'offset': instance.offset,
       'propertyTypeList': instance.propertyTypeList,
       'purposeList': instance.purposeList,
-      'rentPaymentMonthlyPerUnitFrom': instance.rentPaymentMonthlyPerUnitFrom,
-      'rentPaymentMonthlyPerUnitTo': instance.rentPaymentMonthlyPerUnitTo,
+      'realEstateValueFrom': instance.realEstateValueFrom,
+      'realEstateValueTo': instance.realEstateValueTo,
       'streetNo': instance.streetNo,
       'zoneId': instance.zoneId,
       'unit': instance.unit,

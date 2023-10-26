@@ -6,14 +6,14 @@ part 'request_mortgage_values.g.dart';
 @freezed
 abstract class RequestMortgageValues with _$RequestMortgageValues {
   factory RequestMortgageValues({
+    @Default(-1) num areaCode,
     num? areaFrom,
     num? areaTo,
-    int? bedRoomsCount,
-    int? furnitureStatus,
     int? issueDateEndMonth,
     String? issueDateFrom,
     List<int>? issueDateQuarterList,
     int? issueDateStartMonth,
+    int? issueDateMonth,
     String? issueDateTo,
     int? issueDateYear,
     int? limit,
@@ -21,11 +21,11 @@ abstract class RequestMortgageValues with _$RequestMortgageValues {
     int? offset,
     List<int>? propertyTypeList,
     List<int>? purposeList,
-    num? rentPaymentMonthlyPerUnitFrom,
-    num? rentPaymentMonthlyPerUnitTo,
+    num? realEstateValueFrom,
+    num? realEstateValueTo,
     int? streetNo,
     int? zoneId,
-    @Default(1) int unit,
+    @Default(2) int unit,
     @Default(1) int periodId,
   }) = _RequestMortgageValues;
 
