@@ -1,22 +1,23 @@
 import 'package:bloc/bloc.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
-import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
 import 'package:ebla/domain/models/requests/sell_requests/request_sell_values.dart';
-
 import 'package:ebla/domain/usecases/usecases.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'sell_grid_kpis_state.dart';
-part 'sell_grid_kpis_event.dart';
 part 'sell_grid_kpis_bloc.freezed.dart';
+part 'sell_grid_kpis_event.dart';
+part 'sell_grid_kpis_state.dart';
 
 class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
   // KPI1
   final TotalContractsSellUseCase totalContractsSellUseCase;
+
   // KPI4
   final TotalSoldUnitsUseCase totalSoldUnitsUseCase;
+
   // KPI7
   final TotalTransactionSellUseCase totalTransactionSellUseCase;
+
   // KPI13
   final MeanValueSellUsecase meanValueSellUsecase;
 

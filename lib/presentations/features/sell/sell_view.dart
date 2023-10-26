@@ -3,7 +3,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
-import 'package:ebla/domain/models/requests/sell_requests/request_sell_values.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_transaction/sell_transaction_bloc.dart';
@@ -16,13 +15,10 @@ import 'package:lottie/lottie.dart';
 
 import '../../../utils/global_functions.dart';
 import '../../widgets/pagination_widget/pagination_widget.dart';
-import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
-import '../rent/blocs/rent_bloc/rent_bloc.dart';
-import '../rent/blocs/summery_bloc/rent_summery_bloc.dart';
-import '../rent/rent_view.dart';
 import '../../widgets/selected_municipality_widget.dart';
-import '../../widgets/selected_year_widget.dart';
 import '../../widgets/selected_period_widget.dart';
+import '../../widgets/selected_year_widget.dart';
+import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
 import 'blocs/sell_bloc/sell_bloc.dart';
 import 'widgets/bottom_sheet_filter_sell.dart';
 
@@ -297,6 +293,17 @@ class _SalesViewState extends State<SalesView> {
                                         },
                                       ),
                                       SizedBox(height: AppSizeH.s22),
+                                      SizedBox(height: AppSizeH.s22),
+                                      Center(
+                                        child: Text(
+                                          AppStrings()
+                                              .currentPerformanceSummary,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge,
+                                        ),
+                                      ),
+                                      const GreyLinerContainer(),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: AppSizeW.s31),
@@ -345,7 +352,7 @@ class _SalesViewState extends State<SalesView> {
                                                   return const ShimmerMainContainer();
                                                 });
                                           },
-                                          success: (success) =>
+                                          success: (success, isMeter) =>
                                               ListView.builder(
                                                   itemCount: success
                                                               .transactionList
@@ -363,25 +370,41 @@ class _SalesViewState extends State<SalesView> {
                                                       title: AppStrings()
                                                           .sellPrice,
                                                       totalPrice:
-                                                          "${success.transactionList[index].priceMT?.toStringAsFixed(3)} ${AppStrings().currency}",
-                                                      value: success
-                                                              .transactionList[
-                                                                  index]
-                                                              .unitNo
-                                                              ?.toStringAsFixed(
-                                                                  0) ??
-                                                          '0',
+                                                          "${success.transactionList[index].realEstateValue?.toStringAsFixed(1)} ${AppStrings().currency}",
+                                                      value: isMeter
+                                                          ? success
+                                                                  .transactionList[
+                                                                      index]
+                                                                  .realEstateMT
+                                                                  ?.toStringAsFixed(
+                                                                      1) ??
+                                                              '0'
+                                                          : success
+                                                                  .transactionList[
+                                                                      index]
+                                                                  .realEstateSQT
+                                                                  ?.toStringAsFixed(
+                                                                      1) ??
+                                                              '0',
                                                       valueDescription:
                                                           AppStrings().rentArea,
                                                       titleInfo:
                                                           "${AppStrings().theUnitPrice}:",
-                                                      valueInfo: success
-                                                              .transactionList[
-                                                                  index]
-                                                              .realEstateSQT
-                                                              ?.toStringAsFixed(
-                                                                  0) ??
-                                                          '0',
+                                                      valueInfo: isMeter
+                                                          ? success
+                                                                  .transactionList[
+                                                                      index]
+                                                                  .priceMT
+                                                                  ?.toStringAsFixed(
+                                                                      0) ??
+                                                              '0'
+                                                          : success
+                                                                  .transactionList[
+                                                                      index]
+                                                                  .realEstateSQT
+                                                                  ?.toStringAsFixed(
+                                                                      0) ??
+                                                              '0',
                                                       location: context.locale ==
                                                               ARABIC_LOCAL
                                                           ? getObjectByLookupKey(

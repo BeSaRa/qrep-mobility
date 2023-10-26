@@ -2,6 +2,7 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
+import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
 import 'package:ebla/presentations/widgets/widgets.dart';
@@ -29,6 +30,7 @@ class MortgageView extends StatefulWidget {
 class _MortagageViewState extends State<MortgageView> {
   late MortgageTransactionsBloc mortgageTransactionsBloc;
   late ChangeStatusCubit changeStatusCubit;
+
   @override
   void initState() {
     mortgageTransactionsBloc = instance<MortgageTransactionsBloc>();
@@ -285,7 +287,7 @@ class _MortagageViewState extends State<MortgageView> {
                               SizedBox(height: AppSizeH.s20),
                               Center(
                                 child: Text(
-                                  AppStrings().rentContractList,
+                                  AppStrings().mortgageTransactionsList,
                                   style: Theme.of(context).textTheme.titleLarge,
                                 ),
                               ),
@@ -317,29 +319,31 @@ class _MortagageViewState extends State<MortgageView> {
                                                     const NeverScrollableScrollPhysics(),
                                                 itemBuilder: (context, index) {
                                                   return MainDataContainer(
-                                                    title:
-                                                        AppStrings().rentValue,
+                                                    hasRooms: false,
+                                                    title: AppStrings()
+                                                        .mortgageValue,
                                                     totalPrice:
-                                                        "${done.transactionList[index].realEstateValue?.toStringAsFixed(3)}${AppStrings().currency}",
+                                                        "${done.transactionList[index].realEstateValue?.toStringAsFixed(1)}${AppStrings().currency}",
                                                     value: done
                                                             .transactionList[
                                                                 index]
-                                                            .areaCode
-                                                            .toStringAsFixed(
+                                                            .realEstateArea
+                                                            ?.toStringAsFixed(
                                                                 0) ??
                                                         '0',
                                                     valueDescription:
                                                         AppStrings().rentArea,
-                                                    titleInfo:
-                                                        "${AppStrings().roomsCount}:",
-                                                    valueInfo: done
-                                                            .transactionList[
-                                                                index]
-                                                            .buyer ??
-                                                        '',
+                                                    titleInfo: '',
+                                                    valueInfo: '',
+                                                    descripton: DateTime.parse(done
+                                                                .transactionList[
+                                                                    index]
+                                                                .issueDate ??
+                                                            '')
+                                                        .toFormattedString(),
                                                     location: context.locale ==
                                                             ARABIC_LOCAL
-                                                        ? getObjectById(
+                                                        ? getObjectByLookupKey(
                                                                     context
                                                                             .read<
                                                                                 MortgageBloc>()
@@ -350,7 +354,7 @@ class _MortagageViewState extends State<MortgageView> {
                                                                         0)
                                                                 ?.arName ??
                                                             ''
-                                                        : getObjectById(
+                                                        : getObjectByLookupKey(
                                                                     context
                                                                             .read<
                                                                                 MortgageBloc>()
