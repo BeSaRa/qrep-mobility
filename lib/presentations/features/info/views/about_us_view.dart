@@ -1,5 +1,6 @@
 import 'package:ebla/presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 
@@ -18,6 +19,11 @@ class _AboutUsViewState extends State<AboutUsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          systemNavigationBarIconBrightness: Brightness.light,
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.light,
+        ),
         leading: BackButton(color: ColorManager.white),
         title: Text(
           AppStrings().aboutUs,

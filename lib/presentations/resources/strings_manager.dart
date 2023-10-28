@@ -68,6 +68,10 @@ class AppStrings {
   String aboutUs = 'about_us'.tr();
   String faqs = 'faqs'.tr();
   String lawsAndDecisions = 'laws_and_decisions'.tr();
+  String issueDate = 'issue_date'.tr();
+  String lawNumber = 'law_number'.tr();
+  String lawDetails = 'law_details'.tr();
+  String downloadFile = 'download_file'.tr();
 
   //filter
   String measuringUnit = 'measuring_unit'.tr(); // وحدة القياس

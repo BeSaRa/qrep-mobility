@@ -7,9 +7,18 @@ part 'laws_model.g.dart';
 
 @freezed
 abstract class LawsResponse with _$LawsResponse {
-  factory LawsResponse({@Default([]) List<LawsModel> data}) = _LawsResponse;
+  const factory LawsResponse({@Default([]) List<LawsModel> data}) =
+      _LawsResponse;
   factory LawsResponse.fromJson(Map<String, dynamic> json) =>
       _$LawsResponseFromJson(json);
+}
+
+@freezed
+abstract class LawByIdResponse with _$LawByIdResponse {
+  const factory LawByIdResponse({@Default(LawsModel()) LawsModel data}) =
+      _LawByIdResponse;
+  factory LawByIdResponse.fromJson(Map<String, dynamic> json) =>
+      _$LawByIdResponseFromJson(json);
 }
 
 @freezed

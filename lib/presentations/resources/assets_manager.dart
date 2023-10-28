@@ -59,4 +59,5 @@ class IconAssets {
   static const String aboutHome = "${ICON_PATH}about.svg";
   static const String faqHome = "${ICON_PATH}faq.svg";
   static const String lawsHome = "${ICON_PATH}laws.svg";
+  static const String lawItem = "${ICON_PATH}law_item.svg";
 }

@@ -8,6 +8,7 @@ import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_
 import 'package:ebla/presentations/features/rent/blocs/summery_bloc/rent_summery_bloc.dart';
 import 'package:ebla/presentations/widgets/selected_year_widget.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
@@ -333,7 +334,7 @@ class _RentViewState extends State<RentView> {
                               const GreyLinerContainer(),
                               Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: AppSizeW.s20),
+                                    horizontal: AppSizeW.s31),
                                 child: StaggeredGridView(
                                   // for development only: UniqueKey forces the rebuild of the widget on hot reload
                                   key: UniqueKey(),

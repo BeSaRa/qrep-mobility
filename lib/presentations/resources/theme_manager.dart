@@ -1,5 +1,6 @@
 import 'package:ebla/presentations/widgets/range_slider_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'color_manager.dart';
 import 'values_manager.dart';
@@ -15,6 +16,13 @@ ThemeData lightTheme() {
       primary: ColorManager.primary,
       brightness: Brightness.light,
       surfaceVariant: Colors.transparent,
+    ),
+    appBarTheme: const AppBarTheme(
+      systemOverlayStyle: SystemUiOverlayStyle(
+        systemNavigationBarIconBrightness: Brightness.dark,
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+      ),
     ),
     brightness: Brightness.light,
     useMaterial3: true,
