@@ -338,7 +338,7 @@ class _RentViewState extends State<RentView> {
                                 child: StaggeredGridView(
                                   // for development only: UniqueKey forces the rebuild of the widget on hot reload
                                   key: UniqueKey(),
-                                  itemsCount: 4,
+                                  itemsCount: 5,
                                   rightSectionTopPadding: AppSizeH.s17,
                                   mainAxisSpacing: AppSizeH.s22,
                                   crossAxisSpacing: AppSizeW.s23,

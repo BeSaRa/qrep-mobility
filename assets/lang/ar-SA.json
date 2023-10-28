@@ -57,6 +57,7 @@
   "total_rental_contracts_number": "إجمالي عدد\n عقود الإيجار",
   "the_total_number_of_properties_units_rented": "إجمالي عدد الوحدات\n \\ العقارات المستأجرة",
   "average_rental_price_per_unit_property": "متوسط قيمة الإيجار\n لكل وحدة \\ عقار",
+  "total_rented_space": "إجمالي المساحات المؤجرة",
   "rent_contract_list": "قائمة معاملات الإيجار",
   "rent_area": "المساحة",
   "room_count": "عدد الغرف",

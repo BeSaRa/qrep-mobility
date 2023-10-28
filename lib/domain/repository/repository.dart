@@ -54,6 +54,8 @@ abstract class Repository {
   Future<Result<RentListSummary, FailureModel>> getRentSummary(
       RequestMeanValue requestMeanValue);
 
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedSpace(
+      RequestMeanValue requestMeanValue);
   //----------------------------sell---------------------------------------
   Future<Result<RentLookupResponse, FailureModel>> getLockupSell();
 

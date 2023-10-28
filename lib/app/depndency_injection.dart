@@ -179,6 +179,11 @@ Future<void> initRentModule() async {
     instance.registerFactory<TotalRentedUnitsUseCase>(
         () => TotalRentedUnitsUseCase(instance()));
   }
+  if (!GetIt.I.isRegistered<TotalRentedSpaceUsecase>()) {
+    instance.registerFactory<TotalRentedSpaceUsecase>(
+        () => TotalRentedSpaceUsecase(instance()));
+  }
+
 //Blocs
 
   if (!GetIt.I.isRegistered<RentBloc>()) {
@@ -196,7 +201,8 @@ Future<void> initRentModule() async {
         totalRentedUnitsUseCase: instance(),
         totalContractsUseCase: instance(),
         meanValueUsecase: instance(),
-        contractValueUseCase: instance()));
+        contractValueUseCase: instance(),
+        totalRentedSpaceUsecase: instance()));
   }
   if (!GetIt.I.isRegistered<RentSummeryBloc>()) {
     instance.registerFactory(() => RentSummeryBloc(instance()));

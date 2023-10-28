@@ -11,4 +11,5 @@ enum KPI {
   totalContracts,
   meanRentUnitValue,
   totalContractsValue,
+  totalRentedSpaces,
 }

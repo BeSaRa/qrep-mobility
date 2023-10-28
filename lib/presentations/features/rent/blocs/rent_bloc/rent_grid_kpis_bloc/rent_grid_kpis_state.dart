@@ -10,6 +10,7 @@ class RentGridKPIsState with _$RentGridKPIsState {
     @Default([]) List<BaseRentResponse> totalRentedUnits,
     @Default([]) List<BaseRentResponse> contractsValue,
     @Default([]) List<BaseRentResponse> meanValue,
+    @Default([]) List<BaseRentResponse> totalRentedSpace,
   }) = _InitialState;
 
   // const factory TotalContractsState.loadInProgress() = _LoadInProgress;

@@ -41,6 +41,9 @@ class EndPoints {
   // متوسط سعر الوحدة
   static const String meanValueSell = '/kpi/sell/kpi13/mean-value';
 
+  // اجمالي المساحات المستأجرة
+  static const String totalRentedSpace = '/kpi10/total-areas';
+
   // قائمة معاملات البيع
   static const String sellTransactions = '/kpi/sell/kpi29/transactions';
 

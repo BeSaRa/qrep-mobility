@@ -4,6 +4,7 @@ import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/widgets/grid_value_with_unit_widget.dart';
+import 'package:ebla/utils/colored_printer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -50,6 +51,10 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
         title: "the_total_value_of_lease_contracts",
         imagePath: ImageAssets.totalValRentContracts,
         valueUnit: 'currency'),
+    GridItemData(
+        title: "total_rented_space",
+        imagePath: ImageAssets.totalRentedSpaces,
+        valueUnit: 'square_meter'),
   ];
 
   @override
@@ -135,6 +140,16 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                               .formatWithCommas(),
                           unit: gridItemsData[widget.index].valueUnit,
                         );
+                      } else if (widget.kpi == KPI.totalRentedSpaces) {
+                        // KPI0
+                        // todo: edit this once you have a valid response
+                        return GridValueWithUnitWidget(
+                          countUp: false,
+                          value: (widget.response.kpi10Val ?? 0)
+                              .formatWithCommas(),
+                          unit: '',
+                          dataCollectedAndAudited: true,
+                        );
                       } else if (widget.kpi == KPI.totalContractsValue) {
                         // KPI7
                         return GridValueWithUnitWidget(
@@ -172,6 +187,16 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                         end: state.meanValue.first.kpiVal.toDouble(),
                         unit: gridItemsData[widget.index].valueUnit,
                       );
+                    } else if (state.totalRentedSpace.isNotEmpty &&
+                        widget.kpi == KPI.totalRentedSpaces) {
+                      // KPI10
+                      return GridValueWithUnitWidget(
+                        countUp: true,
+                        duration: 1,
+                        begin: widget.response.kpi10Val ?? 0,
+                        end: state.totalRentedSpace.first.kpiVal.toDouble(),
+                        unit: gridItemsData[widget.index].valueUnit,
+                      );
                     } else if (state.meanValue.isNotEmpty &&
                         widget.kpi == KPI.totalContractsValue) {
                       // KPI17
@@ -183,11 +208,13 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                         unit: gridItemsData[widget.index].valueUnit,
                       );
                     }
-                    return GridValueWithUnitWidget(
+                    // todo: consider using something else other than showing dataCollectedAndAudited when reaching this case, (should not be reached)
+                    return const GridValueWithUnitWidget(
                       countUp: false,
                       begin: 0,
                       end: 0,
-                      unit: gridItemsData[widget.index].valueUnit,
+                      unit: '',
+                      dataCollectedAndAudited: true,
                     );
                   },
                 ),
