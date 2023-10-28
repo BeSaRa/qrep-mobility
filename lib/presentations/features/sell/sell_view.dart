@@ -321,7 +321,6 @@ class _SalesViewState extends State<SalesView> {
                                               child: SellGridItemWidget(
                                                 response: done,
                                                 kpi: SellGridKPIs.values[index],
-                                                index: index,
                                               ),
                                             );
                                           },

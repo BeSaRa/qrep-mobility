@@ -1,10 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ebla/app/extensions.dart';
 
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/widgets/grid_value_with_unit_widget.dart';
-import 'package:ebla/utils/colored_printer.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -30,39 +29,39 @@ class RentGridItemWidget extends StatefulWidget {
 
 class _RentGridItemWidgetState extends State<RentGridItemWidget> {
   //todo: this should be removed once we have real data from api
-  List<GridItemData> gridItemsData = [];
+  List<RentGridItemData> gridItemsData = [];
 
   @override
   void initState() {
     gridItemsData = const [
-      GridItemData(
+      RentGridItemData(
         kpi: KPI.totalRentedUnits,
         title: "the_total_number_of_properties_units_rented",
         imagePath: ImageAssets.soldOrRentedUnits,
         valueUnit: '',
       ),
-      GridItemData(
+      RentGridItemData(
         kpi: KPI.totalContracts,
         title: "total_rental_contracts_number",
         imagePath: ImageAssets.totalNumRentContracts,
         valueUnit: '',
       ),
-      GridItemData(
+      RentGridItemData(
           kpi: KPI.meanRentUnitValue,
           title: "average_rental_price_per_unit_property",
           imagePath: ImageAssets.averageRentUnitPrice,
           valueUnit: 'currency'),
-      GridItemData(
+      RentGridItemData(
           kpi: KPI.totalContractsValue,
           title: "the_total_value_of_lease_contracts",
           imagePath: ImageAssets.totalValRentContracts,
           valueUnit: 'currency'),
-      GridItemData(
+      RentGridItemData(
           kpi: KPI.totalRentedSpaces,
           title: "total_rented_space",
           imagePath: ImageAssets.totalRentedSpaces,
           valueUnit: 'square_meter'),
-      GridItemData(
+      RentGridItemData(
           kpi: KPI.meanAreaValue,
           title: "the_average_price_per_square_meter_square_foot",
           imagePath: ImageAssets.averageSquareMeterPrice,
@@ -306,14 +305,14 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
 }
 
 // todo: remove this once you have real data
-class GridItemData {
+class RentGridItemData {
   final String title;
 
   final String imagePath;
   final String valueUnit;
   final KPI kpi;
 
-  const GridItemData({
+  const RentGridItemData({
     required this.title,
     required this.imagePath,
     required this.valueUnit,

@@ -7,12 +7,12 @@ class SellGridKPIsEvent with _$SellGridKPIsEvent {
 }
 
 enum SellGridKPIs {
-  // KPI4
-  totalSoldUnits,
   // KPI1
   totalContracts,
-  // KPI13
-  meanSellValue,
+  // KPI4
+  totalSoldUnits,
   // KPI7
   totalTransactions,
+  // KPI13
+  meanSellValue,
 }
