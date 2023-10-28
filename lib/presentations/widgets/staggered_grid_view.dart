@@ -38,15 +38,15 @@ class _StaggeredGridViewState extends State<StaggeredGridView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Flexible(child: Column(children: [...rightSectionItems])),
+        SizedBox(
+          width: widget.crossAxisSpacing,
+        ),
         Flexible(
           child: Column(
             children: [...leftSectionItems],
           ),
         ),
-        SizedBox(
-          width: widget.crossAxisSpacing,
-        ),
-        Flexible(child: Column(children: [...rightSectionItems])),
       ],
     );
   }
@@ -74,9 +74,9 @@ class _StaggeredGridViewState extends State<StaggeredGridView> {
   double getTopPadding(int index, int itemsCount) {
     double topPadding = 0.0;
     // first item should not have top padding
-    if (index != 0) {
+    if (index != 1) {
       // first item in the right section should only have rightSectionTopPadding
-      if (index == 1) {
+      if (index == 0) {
         topPadding = widget.rightSectionTopPadding;
       } else {
         topPadding = widget.mainAxisSpacing / 2;

@@ -17,6 +17,8 @@ class ImageAssets {
       "${IMAGE_PATH}average_rent_unit_price.svg";
   static const String totalRentedSpaces =
       "${IMAGE_PATH}total_rented_spaces.svg";
+  static const String averageSquareMeterPrice =
+      "${IMAGE_PATH}average_price_per_square_meter_square_foot.svg";
 
   //------------------------------------------------
   static const String quatarTowerCitySplash =

@@ -112,32 +112,28 @@ class _SellGridItemWidgetState extends State<SellGridItemWidget> {
                       // KPI1
                       return GridValueWithUnitWidget(
                         countUp: false,
-                        value:
-                            (widget.response.kpi1Val ?? 0).formatWithCommas(),
+                        value: widget.response.kpi1Val,
                         unit: gridItemsData[widget.index].valueUnit,
                       );
                     } else if (widget.kpi == SellGridKPIs.totalSoldUnits) {
                       // KPI4
                       return GridValueWithUnitWidget(
                         countUp: false,
-                        value:
-                            (widget.response.kpi4Val ?? 0).formatWithCommas(),
+                        value: widget.response.kpi4Val,
                         unit: gridItemsData[widget.index].valueUnit,
                       );
                     } else if (widget.kpi == SellGridKPIs.meanSellValue) {
                       // KPI13
                       return GridValueWithUnitWidget(
                         countUp: false,
-                        value:
-                            (widget.response.kpi13Val ?? 0).formatWithCommas(),
+                        value: widget.response.kpi13Val,
                         unit: gridItemsData[widget.index].valueUnit,
                       );
                     } else if (widget.kpi == SellGridKPIs.totalTransactions) {
                       // KPI7
                       return GridValueWithUnitWidget(
                         countUp: false,
-                        value:
-                            (widget.response.kpi7Val ?? 0).formatWithCommas(),
+                        value: widget.response.kpi7Val,
                         unit: gridItemsData[widget.index].valueUnit,
                       );
                     }

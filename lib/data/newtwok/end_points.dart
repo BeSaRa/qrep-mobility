@@ -18,6 +18,9 @@ class EndPoints {
   static const String contractValue = '/kpi/rent/kpi7/contract-value';
   static const String meanValue = '/kpi/rent/kpi13/mean-value';
   static const String meanArea = '/kpi/rent/kpi16/mean-area';
+  // اجمالي المساحات المستأجرة
+  static const String totalRentedSpace = '/kpi/rent/kpi10/total-areas';
+
   static const String rentSummary = '/kpi/rent/kpi29/summary';
   static const String certificateCount =
       '/kpi/rent/kpi30/stats/certificate-count';
@@ -40,9 +43,6 @@ class EndPoints {
 
   // متوسط سعر الوحدة
   static const String meanValueSell = '/kpi/sell/kpi13/mean-value';
-
-  // اجمالي المساحات المستأجرة
-  static const String totalRentedSpace = '/kpi10/total-areas';
 
   // قائمة معاملات البيع
   static const String sellTransactions = '/kpi/sell/kpi29/transactions';

@@ -347,7 +347,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/kpi10/total-areas',
+              '/kpi/rent/kpi10/total-areas',
               queryParameters: queryParameters,
               data: _data,
             )

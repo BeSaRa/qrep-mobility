@@ -58,6 +58,7 @@
   "the_total_number_of_properties_units_rented": "إجمالي عدد الوحدات\n \\ العقارات المستأجرة",
   "average_rental_price_per_unit_property": "متوسط قيمة الإيجار\n لكل وحدة \\ عقار",
   "total_rented_space": "إجمالي المساحات المؤجرة",
+  "the_average_price_per_square_meter_square_foot":"متوسط السعر لكل متر مربع \\ قدم مربع",
   "rent_contract_list": "قائمة معاملات الإيجار",
   "rent_area": "المساحة",
   "room_count": "عدد الغرف",

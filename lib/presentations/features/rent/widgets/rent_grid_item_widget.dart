@@ -21,11 +21,8 @@ class RentGridItemWidget extends StatefulWidget {
   const RentGridItemWidget({
     super.key,
     required this.kpi,
-    required this.index,
     required this.response,
   });
-
-  final int index;
 
   @override
   State<RentGridItemWidget> createState() => _RentGridItemWidgetState();
@@ -33,29 +30,47 @@ class RentGridItemWidget extends StatefulWidget {
 
 class _RentGridItemWidgetState extends State<RentGridItemWidget> {
   //todo: this should be removed once we have real data from api
-  final List<GridItemData> gridItemsData = const [
-    GridItemData(
+  List<GridItemData> gridItemsData = [];
+
+  @override
+  void initState() {
+    gridItemsData = const [
+      GridItemData(
+        kpi: KPI.totalRentedUnits,
         title: "the_total_number_of_properties_units_rented",
         imagePath: ImageAssets.soldOrRentedUnits,
-        valueUnit: ''),
-    GridItemData(
-      title: "total_rental_contracts_number",
-      imagePath: ImageAssets.totalNumRentContracts,
-      valueUnit: '',
-    ),
-    GridItemData(
-        title: "average_rental_price_per_unit_property",
-        imagePath: ImageAssets.averageRentUnitPrice,
-        valueUnit: 'currency'),
-    GridItemData(
-        title: "the_total_value_of_lease_contracts",
-        imagePath: ImageAssets.totalValRentContracts,
-        valueUnit: 'currency'),
-    GridItemData(
-        title: "total_rented_space",
-        imagePath: ImageAssets.totalRentedSpaces,
-        valueUnit: 'square_meter'),
-  ];
+        valueUnit: '',
+      ),
+      GridItemData(
+        kpi: KPI.totalContracts,
+        title: "total_rental_contracts_number",
+        imagePath: ImageAssets.totalNumRentContracts,
+        valueUnit: '',
+      ),
+      GridItemData(
+          kpi: KPI.meanRentUnitValue,
+          title: "average_rental_price_per_unit_property",
+          imagePath: ImageAssets.averageRentUnitPrice,
+          valueUnit: 'currency'),
+      GridItemData(
+          kpi: KPI.totalContractsValue,
+          title: "the_total_value_of_lease_contracts",
+          imagePath: ImageAssets.totalValRentContracts,
+          valueUnit: 'currency'),
+      GridItemData(
+          kpi: KPI.totalRentedSpaces,
+          title: "total_rented_space",
+          imagePath: ImageAssets.totalRentedSpaces,
+          valueUnit: 'square_meter'),
+      GridItemData(
+          kpi: KPI.meanAreaValue,
+          title: "the_average_price_per_square_meter_square_foot",
+          imagePath: ImageAssets.averageSquareMeterPrice,
+          valueUnit: 'currency'),
+    ];
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +109,11 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: Text(gridItemsData[widget.index].title.tr(),
+                    child: Text(
+                        gridItemsData
+                            .firstWhere((element) => element.kpi == widget.kpi)
+                            .title
+                            .tr(),
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyMedium),
                   ),
@@ -118,94 +137,141 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                     if (state.isLoading || state.hasError) {
                       if (widget.kpi == KPI.totalContracts) {
                         // KPI1
+                        // إجمالي عدد عقود الإيجار
                         return GridValueWithUnitWidget(
                           countUp: false,
-                          value:
-                              (widget.response.kpi1Val ?? 0).formatWithCommas(),
-                          unit: gridItemsData[widget.index].valueUnit,
+                          value: widget.response.kpi1Val ?? 0,
+                          unit: gridItemsData
+                              .firstWhere(
+                                  (element) => element.kpi == widget.kpi)
+                              .valueUnit,
                         );
-                      } else if (widget.kpi == KPI.totalRentedUntis) {
+                      } else if (widget.kpi == KPI.totalRentedUnits) {
                         // KPI4
+                        // إجمالي عدد الوحدات \\ العقارات المستأجرة
                         return GridValueWithUnitWidget(
                           countUp: false,
-                          value:
-                              (widget.response.kpi4Val ?? 0).formatWithCommas(),
-                          unit: gridItemsData[widget.index].valueUnit,
-                        );
-                      } else if (widget.kpi == KPI.meanRentUnitValue) {
-                        // KPI13
-                        return GridValueWithUnitWidget(
-                          countUp: false,
-                          value: (widget.response.kpi13Val ?? 0)
-                              .formatWithCommas(),
-                          unit: gridItemsData[widget.index].valueUnit,
-                        );
-                      } else if (widget.kpi == KPI.totalRentedSpaces) {
-                        // KPI0
-                        // todo: edit this once you have a valid response
-                        return GridValueWithUnitWidget(
-                          countUp: false,
-                          value: (widget.response.kpi10Val ?? 0)
-                              .formatWithCommas(),
-                          unit: '',
-                          dataCollectedAndAudited: true,
+                          value: widget.response.kpi4Val,
+                          unit: gridItemsData
+                              .firstWhere(
+                                  (element) => element.kpi == widget.kpi)
+                              .valueUnit,
                         );
                       } else if (widget.kpi == KPI.totalContractsValue) {
                         // KPI7
+                        // إجمالي قيمة عقود الإيجار
                         return GridValueWithUnitWidget(
                           countUp: false,
-                          value:
-                              (widget.response.kpi7Val ?? 0).formatWithCommas(),
-                          unit: gridItemsData[widget.index].valueUnit,
+                          value: widget.response.kpi7Val,
+                          unit: gridItemsData
+                              .firstWhere(
+                                  (element) => element.kpi == widget.kpi)
+                              .valueUnit,
+                        );
+                      } else if (widget.kpi == KPI.totalRentedSpaces) {
+                        // KPI0
+                        // إجمالي المساحات المؤجرة
+                        // todo: edit this once you have a valid response
+                        return GridValueWithUnitWidget(
+                          countUp: false,
+                          value: widget.response.kpi10Val,
+                          unit: '',
+                          dataCollectedAndAudited: true,
+                        );
+                      } else if (widget.kpi == KPI.meanRentUnitValue) {
+                        // KPI13
+                        // متوسط قيمة الإيجار لكل وحدة \\ عقار
+                        return GridValueWithUnitWidget(
+                          countUp: false,
+                          value: widget.response.kpi13Val,
+                          unit: gridItemsData
+                              .firstWhere(
+                                  (element) => element.kpi == widget.kpi)
+                              .valueUnit,
+                        );
+                      } else if (widget.kpi == KPI.meanAreaValue) {
+                        // KPI16
+                        // متوسط السعر لكل متر مربع \\ قدم مربع
+                        return GridValueWithUnitWidget(
+                          countUp: false,
+                          value: widget.response.kpi16Val,
+                          // unit: gridItemsData[widget.index].valueUnit,
+                          dataCollectedAndAudited: true,
                         );
                       }
-                    } else if (state.totalContracts.isNotEmpty &&
+                    }
+
+                    ///-------------------Data not from default ----------------
+                    else if (state.totalContracts.isNotEmpty &&
                         widget.kpi == KPI.totalContracts) {
                       // KPI1
+                      // إجمالي عدد عقود الإيجار
                       return GridValueWithUnitWidget(
                         countUp: true,
                         duration: 1,
-                        begin: widget.response.kpi1Val ?? 0,
-                        end: state.totalContracts.first.kpiVal.toDouble(),
+                        begin: widget.response.kpi1Val,
+                        end: state.totalContracts.first.kpiVal,
                       );
                     } else if (state.totalRentedUnits.isNotEmpty &&
-                        widget.kpi == KPI.totalRentedUntis) {
+                        widget.kpi == KPI.totalRentedUnits) {
                       // KPI4
+                      // إجمالي عدد الوحدات \\ العقارات المستأجرة
                       return GridValueWithUnitWidget(
                         countUp: true,
                         duration: 1,
-                        begin: widget.response.kpi1Val ?? 0,
+                        begin: widget.response.kpi4Val,
                         end: state.totalRentedUnits.first.kpiVal.toDouble(),
                       );
-                    } else if (state.meanValue.isNotEmpty &&
-                        widget.kpi == KPI.meanRentUnitValue) {
-                      // KPI13
+                    } else if (state.totalContractsValue.isNotEmpty &&
+                        widget.kpi == KPI.totalContractsValue) {
+                      // KPI7
+                      // إجمالي قيمة عقود الإيجار
                       return GridValueWithUnitWidget(
                         countUp: true,
                         duration: 1,
-                        begin: widget.response.kpi1Val ?? 0,
-                        end: state.meanValue.first.kpiVal.toDouble(),
-                        unit: gridItemsData[widget.index].valueUnit,
+                        begin: widget.response.kpi7Val,
+                        end: state.totalContractsValue.first.kpiVal.toDouble(),
+                        unit: gridItemsData
+                            .firstWhere((element) => element.kpi == widget.kpi)
+                            .valueUnit,
                       );
                     } else if (state.totalRentedSpace.isNotEmpty &&
                         widget.kpi == KPI.totalRentedSpaces) {
-                      // KPI10
+                      // KPI0
+                      // إجمالي المساحات المؤجرة
                       return GridValueWithUnitWidget(
                         countUp: true,
                         duration: 1,
-                        begin: widget.response.kpi10Val ?? 0,
+                        begin: widget.response.kpi10Val,
                         end: state.totalRentedSpace.first.kpiVal.toDouble(),
-                        unit: gridItemsData[widget.index].valueUnit,
+                        unit: gridItemsData
+                            .firstWhere((element) => element.kpi == widget.kpi)
+                            .valueUnit,
                       );
-                    } else if (state.meanValue.isNotEmpty &&
-                        widget.kpi == KPI.totalContractsValue) {
-                      // KPI17
+                    } else if (state.meanRentUnitValue.isNotEmpty &&
+                        widget.kpi == KPI.meanRentUnitValue) {
+                      // KPI13
+                      // متوسط قيمة الإيجار لكل وحدة \\ عقار
                       return GridValueWithUnitWidget(
                         countUp: true,
                         duration: 1,
-                        begin: widget.response.kpi1Val ?? 0,
-                        end: state.contractsValue.first.kpiVal.toDouble(),
-                        unit: gridItemsData[widget.index].valueUnit,
+                        begin: widget.response.kpi13Val,
+                        end: state.meanRentUnitValue.first.kpiVal.toDouble(),
+                        unit: gridItemsData
+                            .firstWhere((element) => element.kpi == widget.kpi)
+                            .valueUnit,
+                      );
+                    } else if (state.meanAreaValue.isNotEmpty &&
+                        widget.kpi == KPI.meanAreaValue) {
+                      // KPI16
+                      // متوسط السعر لكل متر مربع \\ قدم مربع
+                      return GridValueWithUnitWidget(
+                        countUp: true,
+                        duration: 1,
+                        begin: widget.response.kpi16Val,
+                        end: state.meanAreaValue.first.kpiVal.toDouble(),
+                        // unit: gridItemsData[widget.index].valueUnit,
+                        dataCollectedAndAudited: true,
                       );
                     }
                     // todo: consider using something else other than showing dataCollectedAndAudited when reaching this case, (should not be reached)
@@ -222,7 +288,9 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                 AspectRatio(
                   aspectRatio: 1,
                   child: SvgPicture.asset(
-                    gridItemsData[widget.index].imagePath,
+                    gridItemsData
+                        .firstWhere((element) => element.kpi == widget.kpi)
+                        .imagePath,
                     height: AppSizeH.s70,
                     width: AppSizeW.s70,
                     color: ColorManager.primary,
@@ -243,7 +311,12 @@ class GridItemData {
 
   final String imagePath;
   final String valueUnit;
+  final KPI kpi;
 
-  const GridItemData(
-      {required this.title, required this.imagePath, required this.valueUnit});
+  const GridItemData({
+    required this.title,
+    required this.imagePath,
+    required this.valueUnit,
+    required this.kpi,
+  });
 }
