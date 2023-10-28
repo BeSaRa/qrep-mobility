@@ -2,17 +2,14 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../utils/global_functions.dart';
 import '../resources/resources.dart';
-import 'widgets.dart';
-import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
 
 class SelectedMunicipality extends StatefulWidget {
   final List<RentLookupModel> list;
   final RentLookupModel? value;
   final Function(RentLookupModel?)? onChanged;
+
   const SelectedMunicipality(
       {super.key, this.onChanged, this.value, required this.list});
 

@@ -17,13 +17,11 @@ import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../../widgets/pagination_widget/pagination_widget.dart';
 import '../../widgets/selected_municipality_widget.dart';
+import '../../widgets/selected_period_widget.dart';
 import '../../widgets/widgets.dart';
 import 'blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import 'blocs/default_bloc/rent_default_bloc.dart';
 import 'widgets/rent_grid_item_widget.dart';
-
-import '../../widgets/selected_period_widget.dart';
-
 import 'widgets/statistics_rent_widget.dart';
 
 class RentView extends StatefulWidget {
@@ -551,7 +549,6 @@ class _RentViewState extends State<RentView> {
                                           rentSummeryBloc.rentSummery?.count ??
                                               0,
                                       onPreviousPage: (previousPage) {
-                                        print('previousPage$previousPage');
                                         context
                                                 .read<RentBloc>()
                                                 .requestMeanValue =
@@ -566,8 +563,6 @@ class _RentViewState extends State<RentView> {
                                                     .requestMeanValue));
                                       },
                                       onBackToFirstPage: (firstPage) {
-                                        print('firstPage$firstPage');
-
                                         context
                                                 .read<RentBloc>()
                                                 .requestMeanValue =
@@ -582,8 +577,6 @@ class _RentViewState extends State<RentView> {
                                                     .requestMeanValue));
                                       },
                                       onNextPage: (nextPage) {
-                                        print('nextPage$nextPage');
-
                                         context
                                                 .read<RentBloc>()
                                                 .requestMeanValue =
@@ -598,8 +591,6 @@ class _RentViewState extends State<RentView> {
                                                     .requestMeanValue));
                                       },
                                       onGoToLastPage: (lastPage) {
-                                        print('lastPage$lastPage');
-
                                         context
                                                 .read<RentBloc>()
                                                 .requestMeanValue =

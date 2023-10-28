@@ -1,4 +1,3 @@
-import 'package:countup/countup.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
@@ -7,11 +6,9 @@ import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/widgets/grid_value_with_unit_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../domain/models/rent_models/rent_models.dart';
-
 import '../../../resources/values_manager.dart';
 
 class SellGridItemWidget extends StatefulWidget {
