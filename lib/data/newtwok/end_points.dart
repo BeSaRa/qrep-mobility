@@ -4,6 +4,7 @@ class EndPoints {
 
   static const String news = '/items/news';
   static const String laws = '/items/laws';
+  static const String lawsById = '/items/laws/{id}';
   static const String about = '/items/about';
   static const String faq = '/items/FAQ';
 
