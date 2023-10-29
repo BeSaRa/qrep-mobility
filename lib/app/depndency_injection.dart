@@ -65,10 +65,10 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<NewsUsecase>()) {
     instance.registerFactory<NewsUsecase>(() => NewsUsecase(instance()));
   }
-  if (!GetIt.I.isRegistered<NewsByIdUsecase>()) {
-    instance
-        .registerFactory<NewsByIdUsecase>(() => NewsByIdUsecase(instance()));
-  }
+  // if (!GetIt.I.isRegistered<NewsByIdUsecase>()) {
+  //   instance
+  //       .registerFactory<NewsByIdUsecase>(() => NewsByIdUsecase(instance()));
+  // }
   if (!GetIt.I.isRegistered<LawsUsecase>()) {
     instance.registerFactory<LawsUsecase>(() => LawsUsecase(instance()));
   }
@@ -83,9 +83,7 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<NewsBloc>()) {
     instance.registerFactory(() => NewsBloc(newsUsecase: instance()));
   }
-  // if (!GetIt.I.isRegistered<NewsItemBloc>()) {
-  //   instance.registerFactory(() => NewsItemBloc(newsByIdUsecase: instance()));
-  // }
+
   if (!GetIt.I.isRegistered<LawsBloc>()) {
     instance.registerFactory(
         () => LawsBloc(lawsUsecase: instance(), lawByIdUsecase: instance()));

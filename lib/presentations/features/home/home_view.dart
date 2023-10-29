@@ -51,6 +51,7 @@ class _HomeViewState extends State<HomeView> {
                                 context.goNamed(RoutesNames.sales);
                               },
                               child: _HomeContainer(
+                                context: context,
                                 isBig: true,
                                 title: AppStrings().sellIndicators,
                                 color: ColorManager.white,
@@ -63,6 +64,7 @@ class _HomeViewState extends State<HomeView> {
                                 context.goNamed(RoutesNames.mortgage);
                               },
                               child: _HomeContainer(
+                                context: context,
                                 isBig: false,
                                 title: AppStrings().mortgageIndicators,
                                 color: ColorManager.silver,
@@ -82,6 +84,7 @@ class _HomeViewState extends State<HomeView> {
                                 context.goNamed(RoutesNames.rent);
                               },
                               child: _HomeContainer(
+                                context: context,
                                 isBig: false,
                                 title: AppStrings().rentIndicators,
                                 color: ColorManager.cloudyGrey,
@@ -93,6 +96,7 @@ class _HomeViewState extends State<HomeView> {
                               ),
                             ),
                             _HomeContainer(
+                              context: context,
                               isBig: true,
                               title: AppStrings().realEstateBrokers,
                               color: Colors.white.withOpacity(0.8),
@@ -212,6 +216,7 @@ class _HomeContainer extends StatelessWidget {
   final Color? iconColor;
   final Color? textColor;
   final bool isShadow;
+  final BuildContext context;
 
   const _HomeContainer({
     required this.isBig,
@@ -222,10 +227,11 @@ class _HomeContainer extends StatelessWidget {
     this.iconColor,
     this.textColor,
     required this.isShadow,
+    required this.context,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext ctxt) {
     return Container(
       margin: EdgeInsets.symmetric(
           horizontal: AppSizeW.s10, vertical: AppSizeH.s10),
@@ -275,9 +281,9 @@ class _HomeContainer extends StatelessWidget {
                   isBig ? CrossAxisAlignment.center : CrossAxisAlignment.end,
               children: [
                 Align(
-                  alignment: context.locale == ARABIC_LOCAL
-                      ? Alignment.topLeft
-                      : Alignment.topRight,
+                  // alignment: context.locale == ARABIC_LOCAL
+                  //     ? Alignment.topLeft
+                  //     : Alignment.topRight,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Transform.rotate(

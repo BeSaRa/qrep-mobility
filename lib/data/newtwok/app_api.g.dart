@@ -853,7 +853,7 @@ class _TranslationsServiceClient implements TranslationsServiceClient {
     )
             .compose(
               _dio.options,
-              '/items/about',
+              '/items/about?fields=*,translations.*',
               queryParameters: queryParameters,
               data: _data,
             )
