@@ -73,6 +73,8 @@
   "avg_price_every_month": "Average Price per month",
   "contracts_value": "Contracts values",
   "no_data_found": "Sorry,no data found!",
+  "avg_price_per_meter": "Average price per meter",
+  "rented_areas": "Rented spaces",
   "----------------------------------------------------SELL--------------------------": "",
   "the_total_number_of_properties_units_sold": "The total number of properties / units sold",
   "the_total_number_of_sell_contracts": "The total number of \n sell contracts",

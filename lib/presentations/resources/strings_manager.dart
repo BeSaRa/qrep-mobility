@@ -39,6 +39,8 @@ class AppStrings {
   String noRentContracts = "no_contracts_found".tr();
   String avgPriceEveryMonth = "avg_price_every_month".tr();
   String contractsValue = "contracts_value".tr();
+  String avgPricePerMeter = "avg_price_per_meter".tr();
+  String rentedAreas = "rented_areas".tr();
 
   //more view locals
   String moreTitle = 'more_title'.tr();

@@ -30,33 +30,48 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: AppSizeW.s6, vertical: AppSizeH.s6),
-                    decoration: BoxDecoration(
-                      color: ColorManager.grey,
-                      borderRadius: BorderRadius.circular(AppSizeR.s12),
-                    ),
-                    child: Row(
-                      children: [
-                        _TabContainerShimmer(
-                          tabIndex: 1,
-                          name: AppStrings().countLeaseContracts,
+                      padding: EdgeInsets.symmetric(
+                          horizontal: AppSizeW.s6, vertical: AppSizeH.s6),
+                      decoration: BoxDecoration(
+                        color: ColorManager.grey,
+                        borderRadius: BorderRadius.circular(AppSizeR.s12),
+                      ),
+                      child: SizedBox(
+                        height: AppSizeH.s54,
+                        width: MediaQuery.of(context).size.width -
+                            (context.locale == ARABIC_LOCAL
+                                ? AppSizeW.s52
+                                : AppSizeW.s20),
+                        child: Wrap(
+                          alignment: WrapAlignment.center,
+                          children: [
+                            _TabContainerShimmer(
+                              tabIndex: 1,
+                              name: AppStrings().countLeaseContracts,
+                            ),
+                            _TabContainerShimmer(
+                              tabIndex: 2,
+                              name: AppStrings().countPropertiesUnits,
+                            ),
+                            _TabContainerShimmer(
+                              tabIndex: 3,
+                              name: AppStrings().avgPriceEveryMonth,
+                            ),
+                            _TabContainerShimmer(
+                              tabIndex: 4,
+                              name: AppStrings().contractsValue,
+                            ),
+                            _TabContainerShimmer(
+                              tabIndex: 5,
+                              name: AppStrings().avgPricePerMeter,
+                            ),
+                            _TabContainerShimmer(
+                              tabIndex: 6,
+                              name: AppStrings().rentedAreas,
+                            ),
+                          ],
                         ),
-                        _TabContainerShimmer(
-                          tabIndex: 2,
-                          name: AppStrings().countPropertiesUnits,
-                        ),
-                        _TabContainerShimmer(
-                          tabIndex: 3,
-                          name: AppStrings().avgPriceEveryMonth,
-                        ),
-                        _TabContainerShimmer(
-                          tabIndex: 4,
-                          name: AppStrings().contractsValue,
-                        ),
-                      ],
-                    ),
-                  )
+                      ))
                 ],
               );
             }
@@ -70,50 +85,75 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                     color: ColorManager.grey,
                     borderRadius: BorderRadius.circular(AppSizeR.s12),
                   ),
-                  child: Row(
-                    children: [
-                      _TabContainer(
-                        indexTab: 1,
-                        name: AppStrings().countLeaseContracts,
-                        onPress: () {
-                          context.read<CertificateContractBloc>().add(
-                              CertificateContractEvent.certificateCountEvent(
-                                  request: context
-                                      .read<RentBloc>()
-                                      .requestMeanValue));
-                        },
-                      ),
-                      _TabContainer(
-                          indexTab: 2,
-                          name: AppStrings().countPropertiesUnits,
+                  child: SizedBox(
+                    height: AppSizeH.s54,
+                    width: MediaQuery.of(context).size.width - AppSizeW.s52,
+                    child: Wrap(
+                      alignment: WrapAlignment.center,
+                      children: [
+                        _TabContainer(
+                          indexTab: 1,
+                          name: AppStrings().countLeaseContracts,
                           onPress: () {
                             context.read<CertificateContractBloc>().add(
-                                CertificateContractEvent.contractCountEvent(
+                                CertificateContractEvent.certificateCountEvent(
                                     request: context
                                         .read<RentBloc>()
                                         .requestMeanValue));
-                          }),
-                      _TabContainer(
-                          indexTab: 3,
-                          name: AppStrings().avgPriceEveryMonth,
-                          onPress: () {
-                            context.read<CertificateContractBloc>().add(
-                                CertificateContractEvent.meanRentAmountEvent(
-                                    request: context
-                                        .read<RentBloc>()
-                                        .requestMeanValue));
-                          }),
-                      _TabContainer(
-                          indexTab: 4,
-                          name: AppStrings().contractsValue,
-                          onPress: () {
-                            context.read<CertificateContractBloc>().add(
-                                CertificateContractEvent.RentAmountEvent(
-                                    request: context
-                                        .read<RentBloc>()
-                                        .requestMeanValue));
-                          })
-                    ],
+                          },
+                        ),
+                        _TabContainer(
+                            indexTab: 2,
+                            name: AppStrings().countPropertiesUnits,
+                            onPress: () {
+                              context.read<CertificateContractBloc>().add(
+                                  CertificateContractEvent.contractCountEvent(
+                                      request: context
+                                          .read<RentBloc>()
+                                          .requestMeanValue));
+                            }),
+                        _TabContainer(
+                            indexTab: 3,
+                            name: AppStrings().avgPriceEveryMonth,
+                            onPress: () {
+                              context.read<CertificateContractBloc>().add(
+                                  CertificateContractEvent.meanRentAmountEvent(
+                                      request: context
+                                          .read<RentBloc>()
+                                          .requestMeanValue));
+                            }),
+                        _TabContainer(
+                            indexTab: 4,
+                            name: AppStrings().contractsValue,
+                            onPress: () {
+                              context.read<CertificateContractBloc>().add(
+                                  CertificateContractEvent.RentAmountEvent(
+                                      request: context
+                                          .read<RentBloc>()
+                                          .requestMeanValue));
+                            }),
+                        _TabContainer(
+                            indexTab: 5,
+                            name: AppStrings().avgPricePerMeter,
+                            onPress: () {
+                              context.read<CertificateContractBloc>().add(
+                                  CertificateContractEvent.RentAmountEvent(
+                                      request: context
+                                          .read<RentBloc>()
+                                          .requestMeanValue));
+                            }),
+                        _TabContainer(
+                            indexTab: 6,
+                            name: AppStrings().rentedAreas,
+                            onPress: () {
+                              context.read<CertificateContractBloc>().add(
+                                  CertificateContractEvent.RentAmountEvent(
+                                      request: context
+                                          .read<RentBloc>()
+                                          .requestMeanValue));
+                            }),
+                      ],
+                    ),
                   ),
                 )
               ],
@@ -218,11 +258,11 @@ class _TabContainerShimmer extends StatelessWidget {
             ? Theme.of(context)
                 .textTheme
                 .displayMedium!
-                .copyWith(fontSize: AppSizeSp.s10)
+                .copyWith(fontSize: AppSizeSp.s12)
             : Theme.of(context)
                 .textTheme
                 .headlineMedium!
-                .copyWith(fontSize: AppSizeSp.s10),
+                .copyWith(fontSize: AppSizeSp.s12),
       ),
     );
   }
@@ -263,11 +303,11 @@ class _TabContainer extends StatelessWidget {
               ? Theme.of(context)
                   .textTheme
                   .displayMedium!
-                  .copyWith(fontSize: AppSizeSp.s10)
+                  .copyWith(fontSize: AppSizeSp.s12)
               : Theme.of(context)
                   .textTheme
                   .headlineMedium!
-                  .copyWith(fontSize: AppSizeSp.s10),
+                  .copyWith(fontSize: AppSizeSp.s12),
         ),
       ),
     );

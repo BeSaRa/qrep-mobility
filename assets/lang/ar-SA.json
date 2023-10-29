@@ -73,6 +73,8 @@
   "avg_price_every_month": "متوسط السعر لكل شهر",
   "contracts_value": "قيمة العقود",
   "no_data_found": "عذراً, لم نجد بيانات!",
+  "avg_price_per_meter": "متوسط السعر لكل متر",
+  "rented_areas": "المساحات المؤجرة",
   "----------------------------------------------------SELL--------------------------": "",
   "the_total_number_of_properties_units_sold": "إجمالي عدد العقارات \\ الوحدات المباعة",
   "the_total_number_of_sell_contracts": "إجمالي عدد\n عقود البيع",

@@ -675,4 +675,33 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
+  @override
+  Future<Result<List<BaseRentResponse>, FailureModel>> meanRentValueMeter(
+      RequestMeanValue requestMeanValue) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.meanRentMeter(requestMeanValue);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        if (kDebugMode) {
+          print('ar ${e.toString()}');
+        }
+
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        if (kDebugMode) {
+          print('ar ${e.toString()}');
+        }
+
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
 }

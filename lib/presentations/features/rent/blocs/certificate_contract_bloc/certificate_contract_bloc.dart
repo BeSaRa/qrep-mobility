@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:ebla/domain/usecases/rent_usecases/mean_rent_amount/mean_rent_amount_usecase.dart';
-import 'package:ebla/domain/usecases/rent_usecases/rent_amount/rent_amount_usecase.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../domain/models/rent_models/rent_models.dart';
 import '../../../../../domain/models/requests/rent_requests/request_mean_value.dart';
 import '../../../../../domain/usecases/rent_usecases/certificate_contract_usecases/certificate_usecase.dart';
 import '../../../../../domain/usecases/rent_usecases/certificate_contract_usecases/contract_usecase.dart';
+import '../../../../../domain/usecases/rent_usecases/mean_rent_amount/mean_rent_amount_usecase.dart';
+import '../../../../../domain/usecases/rent_usecases/rent_amount/rent_amount_usecase.dart';
 
 part 'certificate_contract_bloc.freezed.dart';
 part 'certificate_contract_event.dart';
