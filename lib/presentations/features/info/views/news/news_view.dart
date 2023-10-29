@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../resources/resources.dart';
 import '../../../../widgets/widgets.dart';
-import 'blocs/news_bloc/news_bloc.dart';
+import '../../blocs/news_bloc/news_bloc.dart';
 
 class NewsView extends StatefulWidget {
   const NewsView({super.key});

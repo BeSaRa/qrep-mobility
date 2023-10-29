@@ -6,7 +6,6 @@ import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart'
 import 'package:ebla/presentations/features/info/views/about_us_view.dart';
 import 'package:ebla/presentations/features/info/views/faq_view.dart';
 import 'package:ebla/presentations/features/info/views/laws_details_view.dart';
-import 'package:ebla/presentations/features/info/views/news/blocs/news_bloc/news_bloc.dart';
 import 'package:ebla/presentations/features/main_scaffold.dart';
 import 'package:ebla/presentations/features/more/more_view.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
@@ -20,6 +19,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/depndency_injection.dart';
+import '../features/info/blocs/news_bloc/news_bloc.dart';
 import '../features/info/views/laws_decisions_view.dart';
 import '../features/info/views/news/news_item_view.dart';
 import '../features/info/views/news/news_view.dart';

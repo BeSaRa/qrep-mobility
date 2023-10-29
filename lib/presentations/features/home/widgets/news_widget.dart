@@ -6,7 +6,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../resources/resources.dart';
 import '../../../widgets/widgets.dart';
-import '../../info/views/news/blocs/news_bloc/news_bloc.dart';
+import '../../info/blocs/news_bloc/news_bloc.dart';
 
 class NewsWidget extends StatefulWidget {
   const NewsWidget({super.key});

@@ -13,8 +13,7 @@ import '../../../../../domain/models/cms_models/news/news_model.dart';
 import '../../../../resources/resources.dart';
 import '../../../../widgets/shimmer_placeholder.dart';
 import '../../../../widgets/widgets.dart';
-import 'blocs/news_bloc/news_bloc.dart';
-import 'blocs/news_item_bloc/news_item_bloc.dart';
+import '../../blocs/news_bloc/news_bloc.dart';
 
 class NewsItemView extends StatefulWidget {
   final int id;
