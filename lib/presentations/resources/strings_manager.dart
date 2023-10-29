@@ -17,9 +17,9 @@ class AppStrings {
   // grid
   String totalRentalContractsNumber = 'total_rental_contracts_number'.tr();
   String totalPropertiesUnitsRented =
-  'the_total_number_of_properties_units_rented'.tr();
+      'the_total_number_of_properties_units_rented'.tr();
   String averageRentalPricePerUnitProperty =
-  'average_rental_price_per_unit_property'.tr();
+      'average_rental_price_per_unit_property'.tr();
   String totalValueOfLeaseContracts = 'the_total_value_of_lease_contracts'.tr();
 
   String rentContractList = 'rent_contract_list'.tr();
@@ -29,11 +29,16 @@ class AppStrings {
   String roomsCount = 'room_count'.tr();
   String rentValue = 'rent_value'.tr();
   String currency = "currency".tr();
-  String noLeaseContracts = "no_lease_contracts".tr();
-  String noPropertiesUnits = "no_properties_units".tr();
+
+  //fatina removed this and replace them with no_data_found
+  // String noLeaseContracts = "no_lease_contracts".tr();
+  // String noPropertiesUnits = "no_properties_units".tr();
+  String noDataFound = "no_data_found".tr();
   String countLeaseContracts = "count_lease_contracts".tr();
   String countPropertiesUnits = "count_properties_units".tr();
   String noRentContracts = "no_contracts_found".tr();
+  String avgPriceEveryMonth = "avg_price_every_month".tr();
+  String contractsValue = "contracts_value".tr();
 
   //more view locals
   String moreTitle = 'more_title'.tr();
@@ -47,7 +52,7 @@ class AppStrings {
   String confirm = 'confirm'.tr();
   String cancel = 'cancel'.tr();
   String dataBeingCollectedAndAudited =
-  'data_is_being_collected_and_audited'.tr();
+      'data_is_being_collected_and_audited'.tr();
 
   //login view locals
   String userName = 'user_name'.tr();
@@ -84,7 +89,7 @@ class AppStrings {
   String durationDetails = 'duration_details'.tr(); //
   String rentValueFromTo = 'rent_value_from_to'.tr(); //قيمه العقار من - إلى
   String realStateValueFromTo =
-  'real_state_value_from_to'.tr(); //sell قيمه العقار من - إلى
+      'real_state_value_from_to'.tr(); //sell قيمه العقار من - إلى
   String areaFromTo = 'area_from_to'.tr(); //'المساحة من - إلى'
   String search = 'search'.tr();
   String furnitureStatus = 'furniture_status'.tr(); // 'حالة الاثاث'
@@ -93,10 +98,10 @@ class AppStrings {
   //---------------- sell ----------
   // grid
   String totalNumberOfPropertiesUnitsSold =
-  "the_total_number_of_properties_units_sold".tr();
+      "the_total_number_of_properties_units_sold".tr();
   String totalSellContractsNumber = "the_total_number_of_sell_contracts".tr();
   String averageSellPricePerUnitProperty =
-  "average_sell_price_per_unit_property".tr();
+      "average_sell_price_per_unit_property".tr();
   String totalSellContractsValue = "the_total_value_of_sell_contracts".tr();
   String sellPrice = "sell_price".tr();
   String theUnitPrice = "the_unit_price".tr();
@@ -114,5 +119,4 @@ class AppStrings {
   String lastPage = 'last_page'.tr();
   String firstPage = 'first_page'.tr();
   String of = 'of'.tr();
-
 }
