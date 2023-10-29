@@ -157,6 +157,157 @@ abstract class _NewsResponse implements NewsResponse {
       throw _privateConstructorUsedError;
 }
 
+NewsByIdResponse _$NewsByIdResponseFromJson(Map<String, dynamic> json) {
+  return _NewsByIdResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$NewsByIdResponse {
+  NewsModel get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $NewsByIdResponseCopyWith<NewsByIdResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $NewsByIdResponseCopyWith<$Res> {
+  factory $NewsByIdResponseCopyWith(
+          NewsByIdResponse value, $Res Function(NewsByIdResponse) then) =
+      _$NewsByIdResponseCopyWithImpl<$Res, NewsByIdResponse>;
+  @useResult
+  $Res call({NewsModel data});
+
+  $NewsModelCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class _$NewsByIdResponseCopyWithImpl<$Res, $Val extends NewsByIdResponse>
+    implements $NewsByIdResponseCopyWith<$Res> {
+  _$NewsByIdResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as NewsModel,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NewsModelCopyWith<$Res> get data {
+    return $NewsModelCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$NewsByIdResponseImplCopyWith<$Res>
+    implements $NewsByIdResponseCopyWith<$Res> {
+  factory _$$NewsByIdResponseImplCopyWith(_$NewsByIdResponseImpl value,
+          $Res Function(_$NewsByIdResponseImpl) then) =
+      __$$NewsByIdResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({NewsModel data});
+
+  @override
+  $NewsModelCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$$NewsByIdResponseImplCopyWithImpl<$Res>
+    extends _$NewsByIdResponseCopyWithImpl<$Res, _$NewsByIdResponseImpl>
+    implements _$$NewsByIdResponseImplCopyWith<$Res> {
+  __$$NewsByIdResponseImplCopyWithImpl(_$NewsByIdResponseImpl _value,
+      $Res Function(_$NewsByIdResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$NewsByIdResponseImpl(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as NewsModel,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$NewsByIdResponseImpl implements _NewsByIdResponse {
+  _$NewsByIdResponseImpl({this.data = const NewsModel()});
+
+  factory _$NewsByIdResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NewsByIdResponseImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final NewsModel data;
+
+  @override
+  String toString() {
+    return 'NewsByIdResponse(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NewsByIdResponseImpl &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NewsByIdResponseImplCopyWith<_$NewsByIdResponseImpl> get copyWith =>
+      __$$NewsByIdResponseImplCopyWithImpl<_$NewsByIdResponseImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$NewsByIdResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _NewsByIdResponse implements NewsByIdResponse {
+  factory _NewsByIdResponse({final NewsModel data}) = _$NewsByIdResponseImpl;
+
+  factory _NewsByIdResponse.fromJson(Map<String, dynamic> json) =
+      _$NewsByIdResponseImpl.fromJson;
+
+  @override
+  NewsModel get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$NewsByIdResponseImplCopyWith<_$NewsByIdResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 NewsModel _$NewsModelFromJson(Map<String, dynamic> json) {
   return _NewsModel.fromJson(json);
 }
@@ -362,7 +513,7 @@ class __$$NewsModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NewsModelImpl implements _NewsModel {
-  _$NewsModelImpl(
+  const _$NewsModelImpl(
       {this.id = 0,
       this.status = '',
       @JsonKey(name: 'user_created') this.userCreated = '',
@@ -454,7 +605,7 @@ class _$NewsModelImpl implements _NewsModel {
 }
 
 abstract class _NewsModel implements NewsModel {
-  factory _NewsModel(
+  const factory _NewsModel(
       {final int id,
       final String status,
       @JsonKey(name: 'user_created') final String userCreated,

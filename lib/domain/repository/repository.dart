@@ -19,6 +19,7 @@ abstract class Repository {
   Future<Result<AboutResponse, FailureModel>> getAbout();
 
   Future<Result<NewsResponse, FailureModel>> getNews();
+  Future<Result<NewsByIdResponse, FailureModel>> getNewsById({required int id});
 
   Future<Result<LawsResponse, FailureModel>> getLaws();
 
