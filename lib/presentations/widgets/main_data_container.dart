@@ -13,6 +13,7 @@ class MainDataContainer extends StatelessWidget {
   final String valueInfo;
   final String location;
   final String? descripton;
+  final bool hasRooms;
 
   const MainDataContainer({
     super.key,
@@ -24,6 +25,7 @@ class MainDataContainer extends StatelessWidget {
     required this.valueInfo,
     required this.location,
     this.descripton,
+    this.hasRooms = true,
   });
 
   @override
@@ -76,30 +78,31 @@ class MainDataContainer extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleSmall),
                   ],
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: Hex16Color.fromHex('#FFE5FE'),
-                      borderRadius: BorderRadiusDirectional.only(
-                          topStart: Radius.circular(AppSizeR.s5),
-                          bottomStart: Radius.circular(AppSizeR.s5))),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: AppSizeW.s25, vertical: AppSizeH.s5),
-                  child: Row(
-                    children: [
-                      Text(
-                        titleInfo,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      SizedBox(
-                        width: AppSizeW.s2,
-                      ),
-                      Text(
-                        valueInfo,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
-                )
+                if (hasRooms)
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Hex16Color.fromHex('#FFE5FE'),
+                        borderRadius: BorderRadiusDirectional.only(
+                            topStart: Radius.circular(AppSizeR.s5),
+                            bottomStart: Radius.circular(AppSizeR.s5))),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: AppSizeW.s25, vertical: AppSizeH.s5),
+                    child: Row(
+                      children: [
+                        Text(
+                          titleInfo,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        SizedBox(
+                          width: AppSizeW.s2,
+                        ),
+                        Text(
+                          valueInfo,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
+                  )
               ],
             ),
           ),

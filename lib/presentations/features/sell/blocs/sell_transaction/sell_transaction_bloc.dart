@@ -13,6 +13,7 @@ class SellTransactionBloc
     extends Bloc<SellTransactionEvent, SellTransactionState> {
   SellTransactionUseCase sellTransactionUseCase;
   SellTransactionResponse? sellTransaction;
+
   SellTransactionBloc(this.sellTransactionUseCase)
       : super(const SellTransactionState.initial()) {
     on<SellTransactionEvent>((event, emit) async {
@@ -22,10 +23,9 @@ class SellTransactionBloc
             await sellTransactionUseCase.execute(event.request);
         failureOrSuccess.when((success) {
           sellTransaction = success;
-          print("this  is success fatina $success");
-          emit(SellTransactionState.success(success));
+
+          emit(SellTransactionState.success(success, event.request.unit == 1));
         }, (error) {
-          print("this  is error fatina $error");
           emit(SellTransactionState.error(error.message));
         });
       });

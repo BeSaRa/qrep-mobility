@@ -200,7 +200,8 @@ class NewsItemWidget extends StatelessWidget {
                                 ),
                                 SizedBox(width: AppSizeW.s5),
                                 Text(
-                                  DateTime.parse(date).toFormattedString(),
+                                  DateTime.parse(date).toShowDateTime(
+                                      local: context.locale.languageCode),
                                   style: Theme.of(context)
                                       .textTheme
                                       .headlineMedium!

@@ -17,120 +17,185 @@ class NewsWidget extends StatefulWidget {
 
 class _NewsWidgetState extends State<NewsWidget> {
   final PageController _pageController = PageController();
-  late NewsBloc newsBloc;
   int index = 0;
   @override
   void initState() {
-    newsBloc = instance<NewsBloc>()..add(const NewsEvent.getNewsEvent());
     // TODO: implement initState
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
-      bloc: newsBloc,
-      builder: (context, NewsState state) {
-        return state.map(
-          loading: (value) {
-            return Column(
-              children: [
-                SizedBox(
-                  height: AppSizeH.s100,
-                  child: PageView.builder(
-                      controller: _pageController,
-                      itemCount: 3,
-                      onPageChanged: (indexx) {
-                        index = indexx;
-                        setState(() {
-                          //   _indexCubit = index;
-                          index = indexx;
-                        });
-                      },
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: AppSizeW.s20, vertical: AppSizeH.s4),
-                          child: const NewsItemWidget(
-                              image: '', date: '', label: '', isLoading: true),
-                        );
-                      }),
-                ),
-                SizedBox(
-                  height: AppSizeH.s10,
-                ),
-                Center(
-                  child: AnimatedSmoothIndicator(
-                    activeIndex: index,
-                    count: 3,
-                    // textDirection: TextDirection.rtl,
-                    effect: ExpandingDotsEffect(
-                        dotColor: ColorManager.silver,
-                        activeDotColor: Theme.of(context).primaryColor,
-                        dotHeight: AppSizeH.s6,
-                        dotWidth: AppSizeW.s6),
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: AppSizeW.s20, vertical: AppSizeH.s14),
+          child: Row(
+            children: [
+              Column(
+                children: [
+                  Text(
+                    AppStrings().news,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(fontWeight: FontWeight.w800),
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: AppSizeW.s10),
+                    height: AppSizeH.s5,
+                    width: AppSizeW.s40,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(AppSizeR.s5),
+                        color: ColorManager.lightSilver),
+                  ),
+                ],
+              ),
+              const Spacer(),
+              InkWell(
+                onTap: () {
+                  context.pushNamed(RoutesNames.news,
+                      extra: context.read<NewsBloc>());
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: AppSizeW.s14, vertical: AppSizeH.s2),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: ColorManager.golden),
+                      borderRadius: BorderRadius.circular(AppSizeR.s20)),
+                  child: Row(
+                    children: [
+                      Text(
+                        AppStrings().more,
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: ColorManager.golden,
+                        size: AppSizeH.s14,
+                      )
+                    ],
                   ),
                 ),
-              ],
-            );
-          },
-          loaded: (value) {
-            return Column(
-              children: [
-                SizedBox(
-                  height: AppSizeH.s100,
-                  child: PageView.builder(
-                      controller: _pageController,
-                      itemCount: value.news.length,
-                      onPageChanged: (indexx) {
-                        index = indexx;
-                        setState(() {
-                          //   _indexCubit = index;
-                          index = indexx;
-                        });
-                      },
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: AppSizeW.s20, vertical: AppSizeH.s4),
-                          child: InkWell(
-                            onTap: () {
-                              context.pushNamed(RoutesNames.newsbyId,
-                                  pathParameters: {
-                                    "id": value.news[index].id.toString()
-                                  });
+              )
+            ],
+          ),
+        ),
+        SizedBox(
+          height: AppSizeH.s120,
+          child: BlocBuilder(
+            bloc: context.read<NewsBloc>(),
+            builder: (context, NewsState state) {
+              return state.map(
+                loading: (value) {
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: AppSizeH.s100,
+                        child: PageView.builder(
+                            controller: _pageController,
+                            itemCount: 3,
+                            onPageChanged: (indexx) {
+                              index = indexx;
+                              setState(() {
+                                //   _indexCubit = index;
+                                index = indexx;
+                              });
                             },
-                            child: NewsItemWidget(
-                                image: value.news[index].image,
-                                date: value.news[index].dateCreated,
-                                label: value.news[index].title),
-                          ),
-                        );
-                      }),
-                ),
-                SizedBox(
-                  height: AppSizeH.s10,
-                ),
-                Center(
-                  child: AnimatedSmoothIndicator(
-                    activeIndex: index,
-                    count: value.news.length,
-                    // textDirection: TextDirection.rtl,
-                    effect: ExpandingDotsEffect(
-                        dotColor: ColorManager.silver,
-                        activeDotColor: Theme.of(context).primaryColor,
-                        dotHeight: AppSizeH.s6,
-                        dotWidth: AppSizeW.s6),
-                  ),
-                ),
-              ],
-            );
-          },
-          error: (value) {
-            return const Text('data');
-          },
-        );
-      },
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: AppSizeW.s20,
+                                    vertical: AppSizeH.s4),
+                                child: const NewsItemWidget(
+                                    image: '',
+                                    date: '',
+                                    label: '',
+                                    isLoading: true),
+                              );
+                            }),
+                      ),
+                      SizedBox(
+                        height: AppSizeH.s10,
+                      ),
+                      Center(
+                        child: AnimatedSmoothIndicator(
+                          activeIndex: index,
+                          count: 3,
+                          // textDirection: TextDirection.rtl,
+                          effect: ExpandingDotsEffect(
+                              dotColor: ColorManager.silver,
+                              activeDotColor: Theme.of(context).primaryColor,
+                              dotHeight: AppSizeH.s6,
+                              dotWidth: AppSizeW.s6),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+                loaded: (value) {
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: AppSizeH.s100,
+                        child: PageView.builder(
+                            controller: _pageController,
+                            itemCount: value.news.length,
+                            onPageChanged: (indexx) {
+                              index = indexx;
+                              setState(() {
+                                //   _indexCubit = index;
+                                index = indexx;
+                              });
+                            },
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: AppSizeW.s20,
+                                    vertical: AppSizeH.s4),
+                                child: InkWell(
+                                  onTap: () {
+                                    context.pushNamed(RoutesNames.newsbyId,
+                                        pathParameters: {
+                                          "id": value.news[index].id.toString()
+                                        },
+                                        extra: context.read<NewsBloc>());
+                                  },
+                                  child: NewsItemWidget(
+                                      image: value.news[index].image,
+                                      date: value.news[index].dateCreated,
+                                      label: value.news[index].title),
+                                ),
+                              );
+                            }),
+                      ),
+                      SizedBox(
+                        height: AppSizeH.s10,
+                      ),
+                      Center(
+                        child: AnimatedSmoothIndicator(
+                          activeIndex: index,
+                          count: value.news.length,
+                          // textDirection: TextDirection.rtl,
+                          effect: ExpandingDotsEffect(
+                              dotColor: ColorManager.silver,
+                              activeDotColor: Theme.of(context).primaryColor,
+                              dotHeight: AppSizeH.s6,
+                              dotWidth: AppSizeW.s6),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+                error: (value) {
+                  return const Text('data');
+                },
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

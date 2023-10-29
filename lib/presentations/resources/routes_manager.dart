@@ -1,7 +1,12 @@
+import 'package:ebla/app/routing_observer.dart';
+import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/presentations/features/home/home_view.dart';
 import 'package:ebla/presentations/features/info/blocs/about_bloc/about_bloc.dart';
+import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/info/views/about_us_view.dart';
 import 'package:ebla/presentations/features/info/views/faq_view.dart';
+import 'package:ebla/presentations/features/info/views/laws_details_view.dart';
+import 'package:ebla/presentations/features/info/views/news/blocs/news_bloc/news_bloc.dart';
 import 'package:ebla/presentations/features/main_scaffold.dart';
 import 'package:ebla/presentations/features/more/more_view.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
@@ -10,12 +15,14 @@ import 'package:ebla/presentations/features/rent/rent_view.dart';
 import 'package:ebla/presentations/features/sell/sell_view.dart';
 import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/depndency_injection.dart';
 import '../features/info/views/laws_decisions_view.dart';
 import '../features/info/views/news/news_item_view.dart';
+import '../features/info/views/news/news_view.dart';
 import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
 import '../features/sell/blocs/sell_bloc/sell_bloc.dart';
 
@@ -29,7 +36,9 @@ class RoutesNames {
   static const String more = 'more';
   static const String about = 'about';
   static const String laws = 'laws and decisions';
+  static const String lawsDetails = 'laws details';
   static const String faq = 'FAQ';
+  static const String news = 'news';
   static const String newsbyId = 'news item';
 }
 
@@ -43,7 +52,9 @@ class RoutesPaths {
   static const String more = '/more';
   static const String about = '/about';
   static const String laws = '/laws&decisions';
+  static const String lawsDetails = 'laws_details/:id';
   static const String faq = '/FAQ';
+  static const String news = '/news';
   static const String newsbyId = '/news/:id';
 }
 
@@ -51,9 +62,12 @@ class NavigationKeys {
   static final rootNavigatorKey = GlobalKey<NavigatorState>();
 }
 
+final RoutingObserver routingObserver = RoutingObserver();
+
 class AppRouter {
   static final router = GoRouter(
       debugLogDiagnostics: true,
+      observers: [routingObserver],
       navigatorKey: NavigationKeys.rootNavigatorKey,
       initialLocation: RoutesPaths.splash,
       routes: [
@@ -171,11 +185,42 @@ class AppRouter {
           ),
         ),
         GoRoute(
-          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
-          name: RoutesNames.laws,
-          path: RoutesPaths.laws,
-          builder: (context, state) => const LawsDecisionsView(),
-        ),
+            parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+            name: RoutesNames.laws,
+            path: RoutesPaths.laws,
+            builder: (context, state) => BlocProvider(
+                  create: (context) =>
+                      instance<LawsBloc>()..add(const LawsEvent.getLaws()),
+                  child: const LawsDecisionsView(),
+                ),
+            routes: [
+              GoRoute(
+                parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+                name: RoutesNames.lawsDetails,
+                path: RoutesPaths.lawsDetails,
+                builder: (context, state) {
+                  // be careful when using state.extra because it might be _Map<String, dynamic> when pressing 'i' to inspect widgets
+                  // because of issue: https://github.com/flutter/flutter/issues/99099
+                  // if (state.extra is LawsModel) {
+                  //   return LawsDetailsView(
+                  //     law: state.extra as LawsModel,
+                  //   );
+                  // }
+                  return BlocProvider(
+                    create: (context) => instance<LawsBloc>()
+                      ..add(
+                        LawsEvent.getLawById(
+                            id: int.tryParse(
+                                    state.pathParameters['id'] ?? '1') ??
+                                1),
+                      ),
+                    child: LawsDetailsView(
+                        id: int.tryParse(state.pathParameters['id'] ?? '1') ??
+                            1),
+                  );
+                },
+              ),
+            ]),
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.faq,
@@ -184,10 +229,22 @@ class AppRouter {
         ),
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.news,
+          path: RoutesPaths.news,
+          builder: (context, state) => BlocProvider.value(
+            value: state.extra! as NewsBloc,
+            child: const NewsView(),
+          ),
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.newsbyId,
           path: RoutesPaths.newsbyId,
-          builder: (context, state) => NewsItemView(
-            id: int.parse(state.pathParameters['id'] ?? '0'),
+          builder: (context, state) => BlocProvider.value(
+            value: state.extra! as NewsBloc,
+            child: NewsItemView(
+              id: int.parse(state.pathParameters['id'] ?? '0'),
+            ),
           ),
         ),
         GoRoute(

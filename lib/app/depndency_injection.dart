@@ -18,6 +18,7 @@ import '../domain/repository/repository.dart';
 import '../domain/usecases/CMS/cms_usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
+import '../presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import '../presentations/features/info/views/news/blocs/news_bloc/news_bloc.dart';
 import '../presentations/features/info/views/news/blocs/news_item_bloc/news_item_bloc.dart';
 import '../presentations/features/rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
@@ -69,6 +70,9 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<LawsUsecase>()) {
     instance.registerFactory<LawsUsecase>(() => LawsUsecase(instance()));
   }
+  if (!GetIt.I.isRegistered<LawByIdUsecase>()) {
+    instance.registerFactory<LawByIdUsecase>(() => LawByIdUsecase(instance()));
+  }
 
   //Bloc's
   if (!GetIt.I.isRegistered<AboutBloc>()) {
@@ -77,8 +81,12 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<NewsBloc>()) {
     instance.registerFactory(() => NewsBloc(newsUsecase: instance()));
   }
-  if (!GetIt.I.isRegistered<NewsItemBloc>()) {
-    instance.registerFactory(() => NewsItemBloc(newsByIdUsecase: instance()));
+  // if (!GetIt.I.isRegistered<NewsItemBloc>()) {
+  //   instance.registerFactory(() => NewsItemBloc(newsByIdUsecase: instance()));
+  // }
+  if (!GetIt.I.isRegistered<LawsBloc>()) {
+    instance.registerFactory(
+        () => LawsBloc(lawsUsecase: instance(), lawByIdUsecase: instance()));
   }
 }
 

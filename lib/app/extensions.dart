@@ -14,6 +14,13 @@ extension DateTimeExtension on DateTime? {
   }
 }
 
+extension DateTimeExtensions on DateTime {
+  String toShowDateTime({String? local}) {
+    final DateFormat formatter = DateFormat('d MMM yyyy', local);
+    return formatter.format(this);
+  }
+}
+
 extension NumberFormatting on num {
   String formatWithCommas() {
     return toString().replaceAllMapped(

@@ -49,3 +49,14 @@ class LawsUsecase implements BaseUseCaseEmptyInput<LawsResponse> {
     return await repository.getLaws();
   }
 }
+
+class LawByIdUsecase implements BaseUseCase<int, LawByIdResponse> {
+  final Repository repository;
+
+  LawByIdUsecase(this.repository);
+
+  @override
+  Future<Result<LawByIdResponse, FailureModel>> execute(int id) async {
+    return await repository.getLawById(id);
+  }
+}

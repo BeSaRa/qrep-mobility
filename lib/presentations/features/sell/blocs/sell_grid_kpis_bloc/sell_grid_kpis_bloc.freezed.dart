@@ -15,6 +15,226 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+mixin _$SellGridKPIsEvent {
+  RequestSellValues get request => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(RequestSellValues request) getData,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(RequestSellValues request)? getData,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(RequestSellValues request)? getData,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SellGridKPIsEvent value) getData,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SellGridKPIsEvent value)? getData,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SellGridKPIsEvent value)? getData,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SellGridKPIsEventCopyWith<SellGridKPIsEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SellGridKPIsEventCopyWith<$Res> {
+  factory $SellGridKPIsEventCopyWith(
+          SellGridKPIsEvent value, $Res Function(SellGridKPIsEvent) then) =
+      _$SellGridKPIsEventCopyWithImpl<$Res, SellGridKPIsEvent>;
+  @useResult
+  $Res call({RequestSellValues request});
+
+  $RequestSellValuesCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class _$SellGridKPIsEventCopyWithImpl<$Res, $Val extends SellGridKPIsEvent>
+    implements $SellGridKPIsEventCopyWith<$Res> {
+  _$SellGridKPIsEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? request = null,
+  }) {
+    return _then(_value.copyWith(
+      request: null == request
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as RequestSellValues,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RequestSellValuesCopyWith<$Res> get request {
+    return $RequestSellValuesCopyWith<$Res>(_value.request, (value) {
+      return _then(_value.copyWith(request: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$SellGridKPIsEventImplCopyWith<$Res>
+    implements $SellGridKPIsEventCopyWith<$Res> {
+  factory _$$SellGridKPIsEventImplCopyWith(_$SellGridKPIsEventImpl value,
+          $Res Function(_$SellGridKPIsEventImpl) then) =
+      __$$SellGridKPIsEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({RequestSellValues request});
+
+  @override
+  $RequestSellValuesCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class __$$SellGridKPIsEventImplCopyWithImpl<$Res>
+    extends _$SellGridKPIsEventCopyWithImpl<$Res, _$SellGridKPIsEventImpl>
+    implements _$$SellGridKPIsEventImplCopyWith<$Res> {
+  __$$SellGridKPIsEventImplCopyWithImpl(_$SellGridKPIsEventImpl _value,
+      $Res Function(_$SellGridKPIsEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? request = null,
+  }) {
+    return _then(_$SellGridKPIsEventImpl(
+      request: null == request
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as RequestSellValues,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SellGridKPIsEventImpl implements _SellGridKPIsEvent {
+  const _$SellGridKPIsEventImpl({required this.request});
+
+  @override
+  final RequestSellValues request;
+
+  @override
+  String toString() {
+    return 'SellGridKPIsEvent.getData(request: $request)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SellGridKPIsEventImpl &&
+            (identical(other.request, request) || other.request == request));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, request);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SellGridKPIsEventImplCopyWith<_$SellGridKPIsEventImpl> get copyWith =>
+      __$$SellGridKPIsEventImplCopyWithImpl<_$SellGridKPIsEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(RequestSellValues request) getData,
+  }) {
+    return getData(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(RequestSellValues request)? getData,
+  }) {
+    return getData?.call(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(RequestSellValues request)? getData,
+    required TResult orElse(),
+  }) {
+    if (getData != null) {
+      return getData(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SellGridKPIsEvent value) getData,
+  }) {
+    return getData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SellGridKPIsEvent value)? getData,
+  }) {
+    return getData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SellGridKPIsEvent value)? getData,
+    required TResult orElse(),
+  }) {
+    if (getData != null) {
+      return getData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SellGridKPIsEvent implements SellGridKPIsEvent {
+  const factory _SellGridKPIsEvent({required final RequestSellValues request}) =
+      _$SellGridKPIsEventImpl;
+
+  @override
+  RequestSellValues get request;
+  @override
+  @JsonKey(ignore: true)
+  _$$SellGridKPIsEventImplCopyWith<_$SellGridKPIsEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$SellGridKPIsState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get hasError => throw _privateConstructorUsedError;
@@ -443,225 +663,5 @@ abstract class _InitialState implements SellGridKPIsState {
   @override
   @JsonKey(ignore: true)
   _$$InitialStateImplCopyWith<_$InitialStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$SellGridKPIsEvent {
-  RequestSellValues get request => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(RequestSellValues request) getData,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestSellValues request)? getData,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestSellValues request)? getData,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SellGridKPIsEvent value) getData,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SellGridKPIsEvent value)? getData,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SellGridKPIsEvent value)? getData,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $SellGridKPIsEventCopyWith<SellGridKPIsEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SellGridKPIsEventCopyWith<$Res> {
-  factory $SellGridKPIsEventCopyWith(
-          SellGridKPIsEvent value, $Res Function(SellGridKPIsEvent) then) =
-      _$SellGridKPIsEventCopyWithImpl<$Res, SellGridKPIsEvent>;
-  @useResult
-  $Res call({RequestSellValues request});
-
-  $RequestSellValuesCopyWith<$Res> get request;
-}
-
-/// @nodoc
-class _$SellGridKPIsEventCopyWithImpl<$Res, $Val extends SellGridKPIsEvent>
-    implements $SellGridKPIsEventCopyWith<$Res> {
-  _$SellGridKPIsEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? request = null,
-  }) {
-    return _then(_value.copyWith(
-      request: null == request
-          ? _value.request
-          : request // ignore: cast_nullable_to_non_nullable
-              as RequestSellValues,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $RequestSellValuesCopyWith<$Res> get request {
-    return $RequestSellValuesCopyWith<$Res>(_value.request, (value) {
-      return _then(_value.copyWith(request: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$SellGridKPIsEventImplCopyWith<$Res>
-    implements $SellGridKPIsEventCopyWith<$Res> {
-  factory _$$SellGridKPIsEventImplCopyWith(_$SellGridKPIsEventImpl value,
-          $Res Function(_$SellGridKPIsEventImpl) then) =
-      __$$SellGridKPIsEventImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({RequestSellValues request});
-
-  @override
-  $RequestSellValuesCopyWith<$Res> get request;
-}
-
-/// @nodoc
-class __$$SellGridKPIsEventImplCopyWithImpl<$Res>
-    extends _$SellGridKPIsEventCopyWithImpl<$Res, _$SellGridKPIsEventImpl>
-    implements _$$SellGridKPIsEventImplCopyWith<$Res> {
-  __$$SellGridKPIsEventImplCopyWithImpl(_$SellGridKPIsEventImpl _value,
-      $Res Function(_$SellGridKPIsEventImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? request = null,
-  }) {
-    return _then(_$SellGridKPIsEventImpl(
-      request: null == request
-          ? _value.request
-          : request // ignore: cast_nullable_to_non_nullable
-              as RequestSellValues,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SellGridKPIsEventImpl implements _SellGridKPIsEvent {
-  const _$SellGridKPIsEventImpl({required this.request});
-
-  @override
-  final RequestSellValues request;
-
-  @override
-  String toString() {
-    return 'SellGridKPIsEvent.getData(request: $request)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SellGridKPIsEventImpl &&
-            (identical(other.request, request) || other.request == request));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, request);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SellGridKPIsEventImplCopyWith<_$SellGridKPIsEventImpl> get copyWith =>
-      __$$SellGridKPIsEventImplCopyWithImpl<_$SellGridKPIsEventImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(RequestSellValues request) getData,
-  }) {
-    return getData(request);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestSellValues request)? getData,
-  }) {
-    return getData?.call(request);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestSellValues request)? getData,
-    required TResult orElse(),
-  }) {
-    if (getData != null) {
-      return getData(request);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SellGridKPIsEvent value) getData,
-  }) {
-    return getData(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SellGridKPIsEvent value)? getData,
-  }) {
-    return getData?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SellGridKPIsEvent value)? getData,
-    required TResult orElse(),
-  }) {
-    if (getData != null) {
-      return getData(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SellGridKPIsEvent implements SellGridKPIsEvent {
-  const factory _SellGridKPIsEvent({required final RequestSellValues request}) =
-      _$SellGridKPIsEventImpl;
-
-  @override
-  RequestSellValues get request;
-  @override
-  @JsonKey(ignore: true)
-  _$$SellGridKPIsEventImplCopyWith<_$SellGridKPIsEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

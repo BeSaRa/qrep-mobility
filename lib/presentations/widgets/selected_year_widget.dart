@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../utils/global_functions.dart';
 import '../resources/resources.dart';
-import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
 import 'selected_municipality_widget.dart';
 
 class SelectedYearWidget extends StatefulWidget {
   final Function(int?)? onChanged;
   final int value;
+
   const SelectedYearWidget({super.key, this.onChanged, required this.value});
 
   @override
@@ -17,6 +16,7 @@ class SelectedYearWidget extends StatefulWidget {
 
 class _SelectedYearWidgetState extends State<SelectedYearWidget> {
   List<int> years = [];
+
   @override
   void initState() {
     generateYears(2019, DateTime.now().year).forEach((element) {

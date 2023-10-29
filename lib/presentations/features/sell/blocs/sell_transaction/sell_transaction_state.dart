@@ -6,8 +6,9 @@ class SellTransactionState with _$SellTransactionState {
 
   const factory SellTransactionState.loading() = _Loading;
 
-  const factory SellTransactionState.success(SellTransactionResponse response) =
-      _Success;
+  const factory SellTransactionState.success(SellTransactionResponse
+  response, bool isMetere) =
+  _Success;
 
   const factory SellTransactionState.error(String message) = _Error;
 }

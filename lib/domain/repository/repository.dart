@@ -23,6 +23,8 @@ abstract class Repository {
 
   Future<Result<LawsResponse, FailureModel>> getLaws();
 
+  Future<Result<LawByIdResponse, FailureModel>> getLawById(int id);
+
 //-------------Rent----------------
   Future<Result<RentLookupResponse, FailureModel>> getLockupRent();
 

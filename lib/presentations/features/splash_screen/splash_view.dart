@@ -3,6 +3,7 @@ import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../resources/routes_manager.dart';
@@ -29,6 +30,10 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        // todo: when dark mode is ready change statusBarIconBrightness according to the theme
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light));
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Future.delayed(
         const Duration(milliseconds: 200),
