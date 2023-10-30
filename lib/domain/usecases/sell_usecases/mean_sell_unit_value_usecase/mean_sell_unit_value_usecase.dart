@@ -1,0 +1,20 @@
+import 'package:ebla/data/newtwok/failure_model/failure.dart';
+import 'package:ebla/domain/models/requests/sell_requests/request_sell_values.dart';
+import 'package:ebla/domain/repository/repository.dart';
+import 'package:ebla/domain/usecases/base_usecases/base_usecase.dart';
+import 'package:multiple_result/multiple_result.dart';
+
+import '../../../models/rent_models/rent_models.dart';
+
+class MeanSellUnitValueUsecase
+    implements BaseUseCase<RequestSellValues, List<BaseRentResponse>> {
+  final Repository repository;
+
+  MeanSellUnitValueUsecase(this.repository);
+
+  @override
+  Future<Result<List<BaseRentResponse>, FailureModel>> execute(
+      RequestSellValues input) async {
+    return await repository.getMeanValueSell(input);
+  }
+}

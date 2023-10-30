@@ -68,6 +68,7 @@ class GridValueWithUnitWidget extends StatelessWidget {
             ),
           ),
           Text(unit.tr(),
+              textAlign: TextAlign.center,
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium!

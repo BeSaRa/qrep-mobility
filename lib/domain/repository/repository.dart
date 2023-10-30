@@ -78,8 +78,16 @@ abstract class Repository {
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalTransactionsSell(
       RequestSellValues requestSellValues);
 
+  // KPI10
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalSoldSpaces(
+      RequestSellValues requestSellValues);
+
   // KPI13
   Future<Result<List<BaseRentResponse>, FailureModel>> getMeanValueSell(
+      RequestSellValues requestSellValues);
+
+  // KPI16
+  Future<Result<List<BaseRentResponse>, FailureModel>> getMeanSoldArea(
       RequestSellValues requestSellValues);
 
   Future<Result<List<RentDefault>, FailureModel>> getSellDefault(

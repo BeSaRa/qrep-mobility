@@ -21,7 +21,6 @@ import '../domain/repository/repository.dart';
 import '../domain/usecases/CMS/cms_usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
-import '../presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import '../presentations/features/info/blocs/news_bloc/news_bloc.dart';
 import '../presentations/features/rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import '../presentations/features/rent/blocs/mean_value_bloc/mean_value_bloc.dart';
@@ -122,11 +121,22 @@ Future<void> initSellModule() async {
     instance.registerFactory<TotalTransactionSellUseCase>(
         () => TotalTransactionSellUseCase(instance()));
   }
-  // KPI13
-  if (!GetIt.I.isRegistered<MeanValueSellUsecase>()) {
-    instance.registerFactory<MeanValueSellUsecase>(
-        () => MeanValueSellUsecase(instance()));
+  // KPI10
+  if (!GetIt.I.isRegistered<TotalSoldSpacesUsecase>()) {
+    instance.registerFactory<TotalSoldSpacesUsecase>(
+        () => TotalSoldSpacesUsecase(instance()));
   }
+  // KPI13
+  if (!GetIt.I.isRegistered<MeanSellUnitValueUsecase>()) {
+    instance.registerFactory<MeanSellUnitValueUsecase>(
+        () => MeanSellUnitValueUsecase(instance()));
+  }
+  // KPI16
+  if (!GetIt.I.isRegistered<MeanSoldAreaUsecase>()) {
+    instance.registerFactory<MeanSoldAreaUsecase>(
+        () => MeanSoldAreaUsecase(instance()));
+  }
+
   if (!GetIt.I.isRegistered<SellTransactionUseCase>()) {
     instance.registerFactory<SellTransactionUseCase>(
         () => SellTransactionUseCase(instance()));
@@ -139,7 +149,9 @@ Future<void> initSellModule() async {
         totalContractsSellUseCase: instance(),
         totalSoldUnitsUseCase: instance(),
         totalTransactionSellUseCase: instance(),
-        meanValueSellUsecase: instance()));
+        meanSellUnitValueUsecase: instance(),
+        meanSoldAreaUseCase: instance(),
+        totalSoldPlacesUseCase: instance()));
   }
   if (!GetIt.I.isRegistered<SellBloc>()) {
     instance.registerFactory(() => SellBloc(getSellLookupUseCase: instance()));
