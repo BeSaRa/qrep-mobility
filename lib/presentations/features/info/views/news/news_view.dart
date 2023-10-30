@@ -32,7 +32,7 @@ class _NewsViewState extends State<NewsView> {
           color: ColorManager.golden,
         ),
         title: Text(
-          'الأخبار',
+          AppStrings().news,
           style: Theme.of(context).textTheme.titleMedium,
         ),
         centerTitle: true,

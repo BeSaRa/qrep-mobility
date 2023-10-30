@@ -212,6 +212,7 @@ class _HomeContainer extends StatelessWidget {
   final Color? iconColor;
   final Color? textColor;
   final bool isShadow;
+  // final BuildContext context;
 
   const _HomeContainer({
     required this.isBig,
@@ -222,6 +223,7 @@ class _HomeContainer extends StatelessWidget {
     this.iconColor,
     this.textColor,
     required this.isShadow,
+    // required this.context,
   });
 
   @override
@@ -275,9 +277,9 @@ class _HomeContainer extends StatelessWidget {
                   isBig ? CrossAxisAlignment.center : CrossAxisAlignment.end,
               children: [
                 Align(
-                  alignment: context.locale == ARABIC_LOCAL
-                      ? Alignment.topLeft
-                      : Alignment.topRight,
+                  // alignment: context.locale == ARABIC_LOCAL
+                  //     ? Alignment.topLeft
+                  //     : Alignment.topRight,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Transform.rotate(
