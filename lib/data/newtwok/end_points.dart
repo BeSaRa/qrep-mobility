@@ -55,8 +55,16 @@ class EndPoints {
       '/kpi/sell/kpi19/chart/certificate-count';
 
   // أفضل عشر مناطق من حيث عدد الوحدات المباعة
-  static const String contractsCountSell =
+  static const String countTransictionNumber =
       '/kpi/sell/kpi30/zones/transactions-number';
+  static const String countUnitPrice = '/kpi/sell/kpi31/zones/unit-price';
+  static const String countTransictionsValue =
+      '/kpi/sell/kpi32/zones/transactions-value';
+  static const String countAreas = '/kpi/sell/kpi33/zones/areas';
+  static const String realStateNumber =
+      '/kpi/sell/kpi33_1/zones/real-estate-number';
+  static const String realStateNumberMeter =
+      '/kpi/sell/kpi33_2/zones/real-estate-mt-value';
 
   //---------------------------------------------mortgage-----------------------
   //look up

@@ -19,6 +19,7 @@ import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecases/CMS/cms_usecases.dart';
+import '../domain/usecases/sell_usecases/top_values/top_values_sell_usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import '../presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
@@ -128,6 +129,29 @@ Future<void> initSellModule() async {
   if (!GetIt.I.isRegistered<SellTransactionUseCase>()) {
     instance.registerFactory<SellTransactionUseCase>(
         () => SellTransactionUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<CountTransictionNumberUseCase>()) {
+    instance.registerFactory<CountTransictionNumberUseCase>(
+        () => CountTransictionNumberUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<CountUnitPriceUseCase>()) {
+    instance.registerFactory<CountUnitPriceUseCase>(
+        () => CountUnitPriceUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<CountTransictionsValueUseCase>()) {
+    instance.registerFactory<CountTransictionsValueUseCase>(
+        () => CountTransictionsValueUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<AreasUseCase>()) {
+    instance.registerFactory<AreasUseCase>(() => AreasUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<RealStateNumberUseCase>()) {
+    instance.registerFactory<RealStateNumberUseCase>(
+        () => RealStateNumberUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<RealStateNumberMeterUseCase>()) {
+    instance.registerFactory<RealStateNumberMeterUseCase>(
+        () => RealStateNumberMeterUseCase(instance()));
   }
 
   //-------------- Bloc's---------------------

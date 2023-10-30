@@ -86,6 +86,19 @@ abstract class Repository {
   Future<Result<SellTransactionResponse, FailureModel>> getSellTransaction(
       RequestSellValues requestSellValues);
 
+  Future<Result<List<BaseRentResponse>, FailureModel>> countTransictionNumber(
+      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> countUnitPrice(
+      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> countTransictionsValue(
+      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> countAreas(
+      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> realStateNumber(
+      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> realStateNumberMeter(
+      RequestSellValues requestSellValues);
+
   //----------------------------Mortgage----------------------------------------
 
   //look up

@@ -103,6 +103,25 @@ abstract class AppServiceClient {
   @POST(EndPoints.sellTransactions)
   Future<HttpResponse<SellTransactionResponse>> getSellTransactions(
       @Body() RequestSellValues requestSellValues);
+  //-----------------Top 10 sells ----------------------------
+  @POST(EndPoints.countTransictionNumber)
+  Future<HttpResponse<List<BaseRentResponse>>> countTransictionNumber(
+      @Body() RequestSellValues requestSellValues);
+  @POST(EndPoints.countUnitPrice)
+  Future<HttpResponse<List<BaseRentResponse>>> countUnitPrice(
+      @Body() RequestSellValues requestSellValues);
+  @POST(EndPoints.countTransictionsValue)
+  Future<HttpResponse<List<BaseRentResponse>>> countTransictionsValue(
+      @Body() RequestSellValues requestSellValues);
+  @POST(EndPoints.countAreas)
+  Future<HttpResponse<List<BaseRentResponse>>> countAreas(
+      @Body() RequestSellValues requestSellValues);
+  @POST(EndPoints.realStateNumber)
+  Future<HttpResponse<List<BaseRentResponse>>> realStateNumber(
+      @Body() RequestSellValues requestSellValues);
+  @POST(EndPoints.realStateNumberMeter)
+  Future<HttpResponse<List<BaseRentResponse>>> realStateNumberMeter(
+      @Body() RequestSellValues requestSellValues);
 
   //----------------------------------Mortgage----------------------------------
   @GET(EndPoints.mortgageLookUp)
