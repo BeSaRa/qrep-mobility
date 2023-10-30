@@ -37,6 +37,8 @@ class AppStrings {
   String noRentContracts = "no_contracts_found".tr();
   String avgPriceEveryMonth = "avg_price_every_month".tr();
   String contractsValue = "contracts_value".tr();
+  String avgPricePerMeter = "avg_price_per_meter".tr();
+  String rentedAreas = "rented_areas".tr();
 
   //more view locals
   String moreTitle = 'more_title'.tr();
@@ -100,6 +102,12 @@ class AppStrings {
   String street = 'street'.tr(); // 'الشارع'
 
   //---------------- sell ----------
+  String sellContractCount = 'sell_contracts_count'.tr();
+  String avgPricePerUnit = 'average_price_per_unit'.tr();
+  String transictionValue = 'transactions_value'.tr();
+  String soldAreas = 'sold_areas'.tr();
+  String avgPricePerSquareFoot = 'average_price_per_square_foot'.tr();
+
   // grid
   String totalNumberOfPropertiesUnitsSold =
       "the_total_number_of_properties_units_sold".tr();

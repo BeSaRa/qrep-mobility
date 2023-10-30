@@ -29,6 +29,10 @@ class EndPoints {
 
   static const String rentAmountTop = '/kpi/rent/kpi32/stats/rent-amount';
 
+  static const String meanRentMeter = '/kpi/rent/kpi31_1/stats/mean-rent-meter';
+
+  static const String rentedAreas = '/kpi/rent/kpi33/stats/area';
+
   //----------------------------------------sell-------------------------------
   static const String lookupSell = '/kpi/sell/lookup';
 
@@ -55,15 +59,15 @@ class EndPoints {
       '/kpi/sell/kpi19/chart/certificate-count';
 
   // أفضل عشر مناطق من حيث عدد الوحدات المباعة
-  static const String countTransictionNumber =
+  static const String sellContractCount =
       '/kpi/sell/kpi30/zones/transactions-number';
-  static const String countUnitPrice = '/kpi/sell/kpi31/zones/unit-price';
-  static const String countTransictionsValue =
+  static const String avgPricePerUnit = '/kpi/sell/kpi31/zones/unit-price';
+  static const String transactionsValue =
       '/kpi/sell/kpi32/zones/transactions-value';
-  static const String countAreas = '/kpi/sell/kpi33/zones/areas';
+  static const String soldAreas = '/kpi/sell/kpi33/zones/areas';
   static const String realStateNumber =
       '/kpi/sell/kpi33_1/zones/real-estate-number';
-  static const String realStateNumberMeter =
+  static const String averagePricePerSquareFoot =
       '/kpi/sell/kpi33_2/zones/real-estate-mt-value';
 
   //---------------------------------------------mortgage-----------------------

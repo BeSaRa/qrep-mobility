@@ -2,6 +2,11 @@ export 'base_usecases/base_usecase.dart';
 // ------------------------rent---------------------------
 export 'rent_usecases/certificate_contract_usecases/certificate_usecase.dart';
 export 'rent_usecases/certificate_contract_usecases/contract_usecase.dart';
+export 'rent_usecases/certificate_contract_usecases/mean_rent_amount_usecase'
+    '.dart';
+export 'rent_usecases/certificate_contract_usecases/mean_rent_meter_usecase.dart';
+export 'rent_usecases/certificate_contract_usecases/rent_amount_usecase.dart';
+export 'rent_usecases/certificate_contract_usecases/rented_areas_usecase.dart';
 export 'rent_usecases/contract_value_kpi7/contract_value_usecase.dart';
 export 'rent_usecases/defualt_rent_usecase.dart';
 export 'rent_usecases/mean_area_usecase.dart/mean_area_usecase.dart';

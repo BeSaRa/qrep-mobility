@@ -71,6 +71,14 @@ abstract class AppServiceClient {
   Future<HttpResponse<List<BaseRentResponse>>> rentAmount(
       @Body() RequestMeanValue requestMeanValue);
 
+  @POST(EndPoints.meanRentMeter)
+  Future<HttpResponse<List<BaseRentResponse>>> meanRentMeter(
+      @Body() RequestMeanValue requestMeanValue);
+
+  @POST(EndPoints.rentedAreas)
+  Future<HttpResponse<List<BaseRentResponse>>> getRentedAreas(
+      @Body() RequestMeanValue requestMeanValue);
+
   //----------------------------------Sell--------------------------------------
   @GET(EndPoints.lookupSell)
   Future<HttpResponse<RentLookupResponse>> getLockupSell();
@@ -104,23 +112,23 @@ abstract class AppServiceClient {
   Future<HttpResponse<SellTransactionResponse>> getSellTransactions(
       @Body() RequestSellValues requestSellValues);
   //-----------------Top 10 sells ----------------------------
-  @POST(EndPoints.countTransictionNumber)
-  Future<HttpResponse<List<BaseRentResponse>>> countTransictionNumber(
+  @POST(EndPoints.sellContractCount)
+  Future<HttpResponse<List<BaseRentResponse>>> sellContractCount(
       @Body() RequestSellValues requestSellValues);
-  @POST(EndPoints.countUnitPrice)
-  Future<HttpResponse<List<BaseRentResponse>>> countUnitPrice(
+  @POST(EndPoints.avgPricePerUnit)
+  Future<HttpResponse<List<BaseRentResponse>>> avgPricePerUnit(
       @Body() RequestSellValues requestSellValues);
-  @POST(EndPoints.countTransictionsValue)
-  Future<HttpResponse<List<BaseRentResponse>>> countTransictionsValue(
+  @POST(EndPoints.transactionsValue)
+  Future<HttpResponse<List<BaseRentResponse>>> transactionsValue(
       @Body() RequestSellValues requestSellValues);
-  @POST(EndPoints.countAreas)
-  Future<HttpResponse<List<BaseRentResponse>>> countAreas(
+  @POST(EndPoints.soldAreas)
+  Future<HttpResponse<List<BaseRentResponse>>> soldAreas(
       @Body() RequestSellValues requestSellValues);
   @POST(EndPoints.realStateNumber)
   Future<HttpResponse<List<BaseRentResponse>>> realStateNumber(
       @Body() RequestSellValues requestSellValues);
-  @POST(EndPoints.realStateNumberMeter)
-  Future<HttpResponse<List<BaseRentResponse>>> realStateNumberMeter(
+  @POST(EndPoints.averagePricePerSquareFoot)
+  Future<HttpResponse<List<BaseRentResponse>>> averagePricePerSquareFoot(
       @Body() RequestSellValues requestSellValues);
 
   //----------------------------------Mortgage----------------------------------

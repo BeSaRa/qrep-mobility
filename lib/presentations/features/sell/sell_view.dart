@@ -6,6 +6,7 @@ import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_transaction/sell_transaction_bloc.dart';
+import 'package:ebla/presentations/features/sell/blocs/top_values_bloc/topvalues_bloc.dart';
 import 'package:ebla/presentations/features/sell/widgets/sell_grid_item_widget.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:ebla/presentations/widgets/widgets.dart';
@@ -21,6 +22,7 @@ import '../../widgets/selected_year_widget.dart';
 import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
 import 'blocs/sell_bloc/sell_bloc.dart';
 import 'widgets/bottom_sheet_filter_sell.dart';
+import 'widgets/statistics_top_sell.dart';
 
 class SalesView extends StatefulWidget {
   const SalesView({super.key});
@@ -34,6 +36,7 @@ class _SalesViewState extends State<SalesView> {
   late SellDefaultBloc sellDefaultBloc;
   late SellTransactionBloc sellTransactionBloc;
   late ChangeStatusCubit changeStatusCubit;
+  late TopvaluesBloc topvaluesBloc;
 
   @override
   void initState() {
@@ -44,6 +47,7 @@ class _SalesViewState extends State<SalesView> {
           request: context.read<SellBloc>().requestSellDefault));
     sellTransactionBloc = instance<SellTransactionBloc>();
     changeStatusCubit = ChangeStatusCubit();
+    topvaluesBloc = instance<TopvaluesBloc>();
     // sellTransactionBloc.add(SellTransactionEvent.started(
     //     request: context.read<SellBloc>().requestSellDefault));
     super.initState();
@@ -58,6 +62,8 @@ class _SalesViewState extends State<SalesView> {
             sellGridKPIsBloc.add(SellGridKPIsEvent.getData(
                 request: context.read<SellBloc>().requestSell));
             sellTransactionBloc.add(SellTransactionEvent.started(
+                request: context.read<SellBloc>().requestSell));
+            topvaluesBloc.add(TopvaluesEvent.countTransictionNumberEvent(
                 request: context.read<SellBloc>().requestSell));
           },
         );
@@ -151,6 +157,12 @@ class _SalesViewState extends State<SalesView> {
                                                                   .read<
                                                                       SellBloc>()
                                                                   .requestSell));
+                                                      topvaluesBloc.add(TopvaluesEvent
+                                                          .countTransictionNumberEvent(
+                                                              request: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSell));
                                                     },
                                                   ),
                                                   SizedBox(width: AppSizeW.s5),
@@ -181,6 +193,12 @@ class _SalesViewState extends State<SalesView> {
                                                                   .requestSell));
                                                       sellTransactionBloc.add(
                                                           SellTransactionEvent.started(
+                                                              request: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSell));
+                                                      topvaluesBloc.add(TopvaluesEvent
+                                                          .countTransictionNumberEvent(
                                                               request: context
                                                                   .read<
                                                                       SellBloc>()
@@ -231,6 +249,11 @@ class _SalesViewState extends State<SalesView> {
                                                                           .read<
                                                                               SellBloc>()
                                                                           .requestSell));
+                                                                  topvaluesBloc.add(TopvaluesEvent.countTransictionNumberEvent(
+                                                                      request: context
+                                                                          .read<
+                                                                              SellBloc>()
+                                                                          .requestSell));
                                                                   sellTransactionBloc.add(SellTransactionEvent.started(
                                                                       request: context
                                                                           .read<
@@ -259,40 +282,40 @@ class _SalesViewState extends State<SalesView> {
                                                     width: AppSizeW.s7,
                                                   ),
                                                 ]),
-                                            SizedBox(height: AppSizeH.s12),
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: AppSizeW.s11,
-                                              ),
-                                              child: SizedBox(
-                                                  height: AppSizeH.s26,
-                                                  child: Row(
-                                                      children: context
-                                                              .read<SellBloc>()
-                                                              .loockUpSell
-                                                              ?.periodTime
-                                                              .map((e) {
-                                                            return e.id != 5
-                                                                ? ChosenPeriodWidget(
-                                                                    periodId: context
-                                                                        .read<
-                                                                            SellBloc>()
-                                                                        .requestSell
-                                                                        .periodId,
-                                                                    id: e.id,
-                                                                    enName: e
-                                                                        .enName,
-                                                                    arName: e
-                                                                        .arName,
-                                                                  )
-                                                                : const SizedBox();
-                                                          }).toList() ??
-                                                          [])),
-                                            ),
+                                            // SizedBox(height: AppSizeH.s12),
+                                            // Padding(
+                                            //   padding: EdgeInsets.symmetric(
+                                            //     horizontal: AppSizeW.s11,
+                                            //   ),
+                                            //   child: SizedBox(
+                                            //       height: AppSizeH.s26,
+                                            //       child: Row(
+                                            //           children: context
+                                            //                   .read<SellBloc>()
+                                            //                   .loockUpSell
+                                            //                   ?.periodTime
+                                            //                   .map((e) {
+                                            //                 return e.id != 5
+                                            //                     ? ChosenPeriodWidget(
+                                            //                         periodId: context
+                                            //                             .read<
+                                            //                                 SellBloc>()
+                                            //                             .requestSell
+                                            //                             .periodId,
+                                            //                         id: e.id,
+                                            //                         enName: e
+                                            //                             .enName,
+                                            //                         arName: e
+                                            //                             .arName,
+                                            //                       )
+                                            //                     : const SizedBox();
+                                            //               }).toList() ??
+                                            //               [])),
+                                            // ),
                                           ]);
                                         },
                                       ),
-                                      SizedBox(height: AppSizeH.s22),
+                                      // SizedBox(height: AppSizeH.s22),
                                       SizedBox(height: AppSizeH.s22),
                                       Center(
                                         child: Text(
@@ -325,6 +348,18 @@ class _SalesViewState extends State<SalesView> {
                                               ),
                                             );
                                           },
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: AppSizeH.s20,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: AppSizeW.s20),
+                                        child: BlocProvider.value(
+                                          value: topvaluesBloc,
+                                          child:
+                                              const StatisticsTopSellWidget(),
                                         ),
                                       ),
                                       SizedBox(height: AppSizeH.s20),

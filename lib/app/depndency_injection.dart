@@ -1,15 +1,13 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ebla/domain/usecases/mortgage_usecases/lookup_mortgage_usecase.dart';
 import 'package:ebla/domain/usecases/mortgage_usecases/transactions_mortgage_usecase.dart';
-import 'package:ebla/domain/usecases/rent_usecases/mean_rent_amount/mean_rent_amount_usecase.dart';
-import 'package:ebla/domain/usecases/rent_usecases/rent_amount/rent_amount_usecase.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
-import 'package:ebla/presentations/features/rent/blocs/default_bloc/rent_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_transaction/sell_transaction_bloc.dart';
+import 'package:ebla/presentations/features/sell/blocs/top_values_bloc/topvalues_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,13 +20,8 @@ import '../domain/usecases/CMS/cms_usecases.dart';
 import '../domain/usecases/sell_usecases/top_values/top_values_sell_usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
-import '../presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import '../presentations/features/info/blocs/news_bloc/news_bloc.dart';
-import '../presentations/features/rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
-import '../presentations/features/rent/blocs/mean_value_bloc/mean_value_bloc.dart';
-import '../presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
-import '../presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
-import '../presentations/features/rent/blocs/summery_bloc/rent_summery_bloc.dart';
+import '../presentations/features/rent/blocs/rent_blocs.dart';
 import '../presentations/features/sell/blocs/sell_bloc/sell_bloc.dart';
 import 'app_preferences.dart';
 
@@ -142,8 +135,9 @@ Future<void> initSellModule() async {
     instance.registerFactory<CountTransictionsValueUseCase>(
         () => CountTransictionsValueUseCase(instance()));
   }
-  if (!GetIt.I.isRegistered<AreasUseCase>()) {
-    instance.registerFactory<AreasUseCase>(() => AreasUseCase(instance()));
+  if (!GetIt.I.isRegistered<CountAreasUseCase>()) {
+    instance.registerFactory<CountAreasUseCase>(
+        () => CountAreasUseCase(instance()));
   }
   if (!GetIt.I.isRegistered<RealStateNumberUseCase>()) {
     instance.registerFactory<RealStateNumberUseCase>(
@@ -172,7 +166,15 @@ Future<void> initSellModule() async {
   if (!GetIt.I.isRegistered<SellDefaultBloc>()) {
     instance.registerFactory(() => SellDefaultBloc(instance()));
   }
-
+  if (!GetIt.I.isRegistered<TopvaluesBloc>()) {
+    instance.registerFactory(() => TopvaluesBloc(
+        countTransictionNumberUseCase: instance(),
+        countUnitPriceUseCase: instance(),
+        countTransictionsValueUseCase: instance(),
+        countAreasUseCase: instance(),
+        realStateNumberUseCase: instance(),
+        realStateNumberMeterUseCase: instance()));
+  }
   //blocs
 }
 
@@ -219,6 +221,15 @@ Future<void> initRentModule() async {
     instance.registerFactory<RentValueAmountUseCase>(
         () => RentValueAmountUseCase(instance()));
   }
+  if (!GetIt.I.isRegistered<MeanRentMeterUseCase>()) {
+    instance.registerFactory<MeanRentMeterUseCase>(
+        () => MeanRentMeterUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<RentedAreasUseCase>()) {
+    instance.registerFactory<RentedAreasUseCase>(
+        () => RentedAreasUseCase(instance()));
+  }
+
 //Blocs
 
   if (!GetIt.I.isRegistered<RentBloc>()) {
@@ -229,7 +240,9 @@ Future<void> initRentModule() async {
         certificateCountUsecase: instance(),
         contractCountUsecase: instance(),
         meanRentAmountUsecase: instance(),
-        rentValueAmountUseCase: instance()));
+        rentValueAmountUseCase: instance(),
+        meanRentMeterUseCase: instance(),
+        rentedAreasUseCase: instance()));
   }
   if (!GetIt.I.isRegistered<MeanValueBloc>()) {
     instance.registerFactory(() => MeanValueBloc(meanValueUsecase: instance()));

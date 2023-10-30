@@ -14,7 +14,7 @@ class CountTransictionNumberUseCase
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> execute(
       RequestSellValues input) async {
-    return await repository.countTransictionNumber(input);
+    return await repository.sellContractCount(input);
   }
 }
 
@@ -26,7 +26,7 @@ class CountUnitPriceUseCase
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> execute(
       RequestSellValues input) async {
-    return await repository.countUnitPrice(input);
+    return await repository.avgPricePerUnit(input);
   }
 }
 
@@ -38,19 +38,19 @@ class CountTransictionsValueUseCase
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> execute(
       RequestSellValues input) async {
-    return await repository.countTransictionsValue(input);
+    return await repository.transactionsValue(input);
   }
 }
 
-class AreasUseCase
+class CountAreasUseCase
     implements BaseUseCase<RequestSellValues, List<BaseRentResponse>> {
   final Repository repository;
 
-  AreasUseCase(this.repository);
+  CountAreasUseCase(this.repository);
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> execute(
       RequestSellValues input) async {
-    return await repository.countAreas(input);
+    return await repository.soldAreas(input);
   }
 }
 
@@ -74,6 +74,6 @@ class RealStateNumberMeterUseCase
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> execute(
       RequestSellValues input) async {
-    return await repository.realStateNumberMeter(input);
+    return await repository.averagePricePerSquareFoot(input);
   }
 }

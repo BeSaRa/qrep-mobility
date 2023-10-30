@@ -30,11 +30,12 @@ class EblaNavigationBar extends StatelessWidget {
         padding: EdgeInsets.only(bottom: AppSizeH.s80, top: AppSizeH.s10),
         child: body,
       ),
-      borderRadius: BorderRadius.circular(500),
+      borderRadius: BorderRadius.circular(35),
       duration: const Duration(seconds: 1),
       curve: Curves.decelerate,
       showIcon: true,
       width: MediaQuery.of(context).size.width * 0.9,
+
       barColor: Colors.white,
       barDecoration: BoxDecoration(boxShadow: [
         BoxShadow(
@@ -74,16 +75,16 @@ class EblaNavigationBar extends StatelessWidget {
               ),
               borderRadius: const BorderRadius.all(Radius.circular(2)),
               insets: EdgeInsets.fromLTRB(
-                  AppSizeH.s25, 0.0, AppSizeH.s25, AppSizeH.s50),
+                  AppSizeH.s30, 0.0, AppSizeH.s30, AppSizeH.s65),
             ),
             tabs: [
               SizedBox(
-                height: AppSizeH.s56,
+                height: AppSizeH.s72,
                 child: Column(
                   children: [
                     const Spacer(),
                     SizedBox(
-                      height: AppSizeH.s22,
+                      height: AppSizeH.s36,
                       child: SvgPicture.asset(
                         currentPage == 0
                             ? IconAssets.homeIconFill
@@ -100,7 +101,7 @@ class EblaNavigationBar extends StatelessWidget {
                       child: Text(
                         AppStrings().main,
                         style: TextStyle(
-                          fontSize: AppSizeSp.s9,
+                          fontSize: AppSizeSp.s10,
                           color: currentPage == 0
                               ? Theme.of(context).primaryColor
                               : Theme.of(context)
@@ -114,12 +115,12 @@ class EblaNavigationBar extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: AppSizeH.s56,
+                height: AppSizeH.s72,
                 child: Column(
                   children: [
                     const Spacer(),
                     SizedBox(
-                      height: AppSizeH.s22,
+                      height: AppSizeH.s36,
                       child: SvgPicture.asset(
                         currentPage == 1
                             ? IconAssets.keyIconFill
@@ -135,7 +136,7 @@ class EblaNavigationBar extends StatelessWidget {
                     Expanded(
                         child: Text(AppStrings().rent,
                             style: TextStyle(
-                              fontSize: AppSizeSp.s9,
+                              fontSize: AppSizeSp.s10,
                               color: currentPage == 1
                                   ? Theme.of(context).primaryColor
                                   : Theme.of(context)
@@ -147,12 +148,12 @@ class EblaNavigationBar extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: AppSizeH.s56,
+                height: AppSizeH.s72,
                 child: Column(
                   children: [
                     const Spacer(),
                     SizedBox(
-                      height: AppSizeH.s22,
+                      height: AppSizeH.s36,
                       child: SvgPicture.asset(
                         currentPage == 2
                             ? IconAssets.sellIconFill
@@ -169,7 +170,7 @@ class EblaNavigationBar extends StatelessWidget {
                       child: Text(
                         AppStrings().sell,
                         style: TextStyle(
-                          fontSize: AppSizeSp.s9,
+                          fontSize: AppSizeSp.s10,
                           color: currentPage == 2
                               ? Theme.of(context).primaryColor
                               : Theme.of(context)
@@ -183,12 +184,12 @@ class EblaNavigationBar extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: AppSizeH.s56,
+                height: AppSizeH.s72,
                 child: Column(
                   children: [
                     const Spacer(),
                     SizedBox(
-                      height: AppSizeH.s22,
+                      height: AppSizeH.s36,
                       child: SvgPicture.asset(
                           currentPage == 3
                               ? IconAssets.realEstateIconFill
@@ -204,7 +205,7 @@ class EblaNavigationBar extends StatelessWidget {
                         child: Text(
                       AppStrings().mortgage,
                       style: TextStyle(
-                          fontSize: AppSizeSp.s9,
+                          fontSize: AppSizeSp.s10,
                           color: currentPage == 3
                               ? Theme.of(context).primaryColor
                               : Theme.of(context)
@@ -216,12 +217,12 @@ class EblaNavigationBar extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: AppSizeH.s56,
+                height: AppSizeH.s72,
                 child: Column(
                   children: [
                     const Spacer(),
                     SizedBox(
-                      height: AppSizeH.s22,
+                      height: AppSizeH.s36,
                       child: SvgPicture.asset(
                           currentPage == 4
                               ? IconAssets.infoIconFill
@@ -237,7 +238,7 @@ class EblaNavigationBar extends StatelessWidget {
                         child: Text(
                       AppStrings().more,
                       style: TextStyle(
-                          fontSize: AppSizeSp.s9,
+                          fontSize: AppSizeSp.s10,
                           color: currentPage == 4
                               ? Theme.of(context).primaryColor
                               : Theme.of(context)

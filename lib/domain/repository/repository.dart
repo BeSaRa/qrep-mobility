@@ -61,6 +61,12 @@ abstract class Repository {
   Future<Result<List<BaseRentResponse>, FailureModel>> rentValueAmount(
       RequestMeanValue requestMeanValue);
 
+  Future<Result<List<BaseRentResponse>, FailureModel>> meanRentValueMeter(
+      RequestMeanValue requestMeanValue);
+
+  Future<Result<List<BaseRentResponse>, FailureModel>> getRentedAreas(
+      RequestMeanValue requestMeanValue);
+
   //----------------------------sell---------------------------------------
   Future<Result<RentLookupResponse, FailureModel>> getLockupSell();
 
@@ -86,18 +92,18 @@ abstract class Repository {
   Future<Result<SellTransactionResponse, FailureModel>> getSellTransaction(
       RequestSellValues requestSellValues);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> countTransictionNumber(
+  Future<Result<List<BaseRentResponse>, FailureModel>> sellContractCount(
       RequestSellValues requestSellValues);
-  Future<Result<List<BaseRentResponse>, FailureModel>> countUnitPrice(
+  Future<Result<List<BaseRentResponse>, FailureModel>> avgPricePerUnit(
       RequestSellValues requestSellValues);
-  Future<Result<List<BaseRentResponse>, FailureModel>> countTransictionsValue(
+  Future<Result<List<BaseRentResponse>, FailureModel>> transactionsValue(
       RequestSellValues requestSellValues);
-  Future<Result<List<BaseRentResponse>, FailureModel>> countAreas(
+  Future<Result<List<BaseRentResponse>, FailureModel>> soldAreas(
       RequestSellValues requestSellValues);
   Future<Result<List<BaseRentResponse>, FailureModel>> realStateNumber(
       RequestSellValues requestSellValues);
-  Future<Result<List<BaseRentResponse>, FailureModel>> realStateNumberMeter(
-      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>>
+      averagePricePerSquareFoot(RequestSellValues requestSellValues);
 
   //----------------------------Mortgage----------------------------------------
 

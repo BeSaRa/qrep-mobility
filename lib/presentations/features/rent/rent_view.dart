@@ -8,7 +8,6 @@ import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_
 import 'package:ebla/presentations/features/rent/blocs/summery_bloc/rent_summery_bloc.dart';
 import 'package:ebla/presentations/widgets/selected_year_widget.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
@@ -165,22 +164,12 @@ class _RentViewState extends State<RentView> {
                                                     .read<RentBloc>()
                                                     .requestMeanValue,
                                               ));
-                                              certificateContractBloc.index == 1
-                                                  ? certificateContractBloc.add(
-                                                      CertificateContractEvent
-                                                          .certificateCountEvent(
-                                                              request: context
-                                                                  .read<
-                                                                      RentBloc>()
-                                                                  .requestMeanValue),
-                                                    )
-                                                  : certificateContractBloc.add(
-                                                      CertificateContractEvent
-                                                          .contractCountEvent(
-                                                              request: context
-                                                                  .read<
-                                                                      RentBloc>()
-                                                                  .requestMeanValue));
+                                              certificateContractBloc.add(
+                                                  CertificateContractEvent
+                                                      .certificateCountEvent(
+                                                          request: context
+                                                              .read<RentBloc>()
+                                                              .requestMeanValue));
                                             },
                                           ),
                                           SizedBox(width: AppSizeW.s5),
@@ -213,22 +202,12 @@ class _RentViewState extends State<RentView> {
                                                     .read<RentBloc>()
                                                     .requestMeanValue,
                                               ));
-                                              certificateContractBloc.index == 1
-                                                  ? certificateContractBloc.add(
-                                                      CertificateContractEvent
-                                                          .certificateCountEvent(
-                                                              request: context
-                                                                  .read<
-                                                                      RentBloc>()
-                                                                  .requestMeanValue),
-                                                    )
-                                                  : certificateContractBloc.add(
-                                                      CertificateContractEvent
-                                                          .contractCountEvent(
-                                                              request: context
-                                                                  .read<
-                                                                      RentBloc>()
-                                                                  .requestMeanValue));
+                                              certificateContractBloc.add(
+                                                  CertificateContractEvent
+                                                      .certificateCountEvent(
+                                                          request: context
+                                                              .read<RentBloc>()
+                                                              .requestMeanValue));
                                             },
                                           ),
                                           SizedBox(width: AppSizeW.s7),
@@ -293,34 +272,34 @@ class _RentViewState extends State<RentView> {
                                             width: AppSizeW.s7,
                                           ),
                                         ]),
-                                    SizedBox(height: AppSizeH.s12),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: AppSizeW.s11,
-                                      ),
-                                      child: SizedBox(
-                                          height: AppSizeH.s26,
-                                          child: Row(
-                                              children: context
-                                                      .read<RentBloc>()
-                                                      .loockUpRent
-                                                      ?.periodTime
-                                                      .map((e) {
-                                                    return e.id != 5
-                                                        ? ChosenPeriodWidget(
-                                                            periodId: context
-                                                                .read<
-                                                                    RentBloc>()
-                                                                .requestMeanValue
-                                                                .periodId,
-                                                            id: e.id,
-                                                            enName: e.enName,
-                                                            arName: e.arName,
-                                                          )
-                                                        : const SizedBox();
-                                                  }).toList() ??
-                                                  [])),
-                                    ),
+                                    // SizedBox(height: AppSizeH.s12),
+                                    // Padding(
+                                    //   padding: EdgeInsets.symmetric(
+                                    //     horizontal: AppSizeW.s11,
+                                    //   ),
+                                    //   child: SizedBox(
+                                    //       height: AppSizeH.s26,
+                                    //       child: Row(
+                                    //           children: context
+                                    //                   .read<RentBloc>()
+                                    //                   .loockUpRent
+                                    //                   ?.periodTime
+                                    //                   .map((e) {
+                                    //                 return e.id != 5
+                                    //                     ? ChosenPeriodWidget(
+                                    //                         periodId: context
+                                    //                             .read<
+                                    //                                 RentBloc>()
+                                    //                             .requestMeanValue
+                                    //                             .periodId,
+                                    //                         id: e.id,
+                                    //                         enName: e.enName,
+                                    //                         arName: e.arName,
+                                    //                       )
+                                    //                     : const SizedBox();
+                                    //               }).toList() ??
+                                    //               [])),
+                                    // ),
                                   ]);
                                 },
                               ),

@@ -1,41 +1,43 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/presentations/features/sell/blocs/sell_bloc/sell_bloc.dart';
+import 'package:ebla/presentations/features/sell/blocs/top_values_bloc/topvalues_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../utils/global_functions.dart';
 import '../../../resources/resources.dart';
 import '../../../widgets/widgets.dart';
-import '../blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
-import '../blocs/rent_bloc/rent_bloc.dart';
 
-class StatisTicsWidget extends StatefulWidget {
-  const StatisTicsWidget({super.key});
+class StatisticsTopSellWidget extends StatefulWidget {
+  const StatisticsTopSellWidget({super.key});
 
   @override
-  State<StatisTicsWidget> createState() => _StatisTicsWidgetState();
+  State<StatisticsTopSellWidget> createState() =>
+      _StatisticsTopSellWidgetState();
 }
 
-class _StatisTicsWidgetState extends State<StatisTicsWidget> {
-  // int index = 1;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    print("called change dependencies");
-    super.didChangeDependencies();
-  }
-
+class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Center(
+          child: Text(
+            AppStrings().rentTopTen,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(
+              horizontal: AppSizeW.s150, vertical: AppSizeH.s20),
+          height: AppSizeH.s5,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppSizeR.s5),
+              color: ColorManager.lightSilver),
+        ),
         BlocBuilder(
-          bloc: context.read<CertificateContractBloc>(),
-          builder: (context, CertificateContractState state) {
+          bloc: context.read<TopvaluesBloc>(),
+          builder: (context, TopvaluesState state) {
             if (state.isLoading) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -55,27 +57,27 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                           children: [
                             _TabContainerShimmer(
                               tabIndex: 1,
-                              name: AppStrings().countLeaseContracts,
+                              name: AppStrings().sellContractCount,
                             ),
                             _TabContainerShimmer(
                               tabIndex: 2,
-                              name: AppStrings().countPropertiesUnits,
+                              name: AppStrings().avgPricePerUnit,
                             ),
                             _TabContainerShimmer(
                               tabIndex: 3,
-                              name: AppStrings().avgPriceEveryMonth,
+                              name: AppStrings().transictionValue,
                             ),
                             _TabContainerShimmer(
                               tabIndex: 4,
-                              name: AppStrings().contractsValue,
+                              name: AppStrings().soldAreas,
                             ),
                             _TabContainerShimmer(
                               tabIndex: 5,
-                              name: AppStrings().avgPricePerMeter,
+                              name: AppStrings().countPropertiesUnits,
                             ),
                             _TabContainerShimmer(
                               tabIndex: 6,
-                              name: AppStrings().rentedAreas,
+                              name: AppStrings().avgPricePerSquareFoot,
                             ),
                           ],
                         ),
@@ -100,65 +102,63 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                       children: [
                         _TabContainer(
                           indexTab: 1,
-                          name: AppStrings().countLeaseContracts,
+                          name: AppStrings().sellContractCount,
                           onPress: () {
-                            context.read<CertificateContractBloc>().add(
-                                CertificateContractEvent.certificateCountEvent(
-                                    request: context
-                                        .read<RentBloc>()
-                                        .requestMeanValue));
+                            context.read<TopvaluesBloc>().add(
+                                TopvaluesEvent.countTransictionNumberEvent(
+                                    request:
+                                        context.read<SellBloc>().requestSell));
                           },
                         ),
                         _TabContainer(
                             indexTab: 2,
-                            name: AppStrings().countPropertiesUnits,
+                            name: AppStrings().avgPricePerUnit,
                             onPress: () {
-                              context.read<CertificateContractBloc>().add(
-                                  CertificateContractEvent.contractCountEvent(
+                              context.read<TopvaluesBloc>().add(
+                                  TopvaluesEvent.countUnitPriceEvent(
                                       request: context
-                                          .read<RentBloc>()
-                                          .requestMeanValue));
+                                          .read<SellBloc>()
+                                          .requestSell));
                             }),
                         _TabContainer(
                             indexTab: 3,
-                            name: AppStrings().avgPriceEveryMonth,
+                            name: AppStrings().transictionValue,
                             onPress: () {
-                              context.read<CertificateContractBloc>().add(
-                                  CertificateContractEvent.meanRentAmountEvent(
+                              context.read<TopvaluesBloc>().add(
+                                  TopvaluesEvent.countTransictionsValueEvent(
                                       request: context
-                                          .read<RentBloc>()
-                                          .requestMeanValue));
+                                          .read<SellBloc>()
+                                          .requestSell));
                             }),
                         _TabContainer(
                             indexTab: 4,
-                            name: AppStrings().contractsValue,
+                            name: AppStrings().soldAreas,
                             onPress: () {
-                              context.read<CertificateContractBloc>().add(
-                                  CertificateContractEvent.RentAmountEvent(
+                              context.read<TopvaluesBloc>().add(
+                                  TopvaluesEvent.countAreasEvent(
                                       request: context
-                                          .read<RentBloc>()
-                                          .requestMeanValue));
+                                          .read<SellBloc>()
+                                          .requestSell));
                             }),
                         _TabContainer(
                             indexTab: 5,
-                            name: AppStrings().avgPricePerMeter,
+                            name: AppStrings().countPropertiesUnits,
                             onPress: () {
-                              context.read<CertificateContractBloc>().add(
-                                  CertificateContractEvent
-                                      .RentValuePerMeterEvent(
-                                          request: context
-                                              .read<RentBloc>()
-                                              .requestMeanValue));
+                              context.read<TopvaluesBloc>().add(
+                                  TopvaluesEvent.realStateNumberEvent(
+                                      request: context
+                                          .read<SellBloc>()
+                                          .requestSell));
                             }),
                         _TabContainer(
                             indexTab: 6,
-                            name: AppStrings().rentedAreas,
+                            name: AppStrings().avgPricePerSquareFoot,
                             onPress: () {
-                              context.read<CertificateContractBloc>().add(
-                                  CertificateContractEvent.RentedAreasEvent(
+                              context.read<TopvaluesBloc>().add(
+                                  TopvaluesEvent.realStateNumberMeterEvent(
                                       request: context
-                                          .read<RentBloc>()
-                                          .requestMeanValue));
+                                          .read<SellBloc>()
+                                          .requestSell));
                             }),
                       ],
                     ),
@@ -172,8 +172,8 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
           height: AppSizeH.s30,
         ),
         BlocBuilder(
-          bloc: context.read<CertificateContractBloc>(),
-          builder: (context, CertificateContractState state) {
+          bloc: context.read<TopvaluesBloc>(),
+          builder: (context, TopvaluesState state) {
             if (state.isLoading) {
               return const StatisticsShimmerWidget();
             }
@@ -196,17 +196,17 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                     title: context.locale == ARABIC_LOCAL
                         ? getObjectByLookupKey(
                                     context
-                                        .read<RentBloc>()
-                                        .loockUpRent!
-                                        .zoneList,
+                                        .read<SellBloc>()
+                                        .loockUpSell!
+                                        .districtList,
                                     e.zoneId.toInt())
                                 ?.arName ??
                             ''
                         : getObjectByLookupKey(
                                     context
-                                        .read<RentBloc>()
-                                        .loockUpRent!
-                                        .zoneList,
+                                        .read<SellBloc>()
+                                        .loockUpSell!
+                                        .districtList,
                                     e.zoneId.toInt())
                                 ?.enName ??
                             '',
@@ -245,7 +245,6 @@ class _TabContainerShimmer extends StatelessWidget {
   final String name;
 
   const _TabContainerShimmer({
-    super.key,
     required this.tabIndex,
     required this.name,
   });
@@ -256,13 +255,13 @@ class _TabContainerShimmer extends StatelessWidget {
       padding:
           EdgeInsets.symmetric(horizontal: AppSizeW.s5, vertical: AppSizeH.s6),
       decoration: BoxDecoration(
-          color: context.read<CertificateContractBloc>().index == tabIndex
+          color: context.read<TopvaluesBloc>().index == tabIndex
               ? ColorManager.primary
               : Colors.transparent,
           borderRadius: BorderRadius.circular(AppSizeR.s10)),
       child: Text(
         name,
-        style: context.read<CertificateContractBloc>().index == tabIndex
+        style: context.read<TopvaluesBloc>().index == tabIndex
             ? Theme.of(context)
                 .textTheme
                 .displayMedium!
@@ -282,7 +281,6 @@ class _TabContainer extends StatelessWidget {
   final Function onPress;
 
   const _TabContainer({
-    super.key,
     required this.indexTab,
     required this.name,
     required this.onPress,
@@ -301,13 +299,13 @@ class _TabContainer extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             horizontal: AppSizeW.s5, vertical: AppSizeH.s6),
         decoration: BoxDecoration(
-            color: context.read<CertificateContractBloc>().index == indexTab
+            color: context.read<TopvaluesBloc>().index == indexTab
                 ? ColorManager.primary
                 : Colors.transparent,
             borderRadius: BorderRadius.circular(AppSizeR.s10)),
         child: Text(
           name,
-          style: context.read<CertificateContractBloc>().index == indexTab
+          style: context.read<TopvaluesBloc>().index == indexTab
               ? Theme.of(context)
                   .textTheme
                   .displayMedium!

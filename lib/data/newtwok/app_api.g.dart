@@ -397,6 +397,70 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
+  Future<HttpResponse<List<BaseRentResponse>>> meanRentMeter(
+      RequestMeanValue requestMeanValue) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = requestMeanValue;
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/kpi/rent/kpi31_1/stats/mean-rent-meter',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data!
+        .map(
+            (dynamic i) => BaseRentResponse.fromJson(i as Map<String, dynamic>))
+        .toList();
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<List<BaseRentResponse>>> getRentedAreas(
+      RequestMeanValue requestMeanValue) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = requestMeanValue;
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<HttpResponse<List<BaseRentResponse>>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/kpi/rent/kpi33/stats/area',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data!
+        .map(
+            (dynamic i) => BaseRentResponse.fromJson(i as Map<String, dynamic>))
+        .toList();
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
   Future<HttpResponse<RentLookupResponse>> getLockupSell() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -613,7 +677,7 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<HttpResponse<List<BaseRentResponse>>> countTransictionNumber(
+  Future<HttpResponse<List<BaseRentResponse>>> sellContractCount(
       RequestSellValues requestSellValues) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -645,7 +709,7 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<HttpResponse<List<BaseRentResponse>>> countUnitPrice(
+  Future<HttpResponse<List<BaseRentResponse>>> avgPricePerUnit(
       RequestSellValues requestSellValues) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -677,7 +741,7 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<HttpResponse<List<BaseRentResponse>>> countTransictionsValue(
+  Future<HttpResponse<List<BaseRentResponse>>> transactionsValue(
       RequestSellValues requestSellValues) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -709,7 +773,7 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<HttpResponse<List<BaseRentResponse>>> countAreas(
+  Future<HttpResponse<List<BaseRentResponse>>> soldAreas(
       RequestSellValues requestSellValues) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -773,7 +837,7 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<HttpResponse<List<BaseRentResponse>>> realStateNumberMeter(
+  Future<HttpResponse<List<BaseRentResponse>>> averagePricePerSquareFoot(
       RequestSellValues requestSellValues) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
