@@ -38,10 +38,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                       ),
                       child: SizedBox(
                         height: AppSizeH.s54,
-                        width: MediaQuery.of(context).size.width -
-                            (context.locale == ARABIC_LOCAL
-                                ? AppSizeW.s52
-                                : AppSizeW.s20),
+                        width: MediaQuery.of(context).size.width - AppSizeW.s52,
                         child: Wrap(
                           alignment: WrapAlignment.center,
                           children: [
@@ -76,7 +73,6 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
               );
             }
             return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   padding: EdgeInsets.symmetric(
@@ -137,17 +133,18 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                             name: AppStrings().avgPricePerMeter,
                             onPress: () {
                               context.read<CertificateContractBloc>().add(
-                                  CertificateContractEvent.RentAmountEvent(
-                                      request: context
-                                          .read<RentBloc>()
-                                          .requestMeanValue));
+                                  CertificateContractEvent
+                                      .RentValuePerMeterEvent(
+                                          request: context
+                                              .read<RentBloc>()
+                                              .requestMeanValue));
                             }),
                         _TabContainer(
                             indexTab: 6,
                             name: AppStrings().rentedAreas,
                             onPress: () {
                               context.read<CertificateContractBloc>().add(
-                                  CertificateContractEvent.RentAmountEvent(
+                                  CertificateContractEvent.RentedAreasEvent(
                                       request: context
                                           .read<RentBloc>()
                                           .requestMeanValue));
@@ -291,7 +288,7 @@ class _TabContainer extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.symmetric(
-            horizontal: AppSizeW.s10, vertical: AppSizeH.s6),
+            horizontal: AppSizeW.s5, vertical: AppSizeH.s6),
         decoration: BoxDecoration(
             color: context.read<CertificateContractBloc>().index == indexTab
                 ? ColorManager.primary

@@ -30,6 +30,8 @@ class EndPoints {
 
   static const String meanRentMeter = '/kpi/rent/kpi31_1/stats/mean-rent-meter';
 
+  static const String rentedAreas = '/kpi/rent/kpi33/stats/area';
+
   //----------------------------------------sell-------------------------------
   static const String lookupSell = '/kpi/sell/lookup';
 
