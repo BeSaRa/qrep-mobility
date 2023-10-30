@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/newtwok/failure_model/failure.dart';
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
+import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
 import 'package:ebla/domain/models/mrtgage_models/mortgage_models.dart';
@@ -749,6 +750,26 @@ class RepositoryImplementer extends Repository {
       try {
         final response =
             await appServiceClient.getTotalSoldSpaces(requestSellValues);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<FaqResponse, FailureModel>> getFaq(int id) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await translationsServiceClient.getFaq(id);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {

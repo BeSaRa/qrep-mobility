@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/newtwok/end_points.dart';
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
+import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
 import 'package:ebla/domain/models/mrtgage_models/mortgage_models.dart';
@@ -77,6 +78,7 @@ abstract class AppServiceClient {
   //----------------------------------Sell--------------------------------------
   @GET(EndPoints.lookupSell)
   Future<HttpResponse<RentLookupResponse>> getLockupSell();
+  // KPI1
 
   // KPI1
   @POST(EndPoints.totalContractsSell)
@@ -148,6 +150,9 @@ abstract class AppServiceClient {
 abstract class TranslationsServiceClient {
   factory TranslationsServiceClient(Dio dio, {String baseUrl}) =
       _TranslationsServiceClient;
+
+  @GET(EndPoints.faq)
+  Future<HttpResponse<FaqResponse>> getFaq(@Query("limit") int limit);
 
   @GET(EndPoints.translations)
   Future<HttpResponse<TranslationsModel>> getTranslations(

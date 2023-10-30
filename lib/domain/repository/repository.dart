@@ -1,4 +1,5 @@
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
+import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
 import 'package:ebla/domain/models/mrtgage_models/mortgage_models.dart';
@@ -24,6 +25,8 @@ abstract class Repository {
   Future<Result<LawsResponse, FailureModel>> getLaws({required int limit});
 
   Future<Result<LawByIdResponse, FailureModel>> getLawById(int id);
+
+  Future<Result<FaqResponse, FailureModel>> getFaq(int id);
 
 //-------------Rent----------------
   Future<Result<RentLookupResponse, FailureModel>> getLockupRent();

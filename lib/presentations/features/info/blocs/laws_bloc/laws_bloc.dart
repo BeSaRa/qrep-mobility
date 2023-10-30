@@ -25,6 +25,7 @@ class LawsBloc extends Bloc<LawsEvent, LawsState> {
         final failureOrSuccessAllLaws = await lawsUsecase.execute(limit);
 
         failureOrSuccessAllLaws.when((success) {
+          laws.clear();
           laws.addAll(success.data);
           emit(
             state.copyWith(

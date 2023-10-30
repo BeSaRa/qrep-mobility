@@ -3,6 +3,7 @@ import 'package:ebla/domain/usecases/mortgage_usecases/lookup_mortgage_usecase.d
 import 'package:ebla/domain/usecases/mortgage_usecases/transactions_mortgage_usecase.dart';
 import 'package:ebla/domain/usecases/rent_usecases/mean_rent_amount/mean_rent_amount_usecase.dart';
 import 'package:ebla/domain/usecases/rent_usecases/rent_amount/rent_amount_usecase.dart';
+import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
@@ -74,6 +75,9 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<LawByIdUsecase>()) {
     instance.registerFactory<LawByIdUsecase>(() => LawByIdUsecase(instance()));
   }
+  if (!GetIt.I.isRegistered<FaqUsecase>()) {
+    instance.registerFactory<FaqUsecase>(() => FaqUsecase(instance()));
+  }
 
   //Bloc's
   if (!GetIt.I.isRegistered<AboutBloc>()) {
@@ -88,6 +92,11 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<LawsBloc>()) {
     instance.registerFactory(
         () => LawsBloc(lawsUsecase: instance(), lawByIdUsecase: instance()));
+  }
+  if (!GetIt.I.isRegistered<FaqBloc>()) {
+    instance.registerFactory(() => FaqBloc(
+          faqUsecase: instance(),
+        ));
   }
 }
 

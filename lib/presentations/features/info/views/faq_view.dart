@@ -1,5 +1,7 @@
+import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../resources/resources.dart';
 
@@ -27,6 +29,12 @@ class _FAQViewState extends State<FAQView> {
         ),
         centerTitle: true,
         backgroundColor: ColorManager.primary,
+      ),
+      body: BlocBuilder(
+        bloc: context.read<FaqBloc>(),
+        builder: (context, state) {
+          return Text("state:$state");
+        },
       ),
     );
   }
