@@ -172,8 +172,7 @@ AboutModels _$AboutModelsFromJson(Map<String, dynamic> json) {
 mixin _$AboutModels {
   int get id => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
+  List<AboutDataModel> get translations => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -187,7 +186,7 @@ abstract class $AboutModelsCopyWith<$Res> {
           AboutModels value, $Res Function(AboutModels) then) =
       _$AboutModelsCopyWithImpl<$Res, AboutModels>;
   @useResult
-  $Res call({int id, String status, String title, String content});
+  $Res call({int id, String status, List<AboutDataModel> translations});
 }
 
 /// @nodoc
@@ -205,8 +204,7 @@ class _$AboutModelsCopyWithImpl<$Res, $Val extends AboutModels>
   $Res call({
     Object? id = null,
     Object? status = null,
-    Object? title = null,
-    Object? content = null,
+    Object? translations = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -217,14 +215,10 @@ class _$AboutModelsCopyWithImpl<$Res, $Val extends AboutModels>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
+      translations: null == translations
+          ? _value.translations
+          : translations // ignore: cast_nullable_to_non_nullable
+              as List<AboutDataModel>,
     ) as $Val);
   }
 }
@@ -237,7 +231,7 @@ abstract class _$$AboutModelsImplCopyWith<$Res>
       __$$AboutModelsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String status, String title, String content});
+  $Res call({int id, String status, List<AboutDataModel> translations});
 }
 
 /// @nodoc
@@ -253,8 +247,7 @@ class __$$AboutModelsImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? status = null,
-    Object? title = null,
-    Object? content = null,
+    Object? translations = null,
   }) {
     return _then(_$AboutModelsImpl(
       id: null == id
@@ -265,14 +258,10 @@ class __$$AboutModelsImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
+      translations: null == translations
+          ? _value._translations
+          : translations // ignore: cast_nullable_to_non_nullable
+              as List<AboutDataModel>,
     ));
   }
 }
@@ -281,7 +270,10 @@ class __$$AboutModelsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AboutModelsImpl implements _AboutModels {
   const _$AboutModelsImpl(
-      {this.id = 0, this.status = '', this.title = '', this.content = ''});
+      {this.id = 0,
+      this.status = '',
+      final List<AboutDataModel> translations = const []})
+      : _translations = translations;
 
   factory _$AboutModelsImpl.fromJson(Map<String, dynamic> json) =>
       _$$AboutModelsImplFromJson(json);
@@ -292,16 +284,18 @@ class _$AboutModelsImpl implements _AboutModels {
   @override
   @JsonKey()
   final String status;
+  final List<AboutDataModel> _translations;
   @override
   @JsonKey()
-  final String title;
-  @override
-  @JsonKey()
-  final String content;
+  List<AboutDataModel> get translations {
+    if (_translations is EqualUnmodifiableListView) return _translations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_translations);
+  }
 
   @override
   String toString() {
-    return 'AboutModels(id: $id, status: $status, title: $title, content: $content)';
+    return 'AboutModels(id: $id, status: $status, translations: $translations)';
   }
 
   @override
@@ -311,13 +305,14 @@ class _$AboutModelsImpl implements _AboutModels {
             other is _$AboutModelsImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.content, content) || other.content == content));
+            const DeepCollectionEquality()
+                .equals(other._translations, _translations));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, status, title, content);
+  int get hashCode => Object.hash(runtimeType, id, status,
+      const DeepCollectionEquality().hash(_translations));
 
   @JsonKey(ignore: true)
   @override
@@ -337,8 +332,7 @@ abstract class _AboutModels implements AboutModels {
   const factory _AboutModels(
       {final int id,
       final String status,
-      final String title,
-      final String content}) = _$AboutModelsImpl;
+      final List<AboutDataModel> translations}) = _$AboutModelsImpl;
 
   factory _AboutModels.fromJson(Map<String, dynamic> json) =
       _$AboutModelsImpl.fromJson;
@@ -348,11 +342,241 @@ abstract class _AboutModels implements AboutModels {
   @override
   String get status;
   @override
+  List<AboutDataModel> get translations;
+  @override
+  @JsonKey(ignore: true)
+  _$$AboutModelsImplCopyWith<_$AboutModelsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+AboutDataModel _$AboutDataModelFromJson(Map<String, dynamic> json) {
+  return _AboutDataModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AboutDataModel {
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: "about_id")
+  int get aboutId => throw _privateConstructorUsedError;
+  @JsonKey(name: "languages_code")
+  String get languagesCode => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get content => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AboutDataModelCopyWith<AboutDataModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AboutDataModelCopyWith<$Res> {
+  factory $AboutDataModelCopyWith(
+          AboutDataModel value, $Res Function(AboutDataModel) then) =
+      _$AboutDataModelCopyWithImpl<$Res, AboutDataModel>;
+  @useResult
+  $Res call(
+      {int id,
+      @JsonKey(name: "about_id") int aboutId,
+      @JsonKey(name: "languages_code") String languagesCode,
+      String title,
+      String content});
+}
+
+/// @nodoc
+class _$AboutDataModelCopyWithImpl<$Res, $Val extends AboutDataModel>
+    implements $AboutDataModelCopyWith<$Res> {
+  _$AboutDataModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? aboutId = null,
+    Object? languagesCode = null,
+    Object? title = null,
+    Object? content = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      aboutId: null == aboutId
+          ? _value.aboutId
+          : aboutId // ignore: cast_nullable_to_non_nullable
+              as int,
+      languagesCode: null == languagesCode
+          ? _value.languagesCode
+          : languagesCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AboutDataModelImplCopyWith<$Res>
+    implements $AboutDataModelCopyWith<$Res> {
+  factory _$$AboutDataModelImplCopyWith(_$AboutDataModelImpl value,
+          $Res Function(_$AboutDataModelImpl) then) =
+      __$$AboutDataModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      @JsonKey(name: "about_id") int aboutId,
+      @JsonKey(name: "languages_code") String languagesCode,
+      String title,
+      String content});
+}
+
+/// @nodoc
+class __$$AboutDataModelImplCopyWithImpl<$Res>
+    extends _$AboutDataModelCopyWithImpl<$Res, _$AboutDataModelImpl>
+    implements _$$AboutDataModelImplCopyWith<$Res> {
+  __$$AboutDataModelImplCopyWithImpl(
+      _$AboutDataModelImpl _value, $Res Function(_$AboutDataModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? aboutId = null,
+    Object? languagesCode = null,
+    Object? title = null,
+    Object? content = null,
+  }) {
+    return _then(_$AboutDataModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      aboutId: null == aboutId
+          ? _value.aboutId
+          : aboutId // ignore: cast_nullable_to_non_nullable
+              as int,
+      languagesCode: null == languagesCode
+          ? _value.languagesCode
+          : languagesCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AboutDataModelImpl implements _AboutDataModel {
+  _$AboutDataModelImpl(
+      {this.id = 0,
+      @JsonKey(name: "about_id") this.aboutId = 0,
+      @JsonKey(name: "languages_code") this.languagesCode = '',
+      this.title = '',
+      this.content = ''});
+
+  factory _$AboutDataModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AboutDataModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int id;
+  @override
+  @JsonKey(name: "about_id")
+  final int aboutId;
+  @override
+  @JsonKey(name: "languages_code")
+  final String languagesCode;
+  @override
+  @JsonKey()
+  final String title;
+  @override
+  @JsonKey()
+  final String content;
+
+  @override
+  String toString() {
+    return 'AboutDataModel(id: $id, aboutId: $aboutId, languagesCode: $languagesCode, title: $title, content: $content)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AboutDataModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.aboutId, aboutId) || other.aboutId == aboutId) &&
+            (identical(other.languagesCode, languagesCode) ||
+                other.languagesCode == languagesCode) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.content, content) || other.content == content));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, aboutId, languagesCode, title, content);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AboutDataModelImplCopyWith<_$AboutDataModelImpl> get copyWith =>
+      __$$AboutDataModelImplCopyWithImpl<_$AboutDataModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AboutDataModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _AboutDataModel implements AboutDataModel {
+  factory _AboutDataModel(
+      {final int id,
+      @JsonKey(name: "about_id") final int aboutId,
+      @JsonKey(name: "languages_code") final String languagesCode,
+      final String title,
+      final String content}) = _$AboutDataModelImpl;
+
+  factory _AboutDataModel.fromJson(Map<String, dynamic> json) =
+      _$AboutDataModelImpl.fromJson;
+
+  @override
+  int get id;
+  @override
+  @JsonKey(name: "about_id")
+  int get aboutId;
+  @override
+  @JsonKey(name: "languages_code")
+  String get languagesCode;
+  @override
   String get title;
   @override
   String get content;
   @override
   @JsonKey(ignore: true)
-  _$$AboutModelsImplCopyWith<_$AboutModelsImpl> get copyWith =>
+  _$$AboutDataModelImplCopyWith<_$AboutDataModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

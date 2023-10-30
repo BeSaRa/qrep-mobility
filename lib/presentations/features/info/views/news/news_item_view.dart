@@ -24,8 +24,6 @@ class NewsItemView extends StatefulWidget {
 }
 
 class _NewsItemViewState extends State<NewsItemView> {
-  // late NewsItemBloc newsItemBloc;
-  // late NewsBloc newsBloc;
   late NewsModel model;
   List<NewsModel> values = [];
   @override
@@ -57,7 +55,7 @@ class _NewsItemViewState extends State<NewsItemView> {
           color: ColorManager.golden,
         ),
         title: Text(
-          'تفاصيل الأخبار',
+          AppStrings().newsDetails,
           style: Theme.of(context).textTheme.titleMedium,
         ),
         centerTitle: true,
@@ -160,16 +158,17 @@ class _NewsItemViewState extends State<NewsItemView> {
                   ),
                   SizedBox(height: AppSizeH.s18),
                   Text(
-                    'أخبار ذات صلة',
+                    AppStrings().releatedNews,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   SizedBox(height: AppSizeH.s8),
                   Container(
-                      width: AppSizeW.s30,
-                      height: AppSizeH.s5,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(AppSizeR.s5),
-                          color: ColorManager.lightSilver)),
+                    width: AppSizeW.s30,
+                    height: AppSizeH.s5,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(AppSizeR.s5),
+                        color: ColorManager.lightSilver),
+                  ),
                   SizedBox(height: AppSizeH.s20),
                   Wrap(
                     runSpacing: AppSizeH.s10,

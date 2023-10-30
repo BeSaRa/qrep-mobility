@@ -6,7 +6,7 @@ class EndPoints {
   static const String newsById = '/items/news/{id}';
   static const String laws = '/items/laws';
   static const String lawsById = '/items/laws/{id}';
-  static const String about = '/items/about';
+  static const String about = '/items/about?fields=*,translations.*';
   static const String faq = '/items/FAQ';
 
   //-------------------Rent----------------------------------------------------------
