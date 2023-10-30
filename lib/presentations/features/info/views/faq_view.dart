@@ -127,8 +127,13 @@ class _FAQViewState extends State<FAQView> {
                 ),
               ),
             );
-          } else if (state.faqResponse.data.isNotEmpty) {
-            return Container();
+          } else if (state.faqResponse.data.isEmpty) {
+            return Center(
+              child: Text(
+                AppStrings().noDataFound,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            );
           }
           return Container();
         },
