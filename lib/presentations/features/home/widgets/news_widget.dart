@@ -1,4 +1,3 @@
-import 'package:ebla/app/depndency_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -18,6 +17,7 @@ class NewsWidget extends StatefulWidget {
 class _NewsWidgetState extends State<NewsWidget> {
   final PageController _pageController = PageController();
   int index = 0;
+
   @override
   void initState() {
     // TODO: implement initState
