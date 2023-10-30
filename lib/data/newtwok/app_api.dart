@@ -163,7 +163,7 @@ abstract class TranslationsServiceClient {
       {@Path('id') required int id});
 
   @GET(EndPoints.laws)
-  Future<HttpResponse<LawsResponse>> getLaws();
+  Future<HttpResponse<LawsResponse>> getLaws(@Query("limit") int limit);
 
   @GET(EndPoints.lawsById)
   Future<HttpResponse<LawByIdResponse>> getLawId(@Path("id") int id);

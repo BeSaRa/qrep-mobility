@@ -1020,9 +1020,9 @@ class _TranslationsServiceClient implements TranslationsServiceClient {
   }
 
   @override
-  Future<HttpResponse<LawsResponse>> getLaws() async {
+  Future<HttpResponse<LawsResponse>> getLaws(int limit) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'limit': limit};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(

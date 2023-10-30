@@ -363,10 +363,11 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<LawsResponse, FailureModel>> getLaws() async {
+  Future<Result<LawsResponse, FailureModel>> getLaws(
+      {required int limit}) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await translationsServiceClient.getLaws();
+        final response = await translationsServiceClient.getLaws(limit);
 
         if (response.response.statusCode == 200) {
           return Success(response.data);

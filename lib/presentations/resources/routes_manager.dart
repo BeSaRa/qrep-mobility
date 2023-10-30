@@ -207,13 +207,7 @@ class AppRouter {
                   //   );
                   // }
                   return BlocProvider(
-                    create: (context) => instance<LawsBloc>()
-                      ..add(
-                        LawsEvent.getLawById(
-                            id: int.tryParse(
-                                    state.pathParameters['id'] ?? '1') ??
-                                1),
-                      ),
+                    create: (context) => instance<LawsBloc>(),
                     child: LawsDetailsView(
                         id: int.tryParse(state.pathParameters['id'] ?? '1') ??
                             1),
