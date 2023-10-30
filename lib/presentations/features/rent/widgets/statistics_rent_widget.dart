@@ -19,6 +19,17 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
   // int index = 1;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    print("called change dependencies");
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -243,7 +254,7 @@ class _TabContainerShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding:
-          EdgeInsets.symmetric(horizontal: AppSizeW.s10, vertical: AppSizeH.s6),
+          EdgeInsets.symmetric(horizontal: AppSizeW.s5, vertical: AppSizeH.s6),
       decoration: BoxDecoration(
           color: context.read<CertificateContractBloc>().index == tabIndex
               ? ColorManager.primary

@@ -24,6 +24,11 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   // final PageController _pageController = PageController();
   // final int _indexCubit = 0;
+  @override
+  void didChangeDependencies() {
+    print("did change dependencies");
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +44,10 @@ class _HomeViewState extends State<HomeView> {
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height / 2.5,
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height / 2.5,
                   child: Row(
                     children: [
                       Expanded(
@@ -109,7 +117,8 @@ class _HomeViewState extends State<HomeView> {
             ),
             BlocProvider(
               create: (context) =>
-                  instance<NewsBloc>()..add(const NewsEvent.getNewsEvent()),
+              instance<NewsBloc>()
+                ..add(const NewsEvent.getNewsEvent()),
               child: const NewsWidget(),
             ),
             SizedBox(
@@ -189,7 +198,10 @@ class StaticPagesContainer extends StatelessWidget {
             ),
             Text(
               title,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .bodyMedium,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               softWrap: true,
@@ -231,7 +243,10 @@ class _HomeContainer extends StatelessWidget {
       margin: EdgeInsets.symmetric(
           horizontal: AppSizeW.s10, vertical: AppSizeH.s10),
       height:
-          (MediaQuery.of(context).size.height / 2.5) * (isBig ? 0.50 : 0.36),
+      (MediaQuery
+          .of(context)
+          .size
+          .height / 2.5) * (isBig ? 0.50 : 0.36),
       decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(AppSizeR.s20),
@@ -259,7 +274,8 @@ class _HomeContainer extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 6,
                   softWrap: true,
-                  style: Theme.of(context)
+                  style: Theme
+                      .of(context)
                       .textTheme
                       .bodyMedium
                       ?.copyWith(color: textColor, fontWeight: FontWeight.w800),
@@ -273,7 +289,7 @@ class _HomeContainer extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment:
-                  isBig ? CrossAxisAlignment.center : CrossAxisAlignment.end,
+              isBig ? CrossAxisAlignment.center : CrossAxisAlignment.end,
               children: [
                 Align(
                   // alignment: context.locale == ARABIC_LOCAL
@@ -301,7 +317,9 @@ class _HomeContainer extends StatelessWidget {
                     image,
                     height: AppSizeH.s70,
                     width: AppSizeW.s70,
-                    color: imageColor ?? Theme.of(context).primaryColor,
+                    color: imageColor ?? Theme
+                        .of(context)
+                        .primaryColor,
                     fit: BoxFit.scaleDown,
                   ),
                 ),
@@ -314,7 +332,8 @@ class _HomeContainer extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         softWrap: true,
-                        style: Theme.of(context)
+                        style: Theme
+                            .of(context)
                             .textTheme
                             .bodyMedium
                             ?.copyWith(fontWeight: FontWeight.w700),
