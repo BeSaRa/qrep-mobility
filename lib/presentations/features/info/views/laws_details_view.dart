@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:ebla/app/constants.dart';
+import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
@@ -171,6 +172,7 @@ class _LawsDetailsViewState extends State<LawsDetailsView> {
                 itemCount: lawsModel.articles.length,
                 itemBuilder: (context, index) {
                   return LawArticleWidget(
+                    faqItemModel: null,
                     article: lawsModel.articles[index],
                     maxExpandedHeight: AppSizeH.s250,
                   );
@@ -186,11 +188,13 @@ class _LawsDetailsViewState extends State<LawsDetailsView> {
 }
 
 class LawArticleWidget extends StatefulWidget {
-  final ArticleModel article;
+  final ArticleModel? article;
+  final FaqItemModel? faqItemModel;
   final double maxExpandedHeight;
   LawArticleWidget({
     Key? key,
     required this.article,
+    required this.faqItemModel,
     required this.maxExpandedHeight,
   }) : super(key: key);
 
@@ -237,7 +241,8 @@ class _LawArticleWidgetState extends State<LawArticleWidget> {
             tilePadding: EdgeInsets.symmetric(horizontal: AppSizeW.s30),
             childrenPadding: EdgeInsets.only(
                 left: AppSizeW.s30, right: AppSizeW.s30, bottom: AppSizeH.s10),
-            title: Text(widget.article.title,
+            title: Text(
+                widget.article?.title ?? widget.faqItemModel?.question ?? '',
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium), // Title when the tile is collapsed
@@ -251,7 +256,9 @@ class _LawArticleWidgetState extends State<LawArticleWidget> {
                       BoxConstraints(maxHeight: widget.maxExpandedHeight),
                   child: SingleChildScrollView(
                     child: Html(
-                      data: widget.article.content,
+                      data: widget.article?.content ??
+                          widget.faqItemModel?.answer ??
+                          '',
                       onLinkTap: (url, attributes, element) {
                         if (url != null && isValidUrl(url)) {
                           launchUrl(Uri.parse(url));
