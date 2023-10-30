@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 
 class AppStrings {
-  String test = 'test';
-
   //main scaffold locals
   String main = 'main'.tr();
   String rent = 'rent'.tr();
@@ -39,6 +37,8 @@ class AppStrings {
   String noRentContracts = "no_contracts_found".tr();
   String avgPriceEveryMonth = "avg_price_every_month".tr();
   String contractsValue = "contracts_value".tr();
+  String avgPricePerMeter = "avg_price_per_meter".tr();
+  String rentedAreas = "rented_areas".tr();
 
   //more view locals
   String moreTitle = 'more_title'.tr();
@@ -66,6 +66,8 @@ class AppStrings {
 
   //home
   String news = 'home_news'.tr();
+  String newsDetails = 'news_details'.tr();
+  String releatedNews = 'related_news'.tr();
   String mortgageIndicators = 'mortgage_indicator'.tr();
   String rentIndicators = 'rent_indicator'.tr();
   String sellIndicators = 'sell_indicator'.tr();

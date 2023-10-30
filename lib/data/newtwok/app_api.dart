@@ -75,6 +75,14 @@ abstract class AppServiceClient {
   Future<HttpResponse<List<BaseRentResponse>>> rentAmount(
       @Body() RequestMeanValue requestMeanValue);
 
+  @POST(EndPoints.meanRentMeter)
+  Future<HttpResponse<List<BaseRentResponse>>> meanRentMeter(
+      @Body() RequestMeanValue requestMeanValue);
+
+  @POST(EndPoints.rentedAreas)
+  Future<HttpResponse<List<BaseRentResponse>>> getRentedAreas(
+      @Body() RequestMeanValue requestMeanValue);
+
   //----------------------------------Sell--------------------------------------
   @GET(EndPoints.lookupSell)
   Future<HttpResponse<RentLookupResponse>> getLockupSell();

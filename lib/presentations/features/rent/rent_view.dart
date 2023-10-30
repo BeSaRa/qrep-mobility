@@ -8,7 +8,6 @@ import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_
 import 'package:ebla/presentations/features/rent/blocs/summery_bloc/rent_summery_bloc.dart';
 import 'package:ebla/presentations/widgets/selected_year_widget.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
@@ -374,7 +373,7 @@ class _RentViewState extends State<RentView> {
                                     horizontal: AppSizeW.s20),
                                 child: BlocProvider.value(
                                   value: certificateContractBloc,
-                                  child: const StatisTicsWidget(),
+                                  child: StatisTicsWidget(),
                                 ),
                               ),
                               SizedBox(height: AppSizeH.s20),

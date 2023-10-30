@@ -6,7 +6,7 @@ class EndPoints {
   static const String newsById = '/items/news/{id}';
   static const String laws = '/items/laws';
   static const String lawsById = '/items/laws/{id}';
-  static const String about = '/items/about';
+  static const String about = '/items/about?fields=*,translations.*';
   static const String faq = '/items/FAQ';
 
   //-------------------Rent----------------------------------------------------------
@@ -31,6 +31,10 @@ class EndPoints {
   static const String avgPriceTop = '/kpi/rent/kpi31/stats/mean-rent-amount';
 
   static const String rentAmountTop = '/kpi/rent/kpi32/stats/rent-amount';
+
+  static const String meanRentMeter = '/kpi/rent/kpi31_1/stats/mean-rent-meter';
+
+  static const String rentedAreas = '/kpi/rent/kpi33/stats/area';
 
   //----------------------------------------sell-------------------------------
   static const String lookupSell = '/kpi/sell/lookup';

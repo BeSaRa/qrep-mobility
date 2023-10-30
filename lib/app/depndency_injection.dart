@@ -1,13 +1,10 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ebla/domain/usecases/mortgage_usecases/lookup_mortgage_usecase.dart';
 import 'package:ebla/domain/usecases/mortgage_usecases/transactions_mortgage_usecase.dart';
-import 'package:ebla/domain/usecases/rent_usecases/mean_rent_amount/mean_rent_amount_usecase.dart';
-import 'package:ebla/domain/usecases/rent_usecases/rent_amount/rent_amount_usecase.dart';
 import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
-import 'package:ebla/presentations/features/rent/blocs/default_bloc/rent_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_transaction/sell_transaction_bloc.dart';
@@ -23,11 +20,7 @@ import '../domain/usecases/CMS/cms_usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import '../presentations/features/info/blocs/news_bloc/news_bloc.dart';
-import '../presentations/features/rent/blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
-import '../presentations/features/rent/blocs/mean_value_bloc/mean_value_bloc.dart';
-import '../presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
-import '../presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
-import '../presentations/features/rent/blocs/summery_bloc/rent_summery_bloc.dart';
+import '../presentations/features/rent/blocs/rent_blocs.dart';
 import '../presentations/features/sell/blocs/sell_bloc/sell_bloc.dart';
 import 'app_preferences.dart';
 
@@ -65,10 +58,10 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<NewsUsecase>()) {
     instance.registerFactory<NewsUsecase>(() => NewsUsecase(instance()));
   }
-  if (!GetIt.I.isRegistered<NewsByIdUsecase>()) {
-    instance
-        .registerFactory<NewsByIdUsecase>(() => NewsByIdUsecase(instance()));
-  }
+  // if (!GetIt.I.isRegistered<NewsByIdUsecase>()) {
+  //   instance
+  //       .registerFactory<NewsByIdUsecase>(() => NewsByIdUsecase(instance()));
+  // }
   if (!GetIt.I.isRegistered<LawsUsecase>()) {
     instance.registerFactory<LawsUsecase>(() => LawsUsecase(instance()));
   }
@@ -86,9 +79,7 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<NewsBloc>()) {
     instance.registerFactory(() => NewsBloc(newsUsecase: instance()));
   }
-  // if (!GetIt.I.isRegistered<NewsItemBloc>()) {
-  //   instance.registerFactory(() => NewsItemBloc(newsByIdUsecase: instance()));
-  // }
+
   if (!GetIt.I.isRegistered<LawsBloc>()) {
     instance.registerFactory(
         () => LawsBloc(lawsUsecase: instance(), lawByIdUsecase: instance()));
@@ -227,6 +218,15 @@ Future<void> initRentModule() async {
     instance.registerFactory<RentValueAmountUseCase>(
         () => RentValueAmountUseCase(instance()));
   }
+  if (!GetIt.I.isRegistered<MeanRentMeterUseCase>()) {
+    instance.registerFactory<MeanRentMeterUseCase>(
+        () => MeanRentMeterUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<RentedAreasUseCase>()) {
+    instance.registerFactory<RentedAreasUseCase>(
+        () => RentedAreasUseCase(instance()));
+  }
+
 //Blocs
 
   if (!GetIt.I.isRegistered<RentBloc>()) {
@@ -237,7 +237,9 @@ Future<void> initRentModule() async {
         certificateCountUsecase: instance(),
         contractCountUsecase: instance(),
         meanRentAmountUsecase: instance(),
-        rentValueAmountUseCase: instance()));
+        rentValueAmountUseCase: instance(),
+        meanRentMeterUseCase: instance(),
+        rentedAreasUseCase: instance()));
   }
   if (!GetIt.I.isRegistered<MeanValueBloc>()) {
     instance.registerFactory(() => MeanValueBloc(meanValueUsecase: instance()));

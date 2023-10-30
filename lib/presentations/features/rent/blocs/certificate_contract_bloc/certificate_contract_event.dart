@@ -13,4 +13,10 @@ class CertificateContractEvent with _$CertificateContractEvent {
 
   const factory CertificateContractEvent.RentAmountEvent(
       {required RequestMeanValue request}) = _RentAmountEvent;
+
+  const factory CertificateContractEvent.RentValuePerMeterEvent(
+      {required RequestMeanValue request}) = _RentValuePerMeterEvent;
+
+  const factory CertificateContractEvent.RentedAreasEvent(
+      {required RequestMeanValue request}) = _RentedAreasEvent;
 }

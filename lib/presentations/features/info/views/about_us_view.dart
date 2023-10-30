@@ -1,6 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart';
@@ -76,12 +76,19 @@ class _AboutUsViewState extends State<AboutUsView> {
                                       BorderRadius.circular(AppSizeR.s15)),
                               child: SvgPicture.asset(IconAssets.aboutHome)),
                         ),
+                        Html(
+                          data: context.locale == ARABIC_LOCAL
+                              ? value.about.translations[0].title
+                              : value.about.translations[1].title,
+                        ),
                         Divider(
                           color: ColorManager.grey,
                           height: AppSizeH.s1,
                         ),
                         Html(
-                          data: value.about.content,
+                          data: context.locale == ARABIC_LOCAL
+                              ? value.about.translations[0].content
+                              : value.about.translations[1].content,
                         ),
                       ],
                     ),
