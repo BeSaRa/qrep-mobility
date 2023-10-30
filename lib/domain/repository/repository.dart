@@ -19,6 +19,7 @@ abstract class Repository {
   Future<Result<AboutResponse, FailureModel>> getAbout();
 
   Future<Result<NewsResponse, FailureModel>> getNews();
+  Future<Result<NewsByIdResponse, FailureModel>> getNewsById({required int id});
 
   Future<Result<LawsResponse, FailureModel>> getLaws();
 
@@ -56,6 +57,12 @@ abstract class Repository {
 
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedSpace(
       RequestMeanValue requestMeanValue);
+  Future<Result<List<BaseRentResponse>, FailureModel>> meanRentAmount(
+      RequestMeanValue requestMeanValue);
+
+  Future<Result<List<BaseRentResponse>, FailureModel>> rentValueAmount(
+      RequestMeanValue requestMeanValue);
+
   //----------------------------sell---------------------------------------
   Future<Result<RentLookupResponse, FailureModel>> getLockupSell();
 

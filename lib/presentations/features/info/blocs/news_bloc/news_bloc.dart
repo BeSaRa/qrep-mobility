@@ -9,7 +9,7 @@ part 'news_state.dart';
 
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
   final NewsUsecase newsUsecase;
-
+  List<NewsModel> newsList = [];
   NewsBloc({required this.newsUsecase}) : super(const NewsState.loading()) {
     on<NewsEvent>((event, emit) async {
       await event.map(
@@ -17,6 +17,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
           emit(const NewsState.loading());
           final failureOrSuccess = await newsUsecase.execute();
           failureOrSuccess.when((news) {
+            newsList.addAll(news.data);
             emit(NewsState.loaded(news: news.data));
           }, (error) {
             emit(NewsState.error(message: error.message));

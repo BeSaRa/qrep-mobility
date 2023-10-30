@@ -66,6 +66,14 @@ abstract class AppServiceClient {
   @POST(EndPoints.totalRentedSpace)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalRentedSpace(
       @Body() RequestMeanValue requestMeanValue);
+  @POST(EndPoints.avgPriceTop)
+  Future<HttpResponse<List<BaseRentResponse>>> avgMeanRentAmount(
+      @Body() RequestMeanValue requestMeanValue);
+
+  @POST(EndPoints.rentAmountTop)
+  Future<HttpResponse<List<BaseRentResponse>>> rentAmount(
+      @Body() RequestMeanValue requestMeanValue);
+
   //----------------------------------Sell--------------------------------------
   @GET(EndPoints.lookupSell)
   Future<HttpResponse<RentLookupResponse>> getLockupSell();
@@ -140,6 +148,9 @@ abstract class TranslationsServiceClient {
 
   @GET(EndPoints.news)
   Future<HttpResponse<NewsResponse>> getNews();
+  @GET(EndPoints.newsById)
+  Future<HttpResponse<NewsByIdResponse>> getNewsById(
+      {@Path('id') required int id});
 
   @GET(EndPoints.laws)
   Future<HttpResponse<LawsResponse>> getLaws();

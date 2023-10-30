@@ -21,18 +21,24 @@ mixin _$CertificateContractEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(RequestMeanValue request) certificateCountEvent,
     required TResult Function(RequestMeanValue request) contractCountEvent,
+    required TResult Function(RequestMeanValue request) meanRentAmountEvent,
+    required TResult Function(RequestMeanValue request) RentAmountEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(RequestMeanValue request)? certificateCountEvent,
     TResult? Function(RequestMeanValue request)? contractCountEvent,
+    TResult? Function(RequestMeanValue request)? meanRentAmountEvent,
+    TResult? Function(RequestMeanValue request)? RentAmountEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(RequestMeanValue request)? certificateCountEvent,
     TResult Function(RequestMeanValue request)? contractCountEvent,
+    TResult Function(RequestMeanValue request)? meanRentAmountEvent,
+    TResult Function(RequestMeanValue request)? RentAmountEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -41,18 +47,24 @@ mixin _$CertificateContractEvent {
     required TResult Function(_CertificateCountEvent value)
         certificateCountEvent,
     required TResult Function(_ContractCountEvent value) contractCountEvent,
+    required TResult Function(_MeanRentAmountEvent value) meanRentAmountEvent,
+    required TResult Function(_RentAmountEvent value) RentAmountEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_CertificateCountEvent value)? certificateCountEvent,
     TResult? Function(_ContractCountEvent value)? contractCountEvent,
+    TResult? Function(_MeanRentAmountEvent value)? meanRentAmountEvent,
+    TResult? Function(_RentAmountEvent value)? RentAmountEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CertificateCountEvent value)? certificateCountEvent,
     TResult Function(_ContractCountEvent value)? contractCountEvent,
+    TResult Function(_MeanRentAmountEvent value)? meanRentAmountEvent,
+    TResult Function(_RentAmountEvent value)? RentAmountEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -180,6 +192,8 @@ class _$CertificateCountEventImpl implements _CertificateCountEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(RequestMeanValue request) certificateCountEvent,
     required TResult Function(RequestMeanValue request) contractCountEvent,
+    required TResult Function(RequestMeanValue request) meanRentAmountEvent,
+    required TResult Function(RequestMeanValue request) RentAmountEvent,
   }) {
     return certificateCountEvent(request);
   }
@@ -189,6 +203,8 @@ class _$CertificateCountEventImpl implements _CertificateCountEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(RequestMeanValue request)? certificateCountEvent,
     TResult? Function(RequestMeanValue request)? contractCountEvent,
+    TResult? Function(RequestMeanValue request)? meanRentAmountEvent,
+    TResult? Function(RequestMeanValue request)? RentAmountEvent,
   }) {
     return certificateCountEvent?.call(request);
   }
@@ -198,6 +214,8 @@ class _$CertificateCountEventImpl implements _CertificateCountEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(RequestMeanValue request)? certificateCountEvent,
     TResult Function(RequestMeanValue request)? contractCountEvent,
+    TResult Function(RequestMeanValue request)? meanRentAmountEvent,
+    TResult Function(RequestMeanValue request)? RentAmountEvent,
     required TResult orElse(),
   }) {
     if (certificateCountEvent != null) {
@@ -212,6 +230,8 @@ class _$CertificateCountEventImpl implements _CertificateCountEvent {
     required TResult Function(_CertificateCountEvent value)
         certificateCountEvent,
     required TResult Function(_ContractCountEvent value) contractCountEvent,
+    required TResult Function(_MeanRentAmountEvent value) meanRentAmountEvent,
+    required TResult Function(_RentAmountEvent value) RentAmountEvent,
   }) {
     return certificateCountEvent(this);
   }
@@ -221,6 +241,8 @@ class _$CertificateCountEventImpl implements _CertificateCountEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_CertificateCountEvent value)? certificateCountEvent,
     TResult? Function(_ContractCountEvent value)? contractCountEvent,
+    TResult? Function(_MeanRentAmountEvent value)? meanRentAmountEvent,
+    TResult? Function(_RentAmountEvent value)? RentAmountEvent,
   }) {
     return certificateCountEvent?.call(this);
   }
@@ -230,6 +252,8 @@ class _$CertificateCountEventImpl implements _CertificateCountEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CertificateCountEvent value)? certificateCountEvent,
     TResult Function(_ContractCountEvent value)? contractCountEvent,
+    TResult Function(_MeanRentAmountEvent value)? meanRentAmountEvent,
+    TResult Function(_RentAmountEvent value)? RentAmountEvent,
     required TResult orElse(),
   }) {
     if (certificateCountEvent != null) {
@@ -324,6 +348,8 @@ class _$ContractCountEventImpl implements _ContractCountEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(RequestMeanValue request) certificateCountEvent,
     required TResult Function(RequestMeanValue request) contractCountEvent,
+    required TResult Function(RequestMeanValue request) meanRentAmountEvent,
+    required TResult Function(RequestMeanValue request) RentAmountEvent,
   }) {
     return contractCountEvent(request);
   }
@@ -333,6 +359,8 @@ class _$ContractCountEventImpl implements _ContractCountEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(RequestMeanValue request)? certificateCountEvent,
     TResult? Function(RequestMeanValue request)? contractCountEvent,
+    TResult? Function(RequestMeanValue request)? meanRentAmountEvent,
+    TResult? Function(RequestMeanValue request)? RentAmountEvent,
   }) {
     return contractCountEvent?.call(request);
   }
@@ -342,6 +370,8 @@ class _$ContractCountEventImpl implements _ContractCountEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(RequestMeanValue request)? certificateCountEvent,
     TResult Function(RequestMeanValue request)? contractCountEvent,
+    TResult Function(RequestMeanValue request)? meanRentAmountEvent,
+    TResult Function(RequestMeanValue request)? RentAmountEvent,
     required TResult orElse(),
   }) {
     if (contractCountEvent != null) {
@@ -356,6 +386,8 @@ class _$ContractCountEventImpl implements _ContractCountEvent {
     required TResult Function(_CertificateCountEvent value)
         certificateCountEvent,
     required TResult Function(_ContractCountEvent value) contractCountEvent,
+    required TResult Function(_MeanRentAmountEvent value) meanRentAmountEvent,
+    required TResult Function(_RentAmountEvent value) RentAmountEvent,
   }) {
     return contractCountEvent(this);
   }
@@ -365,6 +397,8 @@ class _$ContractCountEventImpl implements _ContractCountEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_CertificateCountEvent value)? certificateCountEvent,
     TResult? Function(_ContractCountEvent value)? contractCountEvent,
+    TResult? Function(_MeanRentAmountEvent value)? meanRentAmountEvent,
+    TResult? Function(_RentAmountEvent value)? RentAmountEvent,
   }) {
     return contractCountEvent?.call(this);
   }
@@ -374,6 +408,8 @@ class _$ContractCountEventImpl implements _ContractCountEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CertificateCountEvent value)? certificateCountEvent,
     TResult Function(_ContractCountEvent value)? contractCountEvent,
+    TResult Function(_MeanRentAmountEvent value)? meanRentAmountEvent,
+    TResult Function(_RentAmountEvent value)? RentAmountEvent,
     required TResult orElse(),
   }) {
     if (contractCountEvent != null) {
@@ -396,56 +432,340 @@ abstract class _ContractCountEvent implements CertificateContractEvent {
 }
 
 /// @nodoc
-mixin _$CertificateContractState {
-  bool get isLoadingCertificate => throw _privateConstructorUsedError;
-  bool get isLoadingContract => throw _privateConstructorUsedError;
-  bool get isHasErrorContract => throw _privateConstructorUsedError;
-  bool get isHasErrorCertificate => throw _privateConstructorUsedError;
-  String get errorMessageCertificate => throw _privateConstructorUsedError;
-  String get errorMessageContract => throw _privateConstructorUsedError;
-  List<BaseRentResponse> get certificateCountResponse =>
-      throw _privateConstructorUsedError;
-  List<BaseRentResponse> get contractCountResponse =>
-      throw _privateConstructorUsedError;
+abstract class _$$MeanRentAmountEventImplCopyWith<$Res>
+    implements $CertificateContractEventCopyWith<$Res> {
+  factory _$$MeanRentAmountEventImplCopyWith(_$MeanRentAmountEventImpl value,
+          $Res Function(_$MeanRentAmountEventImpl) then) =
+      __$$MeanRentAmountEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({RequestMeanValue request});
+
+  @override
+  $RequestMeanValueCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class __$$MeanRentAmountEventImplCopyWithImpl<$Res>
+    extends _$CertificateContractEventCopyWithImpl<$Res,
+        _$MeanRentAmountEventImpl>
+    implements _$$MeanRentAmountEventImplCopyWith<$Res> {
+  __$$MeanRentAmountEventImplCopyWithImpl(_$MeanRentAmountEventImpl _value,
+      $Res Function(_$MeanRentAmountEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? request = null,
+  }) {
+    return _then(_$MeanRentAmountEventImpl(
+      request: null == request
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as RequestMeanValue,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MeanRentAmountEventImpl implements _MeanRentAmountEvent {
+  const _$MeanRentAmountEventImpl({required this.request});
+
+  @override
+  final RequestMeanValue request;
+
+  @override
+  String toString() {
+    return 'CertificateContractEvent.meanRentAmountEvent(request: $request)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeanRentAmountEventImpl &&
+            (identical(other.request, request) || other.request == request));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, request);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MeanRentAmountEventImplCopyWith<_$MeanRentAmountEventImpl> get copyWith =>
+      __$$MeanRentAmountEventImplCopyWithImpl<_$MeanRentAmountEventImpl>(
+          this, _$identity);
+
+  @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            bool isLoadingCertificate,
-            bool isLoadingContract,
-            bool isHasErrorContract,
-            bool isHasErrorCertificate,
-            String errorMessageCertificate,
-            String errorMessageContract,
-            List<BaseRentResponse> certificateCountResponse,
-            List<BaseRentResponse> contractCountResponse)
+    required TResult Function(RequestMeanValue request) certificateCountEvent,
+    required TResult Function(RequestMeanValue request) contractCountEvent,
+    required TResult Function(RequestMeanValue request) meanRentAmountEvent,
+    required TResult Function(RequestMeanValue request) RentAmountEvent,
+  }) {
+    return meanRentAmountEvent(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(RequestMeanValue request)? certificateCountEvent,
+    TResult? Function(RequestMeanValue request)? contractCountEvent,
+    TResult? Function(RequestMeanValue request)? meanRentAmountEvent,
+    TResult? Function(RequestMeanValue request)? RentAmountEvent,
+  }) {
+    return meanRentAmountEvent?.call(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(RequestMeanValue request)? certificateCountEvent,
+    TResult Function(RequestMeanValue request)? contractCountEvent,
+    TResult Function(RequestMeanValue request)? meanRentAmountEvent,
+    TResult Function(RequestMeanValue request)? RentAmountEvent,
+    required TResult orElse(),
+  }) {
+    if (meanRentAmountEvent != null) {
+      return meanRentAmountEvent(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CertificateCountEvent value)
+        certificateCountEvent,
+    required TResult Function(_ContractCountEvent value) contractCountEvent,
+    required TResult Function(_MeanRentAmountEvent value) meanRentAmountEvent,
+    required TResult Function(_RentAmountEvent value) RentAmountEvent,
+  }) {
+    return meanRentAmountEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CertificateCountEvent value)? certificateCountEvent,
+    TResult? Function(_ContractCountEvent value)? contractCountEvent,
+    TResult? Function(_MeanRentAmountEvent value)? meanRentAmountEvent,
+    TResult? Function(_RentAmountEvent value)? RentAmountEvent,
+  }) {
+    return meanRentAmountEvent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CertificateCountEvent value)? certificateCountEvent,
+    TResult Function(_ContractCountEvent value)? contractCountEvent,
+    TResult Function(_MeanRentAmountEvent value)? meanRentAmountEvent,
+    TResult Function(_RentAmountEvent value)? RentAmountEvent,
+    required TResult orElse(),
+  }) {
+    if (meanRentAmountEvent != null) {
+      return meanRentAmountEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MeanRentAmountEvent implements CertificateContractEvent {
+  const factory _MeanRentAmountEvent(
+      {required final RequestMeanValue request}) = _$MeanRentAmountEventImpl;
+
+  @override
+  RequestMeanValue get request;
+  @override
+  @JsonKey(ignore: true)
+  _$$MeanRentAmountEventImplCopyWith<_$MeanRentAmountEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RentAmountEventImplCopyWith<$Res>
+    implements $CertificateContractEventCopyWith<$Res> {
+  factory _$$RentAmountEventImplCopyWith(_$RentAmountEventImpl value,
+          $Res Function(_$RentAmountEventImpl) then) =
+      __$$RentAmountEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({RequestMeanValue request});
+
+  @override
+  $RequestMeanValueCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class __$$RentAmountEventImplCopyWithImpl<$Res>
+    extends _$CertificateContractEventCopyWithImpl<$Res, _$RentAmountEventImpl>
+    implements _$$RentAmountEventImplCopyWith<$Res> {
+  __$$RentAmountEventImplCopyWithImpl(
+      _$RentAmountEventImpl _value, $Res Function(_$RentAmountEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? request = null,
+  }) {
+    return _then(_$RentAmountEventImpl(
+      request: null == request
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as RequestMeanValue,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RentAmountEventImpl implements _RentAmountEvent {
+  const _$RentAmountEventImpl({required this.request});
+
+  @override
+  final RequestMeanValue request;
+
+  @override
+  String toString() {
+    return 'CertificateContractEvent.RentAmountEvent(request: $request)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RentAmountEventImpl &&
+            (identical(other.request, request) || other.request == request));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, request);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RentAmountEventImplCopyWith<_$RentAmountEventImpl> get copyWith =>
+      __$$RentAmountEventImplCopyWithImpl<_$RentAmountEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(RequestMeanValue request) certificateCountEvent,
+    required TResult Function(RequestMeanValue request) contractCountEvent,
+    required TResult Function(RequestMeanValue request) meanRentAmountEvent,
+    required TResult Function(RequestMeanValue request) RentAmountEvent,
+  }) {
+    return RentAmountEvent(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(RequestMeanValue request)? certificateCountEvent,
+    TResult? Function(RequestMeanValue request)? contractCountEvent,
+    TResult? Function(RequestMeanValue request)? meanRentAmountEvent,
+    TResult? Function(RequestMeanValue request)? RentAmountEvent,
+  }) {
+    return RentAmountEvent?.call(request);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(RequestMeanValue request)? certificateCountEvent,
+    TResult Function(RequestMeanValue request)? contractCountEvent,
+    TResult Function(RequestMeanValue request)? meanRentAmountEvent,
+    TResult Function(RequestMeanValue request)? RentAmountEvent,
+    required TResult orElse(),
+  }) {
+    if (RentAmountEvent != null) {
+      return RentAmountEvent(request);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CertificateCountEvent value)
+        certificateCountEvent,
+    required TResult Function(_ContractCountEvent value) contractCountEvent,
+    required TResult Function(_MeanRentAmountEvent value) meanRentAmountEvent,
+    required TResult Function(_RentAmountEvent value) RentAmountEvent,
+  }) {
+    return RentAmountEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CertificateCountEvent value)? certificateCountEvent,
+    TResult? Function(_ContractCountEvent value)? contractCountEvent,
+    TResult? Function(_MeanRentAmountEvent value)? meanRentAmountEvent,
+    TResult? Function(_RentAmountEvent value)? RentAmountEvent,
+  }) {
+    return RentAmountEvent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CertificateCountEvent value)? certificateCountEvent,
+    TResult Function(_ContractCountEvent value)? contractCountEvent,
+    TResult Function(_MeanRentAmountEvent value)? meanRentAmountEvent,
+    TResult Function(_RentAmountEvent value)? RentAmountEvent,
+    required TResult orElse(),
+  }) {
+    if (RentAmountEvent != null) {
+      return RentAmountEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RentAmountEvent implements CertificateContractEvent {
+  const factory _RentAmountEvent({required final RequestMeanValue request}) =
+      _$RentAmountEventImpl;
+
+  @override
+  RequestMeanValue get request;
+  @override
+  @JsonKey(ignore: true)
+  _$$RentAmountEventImplCopyWith<_$RentAmountEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$CertificateContractState {
+  bool get isLoading => throw _privateConstructorUsedError;
+  bool get isHasErrorContract => throw _privateConstructorUsedError;
+  String get errorMessage => throw _privateConstructorUsedError;
+  List<BaseRentResponse> get listResponse => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isLoading, bool isHasErrorContract,
+            String errorMessage, List<BaseRentResponse> listResponse)
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            bool isLoadingCertificate,
-            bool isLoadingContract,
-            bool isHasErrorContract,
-            bool isHasErrorCertificate,
-            String errorMessageCertificate,
-            String errorMessageContract,
-            List<BaseRentResponse> certificateCountResponse,
-            List<BaseRentResponse> contractCountResponse)?
+    TResult? Function(bool isLoading, bool isHasErrorContract,
+            String errorMessage, List<BaseRentResponse> listResponse)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            bool isLoadingCertificate,
-            bool isLoadingContract,
-            bool isHasErrorContract,
-            bool isHasErrorCertificate,
-            String errorMessageCertificate,
-            String errorMessageContract,
-            List<BaseRentResponse> certificateCountResponse,
-            List<BaseRentResponse> contractCountResponse)?
+    TResult Function(bool isLoading, bool isHasErrorContract,
+            String errorMessage, List<BaseRentResponse> listResponse)?
         initial,
     required TResult orElse(),
   }) =>
@@ -479,14 +799,10 @@ abstract class $CertificateContractStateCopyWith<$Res> {
       _$CertificateContractStateCopyWithImpl<$Res, CertificateContractState>;
   @useResult
   $Res call(
-      {bool isLoadingCertificate,
-      bool isLoadingContract,
+      {bool isLoading,
       bool isHasErrorContract,
-      bool isHasErrorCertificate,
-      String errorMessageCertificate,
-      String errorMessageContract,
-      List<BaseRentResponse> certificateCountResponse,
-      List<BaseRentResponse> contractCountResponse});
+      String errorMessage,
+      List<BaseRentResponse> listResponse});
 }
 
 /// @nodoc
@@ -503,47 +819,27 @@ class _$CertificateContractStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoadingCertificate = null,
-    Object? isLoadingContract = null,
+    Object? isLoading = null,
     Object? isHasErrorContract = null,
-    Object? isHasErrorCertificate = null,
-    Object? errorMessageCertificate = null,
-    Object? errorMessageContract = null,
-    Object? certificateCountResponse = null,
-    Object? contractCountResponse = null,
+    Object? errorMessage = null,
+    Object? listResponse = null,
   }) {
     return _then(_value.copyWith(
-      isLoadingCertificate: null == isLoadingCertificate
-          ? _value.isLoadingCertificate
-          : isLoadingCertificate // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLoadingContract: null == isLoadingContract
-          ? _value.isLoadingContract
-          : isLoadingContract // ignore: cast_nullable_to_non_nullable
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       isHasErrorContract: null == isHasErrorContract
           ? _value.isHasErrorContract
           : isHasErrorContract // ignore: cast_nullable_to_non_nullable
               as bool,
-      isHasErrorCertificate: null == isHasErrorCertificate
-          ? _value.isHasErrorCertificate
-          : isHasErrorCertificate // ignore: cast_nullable_to_non_nullable
-              as bool,
-      errorMessageCertificate: null == errorMessageCertificate
-          ? _value.errorMessageCertificate
-          : errorMessageCertificate // ignore: cast_nullable_to_non_nullable
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      errorMessageContract: null == errorMessageContract
-          ? _value.errorMessageContract
-          : errorMessageContract // ignore: cast_nullable_to_non_nullable
-              as String,
-      certificateCountResponse: null == certificateCountResponse
-          ? _value.certificateCountResponse
-          : certificateCountResponse // ignore: cast_nullable_to_non_nullable
-              as List<BaseRentResponse>,
-      contractCountResponse: null == contractCountResponse
-          ? _value.contractCountResponse
-          : contractCountResponse // ignore: cast_nullable_to_non_nullable
+      listResponse: null == listResponse
+          ? _value.listResponse
+          : listResponse // ignore: cast_nullable_to_non_nullable
               as List<BaseRentResponse>,
     ) as $Val);
   }
@@ -558,14 +854,10 @@ abstract class _$$InitialImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isLoadingCertificate,
-      bool isLoadingContract,
+      {bool isLoading,
       bool isHasErrorContract,
-      bool isHasErrorCertificate,
-      String errorMessageCertificate,
-      String errorMessageContract,
-      List<BaseRentResponse> certificateCountResponse,
-      List<BaseRentResponse> contractCountResponse});
+      String errorMessage,
+      List<BaseRentResponse> listResponse});
 }
 
 /// @nodoc
@@ -579,47 +871,27 @@ class __$$InitialImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoadingCertificate = null,
-    Object? isLoadingContract = null,
+    Object? isLoading = null,
     Object? isHasErrorContract = null,
-    Object? isHasErrorCertificate = null,
-    Object? errorMessageCertificate = null,
-    Object? errorMessageContract = null,
-    Object? certificateCountResponse = null,
-    Object? contractCountResponse = null,
+    Object? errorMessage = null,
+    Object? listResponse = null,
   }) {
     return _then(_$InitialImpl(
-      isLoadingCertificate: null == isLoadingCertificate
-          ? _value.isLoadingCertificate
-          : isLoadingCertificate // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLoadingContract: null == isLoadingContract
-          ? _value.isLoadingContract
-          : isLoadingContract // ignore: cast_nullable_to_non_nullable
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       isHasErrorContract: null == isHasErrorContract
           ? _value.isHasErrorContract
           : isHasErrorContract // ignore: cast_nullable_to_non_nullable
               as bool,
-      isHasErrorCertificate: null == isHasErrorCertificate
-          ? _value.isHasErrorCertificate
-          : isHasErrorCertificate // ignore: cast_nullable_to_non_nullable
-              as bool,
-      errorMessageCertificate: null == errorMessageCertificate
-          ? _value.errorMessageCertificate
-          : errorMessageCertificate // ignore: cast_nullable_to_non_nullable
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      errorMessageContract: null == errorMessageContract
-          ? _value.errorMessageContract
-          : errorMessageContract // ignore: cast_nullable_to_non_nullable
-              as String,
-      certificateCountResponse: null == certificateCountResponse
-          ? _value._certificateCountResponse
-          : certificateCountResponse // ignore: cast_nullable_to_non_nullable
-              as List<BaseRentResponse>,
-      contractCountResponse: null == contractCountResponse
-          ? _value._contractCountResponse
-          : contractCountResponse // ignore: cast_nullable_to_non_nullable
+      listResponse: null == listResponse
+          ? _value._listResponse
+          : listResponse // ignore: cast_nullable_to_non_nullable
               as List<BaseRentResponse>,
     ));
   }
@@ -629,58 +901,33 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 class _$InitialImpl implements _Initial {
   const _$InitialImpl(
-      {this.isLoadingCertificate = false,
-      this.isLoadingContract = false,
+      {this.isLoading = false,
       this.isHasErrorContract = false,
-      this.isHasErrorCertificate = false,
-      this.errorMessageCertificate = '',
-      this.errorMessageContract = '',
-      final List<BaseRentResponse> certificateCountResponse = const [],
-      final List<BaseRentResponse> contractCountResponse = const []})
-      : _certificateCountResponse = certificateCountResponse,
-        _contractCountResponse = contractCountResponse;
+      this.errorMessage = '',
+      final List<BaseRentResponse> listResponse = const []})
+      : _listResponse = listResponse;
 
   @override
   @JsonKey()
-  final bool isLoadingCertificate;
-  @override
-  @JsonKey()
-  final bool isLoadingContract;
+  final bool isLoading;
   @override
   @JsonKey()
   final bool isHasErrorContract;
   @override
   @JsonKey()
-  final bool isHasErrorCertificate;
+  final String errorMessage;
+  final List<BaseRentResponse> _listResponse;
   @override
   @JsonKey()
-  final String errorMessageCertificate;
-  @override
-  @JsonKey()
-  final String errorMessageContract;
-  final List<BaseRentResponse> _certificateCountResponse;
-  @override
-  @JsonKey()
-  List<BaseRentResponse> get certificateCountResponse {
-    if (_certificateCountResponse is EqualUnmodifiableListView)
-      return _certificateCountResponse;
+  List<BaseRentResponse> get listResponse {
+    if (_listResponse is EqualUnmodifiableListView) return _listResponse;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_certificateCountResponse);
-  }
-
-  final List<BaseRentResponse> _contractCountResponse;
-  @override
-  @JsonKey()
-  List<BaseRentResponse> get contractCountResponse {
-    if (_contractCountResponse is EqualUnmodifiableListView)
-      return _contractCountResponse;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_contractCountResponse);
+    return EqualUnmodifiableListView(_listResponse);
   }
 
   @override
   String toString() {
-    return 'CertificateContractState.initial(isLoadingCertificate: $isLoadingCertificate, isLoadingContract: $isLoadingContract, isHasErrorContract: $isHasErrorContract, isHasErrorCertificate: $isHasErrorCertificate, errorMessageCertificate: $errorMessageCertificate, errorMessageContract: $errorMessageContract, certificateCountResponse: $certificateCountResponse, contractCountResponse: $contractCountResponse)';
+    return 'CertificateContractState.initial(isLoading: $isLoading, isHasErrorContract: $isHasErrorContract, errorMessage: $errorMessage, listResponse: $listResponse)';
   }
 
   @override
@@ -688,36 +935,19 @@ class _$InitialImpl implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
-            (identical(other.isLoadingCertificate, isLoadingCertificate) ||
-                other.isLoadingCertificate == isLoadingCertificate) &&
-            (identical(other.isLoadingContract, isLoadingContract) ||
-                other.isLoadingContract == isLoadingContract) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
             (identical(other.isHasErrorContract, isHasErrorContract) ||
                 other.isHasErrorContract == isHasErrorContract) &&
-            (identical(other.isHasErrorCertificate, isHasErrorCertificate) ||
-                other.isHasErrorCertificate == isHasErrorCertificate) &&
-            (identical(
-                    other.errorMessageCertificate, errorMessageCertificate) ||
-                other.errorMessageCertificate == errorMessageCertificate) &&
-            (identical(other.errorMessageContract, errorMessageContract) ||
-                other.errorMessageContract == errorMessageContract) &&
-            const DeepCollectionEquality().equals(
-                other._certificateCountResponse, _certificateCountResponse) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage) &&
             const DeepCollectionEquality()
-                .equals(other._contractCountResponse, _contractCountResponse));
+                .equals(other._listResponse, _listResponse));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      isLoadingCertificate,
-      isLoadingContract,
-      isHasErrorContract,
-      isHasErrorCertificate,
-      errorMessageCertificate,
-      errorMessageContract,
-      const DeepCollectionEquality().hash(_certificateCountResponse),
-      const DeepCollectionEquality().hash(_contractCountResponse));
+  int get hashCode => Object.hash(runtimeType, isLoading, isHasErrorContract,
+      errorMessage, const DeepCollectionEquality().hash(_listResponse));
 
   @JsonKey(ignore: true)
   @override
@@ -728,78 +958,34 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            bool isLoadingCertificate,
-            bool isLoadingContract,
-            bool isHasErrorContract,
-            bool isHasErrorCertificate,
-            String errorMessageCertificate,
-            String errorMessageContract,
-            List<BaseRentResponse> certificateCountResponse,
-            List<BaseRentResponse> contractCountResponse)
+    required TResult Function(bool isLoading, bool isHasErrorContract,
+            String errorMessage, List<BaseRentResponse> listResponse)
         initial,
   }) {
-    return initial(
-        isLoadingCertificate,
-        isLoadingContract,
-        isHasErrorContract,
-        isHasErrorCertificate,
-        errorMessageCertificate,
-        errorMessageContract,
-        certificateCountResponse,
-        contractCountResponse);
+    return initial(isLoading, isHasErrorContract, errorMessage, listResponse);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            bool isLoadingCertificate,
-            bool isLoadingContract,
-            bool isHasErrorContract,
-            bool isHasErrorCertificate,
-            String errorMessageCertificate,
-            String errorMessageContract,
-            List<BaseRentResponse> certificateCountResponse,
-            List<BaseRentResponse> contractCountResponse)?
+    TResult? Function(bool isLoading, bool isHasErrorContract,
+            String errorMessage, List<BaseRentResponse> listResponse)?
         initial,
   }) {
     return initial?.call(
-        isLoadingCertificate,
-        isLoadingContract,
-        isHasErrorContract,
-        isHasErrorCertificate,
-        errorMessageCertificate,
-        errorMessageContract,
-        certificateCountResponse,
-        contractCountResponse);
+        isLoading, isHasErrorContract, errorMessage, listResponse);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            bool isLoadingCertificate,
-            bool isLoadingContract,
-            bool isHasErrorContract,
-            bool isHasErrorCertificate,
-            String errorMessageCertificate,
-            String errorMessageContract,
-            List<BaseRentResponse> certificateCountResponse,
-            List<BaseRentResponse> contractCountResponse)?
+    TResult Function(bool isLoading, bool isHasErrorContract,
+            String errorMessage, List<BaseRentResponse> listResponse)?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(
-          isLoadingCertificate,
-          isLoadingContract,
-          isHasErrorContract,
-          isHasErrorCertificate,
-          errorMessageCertificate,
-          errorMessageContract,
-          certificateCountResponse,
-          contractCountResponse);
+      return initial(isLoading, isHasErrorContract, errorMessage, listResponse);
     }
     return orElse();
   }
@@ -835,31 +1021,19 @@ class _$InitialImpl implements _Initial {
 
 abstract class _Initial implements CertificateContractState {
   const factory _Initial(
-      {final bool isLoadingCertificate,
-      final bool isLoadingContract,
+      {final bool isLoading,
       final bool isHasErrorContract,
-      final bool isHasErrorCertificate,
-      final String errorMessageCertificate,
-      final String errorMessageContract,
-      final List<BaseRentResponse> certificateCountResponse,
-      final List<BaseRentResponse> contractCountResponse}) = _$InitialImpl;
+      final String errorMessage,
+      final List<BaseRentResponse> listResponse}) = _$InitialImpl;
 
   @override
-  bool get isLoadingCertificate;
-  @override
-  bool get isLoadingContract;
+  bool get isLoading;
   @override
   bool get isHasErrorContract;
   @override
-  bool get isHasErrorCertificate;
+  String get errorMessage;
   @override
-  String get errorMessageCertificate;
-  @override
-  String get errorMessageContract;
-  @override
-  List<BaseRentResponse> get certificateCountResponse;
-  @override
-  List<BaseRentResponse> get contractCountResponse;
+  List<BaseRentResponse> get listResponse;
   @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>

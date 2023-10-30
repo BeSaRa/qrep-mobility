@@ -1,12 +1,15 @@
 import 'dart:math' as math;
 
 import 'package:easy_localization/easy_localization.dart' as local;
+import 'package:ebla/app/depndency_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../resources/resources.dart';
+import '../info/blocs/news_bloc/news_bloc.dart';
 import '../more/more_view.dart';
 import 'widgets/news_widget.dart';
 
@@ -105,55 +108,11 @@ class _HomeViewState extends State<HomeView> {
             SizedBox(
               height: AppSizeH.s10,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: AppSizeW.s20, vertical: AppSizeH.s14),
-              child: Row(
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                        AppStrings().news,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
-                            ?.copyWith(fontWeight: FontWeight.w800),
-                      ),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: AppSizeW.s10),
-                        height: AppSizeH.s5,
-                        width: AppSizeW.s40,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(AppSizeR.s5),
-                            color: ColorManager.lightSilver),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: AppSizeW.s14, vertical: AppSizeH.s2),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: ColorManager.golden),
-                        borderRadius: BorderRadius.circular(AppSizeR.s20)),
-                    child: Row(
-                      children: [
-                        Text(
-                          AppStrings().more,
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          color: ColorManager.golden,
-                          size: AppSizeH.s14,
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
+            BlocProvider(
+              create: (context) =>
+                  instance<NewsBloc>()..add(const NewsEvent.getNewsEvent()),
+              child: const NewsWidget(),
             ),
-            SizedBox(height: AppSizeH.s120, child: const NewsWidget()),
             SizedBox(
               height: AppSizeH.s20,
             ),

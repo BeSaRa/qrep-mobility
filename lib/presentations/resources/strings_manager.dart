@@ -29,11 +29,16 @@ class AppStrings {
   String roomsCount = 'room_count'.tr();
   String rentValue = 'rent_value'.tr();
   String currency = "currency".tr();
-  String noLeaseContracts = "no_lease_contracts".tr();
-  String noPropertiesUnits = "no_properties_units".tr();
+
+  //fatina removed this and replace them with no_data_found
+  // String noLeaseContracts = "no_lease_contracts".tr();
+  // String noPropertiesUnits = "no_properties_units".tr();
+  String noDataFound = "no_data_found".tr();
   String countLeaseContracts = "count_lease_contracts".tr();
   String countPropertiesUnits = "count_properties_units".tr();
   String noRentContracts = "no_contracts_found".tr();
+  String avgPriceEveryMonth = "avg_price_every_month".tr();
+  String contractsValue = "contracts_value".tr();
 
   //more view locals
   String moreTitle = 'more_title'.tr();
