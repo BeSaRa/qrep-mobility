@@ -80,6 +80,8 @@
   "the_total_number_of_sell_contracts": "إجمالي عدد\n عقود البيع",
   "average_sell_price_per_unit_property": "متوسط سعر البيع للوحدة \\ العقار",
   "the_total_value_of_sell_contracts": "إجمالي قيمة عقود البيع",
+  "total_sold_areas":"إجمالي المساحات المباعة",
+  "sell_average_price_per_square_foot": "متوسط سعر البيع لكل قدم مربع",
   "real_state_value_from_to": "قيمة العقار من - إلى",
   "sell_contract_list": "قائمة معاملات البيع",
   "sell_price": "سعر البيع",

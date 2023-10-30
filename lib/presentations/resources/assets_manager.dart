@@ -64,4 +64,10 @@ class IconAssets {
   static const String faqHome = "${ICON_PATH}faq.svg";
   static const String lawsHome = "${ICON_PATH}laws.svg";
   static const String lawItem = "${ICON_PATH}law_item.svg";
+
+  // sell
+  static const String totalSellContracts =
+      "${ICON_PATH}the_total_number_of_sell_contracts.svg";
+  static const String totalSellTransactionsValue =
+      "${ICON_PATH}the_total_value_of_sell_contracts.svg";
 }

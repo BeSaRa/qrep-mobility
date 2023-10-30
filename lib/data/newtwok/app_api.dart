@@ -93,6 +93,11 @@ abstract class AppServiceClient {
   Future<HttpResponse<List<BaseRentResponse>>> getTotalTransactionsSell(
       @Body() RequestSellValues requestSellValues);
 
+  // KPI10
+  @POST(EndPoints.totalSoldSpaces)
+  Future<HttpResponse<List<BaseRentResponse>>> getTotalSoldSpaces(
+      @Body() RequestMeanValue requestMeanValue);
+
   // KPI13
   @POST(EndPoints.meanValueSell)
   Future<HttpResponse<List<BaseRentResponse>>> getMeanValueSell(

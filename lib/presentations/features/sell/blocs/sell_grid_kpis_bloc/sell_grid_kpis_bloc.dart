@@ -79,14 +79,16 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
           success.isEmpty
               ? emit(state.copyWith(isLoading: true, hasError: false))
               : emit(state.copyWith(
-                  isLoading: false, hasError: false, meanValue: success));
+                  isLoading: false,
+                  hasError: false,
+                  meanSellUnitValue: success));
         },
         (error) {
           emit(state.copyWith(
               isLoading: false,
               hasError: true,
               errorMessage: error.message,
-              meanValue: []));
+              meanSellUnitValue: []));
         },
       );
 
@@ -95,14 +97,16 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
           success.isEmpty
               ? emit(state.copyWith(isLoading: true, hasError: false))
               : emit(state.copyWith(
-                  isLoading: false, hasError: false, contractsValue: success));
+                  isLoading: false,
+                  hasError: false,
+                  totalTransactionsValue: success));
         },
         (error) {
           emit(state.copyWith(
               isLoading: false,
               hasError: true,
               errorMessage: error.message,
-              contractsValue: []));
+              totalTransactionsValue: []));
         },
       );
     });

@@ -53,6 +53,12 @@ class _RentViewState extends State<RentView> {
   }
 
   @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocListener(
@@ -347,7 +353,7 @@ class _RentViewState extends State<RentView> {
                                       value: rentGridKPIsBloc,
                                       child: RentGridItemWidget(
                                         response: response,
-                                        kpi: KPI.values[index],
+                                        kpi: RentGridKPIs.values[index],
                                       ),
                                     );
                                   },
