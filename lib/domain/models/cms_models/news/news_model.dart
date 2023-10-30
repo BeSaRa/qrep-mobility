@@ -12,8 +12,16 @@ abstract class NewsResponse with _$NewsResponse {
 }
 
 @freezed
+abstract class NewsByIdResponse with _$NewsByIdResponse {
+  factory NewsByIdResponse({@Default(NewsModel()) NewsModel data}) =
+      _NewsByIdResponse;
+  factory NewsByIdResponse.fromJson(Map<String, dynamic> json) =>
+      _$NewsByIdResponseFromJson(json);
+}
+
+@freezed
 abstract class NewsModel with _$NewsModel {
-  factory NewsModel({
+  const factory NewsModel({
     @Default(0) int id,
     @Default('') String status,
     @Default('') @JsonKey(name: 'user_created') String userCreated,

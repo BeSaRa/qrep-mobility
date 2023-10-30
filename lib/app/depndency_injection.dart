@@ -34,20 +34,19 @@ Future<void> initAppModule() async {
   final dio = await instance<DioFactory>().getDio();
   instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(dio));
   instance.registerLazySingleton<TranslationsServiceClient>(
-          () => TranslationsServiceClient(dio));
+      () => TranslationsServiceClient(dio));
   instance.registerLazySingleton<NetworkInfo>(
-          () => NetworkInfoImplementer(Connectivity()));
-  instance.registerLazySingleton<Repository>(() =>
-      RepositoryImplementer(
-          appServiceClient: instance(),
-          translationsServiceClient: instance(),
-          networkInfo: instance()));
+      () => NetworkInfoImplementer(Connectivity()));
+  instance.registerLazySingleton<Repository>(() => RepositoryImplementer(
+      appServiceClient: instance(),
+      translationsServiceClient: instance(),
+      networkInfo: instance()));
 }
 
 Future<void> initTranslationsModule() async {
   if (!GetIt.I.isRegistered<TranslationsUseCase>()) {
     instance.registerFactory<TranslationsUseCase>(
-            () => TranslationsUseCase(instance()));
+        () => TranslationsUseCase(instance()));
   }
 }
 
@@ -57,6 +56,10 @@ Future<void> initHomeModule() async {
   }
   if (!GetIt.I.isRegistered<NewsUsecase>()) {
     instance.registerFactory<NewsUsecase>(() => NewsUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<NewsByIdUsecase>()) {
+    instance
+        .registerFactory<NewsByIdUsecase>(() => NewsByIdUsecase(instance()));
   }
   if (!GetIt.I.isRegistered<LawsUsecase>()) {
     instance.registerFactory<LawsUsecase>(() => LawsUsecase(instance()));
@@ -72,6 +75,9 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<NewsBloc>()) {
     instance.registerFactory(() => NewsBloc(newsUsecase: instance()));
   }
+  // if (!GetIt.I.isRegistered<NewsItemBloc>()) {
+  //   instance.registerFactory(() => NewsItemBloc(newsByIdUsecase: instance()));
+  // }
   if (!GetIt.I.isRegistered<LawsBloc>()) {
     instance.registerFactory(
             () =>
@@ -83,51 +89,50 @@ Future<void> initSellModule() async {
   //Usecases
   if (!GetIt.I.isRegistered<SellDefaultUseCase>()) {
     instance.registerFactory<SellDefaultUseCase>(
-            () => SellDefaultUseCase(instance()));
+        () => SellDefaultUseCase(instance()));
   }
   if (!GetIt.I.isRegistered<SellDefaultUseCase>()) {
     instance.registerFactory<SellDefaultUseCase>(
-            () => SellDefaultUseCase(instance()));
+        () => SellDefaultUseCase(instance()));
   }
 
   if (!GetIt.I.isRegistered<GetSellLookupUseCase>()) {
     instance.registerFactory<GetSellLookupUseCase>(
-            () => GetSellLookupUseCase(instance()));
+        () => GetSellLookupUseCase(instance()));
   }
   // KPI1
   if (!GetIt.I.isRegistered<TotalContractsSellUseCase>()) {
     instance.registerFactory<TotalContractsSellUseCase>(
-            () => TotalContractsSellUseCase(instance()));
+        () => TotalContractsSellUseCase(instance()));
   }
   // KPI4
   if (!GetIt.I.isRegistered<TotalSoldUnitsUseCase>()) {
     instance.registerFactory<TotalSoldUnitsUseCase>(
-            () => TotalSoldUnitsUseCase(instance()));
+        () => TotalSoldUnitsUseCase(instance()));
   }
   // KPI7
   if (!GetIt.I.isRegistered<TotalTransactionSellUseCase>()) {
     instance.registerFactory<TotalTransactionSellUseCase>(
-            () => TotalTransactionSellUseCase(instance()));
+        () => TotalTransactionSellUseCase(instance()));
   }
   // KPI13
   if (!GetIt.I.isRegistered<MeanValueSellUsecase>()) {
     instance.registerFactory<MeanValueSellUsecase>(
-            () => MeanValueSellUsecase(instance()));
+        () => MeanValueSellUsecase(instance()));
   }
   if (!GetIt.I.isRegistered<SellTransactionUseCase>()) {
     instance.registerFactory<SellTransactionUseCase>(
-            () => SellTransactionUseCase(instance()));
+        () => SellTransactionUseCase(instance()));
   }
 
   //-------------- Bloc's---------------------
 
   if (!GetIt.I.isRegistered<SellGridKPIsBloc>()) {
-    instance.registerFactory<SellGridKPIsBloc>(() =>
-        SellGridKPIsBloc(
-            totalContractsSellUseCase: instance(),
-            totalSoldUnitsUseCase: instance(),
-            totalTransactionSellUseCase: instance(),
-            meanValueSellUsecase: instance()));
+    instance.registerFactory<SellGridKPIsBloc>(() => SellGridKPIsBloc(
+        totalContractsSellUseCase: instance(),
+        totalSoldUnitsUseCase: instance(),
+        totalTransactionSellUseCase: instance(),
+        meanValueSellUsecase: instance()));
   }
   if (!GetIt.I.isRegistered<SellBloc>()) {
     instance.registerFactory(() => SellBloc(getSellLookupUseCase: instance()));
@@ -146,7 +151,7 @@ Future<void> initRentModule() async {
 //Usecases
   if (!GetIt.I.isRegistered<GetRentLookupUseCase>()) {
     instance.registerFactory<GetRentLookupUseCase>(
-            () => GetRentLookupUseCase(instance()));
+        () => GetRentLookupUseCase(instance()));
   }
   if (!GetIt.I.isRegistered<MeanValueUsecase>()) {
     instance
@@ -154,11 +159,11 @@ Future<void> initRentModule() async {
   }
   if (!GetIt.I.isRegistered<ContractCountUsecase>()) {
     instance.registerFactory<ContractCountUsecase>(
-            () => ContractCountUsecase(instance()));
+        () => ContractCountUsecase(instance()));
   }
   if (!GetIt.I.isRegistered<CertificateCountUsecase>()) {
     instance.registerFactory<CertificateCountUsecase>(
-            () => CertificateCountUsecase(instance()));
+        () => CertificateCountUsecase(instance()));
   }
   if (!GetIt.I.isRegistered<RentDefaultUseCase>()) {
     instance.registerFactory(() => RentDefaultUseCase(instance()));
@@ -171,19 +176,19 @@ Future<void> initRentModule() async {
   }
   if (!GetIt.I.isRegistered<TotalContractsUseCase>()) {
     instance.registerFactory<TotalContractsUseCase>(
-            () => TotalContractsUseCase(instance()));
+        () => TotalContractsUseCase(instance()));
   }
   if (!GetIt.I.isRegistered<TotalRentedUnitsUseCase>()) {
     instance.registerFactory<TotalRentedUnitsUseCase>(
-            () => TotalRentedUnitsUseCase(instance()));
+        () => TotalRentedUnitsUseCase(instance()));
   }
   if (!GetIt.I.isRegistered<MeanRentAmountUsecase>()) {
     instance.registerFactory<MeanRentAmountUsecase>(
-            () => MeanRentAmountUsecase(instance()));
+        () => MeanRentAmountUsecase(instance()));
   }
   if (!GetIt.I.isRegistered<RentValueAmountUseCase>()) {
     instance.registerFactory<RentValueAmountUseCase>(
-            () => RentValueAmountUseCase(instance()));
+        () => RentValueAmountUseCase(instance()));
   }
   if (!GetIt.I.isRegistered<MeanRentMeterUseCase>()) {
     instance.registerFactory<MeanRentMeterUseCase>(
@@ -214,12 +219,11 @@ Future<void> initRentModule() async {
     instance.registerFactory(() => MeanValueBloc(meanValueUsecase: instance()));
   }
   if (!GetIt.I.isRegistered<RentGridKPIsBloc>()) {
-    instance.registerFactory(() =>
-        RentGridKPIsBloc(
-            totalRentedUnitsUseCase: instance(),
-            totalContractsUseCase: instance(),
-            meanValueUsecase: instance(),
-            contractValueUseCase: instance()));
+    instance.registerFactory(() => RentGridKPIsBloc(
+        totalRentedUnitsUseCase: instance(),
+        totalContractsUseCase: instance(),
+        meanValueUsecase: instance(),
+        contractValueUseCase: instance()));
   }
   if (!GetIt.I.isRegistered<RentSummeryBloc>()) {
     instance.registerFactory(() => RentSummeryBloc(instance()));
@@ -233,11 +237,11 @@ Future<void> initMortgageModule() async {
   //usecase
   if (!GetIt.I.isRegistered<LookUpMortgageUseCase>()) {
     instance.registerFactory<LookUpMortgageUseCase>(
-            () => LookUpMortgageUseCase(instance()));
+        () => LookUpMortgageUseCase(instance()));
   }
   if (!GetIt.I.isRegistered<MortgageTransactionUseCase>()) {
     instance.registerFactory<MortgageTransactionUseCase>(
-            () => MortgageTransactionUseCase(instance()));
+        () => MortgageTransactionUseCase(instance()));
   }
 
   //blocs
@@ -246,6 +250,6 @@ Future<void> initMortgageModule() async {
   }
   if (!GetIt.I.isRegistered<MortgageTransactionsBloc>()) {
     instance.registerFactory<MortgageTransactionsBloc>(
-            () => MortgageTransactionsBloc(instance()));
+        () => MortgageTransactionsBloc(instance()));
   }
 }
