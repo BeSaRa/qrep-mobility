@@ -293,7 +293,6 @@ class _SalesViewState extends State<SalesView> {
                                         },
                                       ),
                                       SizedBox(height: AppSizeH.s22),
-                                      SizedBox(height: AppSizeH.s22),
                                       Center(
                                         child: Text(
                                           AppStrings()
@@ -310,7 +309,7 @@ class _SalesViewState extends State<SalesView> {
                                         child: StaggeredGridView(
                                           // for development only: UniqueKey forces the rebuild of the widget on hot reload
                                           key: UniqueKey(),
-                                          itemsCount: 4,
+                                          itemsCount: 6,
                                           rightSectionTopPadding: AppSizeH.s17,
                                           mainAxisSpacing: AppSizeH.s22,
                                           crossAxisSpacing: AppSizeW.s23,
@@ -321,7 +320,6 @@ class _SalesViewState extends State<SalesView> {
                                               child: SellGridItemWidget(
                                                 response: done,
                                                 kpi: SellGridKPIs.values[index],
-                                                index: index,
                                               ),
                                             );
                                           },

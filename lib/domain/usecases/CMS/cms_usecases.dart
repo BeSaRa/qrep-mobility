@@ -1,5 +1,6 @@
 import 'package:ebla/data/newtwok/failure_model/failure.dart';
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
+import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
 import 'package:ebla/domain/repository/repository.dart';
@@ -39,14 +40,14 @@ class NewsByIdUsecase implements BaseUseCase<({int id}), NewsByIdResponse> {
   }
 }
 
-class LawsUsecase implements BaseUseCaseEmptyInput<LawsResponse> {
+class LawsUsecase implements BaseUseCase<int, LawsResponse> {
   final Repository repository;
 
   LawsUsecase(this.repository);
 
   @override
-  Future<Result<LawsResponse, FailureModel>> execute() async {
-    return await repository.getLaws();
+  Future<Result<LawsResponse, FailureModel>> execute(int limit) async {
+    return await repository.getLaws(limit: limit);
   }
 }
 
@@ -58,5 +59,16 @@ class LawByIdUsecase implements BaseUseCase<int, LawByIdResponse> {
   @override
   Future<Result<LawByIdResponse, FailureModel>> execute(int id) async {
     return await repository.getLawById(id);
+  }
+}
+
+class FaqUsecase implements BaseUseCase<int, FaqResponse> {
+  final Repository repository;
+
+  FaqUsecase(this.repository);
+
+  @override
+  Future<Result<FaqResponse, FailureModel>> execute(int limit) async {
+    return await repository.getFaq(limit);
   }
 }

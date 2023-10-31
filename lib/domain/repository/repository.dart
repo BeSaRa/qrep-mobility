@@ -1,4 +1,5 @@
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
+import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
 import 'package:ebla/domain/models/mrtgage_models/mortgage_models.dart';
@@ -21,9 +22,11 @@ abstract class Repository {
   Future<Result<NewsResponse, FailureModel>> getNews();
   Future<Result<NewsByIdResponse, FailureModel>> getNewsById({required int id});
 
-  Future<Result<LawsResponse, FailureModel>> getLaws();
+  Future<Result<LawsResponse, FailureModel>> getLaws({required int limit});
 
   Future<Result<LawByIdResponse, FailureModel>> getLawById(int id);
+
+  Future<Result<FaqResponse, FailureModel>> getFaq(int id);
 
 //-------------Rent----------------
   Future<Result<RentLookupResponse, FailureModel>> getLockupRent();
@@ -55,6 +58,8 @@ abstract class Repository {
   Future<Result<RentListSummary, FailureModel>> getRentSummary(
       RequestMeanValue requestMeanValue);
 
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedSpace(
+      RequestMeanValue requestMeanValue);
   Future<Result<List<BaseRentResponse>, FailureModel>> meanRentAmount(
       RequestMeanValue requestMeanValue);
 
@@ -82,8 +87,16 @@ abstract class Repository {
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalTransactionsSell(
       RequestSellValues requestSellValues);
 
+  // KPI10
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalSoldSpaces(
+      RequestSellValues requestSellValues);
+
   // KPI13
   Future<Result<List<BaseRentResponse>, FailureModel>> getMeanValueSell(
+      RequestSellValues requestSellValues);
+
+  // KPI16
+  Future<Result<List<BaseRentResponse>, FailureModel>> getMeanSoldArea(
       RequestSellValues requestSellValues);
 
   Future<Result<List<RentDefault>, FailureModel>> getSellDefault(

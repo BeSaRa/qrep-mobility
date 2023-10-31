@@ -6,9 +6,22 @@ class RentGridKPIsEvent with _$RentGridKPIsEvent {
       _RentGridKPIsEvent;
 }
 
-enum KPI {
-  totalRentedUntis,
+enum RentGridKPIs {
+  /// KPI1
   totalContracts,
-  meanRentUnitValue,
+
+  /// KPI4
+  totalRentedUnits,
+
+  /// KPI7
   totalContractsValue,
+
+  /// KPI13
+  meanRentUnitValue,
+
+  /// KPI10
+  totalRentedSpaces,
+
+  /// KPI16
+  meanRentAreaValue,
 }

@@ -6,15 +6,15 @@ import 'package:multiple_result/multiple_result.dart';
 
 import '../../../models/rent_models/rent_models.dart';
 
-class MeanValueSellUsecase
+class MeanSoldAreaUsecase
     implements BaseUseCase<RequestSellValues, List<BaseRentResponse>> {
   final Repository repository;
 
-  MeanValueSellUsecase(this.repository);
+  MeanSoldAreaUsecase(this.repository);
 
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> execute(
       RequestSellValues input) async {
-    return await repository.getMeanValueSell(input);
+    return await repository.getMeanSoldArea(input);
   }
 }

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/newtwok/failure_model/failure.dart';
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
+import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
 import 'package:ebla/domain/models/mrtgage_models/mortgage_models.dart';
@@ -273,6 +274,28 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedSpace(
+      RequestMeanValue requestMeanValue) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await appServiceClient.getTotalRentedSpace(requestMeanValue);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedUnits(
       RequestMeanValue requestMeanValue) async {
     if (await networkInfo.isConnected) {
@@ -341,10 +364,11 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<LawsResponse, FailureModel>> getLaws() async {
+  Future<Result<LawsResponse, FailureModel>> getLaws(
+      {required int limit}) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await translationsServiceClient.getLaws();
+        final response = await translationsServiceClient.getLaws(limit);
 
         if (response.response.statusCode == 200) {
           return Success(response.data);
@@ -749,6 +773,70 @@ class RepositoryImplementer extends Repository {
           print('ar ${e.toString()}');
         }
 
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<List<BaseRentResponse>, FailureModel>> getMeanSoldArea(
+      RequestSellValues requestSellValues) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await appServiceClient.getMeanSoldArea(requestSellValues);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalSoldSpaces(
+      RequestSellValues requestSellValues) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await appServiceClient.getTotalSoldSpaces(requestSellValues);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<FaqResponse, FailureModel>> getFaq(int id) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await translationsServiceClient.getFaq(id);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {

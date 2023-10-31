@@ -1,6 +1,7 @@
 import 'package:ebla/app/routing_observer.dart';
 import 'package:ebla/presentations/features/home/home_view.dart';
 import 'package:ebla/presentations/features/info/blocs/about_bloc/about_bloc.dart';
+import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/info/views/about_us_view.dart';
 import 'package:ebla/presentations/features/info/views/faq_view.dart';
@@ -205,13 +206,7 @@ class AppRouter {
                   //   );
                   // }
                   return BlocProvider(
-                    create: (context) => instance<LawsBloc>()
-                      ..add(
-                        LawsEvent.getLawById(
-                            id: int.tryParse(
-                                    state.pathParameters['id'] ?? '1') ??
-                                1),
-                      ),
+                    create: (context) => instance<LawsBloc>(),
                     child: LawsDetailsView(
                         id: int.tryParse(state.pathParameters['id'] ?? '1') ??
                             1),
@@ -223,7 +218,11 @@ class AppRouter {
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.faq,
           path: RoutesPaths.faq,
-          builder: (context, state) => const FAQView(),
+          builder: (context, state) => BlocProvider(
+            create: (context) =>
+                instance<FaqBloc>()..add(const FaqEvent.getFaq()),
+            child: const FAQView(),
+          ),
         ),
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,

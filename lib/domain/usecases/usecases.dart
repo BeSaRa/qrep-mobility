@@ -15,12 +15,15 @@ export 'rent_usecases/rent_summary/rent_summery_usecase.dart';
 export 'rent_usecases/rent_usecases.dart';
 export 'rent_usecases/total_contracts_usecase.dart';
 export 'rent_usecases/total_rented_units_usecase.dart';
+export 'rent_usecases/total_rented_space_usecase/total_rented_space_usecase.dart';
 // ------------------------sell---------------------------
-export 'sell_usecases/mean_value_sell_usecase/mean_value_sell_usecase.dart';
+export 'sell_usecases/mean_sell_unit_value_usecase/mean_sell_unit_value_usecase.dart';
 export 'sell_usecases/sell_default_usecase.dart';
 export 'sell_usecases/sell_usecases.dart';
 export 'sell_usecases/total_contracts_sell_usecase/total_contracts_sell_usecase.dart';
 export 'sell_usecases/total_sold_units_usecase/total_sold_units_usecase.dart';
 export 'sell_usecases/total_transactions_sell_usecase/total_transactions_sell_usecase.dart';
 export 'sell_usecases/transactions/sell_transactions_usecase.dart';
+export 'sell_usecases/mean_sold_area_usecase/mean_sold_area_usecase.dart';
+export 'sell_usecases/total_sold_spaces_usecase/total_sold_spaces_usecase.dart';
 export 'translations_usecase/translations_usecase.dart';

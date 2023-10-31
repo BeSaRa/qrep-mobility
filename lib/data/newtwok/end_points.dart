@@ -19,6 +19,9 @@ class EndPoints {
   static const String contractValue = '/kpi/rent/kpi7/contract-value';
   static const String meanValue = '/kpi/rent/kpi13/mean-value';
   static const String meanArea = '/kpi/rent/kpi16/mean-area';
+  // اجمالي المساحات المستأجرة
+  static const String totalRentedSpace = '/kpi/rent/kpi10/total-areas';
+
   static const String rentSummary = '/kpi/rent/kpi29/summary';
   static const String certificateCount =
       '/kpi/rent/kpi30/stats/certificate-count';
@@ -51,17 +54,22 @@ class EndPoints {
   // متوسط سعر الوحدة
   static const String meanValueSell = '/kpi/sell/kpi13/mean-value';
 
-  // قائمة معاملات البيع
-  static const String sellTransactions = '/kpi/sell/kpi29/transactions';
-
   // أفضل عشر مناطق من حيث عدد العقود
   static const String certificateCountSell =
       '/kpi/sell/kpi19/chart/certificate-count';
+
+  // قائمة معاملات البيع
+  static const String sellTransactions = '/kpi/sell/kpi29/transactions';
 
   // أفضل عشر مناطق من حيث عدد الوحدات المباعة
   static const String contractsCountSell =
       '/kpi/sell/kpi30/zones/transactions-number';
 
+  // إجمالي المساحات المباعة
+  static const String totalSoldSpaces = '/kpi/sell/kpi10/total-areas';
+
+  // متوسط سعر البيع (بالمتر/ القدم المربع)
+  static const String meanSoldArea = '/kpi/sell/kpi16/mean-area';
   //---------------------------------------------mortgage-----------------------
   //look up
   static const mortgageLookUp = '/kpi/mortgage/lookup';

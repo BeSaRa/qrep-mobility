@@ -10,6 +10,8 @@ part 'laws_state.dart';
 class LawsBloc extends Bloc<LawsEvent, LawsState> {
   final LawsUsecase lawsUsecase;
   final LawByIdUsecase lawByIdUsecase;
+  static List<LawsModel> laws = [];
+  final int limit = 5;
   LawsBloc({required this.lawsUsecase, required this.lawByIdUsecase})
       : super(const _Initial()) {
     on<LawsEvent>((event, emit) async {
@@ -20,9 +22,11 @@ class LawsBloc extends Bloc<LawsEvent, LawsState> {
           lawsResponse: const LawsResponse(),
         ));
 
-        final failureOrSuccessAllLaws = await lawsUsecase.execute();
+        final failureOrSuccessAllLaws = await lawsUsecase.execute(limit);
 
         failureOrSuccessAllLaws.when((success) {
+          laws.clear();
+          laws.addAll(success.data);
           emit(
             state.copyWith(
               isLoading: false,
@@ -68,5 +72,10 @@ class LawsBloc extends Bloc<LawsEvent, LawsState> {
         });
       });
     });
+  }
+
+  LawsModel getLawModelById(int id) {
+    return laws.firstWhere((item) => item.id == id,
+        orElse: () => const LawsModel());
   }
 }
