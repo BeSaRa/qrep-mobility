@@ -436,7 +436,7 @@ class _RentViewState extends State<RentView> {
                                                     '0',
                                                 location: context.locale ==
                                                         ARABIC_LOCAL
-                                                    ? getObjectById(
+                                                    ? getObjectByLookupKey(
                                                                 context
                                                                         .read<
                                                                             RentBloc>()
@@ -451,7 +451,7 @@ class _RentViewState extends State<RentView> {
                                                                     0)
                                                             ?.arName ??
                                                         ''
-                                                    : getObjectById(
+                                                    : getObjectByLookupKey(
                                                                 context
                                                                         .read<
                                                                             RentBloc>()
@@ -466,6 +466,11 @@ class _RentViewState extends State<RentView> {
                                                                     0)
                                                             ?.enName ??
                                                         '',
+                                                descripton: getUnitName(state
+                                                        .rentSummery
+                                                        .transactionList[index]
+                                                        .propertyTypeId ??
+                                                    0),
                                               );
                                             }),
                                         SizedBox(height: AppSizeH.s6),
@@ -679,5 +684,13 @@ class _RentViewState extends State<RentView> {
         ),
       ),
     );
+  }
+
+  String getUnitName(int id) {
+    if (context.locale == ARABIC_LOCAL) {
+      return "${AppStrings().unitType}: ${getObjectByLookupKey(context.read<RentBloc>().loockUpRent?.propertyTypeList ?? [], id)?.arName ?? ''}";
+    } else {
+      return "${AppStrings().unitType}: ${getObjectByLookupKey(context.read<RentBloc>().loockUpRent?.propertyTypeList ?? [], id)?.enName ?? ''}";
+    }
   }
 }

@@ -44,10 +44,7 @@ class _HomeViewState extends State<HomeView> {
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
                 child: SizedBox(
-                  height: MediaQuery
-                      .of(context)
-                      .size
-                      .height / 2.5,
+                  height: MediaQuery.of(context).size.height / 2.5,
                   child: Row(
                     children: [
                       Expanded(
@@ -57,7 +54,7 @@ class _HomeViewState extends State<HomeView> {
                               onTap: () {
                                 context.goNamed(RoutesNames.sales);
                               },
-                              child: _HomeContainer(
+                              child: HomeContainer(
                                 isBig: true,
                                 title: AppStrings().sellIndicators,
                                 color: ColorManager.white,
@@ -69,7 +66,7 @@ class _HomeViewState extends State<HomeView> {
                               onTap: () {
                                 context.goNamed(RoutesNames.mortgage);
                               },
-                              child: _HomeContainer(
+                              child: HomeContainer(
                                 isBig: false,
                                 title: AppStrings().mortgageIndicators,
                                 color: ColorManager.silver,
@@ -88,7 +85,7 @@ class _HomeViewState extends State<HomeView> {
                               onTap: () {
                                 context.goNamed(RoutesNames.rent);
                               },
-                              child: _HomeContainer(
+                              child: HomeContainer(
                                 isBig: false,
                                 title: AppStrings().rentIndicators,
                                 color: ColorManager.cloudyGrey,
@@ -99,7 +96,7 @@ class _HomeViewState extends State<HomeView> {
                                 isShadow: true,
                               ),
                             ),
-                            _HomeContainer(
+                            HomeContainer(
                               isBig: true,
                               title: AppStrings().realEstateBrokers,
                               color: Colors.white.withOpacity(0.8),
@@ -117,8 +114,7 @@ class _HomeViewState extends State<HomeView> {
             ),
             BlocProvider(
               create: (context) =>
-              instance<NewsBloc>()
-                ..add(const NewsEvent.getNewsEvent()),
+                  instance<NewsBloc>()..add(const NewsEvent.getNewsEvent()),
               child: const NewsWidget(),
             ),
             SizedBox(
@@ -135,7 +131,14 @@ class _HomeViewState extends State<HomeView> {
                     },
                     child: StaticPagesContainer(
                       icon: IconAssets.aboutHome,
-                      title: AppStrings().aboutUs,
+                      title: Text(
+                        AppStrings().aboutUs,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                   InkWell(
@@ -144,7 +147,14 @@ class _HomeViewState extends State<HomeView> {
                     },
                     child: StaticPagesContainer(
                       icon: IconAssets.lawsHome,
-                      title: AppStrings().lawsAndDecisions,
+                      title: Text(
+                        AppStrings().lawsAndDecisions,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                   InkWell(
@@ -153,7 +163,14 @@ class _HomeViewState extends State<HomeView> {
                     },
                     child: StaticPagesContainer(
                       icon: IconAssets.faqHome,
-                      title: AppStrings().faqs,
+                      title: Text(
+                        AppStrings().faqs,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ],
@@ -168,7 +185,7 @@ class _HomeViewState extends State<HomeView> {
 
 class StaticPagesContainer extends StatelessWidget {
   final String icon;
-  final String title;
+  final Widget title;
 
   const StaticPagesContainer({
     super.key,
@@ -196,17 +213,7 @@ class StaticPagesContainer extends StatelessWidget {
               height: AppSizeH.s60,
               width: AppSizeW.s60,
             ),
-            Text(
-              title,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .bodyMedium,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              softWrap: true,
-              textAlign: TextAlign.center,
-            ),
+            title,
           ],
         ),
       ),
@@ -214,7 +221,7 @@ class StaticPagesContainer extends StatelessWidget {
   }
 }
 
-class _HomeContainer extends StatelessWidget {
+class HomeContainer extends StatelessWidget {
   final bool isBig;
   final String title;
   final Color color;
@@ -223,9 +230,11 @@ class _HomeContainer extends StatelessWidget {
   final Color? iconColor;
   final Color? textColor;
   final bool isShadow;
+
   // final BuildContext context;
 
-  const _HomeContainer({
+  const HomeContainer({
+    super.key,
     required this.isBig,
     required this.title,
     required this.color,
@@ -243,10 +252,7 @@ class _HomeContainer extends StatelessWidget {
       margin: EdgeInsets.symmetric(
           horizontal: AppSizeW.s10, vertical: AppSizeH.s10),
       height:
-      (MediaQuery
-          .of(context)
-          .size
-          .height / 2.5) * (isBig ? 0.50 : 0.36),
+          (MediaQuery.of(context).size.height / 2.5) * (isBig ? 0.50 : 0.36),
       decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(AppSizeR.s20),
@@ -274,8 +280,7 @@ class _HomeContainer extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 6,
                   softWrap: true,
-                  style: Theme
-                      .of(context)
+                  style: Theme.of(context)
                       .textTheme
                       .bodyMedium
                       ?.copyWith(color: textColor, fontWeight: FontWeight.w800),
@@ -289,7 +294,7 @@ class _HomeContainer extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment:
-              isBig ? CrossAxisAlignment.center : CrossAxisAlignment.end,
+                  isBig ? CrossAxisAlignment.center : CrossAxisAlignment.end,
               children: [
                 Align(
                   // alignment: context.locale == ARABIC_LOCAL
@@ -317,9 +322,7 @@ class _HomeContainer extends StatelessWidget {
                     image,
                     height: AppSizeH.s70,
                     width: AppSizeW.s70,
-                    color: imageColor ?? Theme
-                        .of(context)
-                        .primaryColor,
+                    color: imageColor ?? Theme.of(context).primaryColor,
                     fit: BoxFit.scaleDown,
                   ),
                 ),
@@ -332,8 +335,7 @@ class _HomeContainer extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         softWrap: true,
-                        style: Theme
-                            .of(context)
+                        style: Theme.of(context)
                             .textTheme
                             .bodyMedium
                             ?.copyWith(fontWeight: FontWeight.w700),
