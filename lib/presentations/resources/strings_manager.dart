@@ -102,6 +102,12 @@ class AppStrings {
   String street = 'street'.tr(); // 'الشارع'
 
   //---------------- sell ----------
+  String sellContractCount = 'sell_contracts_count'.tr();
+  String avgPricePerUnit = 'average_price_per_unit'.tr();
+  String transictionValue = 'transactions_value'.tr();
+  String soldAreas = 'sold_areas'.tr();
+  String avgPricePerSquareFoot = 'average_price_per_square_foot'.tr();
+
   // grid
   String totalNumberOfPropertiesUnitsSold =
       "the_total_number_of_properties_units_sold".tr();

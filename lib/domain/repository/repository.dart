@@ -105,6 +105,19 @@ abstract class Repository {
   Future<Result<SellTransactionResponse, FailureModel>> getSellTransaction(
       RequestSellValues requestSellValues);
 
+  Future<Result<List<BaseRentResponse>, FailureModel>> sellContractCount(
+      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> avgPricePerUnit(
+      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> transactionsValue(
+      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> soldAreas(
+      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> realStateNumber(
+      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>>
+      averagePricePerSquareFoot(RequestSellValues requestSellValues);
+
   //----------------------------Mortgage----------------------------------------
 
   //look up
