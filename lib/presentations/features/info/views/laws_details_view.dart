@@ -1,23 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:ebla/app/constants.dart';
 import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
+import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/resources/resources.dart';
-import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
-import 'package:ebla/presentations/widgets/error_widget.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
-
 import 'package:url_launcher/url_launcher.dart';
 
 class LawsDetailsView extends StatefulWidget {
   final int id;
+
   const LawsDetailsView({super.key, required this.id});
 
   @override
@@ -26,6 +21,7 @@ class LawsDetailsView extends StatefulWidget {
 
 class _LawsDetailsViewState extends State<LawsDetailsView> {
   late LawsModel lawsModel;
+
   bool isValidUrl(String url) {
     try {
       Uri.tryParse(url);
@@ -51,18 +47,28 @@ class _LawsDetailsViewState extends State<LawsDetailsView> {
     print("lawModel: ${lawsModel.id}");
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         flexibleSpace: Container(
+          height: AppSizeH.s50,
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(ImageAssets.appbarBg),
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
           ),
         ),
-        leading: BackButton(
-          color: ColorManager.golden,
-        ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.maybePop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: ColorManager.golden,
+            )),
+        // BackButton(
+        //   color: ColorManager.golden,
+        // ),
         title: Text(
           AppStrings().lawDetails,
           style: Theme.of(context).textTheme.titleMedium,
@@ -191,7 +197,8 @@ class LawArticleWidget extends StatefulWidget {
   final ArticleModel? article;
   final FaqItemModel? faqItemModel;
   final double maxExpandedHeight;
-  LawArticleWidget({
+
+  const LawArticleWidget({
     Key? key,
     required this.article,
     required this.faqItemModel,
@@ -205,6 +212,7 @@ class LawArticleWidget extends StatefulWidget {
 class _LawArticleWidgetState extends State<LawArticleWidget> {
   final ExpansionTileController expansionTileController =
       ExpansionTileController();
+
   bool isValidUrl(String url) {
     try {
       Uri.tryParse(url);
@@ -243,9 +251,8 @@ class _LawArticleWidgetState extends State<LawArticleWidget> {
                 left: AppSizeW.s30, right: AppSizeW.s30, bottom: AppSizeH.s10),
             title: Text(
                 widget.article?.title ?? widget.faqItemModel?.question ?? '',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium), // Title when the tile is collapsed
+                style: Theme.of(context).textTheme.bodyMedium),
+            // Title when the tile is collapsed
             children: <Widget>[
               GestureDetector(
                 onTap: () {

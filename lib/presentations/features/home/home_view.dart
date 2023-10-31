@@ -39,125 +39,144 @@ class _HomeViewState extends State<HomeView> {
       child: Scaffold(
         appBar: const TitleAppBar(),
         backgroundColor: Colors.transparent,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                  padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height / 2.5,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  context.goNamed(RoutesNames.sales);
-                                },
-                                child: _HomeContainer(
-                                  isBig: true,
-                                  title: AppStrings().sellIndicators,
-                                  color: ColorManager.white,
-                                  image: IconAssets.sellHome,
-                                  isShadow: true,
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  context.goNamed(RoutesNames.mortgage);
-                                },
-                                child: _HomeContainer(
-                                  isBig: false,
-                                  title: AppStrings().mortgageIndicators,
-                                  color: ColorManager.silver,
-                                  image: IconAssets.mortagageHome,
-                                  iconColor: ColorManager.white,
-                                  isShadow: true,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  context.goNamed(RoutesNames.rent);
-                                },
-                                child: _HomeContainer(
-                                  isBig: false,
-                                  title: AppStrings().rentIndicators,
-                                  color: ColorManager.cloudyGrey,
-                                  image: IconAssets.rentHome,
-                                  imageColor: ColorManager.white,
-                                  textColor: ColorManager.white,
-                                  iconColor: ColorManager.silver,
-                                  isShadow: true,
-                                ),
-                              ),
-                              _HomeContainer(
+        body: ListView(
+          children: [
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height / 2.5,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                context.goNamed(RoutesNames.sales);
+                              },
+                              child: HomeContainer(
                                 isBig: true,
-                                title: AppStrings().realEstateBrokers,
-                                color: Colors.white.withOpacity(0.8),
-                                image: IconAssets.inMiddleHome,
+                                title: AppStrings().sellIndicators,
+                                color: ColorManager.white,
+                                image: IconAssets.sellHome,
                                 isShadow: true,
                               ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  )),
-              SizedBox(
-                height: AppSizeH.s10,
-              ),
-              BlocProvider(
-                create: (context) =>
-                    instance<NewsBloc>()..add(const NewsEvent.getNewsEvent()),
-                child: const NewsWidget(),
-              ),
-              SizedBox(
-                height: AppSizeH.s20,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        context.pushNamed(RoutesNames.about);
-                      },
-                      child: StaticPagesContainer(
-                        icon: IconAssets.aboutHome,
-                        title: AppStrings().aboutUs,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                context.goNamed(RoutesNames.mortgage);
+                              },
+                              child: HomeContainer(
+                                isBig: false,
+                                title: AppStrings().mortgageIndicators,
+                                color: ColorManager.silver,
+                                image: IconAssets.mortagageHome,
+                                iconColor: ColorManager.white,
+                                isShadow: true,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                context.goNamed(RoutesNames.rent);
+                              },
+                              child: HomeContainer(
+                                isBig: false,
+                                title: AppStrings().rentIndicators,
+                                color: ColorManager.cloudyGrey,
+                                image: IconAssets.rentHome,
+                                imageColor: ColorManager.white,
+                                textColor: ColorManager.white,
+                                iconColor: ColorManager.silver,
+                                isShadow: true,
+                              ),
+                            ),
+                            HomeContainer(
+                              isBig: true,
+                              title: AppStrings().realEstateBrokers,
+                              color: Colors.white.withOpacity(0.8),
+                              image: IconAssets.inMiddleHome,
+                              isShadow: true,
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                )),
+            SizedBox(
+              height: AppSizeH.s10,
+            ),
+            BlocProvider(
+              create: (context) =>
+                  instance<NewsBloc>()..add(const NewsEvent.getNewsEvent()),
+              child: const NewsWidget(),
+            ),
+            SizedBox(
+              height: AppSizeH.s20,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      context.pushNamed(RoutesNames.about);
+                    },
+                    child: StaticPagesContainer(
+                      icon: IconAssets.aboutHome,
+                      title: Text(
+                        AppStrings().aboutUs,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        softWrap: true,
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                    InkWell(
-                      onTap: () {
-                        context.pushNamed(RoutesNames.laws);
-                      },
-                      child: StaticPagesContainer(
-                        icon: IconAssets.lawsHome,
-                        title: AppStrings().lawsAndDecisions,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      context.pushNamed(RoutesNames.laws);
+                    },
+                    child: StaticPagesContainer(
+                      icon: IconAssets.lawsHome,
+                      title: Text(
+                        AppStrings().lawsAndDecisions,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        softWrap: true,
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                    InkWell(
-                      onTap: () {
-                        context.pushNamed(RoutesNames.faq);
-                      },
-                      child: StaticPagesContainer(
-                        icon: IconAssets.faqHome,
-                        title: AppStrings().faqs,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      context.pushNamed(RoutesNames.faq);
+                    },
+                    child: StaticPagesContainer(
+                      icon: IconAssets.faqHome,
+                      title: Text(
+                        AppStrings().faqs,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        softWrap: true,
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                  ],
-                ),
-              )
-            ],
-          ),
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -166,7 +185,7 @@ class _HomeViewState extends State<HomeView> {
 
 class StaticPagesContainer extends StatelessWidget {
   final String icon;
-  final String title;
+  final Widget title;
 
   const StaticPagesContainer({
     super.key,
@@ -177,31 +196,24 @@ class StaticPagesContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: AppSizeH.s125,
-      width: AppSizeW.s100,
-      padding: EdgeInsets.symmetric(
-          horizontal: AppSizeH.s15, vertical: AppSizeH.s10),
+      height: context.locale == ARABIC_LOCAL ? AppSizeH.s90 : AppSizeH.s96,
+      width: AppSizeW.s112,
+      padding:
+          EdgeInsets.symmetric(horizontal: AppSizeH.s6, vertical: AppSizeH.s10),
       decoration: BoxDecoration(
           color: ColorManager.white,
           borderRadius: BorderRadius.circular(AppSizeW.s14),
-          border: Border.all(color: ColorManager.golden, width: AppSizeH.s1)),
+          border: Border.all(color: ColorManager.mercury, width: AppSizeH.s1)),
       child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SvgPicture.asset(
               icon,
-              height: AppSizeH.s60,
-              width: AppSizeW.s60,
+              height: AppSizeH.s36,
+              width: AppSizeW.s32,
             ),
-            Text(
-              title,
-              style: Theme.of(context).textTheme.bodyMedium,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              softWrap: true,
-              textAlign: TextAlign.center,
-            ),
+            title,
           ],
         ),
       ),
@@ -209,7 +221,7 @@ class StaticPagesContainer extends StatelessWidget {
   }
 }
 
-class _HomeContainer extends StatelessWidget {
+class HomeContainer extends StatelessWidget {
   final bool isBig;
   final String title;
   final Color color;
@@ -218,9 +230,11 @@ class _HomeContainer extends StatelessWidget {
   final Color? iconColor;
   final Color? textColor;
   final bool isShadow;
+
   // final BuildContext context;
 
-  const _HomeContainer({
+  const HomeContainer({
+    super.key,
     required this.isBig,
     required this.title,
     required this.color,
@@ -255,81 +269,73 @@ class _HomeContainer extends StatelessWidget {
                 blurRadius: AppSizeW.s2,
                 spreadRadius: AppSizeW.s1),
           ]),
-      child: Row(
+      child: Stack(
         children: [
           if (!isBig)
-            Expanded(
+            Align(
+              alignment: Alignment.centerRight,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  title,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 6,
-                  softWrap: true,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: textColor, fontWeight: FontWeight.w800),
+                child: SizedBox(
+                  width: AppSizeW.s70,
+                  child: Text(
+                    title,
+                    maxLines: 6,
+                    softWrap: true,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: textColor,
+                        fontWeight: FontWeight.w800,
+                        fontSize: AppSizeSp.s16),
+                  ),
                 ),
               ),
             ),
-          if (!isBig)
-            SizedBox(
-              width: AppSizeH.s4,
-            ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment:
-                  isBig ? CrossAxisAlignment.center : CrossAxisAlignment.end,
-              children: [
+          Stack(
+            // crossAxisAlignment:
+            //     isBig ? CrossAxisAlignment.center : CrossAxisAlignment.end,
+            children: [
+              Align(
+                alignment: context.locale == ARABIC_LOCAL
+                    ? Alignment.topLeft
+                    : Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Transform.rotate(
+                      angle: context.locale == ARABIC_LOCAL
+                          ? -45
+                          : 45 * math.pi / 180,
+                      child: Icon(
+                        Icons.arrow_upward_rounded,
+                        color: isBig ? ColorManager.greyCloud : iconColor,
+                      )),
+                ),
+              ),
+              Align(
+                alignment: isBig ? Alignment.center : Alignment.bottomLeft,
+                child: SvgPicture.asset(
+                  image,
+                  height: AppSizeH.s70,
+                  width: AppSizeW.s70,
+                  color: imageColor ?? Theme.of(context).primaryColor,
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
+              if (isBig)
                 Align(
-                  alignment: context.locale == ARABIC_LOCAL
-                      ? Alignment.topLeft
-                      : Alignment.topRight,
+                  alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Transform.rotate(
-                        angle: context.locale == ARABIC_LOCAL
-                            ? -45
-                            : 45 * math.pi / 180,
-                        child: Icon(
-                          Icons.arrow_upward_rounded,
-                          color: isBig ? ColorManager.greyCloud : iconColor,
-                        )),
-                  ),
-                ),
-                if (!isBig)
-                  SizedBox(
-                    height: AppSizeH.s10,
-                  ),
-                Align(
-                  alignment: isBig ? Alignment.center : Alignment.bottomLeft,
-                  child: SvgPicture.asset(
-                    image,
-                    height: AppSizeH.s70,
-                    width: AppSizeW.s70,
-                    color: imageColor ?? Theme.of(context).primaryColor,
-                    fit: BoxFit.scaleDown,
-                  ),
-                ),
-                if (isBig)
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        title,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        softWrap: true,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
-                      ),
+                    padding: EdgeInsets.symmetric(vertical: AppSizeH.s12),
+                    child: Text(
+                      title,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      softWrap: true,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w700, fontSize: AppSizeSp.s16),
                     ),
                   ),
-              ],
-            ),
+                ),
+            ],
           ),
         ],
       ),

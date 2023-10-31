@@ -11,6 +11,7 @@ class AppStrings {
   //rent
 
   String currentPerformanceSummary = "current_performance_summary".tr();
+  String unitType = "unit_type".tr();
 
   // grid
   String totalRentalContractsNumber = 'total_rental_contracts_number'.tr();

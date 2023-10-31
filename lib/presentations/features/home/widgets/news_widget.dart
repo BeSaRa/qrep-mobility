@@ -53,31 +53,39 @@ class _NewsWidgetState extends State<NewsWidget> {
                 ],
               ),
               const Spacer(),
-              InkWell(
-                onTap: () {
-                  context.pushNamed(RoutesNames.news,
-                      extra: context.read<NewsBloc>());
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: AppSizeW.s14, vertical: AppSizeH.s2),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: ColorManager.golden),
-                      borderRadius: BorderRadius.circular(AppSizeR.s20)),
-                  child: Row(
-                    children: [
-                      Text(
-                        AppStrings().more,
-                        style: Theme.of(context).textTheme.titleSmall,
+              BlocBuilder(
+                bloc: context.read<NewsBloc>(),
+                builder: (context, state) {
+                  if (context.read<NewsBloc>().newsList.isEmpty) {
+                    return const SizedBox();
+                  }
+                  return InkWell(
+                    onTap: () {
+                      context.pushNamed(RoutesNames.news,
+                          extra: context.read<NewsBloc>());
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: AppSizeW.s14, vertical: AppSizeH.s2),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: ColorManager.golden),
+                          borderRadius: BorderRadius.circular(AppSizeR.s20)),
+                      child: Row(
+                        children: [
+                          Text(
+                            AppStrings().more,
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: ColorManager.golden,
+                            size: AppSizeH.s14,
+                          )
+                        ],
                       ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: ColorManager.golden,
-                        size: AppSizeH.s14,
-                      )
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                },
               )
             ],
           ),
@@ -135,13 +143,20 @@ class _NewsWidgetState extends State<NewsWidget> {
                   );
                 },
                 loaded: (value) {
+                  if (value.news.isEmpty) {
+                    return Text(
+                      AppStrings().noDataFound,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    );
+                  }
                   return Column(
                     children: [
                       SizedBox(
                         height: AppSizeH.s100,
                         child: PageView.builder(
                             controller: _pageController,
-                            itemCount: value.news.length,
+                            itemCount:
+                                value.news.length > 5 ? 5 : value.news.length,
                             onPageChanged: (indexx) {
                               index = indexx;
                               setState(() {
@@ -170,13 +185,11 @@ class _NewsWidgetState extends State<NewsWidget> {
                               );
                             }),
                       ),
-                      SizedBox(
-                        height: AppSizeH.s10,
-                      ),
+                      SizedBox(height: AppSizeH.s10),
                       Center(
                         child: AnimatedSmoothIndicator(
                           activeIndex: index,
-                          count: value.news.length,
+                          count: value.news.length > 5 ? 5 : value.news.length,
                           // textDirection: TextDirection.rtl,
                           effect: ExpandingDotsEffect(
                               dotColor: ColorManager.silver,
@@ -189,7 +202,28 @@ class _NewsWidgetState extends State<NewsWidget> {
                   );
                 },
                 error: (value) {
-                  return const Text('data');
+                  return Column(
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            context
+                                .read<NewsBloc>()
+                                .add(const NewsEvent.getNewsEvent());
+                          },
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  ColorManager.primary)),
+                          icon: Icon(
+                            Icons.replay_outlined,
+                            color: ColorManager.white,
+                          )),
+                      // SizedBox(height: AppSizeH.s10),
+                      Text(
+                        value.message,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ],
+                  );
                 },
               );
             },

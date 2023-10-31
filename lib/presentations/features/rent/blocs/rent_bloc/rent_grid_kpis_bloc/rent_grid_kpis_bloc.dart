@@ -2,15 +2,13 @@ import 'package:bloc/bloc.dart';
 import 'package:ebla/data/newtwok/failure_model/failure.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
-
 import 'package:ebla/domain/usecases/usecases.dart';
-import 'package:ebla/utils/colored_printer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:multiple_result/multiple_result.dart';
 
-part 'rent_grid_kpis_state.dart';
-part 'rent_grid_kpis_event.dart';
 part 'rent_grid_kpis_bloc.freezed.dart';
+part 'rent_grid_kpis_event.dart';
+part 'rent_grid_kpis_state.dart';
 
 class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
   /// KPI1

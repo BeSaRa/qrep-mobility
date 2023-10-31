@@ -43,8 +43,8 @@ class _MoreViewState extends State<MoreView> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: AppSizeW.s80,
-                  height: AppSizeW.s80,
+                  width: AppSizeW.s65,
+                  height: AppSizeW.s65,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(AppSizeH.s25),
                       gradient: LinearGradient(
@@ -191,10 +191,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
                       AppStrings().moreTitle,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontSize: context.locale == ARABIC_LOCAL
-                              ? AppSizeSp.s20
-                              : AppSizeSp.s16),
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
                 ),
