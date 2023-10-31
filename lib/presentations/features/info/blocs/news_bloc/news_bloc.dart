@@ -18,8 +18,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
           final failureOrSuccess = await newsUsecase.execute();
           failureOrSuccess.when((news) {
             newsList.clear();
-            newsList.addAll(news.data);
-            emit(NewsState.loaded(news: news.data));
+            // newsList.addAll(news.data);
+            emit(const NewsState.loaded(news: []));
           }, (error) {
             emit(NewsState.error(message: error.message));
           });
