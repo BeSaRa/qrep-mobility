@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart' as local;
+import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:ebla/presentations/widgets/shimmer_placeholder.dart';
 import 'package:flutter/material.dart';
 
@@ -144,7 +146,11 @@ class MainDataContainer extends StatelessWidget {
                 Expanded(
                   child: Text(
                     descripton ?? "",
-                    textDirection: TextDirection.ltr,
+                    textDirection: (context.locale == ARABIC_LOCAL)
+                        ? TextDirection.ltr
+                        : hasRooms
+                            ? TextDirection.ltr
+                            : TextDirection.rtl,
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
