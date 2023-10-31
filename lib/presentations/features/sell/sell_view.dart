@@ -17,7 +17,6 @@ import 'package:lottie/lottie.dart';
 import '../../../utils/global_functions.dart';
 import '../../widgets/pagination_widget/pagination_widget.dart';
 import '../../widgets/selected_municipality_widget.dart';
-import '../../widgets/selected_period_widget.dart';
 import '../../widgets/selected_year_widget.dart';
 import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
 import 'blocs/sell_bloc/sell_bloc.dart';
@@ -464,7 +463,6 @@ class _SalesViewState extends State<SalesView> {
                                                                           0)
                                                                   ?.enName ??
                                                               '',
-                                                      descripton: ,
                                                     );
                                                   }),
                                           error: (String message) => SizedBox(
