@@ -27,3 +27,7 @@ export 'sell_usecases/transactions/sell_transactions_usecase.dart';
 export 'sell_usecases/mean_sold_area_usecase/mean_sold_area_usecase.dart';
 export 'sell_usecases/total_sold_spaces_usecase/total_sold_spaces_usecase.dart';
 export 'translations_usecase/translations_usecase.dart';
+//--------------------------mortgage--------------------------
+export 'mortgage_usecases/total_mortgage_transactions_usecase.dart';
+export 'mortgage_usecases/total_num_of_mortgage_units_usecase.dart';
+export 'mortgage_usecases/total_val_of_mortgage_transactions_usecase.dart';

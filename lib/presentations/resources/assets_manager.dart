@@ -70,4 +70,12 @@ class IconAssets {
       "${ICON_PATH}the_total_number_of_sell_contracts.svg";
   static const String totalSellTransactionsValue =
       "${ICON_PATH}the_total_value_of_sell_contracts.svg";
+
+  // mortgage
+  static const String totalMortgageTransactions =
+      "${ICON_PATH}total_mortgage_transactions.svg";
+  static const String totalMortgageTransactionsValue =
+      "${ICON_PATH}total_mortgage_transactions_value.svg";
+  static const String totalMortgageUnitsNum =
+      "${ICON_PATH}total_mortgage_units_num.svg";
 }

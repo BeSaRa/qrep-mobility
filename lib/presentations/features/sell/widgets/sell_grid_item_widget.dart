@@ -1,6 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ebla/app/extensions.dart';
-import 'package:ebla/presentations/features/rent/widgets/rent_grid_item_widget.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
@@ -96,209 +94,229 @@ class _SellGridItemWidgetState extends State<SellGridItemWidget> {
           stops: const [0.2, 1.0],
         ),
       ),
-      child:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        SizedBox(height: AppSizeH.s20),
-        Flexible(
-          flex: 1,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppSizeW.s20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
+        children: [
+          Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                  child: Text(
-                      gridItemsData
-                          .firstWhere((element) => element.kpi == widget.kpi)
-                          .title
-                          .tr(),
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyMedium),
+                SizedBox(height: AppSizeH.s20),
+                Flexible(
+                  flex: 1,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: AppSizeW.s20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Text(
+                              gridItemsData
+                                  .firstWhere(
+                                      (element) => element.kpi == widget.kpi)
+                                  .title
+                                  .tr(),
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.bodyMedium),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ],
-            ),
-          ),
-        ),
-        SizedBox(
-          height: AppSizeH.s17,
-        ),
-        Expanded(
-          flex: 2,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              SizedBox(width: AppSizeW.s24),
-              BlocBuilder<SellGridKPIsBloc, SellGridKPIsState>(
-                bloc: context.read<SellGridKPIsBloc>(),
-                builder: (context, state) {
-                  if (state.isLoading || state.hasError) {
-                    if (widget.kpi == SellGridKPIs.totalContracts) {
+                SizedBox(
+                  height: AppSizeH.s5,
+                ),
+                BlocBuilder<SellGridKPIsBloc, SellGridKPIsState>(
+                  bloc: context.read<SellGridKPIsBloc>(),
+                  builder: (context, state) {
+                    if (state.isLoading || state.hasError) {
+                      if (widget.kpi == SellGridKPIs.totalContracts) {
+                        // KPI1
+                        // اجمالي عدد معاملات البيع
+                        return GridValueWithUnitWidget(
+                          countUp: false,
+                          value: widget.response.kpi1Val,
+                          unit: gridItemsData
+                              .firstWhere(
+                                  (element) => element.kpi == widget.kpi)
+                              .valueUnit,
+                        );
+                      } else if (widget.kpi == SellGridKPIs.totalSoldUnits) {
+                        // KPI4
+                        // إجمالي عدد العقارات \\ الوحدات المباعة
+                        return GridValueWithUnitWidget(
+                          countUp: false,
+                          value: widget.response.kpi4Val,
+                          unit: gridItemsData
+                              .firstWhere(
+                                  (element) => element.kpi == widget.kpi)
+                              .valueUnit,
+                        );
+                      } else if (widget.kpi ==
+                          SellGridKPIs.totalTransactionsValue) {
+                        // KPI7
+                        // إجمالي قيمة عقود البيع
+                        return GridValueWithUnitWidget(
+                          countUp: false,
+                          value: widget.response.kpi7Val,
+                          unit: gridItemsData
+                              .firstWhere(
+                                  (element) => element.kpi == widget.kpi)
+                              .valueUnit,
+                        );
+                      } else if (widget.kpi == SellGridKPIs.totalSoldSpaces) {
+                        // KPI0
+                        // إجمالي المساحات المباعة
+                        return GridValueWithUnitWidget(
+                          countUp: false,
+                          value: widget.response.kpi10Val,
+                          unit: gridItemsData
+                              .firstWhere(
+                                  (element) => element.kpi == widget.kpi)
+                              .valueUnit,
+                        );
+                      } else if (widget.kpi == SellGridKPIs.meanSellUnitValue) {
+                        // KPI13
+                        // متوسط سعر البيع للوحدة \\ العقار
+                        return GridValueWithUnitWidget(
+                          countUp: false,
+                          value: widget.response.kpi13Val,
+                          unit: gridItemsData
+                              .firstWhere(
+                                  (element) => element.kpi == widget.kpi)
+                              .valueUnit,
+                        );
+                      } else if (widget.kpi == SellGridKPIs.meanSoldAreaValue) {
+                        // KPI16
+                        // متوسط سعر البيع لكل قدم مربع
+                        return GridValueWithUnitWidget(
+                          countUp: false,
+                          value: widget.response.kpi16Val,
+                          unit: gridItemsData
+                              .firstWhere(
+                                  (element) => element.kpi == widget.kpi)
+                              .valueUnit,
+                          dataCollectedAndAudited: true,
+                        );
+                      }
+                    }
+
+                    ///-------------------Data not from default ----------------
+                    else if (state.totalContracts.isNotEmpty &&
+                        widget.kpi == SellGridKPIs.totalContracts) {
                       // KPI1
                       // اجمالي عدد معاملات البيع
                       return GridValueWithUnitWidget(
-                        countUp: false,
-                        value: widget.response.kpi1Val,
-                        unit: gridItemsData
-                            .firstWhere((element) => element.kpi == widget.kpi)
-                            .valueUnit,
+                        countUp: true,
+                        duration: 1,
+                        begin: widget.response.kpi1Val,
+                        end: state.totalContracts.first.kpiVal.toDouble(),
                       );
-                    } else if (widget.kpi == SellGridKPIs.totalSoldUnits) {
+                    } else if (state.totalSoldUnits.isNotEmpty &&
+                        widget.kpi == SellGridKPIs.totalSoldUnits) {
                       // KPI4
                       // إجمالي عدد العقارات \\ الوحدات المباعة
                       return GridValueWithUnitWidget(
-                        countUp: false,
-                        value: widget.response.kpi4Val,
-                        unit: gridItemsData
-                            .firstWhere((element) => element.kpi == widget.kpi)
-                            .valueUnit,
+                        countUp: true,
+                        duration: 1,
+                        begin: widget.response.kpi4Val,
+                        end: state.totalSoldUnits.first.kpiVal.toDouble(),
                       );
-                    } else if (widget.kpi ==
-                        SellGridKPIs.totalTransactionsValue) {
+                    } else if (state.totalTransactionsValue.isNotEmpty &&
+                        widget.kpi == SellGridKPIs.totalTransactionsValue) {
                       // KPI7
                       // إجمالي قيمة عقود البيع
                       return GridValueWithUnitWidget(
-                        countUp: false,
-                        value: widget.response.kpi7Val,
+                        countUp: true,
+                        duration: 1,
+                        begin: widget.response.kpi7Val,
+                        end: state.totalTransactionsValue.first.kpiVal
+                            .toDouble(),
                         unit: gridItemsData
                             .firstWhere((element) => element.kpi == widget.kpi)
                             .valueUnit,
                       );
-                    } else if (widget.kpi == SellGridKPIs.totalSoldSpaces) {
+                    } else if (state.totalSoldSpaces.isNotEmpty &&
+                        widget.kpi == SellGridKPIs.totalSoldSpaces) {
                       // KPI0
                       // إجمالي المساحات المباعة
                       return GridValueWithUnitWidget(
-                        countUp: false,
-                        value: widget.response.kpi10Val,
+                        countUp: true,
+                        duration: 1,
+                        begin: widget.response.kpi10Val,
+                        end: state.totalSoldSpaces.first.kpiVal.toDouble(),
                         unit: gridItemsData
                             .firstWhere((element) => element.kpi == widget.kpi)
                             .valueUnit,
                       );
-                    } else if (widget.kpi == SellGridKPIs.meanSellUnitValue) {
+                    } else if (state.meanSellUnitValue.isNotEmpty &&
+                        widget.kpi == SellGridKPIs.meanSellUnitValue) {
                       // KPI13
                       // متوسط سعر البيع للوحدة \\ العقار
                       return GridValueWithUnitWidget(
-                        countUp: false,
-                        value: widget.response.kpi13Val,
+                        countUp: true,
+                        duration: 1,
+                        begin: widget.response.kpi13Val,
+                        end: state.meanSellUnitValue.first.kpiVal.toDouble(),
                         unit: gridItemsData
                             .firstWhere((element) => element.kpi == widget.kpi)
                             .valueUnit,
                       );
-                    } else if (widget.kpi == SellGridKPIs.meanSoldAreaValue) {
+                    } else if (state.meanSoldAreaValue.isNotEmpty &&
+                        widget.kpi == SellGridKPIs.meanSoldAreaValue) {
                       // KPI16
                       // متوسط سعر البيع لكل قدم مربع
                       return GridValueWithUnitWidget(
-                        countUp: false,
-                        value: widget.response.kpi16Val,
+                        countUp: true,
+                        duration: 1,
+                        begin: widget.response.kpi16Val,
+                        end: state.meanSoldAreaValue.first.kpiVal.toDouble(),
                         unit: gridItemsData
                             .firstWhere((element) => element.kpi == widget.kpi)
                             .valueUnit,
-                        dataCollectedAndAudited: true,
                       );
                     }
-                  }
-
-                  ///-------------------Data not from default ----------------
-                  else if (state.totalContracts.isNotEmpty &&
-                      widget.kpi == SellGridKPIs.totalContracts) {
-                    // KPI1
-                    // اجمالي عدد معاملات البيع
                     return GridValueWithUnitWidget(
-                      countUp: true,
-                      duration: 1,
-                      begin: widget.response.kpi1Val,
-                      end: state.totalContracts.first.kpiVal.toDouble(),
-                    );
-                  } else if (state.totalSoldUnits.isNotEmpty &&
-                      widget.kpi == SellGridKPIs.totalSoldUnits) {
-                    // KPI4
-                    // إجمالي عدد العقارات \\ الوحدات المباعة
-                    return GridValueWithUnitWidget(
-                      countUp: true,
-                      duration: 1,
-                      begin: widget.response.kpi4Val,
-                      end: state.totalSoldUnits.first.kpiVal.toDouble(),
-                    );
-                  } else if (state.totalTransactionsValue.isNotEmpty &&
-                      widget.kpi == SellGridKPIs.totalTransactionsValue) {
-                    // KPI7
-                    // إجمالي قيمة عقود البيع
-                    return GridValueWithUnitWidget(
-                      countUp: true,
-                      duration: 1,
-                      begin: widget.response.kpi7Val,
-                      end: state.totalTransactionsValue.first.kpiVal.toDouble(),
+                      countUp: false,
+                      begin: 0,
+                      end: 0,
                       unit: gridItemsData
                           .firstWhere((element) => element.kpi == widget.kpi)
                           .valueUnit,
                     );
-                  } else if (state.totalSoldSpaces.isNotEmpty &&
-                      widget.kpi == SellGridKPIs.totalSoldSpaces) {
-                    // KPI0
-                    // إجمالي المساحات المباعة
-                    return GridValueWithUnitWidget(
-                      countUp: true,
-                      duration: 1,
-                      begin: widget.response.kpi10Val,
-                      end: state.totalSoldSpaces.first.kpiVal.toDouble(),
-                      unit: gridItemsData
-                          .firstWhere((element) => element.kpi == widget.kpi)
-                          .valueUnit,
-                    );
-                  } else if (state.meanSellUnitValue.isNotEmpty &&
-                      widget.kpi == SellGridKPIs.meanSellUnitValue) {
-                    // KPI13
-                    // متوسط سعر البيع للوحدة \\ العقار
-                    return GridValueWithUnitWidget(
-                      countUp: true,
-                      duration: 1,
-                      begin: widget.response.kpi13Val,
-                      end: state.meanSellUnitValue.first.kpiVal.toDouble(),
-                      unit: gridItemsData
-                          .firstWhere((element) => element.kpi == widget.kpi)
-                          .valueUnit,
-                    );
-                  } else if (state.meanSoldAreaValue.isNotEmpty &&
-                      widget.kpi == SellGridKPIs.meanSoldAreaValue) {
-                    // KPI16
-                    // متوسط سعر البيع لكل قدم مربع
-                    return GridValueWithUnitWidget(
-                      countUp: true,
-                      duration: 1,
-                      begin: widget.response.kpi16Val,
-                      end: state.meanSoldAreaValue.first.kpiVal.toDouble(),
-                      unit: gridItemsData
-                          .firstWhere((element) => element.kpi == widget.kpi)
-                          .valueUnit,
-                    );
-                  }
-                  return GridValueWithUnitWidget(
-                    countUp: false,
-                    begin: 0,
-                    end: 0,
-                    unit: gridItemsData
-                        .firstWhere((element) => element.kpi == widget.kpi)
-                        .valueUnit,
-                  );
-                },
+                  },
+                ),
+              ]),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SizedBox(
+                height: AppSizeH.s80,
               ),
-              SizedBox(width: AppSizeW.s16),
-              AspectRatio(
-                aspectRatio: 1,
-                child: SvgPicture.asset(
-                  gridItemsData
-                      .firstWhere((element) => element.kpi == widget.kpi)
-                      .imagePath,
-                  height: AppSizeH.s70,
-                  width: AppSizeW.s70,
-                  color: ColorManager.primary,
+              Flexible(
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    AspectRatio(
+                      aspectRatio: 1,
+                      child: SvgPicture.asset(
+                        gridItemsData
+                            .firstWhere((element) => element.kpi == widget.kpi)
+                            .imagePath,
+                        height: AppSizeH.s70,
+                        width: AppSizeW.s70,
+                        color: ColorManager.primary.withOpacity(0.6),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
-          ),
-        )
-      ]),
+          )
+        ],
+      ),
     );
   }
 }
