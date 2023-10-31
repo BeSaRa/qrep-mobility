@@ -292,20 +292,25 @@ class _SellGridItemWidgetState extends State<SellGridItemWidget> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               SizedBox(
-                height: AppSizeH.s72,
+                height: AppSizeH.s80,
               ),
               Flexible(
                 flex: 1,
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: SvgPicture.asset(
-                    gridItemsData
-                        .firstWhere((element) => element.kpi == widget.kpi)
-                        .imagePath,
-                    height: AppSizeH.s70,
-                    width: AppSizeW.s70,
-                    color: ColorManager.primary.withOpacity(0.6),
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    AspectRatio(
+                      aspectRatio: 1,
+                      child: SvgPicture.asset(
+                        gridItemsData
+                            .firstWhere((element) => element.kpi == widget.kpi)
+                            .imagePath,
+                        height: AppSizeH.s70,
+                        width: AppSizeW.s70,
+                        color: ColorManager.primary.withOpacity(0.6),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
