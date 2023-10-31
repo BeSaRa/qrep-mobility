@@ -141,7 +141,8 @@ class _NewsWidgetState extends State<NewsWidget> {
                         height: AppSizeH.s100,
                         child: PageView.builder(
                             controller: _pageController,
-                            itemCount: value.news.length,
+                            itemCount:
+                                value.news.length > 5 ? 5 : value.news.length,
                             onPageChanged: (indexx) {
                               index = indexx;
                               setState(() {
@@ -170,13 +171,11 @@ class _NewsWidgetState extends State<NewsWidget> {
                               );
                             }),
                       ),
-                      SizedBox(
-                        height: AppSizeH.s10,
-                      ),
+                      SizedBox(height: AppSizeH.s10),
                       Center(
                         child: AnimatedSmoothIndicator(
                           activeIndex: index,
-                          count: value.news.length,
+                          count: value.news.length > 5 ? 5 : value.news.length,
                           // textDirection: TextDirection.rtl,
                           effect: ExpandingDotsEffect(
                               dotColor: ColorManager.silver,
