@@ -196,7 +196,7 @@ class StaticPagesContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: AppSizeH.s90,
+      height: context.locale == ARABIC_LOCAL ? AppSizeH.s90 : AppSizeH.s96,
       width: AppSizeW.s112,
       padding:
           EdgeInsets.symmetric(horizontal: AppSizeH.s6, vertical: AppSizeH.s10),
