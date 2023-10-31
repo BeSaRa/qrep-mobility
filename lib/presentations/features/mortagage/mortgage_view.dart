@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
+import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/widgets/mortgage_grid_widget.dart';
 import 'package:ebla/presentations/widgets/widgets.dart';
@@ -31,10 +32,11 @@ class MortgageView extends StatefulWidget {
 class _MortagageViewState extends State<MortgageView> {
   late MortgageTransactionsBloc mortgageTransactionsBloc;
   late ChangeStatusCubit changeStatusCubit;
-
+  late MortgageGridKPIsBloc mortgageGridKPIsBloc;
   @override
   void initState() {
     mortgageTransactionsBloc = instance<MortgageTransactionsBloc>();
+    mortgageGridKPIsBloc = instance<MortgageGridKPIsBloc>();
     changeStatusCubit = ChangeStatusCubit();
     super.initState();
   }
@@ -48,6 +50,8 @@ class _MortagageViewState extends State<MortgageView> {
       }, loading: () {
         return;
       }, success: (success) {
+        mortgageGridKPIsBloc.add(MortgageGridKPIsEvent.getData(
+            request: context.read<MortgageBloc>().requestMeanValue));
         mortgageTransactionsBloc.add(MortgageTransactionsEvent.started(
             requestMortgageValues:
                 context.read<MortgageBloc>().requestDefault));
@@ -262,16 +266,21 @@ class _MortagageViewState extends State<MortgageView> {
                                 ),
                               ),
                               const GreyLinerContainer(),
-                              Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: AppSizeW.s30),
-                                  child: MortgageGrid(
-                                    mainAxisSpacing: AppSizeH.s22,
-                                    crossAxisSpacing: AppSizeW.s23,
-                                    // response: response,
-                                    // kpi: KPI.values[index],
-                                    // index: index,
-                                  )),
+                              BlocProvider.value(
+                                value: mortgageGridKPIsBloc,
+                                child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: AppSizeW.s30),
+                                    child: MortgageGrid(
+                                      mainAxisSpacing: AppSizeH.s22,
+                                      crossAxisSpacing: AppSizeW.s23,
+                                      // defaultValues: context.read<MortgageBloc>().requestDefault,
+
+                                      // response: response,
+                                      // kpi: KPI.values[index],
+                                      // index: index,
+                                    )),
+                              ),
                               SizedBox(height: AppSizeH.s20),
                               Center(
                                 child: Text(

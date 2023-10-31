@@ -4,6 +4,7 @@ import 'package:ebla/domain/usecases/mortgage_usecases/transactions_mortgage_use
 import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
+import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
@@ -271,6 +272,19 @@ Future<void> initMortgageModule() async {
     instance.registerFactory<MortgageTransactionUseCase>(
         () => MortgageTransactionUseCase(instance()));
   }
+  //-------------------------
+  if (!GetIt.I.isRegistered<TotalMortgageTransactionsUseCase>()) {
+    instance.registerFactory<TotalMortgageTransactionsUseCase>(
+        () => TotalMortgageTransactionsUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<TotalNumOfMortgageUnitsUsecase>()) {
+    instance.registerFactory<TotalNumOfMortgageUnitsUsecase>(
+        () => TotalNumOfMortgageUnitsUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<TotalValOfMortgageTransactionsUsecase>()) {
+    instance.registerFactory<TotalValOfMortgageTransactionsUsecase>(
+        () => TotalValOfMortgageTransactionsUsecase(instance()));
+  }
 
   //blocs
   if (!GetIt.I.isRegistered<MortgageBloc>()) {
@@ -279,5 +293,12 @@ Future<void> initMortgageModule() async {
   if (!GetIt.I.isRegistered<MortgageTransactionsBloc>()) {
     instance.registerFactory<MortgageTransactionsBloc>(
         () => MortgageTransactionsBloc(instance()));
+  }
+  if (!GetIt.I.isRegistered<MortgageGridKPIsBloc>()) {
+    instance.registerFactory<MortgageGridKPIsBloc>(() => MortgageGridKPIsBloc(
+          totalMortgageTransactionsUseCase: instance(),
+          totalNumOfMortgageUnitsUsecase: instance(),
+          totalValOfMortgageTransactionsUsecase: instance(),
+        ));
   }
 }
