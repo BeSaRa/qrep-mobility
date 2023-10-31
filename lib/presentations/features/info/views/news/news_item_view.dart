@@ -45,15 +45,25 @@ class _NewsItemViewState extends State<NewsItemView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         flexibleSpace: Container(
+          height: AppSizeH.s50,
           decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(ImageAssets.appbarBg), fit: BoxFit.fill)),
         ),
-        leading: BackButton(
-          color: ColorManager.golden,
-        ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.maybePop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: ColorManager.golden,
+            )),
+        // BackButton(
+        //   color: ColorManager.golden,
+        // ),
         title: Text(
           AppStrings().newsDetails,
           style: Theme.of(context).textTheme.titleMedium,

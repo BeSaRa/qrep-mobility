@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/info/blocs/about_bloc/about_bloc.dart';
+import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -28,18 +29,28 @@ class _AboutUsViewState extends State<AboutUsView> {
           loaded: (value) {
             return Scaffold(
               appBar: AppBar(
+                backgroundColor: Colors.transparent,
                 surfaceTintColor: Colors.transparent,
                 flexibleSpace: Container(
+                  height: AppSizeH.s50,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(ImageAssets.appbarBg),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                leading: BackButton(
-                  color: ColorManager.golden,
-                ),
+                leading: IconButton(
+                    onPressed: () {
+                      Navigator.maybePop(context);
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: ColorManager.golden,
+                    )),
+                // BackButton(
+                //   color: ColorManager.golden,
+                // ),
                 title: Text(
                   AppStrings().aboutUs,
                   style: Theme.of(context).textTheme.titleMedium,
@@ -98,7 +109,14 @@ class _AboutUsViewState extends State<AboutUsView> {
             );
           },
           error: (value) {
-            return const Text('error');
+            return Scaffold(
+              body: ErrorGlobalWidget(
+                message: value.message,
+                onPressed: () {
+                  context.read<AboutBloc>().add(const AboutEvent.getAbout());
+                },
+              ),
+            );
           },
         );
       },
