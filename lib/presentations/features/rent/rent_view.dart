@@ -53,6 +53,7 @@ class _RentViewState extends State<RentView> {
 
   @override
   void didChangeDependencies() {
+    print('test rent ');
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
@@ -170,22 +171,12 @@ class _RentViewState extends State<RentView> {
                                                     .read<RentBloc>()
                                                     .requestMeanValue,
                                               ));
-                                              certificateContractBloc.index == 1
-                                                  ? certificateContractBloc.add(
-                                                      CertificateContractEvent
-                                                          .certificateCountEvent(
-                                                              request: context
-                                                                  .read<
-                                                                      RentBloc>()
-                                                                  .requestMeanValue),
-                                                    )
-                                                  : certificateContractBloc.add(
-                                                      CertificateContractEvent
-                                                          .contractCountEvent(
-                                                              request: context
-                                                                  .read<
-                                                                      RentBloc>()
-                                                                  .requestMeanValue));
+                                              certificateContractBloc.add(
+                                                  CertificateContractEvent
+                                                      .certificateCountEvent(
+                                                          request: context
+                                                              .read<RentBloc>()
+                                                              .requestMeanValue));
                                             },
                                           ),
                                           SizedBox(width: AppSizeW.s5),
@@ -218,22 +209,12 @@ class _RentViewState extends State<RentView> {
                                                     .read<RentBloc>()
                                                     .requestMeanValue,
                                               ));
-                                              certificateContractBloc.index == 1
-                                                  ? certificateContractBloc.add(
-                                                      CertificateContractEvent
-                                                          .certificateCountEvent(
-                                                              request: context
-                                                                  .read<
-                                                                      RentBloc>()
-                                                                  .requestMeanValue),
-                                                    )
-                                                  : certificateContractBloc.add(
-                                                      CertificateContractEvent
-                                                          .contractCountEvent(
-                                                              request: context
-                                                                  .read<
-                                                                      RentBloc>()
-                                                                  .requestMeanValue));
+                                              certificateContractBloc.add(
+                                                  CertificateContractEvent
+                                                      .certificateCountEvent(
+                                                          request: context
+                                                              .read<RentBloc>()
+                                                              .requestMeanValue));
                                             },
                                           ),
                                           SizedBox(width: AppSizeW.s7),
@@ -298,34 +279,34 @@ class _RentViewState extends State<RentView> {
                                             width: AppSizeW.s7,
                                           ),
                                         ]),
-                                    SizedBox(height: AppSizeH.s12),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: AppSizeW.s11,
-                                      ),
-                                      child: SizedBox(
-                                          height: AppSizeH.s26,
-                                          child: Row(
-                                              children: context
-                                                      .read<RentBloc>()
-                                                      .loockUpRent
-                                                      ?.periodTime
-                                                      .map((e) {
-                                                    return e.id != 5
-                                                        ? ChosenPeriodWidget(
-                                                            periodId: context
-                                                                .read<
-                                                                    RentBloc>()
-                                                                .requestMeanValue
-                                                                .periodId,
-                                                            id: e.id,
-                                                            enName: e.enName,
-                                                            arName: e.arName,
-                                                          )
-                                                        : const SizedBox();
-                                                  }).toList() ??
-                                                  [])),
-                                    ),
+                                    // SizedBox(height: AppSizeH.s12),
+                                    // Padding(
+                                    //   padding: EdgeInsets.symmetric(
+                                    //     horizontal: AppSizeW.s11,
+                                    //   ),
+                                    //   child: SizedBox(
+                                    //       height: AppSizeH.s26,
+                                    //       child: Row(
+                                    //           children: context
+                                    //                   .read<RentBloc>()
+                                    //                   .loockUpRent
+                                    //                   ?.periodTime
+                                    //                   .map((e) {
+                                    //                 return e.id != 5
+                                    //                     ? ChosenPeriodWidget(
+                                    //                         periodId: context
+                                    //                             .read<
+                                    //                                 RentBloc>()
+                                    //                             .requestMeanValue
+                                    //                             .periodId,
+                                    //                         id: e.id,
+                                    //                         enName: e.enName,
+                                    //                         arName: e.arName,
+                                    //                       )
+                                    //                     : const SizedBox();
+                                    //               }).toList() ??
+                                    //               [])),
+                                    // ),
                                   ]);
                                 },
                               ),
@@ -373,7 +354,7 @@ class _RentViewState extends State<RentView> {
                                     horizontal: AppSizeW.s20),
                                 child: BlocProvider.value(
                                   value: certificateContractBloc,
-                                  child: StatisTicsWidget(),
+                                  child: const StatisTicsWidget(),
                                 ),
                               ),
                               SizedBox(height: AppSizeH.s20),

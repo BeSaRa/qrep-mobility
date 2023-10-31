@@ -297,9 +297,9 @@ class HomeContainer extends StatelessWidget {
                   isBig ? CrossAxisAlignment.center : CrossAxisAlignment.end,
               children: [
                 Align(
-                  // alignment: context.locale == ARABIC_LOCAL
-                  //     ? Alignment.topLeft
-                  //     : Alignment.topRight,
+                  alignment: context.locale == ARABIC_LOCAL
+                      ? Alignment.topLeft
+                      : Alignment.topRight,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Transform.rotate(

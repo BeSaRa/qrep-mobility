@@ -8,6 +8,7 @@ import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgag
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_transaction/sell_transaction_bloc.dart';
+import 'package:ebla/presentations/features/sell/blocs/top_values_bloc/topvalues_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,6 +18,7 @@ import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecases/CMS/cms_usecases.dart';
+import '../domain/usecases/sell_usecases/top_values/top_values_sell_usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import '../presentations/features/info/blocs/news_bloc/news_bloc.dart';
@@ -141,6 +143,30 @@ Future<void> initSellModule() async {
     instance.registerFactory<SellTransactionUseCase>(
         () => SellTransactionUseCase(instance()));
   }
+  if (!GetIt.I.isRegistered<CountTransictionNumberUseCase>()) {
+    instance.registerFactory<CountTransictionNumberUseCase>(
+        () => CountTransictionNumberUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<CountUnitPriceUseCase>()) {
+    instance.registerFactory<CountUnitPriceUseCase>(
+        () => CountUnitPriceUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<CountTransictionsValueUseCase>()) {
+    instance.registerFactory<CountTransictionsValueUseCase>(
+        () => CountTransictionsValueUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<CountAreasUseCase>()) {
+    instance.registerFactory<CountAreasUseCase>(
+        () => CountAreasUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<RealStateNumberUseCase>()) {
+    instance.registerFactory<RealStateNumberUseCase>(
+        () => RealStateNumberUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<RealStateNumberMeterUseCase>()) {
+    instance.registerFactory<RealStateNumberMeterUseCase>(
+        () => RealStateNumberMeterUseCase(instance()));
+  }
 
   //-------------- Bloc's---------------------
 
@@ -162,7 +188,15 @@ Future<void> initSellModule() async {
   if (!GetIt.I.isRegistered<SellDefaultBloc>()) {
     instance.registerFactory(() => SellDefaultBloc(instance()));
   }
-
+  if (!GetIt.I.isRegistered<TopvaluesBloc>()) {
+    instance.registerFactory(() => TopvaluesBloc(
+        countTransictionNumberUseCase: instance(),
+        countUnitPriceUseCase: instance(),
+        countTransictionsValueUseCase: instance(),
+        countAreasUseCase: instance(),
+        realStateNumberUseCase: instance(),
+        realStateNumberMeterUseCase: instance()));
+  }
   //blocs
 }
 
