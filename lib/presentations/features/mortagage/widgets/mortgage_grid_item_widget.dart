@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:ebla/presentations/widgets/grid_value_with_unit_widget.dart';
@@ -113,7 +114,22 @@ class _MortgageGridItemWidgetState extends State<MortgageGridItemWidget> {
               BlocBuilder<MortgageGridKPIsBloc, MortgageGridKPIsState>(
                 bloc: context.read<MortgageGridKPIsBloc>(),
                 builder: (context, state) {
-                  if (state.isLoading || state.hasError) {
+                  if (state.hasError) {
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              context.read<MortgageGridKPIsBloc>().add(
+                                  MortgageGridKPIsEvent.getData(
+                                      request: context
+                                          .read<MortgageBloc>()
+                                          .requestMeanValue));
+                            },
+                            icon: const Icon(Icons.refresh)),
+                      ],
+                    );
+                  } else if (state.isLoading) {
                     return const Expanded(
                         flex: 1,
                         child: Column(
