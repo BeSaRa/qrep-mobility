@@ -137,6 +137,11 @@ class _MortagageViewState extends State<MortgageView> {
                                                               .read<
                                                                   MortgageBloc>()
                                                               .requestMeanValue));
+                                              mortgageGridKPIsBloc.add(
+                                                  MortgageGridKPIsEvent.getData(
+                                                      request: context
+                                                          .read<MortgageBloc>()
+                                                          .requestMeanValue));
                                             },
                                           ),
                                           SizedBox(width: AppSizeW.s5),
@@ -164,6 +169,11 @@ class _MortagageViewState extends State<MortgageView> {
                                                               .read<
                                                                   MortgageBloc>()
                                                               .requestMeanValue));
+                                              mortgageGridKPIsBloc.add(
+                                                  MortgageGridKPIsEvent.getData(
+                                                      request: context
+                                                          .read<MortgageBloc>()
+                                                          .requestMeanValue));
                                             },
                                           ),
                                           SizedBox(width: AppSizeW.s7),
@@ -199,6 +209,12 @@ class _MortagageViewState extends State<MortgageView> {
                                                           mortgageTransactionsBloc.add(
                                                               MortgageTransactionsEvent.started(
                                                                   requestMortgageValues: context
+                                                                      .read<
+                                                                          MortgageBloc>()
+                                                                      .requestMeanValue));
+                                                          mortgageGridKPIsBloc.add(
+                                                              MortgageGridKPIsEvent.getData(
+                                                                  request: context
                                                                       .read<
                                                                           MortgageBloc>()
                                                                       .requestMeanValue));
