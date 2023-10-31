@@ -243,9 +243,14 @@ mixin _$SellGridKPIsState {
       throw _privateConstructorUsedError;
   List<BaseRentResponse> get totalSoldUnits =>
       throw _privateConstructorUsedError;
-  List<BaseRentResponse> get contractsValue =>
+  List<BaseRentResponse> get totalTransactionsValue =>
       throw _privateConstructorUsedError;
-  List<BaseRentResponse> get meanValue => throw _privateConstructorUsedError;
+  List<BaseRentResponse> get meanSellUnitValue =>
+      throw _privateConstructorUsedError;
+  List<BaseRentResponse> get totalSoldSpaces =>
+      throw _privateConstructorUsedError;
+  List<BaseRentResponse> get meanSoldAreaValue =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -254,8 +259,10 @@ mixin _$SellGridKPIsState {
             String errorMessage,
             List<BaseRentResponse> totalContracts,
             List<BaseRentResponse> totalSoldUnits,
-            List<BaseRentResponse> contractsValue,
-            List<BaseRentResponse> meanValue)
+            List<BaseRentResponse> totalTransactionsValue,
+            List<BaseRentResponse> meanSellUnitValue,
+            List<BaseRentResponse> totalSoldSpaces,
+            List<BaseRentResponse> meanSoldAreaValue)
         initialState,
   }) =>
       throw _privateConstructorUsedError;
@@ -267,8 +274,10 @@ mixin _$SellGridKPIsState {
             String errorMessage,
             List<BaseRentResponse> totalContracts,
             List<BaseRentResponse> totalSoldUnits,
-            List<BaseRentResponse> contractsValue,
-            List<BaseRentResponse> meanValue)?
+            List<BaseRentResponse> totalTransactionsValue,
+            List<BaseRentResponse> meanSellUnitValue,
+            List<BaseRentResponse> totalSoldSpaces,
+            List<BaseRentResponse> meanSoldAreaValue)?
         initialState,
   }) =>
       throw _privateConstructorUsedError;
@@ -280,8 +289,10 @@ mixin _$SellGridKPIsState {
             String errorMessage,
             List<BaseRentResponse> totalContracts,
             List<BaseRentResponse> totalSoldUnits,
-            List<BaseRentResponse> contractsValue,
-            List<BaseRentResponse> meanValue)?
+            List<BaseRentResponse> totalTransactionsValue,
+            List<BaseRentResponse> meanSellUnitValue,
+            List<BaseRentResponse> totalSoldSpaces,
+            List<BaseRentResponse> meanSoldAreaValue)?
         initialState,
     required TResult orElse(),
   }) =>
@@ -320,8 +331,10 @@ abstract class $SellGridKPIsStateCopyWith<$Res> {
       String errorMessage,
       List<BaseRentResponse> totalContracts,
       List<BaseRentResponse> totalSoldUnits,
-      List<BaseRentResponse> contractsValue,
-      List<BaseRentResponse> meanValue});
+      List<BaseRentResponse> totalTransactionsValue,
+      List<BaseRentResponse> meanSellUnitValue,
+      List<BaseRentResponse> totalSoldSpaces,
+      List<BaseRentResponse> meanSoldAreaValue});
 }
 
 /// @nodoc
@@ -342,8 +355,10 @@ class _$SellGridKPIsStateCopyWithImpl<$Res, $Val extends SellGridKPIsState>
     Object? errorMessage = null,
     Object? totalContracts = null,
     Object? totalSoldUnits = null,
-    Object? contractsValue = null,
-    Object? meanValue = null,
+    Object? totalTransactionsValue = null,
+    Object? meanSellUnitValue = null,
+    Object? totalSoldSpaces = null,
+    Object? meanSoldAreaValue = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -366,13 +381,21 @@ class _$SellGridKPIsStateCopyWithImpl<$Res, $Val extends SellGridKPIsState>
           ? _value.totalSoldUnits
           : totalSoldUnits // ignore: cast_nullable_to_non_nullable
               as List<BaseRentResponse>,
-      contractsValue: null == contractsValue
-          ? _value.contractsValue
-          : contractsValue // ignore: cast_nullable_to_non_nullable
+      totalTransactionsValue: null == totalTransactionsValue
+          ? _value.totalTransactionsValue
+          : totalTransactionsValue // ignore: cast_nullable_to_non_nullable
               as List<BaseRentResponse>,
-      meanValue: null == meanValue
-          ? _value.meanValue
-          : meanValue // ignore: cast_nullable_to_non_nullable
+      meanSellUnitValue: null == meanSellUnitValue
+          ? _value.meanSellUnitValue
+          : meanSellUnitValue // ignore: cast_nullable_to_non_nullable
+              as List<BaseRentResponse>,
+      totalSoldSpaces: null == totalSoldSpaces
+          ? _value.totalSoldSpaces
+          : totalSoldSpaces // ignore: cast_nullable_to_non_nullable
+              as List<BaseRentResponse>,
+      meanSoldAreaValue: null == meanSoldAreaValue
+          ? _value.meanSoldAreaValue
+          : meanSoldAreaValue // ignore: cast_nullable_to_non_nullable
               as List<BaseRentResponse>,
     ) as $Val);
   }
@@ -392,8 +415,10 @@ abstract class _$$InitialStateImplCopyWith<$Res>
       String errorMessage,
       List<BaseRentResponse> totalContracts,
       List<BaseRentResponse> totalSoldUnits,
-      List<BaseRentResponse> contractsValue,
-      List<BaseRentResponse> meanValue});
+      List<BaseRentResponse> totalTransactionsValue,
+      List<BaseRentResponse> meanSellUnitValue,
+      List<BaseRentResponse> totalSoldSpaces,
+      List<BaseRentResponse> meanSoldAreaValue});
 }
 
 /// @nodoc
@@ -412,8 +437,10 @@ class __$$InitialStateImplCopyWithImpl<$Res>
     Object? errorMessage = null,
     Object? totalContracts = null,
     Object? totalSoldUnits = null,
-    Object? contractsValue = null,
-    Object? meanValue = null,
+    Object? totalTransactionsValue = null,
+    Object? meanSellUnitValue = null,
+    Object? totalSoldSpaces = null,
+    Object? meanSoldAreaValue = null,
   }) {
     return _then(_$InitialStateImpl(
       isLoading: null == isLoading
@@ -436,13 +463,21 @@ class __$$InitialStateImplCopyWithImpl<$Res>
           ? _value._totalSoldUnits
           : totalSoldUnits // ignore: cast_nullable_to_non_nullable
               as List<BaseRentResponse>,
-      contractsValue: null == contractsValue
-          ? _value._contractsValue
-          : contractsValue // ignore: cast_nullable_to_non_nullable
+      totalTransactionsValue: null == totalTransactionsValue
+          ? _value._totalTransactionsValue
+          : totalTransactionsValue // ignore: cast_nullable_to_non_nullable
               as List<BaseRentResponse>,
-      meanValue: null == meanValue
-          ? _value._meanValue
-          : meanValue // ignore: cast_nullable_to_non_nullable
+      meanSellUnitValue: null == meanSellUnitValue
+          ? _value._meanSellUnitValue
+          : meanSellUnitValue // ignore: cast_nullable_to_non_nullable
+              as List<BaseRentResponse>,
+      totalSoldSpaces: null == totalSoldSpaces
+          ? _value._totalSoldSpaces
+          : totalSoldSpaces // ignore: cast_nullable_to_non_nullable
+              as List<BaseRentResponse>,
+      meanSoldAreaValue: null == meanSoldAreaValue
+          ? _value._meanSoldAreaValue
+          : meanSoldAreaValue // ignore: cast_nullable_to_non_nullable
               as List<BaseRentResponse>,
     ));
   }
@@ -457,12 +492,16 @@ class _$InitialStateImpl implements _InitialState {
       this.errorMessage = '',
       final List<BaseRentResponse> totalContracts = const [],
       final List<BaseRentResponse> totalSoldUnits = const [],
-      final List<BaseRentResponse> contractsValue = const [],
-      final List<BaseRentResponse> meanValue = const []})
+      final List<BaseRentResponse> totalTransactionsValue = const [],
+      final List<BaseRentResponse> meanSellUnitValue = const [],
+      final List<BaseRentResponse> totalSoldSpaces = const [],
+      final List<BaseRentResponse> meanSoldAreaValue = const []})
       : _totalContracts = totalContracts,
         _totalSoldUnits = totalSoldUnits,
-        _contractsValue = contractsValue,
-        _meanValue = meanValue;
+        _totalTransactionsValue = totalTransactionsValue,
+        _meanSellUnitValue = meanSellUnitValue,
+        _totalSoldSpaces = totalSoldSpaces,
+        _meanSoldAreaValue = meanSoldAreaValue;
 
   @override
   @JsonKey()
@@ -491,27 +530,48 @@ class _$InitialStateImpl implements _InitialState {
     return EqualUnmodifiableListView(_totalSoldUnits);
   }
 
-  final List<BaseRentResponse> _contractsValue;
+  final List<BaseRentResponse> _totalTransactionsValue;
   @override
   @JsonKey()
-  List<BaseRentResponse> get contractsValue {
-    if (_contractsValue is EqualUnmodifiableListView) return _contractsValue;
+  List<BaseRentResponse> get totalTransactionsValue {
+    if (_totalTransactionsValue is EqualUnmodifiableListView)
+      return _totalTransactionsValue;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_contractsValue);
+    return EqualUnmodifiableListView(_totalTransactionsValue);
   }
 
-  final List<BaseRentResponse> _meanValue;
+  final List<BaseRentResponse> _meanSellUnitValue;
   @override
   @JsonKey()
-  List<BaseRentResponse> get meanValue {
-    if (_meanValue is EqualUnmodifiableListView) return _meanValue;
+  List<BaseRentResponse> get meanSellUnitValue {
+    if (_meanSellUnitValue is EqualUnmodifiableListView)
+      return _meanSellUnitValue;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_meanValue);
+    return EqualUnmodifiableListView(_meanSellUnitValue);
+  }
+
+  final List<BaseRentResponse> _totalSoldSpaces;
+  @override
+  @JsonKey()
+  List<BaseRentResponse> get totalSoldSpaces {
+    if (_totalSoldSpaces is EqualUnmodifiableListView) return _totalSoldSpaces;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_totalSoldSpaces);
+  }
+
+  final List<BaseRentResponse> _meanSoldAreaValue;
+  @override
+  @JsonKey()
+  List<BaseRentResponse> get meanSoldAreaValue {
+    if (_meanSoldAreaValue is EqualUnmodifiableListView)
+      return _meanSoldAreaValue;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_meanSoldAreaValue);
   }
 
   @override
   String toString() {
-    return 'SellGridKPIsState.initialState(isLoading: $isLoading, hasError: $hasError, errorMessage: $errorMessage, totalContracts: $totalContracts, totalSoldUnits: $totalSoldUnits, contractsValue: $contractsValue, meanValue: $meanValue)';
+    return 'SellGridKPIsState.initialState(isLoading: $isLoading, hasError: $hasError, errorMessage: $errorMessage, totalContracts: $totalContracts, totalSoldUnits: $totalSoldUnits, totalTransactionsValue: $totalTransactionsValue, meanSellUnitValue: $meanSellUnitValue, totalSoldSpaces: $totalSoldSpaces, meanSoldAreaValue: $meanSoldAreaValue)';
   }
 
   @override
@@ -529,10 +589,14 @@ class _$InitialStateImpl implements _InitialState {
                 .equals(other._totalContracts, _totalContracts) &&
             const DeepCollectionEquality()
                 .equals(other._totalSoldUnits, _totalSoldUnits) &&
+            const DeepCollectionEquality().equals(
+                other._totalTransactionsValue, _totalTransactionsValue) &&
             const DeepCollectionEquality()
-                .equals(other._contractsValue, _contractsValue) &&
+                .equals(other._meanSellUnitValue, _meanSellUnitValue) &&
             const DeepCollectionEquality()
-                .equals(other._meanValue, _meanValue));
+                .equals(other._totalSoldSpaces, _totalSoldSpaces) &&
+            const DeepCollectionEquality()
+                .equals(other._meanSoldAreaValue, _meanSoldAreaValue));
   }
 
   @override
@@ -543,8 +607,10 @@ class _$InitialStateImpl implements _InitialState {
       errorMessage,
       const DeepCollectionEquality().hash(_totalContracts),
       const DeepCollectionEquality().hash(_totalSoldUnits),
-      const DeepCollectionEquality().hash(_contractsValue),
-      const DeepCollectionEquality().hash(_meanValue));
+      const DeepCollectionEquality().hash(_totalTransactionsValue),
+      const DeepCollectionEquality().hash(_meanSellUnitValue),
+      const DeepCollectionEquality().hash(_totalSoldSpaces),
+      const DeepCollectionEquality().hash(_meanSoldAreaValue));
 
   @JsonKey(ignore: true)
   @override
@@ -561,12 +627,22 @@ class _$InitialStateImpl implements _InitialState {
             String errorMessage,
             List<BaseRentResponse> totalContracts,
             List<BaseRentResponse> totalSoldUnits,
-            List<BaseRentResponse> contractsValue,
-            List<BaseRentResponse> meanValue)
+            List<BaseRentResponse> totalTransactionsValue,
+            List<BaseRentResponse> meanSellUnitValue,
+            List<BaseRentResponse> totalSoldSpaces,
+            List<BaseRentResponse> meanSoldAreaValue)
         initialState,
   }) {
-    return initialState(isLoading, hasError, errorMessage, totalContracts,
-        totalSoldUnits, contractsValue, meanValue);
+    return initialState(
+        isLoading,
+        hasError,
+        errorMessage,
+        totalContracts,
+        totalSoldUnits,
+        totalTransactionsValue,
+        meanSellUnitValue,
+        totalSoldSpaces,
+        meanSoldAreaValue);
   }
 
   @override
@@ -578,12 +654,22 @@ class _$InitialStateImpl implements _InitialState {
             String errorMessage,
             List<BaseRentResponse> totalContracts,
             List<BaseRentResponse> totalSoldUnits,
-            List<BaseRentResponse> contractsValue,
-            List<BaseRentResponse> meanValue)?
+            List<BaseRentResponse> totalTransactionsValue,
+            List<BaseRentResponse> meanSellUnitValue,
+            List<BaseRentResponse> totalSoldSpaces,
+            List<BaseRentResponse> meanSoldAreaValue)?
         initialState,
   }) {
-    return initialState?.call(isLoading, hasError, errorMessage, totalContracts,
-        totalSoldUnits, contractsValue, meanValue);
+    return initialState?.call(
+        isLoading,
+        hasError,
+        errorMessage,
+        totalContracts,
+        totalSoldUnits,
+        totalTransactionsValue,
+        meanSellUnitValue,
+        totalSoldSpaces,
+        meanSoldAreaValue);
   }
 
   @override
@@ -595,14 +681,24 @@ class _$InitialStateImpl implements _InitialState {
             String errorMessage,
             List<BaseRentResponse> totalContracts,
             List<BaseRentResponse> totalSoldUnits,
-            List<BaseRentResponse> contractsValue,
-            List<BaseRentResponse> meanValue)?
+            List<BaseRentResponse> totalTransactionsValue,
+            List<BaseRentResponse> meanSellUnitValue,
+            List<BaseRentResponse> totalSoldSpaces,
+            List<BaseRentResponse> meanSoldAreaValue)?
         initialState,
     required TResult orElse(),
   }) {
     if (initialState != null) {
-      return initialState(isLoading, hasError, errorMessage, totalContracts,
-          totalSoldUnits, contractsValue, meanValue);
+      return initialState(
+          isLoading,
+          hasError,
+          errorMessage,
+          totalContracts,
+          totalSoldUnits,
+          totalTransactionsValue,
+          meanSellUnitValue,
+          totalSoldSpaces,
+          meanSoldAreaValue);
     }
     return orElse();
   }
@@ -643,8 +739,10 @@ abstract class _InitialState implements SellGridKPIsState {
       final String errorMessage,
       final List<BaseRentResponse> totalContracts,
       final List<BaseRentResponse> totalSoldUnits,
-      final List<BaseRentResponse> contractsValue,
-      final List<BaseRentResponse> meanValue}) = _$InitialStateImpl;
+      final List<BaseRentResponse> totalTransactionsValue,
+      final List<BaseRentResponse> meanSellUnitValue,
+      final List<BaseRentResponse> totalSoldSpaces,
+      final List<BaseRentResponse> meanSoldAreaValue}) = _$InitialStateImpl;
 
   @override
   bool get isLoading;
@@ -657,9 +755,13 @@ abstract class _InitialState implements SellGridKPIsState {
   @override
   List<BaseRentResponse> get totalSoldUnits;
   @override
-  List<BaseRentResponse> get contractsValue;
+  List<BaseRentResponse> get totalTransactionsValue;
   @override
-  List<BaseRentResponse> get meanValue;
+  List<BaseRentResponse> get meanSellUnitValue;
+  @override
+  List<BaseRentResponse> get totalSoldSpaces;
+  @override
+  List<BaseRentResponse> get meanSoldAreaValue;
   @override
   @JsonKey(ignore: true)
   _$$InitialStateImplCopyWith<_$InitialStateImpl> get copyWith =>

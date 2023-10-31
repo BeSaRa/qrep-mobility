@@ -115,6 +115,9 @@ class AppStrings {
   String averageSellPricePerUnitProperty =
       "average_sell_price_per_unit_property".tr();
   String totalSellContractsValue = "the_total_value_of_sell_contracts".tr();
+  String totalRentedSpaces = "total_rented_space".tr();
+  String averageSquareMeterPrice =
+      "the_average_price_per_square_meter_square_foot".tr();
   String sellPrice = "sell_price".tr();
   String theUnitPrice = "the_unit_price".tr();
   String sellContractList = "sell_contract_list".tr();

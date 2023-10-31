@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/newtwok/end_points.dart';
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
+import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
 import 'package:ebla/domain/models/mrtgage_models/mortgage_models.dart';
@@ -63,6 +64,9 @@ abstract class AppServiceClient {
   Future<HttpResponse<RentListSummary>> rentSummary(
       @Body() RequestMeanValue requestMeanValue);
 
+  @POST(EndPoints.totalRentedSpace)
+  Future<HttpResponse<List<BaseRentResponse>>> getTotalRentedSpace(
+      @Body() RequestMeanValue requestMeanValue);
   @POST(EndPoints.avgPriceTop)
   Future<HttpResponse<List<BaseRentResponse>>> avgMeanRentAmount(
       @Body() RequestMeanValue requestMeanValue);
@@ -82,6 +86,7 @@ abstract class AppServiceClient {
   //----------------------------------Sell--------------------------------------
   @GET(EndPoints.lookupSell)
   Future<HttpResponse<RentLookupResponse>> getLockupSell();
+  // KPI1
 
   // KPI1
   @POST(EndPoints.totalContractsSell)
@@ -98,9 +103,19 @@ abstract class AppServiceClient {
   Future<HttpResponse<List<BaseRentResponse>>> getTotalTransactionsSell(
       @Body() RequestSellValues requestSellValues);
 
+  // KPI10
+  @POST(EndPoints.totalSoldSpaces)
+  Future<HttpResponse<List<BaseRentResponse>>> getTotalSoldSpaces(
+      @Body() RequestSellValues requestMeanValue);
+
   // KPI13
   @POST(EndPoints.meanValueSell)
   Future<HttpResponse<List<BaseRentResponse>>> getMeanValueSell(
+      @Body() RequestSellValues requestSellValues);
+
+  // KPI16
+  @POST(EndPoints.meanSoldArea)
+  Future<HttpResponse<List<BaseRentResponse>>> getMeanSoldArea(
       @Body() RequestSellValues requestSellValues);
 
   //sell
@@ -163,6 +178,9 @@ abstract class TranslationsServiceClient {
   factory TranslationsServiceClient(Dio dio, {String baseUrl}) =
       _TranslationsServiceClient;
 
+  @GET(EndPoints.faq)
+  Future<HttpResponse<FaqResponse>> getFaq(@Query("limit") int limit);
+
   @GET(EndPoints.translations)
   Future<HttpResponse<TranslationsModel>> getTranslations(
       @Query("limit") int limit);
@@ -177,7 +195,7 @@ abstract class TranslationsServiceClient {
       {@Path('id') required int id});
 
   @GET(EndPoints.laws)
-  Future<HttpResponse<LawsResponse>> getLaws();
+  Future<HttpResponse<LawsResponse>> getLaws(@Query("limit") int limit);
 
   @GET(EndPoints.lawsById)
   Future<HttpResponse<LawByIdResponse>> getLawId(@Path("id") int id);

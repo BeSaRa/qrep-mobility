@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ebla/domain/usecases/mortgage_usecases/lookup_mortgage_usecase.dart';
 import 'package:ebla/domain/usecases/mortgage_usecases/transactions_mortgage_usecase.dart';
+import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
@@ -69,6 +70,9 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<LawByIdUsecase>()) {
     instance.registerFactory<LawByIdUsecase>(() => LawByIdUsecase(instance()));
   }
+  if (!GetIt.I.isRegistered<FaqUsecase>()) {
+    instance.registerFactory<FaqUsecase>(() => FaqUsecase(instance()));
+  }
 
   //Bloc's
   if (!GetIt.I.isRegistered<AboutBloc>()) {
@@ -81,6 +85,11 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<LawsBloc>()) {
     instance.registerFactory(
         () => LawsBloc(lawsUsecase: instance(), lawByIdUsecase: instance()));
+  }
+  if (!GetIt.I.isRegistered<FaqBloc>()) {
+    instance.registerFactory(() => FaqBloc(
+          faqUsecase: instance(),
+        ));
   }
 }
 
@@ -114,11 +123,22 @@ Future<void> initSellModule() async {
     instance.registerFactory<TotalTransactionSellUseCase>(
         () => TotalTransactionSellUseCase(instance()));
   }
-  // KPI13
-  if (!GetIt.I.isRegistered<MeanValueSellUsecase>()) {
-    instance.registerFactory<MeanValueSellUsecase>(
-        () => MeanValueSellUsecase(instance()));
+  // KPI10
+  if (!GetIt.I.isRegistered<TotalSoldSpacesUsecase>()) {
+    instance.registerFactory<TotalSoldSpacesUsecase>(
+        () => TotalSoldSpacesUsecase(instance()));
   }
+  // KPI13
+  if (!GetIt.I.isRegistered<MeanSellUnitValueUsecase>()) {
+    instance.registerFactory<MeanSellUnitValueUsecase>(
+        () => MeanSellUnitValueUsecase(instance()));
+  }
+  // KPI16
+  if (!GetIt.I.isRegistered<MeanSoldAreaUsecase>()) {
+    instance.registerFactory<MeanSoldAreaUsecase>(
+        () => MeanSoldAreaUsecase(instance()));
+  }
+
   if (!GetIt.I.isRegistered<SellTransactionUseCase>()) {
     instance.registerFactory<SellTransactionUseCase>(
         () => SellTransactionUseCase(instance()));
@@ -155,7 +175,9 @@ Future<void> initSellModule() async {
         totalContractsSellUseCase: instance(),
         totalSoldUnitsUseCase: instance(),
         totalTransactionSellUseCase: instance(),
-        meanValueSellUsecase: instance()));
+        meanSellUnitValueUsecase: instance(),
+        meanSoldAreaUseCase: instance(),
+        totalSoldPlacesUseCase: instance()));
   }
   if (!GetIt.I.isRegistered<SellBloc>()) {
     instance.registerFactory(() => SellBloc(getSellLookupUseCase: instance()));
@@ -213,6 +235,15 @@ Future<void> initRentModule() async {
     instance.registerFactory<TotalRentedUnitsUseCase>(
         () => TotalRentedUnitsUseCase(instance()));
   }
+  if (!GetIt.I.isRegistered<TotalRentedSpaceUsecase>()) {
+    instance.registerFactory<TotalRentedSpaceUsecase>(
+        () => TotalRentedSpaceUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<MeanAreaUsecase>()) {
+    instance
+        .registerFactory<MeanAreaUsecase>(() => MeanAreaUsecase(instance()));
+  }
+
   if (!GetIt.I.isRegistered<MeanRentAmountUsecase>()) {
     instance.registerFactory<MeanRentAmountUsecase>(
         () => MeanRentAmountUsecase(instance()));
@@ -252,7 +283,9 @@ Future<void> initRentModule() async {
         totalRentedUnitsUseCase: instance(),
         totalContractsUseCase: instance(),
         meanValueUsecase: instance(),
-        contractValueUseCase: instance()));
+        contractValueUseCase: instance(),
+        totalRentedSpaceUsecase: instance(),
+        meanAreaUsecase: instance()));
   }
   if (!GetIt.I.isRegistered<RentSummeryBloc>()) {
     instance.registerFactory(() => RentSummeryBloc(instance()));

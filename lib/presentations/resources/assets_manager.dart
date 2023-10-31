@@ -15,6 +15,10 @@ class ImageAssets {
       "${IMAGE_PATH}total_val_rent_contracts.svg";
   static const String averageRentUnitPrice =
       "${IMAGE_PATH}average_rent_unit_price.svg";
+  static const String totalRentedSpaces =
+      "${IMAGE_PATH}total_rented_spaces.svg";
+  static const String averageSquareMeterPrice =
+      "${IMAGE_PATH}average_price_per_square_meter_square_foot.svg";
 
   //------------------------------------------------
   static const String quatarTowerCitySplash =
@@ -60,4 +64,10 @@ class IconAssets {
   static const String faqHome = "${ICON_PATH}faq.svg";
   static const String lawsHome = "${ICON_PATH}laws.svg";
   static const String lawItem = "${ICON_PATH}law_item.svg";
+
+  // sell
+  static const String totalSellContracts =
+      "${ICON_PATH}the_total_number_of_sell_contracts.svg";
+  static const String totalSellTransactionsValue =
+      "${ICON_PATH}the_total_value_of_sell_contracts.svg";
 }

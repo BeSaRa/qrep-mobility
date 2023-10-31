@@ -26,51 +26,60 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle: const SystemUiOverlayStyle(
-            systemNavigationBarIconBrightness: Brightness.light,
-            statusBarColor: Colors.transparent,
-            statusBarIconBrightness: Brightness.light,
-          ),
-          leading: BackButton(color: ColorManager.white),
-          title: Text('Laws and decisions',
-              style: Theme.of(context).textTheme.displayMedium),
-          centerTitle: true,
-          backgroundColor: ColorManager.primary,
-        ),
-        body: RefreshIndicator(
-          onRefresh: () async {
-            context.read<LawsBloc>().add(const LawsEvent.getLaws());
-          },
-          child: BlocBuilder<LawsBloc, LawsState>(
-              bloc: context.read<LawsBloc>(),
-              builder: (context, state) {
-                if (state.isLoading) {
-                  return const AnimatedPulesLogo();
-                } else if (state.hasError) {
-                  return ErrorGlobalWidget(
-                    onPressed: () {
+        body: BlocBuilder<LawsBloc, LawsState>(
+            bloc: context.read<LawsBloc>(),
+            builder: (context, state) {
+              if (state.isLoading) {
+                return const AnimatedPulesLogo();
+              } else if (state.hasError) {
+                return ErrorGlobalWidget(
+                  onPressed: () {
+                    context.read<LawsBloc>().add(const LawsEvent.getLaws());
+                  },
+                );
+              } else if (state.lawsResponse.data.isNotEmpty) {
+                return Scaffold(
+                  appBar: AppBar(
+                    surfaceTintColor: Colors.transparent,
+                    flexibleSpace: Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(ImageAssets.appbarBg),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    leading: BackButton(
+                      color: ColorManager.golden,
+                    ),
+                    title: Text(
+                      AppStrings().lawsAndDecisions,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    centerTitle: true,
+                  ),
+                  body: RefreshIndicator(
+                    onRefresh: () async {
                       context.read<LawsBloc>().add(const LawsEvent.getLaws());
                     },
-                  );
-                } else if (state.lawsResponse.data.isNotEmpty) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: AppSizeW.s15, vertical: AppSizeH.s10),
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: state.lawsResponse.data.length,
-                      itemBuilder: (context, index) {
-                        return LawWidget(
-                          law: state.lawsResponse.data[index],
-                        );
-                      },
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: AppSizeW.s15, vertical: AppSizeH.s10),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: state.lawsResponse.data.length,
+                        itemBuilder: (context, index) {
+                          return LawWidget(
+                            law: state.lawsResponse.data[index],
+                          );
+                        },
+                      ),
                     ),
-                  );
-                } else if (state.lawsResponse.data.isEmpty) {}
-                return Container();
-              }),
-        ));
+                  ),
+                );
+              } else if (state.lawsResponse.data.isEmpty) {}
+              return Container();
+            }));
   }
 }
 
