@@ -196,22 +196,22 @@ class StaticPagesContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: AppSizeH.s125,
-      width: AppSizeW.s100,
-      padding: EdgeInsets.symmetric(
-          horizontal: AppSizeH.s15, vertical: AppSizeH.s10),
+      height: AppSizeH.s90,
+      width: AppSizeW.s112,
+      padding:
+          EdgeInsets.symmetric(horizontal: AppSizeH.s6, vertical: AppSizeH.s10),
       decoration: BoxDecoration(
           color: ColorManager.white,
           borderRadius: BorderRadius.circular(AppSizeW.s14),
-          border: Border.all(color: ColorManager.golden, width: AppSizeH.s1)),
+          border: Border.all(color: ColorManager.mercury, width: AppSizeH.s1)),
       child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SvgPicture.asset(
               icon,
-              height: AppSizeH.s60,
-              width: AppSizeW.s60,
+              height: AppSizeH.s36,
+              width: AppSizeW.s32,
             ),
             title,
           ],
@@ -269,81 +269,73 @@ class HomeContainer extends StatelessWidget {
                 blurRadius: AppSizeW.s2,
                 spreadRadius: AppSizeW.s1),
           ]),
-      child: Row(
+      child: Stack(
         children: [
           if (!isBig)
-            Expanded(
+            Align(
+              alignment: Alignment.centerRight,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  title,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 6,
-                  softWrap: true,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: textColor, fontWeight: FontWeight.w800),
+                child: SizedBox(
+                  width: AppSizeW.s70,
+                  child: Text(
+                    title,
+                    maxLines: 6,
+                    softWrap: true,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: textColor,
+                        fontWeight: FontWeight.w800,
+                        fontSize: AppSizeSp.s16),
+                  ),
                 ),
               ),
             ),
-          if (!isBig)
-            SizedBox(
-              width: AppSizeH.s4,
-            ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment:
-                  isBig ? CrossAxisAlignment.center : CrossAxisAlignment.end,
-              children: [
+          Stack(
+            // crossAxisAlignment:
+            //     isBig ? CrossAxisAlignment.center : CrossAxisAlignment.end,
+            children: [
+              Align(
+                alignment: context.locale == ARABIC_LOCAL
+                    ? Alignment.topLeft
+                    : Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Transform.rotate(
+                      angle: context.locale == ARABIC_LOCAL
+                          ? -45
+                          : 45 * math.pi / 180,
+                      child: Icon(
+                        Icons.arrow_upward_rounded,
+                        color: isBig ? ColorManager.greyCloud : iconColor,
+                      )),
+                ),
+              ),
+              Align(
+                alignment: isBig ? Alignment.center : Alignment.bottomLeft,
+                child: SvgPicture.asset(
+                  image,
+                  height: AppSizeH.s70,
+                  width: AppSizeW.s70,
+                  color: imageColor ?? Theme.of(context).primaryColor,
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
+              if (isBig)
                 Align(
-                  alignment: context.locale == ARABIC_LOCAL
-                      ? Alignment.topLeft
-                      : Alignment.topRight,
+                  alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Transform.rotate(
-                        angle: context.locale == ARABIC_LOCAL
-                            ? -45
-                            : 45 * math.pi / 180,
-                        child: Icon(
-                          Icons.arrow_upward_rounded,
-                          color: isBig ? ColorManager.greyCloud : iconColor,
-                        )),
-                  ),
-                ),
-                if (!isBig)
-                  SizedBox(
-                    height: AppSizeH.s10,
-                  ),
-                Align(
-                  alignment: isBig ? Alignment.center : Alignment.bottomLeft,
-                  child: SvgPicture.asset(
-                    image,
-                    height: AppSizeH.s70,
-                    width: AppSizeW.s70,
-                    color: imageColor ?? Theme.of(context).primaryColor,
-                    fit: BoxFit.scaleDown,
-                  ),
-                ),
-                if (isBig)
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        title,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        softWrap: true,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
-                      ),
+                    padding: EdgeInsets.symmetric(vertical: AppSizeH.s12),
+                    child: Text(
+                      title,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      softWrap: true,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w700, fontSize: AppSizeSp.s16),
                     ),
                   ),
-              ],
-            ),
+                ),
+            ],
           ),
         ],
       ),
