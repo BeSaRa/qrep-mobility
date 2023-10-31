@@ -54,7 +54,7 @@ class _MortagageViewState extends State<MortgageView> {
             request: context.read<MortgageBloc>().requestMeanValue));
         mortgageTransactionsBloc.add(MortgageTransactionsEvent.started(
             requestMortgageValues:
-                context.read<MortgageBloc>().requestDefault));
+                context.read<MortgageBloc>().requestMeanValue));
         return;
       }, error: (String message) {
         context.read<MortgageBloc>().add(const MortgageEvent.started());
@@ -130,6 +130,11 @@ class _MortagageViewState extends State<MortgageView> {
                                                                   ?.lookupKey,
                                                           areaCode: -1);
                                               changeStatusCubit.changeStatus();
+                                              mortgageGridKPIsBloc.add(
+                                                  MortgageGridKPIsEvent.getData(
+                                                      request: context
+                                                          .read<MortgageBloc>()
+                                                          .requestMeanValue));
                                               mortgageTransactionsBloc.add(
                                                   MortgageTransactionsEvent.started(
                                                       requestMortgageValues:
@@ -137,11 +142,6 @@ class _MortagageViewState extends State<MortgageView> {
                                                               .read<
                                                                   MortgageBloc>()
                                                               .requestMeanValue));
-                                              mortgageGridKPIsBloc.add(
-                                                  MortgageGridKPIsEvent.getData(
-                                                      request: context
-                                                          .read<MortgageBloc>()
-                                                          .requestMeanValue));
                                             },
                                           ),
                                           SizedBox(width: AppSizeW.s5),
@@ -162,6 +162,11 @@ class _MortagageViewState extends State<MortgageView> {
                                                           offset: 0,
                                                           issueDateYear: year);
                                               changeStatusCubit.changeStatus();
+                                              mortgageGridKPIsBloc.add(
+                                                  MortgageGridKPIsEvent.getData(
+                                                      request: context
+                                                          .read<MortgageBloc>()
+                                                          .requestMeanValue));
                                               mortgageTransactionsBloc.add(
                                                   MortgageTransactionsEvent.started(
                                                       requestMortgageValues:
@@ -169,11 +174,6 @@ class _MortagageViewState extends State<MortgageView> {
                                                               .read<
                                                                   MortgageBloc>()
                                                               .requestMeanValue));
-                                              mortgageGridKPIsBloc.add(
-                                                  MortgageGridKPIsEvent.getData(
-                                                      request: context
-                                                          .read<MortgageBloc>()
-                                                          .requestMeanValue));
                                             },
                                           ),
                                           SizedBox(width: AppSizeW.s7),
