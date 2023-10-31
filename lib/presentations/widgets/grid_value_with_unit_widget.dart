@@ -38,10 +38,7 @@ class GridValueWithUnitWidget extends StatelessWidget {
               textAlign: TextAlign.center,
               maxLines: 3,
               AppStrings().dataBeingCollectedAndAudited,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall!
-                  .copyWith(fontSize: AppSizeSp.s12),
+              style: Theme.of(context).textTheme.bodyMedium,
             )),
             child: Flexible(
               child: Visibility(
