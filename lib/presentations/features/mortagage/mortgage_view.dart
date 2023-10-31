@@ -227,34 +227,34 @@ class _MortagageViewState extends State<MortgageView> {
                                             width: AppSizeW.s7,
                                           ),
                                         ]),
-                                    SizedBox(height: AppSizeH.s12),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: AppSizeW.s11,
-                                      ),
-                                      child: SizedBox(
-                                          height: AppSizeH.s26,
-                                          child: Row(
-                                              children: context
-                                                      .read<MortgageBloc>()
-                                                      .lookUpMortgage
-                                                      ?.periodTime
-                                                      .map((e) {
-                                                    return e.id != 5
-                                                        ? ChosenPeriodWidget(
-                                                            periodId: context
-                                                                .read<
-                                                                    MortgageBloc>()
-                                                                .requestMeanValue
-                                                                .periodId,
-                                                            id: e.id,
-                                                            enName: e.enName,
-                                                            arName: e.arName,
-                                                          )
-                                                        : const SizedBox();
-                                                  }).toList() ??
-                                                  [])),
-                                    ),
+                                    // SizedBox(height: AppSizeH.s12),
+                                    // Padding(
+                                    //   padding: EdgeInsets.symmetric(
+                                    //     horizontal: AppSizeW.s11,
+                                    //   ),
+                                    //   child: SizedBox(
+                                    //       height: AppSizeH.s26,
+                                    //       child: Row(
+                                    //           children: context
+                                    //                   .read<MortgageBloc>()
+                                    //                   .lookUpMortgage
+                                    //                   ?.periodTime
+                                    //                   .map((e) {
+                                    //                 return e.id != 5
+                                    //                     ? ChosenPeriodWidget(
+                                    //                         periodId: context
+                                    //                             .read<
+                                    //                                 MortgageBloc>()
+                                    //                             .requestMeanValue
+                                    //                             .periodId,
+                                    //                         id: e.id,
+                                    //                         enName: e.enName,
+                                    //                         arName: e.arName,
+                                    //                       )
+                                    //                     : const SizedBox();
+                                    //               }).toList() ??
+                                    //               [])),
+                                    // ),
                                   ]);
                                 },
                               ),

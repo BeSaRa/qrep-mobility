@@ -62,8 +62,16 @@ class EndPoints {
   static const String sellTransactions = '/kpi/sell/kpi29/transactions';
 
   // أفضل عشر مناطق من حيث عدد الوحدات المباعة
-  static const String contractsCountSell =
+  static const String sellContractCount =
       '/kpi/sell/kpi30/zones/transactions-number';
+  static const String avgPricePerUnit = '/kpi/sell/kpi31/zones/unit-price';
+  static const String transactionsValue =
+      '/kpi/sell/kpi32/zones/transactions-value';
+  static const String soldAreas = '/kpi/sell/kpi33/zones/areas';
+  static const String realStateNumber =
+      '/kpi/sell/kpi33_1/zones/real-estate-number';
+  static const String averagePricePerSquareFoot =
+      '/kpi/sell/kpi33_2/zones/real-estate-mt-value';
 
   // إجمالي المساحات المباعة
   static const String totalSoldSpaces = '/kpi/sell/kpi10/total-areas';

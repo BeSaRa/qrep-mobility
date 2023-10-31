@@ -803,6 +803,49 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
+  Future<Result<List<BaseRentResponse>, FailureModel>> soldAreas(
+      RequestSellValues requestSellValues) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.soldAreas(requestSellValues);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<List<BaseRentResponse>, FailureModel>> sellContractCount(
+      RequestSellValues requestSellValues) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await appServiceClient.sellContractCount(requestSellValues);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalSoldSpaces(
       RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
@@ -825,10 +868,98 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
+  Future<Result<List<BaseRentResponse>, FailureModel>> transactionsValue(
+      RequestSellValues requestSellValues) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await appServiceClient.transactionsValue(requestSellValues);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
   Future<Result<FaqResponse, FailureModel>> getFaq(int id) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await translationsServiceClient.getFaq(id);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<List<BaseRentResponse>, FailureModel>> avgPricePerUnit(
+      RequestSellValues requestSellValues) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await appServiceClient.avgPricePerUnit(requestSellValues);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<List<BaseRentResponse>, FailureModel>> realStateNumber(
+      RequestSellValues requestSellValues) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await appServiceClient.realStateNumber(requestSellValues);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<List<BaseRentResponse>, FailureModel>>
+      averagePricePerSquareFoot(RequestSellValues requestSellValues) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await appServiceClient.averagePricePerSquareFoot(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
