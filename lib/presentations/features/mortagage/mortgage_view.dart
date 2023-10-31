@@ -5,6 +5,7 @@ import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
+import 'package:ebla/presentations/features/mortagage/widgets/mortgage_grid_widget.dart';
 import 'package:ebla/presentations/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -261,29 +262,16 @@ class _MortagageViewState extends State<MortgageView> {
                                 ),
                               ),
                               const GreyLinerContainer(),
-                              // Padding(
-                              //   padding: EdgeInsets.symmetric(
-                              //       horizontal: AppSizeW.s20),
-                              //   child: StaggeredGridView(
-                              //     // for development only: UniqueKey forces the rebuild of the widget on hot reload
-                              //     key: UniqueKey(),
-                              //     itemsCount: 4,
-                              //     rightSectionTopPadding: AppSizeH.s17,
-                              //     mainAxisSpacing: AppSizeH.s22,
-                              //     crossAxisSpacing: AppSizeW.s23,
-                              //     gridItemChildBuilder: (context, index) {
-                              //       return BlocProvider.value(
-                              //         value: rentGridKPIsBloc,
-                              //         child: RentGridItemWidget(
-                              //           response: response,
-                              //           kpi: KPI.values[index],
-                              //           index: index,
-                              //         ),
-                              //       );
-                              //     },
-                              //   ),
-                              // ),
-
+                              Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: AppSizeW.s30),
+                                  child: MortgageGrid(
+                                    mainAxisSpacing: AppSizeH.s22,
+                                    crossAxisSpacing: AppSizeW.s23,
+                                    // response: response,
+                                    // kpi: KPI.values[index],
+                                    // index: index,
+                                  )),
                               SizedBox(height: AppSizeH.s20),
                               Center(
                                 child: Text(
