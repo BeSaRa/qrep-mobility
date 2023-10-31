@@ -40,8 +40,6 @@ class _MortgageGridState extends State<MortgageGrid> {
                 ),
                 const MortgageGridItemWidget(
                     kpi: MortgageGridKPIs.totalMortgageTransactionsValue),
-                // Flexible(child: Placeholder()),
-                // Flexible(child: Placeholder()),
               ],
             ),
           ),

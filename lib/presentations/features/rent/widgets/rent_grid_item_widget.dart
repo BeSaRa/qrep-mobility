@@ -292,7 +292,7 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                         .imagePath,
                     height: AppSizeH.s70,
                     width: AppSizeW.s70,
-                    color: ColorManager.primary,
+                    color: ColorManager.primary.withOpacity(0.6),
                   ),
                 ),
               ],

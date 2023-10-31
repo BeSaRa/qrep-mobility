@@ -75,114 +75,121 @@ class _MortgageGridItemWidgetState extends State<MortgageGridItemWidget> {
           stops: const [0.2, 1.0],
         ),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Stack(
         children: [
-          SizedBox(height: AppSizeH.s20),
-          Flexible(
-            flex: 1,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppSizeW.s20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Text(
-                        gridItemsData
-                            .firstWhere((element) => element.kpi == widget.kpi)
-                            .title
-                            .tr(),
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyMedium),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(height: AppSizeH.s20),
+              Flexible(
+                flex: 1,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: AppSizeW.s20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Text(
+                            gridItemsData
+                                .firstWhere(
+                                    (element) => element.kpi == widget.kpi)
+                                .title
+                                .tr(),
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(fontWeight: FontWeight.w700)),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: AppSizeH.s17,
-          ),
-          Expanded(
-            flex: 2,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                SizedBox(width: AppSizeW.s24),
-                BlocBuilder<MortgageGridKPIsBloc, MortgageGridKPIsState>(
-                  bloc: context.read<MortgageGridKPIsBloc>(),
-                  builder: (context, state) {
-                    if (state.isLoading || state.hasError) {
-                      return const Expanded(
-                          flex: 1,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CircularProgressIndicator(),
-                            ],
-                          ));
-                    } else if (state.totalMortgageTransactions.isNotEmpty &&
-                        widget.kpi ==
-                            MortgageGridKPIs.totalMortgageTransactions) {
-                      /// KPI1
-                      /// عدد معاملات الرهن
-                      return GridValueWithUnitWidget(
-                        countUp: true,
-                        duration: 1,
-                        begin: 0,
-                        end: state.totalMortgageTransactions.first.kpiVal
-                            .toDouble(),
-                        unit: gridItemsData
-                            .firstWhere((element) => element.kpi == widget.kpi)
-                            .valueUnit,
-                      );
-                    } else if (state.totalMortgageUnitsNum.isNotEmpty &&
-                        widget.kpi == MortgageGridKPIs.totalMortgageUnitsNum) {
-                      // KPI3
-                      /// إجمالي عدد الوحدات المرهونة
-                      return GridValueWithUnitWidget(
-                        countUp: true,
-                        duration: 1,
-                        begin: 0,
-                        end:
-                            state.totalMortgageUnitsNum.first.kpiVal.toDouble(),
-                        unit: gridItemsData
-                            .firstWhere((element) => element.kpi == widget.kpi)
-                            .valueUnit,
-                      );
-                    } else if (state
-                            .totalMortgageTransactionsValue.isNotEmpty &&
-                        widget.kpi ==
-                            MortgageGridKPIs.totalMortgageTransactionsValue) {
-                      // KPI5
-                      /// إجمالي قيمة معاملات الرهن
-                      return GridValueWithUnitWidget(
-                        countUp: true,
-                        duration: 1,
-                        begin: 0,
-                        end: state.totalMortgageTransactionsValue.first.kpiVal
-                            .toDouble(),
-                        unit: gridItemsData
-                            .firstWhere((element) => element.kpi == widget.kpi)
-                            .valueUnit,
-                      );
-                    }
-                    // todo: consider using something else other than showing dataCollectedAndAudited when reaching this case, (should not be reached)
-                    return const GridValueWithUnitWidget(
-                      countUp: false,
-                      begin: 0,
-                      end: 0,
-                      unit: '',
-                      dataCollectedAndAudited: true,
-                    );
-                  },
                 ),
-                SizedBox(width: AppSizeW.s16),
-                AspectRatio(
+              ),
+              SizedBox(
+                height: AppSizeH.s5,
+              ),
+              BlocBuilder<MortgageGridKPIsBloc, MortgageGridKPIsState>(
+                bloc: context.read<MortgageGridKPIsBloc>(),
+                builder: (context, state) {
+                  if (state.isLoading || state.hasError) {
+                    return const Expanded(
+                        flex: 1,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CircularProgressIndicator(),
+                          ],
+                        ));
+                  } else if (state.totalMortgageTransactions.isNotEmpty &&
+                      widget.kpi ==
+                          MortgageGridKPIs.totalMortgageTransactions) {
+                    /// KPI1
+                    /// عدد معاملات الرهن
+                    return GridValueWithUnitWidget(
+                      countUp: true,
+                      duration: 1,
+                      begin: 0,
+                      end: state.totalMortgageTransactions.first.kpiVal
+                          .toDouble(),
+                      unit: gridItemsData
+                          .firstWhere((element) => element.kpi == widget.kpi)
+                          .valueUnit,
+                    );
+                  } else if (state.totalMortgageUnitsNum.isNotEmpty &&
+                      widget.kpi == MortgageGridKPIs.totalMortgageUnitsNum) {
+                    // KPI3
+                    /// إجمالي عدد الوحدات المرهونة
+                    return GridValueWithUnitWidget(
+                      countUp: true,
+                      duration: 1,
+                      begin: 0,
+                      end: state.totalMortgageUnitsNum.first.kpiVal.toDouble(),
+                      unit: gridItemsData
+                          .firstWhere((element) => element.kpi == widget.kpi)
+                          .valueUnit,
+                    );
+                  } else if (state.totalMortgageTransactionsValue.isNotEmpty &&
+                      widget.kpi ==
+                          MortgageGridKPIs.totalMortgageTransactionsValue) {
+                    // KPI5
+                    /// إجمالي قيمة معاملات الرهن
+                    return GridValueWithUnitWidget(
+                      countUp: true,
+                      duration: 1,
+                      begin: 0,
+                      end: state.totalMortgageTransactionsValue.first.kpiVal
+                          .toDouble(),
+                      unit: gridItemsData
+                          .firstWhere((element) => element.kpi == widget.kpi)
+                          .valueUnit,
+                    );
+                  }
+                  // todo: consider using something else other than showing dataCollectedAndAudited when reaching this case, (should not be reached)
+                  return const GridValueWithUnitWidget(
+                    countUp: false,
+                    begin: 0,
+                    end: 0,
+                    unit: '',
+                    dataCollectedAndAudited: true,
+                  );
+                },
+              ),
+            ],
+          ),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SizedBox(
+                height: AppSizeH.s72,
+              ),
+              Flexible(
+                flex: 1,
+                child: AspectRatio(
                   aspectRatio: 1,
                   child: SvgPicture.asset(
                     gridItemsData
@@ -190,11 +197,11 @@ class _MortgageGridItemWidgetState extends State<MortgageGridItemWidget> {
                         .imagePath,
                     height: AppSizeH.s70,
                     width: AppSizeW.s70,
-                    color: ColorManager.primary,
+                    color: ColorManager.primary.withOpacity(0.6),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           )
         ],
       ),

@@ -1,6 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ebla/app/extensions.dart';
-import 'package:ebla/presentations/features/rent/widgets/rent_grid_item_widget.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
@@ -292,7 +290,7 @@ class _SellGridItemWidgetState extends State<SellGridItemWidget> {
                       .imagePath,
                   height: AppSizeH.s70,
                   width: AppSizeW.s70,
-                  color: ColorManager.primary,
+                  color: ColorManager.primary.withOpacity(0.6),
                 ),
               ),
             ],
