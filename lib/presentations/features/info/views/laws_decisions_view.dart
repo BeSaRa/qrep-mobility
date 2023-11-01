@@ -42,15 +42,32 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                   appBar: AppBar(
                     backgroundColor: Colors.transparent,
                     surfaceTintColor: Colors.transparent,
-                    flexibleSpace: Container(
-                      height: AppSizeH.s50,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(ImageAssets.appbarBg),
-                          fit: BoxFit.cover,
-                        ),
+                    flexibleSpace: ShaderMask(
+                      shaderCallback: (rect) {
+                        return const LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Colors.black, Colors.transparent],
+                        ).createShader(
+                            Rect.fromLTRB(0, 0, rect.width, rect.height));
+                      },
+                      blendMode: BlendMode.dstIn,
+                      child: Image.asset(
+                        ImageAssets.appbarBg,
+                        // height: 400,
+
+                        fit: BoxFit.fill,
                       ),
                     ),
+                    // Container(
+                    //   height: AppSizeH.s50,
+                    //   decoration: const BoxDecoration(
+                    //     image: DecorationImage(
+                    //       image: AssetImage(ImageAssets.appbarBg),
+                    //       fit: BoxFit.cover,
+                    //     ),
+                    //   ),
+                    // ),
                     leading: IconButton(
                         onPressed: () {
                           Navigator.maybePop(context);

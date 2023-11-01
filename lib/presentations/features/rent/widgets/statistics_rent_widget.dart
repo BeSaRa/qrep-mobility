@@ -184,7 +184,12 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                 children: [
                   Text(state.errorMessage),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<CertificateContractBloc>().add(
+                            CertificateContractEvent.certificateCountEvent(
+                                request:
+                                    context.read<RentBloc>().requestMeanValue));
+                      },
                       icon: const Icon(Icons.refresh_outlined))
                 ],
               );
@@ -245,7 +250,6 @@ class _TabContainerShimmer extends StatelessWidget {
   final String name;
 
   const _TabContainerShimmer({
-    super.key,
     required this.tabIndex,
     required this.name,
   });
@@ -282,7 +286,6 @@ class _TabContainer extends StatelessWidget {
   final Function onPress;
 
   const _TabContainer({
-    super.key,
     required this.indexTab,
     required this.name,
     required this.onPress,
