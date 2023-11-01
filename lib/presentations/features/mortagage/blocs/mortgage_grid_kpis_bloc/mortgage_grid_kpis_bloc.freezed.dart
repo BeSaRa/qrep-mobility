@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MortgageGridKPIsState {
   bool get isLoading => throw _privateConstructorUsedError;
-  bool get hasError => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
   /// KPI1
@@ -30,16 +29,23 @@ mixin _$MortgageGridKPIsState {
 
   /// KPI5
   List<BaseRentResponse> get totalMortgageTransactionsValue =>
+      throw _privateConstructorUsedError; //-------------------------------errors----------------------------
+  bool get hasErrorTotalMortgageTransactions =>
+      throw _privateConstructorUsedError;
+  bool get hasErrortotalMortgageUnitsNum => throw _privateConstructorUsedError;
+  bool get hasErrorTotalMortgageTransactionsValue =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
             bool isLoading,
-            bool hasError,
             String errorMessage,
             List<BaseRentResponse> totalMortgageTransactions,
             List<BaseRentResponse> totalMortgageUnitsNum,
-            List<BaseRentResponse> totalMortgageTransactionsValue)
+            List<BaseRentResponse> totalMortgageTransactionsValue,
+            bool hasErrorTotalMortgageTransactions,
+            bool hasErrortotalMortgageUnitsNum,
+            bool hasErrorTotalMortgageTransactionsValue)
         initialState,
   }) =>
       throw _privateConstructorUsedError;
@@ -47,11 +53,13 @@ mixin _$MortgageGridKPIsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
             bool isLoading,
-            bool hasError,
             String errorMessage,
             List<BaseRentResponse> totalMortgageTransactions,
             List<BaseRentResponse> totalMortgageUnitsNum,
-            List<BaseRentResponse> totalMortgageTransactionsValue)?
+            List<BaseRentResponse> totalMortgageTransactionsValue,
+            bool hasErrorTotalMortgageTransactions,
+            bool hasErrortotalMortgageUnitsNum,
+            bool hasErrorTotalMortgageTransactionsValue)?
         initialState,
   }) =>
       throw _privateConstructorUsedError;
@@ -59,11 +67,13 @@ mixin _$MortgageGridKPIsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             bool isLoading,
-            bool hasError,
             String errorMessage,
             List<BaseRentResponse> totalMortgageTransactions,
             List<BaseRentResponse> totalMortgageUnitsNum,
-            List<BaseRentResponse> totalMortgageTransactionsValue)?
+            List<BaseRentResponse> totalMortgageTransactionsValue,
+            bool hasErrorTotalMortgageTransactions,
+            bool hasErrortotalMortgageUnitsNum,
+            bool hasErrorTotalMortgageTransactionsValue)?
         initialState,
     required TResult orElse(),
   }) =>
@@ -98,11 +108,13 @@ abstract class $MortgageGridKPIsStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isLoading,
-      bool hasError,
       String errorMessage,
       List<BaseRentResponse> totalMortgageTransactions,
       List<BaseRentResponse> totalMortgageUnitsNum,
-      List<BaseRentResponse> totalMortgageTransactionsValue});
+      List<BaseRentResponse> totalMortgageTransactionsValue,
+      bool hasErrorTotalMortgageTransactions,
+      bool hasErrortotalMortgageUnitsNum,
+      bool hasErrorTotalMortgageTransactionsValue});
 }
 
 /// @nodoc
@@ -120,20 +132,18 @@ class _$MortgageGridKPIsStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? isLoading = null,
-    Object? hasError = null,
     Object? errorMessage = null,
     Object? totalMortgageTransactions = null,
     Object? totalMortgageUnitsNum = null,
     Object? totalMortgageTransactionsValue = null,
+    Object? hasErrorTotalMortgageTransactions = null,
+    Object? hasErrortotalMortgageUnitsNum = null,
+    Object? hasErrorTotalMortgageTransactionsValue = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasError: null == hasError
-          ? _value.hasError
-          : hasError // ignore: cast_nullable_to_non_nullable
               as bool,
       errorMessage: null == errorMessage
           ? _value.errorMessage
@@ -151,6 +161,20 @@ class _$MortgageGridKPIsStateCopyWithImpl<$Res,
           ? _value.totalMortgageTransactionsValue
           : totalMortgageTransactionsValue // ignore: cast_nullable_to_non_nullable
               as List<BaseRentResponse>,
+      hasErrorTotalMortgageTransactions: null ==
+              hasErrorTotalMortgageTransactions
+          ? _value.hasErrorTotalMortgageTransactions
+          : hasErrorTotalMortgageTransactions // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasErrortotalMortgageUnitsNum: null == hasErrortotalMortgageUnitsNum
+          ? _value.hasErrortotalMortgageUnitsNum
+          : hasErrortotalMortgageUnitsNum // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasErrorTotalMortgageTransactionsValue: null ==
+              hasErrorTotalMortgageTransactionsValue
+          ? _value.hasErrorTotalMortgageTransactionsValue
+          : hasErrorTotalMortgageTransactionsValue // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -165,11 +189,13 @@ abstract class _$$InitialStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool isLoading,
-      bool hasError,
       String errorMessage,
       List<BaseRentResponse> totalMortgageTransactions,
       List<BaseRentResponse> totalMortgageUnitsNum,
-      List<BaseRentResponse> totalMortgageTransactionsValue});
+      List<BaseRentResponse> totalMortgageTransactionsValue,
+      bool hasErrorTotalMortgageTransactions,
+      bool hasErrortotalMortgageUnitsNum,
+      bool hasErrorTotalMortgageTransactionsValue});
 }
 
 /// @nodoc
@@ -184,20 +210,18 @@ class __$$InitialStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
-    Object? hasError = null,
     Object? errorMessage = null,
     Object? totalMortgageTransactions = null,
     Object? totalMortgageUnitsNum = null,
     Object? totalMortgageTransactionsValue = null,
+    Object? hasErrorTotalMortgageTransactions = null,
+    Object? hasErrortotalMortgageUnitsNum = null,
+    Object? hasErrorTotalMortgageTransactionsValue = null,
   }) {
     return _then(_$InitialStateImpl(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasError: null == hasError
-          ? _value.hasError
-          : hasError // ignore: cast_nullable_to_non_nullable
               as bool,
       errorMessage: null == errorMessage
           ? _value.errorMessage
@@ -215,6 +239,20 @@ class __$$InitialStateImplCopyWithImpl<$Res>
           ? _value._totalMortgageTransactionsValue
           : totalMortgageTransactionsValue // ignore: cast_nullable_to_non_nullable
               as List<BaseRentResponse>,
+      hasErrorTotalMortgageTransactions: null ==
+              hasErrorTotalMortgageTransactions
+          ? _value.hasErrorTotalMortgageTransactions
+          : hasErrorTotalMortgageTransactions // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasErrortotalMortgageUnitsNum: null == hasErrortotalMortgageUnitsNum
+          ? _value.hasErrortotalMortgageUnitsNum
+          : hasErrortotalMortgageUnitsNum // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasErrorTotalMortgageTransactionsValue: null ==
+              hasErrorTotalMortgageTransactionsValue
+          ? _value.hasErrorTotalMortgageTransactionsValue
+          : hasErrorTotalMortgageTransactionsValue // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -224,11 +262,13 @@ class __$$InitialStateImplCopyWithImpl<$Res>
 class _$InitialStateImpl implements _InitialState {
   const _$InitialStateImpl(
       {this.isLoading = false,
-      this.hasError = false,
       this.errorMessage = '',
       final List<BaseRentResponse> totalMortgageTransactions = const [],
       final List<BaseRentResponse> totalMortgageUnitsNum = const [],
-      final List<BaseRentResponse> totalMortgageTransactionsValue = const []})
+      final List<BaseRentResponse> totalMortgageTransactionsValue = const [],
+      this.hasErrorTotalMortgageTransactions = false,
+      this.hasErrortotalMortgageUnitsNum = false,
+      this.hasErrorTotalMortgageTransactionsValue = false})
       : _totalMortgageTransactions = totalMortgageTransactions,
         _totalMortgageUnitsNum = totalMortgageUnitsNum,
         _totalMortgageTransactionsValue = totalMortgageTransactionsValue;
@@ -236,9 +276,6 @@ class _$InitialStateImpl implements _InitialState {
   @override
   @JsonKey()
   final bool isLoading;
-  @override
-  @JsonKey()
-  final bool hasError;
   @override
   @JsonKey()
   final String errorMessage;
@@ -282,9 +319,20 @@ class _$InitialStateImpl implements _InitialState {
     return EqualUnmodifiableListView(_totalMortgageTransactionsValue);
   }
 
+//-------------------------------errors----------------------------
+  @override
+  @JsonKey()
+  final bool hasErrorTotalMortgageTransactions;
+  @override
+  @JsonKey()
+  final bool hasErrortotalMortgageUnitsNum;
+  @override
+  @JsonKey()
+  final bool hasErrorTotalMortgageTransactionsValue;
+
   @override
   String toString() {
-    return 'MortgageGridKPIsState.initialState(isLoading: $isLoading, hasError: $hasError, errorMessage: $errorMessage, totalMortgageTransactions: $totalMortgageTransactions, totalMortgageUnitsNum: $totalMortgageUnitsNum, totalMortgageTransactionsValue: $totalMortgageTransactionsValue)';
+    return 'MortgageGridKPIsState.initialState(isLoading: $isLoading, errorMessage: $errorMessage, totalMortgageTransactions: $totalMortgageTransactions, totalMortgageUnitsNum: $totalMortgageUnitsNum, totalMortgageTransactionsValue: $totalMortgageTransactionsValue, hasErrorTotalMortgageTransactions: $hasErrorTotalMortgageTransactions, hasErrortotalMortgageUnitsNum: $hasErrortotalMortgageUnitsNum, hasErrorTotalMortgageTransactionsValue: $hasErrorTotalMortgageTransactionsValue)';
   }
 
   @override
@@ -294,8 +342,6 @@ class _$InitialStateImpl implements _InitialState {
             other is _$InitialStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            (identical(other.hasError, hasError) ||
-                other.hasError == hasError) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
             const DeepCollectionEquality().equals(
@@ -304,18 +350,32 @@ class _$InitialStateImpl implements _InitialState {
                 .equals(other._totalMortgageUnitsNum, _totalMortgageUnitsNum) &&
             const DeepCollectionEquality().equals(
                 other._totalMortgageTransactionsValue,
-                _totalMortgageTransactionsValue));
+                _totalMortgageTransactionsValue) &&
+            (identical(other.hasErrorTotalMortgageTransactions,
+                    hasErrorTotalMortgageTransactions) ||
+                other.hasErrorTotalMortgageTransactions ==
+                    hasErrorTotalMortgageTransactions) &&
+            (identical(other.hasErrortotalMortgageUnitsNum,
+                    hasErrortotalMortgageUnitsNum) ||
+                other.hasErrortotalMortgageUnitsNum ==
+                    hasErrortotalMortgageUnitsNum) &&
+            (identical(other.hasErrorTotalMortgageTransactionsValue,
+                    hasErrorTotalMortgageTransactionsValue) ||
+                other.hasErrorTotalMortgageTransactionsValue ==
+                    hasErrorTotalMortgageTransactionsValue));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       isLoading,
-      hasError,
       errorMessage,
       const DeepCollectionEquality().hash(_totalMortgageTransactions),
       const DeepCollectionEquality().hash(_totalMortgageUnitsNum),
-      const DeepCollectionEquality().hash(_totalMortgageTransactionsValue));
+      const DeepCollectionEquality().hash(_totalMortgageTransactionsValue),
+      hasErrorTotalMortgageTransactions,
+      hasErrortotalMortgageUnitsNum,
+      hasErrorTotalMortgageTransactionsValue);
 
   @JsonKey(ignore: true)
   @override
@@ -328,20 +388,24 @@ class _$InitialStateImpl implements _InitialState {
   TResult when<TResult extends Object?>({
     required TResult Function(
             bool isLoading,
-            bool hasError,
             String errorMessage,
             List<BaseRentResponse> totalMortgageTransactions,
             List<BaseRentResponse> totalMortgageUnitsNum,
-            List<BaseRentResponse> totalMortgageTransactionsValue)
+            List<BaseRentResponse> totalMortgageTransactionsValue,
+            bool hasErrorTotalMortgageTransactions,
+            bool hasErrortotalMortgageUnitsNum,
+            bool hasErrorTotalMortgageTransactionsValue)
         initialState,
   }) {
     return initialState(
         isLoading,
-        hasError,
         errorMessage,
         totalMortgageTransactions,
         totalMortgageUnitsNum,
-        totalMortgageTransactionsValue);
+        totalMortgageTransactionsValue,
+        hasErrorTotalMortgageTransactions,
+        hasErrortotalMortgageUnitsNum,
+        hasErrorTotalMortgageTransactionsValue);
   }
 
   @override
@@ -349,20 +413,24 @@ class _$InitialStateImpl implements _InitialState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
             bool isLoading,
-            bool hasError,
             String errorMessage,
             List<BaseRentResponse> totalMortgageTransactions,
             List<BaseRentResponse> totalMortgageUnitsNum,
-            List<BaseRentResponse> totalMortgageTransactionsValue)?
+            List<BaseRentResponse> totalMortgageTransactionsValue,
+            bool hasErrorTotalMortgageTransactions,
+            bool hasErrortotalMortgageUnitsNum,
+            bool hasErrorTotalMortgageTransactionsValue)?
         initialState,
   }) {
     return initialState?.call(
         isLoading,
-        hasError,
         errorMessage,
         totalMortgageTransactions,
         totalMortgageUnitsNum,
-        totalMortgageTransactionsValue);
+        totalMortgageTransactionsValue,
+        hasErrorTotalMortgageTransactions,
+        hasErrortotalMortgageUnitsNum,
+        hasErrorTotalMortgageTransactionsValue);
   }
 
   @override
@@ -370,22 +438,26 @@ class _$InitialStateImpl implements _InitialState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             bool isLoading,
-            bool hasError,
             String errorMessage,
             List<BaseRentResponse> totalMortgageTransactions,
             List<BaseRentResponse> totalMortgageUnitsNum,
-            List<BaseRentResponse> totalMortgageTransactionsValue)?
+            List<BaseRentResponse> totalMortgageTransactionsValue,
+            bool hasErrorTotalMortgageTransactions,
+            bool hasErrortotalMortgageUnitsNum,
+            bool hasErrorTotalMortgageTransactionsValue)?
         initialState,
     required TResult orElse(),
   }) {
     if (initialState != null) {
       return initialState(
           isLoading,
-          hasError,
           errorMessage,
           totalMortgageTransactions,
           totalMortgageUnitsNum,
-          totalMortgageTransactionsValue);
+          totalMortgageTransactionsValue,
+          hasErrorTotalMortgageTransactions,
+          hasErrortotalMortgageUnitsNum,
+          hasErrorTotalMortgageTransactionsValue);
     }
     return orElse();
   }
@@ -421,18 +493,17 @@ class _$InitialStateImpl implements _InitialState {
 
 abstract class _InitialState implements MortgageGridKPIsState {
   const factory _InitialState(
-          {final bool isLoading,
-          final bool hasError,
-          final String errorMessage,
-          final List<BaseRentResponse> totalMortgageTransactions,
-          final List<BaseRentResponse> totalMortgageUnitsNum,
-          final List<BaseRentResponse> totalMortgageTransactionsValue}) =
-      _$InitialStateImpl;
+      {final bool isLoading,
+      final String errorMessage,
+      final List<BaseRentResponse> totalMortgageTransactions,
+      final List<BaseRentResponse> totalMortgageUnitsNum,
+      final List<BaseRentResponse> totalMortgageTransactionsValue,
+      final bool hasErrorTotalMortgageTransactions,
+      final bool hasErrortotalMortgageUnitsNum,
+      final bool hasErrorTotalMortgageTransactionsValue}) = _$InitialStateImpl;
 
   @override
   bool get isLoading;
-  @override
-  bool get hasError;
   @override
   String get errorMessage;
   @override
@@ -447,6 +518,12 @@ abstract class _InitialState implements MortgageGridKPIsState {
 
   /// KPI5
   List<BaseRentResponse> get totalMortgageTransactionsValue;
+  @override //-------------------------------errors----------------------------
+  bool get hasErrorTotalMortgageTransactions;
+  @override
+  bool get hasErrortotalMortgageUnitsNum;
+  @override
+  bool get hasErrorTotalMortgageTransactionsValue;
   @override
   @JsonKey(ignore: true)
   _$$InitialStateImplCopyWith<_$InitialStateImpl> get copyWith =>

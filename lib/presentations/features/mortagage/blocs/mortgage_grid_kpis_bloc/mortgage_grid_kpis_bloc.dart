@@ -30,7 +30,7 @@ class MortgageGridKPIsBloc
     required this.totalValOfMortgageTransactionsUsecase,
   }) : super(const MortgageGridKPIsState.initialState()) {
     on<MortgageGridKPIsEvent>((event, emit) async {
-      emit(state.copyWith(isLoading: true, hasError: false));
+      emit(state.copyWith(isLoading: true));
 
       /// KPI1
       /// عدد معاملات الرهن
@@ -50,16 +50,17 @@ class MortgageGridKPIsBloc
       failureOrSuccessTotalMortgageTransactions.when(
         (success) {
           success.isEmpty
-              ? emit(state.copyWith(isLoading: true, hasError: false))
+              ? emit(state.copyWith(
+                  isLoading: true, hasErrorTotalMortgageTransactions: false))
               : emit(state.copyWith(
                   isLoading: false,
-                  hasError: false,
+                  hasErrorTotalMortgageTransactions: false,
                   totalMortgageTransactions: success));
         },
         (error) {
           emit(state.copyWith(
               isLoading: false,
-              hasError: true,
+              hasErrorTotalMortgageTransactions: true,
               errorMessage: error.message,
               totalMortgageTransactions: []));
         },
@@ -69,16 +70,17 @@ class MortgageGridKPIsBloc
       failureOrSuccessTotalMortgageUnitsNum.when(
         (success) {
           success.isEmpty
-              ? emit(state.copyWith(isLoading: true, hasError: false))
+              ? emit(state.copyWith(
+                  isLoading: true, hasErrortotalMortgageUnitsNum: false))
               : emit(state.copyWith(
                   isLoading: false,
-                  hasError: false,
+                  hasErrortotalMortgageUnitsNum: false,
                   totalMortgageUnitsNum: success));
         },
         (error) {
           emit(state.copyWith(
               isLoading: false,
-              hasError: true,
+              hasErrortotalMortgageUnitsNum: true,
               errorMessage: error.message,
               totalMortgageUnitsNum: []));
         },
@@ -87,20 +89,51 @@ class MortgageGridKPIsBloc
       failureOrSuccessTotalMortgageTransactionsVal.when(
         (success) {
           success.isEmpty
-              ? emit(state.copyWith(isLoading: true, hasError: false))
+              ? emit(state.copyWith(
+                  isLoading: true,
+                  hasErrorTotalMortgageTransactionsValue: false))
               : emit(state.copyWith(
                   isLoading: false,
-                  hasError: false,
+                  hasErrorTotalMortgageTransactionsValue: false,
                   totalMortgageTransactionsValue: success));
         },
         (error) {
           emit(state.copyWith(
               isLoading: false,
-              hasError: true,
+              hasErrorTotalMortgageTransactionsValue: true,
               errorMessage: error.message,
               totalMortgageTransactionsValue: []));
         },
       );
     });
+  }
+  //------------------------------------------------------------
+  static bool getErrorValue(
+      MortgageGridKPIsState state, MortgageGridKPIs? kpi) {
+    switch (kpi) {
+      case MortgageGridKPIs.totalMortgageTransactions:
+        return state.hasErrorTotalMortgageTransactions;
+      case MortgageGridKPIs.totalMortgageUnitsNum:
+        return state.hasErrortotalMortgageUnitsNum;
+      case MortgageGridKPIs.totalMortgageTransactionsValue:
+        return state.hasErrorTotalMortgageTransactionsValue;
+
+      default:
+        return false;
+    }
+  }
+
+  static List<BaseRentResponse> getState(
+      MortgageGridKPIsState state, MortgageGridKPIs? kpi) {
+    switch (kpi) {
+      case MortgageGridKPIs.totalMortgageTransactions:
+        return state.totalMortgageTransactions;
+      case MortgageGridKPIs.totalMortgageUnitsNum:
+        return state.totalMortgageUnitsNum;
+      case MortgageGridKPIs.totalMortgageTransactionsValue:
+        return state.totalMortgageTransactionsValue;
+      default:
+        return [];
+    }
   }
 }

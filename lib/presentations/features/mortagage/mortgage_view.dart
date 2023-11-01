@@ -17,7 +17,6 @@ import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../../widgets/pagination_widget/pagination_widget.dart';
 import '../../widgets/selected_municipality_widget.dart';
-import '../../widgets/selected_period_widget.dart';
 import '../../widgets/selected_year_widget.dart';
 import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
 import 'widgets/bottom_sheet_filter_mortgage.dart';
@@ -307,11 +306,6 @@ class _MortagageViewState extends State<MortgageView> {
                                     child: MortgageGrid(
                                       mainAxisSpacing: AppSizeH.s22,
                                       crossAxisSpacing: AppSizeW.s23,
-                                      // defaultValues: context.read<MortgageBloc>().requestDefault,
-
-                                      // response: response,
-                                      // kpi: KPI.values[index],
-                                      // index: index,
                                     )),
                               ),
                               SizedBox(height: AppSizeH.s20),

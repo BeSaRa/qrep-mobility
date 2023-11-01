@@ -38,7 +38,7 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
     required this.totalRentedSpaceUsecase,
   }) : super(const RentGridKPIsState.initialState()) {
     on<RentGridKPIsEvent>((event, emit) async {
-      emit(state.copyWith(isLoading: true, hasError: false));
+      emit(state.copyWith(isLoading: true));
 
       /// KPI1
       final failureOrSuccessTotalContracts =
@@ -56,7 +56,7 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
       // todo: call the usecase once total rented spaces are available and not "البيانات قيد الجمع والتدقيق"
       final failureOrSuccessTotalRentedSpaceUsecase =
           await Future.delayed(Duration(milliseconds: 100))
-              .then((value) => Result.error(FailureModel()));
+              .then((value) => Result.success(<BaseRentResponse>[]));
 
       /// KPI13
       final failureOrSuccessMeanValue =
@@ -66,20 +66,23 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
       // todo: call the usecase once mean area con are available and not "البيانات قيد الجمع والتدقيق"
       final failureOrSuccessMeanArea =
           await Future.delayed(Duration(milliseconds: 100))
-              .then((value) => Result.error(FailureModel()));
+              .then((value) => Result.success(<BaseRentResponse>[]));
 
       //------------------------KPI1--------------------------------------------
       failureOrSuccessTotalContracts.when(
         (success) {
           success.isEmpty
-              ? emit(state.copyWith(isLoading: true, hasError: false))
+              ? emit(state.copyWith(
+                  isLoading: true, hasErrorTotalContracts: false))
               : emit(state.copyWith(
-                  isLoading: false, hasError: false, totalContracts: success));
+                  isLoading: false,
+                  hasErrorTotalContracts: false,
+                  totalContracts: success));
         },
         (error) {
           emit(state.copyWith(
               isLoading: false,
-              hasError: true,
+              hasErrorTotalContracts: true,
               errorMessage: error.message,
               totalContracts: []));
         },
@@ -88,16 +91,17 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
       failureOrSuccessTotalRentedUnits.when(
         (success) {
           success.isEmpty
-              ? emit(state.copyWith(isLoading: true, hasError: false))
+              ? emit(state.copyWith(
+                  isLoading: true, hasErrorTotalRentedSpace: false))
               : emit(state.copyWith(
                   isLoading: false,
-                  hasError: false,
+                  hasErrorTotalRentedSpace: false,
                   totalRentedUnits: success));
         },
         (error) {
           emit(state.copyWith(
               isLoading: false,
-              hasError: true,
+              hasErrorTotalRentedSpace: true,
               errorMessage: error.message,
               totalRentedUnits: []));
         },
@@ -107,72 +111,136 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
       failureOrSuccessContractValueUseCase.when(
         (success) {
           success.isEmpty
-              ? emit(state.copyWith(isLoading: true, hasError: false))
+              ? emit(state.copyWith(
+                  isLoading: true, hasErrorTotalContractsValue: false))
               : emit(state.copyWith(
                   isLoading: false,
-                  hasError: false,
+                  hasErrorTotalContractsValue: false,
                   totalContractsValue: success));
         },
         (error) {
           emit(state.copyWith(
               isLoading: false,
-              hasError: true,
+              hasErrorTotalContractsValue: true,
               errorMessage: error.message,
               totalContractsValue: []));
         },
       );
       //------------------------KPI10-------------------------------------------
-      // failureOrSuccessTotalRentedSpaceUsecase.when(
-      //   (success) {
-      //     success.isEmpty
-      //         ? emit(state.copyWith(isLoading: true, hasError: false))
-      //         : emit(state.copyWith(
-      //             isLoading: false,
-      //             hasError: false,
-      //             totalRentedSpace: success));
-      //   },
-      //   (error) {
-      //     emit(state.copyWith(
-      //         isLoading: false,
-      //         hasError: true,
-      //         errorMessage: error.message,
-      //         totalRentedSpace: []));
-      //   },
-      // );
+      failureOrSuccessTotalRentedSpaceUsecase.when(
+        (success) {
+          success.isEmpty
+              ? emit(state.copyWith(
+                  isLoading: true, hasErrorTotalRentedSpace: false))
+              : emit(state.copyWith(
+                  isLoading: false,
+                  hasErrorTotalRentedSpace: false,
+                  totalRentedSpace: success));
+        },
+        (error) {
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorTotalRentedSpace: true,
+              errorMessage: error.message,
+              totalRentedSpace: []));
+        },
+      );
       //------------------------KPI13-------------------------------------------
       failureOrSuccessMeanValue.when(
         (success) {
           success.isEmpty
-              ? emit(state.copyWith(isLoading: true, hasError: false))
+              ? emit(state.copyWith(
+                  isLoading: true, hasErrorMeanRentUnitValue: false))
               : emit(state.copyWith(
                   isLoading: false,
-                  hasError: false,
+                  hasErrorMeanRentUnitValue: false,
                   meanRentUnitValue: success));
         },
         (error) {
           emit(state.copyWith(
               isLoading: false,
-              hasError: true,
+              hasErrorMeanRentUnitValue: true,
               errorMessage: error.message,
               meanRentUnitValue: []));
         },
       );
       //------------------------KPI16-------------------------------------------
-      // failureOrSuccessMeanArea.when(
-      //   (success) {
-      //     success.isEmpty
-      //         ? emit(state.copyWith(isLoading: true, hasError: false))
-      //         : emit(state.copyWith(
-      //             isLoading: false, hasError: false, meanAreaValue: success));
-      //   },
-      //   (error) {
-      //     emit(state.copyWith(
-      //         isLoading: false,
-      //         hasError: true,
-      //         errorMessage: error.message,
-      //         meanAreaValue: []));
-      //   },
-      // );
+      failureOrSuccessMeanArea.when(
+        (success) {
+          success.isEmpty
+              ? emit(
+                  state.copyWith(isLoading: true, hasErrorMeanAreaValue: false))
+              : emit(state.copyWith(
+                  isLoading: false,
+                  hasErrorMeanAreaValue: false,
+                  meanAreaValue: success));
+        },
+        (error) {
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorMeanAreaValue: true,
+              errorMessage: error.message,
+              meanAreaValue: []));
+        },
+      );
+      //========================================================================
     });
+  }
+  static bool getErrorValue(RentGridKPIsState state, RentGridKPIs? kpi) {
+    switch (kpi) {
+      case RentGridKPIs.totalContracts:
+        return state.hasErrorTotalContracts;
+      case RentGridKPIs.totalRentedUnits:
+        return state.hasErrorTotalRentedUnits;
+      case RentGridKPIs.totalContractsValue:
+        return state.hasErrorTotalContractsValue;
+      case RentGridKPIs.totalRentedSpaces:
+        return state.hasErrorTotalRentedSpace;
+      case RentGridKPIs.meanRentUnitValue:
+        return state.hasErrorMeanRentUnitValue;
+      case RentGridKPIs.meanRentAreaValue:
+        return state.hasErrorMeanAreaValue;
+      default:
+        return false;
+    }
+  }
+
+  static List<BaseRentResponse> getState(
+      RentGridKPIsState state, RentGridKPIs? kpi) {
+    switch (kpi) {
+      case RentGridKPIs.totalContracts:
+        return state.totalContracts;
+      case RentGridKPIs.totalRentedUnits:
+        return state.totalRentedUnits;
+      case RentGridKPIs.totalContractsValue:
+        return state.totalContractsValue;
+      case RentGridKPIs.totalRentedSpaces:
+        return state.totalRentedSpace;
+      case RentGridKPIs.meanRentUnitValue:
+        return state.meanRentUnitValue;
+      case RentGridKPIs.meanRentAreaValue:
+        return state.meanAreaValue;
+      default:
+        return [];
+    }
+  }
+
+  static num getKPIVal(RentDefault rentDefault, RentGridKPIs? kpi) {
+    switch (kpi) {
+      case RentGridKPIs.totalContracts:
+        return rentDefault.kpi1Val ?? 0;
+      case RentGridKPIs.totalRentedUnits:
+        return rentDefault.kpi4Val ?? 0;
+      case RentGridKPIs.totalContractsValue:
+        return rentDefault.kpi7Val ?? 0;
+      case RentGridKPIs.meanRentUnitValue:
+        return rentDefault.kpi10Val ?? 0;
+      case RentGridKPIs.totalRentedSpaces:
+        return rentDefault.kpi13Val ?? 0;
+      case RentGridKPIs.meanRentAreaValue:
+        return rentDefault.kpi16Val ?? 0;
+      default:
+        return 0;
+    }
   }
 }

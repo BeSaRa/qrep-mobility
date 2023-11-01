@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/app/extensions.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
+import 'package:ebla/presentations/features/rent/widgets/grid_item_widget.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_transaction/sell_transaction_bloc.dart';
@@ -358,9 +359,13 @@ class _SalesViewState extends State<SalesView> {
                                               (context, index) {
                                             return BlocProvider.value(
                                               value: sellGridKPIsBloc,
-                                              child: SellGridItemWidget(
+                                              child: GridItemWidget(
+                                                gridItemType: GridItemType.sell,
                                                 response: done,
-                                                kpi: SellGridKPIs.values[index],
+                                                sellKPI:
+                                                    SellGridKPIs.values[index],
+                                                rentKPI: null,
+                                                mortgageKPI: null,
                                               ),
                                             );
                                           },

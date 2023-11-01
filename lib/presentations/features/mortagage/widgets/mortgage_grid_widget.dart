@@ -1,5 +1,6 @@
+import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
-import 'package:ebla/presentations/features/mortagage/widgets/mortgage_grid_item_widget.dart';
+import 'package:ebla/presentations/features/rent/widgets/grid_item_widget.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/material.dart';
 
@@ -22,9 +23,13 @@ class _MortgageGridState extends State<MortgageGrid> {
       height: AppSizeH.s280 + (2 * widget.mainAxisSpacing),
       child: Row(
         children: [
-          const Flexible(
-              child: MortgageGridItemWidget(
-            kpi: MortgageGridKPIs.totalMortgageTransactions,
+          Flexible(
+              child: GridItemWidget(
+            gridItemType: GridItemType.mortgage,
+            response: RentDefault(),
+            rentKPI: null,
+            sellKPI: null,
+            mortgageKPI: MortgageGridKPIs.totalMortgageTransactions,
           )),
           SizedBox(
             width: widget.crossAxisSpacing,
@@ -32,14 +37,23 @@ class _MortgageGridState extends State<MortgageGrid> {
           Flexible(
             child: Column(
               children: [
-                const MortgageGridItemWidget(
-                  kpi: MortgageGridKPIs.totalMortgageUnitsNum,
+                GridItemWidget(
+                  gridItemType: GridItemType.mortgage,
+                  response: RentDefault(),
+                  rentKPI: null,
+                  sellKPI: null,
+                  mortgageKPI: MortgageGridKPIs.totalMortgageUnitsNum,
                 ),
                 SizedBox(
                   height: widget.mainAxisSpacing,
                 ),
-                const MortgageGridItemWidget(
-                    kpi: MortgageGridKPIs.totalMortgageTransactionsValue),
+                GridItemWidget(
+                  gridItemType: GridItemType.mortgage,
+                  response: RentDefault(),
+                  rentKPI: null,
+                  sellKPI: null,
+                  mortgageKPI: MortgageGridKPIs.totalMortgageTransactionsValue,
+                ),
               ],
             ),
           ),

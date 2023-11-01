@@ -8,8 +8,8 @@ class GridValueWithUnitWidget extends StatelessWidget {
   final bool countUp;
   final int duration;
   final String unit;
-  final num? value;
-  final num? begin;
+  final num? defaultValue;
+
   final num? end;
   final bool dataCollectedAndAudited;
   const GridValueWithUnitWidget(
@@ -17,8 +17,7 @@ class GridValueWithUnitWidget extends StatelessWidget {
       this.unit = '',
       required this.countUp,
       this.duration = 1,
-      this.value = 0,
-      this.begin = 0,
+      this.defaultValue = 0,
       this.end = 0,
       this.dataCollectedAndAudited = false});
 
@@ -46,7 +45,7 @@ class GridValueWithUnitWidget extends StatelessWidget {
                 replacement: Countup(
                     duration: Duration(seconds: duration),
                     separator: ',',
-                    begin: (begin ?? 0).ceil().toDouble(),
+                    begin: (defaultValue ?? 0).ceil().toDouble(),
                     end: (end ?? 0).ceil().toDouble(),
                     maxLines: 3,
                     textAlign: TextAlign.center,
@@ -54,7 +53,8 @@ class GridValueWithUnitWidget extends StatelessWidget {
                         .textTheme
                         .bodyMedium!
                         .copyWith(fontSize: AppSizeSp.s18, height: 1)),
-                child: Text((value ?? 0).ceil().formatWithCommas().toString(),
+                child: Text(
+                    (defaultValue ?? 0).ceil().formatWithCommas().toString(),
                     textAlign: TextAlign.center,
                     maxLines: 3,
                     style: Theme.of(context)
@@ -70,9 +70,6 @@ class GridValueWithUnitWidget extends StatelessWidget {
                   .textTheme
                   .bodyMedium!
                   .copyWith(fontSize: AppSizeSp.s18, height: 1)),
-          // SizedBox(
-          //   height: AppSizeW.s25,
-          // )
         ],
       ),
     );
