@@ -67,15 +67,32 @@ class _MortagageViewState extends State<MortgageView> {
             loading: () => const AnimatedPulesLogo(),
             success: (success) => Column(
                   children: [
-                    Container(
-                      height: AppSizeH.s50,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(ImageAssets.appbarBg),
-                          fit: BoxFit.cover,
-                        ),
+                    ShaderMask(
+                      shaderCallback: (rect) {
+                        return const LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Colors.black, Colors.transparent],
+                        ).createShader(
+                            Rect.fromLTRB(0, 0, rect.width, rect.height));
+                      },
+                      blendMode: BlendMode.dstIn,
+                      child: Image.asset(
+                        ImageAssets.appbarBg,
+                        height: AppSizeH.s50,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
                       ),
                     ),
+                    // Container(
+                    //   height: AppSizeH.s50,
+                    //   decoration: const BoxDecoration(
+                    //     image: DecorationImage(
+                    //       image: AssetImage(ImageAssets.appbarBg),
+                    //       fit: BoxFit.cover,
+                    //     ),
+                    //   ),
+                    // ),
                     Expanded(
                       child: RefreshIndicator(
                         onRefresh: () {

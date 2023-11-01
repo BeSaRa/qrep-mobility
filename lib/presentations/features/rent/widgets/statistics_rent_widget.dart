@@ -250,7 +250,6 @@ class _TabContainerShimmer extends StatelessWidget {
   final String name;
 
   const _TabContainerShimmer({
-    super.key,
     required this.tabIndex,
     required this.name,
   });
@@ -287,7 +286,6 @@ class _TabContainer extends StatelessWidget {
   final Function onPress;
 
   const _TabContainer({
-    super.key,
     required this.indexTab,
     required this.name,
     required this.onPress,
