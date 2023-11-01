@@ -2,6 +2,7 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
+import 'package:ebla/app/extensions.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
@@ -17,7 +18,6 @@ import 'package:lottie/lottie.dart';
 import '../../../utils/global_functions.dart';
 import '../../widgets/pagination_widget/pagination_widget.dart';
 import '../../widgets/selected_municipality_widget.dart';
-import '../../widgets/selected_period_widget.dart';
 import '../../widgets/selected_year_widget.dart';
 import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
 import 'blocs/sell_bloc/sell_bloc.dart';
@@ -452,7 +452,7 @@ class _SalesViewState extends State<SalesView> {
                                                           : success
                                                                   .transactionList[
                                                                       index]
-                                                                  .realEstateSQT
+                                                                  .priceMT
                                                                   ?.toStringAsFixed(
                                                                       0) ??
                                                               '0',
@@ -481,6 +481,13 @@ class _SalesViewState extends State<SalesView> {
                                                                           0)
                                                                   ?.enName ??
                                                               '',
+                                                      descripton: DateTime
+                                                              .parse(success
+                                                                      .transactionList[
+                                                                          index]
+                                                                      .issueDate ??
+                                                                  '')
+                                                          .toFormattedString(),
                                                     );
                                                   }),
                                           error: (String message) => SizedBox(

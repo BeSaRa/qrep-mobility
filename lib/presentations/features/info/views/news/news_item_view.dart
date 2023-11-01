@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/app/extensions.dart';
 import 'package:ebla/utils/global_functions.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +16,7 @@ import '../../blocs/news_bloc/news_bloc.dart';
 
 class NewsItemView extends StatefulWidget {
   final int id;
+
   const NewsItemView({super.key, required this.id});
 
   @override
@@ -26,6 +26,7 @@ class NewsItemView extends StatefulWidget {
 class _NewsItemViewState extends State<NewsItemView> {
   late NewsModel model;
   List<NewsModel> values = [];
+
   @override
   void initState() {
     model =
