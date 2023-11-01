@@ -184,7 +184,11 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                 children: [
                   Text(state.errorMessage),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<TopvaluesBloc>().add(
+                            TopvaluesEvent.countTransictionNumberEvent(
+                                request: context.read<SellBloc>().requestSell));
+                      },
                       icon: const Icon(Icons.refresh_outlined))
                 ],
               );

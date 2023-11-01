@@ -184,7 +184,12 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                 children: [
                   Text(state.errorMessage),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<CertificateContractBloc>().add(
+                            CertificateContractEvent.certificateCountEvent(
+                                request:
+                                    context.read<RentBloc>().requestMeanValue));
+                      },
                       icon: const Icon(Icons.refresh_outlined))
                 ],
               );
