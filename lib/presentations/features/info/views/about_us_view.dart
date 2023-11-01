@@ -31,15 +31,32 @@ class _AboutUsViewState extends State<AboutUsView> {
               appBar: AppBar(
                 backgroundColor: Colors.transparent,
                 surfaceTintColor: Colors.transparent,
-                flexibleSpace: Container(
-                  height: AppSizeH.s50,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(ImageAssets.appbarBg),
-                      fit: BoxFit.cover,
-                    ),
+                flexibleSpace: ShaderMask(
+                  shaderCallback: (rect) {
+                    return const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Colors.black, Colors.transparent],
+                    ).createShader(
+                        Rect.fromLTRB(0, 0, rect.width, rect.height));
+                  },
+                  blendMode: BlendMode.dstIn,
+                  child: Image.asset(
+                    ImageAssets.appbarBg,
+                    // height: 400,
+
+                    fit: BoxFit.fill,
                   ),
                 ),
+                // Container(
+                //   height: AppSizeH.s50,
+                //   decoration: const BoxDecoration(
+                //     image: DecorationImage(
+                //       image: AssetImage(ImageAssets.appbarBg),
+                //       fit: BoxFit.cover,
+                //     ),
+                //   ),
+                // ),
                 leading: IconButton(
                     onPressed: () {
                       Navigator.maybePop(context);
@@ -87,11 +104,18 @@ class _AboutUsViewState extends State<AboutUsView> {
                                       BorderRadius.circular(AppSizeR.s15)),
                               child: SvgPicture.asset(IconAssets.aboutHome)),
                         ),
-                        Html(
-                          data: context.locale == ARABIC_LOCAL
-                              ? value.about.translations[0].title
-                              : value.about.translations[1].title,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              context.locale == ARABIC_LOCAL
+                                  ? value.about.translations[0].title
+                                  : value.about.translations[1].title,
+                              style: Theme.of(context).textTheme.titleLarge,
+                            )
+                          ],
                         ),
+                        SizedBox(height: AppSizeH.s10),
                         Divider(
                           color: ColorManager.grey,
                           height: AppSizeH.s1,

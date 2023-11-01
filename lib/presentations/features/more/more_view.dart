@@ -167,14 +167,30 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
       surfaceTintColor: Colors.transparent,
       toolbarHeight: AppSizeH.s100,
       // Set this height
-      flexibleSpace: Image(
-        height: AppSizeH.s50,
-        width: double.infinity,
-        image: const AssetImage(
+      flexibleSpace: ShaderMask(
+        shaderCallback: (rect) {
+          return const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.black, Colors.transparent],
+          ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
+        },
+        blendMode: BlendMode.dstIn,
+        child: Image.asset(
           ImageAssets.appbarBg,
+          // height: 400,
+
+          fit: BoxFit.fill,
         ),
-        fit: BoxFit.cover,
       ),
+      // Image(
+      //   height: AppSizeH.s50,
+      //   width: double.infinity,
+      //   image: const AssetImage(
+      //     ImageAssets.appbarBg,
+      //   ),
+      //   fit: BoxFit.cover,
+      // ),
       backgroundColor: Colors.transparent,
       title: Column(
         children: [
