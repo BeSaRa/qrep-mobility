@@ -17,7 +17,6 @@ import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../../widgets/pagination_widget/pagination_widget.dart';
 import '../../widgets/selected_municipality_widget.dart';
-import '../../widgets/selected_period_widget.dart';
 import '../../widgets/widgets.dart';
 import 'blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import 'blocs/default_bloc/rent_default_bloc.dart';
@@ -373,7 +372,9 @@ class _RentViewState extends State<RentView> {
                                     horizontal: AppSizeW.s20),
                                 child: BlocProvider.value(
                                   value: certificateContractBloc,
-                                  child: const StatisTicsWidget(),
+                                  child: StatisTicsWidget(
+                                    title: AppStrings().countLeaseContracts,
+                                  ),
                                 ),
                               ),
                               SizedBox(height: AppSizeH.s20),
