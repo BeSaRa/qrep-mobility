@@ -122,23 +122,23 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
         },
       );
       //------------------------KPI10-------------------------------------------
-      failureOrSuccessTotalRentedSpaceUsecase.when(
-        (success) {
-          success.isEmpty
-              ? emit(state.copyWith(isLoading: true, hasError: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasError: false,
-                  totalRentedSpace: success));
-        },
-        (error) {
-          emit(state.copyWith(
-              isLoading: false,
-              hasError: true,
-              errorMessage: error.message,
-              totalRentedSpace: []));
-        },
-      );
+      // failureOrSuccessTotalRentedSpaceUsecase.when(
+      //   (success) {
+      //     success.isEmpty
+      //         ? emit(state.copyWith(isLoading: true, hasError: false))
+      //         : emit(state.copyWith(
+      //             isLoading: false,
+      //             hasError: false,
+      //             totalRentedSpace: success));
+      //   },
+      //   (error) {
+      //     emit(state.copyWith(
+      //         isLoading: false,
+      //         hasError: true,
+      //         errorMessage: error.message,
+      //         totalRentedSpace: []));
+      //   },
+      // );
       //------------------------KPI13-------------------------------------------
       failureOrSuccessMeanValue.when(
         (success) {
@@ -158,21 +158,21 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
         },
       );
       //------------------------KPI16-------------------------------------------
-      failureOrSuccessMeanArea.when(
-        (success) {
-          success.isEmpty
-              ? emit(state.copyWith(isLoading: true, hasError: false))
-              : emit(state.copyWith(
-                  isLoading: false, hasError: false, meanAreaValue: success));
-        },
-        (error) {
-          emit(state.copyWith(
-              isLoading: false,
-              hasError: true,
-              errorMessage: error.message,
-              meanAreaValue: []));
-        },
-      );
+      // failureOrSuccessMeanArea.when(
+      //   (success) {
+      //     success.isEmpty
+      //         ? emit(state.copyWith(isLoading: true, hasError: false))
+      //         : emit(state.copyWith(
+      //             isLoading: false, hasError: false, meanAreaValue: success));
+      //   },
+      //   (error) {
+      //     emit(state.copyWith(
+      //         isLoading: false,
+      //         hasError: true,
+      //         errorMessage: error.message,
+      //         meanAreaValue: []));
+      //   },
+      // );
     });
   }
 }

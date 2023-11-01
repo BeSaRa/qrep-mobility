@@ -196,7 +196,6 @@ class _SellGridItemWidgetState extends State<SellGridItemWidget> {
                               .firstWhere(
                                   (element) => element.kpi == widget.kpi)
                               .valueUnit,
-                          dataCollectedAndAudited: true,
                         );
                       }
                     }

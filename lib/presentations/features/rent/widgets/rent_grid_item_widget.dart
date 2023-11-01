@@ -239,9 +239,9 @@ class _RentGridItemWidgetState extends State<RentGridItemWidget> {
                       duration: 1,
                       begin: widget.response.kpi10Val,
                       end: state.totalRentedSpace.first.kpiVal.toDouble(),
-                      unit: gridItemsData
-                          .firstWhere((element) => element.kpi == widget.kpi)
-                          .valueUnit,
+                      // unit: gridItemsData
+                      //     .firstWhere((element) => element.kpi == widget.kpi)
+                      //     .valueUnit,
                     );
                   } else if (state.meanRentUnitValue.isNotEmpty &&
                       widget.kpi == RentGridKPIs.meanRentUnitValue) {
