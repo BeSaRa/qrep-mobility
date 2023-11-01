@@ -80,6 +80,8 @@
   "avg_price_per_meter": "Average price per meter",
   "rented_areas": "Rented spaces",
   "unit_type": "Unit type",
+  "start_date": "Start date",
+  "end_date": "End date",
   "----------------------------------------------------SELL--------------------------": "",
   "the_total_number_of_properties_units_sold": "The total number of properties / units sold",
   "the_total_number_of_sell_contracts": "The total number of \n sell contracts",

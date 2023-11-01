@@ -1,3 +1,4 @@
+import 'package:ebla/presentations/resources/resources.dart';
 import 'package:ebla/presentations/widgets/shimmer_placeholder.dart';
 import 'package:flutter/material.dart';
 

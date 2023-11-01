@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/app/extensions.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/presentations/features/rent/blocs/cubits/cubit/change_status_cubit.dart';
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
@@ -20,6 +21,7 @@ import '../../widgets/selected_period_widget.dart';
 import '../../widgets/widgets.dart';
 import 'blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import 'blocs/default_bloc/rent_default_bloc.dart';
+import 'widgets/main_container_rent.dart';
 import 'widgets/rent_grid_item_widget.dart';
 import 'widgets/statistics_rent_widget.dart';
 
@@ -412,18 +414,10 @@ class _RentViewState extends State<RentView> {
                                             physics:
                                                 const NeverScrollableScrollPhysics(),
                                             itemBuilder: (context, index) {
-                                              return MainDataContainer(
+                                              return MainRentDataContainer(
                                                 title: AppStrings().rentValue,
                                                 totalPrice:
                                                     "${state.rentSummery.transactionList[index].rentPaymentMeterMT?.toStringAsFixed(3)} ${AppStrings().currency}",
-                                                value: state
-                                                        .rentSummery
-                                                        .transactionList[index]
-                                                        .area
-                                                        ?.toStringAsFixed(0) ??
-                                                    '0',
-                                                valueDescription:
-                                                    AppStrings().rentArea,
                                                 titleInfo:
                                                     "${AppStrings().roomsCount}:",
                                                 valueInfo: state
@@ -469,6 +463,20 @@ class _RentViewState extends State<RentView> {
                                                         .transactionList[index]
                                                         .propertyTypeId ??
                                                     0),
+                                                startDate: DateTime.parse(state
+                                                            .rentSummery
+                                                            .transactionList[
+                                                                index]
+                                                            .startDate ??
+                                                        '')
+                                                    .toFormattedString(),
+                                                endDate: DateTime.parse(state
+                                                            .rentSummery
+                                                            .transactionList[
+                                                                index]
+                                                            .endDate ??
+                                                        '')
+                                                    .toFormattedString(),
                                               );
                                             }),
                                         SizedBox(height: AppSizeH.s6),
