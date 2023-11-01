@@ -370,7 +370,9 @@ class _RentViewState extends State<RentView> {
                                     horizontal: AppSizeW.s20),
                                 child: BlocProvider.value(
                                   value: certificateContractBloc,
-                                  child: StatisTicsWidget(),
+                                  child: StatisTicsWidget(
+                                    title: AppStrings().countLeaseContracts,
+                                  ),
                                 ),
                               ),
                               SizedBox(height: AppSizeH.s20),
