@@ -80,6 +80,8 @@
   "avg_price_per_meter": "متوسط السعر لكل متر",
   "rented_areas": "المساحات المؤجرة",
   "unit_type": "نوع الوحدة",
+  "start_date": "تاريخ البدء",
+  "end_date": "تاريخ الانتهاء",
   "----------------------------------------------------SELL--------------------------": "",
   "the_total_number_of_properties_units_sold": "إجمالي عدد العقارات \\ الوحدات المباعة",
   "the_total_number_of_sell_contracts": "إجمالي عدد\n عقود البيع",
