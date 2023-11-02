@@ -30,12 +30,11 @@ class EblaNavigationBar extends StatelessWidget {
         padding: EdgeInsets.only(bottom: AppSizeH.s80, top: AppSizeH.s10),
         child: body,
       ),
-      borderRadius: BorderRadius.circular(35),
+      borderRadius: BorderRadius.circular(AppSizeR.s35),
       duration: const Duration(seconds: 1),
       curve: Curves.decelerate,
       showIcon: true,
       width: MediaQuery.of(context).size.width * 0.9,
-
       barColor: Colors.white,
       barDecoration: BoxDecoration(boxShadow: [
         BoxShadow(
@@ -60,36 +59,46 @@ class EblaNavigationBar extends StatelessWidget {
             blurStyle: BlurStyle.normal),
       ]),
       start: 2,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(500),
-        child: Material(
-          type: MaterialType.transparency,
-          child: TabBar(
-            onTap: onTap,
-            indicatorPadding: const EdgeInsets.all(2),
-            controller: _controller,
-            indicator: UnderlineTabIndicator(
-              borderSide: BorderSide(
-                color: ColorManager.golden,
-                width: AppSizeW.s6,
-              ),
-              borderRadius: const BorderRadius.all(Radius.circular(2)),
-              insets: EdgeInsets.fromLTRB(
-                  AppSizeH.s30, 0.0, AppSizeH.s30, AppSizeH.s65),
+      child: Material(
+        type: MaterialType.transparency,
+        child: TabBar(
+          onTap: onTap,
+          indicatorPadding: const EdgeInsets.all(2),
+          controller: _controller,
+          indicator: UnderlineTabIndicator(
+            borderSide: BorderSide(
+              color: ColorManager.golden,
+              width: AppSizeW.s6,
             ),
-            tabs: [
-              SizedBox(
-                height: AppSizeH.s72,
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    SizedBox(
-                      height: AppSizeH.s36,
-                      child: SvgPicture.asset(
-                        currentPage == 0
-                            ? IconAssets.homeIconFill
-                            : IconAssets.homeIcon,
-                        // ignore: deprecated_member_use
+            borderRadius: const BorderRadius.all(Radius.circular(2)),
+            insets: EdgeInsets.fromLTRB(
+                AppSizeH.s30, 0.0, AppSizeH.s30, AppSizeH.s65),
+          ),
+          tabs: [
+            SizedBox(
+              height: AppSizeH.s72,
+              child: Column(
+                children: [
+                  const Spacer(),
+                  SizedBox(
+                    height: AppSizeH.s36,
+                    child: SvgPicture.asset(
+                      currentPage == 0
+                          ? IconAssets.homeIconFill
+                          : IconAssets.homeIcon,
+                      // ignore: deprecated_member_use
+                      color: currentPage == 0
+                          ? Theme.of(context).primaryColor
+                          : Theme.of(context)
+                              .bottomNavigationBarTheme
+                              .unselectedItemColor,
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      AppStrings().main,
+                      style: TextStyle(
+                        fontSize: AppSizeSp.s10,
                         color: currentPage == 0
                             ? Theme.of(context).primaryColor
                             : Theme.of(context)
@@ -97,68 +106,68 @@ class EblaNavigationBar extends StatelessWidget {
                                 .unselectedItemColor,
                       ),
                     ),
-                    Expanded(
-                      child: Text(
-                        AppStrings().main,
-                        style: TextStyle(
-                          fontSize: AppSizeSp.s10,
-                          color: currentPage == 0
-                              ? Theme.of(context).primaryColor
-                              : Theme.of(context)
-                                  .bottomNavigationBarTheme
-                                  .unselectedItemColor,
-                        ),
-                      ),
-                    ),
-                    const Spacer()
-                  ],
-                ),
+                  ),
+                  const Spacer()
+                ],
               ),
-              SizedBox(
-                height: AppSizeH.s72,
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    SizedBox(
-                      height: AppSizeH.s36,
-                      child: SvgPicture.asset(
-                        currentPage == 1
-                            ? IconAssets.keyIconFill
-                            : IconAssets.keyIcon,
-                        // ignore: deprecated_member_use
-                        color: currentPage == 1
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context)
-                                .bottomNavigationBarTheme
-                                .unselectedItemColor,
-                      ),
+            ),
+            SizedBox(
+              height: AppSizeH.s72,
+              child: Column(
+                children: [
+                  const Spacer(),
+                  SizedBox(
+                    height: AppSizeH.s36,
+                    child: SvgPicture.asset(
+                      currentPage == 1
+                          ? IconAssets.keyIconFill
+                          : IconAssets.keyIcon,
+                      // ignore: deprecated_member_use
+                      color: currentPage == 1
+                          ? Theme.of(context).primaryColor
+                          : Theme.of(context)
+                              .bottomNavigationBarTheme
+                              .unselectedItemColor,
                     ),
-                    Expanded(
-                        child: Text(AppStrings().rent,
-                            style: TextStyle(
-                              fontSize: AppSizeSp.s10,
-                              color: currentPage == 1
-                                  ? Theme.of(context).primaryColor
-                                  : Theme.of(context)
-                                      .bottomNavigationBarTheme
-                                      .unselectedItemColor,
-                            ))),
-                    const Spacer()
-                  ],
-                ),
+                  ),
+                  Expanded(
+                      child: Text(AppStrings().rent,
+                          style: TextStyle(
+                            fontSize: AppSizeSp.s10,
+                            color: currentPage == 1
+                                ? Theme.of(context).primaryColor
+                                : Theme.of(context)
+                                    .bottomNavigationBarTheme
+                                    .unselectedItemColor,
+                          ))),
+                  const Spacer()
+                ],
               ),
-              SizedBox(
-                height: AppSizeH.s72,
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    SizedBox(
-                      height: AppSizeH.s36,
-                      child: SvgPicture.asset(
-                        currentPage == 2
-                            ? IconAssets.sellIconFill
-                            : IconAssets.sellIcon,
-                        // ignore: deprecated_member_use
+            ),
+            SizedBox(
+              height: AppSizeH.s72,
+              child: Column(
+                children: [
+                  const Spacer(),
+                  SizedBox(
+                    height: AppSizeH.s36,
+                    child: SvgPicture.asset(
+                      currentPage == 2
+                          ? IconAssets.sellIconFill
+                          : IconAssets.sellIcon,
+                      // ignore: deprecated_member_use
+                      color: currentPage == 2
+                          ? Theme.of(context).primaryColor
+                          : Theme.of(context)
+                              .bottomNavigationBarTheme
+                              .unselectedItemColor,
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      AppStrings().sell,
+                      style: TextStyle(
+                        fontSize: AppSizeSp.s10,
                         color: currentPage == 2
                             ? Theme.of(context).primaryColor
                             : Theme.of(context)
@@ -166,91 +175,78 @@ class EblaNavigationBar extends StatelessWidget {
                                 .unselectedItemColor,
                       ),
                     ),
-                    Expanded(
+                  ),
+                  const Spacer()
+                ],
+              ),
+            ),
+            SizedBox(
+              height: AppSizeH.s72,
+              child: Column(
+                children: [
+                  const Spacer(),
+                  SizedBox(
+                    height: AppSizeH.s36,
+                    child: SvgPicture.asset(
+                        currentPage == 3
+                            ? IconAssets.realEstateIconFill
+                            : IconAssets.realEstateIcon,
+                        // ignore: deprecated_member_use
+                        color: currentPage == 3
+                            ? Theme.of(context).primaryColor
+                            : Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .unselectedItemColor),
+                  ),
+                  Expanded(
                       child: Text(
-                        AppStrings().sell,
-                        style: TextStyle(
-                          fontSize: AppSizeSp.s10,
-                          color: currentPage == 2
-                              ? Theme.of(context).primaryColor
-                              : Theme.of(context)
-                                  .bottomNavigationBarTheme
-                                  .unselectedItemColor,
-                        ),
-                      ),
-                    ),
-                    const Spacer()
-                  ],
-                ),
+                    AppStrings().mortgage,
+                    style: TextStyle(
+                        fontSize: AppSizeSp.s10,
+                        color: currentPage == 3
+                            ? Theme.of(context).primaryColor
+                            : Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .unselectedItemColor),
+                  )),
+                  const Spacer()
+                ],
               ),
-              SizedBox(
-                height: AppSizeH.s72,
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    SizedBox(
-                      height: AppSizeH.s36,
-                      child: SvgPicture.asset(
-                          currentPage == 3
-                              ? IconAssets.realEstateIconFill
-                              : IconAssets.realEstateIcon,
-                          // ignore: deprecated_member_use
-                          color: currentPage == 3
-                              ? Theme.of(context).primaryColor
-                              : Theme.of(context)
-                                  .bottomNavigationBarTheme
-                                  .unselectedItemColor),
-                    ),
-                    Expanded(
-                        child: Text(
-                      AppStrings().mortgage,
-                      style: TextStyle(
-                          fontSize: AppSizeSp.s10,
-                          color: currentPage == 3
-                              ? Theme.of(context).primaryColor
-                              : Theme.of(context)
-                                  .bottomNavigationBarTheme
-                                  .unselectedItemColor),
-                    )),
-                    const Spacer()
-                  ],
-                ),
+            ),
+            SizedBox(
+              height: AppSizeH.s72,
+              child: Column(
+                children: [
+                  const Spacer(),
+                  SizedBox(
+                    height: AppSizeH.s36,
+                    child: SvgPicture.asset(
+                        currentPage == 4
+                            ? IconAssets.infoIconFill
+                            : IconAssets.infoIcon,
+                        // ignore: deprecated_member_use
+                        color: currentPage == 4
+                            ? Theme.of(context).primaryColor
+                            : Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .unselectedItemColor),
+                  ),
+                  Expanded(
+                      child: Text(
+                    AppStrings().more,
+                    style: TextStyle(
+                        fontSize: AppSizeSp.s10,
+                        color: currentPage == 4
+                            ? Theme.of(context).primaryColor
+                            : Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .unselectedItemColor),
+                  )),
+                  const Spacer()
+                ],
               ),
-              SizedBox(
-                height: AppSizeH.s72,
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    SizedBox(
-                      height: AppSizeH.s36,
-                      child: SvgPicture.asset(
-                          currentPage == 4
-                              ? IconAssets.infoIconFill
-                              : IconAssets.infoIcon,
-                          // ignore: deprecated_member_use
-                          color: currentPage == 4
-                              ? Theme.of(context).primaryColor
-                              : Theme.of(context)
-                                  .bottomNavigationBarTheme
-                                  .unselectedItemColor),
-                    ),
-                    Expanded(
-                        child: Text(
-                      AppStrings().more,
-                      style: TextStyle(
-                          fontSize: AppSizeSp.s10,
-                          color: currentPage == 4
-                              ? Theme.of(context).primaryColor
-                              : Theme.of(context)
-                                  .bottomNavigationBarTheme
-                                  .unselectedItemColor),
-                    )),
-                    const Spacer()
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
