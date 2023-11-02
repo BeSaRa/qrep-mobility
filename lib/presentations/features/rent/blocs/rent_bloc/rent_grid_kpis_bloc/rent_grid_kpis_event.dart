@@ -5,23 +5,3 @@ class RentGridKPIsEvent with _$RentGridKPIsEvent {
   const factory RentGridKPIsEvent.getData({required RequestMeanValue request}) =
       _RentGridKPIsEvent;
 }
-
-enum RentGridKPIs {
-  /// KPI1
-  totalContracts,
-
-  /// KPI4
-  totalRentedUnits,
-
-  /// KPI7
-  totalContractsValue,
-
-  /// KPI13
-  meanRentUnitValue,
-
-  /// KPI10
-  totalRentedSpaces,
-
-  /// KPI16
-  meanRentAreaValue,
-}

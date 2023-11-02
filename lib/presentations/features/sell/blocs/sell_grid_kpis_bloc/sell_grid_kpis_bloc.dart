@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/domain/models/requests/sell_requests/request_sell_values.dart';
 import 'package:ebla/domain/usecases/usecases.dart';
+import 'package:ebla/presentations/widgets/grid/grid_item_widget.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'sell_grid_kpis_bloc.freezed.dart';
@@ -42,7 +43,7 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
     required this.meanSoldAreaUseCase,
   }) : super(const SellGridKPIsState.initialState()) {
     on<SellGridKPIsEvent>((event, emit) async {
-      emit(state.copyWith(isLoading: true, hasError: false));
+      emit(state.copyWith(isLoading: true));
 
       /// KPI1
       final failureOrSuccessTotalContracts =
@@ -71,14 +72,17 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       failureOrSuccessTotalContracts.when(
         (success) {
           success.isEmpty
-              ? emit(state.copyWith(isLoading: true, hasError: false))
+              ? emit(state.copyWith(
+                  isLoading: true, hasErrorTotalContracts: false))
               : emit(state.copyWith(
-                  isLoading: false, hasError: false, totalContracts: success));
+                  isLoading: false,
+                  hasErrorTotalContracts: false,
+                  totalContracts: success));
         },
         (error) {
           emit(state.copyWith(
               isLoading: false,
-              hasError: true,
+              hasErrorTotalContracts: true,
               errorMessage: error.message,
               totalContracts: []));
         },
@@ -88,14 +92,17 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       failureOrSuccessTotalSoldUnits.when(
         (success) {
           success.isEmpty
-              ? emit(state.copyWith(isLoading: true, hasError: false))
+              ? emit(state.copyWith(
+                  isLoading: true, hasErrorTotalSoldUnits: false))
               : emit(state.copyWith(
-                  isLoading: false, hasError: false, totalSoldUnits: success));
+                  isLoading: false,
+                  hasErrorTotalSoldUnits: false,
+                  totalSoldUnits: success));
         },
         (error) {
           emit(state.copyWith(
               isLoading: false,
-              hasError: true,
+              hasErrorTotalSoldUnits: true,
               errorMessage: error.message,
               totalSoldUnits: []));
         },
@@ -104,16 +111,17 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       failureOrSuccessTotalTransactions.when(
         (success) {
           success.isEmpty
-              ? emit(state.copyWith(isLoading: true, hasError: false))
+              ? emit(state.copyWith(
+                  isLoading: true, hasErrorTotalTransactionsValue: false))
               : emit(state.copyWith(
                   isLoading: false,
-                  hasError: false,
+                  hasErrorTotalTransactionsValue: false,
                   totalTransactionsValue: success));
         },
         (error) {
           emit(state.copyWith(
               isLoading: false,
-              hasError: true,
+              hasErrorTotalTransactionsValue: true,
               errorMessage: error.message,
               totalTransactionsValue: []));
         },
@@ -122,14 +130,17 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       failureOrSuccessTotalSoldSpaces.when(
         (success) {
           success.isEmpty
-              ? emit(state.copyWith(isLoading: true, hasError: false))
+              ? emit(state.copyWith(
+                  isLoading: true, hasErrorTotalSoldSpaces: false))
               : emit(state.copyWith(
-                  isLoading: false, hasError: false, totalSoldSpaces: success));
+                  isLoading: false,
+                  hasErrorTotalSoldSpaces: false,
+                  totalSoldSpaces: success));
         },
         (error) {
           emit(state.copyWith(
               isLoading: false,
-              hasError: true,
+              hasErrorTotalSoldSpaces: true,
               errorMessage: error.message,
               totalSoldSpaces: []));
         },
@@ -138,16 +149,17 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       failureOrSuccessMeanValue.when(
         (success) {
           success.isEmpty
-              ? emit(state.copyWith(isLoading: true, hasError: false))
+              ? emit(state.copyWith(
+                  isLoading: true, hasErrorMeanSellUnitValue: false))
               : emit(state.copyWith(
                   isLoading: false,
-                  hasError: false,
+                  hasErrorMeanSellUnitValue: false,
                   meanSellUnitValue: success));
         },
         (error) {
           emit(state.copyWith(
               isLoading: false,
-              hasError: true,
+              hasErrorMeanSellUnitValue: true,
               errorMessage: error.message,
               meanSellUnitValue: []));
         },
@@ -156,21 +168,78 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       failureOrSuccessMeanSoldAreaUsecase.when(
         (success) {
           success.isEmpty
-              ? emit(state.copyWith(isLoading: true, hasError: false))
+              ? emit(state.copyWith(
+                  isLoading: true, hasErrorMeanSoldAreaValue: false))
               : emit(state.copyWith(
                   isLoading: false,
-                  hasError: false,
+                  hasErrorMeanSoldAreaValue: false,
                   meanSoldAreaValue: success));
         },
         (error) {
           emit(state.copyWith(
-            isLoading: false,
-            hasError: true,
-            errorMessage: error.message,
-            meanSoldAreaValue: [],
-          ));
+              isLoading: false,
+              hasErrorMeanSoldAreaValue: true,
+              errorMessage: error.message,
+              meanSoldAreaValue: []));
         },
       );
     });
+  }
+  static bool getErrorValue(SellGridKPIsState state, SellGridKPIs? kpi) {
+    switch (kpi) {
+      case SellGridKPIs.totalContracts:
+        return state.hasErrorTotalContracts;
+      case SellGridKPIs.totalSoldUnits:
+        return state.hasErrorTotalSoldUnits;
+      case SellGridKPIs.totalTransactionsValue:
+        return state.hasErrorTotalTransactionsValue;
+      case SellGridKPIs.meanSellUnitValue:
+        return state.hasErrorMeanSellUnitValue;
+      case SellGridKPIs.totalSoldSpaces:
+        return state.hasErrorTotalSoldSpaces;
+      case SellGridKPIs.meanSoldAreaValue:
+        return state.hasErrorMeanSoldAreaValue;
+      default:
+        return false;
+    }
+  }
+
+  static List<BaseRentResponse> getState(
+      SellGridKPIsState state, SellGridKPIs? kpi) {
+    switch (kpi) {
+      case SellGridKPIs.totalContracts:
+        return state.totalContracts;
+      case SellGridKPIs.totalSoldUnits:
+        return state.totalSoldUnits;
+      case SellGridKPIs.totalTransactionsValue:
+        return state.totalTransactionsValue;
+      case SellGridKPIs.meanSellUnitValue:
+        return state.meanSellUnitValue;
+      case SellGridKPIs.totalSoldSpaces:
+        return state.totalSoldSpaces;
+      case SellGridKPIs.meanSoldAreaValue:
+        return state.meanSoldAreaValue;
+      default:
+        return [];
+    }
+  }
+
+  static num getKPIVal(RentDefault rentDefault, SellGridKPIs? kpi) {
+    switch (kpi) {
+      case SellGridKPIs.totalContracts:
+        return rentDefault.kpi1Val ?? 0;
+      case SellGridKPIs.totalSoldUnits:
+        return rentDefault.kpi4Val ?? 0;
+      case SellGridKPIs.totalTransactionsValue:
+        return rentDefault.kpi7Val ?? 0;
+      case SellGridKPIs.meanSellUnitValue:
+        return rentDefault.kpi13Val ?? 0;
+      case SellGridKPIs.totalSoldSpaces:
+        return rentDefault.kpi10Val ?? 0;
+      case SellGridKPIs.meanSoldAreaValue:
+        return rentDefault.kpi16Val ?? 0;
+      default:
+        return 0;
+    }
   }
 }
