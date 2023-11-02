@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:ebla/data/newtwok/failure_model/failure.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
 import 'package:ebla/domain/usecases/usecases.dart';
+import 'package:ebla/presentations/widgets/grid/grid_item_widget.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:multiple_result/multiple_result.dart';
 
@@ -55,8 +55,8 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
       /// KPI10
       // todo: call the usecase once total rented spaces are available and not "البيانات قيد الجمع والتدقيق"
       final failureOrSuccessTotalRentedSpaceUsecase =
-          await Future.delayed(Duration(milliseconds: 100))
-              .then((value) => Result.success(<BaseRentResponse>[]));
+          await Future.delayed(const Duration(milliseconds: 100))
+              .then((value) => const Result.success(<BaseRentResponse>[]));
 
       /// KPI13
       final failureOrSuccessMeanValue =
@@ -65,8 +65,8 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
       /// KPI16
       // todo: call the usecase once mean area con are available and not "البيانات قيد الجمع والتدقيق"
       final failureOrSuccessMeanArea =
-          await Future.delayed(Duration(milliseconds: 100))
-              .then((value) => Result.success(<BaseRentResponse>[]));
+          await Future.delayed(const Duration(milliseconds: 100))
+              .then((value) => const Result.success(<BaseRentResponse>[]));
 
       //------------------------KPI1--------------------------------------------
       failureOrSuccessTotalContracts.when(

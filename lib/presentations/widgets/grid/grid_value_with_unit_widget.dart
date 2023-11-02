@@ -25,10 +25,10 @@ class GridValueWithUnitWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 1,
-      child: Column(
+      child: Row(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Visibility(
             visible: !dataCollectedAndAudited,
@@ -64,6 +64,7 @@ class GridValueWithUnitWidget extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(width: unit.isNotEmpty ? AppSizeW.s2 : 0),
           Text(unit.tr(),
               textAlign: TextAlign.center,
               style: Theme.of(context)

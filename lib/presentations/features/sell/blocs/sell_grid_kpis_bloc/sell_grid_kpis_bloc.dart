@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/domain/models/requests/sell_requests/request_sell_values.dart';
 import 'package:ebla/domain/usecases/usecases.dart';
+import 'package:ebla/presentations/widgets/grid/grid_item_widget.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'sell_grid_kpis_bloc.freezed.dart';

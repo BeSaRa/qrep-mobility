@@ -1,27 +1,19 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
-import 'package:ebla/presentations/features/mortagage/widgets/mortgage_grid_item_widget.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
-import 'package:ebla/presentations/features/sell/widgets/sell_grid_item_widget.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
-import 'package:ebla/presentations/widgets/grid_value_with_unit_widget.dart';
+import 'package:ebla/presentations/widgets/grid/grid_value_with_unit_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../domain/models/rent_models/rent_models.dart';
+import '../../../domain/models/rent_models/rent_models.dart';
 
-import '../../../resources/values_manager.dart';
-import '../blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
-
-enum GridItemType {
-  rent,
-  sell,
-  mortgage,
-}
+import '../../resources/values_manager.dart';
+import '../../features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 
 class GridItemWidget extends StatefulWidget {
   final RentGridKPIs? rentKPI;
@@ -29,8 +21,6 @@ class GridItemWidget extends StatefulWidget {
   final MortgageGridKPIs? mortgageKPI;
   final GridItemType gridItemType;
   final RentDefault response;
-  final bool showProgressIndicatorOnLoading;
-  final bool showRetryButtonOnError;
 
   const GridItemWidget({
     super.key,
@@ -39,8 +29,6 @@ class GridItemWidget extends StatefulWidget {
     required this.response,
     required this.sellKPI,
     required this.mortgageKPI,
-    this.showProgressIndicatorOnLoading = false,
-    this.showRetryButtonOnError = false,
   });
 
   @override
@@ -406,6 +394,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
   }
 }
 
+//----------------------------data_object---------------------------------------
 class RentGridItemData {
   final String title;
 
@@ -419,4 +408,92 @@ class RentGridItemData {
     required this.valueUnit,
     required this.kpi,
   });
+}
+
+class SellGridItemData {
+  final String title;
+
+  final String imagePath;
+  final String valueUnit;
+  final SellGridKPIs kpi;
+
+  const SellGridItemData({
+    required this.title,
+    required this.imagePath,
+    required this.valueUnit,
+    required this.kpi,
+  });
+}
+
+class MortgageGridItemData {
+  final String title;
+
+  final String imagePath;
+  final String valueUnit;
+  final MortgageGridKPIs kpi;
+
+  const MortgageGridItemData({
+    required this.title,
+    required this.imagePath,
+    required this.valueUnit,
+    required this.kpi,
+  });
+}
+
+//--------------------------enums-----------------------------------------------
+enum GridItemType {
+  rent,
+  sell,
+  mortgage,
+}
+
+enum RentGridKPIs {
+  /// KPI1
+  totalContracts,
+
+  /// KPI4
+  totalRentedUnits,
+
+  /// KPI7
+  totalContractsValue,
+
+  /// KPI13
+  meanRentUnitValue,
+
+  /// KPI10
+  totalRentedSpaces,
+
+  /// KPI16
+  meanRentAreaValue,
+}
+
+enum SellGridKPIs {
+  /// KPI1
+  totalContracts,
+
+  /// KPI4
+  totalSoldUnits,
+
+  /// KPI7
+  totalTransactionsValue,
+
+  /// KPI13
+  meanSellUnitValue,
+
+  /// KPI10
+  totalSoldSpaces,
+
+  /// KPI16
+  meanSoldAreaValue,
+}
+
+enum MortgageGridKPIs {
+  /// KPI1
+  totalMortgageTransactions,
+
+  /// KPI3
+  totalMortgageUnitsNum,
+
+  /// KPI5
+  totalMortgageTransactionsValue,
 }

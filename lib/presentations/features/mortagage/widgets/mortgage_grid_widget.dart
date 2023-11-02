@@ -1,6 +1,5 @@
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
-import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
-import 'package:ebla/presentations/features/rent/widgets/grid_item_widget.dart';
+import 'package:ebla/presentations/widgets/grid/grid_item_widget.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/material.dart';
 

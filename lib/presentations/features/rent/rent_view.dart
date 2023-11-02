@@ -21,7 +21,7 @@ import '../../widgets/widgets.dart';
 import 'blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import 'blocs/default_bloc/rent_default_bloc.dart';
 import 'widgets/main_container_rent.dart';
-import 'widgets/grid_item_widget.dart';
+import '../../widgets/grid/grid_item_widget.dart';
 import 'widgets/statistics_rent_widget.dart';
 
 class RentView extends StatefulWidget {
