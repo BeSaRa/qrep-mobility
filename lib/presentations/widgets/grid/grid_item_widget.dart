@@ -227,6 +227,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                         child: Text(
                           getTitle(),
                           textAlign: TextAlign.center,
+                          overflow: TextOverflow.visible,
                           style: Theme.of(context)
                               .textTheme
                               .bodySmall
