@@ -395,7 +395,7 @@ class _RentViewState extends State<RentView> {
                                         physics:
                                             const NeverScrollableScrollPhysics(),
                                         itemBuilder: (context, index) {
-                                          return const ShimmerMainContainer();
+                                          return const ShimmerMainRentDataContainer();
                                         });
                                   }
                                   if (state.rentSummery !=
@@ -480,7 +480,7 @@ class _RentViewState extends State<RentView> {
                                                     .toFormattedString(),
                                               );
                                             }),
-                                        SizedBox(height: AppSizeH.s6),
+                                        // SizedBox(height: AppSizeH.s6),
                                       ],
                                     );
                                   }
@@ -516,33 +516,39 @@ class _RentViewState extends State<RentView> {
                                 bloc: rentSummeryBloc,
                                 builder: (context, RentSummeryState state) {
                                   if (state.isLoadingRentSummery) {
-                                    return FlutterCustomPagination(
-                                      currentPage: context
-                                              .read<RentBloc>()
-                                              .requestMeanValue
-                                              .offset ??
-                                          0,
-                                      limitPerPage: 3,
-                                      totalDataCount:
-                                          rentSummeryBloc.rentSummery?.count ??
+                                    return Column(
+                                      children: [
+                                        FlutterCustomPagination(
+                                          currentPage: context
+                                                  .read<RentBloc>()
+                                                  .requestMeanValue
+                                                  .offset ??
                                               0,
-                                      onPreviousPage: (previousPage) {},
-                                      onBackToFirstPage: (firstPage) {},
-                                      onNextPage: (nextPage) {},
-                                      onGoToLastPage: (lastPage) {},
-                                      backgroundColor: Theme.of(context)
-                                          .colorScheme
-                                          .background,
-                                      previousPageIcon:
-                                          context.locale == ARABIC_LOCAL
+                                          limitPerPage: 3,
+                                          totalDataCount: rentSummeryBloc
+                                                  .rentSummery?.count ??
+                                              0,
+                                          onPreviousPage: (previousPage) {},
+                                          onBackToFirstPage: (firstPage) {},
+                                          onNextPage: (nextPage) {},
+                                          onGoToLastPage: (lastPage) {},
+                                          backgroundColor: Theme.of(context)
+                                              .colorScheme
+                                              .background,
+                                          previousPageIcon: context.locale ==
+                                                  ARABIC_LOCAL
                                               ? Icons.keyboard_arrow_right_sharp
                                               : Icons.keyboard_arrow_left_sharp,
-                                      backToFirstPageIcon: Icons.first_page,
-                                      nextPageIcon: context.locale ==
-                                              ARABIC_LOCAL
-                                          ? Icons.keyboard_arrow_left_sharp
-                                          : Icons.keyboard_arrow_right_sharp,
-                                      goToLastPageIcon: Icons.last_page,
+                                          backToFirstPageIcon: Icons.first_page,
+                                          nextPageIcon: context.locale ==
+                                                  ARABIC_LOCAL
+                                              ? Icons.keyboard_arrow_left_sharp
+                                              : Icons
+                                                  .keyboard_arrow_right_sharp,
+                                          goToLastPageIcon: Icons.last_page,
+                                        ),
+                                        SizedBox(height: AppSizeH.s10)
+                                      ],
                                     );
                                   }
                                   if (state.isEmptyRentSummery) {
@@ -554,88 +560,96 @@ class _RentViewState extends State<RentView> {
                                   }
                                   if (state.rentSummery !=
                                       const RentListSummary()) {
-                                    return FlutterCustomPagination(
-                                      currentPage: context
-                                              .read<RentBloc>()
-                                              .requestMeanValue
-                                              .offset ??
-                                          0,
-                                      limitPerPage: 3,
-                                      totalDataCount:
-                                          rentSummeryBloc.rentSummery?.count ??
+                                    return Column(
+                                      children: [
+                                        FlutterCustomPagination(
+                                          currentPage: context
+                                                  .read<RentBloc>()
+                                                  .requestMeanValue
+                                                  .offset ??
                                               0,
-                                      onPreviousPage: (previousPage) {
-                                        context
-                                                .read<RentBloc>()
-                                                .requestMeanValue =
+                                          limitPerPage: 3,
+                                          totalDataCount: rentSummeryBloc
+                                                  .rentSummery?.count ??
+                                              0,
+                                          onPreviousPage: (previousPage) {
                                             context
-                                                .read<RentBloc>()
-                                                .requestMeanValue
-                                                .copyWith(offset: previousPage);
-                                        rentSummeryBloc.add(
-                                            RentSummeryEvent.getRentSummary(
-                                                request: context
                                                     .read<RentBloc>()
-                                                    .requestMeanValue));
-                                      },
-                                      onBackToFirstPage: (firstPage) {
-                                        context
-                                                .read<RentBloc>()
-                                                .requestMeanValue =
+                                                    .requestMeanValue =
+                                                context
+                                                    .read<RentBloc>()
+                                                    .requestMeanValue
+                                                    .copyWith(
+                                                        offset: previousPage);
+                                            rentSummeryBloc.add(
+                                                RentSummeryEvent.getRentSummary(
+                                                    request: context
+                                                        .read<RentBloc>()
+                                                        .requestMeanValue));
+                                          },
+                                          onBackToFirstPage: (firstPage) {
                                             context
-                                                .read<RentBloc>()
-                                                .requestMeanValue
-                                                .copyWith(offset: 0);
-                                        rentSummeryBloc.add(
-                                            RentSummeryEvent.getRentSummary(
-                                                request: context
                                                     .read<RentBloc>()
-                                                    .requestMeanValue));
-                                      },
-                                      onNextPage: (nextPage) {
-                                        context
-                                                .read<RentBloc>()
-                                                .requestMeanValue =
+                                                    .requestMeanValue =
+                                                context
+                                                    .read<RentBloc>()
+                                                    .requestMeanValue
+                                                    .copyWith(offset: 0);
+                                            rentSummeryBloc.add(
+                                                RentSummeryEvent.getRentSummary(
+                                                    request: context
+                                                        .read<RentBloc>()
+                                                        .requestMeanValue));
+                                          },
+                                          onNextPage: (nextPage) {
                                             context
-                                                .read<RentBloc>()
-                                                .requestMeanValue
-                                                .copyWith(offset: (nextPage));
-                                        rentSummeryBloc.add(
-                                            RentSummeryEvent.getRentSummary(
-                                                request: context
                                                     .read<RentBloc>()
-                                                    .requestMeanValue));
-                                      },
-                                      onGoToLastPage: (lastPage) {
-                                        context
-                                                .read<RentBloc>()
-                                                .requestMeanValue =
+                                                    .requestMeanValue =
+                                                context
+                                                    .read<RentBloc>()
+                                                    .requestMeanValue
+                                                    .copyWith(
+                                                        offset: (nextPage));
+                                            rentSummeryBloc.add(
+                                                RentSummeryEvent.getRentSummary(
+                                                    request: context
+                                                        .read<RentBloc>()
+                                                        .requestMeanValue));
+                                          },
+                                          onGoToLastPage: (lastPage) {
                                             context
-                                                .read<RentBloc>()
-                                                .requestMeanValue
-                                                .copyWith(offset: lastPage);
-                                        rentSummeryBloc.add(
-                                            RentSummeryEvent.getRentSummary(
-                                                request: context
                                                     .read<RentBloc>()
-                                                    .requestMeanValue));
-                                      },
-                                      backgroundColor: Theme.of(context)
-                                          .colorScheme
-                                          .background,
-                                      // textStyle: Theme.of(context)
-                                      //     .textTheme
-                                      //     .labelSmall,
-                                      previousPageIcon:
-                                          context.locale == ARABIC_LOCAL
+                                                    .requestMeanValue =
+                                                context
+                                                    .read<RentBloc>()
+                                                    .requestMeanValue
+                                                    .copyWith(offset: lastPage);
+                                            rentSummeryBloc.add(
+                                                RentSummeryEvent.getRentSummary(
+                                                    request: context
+                                                        .read<RentBloc>()
+                                                        .requestMeanValue));
+                                          },
+                                          backgroundColor: Theme.of(context)
+                                              .colorScheme
+                                              .background,
+                                          // textStyle: Theme.of(context)
+                                          //     .textTheme
+                                          //     .labelSmall,
+                                          previousPageIcon: context.locale ==
+                                                  ARABIC_LOCAL
                                               ? Icons.keyboard_arrow_right_sharp
                                               : Icons.keyboard_arrow_left_sharp,
-                                      backToFirstPageIcon: Icons.first_page,
-                                      nextPageIcon: context.locale ==
-                                              ARABIC_LOCAL
-                                          ? Icons.keyboard_arrow_left_sharp
-                                          : Icons.keyboard_arrow_right_sharp,
-                                      goToLastPageIcon: Icons.last_page,
+                                          backToFirstPageIcon: Icons.first_page,
+                                          nextPageIcon: context.locale ==
+                                                  ARABIC_LOCAL
+                                              ? Icons.keyboard_arrow_left_sharp
+                                              : Icons
+                                                  .keyboard_arrow_right_sharp,
+                                          goToLastPageIcon: Icons.last_page,
+                                        ),
+                                        SizedBox(height: AppSizeH.s10)
+                                      ],
                                     );
                                   }
                                   return const SizedBox();
