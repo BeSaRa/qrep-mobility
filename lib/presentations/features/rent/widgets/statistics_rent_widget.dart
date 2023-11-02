@@ -9,7 +9,9 @@ import '../blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import '../blocs/rent_bloc/rent_bloc.dart';
 
 class StatisTicsWidget extends StatefulWidget {
-  const StatisTicsWidget({super.key});
+  final String title;
+
+  const StatisTicsWidget({super.key, required this.title});
 
   @override
   State<StatisTicsWidget> createState() => _StatisTicsWidgetState();
@@ -55,7 +57,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                           children: [
                             _TabContainerShimmer(
                               tabIndex: 1,
-                              name: AppStrings().countLeaseContracts,
+                              name: widget.title,
                             ),
                             _TabContainerShimmer(
                               tabIndex: 2,

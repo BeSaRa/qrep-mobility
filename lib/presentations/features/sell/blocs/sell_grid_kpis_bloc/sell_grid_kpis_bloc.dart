@@ -164,10 +164,11 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
         },
         (error) {
           emit(state.copyWith(
-              isLoading: false,
-              hasError: true,
-              errorMessage: error.message,
-              meanSoldAreaValue: []));
+            isLoading: false,
+            hasError: true,
+            errorMessage: error.message,
+            meanSoldAreaValue: [],
+          ));
         },
       );
     });
