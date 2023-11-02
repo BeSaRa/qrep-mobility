@@ -15,5 +15,5 @@ export 'range_slider_filter_widget.dart';
 export 'range_slider_widget.dart';
 export 'search_text_field_widget.dart';
 export 'single_dropdown_widget.dart';
-export 'staggered_grid_view.dart';
+export 'grid/staggered_grid_view.dart';
 export 'statistics_rent_widget.dart';

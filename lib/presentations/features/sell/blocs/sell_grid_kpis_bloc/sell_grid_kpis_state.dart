@@ -4,7 +4,6 @@ part of 'sell_grid_kpis_bloc.dart';
 class SellGridKPIsState with _$SellGridKPIsState {
   const factory SellGridKPIsState.initialState({
     @Default(false) bool isLoading,
-    @Default(false) bool hasError,
     @Default('') String errorMessage,
     @Default([]) List<BaseRentResponse> totalContracts,
     @Default([]) List<BaseRentResponse> totalSoldUnits,
@@ -12,5 +11,12 @@ class SellGridKPIsState with _$SellGridKPIsState {
     @Default([]) List<BaseRentResponse> meanSellUnitValue,
     @Default([]) List<BaseRentResponse> totalSoldSpaces,
     @Default([]) List<BaseRentResponse> meanSoldAreaValue,
+    //----------------------------errors----------------------------------------
+    @Default(false) bool hasErrorTotalContracts,
+    @Default(false) bool hasErrorTotalSoldUnits,
+    @Default(false) bool hasErrorTotalTransactionsValue,
+    @Default(false) bool hasErrorMeanSellUnitValue,
+    @Default(false) bool hasErrorTotalSoldSpaces,
+    @Default(false) bool hasErrorMeanSoldAreaValue,
   }) = _InitialState;
 }

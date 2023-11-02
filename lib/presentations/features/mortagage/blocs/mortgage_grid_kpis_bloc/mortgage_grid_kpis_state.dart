@@ -4,7 +4,6 @@ part of 'mortgage_grid_kpis_bloc.dart';
 class MortgageGridKPIsState with _$MortgageGridKPIsState {
   const factory MortgageGridKPIsState.initialState({
     @Default(false) bool isLoading,
-    @Default(false) bool hasError,
     @Default('') String errorMessage,
 
     /// KPI1
@@ -15,5 +14,9 @@ class MortgageGridKPIsState with _$MortgageGridKPIsState {
 
     /// KPI5
     @Default([]) List<BaseRentResponse> totalMortgageTransactionsValue,
+    //-------------------------------errors----------------------------
+    @Default(false) bool hasErrorTotalMortgageTransactions,
+    @Default(false) bool hasErrortotalMortgageUnitsNum,
+    @Default(false) bool hasErrorTotalMortgageTransactionsValue,
   }) = _InitialState;
 }
