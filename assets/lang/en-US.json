@@ -110,7 +110,7 @@
   "paginator_first_page_label": "First page",
   "paginator_last_page_label": "Last page",
   "paginator_next_page_label": "Next page",
-  "paginator_of_label": "paginator_of_label",
-  "paginator_page_label": "paginator_page_label",
+  "paginator_of_label": "of",
+  "paginator_page_label": "Page",
   "paginator_previous_page_label": "Previous page"
  }

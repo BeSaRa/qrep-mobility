@@ -9,7 +9,6 @@ class AppStrings {
   String more = "more".tr();
 
   //rent
-
   String currentPerformanceSummary = "current_performance_summary".tr();
   String unitType = "unit_type".tr();
   String startDate = "start_date".tr();
