@@ -53,12 +53,12 @@ class _GridItemWidgetState extends State<GridItemWidget> {
         kpi: RentGridKPIs.totalContractsValue,
         title: "the_total_value_of_lease_contracts",
         imagePath: ImageAssets.totalValRentContracts,
-        valueUnit: 'currency'),
+        valueUnit: "qr"),
     RentGridItemData(
         kpi: RentGridKPIs.meanRentUnitValue,
         title: "average_rental_price_per_unit_property",
         imagePath: ImageAssets.averageRentUnitPrice,
-        valueUnit: 'currency'),
+        valueUnit: "qr"),
     RentGridItemData(
         kpi: RentGridKPIs.totalRentedSpaces,
         title: "total_rented_space",
@@ -68,7 +68,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
         kpi: RentGridKPIs.meanRentAreaValue,
         title: "the_average_price_per_square_meter_square_foot",
         imagePath: ImageAssets.totalRentedSpaces,
-        valueUnit: 'currency'),
+        valueUnit: "qr"),
   ];
   List<SellGridItemData> sellGridItemsData = const [
     SellGridItemData(
@@ -87,13 +87,13 @@ class _GridItemWidgetState extends State<GridItemWidget> {
       kpi: SellGridKPIs.totalTransactionsValue,
       title: "the_total_value_of_sell_contracts",
       imagePath: IconAssets.totalSellTransactionsValue,
-      valueUnit: "currency",
+      valueUnit: "qr",
     ),
     SellGridItemData(
       kpi: SellGridKPIs.meanSellUnitValue,
       title: "average_sell_price_per_unit_property",
       imagePath: ImageAssets.averageRentUnitPrice,
-      valueUnit: "currency",
+      valueUnit: "qr",
     ),
     SellGridItemData(
       kpi: SellGridKPIs.totalSoldSpaces,
@@ -105,7 +105,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
       kpi: SellGridKPIs.meanSoldAreaValue,
       title: "sell_average_price_per_square_foot",
       imagePath: ImageAssets.totalRentedSpaces,
-      valueUnit: 'currency',
+      valueUnit: "qr",
     ),
   ];
   List<MortgageGridItemData> mortgageGridItemsData = [
@@ -128,7 +128,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
       kpi: MortgageGridKPIs.totalMortgageTransactionsValue,
       title: "total_value_of_mortgage_transactions",
       imagePath: IconAssets.totalMortgageTransactionsValue,
-      valueUnit: 'currency',
+      valueUnit: "qr",
     ),
   ];
 
