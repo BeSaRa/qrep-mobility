@@ -12,8 +12,11 @@ class TextFilterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: AppSizeH.s37,
+      height: AppSizeH.s38,
       child: TextField(
+        expands: true,
+        maxLines: null,
+        minLines: null,
         controller: controller,
         keyboardType: TextInputType.number,
         maxLength: 4,

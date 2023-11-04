@@ -332,6 +332,7 @@ class AppSizeR {
   static double s30 = 30.0.r;
   static double s32 = 32.0.r;
   static double s33 = 33.0.r;
+  static double s35 = 35.0.r;
   static double s36 = 36.0.r;
   static double s38 = 38.0.r;
   static double s39 = 39.0.r;

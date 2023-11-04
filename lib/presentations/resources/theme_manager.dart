@@ -60,6 +60,7 @@ ThemeData lightTheme() {
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: ColorManager.white,
       elevation: 0,
+      constraints: const BoxConstraints(minWidth: double.infinity),
       showDragHandle: true,
       modalElevation: 0,
       modalBackgroundColor: ColorManager.white,

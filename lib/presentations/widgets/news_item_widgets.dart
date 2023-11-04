@@ -187,7 +187,7 @@ class NewsItemWidget extends StatelessWidget {
                             maxLines: 2,
                           ),
                         ),
-                        SizedBox(height: AppSizeH.s6),
+                        // SizedBox(height: AppSizeH.s6),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -212,7 +212,9 @@ class NewsItemWidget extends StatelessWidget {
                               ],
                             ),
                             Container(
-                              padding: EdgeInsets.all(AppSizeW.s5),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: AppSizeW.s6,
+                                  vertical: AppSizeH.s6),
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: ColorManager.golden),
@@ -220,7 +222,7 @@ class NewsItemWidget extends StatelessWidget {
                                   context.locale == ARABIC_LOCAL
                                       ? Icons.arrow_back_ios_new_rounded
                                       : Icons.arrow_forward_ios_rounded,
-                                  size: AppSizeSp.s12,
+                                  size: AppSizeSp.s10,
                                   color: ColorManager.white),
                             ),
                           ],

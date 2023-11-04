@@ -105,10 +105,10 @@ class _SingleDropDownValue<T> extends State<SingleDropDownValue<T>> {
             height: AppSizeH.s36,
             // width: 140,
           ),
-          menuItemStyleData: MenuItemStyleData(
-            height: AppSizeH.s40,
-            padding: EdgeInsets.symmetric(vertical: AppSizeH.s4),
-          ),
+          // menuItemStyleData: MenuItemStyleData(
+          //   height: AppSizeH.s40,
+          //   padding: EdgeInsets.symmetric(vertical: AppSizeH.s4),
+          // ),
         ),
       ),
     );

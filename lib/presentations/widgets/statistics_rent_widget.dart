@@ -30,10 +30,7 @@ class StatisticsRentWidget extends StatelessWidget {
               const Spacer(),
               Text(
                 statistics[i].number,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(fontWeight: FontWeight.w700),
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ],
           ),
