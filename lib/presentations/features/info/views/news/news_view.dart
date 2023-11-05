@@ -58,7 +58,7 @@ class _NewsViewState extends State<NewsView> {
         // ),
         title: Text(
           AppStrings().news,
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context).textTheme.headlineLarge,
         ),
         centerTitle: true,
         actions: [
@@ -68,58 +68,47 @@ class _NewsViewState extends State<NewsView> {
           ),
         ],
       ),
-      body: Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage(ImageAssets.homeBg),
-            fit: BoxFit.cover,
-          )),
-          child: Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  padding: EdgeInsets.symmetric(vertical: AppSizeH.s40),
-                  itemCount: context.read<NewsBloc>().newsList.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: AppSizeW.s20, vertical: AppSizeH.s4),
-                      child: InkWell(
-                        onTap: () {
-                          context.pushNamed(RoutesNames.newsbyId,
-                              pathParameters: {
-                                "id": context
-                                    .read<NewsBloc>()
-                                    .newsList[index]
-                                    .id
-                                    .toString()
-                              },
-                              extra: context.read<NewsBloc>());
-                        },
-                        child: SizedBox(
-                          height: AppSizeH.s100,
-                          child: NewsItemWidget(
-                              image: context
-                                  .read<NewsBloc>()
-                                  .newsList[index]
-                                  .image,
-                              date: context
-                                  .read<NewsBloc>()
-                                  .newsList[index]
-                                  .dateCreated,
-                              label: context
-                                  .read<NewsBloc>()
-                                  .newsList[index]
-                                  .title),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              )
-            ],
-          )),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              padding: EdgeInsets.symmetric(vertical: AppSizeH.s40),
+              itemCount: context.read<NewsBloc>().newsList.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: AppSizeW.s20, vertical: AppSizeH.s4),
+                  child: InkWell(
+                    onTap: () {
+                      context.pushNamed(RoutesNames.newsbyId,
+                          pathParameters: {
+                            "id": context
+                                .read<NewsBloc>()
+                                .newsList[index]
+                                .id
+                                .toString()
+                          },
+                          extra: context.read<NewsBloc>());
+                    },
+                    child: SizedBox(
+                      height: AppSizeH.s100,
+                      child: NewsItemWidget(
+                          image: context.read<NewsBloc>().newsList[index].image,
+                          date: context
+                              .read<NewsBloc>()
+                              .newsList[index]
+                              .dateCreated,
+                          label:
+                              context.read<NewsBloc>().newsList[index].title),
+                    ),
+                  ),
+                );
+              },
+            ),
+          )
+        ],
+      ),
     );
   }
 }

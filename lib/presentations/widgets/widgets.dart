@@ -1,5 +1,5 @@
 export 'animated_pulse_logo.dart';
-export 'bottom_sheet_filter_widget.dart';
+export '../features/rent/widgets/bottom_sheet_filter_widget.dart';
 export 'bottom_sheet_widget.dart';
 export 'custom_elevated_button.dart';
 export 'date_range_picker.dart';
