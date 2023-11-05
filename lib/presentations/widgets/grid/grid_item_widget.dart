@@ -187,7 +187,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: AppSizeH.s140,
+      height: AppSizeH.s144,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(AppSizeR.s20)),
@@ -214,7 +214,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(height: AppSizeH.s20),
+              SizedBox(height: AppSizeH.s15),
               Flexible(
                 flex: 1,
                 child: Padding(
@@ -368,7 +368,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               SizedBox(
-                height: AppSizeH.s80,
+                height: AppSizeH.s94,
               ),
               Flexible(
                 flex: 1,
@@ -379,8 +379,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                       aspectRatio: 1,
                       child: SvgPicture.asset(
                         getImagePath(),
-                        height: AppSizeH.s70,
-                        width: AppSizeW.s70,
+                        width: AppSizeW.s56,
                         color: ColorManager.primary.withOpacity(0.6),
                       ),
                     ),

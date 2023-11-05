@@ -35,7 +35,6 @@ class EblaNavigationBar extends StatelessWidget {
       curve: Curves.decelerate,
       showIcon: true,
       width: MediaQuery.of(context).size.width * 0.9,
-
       barColor: Colors.white,
       barDecoration: BoxDecoration(boxShadow: [
         BoxShadow(

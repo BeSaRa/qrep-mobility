@@ -23,23 +23,23 @@ class GridValueWithUnitWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Flexible(
       flex: 1,
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Visibility(
-            visible: !dataCollectedAndAudited,
-            replacement: Flexible(
-                child: Text(
-              textAlign: TextAlign.center,
-              maxLines: 3,
-              AppStrings().dataBeingCollectedAndAudited,
-              style: Theme.of(context).textTheme.bodyMedium,
-            )),
-            child: Flexible(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
+        child: Wrap(
+          runAlignment: WrapAlignment.center,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          alignment: WrapAlignment.center,
+          children: [
+            Visibility(
+              visible: !dataCollectedAndAudited,
+              replacement: Text(
+                textAlign: TextAlign.center,
+                maxLines: 3,
+                AppStrings().dataBeingCollectedAndAudited,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
               child: Visibility(
                 visible: !countUp,
                 replacement: Countup(
@@ -63,15 +63,17 @@ class GridValueWithUnitWidget extends StatelessWidget {
                         .copyWith(fontSize: AppSizeSp.s18, height: 1)),
               ),
             ),
-          ),
-          SizedBox(width: unit.isNotEmpty ? AppSizeW.s2 : 0),
-          Text(unit.tr(),
-              textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(fontSize: AppSizeSp.s18, height: 1)),
-        ],
+            SizedBox(width: unit.isNotEmpty ? AppSizeW.s5 : 0),
+            unit.isNotEmpty
+                ? Text(unit.tr(),
+                    textAlign: TextAlign.start,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(fontSize: AppSizeSp.s18, height: 1))
+                : const SizedBox(),
+          ],
+        ),
       ),
     );
   }

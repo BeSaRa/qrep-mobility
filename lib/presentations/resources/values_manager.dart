@@ -84,6 +84,7 @@ class AppSizeH {
   static double s83 = 83.0.h;
   static double s88 = 88.0.h;
   static double s90 = 90.0.h;
+  static double s94 = 94.0.h;
   static double s96 = 96.0.h;
   static double s100 = 100.0.h;
   static double s103 = 103.0.h;
