@@ -4,11 +4,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/app/extensions.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
+import 'package:ebla/presentations/widgets/grid/grid_item_widget.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_transaction/sell_transaction_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/top_values_bloc/topvalues_bloc.dart';
-import 'package:ebla/presentations/features/sell/widgets/sell_grid_item_widget.dart';
+
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:ebla/presentations/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -358,9 +359,13 @@ class _SalesViewState extends State<SalesView> {
                                               (context, index) {
                                             return BlocProvider.value(
                                               value: sellGridKPIsBloc,
-                                              child: SellGridItemWidget(
+                                              child: GridItemWidget(
+                                                gridItemType: GridItemType.sell,
                                                 response: done,
-                                                kpi: SellGridKPIs.values[index],
+                                                sellKPI:
+                                                    SellGridKPIs.values[index],
+                                                rentKPI: null,
+                                                mortgageKPI: null,
                                               ),
                                             );
                                           },
@@ -523,47 +528,54 @@ class _SalesViewState extends State<SalesView> {
                                             SellTransactionState state) {
                                           return state.maybeMap(
                                             loading: (value) {
-                                              return FlutterCustomPagination(
-                                                currentPage: context
-                                                        .read<SellBloc>()
-                                                        .requestSell
-                                                        .offset ??
-                                                    0,
-                                                limitPerPage: 3,
-                                                totalDataCount:
-                                                    sellTransactionBloc
-                                                            .sellTransaction
-                                                            ?.count ??
+                                              return Column(
+                                                children: [
+                                                  FlutterCustomPagination(
+                                                    currentPage: context
+                                                            .read<SellBloc>()
+                                                            .requestSell
+                                                            .offset ??
                                                         0,
-                                                onPreviousPage:
-                                                    (previousPage) {},
-                                                onBackToFirstPage:
-                                                    (firstPage) {},
-                                                onNextPage: (nextPage) {},
-                                                onGoToLastPage: (lastPage) {},
-                                                backgroundColor:
-                                                    Theme.of(context)
-                                                        .colorScheme
-                                                        .background,
-                                                // textStyle: Theme.of(context)
-                                                //     .textTheme
-                                                //     .labelSmall,
-                                                previousPageIcon: context.locale ==
-                                                        ARABIC_LOCAL
-                                                    ? Icons
-                                                        .keyboard_arrow_right_sharp
-                                                    : Icons
-                                                        .keyboard_arrow_left_sharp,
-                                                backToFirstPageIcon:
-                                                    Icons.first_page,
-                                                nextPageIcon: context.locale ==
-                                                        ARABIC_LOCAL
-                                                    ? Icons
-                                                        .keyboard_arrow_left_sharp
-                                                    : Icons
-                                                        .keyboard_arrow_right_sharp,
-                                                goToLastPageIcon:
-                                                    Icons.last_page,
+                                                    limitPerPage: 3,
+                                                    totalDataCount:
+                                                        sellTransactionBloc
+                                                                .sellTransaction
+                                                                ?.count ??
+                                                            0,
+                                                    onPreviousPage:
+                                                        (previousPage) {},
+                                                    onBackToFirstPage:
+                                                        (firstPage) {},
+                                                    onNextPage: (nextPage) {},
+                                                    onGoToLastPage:
+                                                        (lastPage) {},
+                                                    backgroundColor:
+                                                        Theme.of(context)
+                                                            .colorScheme
+                                                            .background,
+                                                    // textStyle: Theme.of(context)
+                                                    //     .textTheme
+                                                    //     .labelSmall,
+                                                    previousPageIcon: context
+                                                                .locale ==
+                                                            ARABIC_LOCAL
+                                                        ? Icons
+                                                            .keyboard_arrow_right_sharp
+                                                        : Icons
+                                                            .keyboard_arrow_left_sharp,
+                                                    backToFirstPageIcon:
+                                                        Icons.first_page,
+                                                    nextPageIcon: context.locale ==
+                                                            ARABIC_LOCAL
+                                                        ? Icons
+                                                            .keyboard_arrow_left_sharp
+                                                        : Icons
+                                                            .keyboard_arrow_right_sharp,
+                                                    goToLastPageIcon:
+                                                        Icons.last_page,
+                                                  ),
+                                                  SizedBox(height: AppSizeH.s8)
+                                                ],
                                               );
                                             },
                                             success: (value) {
@@ -577,111 +589,117 @@ class _SalesViewState extends State<SalesView> {
                                                       .bodyLarge,
                                                 );
                                               }
-                                              return FlutterCustomPagination(
-                                                currentPage: context
-                                                        .read<SellBloc>()
-                                                        .requestSell
-                                                        .offset ??
-                                                    0,
-                                                limitPerPage: 3,
-                                                totalDataCount:
-                                                    sellTransactionBloc
-                                                            .sellTransaction
-                                                            ?.count ??
+                                              return Column(
+                                                children: [
+                                                  FlutterCustomPagination(
+                                                    currentPage: context
+                                                            .read<SellBloc>()
+                                                            .requestSell
+                                                            .offset ??
                                                         0,
-                                                onPreviousPage: (previousPage) {
-                                                  context
-                                                          .read<SellBloc>()
-                                                          .requestSell =
+                                                    limitPerPage: 3,
+                                                    totalDataCount:
+                                                        sellTransactionBloc
+                                                                .sellTransaction
+                                                                ?.count ??
+                                                            0,
+                                                    onPreviousPage:
+                                                        (previousPage) {
                                                       context
-                                                          .read<SellBloc>()
-                                                          .requestSell
-                                                          .copyWith(
-                                                              offset:
-                                                                  previousPage);
-                                                  sellTransactionBloc.add(
-                                                      SellTransactionEvent
-                                                          .started(
+                                                              .read<SellBloc>()
+                                                              .requestSell =
+                                                          context
+                                                              .read<SellBloc>()
+                                                              .requestSell
+                                                              .copyWith(
+                                                                  offset:
+                                                                      previousPage);
+                                                      sellTransactionBloc.add(
+                                                          SellTransactionEvent.started(
                                                               request: context
                                                                   .read<
                                                                       SellBloc>()
                                                                   .requestSell));
-                                                },
-                                                onBackToFirstPage: (firstPage) {
-                                                  context
-                                                          .read<SellBloc>()
-                                                          .requestSell =
+                                                    },
+                                                    onBackToFirstPage:
+                                                        (firstPage) {
                                                       context
-                                                          .read<SellBloc>()
-                                                          .requestSell
-                                                          .copyWith(
-                                                              offset:
-                                                                  firstPage);
-                                                  sellTransactionBloc.add(
-                                                      SellTransactionEvent
-                                                          .started(
+                                                              .read<SellBloc>()
+                                                              .requestSell =
+                                                          context
+                                                              .read<SellBloc>()
+                                                              .requestSell
+                                                              .copyWith(
+                                                                  offset:
+                                                                      firstPage);
+                                                      sellTransactionBloc.add(
+                                                          SellTransactionEvent.started(
                                                               request: context
                                                                   .read<
                                                                       SellBloc>()
                                                                   .requestSell));
-                                                },
-                                                onNextPage: (nextPage) {
-                                                  context
-                                                          .read<SellBloc>()
-                                                          .requestSell =
+                                                    },
+                                                    onNextPage: (nextPage) {
                                                       context
-                                                          .read<SellBloc>()
-                                                          .requestSell
-                                                          .copyWith(
-                                                              offset: nextPage);
-                                                  sellTransactionBloc.add(
-                                                      SellTransactionEvent
-                                                          .started(
+                                                              .read<SellBloc>()
+                                                              .requestSell =
+                                                          context
+                                                              .read<SellBloc>()
+                                                              .requestSell
+                                                              .copyWith(
+                                                                  offset:
+                                                                      nextPage);
+                                                      sellTransactionBloc.add(
+                                                          SellTransactionEvent.started(
                                                               request: context
                                                                   .read<
                                                                       SellBloc>()
                                                                   .requestSell));
-                                                },
-                                                onGoToLastPage: (lastPage) {
-                                                  context
-                                                          .read<SellBloc>()
-                                                          .requestSell =
+                                                    },
+                                                    onGoToLastPage: (lastPage) {
                                                       context
-                                                          .read<SellBloc>()
-                                                          .requestSell
-                                                          .copyWith(
-                                                              offset: lastPage);
-                                                  sellTransactionBloc.add(
-                                                      SellTransactionEvent
-                                                          .started(
+                                                              .read<SellBloc>()
+                                                              .requestSell =
+                                                          context
+                                                              .read<SellBloc>()
+                                                              .requestSell
+                                                              .copyWith(
+                                                                  offset:
+                                                                      lastPage);
+                                                      sellTransactionBloc.add(
+                                                          SellTransactionEvent.started(
                                                               request: context
                                                                   .read<
                                                                       SellBloc>()
                                                                   .requestSell));
-                                                },
-                                                backgroundColor:
-                                                    Theme.of(context)
-                                                        .colorScheme
-                                                        .background,
-                                                // textStyle: Theme.of(context)
-                                                //     .textTheme
-                                                //     .labelSmall,
-                                                previousPageIcon: context.locale ==
-                                                        ARABIC_LOCAL
-                                                    ? Icons
-                                                        .keyboard_arrow_right_sharp
-                                                    : Icons
-                                                        .keyboard_arrow_left_sharp,
-                                                backToFirstPageIcon:
-                                                    Icons.first_page,
-                                                nextPageIcon: context.locale ==
-                                                        ARABIC_LOCAL
-                                                    ? Icons
-                                                        .keyboard_arrow_left_sharp
-                                                    : Icons
-                                                        .keyboard_arrow_right_sharp,
-                                                goToLastPageIcon:
-                                                    Icons.last_page,
+                                                    },
+                                                    backgroundColor:
+                                                        Theme.of(context)
+                                                            .colorScheme
+                                                            .background,
+                                                    // textStyle: Theme.of(context)
+                                                    //     .textTheme
+                                                    //     .labelSmall,
+                                                    previousPageIcon: context
+                                                                .locale ==
+                                                            ARABIC_LOCAL
+                                                        ? Icons
+                                                            .keyboard_arrow_right_sharp
+                                                        : Icons
+                                                            .keyboard_arrow_left_sharp,
+                                                    backToFirstPageIcon:
+                                                        Icons.first_page,
+                                                    nextPageIcon: context.locale ==
+                                                            ARABIC_LOCAL
+                                                        ? Icons
+                                                            .keyboard_arrow_left_sharp
+                                                        : Icons
+                                                            .keyboard_arrow_right_sharp,
+                                                    goToLastPageIcon:
+                                                        Icons.last_page,
+                                                  ),
+                                                  SizedBox(height: AppSizeH.s8)
+                                                ],
                                               );
                                             },
                                             orElse: () => const SizedBox(),

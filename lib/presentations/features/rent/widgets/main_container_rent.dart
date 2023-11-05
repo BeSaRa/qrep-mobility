@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../resources/resources.dart';
+import '../../../widgets/shimmer_placeholder.dart';
 
 class MainRentDataContainer extends StatelessWidget {
   final String title;
@@ -173,6 +174,157 @@ class MainRentDataContainer extends StatelessWidget {
                         endDate,
                         // textDirection: TextDirection.ltr,
                         style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ShimmerMainRentDataContainer extends StatelessWidget {
+  const ShimmerMainRentDataContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin:
+          EdgeInsets.symmetric(vertical: AppSizeH.s4, horizontal: AppSizeH.s20),
+      padding: EdgeInsets.symmetric(vertical: AppSizeH.s12),
+      decoration: BoxDecoration(
+        color: ColorManager.white,
+        boxShadow: [
+          BoxShadow(
+              offset: const Offset(1, 1),
+              spreadRadius: AppSizeR.s2,
+              blurRadius: AppSizeR.s11,
+              color: ColorManager.black.withAlpha(6))
+        ],
+        borderRadius: BorderRadius.circular(AppSizeR.s12),
+      ),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppSizeW.s14),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ShimmerPlaceholder(
+                  child: Container(
+                    width: AppSizeW.s76,
+                    // width: double.infinity,
+                    height: AppSizeH.s12,
+                    decoration: BoxDecoration(
+                        color: ColorManager.white,
+                        borderRadius: BorderRadius.circular(AppSizeR.s12)),
+                  ),
+                ),
+                ShimmerPlaceholder(
+                  child: Container(
+                    width: AppSizeW.s76,
+                    height: AppSizeH.s12,
+                    decoration: BoxDecoration(
+                        color: ColorManager.white,
+                        borderRadius: BorderRadius.circular(AppSizeR.s12)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: AppSizeH.s21),
+          Padding(
+            padding: EdgeInsetsDirectional.symmetric(horizontal: AppSizeW.s14),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: ShimmerPlaceholder(
+                    child: Container(
+                      // width: double.infinity,
+                      height: AppSizeH.s12,
+                      decoration: BoxDecoration(
+                          color: ColorManager.white,
+                          borderRadius: BorderRadius.circular(AppSizeR.s12)),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: AppSizeH.s20),
+          Padding(
+            padding: EdgeInsetsDirectional.symmetric(horizontal: AppSizeW.s14),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: ShimmerPlaceholder(
+                    child: Container(
+                      // width: double.infinity,
+                      height: AppSizeH.s12,
+                      decoration: BoxDecoration(
+                          color: ColorManager.white,
+                          borderRadius: BorderRadius.circular(AppSizeR.s12)),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: AppSizeH.s12),
+          Padding(
+            padding: EdgeInsetsDirectional.only(
+                start: AppSizeW.s15, end: AppSizeW.s24),
+            child: Divider(
+              color: ColorManager.grey,
+              height: AppSizeH.s1,
+            ),
+          ),
+          SizedBox(height: AppSizeH.s7),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Row(
+                    children: [
+                      ShimmerPlaceholder(
+                        child: Container(
+                          width: AppSizeW.s50,
+                          height: AppSizeH.s12,
+                          decoration: BoxDecoration(
+                              color: ColorManager.white,
+                              borderRadius:
+                                  BorderRadius.circular(AppSizeR.s12)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: AppSizeW.s1,
+                  height: AppSizeH.s15,
+                  color: ColorManager.grey,
+                ),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ShimmerPlaceholder(
+                        child: Container(
+                          width: AppSizeW.s50,
+                          height: AppSizeH.s12,
+                          decoration: BoxDecoration(
+                              color: ColorManager.white,
+                              borderRadius:
+                                  BorderRadius.circular(AppSizeR.s12)),
+                        ),
                       ),
                     ],
                   ),

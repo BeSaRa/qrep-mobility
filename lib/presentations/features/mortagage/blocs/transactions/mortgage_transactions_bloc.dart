@@ -12,7 +12,7 @@ part 'mortgage_transactions_state.dart';
 class MortgageTransactionsBloc
     extends Bloc<MortgageTransactionsEvent, MortgageTransactionsState> {
   final MortgageTransactionUseCase mortgageTransactionUse;
-  late MortgageTransactionResponse response = MortgageTransactionResponse();
+  late MortgageTransactionResponse response = const MortgageTransactionResponse();
 
   MortgageTransactionsBloc(this.mortgageTransactionUse)
       : super(const MortgageTransactionsState.initial()) {

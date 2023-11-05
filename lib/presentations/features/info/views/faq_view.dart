@@ -3,7 +3,6 @@ import 'package:ebla/presentations/features/info/views/laws_details_view.dart';
 import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
 import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../resources/resources.dart';
