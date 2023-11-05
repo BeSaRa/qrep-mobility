@@ -83,7 +83,7 @@ class _NewsItemViewState extends State<NewsItemView> {
         // ),
         title: Text(
           AppStrings().newsDetails,
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context).textTheme.headlineLarge,
         ),
         centerTitle: true,
         actions: [
@@ -93,137 +93,126 @@ class _NewsItemViewState extends State<NewsItemView> {
           ),
         ],
       ),
-      body: Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage(ImageAssets.homeBg),
-            fit: BoxFit.cover,
-          )),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppSizeW.s20),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CachedNetworkImage(
-                    progressIndicatorBuilder: (context, url, progress) {
-                      return ShimmerPlaceholder(
-                        child: Image(
-                          height: AppSizeH.s260,
-                          width: double.infinity,
-                          image: const AssetImage(
-                            ImageAssets.test,
-                          ),
-                          fit: BoxFit.fill,
-                        ),
-                      );
-                    },
-                    imageUrl:
-                        '${Constant.secondaryBaseUrl}/assets/${model.image}',
-                    imageBuilder: (context, imageProvider) {
-                      return Container(
-                        height: AppSizeH.s260,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(AppSizeR.s8),
-                          image: DecorationImage(
-                              image: imageProvider, fit: BoxFit.cover),
-                        ),
-                      );
-                    },
-                    errorWidget: (context, url, error) {
-                      return ShimmerPlaceholder(
-                        child: Image(
-                          height: AppSizeH.s260,
-                          width: double.infinity,
-                          image: const AssetImage(
-                            ImageAssets.test,
-                          ),
-                          fit: BoxFit.fill,
-                        ),
-                      );
-                    },
-                  ),
-                  SizedBox(height: AppSizeH.s16),
-                  Text(
-                    model.title,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  SizedBox(height: AppSizeH.s8),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.access_time_outlined,
-                        size: AppSizeSp.s14,
-                        color: ColorManager.cloudyGrey,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: AppSizeW.s20),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CachedNetworkImage(
+                progressIndicatorBuilder: (context, url, progress) {
+                  return ShimmerPlaceholder(
+                    child: Image(
+                      height: AppSizeH.s260,
+                      width: double.infinity,
+                      image: const AssetImage(
+                        ImageAssets.test,
                       ),
-                      SizedBox(width: AppSizeW.s5),
-                      Text(
-                        DateTime.parse(model.dateCreated)
-                            .toShowDateTime(local: context.locale.languageCode),
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineMedium!
-                            .copyWith(
-                                fontSize: AppSizeSp.s14,
-                                fontWeight: FontWeight.w400),
-                      )
-                    ],
-                  ),
-                  SizedBox(height: AppSizeH.s6),
-                  Divider(
-                    color: ColorManager.grey,
-                    height: AppSizeH.s1,
-                  ),
-                  SizedBox(height: AppSizeH.s14),
-                  Html(
-                    data: model.content,
-                  ),
-                  SizedBox(height: AppSizeH.s14),
-                  Divider(
-                    color: ColorManager.grey,
-                    height: AppSizeH.s1,
-                  ),
-                  SizedBox(height: AppSizeH.s18),
-                  Text(
-                    AppStrings().releatedNews,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  SizedBox(height: AppSizeH.s8),
-                  Container(
-                    width: AppSizeW.s30,
-                    height: AppSizeH.s5,
+                      fit: BoxFit.fill,
+                    ),
+                  );
+                },
+                imageUrl: '${Constant.secondaryBaseUrl}/assets/${model.image}',
+                imageBuilder: (context, imageProvider) {
+                  return Container(
+                    height: AppSizeH.s260,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(AppSizeR.s5),
-                        color: ColorManager.lightSilver),
+                      borderRadius: BorderRadius.circular(AppSizeR.s8),
+                      image: DecorationImage(
+                          image: imageProvider, fit: BoxFit.cover),
+                    ),
+                  );
+                },
+                errorWidget: (context, url, error) {
+                  return ShimmerPlaceholder(
+                    child: Image(
+                      height: AppSizeH.s260,
+                      width: double.infinity,
+                      image: const AssetImage(
+                        ImageAssets.test,
+                      ),
+                      fit: BoxFit.fill,
+                    ),
+                  );
+                },
+              ),
+              SizedBox(height: AppSizeH.s16),
+              Text(
+                model.title,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              SizedBox(height: AppSizeH.s8),
+              Row(
+                children: [
+                  Icon(
+                    Icons.access_time_outlined,
+                    size: AppSizeSp.s14,
+                    color: ColorManager.cloudyGrey,
                   ),
-                  SizedBox(height: AppSizeH.s20),
-                  Wrap(
-                    runSpacing: AppSizeH.s10,
-                    children: values.map((e) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(horizontal: AppSizeW.s2),
-                        child: InkWell(
-                          onTap: () {
-                            context.pushNamed(RoutesNames.newsbyId,
-                                pathParameters: {"id": e.id.toString()},
-                                extra: context.read<NewsBloc>());
-                          },
-                          child: SizedBox(
-                            height: AppSizeH.s100,
-                            child: NewsItemWidget(
-                                image: e.image,
-                                date: e.dateCreated,
-                                label: e.title),
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                  SizedBox(height: AppSizeH.s20),
+                  SizedBox(width: AppSizeW.s5),
+                  Text(
+                    DateTime.parse(model.dateCreated)
+                        .toShowDateTime(local: context.locale.languageCode),
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        fontSize: AppSizeSp.s14, fontWeight: FontWeight.w400),
+                  )
                 ],
               ),
-            ),
-          )),
+              SizedBox(height: AppSizeH.s6),
+              Divider(
+                color: ColorManager.grey,
+                height: AppSizeH.s1,
+              ),
+              SizedBox(height: AppSizeH.s14),
+              Html(
+                data: model.content,
+              ),
+              SizedBox(height: AppSizeH.s14),
+              Divider(
+                color: ColorManager.grey,
+                height: AppSizeH.s1,
+              ),
+              SizedBox(height: AppSizeH.s18),
+              Text(
+                AppStrings().releatedNews,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              SizedBox(height: AppSizeH.s8),
+              Container(
+                width: AppSizeW.s30,
+                height: AppSizeH.s5,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppSizeR.s5),
+                    color: ColorManager.lightSilver),
+              ),
+              SizedBox(height: AppSizeH.s20),
+              Wrap(
+                runSpacing: AppSizeH.s10,
+                children: values.map((e) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: AppSizeW.s2),
+                    child: InkWell(
+                      onTap: () {
+                        context.pushNamed(RoutesNames.newsbyId,
+                            pathParameters: {"id": e.id.toString()},
+                            extra: context.read<NewsBloc>());
+                      },
+                      child: SizedBox(
+                        height: AppSizeH.s100,
+                        child: NewsItemWidget(
+                            image: e.image,
+                            date: e.dateCreated,
+                            label: e.title),
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+              SizedBox(height: AppSizeH.s20),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

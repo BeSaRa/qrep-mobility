@@ -40,7 +40,7 @@ class _FAQViewState extends State<FAQView> {
                 ),
                 title: Text(
                   AppStrings().faqs,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
                 centerTitle: true,
               ),
