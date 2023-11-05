@@ -57,8 +57,7 @@ class GrowthRateWidget extends StatelessWidget {
                 ),
                 SizedBox(width: AppSizeW.s17),
                 SvgPicture.asset(
-                  //todo: get the redArrowDown from the design
-                  ImageAssets.greenArrowUp,
+                  IconAssets.arrow,
                   height: AppSizeH.s17,
                   width: AppSizeW.s27,
                 ),

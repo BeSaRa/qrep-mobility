@@ -9,6 +9,7 @@ import 'package:ebla/presentations/widgets/grid/grid_value_with_unit_widget.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'dart:ui' as ui;
 
 import '../../../domain/models/rent_models/rent_models.dart';
 
@@ -184,6 +185,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
     }
   }
 
+  ValueNotifier<num> changeRateValue = ValueNotifier<num>(0);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -255,7 +257,10 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                         RentGridKPIsBloc.getErrorValue(state, widget.rentKPI);
                     defaultValue = RentGridKPIsBloc.getKPIVal(
                         widget.response, widget.rentKPI);
-
+                    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                      changeRateValue.value =
+                          dataState.isNotEmpty ? dataState.first.kpiYoYVal : 0;
+                    });
                     return GridValueWithUnitWidget(
                       countUp:
                           dataState.isNotEmpty || !state.isLoading || !hasError,
@@ -290,7 +295,10 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                         SellGridKPIsBloc.getErrorValue(state, widget.sellKPI);
                     defaultValue = SellGridKPIsBloc.getKPIVal(
                         widget.response, widget.sellKPI);
-
+                    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                      changeRateValue.value =
+                          dataState.isNotEmpty ? dataState.first.kpiYoYVal : 0;
+                    });
                     return GridValueWithUnitWidget(
                       countUp:
                           dataState.isNotEmpty || !state.isLoading || !hasError,
@@ -345,6 +353,11 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                         state, widget.mortgageKPI);
                     hasError = MortgageGridKPIsBloc.getErrorValue(
                         state, widget.mortgageKPI);
+                    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                      changeRateValue.value =
+                          dataState.isNotEmpty ? dataState.first.kpiYoYVal : 0;
+                    });
+
                     defaultValue = 0;
                     return GridValueWithUnitWidget(
                       countUp:
@@ -375,6 +388,45 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    ValueListenableBuilder(
+                      valueListenable: changeRateValue,
+                      builder: (context, value, child) {
+                        return Flexible(
+                          child: FittedBox(
+                            child: Row(
+                              children: [
+                                SizedBox(width: AppSizeW.s5),
+                                Transform.flip(
+                                  flipY: value.isNegative,
+                                  child: SvgPicture.asset(
+                                    color: value.isNegative
+                                        ? ColorManager.red.withAlpha(95)
+                                        : null,
+                                    IconAssets.arrow,
+                                    height: AppSizeH.s8,
+                                    width: AppSizeW.s8,
+                                  ),
+                                ),
+                                SizedBox(width: AppSizeW.s5),
+                                Text(
+                                  textDirection: ui.TextDirection.ltr,
+                                  '${value.toStringAsFixed(2)} % YoY',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .copyWith(fontSize: AppSizeSp.s15),
+                                  textAlign: TextAlign.end,
+                                ),
+                                SizedBox(width: AppSizeW.s5),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      // builder: (context) {
+
+                      // }
+                    ),
                     AspectRatio(
                       aspectRatio: 1,
                       child: SvgPicture.asset(

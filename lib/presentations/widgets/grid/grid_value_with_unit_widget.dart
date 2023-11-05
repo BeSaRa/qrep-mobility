@@ -26,7 +26,7 @@ class GridValueWithUnitWidget extends StatelessWidget {
     return Flexible(
       flex: 1,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
+        padding: EdgeInsets.symmetric(horizontal: AppSizeW.s12),
         child: Wrap(
           runAlignment: WrapAlignment.center,
           crossAxisAlignment: WrapCrossAlignment.center,

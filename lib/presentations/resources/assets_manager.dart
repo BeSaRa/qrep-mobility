@@ -4,8 +4,6 @@ const String IMAGE_PATH = 'assets/images/';
 const String ICON_PATH = 'assets/icons/';
 
 class ImageAssets {
-  static const String greenArrowUp = '${IMAGE_PATH}green_arrow_up.svg';
-
   //-------------------Rent----------------------
   static const String soldOrRentedUnits =
       '${IMAGE_PATH}sold_or_rented_units.svg';
@@ -37,6 +35,7 @@ class ImageAssets {
 
 class IconAssets {
   //main scaffold
+  static const String arrow = '${IMAGE_PATH}arrow.svg';
   static const String infoIcon = "${ICON_PATH}page_info.svg";
   static const String infoIconFill = "${ICON_PATH}page_info-dark.svg";
   static const String realEstateIcon = "${ICON_PATH}real_estate_agent.svg";
