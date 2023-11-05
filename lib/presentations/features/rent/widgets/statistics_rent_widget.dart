@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/presentations/features/rent/widgets/top_ten_index_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,8 +21,11 @@ class StatisTicsWidget extends StatefulWidget {
 class _StatisTicsWidgetState extends State<StatisTicsWidget> {
   // int index = 1;
 
+  late TopTenIndexCubit tenIndexCubit;
+
   @override
   void initState() {
+    tenIndexCubit = TopTenIndexCubit(1);
     super.initState();
   }
 
@@ -104,6 +108,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                           indexTab: 1,
                           name: AppStrings().countLeaseContracts,
                           onPress: () {
+                            tenIndexCubit.save(1);
                             context.read<CertificateContractBloc>().add(
                                 CertificateContractEvent.certificateCountEvent(
                                     request: context
@@ -115,6 +120,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                             indexTab: 2,
                             name: AppStrings().countPropertiesUnits,
                             onPress: () {
+                              tenIndexCubit.save(2);
                               context.read<CertificateContractBloc>().add(
                                   CertificateContractEvent.contractCountEvent(
                                       request: context
@@ -125,6 +131,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                             indexTab: 3,
                             name: AppStrings().avgPriceEveryMonth,
                             onPress: () {
+                              tenIndexCubit.save(3);
                               context.read<CertificateContractBloc>().add(
                                   CertificateContractEvent.meanRentAmountEvent(
                                       request: context
@@ -135,6 +142,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                             indexTab: 4,
                             name: AppStrings().contractsValue,
                             onPress: () {
+                              tenIndexCubit.save(4);
                               context.read<CertificateContractBloc>().add(
                                   CertificateContractEvent.RentAmountEvent(
                                       request: context
@@ -145,6 +153,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                             indexTab: 5,
                             name: AppStrings().avgPricePerMeter,
                             onPress: () {
+                              tenIndexCubit.save(5);
                               context.read<CertificateContractBloc>().add(
                                   CertificateContractEvent
                                       .RentValuePerMeterEvent(
@@ -156,6 +165,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                             indexTab: 6,
                             name: AppStrings().rentedAreas,
                             onPress: () {
+                              tenIndexCubit.save(6);
                               context.read<CertificateContractBloc>().add(
                                   CertificateContractEvent.RentedAreasEvent(
                                       request: context
@@ -217,7 +227,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                                     e.zoneId.toInt())
                                 ?.enName ??
                             '',
-                    number: e.kpiVal.toStringAsFixed(4));
+                    number: getValues(e.kpiVal));
               }).toList());
             }
             if (state.listResponse.isEmpty) {
@@ -244,6 +254,14 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
         ),
       ],
     );
+  }
+
+  String getValues(num e) {
+    if (tenIndexCubit.state == 1 || tenIndexCubit.state == 2) {
+      return e.toStringAsFixed(0);
+    } else {
+      return "${e.toStringAsFixed(3)} ${AppStrings().currency}";
+    }
   }
 }
 
