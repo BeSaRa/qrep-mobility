@@ -260,14 +260,14 @@ class _LawArticleWidgetState extends State<LawArticleWidget> {
           child: ExpansionTile(
             maintainState: true,
             controller: expansionTileController,
-            iconColor: ColorManager.black,
-            collapsedIconColor: ColorManager.black,
+            iconColor: ColorManager.golden,
+            collapsedIconColor: ColorManager.golden,
             tilePadding: EdgeInsets.symmetric(horizontal: AppSizeW.s30),
             childrenPadding: EdgeInsets.only(
                 left: AppSizeW.s30, right: AppSizeW.s30, bottom: AppSizeH.s10),
             title: Text(
                 widget.article?.title ?? widget.faqItemModel?.question ?? '',
-                style: Theme.of(context).textTheme.bodyMedium),
+                style: Theme.of(context).textTheme.titleMedium),
             // Title when the tile is collapsed
             children: <Widget>[
               GestureDetector(

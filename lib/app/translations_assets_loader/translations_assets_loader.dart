@@ -82,7 +82,6 @@ class TranslationsAssetsLoader extends AssetLoader {
 
         result.addAll(remoteTranslations);
       } catch (e) {
-        print(e);
         if (kDebugMode) {
           print(
               "something wrong happened while writing/reading/fetching remote translations ");
