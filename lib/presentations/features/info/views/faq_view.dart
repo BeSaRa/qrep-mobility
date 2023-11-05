@@ -1,4 +1,6 @@
+import 'package:ebla/data/newtwok/dio_factory.dart';
 import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
+import 'package:ebla/presentations/features/info/cubits/expanded_tile_index_cubit/expanded_tile_index_cubit.dart';
 import 'package:ebla/presentations/features/info/views/laws_details_view.dart';
 import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
 import 'package:ebla/presentations/widgets/error_widget.dart';
@@ -135,17 +137,21 @@ class _FAQViewState extends State<FAQView> {
                         ],
                       ),
                       SizedBox(height: AppSizeH.s30),
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: state.faqResponse.data.length,
-                        itemBuilder: (context, index) {
-                          return LawArticleWidget(
-                            faqItemModel: state.faqResponse.data[index],
-                            article: null,
-                            maxExpandedHeight: AppSizeH.s250,
-                          );
-                        },
+                      BlocProvider(
+                        create: (context) => ExpandedTileIndexCubit(),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: state.faqResponse.data.length,
+                          itemBuilder: (context, index) {
+                            return LawArticleWidget(
+                              faqItemModel: state.faqResponse.data[index],
+                              article: null,
+                              maxExpandedHeight: AppSizeH.s250,
+                              index: index,
+                            );
+                          },
+                        ),
                       ),
                       SizedBox(height: AppSizeH.s30),
                     ],
