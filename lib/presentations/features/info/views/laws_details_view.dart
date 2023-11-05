@@ -87,7 +87,7 @@ class _LawsDetailsViewState extends State<LawsDetailsView> {
         // ),
         title: Text(
           AppStrings().lawDetails,
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context).textTheme.headlineLarge,
         ),
         centerTitle: true,
       ),

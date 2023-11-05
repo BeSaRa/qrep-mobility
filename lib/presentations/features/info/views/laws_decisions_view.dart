@@ -80,7 +80,7 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                     // ),
                     title: Text(
                       AppStrings().lawsAndDecisions,
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.headlineLarge,
                     ),
                     centerTitle: true,
                   ),

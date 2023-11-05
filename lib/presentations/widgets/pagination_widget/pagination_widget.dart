@@ -54,88 +54,84 @@ class FlutterCustomPagination extends StatelessWidget {
     bool hasPrevPage = currentPage > 0;
     bool hasNextPage = currentPage < lastPage;
 
-    return Wrap(
-      direction: Axis.horizontal,
-      alignment: WrapAlignment.center,
-      runAlignment: WrapAlignment.center,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [
-        Tooltip(
-          message: AppStrings().firstPage,
-          child: IconButton(
-            onPressed: hasPrevPage
-                ? () => (onBackToFirstPage != null
-                    ? onBackToFirstPage!(0)
-                    : onPreviousPage(0))
-                : null,
-            iconSize: iconSize,
-            splashRadius: iconSize + 4,
-            icon: Icon(
-              backToFirstPageIcon ?? Icons.first_page,
-              color: hasPrevPage
-                  ? textStyle?.color
-                  : textStyle?.color?.withOpacity(0.5),
-              size: iconSize,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: AppSizeW.s12),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        // direction: Axis.horizontal,
+        // alignment: WrapAlignment.spaceEvenly,
+        // runAlignment: WrapAlignment.spaceEvenly,
+        // crossAxisAlignment: WrapCrossAlignment.center,
+        children: [
+          Tooltip(
+            message: AppStrings().firstPage,
+            child: IconButton(
+              onPressed: hasPrevPage
+                  ? () => (onBackToFirstPage != null
+                      ? onBackToFirstPage!(0)
+                      : onPreviousPage(0))
+                  : null,
+              iconSize: AppSizeSp.s18,
+              splashRadius: iconSize + 4,
+              icon: Icon(backToFirstPageIcon ?? Icons.first_page,
+                  color: hasPrevPage
+                      ? textStyle?.color
+                      : textStyle?.color?.withOpacity(0.5),
+                  size: AppSizeSp.s18),
             ),
           ),
-        ),
-        Tooltip(
-          message: AppStrings().previousPage,
-          child: IconButton(
-            onPressed:
-                hasPrevPage ? () => onPreviousPage(currentPage - 1) : null,
-            iconSize: iconSize,
-            splashRadius: iconSize + 4,
-            icon: Icon(
-              previousPageIcon ?? Icons.keyboard_arrow_left,
-              color: hasPrevPage
-                  ? textStyle?.color
-                  : textStyle?.color?.withOpacity(0.5),
-              size: iconSize,
+          Tooltip(
+            message: AppStrings().previousPage,
+            child: IconButton(
+              onPressed:
+                  hasPrevPage ? () => onPreviousPage(currentPage - 1) : null,
+              iconSize: AppSizeSp.s18,
+              splashRadius: iconSize + 4,
+              icon: Icon(previousPageIcon ?? Icons.keyboard_arrow_left,
+                  color: hasPrevPage
+                      ? textStyle?.color
+                      : textStyle?.color?.withOpacity(0.5),
+                  size: AppSizeSp.s18),
             ),
           ),
-        ),
-        SizedBox(width: textStyle?.fontSize ?? 14),
-        Text(
-          '${AppStrings().page} ${currentPage + 1}  ${AppStrings().of} ${lastPage + 1}',
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
-        SizedBox(width: textStyle?.fontSize ?? 14),
-        Tooltip(
-          message: AppStrings().nextPage,
-          child: IconButton(
-            onPressed: hasNextPage ? () => onNextPage(currentPage + 1) : null,
-            iconSize: iconSize,
-            splashRadius: iconSize + 4,
-            icon: Icon(
-              nextPageIcon ?? Icons.keyboard_arrow_right,
-              color: hasNextPage
-                  ? textStyle?.color
-                  : textStyle?.color?.withOpacity(0.5),
-              size: iconSize,
+          SizedBox(width: textStyle?.fontSize ?? 14),
+          Text(
+            '${AppStrings().page} ${currentPage + 1}  ${AppStrings().of} ${lastPage + 1}',
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          SizedBox(width: textStyle?.fontSize ?? 14),
+          Tooltip(
+            message: AppStrings().nextPage,
+            child: IconButton(
+              onPressed: hasNextPage ? () => onNextPage(currentPage + 1) : null,
+              iconSize: AppSizeSp.s18,
+              splashRadius: iconSize + 4,
+              icon: Icon(nextPageIcon ?? Icons.keyboard_arrow_right,
+                  color: hasNextPage
+                      ? textStyle?.color
+                      : textStyle?.color?.withOpacity(0.5),
+                  size: AppSizeSp.s18),
             ),
           ),
-        ),
-        Tooltip(
-          message: AppStrings().lastPage,
-          child: IconButton(
-            onPressed: hasNextPage
-                ? () => (onGoToLastPage != null
-                    ? onGoToLastPage!(lastPage)
-                    : onNextPage(lastPage))
-                : null,
-            iconSize: iconSize,
-            splashRadius: iconSize + 4,
-            icon: Icon(
-              goToLastPageIcon ?? Icons.last_page,
-              color: hasNextPage
-                  ? textStyle?.color
-                  : textStyle?.color?.withOpacity(0.5),
-              size: iconSize,
+          Tooltip(
+            message: AppStrings().lastPage,
+            child: IconButton(
+              onPressed: hasNextPage
+                  ? () => (onGoToLastPage != null
+                      ? onGoToLastPage!(lastPage)
+                      : onNextPage(lastPage))
+                  : null,
+              iconSize: AppSizeSp.s18,
+              splashRadius: iconSize + 4,
+              icon: Icon(goToLastPageIcon ?? Icons.last_page,
+                  color: hasNextPage
+                      ? textStyle?.color
+                      : textStyle?.color?.withOpacity(0.5),
+                  size: AppSizeSp.s18),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

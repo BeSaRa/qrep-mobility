@@ -60,6 +60,7 @@ ThemeData lightTheme() {
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: ColorManager.white,
       elevation: 0,
+      constraints: const BoxConstraints(minWidth: double.infinity),
       showDragHandle: true,
       modalElevation: 0,
       modalBackgroundColor: ColorManager.white,
@@ -152,6 +153,11 @@ ThemeData lightTheme() {
           color: ColorManager.white,
           fontSize: AppSizeSp.s16,
           fontWeight: FontWeight.w400),
+      headlineLarge: TextStyle(
+          fontFamily: FontConstants.fontFamily,
+          color: ColorManager.primary,
+          fontSize: AppSizeSp.s18,
+          fontWeight: FontWeight.w700),
     ),
   );
 }
