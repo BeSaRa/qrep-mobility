@@ -340,7 +340,8 @@ class _BottomSheetFilterSellWidgetState
                       ) ??
                       const RentLookupModel();
                   valuesFiltersCubit.zone = getObjectByLookupKey(
-                        context.read<SellBloc>().loockUpSell?.zoneList ?? [],
+                        context.read<SellBloc>().loockUpSell?.districtList ??
+                            [],
                         -1,
                       ) ??
                       const RentLookupModel();
@@ -374,54 +375,54 @@ class _BottomSheetFilterSellWidgetState
                   valuesFiltersCubit.changeUnit(2);
                   // valuesFiltersCubit.unit = 2;
                   // });
-                  streetController.clear();
-                  context.read<SellBloc>().requestSell = context
-                      .read<SellBloc>()
-                      .requestSell
-                      .copyWith(
-                          streetNo: null,
-                          areaFrom: valuesFiltersCubit.areaFrom,
-                          areaTo: valuesFiltersCubit.areaTo,
-                          areaCode: valuesFiltersCubit.zone.lookupKey,
-                          // bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
-                          //     ? 0
-                          //     : valuesFiltersCubit.bedRoom.id,
-                          municipalityId:
-                              valuesFiltersCubit.municapility.lookupKey,
-                          // zoneId: valuesFiltersCubit.zone.lookupKey,
-                          realEstateValueFrom:
-                              valuesFiltersCubit.realEstateValueFrom,
-                          realEstateValueTo:
-                              valuesFiltersCubit.realEstateValueTo,
-                          unit: valuesFiltersCubit.unit,
-                          issueDateYear: valuesFiltersCubit.year.id,
-                          issueDateQuarterList: getissueDateQuarterList(
-                              valuesFiltersCubit.periodTime.id),
-                          issueDateStartMonth:
-                              valuesFiltersCubit.periodTime.id == 4
-                                  ? valuesFiltersCubit.month.value[0] - 1
-                                  : 1,
-                          issueDateEndMonth:
-                              valuesFiltersCubit.periodTime.id == 4
-                                  ? valuesFiltersCubit.month.value[0]
-                                  : valuesFiltersCubit.periodTime.id == 1
-                                      ? DateTime.now().month
-                                      : 12,
-                          periodId: valuesFiltersCubit.periodTime.id,
-                          issueDateFrom: valuesFiltersCubit.periodTime.id == 5
-                              ? valuesFiltersCubit.pickerDateRange?.startDate
-                                  ?.toIso8601String()
-                              : null,
-                          issueDateTo: valuesFiltersCubit.periodTime.id == 5
-                              ? valuesFiltersCubit.pickerDateRange?.endDate
-                                  ?.toIso8601String()
-                              : null,
-                          purposeList: valuesFiltersCubit.rentPurposeList
-                              .map((e) => e.lookupKey)
-                              .toList(),
-                          propertyTypeList: valuesFiltersCubit.propertyTypeList
-                              .map((e) => e.lookupKey)
-                              .toList());
+                  // streetController.clear();
+                  // context.read<SellBloc>().requestSell = context
+                  //     .read<SellBloc>()
+                  //     .requestSell
+                  //     .copyWith(
+                  //         streetNo: null,
+                  //         areaFrom: valuesFiltersCubit.areaFrom,
+                  //         areaTo: valuesFiltersCubit.areaTo,
+                  //         areaCode: valuesFiltersCubit.zone.lookupKey,
+                  //         // bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
+                  //         //     ? 0
+                  //         //     : valuesFiltersCubit.bedRoom.id,
+                  //         municipalityId:
+                  //             valuesFiltersCubit.municapility.lookupKey,
+                  //         // zoneId: valuesFiltersCubit.zone.lookupKey,
+                  //         realEstateValueFrom:
+                  //             valuesFiltersCubit.realEstateValueFrom,
+                  //         realEstateValueTo:
+                  //             valuesFiltersCubit.realEstateValueTo,
+                  //         unit: valuesFiltersCubit.unit,
+                  //         issueDateYear: valuesFiltersCubit.year.id,
+                  //         issueDateQuarterList: getissueDateQuarterList(
+                  //             valuesFiltersCubit.periodTime.id),
+                  //         issueDateStartMonth:
+                  //             valuesFiltersCubit.periodTime.id == 4
+                  //                 ? valuesFiltersCubit.month.value[0] - 1
+                  //                 : 1,
+                  //         issueDateEndMonth:
+                  //             valuesFiltersCubit.periodTime.id == 4
+                  //                 ? valuesFiltersCubit.month.value[0]
+                  //                 : valuesFiltersCubit.periodTime.id == 1
+                  //                     ? DateTime.now().month
+                  //                     : 12,
+                  //         periodId: valuesFiltersCubit.periodTime.id,
+                  //         issueDateFrom: valuesFiltersCubit.periodTime.id == 5
+                  //             ? valuesFiltersCubit.pickerDateRange?.startDate
+                  //                 ?.toIso8601String()
+                  //             : null,
+                  //         issueDateTo: valuesFiltersCubit.periodTime.id == 5
+                  //             ? valuesFiltersCubit.pickerDateRange?.endDate
+                  //                 ?.toIso8601String()
+                  //             : null,
+                  //         purposeList: valuesFiltersCubit.rentPurposeList
+                  //             .map((e) => e.lookupKey)
+                  //             .toList(),
+                  //         propertyTypeList: valuesFiltersCubit.propertyTypeList
+                  //             .map((e) => e.lookupKey)
+                  //             .toList());
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,

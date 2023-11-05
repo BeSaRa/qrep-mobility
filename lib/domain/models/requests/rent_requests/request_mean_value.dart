@@ -26,7 +26,7 @@ abstract class RequestMeanValue with _$RequestMeanValue {
     num? rentPaymentMonthlyPerUnitTo,
     int? streetNo,
     int? zoneId,
-    @Default(1) int unit,
+    @Default(2) int unit,
     @Default(1) int periodId,
   }) = _RequestMeanValue;
   factory RequestMeanValue.fromJson(Map<String, dynamic> json) =>

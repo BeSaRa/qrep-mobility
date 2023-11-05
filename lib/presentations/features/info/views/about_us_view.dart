@@ -70,63 +70,53 @@ class _AboutUsViewState extends State<AboutUsView> {
                 // ),
                 title: Text(
                   AppStrings().aboutUs,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
                 centerTitle: true,
               ),
-              body: Container(
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(ImageAssets.homeBg),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: AppSizeW.s17),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: AppSizeH.s197,
-                          alignment: Alignment.center,
-                          child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: AppSizeH.s27,
-                                  horizontal: AppSizeW.s37),
-                              decoration: BoxDecoration(
-                                  color: ColorManager.white,
-                                  border: Border.all(
-                                      width: 1,
-                                      color: ColorManager.lightSilver),
-                                  borderRadius:
-                                      BorderRadius.circular(AppSizeR.s15)),
-                              child: SvgPicture.asset(IconAssets.aboutHome)),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              context.locale == ARABIC_LOCAL
-                                  ? value.about.translations[0].title
-                                  : value.about.translations[1].title,
-                              style: Theme.of(context).textTheme.titleLarge,
-                            )
-                          ],
-                        ),
-                        SizedBox(height: AppSizeH.s10),
-                        Divider(
-                          color: ColorManager.grey,
-                          height: AppSizeH.s1,
-                        ),
-                        Html(
-                          data: context.locale == ARABIC_LOCAL
-                              ? value.about.translations[0].content
-                              : value.about.translations[1].content,
-                        ),
-                      ],
-                    ),
+              body: Padding(
+                padding: EdgeInsets.symmetric(horizontal: AppSizeW.s17),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: AppSizeH.s197,
+                        alignment: Alignment.center,
+                        child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: AppSizeH.s27,
+                                horizontal: AppSizeW.s37),
+                            decoration: BoxDecoration(
+                                color: ColorManager.white,
+                                border: Border.all(
+                                    width: 1, color: ColorManager.lightSilver),
+                                borderRadius:
+                                    BorderRadius.circular(AppSizeR.s15)),
+                            child: SvgPicture.asset(IconAssets.aboutHome)),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            context.locale == ARABIC_LOCAL
+                                ? value.about.translations[0].title
+                                : value.about.translations[1].title,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          )
+                        ],
+                      ),
+                      SizedBox(height: AppSizeH.s10),
+                      Divider(
+                        color: ColorManager.grey,
+                        height: AppSizeH.s1,
+                      ),
+                      Html(
+                        data: context.locale == ARABIC_LOCAL
+                            ? value.about.translations[0].content
+                            : value.about.translations[1].content,
+                      ),
+                    ],
                   ),
                 ),
               ),

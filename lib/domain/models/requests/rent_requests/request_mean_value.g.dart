@@ -36,7 +36,7 @@ _$RequestMeanValueImpl _$$RequestMeanValueImplFromJson(
       rentPaymentMonthlyPerUnitTo: json['rentPaymentMonthlyPerUnitTo'] as num?,
       streetNo: json['streetNo'] as int?,
       zoneId: json['zoneId'] as int?,
-      unit: json['unit'] as int? ?? 1,
+      unit: json['unit'] as int? ?? 2,
       periodId: json['periodId'] as int? ?? 1,
     );
 
