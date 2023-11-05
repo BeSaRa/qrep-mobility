@@ -61,12 +61,12 @@ class _NewsViewState extends State<NewsView> {
           style: Theme.of(context).textTheme.headlineLarge,
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.share_outlined, color: ColorManager.golden),
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {},
+        //     icon: Icon(Icons.share_outlined, color: ColorManager.golden),
+        //   ),
+        // ],
       ),
       body: Column(
         children: [

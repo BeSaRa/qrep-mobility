@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../../../app/constants.dart';
 import '../../../../../domain/models/cms_models/news/news_model.dart';
@@ -88,7 +89,9 @@ class _NewsItemViewState extends State<NewsItemView> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Share.share('${Constant.webUrl}news/${widget.id}');
+            },
             icon: Icon(Icons.share_outlined, color: ColorManager.golden),
           ),
         ],
