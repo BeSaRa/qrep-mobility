@@ -3,6 +3,7 @@ import 'package:ebla/app/constants.dart';
 import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
+import 'package:ebla/presentations/features/info/cubits/expanded_tile_index_cubit/expanded_tile_index_cubit.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,6 +42,7 @@ class _LawsDetailsViewState extends State<LawsDetailsView> {
     super.initState();
   }
 
+  int expandedTileIndex = -1;
   @override
   Widget build(BuildContext context) {
     lawsModel = context.read<LawsBloc>().getLawModelById(widget.id);
@@ -188,17 +190,21 @@ class _LawsDetailsViewState extends State<LawsDetailsView> {
                 ),
               ]),
               SizedBox(height: AppSizeH.s30),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: lawsModel.articles.length,
-                itemBuilder: (context, index) {
-                  return LawArticleWidget(
-                    faqItemModel: null,
-                    article: lawsModel.articles[index],
-                    maxExpandedHeight: AppSizeH.s250,
-                  );
-                },
+              BlocProvider(
+                create: (context) => ExpandedTileIndexCubit(),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: lawsModel.articles.length,
+                  itemBuilder: (context, index) {
+                    return LawArticleWidget(
+                      index: index,
+                      faqItemModel: null,
+                      article: lawsModel.articles[index],
+                      maxExpandedHeight: AppSizeH.s250,
+                    );
+                  },
+                ),
               ),
               SizedBox(height: AppSizeH.s30),
             ],
@@ -213,12 +219,13 @@ class LawArticleWidget extends StatefulWidget {
   final ArticleModel? article;
   final FaqItemModel? faqItemModel;
   final double maxExpandedHeight;
-
+  final int index;
   const LawArticleWidget({
     Key? key,
     required this.article,
     required this.faqItemModel,
     required this.maxExpandedHeight,
+    required this.index,
   }) : super(key: key);
 
   @override
@@ -257,41 +264,56 @@ class _LawArticleWidgetState extends State<LawArticleWidget> {
                   color: ColorManager.black.withAlpha(6),
                 ),
               ]),
-          child: ExpansionTile(
-            maintainState: true,
-            controller: expansionTileController,
-            iconColor: ColorManager.golden,
-            collapsedIconColor: ColorManager.golden,
-            tilePadding: EdgeInsets.symmetric(horizontal: AppSizeW.s30),
-            childrenPadding: EdgeInsets.only(
-                left: AppSizeW.s30, right: AppSizeW.s30, bottom: AppSizeH.s10),
-            title: Text(
-                widget.article?.title ?? widget.faqItemModel?.question ?? '',
-                style: Theme.of(context).textTheme.titleMedium),
-            // Title when the tile is collapsed
-            children: <Widget>[
-              GestureDetector(
-                onTap: () {
-                  expansionTileController.collapse();
-                },
-                child: ConstrainedBox(
-                  constraints:
-                      BoxConstraints(maxHeight: widget.maxExpandedHeight),
-                  child: SingleChildScrollView(
-                    child: Html(
-                      data: widget.article?.content ??
-                          widget.faqItemModel?.answer ??
-                          '',
-                      onLinkTap: (url, attributes, element) {
-                        if (url != null && isValidUrl(url)) {
-                          launchUrl(Uri.parse(url));
-                        }
-                      },
+          child: BlocListener(
+            bloc: context.read<ExpandedTileIndexCubit>(),
+            listener: (context, state) {
+              state == widget.index ? null : expansionTileController.collapse();
+            },
+            child: ExpansionTile(
+              maintainState: true,
+              onExpansionChanged: (expanded) {
+                expanded
+                    ? context
+                        .read<ExpandedTileIndexCubit>()
+                        .setIndex(widget.index)
+                    : null;
+              },
+              controller: expansionTileController,
+              iconColor: ColorManager.golden,
+              collapsedIconColor: ColorManager.golden,
+              tilePadding: EdgeInsets.symmetric(horizontal: AppSizeW.s30),
+              childrenPadding: EdgeInsets.only(
+                  left: AppSizeW.s30,
+                  right: AppSizeW.s30,
+                  bottom: AppSizeH.s10),
+              title: Text(
+                  widget.article?.title ?? widget.faqItemModel?.question ?? '',
+                  style: Theme.of(context).textTheme.titleMedium),
+              // Title when the tile is collapsed
+              children: <Widget>[
+                GestureDetector(
+                  onTap: () {
+                    expansionTileController.collapse();
+                  },
+                  child: ConstrainedBox(
+                    constraints:
+                        BoxConstraints(maxHeight: widget.maxExpandedHeight),
+                    child: SingleChildScrollView(
+                      child: Html(
+                        data: widget.article?.content ??
+                            widget.faqItemModel?.answer ??
+                            '',
+                        onLinkTap: (url, attributes, element) {
+                          if (url != null && isValidUrl(url)) {
+                            launchUrl(Uri.parse(url));
+                          }
+                        },
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
