@@ -185,6 +185,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
     }
   }
 
+  num mortgagePreviousKpiVal = 0;
   ValueNotifier<num> changeRateValue = ValueNotifier<num>(0);
   @override
   Widget build(BuildContext context) {
@@ -232,8 +233,8 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                           overflow: TextOverflow.visible,
                           style: Theme.of(context)
                               .textTheme
-                              .bodySmall
-                              ?.copyWith(fontWeight: FontWeight.w700),
+                              .titleMedium
+                              ?.copyWith(fontSize: AppSizeSp.s14),
                         ),
                       ),
                     ],
@@ -253,6 +254,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
 
                     dataState =
                         RentGridKPIsBloc.getState(state, widget.rentKPI);
+
                     hasError =
                         RentGridKPIsBloc.getErrorValue(state, widget.rentKPI);
                     defaultValue = RentGridKPIsBloc.getKPIVal(
@@ -317,55 +319,58 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                 BlocBuilder<MortgageGridKPIsBloc, MortgageGridKPIsState>(
                   bloc: context.read<MortgageGridKPIsBloc>(),
                   builder: (context, state) {
-                    if (state.isLoading) {
-                      return const Expanded(
-                          flex: 1,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CircularProgressIndicator(),
-                            ],
-                          ));
-                    } else if (state.hasErrorTotalMortgageTransactions ||
-                        state.hasErrortotalMortgageUnitsNum ||
-                        state.hasErrorTotalMortgageTransactionsValue) {
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                context.read<MortgageGridKPIsBloc>().add(
-                                    MortgageGridKPIsEvent.getData(
-                                        request: context
-                                            .read<MortgageBloc>()
-                                            .requestMeanValue));
-                              },
-                              icon: const Icon(Icons.refresh)),
-                        ],
-                      );
-                    }
+                    // if (state.isLoading) {
+                    //   return const Expanded(
+                    //       flex: 1,
+                    //       child: Column(
+                    //         mainAxisSize: MainAxisSize.max,
+                    //         mainAxisAlignment: MainAxisAlignment.start,
+                    //         crossAxisAlignment: CrossAxisAlignment.center,
+                    //         children: [
+                    //           CircularProgressIndicator(),
+                    //         ],
+                    //       ));
+                    // } else if (state.hasErrorTotalMortgageTransactions ||
+                    //     state.hasErrortotalMortgageUnitsNum ||
+                    //     state.hasErrorTotalMortgageTransactionsValue) {
+                    //   return Column(
+                    //     mainAxisSize: MainAxisSize.min,
+                    //     children: [
+                    //       IconButton(
+                    //           onPressed: () {
+                    //             context.read<MortgageGridKPIsBloc>().add(
+                    //                 MortgageGridKPIsEvent.getData(
+                    //                     request: context
+                    //                         .read<MortgageBloc>()
+                    //                         .requestMeanValue));
+                    //           },
+                    //           icon: const Icon(Icons.refresh)),
+                    //     ],
+                    //   );
+                    // }
                     List<BaseRentResponse> dataState = [];
                     bool hasError = false;
-                    num defaultValue = 0;
+
                     dataState = MortgageGridKPIsBloc.getState(
                         state, widget.mortgageKPI);
+
                     hasError = MortgageGridKPIsBloc.getErrorValue(
                         state, widget.mortgageKPI);
                     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                       changeRateValue.value =
                           dataState.isNotEmpty ? dataState.first.kpiYoYVal : 0;
+                      mortgagePreviousKpiVal = dataState.isNotEmpty
+                          ? dataState.first.kpiVal
+                          : mortgagePreviousKpiVal;
                     });
 
-                    defaultValue = 0;
                     return GridValueWithUnitWidget(
                       countUp:
                           dataState.isNotEmpty || !state.isLoading || !hasError,
-                      defaultValue: defaultValue,
+                      defaultValue: mortgagePreviousKpiVal,
                       end: dataState.isNotEmpty
                           ? dataState.first.kpiVal
-                          : defaultValue,
+                          : mortgagePreviousKpiVal,
                       unit: mortgageGridItemsData
                           .firstWhere(
                               (element) => element.kpi == widget.mortgageKPI)
