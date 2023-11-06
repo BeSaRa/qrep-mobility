@@ -206,7 +206,9 @@ class StaticPagesContainer extends StatelessWidget {
           border: Border.all(color: ColorManager.mercury, width: AppSizeH.s1)),
       child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: title is Text
+              ? MainAxisAlignment.spaceBetween
+              : MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
               icon,
