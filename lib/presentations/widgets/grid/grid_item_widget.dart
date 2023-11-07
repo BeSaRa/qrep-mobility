@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
-import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/widgets/grid/grid_value_with_unit_widget.dart';
@@ -393,45 +392,48 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    ValueListenableBuilder(
-                      valueListenable: changeRateValue,
-                      builder: (context, value, child) {
-                        return Flexible(
-                          child: FittedBox(
-                            child: Row(
-                              children: [
-                                SizedBox(width: AppSizeW.s5),
-                                Transform.flip(
-                                  flipY: value.isNegative,
-                                  child: SvgPicture.asset(
-                                    color: value.isNegative
-                                        ? ColorManager.red.withAlpha(95)
-                                        : null,
-                                    IconAssets.arrow,
-                                    height: AppSizeH.s8,
-                                    width: AppSizeW.s8,
+                    (widget.rentKPI != RentGridKPIs.totalRentedSpaces &&
+                            widget.rentKPI != RentGridKPIs.meanRentAreaValue)
+                        ? ValueListenableBuilder(
+                            valueListenable: changeRateValue,
+                            builder: (context, value, child) {
+                              return Flexible(
+                                child: FittedBox(
+                                  child: Row(
+                                    children: [
+                                      SizedBox(width: AppSizeW.s5),
+                                      Transform.flip(
+                                        flipY: value.isNegative,
+                                        child: SvgPicture.asset(
+                                          color: value.isNegative
+                                              ? ColorManager.red.withAlpha(95)
+                                              : null,
+                                          IconAssets.arrow,
+                                          height: AppSizeH.s8,
+                                          width: AppSizeW.s8,
+                                        ),
+                                      ),
+                                      SizedBox(width: AppSizeW.s5),
+                                      Text(
+                                        textDirection: ui.TextDirection.ltr,
+                                        '${value.toStringAsFixed(2)} % YoY',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall!
+                                            .copyWith(fontSize: AppSizeSp.s15),
+                                        textAlign: TextAlign.end,
+                                      ),
+                                      SizedBox(width: AppSizeW.s5),
+                                    ],
                                   ),
                                 ),
-                                SizedBox(width: AppSizeW.s5),
-                                Text(
-                                  textDirection: ui.TextDirection.ltr,
-                                  '${value.toStringAsFixed(2)} % YoY',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleSmall!
-                                      .copyWith(fontSize: AppSizeSp.s15),
-                                  textAlign: TextAlign.end,
-                                ),
-                                SizedBox(width: AppSizeW.s5),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                      // builder: (context) {
+                              );
+                            },
+                            // builder: (context) {
 
-                      // }
-                    ),
+                            // }
+                          )
+                        : const SizedBox(),
                     AspectRatio(
                       aspectRatio: 1,
                       child: SvgPicture.asset(
