@@ -84,6 +84,7 @@
   "unit_type": "Unit type",
   "----------------------------------------------------SELL--------------------------": "",
   "average_price_per_square_foot": "Average price per square foot",
+  "average_price_per_square_meter": "Average price per square meter",
   "average_price_per_unit": "Average price per unit",
   "average_sell_price_per_unit_property": "Average sell price per unit / property",
   "list_of_sell_transactions": "Sell contracts list",

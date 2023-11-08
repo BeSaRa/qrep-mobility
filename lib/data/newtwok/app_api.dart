@@ -105,8 +105,8 @@ abstract class AppServiceClient {
 
   // KPI10
   @POST(EndPoints.totalSoldSpaces)
-  Future<HttpResponse<List<BaseRentResponse>>> getTotalSoldSpaces(
-      @Body() RequestSellValues requestMeanValue);
+  Future<HttpResponse<List<BaseRentResponsePerAreaUnitType>>>
+      getTotalSoldSpaces(@Body() RequestSellValues requestMeanValue);
 
   // KPI13
   @POST(EndPoints.meanValueSell)
@@ -115,7 +115,7 @@ abstract class AppServiceClient {
 
   // KPI16
   @POST(EndPoints.meanSoldArea)
-  Future<HttpResponse<List<BaseRentResponse>>> getMeanSoldArea(
+  Future<HttpResponse<List<BaseRentResponsePerAreaUnitType>>> getMeanSoldArea(
       @Body() RequestSellValues requestSellValues);
 
   //sell

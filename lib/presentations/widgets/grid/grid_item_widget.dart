@@ -1,8 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
+import 'package:ebla/presentations/features/rent/blocs/cubits/cubit/change_status_cubit.dart';
+import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
+import 'package:ebla/presentations/features/sell/blocs/sell_bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
-import 'package:ebla/presentations/resources/assets_manager.dart';
-import 'package:ebla/presentations/resources/color_manager.dart';
+
+import 'package:ebla/presentations/resources/resources.dart';
+
 import 'package:ebla/presentations/widgets/grid/grid_value_with_unit_widget.dart';
 
 import 'package:flutter/material.dart';
@@ -12,7 +16,6 @@ import 'dart:ui' as ui;
 
 import '../../../domain/models/rent_models/rent_models.dart';
 
-import '../../resources/values_manager.dart';
 import '../../features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 
 class GridItemWidget extends StatefulWidget {
@@ -36,6 +39,14 @@ class GridItemWidget extends StatefulWidget {
 }
 
 class _GridItemWidgetState extends State<GridItemWidget> {
+  late ChangeStatusCubit updateTitleCubit;
+
+  @override
+  void initState() {
+    super.initState();
+    updateTitleCubit = ChangeStatusCubit();
+  }
+
   List<RentGridItemData> rentGridItemsData = const [
     RentGridItemData(
       kpi: RentGridKPIs.totalContracts,
@@ -161,16 +172,24 @@ class _GridItemWidgetState extends State<GridItemWidget> {
     try {
       switch (widget.gridItemType) {
         case GridItemType.rent:
-          return rentGridItemsData
-              .singleWhere((element) => element.kpi == widget.rentKPI)
-              .title
-              .tr();
+          return widget.rentKPI == RentGridKPIs.meanRentAreaValue
+              ? context.read<RentBloc>().requestMeanValue.unit == 1
+                  ? AppStrings().avgPricePerSquareMeter
+                  : AppStrings().avgPricePerSquareFoot
+              : rentGridItemsData
+                  .singleWhere((element) => element.kpi == widget.rentKPI)
+                  .title
+                  .tr();
 
         case GridItemType.sell:
-          return sellGridItemsData
-              .singleWhere((element) => element.kpi == widget.sellKPI)
-              .title
-              .tr();
+          return widget.sellKPI == SellGridKPIs.meanSoldAreaValue
+              ? context.read<SellBloc>().requestSell.unit == 1
+                  ? AppStrings().avgPricePerSquareMeter
+                  : AppStrings().avgPricePerSquareFoot
+              : sellGridItemsData
+                  .singleWhere((element) => element.kpi == widget.sellKPI)
+                  .title
+                  .tr();
 
         case GridItemType.mortgage:
           return (mortgageGridItemsData.singleWhere(
@@ -217,28 +236,33 @@ class _GridItemWidgetState extends State<GridItemWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(height: AppSizeH.s15),
-              Flexible(
-                flex: 1,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: AppSizeW.s20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          getTitle(),
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.visible,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium
-                              ?.copyWith(fontSize: AppSizeSp.s14),
-                        ),
+              BlocBuilder(
+                bloc: context.read<ChangeStatusCubit>(),
+                builder: (context, state) {
+                  return Flexible(
+                    flex: 1,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: AppSizeW.s20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              getTitle(),
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.visible,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(fontSize: AppSizeSp.s14),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                },
               ),
               SizedBox(
                 height: AppSizeH.s5,
@@ -286,31 +310,45 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                 BlocBuilder<SellGridKPIsBloc, SellGridKPIsState>(
                   bloc: context.read<SellGridKPIsBloc>(),
                   builder: (context, state) {
-                    List<BaseRentResponse> dataState = [];
+                    var dataState = [];
                     bool hasError = false;
                     num defaultValue = 0;
 
                     dataState =
                         SellGridKPIsBloc.getState(state, widget.sellKPI);
+
                     hasError =
                         SellGridKPIsBloc.getErrorValue(state, widget.sellKPI);
-                    defaultValue = SellGridKPIsBloc.getKPIVal(
+                    defaultValue = SellGridKPIsBloc.getDefaultKpiVal(
                         widget.response, widget.sellKPI);
                     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                      changeRateValue.value =
-                          dataState.isNotEmpty ? dataState.first.kpiYoYVal : 0;
+                      changeRateValue.value = dataState.isNotEmpty
+                          ? SellGridKPIsBloc.getKpiValOrYoYFromTypeAndUnit(
+                              dataState: dataState,
+                              unitType:
+                                  context.read<SellBloc>().requestSell.unit,
+                              returnYoYVal: true)
+                          : 0;
                     });
                     return GridValueWithUnitWidget(
                       countUp:
                           dataState.isNotEmpty || !state.isLoading || !hasError,
                       defaultValue: defaultValue,
                       end: dataState.isNotEmpty
-                          ? dataState.first.kpiVal
+                          ? SellGridKPIsBloc.getKpiValOrYoYFromTypeAndUnit(
+                              dataState: dataState,
+                              unitType:
+                                  context.read<SellBloc>().requestSell.unit,
+                              returnYoYVal: false)
                           : defaultValue,
-                      unit: sellGridItemsData
-                          .firstWhere(
-                              (element) => element.kpi == widget.sellKPI)
-                          .valueUnit,
+                      unit: widget.sellKPI == SellGridKPIs.totalSoldSpaces
+                          ? context.read<SellBloc>().requestSell.unit == 1
+                              ? 'square_meter'
+                              : 'square_foot'
+                          : sellGridItemsData
+                              .firstWhere(
+                                  (element) => element.kpi == widget.sellKPI)
+                              .valueUnit,
                     );
                   },
                 ),
@@ -318,35 +356,6 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                 BlocBuilder<MortgageGridKPIsBloc, MortgageGridKPIsState>(
                   bloc: context.read<MortgageGridKPIsBloc>(),
                   builder: (context, state) {
-                    // if (state.isLoading) {
-                    //   return const Expanded(
-                    //       flex: 1,
-                    //       child: Column(
-                    //         mainAxisSize: MainAxisSize.max,
-                    //         mainAxisAlignment: MainAxisAlignment.start,
-                    //         crossAxisAlignment: CrossAxisAlignment.center,
-                    //         children: [
-                    //           CircularProgressIndicator(),
-                    //         ],
-                    //       ));
-                    // } else if (state.hasErrorTotalMortgageTransactions ||
-                    //     state.hasErrortotalMortgageUnitsNum ||
-                    //     state.hasErrorTotalMortgageTransactionsValue) {
-                    //   return Column(
-                    //     mainAxisSize: MainAxisSize.min,
-                    //     children: [
-                    //       IconButton(
-                    //           onPressed: () {
-                    //             context.read<MortgageGridKPIsBloc>().add(
-                    //                 MortgageGridKPIsEvent.getData(
-                    //                     request: context
-                    //                         .read<MortgageBloc>()
-                    //                         .requestMeanValue));
-                    //           },
-                    //           icon: const Icon(Icons.refresh)),
-                    //     ],
-                    //   );
-                    // }
                     List<BaseRentResponse> dataState = [];
                     bool hasError = false;
 

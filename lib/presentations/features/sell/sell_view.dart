@@ -357,8 +357,13 @@ class _SalesViewState extends State<SalesView> {
                                           crossAxisSpacing: AppSizeW.s23,
                                           gridItemChildBuilder:
                                               (context, index) {
-                                            return BlocProvider.value(
-                                              value: sellGridKPIsBloc,
+                                            return MultiBlocProvider(
+                                              providers: [
+                                                BlocProvider.value(
+                                                    value: sellGridKPIsBloc),
+                                                BlocProvider.value(
+                                                    value: changeStatusCubit),
+                                              ],
                                               child: GridItemWidget(
                                                 gridItemType: GridItemType.sell,
                                                 response: done,

@@ -7,13 +7,14 @@ import 'package:multiple_result/multiple_result.dart';
 import '../../../models/rent_models/rent_models.dart';
 
 class TotalSoldSpacesUsecase
-    implements BaseUseCase<RequestSellValues, List<BaseRentResponse>> {
+    implements
+        BaseUseCase<RequestSellValues, List<BaseRentResponsePerAreaUnitType>> {
   final Repository repository;
 
   TotalSoldSpacesUsecase(this.repository);
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> execute(
+  Future<Result<List<BaseRentResponsePerAreaUnitType>, FailureModel>> execute(
       RequestSellValues input) async {
     return await repository.getTotalSoldSpaces(input);
   }
