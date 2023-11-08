@@ -240,8 +240,7 @@ mixin _$SellTransactionState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SellTransactionResponse response, bool isMetere)
-        success,
+    required TResult Function(SellTransactionResponse response) success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -249,7 +248,7 @@ mixin _$SellTransactionState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SellTransactionResponse response, bool isMetere)? success,
+    TResult? Function(SellTransactionResponse response)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -257,7 +256,7 @@ mixin _$SellTransactionState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SellTransactionResponse response, bool isMetere)? success,
+    TResult Function(SellTransactionResponse response)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -348,8 +347,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SellTransactionResponse response, bool isMetere)
-        success,
+    required TResult Function(SellTransactionResponse response) success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -360,7 +358,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SellTransactionResponse response, bool isMetere)? success,
+    TResult? Function(SellTransactionResponse response)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -371,7 +369,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SellTransactionResponse response, bool isMetere)? success,
+    TResult Function(SellTransactionResponse response)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -463,8 +461,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SellTransactionResponse response, bool isMetere)
-        success,
+    required TResult Function(SellTransactionResponse response) success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -475,7 +472,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SellTransactionResponse response, bool isMetere)? success,
+    TResult? Function(SellTransactionResponse response)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -486,7 +483,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SellTransactionResponse response, bool isMetere)? success,
+    TResult Function(SellTransactionResponse response)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -544,7 +541,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({SellTransactionResponse response, bool isMetere});
+  $Res call({SellTransactionResponse response});
 
   $SellTransactionResponseCopyWith<$Res> get response;
 }
@@ -561,17 +558,12 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? response = null,
-    Object? isMetere = null,
   }) {
     return _then(_$SuccessImpl(
       null == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
               as SellTransactionResponse,
-      null == isMetere
-          ? _value.isMetere
-          : isMetere // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 
@@ -587,16 +579,14 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(this.response, this.isMetere);
+  const _$SuccessImpl(this.response);
 
   @override
   final SellTransactionResponse response;
-  @override
-  final bool isMetere;
 
   @override
   String toString() {
-    return 'SellTransactionState.success(response: $response, isMetere: $isMetere)';
+    return 'SellTransactionState.success(response: $response)';
   }
 
   @override
@@ -605,13 +595,11 @@ class _$SuccessImpl implements _Success {
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
             (identical(other.response, response) ||
-                other.response == response) &&
-            (identical(other.isMetere, isMetere) ||
-                other.isMetere == isMetere));
+                other.response == response));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, response, isMetere);
+  int get hashCode => Object.hash(runtimeType, response);
 
   @JsonKey(ignore: true)
   @override
@@ -624,11 +612,10 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SellTransactionResponse response, bool isMetere)
-        success,
+    required TResult Function(SellTransactionResponse response) success,
     required TResult Function(String message) error,
   }) {
-    return success(response, isMetere);
+    return success(response);
   }
 
   @override
@@ -636,10 +623,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SellTransactionResponse response, bool isMetere)? success,
+    TResult? Function(SellTransactionResponse response)? success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(response, isMetere);
+    return success?.call(response);
   }
 
   @override
@@ -647,12 +634,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SellTransactionResponse response, bool isMetere)? success,
+    TResult Function(SellTransactionResponse response)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(response, isMetere);
+      return success(response);
     }
     return orElse();
   }
@@ -696,12 +683,10 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements SellTransactionState {
-  const factory _Success(
-          final SellTransactionResponse response, final bool isMetere) =
+  const factory _Success(final SellTransactionResponse response) =
       _$SuccessImpl;
 
   SellTransactionResponse get response;
-  bool get isMetere;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -773,8 +758,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SellTransactionResponse response, bool isMetere)
-        success,
+    required TResult Function(SellTransactionResponse response) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -785,7 +769,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SellTransactionResponse response, bool isMetere)? success,
+    TResult? Function(SellTransactionResponse response)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -796,7 +780,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SellTransactionResponse response, bool isMetere)? success,
+    TResult Function(SellTransactionResponse response)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
