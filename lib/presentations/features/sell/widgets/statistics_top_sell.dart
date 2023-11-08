@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/top_values_bloc/topvalues_bloc.dart';
 import 'package:flutter/material.dart';
@@ -262,7 +263,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
     if (tenIndexCubit.state == 1 || tenIndexCubit.state == 5) {
       return e.toStringAsFixed(0);
     } else {
-      return "${e.toStringAsFixed(3)} ${AppStrings().currency}";
+      return "${e.round().formatWithCommas()} ${AppStrings().currency}";
     }
   }
 }
@@ -293,10 +294,8 @@ class _TabContainerShimmer extends StatelessWidget {
                 .textTheme
                 .displayMedium!
                 .copyWith(fontSize: AppSizeSp.s12)
-            : Theme.of(context)
-                .textTheme
-                .headlineMedium!
-                .copyWith(fontSize: AppSizeSp.s12),
+            : Theme.of(context).textTheme.headlineMedium!.copyWith(
+                fontSize: AppSizeSp.s12, decoration: TextDecoration.underline),
       ),
     );
   }
@@ -337,10 +336,9 @@ class _TabContainer extends StatelessWidget {
                   .textTheme
                   .displayMedium!
                   .copyWith(fontSize: AppSizeSp.s12)
-              : Theme.of(context)
-                  .textTheme
-                  .headlineMedium!
-                  .copyWith(fontSize: AppSizeSp.s12),
+              : Theme.of(context).textTheme.headlineMedium!.copyWith(
+                  fontSize: AppSizeSp.s12,
+                  decoration: TextDecoration.underline),
         ),
       ),
     );

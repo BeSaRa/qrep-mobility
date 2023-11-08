@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/features/rent/widgets/top_ten_index_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -260,7 +261,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
     if (tenIndexCubit.state == 1 || tenIndexCubit.state == 2) {
       return e.toStringAsFixed(0);
     } else {
-      return "${e.toStringAsFixed(3)} ${AppStrings().currency}";
+      return "${e.round().formatWithCommas()} ${AppStrings().currency}";
     }
   }
 }
@@ -291,10 +292,8 @@ class _TabContainerShimmer extends StatelessWidget {
                 .textTheme
                 .displayMedium!
                 .copyWith(fontSize: AppSizeSp.s12)
-            : Theme.of(context)
-                .textTheme
-                .headlineMedium!
-                .copyWith(fontSize: AppSizeSp.s12),
+            : Theme.of(context).textTheme.headlineMedium!.copyWith(
+                fontSize: AppSizeSp.s12, decoration: TextDecoration.underline),
       ),
     );
   }
@@ -335,10 +334,10 @@ class _TabContainer extends StatelessWidget {
                   .textTheme
                   .displayMedium!
                   .copyWith(fontSize: AppSizeSp.s12)
-              : Theme.of(context)
-                  .textTheme
-                  .headlineMedium!
-                  .copyWith(fontSize: AppSizeSp.s12),
+              : Theme.of(context).textTheme.headlineMedium!.copyWith(
+                    fontSize: AppSizeSp.s12,
+                    decoration: TextDecoration.underline,
+                  ),
         ),
       ),
     );
