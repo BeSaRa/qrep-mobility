@@ -109,6 +109,7 @@ class AppStrings {
   String transictionValue = "transactions_value".tr();
   String soldAreas = "sold_areas".tr();
   String avgPricePerSquareFoot = "average_price_per_square_foot".tr();
+  String avgPricePerSquareMeter = "average_price_per_square_meter".tr();
 
   // grid
   String totalNumberOfPropertiesUnitsSold =

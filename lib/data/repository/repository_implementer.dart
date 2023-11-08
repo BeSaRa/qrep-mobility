@@ -781,8 +781,8 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> getMeanSoldArea(
-      RequestSellValues requestSellValues) async {
+  Future<Result<List<BaseRentResponsePerAreaUnitType>, FailureModel>>
+      getMeanSoldArea(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
         final response =
@@ -846,8 +846,8 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalSoldSpaces(
-      RequestSellValues requestSellValues) async {
+  Future<Result<List<BaseRentResponsePerAreaUnitType>, FailureModel>>
+      getTotalSoldSpaces(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
         final response =

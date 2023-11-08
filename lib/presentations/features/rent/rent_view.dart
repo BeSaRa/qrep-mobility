@@ -347,8 +347,13 @@ class _RentViewState extends State<RentView> {
                                   mainAxisSpacing: AppSizeH.s22,
                                   crossAxisSpacing: AppSizeW.s23,
                                   gridItemChildBuilder: (context, index) {
-                                    return BlocProvider.value(
-                                      value: rentGridKPIsBloc,
+                                    return MultiBlocProvider(
+                                      providers: [
+                                        BlocProvider.value(
+                                            value: rentGridKPIsBloc),
+                                        BlocProvider.value(
+                                            value: changeStatusCubit),
+                                      ],
                                       child: GridItemWidget(
                                         gridItemType: GridItemType.rent,
                                         response: response,

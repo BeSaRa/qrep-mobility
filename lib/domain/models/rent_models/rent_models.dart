@@ -162,6 +162,29 @@ abstract class BaseRentResponse with _$BaseRentResponse {
 }
 
 @freezed
+abstract class BaseRentResponsePerAreaUnitType
+    with _$BaseRentResponsePerAreaUnitType {
+  factory BaseRentResponsePerAreaUnitType({
+    @Default(0) num issueYear,
+    //----------------------
+    @Default(0) num kpiSqft,
+    @Default(0) num kpiSqmt,
+    //----------------------
+    @Default(0) num kpiSqftPreviousYear,
+    @Default(0) num kpiSqmtPreviousYear,
+    //----------------------
+    @Default(0) num kpiSqftYoYDifference,
+    @Default(0) num kpiSqmtYoYDifference,
+    //----------------------
+    @Default(0) num kpiSqftYoYVal,
+    @Default(0) num kpiSqmtYoYVal,
+  }) = _BaseRentResponsePerAreaUnitType;
+
+  factory BaseRentResponsePerAreaUnitType.fromJson(Map<String, dynamic> json) =>
+      _$BaseRentResponsePerAreaUnitTypeFromJson(json);
+}
+
+@freezed
 abstract class MeanAreaResponse with _$MeanAreaResponse {
   const factory MeanAreaResponse({
     @Default(0) int issueYear,

@@ -298,8 +298,12 @@ class _MortagageViewState extends State<MortgageView> {
                                 ),
                               ),
                               const GreyLinerContainer(),
-                              BlocProvider.value(
-                                value: mortgageGridKPIsBloc,
+                              MultiBlocProvider(
+                                providers: [
+                                  BlocProvider.value(
+                                      value: mortgageGridKPIsBloc),
+                                  BlocProvider.value(value: changeStatusCubit),
+                                ],
                                 child: Padding(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: AppSizeW.s30),

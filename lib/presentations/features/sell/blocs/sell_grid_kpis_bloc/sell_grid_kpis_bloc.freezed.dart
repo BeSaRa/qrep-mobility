@@ -136,15 +136,25 @@ class __$$SellGridKPIsEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SellGridKPIsEventImpl implements _SellGridKPIsEvent {
+class _$SellGridKPIsEventImpl
+    with DiagnosticableTreeMixin
+    implements _SellGridKPIsEvent {
   const _$SellGridKPIsEventImpl({required this.request});
 
   @override
   final RequestSellValues request;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SellGridKPIsEvent.getData(request: $request)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SellGridKPIsEvent.getData'))
+      ..add(DiagnosticsProperty('request', request));
   }
 
   @override
@@ -246,9 +256,9 @@ mixin _$SellGridKPIsState {
       throw _privateConstructorUsedError;
   List<BaseRentResponse> get meanSellUnitValue =>
       throw _privateConstructorUsedError;
-  List<BaseRentResponse> get totalSoldSpaces =>
+  List<BaseRentResponsePerAreaUnitType> get totalSoldSpaces =>
       throw _privateConstructorUsedError;
-  List<BaseRentResponse> get meanSoldAreaValue =>
+  List<BaseRentResponsePerAreaUnitType> get meanSoldAreaValue =>
       throw _privateConstructorUsedError; //----------------------------errors----------------------------------------
   bool get hasErrorTotalContracts => throw _privateConstructorUsedError;
   bool get hasErrorTotalSoldUnits => throw _privateConstructorUsedError;
@@ -265,8 +275,8 @@ mixin _$SellGridKPIsState {
             List<BaseRentResponse> totalSoldUnits,
             List<BaseRentResponse> totalTransactionsValue,
             List<BaseRentResponse> meanSellUnitValue,
-            List<BaseRentResponse> totalSoldSpaces,
-            List<BaseRentResponse> meanSoldAreaValue,
+            List<BaseRentResponsePerAreaUnitType> totalSoldSpaces,
+            List<BaseRentResponsePerAreaUnitType> meanSoldAreaValue,
             bool hasErrorTotalContracts,
             bool hasErrorTotalSoldUnits,
             bool hasErrorTotalTransactionsValue,
@@ -285,8 +295,8 @@ mixin _$SellGridKPIsState {
             List<BaseRentResponse> totalSoldUnits,
             List<BaseRentResponse> totalTransactionsValue,
             List<BaseRentResponse> meanSellUnitValue,
-            List<BaseRentResponse> totalSoldSpaces,
-            List<BaseRentResponse> meanSoldAreaValue,
+            List<BaseRentResponsePerAreaUnitType> totalSoldSpaces,
+            List<BaseRentResponsePerAreaUnitType> meanSoldAreaValue,
             bool hasErrorTotalContracts,
             bool hasErrorTotalSoldUnits,
             bool hasErrorTotalTransactionsValue,
@@ -305,8 +315,8 @@ mixin _$SellGridKPIsState {
             List<BaseRentResponse> totalSoldUnits,
             List<BaseRentResponse> totalTransactionsValue,
             List<BaseRentResponse> meanSellUnitValue,
-            List<BaseRentResponse> totalSoldSpaces,
-            List<BaseRentResponse> meanSoldAreaValue,
+            List<BaseRentResponsePerAreaUnitType> totalSoldSpaces,
+            List<BaseRentResponsePerAreaUnitType> meanSoldAreaValue,
             bool hasErrorTotalContracts,
             bool hasErrorTotalSoldUnits,
             bool hasErrorTotalTransactionsValue,
@@ -352,8 +362,8 @@ abstract class $SellGridKPIsStateCopyWith<$Res> {
       List<BaseRentResponse> totalSoldUnits,
       List<BaseRentResponse> totalTransactionsValue,
       List<BaseRentResponse> meanSellUnitValue,
-      List<BaseRentResponse> totalSoldSpaces,
-      List<BaseRentResponse> meanSoldAreaValue,
+      List<BaseRentResponsePerAreaUnitType> totalSoldSpaces,
+      List<BaseRentResponsePerAreaUnitType> meanSoldAreaValue,
       bool hasErrorTotalContracts,
       bool hasErrorTotalSoldUnits,
       bool hasErrorTotalTransactionsValue,
@@ -418,11 +428,11 @@ class _$SellGridKPIsStateCopyWithImpl<$Res, $Val extends SellGridKPIsState>
       totalSoldSpaces: null == totalSoldSpaces
           ? _value.totalSoldSpaces
           : totalSoldSpaces // ignore: cast_nullable_to_non_nullable
-              as List<BaseRentResponse>,
+              as List<BaseRentResponsePerAreaUnitType>,
       meanSoldAreaValue: null == meanSoldAreaValue
           ? _value.meanSoldAreaValue
           : meanSoldAreaValue // ignore: cast_nullable_to_non_nullable
-              as List<BaseRentResponse>,
+              as List<BaseRentResponsePerAreaUnitType>,
       hasErrorTotalContracts: null == hasErrorTotalContracts
           ? _value.hasErrorTotalContracts
           : hasErrorTotalContracts // ignore: cast_nullable_to_non_nullable
@@ -466,8 +476,8 @@ abstract class _$$InitialStateImplCopyWith<$Res>
       List<BaseRentResponse> totalSoldUnits,
       List<BaseRentResponse> totalTransactionsValue,
       List<BaseRentResponse> meanSellUnitValue,
-      List<BaseRentResponse> totalSoldSpaces,
-      List<BaseRentResponse> meanSoldAreaValue,
+      List<BaseRentResponsePerAreaUnitType> totalSoldSpaces,
+      List<BaseRentResponsePerAreaUnitType> meanSoldAreaValue,
       bool hasErrorTotalContracts,
       bool hasErrorTotalSoldUnits,
       bool hasErrorTotalTransactionsValue,
@@ -530,11 +540,11 @@ class __$$InitialStateImplCopyWithImpl<$Res>
       totalSoldSpaces: null == totalSoldSpaces
           ? _value._totalSoldSpaces
           : totalSoldSpaces // ignore: cast_nullable_to_non_nullable
-              as List<BaseRentResponse>,
+              as List<BaseRentResponsePerAreaUnitType>,
       meanSoldAreaValue: null == meanSoldAreaValue
           ? _value._meanSoldAreaValue
           : meanSoldAreaValue // ignore: cast_nullable_to_non_nullable
-              as List<BaseRentResponse>,
+              as List<BaseRentResponsePerAreaUnitType>,
       hasErrorTotalContracts: null == hasErrorTotalContracts
           ? _value.hasErrorTotalContracts
           : hasErrorTotalContracts // ignore: cast_nullable_to_non_nullable
@@ -565,7 +575,7 @@ class __$$InitialStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialStateImpl implements _InitialState {
+class _$InitialStateImpl with DiagnosticableTreeMixin implements _InitialState {
   const _$InitialStateImpl(
       {this.isLoading = false,
       this.errorMessage = '',
@@ -573,8 +583,8 @@ class _$InitialStateImpl implements _InitialState {
       final List<BaseRentResponse> totalSoldUnits = const [],
       final List<BaseRentResponse> totalTransactionsValue = const [],
       final List<BaseRentResponse> meanSellUnitValue = const [],
-      final List<BaseRentResponse> totalSoldSpaces = const [],
-      final List<BaseRentResponse> meanSoldAreaValue = const [],
+      final List<BaseRentResponsePerAreaUnitType> totalSoldSpaces = const [],
+      final List<BaseRentResponsePerAreaUnitType> meanSoldAreaValue = const [],
       this.hasErrorTotalContracts = false,
       this.hasErrorTotalSoldUnits = false,
       this.hasErrorTotalTransactionsValue = false,
@@ -632,19 +642,19 @@ class _$InitialStateImpl implements _InitialState {
     return EqualUnmodifiableListView(_meanSellUnitValue);
   }
 
-  final List<BaseRentResponse> _totalSoldSpaces;
+  final List<BaseRentResponsePerAreaUnitType> _totalSoldSpaces;
   @override
   @JsonKey()
-  List<BaseRentResponse> get totalSoldSpaces {
+  List<BaseRentResponsePerAreaUnitType> get totalSoldSpaces {
     if (_totalSoldSpaces is EqualUnmodifiableListView) return _totalSoldSpaces;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_totalSoldSpaces);
   }
 
-  final List<BaseRentResponse> _meanSoldAreaValue;
+  final List<BaseRentResponsePerAreaUnitType> _meanSoldAreaValue;
   @override
   @JsonKey()
-  List<BaseRentResponse> get meanSoldAreaValue {
+  List<BaseRentResponsePerAreaUnitType> get meanSoldAreaValue {
     if (_meanSoldAreaValue is EqualUnmodifiableListView)
       return _meanSoldAreaValue;
     // ignore: implicit_dynamic_type
@@ -672,8 +682,36 @@ class _$InitialStateImpl implements _InitialState {
   final bool hasErrorMeanSoldAreaValue;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SellGridKPIsState.initialState(isLoading: $isLoading, errorMessage: $errorMessage, totalContracts: $totalContracts, totalSoldUnits: $totalSoldUnits, totalTransactionsValue: $totalTransactionsValue, meanSellUnitValue: $meanSellUnitValue, totalSoldSpaces: $totalSoldSpaces, meanSoldAreaValue: $meanSoldAreaValue, hasErrorTotalContracts: $hasErrorTotalContracts, hasErrorTotalSoldUnits: $hasErrorTotalSoldUnits, hasErrorTotalTransactionsValue: $hasErrorTotalTransactionsValue, hasErrorMeanSellUnitValue: $hasErrorMeanSellUnitValue, hasErrorTotalSoldSpaces: $hasErrorTotalSoldSpaces, hasErrorMeanSoldAreaValue: $hasErrorMeanSoldAreaValue)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SellGridKPIsState.initialState'))
+      ..add(DiagnosticsProperty('isLoading', isLoading))
+      ..add(DiagnosticsProperty('errorMessage', errorMessage))
+      ..add(DiagnosticsProperty('totalContracts', totalContracts))
+      ..add(DiagnosticsProperty('totalSoldUnits', totalSoldUnits))
+      ..add(
+          DiagnosticsProperty('totalTransactionsValue', totalTransactionsValue))
+      ..add(DiagnosticsProperty('meanSellUnitValue', meanSellUnitValue))
+      ..add(DiagnosticsProperty('totalSoldSpaces', totalSoldSpaces))
+      ..add(DiagnosticsProperty('meanSoldAreaValue', meanSoldAreaValue))
+      ..add(
+          DiagnosticsProperty('hasErrorTotalContracts', hasErrorTotalContracts))
+      ..add(
+          DiagnosticsProperty('hasErrorTotalSoldUnits', hasErrorTotalSoldUnits))
+      ..add(DiagnosticsProperty(
+          'hasErrorTotalTransactionsValue', hasErrorTotalTransactionsValue))
+      ..add(DiagnosticsProperty(
+          'hasErrorMeanSellUnitValue', hasErrorMeanSellUnitValue))
+      ..add(DiagnosticsProperty(
+          'hasErrorTotalSoldSpaces', hasErrorTotalSoldSpaces))
+      ..add(DiagnosticsProperty(
+          'hasErrorMeanSoldAreaValue', hasErrorMeanSoldAreaValue));
   }
 
   @override
@@ -750,8 +788,8 @@ class _$InitialStateImpl implements _InitialState {
             List<BaseRentResponse> totalSoldUnits,
             List<BaseRentResponse> totalTransactionsValue,
             List<BaseRentResponse> meanSellUnitValue,
-            List<BaseRentResponse> totalSoldSpaces,
-            List<BaseRentResponse> meanSoldAreaValue,
+            List<BaseRentResponsePerAreaUnitType> totalSoldSpaces,
+            List<BaseRentResponsePerAreaUnitType> meanSoldAreaValue,
             bool hasErrorTotalContracts,
             bool hasErrorTotalSoldUnits,
             bool hasErrorTotalTransactionsValue,
@@ -787,8 +825,8 @@ class _$InitialStateImpl implements _InitialState {
             List<BaseRentResponse> totalSoldUnits,
             List<BaseRentResponse> totalTransactionsValue,
             List<BaseRentResponse> meanSellUnitValue,
-            List<BaseRentResponse> totalSoldSpaces,
-            List<BaseRentResponse> meanSoldAreaValue,
+            List<BaseRentResponsePerAreaUnitType> totalSoldSpaces,
+            List<BaseRentResponsePerAreaUnitType> meanSoldAreaValue,
             bool hasErrorTotalContracts,
             bool hasErrorTotalSoldUnits,
             bool hasErrorTotalTransactionsValue,
@@ -824,8 +862,8 @@ class _$InitialStateImpl implements _InitialState {
             List<BaseRentResponse> totalSoldUnits,
             List<BaseRentResponse> totalTransactionsValue,
             List<BaseRentResponse> meanSellUnitValue,
-            List<BaseRentResponse> totalSoldSpaces,
-            List<BaseRentResponse> meanSoldAreaValue,
+            List<BaseRentResponsePerAreaUnitType> totalSoldSpaces,
+            List<BaseRentResponsePerAreaUnitType> meanSoldAreaValue,
             bool hasErrorTotalContracts,
             bool hasErrorTotalSoldUnits,
             bool hasErrorTotalTransactionsValue,
@@ -892,8 +930,8 @@ abstract class _InitialState implements SellGridKPIsState {
       final List<BaseRentResponse> totalSoldUnits,
       final List<BaseRentResponse> totalTransactionsValue,
       final List<BaseRentResponse> meanSellUnitValue,
-      final List<BaseRentResponse> totalSoldSpaces,
-      final List<BaseRentResponse> meanSoldAreaValue,
+      final List<BaseRentResponsePerAreaUnitType> totalSoldSpaces,
+      final List<BaseRentResponsePerAreaUnitType> meanSoldAreaValue,
       final bool hasErrorTotalContracts,
       final bool hasErrorTotalSoldUnits,
       final bool hasErrorTotalTransactionsValue,
@@ -914,9 +952,9 @@ abstract class _InitialState implements SellGridKPIsState {
   @override
   List<BaseRentResponse> get meanSellUnitValue;
   @override
-  List<BaseRentResponse> get totalSoldSpaces;
+  List<BaseRentResponsePerAreaUnitType> get totalSoldSpaces;
   @override
-  List<BaseRentResponse> get meanSoldAreaValue;
+  List<BaseRentResponsePerAreaUnitType> get meanSoldAreaValue;
   @override //----------------------------errors----------------------------------------
   bool get hasErrorTotalContracts;
   @override

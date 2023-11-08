@@ -3,6 +3,7 @@ import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/domain/models/requests/sell_requests/request_sell_values.dart';
 import 'package:ebla/domain/usecases/usecases.dart';
 import 'package:ebla/presentations/widgets/grid/grid_item_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'sell_grid_kpis_bloc.freezed.dart';
@@ -204,8 +205,7 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
     }
   }
 
-  static List<BaseRentResponse> getState(
-      SellGridKPIsState state, SellGridKPIs? kpi) {
+  static List getState(SellGridKPIsState state, SellGridKPIs? kpi) {
     switch (kpi) {
       case SellGridKPIs.totalContracts:
         return state.totalContracts;
@@ -224,7 +224,33 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
     }
   }
 
-  static num getKPIVal(RentDefault rentDefault, SellGridKPIs? kpi) {
+  static num getKpiValOrYoYFromTypeAndUnit(
+      {required var dataState,
+      required int unitType,
+      required bool returnYoYVal}) {
+    if (dataState is List<BaseRentResponse>) {
+      return returnYoYVal ? dataState.first.kpiYoYVal : dataState.first.kpiVal;
+    } else if (dataState is List<BaseRentResponsePerAreaUnitType>) {
+      // meter
+      if (unitType == 1) {
+        return returnYoYVal
+            ? dataState.first.kpiSqmtYoYVal
+            : dataState.first.kpiSqmt;
+      } else {
+        // foot
+        return returnYoYVal
+            ? dataState.first.kpiSqftYoYVal
+            : dataState.first.kpiSqft;
+      }
+    } else {
+      if (kDebugMode) {
+        print("unknown data state type");
+      }
+      return 0;
+    }
+  }
+
+  static num getDefaultKpiVal(RentDefault rentDefault, SellGridKPIs? kpi) {
     switch (kpi) {
       case SellGridKPIs.totalContracts:
         return rentDefault.kpi1Val ?? 0;
@@ -241,5 +267,19 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       default:
         return 0;
     }
+  }
+
+  static num getKpiValueBaseOnStateType(
+      SellGridKPIsState state, SellGridKPIs? kpi) {
+    switch (kpi) {
+      case SellGridKPIs.totalSoldSpaces:
+        if (state.totalSoldSpaces.isNotEmpty) {
+          return state.totalSoldSpaces.first.kpiSqft;
+        }
+        break;
+
+      default:
+    }
+    return 0;
   }
 }
