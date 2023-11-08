@@ -393,65 +393,63 @@ class _GridItemWidgetState extends State<GridItemWidget> {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              SizedBox(
-                height: AppSizeH.s94,
-              ),
-              Flexible(
+              SizedBox(height: AppSizeH.s94),
+              Expanded(
                 flex: 1,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    (widget.rentKPI != RentGridKPIs.totalRentedSpaces &&
-                            widget.rentKPI != RentGridKPIs.meanRentAreaValue)
-                        ? ValueListenableBuilder(
-                            valueListenable: changeRateValue,
-                            builder: (context, value, child) {
-                              return Flexible(
-                                child: FittedBox(
-                                  child: Row(
-                                    children: [
-                                      SizedBox(width: AppSizeW.s5),
-                                      Transform.flip(
-                                        flipY: value.isNegative,
-                                        child: SvgPicture.asset(
-                                          color: value.isNegative
-                                              ? ColorManager.red.withAlpha(95)
-                                              : null,
-                                          IconAssets.arrow,
-                                          height: AppSizeH.s8,
-                                          width: AppSizeW.s8,
+                child: Padding(
+                  padding: EdgeInsetsDirectional.only(start: AppSizeW.s12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      (widget.rentKPI != RentGridKPIs.totalRentedSpaces &&
+                              widget.rentKPI != RentGridKPIs.meanRentAreaValue)
+                          ? ValueListenableBuilder(
+                              valueListenable: changeRateValue,
+                              builder: (context, value, child) {
+                                return Flexible(
+                                  child: FittedBox(
+                                    child: Row(
+                                      children: [
+                                        Transform.flip(
+                                          flipY: value.isNegative,
+                                          child: SvgPicture.asset(
+                                            color: value.isNegative
+                                                ? ColorManager.red.withAlpha(95)
+                                                : null,
+                                            IconAssets.arrow,
+                                            height: AppSizeH.s8,
+                                            width: AppSizeW.s8,
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(width: AppSizeW.s5),
-                                      Text(
-                                        textDirection: ui.TextDirection.ltr,
-                                        '${value.toStringAsFixed(2)} % YoY',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(fontSize: AppSizeSp.s15),
-                                        textAlign: TextAlign.end,
-                                      ),
-                                      SizedBox(width: AppSizeW.s5),
-                                    ],
+                                        SizedBox(width: AppSizeW.s5),
+                                        Text(
+                                          textDirection: ui.TextDirection.ltr,
+                                          '${value.toStringAsFixed(2)} % YoY',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleSmall!
+                                              .copyWith(
+                                                  fontSize: AppSizeSp.s15),
+                                          textAlign: TextAlign.end,
+                                        ),
+                                        SizedBox(width: AppSizeW.s5),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                            // builder: (context) {
-
-                            // }
-                          )
-                        : const SizedBox(),
-                    AspectRatio(
-                      aspectRatio: 1,
-                      child: SvgPicture.asset(
-                        getImagePath(),
-                        width: AppSizeW.s56,
-                        color: ColorManager.primary.withOpacity(0.6),
+                                );
+                              },
+                            )
+                          : const SizedBox(),
+                      AspectRatio(
+                        aspectRatio: 1,
+                        child: SvgPicture.asset(
+                          getImagePath(),
+                          width: AppSizeW.s56,
+                          color: ColorManager.primary.withOpacity(0.6),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
