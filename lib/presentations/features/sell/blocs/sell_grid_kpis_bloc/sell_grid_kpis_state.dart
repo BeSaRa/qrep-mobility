@@ -9,8 +9,8 @@ class SellGridKPIsState with _$SellGridKPIsState {
     @Default([]) List<BaseRentResponse> totalSoldUnits,
     @Default([]) List<BaseRentResponse> totalTransactionsValue,
     @Default([]) List<BaseRentResponse> meanSellUnitValue,
-    @Default([]) List<BaseRentResponse> totalSoldSpaces,
-    @Default([]) List<BaseRentResponse> meanSoldAreaValue,
+    @Default([]) List<BaseRentResponsePerAreaUnitType> totalSoldSpaces,
+    @Default([]) List<BaseRentResponsePerAreaUnitType> meanSoldAreaValue,
     //----------------------------errors----------------------------------------
     @Default(false) bool hasErrorTotalContracts,
     @Default(false) bool hasErrorTotalSoldUnits,

@@ -84,6 +84,7 @@
   "unit_type": "نوع الوحدة",
   "----------------------------------------------------SELL--------------------------": "",
   "average_price_per_square_foot": "متوسط السعر لكل قدم مربع",
+  "average_price_per_square_meter": "متوسط السعر لكل متر مربع",
   "average_price_per_unit": "متوسط السعر للوحدة",
   "average_sell_price_per_unit_property": "متوسط سعر البيع للوحدة \\ العقار",
   "list_of_sell_transactions": "قائمة معاملات البيع",
