@@ -49,6 +49,8 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   syncfusion_flutter_datepicker: ^23.1.40
   url_launcher: ^6.2.0
+  firebase_core: ^2.21.0
+  firebase_messaging: ^14.7.3
 
 dev_dependencies:
   build_runner: ^2.4.6

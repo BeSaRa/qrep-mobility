@@ -1,18 +1,15 @@
 import 'package:ebla/app/constants.dart';
-
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
 import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../resources/resources.dart';
+import '../../home/home_view.dart';
 
 class LawsDecisionsView extends StatefulWidget {
   const LawsDecisionsView({super.key});
@@ -88,18 +85,38 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                     onRefresh: () async {
                       context.read<LawsBloc>().add(const LawsEvent.getLaws());
                     },
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: AppSizeW.s15, vertical: AppSizeH.s10),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: state.lawsResponse.data.length,
-                        itemBuilder: (context, index) {
-                          return LawWidget(
-                            law: state.lawsResponse.data[index],
-                          );
-                        },
-                      ),
+                    child: ListView(
+                      children: [
+                        SizedBox(
+                          height: AppSizeH.s10,
+                        ),
+                        Center(
+                          child: SizedBox(
+                            width: AppSizeW.s112,
+                            height: AppSizeH.s90,
+                            child: StaticPagesContainer(
+                              icon: IconAssets.lawsHome,
+                              title: Container(),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: AppSizeH.s40,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: AppSizeW.s15, vertical: AppSizeH.s10),
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: state.lawsResponse.data.length,
+                            itemBuilder: (context, index) {
+                              return LawWidget(
+                                law: state.lawsResponse.data[index],
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 );
@@ -138,7 +155,7 @@ class _LawWidgetState extends State<LawWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: AppSizeH.s4),
+      padding: EdgeInsets.symmetric(vertical: AppSizeH.s8),
       child: InkWell(
         splashFactory: InkSparkle.constantTurbulenceSeedSplashFactory,
         splashColor: ColorManager.primary.withOpacity(0.1),
@@ -148,13 +165,9 @@ class _LawWidgetState extends State<LawWidget> {
               pathParameters: {'id': widget.law.id.toString()});
         },
         child: Ink(
-          height: AppSizeH.s110,
+          height: widget.law.title.length > 70 ? AppSizeH.s130 : AppSizeH.s110,
           decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(
-                width: AppSizeW.s2,
-                color: ColorManager.grey,
-              ),
+              color: ColorManager.lightSilver.withOpacity(0.3),
               borderRadius: BorderRadius.circular(AppSizeR.s20),
               boxShadow: [
                 BoxShadow(
@@ -165,21 +178,20 @@ class _LawWidgetState extends State<LawWidget> {
                 )
               ]),
           child: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: AppSizeW.s15, vertical: AppSizeH.s10),
+            padding: EdgeInsets.symmetric(horizontal: AppSizeW.s15),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Flexible(
-                  flex: 1,
-                  child: SvgPicture.asset(
-                    IconAssets.lawItem,
-                    color: ColorManager.primary,
-                    height: AppSizeH.s80,
-                    width: AppSizeW.s80,
-                  ),
-                ),
+                Container(
+                    margin: EdgeInsets.symmetric(vertical: AppSizeH.s20),
+                    padding: EdgeInsets.symmetric(horizontal: AppSizeW.s8),
+                    child: FittedBox(
+                      child: Icon(
+                        Icons.gavel,
+                        color: ColorManager.black,
+                      ),
+                    )),
                 SizedBox(width: AppSizeW.s10),
                 Flexible(
                   flex: 5,
@@ -197,6 +209,10 @@ class _LawWidgetState extends State<LawWidget> {
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                         ),
+                        Divider(
+                          color: ColorManager.lightSilver,
+                          endIndent: AppSizeW.s37,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -204,7 +220,13 @@ class _LawWidgetState extends State<LawWidget> {
                               '${AppStrings().issueDate}${DateTime.tryParse(widget.law.issueDate)?.year}',
                               style: Theme.of(context).textTheme.labelSmall,
                             ),
-                            SizedBox(width: AppSizeW.s10),
+                            Container(
+                              margin:
+                                  EdgeInsets.symmetric(horizontal: AppSizeW.s5),
+                              height: AppSizeH.s16,
+                              width: AppSizeW.s2,
+                              color: ColorManager.lightSilver,
+                            ),
                             Text(
                               '${AppStrings().lawNumber}${widget.law.lawNumber}',
                               style: Theme.of(context).textTheme.labelSmall,
@@ -228,16 +250,17 @@ class _LawWidgetState extends State<LawWidget> {
                         }
                       },
                       child: Container(
-                          height: double.infinity,
+                          height: AppSizeH.s35,
                           margin: EdgeInsets.symmetric(vertical: AppSizeH.s20),
                           padding:
                               EdgeInsets.symmetric(horizontal: AppSizeW.s8),
                           decoration: BoxDecoration(
-                              color: ColorManager.primary,
-                              borderRadius: BorderRadius.circular(AppSizeH.s4)),
+                              color: ColorManager.golden,
+                              borderRadius:
+                                  BorderRadius.circular(AppSizeH.s10)),
                           child: FittedBox(
                             child: Icon(
-                              Icons.cloud_download,
+                              Icons.cloud_download_outlined,
                               // todo: change this with the correct theme color
                               color: ColorManager.white,
                             ),
