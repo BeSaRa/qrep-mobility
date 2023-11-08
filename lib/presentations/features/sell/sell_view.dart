@@ -413,7 +413,7 @@ class _SalesViewState extends State<SalesView> {
                                                   return const ShimmerMainContainer();
                                                 });
                                           },
-                                          success: (success, isMeter) =>
+                                          success: (success) =>
                                               ListView.builder(
                                                   itemCount: success
                                                               .transactionList
@@ -432,7 +432,12 @@ class _SalesViewState extends State<SalesView> {
                                                           .sellPrice,
                                                       totalPrice:
                                                           "${success.transactionList[index].realEstateValue?.toStringAsFixed(1)} ${AppStrings().currency}",
-                                                      value: isMeter
+                                                      value: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSell
+                                                                  .unit ==
+                                                              1
                                                           ? success
                                                                   .transactionList[
                                                                       index]
@@ -449,23 +454,23 @@ class _SalesViewState extends State<SalesView> {
                                                               '0',
                                                       valueDescription:
                                                           AppStrings().rentArea,
+                                                      unit: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSell
+                                                                  .unit ==
+                                                              1
+                                                          ? AppStrings().meter
+                                                          : AppStrings().foot,
                                                       titleInfo:
                                                           "${AppStrings().theUnitPrice}:",
-                                                      valueInfo: isMeter
-                                                          ? success
-                                                                  .transactionList[
-                                                                      index]
-                                                                  .priceMT
-                                                                  ?.toStringAsFixed(
-                                                                      0) ??
-                                                              '0'
-                                                          : success
-                                                                  .transactionList[
-                                                                      index]
-                                                                  .priceMT
-                                                                  ?.toStringAsFixed(
-                                                                      0) ??
-                                                              '0',
+                                                      valueInfo: success
+                                                              .transactionList[
+                                                                  index]
+                                                              .priceMT
+                                                              ?.toStringAsFixed(
+                                                                  0) ??
+                                                          '0',
                                                       location: context.locale ==
                                                               ARABIC_LOCAL
                                                           ? getObjectByLookupKey(

@@ -70,7 +70,7 @@ class EblaNavigationBar extends StatelessWidget {
                 children: [
                   // const Spacer(),
                   SizedBox(
-                    height: AppSizeH.s36,
+                    // height: AppSizeH.s36,
                     child: SvgPicture.asset(
                       currentPage == 0
                           ? IconAssets.homeIconFill
@@ -83,15 +83,17 @@ class EblaNavigationBar extends StatelessWidget {
                               .unselectedItemColor,
                     ),
                   ),
-                  Text(
-                    AppStrings().main,
-                    style: TextStyle(
-                      fontSize: AppSizeSp.s10,
-                      color: currentPage == 0
-                          ? Theme.of(context).primaryColor
-                          : Theme.of(context)
-                              .bottomNavigationBarTheme
-                              .unselectedItemColor,
+                  FittedBox(
+                    child: Text(
+                      AppStrings().main,
+                      style: TextStyle(
+                        fontSize: AppSizeSp.s10,
+                        color: currentPage == 0
+                            ? Theme.of(context).primaryColor
+                            : Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .unselectedItemColor,
+                      ),
                     ),
                   ),
                   // const Spacer()
@@ -118,15 +120,17 @@ class EblaNavigationBar extends StatelessWidget {
                               .unselectedItemColor,
                     ),
                   ),
-                  Text(AppStrings().rent,
-                      style: TextStyle(
-                        fontSize: AppSizeSp.s10,
-                        color: currentPage == 1
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context)
-                                .bottomNavigationBarTheme
-                                .unselectedItemColor,
-                      )),
+                  FittedBox(
+                    child: Text(AppStrings().rent,
+                        style: TextStyle(
+                          fontSize: AppSizeSp.s10,
+                          color: currentPage == 1
+                              ? Theme.of(context).primaryColor
+                              : Theme.of(context)
+                                  .bottomNavigationBarTheme
+                                  .unselectedItemColor,
+                        )),
+                  ),
                   // const Spacer()
                 ],
               ),
@@ -151,15 +155,17 @@ class EblaNavigationBar extends StatelessWidget {
                               .unselectedItemColor,
                     ),
                   ),
-                  Text(
-                    AppStrings().sell,
-                    style: TextStyle(
-                      fontSize: AppSizeSp.s10,
-                      color: currentPage == 2
-                          ? Theme.of(context).primaryColor
-                          : Theme.of(context)
-                              .bottomNavigationBarTheme
-                              .unselectedItemColor,
+                  FittedBox(
+                    child: Text(
+                      AppStrings().sell,
+                      style: TextStyle(
+                        fontSize: AppSizeSp.s10,
+                        color: currentPage == 2
+                            ? Theme.of(context).primaryColor
+                            : Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .unselectedItemColor,
+                      ),
                     ),
                   ),
                   // const Spacer()
@@ -185,15 +191,17 @@ class EblaNavigationBar extends StatelessWidget {
                                 .bottomNavigationBarTheme
                                 .unselectedItemColor),
                   ),
-                  Text(
-                    AppStrings().mortgage,
-                    style: TextStyle(
-                        fontSize: AppSizeSp.s10,
-                        color: currentPage == 3
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context)
-                                .bottomNavigationBarTheme
-                                .unselectedItemColor),
+                  FittedBox(
+                    child: Text(
+                      AppStrings().mortgage,
+                      style: TextStyle(
+                          fontSize: AppSizeSp.s10,
+                          color: currentPage == 3
+                              ? Theme.of(context).primaryColor
+                              : Theme.of(context)
+                                  .bottomNavigationBarTheme
+                                  .unselectedItemColor),
+                    ),
                   ),
                   // const Spacer()
                 ],
@@ -218,15 +226,17 @@ class EblaNavigationBar extends StatelessWidget {
                                 .bottomNavigationBarTheme
                                 .unselectedItemColor),
                   ),
-                  Text(
-                    AppStrings().more,
-                    style: TextStyle(
-                        fontSize: AppSizeSp.s10,
-                        color: currentPage == 4
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context)
-                                .bottomNavigationBarTheme
-                                .unselectedItemColor),
+                  FittedBox(
+                    child: Text(
+                      AppStrings().more,
+                      style: TextStyle(
+                          fontSize: AppSizeSp.s10,
+                          color: currentPage == 4
+                              ? Theme.of(context).primaryColor
+                              : Theme.of(context)
+                                  .bottomNavigationBarTheme
+                                  .unselectedItemColor),
+                    ),
                   ),
                   // const Spacer()
                 ],

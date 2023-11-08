@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/top_values_bloc/topvalues_bloc.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../utils/global_functions.dart';
 import '../../../resources/resources.dart';
 import '../../../widgets/widgets.dart';
+import '../../rent/widgets/top_ten_index_cubit.dart';
 
 class StatisticsTopSellWidget extends StatefulWidget {
   const StatisticsTopSellWidget({super.key});
@@ -17,6 +19,14 @@ class StatisticsTopSellWidget extends StatefulWidget {
 }
 
 class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
+  late TopTenIndexCubit tenIndexCubit;
+
+  @override
+  void initState() {
+    tenIndexCubit = TopTenIndexCubit(1);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -104,6 +114,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                           indexTab: 1,
                           name: AppStrings().sellContractCount,
                           onPress: () {
+                            tenIndexCubit.save(1);
                             context.read<TopvaluesBloc>().add(
                                 TopvaluesEvent.countTransictionNumberEvent(
                                     request:
@@ -114,6 +125,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                             indexTab: 2,
                             name: AppStrings().avgPricePerUnit,
                             onPress: () {
+                              tenIndexCubit.save(2);
                               context.read<TopvaluesBloc>().add(
                                   TopvaluesEvent.countUnitPriceEvent(
                                       request: context
@@ -124,6 +136,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                             indexTab: 3,
                             name: AppStrings().transictionValue,
                             onPress: () {
+                              tenIndexCubit.save(3);
                               context.read<TopvaluesBloc>().add(
                                   TopvaluesEvent.countTransictionsValueEvent(
                                       request: context
@@ -134,6 +147,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                             indexTab: 4,
                             name: AppStrings().soldAreas,
                             onPress: () {
+                              tenIndexCubit.save(4);
                               context.read<TopvaluesBloc>().add(
                                   TopvaluesEvent.countAreasEvent(
                                       request: context
@@ -144,6 +158,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                             indexTab: 5,
                             name: AppStrings().countPropertiesUnits,
                             onPress: () {
+                              tenIndexCubit.save(5);
                               context.read<TopvaluesBloc>().add(
                                   TopvaluesEvent.realStateNumberEvent(
                                       request: context
@@ -154,6 +169,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                             indexTab: 6,
                             name: AppStrings().avgPricePerSquareFoot,
                             onPress: () {
+                              tenIndexCubit.save(6);
                               context.read<TopvaluesBloc>().add(
                                   TopvaluesEvent.realStateNumberMeterEvent(
                                       request: context
@@ -214,7 +230,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                                     e.zoneId.toInt())
                                 ?.enName ??
                             '',
-                    number: e.kpiVal.toStringAsFixed(4));
+                    number: getValue(e.kpiVal));
               }).toList());
             }
             if (state.listResponse.isEmpty) {
@@ -241,6 +257,14 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
         ),
       ],
     );
+  }
+
+  String getValue(num e) {
+    if (tenIndexCubit.state == 1 || tenIndexCubit.state == 5) {
+      return e.toStringAsFixed(0);
+    } else {
+      return "${e.round().formatWithCommas()} ${AppStrings().currency}";
+    }
   }
 }
 
@@ -270,10 +294,8 @@ class _TabContainerShimmer extends StatelessWidget {
                 .textTheme
                 .displayMedium!
                 .copyWith(fontSize: AppSizeSp.s12)
-            : Theme.of(context)
-                .textTheme
-                .headlineMedium!
-                .copyWith(fontSize: AppSizeSp.s12),
+            : Theme.of(context).textTheme.headlineMedium!.copyWith(
+                fontSize: AppSizeSp.s12, decoration: TextDecoration.underline),
       ),
     );
   }
@@ -314,10 +336,9 @@ class _TabContainer extends StatelessWidget {
                   .textTheme
                   .displayMedium!
                   .copyWith(fontSize: AppSizeSp.s12)
-              : Theme.of(context)
-                  .textTheme
-                  .headlineMedium!
-                  .copyWith(fontSize: AppSizeSp.s12),
+              : Theme.of(context).textTheme.headlineMedium!.copyWith(
+                  fontSize: AppSizeSp.s12,
+                  decoration: TextDecoration.underline),
         ),
       ),
     );

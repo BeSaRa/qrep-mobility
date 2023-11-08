@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "418913570444",
+    "project_id": "qrep-93d7f",
+    "storage_bucket": "qrep-93d7f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418913570444:android:db0e182773e55de8f175a9",
+        "android_client_info": {
+          "package_name": "com.eblacorp.qrep"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuia9l4iPB4P1vEafUu9JEW6M6_Fg-A70"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
