@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/presentations/resources/language_manager.dart';
+import 'package:ebla/presentations/resources/resources.dart';
 import 'package:ebla/presentations/widgets/shimmer_placeholder.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ class MainDataContainer extends StatelessWidget {
   final String totalPrice;
   final String value;
   final String valueDescription;
+  final String? unit;
   final String titleInfo;
   final String valueInfo;
   final String location;
@@ -28,6 +30,7 @@ class MainDataContainer extends StatelessWidget {
     required this.location,
     this.descripton,
     this.hasRooms = true,
+    this.unit,
   });
 
   @override
@@ -76,8 +79,16 @@ class MainDataContainer extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     SizedBox(width: AppSizeW.s4),
-                    Text(valueDescription,
-                        style: Theme.of(context).textTheme.titleSmall),
+                    Column(
+                      children: [
+                        Text(valueDescription,
+                            style: Theme.of(context).textTheme.titleSmall),
+                        unit != null
+                            ? Text('($unit)',
+                                style: Theme.of(context).textTheme.titleSmall)
+                            : const SizedBox(),
+                      ],
+                    ),
                   ],
                 ),
                 if (hasRooms)

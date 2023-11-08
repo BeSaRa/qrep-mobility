@@ -24,7 +24,7 @@ class SellTransactionBloc
         failureOrSuccess.when((success) {
           sellTransaction = success;
 
-          emit(SellTransactionState.success(success, event.request.unit == 1));
+          emit(SellTransactionState.success(success));
         }, (error) {
           emit(SellTransactionState.error(error.message));
         });
