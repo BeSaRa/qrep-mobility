@@ -95,104 +95,35 @@ class _LawsDetailsViewState extends State<LawsDetailsView> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: AppSizeW.s30,
+          horizontal: AppSizeW.s16,
         ),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              SizedBox(height: AppSizeH.s40),
-              Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(
-                      bottom: AppSizeH
-                          .s1, // This can be the space you need between text and underline
-                    ),
+              SizedBox(height: AppSizeH.s46),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: AppSizeW.s120),
+                child: Container(
+                    padding: EdgeInsets.symmetric(
+                        vertical: AppSizeH.s27, horizontal: AppSizeW.s35),
                     decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: ColorManager.golden,
-                          width: AppSizeSp
-                              .s2, // This would be the width of the underline
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      '${AppStrings().lawDetails}:',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(),
-                    ),
-                  ),
-                ],
+                        color: ColorManager.white,
+                        border: Border.all(
+                            width: 1, color: ColorManager.lightSilver),
+                        borderRadius: BorderRadius.circular(AppSizeR.s15)),
+                    child: SvgPicture.asset(IconAssets.lawsHome)),
               ),
-              SizedBox(height: AppSizeH.s20),
-              Row(children: [
-                Flexible(
-                  child: Container(
-                    color: ColorManager.whiteSmoke,
-                    padding: EdgeInsets.all(AppSizeH.s25),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          lawsModel.title,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        Text(
-                          '${AppStrings().issueDate}${DateTime.tryParse(lawsModel.issueDate)?.year}',
-                          style: Theme.of(context).textTheme.labelSmall,
-                        ),
-                        SizedBox(width: AppSizeW.s10),
-                        Text(
-                          '${AppStrings().lawNumber}${lawsModel.lawNumber}',
-                          style: Theme.of(context).textTheme.labelSmall,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(width: AppSizeW.s20),
-                SizedBox(
-                  width: AppSizeW.s70,
-                  child: Column(
-                    children: [
-                      SvgPicture.asset(
-                        height: AppSizeH.s70,
-                        color: ColorManager.primary,
-                        IconAssets.lawItem,
-                      ),
-                      SizedBox(height: AppSizeH.s5),
-                      GestureDetector(
-                        onTap: () {
-                          String fileUrl = getFileUrl(lawsModel.file);
-                          if (isValidUrl(fileUrl)) {
-                            launchUrl(Uri.parse(fileUrl));
-                          }
-                        },
-                        child: Container(
-                          height: AppSizeH.s25,
-                          decoration: BoxDecoration(
-                              color: ColorManager.primary,
-                              borderRadius: BorderRadius.circular(AppSizeR.s5)),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: AppSizeW.s5, vertical: AppSizeH.s1),
-                          child: FittedBox(
-                            child: Text(
-                              textAlign: TextAlign.center,
-                              AppStrings().downloadFile,
-                              style: Theme.of(context).textTheme.displaySmall,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ]),
-              SizedBox(height: AppSizeH.s30),
+              SizedBox(height: AppSizeH.s56),
               BlocProvider(
                 create: (context) => ExpandedTileIndexCubit(),
-                child: ListView.builder(
+                child: ListView.separated(
+                  separatorBuilder: (context, index) {
+                    return Divider(
+                      color: ColorManager.grey,
+                      height: AppSizeH.s1,
+                    );
+                  },
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: lawsModel.articles.length,
@@ -250,70 +181,72 @@ class _LawArticleWidgetState extends State<LawArticleWidget> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: AppSizeH.s5),
       child: Theme(
-        // this removes the border when ExpansionTile is expanded
-        data: ThemeData().copyWith(dividerColor: Colors.transparent),
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppSizeR.s8),
-              color: ColorManager.white,
-              boxShadow: [
-                BoxShadow(
-                  offset: const Offset(1, 1),
-                  spreadRadius: AppSizeR.s2,
-                  blurRadius: AppSizeR.s11,
-                  color: ColorManager.black.withAlpha(6),
-                ),
-              ]),
-          child: BlocListener(
-            bloc: context.read<ExpandedTileIndexCubit>(),
-            listener: (context, state) {
-              state == widget.index ? null : expansionTileController.collapse();
+        data: ThemeData().copyWith(
+          /// Prevents to splash effect when clicking.
+          splashColor: Theme.of(context).scaffoldBackgroundColor,
+
+          /// Prevents the mouse cursor to highlight the tile when hovering on web.
+          hoverColor: Theme.of(context).scaffoldBackgroundColor,
+
+          /// Hides the highlight color when the tile is pressed.
+          highlightColor: Theme.of(context).scaffoldBackgroundColor,
+
+          /// Makes the top and bottom dividers invisible when expanded.
+          dividerColor: Colors.transparent,
+
+          scaffoldBackgroundColor: Theme.of(context).scaffoldBackgroundColor,
+
+          /// Make background transparent.
+          expansionTileTheme: ExpansionTileThemeData(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            collapsedBackgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          ),
+        ),
+        child: BlocListener(
+          bloc: context.read<ExpandedTileIndexCubit>(),
+          listener: (context, state) {
+            state == widget.index ? null : expansionTileController.collapse();
+          },
+          child: ExpansionTile(
+            maintainState: true,
+            onExpansionChanged: (expanded) {
+              expanded
+                  ? context
+                      .read<ExpandedTileIndexCubit>()
+                      .setIndex(widget.index)
+                  : null;
             },
-            child: ExpansionTile(
-              maintainState: true,
-              onExpansionChanged: (expanded) {
-                expanded
-                    ? context
-                        .read<ExpandedTileIndexCubit>()
-                        .setIndex(widget.index)
-                    : null;
-              },
-              controller: expansionTileController,
-              iconColor: ColorManager.golden,
-              collapsedIconColor: ColorManager.golden,
-              tilePadding: EdgeInsets.symmetric(horizontal: AppSizeW.s30),
-              childrenPadding: EdgeInsets.only(
-                  left: AppSizeW.s30,
-                  right: AppSizeW.s30,
-                  bottom: AppSizeH.s10),
-              title: Text(
-                  widget.article?.title ?? widget.faqItemModel?.question ?? '',
-                  style: Theme.of(context).textTheme.titleMedium),
-              // Title when the tile is collapsed
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    expansionTileController.collapse();
-                  },
-                  child: ConstrainedBox(
-                    constraints:
-                        BoxConstraints(maxHeight: widget.maxExpandedHeight),
-                    child: SingleChildScrollView(
-                      child: Html(
-                        data: widget.article?.content ??
-                            widget.faqItemModel?.answer ??
-                            '',
-                        onLinkTap: (url, attributes, element) {
-                          if (url != null && isValidUrl(url)) {
-                            launchUrl(Uri.parse(url));
-                          }
-                        },
-                      ),
+            controller: expansionTileController,
+            iconColor: ColorManager.golden,
+            collapsedIconColor: ColorManager.golden,
+            tilePadding: EdgeInsets.symmetric(horizontal: AppSizeW.s10),
+            title: Text(
+                widget.article?.title ?? widget.faqItemModel?.question ?? '',
+                style: Theme.of(context).textTheme.titleMedium),
+            // Title when the tile is collapsed
+            children: <Widget>[
+              GestureDetector(
+                onTap: () {
+                  expansionTileController.collapse();
+                },
+                child: ConstrainedBox(
+                  constraints:
+                      BoxConstraints(maxHeight: widget.maxExpandedHeight),
+                  child: SingleChildScrollView(
+                    child: Html(
+                      data: widget.article?.content ??
+                          widget.faqItemModel?.answer ??
+                          '',
+                      onLinkTap: (url, attributes, element) {
+                        if (url != null && isValidUrl(url)) {
+                          launchUrl(Uri.parse(url));
+                        }
+                      },
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

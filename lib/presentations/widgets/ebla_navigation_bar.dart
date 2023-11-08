@@ -70,7 +70,7 @@ class EblaNavigationBar extends StatelessWidget {
                 children: [
                   // const Spacer(),
                   SizedBox(
-                    height: AppSizeH.s36,
+                    // height: AppSizeH.s36,
                     child: SvgPicture.asset(
                       currentPage == 0
                           ? IconAssets.homeIconFill
