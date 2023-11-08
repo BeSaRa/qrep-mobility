@@ -19,6 +19,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   final AppPreferences _appPreferences = instance<AppPreferences>();
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   void didChangeDependencies() {
     _appPreferences.getLocal().then((local) => {context.setLocale(local)});
     super.didChangeDependencies();
