@@ -2705,6 +2705,353 @@ abstract class _BaseRentResponse implements BaseRentResponse {
       throw _privateConstructorUsedError;
 }
 
+BaseRentResponsePerAreaUnitType _$BaseRentResponsePerAreaUnitTypeFromJson(
+    Map<String, dynamic> json) {
+  return _BaseRentResponsePerAreaUnitType.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BaseRentResponsePerAreaUnitType {
+  num get issueYear =>
+      throw _privateConstructorUsedError; //----------------------
+  num get kpiSqft => throw _privateConstructorUsedError;
+  num get kpiSqmt =>
+      throw _privateConstructorUsedError; //----------------------
+  num get kpiSqftPreviousYear => throw _privateConstructorUsedError;
+  num get kpiSqmtPreviousYear =>
+      throw _privateConstructorUsedError; //----------------------
+  num get kpiSqftYoYDifference => throw _privateConstructorUsedError;
+  num get kpiSqmtYoYDifference =>
+      throw _privateConstructorUsedError; //----------------------
+  num get kpiSqftYoYVal => throw _privateConstructorUsedError;
+  num get kpiSqmtYoYVal => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BaseRentResponsePerAreaUnitTypeCopyWith<BaseRentResponsePerAreaUnitType>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BaseRentResponsePerAreaUnitTypeCopyWith<$Res> {
+  factory $BaseRentResponsePerAreaUnitTypeCopyWith(
+          BaseRentResponsePerAreaUnitType value,
+          $Res Function(BaseRentResponsePerAreaUnitType) then) =
+      _$BaseRentResponsePerAreaUnitTypeCopyWithImpl<$Res,
+          BaseRentResponsePerAreaUnitType>;
+  @useResult
+  $Res call(
+      {num issueYear,
+      num kpiSqft,
+      num kpiSqmt,
+      num kpiSqftPreviousYear,
+      num kpiSqmtPreviousYear,
+      num kpiSqftYoYDifference,
+      num kpiSqmtYoYDifference,
+      num kpiSqftYoYVal,
+      num kpiSqmtYoYVal});
+}
+
+/// @nodoc
+class _$BaseRentResponsePerAreaUnitTypeCopyWithImpl<$Res,
+        $Val extends BaseRentResponsePerAreaUnitType>
+    implements $BaseRentResponsePerAreaUnitTypeCopyWith<$Res> {
+  _$BaseRentResponsePerAreaUnitTypeCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? issueYear = null,
+    Object? kpiSqft = null,
+    Object? kpiSqmt = null,
+    Object? kpiSqftPreviousYear = null,
+    Object? kpiSqmtPreviousYear = null,
+    Object? kpiSqftYoYDifference = null,
+    Object? kpiSqmtYoYDifference = null,
+    Object? kpiSqftYoYVal = null,
+    Object? kpiSqmtYoYVal = null,
+  }) {
+    return _then(_value.copyWith(
+      issueYear: null == issueYear
+          ? _value.issueYear
+          : issueYear // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqft: null == kpiSqft
+          ? _value.kpiSqft
+          : kpiSqft // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqmt: null == kpiSqmt
+          ? _value.kpiSqmt
+          : kpiSqmt // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqftPreviousYear: null == kpiSqftPreviousYear
+          ? _value.kpiSqftPreviousYear
+          : kpiSqftPreviousYear // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqmtPreviousYear: null == kpiSqmtPreviousYear
+          ? _value.kpiSqmtPreviousYear
+          : kpiSqmtPreviousYear // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqftYoYDifference: null == kpiSqftYoYDifference
+          ? _value.kpiSqftYoYDifference
+          : kpiSqftYoYDifference // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqmtYoYDifference: null == kpiSqmtYoYDifference
+          ? _value.kpiSqmtYoYDifference
+          : kpiSqmtYoYDifference // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqftYoYVal: null == kpiSqftYoYVal
+          ? _value.kpiSqftYoYVal
+          : kpiSqftYoYVal // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqmtYoYVal: null == kpiSqmtYoYVal
+          ? _value.kpiSqmtYoYVal
+          : kpiSqmtYoYVal // ignore: cast_nullable_to_non_nullable
+              as num,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BaseRentResponsePerAreaUnitTypeImplCopyWith<$Res>
+    implements $BaseRentResponsePerAreaUnitTypeCopyWith<$Res> {
+  factory _$$BaseRentResponsePerAreaUnitTypeImplCopyWith(
+          _$BaseRentResponsePerAreaUnitTypeImpl value,
+          $Res Function(_$BaseRentResponsePerAreaUnitTypeImpl) then) =
+      __$$BaseRentResponsePerAreaUnitTypeImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {num issueYear,
+      num kpiSqft,
+      num kpiSqmt,
+      num kpiSqftPreviousYear,
+      num kpiSqmtPreviousYear,
+      num kpiSqftYoYDifference,
+      num kpiSqmtYoYDifference,
+      num kpiSqftYoYVal,
+      num kpiSqmtYoYVal});
+}
+
+/// @nodoc
+class __$$BaseRentResponsePerAreaUnitTypeImplCopyWithImpl<$Res>
+    extends _$BaseRentResponsePerAreaUnitTypeCopyWithImpl<$Res,
+        _$BaseRentResponsePerAreaUnitTypeImpl>
+    implements _$$BaseRentResponsePerAreaUnitTypeImplCopyWith<$Res> {
+  __$$BaseRentResponsePerAreaUnitTypeImplCopyWithImpl(
+      _$BaseRentResponsePerAreaUnitTypeImpl _value,
+      $Res Function(_$BaseRentResponsePerAreaUnitTypeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? issueYear = null,
+    Object? kpiSqft = null,
+    Object? kpiSqmt = null,
+    Object? kpiSqftPreviousYear = null,
+    Object? kpiSqmtPreviousYear = null,
+    Object? kpiSqftYoYDifference = null,
+    Object? kpiSqmtYoYDifference = null,
+    Object? kpiSqftYoYVal = null,
+    Object? kpiSqmtYoYVal = null,
+  }) {
+    return _then(_$BaseRentResponsePerAreaUnitTypeImpl(
+      issueYear: null == issueYear
+          ? _value.issueYear
+          : issueYear // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqft: null == kpiSqft
+          ? _value.kpiSqft
+          : kpiSqft // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqmt: null == kpiSqmt
+          ? _value.kpiSqmt
+          : kpiSqmt // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqftPreviousYear: null == kpiSqftPreviousYear
+          ? _value.kpiSqftPreviousYear
+          : kpiSqftPreviousYear // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqmtPreviousYear: null == kpiSqmtPreviousYear
+          ? _value.kpiSqmtPreviousYear
+          : kpiSqmtPreviousYear // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqftYoYDifference: null == kpiSqftYoYDifference
+          ? _value.kpiSqftYoYDifference
+          : kpiSqftYoYDifference // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqmtYoYDifference: null == kpiSqmtYoYDifference
+          ? _value.kpiSqmtYoYDifference
+          : kpiSqmtYoYDifference // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqftYoYVal: null == kpiSqftYoYVal
+          ? _value.kpiSqftYoYVal
+          : kpiSqftYoYVal // ignore: cast_nullable_to_non_nullable
+              as num,
+      kpiSqmtYoYVal: null == kpiSqmtYoYVal
+          ? _value.kpiSqmtYoYVal
+          : kpiSqmtYoYVal // ignore: cast_nullable_to_non_nullable
+              as num,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BaseRentResponsePerAreaUnitTypeImpl
+    implements _BaseRentResponsePerAreaUnitType {
+  _$BaseRentResponsePerAreaUnitTypeImpl(
+      {this.issueYear = 0,
+      this.kpiSqft = 0,
+      this.kpiSqmt = 0,
+      this.kpiSqftPreviousYear = 0,
+      this.kpiSqmtPreviousYear = 0,
+      this.kpiSqftYoYDifference = 0,
+      this.kpiSqmtYoYDifference = 0,
+      this.kpiSqftYoYVal = 0,
+      this.kpiSqmtYoYVal = 0});
+
+  factory _$BaseRentResponsePerAreaUnitTypeImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$BaseRentResponsePerAreaUnitTypeImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final num issueYear;
+//----------------------
+  @override
+  @JsonKey()
+  final num kpiSqft;
+  @override
+  @JsonKey()
+  final num kpiSqmt;
+//----------------------
+  @override
+  @JsonKey()
+  final num kpiSqftPreviousYear;
+  @override
+  @JsonKey()
+  final num kpiSqmtPreviousYear;
+//----------------------
+  @override
+  @JsonKey()
+  final num kpiSqftYoYDifference;
+  @override
+  @JsonKey()
+  final num kpiSqmtYoYDifference;
+//----------------------
+  @override
+  @JsonKey()
+  final num kpiSqftYoYVal;
+  @override
+  @JsonKey()
+  final num kpiSqmtYoYVal;
+
+  @override
+  String toString() {
+    return 'BaseRentResponsePerAreaUnitType(issueYear: $issueYear, kpiSqft: $kpiSqft, kpiSqmt: $kpiSqmt, kpiSqftPreviousYear: $kpiSqftPreviousYear, kpiSqmtPreviousYear: $kpiSqmtPreviousYear, kpiSqftYoYDifference: $kpiSqftYoYDifference, kpiSqmtYoYDifference: $kpiSqmtYoYDifference, kpiSqftYoYVal: $kpiSqftYoYVal, kpiSqmtYoYVal: $kpiSqmtYoYVal)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BaseRentResponsePerAreaUnitTypeImpl &&
+            (identical(other.issueYear, issueYear) ||
+                other.issueYear == issueYear) &&
+            (identical(other.kpiSqft, kpiSqft) || other.kpiSqft == kpiSqft) &&
+            (identical(other.kpiSqmt, kpiSqmt) || other.kpiSqmt == kpiSqmt) &&
+            (identical(other.kpiSqftPreviousYear, kpiSqftPreviousYear) ||
+                other.kpiSqftPreviousYear == kpiSqftPreviousYear) &&
+            (identical(other.kpiSqmtPreviousYear, kpiSqmtPreviousYear) ||
+                other.kpiSqmtPreviousYear == kpiSqmtPreviousYear) &&
+            (identical(other.kpiSqftYoYDifference, kpiSqftYoYDifference) ||
+                other.kpiSqftYoYDifference == kpiSqftYoYDifference) &&
+            (identical(other.kpiSqmtYoYDifference, kpiSqmtYoYDifference) ||
+                other.kpiSqmtYoYDifference == kpiSqmtYoYDifference) &&
+            (identical(other.kpiSqftYoYVal, kpiSqftYoYVal) ||
+                other.kpiSqftYoYVal == kpiSqftYoYVal) &&
+            (identical(other.kpiSqmtYoYVal, kpiSqmtYoYVal) ||
+                other.kpiSqmtYoYVal == kpiSqmtYoYVal));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      issueYear,
+      kpiSqft,
+      kpiSqmt,
+      kpiSqftPreviousYear,
+      kpiSqmtPreviousYear,
+      kpiSqftYoYDifference,
+      kpiSqmtYoYDifference,
+      kpiSqftYoYVal,
+      kpiSqmtYoYVal);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BaseRentResponsePerAreaUnitTypeImplCopyWith<
+          _$BaseRentResponsePerAreaUnitTypeImpl>
+      get copyWith => __$$BaseRentResponsePerAreaUnitTypeImplCopyWithImpl<
+          _$BaseRentResponsePerAreaUnitTypeImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BaseRentResponsePerAreaUnitTypeImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BaseRentResponsePerAreaUnitType
+    implements BaseRentResponsePerAreaUnitType {
+  factory _BaseRentResponsePerAreaUnitType(
+      {final num issueYear,
+      final num kpiSqft,
+      final num kpiSqmt,
+      final num kpiSqftPreviousYear,
+      final num kpiSqmtPreviousYear,
+      final num kpiSqftYoYDifference,
+      final num kpiSqmtYoYDifference,
+      final num kpiSqftYoYVal,
+      final num kpiSqmtYoYVal}) = _$BaseRentResponsePerAreaUnitTypeImpl;
+
+  factory _BaseRentResponsePerAreaUnitType.fromJson(Map<String, dynamic> json) =
+      _$BaseRentResponsePerAreaUnitTypeImpl.fromJson;
+
+  @override
+  num get issueYear;
+  @override //----------------------
+  num get kpiSqft;
+  @override
+  num get kpiSqmt;
+  @override //----------------------
+  num get kpiSqftPreviousYear;
+  @override
+  num get kpiSqmtPreviousYear;
+  @override //----------------------
+  num get kpiSqftYoYDifference;
+  @override
+  num get kpiSqmtYoYDifference;
+  @override //----------------------
+  num get kpiSqftYoYVal;
+  @override
+  num get kpiSqmtYoYVal;
+  @override
+  @JsonKey(ignore: true)
+  _$$BaseRentResponsePerAreaUnitTypeImplCopyWith<
+          _$BaseRentResponsePerAreaUnitTypeImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 MeanAreaResponse _$MeanAreaResponseFromJson(Map<String, dynamic> json) {
   return _MeanAreaResponse.fromJson(json);
 }
