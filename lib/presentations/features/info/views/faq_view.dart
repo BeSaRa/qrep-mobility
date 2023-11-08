@@ -1,9 +1,11 @@
 import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
+import 'package:ebla/presentations/features/info/cubits/expanded_tile_index_cubit/expanded_tile_index_cubit.dart';
 import 'package:ebla/presentations/features/info/views/laws_details_view.dart';
 import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
 import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../resources/resources.dart';
 
@@ -107,45 +109,49 @@ class _FAQViewState extends State<FAQView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      SizedBox(height: AppSizeH.s40),
-                      Row(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.only(
-                              bottom: AppSizeH
-                                  .s1, // This can be the space you need between text and underline
-                            ),
-                            decoration: BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: ColorManager.golden,
-                                  width: AppSizeSp
-                                      .s2, // This would be the width of the underline
-                                ),
-                              ),
-                            ),
-                            child: Text(
-                              '${AppStrings().faqs}:',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(),
-                            ),
-                          ),
-                        ],
+                      SizedBox(height: AppSizeH.s46),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: AppSizeW.s100),
+                        child: Center(
+                          child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: AppSizeH.s26,
+                                  horizontal: AppSizeW.s35),
+                              decoration: BoxDecoration(
+                                  color: ColorManager.white,
+                                  border: Border.all(
+                                      width: 1,
+                                      color: ColorManager.lightSilver),
+                                  borderRadius:
+                                      BorderRadius.circular(AppSizeR.s15)),
+                              child: SvgPicture.asset(
+                                IconAssets.faqHome,
+                              )),
+                        ),
                       ),
-                      SizedBox(height: AppSizeH.s30),
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: state.faqResponse.data.length,
-                        itemBuilder: (context, index) {
-                          return LawArticleWidget(
-                            faqItemModel: state.faqResponse.data[index],
-                            article: null,
-                            maxExpandedHeight: AppSizeH.s250,
-                          );
-                        },
+                      SizedBox(height: AppSizeH.s56),
+                      BlocProvider(
+                        create: (context) => ExpandedTileIndexCubit(),
+                        child: ListView.separated(
+                          separatorBuilder: (context, index) {
+                            return Divider(
+                              color: ColorManager.grey,
+                              height: AppSizeH.s1,
+                            );
+                          },
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: state.faqResponse.data.length,
+                          itemBuilder: (context, index) {
+                            return LawArticleWidget(
+                              faqItemModel: state.faqResponse.data[index],
+                              article: null,
+                              maxExpandedHeight: AppSizeH.s250,
+                              index: index,
+                            );
+                          },
+                        ),
                       ),
                       SizedBox(height: AppSizeH.s30),
                     ],

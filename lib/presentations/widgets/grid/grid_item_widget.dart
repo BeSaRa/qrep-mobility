@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
-import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/widgets/grid/grid_value_with_unit_widget.dart';
@@ -9,6 +8,7 @@ import 'package:ebla/presentations/widgets/grid/grid_value_with_unit_widget.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'dart:ui' as ui;
 
 import '../../../domain/models/rent_models/rent_models.dart';
 
@@ -184,10 +184,12 @@ class _GridItemWidgetState extends State<GridItemWidget> {
     }
   }
 
+  num mortgagePreviousKpiVal = 0;
+  ValueNotifier<num> changeRateValue = ValueNotifier<num>(0);
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: AppSizeH.s140,
+      height: AppSizeH.s144,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(AppSizeR.s20)),
@@ -214,7 +216,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(height: AppSizeH.s20),
+              SizedBox(height: AppSizeH.s15),
               Flexible(
                 flex: 1,
                 child: Padding(
@@ -227,10 +229,11 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                         child: Text(
                           getTitle(),
                           textAlign: TextAlign.center,
+                          overflow: TextOverflow.visible,
                           style: Theme.of(context)
                               .textTheme
-                              .bodySmall
-                              ?.copyWith(fontWeight: FontWeight.w700),
+                              .titleMedium
+                              ?.copyWith(fontSize: AppSizeSp.s14),
                         ),
                       ),
                     ],
@@ -250,11 +253,15 @@ class _GridItemWidgetState extends State<GridItemWidget> {
 
                     dataState =
                         RentGridKPIsBloc.getState(state, widget.rentKPI);
+
                     hasError =
                         RentGridKPIsBloc.getErrorValue(state, widget.rentKPI);
                     defaultValue = RentGridKPIsBloc.getKPIVal(
                         widget.response, widget.rentKPI);
-
+                    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                      changeRateValue.value =
+                          dataState.isNotEmpty ? dataState.first.kpiYoYVal : 0;
+                    });
                     return GridValueWithUnitWidget(
                       countUp:
                           dataState.isNotEmpty || !state.isLoading || !hasError,
@@ -289,7 +296,10 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                         SellGridKPIsBloc.getErrorValue(state, widget.sellKPI);
                     defaultValue = SellGridKPIsBloc.getKPIVal(
                         widget.response, widget.sellKPI);
-
+                    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                      changeRateValue.value =
+                          dataState.isNotEmpty ? dataState.first.kpiYoYVal : 0;
+                    });
                     return GridValueWithUnitWidget(
                       countUp:
                           dataState.isNotEmpty || !state.isLoading || !hasError,
@@ -308,50 +318,58 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                 BlocBuilder<MortgageGridKPIsBloc, MortgageGridKPIsState>(
                   bloc: context.read<MortgageGridKPIsBloc>(),
                   builder: (context, state) {
-                    if (state.isLoading) {
-                      return const Expanded(
-                          flex: 1,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CircularProgressIndicator(),
-                            ],
-                          ));
-                    } else if (state.hasErrorTotalMortgageTransactions ||
-                        state.hasErrortotalMortgageUnitsNum ||
-                        state.hasErrorTotalMortgageTransactionsValue) {
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                context.read<MortgageGridKPIsBloc>().add(
-                                    MortgageGridKPIsEvent.getData(
-                                        request: context
-                                            .read<MortgageBloc>()
-                                            .requestMeanValue));
-                              },
-                              icon: const Icon(Icons.refresh)),
-                        ],
-                      );
-                    }
+                    // if (state.isLoading) {
+                    //   return const Expanded(
+                    //       flex: 1,
+                    //       child: Column(
+                    //         mainAxisSize: MainAxisSize.max,
+                    //         mainAxisAlignment: MainAxisAlignment.start,
+                    //         crossAxisAlignment: CrossAxisAlignment.center,
+                    //         children: [
+                    //           CircularProgressIndicator(),
+                    //         ],
+                    //       ));
+                    // } else if (state.hasErrorTotalMortgageTransactions ||
+                    //     state.hasErrortotalMortgageUnitsNum ||
+                    //     state.hasErrorTotalMortgageTransactionsValue) {
+                    //   return Column(
+                    //     mainAxisSize: MainAxisSize.min,
+                    //     children: [
+                    //       IconButton(
+                    //           onPressed: () {
+                    //             context.read<MortgageGridKPIsBloc>().add(
+                    //                 MortgageGridKPIsEvent.getData(
+                    //                     request: context
+                    //                         .read<MortgageBloc>()
+                    //                         .requestMeanValue));
+                    //           },
+                    //           icon: const Icon(Icons.refresh)),
+                    //     ],
+                    //   );
+                    // }
                     List<BaseRentResponse> dataState = [];
                     bool hasError = false;
-                    num defaultValue = 0;
+
                     dataState = MortgageGridKPIsBloc.getState(
                         state, widget.mortgageKPI);
+
                     hasError = MortgageGridKPIsBloc.getErrorValue(
                         state, widget.mortgageKPI);
-                    defaultValue = 0;
+                    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                      changeRateValue.value =
+                          dataState.isNotEmpty ? dataState.first.kpiYoYVal : 0;
+                      mortgagePreviousKpiVal = dataState.isNotEmpty
+                          ? dataState.first.kpiVal
+                          : mortgagePreviousKpiVal;
+                    });
+
                     return GridValueWithUnitWidget(
                       countUp:
                           dataState.isNotEmpty || !state.isLoading || !hasError,
-                      defaultValue: defaultValue,
+                      defaultValue: mortgagePreviousKpiVal,
                       end: dataState.isNotEmpty
                           ? dataState.first.kpiVal
-                          : defaultValue,
+                          : mortgagePreviousKpiVal,
                       unit: mortgageGridItemsData
                           .firstWhere(
                               (element) => element.kpi == widget.mortgageKPI)
@@ -367,19 +385,60 @@ class _GridItemWidgetState extends State<GridItemWidget> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               SizedBox(
-                height: AppSizeH.s80,
+                height: AppSizeH.s94,
               ),
               Flexible(
                 flex: 1,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    (widget.rentKPI != RentGridKPIs.totalRentedSpaces &&
+                            widget.rentKPI != RentGridKPIs.meanRentAreaValue)
+                        ? ValueListenableBuilder(
+                            valueListenable: changeRateValue,
+                            builder: (context, value, child) {
+                              return Flexible(
+                                child: FittedBox(
+                                  child: Row(
+                                    children: [
+                                      SizedBox(width: AppSizeW.s5),
+                                      Transform.flip(
+                                        flipY: value.isNegative,
+                                        child: SvgPicture.asset(
+                                          color: value.isNegative
+                                              ? ColorManager.red.withAlpha(95)
+                                              : null,
+                                          IconAssets.arrow,
+                                          height: AppSizeH.s8,
+                                          width: AppSizeW.s8,
+                                        ),
+                                      ),
+                                      SizedBox(width: AppSizeW.s5),
+                                      Text(
+                                        textDirection: ui.TextDirection.ltr,
+                                        '${value.toStringAsFixed(2)} % YoY',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall!
+                                            .copyWith(fontSize: AppSizeSp.s15),
+                                        textAlign: TextAlign.end,
+                                      ),
+                                      SizedBox(width: AppSizeW.s5),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                            // builder: (context) {
+
+                            // }
+                          )
+                        : const SizedBox(),
                     AspectRatio(
                       aspectRatio: 1,
                       child: SvgPicture.asset(
                         getImagePath(),
-                        height: AppSizeH.s70,
-                        width: AppSizeW.s70,
+                        width: AppSizeW.s56,
                         color: ColorManager.primary.withOpacity(0.6),
                       ),
                     ),
