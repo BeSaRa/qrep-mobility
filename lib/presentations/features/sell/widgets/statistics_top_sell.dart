@@ -328,6 +328,10 @@ class _TabContainer extends StatelessWidget {
             color: context.read<TopvaluesBloc>().index == indexTab
                 ? ColorManager.primary
                 : Colors.transparent,
+            border: Border.all(
+              color: ColorManager.silver,
+              width: AppSizeH.s1,
+            ),
             borderRadius: BorderRadius.circular(AppSizeR.s10)),
         child: Text(
           name,
@@ -337,8 +341,7 @@ class _TabContainer extends StatelessWidget {
                   .displayMedium!
                   .copyWith(fontSize: AppSizeSp.s12)
               : Theme.of(context).textTheme.headlineMedium!.copyWith(
-                  fontSize: AppSizeSp.s12,
-                  decoration: TextDecoration.underline),
+                  fontSize: AppSizeSp.s12, decoration: TextDecoration.none),
         ),
       ),
     );
