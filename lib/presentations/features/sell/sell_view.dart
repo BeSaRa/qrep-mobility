@@ -198,6 +198,13 @@ class _SalesViewState extends State<SalesView> {
                                                               .requestSell
                                                               .copyWith(
                                                                   offset: 0,
+                                                                  issueDateEndMonth: year ==
+                                                                          DateTime.now()
+                                                                              .year
+                                                                      ? DateTime
+                                                                              .now()
+                                                                          .month
+                                                                      : 12,
                                                                   issueDateYear:
                                                                       year);
                                                       changeStatusCubit
