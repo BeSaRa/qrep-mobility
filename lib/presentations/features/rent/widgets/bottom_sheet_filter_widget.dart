@@ -984,21 +984,25 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                               issueDateYear: valuesFiltersCubit.year.id,
                               issueDateQuarterList: getissueDateQuarterList(
                                   valuesFiltersCubit.periodTime.id),
-                              issueDateStartMonth: valuesFiltersCubit.periodTime.id == 4
-                                  ? valuesFiltersCubit.month.value[0] - 1
-                                  : 1,
+                              issueDateStartMonth:
+                                  valuesFiltersCubit.periodTime.id == 4
+                                      ? valuesFiltersCubit.month.value[0] - 1
+                                      : 1,
                               issueDateEndMonth:
                                   valuesFiltersCubit.periodTime.id == 4
                                       ? valuesFiltersCubit.month.value[0]
-                                      :12,
+                                      : valuesFiltersCubit.periodTime.id == 1
+                                          ? valuesFiltersCubit.year.id ==
+                                                  DateTime.now().year
+                                              ? DateTime.now().month
+                                              : 12
+                                          : 12,
                               periodId: valuesFiltersCubit.periodTime.id,
                               issueDateFrom: valuesFiltersCubit.periodTime.id == 5
                                   ? valuesFiltersCubit.pickerDateRange?.startDate
                                       ?.toIso8601String()
                                   : null,
-                              issueDateTo: valuesFiltersCubit.periodTime.id == 5
-                                  ? valuesFiltersCubit.pickerDateRange?.endDate?.toIso8601String()
-                                  : null,
+                              issueDateTo: valuesFiltersCubit.periodTime.id == 5 ? valuesFiltersCubit.pickerDateRange?.endDate?.toIso8601String() : null,
                               purposeList: valuesFiltersCubit.rentPurposeList.map((e) => e.lookupKey).toList(),
                               propertyTypeList: valuesFiltersCubit.propertyTypeList.map((e) => e.lookupKey).toList(),
                               offset: 0,
