@@ -83,13 +83,14 @@
   "total_rented_space": "إجمالي المساحات المؤجرة",
   "unit_type": "نوع الوحدة",
   "----------------------------------------------------SELL--------------------------": "",
-  "average_price_per_square_foot": "متوسط السعر لكل قدم مربع",
+  "average_price_per_square_foot": "متوسط السعر لكل",
+  "average_price_per_square_meter": "متوسط السعر لكل",
   "average_price_per_unit": "متوسط السعر للوحدة",
   "average_sell_price_per_unit_property": "متوسط سعر البيع للوحدة \\ العقار",
   "list_of_sell_transactions": "قائمة معاملات البيع",
   "no_transaction_found": "لايوجد معاملات بيع",
   "real_state_value_from_to": "قيمة العقار من - إلى",
-  "sell_average_price_per_square_foot": "متوسط سعر البيع لكل قدم مربع",
+  "sell_average_price_per_square_foot": "متوسط سعر البيع لكل",
   "sell_contracts_count": "عدد عقود البيع",
   "sold_areas": "المساحات المباعة",
   "sold_for": "سعر البيع",
@@ -99,6 +100,8 @@
   "the_unit_price": "سعر الوحدة",
   "total_sold_areas": "إجمالي المساحات المباعة",
   "transactions_value": "قيمة المعاملات",
+  "meter_square": "م2",
+  "foot_square": "ق2",
   "----------------------------------------------------MORTGAGE--------------------------": "",
   "mortgage_transactions_list": "قائمة معاملات الرهن",
   "mortgaged_for": "قيمة الرهن",
@@ -113,4 +116,4 @@
   "paginator_of_label": "من",
   "paginator_page_label": "الصفحة",
   "paginator_previous_page_label": "الصفحة السابقة"
- }
+}

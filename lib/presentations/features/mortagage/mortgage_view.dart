@@ -176,6 +176,12 @@ class _MortagageViewState extends State<MortgageView> {
                                                       .requestMeanValue
                                                       .copyWith(
                                                           offset: 0,
+                                                          issueDateEndMonth: year ==
+                                                                  DateTime.now()
+                                                                      .year
+                                                              ? DateTime.now()
+                                                                  .month
+                                                              : 12,
                                                           issueDateYear: year);
                                               changeStatusCubit.changeStatus();
                                               mortgageGridKPIsBloc.add(
@@ -298,8 +304,12 @@ class _MortagageViewState extends State<MortgageView> {
                                 ),
                               ),
                               const GreyLinerContainer(),
-                              BlocProvider.value(
-                                value: mortgageGridKPIsBloc,
+                              MultiBlocProvider(
+                                providers: [
+                                  BlocProvider.value(
+                                      value: mortgageGridKPIsBloc),
+                                  BlocProvider.value(value: changeStatusCubit),
+                                ],
                                 child: Padding(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: AppSizeW.s30),

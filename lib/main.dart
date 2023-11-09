@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/app/notifications/firebase_helper.dart';
 import 'package:ebla/app/translations_assets_loader/translations_assets_loader.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,18 +26,26 @@ Future<void> main() async {
   );
   EasyLocalization.logger.enableBuildModes = [];
   await initTranslationsModule();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+      .whenComplete(
+    () {
+      registerFCMToken();
+      FirebaseMessaging.onBackgroundMessage(backgroundHandler);
+      FirebaseMessaging.onMessage.listen(
+        (RemoteMessage message) {
+          forGroundHandler(message);
+        },
+      );
+    },
   );
   await initAppModule().then((value) async {
     Bloc.observer = MyBlocObserver();
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     await Future.delayed(const Duration(milliseconds: 150));
 
-    // TODO: Set up foreground message handler
-    // TODO: Set up background message handler
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
-      print("i got a background message");
+      backgroundHandler(message);
+      print("i got a background message $message");
     });
     return runApp(
       EasyLocalization(

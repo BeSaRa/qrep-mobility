@@ -45,8 +45,8 @@ class GridValueWithUnitWidget extends StatelessWidget {
                 replacement: Countup(
                     duration: Duration(seconds: duration),
                     separator: ',',
-                    begin: (defaultValue ?? 0).ceil().toDouble(),
-                    end: (end ?? 0).ceil().toDouble(),
+                    begin: (defaultValue ?? 0).round().toDouble(),
+                    end: (end ?? 0).round().toDouble(),
                     maxLines: 3,
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
@@ -54,7 +54,7 @@ class GridValueWithUnitWidget extends StatelessWidget {
                         .bodyMedium!
                         .copyWith(fontSize: AppSizeSp.s18, height: 1)),
                 child: Text(
-                    (defaultValue ?? 0).ceil().formatWithCommas().toString(),
+                    (defaultValue ?? 0).round().formatWithCommas().toString(),
                     textAlign: TextAlign.center,
                     maxLines: 3,
                     style: Theme.of(context)
@@ -63,14 +63,14 @@ class GridValueWithUnitWidget extends StatelessWidget {
                         .copyWith(fontSize: AppSizeSp.s18, height: 1)),
               ),
             ),
-            SizedBox(width: unit.isNotEmpty ? AppSizeW.s5 : 0),
+            SizedBox(width: unit.isNotEmpty ? AppSizeW.s4 : 0),
             unit.isNotEmpty
                 ? Text(unit.tr(),
                     textAlign: TextAlign.start,
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!
-                        .copyWith(fontSize: AppSizeSp.s18, height: 1))
+                        .copyWith(fontSize: AppSizeSp.s16, height: 1))
                 : const SizedBox(),
           ],
         ),

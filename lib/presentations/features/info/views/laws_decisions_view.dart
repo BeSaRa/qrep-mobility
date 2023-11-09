@@ -77,7 +77,10 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                     // ),
                     title: Text(
                       AppStrings().lawsAndDecisions,
-                      style: Theme.of(context).textTheme.headlineLarge,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .headlineLarge,
                     ),
                     centerTitle: true,
                   ),
@@ -90,13 +93,16 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                         SizedBox(
                           height: AppSizeH.s10,
                         ),
-                        Center(
-                          child: SizedBox(
-                            width: AppSizeW.s112,
-                            height: AppSizeH.s90,
-                            child: StaticPagesContainer(
-                              icon: IconAssets.lawsHome,
-                              title: Container(),
+                        Hero(
+                          tag: "thelaw",
+                          child: Center(
+                            child: SizedBox(
+                              width: AppSizeW.s112,
+                              height: AppSizeH.s90,
+                              child: StaticPagesContainer(
+                                icon: IconAssets.lawsHome,
+                                title: Container(),
+                              ),
                             ),
                           ),
                         ),
@@ -206,7 +212,10 @@ class _LawWidgetState extends State<LawWidget> {
                             widget.law.title,
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.titleMedium,
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .titleMedium,
                           ),
                         ),
                         Divider(
@@ -217,19 +226,28 @@ class _LawWidgetState extends State<LawWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              '${AppStrings().issueDate}${DateTime.tryParse(widget.law.issueDate)?.year}',
-                              style: Theme.of(context).textTheme.labelSmall,
+                              '${AppStrings().issueDate}${DateTime
+                                  .tryParse(widget.law.issueDate)
+                                  ?.year}',
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .labelSmall,
                             ),
                             Container(
                               margin:
-                                  EdgeInsets.symmetric(horizontal: AppSizeW.s5),
+                              EdgeInsets.symmetric(horizontal: AppSizeW.s5),
                               height: AppSizeH.s16,
                               width: AppSizeW.s2,
                               color: ColorManager.lightSilver,
                             ),
                             Text(
-                              '${AppStrings().lawNumber}${widget.law.lawNumber}',
-                              style: Theme.of(context).textTheme.labelSmall,
+                              '${AppStrings().lawNumber}${widget.law
+                                  .lawNumber}',
+                              style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .labelSmall,
                             )
                           ],
                         )
@@ -253,11 +271,11 @@ class _LawWidgetState extends State<LawWidget> {
                           height: AppSizeH.s35,
                           margin: EdgeInsets.symmetric(vertical: AppSizeH.s20),
                           padding:
-                              EdgeInsets.symmetric(horizontal: AppSizeW.s8),
+                          EdgeInsets.symmetric(horizontal: AppSizeW.s8),
                           decoration: BoxDecoration(
                               color: ColorManager.golden,
                               borderRadius:
-                                  BorderRadius.circular(AppSizeH.s10)),
+                              BorderRadius.circular(AppSizeH.s10)),
                           child: FittedBox(
                             child: Icon(
                               Icons.cloud_download_outlined,

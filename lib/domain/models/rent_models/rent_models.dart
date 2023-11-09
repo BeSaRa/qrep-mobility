@@ -155,10 +155,37 @@ abstract class BaseRentResponse with _$BaseRentResponse {
     @Default(0) num kpiYoYVal,
     @Default(0) num purposeId,
     @Default(0) num propertyTypeId,
+    @Default(0) num realEstateMT,
+    @Default(0) num realEstateSQT,
+    @Default(0) num priceMT,
+    @Default(0) num priceSQ,
   }) = _BaseRentResponse;
 
   factory BaseRentResponse.fromJson(Map<String, dynamic> json) =>
       _$BaseRentResponseFromJson(json);
+}
+
+@freezed
+abstract class BaseRentResponsePerAreaUnitType
+    with _$BaseRentResponsePerAreaUnitType {
+  factory BaseRentResponsePerAreaUnitType({
+    @Default(0) num issueYear,
+    //----------------------
+    @Default(0) num kpiSqft,
+    @Default(0) num kpiSqmt,
+    //----------------------
+    @Default(0) num kpiSqftPreviousYear,
+    @Default(0) num kpiSqmtPreviousYear,
+    //----------------------
+    @Default(0) num kpiSqftYoYDifference,
+    @Default(0) num kpiSqmtYoYDifference,
+    //----------------------
+    @Default(0) num kpiSqftYoYVal,
+    @Default(0) num kpiSqmtYoYVal,
+  }) = _BaseRentResponsePerAreaUnitType;
+
+  factory BaseRentResponsePerAreaUnitType.fromJson(Map<String, dynamic> json) =>
+      _$BaseRentResponsePerAreaUnitTypeFromJson(json);
 }
 
 @freezed

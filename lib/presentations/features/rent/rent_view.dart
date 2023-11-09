@@ -213,6 +213,12 @@ class _RentViewState extends State<RentView> {
                                                       .requestMeanValue
                                                       .copyWith(
                                                           offset: 0,
+                                                          issueDateEndMonth: year ==
+                                                                  DateTime.now()
+                                                                      .year
+                                                              ? DateTime.now()
+                                                                  .month
+                                                              : 12,
                                                           issueDateYear: year);
                                               changeStatusCubit.changeStatus();
                                               rentGridKPIsBloc.add(
@@ -347,8 +353,13 @@ class _RentViewState extends State<RentView> {
                                   mainAxisSpacing: AppSizeH.s22,
                                   crossAxisSpacing: AppSizeW.s23,
                                   gridItemChildBuilder: (context, index) {
-                                    return BlocProvider.value(
-                                      value: rentGridKPIsBloc,
+                                    return MultiBlocProvider(
+                                      providers: [
+                                        BlocProvider.value(
+                                            value: rentGridKPIsBloc),
+                                        BlocProvider.value(
+                                            value: changeStatusCubit),
+                                      ],
                                       child: GridItemWidget(
                                         gridItemType: GridItemType.rent,
                                         response: response,

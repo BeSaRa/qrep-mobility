@@ -284,6 +284,10 @@ class _TabContainerShimmer extends StatelessWidget {
           color: context.read<CertificateContractBloc>().index == tabIndex
               ? ColorManager.primary
               : Colors.transparent,
+          border: Border.all(
+            color: ColorManager.silver,
+            width: AppSizeH.s1,
+          ),
           borderRadius: BorderRadius.circular(AppSizeR.s10)),
       child: Text(
         name,
@@ -293,7 +297,7 @@ class _TabContainerShimmer extends StatelessWidget {
                 .displayMedium!
                 .copyWith(fontSize: AppSizeSp.s12)
             : Theme.of(context).textTheme.headlineMedium!.copyWith(
-                fontSize: AppSizeSp.s12, decoration: TextDecoration.underline),
+                fontSize: AppSizeSp.s12, decoration: TextDecoration.none),
       ),
     );
   }
@@ -326,6 +330,10 @@ class _TabContainer extends StatelessWidget {
             color: context.read<CertificateContractBloc>().index == indexTab
                 ? ColorManager.primary
                 : Colors.transparent,
+            border: Border.all(
+              color: ColorManager.silver,
+              width: AppSizeH.s1,
+            ),
             borderRadius: BorderRadius.circular(AppSizeR.s10)),
         child: Text(
           name,
@@ -336,7 +344,7 @@ class _TabContainer extends StatelessWidget {
                   .copyWith(fontSize: AppSizeSp.s12)
               : Theme.of(context).textTheme.headlineMedium!.copyWith(
                     fontSize: AppSizeSp.s12,
-                    decoration: TextDecoration.underline,
+                    decoration: TextDecoration.none,
                   ),
         ),
       ),
