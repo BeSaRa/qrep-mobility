@@ -176,6 +176,12 @@ class _MortagageViewState extends State<MortgageView> {
                                                       .requestMeanValue
                                                       .copyWith(
                                                           offset: 0,
+                                                          issueDateEndMonth: year ==
+                                                                  DateTime.now()
+                                                                      .year
+                                                              ? DateTime.now()
+                                                                  .month
+                                                              : 12,
                                                           issueDateYear: year);
                                               changeStatusCubit.changeStatus();
                                               mortgageGridKPIsBloc.add(
