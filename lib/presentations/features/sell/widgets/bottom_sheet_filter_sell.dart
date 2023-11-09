@@ -814,16 +814,12 @@ class _BottomSheetFilterSellWidgetState
                               issueDateYear: valuesFiltersCubit.year.id,
                               issueDateQuarterList: getissueDateQuarterList(
                                   valuesFiltersCubit.periodTime.id),
-                              issueDateStartMonth:
-                                  valuesFiltersCubit.periodTime.id == 4
-                                      ? valuesFiltersCubit.month.value[0] - 1
-                                      : 1,
-                              issueDateEndMonth:
-                                  valuesFiltersCubit.periodTime.id == 4
-                                      ? valuesFiltersCubit.month.value[0]
-                                      : valuesFiltersCubit.periodTime.id == 1
-                                          ? DateTime.now().month
-                                          : 12,
+                              issueDateStartMonth: valuesFiltersCubit.periodTime.id == 4
+                                  ? valuesFiltersCubit.month.value[0] - 1
+                                  : 1,
+                              issueDateEndMonth: valuesFiltersCubit.periodTime.id == 4
+                                  ? valuesFiltersCubit.month.value[0]
+                                  : 12,
                               periodId: valuesFiltersCubit.periodTime.id,
                               issueDateFrom: valuesFiltersCubit.periodTime.id == 5
                                   ? valuesFiltersCubit.pickerDateRange?.startDate
