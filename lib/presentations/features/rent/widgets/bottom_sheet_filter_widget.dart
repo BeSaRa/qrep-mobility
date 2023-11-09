@@ -990,9 +990,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                               issueDateEndMonth:
                                   valuesFiltersCubit.periodTime.id == 4
                                       ? valuesFiltersCubit.month.value[0]
-                                      : valuesFiltersCubit.periodTime.id == 1
-                                          ? DateTime.now().month
-                                          : 12,
+                                      :12,
                               periodId: valuesFiltersCubit.periodTime.id,
                               issueDateFrom: valuesFiltersCubit.periodTime.id == 5
                                   ? valuesFiltersCubit.pickerDateRange?.startDate
