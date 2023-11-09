@@ -1,3 +1,4 @@
+import 'package:ebla/app/app_preferences.dart';
 import 'package:ebla/app/routing_observer.dart';
 import 'package:ebla/presentations/features/home/home_view.dart';
 import 'package:ebla/presentations/features/info/blocs/about_bloc/about_bloc.dart';
@@ -102,6 +103,7 @@ class AppRouter {
                 // parentNavigatorKey: GlobalKey(),
                 pageBuilder: (context, state) {
                   initHomeModule();
+
                   return CustomTransitionPage(
                     transitionDuration: const Duration(milliseconds: 1140),
                     child: const HomeView(),
@@ -166,10 +168,12 @@ class AppRouter {
             ]),
             StatefulShellBranch(routes: [
               GoRoute(
-                path: RoutesPaths.more,
-                name: RoutesNames.more,
-                builder: (context, state) => const MoreView(),
-              ),
+                  path: RoutesPaths.more,
+                  name: RoutesNames.more,
+                  builder: (context, state) {
+                    initLoginModule();
+                    return const MoreView();
+                  }),
             ]),
           ],
         ),

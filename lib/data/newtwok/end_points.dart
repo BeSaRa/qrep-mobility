@@ -80,19 +80,24 @@ class EndPoints {
   static const String meanSoldArea = '/kpi/sell/kpi16/mean-area';
   //---------------------------------------------mortgage-----------------------
   //look up
-  static const mortgageLookUp = '/kpi/mortgage/lookup';
+  static const String mortgageLookUp = '/kpi/mortgage/lookup';
 
   // KPI1
-  static const totalMortgageTransactions =
+  static const String totalMortgageTransactions =
       '/kpi/mortgage/kpi1/transaction-number';
 
   // KPI3
-  static const totalNumberOfMortgageUnits = '/kpi/mortgage/kpi3/unit-num';
+  static const String totalNumberOfMortgageUnits =
+      '/kpi/mortgage/kpi3/unit-num';
 
   // KPI5
-  static const totalValueOfMortgageTransactions =
+  static const String totalValueOfMortgageTransactions =
       '/kpi/mortgage/kpi5/stats/transaction-value';
 
   //KPI7
-  static const mortgageTransactions = '/kpi/mortgage/kpi7/detail/transaction';
+  static const String mortgageTransactions =
+      '/kpi/mortgage/kpi7/detail/transaction';
+
+  //Auth
+  static const String auth = '/auth/login/ldap';
 }

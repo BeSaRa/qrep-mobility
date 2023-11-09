@@ -19,8 +19,10 @@ import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecases/CMS/cms_usecases.dart';
+import '../domain/usecases/auth_usecase/auth_usecases.dart';
 import '../domain/usecases/sell_usecases/top_values/top_values_sell_usecases.dart';
 import '../domain/usecases/usecases.dart';
+import '../presentations/features/auth/blocs/login_bloc/login_bloc.dart';
 import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import '../presentations/features/info/blocs/news_bloc/news_bloc.dart';
 import '../presentations/features/rent/blocs/rent_blocs.dart';
@@ -334,5 +336,17 @@ Future<void> initMortgageModule() async {
           totalNumOfMortgageUnitsUsecase: instance(),
           totalValOfMortgageTransactionsUsecase: instance(),
         ));
+  }
+}
+
+Future<void> initLoginModule() async {
+  if (!GetIt.I.isRegistered<LoginUsecases>()) {
+    instance.registerFactory<LoginUsecases>(
+        () => LoginUsecases(repository: instance()));
+  }
+  //Blocs
+  if (!GetIt.I.isRegistered<LoginBloc>()) {
+    instance
+        .registerFactory<LoginBloc>(() => LoginBloc(loginUsecases: instance()));
   }
 }
