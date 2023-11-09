@@ -48,7 +48,7 @@ class SellBloc extends Bloc<SellEvent, SellState> {
     issueDateQuarterList: [1, 2, 3, 4],
     issueDateYear: 2023,
     issueDateStartMonth: 1,
-    issueDateEndMonth: 12,
+    issueDateEndMonth: DateTime.now().month,
     zoneId: -1,
     limit: 5,
     offset: 0,
