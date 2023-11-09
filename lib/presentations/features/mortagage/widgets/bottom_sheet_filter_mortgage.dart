@@ -860,7 +860,9 @@ class _BottomSheetFilterMortgageWidgetState
                               issueDateEndMonth:
                                   valuesFiltersCubit.periodTime.id == 4
                                       ? valuesFiltersCubit.month.value[0]
-                                      : 12,
+                                    : valuesFiltersCubit.periodTime.id == 1
+                                          ? valuesFiltersCubit.year.id==DateTime.now().year? DateTime.now().month:12
+                                          : 12,
                               periodId: valuesFiltersCubit.periodTime.id,
                               issueDateFrom: valuesFiltersCubit.periodTime.id == 5
                                   ? valuesFiltersCubit.pickerDateRange?.startDate
