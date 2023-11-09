@@ -155,6 +155,10 @@ abstract class BaseRentResponse with _$BaseRentResponse {
     @Default(0) num kpiYoYVal,
     @Default(0) num purposeId,
     @Default(0) num propertyTypeId,
+    @Default(0) num realEstateMT,
+    @Default(0) num realEstateSQT,
+    @Default(0) num priceMT,
+    @Default(0) num priceSQ,
   }) = _BaseRentResponse;
 
   factory BaseRentResponse.fromJson(Map<String, dynamic> json) =>

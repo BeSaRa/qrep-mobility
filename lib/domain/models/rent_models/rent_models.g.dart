@@ -307,6 +307,10 @@ _$BaseRentResponseImpl _$$BaseRentResponseImplFromJson(
       kpiYoYVal: json['kpiYoYVal'] as num? ?? 0,
       purposeId: json['purposeId'] as num? ?? 0,
       propertyTypeId: json['propertyTypeId'] as num? ?? 0,
+      realEstateMT: json['realEstateMT'] as num? ?? 0,
+      realEstateSQT: json['realEstateSQT'] as num? ?? 0,
+      priceMT: json['priceMT'] as num? ?? 0,
+      priceSQ: json['priceSQ'] as num? ?? 0,
     );
 
 Map<String, dynamic> _$$BaseRentResponseImplToJson(
@@ -320,6 +324,10 @@ Map<String, dynamic> _$$BaseRentResponseImplToJson(
       'kpiYoYVal': instance.kpiYoYVal,
       'purposeId': instance.purposeId,
       'propertyTypeId': instance.propertyTypeId,
+      'realEstateMT': instance.realEstateMT,
+      'realEstateSQT': instance.realEstateSQT,
+      'priceMT': instance.priceMT,
+      'priceSQ': instance.priceSQ,
     };
 
 _$BaseRentResponsePerAreaUnitTypeImpl

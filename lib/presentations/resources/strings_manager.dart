@@ -13,6 +13,8 @@ class AppStrings {
   String unitType = "unit_type".tr();
   String startDate = "start_date".tr();
   String endDate = "end_date".tr();
+  String meterSquare = "meter_square".tr();
+  String footSquare = "foot_square".tr();
 
   // grid
   String totalRentalContractsNumber = "total_rental_contracts_number".tr();
