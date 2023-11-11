@@ -50,13 +50,10 @@ class MortgageGridKPIsBloc
       //-------------------------------KPI1-------------------------------------
       failureOrSuccessTotalMortgageTransactions.when(
         (success) {
-          success.isEmpty
-              ? emit(state.copyWith(
-                  isLoading: true, hasErrorTotalMortgageTransactions: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasErrorTotalMortgageTransactions: false,
-                  totalMortgageTransactions: success));
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorTotalMortgageTransactions: false,
+              totalMortgageTransactions: success));
         },
         (error) {
           emit(state.copyWith(
@@ -70,13 +67,10 @@ class MortgageGridKPIsBloc
       //-------------------------------KPI4-------------------------------------
       failureOrSuccessTotalMortgageUnitsNum.when(
         (success) {
-          success.isEmpty
-              ? emit(state.copyWith(
-                  isLoading: true, hasErrortotalMortgageUnitsNum: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasErrortotalMortgageUnitsNum: false,
-                  totalMortgageUnitsNum: success));
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrortotalMortgageUnitsNum: false,
+              totalMortgageUnitsNum: success));
         },
         (error) {
           emit(state.copyWith(
@@ -89,14 +83,10 @@ class MortgageGridKPIsBloc
       //-------------------------------KPI7-------------------------------------
       failureOrSuccessTotalMortgageTransactionsVal.when(
         (success) {
-          success.isEmpty
-              ? emit(state.copyWith(
-                  isLoading: true,
-                  hasErrorTotalMortgageTransactionsValue: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasErrorTotalMortgageTransactionsValue: false,
-                  totalMortgageTransactionsValue: success));
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorTotalMortgageTransactionsValue: false,
+              totalMortgageTransactionsValue: success));
         },
         (error) {
           emit(state.copyWith(

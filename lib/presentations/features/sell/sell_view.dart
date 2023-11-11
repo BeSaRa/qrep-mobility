@@ -373,7 +373,7 @@ class _SalesViewState extends State<SalesView> {
                                               ],
                                               child: GridItemWidget(
                                                 gridItemType: GridItemType.sell,
-                                                response: done,
+                                                defaultResponse: done,
                                                 sellKPI:
                                                     SellGridKPIs.values[index],
                                                 rentKPI: null,

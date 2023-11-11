@@ -23,13 +23,13 @@ class GridItemWidget extends StatefulWidget {
   final SellGridKPIs? sellKPI;
   final MortgageGridKPIs? mortgageKPI;
   final GridItemType gridItemType;
-  final RentDefault response;
+  final RentDefault defaultResponse;
 
   const GridItemWidget({
     super.key,
     required this.gridItemType,
     required this.rentKPI,
-    required this.response,
+    required this.defaultResponse,
     required this.sellKPI,
     required this.mortgageKPI,
   });
@@ -40,11 +40,15 @@ class GridItemWidget extends StatefulWidget {
 
 class _GridItemWidgetState extends State<GridItemWidget> {
   late ChangeStatusCubit updateTitleCubit;
+  num beginVal = 0;
+  num endVal = 0;
 
   @override
   void initState() {
     super.initState();
     updateTitleCubit = ChangeStatusCubit();
+    beginVal = getDefaultVal(gridItemType: widget.gridItemType);
+    endVal = beginVal;
   }
 
   List<RentGridItemData> rentGridItemsData = const [
@@ -203,7 +207,22 @@ class _GridItemWidgetState extends State<GridItemWidget> {
     }
   }
 
-  num mortgagePreviousKpiVal = 0;
+  num getDefaultVal({required GridItemType gridItemType}) {
+    switch (gridItemType) {
+      case GridItemType.rent:
+        return RentGridKPIsBloc.getDefaultValue(
+            widget.defaultResponse, widget.rentKPI);
+      case GridItemType.sell:
+        return SellGridKPIsBloc.getDefaultKpiVal(
+            widget.defaultResponse, widget.sellKPI);
+      case GridItemType.mortgage:
+        // todo: handle this differently because there is no default val for mortgage
+        return 0;
+      default:
+    }
+    return 0;
+  }
+
   ValueNotifier<num> changeRateValue = ValueNotifier<num>(0);
   @override
   Widget build(BuildContext context) {
@@ -214,7 +233,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
         borderRadius: BorderRadius.all(Radius.circular(AppSizeR.s20)),
         boxShadow: [
           BoxShadow(
-              offset: const Offset(1, 1),
+              // offset: const Offset(1, 1),
               spreadRadius: AppSizeR.s2,
               blurRadius: AppSizeR.s11,
               color: ColorManager.black.withAlpha(30)),
@@ -271,28 +290,22 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                 BlocBuilder<RentGridKPIsBloc, RentGridKPIsState>(
                   bloc: context.read<RentGridKPIsBloc>(),
                   builder: (context, state) {
-                    List<BaseRentResponse> dataState = [];
-                    bool hasError = false;
-                    num defaultValue = 0;
-
-                    dataState =
+                    List<BaseRentResponse> dataState =
                         RentGridKPIsBloc.getState(state, widget.rentKPI);
 
-                    hasError =
-                        RentGridKPIsBloc.getErrorValue(state, widget.rentKPI);
-                    defaultValue = RentGridKPIsBloc.getKPIVal(
-                        widget.response, widget.rentKPI);
+                    if (!state.isLoading) {
+                      // endVal ---> (0: kpiVal)
+                      beginVal = endVal;
+                      endVal = dataState.isEmpty ? 0 : dataState.first.kpiVal;
+                    }
+
                     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                       changeRateValue.value =
                           dataState.isNotEmpty ? dataState.first.kpiYoYVal : 0;
                     });
                     return GridValueWithUnitWidget(
-                      countUp:
-                          dataState.isNotEmpty || !state.isLoading || !hasError,
-                      defaultValue: defaultValue,
-                      end: dataState.isNotEmpty
-                          ? dataState.first.kpiVal
-                          : defaultValue,
+                      begin: beginVal,
+                      end: endVal,
                       unit: (widget.rentKPI == RentGridKPIs.totalRentedSpaces ||
                               widget.rentKPI == RentGridKPIs.meanRentAreaValue)
                           ? ''
@@ -310,17 +323,21 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                 BlocBuilder<SellGridKPIsBloc, SellGridKPIsState>(
                   bloc: context.read<SellGridKPIsBloc>(),
                   builder: (context, state) {
-                    var dataState = [];
-                    bool hasError = false;
-                    num defaultValue = 0;
-
-                    dataState =
+                    var dataState =
                         SellGridKPIsBloc.getState(state, widget.sellKPI);
 
-                    hasError =
-                        SellGridKPIsBloc.getErrorValue(state, widget.sellKPI);
-                    defaultValue = SellGridKPIsBloc.getDefaultKpiVal(
-                        widget.response, widget.sellKPI);
+                    if (!state.isLoading) {
+                      // endVal ---> (0: kpiVal)
+                      beginVal = endVal;
+                      endVal = dataState.isEmpty
+                          ? 0
+                          : SellGridKPIsBloc.getKpiValOrYoYFromTypeAndUnit(
+                              dataState: dataState,
+                              unitType:
+                                  context.read<SellBloc>().requestSell.unit,
+                              returnYoYVal: false);
+                    }
+
                     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                       changeRateValue.value = dataState.isNotEmpty
                           ? SellGridKPIsBloc.getKpiValOrYoYFromTypeAndUnit(
@@ -331,16 +348,8 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                           : 0;
                     });
                     return GridValueWithUnitWidget(
-                      countUp:
-                          dataState.isNotEmpty || !state.isLoading || !hasError,
-                      defaultValue: defaultValue,
-                      end: dataState.isNotEmpty
-                          ? SellGridKPIsBloc.getKpiValOrYoYFromTypeAndUnit(
-                              dataState: dataState,
-                              unitType:
-                                  context.read<SellBloc>().requestSell.unit,
-                              returnYoYVal: false)
-                          : defaultValue,
+                      begin: beginVal,
+                      end: endVal,
                       unit: widget.sellKPI == SellGridKPIs.totalSoldSpaces
                           ? context.read<SellBloc>().requestSell.unit == 1
                               ? 'square_meter'
@@ -356,29 +365,23 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                 BlocBuilder<MortgageGridKPIsBloc, MortgageGridKPIsState>(
                   bloc: context.read<MortgageGridKPIsBloc>(),
                   builder: (context, state) {
-                    List<BaseRentResponse> dataState = [];
-                    bool hasError = false;
+                    List<BaseRentResponse> dataState =
+                        MortgageGridKPIsBloc.getState(
+                            state, widget.mortgageKPI);
 
-                    dataState = MortgageGridKPIsBloc.getState(
-                        state, widget.mortgageKPI);
+                    if (!state.isLoading) {
+                      beginVal = endVal;
+                      endVal = dataState.isEmpty ? 0 : dataState.first.kpiVal;
+                    }
 
-                    hasError = MortgageGridKPIsBloc.getErrorValue(
-                        state, widget.mortgageKPI);
                     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                       changeRateValue.value =
                           dataState.isNotEmpty ? dataState.first.kpiYoYVal : 0;
-                      mortgagePreviousKpiVal = dataState.isNotEmpty
-                          ? dataState.first.kpiVal
-                          : mortgagePreviousKpiVal;
                     });
 
                     return GridValueWithUnitWidget(
-                      countUp:
-                          dataState.isNotEmpty || !state.isLoading || !hasError,
-                      defaultValue: mortgagePreviousKpiVal,
-                      end: dataState.isNotEmpty
-                          ? dataState.first.kpiVal
-                          : mortgagePreviousKpiVal,
+                      begin: beginVal,
+                      end: endVal,
                       unit: mortgageGridItemsData
                           .firstWhere(
                               (element) => element.kpi == widget.mortgageKPI)

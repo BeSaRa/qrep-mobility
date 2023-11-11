@@ -25,7 +25,7 @@ class _MortgageGridState extends State<MortgageGrid> {
           Flexible(
               child: GridItemWidget(
             gridItemType: GridItemType.mortgage,
-            response: RentDefault(),
+            defaultResponse: RentDefault(),
             rentKPI: null,
             sellKPI: null,
             mortgageKPI: MortgageGridKPIs.totalMortgageTransactions,
@@ -38,7 +38,7 @@ class _MortgageGridState extends State<MortgageGrid> {
               children: [
                 GridItemWidget(
                   gridItemType: GridItemType.mortgage,
-                  response: RentDefault(),
+                  defaultResponse: RentDefault(),
                   rentKPI: null,
                   sellKPI: null,
                   mortgageKPI: MortgageGridKPIs.totalMortgageUnitsNum,
@@ -48,7 +48,7 @@ class _MortgageGridState extends State<MortgageGrid> {
                 ),
                 GridItemWidget(
                   gridItemType: GridItemType.mortgage,
-                  response: RentDefault(),
+                  defaultResponse: RentDefault(),
                   rentKPI: null,
                   sellKPI: null,
                   mortgageKPI: MortgageGridKPIs.totalMortgageTransactionsValue,
