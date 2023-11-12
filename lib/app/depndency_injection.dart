@@ -1,7 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ebla/domain/usecases/mortgage_usecases/lookup_mortgage_usecase.dart';
 import 'package:ebla/domain/usecases/mortgage_usecases/transactions_mortgage_usecase.dart';
-import 'package:ebla/presentations/features/home/cubit/bottom_nav_vubit.dart';
 import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';

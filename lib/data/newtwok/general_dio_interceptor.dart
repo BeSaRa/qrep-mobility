@@ -4,10 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
 import 'package:ebla/domain/repository/repository.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../app/app_preferences.dart';
-import '../../presentations/resources/resources.dart';
 
 class GeneralInterceptor extends Interceptor {
   final AppPreferences appPreferences;

@@ -1,4 +1,3 @@
-import 'package:ebla/app/app_preferences.dart';
 import 'package:ebla/app/routing_observer.dart';
 import 'package:ebla/presentations/features/home/home_view.dart';
 import 'package:ebla/presentations/features/info/blocs/about_bloc/about_bloc.dart';

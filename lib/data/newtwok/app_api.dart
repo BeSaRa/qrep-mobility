@@ -10,7 +10,6 @@ import 'package:ebla/domain/models/mrtgage_models/mortgage_models.dart';
 import 'package:ebla/domain/models/requests/mortgage_requests/request_mortgage_values.dart';
 import 'package:ebla/domain/models/sell_models/sell_models.dart';
 import 'package:ebla/domain/models/translations_model/translations_model.dart';
-import 'package:flutter/material.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../app/constants.dart';
