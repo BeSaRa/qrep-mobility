@@ -24,6 +24,7 @@ class GridItemWidget extends StatefulWidget {
   final MortgageGridKPIs? mortgageKPI;
   final GridItemType gridItemType;
   final RentDefault defaultResponse;
+  final bool useDefaultValue;
 
   const GridItemWidget({
     super.key,
@@ -32,6 +33,7 @@ class GridItemWidget extends StatefulWidget {
     required this.defaultResponse,
     required this.sellKPI,
     required this.mortgageKPI,
+    this.useDefaultValue = true,
   });
 
   @override
@@ -42,12 +44,15 @@ class _GridItemWidgetState extends State<GridItemWidget> {
   late ChangeStatusCubit updateTitleCubit;
   num beginVal = 0;
   num endVal = 0;
+  ValueNotifier<num> changeRateValue = ValueNotifier<num>(0);
 
   @override
   void initState() {
     super.initState();
     updateTitleCubit = ChangeStatusCubit();
-    beginVal = getDefaultVal(gridItemType: widget.gridItemType);
+    beginVal = widget.useDefaultValue
+        ? getDefaultVal(gridItemType: widget.gridItemType)
+        : 0;
     endVal = beginVal;
   }
 
@@ -216,14 +221,13 @@ class _GridItemWidgetState extends State<GridItemWidget> {
         return SellGridKPIsBloc.getDefaultKpiVal(
             widget.defaultResponse, widget.sellKPI);
       case GridItemType.mortgage:
-        // todo: handle this differently because there is no default val for mortgage
+        // no default values for mortgage
         return 0;
       default:
     }
     return 0;
   }
 
-  ValueNotifier<num> changeRateValue = ValueNotifier<num>(0);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -233,7 +237,6 @@ class _GridItemWidgetState extends State<GridItemWidget> {
         borderRadius: BorderRadius.all(Radius.circular(AppSizeR.s20)),
         boxShadow: [
           BoxShadow(
-              // offset: const Offset(1, 1),
               spreadRadius: AppSizeR.s2,
               blurRadius: AppSizeR.s11,
               color: ColorManager.black.withAlpha(30)),
