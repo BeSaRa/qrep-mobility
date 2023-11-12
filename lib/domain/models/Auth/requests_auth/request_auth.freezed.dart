@@ -21,7 +21,7 @@ RequestAuth _$RequestAuthFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RequestAuth {
   String get identifier => throw _privateConstructorUsedError;
-  String get json => throw _privateConstructorUsedError;
+  String get mode => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $RequestAuthCopyWith<$Res> {
           RequestAuth value, $Res Function(RequestAuth) then) =
       _$RequestAuthCopyWithImpl<$Res, RequestAuth>;
   @useResult
-  $Res call({String identifier, String json, String password});
+  $Res call({String identifier, String mode, String password});
 }
 
 /// @nodoc
@@ -53,7 +53,7 @@ class _$RequestAuthCopyWithImpl<$Res, $Val extends RequestAuth>
   @override
   $Res call({
     Object? identifier = null,
-    Object? json = null,
+    Object? mode = null,
     Object? password = null,
   }) {
     return _then(_value.copyWith(
@@ -61,9 +61,9 @@ class _$RequestAuthCopyWithImpl<$Res, $Val extends RequestAuth>
           ? _value.identifier
           : identifier // ignore: cast_nullable_to_non_nullable
               as String,
-      json: null == json
-          ? _value.json
-          : json // ignore: cast_nullable_to_non_nullable
+      mode: null == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -81,7 +81,7 @@ abstract class _$$RequestAuthImplCopyWith<$Res>
       __$$RequestAuthImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String identifier, String json, String password});
+  $Res call({String identifier, String mode, String password});
 }
 
 /// @nodoc
@@ -96,7 +96,7 @@ class __$$RequestAuthImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? identifier = null,
-    Object? json = null,
+    Object? mode = null,
     Object? password = null,
   }) {
     return _then(_$RequestAuthImpl(
@@ -104,9 +104,9 @@ class __$$RequestAuthImplCopyWithImpl<$Res>
           ? _value.identifier
           : identifier // ignore: cast_nullable_to_non_nullable
               as String,
-      json: null == json
-          ? _value.json
-          : json // ignore: cast_nullable_to_non_nullable
+      mode: null == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -120,7 +120,7 @@ class __$$RequestAuthImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RequestAuthImpl implements _RequestAuth {
   _$RequestAuthImpl(
-      {required this.identifier, required this.json, required this.password});
+      {required this.identifier, required this.mode, required this.password});
 
   factory _$RequestAuthImpl.fromJson(Map<String, dynamic> json) =>
       _$$RequestAuthImplFromJson(json);
@@ -128,13 +128,13 @@ class _$RequestAuthImpl implements _RequestAuth {
   @override
   final String identifier;
   @override
-  final String json;
+  final String mode;
   @override
   final String password;
 
   @override
   String toString() {
-    return 'RequestAuth(identifier: $identifier, json: $json, password: $password)';
+    return 'RequestAuth(identifier: $identifier, mode: $mode, password: $password)';
   }
 
   @override
@@ -144,14 +144,14 @@ class _$RequestAuthImpl implements _RequestAuth {
             other is _$RequestAuthImpl &&
             (identical(other.identifier, identifier) ||
                 other.identifier == identifier) &&
-            (identical(other.json, json) || other.json == json) &&
+            (identical(other.mode, mode) || other.mode == mode) &&
             (identical(other.password, password) ||
                 other.password == password));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, identifier, json, password);
+  int get hashCode => Object.hash(runtimeType, identifier, mode, password);
 
   @JsonKey(ignore: true)
   @override
@@ -170,7 +170,7 @@ class _$RequestAuthImpl implements _RequestAuth {
 abstract class _RequestAuth implements RequestAuth {
   factory _RequestAuth(
       {required final String identifier,
-      required final String json,
+      required final String mode,
       required final String password}) = _$RequestAuthImpl;
 
   factory _RequestAuth.fromJson(Map<String, dynamic> json) =
@@ -179,11 +179,166 @@ abstract class _RequestAuth implements RequestAuth {
   @override
   String get identifier;
   @override
-  String get json;
+  String get mode;
   @override
   String get password;
   @override
   @JsonKey(ignore: true)
   _$$RequestAuthImplCopyWith<_$RequestAuthImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+RefreshToken _$RefreshTokenFromJson(Map<String, dynamic> json) {
+  return _RefreshToken.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RefreshToken {
+  String get refresh_token => throw _privateConstructorUsedError;
+  String get mode => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RefreshTokenCopyWith<RefreshToken> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RefreshTokenCopyWith<$Res> {
+  factory $RefreshTokenCopyWith(
+          RefreshToken value, $Res Function(RefreshToken) then) =
+      _$RefreshTokenCopyWithImpl<$Res, RefreshToken>;
+  @useResult
+  $Res call({String refresh_token, String mode});
+}
+
+/// @nodoc
+class _$RefreshTokenCopyWithImpl<$Res, $Val extends RefreshToken>
+    implements $RefreshTokenCopyWith<$Res> {
+  _$RefreshTokenCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? refresh_token = null,
+    Object? mode = null,
+  }) {
+    return _then(_value.copyWith(
+      refresh_token: null == refresh_token
+          ? _value.refresh_token
+          : refresh_token // ignore: cast_nullable_to_non_nullable
+              as String,
+      mode: null == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RefreshTokenImplCopyWith<$Res>
+    implements $RefreshTokenCopyWith<$Res> {
+  factory _$$RefreshTokenImplCopyWith(
+          _$RefreshTokenImpl value, $Res Function(_$RefreshTokenImpl) then) =
+      __$$RefreshTokenImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String refresh_token, String mode});
+}
+
+/// @nodoc
+class __$$RefreshTokenImplCopyWithImpl<$Res>
+    extends _$RefreshTokenCopyWithImpl<$Res, _$RefreshTokenImpl>
+    implements _$$RefreshTokenImplCopyWith<$Res> {
+  __$$RefreshTokenImplCopyWithImpl(
+      _$RefreshTokenImpl _value, $Res Function(_$RefreshTokenImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? refresh_token = null,
+    Object? mode = null,
+  }) {
+    return _then(_$RefreshTokenImpl(
+      refresh_token: null == refresh_token
+          ? _value.refresh_token
+          : refresh_token // ignore: cast_nullable_to_non_nullable
+              as String,
+      mode: null == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RefreshTokenImpl implements _RefreshToken {
+  _$RefreshTokenImpl({required this.refresh_token, required this.mode});
+
+  factory _$RefreshTokenImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RefreshTokenImplFromJson(json);
+
+  @override
+  final String refresh_token;
+  @override
+  final String mode;
+
+  @override
+  String toString() {
+    return 'RefreshToken(refresh_token: $refresh_token, mode: $mode)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RefreshTokenImpl &&
+            (identical(other.refresh_token, refresh_token) ||
+                other.refresh_token == refresh_token) &&
+            (identical(other.mode, mode) || other.mode == mode));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, refresh_token, mode);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RefreshTokenImplCopyWith<_$RefreshTokenImpl> get copyWith =>
+      __$$RefreshTokenImplCopyWithImpl<_$RefreshTokenImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RefreshTokenImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RefreshToken implements RefreshToken {
+  factory _RefreshToken(
+      {required final String refresh_token,
+      required final String mode}) = _$RefreshTokenImpl;
+
+  factory _RefreshToken.fromJson(Map<String, dynamic> json) =
+      _$RefreshTokenImpl.fromJson;
+
+  @override
+  String get refresh_token;
+  @override
+  String get mode;
+  @override
+  @JsonKey(ignore: true)
+  _$$RefreshTokenImplCopyWith<_$RefreshTokenImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

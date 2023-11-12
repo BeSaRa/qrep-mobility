@@ -996,4 +996,25 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
+  @override
+  Future<Result<AuthResponse, FailureModel>> refreshToken(
+      RefreshToken refreshToken) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await translationsServiceClient.refreshToken(refreshToken);
+        if (response.response.statusCode == 200 ||
+            response.response.statusCode == 201) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
 }

@@ -6,6 +6,8 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../app/app_preferences.dart';
 import '../../app/constants.dart';
+import '../../app/depndency_injection.dart';
+import 'general_dio_interceptor.dart';
 
 const String APPLICATION_JSON = 'application/json';
 const String MULTIPART_JSON = 'multipart/form-data';
@@ -35,7 +37,7 @@ class DioFactory {
       receiveTimeout: timeOut,
       headers: headers,
     );
-
+    dio.interceptors.add(instance<GeneralInterceptor>());
     if (kReleaseMode) {
       if (kDebugMode) {
         print('release mode no logs');

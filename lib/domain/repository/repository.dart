@@ -144,4 +144,6 @@ abstract class Repository {
 
   //Auth
   Future<Result<AuthResponse, FailureModel>> login(RequestAuth requestAuth);
+  Future<Result<AuthResponse, FailureModel>> refreshToken(
+      RefreshToken refreshToken);
 }

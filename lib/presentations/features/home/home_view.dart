@@ -8,14 +8,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../resources/resources.dart';
+import '../blocs/cubit/bottom_nav_cubit.dart';
 import '../info/blocs/news_bloc/news_bloc.dart';
 import '../more/more_view.dart';
 import 'widgets/news_widget.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key, this.title = 'press'});
-
-  final String title;
+  const HomeView({super.key});
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -24,22 +23,17 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   // final PageController _pageController = PageController();
   // final int _indexCubit = 0;
-  @override
-  void didChangeDependencies() {
-    print("did change dependencies");
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage(ImageAssets.homeBg), fit: BoxFit.fill)),
-      child: Scaffold(
-        appBar: const TitleAppBar(),
-        backgroundColor: Colors.transparent,
-        body: ListView(
+    return Scaffold(
+      appBar: const TitleAppBar(),
+      // backgroundColor: Colors.transparent,
+      body: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(ImageAssets.homeBg), fit: BoxFit.fill)),
+        child: ListView(
           children: [
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
@@ -52,7 +46,11 @@ class _HomeViewState extends State<HomeView> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                context.goNamed(RoutesNames.sales);
+                                context.read<BottomNavCubit>().changePage(2);
+                                context.goNamed(
+                                    context.read<BottomNavCubit>().paths[context
+                                        .read<BottomNavCubit>()
+                                        .currentPage]);
                               },
                               child: HomeContainer(
                                 isBig: true,
@@ -64,7 +62,12 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                context.goNamed(RoutesNames.mortgage);
+                                // context.goNamed(RoutesNames.mortgage);
+                                context.read<BottomNavCubit>().changePage(3);
+                                context.goNamed(
+                                    context.read<BottomNavCubit>().paths[context
+                                        .read<BottomNavCubit>()
+                                        .currentPage]);
                               },
                               child: HomeContainer(
                                 isBig: false,
@@ -83,7 +86,12 @@ class _HomeViewState extends State<HomeView> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                context.goNamed(RoutesNames.rent);
+                                // context.goNamed(RoutesNames.rent);
+                                context.read<BottomNavCubit>().changePage(1);
+                                context.goNamed(
+                                    context.read<BottomNavCubit>().paths[context
+                                        .read<BottomNavCubit>()
+                                        .currentPage]);
                               },
                               child: HomeContainer(
                                 isBig: false,

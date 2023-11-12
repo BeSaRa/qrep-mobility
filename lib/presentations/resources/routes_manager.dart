@@ -17,8 +17,8 @@ import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../app/depndency_injection.dart';
+import '../features/blocs/cubit/bottom_nav_cubit.dart';
 import '../features/info/blocs/news_bloc/news_bloc.dart';
 import '../features/info/views/laws_decisions_view.dart';
 import '../features/info/views/news/news_item_view.dart';
@@ -60,6 +60,7 @@ class RoutesPaths {
 
 class NavigationKeys {
   static final rootNavigatorKey = GlobalKey<NavigatorState>();
+  static final shellNavigatorKey = GlobalKey<NavigatorState>();
 }
 
 final RoutingObserver routingObserver = RoutingObserver();
@@ -71,12 +72,15 @@ class AppRouter {
       navigatorKey: NavigationKeys.rootNavigatorKey,
       initialLocation: RoutesPaths.splash,
       routes: [
-        StatefulShellRoute.indexedStack(
-          pageBuilder: (context, state, navigationShell) {
+        ShellRoute(
+          navigatorKey: NavigationKeys.shellNavigatorKey,
+          // parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          pageBuilder: (context, state, child) {
             return CustomTransitionPage(
               transitionDuration: const Duration(milliseconds: 1140),
-              child: MainScaffold(
-                navigationShell: navigationShell,
+              child: BlocProvider(
+                create: (context) => instance<BottomNavCubit>(),
+                child: MainScaffold(child: child),
               ),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
@@ -95,15 +99,15 @@ class AppRouter {
               },
             );
           },
-          branches: [
-            StatefulShellBranch(routes: [
-              GoRoute(
-                path: RoutesPaths.home,
+          // builder: (context, state, child) {
+          //   return MainScaffold(child: child);
+          // },
+          routes: [
+            GoRoute(
                 name: RoutesNames.home,
-                // parentNavigatorKey: GlobalKey(),
+                path: RoutesPaths.home,
                 pageBuilder: (context, state) {
                   initHomeModule();
-
                   return CustomTransitionPage(
                     transitionDuration: const Duration(milliseconds: 1140),
                     child: const HomeView(),
@@ -123,60 +127,156 @@ class AppRouter {
                       );
                     },
                   );
-                },
-              ),
-            ]),
-            StatefulShellBranch(routes: [
-              GoRoute(
-                path: RoutesPaths.rent,
-                name: RoutesNames.rent,
+                }),
+            GoRoute(
+              name: RoutesNames.rent,
+              path: RoutesPaths.rent,
+              builder: (context, state) {
+                initRentModule();
+                return BlocProvider(
+                  create: (context) => instance<RentBloc>()
+                    ..add(const RentEvent.getRentLookupEvent()),
+                  child: const RentView(),
+                );
+              },
+            ),
+            GoRoute(
+                name: RoutesNames.sales,
+                path: RoutesPaths.sales,
                 builder: (context, state) {
-                  initRentModule();
+                  initSellModule();
                   return BlocProvider(
-                    create: (context) => instance<RentBloc>()
-                      ..add(const RentEvent.getRentLookupEvent()),
-                    child: const RentView(),
+                    create: (context) => instance<SellBloc>()
+                      ..add(const SellEvent.getSellLookupEvent()),
+                    child: const SalesView(),
                   );
-                },
-              ),
-            ]),
-            StatefulShellBranch(routes: [
-              GoRoute(
-                  path: RoutesPaths.sales,
-                  name: RoutesNames.sales,
-                  builder: (context, state) {
-                    initSellModule();
-                    return BlocProvider(
-                      create: (context) => instance<SellBloc>()
-                        ..add(const SellEvent.getSellLookupEvent()),
-                      child: const SalesView(),
-                    );
-                  }),
-            ]),
-            StatefulShellBranch(routes: [
-              GoRoute(
-                  path: RoutesPaths.mortgage,
-                  name: RoutesNames.mortgage,
-                  builder: (context, state) {
-                    initMortgageModule();
-                    return BlocProvider(
-                      create: (context) => instance<MortgageBloc>()
-                        ..add(const MortgageEvent.started()),
-                      child: const MortgageView(),
-                    );
-                  }),
-            ]),
-            StatefulShellBranch(routes: [
-              GoRoute(
-                  path: RoutesPaths.more,
-                  name: RoutesNames.more,
-                  builder: (context, state) {
-                    initLoginModule();
-                    return const MoreView();
-                  }),
-            ]),
+                }),
+            GoRoute(
+                name: RoutesNames.mortgage,
+                path: RoutesPaths.mortgage,
+                builder: (context, state) {
+                  initMortgageModule();
+                  return BlocProvider(
+                    create: (context) => instance<MortgageBloc>()
+                      ..add(const MortgageEvent.started()),
+                    child: const MortgageView(),
+                  );
+                }),
+            GoRoute(
+                name: RoutesNames.more,
+                path: RoutesPaths.more,
+                builder: (context, state) {
+                  initLoginModule();
+                  return const MoreView();
+                }),
           ],
         ),
+        // StatefulShellRoute.indexedStack(
+        //   pageBuilder: (context, state, navigationShell) {
+        // return CustomTransitionPage(
+        //   transitionDuration: const Duration(milliseconds: 1140),
+        //   child: MainScaffold(
+        //     navigationShell: navigationShell,
+        //   ),
+        //   transitionsBuilder:
+        //       (context, animation, secondaryAnimation, child) {
+        //     return SlideTransition(
+        //       position: Tween<Offset>(
+        //         begin: const Offset(0.0, -1.0),
+        //         end: const Offset(0.0, 0.0),
+        //       ).animate(
+        //         CurvedAnimation(
+        //           parent: animation,
+        //           curve: const Cubic(0.74, 0.01, 0.01, 0.98),
+        //         ),
+        //       ),
+        //       child: child,
+        //     );
+        //   },
+        // );
+        //   },
+        //   branches: [
+        //     StatefulShellBranch(routes: [
+        //       GoRoute(
+        //         path: RoutesPaths.home,
+        //         name: RoutesNames.home,
+        //         // parentNavigatorKey: GlobalKey(),
+        //         pageBuilder: (context, state) {
+        //           initHomeModule();
+
+        // return CustomTransitionPage(
+        //   transitionDuration: const Duration(milliseconds: 1140),
+        //   child: const HomeView(),
+        //   transitionsBuilder:
+        //       (context, animation, secondaryAnimation, child) {
+        //     return SlideTransition(
+        //       position: Tween<Offset>(
+        //         begin: const Offset(0.0, -1.0),
+        //         end: const Offset(0.0, 0.0),
+        //       ).animate(
+        //         CurvedAnimation(
+        //           parent: animation,
+        //           curve: const Cubic(0.74, 0.01, 0.01, 0.98),
+        //         ),
+        //       ),
+        //       child: child,
+        //     );
+        //   },
+        // );
+        //         },
+        //       ),
+        //     ]),
+        //     StatefulShellBranch(routes: [
+        //       GoRoute(
+        //         path: RoutesPaths.rent,
+        //         name: RoutesNames.rent,
+        //         builder: (context, state) {
+        // initRentModule();
+        // return BlocProvider(
+        //   create: (context) => instance<RentBloc>()
+        //     ..add(const RentEvent.getRentLookupEvent()),
+        //   child: const RentView(),
+        // );
+        //         },
+        //       ),
+        //     ]),
+        //     StatefulShellBranch(routes: [
+        //       GoRoute(
+        //           path: RoutesPaths.sales,
+        //           name: RoutesNames.sales,
+        //           builder: (context, state) {
+        // initSellModule();
+        // return BlocProvider(
+        //   create: (context) => instance<SellBloc>()
+        //     ..add(const SellEvent.getSellLookupEvent()),
+        //   child: const SalesView(),
+        // );
+        //           }),
+        //     ]),
+        //     StatefulShellBranch(routes: [
+        //       GoRoute(
+        //           path: RoutesPaths.mortgage,
+        //           name: RoutesNames.mortgage,
+        //           builder: (context, state) {
+        // initMortgageModule();
+        // return BlocProvider(
+        //   create: (context) => instance<MortgageBloc>()
+        //     ..add(const MortgageEvent.started()),
+        //   child: const MortgageView(),
+        // );
+        //           }),
+        //     ]),
+        //     StatefulShellBranch(routes: [
+        //       GoRoute(
+        //           path: RoutesPaths.more,
+        //           name: RoutesNames.more,
+        //           builder: (context, state) {
+        // initLoginModule();
+        // return const MoreView();
+        //           }),
+        //     ]),
+        //   ],
+        // ),
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.about,

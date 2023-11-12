@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ebla/domain/usecases/mortgage_usecases/lookup_mortgage_usecase.dart';
 import 'package:ebla/domain/usecases/mortgage_usecases/transactions_mortgage_usecase.dart';
+import 'package:ebla/presentations/features/home/cubit/bottom_nav_vubit.dart';
 import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
@@ -15,6 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/newtwok/app_api.dart';
 import '../data/newtwok/dio_factory.dart';
+import '../data/newtwok/general_dio_interceptor.dart';
 import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
@@ -23,6 +25,7 @@ import '../domain/usecases/auth_usecase/auth_usecases.dart';
 import '../domain/usecases/sell_usecases/top_values/top_values_sell_usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/auth/blocs/login_bloc/login_bloc.dart';
+import '../presentations/features/blocs/cubit/bottom_nav_cubit.dart';
 import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import '../presentations/features/info/blocs/news_bloc/news_bloc.dart';
 import '../presentations/features/rent/blocs/rent_blocs.dart';
@@ -35,8 +38,9 @@ Future<void> initAppModule() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   instance.registerFactory<SharedPreferences>(() => sharedPreferences);
   instance.registerFactory<AppPreferences>(() => AppPreferences(instance()));
-  instance.registerLazySingleton<DioFactory>(() => DioFactory(instance()));
-
+  instance.registerFactory<DioFactory>(() => DioFactory(instance()));
+  instance.registerFactory<GeneralInterceptor>(
+      () => GeneralInterceptor(instance()));
   final dio = await instance<DioFactory>().getDio();
   instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(dio));
   instance.registerLazySingleton<TranslationsServiceClient>(
@@ -47,6 +51,8 @@ Future<void> initAppModule() async {
       appServiceClient: instance(),
       translationsServiceClient: instance(),
       networkInfo: instance()));
+
+  instance.registerFactory(() => BottomNavCubit(0));
 }
 
 Future<void> initTranslationsModule() async {
@@ -349,4 +355,10 @@ Future<void> initLoginModule() async {
     instance
         .registerFactory<LoginBloc>(() => LoginBloc(loginUsecases: instance()));
   }
+}
+
+Future<void> resetAllModules({bool dispose = true}) async {
+  await instance.reset(dispose: dispose);
+  await initAppModule();
+  await initLoginModule();
 }

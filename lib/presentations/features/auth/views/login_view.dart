@@ -1,3 +1,4 @@
+import 'package:ebla/app/app_preferences.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/Auth/auth_models.dart';
 import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
@@ -36,7 +37,12 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return BlocListener(
       bloc: context.read<LoginBloc>(),
-      listener: (context, LoginState state) {
+      listener: (context, LoginState state) async {
+        await instance<AppPreferences>()
+            .setUserToken(state.successLogin.data.token);
+        await instance<AppPreferences>()
+            .setUserRefreshToken(state.successLogin.data.refreshToken);
+        await resetAllModules();
         if (state.isSuccessLogin) {
           context.pop();
         }
@@ -142,7 +148,7 @@ class _LoginViewState extends State<LoginView> {
                   context.read<LoginBloc>().add(LoginEvent.login(
                       authRequest: RequestAuth(
                           identifier: identifierController.text,
-                          json: "json",
+                          mode: "json",
                           password: passwordController.text)));
                 },
                 child: Text(

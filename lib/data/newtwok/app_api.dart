@@ -185,6 +185,9 @@ abstract class TranslationsServiceClient {
   //---------------------------------Auth-----------------------------------------
   @POST(EndPoints.auth)
   Future<HttpResponse<AuthResponse>> login(@Body() RequestAuth requestAuth);
+  @POST(EndPoints.refreshToken)
+  Future<HttpResponse<AuthResponse>> refreshToken(
+      @Body() RefreshToken refreshToken);
 
 //---------------------------------CMS-----------------------------------------
   @GET(EndPoints.faq)
