@@ -95,8 +95,9 @@ class _MortagageViewState extends State<MortgageView> {
                     child: RefreshIndicator(
                       onRefresh: () {
                         context
-                            .read<MortgageBloc>()
-                            .add(const MortgageEvent.started());
+                            .read<LookupBloc>()
+                            .add(const LookupEvent.getMortgageLookupEvent());
+
                         return Future.value();
                       },
                       child: SingleChildScrollView(
@@ -471,105 +472,113 @@ class _MortagageViewState extends State<MortgageView> {
                                           Theme.of(context).textTheme.bodyLarge,
                                     );
                                   } else {
-                                    return Column(
-                                      children: [
-                                        FlutterCustomPagination(
-                                          currentPage: context
-                                                  .read<MortgageBloc>()
-                                                  .requestMeanValue
-                                                  .offset ??
-                                              0,
-                                          limitPerPage: 3,
-                                          totalDataCount:
-                                              mortgageTransactionsBloc
-                                                  .response.count,
-                                          onPreviousPage: (previousPage) {
-                                            context
-                                                    .read<MortgageBloc>()
-                                                    .requestMeanValue =
-                                                context
-                                                    .read<MortgageBloc>()
-                                                    .requestMeanValue
-                                                    .copyWith(
-                                                        offset: previousPage);
-                                            mortgageTransactionsBloc.add(
-                                                MortgageTransactionsEvent.started(
-                                                    requestMortgageValues:
-                                                        context
-                                                            .read<
-                                                                MortgageBloc>()
-                                                            .requestMeanValue));
-                                          },
-                                          onBackToFirstPage: (firstPage) {
-                                            context
-                                                    .read<MortgageBloc>()
-                                                    .requestMeanValue =
-                                                context
-                                                    .read<MortgageBloc>()
-                                                    .requestMeanValue
-                                                    .copyWith(
-                                                        offset: firstPage);
-                                            mortgageTransactionsBloc.add(
-                                                MortgageTransactionsEvent.started(
-                                                    requestMortgageValues:
-                                                        context
-                                                            .read<
-                                                                MortgageBloc>()
-                                                            .requestMeanValue));
-                                          },
-                                          onNextPage: (nextPage) {
-                                            context
-                                                    .read<MortgageBloc>()
-                                                    .requestMeanValue =
-                                                context
-                                                    .read<MortgageBloc>()
-                                                    .requestMeanValue
-                                                    .copyWith(offset: nextPage);
-                                            mortgageTransactionsBloc.add(
-                                                MortgageTransactionsEvent.started(
-                                                    requestMortgageValues:
-                                                        context
-                                                            .read<
-                                                                MortgageBloc>()
-                                                            .requestMeanValue));
-                                          },
-                                          onGoToLastPage: (lastPage) {
-                                            context
-                                                    .read<MortgageBloc>()
-                                                    .requestMeanValue =
-                                                context
-                                                    .read<MortgageBloc>()
-                                                    .requestMeanValue
-                                                    .copyWith(offset: lastPage);
-                                            mortgageTransactionsBloc.add(
-                                                MortgageTransactionsEvent.started(
-                                                    requestMortgageValues:
-                                                        context
-                                                            .read<
-                                                                MortgageBloc>()
-                                                            .requestMeanValue));
-                                          },
-                                          backgroundColor: Theme.of(context)
-                                              .colorScheme
-                                              .background,
-                                          // textStyle: Theme.of(context)
-                                          //     .textTheme
-                                          //     .labelSmall,
-                                          previousPageIcon: context.locale ==
-                                                  ARABIC_LOCAL
-                                              ? Icons.keyboard_arrow_right_sharp
-                                              : Icons.keyboard_arrow_left_sharp,
-                                          backToFirstPageIcon: Icons.first_page,
-                                          nextPageIcon: context.locale ==
-                                                  ARABIC_LOCAL
-                                              ? Icons.keyboard_arrow_left_sharp
-                                              : Icons
-                                                  .keyboard_arrow_right_sharp,
-                                          goToLastPageIcon: Icons.last_page,
-                                        ),
-                                        SizedBox(height: AppSizeH.s10)
-                                      ],
-                                    );
+                                    return done.count < 4
+                                        ? SizedBox(height: AppSizeH.s10)
+                                        : Column(
+                                            children: [
+                                              FlutterCustomPagination(
+                                                currentPage: context
+                                                        .read<MortgageBloc>()
+                                                        .requestMeanValue
+                                                        .offset ??
+                                                    0,
+                                                limitPerPage: 3,
+                                                totalDataCount:
+                                                    mortgageTransactionsBloc
+                                                        .response.count,
+                                                onPreviousPage: (previousPage) {
+                                                  context
+                                                          .read<MortgageBloc>()
+                                                          .requestMeanValue =
+                                                      context
+                                                          .read<MortgageBloc>()
+                                                          .requestMeanValue
+                                                          .copyWith(
+                                                              offset:
+                                                                  previousPage);
+                                                  mortgageTransactionsBloc.add(
+                                                      MortgageTransactionsEvent.started(
+                                                          requestMortgageValues: context
+                                                              .read<
+                                                                  MortgageBloc>()
+                                                              .requestMeanValue));
+                                                },
+                                                onBackToFirstPage: (firstPage) {
+                                                  context
+                                                          .read<MortgageBloc>()
+                                                          .requestMeanValue =
+                                                      context
+                                                          .read<MortgageBloc>()
+                                                          .requestMeanValue
+                                                          .copyWith(
+                                                              offset:
+                                                                  firstPage);
+                                                  mortgageTransactionsBloc.add(
+                                                      MortgageTransactionsEvent.started(
+                                                          requestMortgageValues: context
+                                                              .read<
+                                                                  MortgageBloc>()
+                                                              .requestMeanValue));
+                                                },
+                                                onNextPage: (nextPage) {
+                                                  context
+                                                          .read<MortgageBloc>()
+                                                          .requestMeanValue =
+                                                      context
+                                                          .read<MortgageBloc>()
+                                                          .requestMeanValue
+                                                          .copyWith(
+                                                              offset: nextPage);
+                                                  mortgageTransactionsBloc.add(
+                                                      MortgageTransactionsEvent.started(
+                                                          requestMortgageValues: context
+                                                              .read<
+                                                                  MortgageBloc>()
+                                                              .requestMeanValue));
+                                                },
+                                                onGoToLastPage: (lastPage) {
+                                                  context
+                                                          .read<MortgageBloc>()
+                                                          .requestMeanValue =
+                                                      context
+                                                          .read<MortgageBloc>()
+                                                          .requestMeanValue
+                                                          .copyWith(
+                                                              offset: lastPage);
+                                                  mortgageTransactionsBloc.add(
+                                                      MortgageTransactionsEvent.started(
+                                                          requestMortgageValues: context
+                                                              .read<
+                                                                  MortgageBloc>()
+                                                              .requestMeanValue));
+                                                },
+                                                backgroundColor:
+                                                    Theme.of(context)
+                                                        .colorScheme
+                                                        .background,
+                                                // textStyle: Theme.of(context)
+                                                //     .textTheme
+                                                //     .labelSmall,
+                                                previousPageIcon: context.locale ==
+                                                        ARABIC_LOCAL
+                                                    ? Icons
+                                                        .keyboard_arrow_right_sharp
+                                                    : Icons
+                                                        .keyboard_arrow_left_sharp,
+                                                backToFirstPageIcon:
+                                                    Icons.first_page,
+                                                nextPageIcon: context.locale ==
+                                                        ARABIC_LOCAL
+                                                    ? Icons
+                                                        .keyboard_arrow_left_sharp
+                                                    : Icons
+                                                        .keyboard_arrow_right_sharp,
+                                                goToLastPageIcon:
+                                                    Icons.last_page,
+                                              ),
+                                              SizedBox(height: AppSizeH.s10)
+                                            ],
+                                          );
                                   }
                                 },
                                 error: (error) => const SizedBox(),

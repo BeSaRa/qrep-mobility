@@ -113,8 +113,8 @@ class _SalesViewState extends State<SalesView> {
                             Expanded(
                               child: RefreshIndicator(
                                 onRefresh: () {
-                                  context.read<SellBloc>().add(
-                                      const SellEvent.getSellLookupEvent());
+                                  context.read<LookupBloc>().add(
+                                      const LookupEvent.getSellLookupEvent());
                                   return Future.value();
                                 },
                                 child: SingleChildScrollView(
@@ -608,118 +608,134 @@ class _SalesViewState extends State<SalesView> {
                                                       .bodyLarge,
                                                 );
                                               }
-                                              return Column(
-                                                children: [
-                                                  FlutterCustomPagination(
-                                                    currentPage: context
-                                                            .read<SellBloc>()
-                                                            .requestSell
-                                                            .offset ??
-                                                        0,
-                                                    limitPerPage: 3,
-                                                    totalDataCount:
-                                                        sellTransactionBloc
-                                                                .sellTransaction
-                                                                ?.count ??
-                                                            0,
-                                                    onPreviousPage:
-                                                        (previousPage) {
-                                                      context
-                                                              .read<SellBloc>()
-                                                              .requestSell =
-                                                          context
-                                                              .read<SellBloc>()
-                                                              .requestSell
-                                                              .copyWith(
-                                                                  offset:
-                                                                      previousPage);
-                                                      sellTransactionBloc.add(
-                                                          SellTransactionEvent.started(
-                                                              request: context
+                                              return value.response.count < 4
+                                                  ? SizedBox(
+                                                      height: AppSizeH.s10)
+                                                  : Column(
+                                                      children: [
+                                                        FlutterCustomPagination(
+                                                          currentPage: context
                                                                   .read<
                                                                       SellBloc>()
-                                                                  .requestSell));
-                                                    },
-                                                    onBackToFirstPage:
-                                                        (firstPage) {
-                                                      context
-                                                              .read<SellBloc>()
-                                                              .requestSell =
-                                                          context
-                                                              .read<SellBloc>()
-                                                              .requestSell
-                                                              .copyWith(
-                                                                  offset:
-                                                                      firstPage);
-                                                      sellTransactionBloc.add(
-                                                          SellTransactionEvent.started(
-                                                              request: context
-                                                                  .read<
-                                                                      SellBloc>()
-                                                                  .requestSell));
-                                                    },
-                                                    onNextPage: (nextPage) {
-                                                      context
-                                                              .read<SellBloc>()
-                                                              .requestSell =
-                                                          context
-                                                              .read<SellBloc>()
-                                                              .requestSell
-                                                              .copyWith(
-                                                                  offset:
-                                                                      nextPage);
-                                                      sellTransactionBloc.add(
-                                                          SellTransactionEvent.started(
-                                                              request: context
-                                                                  .read<
-                                                                      SellBloc>()
-                                                                  .requestSell));
-                                                    },
-                                                    onGoToLastPage: (lastPage) {
-                                                      context
-                                                              .read<SellBloc>()
-                                                              .requestSell =
-                                                          context
-                                                              .read<SellBloc>()
-                                                              .requestSell
-                                                              .copyWith(
-                                                                  offset:
-                                                                      lastPage);
-                                                      sellTransactionBloc.add(
-                                                          SellTransactionEvent.started(
-                                                              request: context
-                                                                  .read<
-                                                                      SellBloc>()
-                                                                  .requestSell));
-                                                    },
-                                                    backgroundColor:
-                                                        Theme.of(context)
-                                                            .colorScheme
-                                                            .background,
-                                                    // textStyle: Theme.of(context)
-                                                    //     .textTheme
-                                                    //     .labelSmall,
-                                                    previousPageIcon: context
-                                                                .locale ==
-                                                            ARABIC_LOCAL
-                                                        ? Icons
-                                                            .keyboard_arrow_right_sharp
-                                                        : Icons
-                                                            .keyboard_arrow_left_sharp,
-                                                    backToFirstPageIcon:
-                                                        Icons.first_page,
-                                                    nextPageIcon: context.locale ==
-                                                            ARABIC_LOCAL
-                                                        ? Icons
-                                                            .keyboard_arrow_left_sharp
-                                                        : Icons
-                                                            .keyboard_arrow_right_sharp,
-                                                    goToLastPageIcon:
-                                                        Icons.last_page,
-                                                  ),
-                                                  SizedBox(height: AppSizeH.s8)
-                                                ],
-                                              );
+                                                                  .requestSell
+                                                                  .offset ??
+                                                              0,
+                                                          limitPerPage: 3,
+                                                          totalDataCount:
+                                                              sellTransactionBloc
+                                                                      .sellTransaction
+                                                                      ?.count ??
+                                                                  0,
+                                                          onPreviousPage:
+                                                              (previousPage) {
+                                                            context
+                                                                    .read<
+                                                                        SellBloc>()
+                                                                    .requestSell =
+                                                                context
+                                                                    .read<
+                                                                        SellBloc>()
+                                                                    .requestSell
+                                                                    .copyWith(
+                                                                        offset:
+                                                                            previousPage);
+                                                            sellTransactionBloc.add(
+                                                                SellTransactionEvent.started(
+                                                                    request: context
+                                                                        .read<
+                                                                            SellBloc>()
+                                                                        .requestSell));
+                                                          },
+                                                          onBackToFirstPage:
+                                                              (firstPage) {
+                                                            context
+                                                                    .read<
+                                                                        SellBloc>()
+                                                                    .requestSell =
+                                                                context
+                                                                    .read<
+                                                                        SellBloc>()
+                                                                    .requestSell
+                                                                    .copyWith(
+                                                                        offset:
+                                                                            firstPage);
+                                                            sellTransactionBloc.add(
+                                                                SellTransactionEvent.started(
+                                                                    request: context
+                                                                        .read<
+                                                                            SellBloc>()
+                                                                        .requestSell));
+                                                          },
+                                                          onNextPage:
+                                                              (nextPage) {
+                                                            context
+                                                                    .read<
+                                                                        SellBloc>()
+                                                                    .requestSell =
+                                                                context
+                                                                    .read<
+                                                                        SellBloc>()
+                                                                    .requestSell
+                                                                    .copyWith(
+                                                                        offset:
+                                                                            nextPage);
+                                                            sellTransactionBloc.add(
+                                                                SellTransactionEvent.started(
+                                                                    request: context
+                                                                        .read<
+                                                                            SellBloc>()
+                                                                        .requestSell));
+                                                          },
+                                                          onGoToLastPage:
+                                                              (lastPage) {
+                                                            context
+                                                                    .read<
+                                                                        SellBloc>()
+                                                                    .requestSell =
+                                                                context
+                                                                    .read<
+                                                                        SellBloc>()
+                                                                    .requestSell
+                                                                    .copyWith(
+                                                                        offset:
+                                                                            lastPage);
+                                                            sellTransactionBloc.add(
+                                                                SellTransactionEvent.started(
+                                                                    request: context
+                                                                        .read<
+                                                                            SellBloc>()
+                                                                        .requestSell));
+                                                          },
+                                                          backgroundColor:
+                                                              Theme.of(context)
+                                                                  .colorScheme
+                                                                  .background,
+                                                          // textStyle: Theme.of(context)
+                                                          //     .textTheme
+                                                          //     .labelSmall,
+                                                          previousPageIcon: context
+                                                                      .locale ==
+                                                                  ARABIC_LOCAL
+                                                              ? Icons
+                                                                  .keyboard_arrow_right_sharp
+                                                              : Icons
+                                                                  .keyboard_arrow_left_sharp,
+                                                          backToFirstPageIcon:
+                                                              Icons.first_page,
+                                                          nextPageIcon: context
+                                                                      .locale ==
+                                                                  ARABIC_LOCAL
+                                                              ? Icons
+                                                                  .keyboard_arrow_left_sharp
+                                                              : Icons
+                                                                  .keyboard_arrow_right_sharp,
+                                                          goToLastPageIcon:
+                                                              Icons.last_page,
+                                                        ),
+                                                        SizedBox(
+                                                            height: AppSizeH.s8)
+                                                      ],
+                                                    );
                                             },
                                             orElse: () => const SizedBox(),
                                           );
