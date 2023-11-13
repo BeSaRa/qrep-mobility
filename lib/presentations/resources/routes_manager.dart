@@ -108,20 +108,13 @@ class AppRouter {
                 pageBuilder: (context, state) {
                   initHomeModule();
                   return CustomTransitionPage(
-                    transitionDuration: const Duration(milliseconds: 1140),
+                    key: state.pageKey,
                     child: const HomeView(),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
-                      return SlideTransition(
-                        position: Tween<Offset>(
-                          begin: const Offset(0.0, -1.0),
-                          end: const Offset(0.0, 0.0),
-                        ).animate(
-                          CurvedAnimation(
-                            parent: animation,
-                            curve: const Cubic(0.74, 0.01, 0.01, 0.98),
-                          ),
-                        ),
+                      return FadeTransition(
+                        opacity: CurveTween(curve: Curves.easeInOutCirc)
+                            .animate(animation),
                         child: child,
                       );
                     },
@@ -130,47 +123,94 @@ class AppRouter {
             GoRoute(
               name: RoutesNames.rent,
               path: RoutesPaths.rent,
-              builder: (context, state) {
+              pageBuilder: (context, state) {
                 initRentModule();
-                return BlocProvider(
-                  create: (context) => instance<RentBloc>()
-                    ..add(const RentEvent.getRentLookupEvent()),
-                  child: const RentView(),
+                return CustomTransitionPage(
+                  key: state.pageKey,
+                  child: BlocProvider(
+                    create: (context) => instance<RentBloc>()
+                      ..add(const RentEvent.getRentLookupEvent()),
+                    child: const RentView(),
+                  ),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: CurveTween(curve: Curves.easeInOutCirc)
+                          .animate(animation),
+                      child: child,
+                    );
+                  },
                 );
               },
             ),
             GoRoute(
-                name: RoutesNames.sales,
-                path: RoutesPaths.sales,
-                builder: (context, state) {
-                  initSellModule();
-                  return BlocProvider(
+              name: RoutesNames.sales,
+              path: RoutesPaths.sales,
+              pageBuilder: (context, state) {
+                initSellModule();
+                return CustomTransitionPage(
+                  key: state.pageKey,
+                  child: BlocProvider(
                     create: (context) => instance<SellBloc>()
                       ..add(const SellEvent.getSellLookupEvent()),
                     child: const SalesView(),
-                  );
-                }),
+                  ),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: CurveTween(curve: Curves.easeInOutCirc)
+                          .animate(animation),
+                      child: child,
+                    );
+                  },
+                );
+              },
+            ),
             GoRoute(
-                name: RoutesNames.mortgage,
-                path: RoutesPaths.mortgage,
-                builder: (context, state) {
-                  initMortgageModule();
-                  return BlocProvider(
+              name: RoutesNames.mortgage,
+              path: RoutesPaths.mortgage,
+              pageBuilder: (context, state) {
+                initMortgageModule();
+                return CustomTransitionPage(
+                  key: state.pageKey,
+                  child: BlocProvider(
                     create: (context) => instance<MortgageBloc>()
                       ..add(const MortgageEvent.started()),
                     child: const MortgageView(),
-                  );
-                }),
+                  ),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: CurveTween(curve: Curves.easeInOutCirc)
+                          .animate(animation),
+                      child: child,
+                    );
+                  },
+                );
+              },
+            ),
             GoRoute(
-                name: RoutesNames.more,
-                path: RoutesPaths.more,
-                builder: (context, state) {
-                  initLoginModule();
-                  return const MoreView();
-                }),
+              name: RoutesNames.more,
+              path: RoutesPaths.more,
+              pageBuilder: (context, state) {
+                initLoginModule();
+                return CustomTransitionPage(
+                  key: state.pageKey,
+                  child: const MoreView(),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: CurveTween(curve: Curves.easeInOutCirc)
+                          .animate(animation),
+                      child: child,
+                    );
+                  },
+                );
+              },
+            ),
           ],
         ),
-        // StatefulShellRoute.indexedStack(
+        // StatefulShellRoute.indexedStac0k(
         //   pageBuilder: (context, state, navigationShell) {
         // return CustomTransitionPage(
         //   transitionDuration: const Duration(milliseconds: 1140),
