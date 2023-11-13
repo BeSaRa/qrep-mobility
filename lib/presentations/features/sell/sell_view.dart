@@ -437,7 +437,7 @@ class _SalesViewState extends State<SalesView> {
                                                       title: AppStrings()
                                                           .sellPrice,
                                                       totalPrice:
-                                                          "${success.transactionList[index].realEstateValue?.toStringAsFixed(1)} ${AppStrings().currency}",
+                                                          "${success.transactionList[index].realEstateValue?.formatWithCommas()} ${AppStrings().currency}",
                                                       value: context
                                                                   .read<
                                                                       SellBloc>()
@@ -466,17 +466,34 @@ class _SalesViewState extends State<SalesView> {
                                                                   .requestSell
                                                                   .unit ==
                                                               1
-                                                          ? AppStrings().meter
-                                                          : AppStrings().foot,
+                                                          ? AppStrings()
+                                                              .meterSquare
+                                                          : AppStrings()
+                                                              .footSquare,
                                                       titleInfo:
-                                                          "${AppStrings().theUnitPrice}:",
-                                                      valueInfo: success
-                                                              .transactionList[
-                                                                  index]
-                                                              .priceMT
-                                                              ?.toStringAsFixed(
-                                                                  0) ??
-                                                          '0',
+                                                          "${AppStrings().theUnitPrice} "
+                                                          "(${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})"
+                                                          ": ",
+                                                      valueInfo: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSell
+                                                                  .unit ==
+                                                              1
+                                                          ? success
+                                                                  .transactionList[
+                                                                      index]
+                                                                  .priceMT
+                                                                  ?.toStringAsFixed(
+                                                                      0) ??
+                                                              '0'
+                                                          : success
+                                                                  .transactionList[
+                                                                      index]
+                                                                  .priceSQ
+                                                                  ?.toStringAsFixed(
+                                                                      0) ??
+                                                              '0',
                                                       location: context.locale ==
                                                               ARABIC_LOCAL
                                                           ? getObjectByLookupKey(

@@ -75,7 +75,7 @@ class MainDataContainer extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     SizedBox(width: AppSizeW.s4),
-                    Column(
+                    Row(
                       children: [
                         Text(valueDescription,
                             style: Theme.of(context).textTheme.titleSmall),

@@ -259,7 +259,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
 
   String getValues(num e) {
     if (tenIndexCubit.state == 1 || tenIndexCubit.state == 2) {
-      return e.toStringAsFixed(0);
+      return e.formatWithCommasToInt();
     } else {
       return "${e.round().formatWithCommas()} ${AppStrings().currency}";
     }
@@ -280,7 +280,7 @@ class _TabContainerShimmer extends StatelessWidget {
     return Container(
       margin: EdgeInsets.all(AppSizeH.s0_2),
       padding:
-          EdgeInsets.symmetric(horizontal: AppSizeW.s5, vertical: AppSizeH.s6),
+          EdgeInsets.symmetric(horizontal: AppSizeW.s3, vertical: AppSizeH.s6),
       decoration: BoxDecoration(
           color: context.read<CertificateContractBloc>().index == tabIndex
               ? ColorManager.primary

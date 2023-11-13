@@ -15,13 +15,13 @@ import 'package:lottie/lottie.dart';
 import '../../../app/depndency_injection.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
+import '../../widgets/grid/grid_item_widget.dart';
 import '../../widgets/pagination_widget/pagination_widget.dart';
 import '../../widgets/selected_municipality_widget.dart';
 import '../../widgets/widgets.dart';
 import 'blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import 'blocs/default_bloc/rent_default_bloc.dart';
 import 'widgets/main_container_rent.dart';
-import '../../widgets/grid/grid_item_widget.dart';
 import 'widgets/statistics_rent_widget.dart';
 
 class RentView extends StatefulWidget {
@@ -432,7 +432,7 @@ class _RentViewState extends State<RentView> {
                                               return MainRentDataContainer(
                                                 title: AppStrings().rentValue,
                                                 totalPrice:
-                                                    "${state.rentSummery.transactionList[index].rentPaymentMeterMT?.toStringAsFixed(3)} ${AppStrings().currency}",
+                                                    "${state.rentSummery.transactionList[index].rentPaymentMonthly?.round()} ${AppStrings().currency}",
                                                 titleInfo:
                                                     "${AppStrings().roomsCount}:",
                                                 valueInfo: state
