@@ -2423,6 +2423,10 @@ mixin _$BaseRentResponse {
   num get kpiYoYVal => throw _privateConstructorUsedError;
   num get purposeId => throw _privateConstructorUsedError;
   num get propertyTypeId => throw _privateConstructorUsedError;
+  num get realEstateMT => throw _privateConstructorUsedError;
+  num get realEstateSQT => throw _privateConstructorUsedError;
+  num get priceMT => throw _privateConstructorUsedError;
+  num get priceSQ => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2444,7 +2448,11 @@ abstract class $BaseRentResponseCopyWith<$Res> {
       num kpiYoYDifference,
       num kpiYoYVal,
       num purposeId,
-      num propertyTypeId});
+      num propertyTypeId,
+      num realEstateMT,
+      num realEstateSQT,
+      num priceMT,
+      num priceSQ});
 }
 
 /// @nodoc
@@ -2468,6 +2476,10 @@ class _$BaseRentResponseCopyWithImpl<$Res, $Val extends BaseRentResponse>
     Object? kpiYoYVal = null,
     Object? purposeId = null,
     Object? propertyTypeId = null,
+    Object? realEstateMT = null,
+    Object? realEstateSQT = null,
+    Object? priceMT = null,
+    Object? priceSQ = null,
   }) {
     return _then(_value.copyWith(
       issueYear: null == issueYear
@@ -2502,6 +2514,22 @@ class _$BaseRentResponseCopyWithImpl<$Res, $Val extends BaseRentResponse>
           ? _value.propertyTypeId
           : propertyTypeId // ignore: cast_nullable_to_non_nullable
               as num,
+      realEstateMT: null == realEstateMT
+          ? _value.realEstateMT
+          : realEstateMT // ignore: cast_nullable_to_non_nullable
+              as num,
+      realEstateSQT: null == realEstateSQT
+          ? _value.realEstateSQT
+          : realEstateSQT // ignore: cast_nullable_to_non_nullable
+              as num,
+      priceMT: null == priceMT
+          ? _value.priceMT
+          : priceMT // ignore: cast_nullable_to_non_nullable
+              as num,
+      priceSQ: null == priceSQ
+          ? _value.priceSQ
+          : priceSQ // ignore: cast_nullable_to_non_nullable
+              as num,
     ) as $Val);
   }
 }
@@ -2522,7 +2550,11 @@ abstract class _$$BaseRentResponseImplCopyWith<$Res>
       num kpiYoYDifference,
       num kpiYoYVal,
       num purposeId,
-      num propertyTypeId});
+      num propertyTypeId,
+      num realEstateMT,
+      num realEstateSQT,
+      num priceMT,
+      num priceSQ});
 }
 
 /// @nodoc
@@ -2544,6 +2576,10 @@ class __$$BaseRentResponseImplCopyWithImpl<$Res>
     Object? kpiYoYVal = null,
     Object? purposeId = null,
     Object? propertyTypeId = null,
+    Object? realEstateMT = null,
+    Object? realEstateSQT = null,
+    Object? priceMT = null,
+    Object? priceSQ = null,
   }) {
     return _then(_$BaseRentResponseImpl(
       issueYear: null == issueYear
@@ -2578,6 +2614,22 @@ class __$$BaseRentResponseImplCopyWithImpl<$Res>
           ? _value.propertyTypeId
           : propertyTypeId // ignore: cast_nullable_to_non_nullable
               as num,
+      realEstateMT: null == realEstateMT
+          ? _value.realEstateMT
+          : realEstateMT // ignore: cast_nullable_to_non_nullable
+              as num,
+      realEstateSQT: null == realEstateSQT
+          ? _value.realEstateSQT
+          : realEstateSQT // ignore: cast_nullable_to_non_nullable
+              as num,
+      priceMT: null == priceMT
+          ? _value.priceMT
+          : priceMT // ignore: cast_nullable_to_non_nullable
+              as num,
+      priceSQ: null == priceSQ
+          ? _value.priceSQ
+          : priceSQ // ignore: cast_nullable_to_non_nullable
+              as num,
     ));
   }
 }
@@ -2593,7 +2645,11 @@ class _$BaseRentResponseImpl implements _BaseRentResponse {
       this.kpiYoYDifference = 0,
       this.kpiYoYVal = 0,
       this.purposeId = 0,
-      this.propertyTypeId = 0});
+      this.propertyTypeId = 0,
+      this.realEstateMT = 0,
+      this.realEstateSQT = 0,
+      this.priceMT = 0,
+      this.priceSQ = 0});
 
   factory _$BaseRentResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$BaseRentResponseImplFromJson(json);
@@ -2622,10 +2678,22 @@ class _$BaseRentResponseImpl implements _BaseRentResponse {
   @override
   @JsonKey()
   final num propertyTypeId;
+  @override
+  @JsonKey()
+  final num realEstateMT;
+  @override
+  @JsonKey()
+  final num realEstateSQT;
+  @override
+  @JsonKey()
+  final num priceMT;
+  @override
+  @JsonKey()
+  final num priceSQ;
 
   @override
   String toString() {
-    return 'BaseRentResponse(issueYear: $issueYear, kpiPreviousYear: $kpiPreviousYear, kpiVal: $kpiVal, zoneId: $zoneId, kpiYoYDifference: $kpiYoYDifference, kpiYoYVal: $kpiYoYVal, purposeId: $purposeId, propertyTypeId: $propertyTypeId)';
+    return 'BaseRentResponse(issueYear: $issueYear, kpiPreviousYear: $kpiPreviousYear, kpiVal: $kpiVal, zoneId: $zoneId, kpiYoYDifference: $kpiYoYDifference, kpiYoYVal: $kpiYoYVal, purposeId: $purposeId, propertyTypeId: $propertyTypeId, realEstateMT: $realEstateMT, realEstateSQT: $realEstateSQT, priceMT: $priceMT, priceSQ: $priceSQ)';
   }
 
   @override
@@ -2646,13 +2714,31 @@ class _$BaseRentResponseImpl implements _BaseRentResponse {
             (identical(other.purposeId, purposeId) ||
                 other.purposeId == purposeId) &&
             (identical(other.propertyTypeId, propertyTypeId) ||
-                other.propertyTypeId == propertyTypeId));
+                other.propertyTypeId == propertyTypeId) &&
+            (identical(other.realEstateMT, realEstateMT) ||
+                other.realEstateMT == realEstateMT) &&
+            (identical(other.realEstateSQT, realEstateSQT) ||
+                other.realEstateSQT == realEstateSQT) &&
+            (identical(other.priceMT, priceMT) || other.priceMT == priceMT) &&
+            (identical(other.priceSQ, priceSQ) || other.priceSQ == priceSQ));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, issueYear, kpiPreviousYear,
-      kpiVal, zoneId, kpiYoYDifference, kpiYoYVal, purposeId, propertyTypeId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      issueYear,
+      kpiPreviousYear,
+      kpiVal,
+      zoneId,
+      kpiYoYDifference,
+      kpiYoYVal,
+      purposeId,
+      propertyTypeId,
+      realEstateMT,
+      realEstateSQT,
+      priceMT,
+      priceSQ);
 
   @JsonKey(ignore: true)
   @override
@@ -2678,7 +2764,11 @@ abstract class _BaseRentResponse implements BaseRentResponse {
       final num kpiYoYDifference,
       final num kpiYoYVal,
       final num purposeId,
-      final num propertyTypeId}) = _$BaseRentResponseImpl;
+      final num propertyTypeId,
+      final num realEstateMT,
+      final num realEstateSQT,
+      final num priceMT,
+      final num priceSQ}) = _$BaseRentResponseImpl;
 
   factory _BaseRentResponse.fromJson(Map<String, dynamic> json) =
       _$BaseRentResponseImpl.fromJson;
@@ -2699,6 +2789,14 @@ abstract class _BaseRentResponse implements BaseRentResponse {
   num get purposeId;
   @override
   num get propertyTypeId;
+  @override
+  num get realEstateMT;
+  @override
+  num get realEstateSQT;
+  @override
+  num get priceMT;
+  @override
+  num get priceSQ;
   @override
   @JsonKey(ignore: true)
   _$$BaseRentResponseImplCopyWith<_$BaseRentResponseImpl> get copyWith =>

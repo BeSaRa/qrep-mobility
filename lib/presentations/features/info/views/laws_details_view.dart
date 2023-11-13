@@ -8,8 +8,9 @@ import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../home/home_view.dart';
 
 class LawsDetailsView extends StatefulWidget {
   final int id;
@@ -43,6 +44,7 @@ class _LawsDetailsViewState extends State<LawsDetailsView> {
   }
 
   int expandedTileIndex = -1;
+
   @override
   Widget build(BuildContext context) {
     lawsModel = context.read<LawsBloc>().getLawModelById(widget.id);
@@ -101,20 +103,25 @@ class _LawsDetailsViewState extends State<LawsDetailsView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              SizedBox(height: AppSizeH.s46),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppSizeW.s120),
-                child: Container(
-                    padding: EdgeInsets.symmetric(
-                        vertical: AppSizeH.s27, horizontal: AppSizeW.s35),
-                    decoration: BoxDecoration(
-                        color: ColorManager.white,
-                        border: Border.all(
-                            width: 1, color: ColorManager.lightSilver),
-                        borderRadius: BorderRadius.circular(AppSizeR.s15)),
-                    child: SvgPicture.asset(IconAssets.lawsHome)),
+              SizedBox(
+                height: AppSizeH.s10,
               ),
-              SizedBox(height: AppSizeH.s56),
+              Hero(
+                tag: "thelaw",
+                child: Center(
+                  child: SizedBox(
+                    width: AppSizeW.s112,
+                    height: AppSizeH.s90,
+                    child: StaticPagesContainer(
+                      icon: IconAssets.lawsHome,
+                      title: Container(),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: AppSizeH.s40,
+              ),
               BlocProvider(
                 create: (context) => ExpandedTileIndexCubit(),
                 child: ListView.separated(
@@ -151,6 +158,7 @@ class LawArticleWidget extends StatefulWidget {
   final FaqItemModel? faqItemModel;
   final double maxExpandedHeight;
   final int index;
+
   const LawArticleWidget({
     Key? key,
     required this.article,

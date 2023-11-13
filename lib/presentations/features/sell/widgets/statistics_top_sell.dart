@@ -5,6 +5,7 @@ import 'package:ebla/presentations/features/sell/blocs/top_values_bloc/topvalues
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../domain/models/rent_models/rent_models.dart';
 import '../../../../utils/global_functions.dart';
 import '../../../resources/resources.dart';
 import '../../../widgets/widgets.dart';
@@ -60,7 +61,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                         borderRadius: BorderRadius.circular(AppSizeR.s12),
                       ),
                       child: SizedBox(
-                        height: AppSizeH.s54,
+                        height: AppSizeH.s60,
                         width: MediaQuery.of(context).size.width - AppSizeW.s52,
                         child: Wrap(
                           alignment: WrapAlignment.center,
@@ -79,7 +80,8 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                             ),
                             _TabContainerShimmer(
                               tabIndex: 4,
-                              name: AppStrings().soldAreas,
+                              name:
+                                  "${AppStrings().soldAreas} (${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
                             ),
                             _TabContainerShimmer(
                               tabIndex: 5,
@@ -87,7 +89,8 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                             ),
                             _TabContainerShimmer(
                               tabIndex: 6,
-                              name: AppStrings().avgPricePerSquareFoot,
+                              name: "${AppStrings().avgPricePer} "
+                                  "(${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
                             ),
                           ],
                         ),
@@ -105,7 +108,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                     borderRadius: BorderRadius.circular(AppSizeR.s12),
                   ),
                   child: SizedBox(
-                    height: AppSizeH.s54,
+                    height: AppSizeH.s60,
                     width: MediaQuery.of(context).size.width - AppSizeW.s52,
                     child: Wrap(
                       alignment: WrapAlignment.center,
@@ -145,7 +148,8 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                             }),
                         _TabContainer(
                             indexTab: 4,
-                            name: AppStrings().soldAreas,
+                            name:
+                                "${AppStrings().soldAreas} (${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
                             onPress: () {
                               tenIndexCubit.save(4);
                               context.read<TopvaluesBloc>().add(
@@ -167,7 +171,8 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                             }),
                         _TabContainer(
                             indexTab: 6,
-                            name: AppStrings().avgPricePerSquareFoot,
+                            name: "${AppStrings().avgPricePer} "
+                                "(${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
                             onPress: () {
                               tenIndexCubit.save(6);
                               context.read<TopvaluesBloc>().add(
@@ -230,7 +235,9 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                                     e.zoneId.toInt())
                                 ?.enName ??
                             '',
-                    number: getValue(e.kpiVal));
+                    number: tenIndexCubit.state == 4 || tenIndexCubit.state == 6
+                        ? getSpaces(e)
+                        : getValue(e.kpiVal));
               }).toList());
             }
             if (state.listResponse.isEmpty) {
@@ -259,6 +266,22 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
     );
   }
 
+  String getSpaces(BaseRentResponse e) {
+    if (tenIndexCubit.state == 6) {
+      return context.read<SellBloc>().requestSell.unit == 1
+          ? "${e.priceMT.round().formatWithCommas()} "
+              "${AppStrings().currency}"
+          : "${e.priceSQ.round().formatWithCommas()} "
+              "${AppStrings().currency}";
+    } else {
+      return context.read<SellBloc>().requestSell.unit == 1
+          ? "${e.realEstateMT.round().formatWithCommas()} "
+              "${AppStrings().meterSquare}"
+          : "${e.realEstateSQT.round().formatWithCommas()} "
+              "${AppStrings().footSquare}";
+    }
+  }
+
   String getValue(num e) {
     if (tenIndexCubit.state == 1 || tenIndexCubit.state == 5) {
       return e.toStringAsFixed(0);
@@ -282,10 +305,15 @@ class _TabContainerShimmer extends StatelessWidget {
     return Container(
       padding:
           EdgeInsets.symmetric(horizontal: AppSizeW.s5, vertical: AppSizeH.s6),
+      margin: EdgeInsets.all(AppSizeH.s0_5),
       decoration: BoxDecoration(
           color: context.read<TopvaluesBloc>().index == tabIndex
               ? ColorManager.primary
               : Colors.transparent,
+          border: Border.all(
+            color: ColorManager.silver,
+            width: AppSizeH.s1,
+          ),
           borderRadius: BorderRadius.circular(AppSizeR.s10)),
       child: Text(
         name,
@@ -295,7 +323,7 @@ class _TabContainerShimmer extends StatelessWidget {
                 .displayMedium!
                 .copyWith(fontSize: AppSizeSp.s12)
             : Theme.of(context).textTheme.headlineMedium!.copyWith(
-                fontSize: AppSizeSp.s12, decoration: TextDecoration.underline),
+                fontSize: AppSizeSp.s12, decoration: TextDecoration.none),
       ),
     );
   }
@@ -322,12 +350,17 @@ class _TabContainer extends StatelessWidget {
         onPress();
       },
       child: Container(
+        margin: EdgeInsets.all(AppSizeH.s0_5),
         padding: EdgeInsets.symmetric(
             horizontal: AppSizeW.s5, vertical: AppSizeH.s6),
         decoration: BoxDecoration(
             color: context.read<TopvaluesBloc>().index == indexTab
                 ? ColorManager.primary
                 : Colors.transparent,
+            border: Border.all(
+              color: ColorManager.silver,
+              width: AppSizeH.s1,
+            ),
             borderRadius: BorderRadius.circular(AppSizeR.s10)),
         child: Text(
           name,
@@ -337,8 +370,7 @@ class _TabContainer extends StatelessWidget {
                   .displayMedium!
                   .copyWith(fontSize: AppSizeSp.s12)
               : Theme.of(context).textTheme.headlineMedium!.copyWith(
-                  fontSize: AppSizeSp.s12,
-                  decoration: TextDecoration.underline),
+                  fontSize: AppSizeSp.s12, decoration: TextDecoration.none),
         ),
       ),
     );

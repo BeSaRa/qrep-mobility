@@ -66,3 +66,11 @@ Future<void> forGroundHandler(RemoteMessage message) async {
   //     ),
   //     background: Colors.transparent);
 }
+
+Future<void> backgroundHandler(RemoteMessage message) async {
+  getNotificationPermissions();
+  if (kDebugMode) {
+    print(message.data.toString());
+    print(message.notification!.title);
+  }
+}
