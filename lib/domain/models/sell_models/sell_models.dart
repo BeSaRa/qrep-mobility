@@ -10,6 +10,7 @@ abstract class SellTransaction with _$SellTransaction {
       @Default('') String? issueDate,
       @Default(0) int? municipalityId,
       @Default(0) double? priceMT,
+      @Default(0) double? priceSQ,
       @Default(0) double? realEstateMT,
       @Default(0) double? realEstateSQT,
       @Default(0) double? realEstateValue,

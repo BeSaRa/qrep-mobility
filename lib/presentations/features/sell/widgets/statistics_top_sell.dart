@@ -62,7 +62,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                         borderRadius: BorderRadius.circular(AppSizeR.s12),
                       ),
                       child: SizedBox(
-                        height: AppSizeH.s54,
+                        height: AppSizeH.s60,
                         width: MediaQuery.of(context).size.width - AppSizeW.s52,
                         child: Wrap(
                           alignment: WrapAlignment.center,
@@ -90,7 +90,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                             ),
                             _TabContainerShimmer(
                               tabIndex: 6,
-                              name: "${AppStrings().avgPricePerSquareFoot} "
+                              name: "${AppStrings().avgPricePer} "
                                   "(${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
                             ),
                           ],
@@ -109,7 +109,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                     borderRadius: BorderRadius.circular(AppSizeR.s12),
                   ),
                   child: SizedBox(
-                    height: AppSizeH.s54,
+                    height: AppSizeH.s60,
                     width: MediaQuery.of(context).size.width - AppSizeW.s52,
                     child: Wrap(
                       alignment: WrapAlignment.center,
@@ -172,7 +172,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                             }),
                         _TabContainer(
                             indexTab: 6,
-                            name: "${AppStrings().avgPricePerSquareFoot} "
+                            name: "${AppStrings().avgPricePer} "
                                 "(${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
                             onPress: () {
                               tenIndexCubit.save(6);
@@ -306,6 +306,7 @@ class _TabContainerShimmer extends StatelessWidget {
     return Container(
       padding:
           EdgeInsets.symmetric(horizontal: AppSizeW.s5, vertical: AppSizeH.s6),
+      margin: EdgeInsets.all(AppSizeH.s0_5),
       decoration: BoxDecoration(
           color: context.read<TopvaluesBloc>().index == tabIndex
               ? ColorManager.primary
@@ -350,6 +351,7 @@ class _TabContainer extends StatelessWidget {
         onPress();
       },
       child: Container(
+        margin: EdgeInsets.all(AppSizeH.s0_5),
         padding: EdgeInsets.symmetric(
             horizontal: AppSizeW.s5, vertical: AppSizeH.s6),
         decoration: BoxDecoration(

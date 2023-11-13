@@ -28,10 +28,11 @@ class ColoredPrinter {
     ColoredPrinter.printColored('$pre${'═' * 100}$suf', color);
   }
 
-  static void printColored(String text, [AnsiColor? color = AnsiColor.green]) {
+  static void printColored(Object? object,
+      [AnsiColor? color = AnsiColor.green]) {
     final ansiCode = _colorCodes[color];
     if (ansiCode != null) {
-      print('$ansiCode$text${_colorCodes[AnsiColor.reset]}');
+      print('$ansiCode$object${_colorCodes[AnsiColor.reset]}');
     } else {
       print('Unknown color: $color');
     }

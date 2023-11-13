@@ -56,7 +56,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                         borderRadius: BorderRadius.circular(AppSizeR.s12),
                       ),
                       child: SizedBox(
-                        height: AppSizeH.s54,
+                        height: AppSizeH.s60,
                         width: MediaQuery.of(context).size.width - AppSizeW.s52,
                         child: Wrap(
                           alignment: WrapAlignment.center,
@@ -101,7 +101,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                     borderRadius: BorderRadius.circular(AppSizeR.s12),
                   ),
                   child: SizedBox(
-                    height: AppSizeH.s54,
+                    height: AppSizeH.s60,
                     width: MediaQuery.of(context).size.width - AppSizeW.s52,
                     child: Wrap(
                       alignment: WrapAlignment.center,
@@ -260,7 +260,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
 
   String getValues(num e) {
     if (tenIndexCubit.state == 1 || tenIndexCubit.state == 2) {
-      return e.toStringAsFixed(0);
+      return e.formatWithCommasToInt();
     } else {
       return "${e.round().formatWithCommas()} ${AppStrings().currency}";
     }
@@ -279,8 +279,9 @@ class _TabContainerShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.all(AppSizeH.s0_2),
       padding:
-          EdgeInsets.symmetric(horizontal: AppSizeW.s5, vertical: AppSizeH.s6),
+          EdgeInsets.symmetric(horizontal: AppSizeW.s3, vertical: AppSizeH.s6),
       decoration: BoxDecoration(
           color: context.read<CertificateContractBloc>().index == tabIndex
               ? ColorManager.primary
@@ -325,8 +326,9 @@ class _TabContainer extends StatelessWidget {
         onPress();
       },
       child: Container(
+        margin: EdgeInsets.all(AppSizeH.s0_2),
         padding: EdgeInsets.symmetric(
-            horizontal: AppSizeW.s5, vertical: AppSizeH.s6),
+            horizontal: AppSizeW.s3, vertical: AppSizeH.s6),
         decoration: BoxDecoration(
             color: context.read<CertificateContractBloc>().index == indexTab
                 ? ColorManager.primary

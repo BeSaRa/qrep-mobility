@@ -24,6 +24,7 @@ mixin _$SellTransaction {
   String? get issueDate => throw _privateConstructorUsedError;
   int? get municipalityId => throw _privateConstructorUsedError;
   double? get priceMT => throw _privateConstructorUsedError;
+  double? get priceSQ => throw _privateConstructorUsedError;
   double? get realEstateMT => throw _privateConstructorUsedError;
   double? get realEstateSQT => throw _privateConstructorUsedError;
   double? get realEstateValue => throw _privateConstructorUsedError;
@@ -49,6 +50,7 @@ abstract class $SellTransactionCopyWith<$Res> {
       String? issueDate,
       int? municipalityId,
       double? priceMT,
+      double? priceSQ,
       double? realEstateMT,
       double? realEstateSQT,
       double? realEstateValue,
@@ -75,6 +77,7 @@ class _$SellTransactionCopyWithImpl<$Res, $Val extends SellTransaction>
     Object? issueDate = freezed,
     Object? municipalityId = freezed,
     Object? priceMT = freezed,
+    Object? priceSQ = freezed,
     Object? realEstateMT = freezed,
     Object? realEstateSQT = freezed,
     Object? realEstateValue = freezed,
@@ -99,6 +102,10 @@ class _$SellTransactionCopyWithImpl<$Res, $Val extends SellTransaction>
       priceMT: freezed == priceMT
           ? _value.priceMT
           : priceMT // ignore: cast_nullable_to_non_nullable
+              as double?,
+      priceSQ: freezed == priceSQ
+          ? _value.priceSQ
+          : priceSQ // ignore: cast_nullable_to_non_nullable
               as double?,
       realEstateMT: freezed == realEstateMT
           ? _value.realEstateMT
@@ -145,6 +152,7 @@ abstract class _$$SellTransactionImplCopyWith<$Res>
       String? issueDate,
       int? municipalityId,
       double? priceMT,
+      double? priceSQ,
       double? realEstateMT,
       double? realEstateSQT,
       double? realEstateValue,
@@ -169,6 +177,7 @@ class __$$SellTransactionImplCopyWithImpl<$Res>
     Object? issueDate = freezed,
     Object? municipalityId = freezed,
     Object? priceMT = freezed,
+    Object? priceSQ = freezed,
     Object? realEstateMT = freezed,
     Object? realEstateSQT = freezed,
     Object? realEstateValue = freezed,
@@ -193,6 +202,10 @@ class __$$SellTransactionImplCopyWithImpl<$Res>
       priceMT: freezed == priceMT
           ? _value.priceMT
           : priceMT // ignore: cast_nullable_to_non_nullable
+              as double?,
+      priceSQ: freezed == priceSQ
+          ? _value.priceSQ
+          : priceSQ // ignore: cast_nullable_to_non_nullable
               as double?,
       realEstateMT: freezed == realEstateMT
           ? _value.realEstateMT
@@ -234,6 +247,7 @@ class _$SellTransactionImpl implements _SellTransaction {
       this.issueDate = '',
       this.municipalityId = 0,
       this.priceMT = 0,
+      this.priceSQ = 0,
       this.realEstateMT = 0,
       this.realEstateSQT = 0,
       this.realEstateValue = 0,
@@ -259,6 +273,9 @@ class _$SellTransactionImpl implements _SellTransaction {
   final double? priceMT;
   @override
   @JsonKey()
+  final double? priceSQ;
+  @override
+  @JsonKey()
   final double? realEstateMT;
   @override
   @JsonKey()
@@ -281,7 +298,7 @@ class _$SellTransactionImpl implements _SellTransaction {
 
   @override
   String toString() {
-    return 'SellTransaction(areaCode: $areaCode, issueDate: $issueDate, municipalityId: $municipalityId, priceMT: $priceMT, realEstateMT: $realEstateMT, realEstateSQT: $realEstateSQT, realEstateValue: $realEstateValue, roi: $roi, soldTo: $soldTo, unitNo: $unitNo, unitStatus: $unitStatus)';
+    return 'SellTransaction(areaCode: $areaCode, issueDate: $issueDate, municipalityId: $municipalityId, priceMT: $priceMT, priceSQ: $priceSQ, realEstateMT: $realEstateMT, realEstateSQT: $realEstateSQT, realEstateValue: $realEstateValue, roi: $roi, soldTo: $soldTo, unitNo: $unitNo, unitStatus: $unitStatus)';
   }
 
   @override
@@ -296,6 +313,7 @@ class _$SellTransactionImpl implements _SellTransaction {
             (identical(other.municipalityId, municipalityId) ||
                 other.municipalityId == municipalityId) &&
             (identical(other.priceMT, priceMT) || other.priceMT == priceMT) &&
+            (identical(other.priceSQ, priceSQ) || other.priceSQ == priceSQ) &&
             (identical(other.realEstateMT, realEstateMT) ||
                 other.realEstateMT == realEstateMT) &&
             (identical(other.realEstateSQT, realEstateSQT) ||
@@ -317,6 +335,7 @@ class _$SellTransactionImpl implements _SellTransaction {
       issueDate,
       municipalityId,
       priceMT,
+      priceSQ,
       realEstateMT,
       realEstateSQT,
       realEstateValue,
@@ -346,6 +365,7 @@ abstract class _SellTransaction implements SellTransaction {
       final String? issueDate,
       final int? municipalityId,
       final double? priceMT,
+      final double? priceSQ,
       final double? realEstateMT,
       final double? realEstateSQT,
       final double? realEstateValue,
@@ -365,6 +385,8 @@ abstract class _SellTransaction implements SellTransaction {
   int? get municipalityId;
   @override
   double? get priceMT;
+  @override
+  double? get priceSQ;
   @override
   double? get realEstateMT;
   @override
