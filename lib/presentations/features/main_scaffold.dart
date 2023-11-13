@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../widgets/ebla_navigation_bar.dart';
-import 'blocs/cubit/bottom_nav_cubit.dart';
+import 'main/cubit/bottom_nav_cubit.dart';
 
 class MainScaffold extends StatefulWidget {
   // final StatefulNavigationShell navigationShell;

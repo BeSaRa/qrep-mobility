@@ -10,23 +10,22 @@ part 'sell_state.dart';
 part 'sell_bloc.freezed.dart';
 
 class SellBloc extends Bloc<SellEvent, SellState> {
-  final GetSellLookupUseCase getSellLookupUseCase;
-  RentLookupResponse? loockUpSell;
-  SellBloc({required this.getSellLookupUseCase})
-      : super(const SellState.loadingSellLookup()) {
+  // final GetSellLookupUseCase getSellLookupUseCase;
+  // RentLookupResponse? loockUpSell;
+  SellBloc() : super(const SellState.loadingSellLookup()) {
     on<SellEvent>((event, emit) async {
-      await event.map(
-        getSellLookupEvent: (value) async {
-          emit(const SellState.loadingSellLookup());
-          final failureOrSuccess = await getSellLookupUseCase.execute();
-          failureOrSuccess.when((sellLookup) {
-            loockUpSell = sellLookup;
-            emit(SellState.loadedSellLookup(sellLookup: sellLookup));
-          }, (error) {
-            emit(SellState.errorSellLookUp(message: error.message));
-          });
-        },
-      );
+      // await event.map(
+      //   getSellLookupEvent: (value) async {
+      //     emit(const SellState.loadingSellLookup());
+      //     final failureOrSuccess = await getSellLookupUseCase.execute();
+      //     failureOrSuccess.when((sellLookup) {
+      //       loockUpSell = sellLookup;
+      //       emit(SellState.loadedSellLookup(sellLookup: sellLookup));
+      //     }, (error) {
+      //       emit(SellState.errorSellLookUp(message: error.message));
+      //     });
+      //   },
+      // );
     });
   }
   RequestSellValues requestSellDefault = RequestSellValues(

@@ -19,6 +19,7 @@ import '../../../utils/global_functions.dart';
 import '../../widgets/pagination_widget/pagination_widget.dart';
 import '../../widgets/selected_municipality_widget.dart';
 import '../../widgets/selected_year_widget.dart';
+import '../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
 import 'blocs/sell_bloc/sell_bloc.dart';
 import 'widgets/bottom_sheet_filter_sell.dart';
@@ -40,6 +41,7 @@ class _SalesViewState extends State<SalesView> {
 
   @override
   void initState() {
+    context.read<LookupBloc>().add(const LookupEvent.getSellLookupEvent());
     // sellGridKPIsBloc = instance<SellGridKPIsBloc>();
     sellGridKPIsBloc = instance<SellGridKPIsBloc>();
     sellDefaultBloc = instance<SellDefaultBloc>()
@@ -56,9 +58,9 @@ class _SalesViewState extends State<SalesView> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer(
-      listener: (context, SellState state) {
+      listener: (context, LookupState state) {
         state.mapOrNull(
-          loadedSellLookup: (value) {
+          loadedLookup: (value) {
             sellGridKPIsBloc.add(SellGridKPIsEvent.getData(
                 request: context.read<SellBloc>().requestSell));
             sellTransactionBloc.add(SellTransactionEvent.started(
@@ -68,13 +70,13 @@ class _SalesViewState extends State<SalesView> {
           },
         );
       },
-      bloc: context.read<SellBloc>(),
-      builder: (context, SellState state) {
+      bloc: context.read<LookupBloc>(),
+      builder: (context, LookupState state) {
         return state.map(
-          loadingSellLookup: (value) {
+          loadingLookup: (value) {
             return const AnimatedPulesLogo();
           },
-          loadedSellLookup: (value) {
+          loadedLookup: (value) {
             return BlocBuilder<SellDefaultBloc, SellDefaultState>(
                 bloc: sellDefaultBloc,
                 builder: (context, state) => state.when(
@@ -131,7 +133,7 @@ class _SalesViewState extends State<SalesView> {
                                                     value: getObjectByLookupKey(
                                                             context
                                                                     .read<
-                                                                        SellBloc>()
+                                                                        LookupBloc>()
                                                                     .loockUpSell
                                                                     ?.municipalityList ??
                                                                 [],
@@ -143,7 +145,7 @@ class _SalesViewState extends State<SalesView> {
                                                                 4) ??
                                                         const RentLookupModel(),
                                                     list: context
-                                                            .read<SellBloc>()
+                                                            .read<LookupBloc>()
                                                             .loockUpSell
                                                             ?.municipalityList ??
                                                         [],
@@ -232,12 +234,11 @@ class _SalesViewState extends State<SalesView> {
                                                   SizedBox(width: AppSizeW.s7),
                                                   BlocBuilder(
                                                     bloc: context
-                                                        .read<SellBloc>(),
+                                                        .read<LookupBloc>(),
                                                     builder: (context,
-                                                        SellState state) {
+                                                        LookupState state) {
                                                       return state.map(
-                                                        loadingSellLookup:
-                                                            (value) {
+                                                        loadingLookup: (value) {
                                                           return Icon(
                                                             Icons
                                                                 .filter_list_sharp,
@@ -245,8 +246,7 @@ class _SalesViewState extends State<SalesView> {
                                                                 .golden,
                                                           );
                                                         },
-                                                        loadedSellLookup:
-                                                            (value) {
+                                                        loadedLookup: (value) {
                                                           return IconButton(
                                                               onPressed:
                                                                   () async {
@@ -254,11 +254,15 @@ class _SalesViewState extends State<SalesView> {
                                                                     await bottomSheetWidget(
                                                                   context,
                                                                   child:
-                                                                      BlocProvider
-                                                                          .value(
-                                                                    value: context
-                                                                        .read<
-                                                                            SellBloc>(),
+                                                                      MultiBlocProvider(
+                                                                    providers: [
+                                                                      BlocProvider.value(
+                                                                          value:
+                                                                              context.read<SellBloc>()),
+                                                                      BlocProvider.value(
+                                                                          value:
+                                                                              context.read<LookupBloc>()),
+                                                                    ],
                                                                     child:
                                                                         const BottomSheetFilterSellWidget(),
                                                                   ),
@@ -295,8 +299,7 @@ class _SalesViewState extends State<SalesView> {
                                                                         .golden,
                                                               ));
                                                         },
-                                                        errorSellLookUp:
-                                                            (value) {
+                                                        errorLookUp: (value) {
                                                           return const SizedBox();
                                                         },
                                                       );
@@ -482,7 +485,7 @@ class _SalesViewState extends State<SalesView> {
                                                           ? getObjectByLookupKey(
                                                                       context
                                                                               .read<
-                                                                                  SellBloc>()
+                                                                                  LookupBloc>()
                                                                               .loockUpSell
                                                                               ?.municipalityList ??
                                                                           [],
@@ -493,7 +496,7 @@ class _SalesViewState extends State<SalesView> {
                                                           : getObjectByLookupKey(
                                                                       context
                                                                               .read<
-                                                                                  SellBloc>()
+                                                                                  LookupBloc>()
                                                                               .loockUpSell
                                                                               ?.municipalityList ??
                                                                           [],
@@ -739,13 +742,13 @@ class _SalesViewState extends State<SalesView> {
                           },
                         )));
           },
-          errorSellLookUp: (value) {
+          errorLookUp: (value) {
             return ErrorGlobalWidget(
               message: value.message,
               onPressed: () {
                 context
-                    .read<SellBloc>()
-                    .add(const SellEvent.getSellLookupEvent());
+                    .read<LookupBloc>()
+                    .add(const LookupEvent.getSellLookupEvent());
               },
             );
           },

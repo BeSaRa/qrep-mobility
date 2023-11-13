@@ -17,7 +17,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../app/depndency_injection.dart';
-import '../features/blocs/cubit/bottom_nav_cubit.dart';
+import '../features/main/blocs/lookup_bloc/lookup_bloc.dart';
+import '../features/main/cubit/bottom_nav_cubit.dart';
 import '../features/info/blocs/news_bloc/news_bloc.dart';
 import '../features/info/views/laws_decisions_view.dart';
 import '../features/info/views/news/news_item_view.dart';
@@ -77,8 +78,15 @@ class AppRouter {
           pageBuilder: (context, state, child) {
             return CustomTransitionPage(
               transitionDuration: const Duration(milliseconds: 1140),
-              child: BlocProvider(
-                create: (context) => instance<BottomNavCubit>(),
+              child: MultiBlocProvider(
+                providers: [
+                  BlocProvider(
+                    create: (context) => instance<BottomNavCubit>(),
+                  ),
+                  BlocProvider(
+                    create: (context) => instance<LookupBloc>(),
+                  ),
+                ],
                 child: MainScaffold(child: child),
               ),
               transitionsBuilder:

@@ -8,7 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../resources/resources.dart';
-import '../blocs/cubit/bottom_nav_cubit.dart';
+import '../main/cubit/bottom_nav_cubit.dart';
 import '../info/blocs/news_bloc/news_bloc.dart';
 import '../more/more_view.dart';
 import 'widgets/news_widget.dart';
