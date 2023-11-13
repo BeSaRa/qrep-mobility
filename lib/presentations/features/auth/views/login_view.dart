@@ -36,12 +36,12 @@ class _LoginViewState extends State<LoginView> {
     return BlocListener(
       bloc: context.read<LoginBloc>(),
       listener: (context, LoginState state) async {
-        await instance<AppPreferences>()
-            .setUserToken(state.successLogin.data.token);
-        await instance<AppPreferences>()
-            .setUserRefreshToken(state.successLogin.data.refreshToken);
-        await resetAllModules();
         if (state.isSuccessLogin) {
+          await instance<AppPreferences>()
+              .setUserToken(state.successLogin.data.token);
+          await instance<AppPreferences>()
+              .setUserRefreshToken(state.successLogin.data.refreshToken);
+          await resetAllModules();
           context.pop();
         }
       },

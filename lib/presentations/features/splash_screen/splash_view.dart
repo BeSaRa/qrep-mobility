@@ -1,3 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:ebla/app/depndency_injection.dart';
+import 'package:ebla/presentations/features/auth/blocs/login_bloc/login_bloc.dart';
 import 'package:ebla/presentations/features/splash_screen/widgets/animated_transparent_container.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
@@ -7,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../resources/routes_manager.dart';
+import 'bloc/bloc/guest_token_bloc.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -26,7 +31,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   // isVisible: used for the transparent container
   bool _isVisible = false;
   bool isRed = false;
-
+  late GuestTokenBloc guestToken;
   @override
   void initState() {
     super.initState();
@@ -34,6 +39,8 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
         // todo: when dark mode is ready change statusBarIconBrightness according to the theme
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.light));
+    guestToken = instance<GuestTokenBloc>()
+      ..add(const GuestTokenEvent.tokenGuest());
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Future.delayed(
         const Duration(milliseconds: 200),
@@ -53,8 +60,10 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   }
 
   void navigateAfterDelay() {
-    Future.delayed(const Duration(milliseconds: 200))
-        .then((value) => context.goNamed(RoutesNames.home));
+    Future.delayed(const Duration(milliseconds: 200)).then((value) async {
+      await initHomeModule();
+      context.goNamed(RoutesNames.home);
+    });
   }
 
   Future<void> showRedScreenAfterDelay() async {

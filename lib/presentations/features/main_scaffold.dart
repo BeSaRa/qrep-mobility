@@ -1,7 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../app/depndency_injection.dart';
+import '../../utils/global_functions.dart';
 import '../widgets/ebla_navigation_bar.dart';
 import 'main/cubit/bottom_nav_cubit.dart';
 
@@ -35,16 +39,28 @@ class _MainScaffoldState extends State<MainScaffold>
   Widget build(BuildContext context) {
     _controller.animateTo(context.read<BottomNavCubit>().currentPage,
         duration: kTabScrollDuration, curve: Curves.ease);
+
     return Scaffold(
       bottomNavigationBar: EblaNavigationBar(
-        onTap: (index) {
+        onTap: (index) async {
+          switch (index) {
+            case 0:
+              await initHomeModule();
+            case 1:
+              await initRentModule();
+            case 2:
+              await initSellModule();
+            case 3:
+              await initMortgageModule();
+            case 4:
+              initLoginModule();
+
+            default:
+              null;
+          }
+
           context.read<BottomNavCubit>().changePage(index);
           context.goNamed(context.read<BottomNavCubit>().paths[index]);
-
-          // widget.navigationShell.goBranch(
-          //   index,
-          //   initialLocation: index == widget.navigationShell.currentIndex,
-          // );
         },
         body: widget.child,
         currentPage: context.read<BottomNavCubit>().currentPage,

@@ -45,7 +45,7 @@ class GeneralInterceptor extends Interceptor {
                 refresh_token: appPreferences.getUserRefreshToken(),
                 mode: "json")))
             .when((success) {
-          // resetAllModules();
+          resetAllModules();
         }, (error) {});
       }
     } catch (e) {}

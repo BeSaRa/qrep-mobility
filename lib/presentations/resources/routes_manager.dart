@@ -83,9 +83,6 @@ class AppRouter {
                   BlocProvider(
                     create: (context) => instance<BottomNavCubit>(),
                   ),
-                  BlocProvider(
-                    create: (context) => instance<LookupBloc>(),
-                  ),
                 ],
                 child: MainScaffold(child: child),
               ),
@@ -114,7 +111,6 @@ class AppRouter {
                 name: RoutesNames.home,
                 path: RoutesPaths.home,
                 pageBuilder: (context, state) {
-                  initHomeModule();
                   return CustomTransitionPage(
                     key: state.pageKey,
                     child: const HomeView(),
@@ -132,7 +128,6 @@ class AppRouter {
               name: RoutesNames.rent,
               path: RoutesPaths.rent,
               pageBuilder: (context, state) {
-                initRentModule();
                 return CustomTransitionPage(
                   key: state.pageKey,
                   child: BlocProvider(
@@ -155,7 +150,6 @@ class AppRouter {
               name: RoutesNames.sales,
               path: RoutesPaths.sales,
               pageBuilder: (context, state) {
-                initSellModule();
                 return CustomTransitionPage(
                   key: state.pageKey,
                   child: BlocProvider(
@@ -178,7 +172,6 @@ class AppRouter {
               name: RoutesNames.mortgage,
               path: RoutesPaths.mortgage,
               pageBuilder: (context, state) {
-                initMortgageModule();
                 return CustomTransitionPage(
                   key: state.pageKey,
                   child: BlocProvider(
@@ -201,7 +194,6 @@ class AppRouter {
               name: RoutesNames.more,
               path: RoutesPaths.more,
               pageBuilder: (context, state) {
-                initLoginModule();
                 return CustomTransitionPage(
                   key: state.pageKey,
                   child: const MoreView(),
