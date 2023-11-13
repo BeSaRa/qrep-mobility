@@ -72,13 +72,10 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       //-------------------------------KPI1-------------------------------------
       failureOrSuccessTotalContracts.when(
         (success) {
-          success.isEmpty
-              ? emit(state.copyWith(
-                  isLoading: true, hasErrorTotalContracts: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasErrorTotalContracts: false,
-                  totalContracts: success));
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorTotalContracts: false,
+              totalContracts: success));
         },
         (error) {
           emit(state.copyWith(
@@ -92,13 +89,10 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       //-------------------------------KPI4-------------------------------------
       failureOrSuccessTotalSoldUnits.when(
         (success) {
-          success.isEmpty
-              ? emit(state.copyWith(
-                  isLoading: true, hasErrorTotalSoldUnits: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasErrorTotalSoldUnits: false,
-                  totalSoldUnits: success));
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorTotalSoldUnits: false,
+              totalSoldUnits: success));
         },
         (error) {
           emit(state.copyWith(
@@ -111,13 +105,10 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       //-------------------------------KPI7-------------------------------------
       failureOrSuccessTotalTransactions.when(
         (success) {
-          success.isEmpty
-              ? emit(state.copyWith(
-                  isLoading: true, hasErrorTotalTransactionsValue: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasErrorTotalTransactionsValue: false,
-                  totalTransactionsValue: success));
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorTotalTransactionsValue: false,
+              totalTransactionsValue: success));
         },
         (error) {
           emit(state.copyWith(
@@ -130,13 +121,10 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       //-------------------------------KPI10------------------------------------
       failureOrSuccessTotalSoldSpaces.when(
         (success) {
-          success.isEmpty
-              ? emit(state.copyWith(
-                  isLoading: true, hasErrorTotalSoldSpaces: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasErrorTotalSoldSpaces: false,
-                  totalSoldSpaces: success));
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorTotalSoldSpaces: false,
+              totalSoldSpaces: success));
         },
         (error) {
           emit(state.copyWith(
@@ -149,13 +137,10 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       //-------------------------------KPI3-------------------------------------
       failureOrSuccessMeanValue.when(
         (success) {
-          success.isEmpty
-              ? emit(state.copyWith(
-                  isLoading: true, hasErrorMeanSellUnitValue: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasErrorMeanSellUnitValue: false,
-                  meanSellUnitValue: success));
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorMeanSellUnitValue: false,
+              meanSellUnitValue: success));
         },
         (error) {
           emit(state.copyWith(
@@ -168,13 +153,10 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       //-------------------------------KPI16------------------------------------
       failureOrSuccessMeanSoldAreaUsecase.when(
         (success) {
-          success.isEmpty
-              ? emit(state.copyWith(
-                  isLoading: true, hasErrorMeanSoldAreaValue: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasErrorMeanSoldAreaValue: false,
-                  meanSoldAreaValue: success));
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorMeanSoldAreaValue: false,
+              meanSoldAreaValue: success));
         },
         (error) {
           emit(state.copyWith(
