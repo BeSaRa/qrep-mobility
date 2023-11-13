@@ -71,13 +71,10 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
       //------------------------KPI1--------------------------------------------
       failureOrSuccessTotalContracts.when(
         (success) {
-          success.isEmpty
-              ? emit(state.copyWith(
-                  isLoading: true, hasErrorTotalContracts: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasErrorTotalContracts: false,
-                  totalContracts: success));
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorTotalContracts: false,
+              totalContracts: success));
         },
         (error) {
           emit(state.copyWith(
@@ -90,13 +87,10 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
       //------------------------KPI4--------------------------------------------
       failureOrSuccessTotalRentedUnits.when(
         (success) {
-          success.isEmpty
-              ? emit(state.copyWith(
-                  isLoading: true, hasErrorTotalRentedSpace: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasErrorTotalRentedSpace: false,
-                  totalRentedUnits: success));
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorTotalRentedSpace: false,
+              totalRentedUnits: success));
         },
         (error) {
           emit(state.copyWith(
@@ -110,13 +104,10 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
       //------------------------KPI7--------------------------------------------
       failureOrSuccessContractValueUseCase.when(
         (success) {
-          success.isEmpty
-              ? emit(state.copyWith(
-                  isLoading: true, hasErrorTotalContractsValue: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasErrorTotalContractsValue: false,
-                  totalContractsValue: success));
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorTotalContractsValue: false,
+              totalContractsValue: success));
         },
         (error) {
           emit(state.copyWith(
@@ -129,13 +120,10 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
       //------------------------KPI10-------------------------------------------
       failureOrSuccessTotalRentedSpaceUsecase.when(
         (success) {
-          success.isEmpty
-              ? emit(state.copyWith(
-                  isLoading: true, hasErrorTotalRentedSpace: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasErrorTotalRentedSpace: false,
-                  totalRentedSpace: success));
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorTotalRentedSpace: false,
+              totalRentedSpace: success));
         },
         (error) {
           emit(state.copyWith(
@@ -148,13 +136,10 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
       //------------------------KPI13-------------------------------------------
       failureOrSuccessMeanValue.when(
         (success) {
-          success.isEmpty
-              ? emit(state.copyWith(
-                  isLoading: true, hasErrorMeanRentUnitValue: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasErrorMeanRentUnitValue: false,
-                  meanRentUnitValue: success));
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorMeanRentUnitValue: false,
+              meanRentUnitValue: success));
         },
         (error) {
           emit(state.copyWith(
@@ -167,13 +152,10 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
       //------------------------KPI16-------------------------------------------
       failureOrSuccessMeanArea.when(
         (success) {
-          success.isEmpty
-              ? emit(
-                  state.copyWith(isLoading: true, hasErrorMeanAreaValue: false))
-              : emit(state.copyWith(
-                  isLoading: false,
-                  hasErrorMeanAreaValue: false,
-                  meanAreaValue: success));
+          emit(state.copyWith(
+              isLoading: false,
+              hasErrorMeanAreaValue: false,
+              meanAreaValue: success));
         },
         (error) {
           emit(state.copyWith(
@@ -225,7 +207,7 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
     }
   }
 
-  static num getKPIVal(RentDefault rentDefault, RentGridKPIs? kpi) {
+  static num getDefaultValue(RentDefault rentDefault, RentGridKPIs? kpi) {
     switch (kpi) {
       case RentGridKPIs.totalContracts:
         return rentDefault.kpi1Val ?? 0;

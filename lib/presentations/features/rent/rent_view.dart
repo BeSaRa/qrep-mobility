@@ -362,7 +362,7 @@ class _RentViewState extends State<RentView> {
                                       ],
                                       child: GridItemWidget(
                                         gridItemType: GridItemType.rent,
-                                        response: response,
+                                        defaultResponse: response,
                                         rentKPI: RentGridKPIs.values[index],
                                         mortgageKPI: null,
                                         sellKPI: null,
