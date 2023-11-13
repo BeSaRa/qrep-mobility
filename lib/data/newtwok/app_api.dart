@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/newtwok/end_points.dart';
+import 'package:ebla/domain/models/Auth/auth_models.dart';
+import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
 import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
@@ -25,6 +27,7 @@ part 'app_api.g.dart';
 abstract class AppServiceClient {
   factory AppServiceClient(Dio dio, {String baseUrl}) = _AppServiceClient;
 
+//-----------------------Rent---------------------------
   @POST(EndPoints.rentDefault)
   Future<HttpResponse<List<RentDefault>>> getRentDefault(
       @Body() RequestMeanValue requestMeanValue);
@@ -172,12 +175,20 @@ abstract class AppServiceClient {
       @Body() RequestMortgageValues requestMortgageValues);
 }
 
-//----------------------------------CMS-----------------------------------------
+//---------------------------------DirectUs-----------------------------------------
 @RestApi(baseUrl: Constant.secondaryBaseUrl)
 abstract class TranslationsServiceClient {
   factory TranslationsServiceClient(Dio dio, {String baseUrl}) =
       _TranslationsServiceClient;
 
+  //---------------------------------Auth-----------------------------------------
+  @POST(EndPoints.auth)
+  Future<HttpResponse<AuthResponse>> login(@Body() RequestAuth requestAuth);
+  @POST(EndPoints.refreshToken)
+  Future<HttpResponse<AuthResponse>> refreshToken(
+      @Body() RefreshToken refreshToken);
+
+//---------------------------------CMS-----------------------------------------
   @GET(EndPoints.faq)
   Future<HttpResponse<FaqResponse>> getFaq(@Query("limit") int limit);
 

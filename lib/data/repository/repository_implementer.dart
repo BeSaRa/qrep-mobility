@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/newtwok/failure_model/failure.dart';
+import 'package:ebla/domain/models/Auth/auth_models.dart';
+import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
 import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
@@ -969,6 +971,47 @@ class RepositoryImplementer extends Repository {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
         return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<AuthResponse, FailureModel>> login(
+      RequestAuth requestAuth) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await translationsServiceClient.login(requestAuth);
+        if (response.response.statusCode == 200 ||
+            response.response.statusCode == 201) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<AuthResponse, FailureModel>> refreshToken(
+      RefreshToken refreshToken) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await translationsServiceClient.refreshToken(refreshToken);
+        if (response.response.statusCode == 200 ||
+            response.response.statusCode == 201) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       }
     } else {
       return Error(FailureModel(message: AppStrings().noInternetError));

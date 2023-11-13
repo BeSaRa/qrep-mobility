@@ -1,3 +1,5 @@
+import 'package:ebla/domain/models/Auth/auth_models.dart';
+import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
 import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
@@ -139,4 +141,9 @@ abstract class Repository {
   //KPI7
   Future<Result<MortgageTransactionResponse, FailureModel>>
       getMortgageTransactions(RequestMortgageValues requestSellValues);
+
+  //Auth
+  Future<Result<AuthResponse, FailureModel>> login(RequestAuth requestAuth);
+  Future<Result<AuthResponse, FailureModel>> refreshToken(
+      RefreshToken refreshToken);
 }

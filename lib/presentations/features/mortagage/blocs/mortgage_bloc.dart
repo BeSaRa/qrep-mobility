@@ -10,24 +10,23 @@ part 'mortgage_event.dart';
 part 'mortgage_state.dart';
 
 class MortgageBloc extends Bloc<MortgageEvent, MortgageState> {
-  final LookUpMortgageUseCase lookUpMortgageUseCase;
-  RentLookupResponse? lookUpMortgage;
+  // final LookUpMortgageUseCase lookUpMortgageUseCase;
+  // RentLookupResponse? lookUpMortgage;
 
-  MortgageBloc(this.lookUpMortgageUseCase)
-      : super(const MortgageState.initial()) {
+  MortgageBloc() : super(const MortgageState.initial()) {
     on<MortgageEvent>((event, emit) async {
-      await event.map(
-        started: (_Started value) async {
-          emit(const MortgageState.loading());
-          final failureOrSuccess = await lookUpMortgageUseCase.execute();
-          failureOrSuccess.when((success) {
-            lookUpMortgage = success;
-            emit(MortgageState.success(success));
-          }, (error) {
-            emit(MortgageState.error(error.message));
-          });
-        },
-      );
+      // await event.map(
+      //   started: (_Started value) async {
+      //     emit(const MortgageState.loading());
+      //     final failureOrSuccess = await lookUpMortgageUseCase.execute();
+      //     failureOrSuccess.when((success) {
+      //       lookUpMortgage = success;
+      //       emit(MortgageState.success(success));
+      //     }, (error) {
+      //       emit(MortgageState.error(error.message));
+      //     });
+      //   },
+      // );
     });
   }
 
@@ -41,7 +40,7 @@ class MortgageBloc extends Bloc<MortgageEvent, MortgageState> {
       issueDateStartMonth: 1,
       issueDateEndMonth: DateTime.now().month,
       zoneId: -1,
-      limit: 5,
+      limit: 3,
       offset: 0);
   RequestMortgageValues requestMeanValue = RequestMortgageValues(
     municipalityId: 4,
@@ -53,7 +52,7 @@ class MortgageBloc extends Bloc<MortgageEvent, MortgageState> {
     issueDateStartMonth: 1,
     issueDateEndMonth: DateTime.now().month,
     zoneId: -1,
-    limit: 5,
+    limit: 3,
     periodId: 1,
     offset: 0,
   );

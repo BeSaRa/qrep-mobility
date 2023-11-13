@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../utils/global_functions.dart';
 import '../../../resources/resources.dart';
 import '../../../widgets/widgets.dart';
+import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import '../blocs/rent_bloc/rent_bloc.dart';
 
@@ -214,7 +215,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                     title: context.locale == ARABIC_LOCAL
                         ? getObjectByLookupKey(
                                     context
-                                        .read<RentBloc>()
+                                        .read<LookupBloc>()
                                         .loockUpRent!
                                         .zoneList,
                                     e.zoneId.toInt())
@@ -222,7 +223,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                             ''
                         : getObjectByLookupKey(
                                     context
-                                        .read<RentBloc>()
+                                        .read<LookupBloc>()
                                         .loockUpRent!
                                         .zoneList,
                                     e.zoneId.toInt())

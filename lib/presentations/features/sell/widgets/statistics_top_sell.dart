@@ -9,6 +9,7 @@ import '../../../../domain/models/rent_models/rent_models.dart';
 import '../../../../utils/global_functions.dart';
 import '../../../resources/resources.dart';
 import '../../../widgets/widgets.dart';
+import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../../rent/widgets/top_ten_index_cubit.dart';
 
 class StatisticsTopSellWidget extends StatefulWidget {
@@ -221,7 +222,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                     title: context.locale == ARABIC_LOCAL
                         ? getObjectByLookupKey(
                                     context
-                                        .read<SellBloc>()
+                                        .read<LookupBloc>()
                                         .loockUpSell!
                                         .districtList,
                                     e.zoneId.toInt())
@@ -229,7 +230,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                             ''
                         : getObjectByLookupKey(
                                     context
-                                        .read<SellBloc>()
+                                        .read<LookupBloc>()
                                         .loockUpSell!
                                         .districtList,
                                     e.zoneId.toInt())

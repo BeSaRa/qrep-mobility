@@ -9,6 +9,7 @@ import '../../../../utils/global_functions.dart';
 import '../../../resources/resources.dart';
 import '../../../widgets/text_field_filter_widget.dart';
 import '../../../widgets/widgets.dart';
+import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../../rent/blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
 import '../../rent/widgets/choose_unit_filters_widget.dart';
 import '../../rent/widgets/slider_filter_widget.dart';
@@ -90,7 +91,7 @@ class _BottomSheetFilterMortgageWidgetState
             } else {
               valuesFiltersCubit.quarterYear.clear();
               context
-                  .read<MortgageBloc>()
+                  .read<LookupBloc>()
                   .lookUpMortgage
                   ?.quarterYearList
                   .forEach((element) {
@@ -207,19 +208,19 @@ class _BottomSheetFilterMortgageWidgetState
 
     //municipal and areaCode
     valuesFiltersCubit.municapility = getObjectByLookupKey(
-          context.read<MortgageBloc>().lookUpMortgage?.municipalityList ?? [],
+          context.read<LookupBloc>().lookUpMortgage?.municipalityList ?? [],
           context.read<MortgageBloc>().requestMeanValue.municipalityId ?? 1,
         ) ??
         const RentLookupModel();
     valuesFiltersCubit.zone = getObjectByLookupKey(
-          context.read<MortgageBloc>().lookUpMortgage?.districtList ?? [],
+          context.read<LookupBloc>().lookUpMortgage?.districtList ?? [],
           context.read<MortgageBloc>().requestMeanValue.areaCode.toInt(),
         ) ??
         const RentLookupModel();
     //Property and Purpose
     List<RentLookupModel> listPropertyWithAll = [];
     listPropertyWithAll.addAll(
-        context.read<MortgageBloc>().lookUpMortgage?.propertyTypeList ?? []);
+        context.read<LookupBloc>().lookUpMortgage?.propertyTypeList ?? []);
     if (listPropertyWithAll.any((element) => element.lookupKey != -1)) {
       listPropertyWithAll.add(const RentLookupModel(
           isActive: true,
@@ -228,8 +229,8 @@ class _BottomSheetFilterMortgageWidgetState
           enName: "All",
           id: -1));
     }
-    context.read<MortgageBloc>().lookUpMortgage = context
-        .read<MortgageBloc>()
+    context.read<LookupBloc>().lookUpMortgage = context
+        .read<LookupBloc>()
         .lookUpMortgage
         ?.copyWith(propertyTypeList: listPropertyWithAll);
     context
@@ -238,7 +239,7 @@ class _BottomSheetFilterMortgageWidgetState
         .propertyTypeList
         ?.forEach((element) {
       valuesFiltersCubit.propertyTypeList.add(getObjectByLookupKey(
-            context.read<MortgageBloc>().lookUpMortgage?.propertyTypeList ?? [],
+            context.read<LookupBloc>().lookUpMortgage?.propertyTypeList ?? [],
             element,
           ) ??
           const RentLookupModel());
@@ -249,7 +250,7 @@ class _BottomSheetFilterMortgageWidgetState
         .purposeList
         ?.forEach((element) {
       valuesFiltersCubit.rentPurposeList.add(getObjectByLookupKey(
-            context.read<MortgageBloc>().lookUpMortgage?.rentPurposeList ?? [],
+            context.read<LookupBloc>().lookUpMortgage?.rentPurposeList ?? [],
             element,
           ) ??
           const RentLookupModel());
@@ -267,7 +268,7 @@ class _BottomSheetFilterMortgageWidgetState
 
     //Period
     valuesFiltersCubit.periodTime = getObjectById(
-          context.read<MortgageBloc>().lookUpMortgage?.periodTime ?? [],
+          context.read<LookupBloc>().lookUpMortgage?.periodTime ?? [],
           context.read<MortgageBloc>().requestMeanValue.periodId,
         ) ??
         const RentLookupModel();
@@ -275,7 +276,7 @@ class _BottomSheetFilterMortgageWidgetState
     //Half Year
     context.read<MortgageBloc>().requestMeanValue.periodId == 2
         ? valuesFiltersCubit.periodTimeHalfDetails = context
-                .read<MortgageBloc>()
+                .read<LookupBloc>()
                 .lookUpMortgage
                 ?.halfYearList
                 .firstWhere((element) =>
@@ -362,7 +363,7 @@ class _BottomSheetFilterMortgageWidgetState
                   //     const RentLookupModel();
                   valuesFiltersCubit.municapility = getObjectByLookupKey(
                         context
-                                .read<MortgageBloc>()
+                                .read<LookupBloc>()
                                 .lookUpMortgage
                                 ?.municipalityList ??
                             [],
@@ -371,7 +372,7 @@ class _BottomSheetFilterMortgageWidgetState
                       const RentLookupModel();
                   valuesFiltersCubit.zone = getObjectByLookupKey(
                         context
-                                .read<MortgageBloc>()
+                                .read<LookupBloc>()
                                 .lookUpMortgage
                                 ?.districtList ??
                             [],
@@ -383,10 +384,7 @@ class _BottomSheetFilterMortgageWidgetState
 
                   valuesFiltersCubit.year = valuesFiltersCubit.yearsLists.last;
                   valuesFiltersCubit.periodTime = getObjectById(
-                        context
-                                .read<MortgageBloc>()
-                                .lookUpMortgage
-                                ?.periodTime ??
+                        context.read<LookupBloc>().lookUpMortgage?.periodTime ??
                             [],
                         1,
                       ) ??
@@ -394,7 +392,7 @@ class _BottomSheetFilterMortgageWidgetState
                   valuesFiltersCubit.rentPurposeList.clear();
                   valuesFiltersCubit.rentPurposeList.add(getObjectByLookupKey(
                         context
-                                .read<MortgageBloc>()
+                                .read<LookupBloc>()
                                 .lookUpMortgage
                                 ?.rentPurposeList ??
                             [],
@@ -404,7 +402,7 @@ class _BottomSheetFilterMortgageWidgetState
                   valuesFiltersCubit.propertyTypeList.clear();
                   valuesFiltersCubit.propertyTypeList.add(getObjectByLookupKey(
                         context
-                                .read<MortgageBloc>()
+                                .read<LookupBloc>()
                                 .lookUpMortgage
                                 ?.propertyTypeList ??
                             [],
@@ -505,14 +503,14 @@ class _BottomSheetFilterMortgageWidgetState
                               valuesFiltersCubit
                                   .changeMunicapility(municapility!);
                               valuesFiltersCubit.changeZone(context
-                                      .read<MortgageBloc>()
+                                      .read<LookupBloc>()
                                       .lookUpMortgage
                                       ?.zoneList
                                       .first ??
                                   const RentLookupModel());
                             },
                             list: context
-                                    .read<MortgageBloc>()
+                                    .read<LookupBloc>()
                                     .lookUpMortgage
                                     ?.municipalityList ??
                                 []);
@@ -542,7 +540,7 @@ class _BottomSheetFilterMortgageWidgetState
                             list: filterDataBymunicipalityId(
                                 valuesFiltersCubit.municapility.lookupKey,
                                 context
-                                        .read<MortgageBloc>()
+                                        .read<LookupBloc>()
                                         .lookUpMortgage
                                         ?.districtList ??
                                     []));
@@ -575,7 +573,7 @@ class _BottomSheetFilterMortgageWidgetState
                             //     valuesFiltersCubit.propertyType,
                             selectedItems: valuesFiltersCubit.propertyTypeList,
                             list: context
-                                    .read<MortgageBloc>()
+                                    .read<LookupBloc>()
                                     .lookUpMortgage
                                     ?.propertyTypeList ??
                                 [],
@@ -607,7 +605,7 @@ class _BottomSheetFilterMortgageWidgetState
                               //     valuesFiltersCubit.purposeType,
                               selectedItems: valuesFiltersCubit.rentPurposeList,
                               list: context
-                                      .read<MortgageBloc>()
+                                      .read<LookupBloc>()
                                       .lookUpMortgage
                                       ?.rentPurposeList ??
                                   []);
@@ -672,7 +670,7 @@ class _BottomSheetFilterMortgageWidgetState
                             },
                             value: valuesFiltersCubit.periodTime,
                             list: context
-                                    .read<MortgageBloc>()
+                                    .read<LookupBloc>()
                                     .lookUpMortgage
                                     ?.periodTime ??
                                 []);
@@ -707,7 +705,7 @@ class _BottomSheetFilterMortgageWidgetState
                   return Expanded(
                     child: getPeriodTimeById(
                       valuesFiltersCubit.periodTime.id,
-                      context.read<MortgageBloc>().lookUpMortgage ??
+                      context.read<LookupBloc>().lookUpMortgage ??
                           const RentLookupResponse(),
                     ),
                   );
@@ -731,14 +729,14 @@ class _BottomSheetFilterMortgageWidgetState
               return SliderWidget(
                 title: AppStrings().realStateValueFromTo,
                 startValue:
-                    '${(valuesFiltersCubit.rangerealEstateValue?.start.toDouble() ?? context.read<MortgageBloc>().lookUpMortgage?.maxParams[1].minVal.toDouble())?.toInt().formatWithCommas()}',
+                    '${(valuesFiltersCubit.rangerealEstateValue?.start.toDouble() ?? context.read<LookupBloc>().lookUpMortgage?.maxParams[1].minVal.toDouble())?.toInt().formatWithCommas()}',
                 endValue:
-                    '${(valuesFiltersCubit.rangerealEstateValue?.end.toDouble() ?? context.read<MortgageBloc>().lookUpMortgage?.maxParams[1].maxVal.toDouble())?.toInt().formatWithCommas()}',
+                    '${(valuesFiltersCubit.rangerealEstateValue?.end.toDouble() ?? context.read<LookupBloc>().lookUpMortgage?.maxParams[1].maxVal.toDouble())?.toInt().formatWithCommas()}',
                 values: valuesFiltersCubit.rangerealEstateValue ??
                     RangeValues(
                         valuesFiltersCubit.realEstateValueFrom?.toDouble() ??
                             context
-                                .read<MortgageBloc>()
+                                .read<LookupBloc>()
                                 .lookUpMortgage
                                 ?.maxParams[1]
                                 .minVal
@@ -746,7 +744,7 @@ class _BottomSheetFilterMortgageWidgetState
                             0,
                         valuesFiltersCubit.realEstateValueTo?.toDouble() ??
                             context
-                                .read<MortgageBloc>()
+                                .read<LookupBloc>()
                                 .lookUpMortgage
                                 ?.maxParams[1]
                                 .maxVal
@@ -756,14 +754,14 @@ class _BottomSheetFilterMortgageWidgetState
                   valuesFiltersCubit.changeRangeRealEstateValue(rangeValues);
                 },
                 min: context
-                        .read<MortgageBloc>()
+                        .read<LookupBloc>()
                         .lookUpMortgage
                         ?.maxParams[1]
                         .minVal
                         .toDouble() ??
                     0,
                 max: context
-                        .read<MortgageBloc>()
+                        .read<LookupBloc>()
                         .lookUpMortgage
                         ?.maxParams[1]
                         .maxVal
@@ -779,14 +777,14 @@ class _BottomSheetFilterMortgageWidgetState
               return SliderWidget(
                 title: AppStrings().areaFromTo,
                 startValue:
-                    '${(valuesFiltersCubit.rangeValuesArea?.start.toDouble() ?? context.read<MortgageBloc>().lookUpMortgage?.maxParams[0].minVal.toDouble())?.toInt().formatWithCommas()}',
+                    '${(valuesFiltersCubit.rangeValuesArea?.start.toDouble() ?? context.read<LookupBloc>().lookUpMortgage?.maxParams[0].minVal.toDouble())?.toInt().formatWithCommas()}',
                 endValue:
-                    '${(valuesFiltersCubit.rangeValuesArea?.end.toDouble() ?? context.read<MortgageBloc>().lookUpMortgage?.maxParams[0].maxVal.toDouble())?.toInt().formatWithCommas()}',
+                    '${(valuesFiltersCubit.rangeValuesArea?.end.toDouble() ?? context.read<LookupBloc>().lookUpMortgage?.maxParams[0].maxVal.toDouble())?.toInt().formatWithCommas()}',
                 values: valuesFiltersCubit.rangeValuesArea ??
                     RangeValues(
                         valuesFiltersCubit.areaFrom?.toDouble() ??
                             context
-                                .read<MortgageBloc>()
+                                .read<LookupBloc>()
                                 .lookUpMortgage
                                 ?.maxParams[0]
                                 .minVal
@@ -794,7 +792,7 @@ class _BottomSheetFilterMortgageWidgetState
                             0,
                         valuesFiltersCubit.areaTo?.toDouble() ??
                             context
-                                .read<MortgageBloc>()
+                                .read<LookupBloc>()
                                 .lookUpMortgage
                                 ?.maxParams[0]
                                 .maxVal
@@ -804,14 +802,14 @@ class _BottomSheetFilterMortgageWidgetState
                   valuesFiltersCubit.changeRangeValuesArea(rangeValues);
                 },
                 min: context
-                        .read<MortgageBloc>()
+                        .read<LookupBloc>()
                         .lookUpMortgage
                         ?.maxParams[0]
                         .minVal
                         .toDouble() ??
                     0,
                 max: context
-                        .read<MortgageBloc>()
+                        .read<LookupBloc>()
                         .lookUpMortgage
                         ?.maxParams[0]
                         .maxVal
@@ -854,14 +852,18 @@ class _BottomSheetFilterMortgageWidgetState
                               issueDateYear: valuesFiltersCubit.year.id,
                               issueDateQuarterList: getissueDateQuarterList(
                                   valuesFiltersCubit.periodTime.id),
-                              issueDateStartMonth: valuesFiltersCubit.periodTime.id == 4
-                                  ? valuesFiltersCubit.month.value[0] - 1
-                                  : 1,
+                              issueDateStartMonth:
+                                  valuesFiltersCubit.periodTime.id == 4
+                                      ? valuesFiltersCubit.month.value[0] - 1
+                                      : 1,
                               issueDateEndMonth:
                                   valuesFiltersCubit.periodTime.id == 4
                                       ? valuesFiltersCubit.month.value[0]
-                                    : valuesFiltersCubit.periodTime.id == 1
-                                          ? valuesFiltersCubit.year.id==DateTime.now().year? DateTime.now().month:12
+                                      : valuesFiltersCubit.periodTime.id == 1
+                                          ? valuesFiltersCubit.year.id ==
+                                                  DateTime.now().year
+                                              ? DateTime.now().month
+                                              : 12
                                           : 12,
                               periodId: valuesFiltersCubit.periodTime.id,
                               issueDateFrom: valuesFiltersCubit.periodTime.id == 5
@@ -869,11 +871,9 @@ class _BottomSheetFilterMortgageWidgetState
                                       ?.toIso8601String()
                                   : null,
                               issueDateTo: valuesFiltersCubit.periodTime.id == 5
-                                  ? valuesFiltersCubit.pickerDateRange?.endDate
-                                      ?.toIso8601String()
+                                  ? valuesFiltersCubit.pickerDateRange?.endDate?.toIso8601String()
                                   : null,
-                              purposeList:
-                                  valuesFiltersCubit.rentPurposeList.map((e) => e.lookupKey).toList(),
+                              purposeList: valuesFiltersCubit.rentPurposeList.map((e) => e.lookupKey).toList(),
                               propertyTypeList: valuesFiltersCubit.propertyTypeList.map((e) => e.lookupKey).toList(),
                               offset: 0,
                               streetNo: streetController.text.isEmpty ? null : int.parse(streetController.text));

@@ -13,6 +13,7 @@ class AppPreferences {
 
   String PREFS_KEY_LANG = 'PREFS_KEY_LANG';
   String PREFS_KEY_TOKEN = 'PREFS_KEY_TOKEN';
+  String PREFS_KEY_REFRESH_TOKEN = 'PREFS_KEY_REFRESH_TOKEN';
   String PREFS_KEY_THEME = 'PREFS_KEY_THEME';
   String PREFS_KEY_LOCALIZATIONS_LAST_UPDATE =
       'PREFS_KEY_LOCALIZATIONS_LAST_UPDATE';
@@ -60,8 +61,16 @@ class AppPreferences {
     _sharedPreferences.setString(PREFS_KEY_TOKEN, token);
   }
 
+  Future<void> setUserRefreshToken(String refreshToken) async {
+    _sharedPreferences.setString(PREFS_KEY_REFRESH_TOKEN, refreshToken);
+  }
+
   Future<String> getUserToken() async {
     return _sharedPreferences.getString(PREFS_KEY_TOKEN) ?? '';
+  }
+
+  String getUserRefreshToken() {
+    return _sharedPreferences.getString(PREFS_KEY_REFRESH_TOKEN) ?? '';
   }
 
   ThemeData getTheme() {

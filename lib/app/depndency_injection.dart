@@ -3,6 +3,7 @@ import 'package:ebla/domain/usecases/mortgage_usecases/lookup_mortgage_usecase.d
 import 'package:ebla/domain/usecases/mortgage_usecases/transactions_mortgage_usecase.dart';
 import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
+import 'package:ebla/presentations/features/main/blocs/lookup_bloc/lookup_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
@@ -15,12 +16,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/newtwok/app_api.dart';
 import '../data/newtwok/dio_factory.dart';
+import '../data/newtwok/general_dio_interceptor.dart';
 import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecases/CMS/cms_usecases.dart';
+import '../domain/usecases/auth_usecase/auth_usecases.dart';
 import '../domain/usecases/sell_usecases/top_values/top_values_sell_usecases.dart';
 import '../domain/usecases/usecases.dart';
+import '../presentations/features/auth/blocs/login_bloc/login_bloc.dart';
+import '../presentations/features/main/cubit/bottom_nav_cubit.dart';
 import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import '../presentations/features/info/blocs/news_bloc/news_bloc.dart';
 import '../presentations/features/rent/blocs/rent_blocs.dart';
@@ -33,8 +38,9 @@ Future<void> initAppModule() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   instance.registerFactory<SharedPreferences>(() => sharedPreferences);
   instance.registerFactory<AppPreferences>(() => AppPreferences(instance()));
-  instance.registerLazySingleton<DioFactory>(() => DioFactory(instance()));
-
+  instance.registerFactory<DioFactory>(() => DioFactory(instance()));
+  instance.registerFactory<GeneralInterceptor>(
+      () => GeneralInterceptor(instance()));
   final dio = await instance<DioFactory>().getDio();
   instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(dio));
   instance.registerLazySingleton<TranslationsServiceClient>(
@@ -45,6 +51,23 @@ Future<void> initAppModule() async {
       appServiceClient: instance(),
       translationsServiceClient: instance(),
       networkInfo: instance()));
+  if (!GetIt.I.isRegistered<GetSellLookupUseCase>()) {
+    instance.registerFactory<GetSellLookupUseCase>(
+        () => GetSellLookupUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<GetRentLookupUseCase>()) {
+    instance.registerFactory<GetRentLookupUseCase>(
+        () => GetRentLookupUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<LookUpMortgageUseCase>()) {
+    instance.registerFactory<LookUpMortgageUseCase>(
+        () => LookUpMortgageUseCase(instance()));
+  }
+  instance.registerFactory(() => BottomNavCubit(0));
+  instance.registerFactory(() => LookupBloc(
+      getRentLookupUseCase: instance(),
+      getSellLookupUseCase: instance(),
+      lookUpMortgageUseCase: instance()));
 }
 
 Future<void> initTranslationsModule() async {
@@ -181,7 +204,7 @@ Future<void> initSellModule() async {
         totalSoldPlacesUseCase: instance()));
   }
   if (!GetIt.I.isRegistered<SellBloc>()) {
-    instance.registerFactory(() => SellBloc(getSellLookupUseCase: instance()));
+    instance.registerFactory(() => SellBloc());
   }
   if (!GetIt.I.isRegistered<SellTransactionBloc>()) {
     instance.registerFactory(() => SellTransactionBloc(instance()));
@@ -265,7 +288,7 @@ Future<void> initRentModule() async {
 //Blocs
 
   if (!GetIt.I.isRegistered<RentBloc>()) {
-    instance.registerFactory(() => RentBloc(getRentLookupUseCase: instance()));
+    instance.registerFactory(() => RentBloc());
   }
   if (!GetIt.I.isRegistered<CertificateContractBloc>()) {
     instance.registerFactory(() => CertificateContractBloc(
@@ -322,7 +345,7 @@ Future<void> initMortgageModule() async {
 
   //blocs
   if (!GetIt.I.isRegistered<MortgageBloc>()) {
-    instance.registerFactory<MortgageBloc>(() => MortgageBloc(instance()));
+    instance.registerFactory<MortgageBloc>(() => MortgageBloc());
   }
   if (!GetIt.I.isRegistered<MortgageTransactionsBloc>()) {
     instance.registerFactory<MortgageTransactionsBloc>(
@@ -335,4 +358,22 @@ Future<void> initMortgageModule() async {
           totalValOfMortgageTransactionsUsecase: instance(),
         ));
   }
+}
+
+Future<void> initLoginModule() async {
+  if (!GetIt.I.isRegistered<LoginUsecases>()) {
+    instance.registerFactory<LoginUsecases>(
+        () => LoginUsecases(repository: instance()));
+  }
+  //Blocs
+  if (!GetIt.I.isRegistered<LoginBloc>()) {
+    instance
+        .registerFactory<LoginBloc>(() => LoginBloc(loginUsecases: instance()));
+  }
+}
+
+Future<void> resetAllModules({bool dispose = true}) async {
+  await instance.reset(dispose: dispose);
+  await initAppModule();
+  await initLoginModule();
 }

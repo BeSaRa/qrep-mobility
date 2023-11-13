@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../../domain/models/rent_models/rent_models.dart';
+import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
 import '../blocs/rent_bloc/rent_bloc.dart';
 import 'choose_unit_filters_widget.dart';
@@ -97,7 +98,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
             } else {
               valuesFiltersCubit.quarterYear.clear();
               context
-                  .read<RentBloc>()
+                  .read<LookupBloc>()
                   .loockUpRent
                   ?.quarterYearList
                   .forEach((element) {
@@ -212,7 +213,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           arName: element.toString(), id: element, enName: element.toString()));
     });
     valuesFiltersCubit.furniture = getObjectByLookupKey(
-          context.read<RentBloc>().loockUpRent?.furnitureStatusList ?? [],
+          context.read<LookupBloc>().loockUpRent?.furnitureStatusList ?? [],
           context.read<RentBloc>().requestMeanValue.furnitureStatus ?? -1,
         ) ??
         const RentLookupModel();
@@ -223,12 +224,12 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     //     ) ??
     //     const RentLookupModel();
     valuesFiltersCubit.municapility = getObjectById(
-          context.read<RentBloc>().loockUpRent?.municipalityList ?? [],
+          context.read<LookupBloc>().loockUpRent?.municipalityList ?? [],
           context.read<RentBloc>().requestMeanValue.municipalityId ?? 1,
         ) ??
         const RentLookupModel();
     valuesFiltersCubit.zone = getObjectByLookupKey(
-          context.read<RentBloc>().loockUpRent?.zoneList ?? [],
+          context.read<LookupBloc>().loockUpRent?.zoneList ?? [],
           context.read<RentBloc>().requestMeanValue.zoneId ?? 0,
         ) ??
         const RentLookupModel();
@@ -238,27 +239,27 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
         .propertyTypeList
         ?.forEach((element) {
       valuesFiltersCubit.propertyTypeList.add(getObjectByLookupKey(
-            context.read<RentBloc>().loockUpRent?.propertyTypeList ?? [],
+            context.read<LookupBloc>().loockUpRent?.propertyTypeList ?? [],
             element,
           ) ??
           const RentLookupModel());
     });
     context.read<RentBloc>().requestMeanValue.purposeList?.forEach((element) {
       valuesFiltersCubit.rentPurposeList.add(getObjectByLookupKey(
-            context.read<RentBloc>().loockUpRent?.rentPurposeList ?? [],
+            context.read<LookupBloc>().loockUpRent?.rentPurposeList ?? [],
             element,
           ) ??
           const RentLookupModel());
     });
     valuesFiltersCubit.bedRoom = getObjectById(
-          context.read<RentBloc>().loockUpRent?.bedRooms ?? [],
+          context.read<LookupBloc>().loockUpRent?.bedRooms ?? [],
           context.read<RentBloc>().requestMeanValue.bedRoomsCount == 0
               ? -1
               : context.read<RentBloc>().requestMeanValue.bedRoomsCount ?? -1,
         ) ??
         const RentLookupModel();
     valuesFiltersCubit.periodTime = getObjectById(
-          context.read<RentBloc>().loockUpRent?.periodTime ?? [],
+          context.read<LookupBloc>().loockUpRent?.periodTime ?? [],
           context.read<RentBloc>().requestMeanValue.periodId,
         ) ??
         const RentLookupModel();
@@ -273,7 +274,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
             : valuesFiltersCubit.yearsLists.last;
     context.read<RentBloc>().requestMeanValue.periodId == 2
         ? valuesFiltersCubit.periodTimeHalfDetails = context
-                .read<RentBloc>()
+                .read<LookupBloc>()
                 .loockUpRent
                 ?.halfYearList
                 .firstWhere((element) =>
@@ -352,13 +353,13 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   valuesFiltersCubit
                       .changeRangeRentPaymentMonthlyPerUnitReset();
                   valuesFiltersCubit.bedRoom = getObjectById(
-                        context.read<RentBloc>().loockUpRent?.bedRooms ?? [],
+                        context.read<LookupBloc>().loockUpRent?.bedRooms ?? [],
                         -1,
                       ) ??
                       const RentLookupModel();
                   valuesFiltersCubit.municapility = getObjectByLookupKey(
                         context
-                                .read<RentBloc>()
+                                .read<LookupBloc>()
                                 .loockUpRent
                                 ?.municipalityList ??
                             [],
@@ -366,7 +367,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                       ) ??
                       const RentLookupModel();
                   valuesFiltersCubit.zone = getObjectByLookupKey(
-                        context.read<RentBloc>().loockUpRent?.zoneList ?? [],
+                        context.read<LookupBloc>().loockUpRent?.zoneList ?? [],
                         -1,
                       ) ??
                       const RentLookupModel();
@@ -375,13 +376,17 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   valuesFiltersCubit.unit = 2;
                   valuesFiltersCubit.year = valuesFiltersCubit.yearsLists.last;
                   valuesFiltersCubit.periodTime = getObjectById(
-                        context.read<RentBloc>().loockUpRent?.periodTime ?? [],
+                        context.read<LookupBloc>().loockUpRent?.periodTime ??
+                            [],
                         1,
                       ) ??
                       const RentLookupModel();
                   valuesFiltersCubit.rentPurposeList.clear();
                   valuesFiltersCubit.rentPurposeList.add(getObjectByLookupKey(
-                        context.read<RentBloc>().loockUpRent?.rentPurposeList ??
+                        context
+                                .read<LookupBloc>()
+                                .loockUpRent
+                                ?.rentPurposeList ??
                             [],
                         -1,
                       ) ??
@@ -389,7 +394,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   valuesFiltersCubit.propertyTypeList.clear();
                   valuesFiltersCubit.propertyTypeList.add(getObjectByLookupKey(
                         context
-                                .read<RentBloc>()
+                                .read<LookupBloc>()
                                 .loockUpRent
                                 ?.propertyTypeList ??
                             [],
@@ -399,7 +404,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   valuesFiltersCubit.changeUnit(2);
                   valuesFiltersCubit.furniture = getObjectByLookupKey(
                         context
-                                .read<RentBloc>()
+                                .read<LookupBloc>()
                                 .loockUpRent
                                 ?.furnitureStatusList ??
                             [],
@@ -487,30 +492,27 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                         style: Theme.of(context).textTheme.labelMedium),
                     // const SingleDropDownValue(),
                     BlocBuilder(
-                      bloc: context.read<RentBloc>(),
-                      builder: (context, RentState state) {
-                        if (state.isLoadingRentLookup) {
-                          return const LinearProgressIndicator();
-                        }
-                        if (state.rentLookup != const RentLookupResponse()) {
-                          return BlocBuilder(
-                            bloc: valuesFiltersCubit,
-                            builder: (context, states) {
-                              return SingleDropDownValue<RentLookupModel>(
-                                  value: valuesFiltersCubit.municapility,
-                                  onChanged: (municapility) {
-                                    valuesFiltersCubit
-                                        .changeMunicapility(municapility!);
-                                    valuesFiltersCubit.changeZone(
-                                        state.rentLookup.zoneList.first);
-                                  },
-                                  list: state.rentLookup.municipalityList);
+                      bloc: valuesFiltersCubit,
+                      builder: (context, states) {
+                        return SingleDropDownValue<RentLookupModel>(
+                            value: valuesFiltersCubit.municapility,
+                            onChanged: (municapility) {
+                              valuesFiltersCubit
+                                  .changeMunicapility(municapility!);
+                              valuesFiltersCubit.changeZone(context
+                                      .read<LookupBloc>()
+                                      .loockUpRent
+                                      ?.zoneList
+                                      .first ??
+                                  const RentLookupModel());
                             },
-                          );
-                        }
-                        return const Text('Error');
+                            list: context
+                                    .read<LookupBloc>()
+                                    .loockUpRent
+                                    ?.municipalityList ??
+                                []);
                       },
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -525,29 +527,22 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                     BlocBuilder(
-                      bloc: context.read<RentBloc>(),
-                      builder: (context, RentState state) {
-                        if (state.isLoadingRentLookup) {
-                          return const LinearProgressIndicator();
-                        }
-                        if (state.rentLookup != const RentLookupResponse()) {
-                          return BlocBuilder(
-                            bloc: valuesFiltersCubit,
-                            builder: (context, states) {
-                              return SingleDropDownValue<RentLookupModel>(
-                                  onChanged: (zone) {
-                                    valuesFiltersCubit.changeZone(zone!);
-                                  },
-                                  value: valuesFiltersCubit.zone,
-                                  list: filterDataBymunicipalityId(
-                                      valuesFiltersCubit.municapility.id,
-                                      state.rentLookup.zoneList));
+                      bloc: valuesFiltersCubit,
+                      builder: (context, states) {
+                        return SingleDropDownValue<RentLookupModel>(
+                            onChanged: (zone) {
+                              valuesFiltersCubit.changeZone(zone!);
                             },
-                          );
-                        }
-                        return const Text('Error');
+                            value: valuesFiltersCubit.zone,
+                            list: filterDataBymunicipalityId(
+                                valuesFiltersCubit.municapility.id,
+                                context
+                                        .read<LookupBloc>()
+                                        .loockUpRent
+                                        ?.zoneList ??
+                                    []));
                       },
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -563,35 +558,24 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                     Text(AppStrings().propertyType,
                         style: Theme.of(context).textTheme.labelMedium),
                     // const SingleDropDownValue(),
-                    BlocBuilder(
-                      bloc: context.read<RentBloc>(),
-                      builder: (context, RentState state) {
-                        if (state.isLoadingRentLookup) {
-                          return const LinearProgressIndicator();
-                        }
-                        if (state.rentLookup != const RentLookupResponse()) {
-                          // valuesFiltersCubit.propertyTypeList.clear();
-                          // valuesFiltersCubit.propertyTypeList
-                          //     .add(valuesFiltersCubit.propertyType);
-                          return BlocProvider.value(
-                            value: valuesFiltersCubit,
-                            child: BlocBuilder(
-                              bloc: valuesFiltersCubit,
-                              builder: (context, states) {
-                                return MultiChooseDropDownWidget(
-                                  isPurpose: false,
-                                  // selectedValue:
-                                  //     valuesFiltersCubit.propertyType,
-                                  selectedItems:
-                                      valuesFiltersCubit.propertyTypeList,
-                                  list: state.rentLookup.propertyTypeList,
-                                );
-                              },
-                            ),
+                    BlocProvider.value(
+                      value: valuesFiltersCubit,
+                      child: BlocBuilder(
+                        bloc: valuesFiltersCubit,
+                        builder: (context, states) {
+                          return MultiChooseDropDownWidget(
+                            isPurpose: false,
+                            // selectedValue:
+                            //     valuesFiltersCubit.propertyType,
+                            selectedItems: valuesFiltersCubit.propertyTypeList,
+                            list: context
+                                    .read<LookupBloc>()
+                                    .loockUpRent
+                                    ?.propertyTypeList ??
+                                [],
                           );
-                        }
-                        return const Text('Error');
-                      },
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -606,34 +590,23 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                       AppStrings().propertyUsage,
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
-                    BlocBuilder(
-                      bloc: context.read<RentBloc>(),
-                      builder: (context, RentState state) {
-                        if (state.isLoadingRentLookup) {
-                          return const LinearProgressIndicator();
-                        }
-                        if (state.rentLookup != const RentLookupResponse()) {
-                          // valuesFiltersCubit.rentPurposeList.clear();
-                          // valuesFiltersCubit.rentPurposeList
-                          //     .add(valuesFiltersCubit.purposeType);
-                          return BlocProvider.value(
-                            value: valuesFiltersCubit,
-                            child: BlocBuilder(
-                              bloc: valuesFiltersCubit,
-                              builder: (context, states) {
-                                return MultiChooseDropDownWidget(
-                                    isPurpose: true,
-                                    // selectedValue:
-                                    //     valuesFiltersCubit.purposeType,
-                                    selectedItems:
-                                        valuesFiltersCubit.rentPurposeList,
-                                    list: state.rentLookup.rentPurposeList);
-                              },
-                            ),
-                          );
-                        }
-                        return const Text('Error');
-                      },
+                    BlocProvider.value(
+                      value: valuesFiltersCubit,
+                      child: BlocBuilder(
+                        bloc: valuesFiltersCubit,
+                        builder: (context, states) {
+                          return MultiChooseDropDownWidget(
+                              isPurpose: true,
+                              // selectedValue:
+                              //     valuesFiltersCubit.purposeType,
+                              selectedItems: valuesFiltersCubit.rentPurposeList,
+                              list: context
+                                      .read<LookupBloc>()
+                                      .loockUpRent
+                                      ?.rentPurposeList ??
+                                  []);
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -651,26 +624,18 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                         style: Theme.of(context).textTheme.labelMedium),
                     // const SingleDropDownValue(),
                     BlocBuilder(
-                      bloc: context.read<RentBloc>(),
-                      builder: (context, RentState state) {
-                        if (state.isLoadingRentLookup) {
-                          return const LinearProgressIndicator();
-                        }
-                        if (state.rentLookup != const RentLookupResponse()) {
-                          return BlocBuilder(
-                            bloc: valuesFiltersCubit,
-                            builder: (context, states) {
-                              return SingleDropDownValue<RentLookupModel>(
-                                  value: valuesFiltersCubit.bedRoom,
-                                  onChanged: (bedRooms) {
-                                    valuesFiltersCubit
-                                        .changeBedRooms(bedRooms!);
-                                  },
-                                  list: state.rentLookup.bedRooms);
+                      bloc: valuesFiltersCubit,
+                      builder: (context, states) {
+                        return SingleDropDownValue<RentLookupModel>(
+                            value: valuesFiltersCubit.bedRoom,
+                            onChanged: (bedRooms) {
+                              valuesFiltersCubit.changeBedRooms(bedRooms!);
                             },
-                          );
-                        }
-                        return const Text('Error');
+                            list: context
+                                    .read<LookupBloc>()
+                                    .loockUpRent
+                                    ?.bedRooms ??
+                                []);
                       },
                     ),
                   ],
@@ -687,27 +652,19 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                     BlocBuilder(
-                      bloc: context.read<RentBloc>(),
-                      builder: (context, RentState state) {
-                        if (state.isLoadingRentLookup) {
-                          return const LinearProgressIndicator();
-                        }
-                        if (state.rentLookup != const RentLookupResponse()) {
-                          return BlocBuilder(
-                            bloc: valuesFiltersCubit,
-                            builder: (context, states) {
-                              return SingleDropDownValue<RentLookupModel>(
-                                  onChanged: (periodTime) {
-                                    valuesFiltersCubit
-                                        .changePeriodTime(periodTime!);
-                                    // valuesFiltersCubit.periodTime = periodTime!;
-                                  },
-                                  value: valuesFiltersCubit.periodTime,
-                                  list: state.rentLookup.periodTime);
+                      bloc: valuesFiltersCubit,
+                      builder: (context, states) {
+                        return SingleDropDownValue<RentLookupModel>(
+                            onChanged: (periodTime) {
+                              valuesFiltersCubit.changePeriodTime(periodTime!);
+                              // valuesFiltersCubit.periodTime = periodTime!;
                             },
-                          );
-                        }
-                        return const Text('Error');
+                            value: valuesFiltersCubit.periodTime,
+                            list: context
+                                    .read<LookupBloc>()
+                                    .loockUpRent
+                                    ?.periodTime ??
+                                []);
                       },
                     ),
                   ],
@@ -727,43 +684,33 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                         style: Theme.of(context).textTheme.labelMedium),
                     // const SingleDropDownValue(),
 
-                    BlocBuilder(
-                      bloc: context.read<RentBloc>(),
-                      builder: (context, RentState state) {
-                        if (state.isLoadingRentLookup) {
-                          return const LinearProgressIndicator();
-                        }
-                        if (state.rentLookup != const RentLookupResponse()) {
-                          return Row(
-                            children: [
-                              Expanded(
-                                  child: BlocBuilder(
-                                bloc: valuesFiltersCubit,
-                                builder: (context, state) {
-                                  return SingleDropDownValue<RentLookupModel>(
-                                      onChanged: (year) {
-                                        valuesFiltersCubit.changeYear(year!);
-                                      },
-                                      value: valuesFiltersCubit.year,
-                                      list: valuesFiltersCubit.yearsLists);
+                    Row(
+                      children: [
+                        Expanded(
+                            child: BlocBuilder(
+                          bloc: valuesFiltersCubit,
+                          builder: (context, state) {
+                            return SingleDropDownValue<RentLookupModel>(
+                                onChanged: (year) {
+                                  valuesFiltersCubit.changeYear(year!);
                                 },
-                              )),
-                              SizedBox(width: AppSizeW.s8),
-                              BlocBuilder(
-                                bloc: valuesFiltersCubit,
-                                builder: (context, states) {
-                                  return Expanded(
-                                      child: getPeriodTimeById(
-                                    valuesFiltersCubit.periodTime.id,
-                                    state.rentLookup,
-                                  ));
-                                },
-                              )
-                            ],
-                          );
-                        }
-                        return const Text('Error');
-                      },
+                                value: valuesFiltersCubit.year,
+                                list: valuesFiltersCubit.yearsLists);
+                          },
+                        )),
+                        SizedBox(width: AppSizeW.s8),
+                        BlocBuilder(
+                          bloc: valuesFiltersCubit,
+                          builder: (context, states) {
+                            return Expanded(
+                                child: getPeriodTimeById(
+                              valuesFiltersCubit.periodTime.id,
+                              context.read<LookupBloc>().loockUpRent ??
+                                  const RentLookupResponse(),
+                            ));
+                          },
+                        )
+                      ],
                     ),
                   ],
                 ),
@@ -789,7 +736,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                               valuesFiltersCubit.changeFurniture(furniture!);
                             },
                             list: context
-                                    .read<RentBloc>()
+                                    .read<LookupBloc>()
                                     .loockUpRent
                                     ?.furnitureStatusList ??
                                 []);
@@ -857,15 +804,15 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
               return SliderWidget(
                 title: AppStrings().rentValueFromTo,
                 startValue:
-                    '${(valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit?.start.toDouble() ?? context.read<RentBloc>().loockUpRent?.maxParams[1].minVal.toDouble())?.toInt().formatWithCommas()}',
+                    '${(valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit?.start.toDouble() ?? context.read<LookupBloc>().loockUpRent?.maxParams[1].minVal.toDouble())?.toInt().formatWithCommas()}',
                 endValue:
-                    '${(valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit?.end.toDouble() ?? context.read<RentBloc>().loockUpRent?.maxParams[1].maxVal.toDouble())?.toInt().formatWithCommas()}',
+                    '${(valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit?.end.toDouble() ?? context.read<LookupBloc>().loockUpRent?.maxParams[1].maxVal.toDouble())?.toInt().formatWithCommas()}',
                 values: valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit ??
                     RangeValues(
                         valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom
                                 ?.toDouble() ??
                             context
-                                .read<RentBloc>()
+                                .read<LookupBloc>()
                                 .loockUpRent
                                 ?.maxParams[1]
                                 .minVal
@@ -874,7 +821,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                         valuesFiltersCubit.rentPaymentMonthlyPerUnitTo
                                 ?.toDouble() ??
                             context
-                                .read<RentBloc>()
+                                .read<LookupBloc>()
                                 .loockUpRent
                                 ?.maxParams[1]
                                 .maxVal
@@ -885,14 +832,14 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                       .changeRangeRentPaymentMonthlyPerUnit(rangeValues);
                 },
                 min: context
-                        .read<RentBloc>()
+                        .read<LookupBloc>()
                         .loockUpRent
                         ?.maxParams[1]
                         .minVal
                         .toDouble() ??
                     0,
                 max: context
-                        .read<RentBloc>()
+                        .read<LookupBloc>()
                         .loockUpRent
                         ?.maxParams[1]
                         .maxVal
@@ -908,14 +855,14 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
               return SliderWidget(
                 title: AppStrings().areaFromTo,
                 startValue:
-                    '${(valuesFiltersCubit.rangeValuesArea?.start.toDouble() ?? context.read<RentBloc>().loockUpRent?.maxParams[0].minVal.toDouble())?.toInt().formatWithCommas()}',
+                    '${(valuesFiltersCubit.rangeValuesArea?.start.toDouble() ?? context.read<LookupBloc>().loockUpRent?.maxParams[0].minVal.toDouble())?.toInt().formatWithCommas()}',
                 endValue:
-                    '${(valuesFiltersCubit.rangeValuesArea?.end.toDouble() ?? context.read<RentBloc>().loockUpRent?.maxParams[0].maxVal.toDouble())?.toInt().formatWithCommas()}',
+                    '${(valuesFiltersCubit.rangeValuesArea?.end.toDouble() ?? context.read<LookupBloc>().loockUpRent?.maxParams[0].maxVal.toDouble())?.toInt().formatWithCommas()}',
                 values: valuesFiltersCubit.rangeValuesArea ??
                     RangeValues(
                         valuesFiltersCubit.areaFrom?.toDouble() ??
                             context
-                                .read<RentBloc>()
+                                .read<LookupBloc>()
                                 .loockUpRent
                                 ?.maxParams[0]
                                 .minVal
@@ -923,7 +870,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                             0,
                         valuesFiltersCubit.areaTo?.toDouble() ??
                             context
-                                .read<RentBloc>()
+                                .read<LookupBloc>()
                                 .loockUpRent
                                 ?.maxParams[0]
                                 .maxVal
@@ -933,14 +880,14 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   valuesFiltersCubit.changeRangeValuesArea(rangeValues);
                 },
                 min: context
-                        .read<RentBloc>()
+                        .read<LookupBloc>()
                         .loockUpRent
                         ?.maxParams[0]
                         .minVal
                         .toDouble() ??
                     0,
                 max: context
-                        .read<RentBloc>()
+                        .read<LookupBloc>()
                         .loockUpRent
                         ?.maxParams[0]
                         .maxVal
