@@ -608,7 +608,12 @@ class _SalesViewState extends State<SalesView> {
                                                       .bodyLarge,
                                                 );
                                               }
-                                              return value.response.count < 4
+                                              return value.response.count <
+                                                      (context
+                                                              .read<SellBloc>()
+                                                              .requestSell
+                                                              .limit ??
+                                                          4)
                                                   ? SizedBox(
                                                       height: AppSizeH.s10)
                                                   : Column(
@@ -620,7 +625,12 @@ class _SalesViewState extends State<SalesView> {
                                                                   .requestSell
                                                                   .offset ??
                                                               0,
-                                                          limitPerPage: 3,
+                                                          limitPerPage: context
+                                                                  .read<
+                                                                      SellBloc>()
+                                                                  .requestSell
+                                                                  .limit ??
+                                                              3,
                                                           totalDataCount:
                                                               sellTransactionBloc
                                                                       .sellTransaction

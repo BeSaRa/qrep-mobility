@@ -40,7 +40,7 @@ class MortgageBloc extends Bloc<MortgageEvent, MortgageState> {
       issueDateStartMonth: 1,
       issueDateEndMonth: DateTime.now().month,
       zoneId: -1,
-      limit: 5,
+      limit: 3,
       offset: 0);
   RequestMortgageValues requestMeanValue = RequestMortgageValues(
     municipalityId: 4,
@@ -52,7 +52,7 @@ class MortgageBloc extends Bloc<MortgageEvent, MortgageState> {
     issueDateStartMonth: 1,
     issueDateEndMonth: DateTime.now().month,
     zoneId: -1,
-    limit: 5,
+    limit: 3,
     periodId: 1,
     offset: 0,
   );

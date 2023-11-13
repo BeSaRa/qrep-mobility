@@ -589,7 +589,12 @@ class _RentViewState extends State<RentView> {
                                     }
                                     if (state.rentSummery !=
                                         const RentListSummary()) {
-                                      return state.rentSummery.count < 4
+                                      return state.rentSummery.count <
+                                              (context
+                                                      .read<RentBloc>()
+                                                      .requestMeanValue
+                                                      .limit ??
+                                                  4)
                                           ? SizedBox(height: AppSizeH.s10)
                                           : Column(
                                               children: [
@@ -599,7 +604,11 @@ class _RentViewState extends State<RentView> {
                                                           .requestMeanValue
                                                           .offset ??
                                                       0,
-                                                  limitPerPage: 3,
+                                                  limitPerPage: context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue
+                                                          .limit ??
+                                                      3,
                                                   totalDataCount:
                                                       rentSummeryBloc
                                                               .rentSummery

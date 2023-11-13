@@ -472,7 +472,12 @@ class _MortagageViewState extends State<MortgageView> {
                                           Theme.of(context).textTheme.bodyLarge,
                                     );
                                   } else {
-                                    return done.count < 4
+                                    return done.count <
+                                            (context
+                                                    .read<MortgageBloc>()
+                                                    .requestMeanValue
+                                                    .limit ??
+                                                4)
                                         ? SizedBox(height: AppSizeH.s10)
                                         : Column(
                                             children: [
@@ -482,7 +487,11 @@ class _MortagageViewState extends State<MortgageView> {
                                                         .requestMeanValue
                                                         .offset ??
                                                     0,
-                                                limitPerPage: 3,
+                                                limitPerPage: context
+                                                        .read<MortgageBloc>()
+                                                        .requestMeanValue
+                                                        .limit ??
+                                                    3,
                                                 totalDataCount:
                                                     mortgageTransactionsBloc
                                                         .response.count,
