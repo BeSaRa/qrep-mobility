@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:ebla/app/constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../app/app_preferences.dart';
@@ -17,8 +18,7 @@ class GuestTokenBloc extends Bloc<GuestTokenEvent, GuestTokenState> {
           emit(const GuestTokenState.loading());
           var token = await appPreferences.getUserToken();
           if (token.isEmpty) {
-            await appPreferences
-                .setUserToken("lyHWSTHj1SBm9IRECnLAHviNHnXGaS27");
+            await appPreferences.setUserToken(Constant.guestToken);
             await resetAllModules();
             emit(const GuestTokenState.success());
           } else {
