@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LookupEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initilaEvent,
     required TResult Function() getRentLookupEvent,
     required TResult Function() getMortgageLookupEvent,
     required TResult Function() getSellLookupEvent,
@@ -25,6 +26,7 @@ mixin _$LookupEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initilaEvent,
     TResult? Function()? getRentLookupEvent,
     TResult? Function()? getMortgageLookupEvent,
     TResult? Function()? getSellLookupEvent,
@@ -32,6 +34,7 @@ mixin _$LookupEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initilaEvent,
     TResult Function()? getRentLookupEvent,
     TResult Function()? getMortgageLookupEvent,
     TResult Function()? getSellLookupEvent,
@@ -40,6 +43,7 @@ mixin _$LookupEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_LookUpInitialEvent value) initilaEvent,
     required TResult Function(_GetRentLookupEvent value) getRentLookupEvent,
     required TResult Function(__GetMortgageLookupEvent value)
         getMortgageLookupEvent,
@@ -48,6 +52,7 @@ mixin _$LookupEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LookUpInitialEvent value)? initilaEvent,
     TResult? Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult? Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult? Function(_GetSellLookupEvent value)? getSellLookupEvent,
@@ -55,6 +60,7 @@ mixin _$LookupEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LookUpInitialEvent value)? initilaEvent,
     TResult Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult Function(_GetSellLookupEvent value)? getSellLookupEvent,
@@ -79,6 +85,121 @@ class _$LookupEventCopyWithImpl<$Res, $Val extends LookupEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$LookUpInitialEventImplCopyWith<$Res> {
+  factory _$$LookUpInitialEventImplCopyWith(_$LookUpInitialEventImpl value,
+          $Res Function(_$LookUpInitialEventImpl) then) =
+      __$$LookUpInitialEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LookUpInitialEventImplCopyWithImpl<$Res>
+    extends _$LookupEventCopyWithImpl<$Res, _$LookUpInitialEventImpl>
+    implements _$$LookUpInitialEventImplCopyWith<$Res> {
+  __$$LookUpInitialEventImplCopyWithImpl(_$LookUpInitialEventImpl _value,
+      $Res Function(_$LookUpInitialEventImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LookUpInitialEventImpl implements _LookUpInitialEvent {
+  const _$LookUpInitialEventImpl();
+
+  @override
+  String toString() {
+    return 'LookupEvent.initilaEvent()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LookUpInitialEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initilaEvent,
+    required TResult Function() getRentLookupEvent,
+    required TResult Function() getMortgageLookupEvent,
+    required TResult Function() getSellLookupEvent,
+  }) {
+    return initilaEvent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initilaEvent,
+    TResult? Function()? getRentLookupEvent,
+    TResult? Function()? getMortgageLookupEvent,
+    TResult? Function()? getSellLookupEvent,
+  }) {
+    return initilaEvent?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initilaEvent,
+    TResult Function()? getRentLookupEvent,
+    TResult Function()? getMortgageLookupEvent,
+    TResult Function()? getSellLookupEvent,
+    required TResult orElse(),
+  }) {
+    if (initilaEvent != null) {
+      return initilaEvent();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LookUpInitialEvent value) initilaEvent,
+    required TResult Function(_GetRentLookupEvent value) getRentLookupEvent,
+    required TResult Function(__GetMortgageLookupEvent value)
+        getMortgageLookupEvent,
+    required TResult Function(_GetSellLookupEvent value) getSellLookupEvent,
+  }) {
+    return initilaEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LookUpInitialEvent value)? initilaEvent,
+    TResult? Function(_GetRentLookupEvent value)? getRentLookupEvent,
+    TResult? Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
+    TResult? Function(_GetSellLookupEvent value)? getSellLookupEvent,
+  }) {
+    return initilaEvent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LookUpInitialEvent value)? initilaEvent,
+    TResult Function(_GetRentLookupEvent value)? getRentLookupEvent,
+    TResult Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
+    TResult Function(_GetSellLookupEvent value)? getSellLookupEvent,
+    required TResult orElse(),
+  }) {
+    if (initilaEvent != null) {
+      return initilaEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LookUpInitialEvent implements LookupEvent {
+  const factory _LookUpInitialEvent() = _$LookUpInitialEventImpl;
 }
 
 /// @nodoc
@@ -119,6 +240,7 @@ class _$GetRentLookupEventImpl implements _GetRentLookupEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initilaEvent,
     required TResult Function() getRentLookupEvent,
     required TResult Function() getMortgageLookupEvent,
     required TResult Function() getSellLookupEvent,
@@ -129,6 +251,7 @@ class _$GetRentLookupEventImpl implements _GetRentLookupEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initilaEvent,
     TResult? Function()? getRentLookupEvent,
     TResult? Function()? getMortgageLookupEvent,
     TResult? Function()? getSellLookupEvent,
@@ -139,6 +262,7 @@ class _$GetRentLookupEventImpl implements _GetRentLookupEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initilaEvent,
     TResult Function()? getRentLookupEvent,
     TResult Function()? getMortgageLookupEvent,
     TResult Function()? getSellLookupEvent,
@@ -153,6 +277,7 @@ class _$GetRentLookupEventImpl implements _GetRentLookupEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_LookUpInitialEvent value) initilaEvent,
     required TResult Function(_GetRentLookupEvent value) getRentLookupEvent,
     required TResult Function(__GetMortgageLookupEvent value)
         getMortgageLookupEvent,
@@ -164,6 +289,7 @@ class _$GetRentLookupEventImpl implements _GetRentLookupEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LookUpInitialEvent value)? initilaEvent,
     TResult? Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult? Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult? Function(_GetSellLookupEvent value)? getSellLookupEvent,
@@ -174,6 +300,7 @@ class _$GetRentLookupEventImpl implements _GetRentLookupEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LookUpInitialEvent value)? initilaEvent,
     TResult Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult Function(_GetSellLookupEvent value)? getSellLookupEvent,
@@ -231,6 +358,7 @@ class _$_GetMortgageLookupEventImpl implements __GetMortgageLookupEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initilaEvent,
     required TResult Function() getRentLookupEvent,
     required TResult Function() getMortgageLookupEvent,
     required TResult Function() getSellLookupEvent,
@@ -241,6 +369,7 @@ class _$_GetMortgageLookupEventImpl implements __GetMortgageLookupEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initilaEvent,
     TResult? Function()? getRentLookupEvent,
     TResult? Function()? getMortgageLookupEvent,
     TResult? Function()? getSellLookupEvent,
@@ -251,6 +380,7 @@ class _$_GetMortgageLookupEventImpl implements __GetMortgageLookupEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initilaEvent,
     TResult Function()? getRentLookupEvent,
     TResult Function()? getMortgageLookupEvent,
     TResult Function()? getSellLookupEvent,
@@ -265,6 +395,7 @@ class _$_GetMortgageLookupEventImpl implements __GetMortgageLookupEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_LookUpInitialEvent value) initilaEvent,
     required TResult Function(_GetRentLookupEvent value) getRentLookupEvent,
     required TResult Function(__GetMortgageLookupEvent value)
         getMortgageLookupEvent,
@@ -276,6 +407,7 @@ class _$_GetMortgageLookupEventImpl implements __GetMortgageLookupEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LookUpInitialEvent value)? initilaEvent,
     TResult? Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult? Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult? Function(_GetSellLookupEvent value)? getSellLookupEvent,
@@ -286,6 +418,7 @@ class _$_GetMortgageLookupEventImpl implements __GetMortgageLookupEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LookUpInitialEvent value)? initilaEvent,
     TResult Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult Function(_GetSellLookupEvent value)? getSellLookupEvent,
@@ -340,6 +473,7 @@ class _$GetSellLookupEventImpl implements _GetSellLookupEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initilaEvent,
     required TResult Function() getRentLookupEvent,
     required TResult Function() getMortgageLookupEvent,
     required TResult Function() getSellLookupEvent,
@@ -350,6 +484,7 @@ class _$GetSellLookupEventImpl implements _GetSellLookupEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initilaEvent,
     TResult? Function()? getRentLookupEvent,
     TResult? Function()? getMortgageLookupEvent,
     TResult? Function()? getSellLookupEvent,
@@ -360,6 +495,7 @@ class _$GetSellLookupEventImpl implements _GetSellLookupEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initilaEvent,
     TResult Function()? getRentLookupEvent,
     TResult Function()? getMortgageLookupEvent,
     TResult Function()? getSellLookupEvent,
@@ -374,6 +510,7 @@ class _$GetSellLookupEventImpl implements _GetSellLookupEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_LookUpInitialEvent value) initilaEvent,
     required TResult Function(_GetRentLookupEvent value) getRentLookupEvent,
     required TResult Function(__GetMortgageLookupEvent value)
         getMortgageLookupEvent,
@@ -385,6 +522,7 @@ class _$GetSellLookupEventImpl implements _GetSellLookupEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LookUpInitialEvent value)? initilaEvent,
     TResult? Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult? Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult? Function(_GetSellLookupEvent value)? getSellLookupEvent,
@@ -395,6 +533,7 @@ class _$GetSellLookupEventImpl implements _GetSellLookupEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LookUpInitialEvent value)? initilaEvent,
     TResult Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult Function(_GetSellLookupEvent value)? getSellLookupEvent,

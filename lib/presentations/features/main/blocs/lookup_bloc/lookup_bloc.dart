@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:ebla/app/depndency_injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../domain/models/rent_models/rent_models.dart';
@@ -11,9 +12,9 @@ part 'lookup_state.dart';
 part 'lookup_bloc.freezed.dart';
 
 class LookupBloc extends Bloc<LookupEvent, LookupState> {
-  final GetRentLookupUseCase getRentLookupUseCase;
-  final GetSellLookupUseCase getSellLookupUseCase;
-  final LookUpMortgageUseCase lookUpMortgageUseCase;
+  GetRentLookupUseCase getRentLookupUseCase;
+  GetSellLookupUseCase getSellLookupUseCase;
+  LookUpMortgageUseCase lookUpMortgageUseCase;
   RentLookupResponse? loockUpRent;
   RentLookupResponse? loockUpSell;
   RentLookupResponse? lookUpMortgage;
@@ -59,6 +60,12 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
           }, (error) {
             emit(LookupState.errorLookUp(message: error.message));
           });
+        },
+        initilaEvent: (value) {
+          getRentLookupUseCase = instance<GetRentLookupUseCase>();
+          getSellLookupUseCase = instance<GetSellLookupUseCase>();
+          lookUpMortgageUseCase = instance<LookUpMortgageUseCase>();
+          emit(const LookupState.loadingLookup());
         },
       );
     }, transformer: restartable());
