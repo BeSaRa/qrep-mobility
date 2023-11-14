@@ -52,8 +52,8 @@ class _MainScaffoldState extends State<MainScaffold>
               await initSellModule();
             case 3:
               await initMortgageModule();
-            case 4:
-              initLoginModule();
+            // case 4:
+            //   initLoginModule();
 
             default:
               null;

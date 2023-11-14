@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:ebla/app/app_preferences.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
@@ -12,6 +14,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../resources/assets_manager.dart';
+import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -37,11 +40,8 @@ class _LoginViewState extends State<LoginView> {
       bloc: context.read<LoginBloc>(),
       listener: (context, LoginState state) async {
         if (state.isSuccessLogin) {
-          await instance<AppPreferences>()
-              .setUserToken(state.successLogin.data.token);
-          await instance<AppPreferences>()
-              .setUserRefreshToken(state.successLogin.data.refreshToken);
           await resetAllModules();
+          context.read<LookupBloc>().add(const LookupEvent.initilaEvent());
           context.pop();
         }
       },

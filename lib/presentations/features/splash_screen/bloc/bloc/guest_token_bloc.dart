@@ -9,7 +9,7 @@ part 'guest_token_state.dart';
 part 'guest_token_bloc.freezed.dart';
 
 class GuestTokenBloc extends Bloc<GuestTokenEvent, GuestTokenState> {
-  final AppPreferences appPreferences;
+  AppPreferences appPreferences;
   GuestTokenBloc({required this.appPreferences}) : super(const _Initial()) {
     on<GuestTokenEvent>((event, emit) async {
       await event.map(

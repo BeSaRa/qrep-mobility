@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:ebla/app/app_preferences.dart';
+import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/Auth/auth_models.dart';
 import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -10,9 +12,11 @@ part 'login_state.dart';
 part 'login_bloc.freezed.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final LoginUsecases loginUsecases;
+  LoginUsecases loginUsecases;
+  AppPreferences appPreferences;
   String? name;
-  LoginBloc({required this.loginUsecases}) : super(const LoginState.initial()) {
+  LoginBloc({required this.loginUsecases, required this.appPreferences})
+      : super(const LoginState.initial()) {
     on<LoginEvent>((event, emit) async {
       await event.map(
         login: (value) async {
@@ -23,6 +27,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           failureOrSuccess.when((success) {
             name = "";
             name = value.authRequest.identifier;
+            appPreferences.setUserToken(success.data.token);
+            appPreferences.setUserRefreshToken(success.data.refreshToken);
+
             emit(state.copyWith(
                 isLoading: false,
                 isHasError: false,

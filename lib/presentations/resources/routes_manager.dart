@@ -83,6 +83,9 @@ class AppRouter {
                   BlocProvider(
                     create: (context) => instance<BottomNavCubit>(),
                   ),
+                  // BlocProvider(
+                  //   create: (context) => instance<LookupBloc>(),
+                  // ),
                 ],
                 child: MainScaffold(child: child),
               ),
