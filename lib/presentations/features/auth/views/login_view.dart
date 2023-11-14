@@ -1,15 +1,19 @@
 import 'package:ebla/app/app_preferences.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
+import 'package:ebla/presentations/features/auth/blocs/cubits/face_id_check_cubit.dart';
 import 'package:ebla/presentations/features/auth/blocs/login_bloc/login_bloc.dart';
 import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:local_auth/error_codes.dart' as auth_error;
+import 'package:local_auth/local_auth.dart';
 
 import '../../../resources/assets_manager.dart';
 
@@ -25,10 +29,54 @@ class _LoginViewState extends State<LoginView> {
   bool light = true;
   final identifierController = TextEditingController();
   final passwordController = TextEditingController();
+  final LocalAuthentication auth = LocalAuthentication();
+
+  late FaceIdCheckCubit faceIdCheck;
+
   @override
   void initState() {
+    haveFaceId();
+    faceIdCheck = FaceIdCheckCubit(false);
     // loginBloc = instance<LoginBloc>();
     super.initState();
+  }
+
+  Future<bool> haveFaceId() async {
+    final bool canAuthenticateWithBiometrics = await auth.canCheckBiometrics;
+    final bool canAuthenticate =
+        canAuthenticateWithBiometrics || await auth.isDeviceSupported();
+    faceIdCheck.save(canAuthenticate);
+    final List<BiometricType> availableBiometrics =
+        await auth.getAvailableBiometrics();
+
+    if (availableBiometrics.isNotEmpty) {
+      // Some biometrics are enrolled.
+      print(availableBiometrics.first);
+    }
+
+    if (availableBiometrics.contains(BiometricType.strong) ||
+        availableBiometrics.contains(BiometricType.face)) {
+      // Specific types of biometrics are available.
+      // Use checks like this with caution!
+    }
+
+    try {
+      final bool didAuthenticate = await auth.authenticate(
+          localizedReason: 'Please authenticate to show account balance',
+          options: const AuthenticationOptions(biometricOnly: true));
+      // ···
+      print('did authenticate $didAuthenticate');
+    } on PlatformException catch (e) {
+      if (e.code == auth_error.notEnrolled) {
+        // Add handling of no hardware here.
+      } else if (e.code == auth_error.lockedOut ||
+          e.code == auth_error.permanentlyLockedOut) {
+        // ...
+      } else {
+        // ...
+      }
+    }
+    return canAuthenticate;
   }
 
   @override
@@ -91,45 +139,56 @@ class _LoginViewState extends State<LoginView> {
                   ?.copyWith(fontSize: 12.sp),
             ),
           ),
-          Row(
-            children: [
-              SizedBox(
-                height: AppSizeW.s20,
-                width: AppSizeW.s20,
-                child: SvgPicture.asset(
-                  IconAssets.faceIdIcon,
-                  // ignore: deprecated_member_use
-                  color: Theme.of(context)
-                      .bottomNavigationBarTheme
-                      .unselectedItemColor,
-                ),
-              ),
-              SizedBox(
-                width: AppSizeW.s5,
-              ),
-              Text(
-                AppStrings().activateFaceId,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              const Spacer(),
-              Switch(
-                // This bool value toggles the switch.
-                value: light,
-                activeColor: Theme.of(context).primaryColor,
-                activeTrackColor:
-                    Theme.of(context).unselectedWidgetColor.withOpacity(0.2),
-                inactiveThumbColor: Theme.of(context).primaryColor,
-                inactiveTrackColor:
-                    Theme.of(context).unselectedWidgetColor.withOpacity(0.2),
+          BlocBuilder(
+            bloc: faceIdCheck,
+            builder: (context, state) {
+              if (state == true) {
+                return Row(
+                  children: [
+                    SizedBox(
+                      height: AppSizeW.s20,
+                      width: AppSizeW.s20,
+                      child: SvgPicture.asset(
+                        IconAssets.faceIdIcon,
+                        // ignore: deprecated_member_use
+                        color: Theme.of(context)
+                            .bottomNavigationBarTheme
+                            .unselectedItemColor,
+                      ),
+                    ),
+                    SizedBox(
+                      width: AppSizeW.s5,
+                    ),
+                    Text(
+                      AppStrings().activateFaceId,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    const Spacer(),
+                    Switch(
+                      // This bool value toggles the switch.
+                      value: light,
+                      activeColor: Theme.of(context).primaryColor,
+                      activeTrackColor: Theme.of(context)
+                          .unselectedWidgetColor
+                          .withOpacity(0.2),
+                      inactiveThumbColor: Theme.of(context).primaryColor,
+                      inactiveTrackColor: Theme.of(context)
+                          .unselectedWidgetColor
+                          .withOpacity(0.2),
 
-                onChanged: (bool value) {
-                  // This is called when the user toggles the switch.
-                  setState(() {
-                    light = value;
-                  });
-                },
-              ),
-            ],
+                      onChanged: (bool value) {
+                        // This is called when the user toggles the switch.
+                        setState(() {
+                          light = value;
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return Container();
+              }
+            },
           ),
           const Spacer(),
           BlocBuilder(
