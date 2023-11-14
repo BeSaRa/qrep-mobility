@@ -30,6 +30,7 @@ import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import '../presentations/features/info/blocs/news_bloc/news_bloc.dart';
 import '../presentations/features/rent/blocs/rent_blocs.dart';
 import '../presentations/features/sell/blocs/sell_bloc/sell_bloc.dart';
+import '../presentations/features/splash_screen/bloc/bloc/guest_token_bloc.dart';
 import 'app_preferences.dart';
 
 final instance = GetIt.instance;
@@ -38,7 +39,7 @@ Future<void> initAppModule() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   instance.registerFactory<SharedPreferences>(() => sharedPreferences);
   instance.registerFactory<AppPreferences>(() => AppPreferences(instance()));
-  instance.registerFactory<DioFactory>(() => DioFactory(instance()));
+  instance.registerLazySingleton<DioFactory>(() => DioFactory(instance()));
   instance.registerFactory<GeneralInterceptor>(
       () => GeneralInterceptor(instance()));
   final dio = await instance<DioFactory>().getDio();
@@ -48,9 +49,9 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImplementer(Connectivity()));
   instance.registerLazySingleton<Repository>(() => RepositoryImplementer(
-      appServiceClient: instance(),
-      translationsServiceClient: instance(),
-      networkInfo: instance()));
+      appServiceClient: instance<AppServiceClient>(),
+      translationsServiceClient: instance<TranslationsServiceClient>(),
+      networkInfo: instance<NetworkInfo>()));
   if (!GetIt.I.isRegistered<GetSellLookupUseCase>()) {
     instance.registerFactory<GetSellLookupUseCase>(
         () => GetSellLookupUseCase(instance()));
@@ -63,11 +64,31 @@ Future<void> initAppModule() async {
     instance.registerFactory<LookUpMortgageUseCase>(
         () => LookUpMortgageUseCase(instance()));
   }
-  instance.registerFactory(() => BottomNavCubit(0));
-  instance.registerFactory(() => LookupBloc(
-      getRentLookupUseCase: instance(),
-      getSellLookupUseCase: instance(),
-      lookUpMortgageUseCase: instance()));
+  if (!GetIt.I.isRegistered<LoginUsecases>()) {
+    instance.registerFactory<LoginUsecases>(
+        () => LoginUsecases(repository: instance()));
+  }
+
+  if (!GetIt.I.isRegistered<BottomNavCubit>()) {
+    instance.registerFactory<BottomNavCubit>(() => BottomNavCubit(0));
+  }
+  if (!GetIt.I.isRegistered<LookupBloc>()) {
+    instance.registerFactory<LookupBloc>(() => LookupBloc(
+        getRentLookupUseCase: instance<GetRentLookupUseCase>(),
+        getSellLookupUseCase: instance<GetSellLookupUseCase>(),
+        lookUpMortgageUseCase: instance<LookUpMortgageUseCase>()));
+  }
+  if (!GetIt.I.isRegistered<GuestTokenBloc>()) {
+    instance.registerFactory<GuestTokenBloc>(
+        () => GuestTokenBloc(appPreferences: instance()));
+  }
+
+  //Blocs
+  if (!GetIt.I.isRegistered<LoginBloc>()) {
+    instance.registerFactory<LoginBloc>(() => LoginBloc(
+        loginUsecases: instance<LoginUsecases>(),
+        appPreferences: instance<AppPreferences>()));
+  }
 }
 
 Future<void> initTranslationsModule() async {
@@ -128,10 +149,10 @@ Future<void> initSellModule() async {
         () => SellDefaultUseCase(instance()));
   }
 
-  if (!GetIt.I.isRegistered<GetSellLookupUseCase>()) {
-    instance.registerFactory<GetSellLookupUseCase>(
-        () => GetSellLookupUseCase(instance()));
-  }
+  // if (!GetIt.I.isRegistered<GetSellLookupUseCase>()) {
+  //   instance.registerFactory<GetSellLookupUseCase>(
+  //       () => GetSellLookupUseCase(instance()));
+  // }
   // KPI1
   if (!GetIt.I.isRegistered<TotalContractsSellUseCase>()) {
     instance.registerFactory<TotalContractsSellUseCase>(
@@ -226,10 +247,10 @@ Future<void> initSellModule() async {
 
 Future<void> initRentModule() async {
 //Usecases
-  if (!GetIt.I.isRegistered<GetRentLookupUseCase>()) {
-    instance.registerFactory<GetRentLookupUseCase>(
-        () => GetRentLookupUseCase(instance()));
-  }
+  // if (!GetIt.I.isRegistered<GetRentLookupUseCase>()) {
+  //   instance.registerFactory<GetRentLookupUseCase>(
+  //       () => GetRentLookupUseCase(instance()));
+  // }
   if (!GetIt.I.isRegistered<MeanValueUsecase>()) {
     instance
         .registerFactory<MeanValueUsecase>(() => MeanValueUsecase(instance()));
@@ -321,10 +342,10 @@ Future<void> initRentModule() async {
 
 Future<void> initMortgageModule() async {
   //usecase
-  if (!GetIt.I.isRegistered<LookUpMortgageUseCase>()) {
-    instance.registerFactory<LookUpMortgageUseCase>(
-        () => LookUpMortgageUseCase(instance()));
-  }
+  // if (!GetIt.I.isRegistered<LookUpMortgageUseCase>()) {
+  //   instance.registerFactory<LookUpMortgageUseCase>(
+  //       () => LookUpMortgageUseCase(instance()));
+  // }
   if (!GetIt.I.isRegistered<MortgageTransactionUseCase>()) {
     instance.registerFactory<MortgageTransactionUseCase>(
         () => MortgageTransactionUseCase(instance()));
@@ -360,20 +381,11 @@ Future<void> initMortgageModule() async {
   }
 }
 
-Future<void> initLoginModule() async {
-  if (!GetIt.I.isRegistered<LoginUsecases>()) {
-    instance.registerFactory<LoginUsecases>(
-        () => LoginUsecases(repository: instance()));
-  }
-  //Blocs
-  if (!GetIt.I.isRegistered<LoginBloc>()) {
-    instance
-        .registerFactory<LoginBloc>(() => LoginBloc(loginUsecases: instance()));
-  }
-}
+// Future<void> initLoginModule() async {
+
+// }
 
 Future<void> resetAllModules({bool dispose = true}) async {
   await instance.reset(dispose: dispose);
   await initAppModule();
-  await initLoginModule();
 }

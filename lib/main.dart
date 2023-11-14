@@ -25,7 +25,6 @@ Future<void> main() async {
     ],
   );
   EasyLocalization.logger.enableBuildModes = [];
-  await initTranslationsModule();
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
       .whenComplete(
     () {
@@ -38,25 +37,26 @@ Future<void> main() async {
       );
     },
   );
-  await initAppModule().then((value) async {
-    Bloc.observer = MyBlocObserver();
-    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    await Future.delayed(const Duration(milliseconds: 150));
+  await initAppModule();
+  await initTranslationsModule();
 
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
-      backgroundHandler(message);
-      print("i got a background message $message");
-    });
-    return runApp(
-      EasyLocalization(
-        assetLoader: TranslationsAssetsLoader(
-          loadRemoteAssets: false,
-          updateInterval: const Duration(days: 3),
-        ),
-        supportedLocales: supportedLocales,
-        path: ASSETS_PATH_LOCALISATION,
-        child: const MyApp(),
-      ),
-    );
+  Bloc.observer = MyBlocObserver();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await Future.delayed(const Duration(milliseconds: 150));
+
+  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
+    backgroundHandler(message);
+    print("i got a background message $message");
   });
+  return runApp(
+    EasyLocalization(
+      assetLoader: TranslationsAssetsLoader(
+        loadRemoteAssets: false,
+        updateInterval: const Duration(days: 3),
+      ),
+      supportedLocales: supportedLocales,
+      path: ASSETS_PATH_LOCALISATION,
+      child: const MyApp(),
+    ),
+  );
 }

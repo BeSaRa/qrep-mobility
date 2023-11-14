@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 
+import '../../../../app/depndency_injection.dart';
 import '../../../resources/resources.dart';
 
 class BottomNavCubit extends Cubit<int> {
@@ -12,6 +13,13 @@ class BottomNavCubit extends Cubit<int> {
     RoutesNames.mortgage,
     RoutesNames.more,
   ];
+  // List<Future<void>> diMethod = [
+  //   initHomeModule(),
+  //   initRentModule(),
+  //   initSellModule(),
+  //   initMortgageModule(),
+  //   initLoginModule()
+  // ];
   void changePage(int index) {
     currentPage = index;
     emit(currentPage);
