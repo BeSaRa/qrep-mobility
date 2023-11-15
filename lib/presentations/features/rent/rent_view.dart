@@ -409,7 +409,7 @@ class _RentViewState extends State<RentView> {
                                   builder: (context, state) {
                                     if (state.isLoadingRentSummery) {
                                       return ListView.builder(
-                                          itemCount: 3,
+                                          itemCount: 5,
                                           shrinkWrap: true,
                                           physics:
                                               const NeverScrollableScrollPhysics(),
@@ -426,8 +426,8 @@ class _RentViewState extends State<RentView> {
                                                           .rentSummery
                                                           .transactionList
                                                           .length >
-                                                      3
-                                                  ? 3
+                                                      5
+                                                  ? 5
                                                   : state.rentSummery
                                                       .transactionList.length,
                                               shrinkWrap: true,
@@ -548,7 +548,7 @@ class _RentViewState extends State<RentView> {
                                                     .requestMeanValue
                                                     .offset ??
                                                 0,
-                                            limitPerPage: 3,
+                                            limitPerPage: 5,
                                             totalDataCount: rentSummeryBloc
                                                     .rentSummery?.count ??
                                                 0,
@@ -608,7 +608,7 @@ class _RentViewState extends State<RentView> {
                                                           .read<RentBloc>()
                                                           .requestMeanValue
                                                           .limit ??
-                                                      3,
+                                                      5,
                                                   totalDataCount:
                                                       rentSummeryBloc
                                                               .rentSummery

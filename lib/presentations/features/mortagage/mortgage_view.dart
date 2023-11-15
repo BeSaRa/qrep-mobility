@@ -33,6 +33,7 @@ class _MortagageViewState extends State<MortgageView> {
   late MortgageTransactionsBloc mortgageTransactionsBloc;
   late ChangeStatusCubit changeStatusCubit;
   late MortgageGridKPIsBloc mortgageGridKPIsBloc;
+
   @override
   void initState() {
     context.read<LookupBloc>().add(const LookupEvent.getMortgageLookupEvent());
@@ -327,7 +328,7 @@ class _MortagageViewState extends State<MortgageView> {
                               builder: (context, state) => state.when(
                                   initial: () => Container(),
                                   loading: () => ListView.builder(
-                                      itemCount: 3,
+                                      itemCount: 5,
                                       shrinkWrap: true,
                                       physics:
                                           const NeverScrollableScrollPhysics(),
@@ -339,8 +340,8 @@ class _MortagageViewState extends State<MortgageView> {
                                           ListView.builder(
                                               itemCount: done.transactionList
                                                           .length >
-                                                      3
-                                                  ? 3
+                                                      5
+                                                  ? 5
                                                   : done.transactionList.length,
                                               shrinkWrap: true,
                                               physics:
@@ -437,7 +438,7 @@ class _MortagageViewState extends State<MortgageView> {
                                               .requestMeanValue
                                               .offset ??
                                           0,
-                                      limitPerPage: 3,
+                                      limitPerPage: 5,
                                       totalDataCount: mortgageTransactionsBloc
                                           .response.count,
                                       onPreviousPage: (previousPage) {},
@@ -491,7 +492,7 @@ class _MortagageViewState extends State<MortgageView> {
                                                         .read<MortgageBloc>()
                                                         .requestMeanValue
                                                         .limit ??
-                                                    3,
+                                                    5,
                                                 totalDataCount:
                                                     mortgageTransactionsBloc
                                                         .response.count,
