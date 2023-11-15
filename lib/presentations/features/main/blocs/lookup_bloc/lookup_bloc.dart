@@ -29,8 +29,6 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
           emit(const LookupState.loadingLookup());
           final failureOrSuccess = await getRentLookupUseCase.execute();
           failureOrSuccess.when((rentLookup) {
-            loockUpSell = null;
-            lookUpMortgage = null;
             loockUpRent = rentLookup;
             emit(LookupState.loadedLookup(lookup: rentLookup));
           }, (error) {
@@ -41,8 +39,6 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
           emit(const LookupState.loadingLookup());
           final failureOrSuccess = await lookUpMortgageUseCase.execute();
           failureOrSuccess.when((mortgageLookup) {
-            loockUpRent = null;
-            loockUpSell = null;
             lookUpMortgage = mortgageLookup;
             emit(LookupState.loadedLookup(lookup: mortgageLookup));
           }, (error) {
@@ -53,8 +49,6 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
           emit(const LookupState.loadingLookup());
           final failureOrSuccess = await getSellLookupUseCase.execute();
           failureOrSuccess.when((sellLookup) {
-            lookUpMortgage = null;
-            loockUpRent = null;
             loockUpSell = sellLookup;
             emit(LookupState.loadedLookup(lookup: sellLookup));
           }, (error) {
