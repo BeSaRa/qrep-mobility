@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:ebla/app/app_preferences.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
 import 'package:ebla/presentations/features/auth/blocs/cubits/face_id_check_cubit.dart';
@@ -9,12 +8,10 @@ import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:local_auth/error_codes.dart' as auth_error;
 import 'package:local_auth/local_auth.dart';
 
 import '../../../resources/assets_manager.dart';
@@ -40,7 +37,6 @@ class _LoginViewState extends State<LoginView> {
   void initState() {
     haveFaceId();
     faceIdCheck = FaceIdCheckCubit(false);
-    // loginBloc = instance<LoginBloc>();
     super.initState();
   }
 
@@ -49,36 +45,7 @@ class _LoginViewState extends State<LoginView> {
     final bool canAuthenticate =
         canAuthenticateWithBiometrics || await auth.isDeviceSupported();
     faceIdCheck.save(canAuthenticate);
-    final List<BiometricType> availableBiometrics =
-        await auth.getAvailableBiometrics();
 
-    if (availableBiometrics.isNotEmpty) {
-      // Some biometrics are enrolled.
-      print(availableBiometrics.first);
-    }
-
-    if (availableBiometrics.contains(BiometricType.strong) ||
-        availableBiometrics.contains(BiometricType.face)) {
-      // Specific types of biometrics are available.
-      // Use checks like this with caution!
-    }
-
-    try {
-      final bool didAuthenticate = await auth.authenticate(
-          localizedReason: 'Please authenticate to show account balance',
-          options: const AuthenticationOptions(biometricOnly: true));
-      // ···
-      print('did authenticate $didAuthenticate');
-    } on PlatformException catch (e) {
-      if (e.code == auth_error.notEnrolled) {
-        // Add handling of no hardware here.
-      } else if (e.code == auth_error.lockedOut ||
-          e.code == auth_error.permanentlyLockedOut) {
-        // ...
-      } else {
-        // ...
-      }
-    }
     return canAuthenticate;
   }
 
@@ -177,7 +144,9 @@ class _LoginViewState extends State<LoginView> {
                           .withOpacity(0.2),
 
                       onChanged: (bool value) {
-                        // This is called when the user toggles the switch.
+                        if (value == true) {
+                          faceIdCheck.authenticate();
+                        }
                         setState(() {
                           light = value;
                         });
