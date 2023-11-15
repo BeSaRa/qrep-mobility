@@ -1,7 +1,7 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart' as local;
-import 'package:ebla/presentations/features/more/cubits/change_language_cubit.dart';
 import 'package:ebla/presentations/features/auth/views/login_view.dart';
+import 'package:ebla/presentations/features/more/cubits/change_language_cubit.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
@@ -27,6 +27,7 @@ class _MoreViewState extends State<MoreView> {
   final AppPreferences _appPreferences = instance<AppPreferences>();
   late ChangeLanguageCubit changeLanguageCubit;
   late LoginBloc loginBloc;
+
   @override
   void initState() {
     super.initState();
