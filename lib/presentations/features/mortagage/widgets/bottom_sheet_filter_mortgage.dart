@@ -1,5 +1,6 @@
 import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
@@ -875,6 +876,11 @@ class _BottomSheetFilterMortgageWidgetState
                                   : null,
                               purposeList: valuesFiltersCubit.rentPurposeList.map((e) => e.lookupKey).toList(),
                               propertyTypeList: valuesFiltersCubit.propertyTypeList.map((e) => e.lookupKey).toList(),
+                              halfYearDuration: valuesFiltersCubit.periodTime.id == 2
+                                  ? listEquals(getissueDateQuarterList(valuesFiltersCubit.periodTime.id), [1, 2])
+                                      ? 1
+                                      : 2
+                                  : null,
                               offset: 0,
                               streetNo: streetController.text.isEmpty ? null : int.parse(streetController.text));
                       Navigator.of(context).pop(true);
