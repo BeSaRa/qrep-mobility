@@ -23,17 +23,6 @@ class _MortgageGridState extends State<MortgageGrid> {
       child: Row(
         children: [
           Flexible(
-              child: GridItemWidget(
-            gridItemType: GridItemType.mortgage,
-            defaultResponse: RentDefault(),
-            rentKPI: null,
-            sellKPI: null,
-            mortgageKPI: MortgageGridKPIs.totalMortgageTransactions,
-          )),
-          SizedBox(
-            width: widget.crossAxisSpacing,
-          ),
-          Flexible(
             child: Column(
               children: [
                 GridItemWidget(
@@ -56,6 +45,17 @@ class _MortgageGridState extends State<MortgageGrid> {
               ],
             ),
           ),
+          SizedBox(
+            width: widget.crossAxisSpacing,
+          ),
+          Flexible(
+              child: GridItemWidget(
+            gridItemType: GridItemType.mortgage,
+            defaultResponse: RentDefault(),
+            rentKPI: null,
+            sellKPI: null,
+            mortgageKPI: MortgageGridKPIs.totalMortgageTransactions,
+          )),
         ],
       ),
     );

@@ -414,7 +414,7 @@ class _SalesViewState extends State<SalesView> {
                                           initial: () => const SizedBox(),
                                           loading: () {
                                             return ListView.builder(
-                                                itemCount: 3,
+                                                itemCount: 5,
                                                 shrinkWrap: true,
                                                 physics:
                                                     const NeverScrollableScrollPhysics(),
@@ -427,8 +427,8 @@ class _SalesViewState extends State<SalesView> {
                                                   itemCount: success
                                                               .transactionList
                                                               .length >
-                                                          3
-                                                      ? 3
+                                                          5
+                                                      ? 5
                                                       : success.transactionList
                                                           .length,
                                                   shrinkWrap: true,
@@ -572,7 +572,7 @@ class _SalesViewState extends State<SalesView> {
                                                             .requestSell
                                                             .offset ??
                                                         0,
-                                                    limitPerPage: 3,
+                                                    limitPerPage: 5,
                                                     totalDataCount:
                                                         sellTransactionBloc
                                                                 .sellTransaction
@@ -647,7 +647,7 @@ class _SalesViewState extends State<SalesView> {
                                                                       SellBloc>()
                                                                   .requestSell
                                                                   .limit ??
-                                                              3,
+                                                              5,
                                                           totalDataCount:
                                                               sellTransactionBloc
                                                                       .sellTransaction

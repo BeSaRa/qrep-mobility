@@ -3,11 +3,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../domain/models/rent_models/rent_models.dart';
 import '../../../../../domain/models/requests/rent_requests/request_mean_value.dart';
-import '../../../../../domain/usecases/rent_usecases/rent_usecases.dart';
 
+part 'rent_bloc.freezed.dart';
 part 'rent_event.dart';
 part 'rent_state.dart';
-part 'rent_bloc.freezed.dart';
 
 class RentBloc extends Bloc<RentEvent, RentState> {
   // final GetRentLookupUseCase getRentLookupUseCase;
@@ -45,6 +44,7 @@ class RentBloc extends Bloc<RentEvent, RentState> {
       // );
     });
   }
+
   RequestMeanValue requestDefault = RequestMeanValue(
     municipalityId: 1,
     propertyTypeList: [-1],

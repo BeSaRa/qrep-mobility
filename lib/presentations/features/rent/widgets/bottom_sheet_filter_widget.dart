@@ -10,14 +10,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../../domain/models/rent_models/rent_models.dart';
+import '../../../widgets/custom_elevated_button.dart';
+import '../../../widgets/multi_choose_dropdown.dart';
+import '../../../widgets/text_field_filter_widget.dart';
 import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
 import '../blocs/rent_bloc/rent_bloc.dart';
 import 'choose_unit_filters_widget.dart';
 import 'slider_filter_widget.dart';
-import '../../../widgets/custom_elevated_button.dart';
-import '../../../widgets/multi_choose_dropdown.dart';
-import '../../../widgets/text_field_filter_widget.dart';
 
 // enum PeriodTime { year, halfYear, quarterYear, monthly, specificPeriod }
 
@@ -945,16 +945,6 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                             ? DateTime.now().month
                                             : 12
                                         : 12,
-                            halfYearDuration: valuesFiltersCubit
-                                        .periodTime.id ==
-                                    2
-                                ? listEquals(
-                                        getissueDateQuarterList(
-                                            valuesFiltersCubit.periodTime.id),
-                                        [1, 2])
-                                    ? 1
-                                    : 2
-                                : null,
                             periodId: valuesFiltersCubit.periodTime.id,
                             issueDateFrom: valuesFiltersCubit.periodTime.id == 5
                                 ? valuesFiltersCubit.pickerDateRange?.startDate
@@ -971,10 +961,19 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 .propertyTypeList
                                 .map((e) => e.lookupKey)
                                 .toList(),
+                            halfYearDuration: valuesFiltersCubit
+                                        .periodTime.id ==
+                                    2
+                                ? listEquals(
+                                        getissueDateQuarterList(
+                                            valuesFiltersCubit.periodTime.id),
+                                        [1, 2])
+                                    ? 1
+                                    : 2
+                                : null,
                             offset: 0,
-                            // streetNo: streetController.text.isEmpty
-                            //     ? null
-                            //     : int.parse(streetController.text),
+                            //         streetNo: streetController.text.isEmpty ? null
+                            //            : int.parse(streetController.text),
                           );
                       Navigator.of(context).pop(true);
                       // print(

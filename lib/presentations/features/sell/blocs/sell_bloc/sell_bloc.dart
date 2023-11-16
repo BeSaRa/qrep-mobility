@@ -3,11 +3,9 @@ import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/domain/models/requests/sell_requests/request_sell_values.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../../domain/usecases/sell_usecases/sell_usecases.dart';
-
+part 'sell_bloc.freezed.dart';
 part 'sell_event.dart';
 part 'sell_state.dart';
-part 'sell_bloc.freezed.dart';
 
 class SellBloc extends Bloc<SellEvent, SellState> {
   // final GetSellLookupUseCase getSellLookupUseCase;
@@ -28,6 +26,7 @@ class SellBloc extends Bloc<SellEvent, SellState> {
       // );
     });
   }
+
   RequestSellValues requestSellDefault = RequestSellValues(
     municipalityId: 4,
     propertyTypeList: [-1],
@@ -37,7 +36,7 @@ class SellBloc extends Bloc<SellEvent, SellState> {
     issueDateStartMonth: 1,
     issueDateEndMonth: DateTime.now().month,
     zoneId: -1,
-    limit: 3,
+    limit: 5,
     offset: 0,
   );
   RequestSellValues requestSell = RequestSellValues(
@@ -49,7 +48,7 @@ class SellBloc extends Bloc<SellEvent, SellState> {
     issueDateStartMonth: 1,
     issueDateEndMonth: DateTime.now().month,
     zoneId: -1,
-    limit: 3,
+    limit: 5,
     offset: 0,
   );
 }

@@ -30,6 +30,7 @@ abstract class RequestMeanValue with _$RequestMeanValue {
     @Default(2) int unit,
     @Default(1) int periodId,
   }) = _RequestMeanValue;
+
   factory RequestMeanValue.fromJson(Map<String, dynamic> json) =>
       _$RequestMeanValueFromJson(json);
 }
