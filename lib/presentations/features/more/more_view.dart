@@ -244,10 +244,10 @@ class _MoreViewState extends State<MoreView> {
                                     .add(const UserEvent.getUserInfo());
                               }
                             },
-                            child: const MoreWidgetButton(
+                            child: MoreWidgetButton(
                               isButton: false,
                               icon: Icons.logout,
-                              title: "تسجيل الخروج",
+                              title: AppStrings().logout,
                             ),
                           ),
                   ],

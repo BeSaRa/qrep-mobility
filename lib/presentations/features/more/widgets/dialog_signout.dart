@@ -20,14 +20,14 @@ class DialogsignOut extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            "تسجيل الخروج",
+            AppStrings().logout,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           SizedBox(
             height: AppSizeH.s20,
           ),
           Text(
-            "هل انت متأكد من تسجيل الخروج ؟",
+            AppStrings().validateLogout,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           SizedBox(
@@ -42,7 +42,7 @@ class DialogsignOut extends StatelessWidget {
                       .textTheme
                       .displaySmall!
                       .copyWith(color: ColorManager.primary),
-                  title: "نعم",
+                  title: AppStrings().yes,
                   onPress: () {
                     Navigator.of(context).pop(true);
                   },
@@ -52,7 +52,7 @@ class DialogsignOut extends StatelessWidget {
               Expanded(
                 child: CustomElevatedButton(
                   isPrimary: true,
-                  title: "لا",
+                  title: AppStrings().no,
                   onPress: () {
                     Navigator.of(context).pop();
                   },
