@@ -36,8 +36,8 @@ mixin _$RequestSellValues {
   List<int>? get propertyTypeList => throw _privateConstructorUsedError;
   List<int>? get purposeList => throw _privateConstructorUsedError;
   num? get realEstateValueFrom => throw _privateConstructorUsedError;
-  num? get realEstateValueTo => throw _privateConstructorUsedError;
-  int? get streetNo => throw _privateConstructorUsedError;
+  num? get realEstateValueTo =>
+      throw _privateConstructorUsedError; // int? streetNo,
   int? get zoneId => throw _privateConstructorUsedError;
   int get unit => throw _privateConstructorUsedError;
   int get periodId => throw _privateConstructorUsedError;
@@ -72,7 +72,6 @@ abstract class $RequestSellValuesCopyWith<$Res> {
       List<int>? purposeList,
       num? realEstateValueFrom,
       num? realEstateValueTo,
-      int? streetNo,
       int? zoneId,
       int unit,
       int periodId});
@@ -108,7 +107,6 @@ class _$RequestSellValuesCopyWithImpl<$Res, $Val extends RequestSellValues>
     Object? purposeList = freezed,
     Object? realEstateValueFrom = freezed,
     Object? realEstateValueTo = freezed,
-    Object? streetNo = freezed,
     Object? zoneId = freezed,
     Object? unit = null,
     Object? periodId = null,
@@ -182,10 +180,6 @@ class _$RequestSellValuesCopyWithImpl<$Res, $Val extends RequestSellValues>
           ? _value.realEstateValueTo
           : realEstateValueTo // ignore: cast_nullable_to_non_nullable
               as num?,
-      streetNo: freezed == streetNo
-          ? _value.streetNo
-          : streetNo // ignore: cast_nullable_to_non_nullable
-              as int?,
       zoneId: freezed == zoneId
           ? _value.zoneId
           : zoneId // ignore: cast_nullable_to_non_nullable
@@ -228,7 +222,6 @@ abstract class _$$RequestSellValuesImplCopyWith<$Res>
       List<int>? purposeList,
       num? realEstateValueFrom,
       num? realEstateValueTo,
-      int? streetNo,
       int? zoneId,
       int unit,
       int periodId});
@@ -262,7 +255,6 @@ class __$$RequestSellValuesImplCopyWithImpl<$Res>
     Object? purposeList = freezed,
     Object? realEstateValueFrom = freezed,
     Object? realEstateValueTo = freezed,
-    Object? streetNo = freezed,
     Object? zoneId = freezed,
     Object? unit = null,
     Object? periodId = null,
@@ -336,10 +328,6 @@ class __$$RequestSellValuesImplCopyWithImpl<$Res>
           ? _value.realEstateValueTo
           : realEstateValueTo // ignore: cast_nullable_to_non_nullable
               as num?,
-      streetNo: freezed == streetNo
-          ? _value.streetNo
-          : streetNo // ignore: cast_nullable_to_non_nullable
-              as int?,
       zoneId: freezed == zoneId
           ? _value.zoneId
           : zoneId // ignore: cast_nullable_to_non_nullable
@@ -377,7 +365,6 @@ class _$RequestSellValuesImpl implements _RequestSellValues {
       final List<int>? purposeList,
       this.realEstateValueFrom,
       this.realEstateValueTo,
-      this.streetNo,
       this.zoneId,
       this.unit = 2,
       this.periodId = 1})
@@ -449,8 +436,7 @@ class _$RequestSellValuesImpl implements _RequestSellValues {
   final num? realEstateValueFrom;
   @override
   final num? realEstateValueTo;
-  @override
-  final int? streetNo;
+// int? streetNo,
   @override
   final int? zoneId;
   @override
@@ -462,7 +448,7 @@ class _$RequestSellValuesImpl implements _RequestSellValues {
 
   @override
   String toString() {
-    return 'RequestSellValues(areaCode: $areaCode, areaFrom: $areaFrom, areaTo: $areaTo, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateMonth: $issueDateMonth, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, propertyTypeList: $propertyTypeList, purposeList: $purposeList, realEstateValueFrom: $realEstateValueFrom, realEstateValueTo: $realEstateValueTo, streetNo: $streetNo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
+    return 'RequestSellValues(areaCode: $areaCode, areaFrom: $areaFrom, areaTo: $areaTo, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateMonth: $issueDateMonth, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, propertyTypeList: $propertyTypeList, purposeList: $purposeList, realEstateValueFrom: $realEstateValueFrom, realEstateValueTo: $realEstateValueTo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
   }
 
   @override
@@ -501,8 +487,6 @@ class _$RequestSellValuesImpl implements _RequestSellValues {
                 other.realEstateValueFrom == realEstateValueFrom) &&
             (identical(other.realEstateValueTo, realEstateValueTo) ||
                 other.realEstateValueTo == realEstateValueTo) &&
-            (identical(other.streetNo, streetNo) ||
-                other.streetNo == streetNo) &&
             (identical(other.zoneId, zoneId) || other.zoneId == zoneId) &&
             (identical(other.unit, unit) || other.unit == unit) &&
             (identical(other.periodId, periodId) ||
@@ -530,7 +514,6 @@ class _$RequestSellValuesImpl implements _RequestSellValues {
         const DeepCollectionEquality().hash(_purposeList),
         realEstateValueFrom,
         realEstateValueTo,
-        streetNo,
         zoneId,
         unit,
         periodId
@@ -570,7 +553,6 @@ abstract class _RequestSellValues implements RequestSellValues {
       final List<int>? purposeList,
       final num? realEstateValueFrom,
       final num? realEstateValueTo,
-      final int? streetNo,
       final int? zoneId,
       final int unit,
       final int periodId}) = _$RequestSellValuesImpl;
@@ -612,9 +594,7 @@ abstract class _RequestSellValues implements RequestSellValues {
   num? get realEstateValueFrom;
   @override
   num? get realEstateValueTo;
-  @override
-  int? get streetNo;
-  @override
+  @override // int? streetNo,
   int? get zoneId;
   @override
   int get unit;

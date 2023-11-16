@@ -23,7 +23,7 @@ abstract class RequestMortgageValues with _$RequestMortgageValues {
     List<int>? purposeList,
     num? realEstateValueFrom,
     num? realEstateValueTo,
-    int? streetNo,
+    // int? streetNo,
     int? zoneId,
     @Default(2) int unit,
     @Default(1) int periodId,

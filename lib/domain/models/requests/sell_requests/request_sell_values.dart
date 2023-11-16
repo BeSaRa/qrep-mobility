@@ -23,11 +23,12 @@ abstract class RequestSellValues with _$RequestSellValues {
     List<int>? purposeList,
     num? realEstateValueFrom,
     num? realEstateValueTo,
-    int? streetNo,
+    // int? streetNo,
     int? zoneId,
     @Default(2) int unit,
     @Default(1) int periodId,
   }) = _RequestSellValues;
+
   factory RequestSellValues.fromJson(Map<String, dynamic> json) =>
       _$RequestSellValuesFromJson(json);
 }
