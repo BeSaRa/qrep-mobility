@@ -9,14 +9,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../../domain/models/rent_models/rent_models.dart';
+import '../../../widgets/custom_elevated_button.dart';
+import '../../../widgets/multi_choose_dropdown.dart';
+import '../../../widgets/text_field_filter_widget.dart';
 import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
 import '../blocs/rent_bloc/rent_bloc.dart';
 import 'choose_unit_filters_widget.dart';
 import 'slider_filter_widget.dart';
-import '../../../widgets/custom_elevated_button.dart';
-import '../../../widgets/multi_choose_dropdown.dart';
-import '../../../widgets/text_field_filter_widget.dart';
 
 // enum PeriodTime { year, halfYear, quarterYear, monthly, specificPeriod }
 
@@ -46,16 +46,14 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           values.add(element.value[0]);
         }
         return values;
-      //       break;
+    //       break;
       default:
         return null;
     }
   }
 
-  Widget getPeriodTimeById(
-    int id,
-    RentLookupResponse success,
-  ) {
+  Widget getPeriodTimeById(int id,
+      RentLookupResponse success,) {
     switch (id) {
       case 1:
         valuesFiltersCubit.pickerDateRange = null;
@@ -71,9 +69,9 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
             valuesFiltersCubit.month = const PeriodTimeDetails();
             valuesFiltersCubit.quarterYear.clear();
             valuesFiltersCubit.periodTimeHalfDetails ==
-                    const PeriodTimeDetails()
+                const PeriodTimeDetails()
                 ? valuesFiltersCubit.periodTimeHalfDetails =
-                    success.halfYearList.first
+                success.halfYearList.first
                 : null;
             return SingleDropDownValue<PeriodTimeDetails>(
                 onChanged: (halfYear) {
@@ -90,9 +88,12 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
             valuesFiltersCubit.pickerDateRange = null;
             valuesFiltersCubit.month = const PeriodTimeDetails();
             valuesFiltersCubit.periodTimeHalfDetails =
-                const PeriodTimeDetails();
+            const PeriodTimeDetails();
 
-            if (context.read<RentBloc>().requestMeanValue.periodId != 3) {
+            if (context
+                .read<RentBloc>()
+                .requestMeanValue
+                .periodId != 3) {
               valuesFiltersCubit.quarterYear.clear();
               valuesFiltersCubit.quarterYear.add(success.quarterYearList.first);
             } else {
@@ -103,10 +104,10 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   ?.quarterYearList
                   .forEach((element) {
                 if (context
-                        .read<RentBloc>()
-                        .requestMeanValue
-                        .issueDateQuarterList
-                        ?.contains(element.value[0]) ??
+                    .read<RentBloc>()
+                    .requestMeanValue
+                    .issueDateQuarterList
+                    ?.contains(element.value[0]) ??
                     false) {
                   valuesFiltersCubit.quarterYear.add(element);
                 }
@@ -125,19 +126,22 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           builder: (context, state) {
             valuesFiltersCubit.pickerDateRange = null;
             valuesFiltersCubit.periodTimeHalfDetails =
-                const PeriodTimeDetails();
+            const PeriodTimeDetails();
             valuesFiltersCubit.quarterYear.clear();
             valuesFiltersCubit.months = getAllMonthsInYear(context);
             if (valuesFiltersCubit.month == const PeriodTimeDetails()) {
-              context.read<RentBloc>().requestMeanValue.issueDateEndMonth !=
-                      null
+              context
+                  .read<RentBloc>()
+                  .requestMeanValue
+                  .issueDateEndMonth !=
+                  null
                   ? valuesFiltersCubit.month = valuesFiltersCubit.months
-                      .firstWhere((element) =>
-                          element.value[0] ==
-                          context
-                              .read<RentBloc>()
-                              .requestMeanValue
-                              .issueDateEndMonth)
+                  .firstWhere((element) =>
+              element.value[0] ==
+                  context
+                      .read<RentBloc>()
+                      .requestMeanValue
+                      .issueDateEndMonth)
                   : valuesFiltersCubit.month = valuesFiltersCubit.months.first;
             }
 
@@ -155,7 +159,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           builder: (context, state) {
             valuesFiltersCubit.month = const PeriodTimeDetails();
             valuesFiltersCubit.periodTimeHalfDetails =
-                const PeriodTimeDetails();
+            const PeriodTimeDetails();
             valuesFiltersCubit.quarterYear.clear();
             return Container(
               alignment: AlignmentDirectional.centerStart,
@@ -169,8 +173,8 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
               child: InkWell(
                 onTap: () async {
                   valuesFiltersCubit.pickerDateRange =
-                      await showDatePickerPopup(
-                          context, valuesFiltersCubit.pickerDateRange);
+                  await showDatePickerPopup(
+                      context, valuesFiltersCubit.pickerDateRange);
                   setState(() {});
                 },
                 child: Row(
@@ -180,13 +184,21 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                       child: FittedBox(
                         child: valuesFiltersCubit.pickerDateRange != null
                             ? Text(
-                                '${valuesFiltersCubit.pickerDateRange?.startDate.toFormattedString()}---${valuesFiltersCubit.pickerDateRange?.endDate.toFormattedString()}',
-                                style: Theme.of(context).textTheme.labelSmall,
-                              )
+                          '${valuesFiltersCubit.pickerDateRange?.startDate
+                              .toFormattedString()}---${valuesFiltersCubit
+                              .pickerDateRange?.endDate.toFormattedString()}',
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .labelSmall,
+                        )
                             : Text(
-                                AppStrings().chooseDate,
-                                style: Theme.of(context).textTheme.labelSmall,
-                              ),
+                          AppStrings().chooseDate,
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .labelSmall,
+                        ),
                       ),
                     ),
                     SizedBox(width: AppSizeW.s4),
@@ -208,14 +220,22 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
   @override
   void initState() {
     valuesFiltersCubit = ValuesFiltersCubit(const RentLookupModel());
-    generateYears(2019, DateTime.now().year).forEach((element) {
+    generateYears(2019, DateTime
+        .now()
+        .year).forEach((element) {
       valuesFiltersCubit.yearsLists.add(RentLookupModel(
           arName: element.toString(), id: element, enName: element.toString()));
     });
     valuesFiltersCubit.furniture = getObjectByLookupKey(
-          context.read<LookupBloc>().loockUpRent?.furnitureStatusList ?? [],
-          context.read<RentBloc>().requestMeanValue.furnitureStatus ?? -1,
-        ) ??
+      context
+          .read<LookupBloc>()
+          .loockUpRent
+          ?.furnitureStatusList ?? [],
+      context
+          .read<RentBloc>()
+          .requestMeanValue
+          .furnitureStatus ?? -1,
+    ) ??
         const RentLookupModel();
     //Nationality
     // valuesFiltersCubit.nationality = getObjectByLookupKey(
@@ -224,14 +244,26 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     //     ) ??
     //     const RentLookupModel();
     valuesFiltersCubit.municapility = getObjectById(
-          context.read<LookupBloc>().loockUpRent?.municipalityList ?? [],
-          context.read<RentBloc>().requestMeanValue.municipalityId ?? 1,
-        ) ??
+      context
+          .read<LookupBloc>()
+          .loockUpRent
+          ?.municipalityList ?? [],
+      context
+          .read<RentBloc>()
+          .requestMeanValue
+          .municipalityId ?? 1,
+    ) ??
         const RentLookupModel();
     valuesFiltersCubit.zone = getObjectByLookupKey(
-          context.read<LookupBloc>().loockUpRent?.zoneList ?? [],
-          context.read<RentBloc>().requestMeanValue.zoneId ?? 0,
-        ) ??
+      context
+          .read<LookupBloc>()
+          .loockUpRent
+          ?.zoneList ?? [],
+      context
+          .read<RentBloc>()
+          .requestMeanValue
+          .zoneId ?? 0,
+    ) ??
         const RentLookupModel();
     context
         .read<RentBloc>()
@@ -239,58 +271,97 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
         .propertyTypeList
         ?.forEach((element) {
       valuesFiltersCubit.propertyTypeList.add(getObjectByLookupKey(
-            context.read<LookupBloc>().loockUpRent?.propertyTypeList ?? [],
-            element,
-          ) ??
+        context
+            .read<LookupBloc>()
+            .loockUpRent
+            ?.propertyTypeList ?? [],
+        element,
+      ) ??
           const RentLookupModel());
     });
-    context.read<RentBloc>().requestMeanValue.purposeList?.forEach((element) {
+    context
+        .read<RentBloc>()
+        .requestMeanValue
+        .purposeList
+        ?.forEach((element) {
       valuesFiltersCubit.rentPurposeList.add(getObjectByLookupKey(
-            context.read<LookupBloc>().loockUpRent?.rentPurposeList ?? [],
-            element,
-          ) ??
+        context
+            .read<LookupBloc>()
+            .loockUpRent
+            ?.rentPurposeList ?? [],
+        element,
+      ) ??
           const RentLookupModel());
     });
     valuesFiltersCubit.bedRoom = getObjectById(
-          context.read<LookupBloc>().loockUpRent?.bedRooms ?? [],
-          context.read<RentBloc>().requestMeanValue.bedRoomsCount == 0
-              ? -1
-              : context.read<RentBloc>().requestMeanValue.bedRoomsCount ?? -1,
-        ) ??
+      context
+          .read<LookupBloc>()
+          .loockUpRent
+          ?.bedRooms ?? [],
+      context
+          .read<RentBloc>()
+          .requestMeanValue
+          .bedRoomsCount == 0
+          ? -1
+          : context
+          .read<RentBloc>()
+          .requestMeanValue
+          .bedRoomsCount ?? -1,
+    ) ??
         const RentLookupModel();
     valuesFiltersCubit.periodTime = getObjectById(
-          context.read<LookupBloc>().loockUpRent?.periodTime ?? [],
-          context.read<RentBloc>().requestMeanValue.periodId,
-        ) ??
+      context
+          .read<LookupBloc>()
+          .loockUpRent
+          ?.periodTime ?? [],
+      context
+          .read<RentBloc>()
+          .requestMeanValue
+          .periodId,
+    ) ??
         const RentLookupModel();
     valuesFiltersCubit.year =
-        context.read<RentBloc>().requestMeanValue.issueDateYear != null
-            ? getObjectById(
-                  valuesFiltersCubit.yearsLists,
-                  context.read<RentBloc>().requestMeanValue.issueDateYear ??
-                      DateTime.now().year,
-                ) ??
-                valuesFiltersCubit.yearsLists.last
-            : valuesFiltersCubit.yearsLists.last;
-    context.read<RentBloc>().requestMeanValue.periodId == 2
+    context
+        .read<RentBloc>()
+        .requestMeanValue
+        .issueDateYear != null
+        ? getObjectById(
+      valuesFiltersCubit.yearsLists,
+      context
+          .read<RentBloc>()
+          .requestMeanValue
+          .issueDateYear ??
+          DateTime
+              .now()
+              .year,
+    ) ??
+        valuesFiltersCubit.yearsLists.last
+        : valuesFiltersCubit.yearsLists.last;
+    context
+        .read<RentBloc>()
+        .requestMeanValue
+        .periodId == 2
         ? valuesFiltersCubit.periodTimeHalfDetails = context
-                .read<LookupBloc>()
-                .loockUpRent
-                ?.halfYearList
-                .firstWhere((element) =>
-                    context
-                        .read<RentBloc>()
-                        .requestMeanValue
-                        .issueDateQuarterList ==
-                    element.value) ??
-            const PeriodTimeDetails()
+        .read<LookupBloc>()
+        .loockUpRent
+        ?.halfYearList
+        .firstWhere((element) =>
+    context
+        .read<RentBloc>()
+        .requestMeanValue
+        .issueDateQuarterList ==
+        element.value) ??
+        const PeriodTimeDetails()
         : null;
     if (context
-                .read<RentBloc>()
-                .requestMeanValue
-                .rentPaymentMonthlyPerUnitFrom !=
-            null &&
-        context.read<RentBloc>().requestMeanValue.rentPaymentMonthlyPerUnitTo !=
+        .read<RentBloc>()
+        .requestMeanValue
+        .rentPaymentMonthlyPerUnitFrom !=
+        null &&
+        context
+            .read<RentBloc>()
+            .requestMeanValue
+            .rentPaymentMonthlyPerUnitTo !=
             null) {
       valuesFiltersCubit.changeRangeRentPaymentMonthlyPerUnit(RangeValues(
           context
@@ -304,17 +375,34 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
               .rentPaymentMonthlyPerUnitTo!
               .toDouble()));
     }
-    if (context.read<RentBloc>().requestMeanValue.areaFrom != null &&
-        context.read<RentBloc>().requestMeanValue.areaTo != null) {
+    if (context
+        .read<RentBloc>()
+        .requestMeanValue
+        .areaFrom != null &&
+        context
+            .read<RentBloc>()
+            .requestMeanValue
+            .areaTo != null) {
       valuesFiltersCubit.changeRangeValuesArea(RangeValues(
-          context.read<RentBloc>().requestMeanValue.areaFrom!.toDouble(),
-          context.read<RentBloc>().requestMeanValue.areaTo!.toDouble()));
+          context
+              .read<RentBloc>()
+              .requestMeanValue
+              .areaFrom!
+              .toDouble(),
+          context
+              .read<RentBloc>()
+              .requestMeanValue
+              .areaTo!
+              .toDouble()));
     }
-    valuesFiltersCubit.unit = context.read<RentBloc>().requestMeanValue.unit;
-    context.read<RentBloc>().requestMeanValue.streetNo != null
-        ? streetController.text =
-            context.read<RentBloc>().requestMeanValue.streetNo.toString()
-        : null;
+    valuesFiltersCubit.unit = context
+        .read<RentBloc>()
+        .requestMeanValue
+        .unit;
+    // context.read<RentBloc>().requestMeanValue.streetNo != null
+    //     ? streetController.text =
+    //         context.read<RentBloc>().requestMeanValue.streetNo.toString()
+    //     : null;
     // valuesFiltersCubit.rentPaymentMonthlyPerUnitTo =
     //     context.read<RentBloc>().requestMeanValue.rentPaymentMonthlyPerUnitTo;
     // valuesFiltersCubit.areaFrom =
@@ -323,16 +411,25 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     //     context.read<RentBloc>().requestMeanValue.areaTo;
 
     valuesFiltersCubit.pickerDateRange = (context
-                    .read<RentBloc>()
-                    .requestMeanValue
-                    .issueDateFrom !=
-                null &&
-            context.read<RentBloc>().requestMeanValue.issueDateTo != null)
+        .read<RentBloc>()
+        .requestMeanValue
+        .issueDateFrom !=
+        null &&
+        context
+            .read<RentBloc>()
+            .requestMeanValue
+            .issueDateTo != null)
         ? PickerDateRange(
-            DateTime.parse(
-                context.read<RentBloc>().requestMeanValue.issueDateFrom ?? ''),
-            DateTime.parse(
-                context.read<RentBloc>().requestMeanValue.issueDateTo ?? ''))
+        DateTime.parse(
+            context
+                .read<RentBloc>()
+                .requestMeanValue
+                .issueDateFrom ?? ''),
+        DateTime.parse(
+            context
+                .read<RentBloc>()
+                .requestMeanValue
+                .issueDateTo ?? ''))
         : null;
     super.initState();
   }
@@ -353,63 +450,72 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   valuesFiltersCubit
                       .changeRangeRentPaymentMonthlyPerUnitReset();
                   valuesFiltersCubit.bedRoom = getObjectById(
-                        context.read<LookupBloc>().loockUpRent?.bedRooms ?? [],
-                        -1,
-                      ) ??
+                    context
+                        .read<LookupBloc>()
+                        .loockUpRent
+                        ?.bedRooms ?? [],
+                    -1,
+                  ) ??
                       const RentLookupModel();
                   valuesFiltersCubit.municapility = getObjectByLookupKey(
-                        context
-                                .read<LookupBloc>()
-                                .loockUpRent
-                                ?.municipalityList ??
-                            [],
-                        1,
-                      ) ??
+                    context
+                        .read<LookupBloc>()
+                        .loockUpRent
+                        ?.municipalityList ??
+                        [],
+                    1,
+                  ) ??
                       const RentLookupModel();
                   valuesFiltersCubit.zone = getObjectByLookupKey(
-                        context.read<LookupBloc>().loockUpRent?.zoneList ?? [],
-                        -1,
-                      ) ??
+                    context
+                        .read<LookupBloc>()
+                        .loockUpRent
+                        ?.zoneList ?? [],
+                    -1,
+                  ) ??
                       const RentLookupModel();
                   valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom = null;
                   valuesFiltersCubit.rentPaymentMonthlyPerUnitTo = null;
                   valuesFiltersCubit.unit = 2;
                   valuesFiltersCubit.year = valuesFiltersCubit.yearsLists.last;
                   valuesFiltersCubit.periodTime = getObjectById(
-                        context.read<LookupBloc>().loockUpRent?.periodTime ??
-                            [],
-                        1,
-                      ) ??
+                    context
+                        .read<LookupBloc>()
+                        .loockUpRent
+                        ?.periodTime ??
+                        [],
+                    1,
+                  ) ??
                       const RentLookupModel();
                   valuesFiltersCubit.rentPurposeList.clear();
                   valuesFiltersCubit.rentPurposeList.add(getObjectByLookupKey(
-                        context
-                                .read<LookupBloc>()
-                                .loockUpRent
-                                ?.rentPurposeList ??
-                            [],
-                        -1,
-                      ) ??
+                    context
+                        .read<LookupBloc>()
+                        .loockUpRent
+                        ?.rentPurposeList ??
+                        [],
+                    -1,
+                  ) ??
                       const RentLookupModel());
                   valuesFiltersCubit.propertyTypeList.clear();
                   valuesFiltersCubit.propertyTypeList.add(getObjectByLookupKey(
-                        context
-                                .read<LookupBloc>()
-                                .loockUpRent
-                                ?.propertyTypeList ??
-                            [],
-                        -1,
-                      ) ??
+                    context
+                        .read<LookupBloc>()
+                        .loockUpRent
+                        ?.propertyTypeList ??
+                        [],
+                    -1,
+                  ) ??
                       const RentLookupModel());
                   valuesFiltersCubit.changeUnit(2);
                   valuesFiltersCubit.furniture = getObjectByLookupKey(
-                        context
-                                .read<LookupBloc>()
-                                .loockUpRent
-                                ?.furnitureStatusList ??
-                            [],
-                        -1,
-                      ) ??
+                    context
+                        .read<LookupBloc>()
+                        .loockUpRent
+                        ?.furnitureStatusList ??
+                        [],
+                    -1,
+                  ) ??
                       const RentLookupModel();
                   // });
                   streetController.clear();
@@ -471,7 +577,8 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                     ),
                     Text(
                       AppStrings().reset,
-                      style: Theme.of(context)
+                      style: Theme
+                          .of(context)
                           .textTheme
                           .labelSmall!
                           .copyWith(color: ColorManager.golden),
@@ -489,7 +596,10 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(AppStrings().municipal,
-                        style: Theme.of(context).textTheme.labelMedium),
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .labelMedium),
                     // const SingleDropDownValue(),
                     BlocBuilder(
                       bloc: valuesFiltersCubit,
@@ -500,16 +610,16 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                               valuesFiltersCubit
                                   .changeMunicapility(municapility!);
                               valuesFiltersCubit.changeZone(context
-                                      .read<LookupBloc>()
-                                      .loockUpRent
-                                      ?.zoneList
-                                      .first ??
+                                  .read<LookupBloc>()
+                                  .loockUpRent
+                                  ?.zoneList
+                                  .first ??
                                   const RentLookupModel());
                             },
                             list: context
-                                    .read<LookupBloc>()
-                                    .loockUpRent
-                                    ?.municipalityList ??
+                                .read<LookupBloc>()
+                                .loockUpRent
+                                ?.municipalityList ??
                                 []);
                       },
                     )
@@ -524,7 +634,10 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   children: [
                     Text(
                       AppStrings().zone,
-                      style: Theme.of(context).textTheme.labelMedium,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .labelMedium,
                     ),
                     BlocBuilder(
                       bloc: valuesFiltersCubit,
@@ -537,9 +650,9 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                             list: filterDataBymunicipalityId(
                                 valuesFiltersCubit.municapility.id,
                                 context
-                                        .read<LookupBloc>()
-                                        .loockUpRent
-                                        ?.zoneList ??
+                                    .read<LookupBloc>()
+                                    .loockUpRent
+                                    ?.zoneList ??
                                     []));
                       },
                     )
@@ -556,7 +669,10 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(AppStrings().propertyType,
-                        style: Theme.of(context).textTheme.labelMedium),
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .labelMedium),
                     // const SingleDropDownValue(),
                     BlocProvider.value(
                       value: valuesFiltersCubit,
@@ -569,9 +685,9 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                             //     valuesFiltersCubit.propertyType,
                             selectedItems: valuesFiltersCubit.propertyTypeList,
                             list: context
-                                    .read<LookupBloc>()
-                                    .loockUpRent
-                                    ?.propertyTypeList ??
+                                .read<LookupBloc>()
+                                .loockUpRent
+                                ?.propertyTypeList ??
                                 [],
                           );
                         },
@@ -588,7 +704,10 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   children: [
                     Text(
                       AppStrings().propertyUsage,
-                      style: Theme.of(context).textTheme.labelMedium,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .labelMedium,
                     ),
                     BlocProvider.value(
                       value: valuesFiltersCubit,
@@ -601,9 +720,9 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                               //     valuesFiltersCubit.purposeType,
                               selectedItems: valuesFiltersCubit.rentPurposeList,
                               list: context
-                                      .read<LookupBloc>()
-                                      .loockUpRent
-                                      ?.rentPurposeList ??
+                                  .read<LookupBloc>()
+                                  .loockUpRent
+                                  ?.rentPurposeList ??
                                   []);
                         },
                       ),
@@ -621,7 +740,10 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(AppStrings().numberOfRooms,
-                        style: Theme.of(context).textTheme.labelMedium),
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .labelMedium),
                     // const SingleDropDownValue(),
                     BlocBuilder(
                       bloc: valuesFiltersCubit,
@@ -632,9 +754,9 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                               valuesFiltersCubit.changeBedRooms(bedRooms!);
                             },
                             list: context
-                                    .read<LookupBloc>()
-                                    .loockUpRent
-                                    ?.bedRooms ??
+                                .read<LookupBloc>()
+                                .loockUpRent
+                                ?.bedRooms ??
                                 []);
                       },
                     ),
@@ -649,7 +771,10 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   children: [
                     Text(
                       AppStrings().duration,
-                      style: Theme.of(context).textTheme.labelMedium,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .labelMedium,
                     ),
                     BlocBuilder(
                       bloc: valuesFiltersCubit,
@@ -661,9 +786,9 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                             },
                             value: valuesFiltersCubit.periodTime,
                             list: context
-                                    .read<LookupBloc>()
-                                    .loockUpRent
-                                    ?.periodTime ??
+                                .read<LookupBloc>()
+                                .loockUpRent
+                                ?.periodTime ??
                                 []);
                       },
                     ),
@@ -681,33 +806,38 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   // mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(AppStrings().durationDetails,
-                        style: Theme.of(context).textTheme.labelMedium),
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .labelMedium),
                     // const SingleDropDownValue(),
 
                     Row(
                       children: [
                         Expanded(
                             child: BlocBuilder(
-                          bloc: valuesFiltersCubit,
-                          builder: (context, state) {
-                            return SingleDropDownValue<RentLookupModel>(
-                                onChanged: (year) {
-                                  valuesFiltersCubit.changeYear(year!);
-                                },
-                                value: valuesFiltersCubit.year,
-                                list: valuesFiltersCubit.yearsLists);
-                          },
-                        )),
+                              bloc: valuesFiltersCubit,
+                              builder: (context, state) {
+                                return SingleDropDownValue<RentLookupModel>(
+                                    onChanged: (year) {
+                                      valuesFiltersCubit.changeYear(year!);
+                                    },
+                                    value: valuesFiltersCubit.year,
+                                    list: valuesFiltersCubit.yearsLists);
+                              },
+                            )),
                         SizedBox(width: AppSizeW.s8),
                         BlocBuilder(
                           bloc: valuesFiltersCubit,
                           builder: (context, states) {
                             return Expanded(
                                 child: getPeriodTimeById(
-                              valuesFiltersCubit.periodTime.id,
-                              context.read<LookupBloc>().loockUpRent ??
-                                  const RentLookupResponse(),
-                            ));
+                                  valuesFiltersCubit.periodTime.id,
+                                  context
+                                      .read<LookupBloc>()
+                                      .loockUpRent ??
+                                      const RentLookupResponse(),
+                                ));
                           },
                         )
                       ],
@@ -725,7 +855,10 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(AppStrings().furnitureStatus,
-                        style: Theme.of(context).textTheme.labelMedium),
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .labelMedium),
                     // const SingleDropDownValue(),
                     BlocBuilder(
                       bloc: valuesFiltersCubit,
@@ -736,9 +869,9 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                               valuesFiltersCubit.changeFurniture(furniture!);
                             },
                             list: context
-                                    .read<LookupBloc>()
-                                    .loockUpRent
-                                    ?.furnitureStatusList ??
+                                .read<LookupBloc>()
+                                .loockUpRent
+                                ?.furnitureStatusList ??
                                 []);
                       },
                     ),
@@ -753,7 +886,10 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   children: [
                     Text(
                       AppStrings().street,
-                      style: Theme.of(context).textTheme.labelMedium,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .labelMedium,
                     ),
                     TextFilterWidget(controller: streetController),
                   ],
@@ -791,7 +927,10 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           ),
           SizedBox(height: AppSizeH.s12),
           Text(AppStrings().measuringUnit,
-              style: Theme.of(context).textTheme.labelMedium),
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .labelMedium),
           SizedBox(height: AppSizeH.s12),
           BlocProvider.value(
             value: valuesFiltersCubit,
@@ -804,13 +943,25 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
               return SliderWidget(
                 title: AppStrings().rentValueFromTo,
                 startValue:
-                    '${(valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit?.start.toDouble() ?? context.read<LookupBloc>().loockUpRent?.maxParams[1].minVal.toDouble())?.toInt().formatWithCommas()}',
+                '${(valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit?.start
+                    .toDouble() ?? context
+                    .read<LookupBloc>()
+                    .loockUpRent
+                    ?.maxParams[1].minVal.toDouble())
+                    ?.toInt()
+                    .formatWithCommas()}',
                 endValue:
-                    '${(valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit?.end.toDouble() ?? context.read<LookupBloc>().loockUpRent?.maxParams[1].maxVal.toDouble())?.toInt().formatWithCommas()}',
+                '${(valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit?.end
+                    .toDouble() ?? context
+                    .read<LookupBloc>()
+                    .loockUpRent
+                    ?.maxParams[1].maxVal.toDouble())
+                    ?.toInt()
+                    .formatWithCommas()}',
                 values: valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit ??
                     RangeValues(
                         valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom
-                                ?.toDouble() ??
+                            ?.toDouble() ??
                             context
                                 .read<LookupBloc>()
                                 .loockUpRent
@@ -819,7 +970,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 .toDouble() ??
                             0,
                         valuesFiltersCubit.rentPaymentMonthlyPerUnitTo
-                                ?.toDouble() ??
+                            ?.toDouble() ??
                             context
                                 .read<LookupBloc>()
                                 .loockUpRent
@@ -832,18 +983,18 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                       .changeRangeRentPaymentMonthlyPerUnit(rangeValues);
                 },
                 min: context
-                        .read<LookupBloc>()
-                        .loockUpRent
-                        ?.maxParams[1]
-                        .minVal
-                        .toDouble() ??
+                    .read<LookupBloc>()
+                    .loockUpRent
+                    ?.maxParams[1]
+                    .minVal
+                    .toDouble() ??
                     0,
                 max: context
-                        .read<LookupBloc>()
-                        .loockUpRent
-                        ?.maxParams[1]
-                        .maxVal
-                        .toDouble() ??
+                    .read<LookupBloc>()
+                    .loockUpRent
+                    ?.maxParams[1]
+                    .maxVal
+                    .toDouble() ??
                     1000000,
               );
             },
@@ -855,9 +1006,21 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
               return SliderWidget(
                 title: AppStrings().areaFromTo,
                 startValue:
-                    '${(valuesFiltersCubit.rangeValuesArea?.start.toDouble() ?? context.read<LookupBloc>().loockUpRent?.maxParams[0].minVal.toDouble())?.toInt().formatWithCommas()}',
+                '${(valuesFiltersCubit.rangeValuesArea?.start.toDouble() ??
+                    context
+                        .read<LookupBloc>()
+                        .loockUpRent
+                        ?.maxParams[0].minVal.toDouble())
+                    ?.toInt()
+                    .formatWithCommas()}',
                 endValue:
-                    '${(valuesFiltersCubit.rangeValuesArea?.end.toDouble() ?? context.read<LookupBloc>().loockUpRent?.maxParams[0].maxVal.toDouble())?.toInt().formatWithCommas()}',
+                '${(valuesFiltersCubit.rangeValuesArea?.end.toDouble() ??
+                    context
+                        .read<LookupBloc>()
+                        .loockUpRent
+                        ?.maxParams[0].maxVal.toDouble())
+                    ?.toInt()
+                    .formatWithCommas()}',
                 values: valuesFiltersCubit.rangeValuesArea ??
                     RangeValues(
                         valuesFiltersCubit.areaFrom?.toDouble() ??
@@ -880,18 +1043,18 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   valuesFiltersCubit.changeRangeValuesArea(rangeValues);
                 },
                 min: context
-                        .read<LookupBloc>()
-                        .loockUpRent
-                        ?.maxParams[0]
-                        .minVal
-                        .toDouble() ??
+                    .read<LookupBloc>()
+                    .loockUpRent
+                    ?.maxParams[0]
+                    .minVal
+                    .toDouble() ??
                     0,
                 max: context
-                        .read<LookupBloc>()
-                        .loockUpRent
-                        ?.maxParams[0]
-                        .maxVal
-                        .toDouble() ??
+                    .read<LookupBloc>()
+                    .loockUpRent
+                    ?.maxParams[0]
+                    .maxVal
+                    .toDouble() ??
                     1000000,
               );
             },
@@ -908,52 +1071,65 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                     onPress: () {
                       // print(
                       //     'before request ${context.read<RentBloc>().requestMeanValue}');
-                      context.read<RentBloc>().requestMeanValue = context
+                      context
+                          .read<RentBloc>()
+                          .requestMeanValue = context
                           .read<RentBloc>()
                           .requestMeanValue
                           .copyWith(
-                              areaFrom:
-                                  valuesFiltersCubit.rangeValuesArea?.start,
-                              areaTo: valuesFiltersCubit.rangeValuesArea?.end,
-                              rentPaymentMonthlyPerUnitFrom: valuesFiltersCubit
-                                  .rangeRentPaymentMonthlyPerUnit?.start,
-                              rentPaymentMonthlyPerUnitTo: valuesFiltersCubit
-                                  .rangeRentPaymentMonthlyPerUnit?.end,
-                              bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
-                                  ? 0
-                                  : valuesFiltersCubit.bedRoom.id,
-                              municipalityId:
-                                  valuesFiltersCubit.municapility.lookupKey,
-                              zoneId: valuesFiltersCubit.zone.lookupKey,
-                              unit: valuesFiltersCubit.unit,
-                              furnitureStatus:
-                                  valuesFiltersCubit.furniture.lookupKey,
-                              issueDateYear: valuesFiltersCubit.year.id,
-                              issueDateQuarterList: getissueDateQuarterList(
-                                  valuesFiltersCubit.periodTime.id),
-                              issueDateStartMonth:
-                                  valuesFiltersCubit.periodTime.id == 4
-                                      ? valuesFiltersCubit.month.value[0] - 1
-                                      : 1,
-                              issueDateEndMonth:
-                                  valuesFiltersCubit.periodTime.id == 4
-                                      ? valuesFiltersCubit.month.value[0]
-                                      : valuesFiltersCubit.periodTime.id == 1
-                                          ? valuesFiltersCubit.year.id ==
-                                                  DateTime.now().year
-                                              ? DateTime.now().month
-                                              : 12
-                                          : 12,
-                              periodId: valuesFiltersCubit.periodTime.id,
-                              issueDateFrom: valuesFiltersCubit.periodTime.id == 5
-                                  ? valuesFiltersCubit.pickerDateRange?.startDate
-                                      ?.toIso8601String()
-                                  : null,
-                              issueDateTo: valuesFiltersCubit.periodTime.id == 5 ? valuesFiltersCubit.pickerDateRange?.endDate?.toIso8601String() : null,
-                              purposeList: valuesFiltersCubit.rentPurposeList.map((e) => e.lookupKey).toList(),
-                              propertyTypeList: valuesFiltersCubit.propertyTypeList.map((e) => e.lookupKey).toList(),
-                              offset: 0,
-                              streetNo: streetController.text.isEmpty ? null : int.parse(streetController.text));
+                        areaFrom:
+                        valuesFiltersCubit.rangeValuesArea?.start,
+                        areaTo: valuesFiltersCubit.rangeValuesArea?.end,
+                        rentPaymentMonthlyPerUnitFrom: valuesFiltersCubit
+                            .rangeRentPaymentMonthlyPerUnit?.start,
+                        rentPaymentMonthlyPerUnitTo: valuesFiltersCubit
+                            .rangeRentPaymentMonthlyPerUnit?.end,
+                        bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
+                            ? 0
+                            : valuesFiltersCubit.bedRoom.id,
+                        municipalityId:
+                        valuesFiltersCubit.municapility.lookupKey,
+                        zoneId: valuesFiltersCubit.zone.lookupKey,
+                        unit: valuesFiltersCubit.unit,
+                        furnitureStatus:
+                        valuesFiltersCubit.furniture.lookupKey,
+                        issueDateYear: valuesFiltersCubit.year.id,
+                        issueDateQuarterList: getissueDateQuarterList(
+                            valuesFiltersCubit.periodTime.id),
+                        issueDateStartMonth:
+                        valuesFiltersCubit.periodTime.id == 4
+                            ? valuesFiltersCubit.month.value[0] - 1
+                            : 1,
+                        issueDateEndMonth:
+                        valuesFiltersCubit.periodTime.id == 4
+                            ? valuesFiltersCubit.month.value[0]
+                            : valuesFiltersCubit.periodTime.id == 1
+                            ? valuesFiltersCubit.year.id ==
+                            DateTime
+                                .now()
+                                .year
+                            ? DateTime
+                            .now()
+                            .month
+                            : 12
+                            : 12,
+                        periodId: valuesFiltersCubit.periodTime.id,
+                        issueDateFrom: valuesFiltersCubit.periodTime.id == 5
+                            ? valuesFiltersCubit.pickerDateRange?.startDate
+                            ?.toIso8601String()
+                            : null,
+                        issueDateTo: valuesFiltersCubit.periodTime.id == 5
+                            ? valuesFiltersCubit.pickerDateRange?.endDate
+                            ?.toIso8601String()
+                            : null,
+                        purposeList: valuesFiltersCubit.rentPurposeList.map((
+                            e) => e.lookupKey).toList(),
+                        propertyTypeList: valuesFiltersCubit.propertyTypeList
+                            .map((e) => e.lookupKey).toList(),
+                        offset: 0,
+                        //         streetNo: streetController.text.isEmpty ? null
+                        //            : int.parse(streetController.text),
+                      );
                       Navigator.of(context).pop(true);
                       // print(
                       //     'after request ${context.read<RentBloc>().requestMeanValue}');

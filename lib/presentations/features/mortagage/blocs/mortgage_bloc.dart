@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:ebla/domain/models/requests/mortgage_requests/request_mortgage_values.dart';
-import 'package:ebla/domain/usecases/mortgage_usecases/lookup_mortgage_usecase.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../domain/models/rent_models/rent_models.dart';
@@ -40,7 +39,7 @@ class MortgageBloc extends Bloc<MortgageEvent, MortgageState> {
       issueDateStartMonth: 1,
       issueDateEndMonth: DateTime.now().month,
       zoneId: -1,
-      limit: 3,
+      limit: 5,
       offset: 0);
   RequestMortgageValues requestMeanValue = RequestMortgageValues(
     municipalityId: 4,
@@ -52,7 +51,7 @@ class MortgageBloc extends Bloc<MortgageEvent, MortgageState> {
     issueDateStartMonth: 1,
     issueDateEndMonth: DateTime.now().month,
     zoneId: -1,
-    limit: 3,
+    limit: 5,
     periodId: 1,
     offset: 0,
   );
