@@ -4,6 +4,7 @@ import 'package:ebla/app/app_preferences.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
 import 'package:ebla/presentations/features/auth/blocs/login_bloc/login_bloc.dart';
+import 'package:ebla/presentations/features/more/blocs/user_bloc/user_bloc.dart';
 import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/cupertino.dart';
@@ -37,125 +38,136 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return BlocListener(
-      bloc: context.read<LoginBloc>(),
-      listener: (context, LoginState state) async {
-        if (state.isSuccessLogin) {
-          await resetAllModules();
-          context.read<LookupBloc>().add(const LookupEvent.initilaEvent());
-          context.pop();
-        }
+      bloc: context.read<UserBloc>(),
+      listener: (context, UserState state) {
+        state.mapOrNull(
+          loading: (value) {
+            context.read<UserBloc>().add(const UserEvent.getUserInfo());
+          },
+        );
       },
-      child: Container(
-        height: AppSizeH.s400,
-        padding: EdgeInsets.symmetric(
-            vertical: AppSizeH.s30, horizontal: AppSizeW.s30),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(AppSizeW.s15),
-          color: Theme.of(context).scaffoldBackgroundColor,
-        ),
-        child: Column(children: [
-          Text(
-            AppStrings().login,
-            style: Theme.of(context).textTheme.bodyLarge,
+      child: BlocListener(
+        bloc: context.read<LoginBloc>(),
+        listener: (context, LoginState state) async {
+          if (state.isSuccessLogin) {
+            await resetAllModules();
+            context.read<LookupBloc>().add(const LookupEvent.initilaEvent());
+            context.read<UserBloc>().add(const UserEvent.initialUser());
+            context.pop();
+          }
+        },
+        child: Container(
+          height: AppSizeH.s400,
+          padding: EdgeInsets.symmetric(
+              vertical: AppSizeH.s30, horizontal: AppSizeW.s30),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppSizeW.s15),
+            color: Theme.of(context).scaffoldBackgroundColor,
           ),
-          SizedBox(
-            height: AppSizeH.s20,
-          ),
-          TextFormField(
-            controller: identifierController,
-            style: Theme.of(context).textTheme.bodyMedium,
-            decoration: InputDecoration(
-              hintText: AppStrings().userName,
-              prefixIcon: const Icon(
-                Icons.person_outline_outlined,
-              ),
+          child: Column(children: [
+            Text(
+              AppStrings().login,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
-          ),
-          TextFormField(
-            controller: passwordController,
-            style: Theme.of(context).textTheme.bodyMedium,
-            decoration: InputDecoration(
-              hintText: AppStrings().password,
-              prefixIcon: const Icon(
-                Icons.lock_outline,
-              ),
+            SizedBox(
+              height: AppSizeH.s20,
             ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              AppStrings().forgetPassword,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium
-                  ?.copyWith(fontSize: 12.sp),
-            ),
-          ),
-          Row(
-            children: [
-              SizedBox(
-                height: AppSizeW.s20,
-                width: AppSizeW.s20,
-                child: SvgPicture.asset(
-                  IconAssets.faceIdIcon,
-                  // ignore: deprecated_member_use
-                  color: Theme.of(context)
-                      .bottomNavigationBarTheme
-                      .unselectedItemColor,
+            TextFormField(
+              controller: identifierController,
+              style: Theme.of(context).textTheme.bodyMedium,
+              decoration: InputDecoration(
+                hintText: AppStrings().userName,
+                prefixIcon: const Icon(
+                  Icons.person_outline_outlined,
                 ),
               ),
-              SizedBox(
-                width: AppSizeW.s5,
+            ),
+            TextFormField(
+              controller: passwordController,
+              style: Theme.of(context).textTheme.bodyMedium,
+              decoration: InputDecoration(
+                hintText: AppStrings().password,
+                prefixIcon: const Icon(
+                  Icons.lock_outline,
+                ),
               ),
-              Text(
-                AppStrings().activateFaceId,
-                style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                AppStrings().forgetPassword,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(fontSize: 12.sp),
               ),
-              const Spacer(),
-              Switch(
-                // This bool value toggles the switch.
-                value: light,
-                activeColor: Theme.of(context).primaryColor,
-                activeTrackColor:
-                    Theme.of(context).unselectedWidgetColor.withOpacity(0.2),
-                inactiveThumbColor: Theme.of(context).primaryColor,
-                inactiveTrackColor:
-                    Theme.of(context).unselectedWidgetColor.withOpacity(0.2),
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  height: AppSizeW.s20,
+                  width: AppSizeW.s20,
+                  child: SvgPicture.asset(
+                    IconAssets.faceIdIcon,
+                    // ignore: deprecated_member_use
+                    color: Theme.of(context)
+                        .bottomNavigationBarTheme
+                        .unselectedItemColor,
+                  ),
+                ),
+                SizedBox(
+                  width: AppSizeW.s5,
+                ),
+                Text(
+                  AppStrings().activateFaceId,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                const Spacer(),
+                Switch(
+                  // This bool value toggles the switch.
+                  value: light,
+                  activeColor: Theme.of(context).primaryColor,
+                  activeTrackColor:
+                      Theme.of(context).unselectedWidgetColor.withOpacity(0.2),
+                  inactiveThumbColor: Theme.of(context).primaryColor,
+                  inactiveTrackColor:
+                      Theme.of(context).unselectedWidgetColor.withOpacity(0.2),
 
-                onChanged: (bool value) {
-                  // This is called when the user toggles the switch.
-                  setState(() {
-                    light = value;
-                  });
-                },
-              ),
-            ],
-          ),
-          const Spacer(),
-          BlocBuilder(
-            bloc: context.read<LoginBloc>(),
-            builder: (context, LoginState state) {
-              if (state.isLoading) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              return CupertinoButton.filled(
-                borderRadius: BorderRadius.circular(AppSizeR.s12),
-                onPressed: () {
-                  context.read<LoginBloc>().add(LoginEvent.login(
-                      authRequest: RequestAuth(
-                          identifier: identifierController.text,
-                          mode: "json",
-                          password: passwordController.text)));
-                },
-                child: Text(
-                  AppStrings().login,
+                  onChanged: (bool value) {
+                    // This is called when the user toggles the switch.
+                    setState(() {
+                      light = value;
+                    });
+                  },
                 ),
-              );
-            },
-          ),
-        ]),
+              ],
+            ),
+            const Spacer(),
+            BlocBuilder(
+              bloc: context.read<LoginBloc>(),
+              builder: (context, LoginState state) {
+                if (state.isLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return CupertinoButton.filled(
+                  borderRadius: BorderRadius.circular(AppSizeR.s12),
+                  onPressed: () {
+                    context.read<LoginBloc>().add(LoginEvent.login(
+                        authRequest: RequestAuth(
+                            identifier: identifierController.text,
+                            mode: "json",
+                            password: passwordController.text)));
+                  },
+                  child: Text(
+                    AppStrings().login,
+                  ),
+                );
+              },
+            ),
+          ]),
+        ),
       ),
     );
   }

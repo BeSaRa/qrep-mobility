@@ -15,6 +15,7 @@ import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:multiple_result/multiple_result.dart';
 
+import '../../domain/models/cms_models/user/user_model.dart';
 import '../../domain/models/requests/sell_requests/request_sell_values.dart';
 import '../../domain/repository/repository.dart';
 import '../../presentations/resources/strings_manager.dart';
@@ -998,7 +999,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<AuthResponse, FailureModel>> refreshToken(
+  Future<Result<AuthResponse, FailureResponse>> refreshToken(
       RefreshToken refreshToken) async {
     if (await networkInfo.isConnected) {
       try {
@@ -1006,6 +1007,26 @@ class RepositoryImplementer extends Repository {
             await translationsServiceClient.refreshToken(refreshToken);
         if (response.response.statusCode == 200 ||
             response.response.statusCode == 201) {
+          return Success(response.data);
+        } else {
+          return Error(FailureResponse.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(
+            FailureResponse.fromJson(e.response?.data ?? defaultError));
+      }
+    } else {
+      return Error(FailureResponse(
+          errors: [ErrorModel(message: AppStrings().noInternetError)]));
+    }
+  }
+
+  @override
+  Future<Result<UserResponse, FailureModel>> getUserInfo() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await translationsServiceClient.getUserInfo();
+        if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
           return Error(FailureModel.fromJson(response.response.data));

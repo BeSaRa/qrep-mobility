@@ -1,7 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart' as local;
-import 'package:ebla/presentations/features/more/cubits/change_language_cubit.dart';
+import 'package:ebla/app/constants.dart';
+import 'package:ebla/presentations/features/more/blocs/cubits/change_language_cubit.dart';
 import 'package:ebla/presentations/features/auth/views/login_view.dart';
+import 'package:ebla/presentations/features/more/blocs/user_bloc/user_bloc.dart';
+import 'package:ebla/presentations/features/more/widgets/more_view_shimmer.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
@@ -14,7 +19,10 @@ import '../../resources/strings_manager.dart';
 import '../../resources/theme_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets/ebla_tab_bar.dart';
+import '../../widgets/widgets.dart';
 import '../auth/blocs/login_bloc/login_bloc.dart';
+import '../main/blocs/lookup_bloc/lookup_bloc.dart';
+import 'widgets/dialog_signout.dart';
 
 class MoreView extends StatefulWidget {
   const MoreView({super.key});
@@ -27,6 +35,7 @@ class _MoreViewState extends State<MoreView> {
   final AppPreferences _appPreferences = instance<AppPreferences>();
   late ChangeLanguageCubit changeLanguageCubit;
   late LoginBloc loginBloc;
+  String guestId = "1FE57C12-22F3-4AF9-9DBE-C7EB9D5063D1";
   @override
   void initState() {
     super.initState();
@@ -38,137 +47,222 @@ class _MoreViewState extends State<MoreView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const TitleAppBar(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 3.50,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: AppSizeW.s65,
-                    height: AppSizeW.s65,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(AppSizeH.s25),
-                        gradient: LinearGradient(
-                          colors: [
-                            Theme.of(context).shadowColor.withOpacity(0.7),
-                            Theme.of(context).primaryColor,
-                            Theme.of(context).primaryColor.withOpacity(0.8),
-                          ],
-                        )),
-                    child: Center(
-                      child: Text(
-                        'G',
-                        style: Theme.of(context)
-                            .textTheme
-                            .displaySmall
-                            ?.copyWith(
-                                fontSize: AppSizeSp.s18,
-                                fontWeight: FontWeight.w800),
+      body: BlocBuilder(
+        bloc: context.read<UserBloc>(),
+        builder: (context, UserState state) {
+          return state.map(
+            loading: (value) {
+              return const MoreViewShimmer();
+            },
+            loaded: (value) {
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 3.50,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: AppSizeW.s65,
+                            height: AppSizeW.s65,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(AppSizeH.s25),
+                              gradient: LinearGradient(
+                                colors: [
+                                  Theme.of(context)
+                                      .shadowColor
+                                      .withOpacity(0.7),
+                                  Theme.of(context).primaryColor,
+                                  Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.8),
+                                ],
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                context.read<UserBloc>().user?.id == guestId
+                                    ? "G"
+                                    : context
+                                            .read<UserBloc>()
+                                            .user
+                                            ?.firstName[0] ??
+                                        "G",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall
+                                    ?.copyWith(
+                                        fontSize: AppSizeSp.s18,
+                                        fontWeight: FontWeight.w800),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            context.read<UserBloc>().user?.id == guestId
+                                ? "Guest"
+                                : context.read<UserBloc>().user?.firstName ??
+                                    "Guest",
+                            style: Theme.of(context).textTheme.titleMedium,
+                          )
+                        ],
                       ),
                     ),
-                  ),
-                  Text(
-                    'Guest',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  )
-                ],
-              ),
-            ),
-            MoreWidgetButton(
-              icon: Icons.remove_red_eye_outlined,
-              title: AppStrings().watchList,
-            ),
-            BlocBuilder(
-              bloc: loginBloc,
-              builder: (context, LoginState state) {
-                if (state.isSuccessLogin) {
-                  return MoreWidgetButton(
-                    icon: Icons.person,
-                    title: "${loginBloc.name}",
-                    isButton: false,
-                  );
-                }
-                return MoreWidgetButton(
-                  icon: Icons.login,
-                  title: AppStrings().login,
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) => BlocProvider.value(
-                        value: loginBloc,
-                        child: _buildPopupDialog(context),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
-            ThemeSwitcher.withTheme(builder: (context, switcher, theme) {
-              return MoreWidgetButton(
-                  icon: Icons.color_lens_outlined,
-                  title: AppStrings().theme,
-                  isButton: false,
-                  widget: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: EblaTabBarWidget(
-                        initialIndex:
-                            instance<AppPreferences>().getTheme().brightness ==
-                                    Brightness.light
-                                ? 0
-                                : 1,
-                        firstTab: AppStrings().light,
-                        secondTab: AppStrings().dark,
+                    MoreWidgetButton(
+                      icon: Icons.remove_red_eye_outlined,
+                      title: AppStrings().watchList,
+                      onPressed: () {},
+                    ),
+                    BlocBuilder(
+                      bloc: loginBloc,
+                      builder: (context, LoginState state) {
+                        return MoreWidgetButton(
+                          icon: context.read<UserBloc>().user?.id == guestId
+                              ? Icons.login
+                              : Icons.person,
+                          title: context.read<UserBloc>().user?.id == guestId
+                              ? AppStrings().login
+                              : context.read<UserBloc>().user != null
+                                  ? context.read<UserBloc>().user!.firstName
+                                  : AppStrings().login,
+                          onPressed: context.read<UserBloc>().user?.id ==
+                                  guestId
+                              ? () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext ctxt) =>
+                                        MultiBlocProvider(
+                                      providers: [
+                                        BlocProvider.value(value: loginBloc),
+                                        BlocProvider.value(
+                                            value: context.read<UserBloc>())
+                                      ],
+                                      child: _buildPopupDialog(context),
+                                    ),
+                                  );
+                                }
+                              : null,
+                        );
+                      },
+                    ),
+                    ThemeSwitcher.withTheme(
+                        builder: (context, switcher, theme) {
+                      return MoreWidgetButton(
+                          icon: Icons.color_lens_outlined,
+                          title: AppStrings().theme,
+                          isButton: false,
+                          widget: Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: EblaTabBarWidget(
+                                initialIndex: instance<AppPreferences>()
+                                            .getTheme()
+                                            .brightness ==
+                                        Brightness.light
+                                    ? 0
+                                    : 1,
+                                firstTab: AppStrings().light,
+                                secondTab: AppStrings().dark,
+                                onPressed: (index) {
+                                  if (theme.brightness == Brightness.light &&
+                                      index == 1) {
+                                    ThemeData newTheme =
+                                        (theme.brightness == Brightness.light &&
+                                                index == 1)
+                                            ? darkTheme()
+                                            : lightTheme();
+                                    switcher.changeTheme(theme: newTheme);
+                                    instance<AppPreferences>()
+                                        .setTheme(themeData: newTheme);
+                                  } else if (theme.brightness ==
+                                          Brightness.dark &&
+                                      index == 0) {
+                                    ThemeData newTheme =
+                                        (theme.brightness == Brightness.light &&
+                                                index == 1)
+                                            ? darkTheme()
+                                            : lightTheme();
+                                    switcher.changeTheme(theme: newTheme);
+                                    instance<AppPreferences>()
+                                        .setTheme(themeData: newTheme);
+                                  }
+                                },
+                              )));
+                    }),
+                    MoreWidgetButton(
+                      icon: Icons.language_outlined,
+                      title: AppStrings().language,
+                      isButton: false,
+                      widget: EblaTabBarWidget(
+                        initialIndex: context.locale == ARABIC_LOCAL ? 0 : 1,
+                        firstTab: 'عربي',
+                        secondTab: 'English',
                         onPressed: (index) {
-                          if (theme.brightness == Brightness.light &&
-                              index == 1) {
-                            ThemeData newTheme =
-                                (theme.brightness == Brightness.light &&
-                                        index == 1)
-                                    ? darkTheme()
-                                    : lightTheme();
-                            switcher.changeTheme(theme: newTheme);
-                            instance<AppPreferences>()
-                                .setTheme(themeData: newTheme);
-                          } else if (theme.brightness == Brightness.dark &&
-                              index == 0) {
-                            ThemeData newTheme =
-                                (theme.brightness == Brightness.light &&
-                                        index == 1)
-                                    ? darkTheme()
-                                    : lightTheme();
-                            switcher.changeTheme(theme: newTheme);
-                            instance<AppPreferences>()
-                                .setTheme(themeData: newTheme);
+                          changeLanguageCubit.save(index);
+                          if (changeLanguageCubit.state == 0) {
+                            _appPreferences.setAppLanguage(lang: 'ar');
+                            context.setLocale(ARABIC_LOCAL);
+                          }
+                          if (changeLanguageCubit.state == 1) {
+                            _appPreferences.setAppLanguage(lang: 'en');
+                            context.setLocale(ENGLISH_LOCAL);
                           }
                         },
-                      )));
-            }),
-            MoreWidgetButton(
-              icon: Icons.language_outlined,
-              title: AppStrings().language,
-              isButton: false,
-              widget: EblaTabBarWidget(
-                initialIndex: context.locale == ARABIC_LOCAL ? 0 : 1,
-                firstTab: 'عربي',
-                secondTab: 'English',
-                onPressed: (index) {
-                  changeLanguageCubit.save(index);
-                  if (changeLanguageCubit.state == 0) {
-                    _appPreferences.setAppLanguage(lang: 'ar');
-                    context.setLocale(ARABIC_LOCAL);
-                  }
-                  if (changeLanguageCubit.state == 1) {
-                    _appPreferences.setAppLanguage(lang: 'en');
-                    context.setLocale(ENGLISH_LOCAL);
-                  }
+                      ),
+                    ),
+                    context.read<UserBloc>().user?.id == guestId
+                        ? const SizedBox()
+                        : GestureDetector(
+                            onTap: () async {
+                              var res = await showDialog(
+                                context: context,
+                                builder: (BuildContext ctxt) =>
+                                    MultiBlocProvider(
+                                        providers: [
+                                      BlocProvider.value(value: loginBloc),
+                                      BlocProvider.value(
+                                          value: context.read<UserBloc>())
+                                    ],
+                                        child: const Dialog(
+                                          child: DialogsignOut(),
+                                        )),
+                              );
+                              if (res != null && res) {
+                                await instance<AppPreferences>()
+                                    .setUserToken(Constant.guestToken);
+                                await instance<AppPreferences>()
+                                    .setUserRefreshToken("");
+                                await resetAllModules();
+                                context
+                                    .read<LookupBloc>()
+                                    .add(const LookupEvent.initilaEvent());
+                                context
+                                    .read<UserBloc>()
+                                    .add(const UserEvent.initialUser());
+                                context
+                                    .read<UserBloc>()
+                                    .add(const UserEvent.getUserInfo());
+                              }
+                            },
+                            child: const MoreWidgetButton(
+                              isButton: false,
+                              icon: Icons.logout,
+                              title: "تسجيل الخروج",
+                            ),
+                          ),
+                  ],
+                ),
+              );
+            },
+            error: (value) {
+              return ErrorGlobalWidget(
+                message: value.message,
+                onPressed: () {
+                  context.read<UserBloc>().add(const UserEvent.getUserInfo());
                 },
-              ),
-            ),
-          ],
-        ),
+              );
+            },
+          );
+        },
       ),
     );
   }

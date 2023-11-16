@@ -28,6 +28,7 @@ mixin _$RequestMeanValue {
   String? get issueDateFrom => throw _privateConstructorUsedError;
   List<int>? get issueDateQuarterList => throw _privateConstructorUsedError;
   int? get issueDateStartMonth => throw _privateConstructorUsedError;
+  int? get halfYearDuration => throw _privateConstructorUsedError;
   String? get issueDateTo => throw _privateConstructorUsedError;
   int? get issueDateYear => throw _privateConstructorUsedError;
   int? get limit => throw _privateConstructorUsedError;
@@ -37,8 +38,8 @@ mixin _$RequestMeanValue {
   List<int>? get propertyTypeList => throw _privateConstructorUsedError;
   List<int>? get purposeList => throw _privateConstructorUsedError;
   num? get rentPaymentMonthlyPerUnitFrom => throw _privateConstructorUsedError;
-  num? get rentPaymentMonthlyPerUnitTo => throw _privateConstructorUsedError;
-  int? get streetNo => throw _privateConstructorUsedError;
+  num? get rentPaymentMonthlyPerUnitTo =>
+      throw _privateConstructorUsedError; // int? streetNo,
   int? get zoneId => throw _privateConstructorUsedError;
   int get unit => throw _privateConstructorUsedError;
   int get periodId => throw _privateConstructorUsedError;
@@ -64,6 +65,7 @@ abstract class $RequestMeanValueCopyWith<$Res> {
       String? issueDateFrom,
       List<int>? issueDateQuarterList,
       int? issueDateStartMonth,
+      int? halfYearDuration,
       String? issueDateTo,
       int? issueDateYear,
       int? limit,
@@ -74,7 +76,6 @@ abstract class $RequestMeanValueCopyWith<$Res> {
       List<int>? purposeList,
       num? rentPaymentMonthlyPerUnitFrom,
       num? rentPaymentMonthlyPerUnitTo,
-      int? streetNo,
       int? zoneId,
       int unit,
       int periodId});
@@ -101,6 +102,7 @@ class _$RequestMeanValueCopyWithImpl<$Res, $Val extends RequestMeanValue>
     Object? issueDateFrom = freezed,
     Object? issueDateQuarterList = freezed,
     Object? issueDateStartMonth = freezed,
+    Object? halfYearDuration = freezed,
     Object? issueDateTo = freezed,
     Object? issueDateYear = freezed,
     Object? limit = freezed,
@@ -111,7 +113,6 @@ class _$RequestMeanValueCopyWithImpl<$Res, $Val extends RequestMeanValue>
     Object? purposeList = freezed,
     Object? rentPaymentMonthlyPerUnitFrom = freezed,
     Object? rentPaymentMonthlyPerUnitTo = freezed,
-    Object? streetNo = freezed,
     Object? zoneId = freezed,
     Object? unit = null,
     Object? periodId = null,
@@ -148,6 +149,10 @@ class _$RequestMeanValueCopyWithImpl<$Res, $Val extends RequestMeanValue>
       issueDateStartMonth: freezed == issueDateStartMonth
           ? _value.issueDateStartMonth
           : issueDateStartMonth // ignore: cast_nullable_to_non_nullable
+              as int?,
+      halfYearDuration: freezed == halfYearDuration
+          ? _value.halfYearDuration
+          : halfYearDuration // ignore: cast_nullable_to_non_nullable
               as int?,
       issueDateTo: freezed == issueDateTo
           ? _value.issueDateTo
@@ -189,10 +194,6 @@ class _$RequestMeanValueCopyWithImpl<$Res, $Val extends RequestMeanValue>
           ? _value.rentPaymentMonthlyPerUnitTo
           : rentPaymentMonthlyPerUnitTo // ignore: cast_nullable_to_non_nullable
               as num?,
-      streetNo: freezed == streetNo
-          ? _value.streetNo
-          : streetNo // ignore: cast_nullable_to_non_nullable
-              as int?,
       zoneId: freezed == zoneId
           ? _value.zoneId
           : zoneId // ignore: cast_nullable_to_non_nullable
@@ -226,6 +227,7 @@ abstract class _$$RequestMeanValueImplCopyWith<$Res>
       String? issueDateFrom,
       List<int>? issueDateQuarterList,
       int? issueDateStartMonth,
+      int? halfYearDuration,
       String? issueDateTo,
       int? issueDateYear,
       int? limit,
@@ -236,7 +238,6 @@ abstract class _$$RequestMeanValueImplCopyWith<$Res>
       List<int>? purposeList,
       num? rentPaymentMonthlyPerUnitFrom,
       num? rentPaymentMonthlyPerUnitTo,
-      int? streetNo,
       int? zoneId,
       int unit,
       int periodId});
@@ -261,6 +262,7 @@ class __$$RequestMeanValueImplCopyWithImpl<$Res>
     Object? issueDateFrom = freezed,
     Object? issueDateQuarterList = freezed,
     Object? issueDateStartMonth = freezed,
+    Object? halfYearDuration = freezed,
     Object? issueDateTo = freezed,
     Object? issueDateYear = freezed,
     Object? limit = freezed,
@@ -271,7 +273,6 @@ class __$$RequestMeanValueImplCopyWithImpl<$Res>
     Object? purposeList = freezed,
     Object? rentPaymentMonthlyPerUnitFrom = freezed,
     Object? rentPaymentMonthlyPerUnitTo = freezed,
-    Object? streetNo = freezed,
     Object? zoneId = freezed,
     Object? unit = null,
     Object? periodId = null,
@@ -308,6 +309,10 @@ class __$$RequestMeanValueImplCopyWithImpl<$Res>
       issueDateStartMonth: freezed == issueDateStartMonth
           ? _value.issueDateStartMonth
           : issueDateStartMonth // ignore: cast_nullable_to_non_nullable
+              as int?,
+      halfYearDuration: freezed == halfYearDuration
+          ? _value.halfYearDuration
+          : halfYearDuration // ignore: cast_nullable_to_non_nullable
               as int?,
       issueDateTo: freezed == issueDateTo
           ? _value.issueDateTo
@@ -349,10 +354,6 @@ class __$$RequestMeanValueImplCopyWithImpl<$Res>
           ? _value.rentPaymentMonthlyPerUnitTo
           : rentPaymentMonthlyPerUnitTo // ignore: cast_nullable_to_non_nullable
               as num?,
-      streetNo: freezed == streetNo
-          ? _value.streetNo
-          : streetNo // ignore: cast_nullable_to_non_nullable
-              as int?,
       zoneId: freezed == zoneId
           ? _value.zoneId
           : zoneId // ignore: cast_nullable_to_non_nullable
@@ -381,6 +382,7 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
       this.issueDateFrom,
       final List<int>? issueDateQuarterList,
       this.issueDateStartMonth,
+      this.halfYearDuration,
       this.issueDateTo,
       this.issueDateYear,
       this.limit,
@@ -391,7 +393,6 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
       final List<int>? purposeList,
       this.rentPaymentMonthlyPerUnitFrom,
       this.rentPaymentMonthlyPerUnitTo,
-      this.streetNo,
       this.zoneId,
       this.unit = 2,
       this.periodId = 1})
@@ -427,6 +428,8 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
 
   @override
   final int? issueDateStartMonth;
+  @override
+  final int? halfYearDuration;
   @override
   final String? issueDateTo;
   @override
@@ -464,8 +467,7 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
   final num? rentPaymentMonthlyPerUnitFrom;
   @override
   final num? rentPaymentMonthlyPerUnitTo;
-  @override
-  final int? streetNo;
+// int? streetNo,
   @override
   final int? zoneId;
   @override
@@ -477,7 +479,7 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
 
   @override
   String toString() {
-    return 'RequestMeanValue(areaFrom: $areaFrom, areaTo: $areaTo, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, nationalityCode: $nationalityCode, propertyTypeList: $propertyTypeList, purposeList: $purposeList, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, streetNo: $streetNo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
+    return 'RequestMeanValue(areaFrom: $areaFrom, areaTo: $areaTo, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, halfYearDuration: $halfYearDuration, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, nationalityCode: $nationalityCode, propertyTypeList: $propertyTypeList, purposeList: $purposeList, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
   }
 
   @override
@@ -500,6 +502,8 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
                 .equals(other._issueDateQuarterList, _issueDateQuarterList) &&
             (identical(other.issueDateStartMonth, issueDateStartMonth) ||
                 other.issueDateStartMonth == issueDateStartMonth) &&
+            (identical(other.halfYearDuration, halfYearDuration) ||
+                other.halfYearDuration == halfYearDuration) &&
             (identical(other.issueDateTo, issueDateTo) ||
                 other.issueDateTo == issueDateTo) &&
             (identical(other.issueDateYear, issueDateYear) ||
@@ -522,8 +526,6 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
                     rentPaymentMonthlyPerUnitTo) ||
                 other.rentPaymentMonthlyPerUnitTo ==
                     rentPaymentMonthlyPerUnitTo) &&
-            (identical(other.streetNo, streetNo) ||
-                other.streetNo == streetNo) &&
             (identical(other.zoneId, zoneId) || other.zoneId == zoneId) &&
             (identical(other.unit, unit) || other.unit == unit) &&
             (identical(other.periodId, periodId) ||
@@ -542,6 +544,7 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
         issueDateFrom,
         const DeepCollectionEquality().hash(_issueDateQuarterList),
         issueDateStartMonth,
+        halfYearDuration,
         issueDateTo,
         issueDateYear,
         limit,
@@ -552,7 +555,6 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
         const DeepCollectionEquality().hash(_purposeList),
         rentPaymentMonthlyPerUnitFrom,
         rentPaymentMonthlyPerUnitTo,
-        streetNo,
         zoneId,
         unit,
         periodId
@@ -583,6 +585,7 @@ abstract class _RequestMeanValue implements RequestMeanValue {
       final String? issueDateFrom,
       final List<int>? issueDateQuarterList,
       final int? issueDateStartMonth,
+      final int? halfYearDuration,
       final String? issueDateTo,
       final int? issueDateYear,
       final int? limit,
@@ -593,7 +596,6 @@ abstract class _RequestMeanValue implements RequestMeanValue {
       final List<int>? purposeList,
       final num? rentPaymentMonthlyPerUnitFrom,
       final num? rentPaymentMonthlyPerUnitTo,
-      final int? streetNo,
       final int? zoneId,
       final int unit,
       final int periodId}) = _$RequestMeanValueImpl;
@@ -618,6 +620,8 @@ abstract class _RequestMeanValue implements RequestMeanValue {
   @override
   int? get issueDateStartMonth;
   @override
+  int? get halfYearDuration;
+  @override
   String? get issueDateTo;
   @override
   int? get issueDateYear;
@@ -637,9 +641,7 @@ abstract class _RequestMeanValue implements RequestMeanValue {
   num? get rentPaymentMonthlyPerUnitFrom;
   @override
   num? get rentPaymentMonthlyPerUnitTo;
-  @override
-  int? get streetNo;
-  @override
+  @override // int? streetNo,
   int? get zoneId;
   @override
   int get unit;

@@ -18,3 +18,22 @@ class FailureModel with _$FailureModel {
 }
 
 Map<String, String> defaultError = {'message': AppStrings().defaultError};
+
+@freezed
+class FailureResponse with _$FailureResponse {
+  const factory FailureResponse({
+    @Default([]) List<ErrorModel> errors,
+  }) = _FailureResponse;
+
+  factory FailureResponse.fromJson(Map<String, dynamic> json) =>
+      _$FailureResponseFromJson(json);
+}
+
+@freezed
+abstract class ErrorModel with _$ErrorModel {
+  factory ErrorModel({
+    @Default("") String message,
+  }) = _ErrorModel;
+  factory ErrorModel.fromJson(Map<String, dynamic> json) =>
+      _$ErrorModelFromJson(json);
+}

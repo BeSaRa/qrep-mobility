@@ -204,3 +204,286 @@ abstract class _FailureModel implements FailureModel {
   _$$FailureModelImplCopyWith<_$FailureModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+FailureResponse _$FailureResponseFromJson(Map<String, dynamic> json) {
+  return _FailureResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$FailureResponse {
+  List<ErrorModel> get errors => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FailureResponseCopyWith<FailureResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FailureResponseCopyWith<$Res> {
+  factory $FailureResponseCopyWith(
+          FailureResponse value, $Res Function(FailureResponse) then) =
+      _$FailureResponseCopyWithImpl<$Res, FailureResponse>;
+  @useResult
+  $Res call({List<ErrorModel> errors});
+}
+
+/// @nodoc
+class _$FailureResponseCopyWithImpl<$Res, $Val extends FailureResponse>
+    implements $FailureResponseCopyWith<$Res> {
+  _$FailureResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? errors = null,
+  }) {
+    return _then(_value.copyWith(
+      errors: null == errors
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<ErrorModel>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$FailureResponseImplCopyWith<$Res>
+    implements $FailureResponseCopyWith<$Res> {
+  factory _$$FailureResponseImplCopyWith(_$FailureResponseImpl value,
+          $Res Function(_$FailureResponseImpl) then) =
+      __$$FailureResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<ErrorModel> errors});
+}
+
+/// @nodoc
+class __$$FailureResponseImplCopyWithImpl<$Res>
+    extends _$FailureResponseCopyWithImpl<$Res, _$FailureResponseImpl>
+    implements _$$FailureResponseImplCopyWith<$Res> {
+  __$$FailureResponseImplCopyWithImpl(
+      _$FailureResponseImpl _value, $Res Function(_$FailureResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? errors = null,
+  }) {
+    return _then(_$FailureResponseImpl(
+      errors: null == errors
+          ? _value._errors
+          : errors // ignore: cast_nullable_to_non_nullable
+              as List<ErrorModel>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$FailureResponseImpl implements _FailureResponse {
+  const _$FailureResponseImpl({final List<ErrorModel> errors = const []})
+      : _errors = errors;
+
+  factory _$FailureResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FailureResponseImplFromJson(json);
+
+  final List<ErrorModel> _errors;
+  @override
+  @JsonKey()
+  List<ErrorModel> get errors {
+    if (_errors is EqualUnmodifiableListView) return _errors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_errors);
+  }
+
+  @override
+  String toString() {
+    return 'FailureResponse(errors: $errors)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FailureResponseImpl &&
+            const DeepCollectionEquality().equals(other._errors, _errors));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_errors));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FailureResponseImplCopyWith<_$FailureResponseImpl> get copyWith =>
+      __$$FailureResponseImplCopyWithImpl<_$FailureResponseImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$FailureResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _FailureResponse implements FailureResponse {
+  const factory _FailureResponse({final List<ErrorModel> errors}) =
+      _$FailureResponseImpl;
+
+  factory _FailureResponse.fromJson(Map<String, dynamic> json) =
+      _$FailureResponseImpl.fromJson;
+
+  @override
+  List<ErrorModel> get errors;
+  @override
+  @JsonKey(ignore: true)
+  _$$FailureResponseImplCopyWith<_$FailureResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ErrorModel _$ErrorModelFromJson(Map<String, dynamic> json) {
+  return _ErrorModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ErrorModel {
+  String get message => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ErrorModelCopyWith<ErrorModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ErrorModelCopyWith<$Res> {
+  factory $ErrorModelCopyWith(
+          ErrorModel value, $Res Function(ErrorModel) then) =
+      _$ErrorModelCopyWithImpl<$Res, ErrorModel>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class _$ErrorModelCopyWithImpl<$Res, $Val extends ErrorModel>
+    implements $ErrorModelCopyWith<$Res> {
+  _$ErrorModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_value.copyWith(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ErrorModelImplCopyWith<$Res>
+    implements $ErrorModelCopyWith<$Res> {
+  factory _$$ErrorModelImplCopyWith(
+          _$ErrorModelImpl value, $Res Function(_$ErrorModelImpl) then) =
+      __$$ErrorModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$ErrorModelImplCopyWithImpl<$Res>
+    extends _$ErrorModelCopyWithImpl<$Res, _$ErrorModelImpl>
+    implements _$$ErrorModelImplCopyWith<$Res> {
+  __$$ErrorModelImplCopyWithImpl(
+      _$ErrorModelImpl _value, $Res Function(_$ErrorModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$ErrorModelImpl(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ErrorModelImpl implements _ErrorModel {
+  _$ErrorModelImpl({this.message = ""});
+
+  factory _$ErrorModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ErrorModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String message;
+
+  @override
+  String toString() {
+    return 'ErrorModel(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorModelImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ErrorModelImplCopyWith<_$ErrorModelImpl> get copyWith =>
+      __$$ErrorModelImplCopyWithImpl<_$ErrorModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ErrorModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ErrorModel implements ErrorModel {
+  factory _ErrorModel({final String message}) = _$ErrorModelImpl;
+
+  factory _ErrorModel.fromJson(Map<String, dynamic> json) =
+      _$ErrorModelImpl.fromJson;
+
+  @override
+  String get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$ErrorModelImplCopyWith<_$ErrorModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

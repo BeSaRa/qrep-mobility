@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dio/dio.dart';
 import 'package:ebla/domain/usecases/mortgage_usecases/lookup_mortgage_usecase.dart';
 import 'package:ebla/domain/usecases/mortgage_usecases/transactions_mortgage_usecase.dart';
 import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
@@ -21,6 +22,7 @@ import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecases/CMS/cms_usecases.dart';
+import '../domain/usecases/CMS/user_usecases.dart';
 import '../domain/usecases/auth_usecase/auth_usecases.dart';
 import '../domain/usecases/sell_usecases/top_values/top_values_sell_usecases.dart';
 import '../domain/usecases/usecases.dart';
@@ -28,6 +30,7 @@ import '../presentations/features/auth/blocs/login_bloc/login_bloc.dart';
 import '../presentations/features/main/cubit/bottom_nav_cubit.dart';
 import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import '../presentations/features/info/blocs/news_bloc/news_bloc.dart';
+import '../presentations/features/more/blocs/user_bloc/user_bloc.dart';
 import '../presentations/features/rent/blocs/rent_blocs.dart';
 import '../presentations/features/sell/blocs/sell_bloc/sell_bloc.dart';
 import '../presentations/features/splash_screen/bloc/bloc/guest_token_bloc.dart';
@@ -37,13 +40,17 @@ final instance = GetIt.instance;
 
 Future<void> initAppModule() async {
   final sharedPreferences = await SharedPreferences.getInstance();
+  final dioRefreshToken = Dio();
   instance.registerFactory<SharedPreferences>(() => sharedPreferences);
   instance.registerFactory<AppPreferences>(() => AppPreferences(instance()));
   instance.registerLazySingleton<DioFactory>(() => DioFactory(instance()));
+
   instance.registerFactory<GeneralInterceptor>(
-      () => GeneralInterceptor(instance()));
+      () => GeneralInterceptor(instance<AppPreferences>(), dioRefreshToken));
   final dio = await instance<DioFactory>().getDio();
-  instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(dio));
+  instance.registerFactory<Dio>(() => dio);
+  instance.registerLazySingleton<AppServiceClient>(
+      () => AppServiceClient(instance<Dio>()));
   instance.registerLazySingleton<TranslationsServiceClient>(
       () => TranslationsServiceClient(dio));
   instance.registerLazySingleton<NetworkInfo>(
@@ -82,12 +89,19 @@ Future<void> initAppModule() async {
     instance.registerFactory<GuestTokenBloc>(
         () => GuestTokenBloc(appPreferences: instance()));
   }
-
+  if (!GetIt.I.isRegistered<UserUsecase>()) {
+    instance.registerFactory<UserUsecase>(
+        () => UserUsecase(repository: instance()));
+  }
   //Blocs
   if (!GetIt.I.isRegistered<LoginBloc>()) {
     instance.registerFactory<LoginBloc>(() => LoginBloc(
         loginUsecases: instance<LoginUsecases>(),
         appPreferences: instance<AppPreferences>()));
+  }
+  if (!GetIt.I.isRegistered<UserBloc>()) {
+    instance.registerFactory<UserBloc>(
+        () => UserBloc(userUsecase: instance<UserUsecase>()));
   }
 }
 
