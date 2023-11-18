@@ -468,7 +468,7 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
 
   @override
   String toString() {
-    return 'RequestMortgageValues(areaCode: $areaCode, areaFrom: $areaFrom, areaTo: $areaTo, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateMonth: $issueDateMonth, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, halfYearDuration: $halfYearDuration, limit: $limit, municipalityId: $municipalityId, offset: $offset, propertyTypeList: $propertyTypeList, purposeList: $purposeList, realEstateValueFrom: $realEstateValueFrom, realEstateValueTo: $realEstateValueTo, streetNo: $streetNo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
+    return 'RequestMortgageValues(areaCode: $areaCode, areaFrom: $areaFrom, areaTo: $areaTo, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateMonth: $issueDateMonth, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, halfYearDuration: $halfYearDuration, limit: $limit, municipalityId: $municipalityId, offset: $offset, propertyTypeList: $propertyTypeList, purposeList: $purposeList, realEstateValueFrom: $realEstateValueFrom, realEstateValueTo: $realEstateValueTo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
   }
 
   @override

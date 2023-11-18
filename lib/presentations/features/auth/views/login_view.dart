@@ -16,6 +16,7 @@ import 'package:local_auth/local_auth.dart';
 import '../../../../domain/models/Auth/requests_auth/request_auth.dart';
 import '../../../widgets/widgets.dart';
 import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
+import '../../more/blocs/user_bloc/user_bloc.dart';
 import 'biometrec_logic.dart';
 
 class LoginView extends StatefulWidget {
@@ -83,10 +84,10 @@ class _LoginViewState extends State<LoginView> {
         bloc: context.read<LoginBloc>(),
         listener: (context, LoginState state) async {
           if (state.isSuccessLogin) {
-    if (light && canAuthenticateout) {
-    //save password in biometrics
-    faceIdCheck.authenticateWithBiometrics();
-    }
+            if (light && canAuthenticateout) {
+              //save password in biometrics
+              faceIdCheck.authenticateWithBiometrics();
+            }
             await resetAllModules();
             context.read<LookupBloc>().add(const LookupEvent.initilaEvent());
             context.read<UserBloc>().add(const UserEvent.initialUser());
