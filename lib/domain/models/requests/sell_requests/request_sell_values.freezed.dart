@@ -28,6 +28,7 @@ mixin _$RequestSellValues {
   List<int>? get issueDateQuarterList => throw _privateConstructorUsedError;
   int? get issueDateStartMonth => throw _privateConstructorUsedError;
   int? get issueDateMonth => throw _privateConstructorUsedError;
+  int? get halfYearDuration => throw _privateConstructorUsedError;
   String? get issueDateTo => throw _privateConstructorUsedError;
   int? get issueDateYear => throw _privateConstructorUsedError;
   int? get limit => throw _privateConstructorUsedError;
@@ -63,6 +64,7 @@ abstract class $RequestSellValuesCopyWith<$Res> {
       List<int>? issueDateQuarterList,
       int? issueDateStartMonth,
       int? issueDateMonth,
+      int? halfYearDuration,
       String? issueDateTo,
       int? issueDateYear,
       int? limit,
@@ -99,6 +101,7 @@ class _$RequestSellValuesCopyWithImpl<$Res, $Val extends RequestSellValues>
     Object? issueDateQuarterList = freezed,
     Object? issueDateStartMonth = freezed,
     Object? issueDateMonth = freezed,
+    Object? halfYearDuration = freezed,
     Object? issueDateTo = freezed,
     Object? issueDateYear = freezed,
     Object? limit = freezed,
@@ -145,6 +148,10 @@ class _$RequestSellValuesCopyWithImpl<$Res, $Val extends RequestSellValues>
       issueDateMonth: freezed == issueDateMonth
           ? _value.issueDateMonth
           : issueDateMonth // ignore: cast_nullable_to_non_nullable
+              as int?,
+      halfYearDuration: freezed == halfYearDuration
+          ? _value.halfYearDuration
+          : halfYearDuration // ignore: cast_nullable_to_non_nullable
               as int?,
       issueDateTo: freezed == issueDateTo
           ? _value.issueDateTo
@@ -219,6 +226,7 @@ abstract class _$$RequestSellValuesImplCopyWith<$Res>
       List<int>? issueDateQuarterList,
       int? issueDateStartMonth,
       int? issueDateMonth,
+      int? halfYearDuration,
       String? issueDateTo,
       int? issueDateYear,
       int? limit,
@@ -253,6 +261,7 @@ class __$$RequestSellValuesImplCopyWithImpl<$Res>
     Object? issueDateQuarterList = freezed,
     Object? issueDateStartMonth = freezed,
     Object? issueDateMonth = freezed,
+    Object? halfYearDuration = freezed,
     Object? issueDateTo = freezed,
     Object? issueDateYear = freezed,
     Object? limit = freezed,
@@ -299,6 +308,10 @@ class __$$RequestSellValuesImplCopyWithImpl<$Res>
       issueDateMonth: freezed == issueDateMonth
           ? _value.issueDateMonth
           : issueDateMonth // ignore: cast_nullable_to_non_nullable
+              as int?,
+      halfYearDuration: freezed == halfYearDuration
+          ? _value.halfYearDuration
+          : halfYearDuration // ignore: cast_nullable_to_non_nullable
               as int?,
       issueDateTo: freezed == issueDateTo
           ? _value.issueDateTo
@@ -368,6 +381,7 @@ class _$RequestSellValuesImpl implements _RequestSellValues {
       final List<int>? issueDateQuarterList,
       this.issueDateStartMonth,
       this.issueDateMonth,
+      this.halfYearDuration,
       this.issueDateTo,
       this.issueDateYear,
       this.limit,
@@ -414,6 +428,8 @@ class _$RequestSellValuesImpl implements _RequestSellValues {
   final int? issueDateStartMonth;
   @override
   final int? issueDateMonth;
+  @override
+  final int? halfYearDuration;
   @override
   final String? issueDateTo;
   @override
@@ -462,7 +478,7 @@ class _$RequestSellValuesImpl implements _RequestSellValues {
 
   @override
   String toString() {
-    return 'RequestSellValues(areaCode: $areaCode, areaFrom: $areaFrom, areaTo: $areaTo, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateMonth: $issueDateMonth, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, propertyTypeList: $propertyTypeList, purposeList: $purposeList, realEstateValueFrom: $realEstateValueFrom, realEstateValueTo: $realEstateValueTo, streetNo: $streetNo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
+    return 'RequestSellValues(areaCode: $areaCode, areaFrom: $areaFrom, areaTo: $areaTo, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateMonth: $issueDateMonth, halfYearDuration: $halfYearDuration, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, propertyTypeList: $propertyTypeList, purposeList: $purposeList, realEstateValueFrom: $realEstateValueFrom, realEstateValueTo: $realEstateValueTo, streetNo: $streetNo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
   }
 
   @override
@@ -485,6 +501,8 @@ class _$RequestSellValuesImpl implements _RequestSellValues {
                 other.issueDateStartMonth == issueDateStartMonth) &&
             (identical(other.issueDateMonth, issueDateMonth) ||
                 other.issueDateMonth == issueDateMonth) &&
+            (identical(other.halfYearDuration, halfYearDuration) ||
+                other.halfYearDuration == halfYearDuration) &&
             (identical(other.issueDateTo, issueDateTo) ||
                 other.issueDateTo == issueDateTo) &&
             (identical(other.issueDateYear, issueDateYear) ||
@@ -521,6 +539,7 @@ class _$RequestSellValuesImpl implements _RequestSellValues {
         const DeepCollectionEquality().hash(_issueDateQuarterList),
         issueDateStartMonth,
         issueDateMonth,
+        halfYearDuration,
         issueDateTo,
         issueDateYear,
         limit,
@@ -561,6 +580,7 @@ abstract class _RequestSellValues implements RequestSellValues {
       final List<int>? issueDateQuarterList,
       final int? issueDateStartMonth,
       final int? issueDateMonth,
+      final int? halfYearDuration,
       final String? issueDateTo,
       final int? issueDateYear,
       final int? limit,
@@ -594,6 +614,8 @@ abstract class _RequestSellValues implements RequestSellValues {
   int? get issueDateStartMonth;
   @override
   int? get issueDateMonth;
+  @override
+  int? get halfYearDuration;
   @override
   String? get issueDateTo;
   @override

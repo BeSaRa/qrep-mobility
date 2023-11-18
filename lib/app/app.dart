@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../presentations/features/main/blocs/lookup_bloc/lookup_bloc.dart';
+import '../presentations/features/more/blocs/user_bloc/user_bloc.dart';
 import '../presentations/resources/routes_manager.dart';
 import '../presentations/resources/theme_manager.dart';
 import 'app_preferences.dart';
@@ -37,6 +38,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       providers: [
         BlocProvider(
           create: (context) => instance<LookupBloc>(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              instance<UserBloc>()..add(const UserEvent.getUserInfo()),
+          lazy: true,
         ),
       ],
       child: ScreenUtilInit(
