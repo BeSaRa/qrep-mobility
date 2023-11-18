@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 enum AnsiColor {
   black,
   red,
@@ -32,9 +34,13 @@ class ColoredPrinter {
       [AnsiColor? color = AnsiColor.green]) {
     final ansiCode = _colorCodes[color];
     if (ansiCode != null) {
-      print('$ansiCode$object${_colorCodes[AnsiColor.reset]}');
+      if (kDebugMode) {
+        print('$ansiCode$object${_colorCodes[AnsiColor.reset]}');
+      }
     } else {
-      print('Unknown color: $color');
+      if (kDebugMode) {
+        print('Unknown color: $color');
+      }
     }
   }
 }

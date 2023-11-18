@@ -1,20 +1,20 @@
 import 'package:bloc/bloc.dart';
 import 'package:ebla/app/app_preferences.dart';
-import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/Auth/auth_models.dart';
 import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../domain/usecases/auth_usecase/auth_usecases.dart';
 
+part 'login_bloc.freezed.dart';
 part 'login_event.dart';
 part 'login_state.dart';
-part 'login_bloc.freezed.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginUsecases loginUsecases;
   AppPreferences appPreferences;
   String? name;
+
   LoginBloc({required this.loginUsecases, required this.appPreferences})
       : super(const LoginState.initial()) {
     on<LoginEvent>((event, emit) async {

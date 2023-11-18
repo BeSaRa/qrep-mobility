@@ -146,7 +146,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                             onPress: () {
                               tenIndexCubit.save(4);
                               context.read<CertificateContractBloc>().add(
-                                  CertificateContractEvent.RentAmountEvent(
+                                  CertificateContractEvent.rentAmountEvent(
                                       request: context
                                           .read<RentBloc>()
                                           .requestMeanValue));
@@ -158,7 +158,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                               tenIndexCubit.save(5);
                               context.read<CertificateContractBloc>().add(
                                   CertificateContractEvent
-                                      .RentValuePerMeterEvent(
+                                      .rentValuePerMeterEvent(
                                           request: context
                                               .read<RentBloc>()
                                               .requestMeanValue));
@@ -169,7 +169,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                             onPress: () {
                               tenIndexCubit.save(6);
                               context.read<CertificateContractBloc>().add(
-                                  CertificateContractEvent.RentedAreasEvent(
+                                  CertificateContractEvent.rentedAreasEvent(
                                       request: context
                                           .read<RentBloc>()
                                           .requestMeanValue));

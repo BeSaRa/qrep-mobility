@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 
@@ -20,7 +21,9 @@ class FaceIdCheckCubit extends Cubit<bool> {
       canCheckBiometrics = await auth.canCheckBiometrics;
     } on PlatformException catch (e) {
       canCheckBiometrics = false;
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
 
     _canCheckBiometrics = canCheckBiometrics;
@@ -32,7 +35,9 @@ class FaceIdCheckCubit extends Cubit<bool> {
       availableBiometrics = await auth.getAvailableBiometrics();
     } on PlatformException catch (e) {
       availableBiometrics = <BiometricType>[];
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
 
     this.availableBiometrics = availableBiometrics;
@@ -53,7 +58,9 @@ class FaceIdCheckCubit extends Cubit<bool> {
 
       isAuthenticating = false;
     } on PlatformException catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
 
       isAuthenticating = false;
       authorized = 'Error - ${e.message}';
@@ -82,7 +89,9 @@ class FaceIdCheckCubit extends Cubit<bool> {
       isAuthenticating = false;
       authorized = 'Authenticating';
     } on PlatformException catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       isAuthenticating = false;
       authorized = 'Error - ${e.message}';
       return;

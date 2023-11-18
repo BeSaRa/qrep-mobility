@@ -57,12 +57,11 @@ class AppStrings {
   String cancel = "cancel".tr();
   String dataBeingCollectedAndAudited =
       "data_is_being_collected_and_audited".tr();
-
-  //login view locals
   String userName = "identifier".tr();
   String password = "password".tr();
   String forgetPassword = "forget_password".tr();
   String activateFaceId = "activate_face_id".tr();
+  static String loginWithUsernameStored = "login_with_user_name_stored";
 
   //Errors
   String noInternetError = "noInternetError".tr();

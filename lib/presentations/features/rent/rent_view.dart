@@ -56,7 +56,6 @@ class _RentViewState extends State<RentView> {
 
   @override
   void didChangeDependencies() {
-    print('test rent ');
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }

@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:ebla/app/depndency_injection.dart';
-import 'package:ebla/presentations/features/auth/blocs/login_bloc/login_bloc.dart';
 import 'package:ebla/presentations/features/splash_screen/widgets/animated_transparent_container.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
@@ -32,6 +31,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   bool _isVisible = false;
   bool isRed = false;
   late GuestTokenBloc guestToken;
+
   @override
   void initState() {
     super.initState();

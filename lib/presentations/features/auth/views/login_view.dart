@@ -1,11 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
-import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
 import 'package:ebla/presentations/features/auth/blocs/cubits/face_id_check_cubit.dart';
 import 'package:ebla/presentations/features/auth/blocs/login_bloc/login_bloc.dart';
-import 'package:ebla/presentations/resources/strings_manager.dart';
-import 'package:ebla/presentations/resources/values_manager.dart';
+import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,8 +13,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_auth/local_auth.dart';
 
-import '../../../resources/assets_manager.dart';
+import '../../../../domain/models/Auth/requests_auth/request_auth.dart';
+import '../../../widgets/widgets.dart';
 import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
+import 'biometrec_logic.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -27,6 +28,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   // late LoginBloc loginBloc;
   bool light = true;
+  bool canAuthenticateout = false;
   final identifierController = TextEditingController();
   final passwordController = TextEditingController();
   final LocalAuthentication auth = LocalAuthentication();
@@ -45,7 +47,24 @@ class _LoginViewState extends State<LoginView> {
     final bool canAuthenticate =
         canAuthenticateWithBiometrics || await auth.isDeviceSupported();
     faceIdCheck.save(canAuthenticate);
-
+    canAuthenticateout = canAuthenticate;
+    String data = await getBioProtectedEntry() ?? '';
+    if (data.isNotEmpty) {
+      await faceIdCheck.authenticate();
+      if (faceIdCheck.authorized == 'Authorized') {
+        var res = await showDialog(
+            context: context,
+            builder: (BuildContext context) =>
+                _buildPopupDialog(context, data));
+        if (res != null && res == true) {
+          context.read<LoginBloc>().add(LoginEvent.login(
+              authRequest: RequestAuth(
+                  identifier: data.split(',').first.replaceAll('username', ''),
+                  mode: "json",
+                  password: data.split(',').last.replaceAll('password', ''))));
+        }
+      }
+    }
     return canAuthenticate;
   }
 
@@ -55,6 +74,10 @@ class _LoginViewState extends State<LoginView> {
       bloc: context.read<LoginBloc>(),
       listener: (context, LoginState state) async {
         if (state.isSuccessLogin) {
+          if (light && canAuthenticateout) {
+            //save password in biometrics
+            faceIdCheck.authenticateWithBiometrics();
+          }
           await resetAllModules();
           context.read<LookupBloc>().add(const LookupEvent.initilaEvent());
           context.pop();
@@ -170,12 +193,15 @@ class _LoginViewState extends State<LoginView> {
               }
               return CupertinoButton.filled(
                 borderRadius: BorderRadius.circular(AppSizeR.s12),
-                onPressed: () {
+                onPressed: () async {
                   context.read<LoginBloc>().add(LoginEvent.login(
                       authRequest: RequestAuth(
                           identifier: identifierController.text,
                           mode: "json",
                           password: passwordController.text)));
+
+                  // await createBioProtectedEntry(
+                  //     identifierController.text, passwordController.text);
                 },
                 child: Text(
                   AppStrings().login,
@@ -184,6 +210,55 @@ class _LoginViewState extends State<LoginView> {
             },
           ),
         ]),
+      ),
+    );
+  }
+
+  Widget _buildPopupDialog(BuildContext context, String data) {
+    return Dialog(
+      child: Container(
+        height: AppSizeH.s200,
+        padding: EdgeInsets.symmetric(
+            vertical: AppSizeH.s30, horizontal: AppSizeW.s30),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppSizeW.s15),
+          color: Theme.of(context).scaffoldBackgroundColor,
+        ),
+        child: Column(
+          children: [
+            Text(
+              AppStrings.loginWithUsernameStored.tr(args: [
+                data.split(',').first.replaceAll(
+                      'username',
+                      '',
+                    )
+              ]),
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            Spacer(),
+            Row(children: [
+              Expanded(
+                child: CustomElevatedButton(
+                  isPrimary: true,
+                  title: AppStrings().login,
+                  onPress: () {
+                    Navigator.of(context).pop(true);
+                  },
+                ),
+              ),
+              SizedBox(width: AppSizeW.s8),
+              Expanded(
+                child: CustomElevatedButton(
+                  isPrimary: false,
+                  title: AppStrings().cancel,
+                  onPress: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+            ]),
+          ],
+        ),
       ),
     );
   }

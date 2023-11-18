@@ -16,13 +16,13 @@ import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../app/depndency_injection.dart';
-import '../features/main/blocs/lookup_bloc/lookup_bloc.dart';
-import '../features/main/cubit/bottom_nav_cubit.dart';
 import '../features/info/blocs/news_bloc/news_bloc.dart';
 import '../features/info/views/laws_decisions_view.dart';
 import '../features/info/views/news/news_item_view.dart';
 import '../features/info/views/news/news_view.dart';
+import '../features/main/cubit/bottom_nav_cubit.dart';
 import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
 import '../features/sell/blocs/sell_bloc/sell_bloc.dart';
 

@@ -22,6 +22,7 @@
   "support": "support",
   "test": "Test",
   "theme": "Theme",
+  "login_with_user_name_stored": "Do you to login with {}?",
   "-----------------------------Home-----------------------------------------------": "",
   "about_us": "About us",
   "download_file": "Download file",

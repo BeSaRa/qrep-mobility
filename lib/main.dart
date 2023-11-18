@@ -5,6 +5,7 @@ import 'package:ebla/app/translations_assets_loader/translations_assets_loader.d
 import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,7 +47,9 @@ Future<void> main() async {
 
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
     backgroundHandler(message);
-    print("i got a background message $message");
+    if (kDebugMode) {
+      print("i got a background message $message");
+    }
   });
   return runApp(
     EasyLocalization(
