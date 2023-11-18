@@ -59,7 +59,8 @@ class RoutesPaths {
 }
 
 class NavigationKeys {
-  static final rootNavigatorKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> rootNavigatorKey =
+      GlobalKey<NavigatorState>();
   static final shellNavigatorKey = GlobalKey<NavigatorState>();
 }
 

@@ -14,6 +14,7 @@ abstract class RequestSellValues with _$RequestSellValues {
     List<int>? issueDateQuarterList,
     int? issueDateStartMonth,
     int? issueDateMonth,
+    int? halfYearDuration,
     String? issueDateTo,
     int? issueDateYear,
     int? limit,

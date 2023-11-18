@@ -31,6 +31,7 @@ mixin _$RequestMortgageValues {
   int? get issueDateMonth => throw _privateConstructorUsedError;
   String? get issueDateTo => throw _privateConstructorUsedError;
   int? get issueDateYear => throw _privateConstructorUsedError;
+  int? get halfYearDuration => throw _privateConstructorUsedError;
   int? get limit => throw _privateConstructorUsedError;
   int? get municipalityId => throw _privateConstructorUsedError;
   int? get offset => throw _privateConstructorUsedError;
@@ -66,6 +67,7 @@ abstract class $RequestMortgageValuesCopyWith<$Res> {
       int? issueDateMonth,
       String? issueDateTo,
       int? issueDateYear,
+      int? halfYearDuration,
       int? limit,
       int? municipalityId,
       int? offset,
@@ -102,6 +104,7 @@ class _$RequestMortgageValuesCopyWithImpl<$Res,
     Object? issueDateMonth = freezed,
     Object? issueDateTo = freezed,
     Object? issueDateYear = freezed,
+    Object? halfYearDuration = freezed,
     Object? limit = freezed,
     Object? municipalityId = freezed,
     Object? offset = freezed,
@@ -153,6 +156,10 @@ class _$RequestMortgageValuesCopyWithImpl<$Res,
       issueDateYear: freezed == issueDateYear
           ? _value.issueDateYear
           : issueDateYear // ignore: cast_nullable_to_non_nullable
+              as int?,
+      halfYearDuration: freezed == halfYearDuration
+          ? _value.halfYearDuration
+          : halfYearDuration // ignore: cast_nullable_to_non_nullable
               as int?,
       limit: freezed == limit
           ? _value.limit
@@ -218,6 +225,7 @@ abstract class _$$RequestMortgageValuesImplCopyWith<$Res>
       int? issueDateMonth,
       String? issueDateTo,
       int? issueDateYear,
+      int? halfYearDuration,
       int? limit,
       int? municipalityId,
       int? offset,
@@ -252,6 +260,7 @@ class __$$RequestMortgageValuesImplCopyWithImpl<$Res>
     Object? issueDateMonth = freezed,
     Object? issueDateTo = freezed,
     Object? issueDateYear = freezed,
+    Object? halfYearDuration = freezed,
     Object? limit = freezed,
     Object? municipalityId = freezed,
     Object? offset = freezed,
@@ -303,6 +312,10 @@ class __$$RequestMortgageValuesImplCopyWithImpl<$Res>
       issueDateYear: freezed == issueDateYear
           ? _value.issueDateYear
           : issueDateYear // ignore: cast_nullable_to_non_nullable
+              as int?,
+      halfYearDuration: freezed == halfYearDuration
+          ? _value.halfYearDuration
+          : halfYearDuration // ignore: cast_nullable_to_non_nullable
               as int?,
       limit: freezed == limit
           ? _value.limit
@@ -362,6 +375,7 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
       this.issueDateMonth,
       this.issueDateTo,
       this.issueDateYear,
+      this.halfYearDuration,
       this.limit,
       this.municipalityId,
       this.offset,
@@ -410,6 +424,8 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
   @override
   final int? issueDateYear;
   @override
+  final int? halfYearDuration;
+  @override
   final int? limit;
   @override
   final int? municipalityId;
@@ -452,7 +468,7 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
 
   @override
   String toString() {
-    return 'RequestMortgageValues(areaCode: $areaCode, areaFrom: $areaFrom, areaTo: $areaTo, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateMonth: $issueDateMonth, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, propertyTypeList: $propertyTypeList, purposeList: $purposeList, realEstateValueFrom: $realEstateValueFrom, realEstateValueTo: $realEstateValueTo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
+    return 'RequestMortgageValues(areaCode: $areaCode, areaFrom: $areaFrom, areaTo: $areaTo, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateMonth: $issueDateMonth, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, halfYearDuration: $halfYearDuration, limit: $limit, municipalityId: $municipalityId, offset: $offset, propertyTypeList: $propertyTypeList, purposeList: $purposeList, realEstateValueFrom: $realEstateValueFrom, realEstateValueTo: $realEstateValueTo, streetNo: $streetNo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
   }
 
   @override
@@ -479,6 +495,8 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
                 other.issueDateTo == issueDateTo) &&
             (identical(other.issueDateYear, issueDateYear) ||
                 other.issueDateYear == issueDateYear) &&
+            (identical(other.halfYearDuration, halfYearDuration) ||
+                other.halfYearDuration == halfYearDuration) &&
             (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.municipalityId, municipalityId) ||
                 other.municipalityId == municipalityId) &&
@@ -511,6 +529,7 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
         issueDateMonth,
         issueDateTo,
         issueDateYear,
+        halfYearDuration,
         limit,
         municipalityId,
         offset,
@@ -550,6 +569,7 @@ abstract class _RequestMortgageValues implements RequestMortgageValues {
       final int? issueDateMonth,
       final String? issueDateTo,
       final int? issueDateYear,
+      final int? halfYearDuration,
       final int? limit,
       final int? municipalityId,
       final int? offset,
@@ -584,6 +604,8 @@ abstract class _RequestMortgageValues implements RequestMortgageValues {
   String? get issueDateTo;
   @override
   int? get issueDateYear;
+  @override
+  int? get halfYearDuration;
   @override
   int? get limit;
   @override

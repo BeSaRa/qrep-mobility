@@ -13,6 +13,7 @@ import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../app/constants.dart';
+import '../../domain/models/cms_models/user/user_model.dart';
 import '../../domain/models/rent_models/rent_models.dart';
 import '../../domain/models/requests/rent_requests/request_mean_value.dart';
 import '../../domain/models/requests/sell_requests/request_sell_values.dart';
@@ -188,6 +189,9 @@ abstract class TranslationsServiceClient {
   Future<HttpResponse<AuthResponse>> refreshToken(
       @Body() RefreshToken refreshToken);
 
+//---------------------------------Profile-------------------------------------
+  @GET(EndPoints.userInfo)
+  Future<HttpResponse<UserResponse>> getUserInfo();
 //---------------------------------CMS-----------------------------------------
   @GET(EndPoints.faq)
   Future<HttpResponse<FaqResponse>> getFaq(@Query("limit") int limit);

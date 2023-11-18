@@ -49,6 +49,10 @@ class AppStrings {
   String support = "support".tr();
   String watchList = "my_watch_list".tr();
   String login = "login".tr();
+  String logout = "logout".tr();
+  String yes = "yes".tr();
+  String no = "no".tr();
+  String validateLogout = "validate_logout".tr();
   String theme = "theme".tr();
   String language = "language".tr();
   String dark = "dark".tr();

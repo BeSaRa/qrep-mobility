@@ -101,4 +101,5 @@ class EndPoints {
   //Auth
   static const String auth = '/auth/login/ldap';
   static const String refreshToken = '/auth/refresh';
+  static const String userInfo = '/users/me';
 }

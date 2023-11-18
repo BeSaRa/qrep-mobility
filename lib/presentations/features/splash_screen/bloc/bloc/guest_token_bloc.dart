@@ -1,10 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:ebla/app/constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../../../../../app/app_preferences.dart';
 import '../../../../../app/depndency_injection.dart';
-
 part 'guest_token_event.dart';
 part 'guest_token_state.dart';
 part 'guest_token_bloc.freezed.dart';

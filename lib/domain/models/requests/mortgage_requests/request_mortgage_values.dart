@@ -16,6 +16,7 @@ abstract class RequestMortgageValues with _$RequestMortgageValues {
     int? issueDateMonth,
     String? issueDateTo,
     int? issueDateYear,
+    int? halfYearDuration,
     int? limit,
     int? municipalityId,
     int? offset,

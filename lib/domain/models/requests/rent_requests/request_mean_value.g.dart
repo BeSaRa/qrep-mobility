@@ -19,6 +19,7 @@ _$RequestMeanValueImpl _$$RequestMeanValueImplFromJson(
           ?.map((e) => e as int)
           .toList(),
       issueDateStartMonth: json['issueDateStartMonth'] as int?,
+      halfYearDuration: json['halfYearDuration'] as int?,
       issueDateTo: json['issueDateTo'] as String?,
       issueDateYear: json['issueDateYear'] as int?,
       limit: json['limit'] as int?,
@@ -50,6 +51,7 @@ Map<String, dynamic> _$$RequestMeanValueImplToJson(
       'issueDateFrom': instance.issueDateFrom,
       'issueDateQuarterList': instance.issueDateQuarterList,
       'issueDateStartMonth': instance.issueDateStartMonth,
+      'halfYearDuration': instance.halfYearDuration,
       'issueDateTo': instance.issueDateTo,
       'issueDateYear': instance.issueDateYear,
       'limit': instance.limit,

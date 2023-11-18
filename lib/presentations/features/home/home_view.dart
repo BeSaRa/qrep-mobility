@@ -1,7 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:math' as math;
 
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/app/depndency_injection.dart';
+import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
+import 'package:ebla/domain/repository/repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -45,7 +49,8 @@ class _HomeViewState extends State<HomeView> {
                         child: Column(
                           children: [
                             GestureDetector(
-                              onTap: () {
+                              onTap: () async {
+                                await initSellModule();
                                 context.read<BottomNavCubit>().changePage(2);
                                 context.goNamed(
                                     context.read<BottomNavCubit>().paths[context
@@ -61,7 +66,8 @@ class _HomeViewState extends State<HomeView> {
                               ),
                             ),
                             GestureDetector(
-                              onTap: () {
+                              onTap: () async {
+                                await initMortgageModule();
                                 // context.goNamed(RoutesNames.mortgage);
                                 context.read<BottomNavCubit>().changePage(3);
                                 context.goNamed(
@@ -85,7 +91,8 @@ class _HomeViewState extends State<HomeView> {
                         child: Column(
                           children: [
                             GestureDetector(
-                              onTap: () {
+                              onTap: () async {
+                                await initRentModule();
                                 // context.goNamed(RoutesNames.rent);
                                 context.read<BottomNavCubit>().changePage(1);
                                 context.goNamed(
