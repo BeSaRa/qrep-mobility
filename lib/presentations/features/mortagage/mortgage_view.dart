@@ -296,7 +296,8 @@ class _MortagageViewState extends State<MortgageView> {
                             SizedBox(height: AppSizeH.s22),
                             Center(
                               child: Text(
-                                AppStrings().currentPerformanceSummary,
+                                AppStrings.currentPerformanceSummary
+                                    .tr(args: [AppStrings().mortgage]),
                                 style: Theme.of(context).textTheme.titleLarge,
                               ),
                             ),
@@ -352,13 +353,12 @@ class _MortagageViewState extends State<MortgageView> {
                                                   title: AppStrings()
                                                       .mortgageValue,
                                                   totalPrice:
-                                                      "${done.transactionList[index].realEstateValue?.toStringAsFixed(1)}${AppStrings().currency}",
+                                                      "${done.transactionList[index].realEstateValue?.formatWithCommas()}${AppStrings().currency}",
                                                   value: done
                                                           .transactionList[
                                                               index]
                                                           .realEstateArea
-                                                          ?.toStringAsFixed(
-                                                              0) ??
+                                                          ?.formatWithCommas() ??
                                                       '0',
                                                   valueDescription:
                                                       AppStrings().rentArea,

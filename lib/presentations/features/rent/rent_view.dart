@@ -338,7 +338,8 @@ class _RentViewState extends State<RentView> {
                                 SizedBox(height: AppSizeH.s22),
                                 Center(
                                   child: Text(
-                                    AppStrings().currentPerformanceSummary,
+                                    AppStrings.currentPerformanceSummary
+                                        .tr(args: [AppStrings().rental]),
                                     style:
                                         Theme.of(context).textTheme.titleLarge,
                                   ),
@@ -436,7 +437,7 @@ class _RentViewState extends State<RentView> {
                                                 return MainRentDataContainer(
                                                   title: AppStrings().rentValue,
                                                   totalPrice:
-                                                      "${state.rentSummery.transactionList[index].rentPaymentMonthly?.round()} ${AppStrings().currency}",
+                                                      "${state.rentSummery.transactionList[index].rentPaymentMonthly?.formatWithCommasToInt()} ${AppStrings().currency}",
                                                   titleInfo:
                                                       "${AppStrings().roomsCount}:",
                                                   valueInfo: state

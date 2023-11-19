@@ -8,8 +8,10 @@ class AppStrings {
   String mortgage = "mortgage".tr();
   String more = "more".tr();
 
+  String rental = "rental".tr();
+
   //rent
-  String currentPerformanceSummary = "current_performance_summary".tr();
+  static String currentPerformanceSummary = "current_performance_summary";
   String unitType = "unit_type".tr();
   String startDate = "start_date".tr();
   String endDate = "end_date".tr();

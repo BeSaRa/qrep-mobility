@@ -346,8 +346,8 @@ class _SalesViewState extends State<SalesView> {
                                       SizedBox(height: AppSizeH.s22),
                                       Center(
                                         child: Text(
-                                          AppStrings()
-                                              .currentPerformanceSummary,
+                                          AppStrings.currentPerformanceSummary
+                                              .tr(args: [AppStrings().sell]),
                                           style: Theme.of(context)
                                               .textTheme
                                               .titleLarge,
@@ -451,15 +451,13 @@ class _SalesViewState extends State<SalesView> {
                                                                   .transactionList[
                                                                       index]
                                                                   .realEstateMT
-                                                                  ?.toStringAsFixed(
-                                                                      1) ??
+                                                                  ?.formatWithCommas() ??
                                                               '0'
                                                           : success
                                                                   .transactionList[
                                                                       index]
                                                                   .realEstateSQT
-                                                                  ?.toStringAsFixed(
-                                                                      1) ??
+                                                                  ?.formatWithCommas() ??
                                                               '0',
                                                       valueDescription:
                                                           AppStrings().rentArea,
@@ -487,15 +485,13 @@ class _SalesViewState extends State<SalesView> {
                                                                   .transactionList[
                                                                       index]
                                                                   .priceMT
-                                                                  ?.toStringAsFixed(
-                                                                      0) ??
+                                                                  ?.formatWithCommas() ??
                                                               '0'
                                                           : success
                                                                   .transactionList[
                                                                       index]
                                                                   .priceSQ
-                                                                  ?.toStringAsFixed(
-                                                                      0) ??
+                                                                  ?.formatWithCommas() ??
                                                               '0',
                                                       location: context.locale ==
                                                               ARABIC_LOCAL
