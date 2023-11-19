@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:ebla/app/constants.dart';
 import 'package:ebla/app/depndency_injection.dart';
@@ -9,6 +10,7 @@ import 'package:ebla/data/newtwok/end_points.dart';
 import 'package:ebla/presentations/features/main/blocs/lookup_bloc/lookup_bloc.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../app/app_preferences.dart';
 
 class GeneralInterceptor extends Interceptor {
@@ -19,6 +21,7 @@ class GeneralInterceptor extends Interceptor {
     this.appPreferences,
     this.dio,
   );
+
   @override
   Future onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
@@ -69,7 +72,7 @@ class GeneralInterceptor extends Interceptor {
 
         instance<Dio>().options.headers["authorization"] =
             "Bearer ${Constant.guestToken}";
-        return handler.resolve(await instance<Dio>().fetch(err.requestOptions));
+        // return handler.resolve(await instance<Dio>().fetch(err.requestOptions));
       }
     }
     return handler.next(err);
