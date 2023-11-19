@@ -5,12 +5,13 @@ import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
 import 'package:ebla/domain/repository/repository.dart';
 import 'package:ebla/domain/usecases/usecases.dart';
-import 'package:multiple_result/src/result.dart';
+import 'package:multiple_result/multiple_result.dart';
 
 class AboutUsecase implements BaseUseCaseEmptyInput<AboutResponse> {
   final Repository repository;
 
   AboutUsecase(this.repository);
+
   @override
   Future<Result<AboutResponse, FailureModel>> execute() async {
     return await repository.getAbout();

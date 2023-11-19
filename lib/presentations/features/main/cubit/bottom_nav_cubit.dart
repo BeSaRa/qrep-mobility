@@ -1,10 +1,9 @@
 import 'package:bloc/bloc.dart';
-
-import '../../../../app/depndency_injection.dart';
 import '../../../resources/resources.dart';
 
 class BottomNavCubit extends Cubit<int> {
   BottomNavCubit(super.initialState);
+
   int currentPage = 0;
   List<String> paths = [
     RoutesNames.home,
@@ -13,6 +12,7 @@ class BottomNavCubit extends Cubit<int> {
     RoutesNames.mortgage,
     RoutesNames.more,
   ];
+
   // List<Future<void>> diMethod = [
   //   initHomeModule(),
   //   initRentModule(),

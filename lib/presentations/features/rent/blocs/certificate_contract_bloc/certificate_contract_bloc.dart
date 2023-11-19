@@ -90,7 +90,7 @@ class CertificateContractBloc
                 listResponse: []));
           });
         },
-        RentAmountEvent: (_RentAmountEvent value) async {
+        rentAmountEvent: (_RentAmountEvent value) async {
           index = 4;
           emit(state.copyWith(isLoading: true, isHasErrorContract: false));
           final failureOrSuccess =
@@ -108,7 +108,7 @@ class CertificateContractBloc
                 listResponse: []));
           });
         },
-        RentValuePerMeterEvent: (_RentValuePerMeterEvent value) async {
+        rentValuePerMeterEvent: (_RentValuePerMeterEvent value) async {
           index = 5;
           emit(state.copyWith(isLoading: true, isHasErrorContract: false));
           final failureOrSuccess =
@@ -126,7 +126,7 @@ class CertificateContractBloc
                 listResponse: []));
           });
         },
-        RentedAreasEvent: (_RentedAreasEvent value) async {
+        rentedAreasEvent: (_RentedAreasEvent value) async {
           index = 6;
           emit(state.copyWith(isLoading: true, isHasErrorContract: false));
           final failureOrSuccess =
