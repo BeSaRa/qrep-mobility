@@ -486,13 +486,21 @@ class _RentViewState extends State<RentView> {
                                                               index]
                                                           .propertyTypeId ??
                                                       0),
-                                                  startDate: DateTime.parse(state
+                                                  startDate: state
                                                               .rentSummery
                                                               .transactionList[
                                                                   index]
-                                                              .startDate ??
-                                                          '')
-                                                      .toFormattedString(),
+                                                              .startDate
+                                                              ?.isNotEmpty ??
+                                                          false
+                                                      ? DateTime.parse(state
+                                                                  .rentSummery
+                                                                  .transactionList[
+                                                                      index]
+                                                                  .startDate ??
+                                                              '')
+                                                          .toFormattedString()
+                                                      : "No start date",
                                                   endDate: DateTime.parse(state
                                                               .rentSummery
                                                               .transactionList[
@@ -543,11 +551,16 @@ class _RentViewState extends State<RentView> {
                                       return Column(
                                         children: [
                                           FlutterCustomPagination(
-                                            currentPage: context
-                                                    .read<RentBloc>()
-                                                    .requestMeanValue
-                                                    .offset ??
-                                                0,
+                                            currentPage: (context
+                                                        .read<RentBloc>()
+                                                        .requestMeanValue
+                                                        .offset ??
+                                                    0) ~/
+                                                (context
+                                                        .read<RentBloc>()
+                                                        .requestMeanValue
+                                                        .limit ??
+                                                    1),
                                             limitPerPage: 5,
                                             totalDataCount: rentSummeryBloc
                                                     .rentSummery?.count ??
@@ -599,32 +612,41 @@ class _RentViewState extends State<RentView> {
                                           : Column(
                                               children: [
                                                 FlutterCustomPagination(
-                                                  currentPage: context
-                                                          .read<RentBloc>()
-                                                          .requestMeanValue
-                                                          .offset ??
-                                                      0,
+                                                  currentPage: (context
+                                                              .read<RentBloc>()
+                                                              .requestMeanValue
+                                                              .offset ??
+                                                          0) ~/
+                                                      (context
+                                                              .read<RentBloc>()
+                                                              .requestMeanValue
+                                                              .limit ??
+                                                          1),
                                                   limitPerPage: context
                                                           .read<RentBloc>()
                                                           .requestMeanValue
                                                           .limit ??
                                                       5,
-                                                  totalDataCount:
-                                                      rentSummeryBloc
-                                                              .rentSummery
-                                                              ?.count ??
-                                                          0,
+                                                  totalDataCount: state
+                                                      .rentSummery.count
+                                                      .ceil(),
                                                   onPreviousPage:
                                                       (previousPage) {
-                                                    context
-                                                            .read<RentBloc>()
-                                                            .requestMeanValue =
-                                                        context
-                                                            .read<RentBloc>()
-                                                            .requestMeanValue
-                                                            .copyWith(
-                                                                offset:
-                                                                    previousPage);
+                                                    context.read<RentBloc>().requestMeanValue = context
+                                                        .read<RentBloc>()
+                                                        .requestMeanValue
+                                                        .copyWith(
+                                                            offset: ((context.read<RentBloc>().requestMeanValue.offset ??
+                                                                            0) ~/
+                                                                        (context.read<RentBloc>().requestMeanValue.limit ??
+                                                                            1) -
+                                                                    1) *
+                                                                (context
+                                                                        .read<
+                                                                            RentBloc>()
+                                                                        .requestMeanValue
+                                                                        .limit ??
+                                                                    1));
                                                     rentSummeryBloc.add(
                                                         RentSummeryEvent
                                                             .getRentSummary(
@@ -652,15 +674,21 @@ class _RentViewState extends State<RentView> {
                                                                     .requestMeanValue));
                                                   },
                                                   onNextPage: (nextPage) {
-                                                    context
-                                                            .read<RentBloc>()
-                                                            .requestMeanValue =
-                                                        context
-                                                            .read<RentBloc>()
-                                                            .requestMeanValue
-                                                            .copyWith(
-                                                                offset:
-                                                                    (nextPage));
+                                                    context.read<RentBloc>().requestMeanValue = context
+                                                        .read<RentBloc>()
+                                                        .requestMeanValue
+                                                        .copyWith(
+                                                            offset: (((context.read<RentBloc>().requestMeanValue.offset ??
+                                                                            0) ~/
+                                                                        (context.read<RentBloc>().requestMeanValue.limit ??
+                                                                            1) +
+                                                                    1) *
+                                                                (context
+                                                                        .read<
+                                                                            RentBloc>()
+                                                                        .requestMeanValue
+                                                                        .limit ??
+                                                                    1)));
                                                     rentSummeryBloc.add(
                                                         RentSummeryEvent
                                                             .getRentSummary(
@@ -670,15 +698,25 @@ class _RentViewState extends State<RentView> {
                                                                     .requestMeanValue));
                                                   },
                                                   onGoToLastPage: (lastPage) {
-                                                    context
-                                                            .read<RentBloc>()
-                                                            .requestMeanValue =
-                                                        context
-                                                            .read<RentBloc>()
-                                                            .requestMeanValue
-                                                            .copyWith(
-                                                                offset:
-                                                                    lastPage);
+                                                    context.read<RentBloc>().requestMeanValue = context
+                                                        .read<RentBloc>()
+                                                        .requestMeanValue
+                                                        .copyWith(
+                                                            offset: (((state
+                                                                        .rentSummery
+                                                                        .count) ~/
+                                                                    (context
+                                                                            .read<
+                                                                                RentBloc>()
+                                                                            .requestMeanValue
+                                                                            .limit ??
+                                                                        1)) *
+                                                                (context
+                                                                        .read<
+                                                                            RentBloc>()
+                                                                        .requestMeanValue
+                                                                        .limit ??
+                                                                    1)));
                                                     rentSummeryBloc.add(
                                                         RentSummeryEvent
                                                             .getRentSummary(

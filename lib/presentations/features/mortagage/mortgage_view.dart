@@ -433,11 +433,16 @@ class _MortagageViewState extends State<MortgageView> {
                                 loading: () => Column(
                                   children: [
                                     FlutterCustomPagination(
-                                      currentPage: context
-                                              .read<MortgageBloc>()
-                                              .requestMeanValue
-                                              .offset ??
-                                          0,
+                                      currentPage: (context
+                                                  .read<MortgageBloc>()
+                                                  .requestMeanValue
+                                                  .offset ??
+                                              0) ~/
+                                          (context
+                                                  .read<MortgageBloc>()
+                                                  .requestMeanValue
+                                                  .limit ??
+                                              1),
                                       limitPerPage: 5,
                                       totalDataCount: mortgageTransactionsBloc
                                           .response.count,
@@ -483,11 +488,18 @@ class _MortagageViewState extends State<MortgageView> {
                                         : Column(
                                             children: [
                                               FlutterCustomPagination(
-                                                currentPage: context
-                                                        .read<MortgageBloc>()
-                                                        .requestMeanValue
-                                                        .offset ??
-                                                    0,
+                                                currentPage: (context
+                                                            .read<
+                                                                MortgageBloc>()
+                                                            .requestMeanValue
+                                                            .offset ??
+                                                        0) ~/
+                                                    (context
+                                                            .read<
+                                                                MortgageBloc>()
+                                                            .requestMeanValue
+                                                            .limit ??
+                                                        1),
                                                 limitPerPage: context
                                                         .read<MortgageBloc>()
                                                         .requestMeanValue
@@ -497,15 +509,25 @@ class _MortagageViewState extends State<MortgageView> {
                                                     mortgageTransactionsBloc
                                                         .response.count,
                                                 onPreviousPage: (previousPage) {
-                                                  context
-                                                          .read<MortgageBloc>()
-                                                          .requestMeanValue =
-                                                      context
-                                                          .read<MortgageBloc>()
-                                                          .requestMeanValue
-                                                          .copyWith(
-                                                              offset:
-                                                                  previousPage);
+                                                  context.read<MortgageBloc>().requestMeanValue = context
+                                                      .read<MortgageBloc>()
+                                                      .requestMeanValue
+                                                      .copyWith(
+                                                          offset: ((context.read<MortgageBloc>().requestMeanValue.offset ??
+                                                                          0) ~/
+                                                                      (context
+                                                                              .read<
+                                                                                  MortgageBloc>()
+                                                                              .requestMeanValue
+                                                                              .limit ??
+                                                                          1) -
+                                                                  1) *
+                                                              (context
+                                                                      .read<
+                                                                          MortgageBloc>()
+                                                                      .requestMeanValue
+                                                                      .limit ??
+                                                                  1));
                                                   mortgageTransactionsBloc.add(
                                                       MortgageTransactionsEvent.started(
                                                           requestMortgageValues: context
@@ -520,9 +542,7 @@ class _MortagageViewState extends State<MortgageView> {
                                                       context
                                                           .read<MortgageBloc>()
                                                           .requestMeanValue
-                                                          .copyWith(
-                                                              offset:
-                                                                  firstPage);
+                                                          .copyWith(offset: 0);
                                                   mortgageTransactionsBloc.add(
                                                       MortgageTransactionsEvent.started(
                                                           requestMortgageValues: context
@@ -531,14 +551,25 @@ class _MortagageViewState extends State<MortgageView> {
                                                               .requestMeanValue));
                                                 },
                                                 onNextPage: (nextPage) {
-                                                  context
-                                                          .read<MortgageBloc>()
-                                                          .requestMeanValue =
-                                                      context
-                                                          .read<MortgageBloc>()
-                                                          .requestMeanValue
-                                                          .copyWith(
-                                                              offset: nextPage);
+                                                  context.read<MortgageBloc>().requestMeanValue = context
+                                                      .read<MortgageBloc>()
+                                                      .requestMeanValue
+                                                      .copyWith(
+                                                          offset: (((context.read<MortgageBloc>().requestMeanValue.offset ??
+                                                                          0) ~/
+                                                                      (context
+                                                                              .read<
+                                                                                  MortgageBloc>()
+                                                                              .requestMeanValue
+                                                                              .limit ??
+                                                                          1) +
+                                                                  1) *
+                                                              (context
+                                                                      .read<
+                                                                          MortgageBloc>()
+                                                                      .requestMeanValue
+                                                                      .limit ??
+                                                                  1)));
                                                   mortgageTransactionsBloc.add(
                                                       MortgageTransactionsEvent.started(
                                                           requestMortgageValues: context
@@ -547,14 +578,25 @@ class _MortagageViewState extends State<MortgageView> {
                                                               .requestMeanValue));
                                                 },
                                                 onGoToLastPage: (lastPage) {
-                                                  context
-                                                          .read<MortgageBloc>()
-                                                          .requestMeanValue =
-                                                      context
-                                                          .read<MortgageBloc>()
-                                                          .requestMeanValue
-                                                          .copyWith(
-                                                              offset: lastPage);
+                                                  context.read<MortgageBloc>().requestMeanValue = context
+                                                      .read<MortgageBloc>()
+                                                      .requestMeanValue
+                                                      .copyWith(
+                                                          offset: (((mortgageTransactionsBloc
+                                                                      .response
+                                                                      .count) ~/
+                                                                  (context
+                                                                          .read<
+                                                                              MortgageBloc>()
+                                                                          .requestMeanValue
+                                                                          .limit ??
+                                                                      1)) *
+                                                              (context
+                                                                      .read<
+                                                                          MortgageBloc>()
+                                                                      .requestMeanValue
+                                                                      .limit ??
+                                                                  1)));
                                                   mortgageTransactionsBloc.add(
                                                       MortgageTransactionsEvent.started(
                                                           requestMortgageValues: context

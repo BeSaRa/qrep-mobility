@@ -567,11 +567,18 @@ class _SalesViewState extends State<SalesView> {
                                               return Column(
                                                 children: [
                                                   FlutterCustomPagination(
-                                                    currentPage: context
-                                                            .read<SellBloc>()
-                                                            .requestSell
-                                                            .offset ??
-                                                        0,
+                                                    currentPage: (context
+                                                                .read<
+                                                                    SellBloc>()
+                                                                .requestSell
+                                                                .offset ??
+                                                            0) ~/
+                                                        (context
+                                                                .read<
+                                                                    SellBloc>()
+                                                                .requestSell
+                                                                .limit ??
+                                                            1),
                                                     limitPerPage: 5,
                                                     totalDataCount:
                                                         sellTransactionBloc
@@ -636,12 +643,18 @@ class _SalesViewState extends State<SalesView> {
                                                   : Column(
                                                       children: [
                                                         FlutterCustomPagination(
-                                                          currentPage: context
-                                                                  .read<
-                                                                      SellBloc>()
-                                                                  .requestSell
-                                                                  .offset ??
-                                                              0,
+                                                          currentPage: (context
+                                                                      .read<
+                                                                          SellBloc>()
+                                                                      .requestSell
+                                                                      .offset ??
+                                                                  0) ~/
+                                                              (context
+                                                                      .read<
+                                                                          SellBloc>()
+                                                                      .requestSell
+                                                                      .limit ??
+                                                                  1),
                                                           limitPerPage: context
                                                                   .read<
                                                                       SellBloc>()
@@ -664,8 +677,10 @@ class _SalesViewState extends State<SalesView> {
                                                                         SellBloc>()
                                                                     .requestSell
                                                                     .copyWith(
-                                                                        offset:
-                                                                            previousPage);
+                                                                        offset: ((context.read<SellBloc>().requestSell.offset ?? 0) ~/ (context.read<SellBloc>().requestSell.limit ?? 1) -
+                                                                                1) *
+                                                                            (context.read<SellBloc>().requestSell.limit ??
+                                                                                1));
                                                             sellTransactionBloc.add(
                                                                 SellTransactionEvent.started(
                                                                     request: context
@@ -685,7 +700,7 @@ class _SalesViewState extends State<SalesView> {
                                                                     .requestSell
                                                                     .copyWith(
                                                                         offset:
-                                                                            firstPage);
+                                                                            0);
                                                             sellTransactionBloc.add(
                                                                 SellTransactionEvent.started(
                                                                     request: context
@@ -704,8 +719,10 @@ class _SalesViewState extends State<SalesView> {
                                                                         SellBloc>()
                                                                     .requestSell
                                                                     .copyWith(
-                                                                        offset:
-                                                                            nextPage);
+                                                                        offset: (((context.read<SellBloc>().requestSell.offset ?? 0) ~/ (context.read<SellBloc>().requestSell.limit ?? 1) +
+                                                                                1) *
+                                                                            (context.read<SellBloc>().requestSell.limit ??
+                                                                                1)));
                                                             sellTransactionBloc.add(
                                                                 SellTransactionEvent.started(
                                                                     request: context
@@ -715,17 +732,17 @@ class _SalesViewState extends State<SalesView> {
                                                           },
                                                           onGoToLastPage:
                                                               (lastPage) {
-                                                            context
-                                                                    .read<
-                                                                        SellBloc>()
-                                                                    .requestSell =
-                                                                context
-                                                                    .read<
-                                                                        SellBloc>()
-                                                                    .requestSell
-                                                                    .copyWith(
-                                                                        offset:
-                                                                            lastPage);
+                                                            context.read<SellBloc>().requestSell = context
+                                                                .read<
+                                                                    SellBloc>()
+                                                                .requestSell
+                                                                .copyWith(
+                                                                    offset: (((sellTransactionBloc.sellTransaction?.count ??
+                                                                                0) ~/
+                                                                            (context.read<SellBloc>().requestSell.limit ??
+                                                                                1)) *
+                                                                        (context.read<SellBloc>().requestSell.limit ??
+                                                                            1)));
                                                             sellTransactionBloc.add(
                                                                 SellTransactionEvent.started(
                                                                     request: context
