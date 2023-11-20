@@ -41,7 +41,7 @@ class _SingleDropDownValue<T> extends State<SingleDropDownValue<T>> {
           hint: Padding(
             padding: EdgeInsets.symmetric(horizontal: AppSizeW.s10),
             child: Text(
-              'Select Item',
+              AppStrings().selectItems,
               style: Theme.of(context).textTheme.labelSmall,
             ),
           ),

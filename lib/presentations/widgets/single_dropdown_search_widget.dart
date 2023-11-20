@@ -37,7 +37,7 @@ class _SingleDropDowmSearchWidgetState<T>
           hint: Padding(
             padding: EdgeInsets.symmetric(horizontal: AppSizeW.s10),
             child: Text(
-              'Select Item',
+              AppStrings().selectItems,
               style: Theme.of(context).textTheme.labelSmall,
             ),
           ),
@@ -126,7 +126,7 @@ class _SingleDropDowmSearchWidgetState<T>
                     horizontal: AppSizeW.s8,
                     vertical: AppSizeH.s8,
                   ),
-                  hintText: 'البحث...',
+                  hintText: "${AppStrings().search}...",
                   hintStyle: Theme.of(context)
                       .textTheme
                       .labelSmall!
