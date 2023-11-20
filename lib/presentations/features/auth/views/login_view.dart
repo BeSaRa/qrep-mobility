@@ -40,6 +40,7 @@ class _LoginViewState extends State<LoginView> {
   void initState() {
     haveFaceId();
     faceIdCheck = FaceIdCheckCubit(false);
+    light = faceIdCheck.appPreferences.getUserFaceId();
     super.initState();
   }
 
@@ -49,36 +50,23 @@ class _LoginViewState extends State<LoginView> {
         canAuthenticateWithBiometrics || await auth.isDeviceSupported();
     faceIdCheck.save(canAuthenticate);
     canAuthenticateout = canAuthenticate;
-    String data = await getBioProtectedEntry() ?? '';
-    if (data.isNotEmpty) {
-      await faceIdCheck.authenticate();
-      if (faceIdCheck.authorized == 'Authorized') {
+    if (light) {
+      String data = await getBioProtectedEntry() ?? '';
+      if (data.isNotEmpty) {
         var res = await showDialog(
             context: context,
             builder: (BuildContext context) =>
                 _buildPopupDialog(context, data));
         if (res != null && res == true) {
-          identifierController.text = data
-              .split(',')
-              .first
-              .replaceAll
-            ('username:', '');
-          passwordController.text = data
-              .split(',')
-              .last
-              .replaceAll
-            ('password:', '');
+          identifierController.text =
+              data.split(',').first.replaceAll('username:', '');
+          passwordController.text =
+              data.split(',').last.replaceAll('password:', '');
           context.read<LoginBloc>().add(LoginEvent.login(
               authRequest: RequestAuth(
-                  identifier: data
-                      .split(',')
-                      .first
-                      .replaceAll('username:', ''),
+                  identifier: data.split(',').first.replaceAll('username:', ''),
                   mode: "json",
-                  password: data
-                      .split(',')
-                      .last
-                      .replaceAll('password:', ''))));
+                  password: data.split(',').last.replaceAll('password:', ''))));
         }
       }
     }
@@ -117,27 +105,19 @@ class _LoginViewState extends State<LoginView> {
               vertical: AppSizeH.s30, horizontal: AppSizeW.s30),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppSizeW.s15),
-            color: Theme
-                .of(context)
-                .scaffoldBackgroundColor,
+            color: Theme.of(context).scaffoldBackgroundColor,
           ),
           child: Column(children: [
             Text(
               AppStrings().login,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .bodyLarge,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
             SizedBox(
               height: AppSizeH.s20,
             ),
             TextFormField(
               controller: identifierController,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium,
               decoration: InputDecoration(
                 hintText: AppStrings().userName,
                 prefixIcon: const Icon(
@@ -147,10 +127,7 @@ class _LoginViewState extends State<LoginView> {
             ),
             TextFormField(
               controller: passwordController,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium,
               decoration: InputDecoration(
                 hintText: AppStrings().password,
                 prefixIcon: const Icon(
@@ -162,8 +139,7 @@ class _LoginViewState extends State<LoginView> {
               alignment: Alignment.centerLeft,
               child: Text(
                 AppStrings().forgetPassword,
-                style: Theme
-                    .of(context)
+                style: Theme.of(context)
                     .textTheme
                     .titleMedium
                     ?.copyWith(fontSize: 12.sp),
@@ -181,8 +157,7 @@ class _LoginViewState extends State<LoginView> {
                         child: SvgPicture.asset(
                           IconAssets.faceIdIcon,
                           // ignore: deprecated_member_use
-                          color: Theme
-                              .of(context)
+                          color: Theme.of(context)
                               .bottomNavigationBarTheme
                               .unselectedItemColor,
                         ),
@@ -192,34 +167,26 @@ class _LoginViewState extends State<LoginView> {
                       ),
                       Text(
                         AppStrings().activateFaceId,
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .bodyMedium,
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       const Spacer(),
                       Switch(
                         // This bool value toggles the switch.
                         value: light,
-                        activeColor: Theme
-                            .of(context)
-                            .primaryColor,
-                        activeTrackColor: Theme
-                            .of(context)
+                        activeColor: Theme.of(context).primaryColor,
+                        activeTrackColor: Theme.of(context)
                             .unselectedWidgetColor
                             .withOpacity(0.2),
-                        inactiveThumbColor: Theme
-                            .of(context)
-                            .primaryColor,
-                        inactiveTrackColor: Theme
-                            .of(context)
+                        inactiveThumbColor: Theme.of(context).primaryColor,
+                        inactiveTrackColor: Theme.of(context)
                             .unselectedWidgetColor
                             .withOpacity(0.2),
 
                         onChanged: (bool value) {
                           if (value == true) {
-                            faceIdCheck.authenticate();
+                            haveFaceId();
                           }
+                          faceIdCheck.appPreferences.setUserFaceId(value);
                           setState(() {
                             light = value;
                           });
@@ -270,27 +237,19 @@ class _LoginViewState extends State<LoginView> {
             vertical: AppSizeH.s30, horizontal: AppSizeW.s30),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppSizeW.s15),
-          color: Theme
-              .of(context)
-              .scaffoldBackgroundColor,
+          color: Theme.of(context).scaffoldBackgroundColor,
         ),
         child: Column(
           children: [
             Center(
               child: Text(
                 AppStrings.loginWithUsernameStored.tr(args: [
-                  data
-                      .split(',')
-                      .first
-                      .replaceAll(
-                    'username:',
-                    '',
-                  )
+                  data.split(',').first.replaceAll(
+                        'username:',
+                        '',
+                      )
                 ]),
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .bodyMedium,
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
             Spacer(),

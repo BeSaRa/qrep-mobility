@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:ebla/app/app_preferences.dart';
+import 'package:ebla/app/depndency_injection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
@@ -10,6 +12,7 @@ class FaceIdCheckCubit extends Cubit<bool> {
 
   final LocalAuthentication auth = LocalAuthentication();
 
+  AppPreferences appPreferences = instance<AppPreferences>();
   bool? _canCheckBiometrics;
   List<BiometricType>? availableBiometrics;
   String authorized = 'Not Authorized';
