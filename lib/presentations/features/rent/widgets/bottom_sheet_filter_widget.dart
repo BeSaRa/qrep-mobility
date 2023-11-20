@@ -12,6 +12,7 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import '../../../../domain/models/rent_models/rent_models.dart';
 import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/multi_choose_dropdown.dart';
+import '../../../widgets/single_dropdown_search_widget.dart';
 import '../../../widgets/text_field_filter_widget.dart';
 import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
@@ -531,7 +532,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                     BlocBuilder(
                       bloc: valuesFiltersCubit,
                       builder: (context, states) {
-                        return SingleDropDownValue<RentLookupModel>(
+                        return SingleDropDowmSearchWidget<RentLookupModel>(
                             onChanged: (zone) {
                               valuesFiltersCubit.changeZone(zone!);
                             },

@@ -65,6 +65,14 @@ class GeneralInterceptor extends Interceptor {
           instance<Dio>().options.headers["authorization"] = "Bearer $newToken";
           return handler
               .resolve(await instance<Dio>().fetch(err.requestOptions));
+        } else {
+          await appPreferences.setUserToken(Constant.guestToken);
+          await appPreferences.setUserRefreshToken("");
+
+          instance<Dio>().options.headers["authorization"] =
+              "Bearer ${Constant.guestToken}";
+          return handler
+              .resolve(await instance<Dio>().fetch(err.requestOptions));
         }
       } catch (e) {
         await appPreferences.setUserToken(Constant.guestToken);

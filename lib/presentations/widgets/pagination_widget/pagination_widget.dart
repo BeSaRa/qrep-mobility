@@ -96,7 +96,7 @@ class FlutterCustomPagination extends StatelessWidget {
           ),
           SizedBox(width: textStyle?.fontSize ?? 14),
           Text(
-            '${AppStrings().page} ${currentPage + 1}  ${AppStrings().of} ${lastPage + 1}',
+            '${AppStrings().page} ${currentPage + 1}  ${AppStrings().of} $lastPage',
             style: Theme.of(context).textTheme.bodySmall,
           ),
           SizedBox(width: textStyle?.fontSize ?? 14),
