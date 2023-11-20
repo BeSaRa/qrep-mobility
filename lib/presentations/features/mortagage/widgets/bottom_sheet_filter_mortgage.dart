@@ -42,6 +42,8 @@ class _BottomSheetFilterMortgageWidgetState
         }
         return values;
       //       break;
+      case 4:
+        return [1, 2, 3, 4];
       default:
         return null;
     }
@@ -730,54 +732,54 @@ class _BottomSheetFilterMortgageWidgetState
             child: const ChooseUnitWidget(),
           ),
           SizedBox(height: AppSizeH.s12),
-          BlocBuilder(
-            bloc: valuesFiltersCubit,
-            builder: (context, state) {
-              return SliderWidget(
-                title: AppStrings().realStateValueFromTo,
-                startValue:
-                    '${(valuesFiltersCubit.rangerealEstateValue?.start.toDouble() ?? context.read<LookupBloc>().lookUpMortgage?.maxParams[1].minVal.toDouble())?.toInt().formatWithCommas()}',
-                endValue:
-                    '${(valuesFiltersCubit.rangerealEstateValue?.end.toDouble() ?? context.read<LookupBloc>().lookUpMortgage?.maxParams[1].maxVal.toDouble())?.toInt().formatWithCommas()}',
-                values: valuesFiltersCubit.rangerealEstateValue ??
-                    RangeValues(
-                        valuesFiltersCubit.realEstateValueFrom?.toDouble() ??
-                            context
-                                .read<LookupBloc>()
-                                .lookUpMortgage
-                                ?.maxParams[1]
-                                .minVal
-                                .toDouble() ??
-                            0,
-                        valuesFiltersCubit.realEstateValueTo?.toDouble() ??
-                            context
-                                .read<LookupBloc>()
-                                .lookUpMortgage
-                                ?.maxParams[1]
-                                .maxVal
-                                .toDouble() ??
-                            1000000),
-                onChanges: (rangeValues) {
-                  valuesFiltersCubit.changeRangeRealEstateValue(rangeValues);
-                },
-                min: context
-                        .read<LookupBloc>()
-                        .lookUpMortgage
-                        ?.maxParams[1]
-                        .minVal
-                        .toDouble() ??
-                    0,
-                max: context
-                        .read<LookupBloc>()
-                        .lookUpMortgage
-                        ?.maxParams[1]
-                        .maxVal
-                        .toDouble() ??
-                    1000000,
-              );
-            },
-          ),
-          SizedBox(height: AppSizeH.s12),
+          // BlocBuilder(
+          //   bloc: valuesFiltersCubit,
+          //   builder: (context, state) {
+          //     return SliderWidget(
+          //       title: AppStrings().realStateValueFromTo,
+          //       startValue:
+          //           '${(valuesFiltersCubit.rangerealEstateValue?.start.toDouble() ?? context.read<LookupBloc>().lookUpMortgage?.maxParams[1].minVal.toDouble())?.toInt().formatWithCommas()}',
+          //       endValue:
+          //           '${(valuesFiltersCubit.rangerealEstateValue?.end.toDouble() ?? context.read<LookupBloc>().lookUpMortgage?.maxParams[1].maxVal.toDouble())?.toInt().formatWithCommas()}',
+          //       values: valuesFiltersCubit.rangerealEstateValue ??
+          //           RangeValues(
+          //               valuesFiltersCubit.realEstateValueFrom?.toDouble() ??
+          //                   context
+          //                       .read<LookupBloc>()
+          //                       .lookUpMortgage
+          //                       ?.maxParams[1]
+          //                       .minVal
+          //                       .toDouble() ??
+          //                   0,
+          //               valuesFiltersCubit.realEstateValueTo?.toDouble() ??
+          //                   context
+          //                       .read<LookupBloc>()
+          //                       .lookUpMortgage
+          //                       ?.maxParams[1]
+          //                       .maxVal
+          //                       .toDouble() ??
+          //                   1000000),
+          //       onChanges: (rangeValues) {
+          //         valuesFiltersCubit.changeRangeRealEstateValue(rangeValues);
+          //       },
+          //       min: context
+          //               .read<LookupBloc>()
+          //               .lookUpMortgage
+          //               ?.maxParams[1]
+          //               .minVal
+          //               .toDouble() ??
+          //           0,
+          //       max: context
+          //               .read<LookupBloc>()
+          //               .lookUpMortgage
+          //               ?.maxParams[1]
+          //               .maxVal
+          //               .toDouble() ??
+          //           1000000,
+          //     );
+          //   },
+          // ),
+          // SizedBox(height: AppSizeH.s12),
           BlocBuilder(
             bloc: valuesFiltersCubit,
             builder: (context, state) {
