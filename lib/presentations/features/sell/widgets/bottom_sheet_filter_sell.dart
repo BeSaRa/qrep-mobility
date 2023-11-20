@@ -222,7 +222,12 @@ class _BottomSheetFilterSellWidgetState
     List<RentLookupModel> listPropertyWithAll = [];
     listPropertyWithAll
         .addAll(context.read<LookupBloc>().loockUpSell?.propertyTypeList ?? []);
-    if (listPropertyWithAll.any((element) => element.lookupKey != -1)) {
+    if (!listPropertyWithAll.contains(const RentLookupModel(
+        isActive: true,
+        lookupKey: -1,
+        arName: "الكل",
+        enName: "All",
+        id: -1))) {
       listPropertyWithAll.add(const RentLookupModel(
           isActive: true,
           lookupKey: -1,
@@ -230,6 +235,7 @@ class _BottomSheetFilterSellWidgetState
           enName: "All",
           id: -1));
     }
+
     context.read<LookupBloc>().loockUpSell = context
         .read<LookupBloc>()
         .loockUpSell

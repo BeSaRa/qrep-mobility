@@ -16,6 +16,7 @@ import 'package:lottie/lottie.dart';
 import '../../../app/depndency_injection.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
+import '../../widgets/filters_applied_widget.dart';
 import '../../widgets/grid/grid_item_widget.dart';
 import '../../widgets/pagination_widget/pagination_widget.dart';
 import '../../widgets/selected_municipality_widget.dart';
@@ -336,13 +337,80 @@ class _RentViewState extends State<RentView> {
                                   },
                                 ),
                                 SizedBox(height: AppSizeH.s22),
-                                Center(
-                                  child: Text(
-                                    AppStrings.currentPerformanceSummary
-                                        .tr(args: [AppStrings().rental]),
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
-                                  ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Center(
+                                      child: Text(
+                                        AppStrings.currentPerformanceSummary
+                                            .tr(args: [AppStrings().rental]),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge,
+                                      ),
+                                    ),
+                                    BlocBuilder(
+                                      bloc: changeStatusCubit,
+                                      builder: (context, state) {
+                                        return FiltersApplied(
+                                          year: context
+                                                  .read<RentBloc>()
+                                                  .requestMeanValue
+                                                  .issueDateYear ??
+                                              DateTime.now().year,
+                                          municipality: getObjectByLookupKey(
+                                                  context
+                                                          .read<LookupBloc>()
+                                                          .loockUpRent
+                                                          ?.municipalityList ??
+                                                      [],
+                                                  context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue
+                                                          .municipalityId ??
+                                                      1) ??
+                                              const RentLookupModel(),
+                                          zone: getObjectByLookupKey(
+                                                  context
+                                                          .read<LookupBloc>()
+                                                          .loockUpRent
+                                                          ?.zoneList ??
+                                                      [],
+                                                  context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue
+                                                          .zoneId ??
+                                                      1) ??
+                                              const RentLookupModel(),
+                                          propertyPurpose: getObjectByLookupKey(
+                                                  context
+                                                          .read<LookupBloc>()
+                                                          .loockUpRent
+                                                          ?.rentPurposeList ??
+                                                      [],
+                                                  context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue
+                                                          .purposeList?[0] ??
+                                                      1) ??
+                                              const RentLookupModel(),
+                                          propertyType: getObjectByLookupKey(
+                                                  context
+                                                          .read<LookupBloc>()
+                                                          .loockUpRent
+                                                          ?.propertyTypeList ??
+                                                      [],
+                                                  context
+                                                              .read<RentBloc>()
+                                                              .requestMeanValue
+                                                              .propertyTypeList?[
+                                                          0] ??
+                                                      1) ??
+                                              const RentLookupModel(),
+                                        );
+                                      },
+                                    ),
+                                  ],
                                 ),
                                 const GreyLinerContainer(),
                                 Padding(
@@ -377,12 +445,79 @@ class _RentViewState extends State<RentView> {
                                 SizedBox(
                                   height: AppSizeH.s20,
                                 ),
-                                Center(
-                                  child: Text(
-                                    AppStrings().rentTopTen,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
-                                  ),
+                                Column(
+                                  children: [
+                                    Center(
+                                      child: Text(
+                                        AppStrings().rentTopTen,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge,
+                                      ),
+                                    ),
+                                    BlocBuilder(
+                                      bloc: changeStatusCubit,
+                                      builder: (context, state) {
+                                        return FiltersApplied(
+                                          withoutZone: true,
+                                          year: context
+                                                  .read<RentBloc>()
+                                                  .requestMeanValue
+                                                  .issueDateYear ??
+                                              DateTime.now().year,
+                                          municipality: getObjectByLookupKey(
+                                                  context
+                                                          .read<LookupBloc>()
+                                                          .loockUpRent
+                                                          ?.municipalityList ??
+                                                      [],
+                                                  context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue
+                                                          .municipalityId ??
+                                                      1) ??
+                                              const RentLookupModel(),
+                                          zone: getObjectByLookupKey(
+                                                  context
+                                                          .read<LookupBloc>()
+                                                          .loockUpRent
+                                                          ?.zoneList ??
+                                                      [],
+                                                  context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue
+                                                          .zoneId ??
+                                                      1) ??
+                                              const RentLookupModel(),
+                                          propertyPurpose: getObjectByLookupKey(
+                                                  context
+                                                          .read<LookupBloc>()
+                                                          .loockUpRent
+                                                          ?.rentPurposeList ??
+                                                      [],
+                                                  context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue
+                                                          .purposeList?[0] ??
+                                                      1) ??
+                                              const RentLookupModel(),
+                                          propertyType: getObjectByLookupKey(
+                                                  context
+                                                          .read<LookupBloc>()
+                                                          .loockUpRent
+                                                          ?.propertyTypeList ??
+                                                      [],
+                                                  context
+                                                              .read<RentBloc>()
+                                                              .requestMeanValue
+                                                              .propertyTypeList?[
+                                                          0] ??
+                                                      1) ??
+                                              const RentLookupModel(),
+                                        );
+                                      },
+                                    ),
+                                  ],
                                 ),
                                 const GreyLinerContainer(),
                                 Padding(
@@ -396,12 +531,78 @@ class _RentViewState extends State<RentView> {
                                   ),
                                 ),
                                 SizedBox(height: AppSizeH.s20),
-                                Center(
-                                  child: Text(
-                                    AppStrings().rentContractList,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
-                                  ),
+                                Column(
+                                  children: [
+                                    Center(
+                                      child: Text(
+                                        AppStrings().rentContractList,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge,
+                                      ),
+                                    ),
+                                    BlocBuilder(
+                                      bloc: changeStatusCubit,
+                                      builder: (context, state) {
+                                        return FiltersApplied(
+                                          year: context
+                                                  .read<RentBloc>()
+                                                  .requestMeanValue
+                                                  .issueDateYear ??
+                                              DateTime.now().year,
+                                          municipality: getObjectByLookupKey(
+                                                  context
+                                                          .read<LookupBloc>()
+                                                          .loockUpRent
+                                                          ?.municipalityList ??
+                                                      [],
+                                                  context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue
+                                                          .municipalityId ??
+                                                      1) ??
+                                              const RentLookupModel(),
+                                          zone: getObjectByLookupKey(
+                                                  context
+                                                          .read<LookupBloc>()
+                                                          .loockUpRent
+                                                          ?.zoneList ??
+                                                      [],
+                                                  context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue
+                                                          .zoneId ??
+                                                      1) ??
+                                              const RentLookupModel(),
+                                          propertyPurpose: getObjectByLookupKey(
+                                                  context
+                                                          .read<LookupBloc>()
+                                                          .loockUpRent
+                                                          ?.rentPurposeList ??
+                                                      [],
+                                                  context
+                                                          .read<RentBloc>()
+                                                          .requestMeanValue
+                                                          .purposeList?[0] ??
+                                                      1) ??
+                                              const RentLookupModel(),
+                                          propertyType: getObjectByLookupKey(
+                                                  context
+                                                          .read<LookupBloc>()
+                                                          .loockUpRent
+                                                          ?.propertyTypeList ??
+                                                      [],
+                                                  context
+                                                              .read<RentBloc>()
+                                                              .requestMeanValue
+                                                              .propertyTypeList?[
+                                                          0] ??
+                                                      1) ??
+                                              const RentLookupModel(),
+                                        );
+                                      },
+                                    ),
+                                  ],
                                 ),
                                 const GreyLinerContainer(),
                                 BlocBuilder<RentSummeryBloc, RentSummeryState>(

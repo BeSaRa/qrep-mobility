@@ -15,11 +15,13 @@ import 'package:lottie/lottie.dart';
 import '../../../domain/models/rent_models/rent_models.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
+import '../../widgets/filters_applied_widget.dart';
 import '../../widgets/pagination_widget/pagination_widget.dart';
 import '../../widgets/selected_municipality_widget.dart';
 import '../../widgets/selected_year_widget.dart';
 import '../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
+import '../rent/rent_view.dart';
 import 'widgets/bottom_sheet_filter_mortgage.dart';
 
 class MortgageView extends StatefulWidget {
@@ -294,12 +296,77 @@ class _MortagageViewState extends State<MortgageView> {
                               },
                             ),
                             SizedBox(height: AppSizeH.s22),
-                            Center(
-                              child: Text(
-                                AppStrings.currentPerformanceSummary
-                                    .tr(args: [AppStrings().mortgage]),
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
+                            Column(
+                              children: [
+                                Center(
+                                  child: Text(
+                                    AppStrings.currentPerformanceSummary
+                                        .tr(args: [AppStrings().mortgage]),
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                ),
+                                BlocBuilder(
+                                  bloc: changeStatusCubit,
+                                  builder: (context, state) {
+                                    return FiltersApplied(
+                                      year: context
+                                              .read<MortgageBloc>()
+                                              .requestMeanValue
+                                              .issueDateYear ??
+                                          DateTime.now().year,
+                                      municipality: getObjectByLookupKey(
+                                              context
+                                                      .read<LookupBloc>()
+                                                      .lookUpMortgage
+                                                      ?.municipalityList ??
+                                                  [],
+                                              context
+                                                      .read<MortgageBloc>()
+                                                      .requestMeanValue
+                                                      .municipalityId ??
+                                                  1) ??
+                                          const RentLookupModel(),
+                                      zone: getObjectByLookupKey(
+                                              context
+                                                      .read<LookupBloc>()
+                                                      .lookUpMortgage
+                                                      ?.districtList ??
+                                                  [],
+                                              context
+                                                  .read<MortgageBloc>()
+                                                  .requestMeanValue
+                                                  .areaCode
+                                                  .toInt()) ??
+                                          const RentLookupModel(),
+                                      propertyPurpose: getObjectByLookupKey(
+                                              context
+                                                      .read<LookupBloc>()
+                                                      .lookUpMortgage
+                                                      ?.rentPurposeList ??
+                                                  [],
+                                              context
+                                                      .read<MortgageBloc>()
+                                                      .requestMeanValue
+                                                      .purposeList?[0] ??
+                                                  1) ??
+                                          const RentLookupModel(),
+                                      propertyType: getObjectByLookupKey(
+                                              context
+                                                      .read<LookupBloc>()
+                                                      .lookUpMortgage
+                                                      ?.propertyTypeList ??
+                                                  [],
+                                              context
+                                                      .read<MortgageBloc>()
+                                                      .requestMeanValue
+                                                      .propertyTypeList?[0] ??
+                                                  1) ??
+                                          const RentLookupModel(lookupKey: -1),
+                                    );
+                                  },
+                                ),
+                              ],
                             ),
                             const GreyLinerContainer(),
                             MultiBlocProvider(
@@ -316,11 +383,76 @@ class _MortagageViewState extends State<MortgageView> {
                                   )),
                             ),
                             SizedBox(height: AppSizeH.s20),
-                            Center(
-                              child: Text(
-                                AppStrings().mortgageTransactionsList,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
+                            Column(
+                              children: [
+                                Center(
+                                  child: Text(
+                                    AppStrings().mortgageTransactionsList,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                ),
+                                BlocBuilder(
+                                  bloc: changeStatusCubit,
+                                  builder: (context, state) {
+                                    return FiltersApplied(
+                                      year: context
+                                              .read<MortgageBloc>()
+                                              .requestMeanValue
+                                              .issueDateYear ??
+                                          DateTime.now().year,
+                                      municipality: getObjectByLookupKey(
+                                              context
+                                                      .read<LookupBloc>()
+                                                      .lookUpMortgage
+                                                      ?.municipalityList ??
+                                                  [],
+                                              context
+                                                      .read<MortgageBloc>()
+                                                      .requestMeanValue
+                                                      .municipalityId ??
+                                                  1) ??
+                                          const RentLookupModel(),
+                                      zone: getObjectByLookupKey(
+                                              context
+                                                      .read<LookupBloc>()
+                                                      .lookUpMortgage
+                                                      ?.districtList ??
+                                                  [],
+                                              context
+                                                  .read<MortgageBloc>()
+                                                  .requestMeanValue
+                                                  .areaCode
+                                                  .toInt()) ??
+                                          const RentLookupModel(),
+                                      propertyPurpose: getObjectByLookupKey(
+                                              context
+                                                      .read<LookupBloc>()
+                                                      .lookUpMortgage
+                                                      ?.rentPurposeList ??
+                                                  [],
+                                              context
+                                                      .read<MortgageBloc>()
+                                                      .requestMeanValue
+                                                      .purposeList?[0] ??
+                                                  1) ??
+                                          const RentLookupModel(),
+                                      propertyType: getObjectByLookupKey(
+                                              context
+                                                      .read<LookupBloc>()
+                                                      .lookUpMortgage
+                                                      ?.propertyTypeList ??
+                                                  [],
+                                              context
+                                                      .read<MortgageBloc>()
+                                                      .requestMeanValue
+                                                      .propertyTypeList?[0] ??
+                                                  1) ??
+                                          const RentLookupModel(lookupKey: -1),
+                                    );
+                                  },
+                                ),
+                              ],
                             ),
                             const GreyLinerContainer(),
                             BlocBuilder<MortgageTransactionsBloc,

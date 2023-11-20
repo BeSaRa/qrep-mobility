@@ -223,7 +223,12 @@ class _BottomSheetFilterMortgageWidgetState
     List<RentLookupModel> listPropertyWithAll = [];
     listPropertyWithAll.addAll(
         context.read<LookupBloc>().lookUpMortgage?.propertyTypeList ?? []);
-    if (listPropertyWithAll.any((element) => element.lookupKey != -1)) {
+    if (!listPropertyWithAll.contains(const RentLookupModel(
+        isActive: true,
+        lookupKey: -1,
+        arName: "الكل",
+        enName: "All",
+        id: -1))) {
       listPropertyWithAll.add(const RentLookupModel(
           isActive: true,
           lookupKey: -1,

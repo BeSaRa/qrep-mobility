@@ -16,11 +16,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../utils/global_functions.dart';
+import '../../widgets/filters_applied_widget.dart';
 import '../../widgets/pagination_widget/pagination_widget.dart';
 import '../../widgets/selected_municipality_widget.dart';
 import '../../widgets/selected_year_widget.dart';
 import '../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
+import '../rent/rent_view.dart';
 import 'blocs/sell_bloc/sell_bloc.dart';
 import 'widgets/bottom_sheet_filter_sell.dart';
 import 'widgets/statistics_top_sell.dart';
@@ -344,14 +346,90 @@ class _SalesViewState extends State<SalesView> {
                                       ),
                                       // SizedBox(height: AppSizeH.s22),
                                       SizedBox(height: AppSizeH.s22),
-                                      Center(
-                                        child: Text(
-                                          AppStrings.currentPerformanceSummary
-                                              .tr(args: [AppStrings().sell]),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleLarge,
-                                        ),
+                                      Column(
+                                        children: [
+                                          Center(
+                                            child: Text(
+                                              AppStrings
+                                                  .currentPerformanceSummary
+                                                  .tr(args: [
+                                                AppStrings().sell
+                                              ]),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleLarge,
+                                            ),
+                                          ),
+                                          BlocBuilder(
+                                            bloc: changeStatusCubit,
+                                            builder: (context, state) {
+                                              return FiltersApplied(
+                                                year: context
+                                                        .read<SellBloc>()
+                                                        .requestSell
+                                                        .issueDateYear ??
+                                                    DateTime.now().year,
+                                                municipality: getObjectByLookupKey(
+                                                        context
+                                                                .read<
+                                                                    LookupBloc>()
+                                                                .loockUpSell
+                                                                ?.municipalityList ??
+                                                            [],
+                                                        context
+                                                                .read<
+                                                                    SellBloc>()
+                                                                .requestSell
+                                                                .municipalityId ??
+                                                            1) ??
+                                                    const RentLookupModel(),
+                                                zone: getObjectByLookupKey(
+                                                        context
+                                                                .read<
+                                                                    LookupBloc>()
+                                                                .loockUpSell
+                                                                ?.districtList ??
+                                                            [],
+                                                        context
+                                                            .read<SellBloc>()
+                                                            .requestSell
+                                                            .areaCode
+                                                            .toInt()) ??
+                                                    const RentLookupModel(),
+                                                propertyPurpose: getObjectByLookupKey(
+                                                        context
+                                                                .read<
+                                                                    LookupBloc>()
+                                                                .loockUpSell
+                                                                ?.rentPurposeList ??
+                                                            [],
+                                                        context
+                                                                .read<
+                                                                    SellBloc>()
+                                                                .requestSell
+                                                                .purposeList?[0] ??
+                                                            1) ??
+                                                    const RentLookupModel(),
+                                                propertyType: getObjectByLookupKey(
+                                                        context
+                                                                .read<
+                                                                    LookupBloc>()
+                                                                .loockUpSell
+                                                                ?.propertyTypeList ??
+                                                            [],
+                                                        context
+                                                                    .read<
+                                                                        SellBloc>()
+                                                                    .requestSell
+                                                                    .propertyTypeList?[
+                                                                0] ??
+                                                            1) ??
+                                                    const RentLookupModel(
+                                                        lookupKey: -1),
+                                              );
+                                            },
+                                          ),
+                                        ],
                                       ),
                                       const GreyLinerContainer(),
                                       Padding(
@@ -388,6 +466,88 @@ class _SalesViewState extends State<SalesView> {
                                       SizedBox(
                                         height: AppSizeH.s20,
                                       ),
+                                      Column(
+                                        children: [
+                                          Center(
+                                            child: Text(
+                                              AppStrings().rentTopTen,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleLarge,
+                                            ),
+                                          ),
+                                          BlocBuilder(
+                                            bloc: changeStatusCubit,
+                                            builder: (context, state) {
+                                              return FiltersApplied(
+                                                withoutZone: true,
+                                                year: context
+                                                        .read<SellBloc>()
+                                                        .requestSell
+                                                        .issueDateYear ??
+                                                    DateTime.now().year,
+                                                municipality: getObjectByLookupKey(
+                                                        context
+                                                                .read<
+                                                                    LookupBloc>()
+                                                                .loockUpSell
+                                                                ?.municipalityList ??
+                                                            [],
+                                                        context
+                                                                .read<
+                                                                    SellBloc>()
+                                                                .requestSell
+                                                                .municipalityId ??
+                                                            1) ??
+                                                    const RentLookupModel(),
+                                                zone: getObjectByLookupKey(
+                                                        context
+                                                                .read<
+                                                                    LookupBloc>()
+                                                                .loockUpSell
+                                                                ?.districtList ??
+                                                            [],
+                                                        context
+                                                            .read<SellBloc>()
+                                                            .requestSell
+                                                            .areaCode
+                                                            .toInt()) ??
+                                                    const RentLookupModel(),
+                                                propertyPurpose: getObjectByLookupKey(
+                                                        context
+                                                                .read<
+                                                                    LookupBloc>()
+                                                                .loockUpSell
+                                                                ?.rentPurposeList ??
+                                                            [],
+                                                        context
+                                                                .read<
+                                                                    SellBloc>()
+                                                                .requestSell
+                                                                .purposeList?[0] ??
+                                                            1) ??
+                                                    const RentLookupModel(),
+                                                propertyType: getObjectByLookupKey(
+                                                        context
+                                                                .read<
+                                                                    LookupBloc>()
+                                                                .loockUpSell
+                                                                ?.propertyTypeList ??
+                                                            [],
+                                                        context
+                                                                    .read<
+                                                                        SellBloc>()
+                                                                    .requestSell
+                                                                    .propertyTypeList?[
+                                                                0] ??
+                                                            1) ??
+                                                    const RentLookupModel(
+                                                        lookupKey: -1),
+                                              );
+                                            },
+                                          ),
+                                        ],
+                                      ),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: AppSizeW.s20),
@@ -398,13 +558,86 @@ class _SalesViewState extends State<SalesView> {
                                         ),
                                       ),
                                       SizedBox(height: AppSizeH.s20),
-                                      Center(
-                                        child: Text(
-                                          AppStrings().sellContractList,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleLarge,
-                                        ),
+                                      Column(
+                                        children: [
+                                          Center(
+                                            child: Text(
+                                              AppStrings().sellContractList,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleLarge,
+                                            ),
+                                          ),
+                                          BlocBuilder(
+                                            bloc: changeStatusCubit,
+                                            builder: (context, state) {
+                                              return FiltersApplied(
+                                                year: context
+                                                        .read<SellBloc>()
+                                                        .requestSell
+                                                        .issueDateYear ??
+                                                    DateTime.now().year,
+                                                municipality: getObjectByLookupKey(
+                                                        context
+                                                                .read<
+                                                                    LookupBloc>()
+                                                                .loockUpSell
+                                                                ?.municipalityList ??
+                                                            [],
+                                                        context
+                                                                .read<
+                                                                    SellBloc>()
+                                                                .requestSell
+                                                                .municipalityId ??
+                                                            1) ??
+                                                    const RentLookupModel(),
+                                                zone: getObjectByLookupKey(
+                                                        context
+                                                                .read<
+                                                                    LookupBloc>()
+                                                                .loockUpSell
+                                                                ?.districtList ??
+                                                            [],
+                                                        context
+                                                            .read<SellBloc>()
+                                                            .requestSell
+                                                            .areaCode
+                                                            .toInt()) ??
+                                                    const RentLookupModel(),
+                                                propertyPurpose: getObjectByLookupKey(
+                                                        context
+                                                                .read<
+                                                                    LookupBloc>()
+                                                                .loockUpSell
+                                                                ?.rentPurposeList ??
+                                                            [],
+                                                        context
+                                                                .read<
+                                                                    SellBloc>()
+                                                                .requestSell
+                                                                .purposeList?[0] ??
+                                                            1) ??
+                                                    const RentLookupModel(),
+                                                propertyType: getObjectByLookupKey(
+                                                        context
+                                                                .read<
+                                                                    LookupBloc>()
+                                                                .loockUpSell
+                                                                ?.propertyTypeList ??
+                                                            [],
+                                                        context
+                                                                    .read<
+                                                                        SellBloc>()
+                                                                    .requestSell
+                                                                    .propertyTypeList?[
+                                                                0] ??
+                                                            1) ??
+                                                    const RentLookupModel(
+                                                        lookupKey: -1),
+                                              );
+                                            },
+                                          ),
+                                        ],
                                       ),
                                       const GreyLinerContainer(),
                                       BlocBuilder<SellTransactionBloc,
