@@ -109,7 +109,7 @@ class AppStrings {
   String search = "search".tr();
   String furnitureStatus = "furniture_status".tr(); // "حالة الاثاث"
   String street = "street".tr(); // "الشارع"
-  String selectItems = "select_items".tr(); // "الشارع"
+  String selectItems = "select_items".tr();
 
   //---------------- sell ----------
   String sellContractCount = "sell_contracts_count".tr();
