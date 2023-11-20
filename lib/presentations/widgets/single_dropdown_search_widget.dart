@@ -5,26 +5,22 @@ import 'package:flutter/material.dart';
 import '../../domain/models/rent_models/rent_models.dart';
 import '../resources/resources.dart';
 
-class SingleDropDownValue<T> extends StatefulWidget {
+class SingleDropDowmSearchWidget<T> extends StatefulWidget {
   final List<T> list;
   final T? value;
   final Function(T?)? onChanged;
 
-  const SingleDropDownValue(
+  const SingleDropDowmSearchWidget(
       {super.key, required this.list, this.value, this.onChanged});
 
   @override
-  State<SingleDropDownValue<T>> createState() => _SingleDropDownValue<T>();
+  State<SingleDropDowmSearchWidget<T>> createState() =>
+      _SingleDropDowmSearchWidgetState<T>();
 }
 
-class _SingleDropDownValue<T> extends State<SingleDropDownValue<T>> {
-  // T? selectedValue;
-
-  @override
-  void initState() {
-    // selectedValue = widget.value;
-    super.initState();
-  }
+class _SingleDropDowmSearchWidgetState<T>
+    extends State<SingleDropDowmSearchWidget<T>> {
+  final TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +105,56 @@ class _SingleDropDownValue<T> extends State<SingleDropDownValue<T>> {
           //   height: AppSizeH.s40,
           //   padding: EdgeInsets.symmetric(vertical: AppSizeH.s4),
           // ),
+          dropdownSearchData: DropdownSearchData(
+            searchController: textEditingController,
+            searchInnerWidgetHeight: AppSizeH.s50,
+            searchInnerWidget: Container(
+              // height: AppSizeH.s50,
+              padding: EdgeInsetsDirectional.symmetric(
+                horizontal: AppSizeW.s11,
+                vertical: AppSizeH.s11,
+              ),
+              child: TextFormField(
+                // expands: true,
+                maxLines: 1, minLines: 1,
+                style: Theme.of(context).textTheme.labelSmall,
+                controller: textEditingController,
+                cursorColor: ColorManager.golden,
+                decoration: InputDecoration(
+                  isDense: true,
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: AppSizeW.s8,
+                    vertical: AppSizeH.s8,
+                  ),
+                  hintText: "${AppStrings().search}...",
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .labelSmall!
+                      .copyWith(color: ColorManager.golden),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: ColorManager.golden),
+                    borderRadius: BorderRadius.circular(AppSizeR.s8),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: ColorManager.golden),
+                    borderRadius: BorderRadius.circular(AppSizeR.s8),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: ColorManager.golden),
+                    borderRadius: BorderRadius.circular(AppSizeR.s8),
+                  ),
+                ),
+              ),
+            ),
+            searchMatchFn: (item, searchValue) {
+              return item.value.toString().contains(searchValue);
+            },
+          ),
+          onMenuStateChange: (isOpen) {
+            if (!isOpen) {
+              textEditingController.clear();
+            }
+          },
         ),
       ),
     );

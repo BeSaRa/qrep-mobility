@@ -52,7 +52,7 @@ class FlutterCustomPagination extends StatelessWidget {
         'currentPage must be less than or equal to the last page number');
 
     bool hasPrevPage = currentPage > 0;
-    bool hasNextPage = currentPage < lastPage;
+    bool hasNextPage = currentPage < lastPage - 1;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: AppSizeW.s12),
@@ -96,7 +96,7 @@ class FlutterCustomPagination extends StatelessWidget {
           ),
           SizedBox(width: textStyle?.fontSize ?? 14),
           Text(
-            '${AppStrings().page} ${currentPage + 1}  ${AppStrings().of} ${lastPage + 1}',
+            '${AppStrings().page} ${currentPage + 1}  ${AppStrings().of} $lastPage',
             style: Theme.of(context).textTheme.bodySmall,
           ),
           SizedBox(width: textStyle?.fontSize ?? 14),
