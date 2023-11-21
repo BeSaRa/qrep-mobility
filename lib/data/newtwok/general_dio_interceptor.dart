@@ -38,7 +38,9 @@ class GeneralInterceptor extends Interceptor {
   @override
   Future<void> onError(
       DioException err, ErrorInterceptorHandler handler) async {
-    if (err.response?.statusCode == 401) {
+    print(err.requestOptions.path);
+    if (err.response?.statusCode == 401 &&
+        (err.requestOptions.path != EndPoints.auth)) {
       try {
         final response = await dio.post(
             "${Constant.secondaryBaseUrl}${EndPoints.refreshToken}",
@@ -68,9 +70,9 @@ class GeneralInterceptor extends Interceptor {
         } else {
           await appPreferences.setUserToken(Constant.guestToken);
           await appPreferences.setUserRefreshToken("");
-
           instance<Dio>().options.headers["authorization"] =
               "Bearer ${Constant.guestToken}";
+
           return handler
               .resolve(await instance<Dio>().fetch(err.requestOptions));
         }
@@ -80,7 +82,7 @@ class GeneralInterceptor extends Interceptor {
 
         instance<Dio>().options.headers["authorization"] =
             "Bearer ${Constant.guestToken}";
-        // return handler.resolve(await instance<Dio>().fetch(err.requestOptions));
+        return handler.resolve(await instance<Dio>().fetch(err.requestOptions));
       }
     }
     return handler.next(err);

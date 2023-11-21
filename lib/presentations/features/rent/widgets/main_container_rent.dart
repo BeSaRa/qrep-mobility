@@ -144,7 +144,7 @@ class MainRentDataContainer extends StatelessWidget {
               children: [
                 Expanded(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         "${AppStrings().startDate}:",
@@ -161,10 +161,11 @@ class MainRentDataContainer extends StatelessWidget {
                   width: AppSizeW.s1,
                   height: AppSizeH.s15,
                   color: ColorManager.grey,
+                  margin: EdgeInsets.symmetric(horizontal: AppSizeW.s6),
                 ),
                 Expanded(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         "${AppStrings().endDate}:",
