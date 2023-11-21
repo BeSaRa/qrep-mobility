@@ -961,12 +961,17 @@ class _SalesViewState extends State<SalesView> {
                                                           },
                                                           onGoToLastPage:
                                                               (lastPage) {
-                                                            context.read<SellBloc>().requestSell = context
-                                                                .read<
-                                                                    SellBloc>()
-                                                                .requestSell
-                                                                .copyWith(
-                                                                    offset: (((sellTransactionBloc.sellTransaction?.count ??
+                                                            context.read<SellBloc>().requestSell = context.read<SellBloc>().requestSell.copyWith(
+                                                                offset: (((sellTransactionBloc.sellTransaction?.count ??
+                                                                                0) %
+                                                                            (context.read<SellBloc>().requestSell.limit ??
+                                                                                1)) ==
+                                                                        0
+                                                                    ? (sellTransactionBloc.sellTransaction?.count ??
+                                                                            0) -
+                                                                        (context.read<SellBloc>().requestSell.limit ??
+                                                                            5)
+                                                                    : ((sellTransactionBloc.sellTransaction?.count ??
                                                                                 0) ~/
                                                                             (context.read<SellBloc>().requestSell.limit ??
                                                                                 1)) *

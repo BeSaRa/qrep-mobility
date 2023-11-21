@@ -138,6 +138,7 @@ class AppStrings {
   //mortgage
   String mortgageTransactionsList = "mortgage_transactions_list".tr();
   String mortgageValue = "mortgaged_for".tr();
+  String noMortgageTransictions = "no_mortgage_found".tr();
 
   //Pagination
   String nextPage = "paginator_next_page_label".tr();

@@ -116,6 +116,7 @@
   "the_total_number_of_mortgaged_units": "The total number of mortgaged units",
   "total_mortgage_transactions": "Total mortgage transactions",
   "total_value_of_mortgage_transactions": "Total value of mortgage transactions",
+  "no_mortgage_found": "No mortgage contracts found",
   "----------------------------------------------------OWNERSHIP--------------------------": "",
   "----------------------------------------------Pagination-------------------------------:": "",
   "paginator_first_page_label": "First page",

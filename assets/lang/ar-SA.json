@@ -116,6 +116,8 @@
   "the_total_number_of_mortgaged_units": "إجمالي عدد الوحدات المرهونة",
   "total_mortgage_transactions": "عدد معاملات الرهن",
   "total_value_of_mortgage_transactions": "إجمالي قيمة معاملات الرهن",
+  "no_mortgage_found": "لايوجد معاملات رهن",
+
   "----------------------------------------------------OWNERSHIP--------------------------": "",
   "----------------------------------------------Pagination-------------------------------:": "",
   "paginator_first_page_label": "الصفحة الاولى",

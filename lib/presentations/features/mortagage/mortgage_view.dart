@@ -605,7 +605,7 @@ class _MortagageViewState extends State<MortgageView> {
                                 done: (done) {
                                   if (done.transactionList.isEmpty) {
                                     return Text(
-                                      AppStrings().noRentContracts,
+                                      AppStrings().noMortgageTransictions,
                                       style:
                                           Theme.of(context).textTheme.bodyLarge,
                                     );
@@ -615,7 +615,7 @@ class _MortagageViewState extends State<MortgageView> {
                                                     .read<MortgageBloc>()
                                                     .requestMeanValue
                                                     .limit ??
-                                                4)
+                                                5)
                                         ? SizedBox(height: AppSizeH.s10)
                                         : Column(
                                             children: [
@@ -715,20 +715,24 @@ class _MortagageViewState extends State<MortgageView> {
                                                       .requestMeanValue
                                                       .copyWith(
                                                           offset: (((mortgageTransactionsBloc
+                                                                          .response
+                                                                          .count) %
+                                                                      (context.read<MortgageBloc>().requestMeanValue.limit ??
+                                                                          1)) ==
+                                                                  0
+                                                              ? mortgageTransactionsBloc
                                                                       .response
-                                                                      .count) ~/
+                                                                      .count -
+                                                                  (context.read<MortgageBloc>().requestMeanValue.limit ??
+                                                                      5)
+                                                              : ((mortgageTransactionsBloc.response.count) ~/
+                                                                      (context.read<MortgageBloc>().requestMeanValue.limit ??
+                                                                          1)) *
                                                                   (context
-                                                                          .read<
-                                                                              MortgageBloc>()
+                                                                          .read<MortgageBloc>()
                                                                           .requestMeanValue
                                                                           .limit ??
-                                                                      1)) *
-                                                              (context
-                                                                      .read<
-                                                                          MortgageBloc>()
-                                                                      .requestMeanValue
-                                                                      .limit ??
-                                                                  1)));
+                                                                      1)));
                                                   mortgageTransactionsBloc.add(
                                                       MortgageTransactionsEvent.started(
                                                           requestMortgageValues: context
