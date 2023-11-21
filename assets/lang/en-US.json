@@ -1,4 +1,9 @@
 {
+  "-----------------------------Shared-----------------------------------------------": "",
+  "filter_values_should_be_as_follows":"Filter values should be as follows",
+  "value_other_than_all":"Any value other than (all)",
+  "single_value_other_than_all":"(Single) value other than (all)",
+  "----------------------------------------------------------------------------------": "", 
   "activate_face_id": "Activate face id",
   "cancel": "Cancel",
   "confirm": "Confirm",
@@ -71,7 +76,7 @@
   "average_rental_price_per_unit_property": "Average rental price per unit / property",
   "avg_price_per_meter": "Average price per meter",
   "contracts_values": "Contracts values",
-  "current_performance_summary": "{}transactions measuring dashboard",
+  "current_performance_summary": "{} transactions measuring dashboard",
   "end_date": "End date",
   "list_of_rental_transactions": "Rent contracts list",
   "no_contracts_found": "No rent contracts Found",
