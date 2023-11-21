@@ -979,7 +979,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<AuthResponse, FailureModel>> login(
+  Future<Result<AuthResponse, FailureResponse>> login(
       RequestAuth requestAuth) async {
     if (await networkInfo.isConnected) {
       try {
@@ -988,13 +988,15 @@ class RepositoryImplementer extends Repository {
             response.response.statusCode == 201) {
           return Success(response.data);
         } else {
-          return Error(FailureModel.fromJson(response.response.data));
+          return Error(FailureResponse.fromJson(response.response.data));
         }
       } on DioException catch (e) {
-        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+        return Error(
+            FailureResponse.fromJson(e.response?.data ?? defaultError));
       }
     } else {
-      return Error(FailureModel(message: AppStrings().noInternetError));
+      return Error(FailureResponse(
+          errors: [ErrorModel(message: AppStrings().noInternetError)]));
     }
   }
 

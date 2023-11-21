@@ -6,7 +6,7 @@ part 'request_auth.g.dart';
 @freezed
 abstract class RequestAuth with _$RequestAuth {
   factory RequestAuth({
-    required String identifier,
+    required String email,
     required String mode,
     required String password,
   }) = _RequestAuth;

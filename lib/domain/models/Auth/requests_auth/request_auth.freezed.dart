@@ -20,7 +20,7 @@ RequestAuth _$RequestAuthFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RequestAuth {
-  String get identifier => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   String get mode => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $RequestAuthCopyWith<$Res> {
           RequestAuth value, $Res Function(RequestAuth) then) =
       _$RequestAuthCopyWithImpl<$Res, RequestAuth>;
   @useResult
-  $Res call({String identifier, String mode, String password});
+  $Res call({String email, String mode, String password});
 }
 
 /// @nodoc
@@ -52,14 +52,14 @@ class _$RequestAuthCopyWithImpl<$Res, $Val extends RequestAuth>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? identifier = null,
+    Object? email = null,
     Object? mode = null,
     Object? password = null,
   }) {
     return _then(_value.copyWith(
-      identifier: null == identifier
-          ? _value.identifier
-          : identifier // ignore: cast_nullable_to_non_nullable
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       mode: null == mode
           ? _value.mode
@@ -81,7 +81,7 @@ abstract class _$$RequestAuthImplCopyWith<$Res>
       __$$RequestAuthImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String identifier, String mode, String password});
+  $Res call({String email, String mode, String password});
 }
 
 /// @nodoc
@@ -95,14 +95,14 @@ class __$$RequestAuthImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? identifier = null,
+    Object? email = null,
     Object? mode = null,
     Object? password = null,
   }) {
     return _then(_$RequestAuthImpl(
-      identifier: null == identifier
-          ? _value.identifier
-          : identifier // ignore: cast_nullable_to_non_nullable
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       mode: null == mode
           ? _value.mode
@@ -120,13 +120,13 @@ class __$$RequestAuthImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RequestAuthImpl implements _RequestAuth {
   _$RequestAuthImpl(
-      {required this.identifier, required this.mode, required this.password});
+      {required this.email, required this.mode, required this.password});
 
   factory _$RequestAuthImpl.fromJson(Map<String, dynamic> json) =>
       _$$RequestAuthImplFromJson(json);
 
   @override
-  final String identifier;
+  final String email;
   @override
   final String mode;
   @override
@@ -134,7 +134,7 @@ class _$RequestAuthImpl implements _RequestAuth {
 
   @override
   String toString() {
-    return 'RequestAuth(identifier: $identifier, mode: $mode, password: $password)';
+    return 'RequestAuth(email: $email, mode: $mode, password: $password)';
   }
 
   @override
@@ -142,8 +142,7 @@ class _$RequestAuthImpl implements _RequestAuth {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RequestAuthImpl &&
-            (identical(other.identifier, identifier) ||
-                other.identifier == identifier) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.mode, mode) || other.mode == mode) &&
             (identical(other.password, password) ||
                 other.password == password));
@@ -151,7 +150,7 @@ class _$RequestAuthImpl implements _RequestAuth {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, identifier, mode, password);
+  int get hashCode => Object.hash(runtimeType, email, mode, password);
 
   @JsonKey(ignore: true)
   @override
@@ -169,7 +168,7 @@ class _$RequestAuthImpl implements _RequestAuth {
 
 abstract class _RequestAuth implements RequestAuth {
   factory _RequestAuth(
-      {required final String identifier,
+      {required final String email,
       required final String mode,
       required final String password}) = _$RequestAuthImpl;
 
@@ -177,7 +176,7 @@ abstract class _RequestAuth implements RequestAuth {
       _$RequestAuthImpl.fromJson;
 
   @override
-  String get identifier;
+  String get email;
   @override
   String get mode;
   @override
