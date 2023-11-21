@@ -751,13 +751,19 @@ class _SalesViewState extends State<SalesView> {
                                                                           0)
                                                                   ?.enName ??
                                                               '',
-                                                      descripton: DateTime
-                                                              .parse(success
+                                                      descripton: success
+                                                                  .transactionList[
+                                                                      index]
+                                                                  .issueDate
+                                                                  ?.isEmpty ??
+                                                              true
+                                                          ? ""
+                                                          : DateTime.parse(success
                                                                       .transactionList[
                                                                           index]
                                                                       .issueDate ??
                                                                   '')
-                                                          .toFormattedString(),
+                                                              .toFormattedString(),
                                                     );
                                                   }),
                                           error: (String message) => SizedBox(

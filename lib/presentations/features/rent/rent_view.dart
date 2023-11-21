@@ -701,14 +701,22 @@ class _RentViewState extends State<RentView> {
                                                                   .startDate ??
                                                               '')
                                                           .toFormattedString()
-                                                      : "No start date",
-                                                  endDate: DateTime.parse(state
+                                                      : "",
+                                                  endDate: state
                                                               .rentSummery
                                                               .transactionList[
                                                                   index]
-                                                              .endDate ??
-                                                          '')
-                                                      .toFormattedString(),
+                                                              .endDate
+                                                              ?.isNotEmpty ??
+                                                          false
+                                                      ? DateTime.parse(state
+                                                                  .rentSummery
+                                                                  .transactionList[
+                                                                      index]
+                                                                  .endDate ??
+                                                              '')
+                                                          .toFormattedString()
+                                                      : "",
                                                 );
                                               }),
                                           // SizedBox(height: AppSizeH.s6),

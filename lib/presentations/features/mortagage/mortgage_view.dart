@@ -496,12 +496,19 @@ class _MortagageViewState extends State<MortgageView> {
                                                       AppStrings().rentArea,
                                                   titleInfo: '',
                                                   valueInfo: '',
-                                                  descripton: DateTime.parse(done
+                                                  descripton: done
                                                               .transactionList[
                                                                   index]
-                                                              .issueDate ??
-                                                          '')
-                                                      .toFormattedString(),
+                                                              .issueDate
+                                                              ?.isEmpty ??
+                                                          true
+                                                      ? ""
+                                                      : DateTime.parse(done
+                                                                  .transactionList[
+                                                                      index]
+                                                                  .issueDate ??
+                                                              '')
+                                                          .toFormattedString(),
                                                   location: context.locale ==
                                                           ARABIC_LOCAL
                                                       ? getObjectByLookupKey(
