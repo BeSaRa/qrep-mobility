@@ -4,16 +4,14 @@ import 'dart:math' as math;
 
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/app/depndency_injection.dart';
-import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
-import 'package:ebla/domain/repository/repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../resources/resources.dart';
-import '../main/cubit/bottom_nav_cubit.dart';
 import '../info/blocs/news_bloc/news_bloc.dart';
+import '../main/cubit/bottom_nav_cubit.dart';
 import '../more/more_view.dart';
 import 'widgets/news_widget.dart';
 
@@ -111,12 +109,18 @@ class _HomeViewState extends State<HomeView> {
                                 isShadow: true,
                               ),
                             ),
-                            HomeContainer(
-                              isBig: true,
-                              title: AppStrings().realEstateBrokers,
-                              color: Colors.white.withOpacity(0.8),
-                              image: IconAssets.inMiddleHome,
-                              isShadow: true,
+                            GestureDetector(
+                              onTap: () {
+                                // context
+                                //     .pushNamed(RoutesNames.realEstateBrokers);
+                              },
+                              child: HomeContainer(
+                                isBig: true,
+                                title: AppStrings().realEstateBrokers,
+                                color: Colors.white.withOpacity(0.8),
+                                image: IconAssets.inMiddleHome,
+                                isShadow: true,
+                              ),
                             ),
                           ],
                         ),

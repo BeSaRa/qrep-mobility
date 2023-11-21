@@ -10,6 +10,7 @@ import 'package:ebla/presentations/features/main_scaffold.dart';
 import 'package:ebla/presentations/features/more/more_view.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
+import 'package:ebla/presentations/features/real_estate_brokers/real_estate_brokers_view.dart';
 import 'package:ebla/presentations/features/rent/rent_view.dart';
 import 'package:ebla/presentations/features/sell/sell_view.dart';
 import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
@@ -40,6 +41,7 @@ class RoutesNames {
   static const String faq = 'FAQ';
   static const String news = 'news';
   static const String newsbyId = 'news item';
+  static const String realEstateBrokers = 'real estate brokers';
 }
 
 class RoutesPaths {
@@ -56,6 +58,7 @@ class RoutesPaths {
   static const String faq = '/FAQ';
   static const String news = '/news';
   static const String newsbyId = '/news/:id';
+  static const String realEstateBrokers = '/realestatebrokers';
 }
 
 class NavigationKeys {
@@ -379,6 +382,12 @@ class AppRouter {
             value: state.extra! as NewsBloc,
             child: const NewsView(),
           ),
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.realEstateBrokers,
+          path: RoutesPaths.realEstateBrokers,
+          builder: (context, state) => const REalEstateBrokersView(),
         ),
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
