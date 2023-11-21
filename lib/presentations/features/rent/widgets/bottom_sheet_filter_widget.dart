@@ -49,6 +49,8 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
         }
         return values;
       //       break;
+      case 4:
+        return [1, 2, 3, 4];
       default:
         return null;
     }

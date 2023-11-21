@@ -45,12 +45,12 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Center(
-          child: Text(
-            AppStrings().rentTopTen,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-        ),
+        // Center(
+        //   child: Text(
+        //     AppStrings().rentTopTen,
+        //     style: Theme.of(context).textTheme.titleLarge,
+        //   ),
+        // ),
         Container(
           margin: EdgeInsets.symmetric(
               horizontal: AppSizeW.s150, vertical: AppSizeH.s20),

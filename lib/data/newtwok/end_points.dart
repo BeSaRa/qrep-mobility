@@ -99,7 +99,7 @@ class EndPoints {
       '/kpi/mortgage/kpi7/detail/transaction';
 
   //Auth
-  static const String auth = '/auth/login/ldap';
+  static const String auth = '/auth/login';
   static const String refreshToken = '/auth/refresh';
   static const String userInfo = '/users/me';
 }

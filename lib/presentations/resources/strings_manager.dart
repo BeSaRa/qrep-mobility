@@ -69,7 +69,11 @@ class AppStrings {
   String dataBeingCollectedAndAudited =
       "data_is_being_collected_and_audited".tr();
   String userName = "identifier".tr();
+  String email = "email".tr();
+  String validatorEmailEmpty = "validator_email_empty".tr();
+  String validatorEmailFormat = "validator_email_format".tr();
   String password = "password".tr();
+  String validatorPasswordEmpty = "validator_password_empty".tr();
   String forgetPassword = "forget_password".tr();
   String activateFaceId = "activate_face_id".tr();
   static String loginWithUsernameStored = "login_with_user_name_stored";
@@ -143,6 +147,7 @@ class AppStrings {
   //mortgage
   String mortgageTransactionsList = "mortgage_transactions_list".tr();
   String mortgageValue = "mortgaged_for".tr();
+  String noMortgageTransictions = "no_mortgage_found".tr();
 
   //Pagination
   String nextPage = "paginator_next_page_label".tr();

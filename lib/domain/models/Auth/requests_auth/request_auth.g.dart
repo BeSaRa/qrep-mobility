@@ -8,14 +8,14 @@ part of 'request_auth.dart';
 
 _$RequestAuthImpl _$$RequestAuthImplFromJson(Map<String, dynamic> json) =>
     _$RequestAuthImpl(
-      identifier: json['identifier'] as String,
+      email: json['email'] as String,
       mode: json['mode'] as String,
       password: json['password'] as String,
     );
 
 Map<String, dynamic> _$$RequestAuthImplToJson(_$RequestAuthImpl instance) =>
     <String, dynamic>{
-      'identifier': instance.identifier,
+      'email': instance.email,
       'mode': instance.mode,
       'password': instance.password,
     };

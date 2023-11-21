@@ -26,7 +26,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               await loginUsecases.execute(value.authRequest);
           failureOrSuccess.when((success) {
             name = "";
-            name = value.authRequest.identifier;
+            name = value.authRequest.email;
             appPreferences.setUserToken(success.data.token);
             appPreferences.setUserRefreshToken(success.data.refreshToken);
 
@@ -40,7 +40,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
                 isLoading: false,
                 isHasError: true,
                 isSuccessLogin: false,
-                errorMessage: error.message,
+                errorMessage: error.errors[0].message,
                 successLogin: const AuthResponse()));
           });
         },

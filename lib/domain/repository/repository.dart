@@ -144,7 +144,7 @@ abstract class Repository {
       getMortgageTransactions(RequestMortgageValues requestSellValues);
 
   //Auth
-  Future<Result<AuthResponse, FailureModel>> login(RequestAuth requestAuth);
+  Future<Result<AuthResponse, FailureResponse>> login(RequestAuth requestAuth);
   Future<Result<AuthResponse, FailureResponse>> refreshToken(
       RefreshToken refreshToken);
   //Profile
