@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/extensions.dart';
+import 'package:ebla/presentations/features/more/widgets/dialog_disabled_filters_warning.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/top_values_bloc/topvalues_bloc.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,17 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
   void initState() {
     tenIndexCubit = TopTenIndexCubit(1);
     super.initState();
+  }
+
+  bool isDisabled() {
+    return (context
+                .read<SellBloc>()
+                .requestSell
+                .propertyTypeList
+                ?.contains(-1) ??
+            false) ||
+        (context.read<SellBloc>().requestSell.purposeList?.contains(-1) ??
+            false);
   }
 
   @override
@@ -72,6 +84,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                               name: AppStrings().sellContractCount,
                             ),
                             _TabContainerShimmer(
+                              isDisabled: isDisabled(),
                               tabIndex: 2,
                               name: AppStrings().avgPricePerUnit,
                             ),
@@ -89,6 +102,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                               name: AppStrings().countPropertiesUnits,
                             ),
                             _TabContainerShimmer(
+                              isDisabled: isDisabled(),
                               tabIndex: 6,
                               name: "${AppStrings().avgPricePer} "
                                   "(${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
@@ -126,15 +140,26 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                           },
                         ),
                         _TabContainer(
+                            isDisabled: isDisabled(),
                             indexTab: 2,
                             name: AppStrings().avgPricePerUnit,
                             onPress: () {
-                              tenIndexCubit.save(2);
-                              context.read<TopvaluesBloc>().add(
-                                  TopvaluesEvent.countUnitPriceEvent(
-                                      request: context
-                                          .read<SellBloc>()
-                                          .requestSell));
+                              if (isDisabled()) {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext ctxt) =>
+                                        DialogDisabledFiltersWarning(
+                                          message:
+                                              "${AppStrings().propertyType}: ${AppStrings().singleValueOtherThanAll}\n${AppStrings().propertyUsage}: ${AppStrings().singleValueOtherThanAll}",
+                                        ));
+                              } else {
+                                tenIndexCubit.save(2);
+                                context.read<TopvaluesBloc>().add(
+                                    TopvaluesEvent.countUnitPriceEvent(
+                                        request: context
+                                            .read<SellBloc>()
+                                            .requestSell));
+                              }
                             }),
                         _TabContainer(
                             indexTab: 3,
@@ -171,16 +196,27 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                                           .requestSell));
                             }),
                         _TabContainer(
+                            isDisabled: isDisabled(),
                             indexTab: 6,
                             name: "${AppStrings().avgPricePer} "
                                 "(${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
                             onPress: () {
-                              tenIndexCubit.save(6);
-                              context.read<TopvaluesBloc>().add(
-                                  TopvaluesEvent.realStateNumberMeterEvent(
-                                      request: context
-                                          .read<SellBloc>()
-                                          .requestSell));
+                              if (isDisabled()) {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext ctxt) =>
+                                        DialogDisabledFiltersWarning(
+                                          message:
+                                              "${AppStrings().propertyType}: ${AppStrings().singleValueOtherThanAll}\n${AppStrings().propertyUsage}: ${AppStrings().singleValueOtherThanAll}",
+                                        ));
+                              } else {
+                                tenIndexCubit.save(6);
+                                context.read<TopvaluesBloc>().add(
+                                    TopvaluesEvent.realStateNumberMeterEvent(
+                                        request: context
+                                            .read<SellBloc>()
+                                            .requestSell));
+                              }
                             }),
                       ],
                     ),
@@ -295,10 +331,11 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
 class _TabContainerShimmer extends StatelessWidget {
   final int tabIndex;
   final String name;
-
+  final bool isDisabled;
   const _TabContainerShimmer({
     required this.tabIndex,
     required this.name,
+    this.isDisabled = false,
   });
 
   @override
@@ -310,7 +347,9 @@ class _TabContainerShimmer extends StatelessWidget {
       decoration: BoxDecoration(
           color: context.read<TopvaluesBloc>().index == tabIndex
               ? ColorManager.primary
-              : Colors.transparent,
+              : isDisabled
+                  ? ColorManager.lightSilver.withOpacity(0.5)
+                  : Colors.transparent,
           border: Border.all(
             color: ColorManager.silver,
             width: AppSizeH.s1,
@@ -324,7 +363,12 @@ class _TabContainerShimmer extends StatelessWidget {
                 .displayMedium!
                 .copyWith(fontSize: AppSizeSp.s12)
             : Theme.of(context).textTheme.headlineMedium!.copyWith(
-                fontSize: AppSizeSp.s12, decoration: TextDecoration.none),
+                  fontSize: AppSizeSp.s12,
+                  decoration: TextDecoration.none,
+                  color: isDisabled
+                      ? ColorManager.cloudyGrey.withOpacity(0.5)
+                      : null,
+                ),
       ),
     );
   }
@@ -334,11 +378,13 @@ class _TabContainer extends StatelessWidget {
   final int indexTab;
   final String name;
   final Function onPress;
+  final bool isDisabled;
 
   const _TabContainer({
     required this.indexTab,
     required this.name,
     required this.onPress,
+    this.isDisabled = false,
   });
 
   @override
@@ -348,6 +394,7 @@ class _TabContainer extends StatelessWidget {
         // setState(() {
         //   index = 1;
         // });
+
         onPress();
       },
       child: Container(
@@ -357,7 +404,9 @@ class _TabContainer extends StatelessWidget {
         decoration: BoxDecoration(
             color: context.read<TopvaluesBloc>().index == indexTab
                 ? ColorManager.primary
-                : Colors.transparent,
+                : isDisabled
+                    ? ColorManager.lightSilver.withOpacity(0.5)
+                    : Colors.transparent,
             border: Border.all(
               color: ColorManager.silver,
               width: AppSizeH.s1,
@@ -371,7 +420,12 @@ class _TabContainer extends StatelessWidget {
                   .displayMedium!
                   .copyWith(fontSize: AppSizeSp.s12)
               : Theme.of(context).textTheme.headlineMedium!.copyWith(
-                  fontSize: AppSizeSp.s12, decoration: TextDecoration.none),
+                    color: isDisabled
+                        ? ColorManager.cloudyGrey.withOpacity(0.5)
+                        : null,
+                    fontSize: AppSizeSp.s12,
+                    decoration: TextDecoration.none,
+                  ),
         ),
       ),
     );

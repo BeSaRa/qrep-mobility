@@ -909,6 +909,8 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                     isPrimary: true,
                     title: AppStrings().search,
                     onPress: () {
+                      print(
+                          "valuesFiltersCubit.zone.lookupKey: ${valuesFiltersCubit.zone.lookupKey}");
                       // print(
                       //     'before request ${context.read<RentBloc>().requestMeanValue}');
                       context.read<RentBloc>().requestMeanValue = context

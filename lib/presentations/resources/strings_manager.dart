@@ -1,6 +1,11 @@
 import "package:easy_localization/easy_localization.dart";
 
 class AppStrings {
+  // shared
+  String filterValuesShouldBeAsFollows =
+      "filter_values_should_be_as_follows".tr();
+  String valuesOtherThanAll = "value_other_than_all".tr();
+  String singleValueOtherThanAll = "single_value_other_than_all".tr();
   //main scaffold locals
   String main = "home".tr();
   String rent = "rent".tr();
