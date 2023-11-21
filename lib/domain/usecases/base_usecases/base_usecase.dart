@@ -9,3 +9,7 @@ abstract class BaseUseCase<In, Out> {
 abstract class BaseUseCaseEmptyInput<Out> {
   Future<Result<Out, FailureModel>> execute();
 }
+
+abstract class BaseUseCaseFailureResponse<In, Out> {
+  Future<Result<Out, FailureResponse>> execute(In input);
+}

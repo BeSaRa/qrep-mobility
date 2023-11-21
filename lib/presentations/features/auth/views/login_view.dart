@@ -2,6 +2,7 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
+import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/features/auth/blocs/cubits/face_id_check_cubit.dart';
 import 'package:ebla/presentations/features/auth/blocs/login_bloc/login_bloc.dart';
 import 'package:ebla/presentations/resources/resources.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_auth/local_auth.dart';
 
@@ -30,12 +32,13 @@ class _LoginViewState extends State<LoginView> {
   // late LoginBloc loginBloc;
   bool light = true;
   bool canAuthenticateout = false;
-  final identifierController = TextEditingController();
+  bool isSecure = true;
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final LocalAuthentication auth = LocalAuthentication();
 
   late FaceIdCheckCubit faceIdCheck;
-
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   void initState() {
     haveFaceId();
@@ -58,15 +61,18 @@ class _LoginViewState extends State<LoginView> {
             builder: (BuildContext context) =>
                 _buildPopupDialog(context, data));
         if (res != null && res == true) {
-          identifierController.text =
+          emailController.text =
               data.split(',').first.replaceAll('username:', '');
           passwordController.text =
               data.split(',').last.replaceAll('password:', '');
           context.read<LoginBloc>().add(LoginEvent.login(
               authRequest: RequestAuth(
-                  identifier: data.split(',').first.replaceAll('username:', ''),
+                  email: data.split(',').first.replaceAll('username:', ''),
                   mode: "json",
-                  password: data.split(',').last.replaceAll('password:', ''))));
+                  password: data
+                      .split(',')
+                      .last
+                      .replaceAll('password:', ''))));
         }
       }
     }
@@ -91,139 +97,182 @@ class _LoginViewState extends State<LoginView> {
             if (light && canAuthenticateout) {
               //save password in biometrics
               createBioProtectedEntry(
-                  identifierController.text, passwordController.text);
+                  emailController.text, passwordController.text);
             }
             await resetAllModules();
             context.read<LookupBloc>().add(const LookupEvent.initilaEvent());
             context.read<UserBloc>().add(const UserEvent.initialUser());
             context.pop();
           }
+          if (state.isHasError) {
+            Fluttertoast.showToast(
+                msg: state.errorMessage, backgroundColor: ColorManager.red);
+          }
         },
-        child: Container(
-          height: AppSizeH.s400,
-          padding: EdgeInsets.symmetric(
-              vertical: AppSizeH.s30, horizontal: AppSizeW.s30),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(AppSizeW.s15),
-            color: Theme.of(context).scaffoldBackgroundColor,
-          ),
-          child: Column(children: [
-            Text(
-              AppStrings().login,
-              style: Theme.of(context).textTheme.bodyLarge,
+        child: Form(
+          key: _formKey,
+          child: Container(
+            height: AppSizeH.s400,
+            padding: EdgeInsets.symmetric(
+                vertical: AppSizeH.s30, horizontal: AppSizeW.s30),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppSizeW.s15),
+              color: Theme.of(context).scaffoldBackgroundColor,
             ),
-            SizedBox(
-              height: AppSizeH.s20,
-            ),
-            TextFormField(
-              controller: identifierController,
-              style: Theme.of(context).textTheme.bodyMedium,
-              decoration: InputDecoration(
-                hintText: AppStrings().userName,
-                prefixIcon: const Icon(
-                  Icons.person_outline_outlined,
-                ),
+            child: Column(children: [
+              Text(
+                AppStrings().login,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
-            ),
-            TextFormField(
-              controller: passwordController,
-              style: Theme.of(context).textTheme.bodyMedium,
-              decoration: InputDecoration(
-                hintText: AppStrings().password,
-                prefixIcon: const Icon(
-                  Icons.lock_outline,
-                ),
+              SizedBox(
+                height: AppSizeH.s20,
               ),
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                AppStrings().forgetPassword,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(fontSize: 12.sp),
-              ),
-            ),
-            BlocBuilder(
-              bloc: faceIdCheck,
-              builder: (context, state) {
-                if (state == true) {
-                  return Row(
-                    children: [
-                      SizedBox(
-                        height: AppSizeW.s20,
-                        width: AppSizeW.s20,
-                        child: SvgPicture.asset(
-                          IconAssets.faceIdIcon,
-                          // ignore: deprecated_member_use
-                          color: Theme.of(context)
-                              .bottomNavigationBarTheme
-                              .unselectedItemColor,
-                        ),
-                      ),
-                      SizedBox(
-                        width: AppSizeW.s5,
-                      ),
-                      Text(
-                        AppStrings().activateFaceId,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      const Spacer(),
-                      Switch(
-                        // This bool value toggles the switch.
-                        value: light,
-                        activeColor: Theme.of(context).primaryColor,
-                        activeTrackColor: Theme.of(context)
-                            .unselectedWidgetColor
-                            .withOpacity(0.2),
-                        inactiveThumbColor: Theme.of(context).primaryColor,
-                        inactiveTrackColor: Theme.of(context)
-                            .unselectedWidgetColor
-                            .withOpacity(0.2),
-
-                        onChanged: (bool value) {
-                          if (value == true) {
-                            haveFaceId();
-                          }
-                          faceIdCheck.appPreferences.setUserFaceId(value);
-                          setState(() {
-                            light = value;
-                          });
-                        },
-                      ),
-                    ],
-                  );
-                } else {
-                  return Container();
-                }
-              },
-            ),
-            const Spacer(),
-            BlocBuilder(
-              bloc: context.read<LoginBloc>(),
-              builder: (context, LoginState state) {
-                if (state.isLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                return CupertinoButton.filled(
-                  borderRadius: BorderRadius.circular(AppSizeR.s12),
-                  onPressed: () {
-                    context.read<LoginBloc>().add(LoginEvent.login(
-                        authRequest: RequestAuth(
-                            identifier: identifierController.text,
-                            mode: "json",
-                            password: passwordController.text)));
-                  },
-                  child: Text(
-                    AppStrings().login,
+              TextFormField(
+                controller: emailController,
+                style: Theme.of(context).textTheme.bodyMedium,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppStrings().validatorEmailEmpty;
+                  }
+                  if (value.emailReg()) {
+                    return AppStrings().validatorEmailFormat;
+                  }
+                  return null;
+                },
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                decoration: InputDecoration(
+                  hintText: AppStrings().email,
+                  prefixIcon: const Icon(
+                    Icons.person_outline_outlined,
                   ),
-                );
-              },
-            ),
-          ]),
+                ),
+              ),
+              TextFormField(
+                obscureText: isSecure,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                controller: passwordController,
+                style: Theme.of(context).textTheme.bodyMedium,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppStrings().validatorPasswordEmpty;
+                  }
+
+                  return null;
+                },
+                decoration: InputDecoration(
+                    hintText: AppStrings().password,
+                    prefixIcon: const Icon(
+                      Icons.lock_outline,
+                    ),
+                    suffixIcon: InkWell(
+                      onTap: () {
+                        passwordController.text.isEmpty
+                            ? null
+                            : setState(() {
+                                isSecure = !isSecure;
+                              });
+                      },
+                      child: Icon(
+                        isSecure
+                            ? Icons.visibility_outlined
+                            : Icons.visibility_off_outlined,
+                        color: ColorManager.primary,
+                        size: AppSizeSp.s18,
+                      ),
+                    )),
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  AppStrings().forgetPassword,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(fontSize: 12.sp),
+                ),
+              ),
+              BlocBuilder(
+                bloc: faceIdCheck,
+                builder: (context, state) {
+                  if (state == true) {
+                    return Row(
+                      children: [
+                        SizedBox(
+                          height: AppSizeW.s20,
+                          width: AppSizeW.s20,
+                          child: SvgPicture.asset(
+                            IconAssets.faceIdIcon,
+                            // ignore: deprecated_member_use
+                            color: Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .unselectedItemColor,
+                          ),
+                        ),
+                        SizedBox(
+                          width: AppSizeW.s5,
+                        ),
+                        Text(
+                          AppStrings().activateFaceId,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        const Spacer(),
+                        Switch(
+                          // This bool value toggles the switch.
+                          value: light,
+                          activeColor: Theme.of(context).primaryColor,
+                          activeTrackColor: Theme.of(context)
+                              .unselectedWidgetColor
+                              .withOpacity(0.2),
+                          inactiveThumbColor: Theme.of(context).primaryColor,
+                          inactiveTrackColor: Theme.of(context)
+                              .unselectedWidgetColor
+                              .withOpacity(0.2),
+
+                          onChanged: (bool value) {
+                            if (value == true) {
+                              haveFaceId();
+                            }
+                            faceIdCheck.appPreferences.setUserFaceId(value);
+                            setState(() {
+                              light = value;
+                            });
+                          },
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
+              ),
+              const Spacer(),
+              BlocBuilder(
+                bloc: context.read<LoginBloc>(),
+                builder: (context, LoginState state) {
+                  if (state.isLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return CupertinoButton.filled(
+                    borderRadius: BorderRadius.circular(AppSizeR.s12),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        context.read<LoginBloc>().add(LoginEvent.login(
+                            authRequest: RequestAuth(
+                                email: emailController.text,
+                                mode: "json",
+                                password: passwordController.text)));
+                      }
+                    },
+                    child: Text(
+                      AppStrings().login,
+                    ),
+                  );
+                },
+              ),
+            ]),
+          ),
         ),
       ),
     );
@@ -252,7 +301,7 @@ class _LoginViewState extends State<LoginView> {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Row(children: [
               Expanded(
                 child: CustomElevatedButton(

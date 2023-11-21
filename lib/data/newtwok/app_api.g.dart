@@ -1179,7 +1179,7 @@ class _TranslationsServiceClient implements TranslationsServiceClient {
     )
             .compose(
               _dio.options,
-              '/auth/login/ldap',
+              '/auth/login',
               queryParameters: queryParameters,
               data: _data,
             )
