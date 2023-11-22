@@ -15,12 +15,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../../domain/models/cms_models/main_menu_models/main_menu_models.dart';
 import '../../../utils/global_functions.dart';
 import '../../widgets/filters_applied_widget.dart';
+import '../../widgets/message_note_widget.dart';
 import '../../widgets/pagination_widget/pagination_widget.dart';
 import '../../widgets/selected_municipality_widget.dart';
 import '../../widgets/selected_year_widget.dart';
 import '../main/blocs/lookup_bloc/lookup_bloc.dart';
+import '../main/blocs/main_menu_bloc/main_menu_bloc.dart';
 import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
 import '../rent/rent_view.dart';
 import 'blocs/sell_bloc/sell_bloc.dart';
@@ -345,7 +348,17 @@ class _SalesViewState extends State<SalesView> {
                                         },
                                       ),
                                       // SizedBox(height: AppSizeH.s22),
-                                      SizedBox(height: AppSizeH.s22),
+                                      SizedBox(height: AppSizeH.s5),
+                                      MessageNoteWidget(
+                                          message: getObjectLinkModelById(
+                                                      context
+                                                          .read<MainMenuBloc>()
+                                                          .mainMenu
+                                                          .mainMenu
+                                                          .links,
+                                                      2)
+                                                  ?.dataSourceMessage ??
+                                              const DataSourceMessageModel()),
                                       Column(
                                         children: [
                                           Center(

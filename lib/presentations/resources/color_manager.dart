@@ -6,6 +6,7 @@ class ColorManager {
   static Color porcelain = Hex16Color.fromHex("#F0F0F0");
   static Color mercury = Hex16Color.fromHex("#E9E9E9");
   static Color grey = Hex16Color.fromHex("#E1E1E1");
+  static Color lightBlue = Hex16Color.fromHex("#EBF7FF");
   static Color platinum = Hex16Color.fromHex("#CECECE");
   static Color silver = Hex16Color.fromHex("#C1C1C1");
   static Color lightSilver = Hex16Color.fromHex("#BDBDBD");

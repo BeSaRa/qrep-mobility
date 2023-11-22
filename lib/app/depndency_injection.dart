@@ -27,6 +27,7 @@ import '../domain/usecases/auth_usecase/auth_usecases.dart';
 import '../domain/usecases/sell_usecases/top_values/top_values_sell_usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/auth/blocs/login_bloc/login_bloc.dart';
+import '../presentations/features/main/blocs/main_menu_bloc/main_menu_bloc.dart';
 import '../presentations/features/main/cubit/bottom_nav_cubit.dart';
 import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import '../presentations/features/info/blocs/news_bloc/news_bloc.dart';
@@ -93,6 +94,10 @@ Future<void> initAppModule() async {
     instance.registerFactory<UserUsecase>(
         () => UserUsecase(repository: instance()));
   }
+  if (!GetIt.I.isRegistered<MainMenuUsecase>()) {
+    instance.registerFactory<MainMenuUsecase>(
+        () => MainMenuUsecase(repository: instance()));
+  }
   //Blocs
   if (!GetIt.I.isRegistered<LoginBloc>()) {
     instance.registerFactory<LoginBloc>(() => LoginBloc(
@@ -102,6 +107,10 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<UserBloc>()) {
     instance.registerFactory<UserBloc>(
         () => UserBloc(userUsecase: instance<UserUsecase>()));
+  }
+  if (!GetIt.I.isRegistered<MainMenuBloc>()) {
+    instance.registerFactory<MainMenuBloc>(
+        () => MainMenuBloc(mainMenuUsecase: instance<MainMenuUsecase>()));
   }
 }
 

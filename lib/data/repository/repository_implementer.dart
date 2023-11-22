@@ -5,6 +5,7 @@ import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
 import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
+import 'package:ebla/domain/models/cms_models/main_menu_models/main_menu_models.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
 import 'package:ebla/domain/models/mrtgage_models/mortgage_models.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
@@ -1038,6 +1039,27 @@ class RepositoryImplementer extends Repository {
       }
     } else {
       return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<MainMenuResponse, FailureResponse>> mainMenu() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await translationsServiceClient.mainMenu();
+        if (response.response.statusCode == 200 ||
+            response.response.statusCode == 201) {
+          return Success(response.data);
+        } else {
+          return Error(FailureResponse.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(
+            FailureResponse.fromJson(e.response?.data ?? defaultError));
+      }
+    } else {
+      return Error(FailureResponse(
+          errors: [ErrorModel(message: AppStrings().noInternetError)]));
     }
   }
 }

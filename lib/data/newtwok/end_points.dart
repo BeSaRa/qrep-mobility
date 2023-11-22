@@ -102,4 +102,8 @@ class EndPoints {
   static const String auth = '/auth/login';
   static const String refreshToken = '/auth/refresh';
   static const String userInfo = '/users/me';
+
+  //Main menu
+  static const String mainMenu =
+      '/flows/trigger/F0D286AC-588E-4863-B6A1-6230EB88F710';
 }

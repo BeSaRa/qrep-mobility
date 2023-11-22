@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import '../domain/models/cms_models/main_menu_models/main_menu_models.dart';
 import '../domain/models/cms_models/news/news_model.dart';
 import '../domain/models/rent_models/rent_models.dart';
 import '../presentations/resources/resources.dart';
@@ -68,6 +69,16 @@ NewsModel? getObjectByIdNewsModel(List<NewsModel> objects, int id) {
   NewsModel item = objects.firstWhere((item) => item.id == id,
       orElse: () => const NewsModel());
   if (item != const NewsModel()) {
+    return item;
+  } else {
+    return null;
+  }
+}
+
+LinkModel? getObjectLinkModelById(List<LinkModel> objects, int id) {
+  LinkModel item = objects.firstWhere((item) => item.id == id,
+      orElse: () => const LinkModel());
+  if (item != const LinkModel()) {
     return item;
   } else {
     return null;

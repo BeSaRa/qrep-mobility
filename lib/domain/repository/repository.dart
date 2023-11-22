@@ -10,6 +10,7 @@ import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 import '../../data/newtwok/failure_model/failure.dart';
+import '../models/cms_models/main_menu_models/main_menu_models.dart';
 import '../models/cms_models/user/user_model.dart';
 import '../models/rent_models/rent_models.dart';
 import '../models/requests/mortgage_requests/request_mortgage_values.dart';
@@ -149,4 +150,8 @@ abstract class Repository {
       RefreshToken refreshToken);
   //Profile
   Future<Result<UserResponse, FailureModel>> getUserInfo();
+
+  //Main Menu
+
+  Future<Result<MainMenuResponse, FailureResponse>> mainMenu();
 }
