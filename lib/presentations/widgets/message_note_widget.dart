@@ -32,7 +32,7 @@ class _MessageNoteWidgetState extends State<MessageNoteWidget> {
           decoration: BoxDecoration(
               color: ColorManager.lightBlue,
               border: Border.all(
-                  width: AppSizeSp.s1, color: const Color(0xFFDBD9D9)),
+                  width: AppSizeSp.s1, color: ColorManager.lightSilver),
               borderRadius: BorderRadius.circular(AppSizeR.s7)),
           child: Row(
             children: [
@@ -63,7 +63,7 @@ class _MessageNoteWidgetState extends State<MessageNoteWidget> {
                   padding: EdgeInsets.all(AppSizeW.s8),
                   child: Icon(
                     Icons.close,
-                    color: ColorManager.greyCloud,
+                    color: ColorManager.lightSilver,
                     size: AppSizeH.s12,
                   ),
                 ),
