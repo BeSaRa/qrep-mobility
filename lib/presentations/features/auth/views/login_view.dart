@@ -39,6 +39,7 @@ class _LoginViewState extends State<LoginView> {
 
   late FaceIdCheckCubit faceIdCheck;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     haveFaceId();
@@ -69,17 +70,13 @@ class _LoginViewState extends State<LoginView> {
               authRequest: RequestAuth(
                   email: data.split(',').first.replaceAll('username:', ''),
                   mode: "json",
-                  password: data
-                      .split(',')
-                      .last
-                      .replaceAll('password:', ''))));
+                  password: data.split(',').last.replaceAll('password:', ''))));
         }
       }
     }
     return canAuthenticate;
   }
 
-  @override
   Widget build(BuildContext context) {
     return BlocListener(
       bloc: context.read<UserBloc>(),
@@ -280,6 +277,7 @@ class _LoginViewState extends State<LoginView> {
 
   Widget _buildPopupDialog(BuildContext context, String data) {
     return Dialog(
+      elevation: 0,
       child: Container(
         height: AppSizeH.s200,
         padding: EdgeInsets.symmetric(

@@ -5,6 +5,7 @@ import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:ebla/presentations/widgets/shimmer_placeholder.dart';
 import 'package:flutter/material.dart';
+
 import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
 import '../resources/values_manager.dart';
@@ -33,15 +34,15 @@ class NewsItemWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppSizeR.s14),
             boxShadow: [
               BoxShadow(
-                  color: ColorManager.silver,
-                  offset: const Offset(2, 2),
-                  spreadRadius: 0.5,
-                  blurRadius: AppSizeW.s4),
+                  color: ColorManager.grey,
+                  offset: const Offset(1, 1),
+                  blurRadius: AppSizeW.s2,
+                  spreadRadius: AppSizeW.s1),
               BoxShadow(
-                  color: ColorManager.silver,
-                  offset: const Offset(-2, 2),
-                  spreadRadius: 0.5,
-                  blurRadius: AppSizeW.s4),
+                  color: ColorManager.grey,
+                  offset: const Offset(-1, -1),
+                  blurRadius: AppSizeW.s2,
+                  spreadRadius: AppSizeW.s1),
             ]),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,8 +54,8 @@ class NewsItemWidget extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(AppSizeR.s10),
-                          border:
-                              Border.all(width: 1, color: ColorManager.golden),
+                          // border:
+                          //     Border.all(width: 1, color: ColorManager.golden),
                         ),
                         child: const Image(
                           image: AssetImage(
@@ -70,8 +71,8 @@ class NewsItemWidget extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(AppSizeR.s10),
-                        border:
-                            Border.all(width: 1, color: ColorManager.golden),
+                        // border:
+                        //     Border.all(width: 1, color: ColorManager.golden),
                       ),
                       child: CachedNetworkImage(
                         imageUrl: '${Constant.secondaryBaseUrl}/assets/$image',
@@ -179,6 +180,7 @@ class NewsItemWidget extends StatelessWidget {
                     flex: 5,
                     child: Column(
                       children: [
+                        SizedBox(height: AppSizeH.s6),
                         Expanded(
                           child: Text(
                             label,

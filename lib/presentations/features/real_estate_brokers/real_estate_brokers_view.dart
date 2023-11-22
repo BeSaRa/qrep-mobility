@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
+import '../../widgets/selected_municipality_widget.dart';
+import '../../widgets/selected_year_widget.dart';
 
 class REalEstateBrokersView extends StatefulWidget {
   const REalEstateBrokersView({super.key});
@@ -41,9 +44,7 @@ class _REalEstateBrokersViewState extends State<REalEstateBrokersView> {
               Icons.arrow_back,
               color: ColorManager.golden,
             )),
-        // BackButton(
-        //   color: ColorManager.golden,
-        // ),
+
         title: Text(
           AppStrings().realEstateBrokers,
           style: Theme
@@ -55,6 +56,143 @@ class _REalEstateBrokersViewState extends State<REalEstateBrokersView> {
       ),
       body: Column(
         children: [
+          Column(children: [
+            Row(
+                mainAxisAlignment:
+                MainAxisAlignment.end,
+                children: [
+                  SizedBox(width: AppSizeW.s16),
+                  SelectedMunicipality(
+                    value: getObjectByLookupKey([], 4),
+                    list: [],
+                    onChanged: (municipal) {
+
+                    },
+                  ),
+                  SizedBox(width: AppSizeW.s5),
+                  SelectedYearWidget(
+                    value:
+                    DateTime
+                        .now()
+                        .year,
+                    onChanged: (year) {
+
+                    },
+                  ),
+                  SizedBox(width: AppSizeW.s7),
+                  // BlocBuilder(
+                  //   bloc: context
+                  //       .read<LookupBloc>(),
+                  //   builder: (context,
+                  //       LookupState state) {
+                  //     return state.map(
+                  //       loadingLookup: (value) {
+                  //         return Icon(
+                  //           Icons
+                  //               .filter_list_sharp,
+                  //           color: ColorManager
+                  //               .golden,
+                  //         );
+                  //       },
+                  //       loadedLookup: (value) {
+                  //         return IconButton(
+                  //             onPressed:
+                  //                 () async {
+                  //               var res =
+                  //               await bottomSheetWidget(
+                  //                 context,
+                  //                 child:
+                  //                 MultiBlocProvider(
+                  //                   providers: [
+                  //                     BlocProvider.value(
+                  //                         value:
+                  //                         context.read<SellBloc>()),
+                  //                     BlocProvider.value(
+                  //                         value:
+                  //                         context.read<LookupBloc>()),
+                  //                   ],
+                  //                   child:
+                  //                   const BottomSheetFilterSellWidget(),
+                  //                 ),
+                  //               );
+                  //               if (res !=
+                  //                   null &&
+                  //                   res) {
+                  //                 changeStatusCubit
+                  //                     .changeStatus();
+                  //                 sellGridKPIsBloc.add(
+                  //                     SellGridKPIsEvent.getData(
+                  //                         request: context
+                  //                             .read<
+                  //                             SellBloc>()
+                  //                             .requestSell));
+                  //                 topvaluesBloc.add(TopvaluesEvent
+                  //                     .countTransictionNumberEvent(
+                  //                     request: context
+                  //                         .read<
+                  //                         SellBloc>()
+                  //                         .requestSell));
+                  //                 sellTransactionBloc.add(
+                  //                     SellTransactionEvent.started(
+                  //                         request: context
+                  //                             .read<
+                  //                             SellBloc>()
+                  //                             .requestSell));
+                  //               }
+                  //             },
+                  //             icon: Icon(
+                  //               size: AppSizeW
+                  //                   .s32,
+                  //               Icons
+                  //                   .filter_list_sharp,
+                  //               color:
+                  //               ColorManager
+                  //                   .golden,
+                  //             ));
+                  //       },
+                  //       errorLookUp: (value) {
+                  //         return const SizedBox();
+                  //       },
+                  //     );
+                  //   },
+                  // ),
+                  SizedBox(
+                    width: AppSizeW.s7,
+                  ),
+                ]),
+            // SizedBox(height: AppSizeH.s12),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(
+            //     horizontal: AppSizeW.s11,
+            //   ),
+            //   child: SizedBox(
+            //       height: AppSizeH.s26,
+            //       child: Row(
+            //           children: context
+            //                   .read<SellBloc>()
+            //                   .loockUpSell
+            //                   ?.periodTime
+            //                   .map((e) {
+            //                 return e.id != 5
+            //                     ? ChosenPeriodWidget(
+            //                         periodId: context
+            //                             .read<
+            //                                 SellBloc>()
+            //                             .requestSell
+            //                             .periodId,
+            //                         id: e.id,
+            //                         enName: e
+            //                             .enName,
+            //                         arName: e
+            //                             .arName,
+            //                       )
+            //                     : const SizedBox();
+            //               }).toList() ??
+            //               [])),
+            // ),
+          ])
+
+
         ],
       ),
     );
