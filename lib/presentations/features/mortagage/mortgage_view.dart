@@ -3,6 +3,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/app/extensions.dart';
+import 'package:ebla/domain/models/cms_models/main_menu_models/main_menu_models.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
@@ -16,10 +17,12 @@ import '../../../domain/models/rent_models/rent_models.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../../widgets/filters_applied_widget.dart';
+import '../../widgets/message_note_widget.dart';
 import '../../widgets/pagination_widget/pagination_widget.dart';
 import '../../widgets/selected_municipality_widget.dart';
 import '../../widgets/selected_year_widget.dart';
 import '../main/blocs/lookup_bloc/lookup_bloc.dart';
+import '../main/blocs/main_menu_bloc/main_menu_bloc.dart';
 import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
 import '../rent/rent_view.dart';
 import 'widgets/bottom_sheet_filter_mortgage.dart';
@@ -295,7 +298,17 @@ class _MortagageViewState extends State<MortgageView> {
                                 ]);
                               },
                             ),
-                            SizedBox(height: AppSizeH.s22),
+                            SizedBox(height: AppSizeH.s5),
+                            MessageNoteWidget(
+                                message: getObjectLinkModelById(
+                                            context
+                                                .read<MainMenuBloc>()
+                                                .mainMenu
+                                                .mainMenu
+                                                .links,
+                                            3)
+                                        ?.dataSourceMessage ??
+                                    const DataSourceMessageModel()),
                             Column(
                               children: [
                                 Center(

@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/extensions.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/presentations/features/main/blocs/lookup_bloc/lookup_bloc.dart';
+import 'package:ebla/presentations/features/main/blocs/main_menu_bloc/main_menu_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/cubits/cubit/change_status_cubit.dart';
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
@@ -11,13 +12,16 @@ import 'package:ebla/presentations/features/rent/blocs/summery_bloc/rent_summery
 import 'package:ebla/presentations/widgets/selected_year_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../app/depndency_injection.dart';
+import '../../../domain/models/cms_models/main_menu_models/main_menu_models.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../../widgets/filters_applied_widget.dart';
 import '../../widgets/grid/grid_item_widget.dart';
+import '../../widgets/message_note_widget.dart';
 import '../../widgets/pagination_widget/pagination_widget.dart';
 import '../../widgets/selected_municipality_widget.dart';
 import '../../widgets/widgets.dart';
@@ -336,7 +340,23 @@ class _RentViewState extends State<RentView> {
                                     ]);
                                   },
                                 ),
-                                SizedBox(height: AppSizeH.s22),
+                                // SizedBox(height: AppSizeH.s22),
+                                SizedBox(height: AppSizeH.s5),
+                                BlocBuilder(
+                                  bloc: context.read<MainMenuBloc>(),
+                                  builder: (context, state) {
+                                    return MessageNoteWidget(
+                                        message: getObjectLinkModelById(
+                                                    context
+                                                        .read<MainMenuBloc>()
+                                                        .mainMenu
+                                                        .mainMenu
+                                                        .links,
+                                                    4)
+                                                ?.dataSourceMessage ??
+                                            const DataSourceMessageModel());
+                                  },
+                                ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [

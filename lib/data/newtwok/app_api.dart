@@ -13,6 +13,7 @@ import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../app/constants.dart';
+import '../../domain/models/cms_models/main_menu_models/main_menu_models.dart';
 import '../../domain/models/cms_models/user/user_model.dart';
 import '../../domain/models/rent_models/rent_models.dart';
 import '../../domain/models/requests/rent_requests/request_mean_value.dart';
@@ -214,4 +215,8 @@ abstract class TranslationsServiceClient {
 
   @GET(EndPoints.lawsById)
   Future<HttpResponse<LawByIdResponse>> getLawId(@Path("id") int id);
+
+  //Main menu
+  @GET(EndPoints.mainMenu)
+  Future<HttpResponse<MainMenuResponse>> mainMenu();
 }

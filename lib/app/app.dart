@@ -1,5 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/presentations/features/main/blocs/main_menu_bloc/main_menu_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,6 +39,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       providers: [
         BlocProvider(
           create: (context) => instance<LookupBloc>(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              instance<MainMenuBloc>()..add(const MainMenuEvent.getMainMenu()),
+          lazy: false,
         ),
         BlocProvider(
           create: (context) =>

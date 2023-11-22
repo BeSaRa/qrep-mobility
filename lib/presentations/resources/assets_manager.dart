@@ -29,6 +29,7 @@ class ImageAssets {
   static const String homeBg = '${IMAGE_PATH}home_bg.png';
 
   static const String appbarBg = "${IMAGE_PATH}bg_appbar.png";
+  static const String dbNote = "${IMAGE_PATH}db_note.png";
   static const String comingSoon = "${IMAGE_PATH}coming-soon.json";
   static const String animationError = "${IMAGE_PATH}animation_error.json";
 }
