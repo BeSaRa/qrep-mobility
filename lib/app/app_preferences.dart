@@ -15,6 +15,7 @@ class AppPreferences {
   String PREFS_KEY_TOKEN = 'PREFS_KEY_TOKEN';
   String PREFS_KEY_REFRESH_TOKEN = 'PREFS_KEY_REFRESH_TOKEN';
   String PREFS_KEY_THEME = 'PREFS_KEY_THEME';
+  String PREFS_KEY_FACE_ID = 'PREFS_KEY_FACE';
   String PREFS_KEY_LOCALIZATIONS_LAST_UPDATE =
       'PREFS_KEY_LOCALIZATIONS_LAST_UPDATE';
 
@@ -71,6 +72,14 @@ class AppPreferences {
 
   String getUserRefreshToken() {
     return _sharedPreferences.getString(PREFS_KEY_REFRESH_TOKEN) ?? '';
+  }
+
+  Future<void> setUserFaceId(bool val) async {
+    _sharedPreferences.setBool(PREFS_KEY_FACE_ID, val);
+  }
+
+  bool getUserFaceId() {
+    return _sharedPreferences.getBool(PREFS_KEY_FACE_ID) ?? true;
   }
 
   ThemeData getTheme() {

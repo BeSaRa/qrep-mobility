@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/extensions.dart';
+import 'package:ebla/presentations/features/more/widgets/dialog_data_audited_and_collected.dart';
+import 'package:ebla/presentations/features/more/widgets/dialog_disabled_filters_warning.dart';
 import 'package:ebla/presentations/features/rent/widgets/top_ten_index_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,6 +39,17 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
     super.didChangeDependencies();
   }
 
+  bool isDisabled() {
+    return (context
+                .read<RentBloc>()
+                .requestMeanValue
+                .propertyTypeList
+                ?.contains(-1) ??
+            false) ||
+        (context.read<RentBloc>().requestMeanValue.purposeList?.contains(-1) ??
+            false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -70,6 +83,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                               name: AppStrings().countPropertiesUnits,
                             ),
                             _TabContainerShimmer(
+                              isDisabled: isDisabled(),
                               tabIndex: 3,
                               name: AppStrings().avgPriceEveryMonth,
                             ),
@@ -78,10 +92,12 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                               name: AppStrings().contractsValue,
                             ),
                             _TabContainerShimmer(
+                              isDisabled: isDisabled(),
                               tabIndex: 5,
                               name: AppStrings().avgPricePerMeter,
                             ),
                             _TabContainerShimmer(
+                              isDisabled: isDisabled(),
                               tabIndex: 6,
                               name: AppStrings().rentedAreas,
                             ),
@@ -130,15 +146,27 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                                           .requestMeanValue));
                             }),
                         _TabContainer(
+                            isDisabled: isDisabled(),
                             indexTab: 3,
                             name: AppStrings().avgPriceEveryMonth,
                             onPress: () {
-                              tenIndexCubit.save(3);
-                              context.read<CertificateContractBloc>().add(
-                                  CertificateContractEvent.meanRentAmountEvent(
-                                      request: context
-                                          .read<RentBloc>()
-                                          .requestMeanValue));
+                              if (isDisabled()) {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext ctxt) =>
+                                        DialogDisabledFiltersWarning(
+                                          message:
+                                              "${AppStrings().propertyType}: ${AppStrings().singleValueOtherThanAll}\n${AppStrings().propertyUsage}: ${AppStrings().singleValueOtherThanAll}",
+                                        ));
+                              } else {
+                                tenIndexCubit.save(3);
+                                context.read<CertificateContractBloc>().add(
+                                    CertificateContractEvent
+                                        .meanRentAmountEvent(
+                                            request: context
+                                                .read<RentBloc>()
+                                                .requestMeanValue));
+                              }
                             }),
                         _TabContainer(
                             indexTab: 4,
@@ -152,27 +180,47 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                                           .requestMeanValue));
                             }),
                         _TabContainer(
+                            // disabled because data is being collected and audited
+                            isDisabled: true,
                             indexTab: 5,
                             name: AppStrings().avgPricePerMeter,
                             onPress: () {
-                              tenIndexCubit.save(5);
-                              context.read<CertificateContractBloc>().add(
-                                  CertificateContractEvent
-                                      .rentValuePerMeterEvent(
-                                          request: context
-                                              .read<RentBloc>()
-                                              .requestMeanValue));
+                              // todo: remove this when data is ready
+                              if (true) {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext ctxt) =>
+                                        const DialogDataCollectedAndAudited());
+                              } else {
+                                tenIndexCubit.save(5);
+                                context.read<CertificateContractBloc>().add(
+                                    CertificateContractEvent
+                                        .rentValuePerMeterEvent(
+                                            request: context
+                                                .read<RentBloc>()
+                                                .requestMeanValue));
+                              }
                             }),
                         _TabContainer(
+                            // disabled because data is being collected and audited
+                            isDisabled: true,
                             indexTab: 6,
                             name: AppStrings().rentedAreas,
                             onPress: () {
-                              tenIndexCubit.save(6);
-                              context.read<CertificateContractBloc>().add(
-                                  CertificateContractEvent.rentedAreasEvent(
-                                      request: context
-                                          .read<RentBloc>()
-                                          .requestMeanValue));
+                              // todo: remove this when data is ready
+                              if (true) {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext ctxt) =>
+                                        const DialogDataCollectedAndAudited());
+                              } else {
+                                tenIndexCubit.save(6);
+                                context.read<CertificateContractBloc>().add(
+                                    CertificateContractEvent.rentedAreasEvent(
+                                        request: context
+                                            .read<RentBloc>()
+                                            .requestMeanValue));
+                              }
                             }),
                       ],
                     ),
@@ -270,10 +318,12 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
 class _TabContainerShimmer extends StatelessWidget {
   final int tabIndex;
   final String name;
+  final bool isDisabled;
 
   const _TabContainerShimmer({
     required this.tabIndex,
     required this.name,
+    this.isDisabled = false,
   });
 
   @override
@@ -285,7 +335,9 @@ class _TabContainerShimmer extends StatelessWidget {
       decoration: BoxDecoration(
           color: context.read<CertificateContractBloc>().index == tabIndex
               ? ColorManager.primary
-              : Colors.transparent,
+              : isDisabled
+                  ? ColorManager.lightSilver.withOpacity(0.5)
+                  : Colors.transparent,
           border: Border.all(
             color: ColorManager.silver,
             width: AppSizeH.s1,
@@ -299,7 +351,12 @@ class _TabContainerShimmer extends StatelessWidget {
                 .displayMedium!
                 .copyWith(fontSize: AppSizeSp.s12)
             : Theme.of(context).textTheme.headlineMedium!.copyWith(
-                fontSize: AppSizeSp.s12, decoration: TextDecoration.none),
+                  fontSize: AppSizeSp.s12,
+                  decoration: TextDecoration.none,
+                  color: isDisabled
+                      ? ColorManager.cloudyGrey.withOpacity(0.5)
+                      : null,
+                ),
       ),
     );
   }
@@ -309,11 +366,13 @@ class _TabContainer extends StatelessWidget {
   final int indexTab;
   final String name;
   final Function onPress;
+  final bool isDisabled;
 
   const _TabContainer({
     required this.indexTab,
     required this.name,
     required this.onPress,
+    this.isDisabled = false,
   });
 
   @override
@@ -332,7 +391,9 @@ class _TabContainer extends StatelessWidget {
         decoration: BoxDecoration(
             color: context.read<CertificateContractBloc>().index == indexTab
                 ? ColorManager.primary
-                : Colors.transparent,
+                : isDisabled
+                    ? ColorManager.lightSilver.withOpacity(0.5)
+                    : Colors.transparent,
             border: Border.all(
               color: ColorManager.silver,
               width: AppSizeH.s1,
@@ -348,6 +409,9 @@ class _TabContainer extends StatelessWidget {
               : Theme.of(context).textTheme.headlineMedium!.copyWith(
                     fontSize: AppSizeSp.s12,
                     decoration: TextDecoration.none,
+                    color: isDisabled
+                        ? ColorManager.cloudyGrey.withOpacity(0.5)
+                        : null,
                   ),
         ),
       ),

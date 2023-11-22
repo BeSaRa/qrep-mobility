@@ -21,12 +21,6 @@ class _AnimatedPulesLogoState extends State<AnimatedPulesLogo>
   @override
   void initState() {
     super.initState();
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-          // todo: when dark mode is ready change statusBarIconBrightness according to the theme
-          statusBarColor: ColorManager.primary,
-          statusBarIconBrightness: Brightness.light),
-    );
     motionController = AnimationController(
       duration: const Duration(seconds: 1),
       vsync: this,
@@ -63,6 +57,12 @@ class _AnimatedPulesLogoState extends State<AnimatedPulesLogo>
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+          // todo: when dark mode is ready change statusBarIconBrightness according to the theme
+          statusBarColor: ColorManager.primary,
+          statusBarIconBrightness: Brightness.light),
+    );
     return Scaffold(
       backgroundColor: ColorManager.primary,
       body: Container(

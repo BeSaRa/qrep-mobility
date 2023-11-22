@@ -72,7 +72,10 @@ class MainDataContainer extends StatelessWidget {
                   children: [
                     Text(
                       value,
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge
+                          ?.copyWith(fontSize: AppSizeSp.s15),
                     ),
                     SizedBox(width: AppSizeW.s4),
                     Row(
@@ -95,7 +98,7 @@ class MainDataContainer extends StatelessWidget {
                             topStart: Radius.circular(AppSizeR.s5),
                             bottomStart: Radius.circular(AppSizeR.s5))),
                     padding: EdgeInsets.symmetric(
-                        horizontal: AppSizeW.s25, vertical: AppSizeH.s5),
+                        horizontal: AppSizeW.s20, vertical: AppSizeH.s5),
                     child: Row(
                       children: [
                         Text(

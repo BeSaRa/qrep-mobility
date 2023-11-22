@@ -39,10 +39,12 @@ class _LoginViewState extends State<LoginView> {
 
   late FaceIdCheckCubit faceIdCheck;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     haveFaceId();
     faceIdCheck = FaceIdCheckCubit(false);
+    light = faceIdCheck.appPreferences.getUserFaceId();
     super.initState();
   }
 
@@ -52,10 +54,9 @@ class _LoginViewState extends State<LoginView> {
         canAuthenticateWithBiometrics || await auth.isDeviceSupported();
     faceIdCheck.save(canAuthenticate);
     canAuthenticateout = canAuthenticate;
-    String data = await getBioProtectedEntry() ?? '';
-    if (data.isNotEmpty) {
-      await faceIdCheck.authenticate();
-      if (faceIdCheck.authorized == 'Authorized') {
+    if (light) {
+      String data = await getBioProtectedEntry() ?? '';
+      if (data.isNotEmpty) {
         var res = await showDialog(
             context: context,
             builder: (BuildContext context) =>
@@ -76,7 +77,6 @@ class _LoginViewState extends State<LoginView> {
     return canAuthenticate;
   }
 
-  @override
   Widget build(BuildContext context) {
     return BlocListener(
       bloc: context.read<UserBloc>(),
@@ -227,8 +227,9 @@ class _LoginViewState extends State<LoginView> {
 
                           onChanged: (bool value) {
                             if (value == true) {
-                              faceIdCheck.authenticate();
+                              haveFaceId();
                             }
+                            faceIdCheck.appPreferences.setUserFaceId(value);
                             setState(() {
                               light = value;
                             });
@@ -276,6 +277,7 @@ class _LoginViewState extends State<LoginView> {
 
   Widget _buildPopupDialog(BuildContext context, String data) {
     return Dialog(
+      elevation: 0,
       child: Container(
         height: AppSizeH.s200,
         padding: EdgeInsets.symmetric(

@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/presentations/features/more/widgets/dialog_disabled_filters_warning.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/rent/blocs/cubits/cubit/change_status_cubit.dart';
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
@@ -228,241 +229,366 @@ class _GridItemWidgetState extends State<GridItemWidget> {
     return 0;
   }
 
+  bool isDisabled() {
+    switch (widget.gridItemType) {
+      case GridItemType.rent:
+        return (widget.rentKPI == RentGridKPIs.meanRentUnitValue ||
+                widget.rentKPI == RentGridKPIs.meanRentAreaValue) &&
+            (context.read<RentBloc>().requestMeanValue.zoneId == -1 ||
+                (context
+                        .read<RentBloc>()
+                        .requestMeanValue
+                        .propertyTypeList
+                        ?.contains(-1) ??
+                    false) ||
+                (context
+                        .read<RentBloc>()
+                        .requestMeanValue
+                        .purposeList
+                        ?.contains(-1) ??
+                    false));
+      case GridItemType.sell:
+        return (widget.sellKPI == SellGridKPIs.meanSellUnitValue ||
+                widget.sellKPI == SellGridKPIs.meanSoldAreaValue) &&
+            (context.read<SellBloc>().requestSell.areaCode == -1 ||
+                (context
+                        .read<SellBloc>()
+                        .requestSell
+                        .propertyTypeList
+                        ?.contains(-1) ??
+                    false) ||
+                (context
+                        .read<SellBloc>()
+                        .requestSell
+                        .purposeList
+                        ?.contains(-1) ??
+                    false));
+      default:
+        return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: AppSizeH.s144,
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(AppSizeR.s20)),
-        boxShadow: [
-          BoxShadow(
-              spreadRadius: AppSizeR.s2,
-              blurRadius: AppSizeR.s11,
-              color: ColorManager.black.withAlpha(30)),
-        ],
-        gradient: LinearGradient(
-          colors: [
-            ColorManager.platinum,
-            ColorManager.white,
+        height: AppSizeH.s144,
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(AppSizeR.s20)),
+          boxShadow: [
+            BoxShadow(
+                spreadRadius: AppSizeR.s2,
+                blurRadius: AppSizeR.s11,
+                color: ColorManager.black.withAlpha(30)),
           ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          stops: const [0.2, 1.0],
+          gradient: LinearGradient(
+            colors: [
+              ColorManager.platinum,
+              ColorManager.white,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: const [0.2, 1.0],
+          ),
         ),
-      ),
-      child: Stack(
-        children: [
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(height: AppSizeH.s15),
-              BlocBuilder(
-                bloc: context.read<ChangeStatusCubit>(),
-                builder: (context, state) {
-                  return Flexible(
-                    flex: 1,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: AppSizeW.s20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              getTitle(),
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.visible,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(fontSize: AppSizeSp.s14),
+        child: BlocBuilder(
+            bloc: context.read<ChangeStatusCubit>(),
+            builder: (context, state) {
+              return isDisabled()
+                  ? Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(height: AppSizeH.s15),
+                        Flexible(
+                          flex: 1,
+                          child: Padding(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: AppSizeW.s20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    getTitle(),
+                                    textAlign: TextAlign.center,
+                                    overflow: TextOverflow.visible,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(fontSize: AppSizeSp.s14),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-              SizedBox(
-                height: AppSizeH.s5,
-              ),
-              if (widget.gridItemType == GridItemType.rent)
-                BlocBuilder<RentGridKPIsBloc, RentGridKPIsState>(
-                  bloc: context.read<RentGridKPIsBloc>(),
-                  builder: (context, state) {
-                    List<BaseRentResponse> dataState =
-                        RentGridKPIsBloc.getState(state, widget.rentKPI);
-
-                    if (!state.isLoading) {
-                      // endVal ---> (0: kpiVal)
-                      beginVal = endVal;
-                      endVal = dataState.isEmpty ? 0 : dataState.first.kpiVal;
-                    }
-
-                    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                      changeRateValue.value =
-                          dataState.isNotEmpty ? dataState.first.kpiYoYVal : 0;
-                    });
-                    return GridValueWithUnitWidget(
-                      begin: beginVal,
-                      end: endVal,
-                      unit: (widget.rentKPI == RentGridKPIs.totalRentedSpaces ||
-                              widget.rentKPI == RentGridKPIs.meanRentAreaValue)
-                          ? ''
-                          : rentGridItemsData
-                              .firstWhere(
-                                  (element) => element.kpi == widget.rentKPI)
-                              .valueUnit,
-                      dataCollectedAndAudited:
-                          widget.rentKPI == RentGridKPIs.totalRentedSpaces ||
-                              widget.rentKPI == RentGridKPIs.meanRentAreaValue,
-                    );
-                  },
-                ),
-              if (widget.gridItemType == GridItemType.sell)
-                BlocBuilder<SellGridKPIsBloc, SellGridKPIsState>(
-                  bloc: context.read<SellGridKPIsBloc>(),
-                  builder: (context, state) {
-                    var dataState =
-                        SellGridKPIsBloc.getState(state, widget.sellKPI);
-
-                    if (!state.isLoading) {
-                      // endVal ---> (0: kpiVal)
-                      beginVal = endVal;
-                      endVal = dataState.isEmpty
-                          ? 0
-                          : SellGridKPIsBloc.getKpiValOrYoYFromTypeAndUnit(
-                              dataState: dataState,
-                              unitType:
-                                  context.read<SellBloc>().requestSell.unit,
-                              returnYoYVal: false);
-                    }
-
-                    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                      changeRateValue.value = dataState.isNotEmpty
-                          ? SellGridKPIsBloc.getKpiValOrYoYFromTypeAndUnit(
-                              dataState: dataState,
-                              unitType:
-                                  context.read<SellBloc>().requestSell.unit,
-                              returnYoYVal: true)
-                          : 0;
-                    });
-                    return GridValueWithUnitWidget(
-                      begin: beginVal,
-                      end: endVal,
-                      unit: widget.sellKPI == SellGridKPIs.totalSoldSpaces
-                          ? context.read<SellBloc>().requestSell.unit == 1
-                              ? 'square_meter'
-                              : 'square_foot'
-                          : sellGridItemsData
-                              .firstWhere(
-                                  (element) => element.kpi == widget.sellKPI)
-                              .valueUnit,
-                    );
-                  },
-                ),
-              if (widget.gridItemType == GridItemType.mortgage)
-                BlocBuilder<MortgageGridKPIsBloc, MortgageGridKPIsState>(
-                  bloc: context.read<MortgageGridKPIsBloc>(),
-                  builder: (context, state) {
-                    List<BaseRentResponse> dataState =
-                        MortgageGridKPIsBloc.getState(
-                            state, widget.mortgageKPI);
-
-                    if (!state.isLoading) {
-                      beginVal = endVal;
-                      endVal = dataState.isEmpty ? 0 : dataState.first.kpiVal;
-                    }
-
-                    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                      changeRateValue.value =
-                          dataState.isNotEmpty ? dataState.first.kpiYoYVal : 0;
-                    });
-
-                    return GridValueWithUnitWidget(
-                      begin: beginVal,
-                      end: endVal,
-                      unit: mortgageGridItemsData
-                          .firstWhere(
-                              (element) => element.kpi == widget.mortgageKPI)
-                          .valueUnit,
-                    );
-                  },
-                ),
-            ],
-          ),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              SizedBox(height: AppSizeH.s94),
-              Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: EdgeInsetsDirectional.only(start: AppSizeW.s12),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      (widget.rentKPI != RentGridKPIs.totalRentedSpaces &&
-                              widget.rentKPI != RentGridKPIs.meanRentAreaValue)
-                          ? ValueListenableBuilder(
-                              valueListenable: changeRateValue,
-                              builder: (context, value, child) {
-                                return Flexible(
-                                  child: FittedBox(
-                                    child: Row(
-                                      children: [
-                                        Transform.flip(
-                                          flipY: value.isNegative,
-                                          child: SvgPicture.asset(
-                                            color: value.isNegative
-                                                ? ColorManager.red.withAlpha(95)
-                                                : null,
-                                            IconAssets.arrow,
-                                            height: AppSizeH.s8,
-                                            width: AppSizeW.s8,
-                                          ),
-                                        ),
-                                        SizedBox(width: AppSizeW.s5),
-                                        Text(
-                                          textDirection: ui.TextDirection.ltr,
-                                          '${value.toStringAsFixed(2)} % YoY',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleSmall!
-                                              .copyWith(
-                                                  fontSize: AppSizeSp.s15),
-                                          textAlign: TextAlign.end,
-                                        ),
-                                        SizedBox(width: AppSizeW.s5),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                            )
-                          : const SizedBox(),
-                      AspectRatio(
-                        aspectRatio: 1,
-                        child: SvgPicture.asset(
-                          getImagePath(),
-                          width: AppSizeW.s56,
-                          color: ColorManager.primary.withOpacity(0.6),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
+                        IconButton(
+                          onPressed: () async {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext ctxt) =>
+                                    DialogDisabledFiltersWarning(
+                                      message:
+                                          """${AppStrings().zone}: ${AppStrings().valuesOtherThanAll}
+${AppStrings().propertyType}: ${AppStrings().singleValueOtherThanAll}
+${AppStrings().propertyUsage}: ${AppStrings().singleValueOtherThanAll}""",
+                                    ));
+                          },
+                          icon: Icon(Icons.info_outline_rounded,
+                              size: AppSizeSp.s30),
+                        )
+                      ],
+                    )
+                  : Stack(
+                      children: [
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(height: AppSizeH.s15),
+                            Flexible(
+                              flex: 1,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: AppSizeW.s20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        getTitle(),
+                                        textAlign: TextAlign.center,
+                                        overflow: TextOverflow.visible,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium
+                                            ?.copyWith(fontSize: AppSizeSp.s14),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: AppSizeH.s5,
+                            ),
+                            if (widget.gridItemType == GridItemType.rent)
+                              BlocBuilder<RentGridKPIsBloc, RentGridKPIsState>(
+                                bloc: context.read<RentGridKPIsBloc>(),
+                                builder: (context, state) {
+                                  List<BaseRentResponse> dataState =
+                                      RentGridKPIsBloc.getState(
+                                          state, widget.rentKPI);
+
+                                  if (!state.isLoading) {
+                                    // endVal ---> (0: kpiVal)
+                                    beginVal = endVal;
+                                    endVal = dataState.isEmpty
+                                        ? 0
+                                        : dataState.first.kpiVal;
+                                  }
+
+                                  WidgetsBinding.instance
+                                      .addPostFrameCallback((timeStamp) {
+                                    changeRateValue.value = dataState.isNotEmpty
+                                        ? dataState.first.kpiYoYVal
+                                        : 0;
+                                  });
+                                  return GridValueWithUnitWidget(
+                                    begin: beginVal,
+                                    end: endVal,
+                                    unit: (widget.rentKPI ==
+                                                RentGridKPIs
+                                                    .totalRentedSpaces ||
+                                            widget.rentKPI ==
+                                                RentGridKPIs.meanRentAreaValue)
+                                        ? ''
+                                        : rentGridItemsData
+                                            .firstWhere((element) =>
+                                                element.kpi == widget.rentKPI)
+                                            .valueUnit,
+                                    dataCollectedAndAudited: widget.rentKPI ==
+                                            RentGridKPIs.totalRentedSpaces ||
+                                        widget.rentKPI ==
+                                            RentGridKPIs.meanRentAreaValue,
+                                  );
+                                },
+                              ),
+                            if (widget.gridItemType == GridItemType.sell)
+                              BlocBuilder<SellGridKPIsBloc, SellGridKPIsState>(
+                                bloc: context.read<SellGridKPIsBloc>(),
+                                builder: (context, state) {
+                                  var dataState = SellGridKPIsBloc.getState(
+                                      state, widget.sellKPI);
+
+                                  if (!state.isLoading) {
+                                    // endVal ---> (0: kpiVal)
+                                    beginVal = endVal;
+                                    endVal = dataState.isEmpty
+                                        ? 0
+                                        : SellGridKPIsBloc
+                                            .getKpiValOrYoYFromTypeAndUnit(
+                                                dataState: dataState,
+                                                unitType: context
+                                                    .read<SellBloc>()
+                                                    .requestSell
+                                                    .unit,
+                                                returnYoYVal: false);
+                                  }
+
+                                  WidgetsBinding.instance
+                                      .addPostFrameCallback((timeStamp) {
+                                    changeRateValue.value = dataState.isNotEmpty
+                                        ? SellGridKPIsBloc
+                                            .getKpiValOrYoYFromTypeAndUnit(
+                                                dataState: dataState,
+                                                unitType: context
+                                                    .read<SellBloc>()
+                                                    .requestSell
+                                                    .unit,
+                                                returnYoYVal: true)
+                                        : 0;
+                                  });
+                                  return GridValueWithUnitWidget(
+                                    begin: beginVal,
+                                    end: endVal,
+                                    unit: widget.sellKPI ==
+                                            SellGridKPIs.totalSoldSpaces
+                                        ? context
+                                                    .read<SellBloc>()
+                                                    .requestSell
+                                                    .unit ==
+                                                1
+                                            ? 'square_meter'
+                                            : 'square_foot'
+                                        : sellGridItemsData
+                                            .firstWhere((element) =>
+                                                element.kpi == widget.sellKPI)
+                                            .valueUnit,
+                                  );
+                                },
+                              ),
+                            if (widget.gridItemType == GridItemType.mortgage)
+                              BlocBuilder<MortgageGridKPIsBloc,
+                                  MortgageGridKPIsState>(
+                                bloc: context.read<MortgageGridKPIsBloc>(),
+                                builder: (context, state) {
+                                  List<BaseRentResponse> dataState =
+                                      MortgageGridKPIsBloc.getState(
+                                          state, widget.mortgageKPI);
+
+                                  if (!state.isLoading) {
+                                    beginVal = endVal;
+                                    endVal = dataState.isEmpty
+                                        ? 0
+                                        : dataState.first.kpiVal;
+                                  }
+
+                                  WidgetsBinding.instance
+                                      .addPostFrameCallback((timeStamp) {
+                                    changeRateValue.value = dataState.isNotEmpty
+                                        ? dataState.first.kpiYoYVal
+                                        : 0;
+                                  });
+
+                                  return GridValueWithUnitWidget(
+                                    begin: beginVal,
+                                    end: endVal,
+                                    unit: mortgageGridItemsData
+                                        .firstWhere((element) =>
+                                            element.kpi == widget.mortgageKPI)
+                                        .valueUnit,
+                                  );
+                                },
+                              ),
+                          ],
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            SizedBox(height: AppSizeH.s94),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.only(
+                                    start: AppSizeW.s12),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    (widget.rentKPI !=
+                                                RentGridKPIs
+                                                    .totalRentedSpaces &&
+                                            widget.rentKPI !=
+                                                RentGridKPIs.meanRentAreaValue)
+                                        ? ValueListenableBuilder(
+                                            valueListenable: changeRateValue,
+                                            builder: (context, value, child) {
+                                              return Flexible(
+                                                child: FittedBox(
+                                                  child: Row(
+                                                    children: [
+                                                      Transform.flip(
+                                                        flipY: value.isNegative,
+                                                        child: SvgPicture.asset(
+                                                          color: value
+                                                                  .isNegative
+                                                              ? ColorManager.red
+                                                                  .withAlpha(95)
+                                                              : null,
+                                                          IconAssets.arrow,
+                                                          height: AppSizeH.s8,
+                                                          width: AppSizeW.s8,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                          width: AppSizeW.s5),
+                                                      Text(
+                                                        textDirection: ui
+                                                            .TextDirection.ltr,
+                                                        '${value.toStringAsFixed(2)} % YoY',
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .titleSmall!
+                                                            .copyWith(
+                                                                fontSize:
+                                                                    AppSizeSp
+                                                                        .s15),
+                                                        textAlign:
+                                                            TextAlign.end,
+                                                      ),
+                                                      SizedBox(
+                                                          width: AppSizeW.s5),
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          )
+                                        : const SizedBox(),
+                                    AspectRatio(
+                                      aspectRatio: 1,
+                                      child: SvgPicture.asset(
+                                        getImagePath(),
+                                        width: AppSizeW.s56,
+                                        color: ColorManager.primary
+                                            .withOpacity(0.6),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+            }));
   }
 }
 

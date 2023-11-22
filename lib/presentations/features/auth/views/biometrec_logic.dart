@@ -21,6 +21,5 @@ Future<void> createBioProtectedEntry(String userName, String password) async {
 Future<String?> getBioProtectedEntry() async {
   BiometricStorageFile storageFile = await getStorageFile();
   final data = await storageFile.read();
-  print(data);
   return data;
 }

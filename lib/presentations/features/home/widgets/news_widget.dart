@@ -37,7 +37,8 @@ class _NewsWidgetState extends State<NewsWidget> {
                 children: [
                   Text(
                     AppStrings().news,
-                    style: Theme.of(context)
+                    style: Theme
+                        .of(context)
                         .textTheme
                         .titleMedium
                         ?.copyWith(fontWeight: FontWeight.w800),
@@ -56,7 +57,10 @@ class _NewsWidgetState extends State<NewsWidget> {
               BlocBuilder(
                 bloc: context.read<NewsBloc>(),
                 builder: (context, state) {
-                  if (context.read<NewsBloc>().newsList.isEmpty) {
+                  if (context
+                      .read<NewsBloc>()
+                      .newsList
+                      .isEmpty) {
                     return const SizedBox();
                   }
                   return InkWell(
@@ -68,13 +72,18 @@ class _NewsWidgetState extends State<NewsWidget> {
                       padding: EdgeInsets.symmetric(
                           horizontal: AppSizeW.s14, vertical: AppSizeH.s2),
                       decoration: BoxDecoration(
+
+                          color: ColorManager.white,
                           border: Border.all(color: ColorManager.golden),
                           borderRadius: BorderRadius.circular(AppSizeR.s20)),
                       child: Row(
                         children: [
                           Text(
                             AppStrings().more,
-                            style: Theme.of(context).textTheme.titleSmall,
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .titleSmall,
                           ),
                           Icon(
                             Icons.arrow_forward_ios,
@@ -134,7 +143,9 @@ class _NewsWidgetState extends State<NewsWidget> {
                           // textDirection: TextDirection.rtl,
                           effect: ExpandingDotsEffect(
                               dotColor: ColorManager.silver,
-                              activeDotColor: Theme.of(context).primaryColor,
+                              activeDotColor: Theme
+                                  .of(context)
+                                  .primaryColor,
                               dotHeight: AppSizeH.s6,
                               dotWidth: AppSizeW.s6),
                         ),
@@ -146,7 +157,10 @@ class _NewsWidgetState extends State<NewsWidget> {
                   if (value.news.isEmpty) {
                     return Text(
                       AppStrings().noDataFound,
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .bodyMedium,
                     );
                   }
                   return Column(
@@ -156,7 +170,7 @@ class _NewsWidgetState extends State<NewsWidget> {
                         child: PageView.builder(
                             controller: _pageController,
                             itemCount:
-                                value.news.length > 5 ? 5 : value.news.length,
+                            value.news.length > 5 ? 5 : value.news.length,
                             onPageChanged: (indexx) {
                               index = indexx;
                               setState(() {
@@ -193,7 +207,9 @@ class _NewsWidgetState extends State<NewsWidget> {
                           // textDirection: TextDirection.rtl,
                           effect: ExpandingDotsEffect(
                               dotColor: ColorManager.silver,
-                              activeDotColor: Theme.of(context).primaryColor,
+                              activeDotColor: Theme
+                                  .of(context)
+                                  .primaryColor,
                               dotHeight: AppSizeH.s6,
                               dotWidth: AppSizeW.s6),
                         ),
@@ -220,7 +236,10 @@ class _NewsWidgetState extends State<NewsWidget> {
                       // SizedBox(height: AppSizeH.s10),
                       Text(
                         value.message,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .bodyMedium,
                       ),
                     ],
                   );
