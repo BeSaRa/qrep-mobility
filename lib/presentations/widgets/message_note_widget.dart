@@ -1,12 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../domain/models/cms_models/main_menu_models/main_menu_models.dart';
 import '../resources/resources.dart';
 
 class MessageNoteWidget extends StatefulWidget {
   final DataSourceMessageModel message;
+
   const MessageNoteWidget({
     super.key,
     required this.message,
@@ -18,6 +17,7 @@ class MessageNoteWidget extends StatefulWidget {
 
 class _MessageNoteWidgetState extends State<MessageNoteWidget> {
   bool isShow = true;
+
   @override
   Widget build(BuildContext context) {
     return Visibility(

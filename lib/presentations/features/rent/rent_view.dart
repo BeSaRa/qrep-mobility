@@ -12,18 +12,12 @@ import 'package:ebla/presentations/features/rent/blocs/summery_bloc/rent_summery
 import 'package:ebla/presentations/widgets/selected_year_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../app/depndency_injection.dart';
 import '../../../domain/models/cms_models/main_menu_models/main_menu_models.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
-import '../../widgets/filters_applied_widget.dart';
-import '../../widgets/grid/grid_item_widget.dart';
-import '../../widgets/message_note_widget.dart';
-import '../../widgets/pagination_widget/pagination_widget.dart';
-import '../../widgets/selected_municipality_widget.dart';
 import '../../widgets/widgets.dart';
 import 'blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
 import 'blocs/default_bloc/rent_default_bloc.dart';

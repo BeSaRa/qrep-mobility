@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../../widgets/selected_municipality_widget.dart';
-import '../../widgets/selected_year_widget.dart';
 
 class REalEstateBrokersView extends StatefulWidget {
   const REalEstateBrokersView({super.key});
@@ -35,7 +35,6 @@ class _REalEstateBrokersViewState extends State<REalEstateBrokersView> {
             fit: BoxFit.fill,
           ),
         ),
-
         leading: IconButton(
             onPressed: () {
               Navigator.maybePop(context);
@@ -44,155 +43,161 @@ class _REalEstateBrokersViewState extends State<REalEstateBrokersView> {
               Icons.arrow_back,
               color: ColorManager.golden,
             )),
-
         title: Text(
           AppStrings().realEstateBrokers,
-          style: Theme
-              .of(context)
-              .textTheme
-              .headlineLarge,
+          style: Theme.of(context).textTheme.headlineLarge,
         ),
         centerTitle: true,
       ),
       body: Column(
         children: [
           Column(children: [
-            Row(
-                mainAxisAlignment:
-                MainAxisAlignment.end,
-                children: [
-                  SizedBox(width: AppSizeW.s16),
-                  SelectedMunicipality(
-                    value: getObjectByLookupKey([], 4),
-                    list: [],
-                    onChanged: (municipal) {
+            Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+              SizedBox(width: AppSizeW.s16),
+              SelectedMunicipality(
+                value: getObjectByLookupKey([], 4),
+                list: [],
+                onChanged: (municipal) {},
+              ),
+              SizedBox(width: AppSizeW.s5),
 
-                    },
+              // BlocBuilder(
+              //   bloc: context
+              //       .read<LookupBloc>(),
+              //   builder: (context,
+              //       LookupState state) {
+              //     return state.map(
+              //       loadingLookup: (value) {
+              //         return
+              Icon(
+                Icons.filter_list_sharp,
+                color: ColorManager.golden,
+              ),
+              //       },
+              //       loadedLookup: (value) {
+              //         return IconButton(
+              //             onPressed:
+              //                 () async {
+              //               var res =
+              //               await bottomSheetWidget(
+              //                 context,
+              //                 child:
+              //                 MultiBlocProvider(
+              //                   providers: [
+              //                     BlocProvider.value(
+              //                         value:
+              //                         context.read<SellBloc>()),
+              //                     BlocProvider.value(
+              //                         value:
+              //                         context.read<LookupBloc>()),
+              //                   ],
+              //                   child:
+              //                   const BottomSheetFilterSellWidget(),
+              //                 ),
+              //               );
+              //               if (res !=
+              //                   null &&
+              //                   res) {
+              //                 changeStatusCubit
+              //                     .changeStatus();
+              //                 sellGridKPIsBloc.add(
+              //                     SellGridKPIsEvent.getData(
+              //                         request: context
+              //                             .read<
+              //                             SellBloc>()
+              //                             .requestSell));
+              //                 topvaluesBloc.add(TopvaluesEvent
+              //                     .countTransictionNumberEvent(
+              //                     request: context
+              //                         .read<
+              //                         SellBloc>()
+              //                         .requestSell));
+              //                 sellTransactionBloc.add(
+              //                     SellTransactionEvent.started(
+              //                         request: context
+              //                             .read<
+              //                             SellBloc>()
+              //                             .requestSell));
+              //               }
+              //             },
+              //             icon: Icon(
+              //               size: AppSizeW
+              //                   .s32,
+              //               Icons
+              //                   .filter_list_sharp,
+              //               color:
+              //               ColorManager
+              //                   .golden,
+              //             ));
+              //       },
+              //       errorLookUp: (value) {
+              //         return const SizedBox();
+              //       },
+              //     );
+              //   },
+              // ),
+              SizedBox(
+                width: AppSizeW.s7,
+              ),
+            ]),
+            SizedBox(
+              height: AppSizeH.s25,
+            ),
+            Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppSizeW.s47,
+                ),
+                child: Container(
+                  height: AppSizeH.s100,
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(AppSizeR.s20)),
+                    boxShadow: [
+                      BoxShadow(
+                          spreadRadius: AppSizeR.s2,
+                          blurRadius: AppSizeR.s11,
+                          color: ColorManager.black.withAlpha(30)),
+                    ],
+                    gradient: LinearGradient(
+                      colors: [
+                        ColorManager.platinum,
+                        ColorManager.white,
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: const [0.2, 1.0],
+                    ),
                   ),
-                  SizedBox(width: AppSizeW.s5),
-                  SelectedYearWidget(
-                    value:
-                    DateTime
-                        .now()
-                        .year,
-                    onChanged: (year) {
-
-                    },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(' إجمالي عدد الوسطاء المرخصين'),
+                            SizedBox(
+                              height: AppSizeH.s10,
+                            ),
+                            Text(' إجمالي عدد الوسطاء المرخصين'),
+                          ],
+                        ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          SizedBox(
+                            height: AppSizeH.s20,
+                          ),
+                          SvgPicture.asset(
+                            IconAssets.sellHome,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  SizedBox(width: AppSizeW.s7),
-                  // BlocBuilder(
-                  //   bloc: context
-                  //       .read<LookupBloc>(),
-                  //   builder: (context,
-                  //       LookupState state) {
-                  //     return state.map(
-                  //       loadingLookup: (value) {
-                  //         return Icon(
-                  //           Icons
-                  //               .filter_list_sharp,
-                  //           color: ColorManager
-                  //               .golden,
-                  //         );
-                  //       },
-                  //       loadedLookup: (value) {
-                  //         return IconButton(
-                  //             onPressed:
-                  //                 () async {
-                  //               var res =
-                  //               await bottomSheetWidget(
-                  //                 context,
-                  //                 child:
-                  //                 MultiBlocProvider(
-                  //                   providers: [
-                  //                     BlocProvider.value(
-                  //                         value:
-                  //                         context.read<SellBloc>()),
-                  //                     BlocProvider.value(
-                  //                         value:
-                  //                         context.read<LookupBloc>()),
-                  //                   ],
-                  //                   child:
-                  //                   const BottomSheetFilterSellWidget(),
-                  //                 ),
-                  //               );
-                  //               if (res !=
-                  //                   null &&
-                  //                   res) {
-                  //                 changeStatusCubit
-                  //                     .changeStatus();
-                  //                 sellGridKPIsBloc.add(
-                  //                     SellGridKPIsEvent.getData(
-                  //                         request: context
-                  //                             .read<
-                  //                             SellBloc>()
-                  //                             .requestSell));
-                  //                 topvaluesBloc.add(TopvaluesEvent
-                  //                     .countTransictionNumberEvent(
-                  //                     request: context
-                  //                         .read<
-                  //                         SellBloc>()
-                  //                         .requestSell));
-                  //                 sellTransactionBloc.add(
-                  //                     SellTransactionEvent.started(
-                  //                         request: context
-                  //                             .read<
-                  //                             SellBloc>()
-                  //                             .requestSell));
-                  //               }
-                  //             },
-                  //             icon: Icon(
-                  //               size: AppSizeW
-                  //                   .s32,
-                  //               Icons
-                  //                   .filter_list_sharp,
-                  //               color:
-                  //               ColorManager
-                  //                   .golden,
-                  //             ));
-                  //       },
-                  //       errorLookUp: (value) {
-                  //         return const SizedBox();
-                  //       },
-                  //     );
-                  //   },
-                  // ),
-                  SizedBox(
-                    width: AppSizeW.s7,
-                  ),
-                ]),
-            // SizedBox(height: AppSizeH.s12),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(
-            //     horizontal: AppSizeW.s11,
-            //   ),
-            //   child: SizedBox(
-            //       height: AppSizeH.s26,
-            //       child: Row(
-            //           children: context
-            //                   .read<SellBloc>()
-            //                   .loockUpSell
-            //                   ?.periodTime
-            //                   .map((e) {
-            //                 return e.id != 5
-            //                     ? ChosenPeriodWidget(
-            //                         periodId: context
-            //                             .read<
-            //                                 SellBloc>()
-            //                             .requestSell
-            //                             .periodId,
-            //                         id: e.id,
-            //                         enName: e
-            //                             .enName,
-            //                         arName: e
-            //                             .arName,
-            //                       )
-            //                     : const SizedBox();
-            //               }).toList() ??
-            //               [])),
-            // ),
+                ))
           ])
-
-
         ],
       ),
     );

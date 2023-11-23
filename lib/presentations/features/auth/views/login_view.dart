@@ -219,11 +219,11 @@ class _LoginViewState extends State<LoginView> {
                           activeColor: Theme.of(context).primaryColor,
                           activeTrackColor: Theme.of(context)
                               .unselectedWidgetColor
-                              .withOpacity(0.2),
+                              .withOpacity(0.3),
                           inactiveThumbColor: Theme.of(context).primaryColor,
                           inactiveTrackColor: Theme.of(context)
                               .unselectedWidgetColor
-                              .withOpacity(0.2),
+                              .withOpacity(0.3),
 
                           onChanged: (bool value) {
                             if (value == true) {
