@@ -22,6 +22,12 @@ class AppStrings {
   String endDate = "end_date".tr();
   String meterSquare = "meter_square".tr();
   String footSquare = "foot_square".tr();
+  String rentRaneValue = "rent_value".tr();
+  String areaRangeValue = "area_value".tr();
+  String from = "from".tr();
+  String to = "to".tr();
+  String maxValue = "max_value".tr();
+  String minValue = "min_value".tr();
 
   // grid
   String totalRentalContractsNumber = "total_rental_contracts_number".tr();
@@ -112,8 +118,7 @@ class AppStrings {
   String duration = "duration".tr(); // المدة الزمنية
   String durationDetails = "duration_details".tr(); //
   String rentValueFromTo = "rent_value_from_to".tr(); //قيمه العقار من - إلى
-  String realStateValueFromTo =
-      "real_state_value_from_to".tr(); //sell قيمه العقار من - إلى
+  String realStateValue = "real_state_value".tr(); //sell قيمه العقار من - إلى
   String areaFromTo = "area_from_to".tr(); //"المساحة من - إلى"
   String search = "search".tr();
   String furnitureStatus = "furniture_status".tr(); // "حالة الاثاث"
