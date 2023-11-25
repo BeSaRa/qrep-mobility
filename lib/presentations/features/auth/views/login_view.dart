@@ -178,6 +178,9 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     )),
               ),
+              SizedBox(
+                height: AppSizeH.s8,
+              ),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -206,24 +209,23 @@ class _LoginViewState extends State<LoginView> {
                           ),
                         ),
                         SizedBox(
-                          width: AppSizeW.s5,
+                          width: AppSizeW.s10,
                         ),
                         Text(
                           AppStrings().activateFaceId,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(fontWeight: FontWeight.w500),
                         ),
                         const Spacer(),
                         Switch(
                           // This bool value toggles the switch.
                           value: light,
                           activeColor: Theme.of(context).primaryColor,
-                          activeTrackColor: Theme.of(context)
-                              .unselectedWidgetColor
-                              .withOpacity(0.3),
+                          activeTrackColor: ColorManager.mercury,
                           inactiveThumbColor: Theme.of(context).primaryColor,
-                          inactiveTrackColor: Theme.of(context)
-                              .unselectedWidgetColor
-                              .withOpacity(0.3),
+                          inactiveTrackColor: ColorManager.mercury,
 
                           onChanged: (bool value) {
                             if (value == true) {

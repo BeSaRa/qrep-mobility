@@ -6,6 +6,7 @@ class AppStrings {
       "filter_values_should_be_as_follows".tr();
   String valuesOtherThanAll = "value_other_than_all".tr();
   String singleValueOtherThanAll = "single_value_other_than_all".tr();
+
   //main scaffold locals
   String main = "home".tr();
   String rent = "rent".tr();
@@ -156,4 +157,8 @@ class AppStrings {
   String lastPage = "paginator_last_page_label".tr();
   String firstPage = "paginator_first_page_label".tr();
   String of = "paginator_of_label".tr();
+
+  /// -------------real estate ------
+  String totalCertifiedRealEstate = "total_certified_real_estate".tr();
+  String realEstateBrokersDashboard = "real_estate_broker_dashboard".tr();
 }
