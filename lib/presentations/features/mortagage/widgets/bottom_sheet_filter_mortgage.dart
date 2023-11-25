@@ -872,10 +872,22 @@ class _BottomSheetFilterMortgageWidgetState
                                       ),
                                       validatorFromAreaCubit.state == 2
                                           ? Text(
-                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[0].maxVal}")
+                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[0].maxVal}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall!
+                                                  .copyWith(
+                                                    color: ColorManager.red,
+                                                  ))
                                           : validatorFromAreaCubit.state == 1
                                               ? Text(
-                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[0].minVal}")
+                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[0].minVal}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .copyWith(
+                                                        color: ColorManager.red,
+                                                      ))
                                               : const SizedBox()
                                     ],
                                   );
@@ -950,10 +962,22 @@ class _BottomSheetFilterMortgageWidgetState
                                       ),
                                       validatorToAreaCubit.state == 2
                                           ? Text(
-                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[0].maxVal}")
+                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[0].maxVal}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall!
+                                                  .copyWith(
+                                                    color: ColorManager.red,
+                                                  ))
                                           : validatorToAreaCubit.state == 1
                                               ? Text(
-                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[0].minVal}")
+                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[0].minVal}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .copyWith(
+                                                        color: ColorManager.red,
+                                                      ))
                                               : const SizedBox()
                                     ],
                                   );

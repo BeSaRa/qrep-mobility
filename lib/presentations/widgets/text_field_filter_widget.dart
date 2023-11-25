@@ -57,6 +57,10 @@ class TextFilterWidget extends StatelessWidget {
               borderSide: BorderSide(width: 1, color: ColorManager.silver),
               borderRadius: BorderRadius.circular(AppSizeR.s5),
             ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 1, color: ColorManager.red),
+              borderRadius: BorderRadius.circular(AppSizeR.s5),
+            ),
             errorBorder: OutlineInputBorder(
               borderSide: BorderSide(width: 1, color: ColorManager.red),
               borderRadius: BorderRadius.circular(AppSizeR.s5),

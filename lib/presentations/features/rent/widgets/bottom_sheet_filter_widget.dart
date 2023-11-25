@@ -853,57 +853,6 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
               child: const ChooseUnitWidget(),
             ),
             SizedBox(height: AppSizeH.s12),
-
-            // BlocBuilder(
-            //   bloc: valuesFiltersCubit,
-            //   builder: (context, state) {
-            //     return SliderWidget(
-            //       title: AppStrings().rentValueFromTo,
-            //       startValue:
-            //           '${(valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit?.start.toDouble() ?? context.read<LookupBloc>().loockUpRent?.maxParams[1].minVal.toDouble())?.toInt().formatWithCommas()}',
-            //       endValue:
-            //           '${(valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit?.end.toDouble() ?? context.read<LookupBloc>().loockUpRent?.maxParams[1].maxVal.toDouble())?.toInt().formatWithCommas()}',
-            //       values: valuesFiltersCubit.rangeRentPaymentMonthlyPerUnit ??
-            //           RangeValues(
-            //               valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom
-            //                       ?.toDouble() ??
-            //                   context
-            //                       .read<LookupBloc>()
-            //                       .loockUpRent
-            //                       ?.maxParams[1]
-            //                       .minVal
-            //                       .toDouble() ??
-            //                   0,
-            //               valuesFiltersCubit.rentPaymentMonthlyPerUnitTo
-            //                       ?.toDouble() ??
-            //                   context
-            //                       .read<LookupBloc>()
-            //                       .loockUpRent
-            //                       ?.maxParams[1]
-            //                       .maxVal
-            //                       .toDouble() ??
-            //                   1000000),
-            //       onChanges: (rangeValues) {
-            //         valuesFiltersCubit
-            //             .changeRangeRentPaymentMonthlyPerUnit(rangeValues);
-            //       },
-            // min: context
-            //         .read<LookupBloc>()
-            //         .loockUpRent
-            //         ?.maxParams[1]
-            //         .minVal
-            //               .toDouble() ??
-            //           0,
-            //       max: context
-            //               .read<LookupBloc>()
-            //               .loockUpRent
-            //               ?.maxParams[1]
-            //               .maxVal
-            //               .toDouble() ??
-            //           1000000,
-            //     );
-            //   },
-            // ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -970,10 +919,22 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                       ),
                                       validatorFromValueCubit.state == 2
                                           ? Text(
-                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[1].maxVal}")
+                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[1].maxVal}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall!
+                                                  .copyWith(
+                                                    color: ColorManager.red,
+                                                  ))
                                           : validatorFromValueCubit.state == 1
                                               ? Text(
-                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[1].minVal}")
+                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[1].minVal}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .copyWith(
+                                                        color: ColorManager.red,
+                                                      ))
                                               : const SizedBox()
                                     ],
                                   );
@@ -1048,10 +1009,22 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                       ),
                                       validatorToValueCubit.state == 2
                                           ? Text(
-                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[1].maxVal}")
+                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[1].maxVal}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall!
+                                                  .copyWith(
+                                                    color: ColorManager.red,
+                                                  ))
                                           : validatorToValueCubit.state == 1
                                               ? Text(
-                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[1].minVal}")
+                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[1].minVal}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .copyWith(
+                                                        color: ColorManager.red,
+                                                      ))
                                               : const SizedBox()
                                     ],
                                   );
@@ -1132,10 +1105,22 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                       ),
                                       validatorFromAreaCubit.state == 2
                                           ? Text(
-                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].maxVal}")
+                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].maxVal}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall!
+                                                  .copyWith(
+                                                    color: ColorManager.red,
+                                                  ))
                                           : validatorFromAreaCubit.state == 1
                                               ? Text(
-                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].minVal}")
+                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].minVal}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .copyWith(
+                                                        color: ColorManager.red,
+                                                      ))
                                               : const SizedBox()
                                     ],
                                   );
@@ -1210,10 +1195,22 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                       ),
                                       validatorToAreaCubit.state == 2
                                           ? Text(
-                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].maxVal}")
+                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].maxVal}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall!
+                                                  .copyWith(
+                                                    color: ColorManager.red,
+                                                  ))
                                           : validatorToAreaCubit.state == 1
                                               ? Text(
-                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].minVal}")
+                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].minVal}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .copyWith(
+                                                        color: ColorManager.red,
+                                                      ))
                                               : const SizedBox()
                                     ],
                                   );

@@ -811,10 +811,22 @@ class _BottomSheetFilterSellWidgetState
                                       ),
                                       validatorFromValueCubit.state == 2
                                           ? Text(
-                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[1].maxVal}")
+                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[1].maxVal}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall!
+                                                  .copyWith(
+                                                    color: ColorManager.red,
+                                                  ))
                                           : validatorFromValueCubit.state == 1
                                               ? Text(
-                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[1].minVal}")
+                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[1].minVal}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .copyWith(
+                                                        color: ColorManager.red,
+                                                      ))
                                               : const SizedBox()
                                     ],
                                   );
@@ -890,10 +902,22 @@ class _BottomSheetFilterSellWidgetState
                                       ),
                                       validatorToValueCubit.state == 2
                                           ? Text(
-                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[1].maxVal}")
+                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[1].maxVal}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall!
+                                                  .copyWith(
+                                                    color: ColorManager.red,
+                                                  ))
                                           : validatorToValueCubit.state == 1
                                               ? Text(
-                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[1].minVal}")
+                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[1].minVal}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .copyWith(
+                                                        color: ColorManager.red,
+                                                      ))
                                               : const SizedBox()
                                     ],
                                   );
@@ -974,10 +998,22 @@ class _BottomSheetFilterSellWidgetState
                                       ),
                                       validatorFromAreaCubit.state == 2
                                           ? Text(
-                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[0].maxVal}")
+                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[0].maxVal}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall!
+                                                  .copyWith(
+                                                    color: ColorManager.red,
+                                                  ))
                                           : validatorFromAreaCubit.state == 1
                                               ? Text(
-                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[0].minVal}")
+                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[0].minVal}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .copyWith(
+                                                        color: ColorManager.red,
+                                                      ))
                                               : const SizedBox()
                                     ],
                                   );
@@ -1052,10 +1088,22 @@ class _BottomSheetFilterSellWidgetState
                                       ),
                                       validatorToAreaCubit.state == 2
                                           ? Text(
-                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[0].maxVal}")
+                                              "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[0].maxVal}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall!
+                                                  .copyWith(
+                                                    color: ColorManager.red,
+                                                  ))
                                           : validatorToAreaCubit.state == 1
                                               ? Text(
-                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[0].minVal}")
+                                                  "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[0].minVal}",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .copyWith(
+                                                        color: ColorManager.red,
+                                                      ))
                                               : const SizedBox()
                                     ],
                                   );
