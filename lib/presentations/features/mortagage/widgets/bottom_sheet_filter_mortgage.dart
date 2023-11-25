@@ -183,7 +183,7 @@ class _BottomSheetFilterMortgageWidgetState
                       child: FittedBox(
                         child: valuesFiltersCubit.pickerDateRange != null
                             ? Text(
-                                '${valuesFiltersCubit.pickerDateRange?.startDate.toFormattedString()}---${valuesFiltersCubit.pickerDateRange?.endDate.toFormattedString()}',
+                                '${valuesFiltersCubit.pickerDateRange?.startDate?.toLocal().toFormattedString()}---${valuesFiltersCubit.pickerDateRange?.endDate?.toLocal().toFormattedString()}',
                                 style: Theme.of(context).textTheme.labelSmall,
                               )
                             : Text(
@@ -1054,13 +1054,15 @@ class _BottomSheetFilterMortgageWidgetState
                                         valuesFiltersCubit.periodTime.id == 5
                                             ? valuesFiltersCubit
                                                 .pickerDateRange?.startDate
-                                                ?.toIso8601String()
+                                                ?.toUtc()
+                                                .toIso8601String()
                                             : null,
                                     issueDateTo:
                                         valuesFiltersCubit.periodTime.id == 5
                                             ? valuesFiltersCubit
                                                 .pickerDateRange?.endDate
-                                                ?.toIso8601String()
+                                                ?.toUtc()
+                                                .toIso8601String()
                                             : null,
                                     purposeList: valuesFiltersCubit
                                         .rentPurposeList
