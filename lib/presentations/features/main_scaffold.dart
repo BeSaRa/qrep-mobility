@@ -40,6 +40,7 @@ class _MainScaffoldState extends State<MainScaffold>
         duration: kTabScrollDuration, curve: Curves.ease);
 
     return Scaffold(
+      body: widget.child,
       bottomNavigationBar: EblaNavigationBar(
         onTap: (index) async {
           switch (index) {
@@ -61,7 +62,9 @@ class _MainScaffoldState extends State<MainScaffold>
           context.read<BottomNavCubit>().changePage(index);
           context.goNamed(context.read<BottomNavCubit>().paths[index]);
         },
-        body: widget.child,
+        body: Container(
+          color: Colors.transparent,
+        ),
         currentPage: context.read<BottomNavCubit>().currentPage,
         controller: _controller,
       ),
