@@ -13,6 +13,7 @@ import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../app/constants.dart';
+import '../../domain/models/broker_models/broker_models.dart';
 import '../../domain/models/cms_models/main_menu_models/main_menu_models.dart';
 import '../../domain/models/cms_models/user/user_model.dart';
 import '../../domain/models/rent_models/rent_models.dart';
@@ -72,6 +73,7 @@ abstract class AppServiceClient {
   @POST(EndPoints.totalRentedSpace)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalRentedSpace(
       @Body() RequestMeanValue requestMeanValue);
+
   @POST(EndPoints.avgPriceTop)
   Future<HttpResponse<List<BaseRentResponse>>> avgMeanRentAmount(
       @Body() RequestMeanValue requestMeanValue);
@@ -91,6 +93,7 @@ abstract class AppServiceClient {
   //----------------------------------Sell--------------------------------------
   @GET(EndPoints.lookupSell)
   Future<HttpResponse<RentLookupResponse>> getLockupSell();
+
   // KPI1
 
   // KPI1
@@ -131,22 +134,28 @@ abstract class AppServiceClient {
   @POST(EndPoints.sellTransactions)
   Future<HttpResponse<SellTransactionResponse>> getSellTransactions(
       @Body() RequestSellValues requestSellValues);
+
   //-----------------Top 10 sells ----------------------------
   @POST(EndPoints.sellContractCount)
   Future<HttpResponse<List<BaseRentResponse>>> sellContractCount(
       @Body() RequestSellValues requestSellValues);
+
   @POST(EndPoints.avgPricePerUnit)
   Future<HttpResponse<List<BaseRentResponse>>> avgPricePerUnit(
       @Body() RequestSellValues requestSellValues);
+
   @POST(EndPoints.transactionsValue)
   Future<HttpResponse<List<BaseRentResponse>>> transactionsValue(
       @Body() RequestSellValues requestSellValues);
+
   @POST(EndPoints.soldAreas)
   Future<HttpResponse<List<BaseRentResponse>>> soldAreas(
       @Body() RequestSellValues requestSellValues);
+
   @POST(EndPoints.realStateNumber)
   Future<HttpResponse<List<BaseRentResponse>>> realStateNumber(
       @Body() RequestSellValues requestSellValues);
+
   @POST(EndPoints.averagePricePerSquareFoot)
   Future<HttpResponse<List<BaseRentResponse>>> averagePricePerSquareFoot(
       @Body() RequestSellValues requestSellValues);
@@ -186,6 +195,7 @@ abstract class TranslationsServiceClient {
   //---------------------------------Auth-----------------------------------------
   @POST(EndPoints.auth)
   Future<HttpResponse<AuthResponse>> login(@Body() RequestAuth requestAuth);
+
   @POST(EndPoints.refreshToken)
   Future<HttpResponse<AuthResponse>> refreshToken(
       @Body() RefreshToken refreshToken);
@@ -193,6 +203,7 @@ abstract class TranslationsServiceClient {
 //---------------------------------Profile-------------------------------------
   @GET(EndPoints.userInfo)
   Future<HttpResponse<UserResponse>> getUserInfo();
+
 //---------------------------------CMS-----------------------------------------
   @GET(EndPoints.faq)
   Future<HttpResponse<FaqResponse>> getFaq(@Query("limit") int limit);
@@ -206,6 +217,7 @@ abstract class TranslationsServiceClient {
 
   @GET(EndPoints.news)
   Future<HttpResponse<NewsResponse>> getNews();
+
   @GET(EndPoints.newsById)
   Future<HttpResponse<NewsByIdResponse>> getNewsById(
       {@Path('id') required int id});
@@ -219,4 +231,9 @@ abstract class TranslationsServiceClient {
   //Main menu
   @GET(EndPoints.mainMenu)
   Future<HttpResponse<MainMenuResponse>> mainMenu();
+
+  ///--------broker---------///
+
+  @GET(EndPoints.brokerLookUp)
+  Future<HttpResponse<RealEstateBrokerLookUp>> getBrokerLookUp();
 }
