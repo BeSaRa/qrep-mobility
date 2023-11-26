@@ -657,17 +657,17 @@ BrokerLookUpModel _$BrokerLookUpModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BrokerLookUpModel {
-  String get arName => throw _privateConstructorUsedError;
-  String get enName => throw _privateConstructorUsedError;
-  bool get isActive => throw _privateConstructorUsedError;
-  int get lookupKey => throw _privateConstructorUsedError;
-  int get municipalityId => throw _privateConstructorUsedError;
-  int get id => throw _privateConstructorUsedError;
-  String get fieldName => throw _privateConstructorUsedError;
-  int get maxVal => throw _privateConstructorUsedError;
-  int get minVal => throw _privateConstructorUsedError;
-  String get model => throw _privateConstructorUsedError;
-  int get nationalityCode => throw _privateConstructorUsedError;
+  String? get arName => throw _privateConstructorUsedError;
+  String? get enName => throw _privateConstructorUsedError;
+  bool? get isActive => throw _privateConstructorUsedError;
+  int? get lookupKey => throw _privateConstructorUsedError;
+  int? get municipalityId => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get fieldName => throw _privateConstructorUsedError;
+  int? get maxVal => throw _privateConstructorUsedError;
+  int? get minVal => throw _privateConstructorUsedError;
+  String? get model => throw _privateConstructorUsedError;
+  int? get nationalityCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -682,17 +682,17 @@ abstract class $BrokerLookUpModelCopyWith<$Res> {
       _$BrokerLookUpModelCopyWithImpl<$Res, BrokerLookUpModel>;
   @useResult
   $Res call(
-      {String arName,
-      String enName,
-      bool isActive,
-      int lookupKey,
-      int municipalityId,
-      int id,
-      String fieldName,
-      int maxVal,
-      int minVal,
-      String model,
-      int nationalityCode});
+      {String? arName,
+      String? enName,
+      bool? isActive,
+      int? lookupKey,
+      int? municipalityId,
+      int? id,
+      String? fieldName,
+      int? maxVal,
+      int? minVal,
+      String? model,
+      int? nationalityCode});
 }
 
 /// @nodoc
@@ -708,63 +708,63 @@ class _$BrokerLookUpModelCopyWithImpl<$Res, $Val extends BrokerLookUpModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? arName = null,
-    Object? enName = null,
-    Object? isActive = null,
-    Object? lookupKey = null,
-    Object? municipalityId = null,
-    Object? id = null,
-    Object? fieldName = null,
-    Object? maxVal = null,
-    Object? minVal = null,
-    Object? model = null,
-    Object? nationalityCode = null,
+    Object? arName = freezed,
+    Object? enName = freezed,
+    Object? isActive = freezed,
+    Object? lookupKey = freezed,
+    Object? municipalityId = freezed,
+    Object? id = freezed,
+    Object? fieldName = freezed,
+    Object? maxVal = freezed,
+    Object? minVal = freezed,
+    Object? model = freezed,
+    Object? nationalityCode = freezed,
   }) {
     return _then(_value.copyWith(
-      arName: null == arName
+      arName: freezed == arName
           ? _value.arName
           : arName // ignore: cast_nullable_to_non_nullable
-              as String,
-      enName: null == enName
+              as String?,
+      enName: freezed == enName
           ? _value.enName
           : enName // ignore: cast_nullable_to_non_nullable
-              as String,
-      isActive: null == isActive
+              as String?,
+      isActive: freezed == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
-              as bool,
-      lookupKey: null == lookupKey
+              as bool?,
+      lookupKey: freezed == lookupKey
           ? _value.lookupKey
           : lookupKey // ignore: cast_nullable_to_non_nullable
-              as int,
-      municipalityId: null == municipalityId
+              as int?,
+      municipalityId: freezed == municipalityId
           ? _value.municipalityId
           : municipalityId // ignore: cast_nullable_to_non_nullable
-              as int,
-      id: null == id
+              as int?,
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      fieldName: null == fieldName
+              as int?,
+      fieldName: freezed == fieldName
           ? _value.fieldName
           : fieldName // ignore: cast_nullable_to_non_nullable
-              as String,
-      maxVal: null == maxVal
+              as String?,
+      maxVal: freezed == maxVal
           ? _value.maxVal
           : maxVal // ignore: cast_nullable_to_non_nullable
-              as int,
-      minVal: null == minVal
+              as int?,
+      minVal: freezed == minVal
           ? _value.minVal
           : minVal // ignore: cast_nullable_to_non_nullable
-              as int,
-      model: null == model
+              as int?,
+      model: freezed == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
-              as String,
-      nationalityCode: null == nationalityCode
+              as String?,
+      nationalityCode: freezed == nationalityCode
           ? _value.nationalityCode
           : nationalityCode // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -778,17 +778,17 @@ abstract class _$$BrokerLookUpModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String arName,
-      String enName,
-      bool isActive,
-      int lookupKey,
-      int municipalityId,
-      int id,
-      String fieldName,
-      int maxVal,
-      int minVal,
-      String model,
-      int nationalityCode});
+      {String? arName,
+      String? enName,
+      bool? isActive,
+      int? lookupKey,
+      int? municipalityId,
+      int? id,
+      String? fieldName,
+      int? maxVal,
+      int? minVal,
+      String? model,
+      int? nationalityCode});
 }
 
 /// @nodoc
@@ -802,63 +802,63 @@ class __$$BrokerLookUpModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? arName = null,
-    Object? enName = null,
-    Object? isActive = null,
-    Object? lookupKey = null,
-    Object? municipalityId = null,
-    Object? id = null,
-    Object? fieldName = null,
-    Object? maxVal = null,
-    Object? minVal = null,
-    Object? model = null,
-    Object? nationalityCode = null,
+    Object? arName = freezed,
+    Object? enName = freezed,
+    Object? isActive = freezed,
+    Object? lookupKey = freezed,
+    Object? municipalityId = freezed,
+    Object? id = freezed,
+    Object? fieldName = freezed,
+    Object? maxVal = freezed,
+    Object? minVal = freezed,
+    Object? model = freezed,
+    Object? nationalityCode = freezed,
   }) {
     return _then(_$BrokerLookUpModelImpl(
-      arName: null == arName
+      arName: freezed == arName
           ? _value.arName
           : arName // ignore: cast_nullable_to_non_nullable
-              as String,
-      enName: null == enName
+              as String?,
+      enName: freezed == enName
           ? _value.enName
           : enName // ignore: cast_nullable_to_non_nullable
-              as String,
-      isActive: null == isActive
+              as String?,
+      isActive: freezed == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
-              as bool,
-      lookupKey: null == lookupKey
+              as bool?,
+      lookupKey: freezed == lookupKey
           ? _value.lookupKey
           : lookupKey // ignore: cast_nullable_to_non_nullable
-              as int,
-      municipalityId: null == municipalityId
+              as int?,
+      municipalityId: freezed == municipalityId
           ? _value.municipalityId
           : municipalityId // ignore: cast_nullable_to_non_nullable
-              as int,
-      id: null == id
+              as int?,
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      fieldName: null == fieldName
+              as int?,
+      fieldName: freezed == fieldName
           ? _value.fieldName
           : fieldName // ignore: cast_nullable_to_non_nullable
-              as String,
-      maxVal: null == maxVal
+              as String?,
+      maxVal: freezed == maxVal
           ? _value.maxVal
           : maxVal // ignore: cast_nullable_to_non_nullable
-              as int,
-      minVal: null == minVal
+              as int?,
+      minVal: freezed == minVal
           ? _value.minVal
           : minVal // ignore: cast_nullable_to_non_nullable
-              as int,
-      model: null == model
+              as int?,
+      model: freezed == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
-              as String,
-      nationalityCode: null == nationalityCode
+              as String?,
+      nationalityCode: freezed == nationalityCode
           ? _value.nationalityCode
           : nationalityCode // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -884,37 +884,37 @@ class _$BrokerLookUpModelImpl implements _BrokerLookUpModel {
 
   @override
   @JsonKey()
-  final String arName;
+  final String? arName;
   @override
   @JsonKey()
-  final String enName;
+  final String? enName;
   @override
   @JsonKey()
-  final bool isActive;
+  final bool? isActive;
   @override
   @JsonKey()
-  final int lookupKey;
+  final int? lookupKey;
   @override
   @JsonKey()
-  final int municipalityId;
+  final int? municipalityId;
   @override
   @JsonKey()
-  final int id;
+  final int? id;
   @override
   @JsonKey()
-  final String fieldName;
+  final String? fieldName;
   @override
   @JsonKey()
-  final int maxVal;
+  final int? maxVal;
   @override
   @JsonKey()
-  final int minVal;
+  final int? minVal;
   @override
   @JsonKey()
-  final String model;
+  final String? model;
   @override
   @JsonKey()
-  final int nationalityCode;
+  final int? nationalityCode;
 
   @override
   String toString() {
@@ -977,43 +977,43 @@ class _$BrokerLookUpModelImpl implements _BrokerLookUpModel {
 
 abstract class _BrokerLookUpModel implements BrokerLookUpModel {
   factory _BrokerLookUpModel(
-      {final String arName,
-      final String enName,
-      final bool isActive,
-      final int lookupKey,
-      final int municipalityId,
-      final int id,
-      final String fieldName,
-      final int maxVal,
-      final int minVal,
-      final String model,
-      final int nationalityCode}) = _$BrokerLookUpModelImpl;
+      {final String? arName,
+      final String? enName,
+      final bool? isActive,
+      final int? lookupKey,
+      final int? municipalityId,
+      final int? id,
+      final String? fieldName,
+      final int? maxVal,
+      final int? minVal,
+      final String? model,
+      final int? nationalityCode}) = _$BrokerLookUpModelImpl;
 
   factory _BrokerLookUpModel.fromJson(Map<String, dynamic> json) =
       _$BrokerLookUpModelImpl.fromJson;
 
   @override
-  String get arName;
+  String? get arName;
   @override
-  String get enName;
+  String? get enName;
   @override
-  bool get isActive;
+  bool? get isActive;
   @override
-  int get lookupKey;
+  int? get lookupKey;
   @override
-  int get municipalityId;
+  int? get municipalityId;
   @override
-  int get id;
+  int? get id;
   @override
-  String get fieldName;
+  String? get fieldName;
   @override
-  int get maxVal;
+  int? get maxVal;
   @override
-  int get minVal;
+  int? get minVal;
   @override
-  String get model;
+  String? get model;
   @override
-  int get nationalityCode;
+  int? get nationalityCode;
   @override
   @JsonKey(ignore: true)
   _$$BrokerLookUpModelImplCopyWith<_$BrokerLookUpModelImpl> get copyWith =>

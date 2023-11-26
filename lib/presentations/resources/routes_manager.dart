@@ -387,7 +387,10 @@ class AppRouter {
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.realEstateBrokers,
           path: RoutesPaths.realEstateBrokers,
-          builder: (context, state) => const REalEstateBrokersView(),
+          builder: (context, state) {
+            initRealEstateBroker();
+            return const REalEstateBrokersView();
+          },
         ),
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,

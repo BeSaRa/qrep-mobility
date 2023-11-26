@@ -31,17 +31,17 @@ abstract class RealEstateBrokerLookUp with _$RealEstateBrokerLookUp {
 @freezed
 abstract class BrokerLookUpModel with _$BrokerLookUpModel {
   factory BrokerLookUpModel({
-    @Default('') String arName,
-    @Default('') String enName,
-    @Default(true) bool isActive,
-    @Default(0) int lookupKey,
-    @Default(0) int municipalityId,
-    @Default(0) int id,
-    @Default('') String fieldName,
-    @Default(0) int maxVal,
-    @Default(0) int minVal,
-    @Default('') String model,
-    @Default(0) int nationalityCode,
+    @Default('') String? arName,
+    @Default('') String? enName,
+    @Default(true) bool? isActive,
+    @Default(0) int? lookupKey,
+    @Default(0) int? municipalityId,
+    @Default(0) int? id,
+    @Default('') String? fieldName,
+    @Default(0) int? maxVal,
+    @Default(0) int? minVal,
+    @Default('') String? model,
+    @Default(0) int? nationalityCode,
   }) = _BrokerLookUpModel;
 
   factory BrokerLookUpModel.fromJson(Map<String, dynamic> json) =>

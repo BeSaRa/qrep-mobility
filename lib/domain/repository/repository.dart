@@ -149,4 +149,8 @@ abstract class Repository {
   //Main Menu
 
   Future<Result<MainMenuResponse, FailureResponse>> mainMenu();
+
+  //// ---------- real estate broker
+
+  Future<Result<RealEstateBrokerLookUp, FailureModel>> getLockupBrokers();
 }

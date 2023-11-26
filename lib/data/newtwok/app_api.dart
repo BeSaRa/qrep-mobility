@@ -169,6 +169,11 @@ abstract class AppServiceClient {
   @POST(EndPoints.mortgageTransactions)
   Future<HttpResponse<MortgageTransactionResponse>> getMortgageTransactions(
       @Body() RequestMortgageValues requestMortgageValues);
+
+  ///--------broker---------///
+
+  @GET(EndPoints.brokerLookUp)
+  Future<HttpResponse<RealEstateBrokerLookUp>> getBrokerLookUp();
 }
 
 //---------------------------------DirectUs-----------------------------------------
@@ -216,9 +221,4 @@ abstract class TranslationsServiceClient {
   //Main menu
   @GET(EndPoints.mainMenu)
   Future<HttpResponse<MainMenuResponse>> mainMenu();
-
-  ///--------broker---------///
-
-  @GET(EndPoints.brokerLookUp)
-  Future<HttpResponse<RealEstateBrokerLookUp>> getBrokerLookUp();
 }
