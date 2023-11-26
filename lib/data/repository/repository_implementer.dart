@@ -1,23 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/newtwok/failure_model/failure.dart';
-import 'package:ebla/domain/models/Auth/auth_models.dart';
-import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
-import 'package:ebla/domain/models/cms_models/about/about_model.dart';
-import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
-import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
-import 'package:ebla/domain/models/cms_models/main_menu_models/main_menu_models.dart';
-import 'package:ebla/domain/models/cms_models/news/news_model.dart';
-import 'package:ebla/domain/models/mrtgage_models/mortgage_models.dart';
-import 'package:ebla/domain/models/rent_models/rent_models.dart';
-import 'package:ebla/domain/models/requests/mortgage_requests/request_mortgage_values.dart';
-import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
-import 'package:ebla/domain/models/sell_models/sell_models.dart';
-import 'package:ebla/domain/models/translations_model/translations_model.dart';
+import 'package:ebla/domain/models/models.dart';
 import 'package:flutter/foundation.dart';
 import 'package:multiple_result/multiple_result.dart';
 
-import '../../domain/models/cms_models/user/user_model.dart';
-import '../../domain/models/requests/sell_requests/request_sell_values.dart';
 import '../../domain/repository/repository.dart';
 import '../../presentations/resources/strings_manager.dart';
 import '../newtwok/app_api.dart';
@@ -452,6 +438,7 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
   // ------------------------------sell----------------------------------------
 
   @override

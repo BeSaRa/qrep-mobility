@@ -8,6 +8,7 @@ export 'ebla_tab_bar.dart';
 export 'error_widget.dart';
 export 'filters_applied_widget.dart';
 export 'grid/grid_item_widget.dart';
+export 'grid/grid_value_with_unit_widget.dart';
 export 'grid/staggered_grid_view.dart';
 export 'growth_rate_widget.dart';
 export 'main_data_container.dart';

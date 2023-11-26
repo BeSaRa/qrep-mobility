@@ -2,14 +2,11 @@
 
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/presentations/features/splash_screen/widgets/animated_transparent_container.dart';
-import 'package:ebla/presentations/resources/assets_manager.dart';
-import 'package:ebla/presentations/resources/color_manager.dart';
-import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../resources/routes_manager.dart';
+import '../../resources/resources.dart';
 import 'bloc/bloc/guest_token_bloc.dart';
 
 class SplashView extends StatefulWidget {

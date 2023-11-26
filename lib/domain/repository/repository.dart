@@ -1,21 +1,7 @@
-import 'package:ebla/domain/models/Auth/auth_models.dart';
-import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
-import 'package:ebla/domain/models/cms_models/about/about_model.dart';
-import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
-import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
-import 'package:ebla/domain/models/cms_models/news/news_model.dart';
-import 'package:ebla/domain/models/mrtgage_models/mortgage_models.dart';
-import 'package:ebla/domain/models/sell_models/sell_models.dart';
-import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 import '../../data/newtwok/failure_model/failure.dart';
-import '../models/cms_models/main_menu_models/main_menu_models.dart';
-import '../models/cms_models/user/user_model.dart';
-import '../models/rent_models/rent_models.dart';
-import '../models/requests/mortgage_requests/request_mortgage_values.dart';
-import '../models/requests/rent_requests/request_mean_value.dart';
-import '../models/requests/sell_requests/request_sell_values.dart';
+import '../models/models.dart';
 
 abstract class Repository {
   //-------------CMS
@@ -24,6 +10,7 @@ abstract class Repository {
   Future<Result<AboutResponse, FailureModel>> getAbout();
 
   Future<Result<NewsResponse, FailureModel>> getNews();
+
   Future<Result<NewsByIdResponse, FailureModel>> getNewsById({required int id});
 
   Future<Result<LawsResponse, FailureModel>> getLaws({required int limit});
@@ -64,6 +51,7 @@ abstract class Repository {
 
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedSpace(
       RequestMeanValue requestMeanValue);
+
   Future<Result<List<BaseRentResponse>, FailureModel>> meanRentAmount(
       RequestMeanValue requestMeanValue);
 
@@ -111,14 +99,19 @@ abstract class Repository {
 
   Future<Result<List<BaseRentResponse>, FailureModel>> sellContractCount(
       RequestSellValues requestSellValues);
+
   Future<Result<List<BaseRentResponse>, FailureModel>> avgPricePerUnit(
       RequestSellValues requestSellValues);
+
   Future<Result<List<BaseRentResponse>, FailureModel>> transactionsValue(
       RequestSellValues requestSellValues);
+
   Future<Result<List<BaseRentResponse>, FailureModel>> soldAreas(
       RequestSellValues requestSellValues);
+
   Future<Result<List<BaseRentResponse>, FailureModel>> realStateNumber(
       RequestSellValues requestSellValues);
+
   Future<Result<List<BaseRentResponse>, FailureModel>>
       averagePricePerSquareFoot(RequestSellValues requestSellValues);
 
@@ -146,8 +139,10 @@ abstract class Repository {
 
   //Auth
   Future<Result<AuthResponse, FailureResponse>> login(RequestAuth requestAuth);
+
   Future<Result<AuthResponse, FailureResponse>> refreshToken(
       RefreshToken refreshToken);
+
   //Profile
   Future<Result<UserResponse, FailureModel>> getUserInfo();
 
