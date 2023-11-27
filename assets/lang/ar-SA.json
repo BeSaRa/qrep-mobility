@@ -78,6 +78,8 @@
   "to":"إلى",
   "max_value":"أكبر قيمة",
   "min_value":"أصغر قيمة",
+  "min_value_validate":"أصغر من قيمة {}",
+  "max_value_validate":"أكبر من قيمة {}",
   "----------------------------------------------------RENT--------------------------": "",
   "average_price_per_month": "متوسط السعر لكل شهر",
   "average_rental_price_per_unit_property": "متوسط قيمة الإيجار لكل وحدة \\ عقار",

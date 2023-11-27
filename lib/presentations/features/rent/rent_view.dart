@@ -39,7 +39,6 @@ class RentView extends StatefulWidget {
 
 class _RentViewState extends State<RentView> {
   late RentGridKPIsBloc rentGridKPIsBloc;
-
   late RentSummeryBloc rentSummeryBloc;
   late RentDefaultBloc rentDefaultBloc;
   late CertificateContractBloc certificateContractBloc;
