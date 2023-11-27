@@ -330,10 +330,11 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                                 context: context,
                                 builder: (BuildContext ctxt) =>
                                     DialogDisabledFiltersWarning(
-                                      message:
-                                          """${AppStrings().zone}: ${AppStrings().valuesOtherThanAll}
-${AppStrings().propertyType}: ${AppStrings().singleValueOtherThanAll}
-${AppStrings().propertyUsage}: ${AppStrings().singleValueOtherThanAll}""",
+                                      messages: [
+                                        '• ${AppStrings().zone}: ${AppStrings().valuesOtherThanAll}',
+                                        '• ${AppStrings().propertyType}: ${AppStrings().singleValueOtherThanAll}',
+                                        '• ${AppStrings().propertyUsage}: ${AppStrings().singleValueOtherThanAll}',
+                                      ],
                                     ));
                           },
                           icon: Icon(Icons.info_outline_rounded,
