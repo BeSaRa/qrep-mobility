@@ -19,6 +19,7 @@ class EndPoints {
   static const String contractValue = '/kpi/rent/kpi7/contract-value';
   static const String meanValue = '/kpi/rent/kpi13/mean-value';
   static const String meanArea = '/kpi/rent/kpi16/mean-area';
+
   // اجمالي المساحات المستأجرة
   static const String totalRentedSpace = '/kpi/rent/kpi10/total-areas';
 
@@ -78,6 +79,7 @@ class EndPoints {
 
   // متوسط سعر البيع (بالمتر/ القدم المربع)
   static const String meanSoldArea = '/kpi/sell/kpi16/mean-area';
+
   //---------------------------------------------mortgage-----------------------
   //look up
   static const String mortgageLookUp = '/kpi/mortgage/lookup';
@@ -106,4 +108,7 @@ class EndPoints {
   //Main menu
   static const String mainMenu =
       '/flows/trigger/F0D286AC-588E-4863-B6A1-6230EB88F710';
+
+  //broker
+  static const String brokerLookUp = "/kpi/broker/lookup";
 }

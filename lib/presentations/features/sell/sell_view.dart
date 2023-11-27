@@ -9,7 +9,6 @@ import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_
 import 'package:ebla/presentations/features/sell/blocs/sell_transaction/sell_transaction_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/top_values_bloc/topvalues_bloc.dart';
 import 'package:ebla/presentations/resources/resources.dart';
-import 'package:ebla/presentations/widgets/grid/grid_item_widget.dart';
 import 'package:ebla/presentations/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,15 +16,10 @@ import 'package:lottie/lottie.dart';
 
 import '../../../domain/models/cms_models/main_menu_models/main_menu_models.dart';
 import '../../../utils/global_functions.dart';
-import '../../widgets/filters_applied_widget.dart';
-import '../../widgets/message_note_widget.dart';
-import '../../widgets/pagination_widget/pagination_widget.dart';
-import '../../widgets/selected_municipality_widget.dart';
 import '../../widgets/selected_year_widget.dart';
 import '../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../main/blocs/main_menu_bloc/main_menu_bloc.dart';
 import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
-import '../rent/rent_view.dart';
 import 'blocs/sell_bloc/sell_bloc.dart';
 import 'widgets/bottom_sheet_filter_sell.dart';
 import 'widgets/statistics_top_sell.dart';

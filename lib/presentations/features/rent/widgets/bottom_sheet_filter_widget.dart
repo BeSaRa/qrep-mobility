@@ -518,7 +518,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(
-                        Icons.replay_outlined,
+                        Icons.restart_alt,
                         color: ColorManager.golden,
                         size: AppSizeSp.s15,
                       ),

@@ -1,9 +1,9 @@
 {
   "-----------------------------Shared-----------------------------------------------": "",
-  "filter_values_should_be_as_follows":"Filter values should be as follows",
-  "value_other_than_all":"Any value other than (all)",
-  "single_value_other_than_all":"(Single) value other than (all)",
-  "----------------------------------------------------------------------------------": "", 
+  "filter_values_should_be_as_follows": "Filter values should be as follows",
+  "value_other_than_all": "Any value other than (all)",
+  "single_value_other_than_all": "(Single) value other than (all)",
+  "----------------------------------------------------------------------------------": "",
   "activate_face_id": "Activate face id",
   "cancel": "Cancel",
   "confirm": "Confirm",
@@ -141,5 +141,8 @@
   "paginator_next_page_label": "Next page",
   "paginator_of_label": "of",
   "paginator_page_label": "Page",
-  "paginator_previous_page_label": "Previous page"
+  "paginator_previous_page_label": "Previous page",
+  "------------------------------real estate brokers -------------": "",
+  "total_certified_real_estate": "Total number of licensed brokers",
+  "real_estate_broker_dashboard": "Real estate brokers dashboard"
 }

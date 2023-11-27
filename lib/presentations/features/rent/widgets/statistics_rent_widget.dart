@@ -154,10 +154,10 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext ctxt) =>
-                                        DialogDisabledFiltersWarning(
-                                          message:
-                                              "${AppStrings().propertyType}: ${AppStrings().singleValueOtherThanAll}\n${AppStrings().propertyUsage}: ${AppStrings().singleValueOtherThanAll}",
-                                        ));
+                                        DialogDisabledFiltersWarning(messages: [
+                                          '• ${AppStrings().propertyType}: ${AppStrings().singleValueOtherThanAll}',
+                                          '• ${AppStrings().propertyUsage}: ${AppStrings().singleValueOtherThanAll}'
+                                        ]));
                               } else {
                                 tenIndexCubit.save(3);
                                 context.read<CertificateContractBloc>().add(

@@ -500,16 +500,15 @@ class _BottomSheetFilterMortgageWidgetState
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(
-                        Icons.replay_outlined,
+                        Icons.restart_alt,
                         color: ColorManager.golden,
                         size: AppSizeSp.s15,
                       ),
                       Text(
                         AppStrings().reset,
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelSmall!
-                            .copyWith(color: ColorManager.golden),
+                        style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                              color: ColorManager.golden,
+                            ),
                       ),
                     ],
                   ),
