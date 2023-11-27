@@ -295,51 +295,84 @@ class _GridItemWidgetState extends State<GridItemWidget> {
             bloc: context.read<ChangeStatusCubit>(),
             builder: (context, state) {
               return isDisabled()
-                  ? Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                  ? Stack(
                       children: [
-                        SizedBox(height: AppSizeH.s15),
-                        Flexible(
-                          flex: 1,
-                          child: Padding(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: AppSizeW.s20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    getTitle(),
-                                    textAlign: TextAlign.center,
-                                    overflow: TextOverflow.visible,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
-                                        ?.copyWith(fontSize: AppSizeSp.s14),
-                                  ),
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(height: AppSizeH.s15),
+                            Flexible(
+                              flex: 1,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: AppSizeW.s20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        getTitle(),
+                                        textAlign: TextAlign.center,
+                                        overflow: TextOverflow.visible,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium
+                                            ?.copyWith(fontSize: AppSizeSp.s14),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
+                            IconButton(
+                              onPressed: () async {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext ctxt) =>
+                                        DialogDisabledFiltersWarning(
+                                          messages: [
+                                            '• ${AppStrings().zone}: ${AppStrings().valuesOtherThanAll}',
+                                            '• ${AppStrings().propertyType}: ${AppStrings().singleValueOtherThanAll}',
+                                            '• ${AppStrings().propertyUsage}: ${AppStrings().singleValueOtherThanAll}',
+                                          ],
+                                        ));
+                              },
+                              icon: Icon(Icons.info_outline_rounded,
+                                  size: AppSizeSp.s30),
+                            ),
+                          ],
                         ),
-                        IconButton(
-                          onPressed: () async {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext ctxt) =>
-                                    DialogDisabledFiltersWarning(
-                                      messages: [
-                                        '• ${AppStrings().zone}: ${AppStrings().valuesOtherThanAll}',
-                                        '• ${AppStrings().propertyType}: ${AppStrings().singleValueOtherThanAll}',
-                                        '• ${AppStrings().propertyUsage}: ${AppStrings().singleValueOtherThanAll}',
-                                      ],
-                                    ));
-                          },
-                          icon: Icon(Icons.info_outline_rounded,
-                              size: AppSizeSp.s30),
-                        )
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            SizedBox(height: AppSizeH.s94),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.only(
+                                    start: AppSizeW.s12),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    AspectRatio(
+                                      aspectRatio: 1,
+                                      child: SvgPicture.asset(
+                                        getImagePath(),
+                                        width: AppSizeW.s56,
+                                        color: ColorManager.primary
+                                            .withOpacity(0.6),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     )
                   : Stack(
