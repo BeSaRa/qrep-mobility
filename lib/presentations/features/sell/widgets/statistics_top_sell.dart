@@ -148,10 +148,10 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext ctxt) =>
-                                        DialogDisabledFiltersWarning(
-                                          message:
-                                              "${AppStrings().propertyType}: ${AppStrings().singleValueOtherThanAll}\n${AppStrings().propertyUsage}: ${AppStrings().singleValueOtherThanAll}",
-                                        ));
+                                        DialogDisabledFiltersWarning(messages: [
+                                          '• ${AppStrings().propertyType}: ${AppStrings().singleValueOtherThanAll}',
+                                          '• ${AppStrings().propertyUsage}: ${AppStrings().singleValueOtherThanAll}',
+                                        ]));
                               } else {
                                 tenIndexCubit.save(2);
                                 context.read<TopvaluesBloc>().add(
@@ -205,10 +205,10 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext ctxt) =>
-                                        DialogDisabledFiltersWarning(
-                                          message:
-                                              "${AppStrings().propertyType}: ${AppStrings().singleValueOtherThanAll}\n${AppStrings().propertyUsage}: ${AppStrings().singleValueOtherThanAll}",
-                                        ));
+                                        DialogDisabledFiltersWarning(messages: [
+                                          '• ${AppStrings().propertyType}: ${AppStrings().singleValueOtherThanAll}',
+                                          '• ${AppStrings().propertyUsage}: ${AppStrings().singleValueOtherThanAll}',
+                                        ]));
                               } else {
                                 tenIndexCubit.save(6);
                                 context.read<TopvaluesBloc>().add(
