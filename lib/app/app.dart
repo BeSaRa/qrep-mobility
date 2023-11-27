@@ -1,14 +1,13 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/main/blocs/main_menu_bloc/main_menu_bloc.dart';
+import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../presentations/features/main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../presentations/features/more/blocs/user_bloc/user_bloc.dart';
-import '../presentations/resources/routes_manager.dart';
-import '../presentations/resources/theme_manager.dart';
 import 'app_preferences.dart';
 import 'depndency_injection.dart';
 

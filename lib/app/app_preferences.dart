@@ -20,8 +20,8 @@ class AppPreferences {
       'PREFS_KEY_LOCALIZATIONS_LAST_UPDATE';
 
   Future<String> getAppLanguage() async {
-    String? language = _sharedPreferences.getString(PREFS_KEY_LANG);
-    if (language != null && language.isNotEmpty) {
+    String? language = _sharedPreferences.getString(PREFS_KEY_LANG) ??'';
+    if (language.isNotEmpty) {
       return language;
     } else {
       return LanguageType.ARABIC.getValue();

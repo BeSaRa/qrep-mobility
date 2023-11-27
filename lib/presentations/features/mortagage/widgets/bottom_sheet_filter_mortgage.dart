@@ -16,7 +16,6 @@ import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../../rent/blocs/cubits/cubit/validator_cubit.dart';
 import '../../rent/blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
 import '../../rent/widgets/choose_unit_filters_widget.dart';
-import '../../rent/widgets/slider_filter_widget.dart';
 
 class BottomSheetFilterMortgageWidget extends StatefulWidget {
   const BottomSheetFilterMortgageWidget({super.key});

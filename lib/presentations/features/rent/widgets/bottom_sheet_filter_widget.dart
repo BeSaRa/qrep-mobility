@@ -20,7 +20,6 @@ import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
 import '../blocs/rent_bloc/rent_bloc.dart';
 import 'choose_unit_filters_widget.dart';
-import 'slider_filter_widget.dart';
 
 // enum PeriodTime { year, halfYear, quarterYear, monthly, specificPeriod }
 

@@ -120,8 +120,8 @@ class TranslationsAssetsLoader extends AssetLoader {
   /// Returns `true` if the app is newly installed or if the last update is before [_updateInterval],
   /// indicating the need for an update; otherwise, returns `false`.
   Future<bool> shouldUpdate() async {
-    DateTime? lastUpdate = await appPreferences.getLocalizationsLastUpdate();
-    return lastUpdate == null || lastUpdate.isBefore(_updateInterval);
+    DateTime? lastUpdate = await appPreferences.getLocalizationsLastUpdate()?? DateTime.now();
+    return lastUpdate.isBefore(_updateInterval);
   }
 
   //--------------------------------------------------------
