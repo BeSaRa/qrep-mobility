@@ -48,6 +48,9 @@ class _RentViewState extends State<RentView> {
   @override
   void initState() {
     context.read<LookupBloc>().add(const LookupEvent.getRentLookupEvent());
+    context.read<MainMenuBloc>().mainMenu != MainMenuResponse()
+        ? null
+        : context.read<MainMenuBloc>().add(const MainMenuEvent.getMainMenu());
     rentDefaultBloc = instance<RentDefaultBloc>()
       ..add(RentDefaultEvent.started(
           request: context.read<RentBloc>().requestDefault));
