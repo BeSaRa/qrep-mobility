@@ -37,6 +37,9 @@ class _MortagageViewState extends State<MortgageView> {
   @override
   void initState() {
     context.read<LookupBloc>().add(const LookupEvent.getMortgageLookupEvent());
+    context.read<MainMenuBloc>().mainMenu != MainMenuResponse()
+        ? null
+        : context.read<MainMenuBloc>().add(const MainMenuEvent.getMainMenu());
     mortgageTransactionsBloc = instance<MortgageTransactionsBloc>();
     mortgageGridKPIsBloc = instance<MortgageGridKPIsBloc>();
     changeStatusCubit = ChangeStatusCubit();

@@ -41,6 +41,9 @@ class _SalesViewState extends State<SalesView> {
   @override
   void initState() {
     context.read<LookupBloc>().add(const LookupEvent.getSellLookupEvent());
+    context.read<MainMenuBloc>().mainMenu != MainMenuResponse()
+        ? null
+        : context.read<MainMenuBloc>().add(const MainMenuEvent.getMainMenu());
     // sellGridKPIsBloc = instance<SellGridKPIsBloc>();
     sellGridKPIsBloc = instance<SellGridKPIsBloc>();
     sellDefaultBloc = instance<SellDefaultBloc>()
