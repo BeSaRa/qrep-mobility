@@ -1,14 +1,12 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:dio/dio.dart';
-import 'package:ebla/data/newtwok/app_api.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../app/app_preferences.dart';
 import '../../app/constants.dart';
 import '../../app/depndency_injection.dart';
-import '../../domain/models/Auth/requests_auth/request_auth.dart';
 import 'general_dio_interceptor.dart';
 
 const String APPLICATION_JSON = 'application/json';
@@ -20,6 +18,7 @@ const String DEFAULT_LANGUAGE = 'lang';
 
 class DioFactory {
   final AppPreferences _appPreferences;
+
   DioFactory(this._appPreferences);
 
   Future<Dio> getDio() async {
@@ -71,24 +70,24 @@ class DioFactory {
     return dio;
   }
 
-  // Future<String> refreshToken() async {
-  //   try {
-  //     final refreshToken = _appPreferences.getUserRefreshToken();
-  //     final response = await instance<TranslationsServiceClient>().refreshToken(
-  //         RefreshToken(refresh_token: refreshToken, mode: "json"));
-  //     if (response.response.statusCode == 200) {
-  //       var token = response.data.data.token;
-  //       var refreshToken = response.data.data.refreshToken;
-  //       await _appPreferences.setUserToken(token);
-  //       await _appPreferences.setUserRefreshToken(refreshToken);
-  //       return token;
-  //     } else {
-  //       await _appPreferences.setUserRefreshToken("");
-  //       return Constant.guestToken;
-  //     }
-  //   } catch (e) {
-  //     print(e.toString());
-  //     return "";
-  //   }
-  // }
+// Future<String> refreshToken() async {
+//   try {
+//     final refreshToken = _appPreferences.getUserRefreshToken();
+//     final response = await instance<TranslationsServiceClient>().refreshToken(
+//         RefreshToken(refresh_token: refreshToken, mode: "json"));
+//     if (response.response.statusCode == 200) {
+//       var token = response.data.data.token;
+//       var refreshToken = response.data.data.refreshToken;
+//       await _appPreferences.setUserToken(token);
+//       await _appPreferences.setUserRefreshToken(refreshToken);
+//       return token;
+//     } else {
+//       await _appPreferences.setUserRefreshToken("");
+//       return Constant.guestToken;
+//     }
+//   } catch (e) {
+//     print(e.toString());
+//     return "";
+//   }
+// }
 }

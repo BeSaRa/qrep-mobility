@@ -41,9 +41,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           create: (context) => instance<LookupBloc>(),
         ),
         BlocProvider(
-          create: (context) =>
-              instance<MainMenuBloc>()..add(const MainMenuEvent.getMainMenu()),
-          lazy: false,
+          create: (context) => instance<MainMenuBloc>(),
+          lazy: true,
         ),
         BlocProvider(
           create: (context) =>

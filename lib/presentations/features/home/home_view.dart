@@ -111,8 +111,8 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                // context
-                                //     .pushNamed(RoutesNames.realEstateBrokers);
+                                context
+                                    .pushNamed(RoutesNames.realEstateBrokers);
                               },
                               child: HomeContainer(
                                 isBig: true,

@@ -7,17 +7,12 @@ import 'package:ebla/presentations/features/auth/views/login_view.dart';
 import 'package:ebla/presentations/features/more/blocs/cubits/change_language_cubit.dart';
 import 'package:ebla/presentations/features/more/blocs/user_bloc/user_bloc.dart';
 import 'package:ebla/presentations/features/more/widgets/more_view_shimmer.dart';
-import 'package:ebla/presentations/resources/assets_manager.dart';
-import 'package:ebla/presentations/resources/color_manager.dart';
-import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
-import '../../resources/strings_manager.dart';
-import '../../resources/theme_manager.dart';
-import '../../resources/values_manager.dart';
+import '../../resources/resources.dart';
 import '../../widgets/widgets.dart';
 import '../auth/blocs/login_bloc/login_bloc.dart';
 import '../main/blocs/lookup_bloc/lookup_bloc.dart';

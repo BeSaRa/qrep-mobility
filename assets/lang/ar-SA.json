@@ -1,5 +1,4 @@
 {
-
   "-----------------------------Shared-----------------------------------------------": "",
   "filter_values_should_be_as_follows":"يجب تعديل قيم بعض المحددات\n لعرض البيانات",
   "value_other_than_all":"أي قيمة لا تساوي (الكل)",
@@ -14,8 +13,8 @@
   "forget_password": "هل نسيت كلمة المرور؟",
   "home": "الرئيسية",
   "identifier": "اسم المستخدم",
-  "email": "البريد الألكتروني",
-  "validator_email_empty": "البريد الألكتروني مطلوب",
+  "email": "البريد الإلكتروني",
+  "validator_email_empty": "البريد الإلكتروني مطلوب",
   "validator_email_format": "الرجاء ادخال بريد إلكتروني صالح",
   "language": "اللغة",
   "light": "نهاري",
@@ -133,7 +132,6 @@
   "total_mortgage_transactions": "عدد معاملات الرهن",
   "total_value_of_mortgage_transactions": "إجمالي قيمة معاملات الرهن",
   "no_mortgage_found": "لايوجد معاملات رهن",
-
   "----------------------------------------------------OWNERSHIP--------------------------": "",
   "----------------------------------------------Pagination-------------------------------:": "",
   "paginator_first_page_label": "الصفحة الاولى",
@@ -141,5 +139,8 @@
   "paginator_next_page_label": "الصفحة التالية",
   "paginator_of_label": "من",
   "paginator_page_label": "الصفحة",
-  "paginator_previous_page_label": "الصفحة السابقة"
+  "paginator_previous_page_label": "الصفحة السابقة",
+  "------------------------------real estate brokers -------------": "",
+  "total_certified_real_estate": "إجمالي عدد الوسطاء المرخصين",
+  "real_estate_broker_dashboard": "لوحة الوسطاء العقاريين"
 }

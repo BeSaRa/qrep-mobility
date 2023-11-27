@@ -9,6 +9,7 @@ part 'auth_models.g.dart';
 abstract class AuthResponse with _$AuthResponse {
   const factory AuthResponse({@Default(AuthModel()) AuthModel data}) =
       _AuthResponse;
+
   factory AuthResponse.fromJson(Map<String, dynamic> json) =>
       _$AuthResponseFromJson(json);
 }
@@ -20,6 +21,7 @@ abstract class AuthModel with _$AuthModel {
     @Default("") @JsonKey(name: "refresh_token") String refreshToken,
     @Default(0) int expires,
   }) = _AuthModel;
+
   factory AuthModel.fromJson(Map<String, dynamic> json) =>
       _$AuthModelFromJson(json);
 }
