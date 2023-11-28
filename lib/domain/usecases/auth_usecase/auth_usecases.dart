@@ -3,6 +3,8 @@ import 'package:ebla/domain/repository/repository.dart';
 import 'package:ebla/domain/usecases/usecases.dart';
 import 'package:multiple_result/multiple_result.dart';
 
+import '../../models/Auth/auth_models.dart';
+import '../../models/Auth/requests_auth/request_auth.dart';
 import '../../models/models.dart';
 
 class LoginUsecases

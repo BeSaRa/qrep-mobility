@@ -24,6 +24,7 @@ import '../features/info/views/laws_decisions_view.dart';
 import '../features/info/views/news/news_item_view.dart';
 import '../features/info/views/news/news_view.dart';
 import '../features/main/cubit/bottom_nav_cubit.dart';
+import '../features/real_estate_brokers/blocs/lookup_bloc/look_up_broker_bloc.dart';
 import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
 import '../features/sell/blocs/sell_bloc/sell_bloc.dart';
 
@@ -389,7 +390,11 @@ class AppRouter {
           path: RoutesPaths.realEstateBrokers,
           builder: (context, state) {
             initRealEstateBroker();
-            return const REalEstateBrokersView();
+            return BlocProvider(
+              create: (context) => instance<LookUpBrokerBloc>()
+                ..add(const LookUpBrokerEvent.getBrokerLookup()),
+              child: const RealEstateBrokersView(),
+            );
           },
         ),
         GoRoute(

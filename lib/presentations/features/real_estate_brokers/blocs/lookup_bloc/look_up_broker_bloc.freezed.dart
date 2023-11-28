@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LookUpBrokerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() getBrokerLookup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function()? getBrokerLookup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? getBrokerLookup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_GetBrokerLookup value) getBrokerLookup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_GetBrokerLookup value)? getBrokerLookup,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_GetBrokerLookup value)? getBrokerLookup,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,35 +69,35 @@ class _$LookUpBrokerEventCopyWithImpl<$Res, $Val extends LookUpBrokerEvent>
 }
 
 /// @nodoc
-abstract class _$$StartedImplCopyWith<$Res> {
-  factory _$$StartedImplCopyWith(
-          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
-      __$$StartedImplCopyWithImpl<$Res>;
+abstract class _$$GetBrokerLookupImplCopyWith<$Res> {
+  factory _$$GetBrokerLookupImplCopyWith(_$GetBrokerLookupImpl value,
+          $Res Function(_$GetBrokerLookupImpl) then) =
+      __$$GetBrokerLookupImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$StartedImplCopyWithImpl<$Res>
-    extends _$LookUpBrokerEventCopyWithImpl<$Res, _$StartedImpl>
-    implements _$$StartedImplCopyWith<$Res> {
-  __$$StartedImplCopyWithImpl(
-      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
+class __$$GetBrokerLookupImplCopyWithImpl<$Res>
+    extends _$LookUpBrokerEventCopyWithImpl<$Res, _$GetBrokerLookupImpl>
+    implements _$$GetBrokerLookupImplCopyWith<$Res> {
+  __$$GetBrokerLookupImplCopyWithImpl(
+      _$GetBrokerLookupImpl _value, $Res Function(_$GetBrokerLookupImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$StartedImpl implements _Started {
-  const _$StartedImpl();
+class _$GetBrokerLookupImpl implements _GetBrokerLookup {
+  const _$GetBrokerLookupImpl();
 
   @override
   String toString() {
-    return 'LookUpBrokerEvent.started()';
+    return 'LookUpBrokerEvent.getBrokerLookup()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StartedImpl);
+        (other.runtimeType == runtimeType && other is _$GetBrokerLookupImpl);
   }
 
   @override
@@ -106,27 +106,27 @@ class _$StartedImpl implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() getBrokerLookup,
   }) {
-    return started();
+    return getBrokerLookup();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function()? getBrokerLookup,
   }) {
-    return started?.call();
+    return getBrokerLookup?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? getBrokerLookup,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (getBrokerLookup != null) {
+      return getBrokerLookup();
     }
     return orElse();
   }
@@ -134,66 +134,62 @@ class _$StartedImpl implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_GetBrokerLookup value) getBrokerLookup,
   }) {
-    return started(this);
+    return getBrokerLookup(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_GetBrokerLookup value)? getBrokerLookup,
   }) {
-    return started?.call(this);
+    return getBrokerLookup?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_GetBrokerLookup value)? getBrokerLookup,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (getBrokerLookup != null) {
+      return getBrokerLookup(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements LookUpBrokerEvent {
-  const factory _Started() = _$StartedImpl;
+abstract class _GetBrokerLookup implements LookUpBrokerEvent {
+  const factory _GetBrokerLookup() = _$GetBrokerLookupImpl;
 }
 
 /// @nodoc
 mixin _$LookUpBrokerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() done,
-    required TResult Function() error,
+    required TResult Function(RealEstateBrokerLookUp success) done,
+    required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? done,
-    TResult? Function()? error,
+    TResult? Function(RealEstateBrokerLookUp success)? done,
+    TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? done,
-    TResult Function()? error,
+    TResult Function(RealEstateBrokerLookUp success)? done,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Done value) done,
     required TResult Function(_Error value) error,
@@ -201,7 +197,6 @@ mixin _$LookUpBrokerState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Done value)? done,
     TResult? Function(_Error value)? error,
@@ -209,7 +204,6 @@ mixin _$LookUpBrokerState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Done value)? done,
     TResult Function(_Error value)? error,
@@ -234,120 +228,6 @@ class _$LookUpBrokerStateCopyWithImpl<$Res, $Val extends LookUpBrokerState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$LookUpBrokerStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString() {
-    return 'LookUpBrokerState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() done,
-    required TResult Function() error,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? done,
-    TResult? Function()? error,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? done,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Done value) done,
-    required TResult Function(_Error value) error,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Done value)? done,
-    TResult? Function(_Error value)? error,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Done value)? done,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements LookUpBrokerState {
-  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
@@ -388,10 +268,9 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() done,
-    required TResult Function() error,
+    required TResult Function(RealEstateBrokerLookUp success) done,
+    required TResult Function(String message) error,
   }) {
     return loading();
   }
@@ -399,10 +278,9 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? done,
-    TResult? Function()? error,
+    TResult? Function(RealEstateBrokerLookUp success)? done,
+    TResult? Function(String message)? error,
   }) {
     return loading?.call();
   }
@@ -410,10 +288,9 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? done,
-    TResult Function()? error,
+    TResult Function(RealEstateBrokerLookUp success)? done,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -425,7 +302,6 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Done value) done,
     required TResult Function(_Error value) error,
@@ -436,7 +312,6 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Done value)? done,
     TResult? Function(_Error value)? error,
@@ -447,7 +322,6 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Done value)? done,
     TResult Function(_Error value)? error,
@@ -469,6 +343,8 @@ abstract class _$$DoneImplCopyWith<$Res> {
   factory _$$DoneImplCopyWith(
           _$DoneImpl value, $Res Function(_$DoneImpl) then) =
       __$$DoneImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({RealEstateBrokerLookUp success});
 }
 
 /// @nodoc
@@ -477,60 +353,82 @@ class __$$DoneImplCopyWithImpl<$Res>
     implements _$$DoneImplCopyWith<$Res> {
   __$$DoneImplCopyWithImpl(_$DoneImpl _value, $Res Function(_$DoneImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? success = freezed,
+  }) {
+    return _then(_$DoneImpl(
+      success: freezed == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as RealEstateBrokerLookUp,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$DoneImpl implements _Done {
-  const _$DoneImpl();
+  const _$DoneImpl({required this.success});
+
+  @override
+  final RealEstateBrokerLookUp success;
 
   @override
   String toString() {
-    return 'LookUpBrokerState.done()';
+    return 'LookUpBrokerState.done(success: $success)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$DoneImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$DoneImpl &&
+            const DeepCollectionEquality().equals(other.success, success));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(success));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DoneImplCopyWith<_$DoneImpl> get copyWith =>
+      __$$DoneImplCopyWithImpl<_$DoneImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() done,
-    required TResult Function() error,
+    required TResult Function(RealEstateBrokerLookUp success) done,
+    required TResult Function(String message) error,
   }) {
-    return done();
+    return done(success);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? done,
-    TResult? Function()? error,
+    TResult? Function(RealEstateBrokerLookUp success)? done,
+    TResult? Function(String message)? error,
   }) {
-    return done?.call();
+    return done?.call(success);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? done,
-    TResult Function()? error,
+    TResult Function(RealEstateBrokerLookUp success)? done,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (done != null) {
-      return done();
+      return done(success);
     }
     return orElse();
   }
@@ -538,7 +436,6 @@ class _$DoneImpl implements _Done {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Done value) done,
     required TResult Function(_Error value) error,
@@ -549,7 +446,6 @@ class _$DoneImpl implements _Done {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Done value)? done,
     TResult? Function(_Error value)? error,
@@ -560,7 +456,6 @@ class _$DoneImpl implements _Done {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Done value)? done,
     TResult Function(_Error value)? error,
@@ -574,7 +469,13 @@ class _$DoneImpl implements _Done {
 }
 
 abstract class _Done implements LookUpBrokerState {
-  const factory _Done() = _$DoneImpl;
+  const factory _Done({required final RealEstateBrokerLookUp success}) =
+      _$DoneImpl;
+
+  RealEstateBrokerLookUp get success;
+  @JsonKey(ignore: true)
+  _$$DoneImplCopyWith<_$DoneImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -582,6 +483,8 @@ abstract class _$$ErrorImplCopyWith<$Res> {
   factory _$$ErrorImplCopyWith(
           _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
       __$$ErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -591,60 +494,81 @@ class __$$ErrorImplCopyWithImpl<$Res>
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$ErrorImpl(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ErrorImpl implements _Error {
-  const _$ErrorImpl();
+  const _$ErrorImpl({required this.message});
+
+  @override
+  final String message;
 
   @override
   String toString() {
-    return 'LookUpBrokerState.error()';
+    return 'LookUpBrokerState.error(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ErrorImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorImpl &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() done,
-    required TResult Function() error,
+    required TResult Function(RealEstateBrokerLookUp success) done,
+    required TResult Function(String message) error,
   }) {
-    return error();
+    return error(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? done,
-    TResult? Function()? error,
+    TResult? Function(RealEstateBrokerLookUp success)? done,
+    TResult? Function(String message)? error,
   }) {
-    return error?.call();
+    return error?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? done,
-    TResult Function()? error,
+    TResult Function(RealEstateBrokerLookUp success)? done,
+    TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(message);
     }
     return orElse();
   }
@@ -652,7 +576,6 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Done value) done,
     required TResult Function(_Error value) error,
@@ -663,7 +586,6 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Done value)? done,
     TResult? Function(_Error value)? error,
@@ -674,7 +596,6 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Done value)? done,
     TResult Function(_Error value)? error,
@@ -688,5 +609,10 @@ class _$ErrorImpl implements _Error {
 }
 
 abstract class _Error implements LookUpBrokerState {
-  const factory _Error() = _$ErrorImpl;
+  const factory _Error({required final String message}) = _$ErrorImpl;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
