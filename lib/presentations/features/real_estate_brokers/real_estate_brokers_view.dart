@@ -1,11 +1,12 @@
 import 'package:ebla/presentations/features/real_estate_brokers/blocs/lookup_bloc/look_up_broker_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
-import '../../widgets/selected_municipality_widget.dart';
 import '../../widgets/widgets.dart';
 import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
 import 'widgets/bottom_sheet_filter_broker_widget.dart';
@@ -19,6 +20,7 @@ class RealEstateBrokersView extends StatefulWidget {
 
 class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
   late ChangeStatusCubit changeStatusCubit;
+
   @override
   void initState() {
     super.initState();
@@ -288,6 +290,25 @@ class RealEstateCard extends StatelessWidget {
     required this.email,
     this.divider = true,
   });
+
+  _callNumber() async {
+    const number = '08592119XXXX'; //set the number here
+    bool? res = await FlutterPhoneDirectCaller.callNumber(number);
+  }
+
+  _sendEmail() async {
+    final Email email = Email(
+      body: 'Email body',
+      subject: 'Email subject',
+      recipients: ['example@example.com'],
+      cc: ['cc@example.com'],
+      bcc: ['bcc@example.com'],
+      attachmentPaths: ['/path/to/attachment.zip'],
+      isHTML: false,
+    );
+
+    await FlutterEmailSender.send(email);
+  }
 
   @override
   Widget build(BuildContext context) {

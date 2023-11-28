@@ -50,3 +50,63 @@ Map<String, dynamic> _$$RealEstateBrokerLookUpImplToJson(
       'brokerCategoryList': instance.brokerCategoryList,
       'brokerTypeList': instance.brokerTypeList,
     };
+
+_$RealEstateBrokerTransactionDataImpl
+    _$$RealEstateBrokerTransactionDataImplFromJson(Map<String, dynamic> json) =>
+        _$RealEstateBrokerTransactionDataImpl(
+          brokerArDescription: json['brokerArDescription'] as String? ?? '',
+          brokerArName: json['brokerArName'] as String? ?? '',
+          brokerCategoryId: json['brokerCategoryId'] as int? ?? 0,
+          brokerEmail: json['brokerEmail'] as String? ?? '',
+          brokerEnDescription: json['brokerEnDescription'] as String? ?? '',
+          brokerEnName: json['brokerEnName'] as String? ?? '',
+          brokerIcon: json['brokerIcon'] as String? ?? '',
+          brokerPhone1: json['brokerPhone1'] as String? ?? '',
+          brokerPhone2: json['brokerPhone2'] as String? ?? '',
+          brokerPhone3: json['brokerPhone3'] as String? ?? '',
+          brokerTypeId: json['brokerTypeId'] as int? ?? 0,
+          brokerlicenseNumber: json['brokerlicenseNumber'] as String? ?? '',
+          isActive: json['isActive'] as bool? ?? true,
+          managerArName: json['managerArName'] as String? ?? '',
+          managerEnName: json['managerEnName'] as String? ?? '',
+          municipalityId: json['municipalityId'] as int? ?? 0,
+        );
+
+Map<String, dynamic> _$$RealEstateBrokerTransactionDataImplToJson(
+        _$RealEstateBrokerTransactionDataImpl instance) =>
+    <String, dynamic>{
+      'brokerArDescription': instance.brokerArDescription,
+      'brokerArName': instance.brokerArName,
+      'brokerCategoryId': instance.brokerCategoryId,
+      'brokerEmail': instance.brokerEmail,
+      'brokerEnDescription': instance.brokerEnDescription,
+      'brokerEnName': instance.brokerEnName,
+      'brokerIcon': instance.brokerIcon,
+      'brokerPhone1': instance.brokerPhone1,
+      'brokerPhone2': instance.brokerPhone2,
+      'brokerPhone3': instance.brokerPhone3,
+      'brokerTypeId': instance.brokerTypeId,
+      'brokerlicenseNumber': instance.brokerlicenseNumber,
+      'isActive': instance.isActive,
+      'managerArName': instance.managerArName,
+      'managerEnName': instance.managerEnName,
+      'municipalityId': instance.municipalityId,
+    };
+
+_$RealEstateBrokerTransactionsImpl _$$RealEstateBrokerTransactionsImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RealEstateBrokerTransactionsImpl(
+      count: json['count'] as int? ?? 0,
+      transactionList: (json['transactionList'] as List<dynamic>?)
+              ?.map((e) => RealEstateBrokerTransactionData.fromJson(
+                  e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$$RealEstateBrokerTransactionsImplToJson(
+        _$RealEstateBrokerTransactionsImpl instance) =>
+    <String, dynamic>{
+      'count': instance.count,
+      'transactionList': instance.transactionList,
+    };

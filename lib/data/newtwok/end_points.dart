@@ -111,4 +111,5 @@ class EndPoints {
 
   //broker
   static const String brokerLookUp = "/kpi/broker/lookup";
+  static const String brokerTransactions = "/kpi/broker/transactions";
 }

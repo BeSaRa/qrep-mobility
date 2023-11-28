@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/newtwok/end_points.dart';
+import 'package:ebla/domain/models/requests/broker_requests/request_broker_values.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../app/constants.dart';
@@ -176,6 +177,10 @@ abstract class AppServiceClient {
 
   @GET(EndPoints.brokerLookUp)
   Future<HttpResponse<RealEstateBrokerLookUp>> getBrokerLookUp();
+
+  @POST(EndPoints.brokerTransactions)
+  Future<HttpResponse<RealEstateBrokerTransactions>> getBrokerTransaction(
+      @Body() RequestBrokerValues requestBrokerValue);
 }
 
 //---------------------------------DirectUs-----------------------------------------

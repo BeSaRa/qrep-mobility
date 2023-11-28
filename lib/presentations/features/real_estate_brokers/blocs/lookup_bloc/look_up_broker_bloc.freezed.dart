@@ -345,6 +345,8 @@ abstract class _$$DoneImplCopyWith<$Res> {
       __$$DoneImplCopyWithImpl<$Res>;
   @useResult
   $Res call({RealEstateBrokerLookUp success});
+
+  $RealEstateBrokerLookUpCopyWith<$Res> get success;
 }
 
 /// @nodoc
@@ -357,14 +359,22 @@ class __$$DoneImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? success = freezed,
+    Object? success = null,
   }) {
     return _then(_$DoneImpl(
-      success: freezed == success
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as RealEstateBrokerLookUp,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RealEstateBrokerLookUpCopyWith<$Res> get success {
+    return $RealEstateBrokerLookUpCopyWith<$Res>(_value.success, (value) {
+      return _then(_value.copyWith(success: value));
+    });
   }
 }
 
@@ -386,12 +396,11 @@ class _$DoneImpl implements _Done {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DoneImpl &&
-            const DeepCollectionEquality().equals(other.success, success));
+            (identical(other.success, success) || other.success == success));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(success));
+  int get hashCode => Object.hash(runtimeType, success);
 
   @JsonKey(ignore: true)
   @override
