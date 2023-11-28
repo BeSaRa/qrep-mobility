@@ -21,36 +21,18 @@ RealEstateBrokerLookUp _$RealEstateBrokerLookUpFromJson(
 
 /// @nodoc
 mixin _$RealEstateBrokerLookUp {
-  List<BrokerLookUpModel> get ageCategoryList =>
+  List<RentLookupModel> get propertyTypeList =>
       throw _privateConstructorUsedError;
-  List<BrokerLookUpModel> get brokerCategoryList =>
+  List<RentLookupModel> get rentPurposeList =>
       throw _privateConstructorUsedError;
-  List<BrokerLookUpModel> get brokerTypeList =>
+  List<RentLookupModel> get zoneList => throw _privateConstructorUsedError;
+  List<RentLookupModel> get districtList => throw _privateConstructorUsedError;
+  List<RentLookupModel> get municipalityList =>
       throw _privateConstructorUsedError;
-  List<BrokerLookUpModel> get districtList =>
+  List<RentLookupModel> get brokerCategoryList =>
       throw _privateConstructorUsedError;
-  List<BrokerLookUpModel> get furnitureStatusList =>
+  List<RentLookupModel> get brokerTypeList =>
       throw _privateConstructorUsedError;
-  List<BrokerLookUpModel> get genderList => throw _privateConstructorUsedError;
-  List<BrokerLookUpModel> get maxParams => throw _privateConstructorUsedError;
-  List<BrokerLookUpModel> get municipalityList =>
-      throw _privateConstructorUsedError;
-  List<BrokerLookUpModel> get nationalityCategoryList =>
-      throw _privateConstructorUsedError;
-  List<BrokerLookUpModel> get nationalityList =>
-      throw _privateConstructorUsedError;
-  List<BrokerLookUpModel> get occupancyStatusList =>
-      throw _privateConstructorUsedError;
-  List<BrokerLookUpModel> get ownerCategoryList =>
-      throw _privateConstructorUsedError;
-  List<BrokerLookUpModel> get premiseCategoryList =>
-      throw _privateConstructorUsedError;
-  List<BrokerLookUpModel> get premiseTypeList =>
-      throw _privateConstructorUsedError;
-  List<BrokerLookUpModel> get propertyTypeList =>
-      throw _privateConstructorUsedError;
-  dynamic get rentPurposeList => throw _privateConstructorUsedError;
-  dynamic get zoneList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,23 +47,13 @@ abstract class $RealEstateBrokerLookUpCopyWith<$Res> {
       _$RealEstateBrokerLookUpCopyWithImpl<$Res, RealEstateBrokerLookUp>;
   @useResult
   $Res call(
-      {List<BrokerLookUpModel> ageCategoryList,
-      List<BrokerLookUpModel> brokerCategoryList,
-      List<BrokerLookUpModel> brokerTypeList,
-      List<BrokerLookUpModel> districtList,
-      List<BrokerLookUpModel> furnitureStatusList,
-      List<BrokerLookUpModel> genderList,
-      List<BrokerLookUpModel> maxParams,
-      List<BrokerLookUpModel> municipalityList,
-      List<BrokerLookUpModel> nationalityCategoryList,
-      List<BrokerLookUpModel> nationalityList,
-      List<BrokerLookUpModel> occupancyStatusList,
-      List<BrokerLookUpModel> ownerCategoryList,
-      List<BrokerLookUpModel> premiseCategoryList,
-      List<BrokerLookUpModel> premiseTypeList,
-      List<BrokerLookUpModel> propertyTypeList,
-      dynamic rentPurposeList,
-      dynamic zoneList});
+      {List<RentLookupModel> propertyTypeList,
+      List<RentLookupModel> rentPurposeList,
+      List<RentLookupModel> zoneList,
+      List<RentLookupModel> districtList,
+      List<RentLookupModel> municipalityList,
+      List<RentLookupModel> brokerCategoryList,
+      List<RentLookupModel> brokerTypeList});
 }
 
 /// @nodoc
@@ -98,93 +70,43 @@ class _$RealEstateBrokerLookUpCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? ageCategoryList = null,
+    Object? propertyTypeList = null,
+    Object? rentPurposeList = null,
+    Object? zoneList = null,
+    Object? districtList = null,
+    Object? municipalityList = null,
     Object? brokerCategoryList = null,
     Object? brokerTypeList = null,
-    Object? districtList = null,
-    Object? furnitureStatusList = null,
-    Object? genderList = null,
-    Object? maxParams = null,
-    Object? municipalityList = null,
-    Object? nationalityCategoryList = null,
-    Object? nationalityList = null,
-    Object? occupancyStatusList = null,
-    Object? ownerCategoryList = null,
-    Object? premiseCategoryList = null,
-    Object? premiseTypeList = null,
-    Object? propertyTypeList = null,
-    Object? rentPurposeList = freezed,
-    Object? zoneList = freezed,
   }) {
     return _then(_value.copyWith(
-      ageCategoryList: null == ageCategoryList
-          ? _value.ageCategoryList
-          : ageCategoryList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      brokerCategoryList: null == brokerCategoryList
-          ? _value.brokerCategoryList
-          : brokerCategoryList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      brokerTypeList: null == brokerTypeList
-          ? _value.brokerTypeList
-          : brokerTypeList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      districtList: null == districtList
-          ? _value.districtList
-          : districtList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      furnitureStatusList: null == furnitureStatusList
-          ? _value.furnitureStatusList
-          : furnitureStatusList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      genderList: null == genderList
-          ? _value.genderList
-          : genderList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      maxParams: null == maxParams
-          ? _value.maxParams
-          : maxParams // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      municipalityList: null == municipalityList
-          ? _value.municipalityList
-          : municipalityList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      nationalityCategoryList: null == nationalityCategoryList
-          ? _value.nationalityCategoryList
-          : nationalityCategoryList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      nationalityList: null == nationalityList
-          ? _value.nationalityList
-          : nationalityList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      occupancyStatusList: null == occupancyStatusList
-          ? _value.occupancyStatusList
-          : occupancyStatusList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      ownerCategoryList: null == ownerCategoryList
-          ? _value.ownerCategoryList
-          : ownerCategoryList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      premiseCategoryList: null == premiseCategoryList
-          ? _value.premiseCategoryList
-          : premiseCategoryList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      premiseTypeList: null == premiseTypeList
-          ? _value.premiseTypeList
-          : premiseTypeList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
       propertyTypeList: null == propertyTypeList
           ? _value.propertyTypeList
           : propertyTypeList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      rentPurposeList: freezed == rentPurposeList
+              as List<RentLookupModel>,
+      rentPurposeList: null == rentPurposeList
           ? _value.rentPurposeList
           : rentPurposeList // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      zoneList: freezed == zoneList
+              as List<RentLookupModel>,
+      zoneList: null == zoneList
           ? _value.zoneList
           : zoneList // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as List<RentLookupModel>,
+      districtList: null == districtList
+          ? _value.districtList
+          : districtList // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
+      municipalityList: null == municipalityList
+          ? _value.municipalityList
+          : municipalityList // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
+      brokerCategoryList: null == brokerCategoryList
+          ? _value.brokerCategoryList
+          : brokerCategoryList // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
+      brokerTypeList: null == brokerTypeList
+          ? _value.brokerTypeList
+          : brokerTypeList // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
     ) as $Val);
   }
 }
@@ -199,23 +121,13 @@ abstract class _$$RealEstateBrokerLookUpImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<BrokerLookUpModel> ageCategoryList,
-      List<BrokerLookUpModel> brokerCategoryList,
-      List<BrokerLookUpModel> brokerTypeList,
-      List<BrokerLookUpModel> districtList,
-      List<BrokerLookUpModel> furnitureStatusList,
-      List<BrokerLookUpModel> genderList,
-      List<BrokerLookUpModel> maxParams,
-      List<BrokerLookUpModel> municipalityList,
-      List<BrokerLookUpModel> nationalityCategoryList,
-      List<BrokerLookUpModel> nationalityList,
-      List<BrokerLookUpModel> occupancyStatusList,
-      List<BrokerLookUpModel> ownerCategoryList,
-      List<BrokerLookUpModel> premiseCategoryList,
-      List<BrokerLookUpModel> premiseTypeList,
-      List<BrokerLookUpModel> propertyTypeList,
-      dynamic rentPurposeList,
-      dynamic zoneList});
+      {List<RentLookupModel> propertyTypeList,
+      List<RentLookupModel> rentPurposeList,
+      List<RentLookupModel> zoneList,
+      List<RentLookupModel> districtList,
+      List<RentLookupModel> municipalityList,
+      List<RentLookupModel> brokerCategoryList,
+      List<RentLookupModel> brokerTypeList});
 }
 
 /// @nodoc
@@ -231,89 +143,43 @@ class __$$RealEstateBrokerLookUpImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? ageCategoryList = null,
+    Object? propertyTypeList = null,
+    Object? rentPurposeList = null,
+    Object? zoneList = null,
+    Object? districtList = null,
+    Object? municipalityList = null,
     Object? brokerCategoryList = null,
     Object? brokerTypeList = null,
-    Object? districtList = null,
-    Object? furnitureStatusList = null,
-    Object? genderList = null,
-    Object? maxParams = null,
-    Object? municipalityList = null,
-    Object? nationalityCategoryList = null,
-    Object? nationalityList = null,
-    Object? occupancyStatusList = null,
-    Object? ownerCategoryList = null,
-    Object? premiseCategoryList = null,
-    Object? premiseTypeList = null,
-    Object? propertyTypeList = null,
-    Object? rentPurposeList = freezed,
-    Object? zoneList = freezed,
   }) {
     return _then(_$RealEstateBrokerLookUpImpl(
-      ageCategoryList: null == ageCategoryList
-          ? _value._ageCategoryList
-          : ageCategoryList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      brokerCategoryList: null == brokerCategoryList
-          ? _value._brokerCategoryList
-          : brokerCategoryList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      brokerTypeList: null == brokerTypeList
-          ? _value._brokerTypeList
-          : brokerTypeList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      districtList: null == districtList
-          ? _value._districtList
-          : districtList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      furnitureStatusList: null == furnitureStatusList
-          ? _value._furnitureStatusList
-          : furnitureStatusList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      genderList: null == genderList
-          ? _value._genderList
-          : genderList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      maxParams: null == maxParams
-          ? _value._maxParams
-          : maxParams // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      municipalityList: null == municipalityList
-          ? _value._municipalityList
-          : municipalityList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      nationalityCategoryList: null == nationalityCategoryList
-          ? _value._nationalityCategoryList
-          : nationalityCategoryList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      nationalityList: null == nationalityList
-          ? _value._nationalityList
-          : nationalityList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      occupancyStatusList: null == occupancyStatusList
-          ? _value._occupancyStatusList
-          : occupancyStatusList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      ownerCategoryList: null == ownerCategoryList
-          ? _value._ownerCategoryList
-          : ownerCategoryList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      premiseCategoryList: null == premiseCategoryList
-          ? _value._premiseCategoryList
-          : premiseCategoryList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      premiseTypeList: null == premiseTypeList
-          ? _value._premiseTypeList
-          : premiseTypeList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
       propertyTypeList: null == propertyTypeList
           ? _value._propertyTypeList
           : propertyTypeList // ignore: cast_nullable_to_non_nullable
-              as List<BrokerLookUpModel>,
-      rentPurposeList: freezed == rentPurposeList
-          ? _value.rentPurposeList!
-          : rentPurposeList,
-      zoneList: freezed == zoneList ? _value.zoneList! : zoneList,
+              as List<RentLookupModel>,
+      rentPurposeList: null == rentPurposeList
+          ? _value._rentPurposeList
+          : rentPurposeList // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
+      zoneList: null == zoneList
+          ? _value._zoneList
+          : zoneList // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
+      districtList: null == districtList
+          ? _value._districtList
+          : districtList // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
+      municipalityList: null == municipalityList
+          ? _value._municipalityList
+          : municipalityList // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
+      brokerCategoryList: null == brokerCategoryList
+          ? _value._brokerCategoryList
+          : brokerCategoryList // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
+      brokerTypeList: null == brokerTypeList
+          ? _value._brokerTypeList
+          : brokerTypeList // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
     ));
   }
 }
@@ -322,193 +188,93 @@ class __$$RealEstateBrokerLookUpImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RealEstateBrokerLookUpImpl implements _RealEstateBrokerLookUp {
   _$RealEstateBrokerLookUpImpl(
-      {final List<BrokerLookUpModel> ageCategoryList = const [],
-      final List<BrokerLookUpModel> brokerCategoryList = const [],
-      final List<BrokerLookUpModel> brokerTypeList = const [],
-      final List<BrokerLookUpModel> districtList = const [],
-      final List<BrokerLookUpModel> furnitureStatusList = const [],
-      final List<BrokerLookUpModel> genderList = const [],
-      final List<BrokerLookUpModel> maxParams = const [],
-      final List<BrokerLookUpModel> municipalityList = const [],
-      final List<BrokerLookUpModel> nationalityCategoryList = const [],
-      final List<BrokerLookUpModel> nationalityList = const [],
-      final List<BrokerLookUpModel> occupancyStatusList = const [],
-      final List<BrokerLookUpModel> ownerCategoryList = const [],
-      final List<BrokerLookUpModel> premiseCategoryList = const [],
-      final List<BrokerLookUpModel> premiseTypeList = const [],
-      final List<BrokerLookUpModel> propertyTypeList = const [],
-      this.rentPurposeList,
-      this.zoneList})
-      : _ageCategoryList = ageCategoryList,
-        _brokerCategoryList = brokerCategoryList,
-        _brokerTypeList = brokerTypeList,
+      {final List<RentLookupModel> propertyTypeList = const [],
+      final List<RentLookupModel> rentPurposeList = const [],
+      final List<RentLookupModel> zoneList = const [],
+      final List<RentLookupModel> districtList = const [],
+      final List<RentLookupModel> municipalityList = const [],
+      final List<RentLookupModel> brokerCategoryList = const [],
+      final List<RentLookupModel> brokerTypeList = const []})
+      : _propertyTypeList = propertyTypeList,
+        _rentPurposeList = rentPurposeList,
+        _zoneList = zoneList,
         _districtList = districtList,
-        _furnitureStatusList = furnitureStatusList,
-        _genderList = genderList,
-        _maxParams = maxParams,
         _municipalityList = municipalityList,
-        _nationalityCategoryList = nationalityCategoryList,
-        _nationalityList = nationalityList,
-        _occupancyStatusList = occupancyStatusList,
-        _ownerCategoryList = ownerCategoryList,
-        _premiseCategoryList = premiseCategoryList,
-        _premiseTypeList = premiseTypeList,
-        _propertyTypeList = propertyTypeList;
+        _brokerCategoryList = brokerCategoryList,
+        _brokerTypeList = brokerTypeList;
 
   factory _$RealEstateBrokerLookUpImpl.fromJson(Map<String, dynamic> json) =>
       _$$RealEstateBrokerLookUpImplFromJson(json);
 
-  final List<BrokerLookUpModel> _ageCategoryList;
+  final List<RentLookupModel> _propertyTypeList;
   @override
   @JsonKey()
-  List<BrokerLookUpModel> get ageCategoryList {
-    if (_ageCategoryList is EqualUnmodifiableListView) return _ageCategoryList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_ageCategoryList);
-  }
-
-  final List<BrokerLookUpModel> _brokerCategoryList;
-  @override
-  @JsonKey()
-  List<BrokerLookUpModel> get brokerCategoryList {
-    if (_brokerCategoryList is EqualUnmodifiableListView)
-      return _brokerCategoryList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_brokerCategoryList);
-  }
-
-  final List<BrokerLookUpModel> _brokerTypeList;
-  @override
-  @JsonKey()
-  List<BrokerLookUpModel> get brokerTypeList {
-    if (_brokerTypeList is EqualUnmodifiableListView) return _brokerTypeList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_brokerTypeList);
-  }
-
-  final List<BrokerLookUpModel> _districtList;
-  @override
-  @JsonKey()
-  List<BrokerLookUpModel> get districtList {
-    if (_districtList is EqualUnmodifiableListView) return _districtList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_districtList);
-  }
-
-  final List<BrokerLookUpModel> _furnitureStatusList;
-  @override
-  @JsonKey()
-  List<BrokerLookUpModel> get furnitureStatusList {
-    if (_furnitureStatusList is EqualUnmodifiableListView)
-      return _furnitureStatusList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_furnitureStatusList);
-  }
-
-  final List<BrokerLookUpModel> _genderList;
-  @override
-  @JsonKey()
-  List<BrokerLookUpModel> get genderList {
-    if (_genderList is EqualUnmodifiableListView) return _genderList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_genderList);
-  }
-
-  final List<BrokerLookUpModel> _maxParams;
-  @override
-  @JsonKey()
-  List<BrokerLookUpModel> get maxParams {
-    if (_maxParams is EqualUnmodifiableListView) return _maxParams;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_maxParams);
-  }
-
-  final List<BrokerLookUpModel> _municipalityList;
-  @override
-  @JsonKey()
-  List<BrokerLookUpModel> get municipalityList {
-    if (_municipalityList is EqualUnmodifiableListView)
-      return _municipalityList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_municipalityList);
-  }
-
-  final List<BrokerLookUpModel> _nationalityCategoryList;
-  @override
-  @JsonKey()
-  List<BrokerLookUpModel> get nationalityCategoryList {
-    if (_nationalityCategoryList is EqualUnmodifiableListView)
-      return _nationalityCategoryList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_nationalityCategoryList);
-  }
-
-  final List<BrokerLookUpModel> _nationalityList;
-  @override
-  @JsonKey()
-  List<BrokerLookUpModel> get nationalityList {
-    if (_nationalityList is EqualUnmodifiableListView) return _nationalityList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_nationalityList);
-  }
-
-  final List<BrokerLookUpModel> _occupancyStatusList;
-  @override
-  @JsonKey()
-  List<BrokerLookUpModel> get occupancyStatusList {
-    if (_occupancyStatusList is EqualUnmodifiableListView)
-      return _occupancyStatusList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_occupancyStatusList);
-  }
-
-  final List<BrokerLookUpModel> _ownerCategoryList;
-  @override
-  @JsonKey()
-  List<BrokerLookUpModel> get ownerCategoryList {
-    if (_ownerCategoryList is EqualUnmodifiableListView)
-      return _ownerCategoryList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_ownerCategoryList);
-  }
-
-  final List<BrokerLookUpModel> _premiseCategoryList;
-  @override
-  @JsonKey()
-  List<BrokerLookUpModel> get premiseCategoryList {
-    if (_premiseCategoryList is EqualUnmodifiableListView)
-      return _premiseCategoryList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_premiseCategoryList);
-  }
-
-  final List<BrokerLookUpModel> _premiseTypeList;
-  @override
-  @JsonKey()
-  List<BrokerLookUpModel> get premiseTypeList {
-    if (_premiseTypeList is EqualUnmodifiableListView) return _premiseTypeList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_premiseTypeList);
-  }
-
-  final List<BrokerLookUpModel> _propertyTypeList;
-  @override
-  @JsonKey()
-  List<BrokerLookUpModel> get propertyTypeList {
+  List<RentLookupModel> get propertyTypeList {
     if (_propertyTypeList is EqualUnmodifiableListView)
       return _propertyTypeList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_propertyTypeList);
   }
 
+  final List<RentLookupModel> _rentPurposeList;
   @override
-  final dynamic rentPurposeList;
+  @JsonKey()
+  List<RentLookupModel> get rentPurposeList {
+    if (_rentPurposeList is EqualUnmodifiableListView) return _rentPurposeList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_rentPurposeList);
+  }
+
+  final List<RentLookupModel> _zoneList;
   @override
-  final dynamic zoneList;
+  @JsonKey()
+  List<RentLookupModel> get zoneList {
+    if (_zoneList is EqualUnmodifiableListView) return _zoneList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_zoneList);
+  }
+
+  final List<RentLookupModel> _districtList;
+  @override
+  @JsonKey()
+  List<RentLookupModel> get districtList {
+    if (_districtList is EqualUnmodifiableListView) return _districtList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_districtList);
+  }
+
+  final List<RentLookupModel> _municipalityList;
+  @override
+  @JsonKey()
+  List<RentLookupModel> get municipalityList {
+    if (_municipalityList is EqualUnmodifiableListView)
+      return _municipalityList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_municipalityList);
+  }
+
+  final List<RentLookupModel> _brokerCategoryList;
+  @override
+  @JsonKey()
+  List<RentLookupModel> get brokerCategoryList {
+    if (_brokerCategoryList is EqualUnmodifiableListView)
+      return _brokerCategoryList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_brokerCategoryList);
+  }
+
+  final List<RentLookupModel> _brokerTypeList;
+  @override
+  @JsonKey()
+  List<RentLookupModel> get brokerTypeList {
+    if (_brokerTypeList is EqualUnmodifiableListView) return _brokerTypeList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_brokerTypeList);
+  }
 
   @override
   String toString() {
-    return 'RealEstateBrokerLookUp(ageCategoryList: $ageCategoryList, brokerCategoryList: $brokerCategoryList, brokerTypeList: $brokerTypeList, districtList: $districtList, furnitureStatusList: $furnitureStatusList, genderList: $genderList, maxParams: $maxParams, municipalityList: $municipalityList, nationalityCategoryList: $nationalityCategoryList, nationalityList: $nationalityList, occupancyStatusList: $occupancyStatusList, ownerCategoryList: $ownerCategoryList, premiseCategoryList: $premiseCategoryList, premiseTypeList: $premiseTypeList, propertyTypeList: $propertyTypeList, rentPurposeList: $rentPurposeList, zoneList: $zoneList)';
+    return 'RealEstateBrokerLookUp(propertyTypeList: $propertyTypeList, rentPurposeList: $rentPurposeList, zoneList: $zoneList, districtList: $districtList, municipalityList: $municipalityList, brokerCategoryList: $brokerCategoryList, brokerTypeList: $brokerTypeList)';
   }
 
   @override
@@ -517,61 +283,31 @@ class _$RealEstateBrokerLookUpImpl implements _RealEstateBrokerLookUp {
         (other.runtimeType == runtimeType &&
             other is _$RealEstateBrokerLookUpImpl &&
             const DeepCollectionEquality()
-                .equals(other._ageCategoryList, _ageCategoryList) &&
+                .equals(other._propertyTypeList, _propertyTypeList) &&
             const DeepCollectionEquality()
-                .equals(other._brokerCategoryList, _brokerCategoryList) &&
-            const DeepCollectionEquality()
-                .equals(other._brokerTypeList, _brokerTypeList) &&
+                .equals(other._rentPurposeList, _rentPurposeList) &&
+            const DeepCollectionEquality().equals(other._zoneList, _zoneList) &&
             const DeepCollectionEquality()
                 .equals(other._districtList, _districtList) &&
             const DeepCollectionEquality()
-                .equals(other._furnitureStatusList, _furnitureStatusList) &&
-            const DeepCollectionEquality()
-                .equals(other._genderList, _genderList) &&
-            const DeepCollectionEquality()
-                .equals(other._maxParams, _maxParams) &&
-            const DeepCollectionEquality()
                 .equals(other._municipalityList, _municipalityList) &&
-            const DeepCollectionEquality().equals(
-                other._nationalityCategoryList, _nationalityCategoryList) &&
             const DeepCollectionEquality()
-                .equals(other._nationalityList, _nationalityList) &&
+                .equals(other._brokerCategoryList, _brokerCategoryList) &&
             const DeepCollectionEquality()
-                .equals(other._occupancyStatusList, _occupancyStatusList) &&
-            const DeepCollectionEquality()
-                .equals(other._ownerCategoryList, _ownerCategoryList) &&
-            const DeepCollectionEquality()
-                .equals(other._premiseCategoryList, _premiseCategoryList) &&
-            const DeepCollectionEquality()
-                .equals(other._premiseTypeList, _premiseTypeList) &&
-            const DeepCollectionEquality()
-                .equals(other._propertyTypeList, _propertyTypeList) &&
-            const DeepCollectionEquality()
-                .equals(other.rentPurposeList, rentPurposeList) &&
-            const DeepCollectionEquality().equals(other.zoneList, zoneList));
+                .equals(other._brokerTypeList, _brokerTypeList));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_ageCategoryList),
-      const DeepCollectionEquality().hash(_brokerCategoryList),
-      const DeepCollectionEquality().hash(_brokerTypeList),
-      const DeepCollectionEquality().hash(_districtList),
-      const DeepCollectionEquality().hash(_furnitureStatusList),
-      const DeepCollectionEquality().hash(_genderList),
-      const DeepCollectionEquality().hash(_maxParams),
-      const DeepCollectionEquality().hash(_municipalityList),
-      const DeepCollectionEquality().hash(_nationalityCategoryList),
-      const DeepCollectionEquality().hash(_nationalityList),
-      const DeepCollectionEquality().hash(_occupancyStatusList),
-      const DeepCollectionEquality().hash(_ownerCategoryList),
-      const DeepCollectionEquality().hash(_premiseCategoryList),
-      const DeepCollectionEquality().hash(_premiseTypeList),
       const DeepCollectionEquality().hash(_propertyTypeList),
-      const DeepCollectionEquality().hash(rentPurposeList),
-      const DeepCollectionEquality().hash(zoneList));
+      const DeepCollectionEquality().hash(_rentPurposeList),
+      const DeepCollectionEquality().hash(_zoneList),
+      const DeepCollectionEquality().hash(_districtList),
+      const DeepCollectionEquality().hash(_municipalityList),
+      const DeepCollectionEquality().hash(_brokerCategoryList),
+      const DeepCollectionEquality().hash(_brokerTypeList));
 
   @JsonKey(ignore: true)
   @override
@@ -590,115 +326,100 @@ class _$RealEstateBrokerLookUpImpl implements _RealEstateBrokerLookUp {
 
 abstract class _RealEstateBrokerLookUp implements RealEstateBrokerLookUp {
   factory _RealEstateBrokerLookUp(
-      {final List<BrokerLookUpModel> ageCategoryList,
-      final List<BrokerLookUpModel> brokerCategoryList,
-      final List<BrokerLookUpModel> brokerTypeList,
-      final List<BrokerLookUpModel> districtList,
-      final List<BrokerLookUpModel> furnitureStatusList,
-      final List<BrokerLookUpModel> genderList,
-      final List<BrokerLookUpModel> maxParams,
-      final List<BrokerLookUpModel> municipalityList,
-      final List<BrokerLookUpModel> nationalityCategoryList,
-      final List<BrokerLookUpModel> nationalityList,
-      final List<BrokerLookUpModel> occupancyStatusList,
-      final List<BrokerLookUpModel> ownerCategoryList,
-      final List<BrokerLookUpModel> premiseCategoryList,
-      final List<BrokerLookUpModel> premiseTypeList,
-      final List<BrokerLookUpModel> propertyTypeList,
-      final dynamic rentPurposeList,
-      final dynamic zoneList}) = _$RealEstateBrokerLookUpImpl;
+          {final List<RentLookupModel> propertyTypeList,
+          final List<RentLookupModel> rentPurposeList,
+          final List<RentLookupModel> zoneList,
+          final List<RentLookupModel> districtList,
+          final List<RentLookupModel> municipalityList,
+          final List<RentLookupModel> brokerCategoryList,
+          final List<RentLookupModel> brokerTypeList}) =
+      _$RealEstateBrokerLookUpImpl;
 
   factory _RealEstateBrokerLookUp.fromJson(Map<String, dynamic> json) =
       _$RealEstateBrokerLookUpImpl.fromJson;
 
   @override
-  List<BrokerLookUpModel> get ageCategoryList;
+  List<RentLookupModel> get propertyTypeList;
   @override
-  List<BrokerLookUpModel> get brokerCategoryList;
+  List<RentLookupModel> get rentPurposeList;
   @override
-  List<BrokerLookUpModel> get brokerTypeList;
+  List<RentLookupModel> get zoneList;
   @override
-  List<BrokerLookUpModel> get districtList;
+  List<RentLookupModel> get districtList;
   @override
-  List<BrokerLookUpModel> get furnitureStatusList;
+  List<RentLookupModel> get municipalityList;
   @override
-  List<BrokerLookUpModel> get genderList;
+  List<RentLookupModel> get brokerCategoryList;
   @override
-  List<BrokerLookUpModel> get maxParams;
-  @override
-  List<BrokerLookUpModel> get municipalityList;
-  @override
-  List<BrokerLookUpModel> get nationalityCategoryList;
-  @override
-  List<BrokerLookUpModel> get nationalityList;
-  @override
-  List<BrokerLookUpModel> get occupancyStatusList;
-  @override
-  List<BrokerLookUpModel> get ownerCategoryList;
-  @override
-  List<BrokerLookUpModel> get premiseCategoryList;
-  @override
-  List<BrokerLookUpModel> get premiseTypeList;
-  @override
-  List<BrokerLookUpModel> get propertyTypeList;
-  @override
-  dynamic get rentPurposeList;
-  @override
-  dynamic get zoneList;
+  List<RentLookupModel> get brokerTypeList;
   @override
   @JsonKey(ignore: true)
   _$$RealEstateBrokerLookUpImplCopyWith<_$RealEstateBrokerLookUpImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-BrokerLookUpModel _$BrokerLookUpModelFromJson(Map<String, dynamic> json) {
-  return _BrokerLookUpModel.fromJson(json);
+RealEstateBrokerTransactionData _$RealEstateBrokerTransactionDataFromJson(
+    Map<String, dynamic> json) {
+  return _RealEstateBrokerTransactionData.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BrokerLookUpModel {
-  String? get arName => throw _privateConstructorUsedError;
-  String? get enName => throw _privateConstructorUsedError;
-  bool? get isActive => throw _privateConstructorUsedError;
-  int? get lookupKey => throw _privateConstructorUsedError;
-  int? get municipalityId => throw _privateConstructorUsedError;
-  int? get id => throw _privateConstructorUsedError;
-  String? get fieldName => throw _privateConstructorUsedError;
-  int? get maxVal => throw _privateConstructorUsedError;
-  int? get minVal => throw _privateConstructorUsedError;
-  String? get model => throw _privateConstructorUsedError;
-  int? get nationalityCode => throw _privateConstructorUsedError;
+mixin _$RealEstateBrokerTransactionData {
+  String get brokerArDescription => throw _privateConstructorUsedError;
+  String get brokerArName => throw _privateConstructorUsedError;
+  int get brokerCategoryId => throw _privateConstructorUsedError;
+  String get brokerEmail => throw _privateConstructorUsedError;
+  String get brokerEnDescription => throw _privateConstructorUsedError;
+  String get brokerEnName => throw _privateConstructorUsedError;
+  String get brokerIcon => throw _privateConstructorUsedError;
+  String get brokerPhone1 => throw _privateConstructorUsedError;
+  String? get brokerPhone2 => throw _privateConstructorUsedError;
+  String? get brokerPhone3 => throw _privateConstructorUsedError;
+  int get brokerTypeId => throw _privateConstructorUsedError;
+  String get brokerlicenseNumber => throw _privateConstructorUsedError;
+  bool get isActive => throw _privateConstructorUsedError;
+  String get managerArName => throw _privateConstructorUsedError;
+  String get managerEnName => throw _privateConstructorUsedError;
+  int get municipalityId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BrokerLookUpModelCopyWith<BrokerLookUpModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  $RealEstateBrokerTransactionDataCopyWith<RealEstateBrokerTransactionData>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BrokerLookUpModelCopyWith<$Res> {
-  factory $BrokerLookUpModelCopyWith(
-          BrokerLookUpModel value, $Res Function(BrokerLookUpModel) then) =
-      _$BrokerLookUpModelCopyWithImpl<$Res, BrokerLookUpModel>;
+abstract class $RealEstateBrokerTransactionDataCopyWith<$Res> {
+  factory $RealEstateBrokerTransactionDataCopyWith(
+          RealEstateBrokerTransactionData value,
+          $Res Function(RealEstateBrokerTransactionData) then) =
+      _$RealEstateBrokerTransactionDataCopyWithImpl<$Res,
+          RealEstateBrokerTransactionData>;
   @useResult
   $Res call(
-      {String? arName,
-      String? enName,
-      bool? isActive,
-      int? lookupKey,
-      int? municipalityId,
-      int? id,
-      String? fieldName,
-      int? maxVal,
-      int? minVal,
-      String? model,
-      int? nationalityCode});
+      {String brokerArDescription,
+      String brokerArName,
+      int brokerCategoryId,
+      String brokerEmail,
+      String brokerEnDescription,
+      String brokerEnName,
+      String brokerIcon,
+      String brokerPhone1,
+      String? brokerPhone2,
+      String? brokerPhone3,
+      int brokerTypeId,
+      String brokerlicenseNumber,
+      bool isActive,
+      String managerArName,
+      String managerEnName,
+      int municipalityId});
 }
 
 /// @nodoc
-class _$BrokerLookUpModelCopyWithImpl<$Res, $Val extends BrokerLookUpModel>
-    implements $BrokerLookUpModelCopyWith<$Res> {
-  _$BrokerLookUpModelCopyWithImpl(this._value, this._then);
+class _$RealEstateBrokerTransactionDataCopyWithImpl<$Res,
+        $Val extends RealEstateBrokerTransactionData>
+    implements $RealEstateBrokerTransactionDataCopyWith<$Res> {
+  _$RealEstateBrokerTransactionDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -708,314 +429,614 @@ class _$BrokerLookUpModelCopyWithImpl<$Res, $Val extends BrokerLookUpModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? arName = freezed,
-    Object? enName = freezed,
-    Object? isActive = freezed,
-    Object? lookupKey = freezed,
-    Object? municipalityId = freezed,
-    Object? id = freezed,
-    Object? fieldName = freezed,
-    Object? maxVal = freezed,
-    Object? minVal = freezed,
-    Object? model = freezed,
-    Object? nationalityCode = freezed,
+    Object? brokerArDescription = null,
+    Object? brokerArName = null,
+    Object? brokerCategoryId = null,
+    Object? brokerEmail = null,
+    Object? brokerEnDescription = null,
+    Object? brokerEnName = null,
+    Object? brokerIcon = null,
+    Object? brokerPhone1 = null,
+    Object? brokerPhone2 = freezed,
+    Object? brokerPhone3 = freezed,
+    Object? brokerTypeId = null,
+    Object? brokerlicenseNumber = null,
+    Object? isActive = null,
+    Object? managerArName = null,
+    Object? managerEnName = null,
+    Object? municipalityId = null,
   }) {
     return _then(_value.copyWith(
-      arName: freezed == arName
-          ? _value.arName
-          : arName // ignore: cast_nullable_to_non_nullable
+      brokerArDescription: null == brokerArDescription
+          ? _value.brokerArDescription
+          : brokerArDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      brokerArName: null == brokerArName
+          ? _value.brokerArName
+          : brokerArName // ignore: cast_nullable_to_non_nullable
+              as String,
+      brokerCategoryId: null == brokerCategoryId
+          ? _value.brokerCategoryId
+          : brokerCategoryId // ignore: cast_nullable_to_non_nullable
+              as int,
+      brokerEmail: null == brokerEmail
+          ? _value.brokerEmail
+          : brokerEmail // ignore: cast_nullable_to_non_nullable
+              as String,
+      brokerEnDescription: null == brokerEnDescription
+          ? _value.brokerEnDescription
+          : brokerEnDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      brokerEnName: null == brokerEnName
+          ? _value.brokerEnName
+          : brokerEnName // ignore: cast_nullable_to_non_nullable
+              as String,
+      brokerIcon: null == brokerIcon
+          ? _value.brokerIcon
+          : brokerIcon // ignore: cast_nullable_to_non_nullable
+              as String,
+      brokerPhone1: null == brokerPhone1
+          ? _value.brokerPhone1
+          : brokerPhone1 // ignore: cast_nullable_to_non_nullable
+              as String,
+      brokerPhone2: freezed == brokerPhone2
+          ? _value.brokerPhone2
+          : brokerPhone2 // ignore: cast_nullable_to_non_nullable
               as String?,
-      enName: freezed == enName
-          ? _value.enName
-          : enName // ignore: cast_nullable_to_non_nullable
+      brokerPhone3: freezed == brokerPhone3
+          ? _value.brokerPhone3
+          : brokerPhone3 // ignore: cast_nullable_to_non_nullable
               as String?,
-      isActive: freezed == isActive
+      brokerTypeId: null == brokerTypeId
+          ? _value.brokerTypeId
+          : brokerTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      brokerlicenseNumber: null == brokerlicenseNumber
+          ? _value.brokerlicenseNumber
+          : brokerlicenseNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      isActive: null == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      lookupKey: freezed == lookupKey
-          ? _value.lookupKey
-          : lookupKey // ignore: cast_nullable_to_non_nullable
-              as int?,
-      municipalityId: freezed == municipalityId
+              as bool,
+      managerArName: null == managerArName
+          ? _value.managerArName
+          : managerArName // ignore: cast_nullable_to_non_nullable
+              as String,
+      managerEnName: null == managerEnName
+          ? _value.managerEnName
+          : managerEnName // ignore: cast_nullable_to_non_nullable
+              as String,
+      municipalityId: null == municipalityId
           ? _value.municipalityId
           : municipalityId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fieldName: freezed == fieldName
-          ? _value.fieldName
-          : fieldName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      maxVal: freezed == maxVal
-          ? _value.maxVal
-          : maxVal // ignore: cast_nullable_to_non_nullable
-              as int?,
-      minVal: freezed == minVal
-          ? _value.minVal
-          : minVal // ignore: cast_nullable_to_non_nullable
-              as int?,
-      model: freezed == model
-          ? _value.model
-          : model // ignore: cast_nullable_to_non_nullable
-              as String?,
-      nationalityCode: freezed == nationalityCode
-          ? _value.nationalityCode
-          : nationalityCode // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$BrokerLookUpModelImplCopyWith<$Res>
-    implements $BrokerLookUpModelCopyWith<$Res> {
-  factory _$$BrokerLookUpModelImplCopyWith(_$BrokerLookUpModelImpl value,
-          $Res Function(_$BrokerLookUpModelImpl) then) =
-      __$$BrokerLookUpModelImplCopyWithImpl<$Res>;
+abstract class _$$RealEstateBrokerTransactionDataImplCopyWith<$Res>
+    implements $RealEstateBrokerTransactionDataCopyWith<$Res> {
+  factory _$$RealEstateBrokerTransactionDataImplCopyWith(
+          _$RealEstateBrokerTransactionDataImpl value,
+          $Res Function(_$RealEstateBrokerTransactionDataImpl) then) =
+      __$$RealEstateBrokerTransactionDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {String? arName,
-      String? enName,
-      bool? isActive,
-      int? lookupKey,
-      int? municipalityId,
-      int? id,
-      String? fieldName,
-      int? maxVal,
-      int? minVal,
-      String? model,
-      int? nationalityCode});
+      {String brokerArDescription,
+      String brokerArName,
+      int brokerCategoryId,
+      String brokerEmail,
+      String brokerEnDescription,
+      String brokerEnName,
+      String brokerIcon,
+      String brokerPhone1,
+      String? brokerPhone2,
+      String? brokerPhone3,
+      int brokerTypeId,
+      String brokerlicenseNumber,
+      bool isActive,
+      String managerArName,
+      String managerEnName,
+      int municipalityId});
 }
 
 /// @nodoc
-class __$$BrokerLookUpModelImplCopyWithImpl<$Res>
-    extends _$BrokerLookUpModelCopyWithImpl<$Res, _$BrokerLookUpModelImpl>
-    implements _$$BrokerLookUpModelImplCopyWith<$Res> {
-  __$$BrokerLookUpModelImplCopyWithImpl(_$BrokerLookUpModelImpl _value,
-      $Res Function(_$BrokerLookUpModelImpl) _then)
+class __$$RealEstateBrokerTransactionDataImplCopyWithImpl<$Res>
+    extends _$RealEstateBrokerTransactionDataCopyWithImpl<$Res,
+        _$RealEstateBrokerTransactionDataImpl>
+    implements _$$RealEstateBrokerTransactionDataImplCopyWith<$Res> {
+  __$$RealEstateBrokerTransactionDataImplCopyWithImpl(
+      _$RealEstateBrokerTransactionDataImpl _value,
+      $Res Function(_$RealEstateBrokerTransactionDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? arName = freezed,
-    Object? enName = freezed,
-    Object? isActive = freezed,
-    Object? lookupKey = freezed,
-    Object? municipalityId = freezed,
-    Object? id = freezed,
-    Object? fieldName = freezed,
-    Object? maxVal = freezed,
-    Object? minVal = freezed,
-    Object? model = freezed,
-    Object? nationalityCode = freezed,
+    Object? brokerArDescription = null,
+    Object? brokerArName = null,
+    Object? brokerCategoryId = null,
+    Object? brokerEmail = null,
+    Object? brokerEnDescription = null,
+    Object? brokerEnName = null,
+    Object? brokerIcon = null,
+    Object? brokerPhone1 = null,
+    Object? brokerPhone2 = freezed,
+    Object? brokerPhone3 = freezed,
+    Object? brokerTypeId = null,
+    Object? brokerlicenseNumber = null,
+    Object? isActive = null,
+    Object? managerArName = null,
+    Object? managerEnName = null,
+    Object? municipalityId = null,
   }) {
-    return _then(_$BrokerLookUpModelImpl(
-      arName: freezed == arName
-          ? _value.arName
-          : arName // ignore: cast_nullable_to_non_nullable
+    return _then(_$RealEstateBrokerTransactionDataImpl(
+      brokerArDescription: null == brokerArDescription
+          ? _value.brokerArDescription
+          : brokerArDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      brokerArName: null == brokerArName
+          ? _value.brokerArName
+          : brokerArName // ignore: cast_nullable_to_non_nullable
+              as String,
+      brokerCategoryId: null == brokerCategoryId
+          ? _value.brokerCategoryId
+          : brokerCategoryId // ignore: cast_nullable_to_non_nullable
+              as int,
+      brokerEmail: null == brokerEmail
+          ? _value.brokerEmail
+          : brokerEmail // ignore: cast_nullable_to_non_nullable
+              as String,
+      brokerEnDescription: null == brokerEnDescription
+          ? _value.brokerEnDescription
+          : brokerEnDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      brokerEnName: null == brokerEnName
+          ? _value.brokerEnName
+          : brokerEnName // ignore: cast_nullable_to_non_nullable
+              as String,
+      brokerIcon: null == brokerIcon
+          ? _value.brokerIcon
+          : brokerIcon // ignore: cast_nullable_to_non_nullable
+              as String,
+      brokerPhone1: null == brokerPhone1
+          ? _value.brokerPhone1
+          : brokerPhone1 // ignore: cast_nullable_to_non_nullable
+              as String,
+      brokerPhone2: freezed == brokerPhone2
+          ? _value.brokerPhone2
+          : brokerPhone2 // ignore: cast_nullable_to_non_nullable
               as String?,
-      enName: freezed == enName
-          ? _value.enName
-          : enName // ignore: cast_nullable_to_non_nullable
+      brokerPhone3: freezed == brokerPhone3
+          ? _value.brokerPhone3
+          : brokerPhone3 // ignore: cast_nullable_to_non_nullable
               as String?,
-      isActive: freezed == isActive
+      brokerTypeId: null == brokerTypeId
+          ? _value.brokerTypeId
+          : brokerTypeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      brokerlicenseNumber: null == brokerlicenseNumber
+          ? _value.brokerlicenseNumber
+          : brokerlicenseNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      isActive: null == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      lookupKey: freezed == lookupKey
-          ? _value.lookupKey
-          : lookupKey // ignore: cast_nullable_to_non_nullable
-              as int?,
-      municipalityId: freezed == municipalityId
+              as bool,
+      managerArName: null == managerArName
+          ? _value.managerArName
+          : managerArName // ignore: cast_nullable_to_non_nullable
+              as String,
+      managerEnName: null == managerEnName
+          ? _value.managerEnName
+          : managerEnName // ignore: cast_nullable_to_non_nullable
+              as String,
+      municipalityId: null == municipalityId
           ? _value.municipalityId
           : municipalityId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fieldName: freezed == fieldName
-          ? _value.fieldName
-          : fieldName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      maxVal: freezed == maxVal
-          ? _value.maxVal
-          : maxVal // ignore: cast_nullable_to_non_nullable
-              as int?,
-      minVal: freezed == minVal
-          ? _value.minVal
-          : minVal // ignore: cast_nullable_to_non_nullable
-              as int?,
-      model: freezed == model
-          ? _value.model
-          : model // ignore: cast_nullable_to_non_nullable
-              as String?,
-      nationalityCode: freezed == nationalityCode
-          ? _value.nationalityCode
-          : nationalityCode // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$BrokerLookUpModelImpl implements _BrokerLookUpModel {
-  _$BrokerLookUpModelImpl(
-      {this.arName = '',
-      this.enName = '',
+class _$RealEstateBrokerTransactionDataImpl
+    implements _RealEstateBrokerTransactionData {
+  const _$RealEstateBrokerTransactionDataImpl(
+      {this.brokerArDescription = '',
+      this.brokerArName = '',
+      this.brokerCategoryId = 0,
+      this.brokerEmail = '',
+      this.brokerEnDescription = '',
+      this.brokerEnName = '',
+      this.brokerIcon = '',
+      this.brokerPhone1 = '',
+      this.brokerPhone2 = '',
+      this.brokerPhone3 = '',
+      this.brokerTypeId = 0,
+      this.brokerlicenseNumber = '',
       this.isActive = true,
-      this.lookupKey = 0,
-      this.municipalityId = 0,
-      this.id = 0,
-      this.fieldName = '',
-      this.maxVal = 0,
-      this.minVal = 0,
-      this.model = '',
-      this.nationalityCode = 0});
+      this.managerArName = '',
+      this.managerEnName = '',
+      this.municipalityId = 0});
 
-  factory _$BrokerLookUpModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BrokerLookUpModelImplFromJson(json);
+  factory _$RealEstateBrokerTransactionDataImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$RealEstateBrokerTransactionDataImplFromJson(json);
 
   @override
   @JsonKey()
-  final String? arName;
+  final String brokerArDescription;
   @override
   @JsonKey()
-  final String? enName;
+  final String brokerArName;
   @override
   @JsonKey()
-  final bool? isActive;
+  final int brokerCategoryId;
   @override
   @JsonKey()
-  final int? lookupKey;
+  final String brokerEmail;
   @override
   @JsonKey()
-  final int? municipalityId;
+  final String brokerEnDescription;
   @override
   @JsonKey()
-  final int? id;
+  final String brokerEnName;
   @override
   @JsonKey()
-  final String? fieldName;
+  final String brokerIcon;
   @override
   @JsonKey()
-  final int? maxVal;
+  final String brokerPhone1;
   @override
   @JsonKey()
-  final int? minVal;
+  final String? brokerPhone2;
   @override
   @JsonKey()
-  final String? model;
+  final String? brokerPhone3;
   @override
   @JsonKey()
-  final int? nationalityCode;
+  final int brokerTypeId;
+  @override
+  @JsonKey()
+  final String brokerlicenseNumber;
+  @override
+  @JsonKey()
+  final bool isActive;
+  @override
+  @JsonKey()
+  final String managerArName;
+  @override
+  @JsonKey()
+  final String managerEnName;
+  @override
+  @JsonKey()
+  final int municipalityId;
 
   @override
   String toString() {
-    return 'BrokerLookUpModel(arName: $arName, enName: $enName, isActive: $isActive, lookupKey: $lookupKey, municipalityId: $municipalityId, id: $id, fieldName: $fieldName, maxVal: $maxVal, minVal: $minVal, model: $model, nationalityCode: $nationalityCode)';
+    return 'RealEstateBrokerTransactionData(brokerArDescription: $brokerArDescription, brokerArName: $brokerArName, brokerCategoryId: $brokerCategoryId, brokerEmail: $brokerEmail, brokerEnDescription: $brokerEnDescription, brokerEnName: $brokerEnName, brokerIcon: $brokerIcon, brokerPhone1: $brokerPhone1, brokerPhone2: $brokerPhone2, brokerPhone3: $brokerPhone3, brokerTypeId: $brokerTypeId, brokerlicenseNumber: $brokerlicenseNumber, isActive: $isActive, managerArName: $managerArName, managerEnName: $managerEnName, municipalityId: $municipalityId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BrokerLookUpModelImpl &&
-            (identical(other.arName, arName) || other.arName == arName) &&
-            (identical(other.enName, enName) || other.enName == enName) &&
+            other is _$RealEstateBrokerTransactionDataImpl &&
+            (identical(other.brokerArDescription, brokerArDescription) ||
+                other.brokerArDescription == brokerArDescription) &&
+            (identical(other.brokerArName, brokerArName) ||
+                other.brokerArName == brokerArName) &&
+            (identical(other.brokerCategoryId, brokerCategoryId) ||
+                other.brokerCategoryId == brokerCategoryId) &&
+            (identical(other.brokerEmail, brokerEmail) ||
+                other.brokerEmail == brokerEmail) &&
+            (identical(other.brokerEnDescription, brokerEnDescription) ||
+                other.brokerEnDescription == brokerEnDescription) &&
+            (identical(other.brokerEnName, brokerEnName) ||
+                other.brokerEnName == brokerEnName) &&
+            (identical(other.brokerIcon, brokerIcon) ||
+                other.brokerIcon == brokerIcon) &&
+            (identical(other.brokerPhone1, brokerPhone1) ||
+                other.brokerPhone1 == brokerPhone1) &&
+            (identical(other.brokerPhone2, brokerPhone2) ||
+                other.brokerPhone2 == brokerPhone2) &&
+            (identical(other.brokerPhone3, brokerPhone3) ||
+                other.brokerPhone3 == brokerPhone3) &&
+            (identical(other.brokerTypeId, brokerTypeId) ||
+                other.brokerTypeId == brokerTypeId) &&
+            (identical(other.brokerlicenseNumber, brokerlicenseNumber) ||
+                other.brokerlicenseNumber == brokerlicenseNumber) &&
             (identical(other.isActive, isActive) ||
                 other.isActive == isActive) &&
-            (identical(other.lookupKey, lookupKey) ||
-                other.lookupKey == lookupKey) &&
+            (identical(other.managerArName, managerArName) ||
+                other.managerArName == managerArName) &&
+            (identical(other.managerEnName, managerEnName) ||
+                other.managerEnName == managerEnName) &&
             (identical(other.municipalityId, municipalityId) ||
-                other.municipalityId == municipalityId) &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.fieldName, fieldName) ||
-                other.fieldName == fieldName) &&
-            (identical(other.maxVal, maxVal) || other.maxVal == maxVal) &&
-            (identical(other.minVal, minVal) || other.minVal == minVal) &&
-            (identical(other.model, model) || other.model == model) &&
-            (identical(other.nationalityCode, nationalityCode) ||
-                other.nationalityCode == nationalityCode));
+                other.municipalityId == municipalityId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      arName,
-      enName,
+      brokerArDescription,
+      brokerArName,
+      brokerCategoryId,
+      brokerEmail,
+      brokerEnDescription,
+      brokerEnName,
+      brokerIcon,
+      brokerPhone1,
+      brokerPhone2,
+      brokerPhone3,
+      brokerTypeId,
+      brokerlicenseNumber,
       isActive,
-      lookupKey,
-      municipalityId,
-      id,
-      fieldName,
-      maxVal,
-      minVal,
-      model,
-      nationalityCode);
+      managerArName,
+      managerEnName,
+      municipalityId);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BrokerLookUpModelImplCopyWith<_$BrokerLookUpModelImpl> get copyWith =>
-      __$$BrokerLookUpModelImplCopyWithImpl<_$BrokerLookUpModelImpl>(
-          this, _$identity);
+  _$$RealEstateBrokerTransactionDataImplCopyWith<
+          _$RealEstateBrokerTransactionDataImpl>
+      get copyWith => __$$RealEstateBrokerTransactionDataImplCopyWithImpl<
+          _$RealEstateBrokerTransactionDataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BrokerLookUpModelImplToJson(
+    return _$$RealEstateBrokerTransactionDataImplToJson(
       this,
     );
   }
 }
 
-abstract class _BrokerLookUpModel implements BrokerLookUpModel {
-  factory _BrokerLookUpModel(
-      {final String? arName,
-      final String? enName,
-      final bool? isActive,
-      final int? lookupKey,
-      final int? municipalityId,
-      final int? id,
-      final String? fieldName,
-      final int? maxVal,
-      final int? minVal,
-      final String? model,
-      final int? nationalityCode}) = _$BrokerLookUpModelImpl;
+abstract class _RealEstateBrokerTransactionData
+    implements RealEstateBrokerTransactionData {
+  const factory _RealEstateBrokerTransactionData(
+      {final String brokerArDescription,
+      final String brokerArName,
+      final int brokerCategoryId,
+      final String brokerEmail,
+      final String brokerEnDescription,
+      final String brokerEnName,
+      final String brokerIcon,
+      final String brokerPhone1,
+      final String? brokerPhone2,
+      final String? brokerPhone3,
+      final int brokerTypeId,
+      final String brokerlicenseNumber,
+      final bool isActive,
+      final String managerArName,
+      final String managerEnName,
+      final int municipalityId}) = _$RealEstateBrokerTransactionDataImpl;
 
-  factory _BrokerLookUpModel.fromJson(Map<String, dynamic> json) =
-      _$BrokerLookUpModelImpl.fromJson;
+  factory _RealEstateBrokerTransactionData.fromJson(Map<String, dynamic> json) =
+      _$RealEstateBrokerTransactionDataImpl.fromJson;
 
   @override
-  String? get arName;
+  String get brokerArDescription;
   @override
-  String? get enName;
+  String get brokerArName;
   @override
-  bool? get isActive;
+  int get brokerCategoryId;
   @override
-  int? get lookupKey;
+  String get brokerEmail;
   @override
-  int? get municipalityId;
+  String get brokerEnDescription;
   @override
-  int? get id;
+  String get brokerEnName;
   @override
-  String? get fieldName;
+  String get brokerIcon;
   @override
-  int? get maxVal;
+  String get brokerPhone1;
   @override
-  int? get minVal;
+  String? get brokerPhone2;
   @override
-  String? get model;
+  String? get brokerPhone3;
   @override
-  int? get nationalityCode;
+  int get brokerTypeId;
+  @override
+  String get brokerlicenseNumber;
+  @override
+  bool get isActive;
+  @override
+  String get managerArName;
+  @override
+  String get managerEnName;
+  @override
+  int get municipalityId;
   @override
   @JsonKey(ignore: true)
-  _$$BrokerLookUpModelImplCopyWith<_$BrokerLookUpModelImpl> get copyWith =>
+  _$$RealEstateBrokerTransactionDataImplCopyWith<
+          _$RealEstateBrokerTransactionDataImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+RealEstateBrokerTransactions _$RealEstateBrokerTransactionsFromJson(
+    Map<String, dynamic> json) {
+  return _RealEstateBrokerTransactions.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RealEstateBrokerTransactions {
+  int get count => throw _privateConstructorUsedError;
+  List<RealEstateBrokerTransactionData> get transactionList =>
       throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RealEstateBrokerTransactionsCopyWith<RealEstateBrokerTransactions>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RealEstateBrokerTransactionsCopyWith<$Res> {
+  factory $RealEstateBrokerTransactionsCopyWith(
+          RealEstateBrokerTransactions value,
+          $Res Function(RealEstateBrokerTransactions) then) =
+      _$RealEstateBrokerTransactionsCopyWithImpl<$Res,
+          RealEstateBrokerTransactions>;
+  @useResult
+  $Res call({int count, List<RealEstateBrokerTransactionData> transactionList});
+}
+
+/// @nodoc
+class _$RealEstateBrokerTransactionsCopyWithImpl<$Res,
+        $Val extends RealEstateBrokerTransactions>
+    implements $RealEstateBrokerTransactionsCopyWith<$Res> {
+  _$RealEstateBrokerTransactionsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? count = null,
+    Object? transactionList = null,
+  }) {
+    return _then(_value.copyWith(
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      transactionList: null == transactionList
+          ? _value.transactionList
+          : transactionList // ignore: cast_nullable_to_non_nullable
+              as List<RealEstateBrokerTransactionData>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RealEstateBrokerTransactionsImplCopyWith<$Res>
+    implements $RealEstateBrokerTransactionsCopyWith<$Res> {
+  factory _$$RealEstateBrokerTransactionsImplCopyWith(
+          _$RealEstateBrokerTransactionsImpl value,
+          $Res Function(_$RealEstateBrokerTransactionsImpl) then) =
+      __$$RealEstateBrokerTransactionsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int count, List<RealEstateBrokerTransactionData> transactionList});
+}
+
+/// @nodoc
+class __$$RealEstateBrokerTransactionsImplCopyWithImpl<$Res>
+    extends _$RealEstateBrokerTransactionsCopyWithImpl<$Res,
+        _$RealEstateBrokerTransactionsImpl>
+    implements _$$RealEstateBrokerTransactionsImplCopyWith<$Res> {
+  __$$RealEstateBrokerTransactionsImplCopyWithImpl(
+      _$RealEstateBrokerTransactionsImpl _value,
+      $Res Function(_$RealEstateBrokerTransactionsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? count = null,
+    Object? transactionList = null,
+  }) {
+    return _then(_$RealEstateBrokerTransactionsImpl(
+      count: null == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int,
+      transactionList: null == transactionList
+          ? _value._transactionList
+          : transactionList // ignore: cast_nullable_to_non_nullable
+              as List<RealEstateBrokerTransactionData>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RealEstateBrokerTransactionsImpl
+    implements _RealEstateBrokerTransactions {
+  _$RealEstateBrokerTransactionsImpl(
+      {this.count = 0,
+      final List<RealEstateBrokerTransactionData> transactionList = const []})
+      : _transactionList = transactionList;
+
+  factory _$RealEstateBrokerTransactionsImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$RealEstateBrokerTransactionsImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int count;
+  final List<RealEstateBrokerTransactionData> _transactionList;
+  @override
+  @JsonKey()
+  List<RealEstateBrokerTransactionData> get transactionList {
+    if (_transactionList is EqualUnmodifiableListView) return _transactionList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_transactionList);
+  }
+
+  @override
+  String toString() {
+    return 'RealEstateBrokerTransactions(count: $count, transactionList: $transactionList)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RealEstateBrokerTransactionsImpl &&
+            (identical(other.count, count) || other.count == count) &&
+            const DeepCollectionEquality()
+                .equals(other._transactionList, _transactionList));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, count,
+      const DeepCollectionEquality().hash(_transactionList));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RealEstateBrokerTransactionsImplCopyWith<
+          _$RealEstateBrokerTransactionsImpl>
+      get copyWith => __$$RealEstateBrokerTransactionsImplCopyWithImpl<
+          _$RealEstateBrokerTransactionsImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RealEstateBrokerTransactionsImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RealEstateBrokerTransactions
+    implements RealEstateBrokerTransactions {
+  factory _RealEstateBrokerTransactions(
+          {final int count,
+          final List<RealEstateBrokerTransactionData> transactionList}) =
+      _$RealEstateBrokerTransactionsImpl;
+
+  factory _RealEstateBrokerTransactions.fromJson(Map<String, dynamic> json) =
+      _$RealEstateBrokerTransactionsImpl.fromJson;
+
+  @override
+  int get count;
+  @override
+  List<RealEstateBrokerTransactionData> get transactionList;
+  @override
+  @JsonKey(ignore: true)
+  _$$RealEstateBrokerTransactionsImplCopyWith<
+          _$RealEstateBrokerTransactionsImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

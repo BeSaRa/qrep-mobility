@@ -1,49 +1,59 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../models.dart';
+
 part 'broker_models.freezed.dart';
 part 'broker_models.g.dart';
 
 @freezed
 abstract class RealEstateBrokerLookUp with _$RealEstateBrokerLookUp {
-  factory RealEstateBrokerLookUp(
-      {@Default([]) List<BrokerLookUpModel> ageCategoryList,
-      @Default([]) List<BrokerLookUpModel> brokerCategoryList,
-      @Default([]) List<BrokerLookUpModel> brokerTypeList,
-      @Default([]) List<BrokerLookUpModel> districtList,
-      @Default([]) List<BrokerLookUpModel> furnitureStatusList,
-      @Default([]) List<BrokerLookUpModel> genderList,
-      @Default([]) List<BrokerLookUpModel> maxParams,
-      @Default([]) List<BrokerLookUpModel> municipalityList,
-      @Default([]) List<BrokerLookUpModel> nationalityCategoryList,
-      @Default([]) List<BrokerLookUpModel> nationalityList,
-      @Default([]) List<BrokerLookUpModel> occupancyStatusList,
-      @Default([]) List<BrokerLookUpModel> ownerCategoryList,
-      @Default([]) List<BrokerLookUpModel> premiseCategoryList,
-      @Default([]) List<BrokerLookUpModel> premiseTypeList,
-      @Default([]) List<BrokerLookUpModel> propertyTypeList,
-      rentPurposeList,
-      zoneList}) = _RealEstateBrokerLookUp;
+  factory RealEstateBrokerLookUp({
+    @Default([]) List<RentLookupModel> propertyTypeList,
+    @Default([]) List<RentLookupModel> rentPurposeList,
+    @Default([]) List<RentLookupModel> zoneList,
+    @Default([]) List<RentLookupModel> districtList,
+    @Default([]) List<RentLookupModel> municipalityList,
+    @Default([]) List<RentLookupModel> brokerCategoryList,
+    @Default([]) List<RentLookupModel> brokerTypeList,
+  }) = _RealEstateBrokerLookUp;
 
   factory RealEstateBrokerLookUp.fromJson(Map<String, dynamic> json) =>
       _$RealEstateBrokerLookUpFromJson(json);
 }
 
 @freezed
-abstract class BrokerLookUpModel with _$BrokerLookUpModel {
-  factory BrokerLookUpModel({
-    @Default('') String? arName,
-    @Default('') String? enName,
-    @Default(true) bool? isActive,
-    @Default(0) int? lookupKey,
-    @Default(0) int? municipalityId,
-    @Default(0) int? id,
-    @Default('') String? fieldName,
-    @Default(0) int? maxVal,
-    @Default(0) int? minVal,
-    @Default('') String? model,
-    @Default(0) int? nationalityCode,
-  }) = _BrokerLookUpModel;
+abstract class RealEstateBrokerTransactionData
+    with _$RealEstateBrokerTransactionData {
+  const factory RealEstateBrokerTransactionData(
+      {@Default('') String brokerArDescription,
+      @Default('') String brokerArName,
+      @Default(0) int brokerCategoryId,
+      @Default('') String brokerEmail,
+      @Default('') String brokerEnDescription,
+      @Default('') String brokerEnName,
+      @Default('') String brokerIcon,
+      @Default('') String brokerPhone1,
+      @Default('') String? brokerPhone2,
+      @Default('') String? brokerPhone3,
+      @Default(0) int brokerTypeId,
+      @Default('') String brokerlicenseNumber,
+      @Default(true) bool isActive,
+      @Default('') String managerArName,
+      @Default('') String managerEnName,
+      @Default(0) int municipalityId}) = _RealEstateBrokerTransactionData;
 
-  factory BrokerLookUpModel.fromJson(Map<String, dynamic> json) =>
-      _$BrokerLookUpModelFromJson(json);
+  factory RealEstateBrokerTransactionData.fromJson(Map<String, dynamic> json) =>
+      _$RealEstateBrokerTransactionDataFromJson(json);
+}
+
+@freezed
+abstract class RealEstateBrokerTransactions
+    with _$RealEstateBrokerTransactions {
+  factory RealEstateBrokerTransactions(
+          {@Default(0) int count,
+          @Default([]) List<RealEstateBrokerTransactionData> transactionList}) =
+      _RealEstateBrokerTransactions;
+
+  factory RealEstateBrokerTransactions.fromJson(Map<String, dynamic> json) =>
+      _$RealEstateBrokerTransactionsFromJson(json);
 }

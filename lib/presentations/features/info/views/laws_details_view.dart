@@ -48,7 +48,6 @@ class _LawsDetailsViewState extends State<LawsDetailsView> {
   @override
   Widget build(BuildContext context) {
     lawsModel = context.read<LawsBloc>().getLawModelById(widget.id);
-    print("lawModel: ${lawsModel.id}");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,

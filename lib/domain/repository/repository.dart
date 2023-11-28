@@ -1,7 +1,10 @@
 import 'package:multiple_result/multiple_result.dart';
 
 import '../../data/newtwok/failure_model/failure.dart';
+import '../models/Auth/auth_models.dart';
+import '../models/Auth/requests_auth/request_auth.dart';
 import '../models/models.dart';
+import '../models/requests/broker_requests/request_broker_values.dart';
 
 abstract class Repository {
   //-------------CMS
@@ -153,4 +156,7 @@ abstract class Repository {
   //// ---------- real estate broker
 
   Future<Result<RealEstateBrokerLookUp, FailureModel>> getLockupBrokers();
+
+  Future<Result<RealEstateBrokerTransactions, FailureModel>>
+      getLockupTransactions(RequestBrokerValues input);
 }

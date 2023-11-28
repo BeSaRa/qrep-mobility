@@ -5,6 +5,7 @@ import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
 import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -77,10 +78,7 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                     // ),
                     title: Text(
                       AppStrings().lawsAndDecisions,
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .headlineLarge,
+                      style: Theme.of(context).textTheme.headlineLarge,
                     ),
                     centerTitle: true,
                   ),
@@ -212,10 +210,7 @@ class _LawWidgetState extends State<LawWidget> {
                             widget.law.title,
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .titleMedium,
+                            style: Theme.of(context).textTheme.titleMedium,
                           ),
                         ),
                         Divider(
@@ -226,28 +221,19 @@ class _LawWidgetState extends State<LawWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              '${AppStrings().issueDate}${DateTime
-                                  .tryParse(widget.law.issueDate)
-                                  ?.year}',
-                              style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .labelSmall,
+                              '${AppStrings().issueDate}${DateTime.tryParse(widget.law.issueDate)?.year}',
+                              style: Theme.of(context).textTheme.labelSmall,
                             ),
                             Container(
                               margin:
-                              EdgeInsets.symmetric(horizontal: AppSizeW.s5),
+                                  EdgeInsets.symmetric(horizontal: AppSizeW.s5),
                               height: AppSizeH.s16,
                               width: AppSizeW.s2,
                               color: ColorManager.lightSilver,
                             ),
                             Text(
-                              '${AppStrings().lawNumber}${widget.law
-                                  .lawNumber}',
-                              style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .labelSmall,
+                              '${AppStrings().lawNumber}${widget.law.lawNumber}',
+                              style: Theme.of(context).textTheme.labelSmall,
                             )
                           ],
                         )
@@ -271,17 +257,15 @@ class _LawWidgetState extends State<LawWidget> {
                           height: AppSizeH.s35,
                           margin: EdgeInsets.symmetric(vertical: AppSizeH.s20),
                           padding:
-                          EdgeInsets.symmetric(horizontal: AppSizeW.s8),
+                              EdgeInsets.symmetric(horizontal: AppSizeW.s8),
                           decoration: BoxDecoration(
                               color: ColorManager.golden,
                               borderRadius:
-                              BorderRadius.circular(AppSizeH.s10)),
-                          child: FittedBox(
-                            child: Icon(
-                              Icons.cloud_download_outlined,
-                              // todo: change this with the correct theme color
-                              color: ColorManager.white,
-                            ),
+                                  BorderRadius.circular(AppSizeH.s10)),
+                          child: SvgPicture.asset(
+                            IconAssets.cloudDownload,
+                            // todo: change this with the correct theme color
+                            color: ColorManager.white,
                           )),
                     ),
                   ),
