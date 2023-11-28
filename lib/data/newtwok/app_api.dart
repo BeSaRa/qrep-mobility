@@ -3,8 +3,6 @@ import 'package:ebla/data/newtwok/end_points.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../app/constants.dart';
-import '../../domain/models/Auth/auth_models.dart';
-import '../../domain/models/Auth/requests_auth/request_auth.dart';
 import '../../domain/models/models.dart';
 
 part 'app_api.g.dart';
