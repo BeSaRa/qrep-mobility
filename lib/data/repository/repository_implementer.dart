@@ -4,6 +4,8 @@ import 'package:ebla/domain/models/models.dart';
 import 'package:flutter/foundation.dart';
 import 'package:multiple_result/multiple_result.dart';
 
+import '../../domain/models/Auth/auth_models.dart';
+import '../../domain/models/Auth/requests_auth/request_auth.dart';
 import '../../domain/repository/repository.dart';
 import '../../presentations/resources/strings_manager.dart';
 import '../newtwok/app_api.dart';

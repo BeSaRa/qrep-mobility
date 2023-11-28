@@ -14,6 +14,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_auth/local_auth.dart';
+import '../../../../domain/models/Auth/requests_auth/request_auth.dart';
 import '../../../../domain/models/models.dart';
 import '../../../widgets/widgets.dart';
 import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
@@ -76,6 +77,7 @@ class _LoginViewState extends State<LoginView> {
     return canAuthenticate;
   }
 
+  @override
   Widget build(BuildContext context) {
     return BlocListener(
       bloc: context.read<UserBloc>(),

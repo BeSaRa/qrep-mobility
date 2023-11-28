@@ -15,6 +15,7 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
   GetRentLookupUseCase getRentLookupUseCase;
   GetSellLookupUseCase getSellLookupUseCase;
   LookUpMortgageUseCase lookUpMortgageUseCase;
+
   RentLookupResponse? loockUpRent;
   RentLookupResponse? loockUpSell;
   RentLookupResponse? lookUpMortgage;

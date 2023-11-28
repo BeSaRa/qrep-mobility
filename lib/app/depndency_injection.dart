@@ -407,7 +407,8 @@ Future<void> initRealEstateBroker() async {
   }
 
   if (!GetIt.I.isRegistered<LookUpBrokerBloc>()) {
-    instance.registerFactory<LookUpBrokerBloc>(() => LookUpBrokerBloc());
+    instance.registerFactory<LookUpBrokerBloc>(() =>
+        LookUpBrokerBloc(lookupBrokerUsecase: instance<BrokerLookUpUseCase>()));
   }
 }
 

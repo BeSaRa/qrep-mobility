@@ -2,6 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:ebla/app/app_preferences.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../../domain/models/Auth/auth_models.dart';
+import '../../../../../domain/models/Auth/requests_auth/request_auth.dart';
 import '../../../../../domain/models/models.dart';
 import '../../../../../domain/usecases/auth_usecase/auth_usecases.dart';
 
