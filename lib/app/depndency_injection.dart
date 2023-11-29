@@ -21,6 +21,7 @@ import '../data/newtwok/general_dio_interceptor.dart';
 import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
+import '../domain/usecases/real_estate_broker/broker_transaction_usecase.dart';
 import '../domain/usecases/sell_usecases/top_values/top_values_sell_usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/auth/blocs/login_bloc/login_bloc.dart';
@@ -29,6 +30,7 @@ import '../presentations/features/info/blocs/news_bloc/news_bloc.dart';
 import '../presentations/features/main/blocs/main_menu_bloc/main_menu_bloc.dart';
 import '../presentations/features/main/cubit/bottom_nav_cubit.dart';
 import '../presentations/features/more/blocs/user_bloc/user_bloc.dart';
+import '../presentations/features/real_estate_brokers/blocs/transaction_bloc/broker_transaction_bloc.dart';
 import '../presentations/features/rent/blocs/rent_blocs.dart';
 import '../presentations/features/sell/blocs/sell_bloc/sell_bloc.dart';
 import '../presentations/features/splash_screen/bloc/bloc/guest_token_bloc.dart';
@@ -410,10 +412,18 @@ Future<void> initRealEstateBroker() async {
     instance.registerFactory<BrokerLookUpUseCase>(
         () => BrokerLookUpUseCase(instance()));
   }
+  if (!GetIt.I.isRegistered<BrokerTransactionUseCase>()) {
+    instance.registerFactory<BrokerTransactionUseCase>(
+        () => BrokerTransactionUseCase(instance()));
+  }
 
   if (!GetIt.I.isRegistered<LookUpBrokerBloc>()) {
     instance.registerFactory<LookUpBrokerBloc>(() =>
         LookUpBrokerBloc(lookupBrokerUsecase: instance<BrokerLookUpUseCase>()));
+  }
+  if (!GetIt.I.isRegistered<BrokerTransactionBloc>()) {
+    instance.registerFactory<BrokerTransactionBloc>(() => BrokerTransactionBloc(
+        lookupBrokerUsecase: instance<BrokerLookUpUseCase>()));
   }
 }
 
