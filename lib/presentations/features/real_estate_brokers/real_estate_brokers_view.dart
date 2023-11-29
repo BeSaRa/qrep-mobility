@@ -1,7 +1,7 @@
 import 'package:ebla/presentations/features/real_estate_brokers/blocs/lookup_bloc/look_up_broker_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
+// import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -255,8 +255,8 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                             return RealEstateCard(
                               name: 'بست باي بروبرتيز',
                               country: 'الدوحة',
-                              phone: 'hgfdfghj',
-                              email: 'hgfdfghj',
+                              phone: '0994368478',
+                              email: 'fatina.haidar@nasca-sy.com',
                               divider: index != 4,
                             );
                           }),
@@ -291,30 +291,30 @@ class RealEstateCard extends StatelessWidget {
     this.divider = true,
   });
 
-  _callNumber() async {
-    const number = '08592119XXXX'; //set the number here
-    bool? res = await FlutterPhoneDirectCaller.callNumber(number);
+  _callNumber(String num) async {
+    //set the number here
+    bool? res = await FlutterPhoneDirectCaller.callNumber(num);
   }
 
-  _sendEmail() async {
-    final Email email = Email(
-      body: 'Email body',
-      subject: 'Email subject',
-      recipients: ['example@example.com'],
-      cc: ['cc@example.com'],
-      bcc: ['bcc@example.com'],
-      attachmentPaths: ['/path/to/attachment.zip'],
-      isHTML: false,
-    );
-
-    await FlutterEmailSender.send(email);
-  }
+  // _sendEmail() async {
+  //   final Email email = Email(
+  //     body: 'Email body',
+  //     subject: 'Email subject',
+  //     recipients: ['example@example.com'],
+  //     cc: ['cc@example.com'],
+  //     bcc: ['bcc@example.com'],
+  //     attachmentPaths: ['/path/to/attachment.zip'],
+  //     isHTML: false,
+  //   );
+  //
+  //   await FlutterEmailSender.send(email);
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding:
-          EdgeInsets.symmetric(horizontal: AppSizeH.s20, vertical: AppSizeH.s5),
+          EdgeInsets.symmetric(horizontal: AppSizeH.s10, vertical: AppSizeH.s5),
       decoration: BoxDecoration(color: ColorManager.white),
       child: Column(
         children: [
@@ -326,50 +326,63 @@ class RealEstateCard extends StatelessWidget {
                 children: [
                   Text(
                     name,
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(fontSize: AppSizeSp.s12),
                   ),
                   Text(
                     country,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(fontSize: AppSizeSp.s12),
                   ),
                 ],
               ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.local_phone_outlined,
-                        color: ColorManager.golden,
-                        size: AppSizeH.s20,
-                      ),
-                      SizedBox(
-                        width: AppSizeW.s5,
-                      ),
-                      Text(
-                        phone,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontSize: AppSizeSp.s16),
-                      ),
-                    ],
+                  GestureDetector(
+                    onTap: () {
+                      _callNumber(phone);
+                    },
+                    child: Row(
+                      children: [
+                        Text(
+                          phone,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(fontSize: AppSizeSp.s14),
+                        ),
+                        SizedBox(
+                          width: AppSizeW.s5,
+                        ),
+                        Icon(
+                          Icons.local_phone_outlined,
+                          color: ColorManager.golden,
+                          size: AppSizeH.s15,
+                        ),
+                      ],
+                    ),
                   ),
                   Row(
                     children: [
-                      Icon(
-                        Icons.email_outlined,
-                        color: ColorManager.golden,
-                      ),
-                      SizedBox(
-                        width: AppSizeW.s5,
-                      ),
                       Text(
                         email,
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium
-                            ?.copyWith(fontSize: AppSizeSp.s16),
+                            ?.copyWith(fontSize: AppSizeSp.s14),
+                      ),
+                      SizedBox(
+                        width: AppSizeW.s5,
+                      ),
+                      Icon(
+                        Icons.email_outlined,
+                        color: ColorManager.golden,
+                        size: AppSizeH.s15,
                       ),
                     ],
                   ),

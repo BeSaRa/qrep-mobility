@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:ebla/presentations/features/auth/blocs/cubits/logged_in_user_cubit.dart';
 import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/main/blocs/lookup_bloc/lookup_bloc.dart';
@@ -107,6 +108,10 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<MainMenuBloc>()) {
     instance.registerFactory<MainMenuBloc>(
         () => MainMenuBloc(mainMenuUsecase: instance<MainMenuUsecase>()));
+  }
+  if (!GetIt.I.isRegistered<LoggedInUserCubit>()) {
+    instance.registerFactory<LoggedInUserCubit>(
+        () => LoggedInUserCubit(false, instance()));
   }
 }
 

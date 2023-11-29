@@ -1,9 +1,12 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:ebla/app/depndency_injection.dart';
+import 'package:ebla/presentations/features/auth/blocs/cubits/logged_in_user_cubit.dart';
+import 'package:ebla/presentations/features/more/blocs/user_bloc/user_bloc.dart';
 import 'package:ebla/presentations/features/splash_screen/widgets/animated_transparent_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../resources/resources.dart';
@@ -38,6 +41,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
         statusBarIconBrightness: Brightness.light));
     guestToken = instance<GuestTokenBloc>()
       ..add(const GuestTokenEvent.tokenGuest());
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Future.delayed(
         const Duration(milliseconds: 200),
@@ -49,11 +53,17 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   }
 
   Future<void> _startAnimation() async {
+    context.read<LoggedInUserCubit>().checkLoggedIn();
     setState(() {
       _scale = 1;
       _isVisible = !_isVisible;
       backgroundImageBottomPosition = -15;
     });
+    if (context.read<LoggedInUserCubit>().state) {
+      context.read<UserBloc>().add(const UserEvent.getUserInfo());
+    } else {
+      context.read<UserBloc>().add(const UserEvent.guestUser());
+    }
   }
 
   void navigateAfterDelay() {

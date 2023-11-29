@@ -4,12 +4,11 @@ import 'package:ebla/app/depndency_injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../domain/models/rent_models/rent_models.dart';
-import '../../../../../domain/usecases/mortgage_usecases/lookup_mortgage_usecase.dart';
 import '../../../../../domain/usecases/usecases.dart';
 
+part 'lookup_bloc.freezed.dart';
 part 'lookup_event.dart';
 part 'lookup_state.dart';
-part 'lookup_bloc.freezed.dart';
 
 class LookupBloc extends Bloc<LookupEvent, LookupState> {
   GetRentLookupUseCase getRentLookupUseCase;
@@ -19,6 +18,7 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
   RentLookupResponse? loockUpRent;
   RentLookupResponse? loockUpSell;
   RentLookupResponse? lookUpMortgage;
+
   LookupBloc({
     required this.getRentLookupUseCase,
     required this.getSellLookupUseCase,

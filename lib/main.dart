@@ -29,7 +29,6 @@ Future<void> main() async {
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
       .whenComplete(
     () {
-      registerFCMToken();
       FirebaseMessaging.onBackgroundMessage(backgroundHandler);
       FirebaseMessaging.onMessage.listen(
         (RemoteMessage message) {
@@ -40,7 +39,6 @@ Future<void> main() async {
   );
   await initAppModule();
   await initTranslationsModule();
-
   Bloc.observer = MyBlocObserver();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Future.delayed(const Duration(milliseconds: 150));
@@ -54,7 +52,7 @@ Future<void> main() async {
   return runApp(
     EasyLocalization(
       assetLoader: TranslationsAssetsLoader(
-        loadRemoteAssets: false,
+        loadRemoteAssets: true,
         updateInterval: const Duration(days: 3),
       ),
       supportedLocales: supportedLocales,

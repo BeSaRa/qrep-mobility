@@ -1,5 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/presentations/features/auth/blocs/cubits/logged_in_user_cubit.dart';
 import 'package:ebla/presentations/features/main/blocs/main_menu_bloc/main_menu_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,8 +46,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           lazy: true,
         ),
         BlocProvider(
-          create: (context) =>
-              instance<UserBloc>()..add(const UserEvent.getUserInfo()),
+          create: (context) => instance<UserBloc>(),
+          lazy: true,
+        ),
+        BlocProvider(
+          create: (context) => instance<LoggedInUserCubit>(),
           lazy: true,
         ),
       ],

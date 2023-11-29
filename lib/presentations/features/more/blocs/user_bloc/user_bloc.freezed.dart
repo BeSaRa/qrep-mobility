@@ -20,18 +20,21 @@ mixin _$UserEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getUserInfo,
     required TResult Function() initialUser,
+    required TResult Function() guestUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserInfo,
     TResult? Function()? initialUser,
+    TResult? Function()? guestUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserInfo,
     TResult Function()? initialUser,
+    TResult Function()? guestUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$UserEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetUserInfoEvent value) getUserInfo,
     required TResult Function(_GetInitialUserEvent value) initialUser,
+    required TResult Function(_GetGuestUserEvent value) guestUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetUserInfoEvent value)? getUserInfo,
     TResult? Function(_GetInitialUserEvent value)? initialUser,
+    TResult? Function(_GetGuestUserEvent value)? guestUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetUserInfoEvent value)? getUserInfo,
     TResult Function(_GetInitialUserEvent value)? initialUser,
+    TResult Function(_GetGuestUserEvent value)? guestUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +119,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getUserInfo,
     required TResult Function() initialUser,
+    required TResult Function() guestUser,
   }) {
     return getUserInfo();
   }
@@ -122,6 +129,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserInfo,
     TResult? Function()? initialUser,
+    TResult? Function()? guestUser,
   }) {
     return getUserInfo?.call();
   }
@@ -131,6 +139,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserInfo,
     TResult Function()? initialUser,
+    TResult Function()? guestUser,
     required TResult orElse(),
   }) {
     if (getUserInfo != null) {
@@ -144,6 +153,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetUserInfoEvent value) getUserInfo,
     required TResult Function(_GetInitialUserEvent value) initialUser,
+    required TResult Function(_GetGuestUserEvent value) guestUser,
   }) {
     return getUserInfo(this);
   }
@@ -153,6 +163,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetUserInfoEvent value)? getUserInfo,
     TResult? Function(_GetInitialUserEvent value)? initialUser,
+    TResult? Function(_GetGuestUserEvent value)? guestUser,
   }) {
     return getUserInfo?.call(this);
   }
@@ -162,6 +173,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetUserInfoEvent value)? getUserInfo,
     TResult Function(_GetInitialUserEvent value)? initialUser,
+    TResult Function(_GetGuestUserEvent value)? guestUser,
     required TResult orElse(),
   }) {
     if (getUserInfo != null) {
@@ -216,6 +228,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getUserInfo,
     required TResult Function() initialUser,
+    required TResult Function() guestUser,
   }) {
     return initialUser();
   }
@@ -225,6 +238,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserInfo,
     TResult? Function()? initialUser,
+    TResult? Function()? guestUser,
   }) {
     return initialUser?.call();
   }
@@ -234,6 +248,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserInfo,
     TResult Function()? initialUser,
+    TResult Function()? guestUser,
     required TResult orElse(),
   }) {
     if (initialUser != null) {
@@ -247,6 +262,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetUserInfoEvent value) getUserInfo,
     required TResult Function(_GetInitialUserEvent value) initialUser,
+    required TResult Function(_GetGuestUserEvent value) guestUser,
   }) {
     return initialUser(this);
   }
@@ -256,6 +272,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetUserInfoEvent value)? getUserInfo,
     TResult? Function(_GetInitialUserEvent value)? initialUser,
+    TResult? Function(_GetGuestUserEvent value)? guestUser,
   }) {
     return initialUser?.call(this);
   }
@@ -265,6 +282,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetUserInfoEvent value)? getUserInfo,
     TResult Function(_GetInitialUserEvent value)? initialUser,
+    TResult Function(_GetGuestUserEvent value)? guestUser,
     required TResult orElse(),
   }) {
     if (initialUser != null) {
@@ -279,9 +297,118 @@ abstract class _GetInitialUserEvent implements UserEvent {
 }
 
 /// @nodoc
+abstract class _$$GetGuestUserEventImplCopyWith<$Res> {
+  factory _$$GetGuestUserEventImplCopyWith(_$GetGuestUserEventImpl value,
+          $Res Function(_$GetGuestUserEventImpl) then) =
+      __$$GetGuestUserEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetGuestUserEventImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$GetGuestUserEventImpl>
+    implements _$$GetGuestUserEventImplCopyWith<$Res> {
+  __$$GetGuestUserEventImplCopyWithImpl(_$GetGuestUserEventImpl _value,
+      $Res Function(_$GetGuestUserEventImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetGuestUserEventImpl implements _GetGuestUserEvent {
+  const _$GetGuestUserEventImpl();
+
+  @override
+  String toString() {
+    return 'UserEvent.guestUser()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetGuestUserEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUserInfo,
+    required TResult Function() initialUser,
+    required TResult Function() guestUser,
+  }) {
+    return guestUser();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getUserInfo,
+    TResult? Function()? initialUser,
+    TResult? Function()? guestUser,
+  }) {
+    return guestUser?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUserInfo,
+    TResult Function()? initialUser,
+    TResult Function()? guestUser,
+    required TResult orElse(),
+  }) {
+    if (guestUser != null) {
+      return guestUser();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetUserInfoEvent value) getUserInfo,
+    required TResult Function(_GetInitialUserEvent value) initialUser,
+    required TResult Function(_GetGuestUserEvent value) guestUser,
+  }) {
+    return guestUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult? Function(_GetInitialUserEvent value)? initialUser,
+    TResult? Function(_GetGuestUserEvent value)? guestUser,
+  }) {
+    return guestUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult Function(_GetInitialUserEvent value)? initialUser,
+    TResult Function(_GetGuestUserEvent value)? guestUser,
+    required TResult orElse(),
+  }) {
+    if (guestUser != null) {
+      return guestUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetGuestUserEvent implements UserEvent {
+  const factory _GetGuestUserEvent() = _$GetGuestUserEventImpl;
+}
+
+/// @nodoc
 mixin _$UserState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(UserResponse user) loaded,
     required TResult Function(String message) error,
@@ -289,6 +416,7 @@ mixin _$UserState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(UserResponse user)? loaded,
     TResult? Function(String message)? error,
@@ -296,6 +424,7 @@ mixin _$UserState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(UserResponse user)? loaded,
     TResult Function(String message)? error,
@@ -304,6 +433,7 @@ mixin _$UserState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
@@ -311,6 +441,7 @@ mixin _$UserState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
@@ -318,6 +449,7 @@ mixin _$UserState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
@@ -341,6 +473,120 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
+
+  @override
+  String toString() {
+    return 'UserState.initial()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(UserResponse user) loaded,
+    required TResult Function(String message) error,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserResponse user)? loaded,
+    TResult? Function(String message)? error,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(UserResponse user)? loaded,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Error value) error,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Error value)? error,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Initial implements UserState {
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
@@ -381,6 +627,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(UserResponse user) loaded,
     required TResult Function(String message) error,
@@ -391,6 +638,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(UserResponse user)? loaded,
     TResult? Function(String message)? error,
@@ -401,6 +649,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(UserResponse user)? loaded,
     TResult Function(String message)? error,
@@ -415,6 +664,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
@@ -425,6 +675,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
@@ -435,6 +686,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
@@ -525,6 +777,7 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(UserResponse user) loaded,
     required TResult Function(String message) error,
@@ -535,6 +788,7 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(UserResponse user)? loaded,
     TResult? Function(String message)? error,
@@ -545,6 +799,7 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(UserResponse user)? loaded,
     TResult Function(String message)? error,
@@ -559,6 +814,7 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
@@ -569,6 +825,7 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
@@ -579,6 +836,7 @@ class _$LoadedImpl implements _Loaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
@@ -664,6 +922,7 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(UserResponse user) loaded,
     required TResult Function(String message) error,
@@ -674,6 +933,7 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(UserResponse user)? loaded,
     TResult? Function(String message)? error,
@@ -684,6 +944,7 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(UserResponse user)? loaded,
     TResult Function(String message)? error,
@@ -698,6 +959,7 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
@@ -708,6 +970,7 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
@@ -718,6 +981,7 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,

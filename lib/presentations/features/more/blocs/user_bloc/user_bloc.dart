@@ -4,14 +4,15 @@ import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 import 'package:ebla/domain/usecases/CMS/user_usecases.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'user_bloc.freezed.dart';
 part 'user_event.dart';
 part 'user_state.dart';
-part 'user_bloc.freezed.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   UserUsecase userUsecase;
   UserModel? user;
-  UserBloc({required this.userUsecase}) : super(const UserState.loading()) {
+
+  UserBloc({required this.userUsecase}) : super(const UserState.initial()) {
     on<UserEvent>((event, emit) async {
       await event.map(
         getUserInfo: (value) async {
@@ -27,6 +28,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         initialUser: (_GetInitialUserEvent value) {
           userUsecase = instance<UserUsecase>();
           emit(const UserState.loading());
+        },
+        guestUser: (_GetGuestUserEvent value) {
+          emit(const UserState.initial());
         },
       );
     });
