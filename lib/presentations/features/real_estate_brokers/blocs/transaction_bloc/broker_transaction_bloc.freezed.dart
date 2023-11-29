@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BrokerTransactionEvent {
+  RequestBrokerValues get request => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(RequestBrokerValues request) started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function(RequestBrokerValues request)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(RequestBrokerValues request)? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +49,10 @@ mixin _$BrokerTransactionEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $BrokerTransactionEventCopyWith<BrokerTransactionEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -55,6 +60,10 @@ abstract class $BrokerTransactionEventCopyWith<$Res> {
   factory $BrokerTransactionEventCopyWith(BrokerTransactionEvent value,
           $Res Function(BrokerTransactionEvent) then) =
       _$BrokerTransactionEventCopyWithImpl<$Res, BrokerTransactionEvent>;
+  @useResult
+  $Res call({RequestBrokerValues request});
+
+  $RequestBrokerValuesCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -67,13 +76,41 @@ class _$BrokerTransactionEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? request = null,
+  }) {
+    return _then(_value.copyWith(
+      request: null == request
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as RequestBrokerValues,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RequestBrokerValuesCopyWith<$Res> get request {
+    return $RequestBrokerValuesCopyWith<$Res>(_value.request, (value) {
+      return _then(_value.copyWith(request: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$StartedImplCopyWith<$Res> {
+abstract class _$$StartedImplCopyWith<$Res>
+    implements $BrokerTransactionEventCopyWith<$Res> {
   factory _$$StartedImplCopyWith(
           _$StartedImpl value, $Res Function(_$StartedImpl) then) =
       __$$StartedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({RequestBrokerValues request});
+
+  @override
+  $RequestBrokerValuesCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -83,51 +120,75 @@ class __$$StartedImplCopyWithImpl<$Res>
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? request = null,
+  }) {
+    return _then(_$StartedImpl(
+      request: null == request
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as RequestBrokerValues,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$StartedImpl implements _Started {
-  const _$StartedImpl();
+  const _$StartedImpl({required this.request});
+
+  @override
+  final RequestBrokerValues request;
 
   @override
   String toString() {
-    return 'BrokerTransactionEvent.started()';
+    return 'BrokerTransactionEvent.started(request: $request)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StartedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$StartedImpl &&
+            (identical(other.request, request) || other.request == request));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, request);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StartedImplCopyWith<_$StartedImpl> get copyWith =>
+      __$$StartedImplCopyWithImpl<_$StartedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(RequestBrokerValues request) started,
   }) {
-    return started();
+    return started(request);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function(RequestBrokerValues request)? started,
   }) {
-    return started?.call();
+    return started?.call(request);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(RequestBrokerValues request)? started,
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started();
+      return started(request);
     }
     return orElse();
   }
@@ -162,7 +223,15 @@ class _$StartedImpl implements _Started {
 }
 
 abstract class _Started implements BrokerTransactionEvent {
-  const factory _Started() = _$StartedImpl;
+  const factory _Started({required final RequestBrokerValues request}) =
+      _$StartedImpl;
+
+  @override
+  RequestBrokerValues get request;
+  @override
+  @JsonKey(ignore: true)
+  _$$StartedImplCopyWith<_$StartedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

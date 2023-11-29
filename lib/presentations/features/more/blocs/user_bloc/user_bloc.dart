@@ -4,6 +4,7 @@ import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 import 'package:ebla/domain/usecases/CMS/user_usecases.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../../app/notifications/firebase_helper.dart';
 import '../../../../../domain/usecases/CMS/update_fcm_usecase.dart';
 
 part 'user_bloc.freezed.dart';
@@ -13,7 +14,7 @@ part 'user_state.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   UserUsecase userUsecase;
   UserModel? user;
-  UpdateFcmTokenUseCase updateFcmUseCase= instance();
+  UpdateFcmTokenUseCase updateFcmUseCase = instance();
 
   UserBloc({required this.userUsecase}) : super(const UserState.initial()) {
     on<UserEvent>((event, emit) async {
@@ -21,10 +22,13 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         getUserInfo: (value) async {
           emit(const UserState.loading());
           final failureOrUser = await userUsecase.execute();
-          failureOrUser.when((userInfo) {
+          failureOrUser.when((userInfo) async {
             user = userInfo.data;
             emit(UserState.loaded(user: userInfo));
-
+            String fcmToken = await registerFCMToken();
+            print("fcm token : $fcmToken");
+            FcmInput input = FcmInput(id: userInfo.data.id, fcm: fcmToken);
+            updateFcmUseCase.execute(input);
           }, (error) {
             emit(UserState.error(message: error.message));
           });
