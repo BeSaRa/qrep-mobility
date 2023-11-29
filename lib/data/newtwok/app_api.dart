@@ -201,6 +201,10 @@ abstract class TranslationsServiceClient {
   @GET(EndPoints.userInfo)
   Future<HttpResponse<UserResponse>> getUserInfo();
 
+  @PATCH(EndPoints.userEdit)
+  Future<HttpResponse<UserResponse>> updateFcmToken(
+      @Query("id") String id, @Field("fcm_token") String fcmToken);
+
 //---------------------------------CMS-----------------------------------------
   @GET(EndPoints.faq)
   Future<HttpResponse<FaqResponse>> getFaq(@Query("limit") int limit);

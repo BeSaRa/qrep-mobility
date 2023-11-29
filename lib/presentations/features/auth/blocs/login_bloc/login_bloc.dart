@@ -34,7 +34,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             appPreferences.setUserRefreshToken(success.data.refreshToken);
             appPreferences.setUserLoggedIn(true);
 
-
             emit(state.copyWith(
                 isLoading: false,
                 isHasError: false,

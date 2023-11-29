@@ -4,6 +4,8 @@ import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 import 'package:ebla/domain/usecases/CMS/user_usecases.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../../domain/usecases/CMS/update_fcm_usecase.dart';
+
 part 'user_bloc.freezed.dart';
 part 'user_event.dart';
 part 'user_state.dart';
@@ -11,6 +13,7 @@ part 'user_state.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   UserUsecase userUsecase;
   UserModel? user;
+  UpdateFcmTokenUseCase updateFcmUseCase= instance();
 
   UserBloc({required this.userUsecase}) : super(const UserState.initial()) {
     on<UserEvent>((event, emit) async {
@@ -21,6 +24,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           failureOrUser.when((userInfo) {
             user = userInfo.data;
             emit(UserState.loaded(user: userInfo));
+
           }, (error) {
             emit(UserState.error(message: error.message));
           });

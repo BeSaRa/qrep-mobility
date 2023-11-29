@@ -2,7 +2,7 @@ import 'package:ebla/presentations/features/real_estate_brokers/blocs/lookup_blo
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:flutter_email_sender/flutter_email_sender.dart';
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+// import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../utils/global_functions.dart';
@@ -293,7 +293,7 @@ class RealEstateCard extends StatelessWidget {
 
   _callNumber(String num) async {
     //set the number here
-    bool? res = await FlutterPhoneDirectCaller.callNumber(num);
+    // bool? res = await FlutterPhoneDirectCaller.callNumber(num);
   }
 
   // _sendEmail() async {

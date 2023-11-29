@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:ebla/data/newtwok/failure_model/failure.dart';
 import 'package:ebla/domain/models/models.dart';
 import 'package:ebla/domain/models/requests/broker_requests/request_broker_values.dart';
+import 'package:ebla/domain/usecases/CMS/update_fcm_usecase.dart';
 import 'package:flutter/foundation.dart';
 import 'package:multiple_result/multiple_result.dart';
 
@@ -1080,6 +1081,27 @@ class RepositoryImplementer extends Repository {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.getBrokerTransaction(input);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<UserResponse, FailureModel>> updateFcmToken(FcmInput input) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await translationsServiceClient.updateFcmToken(input.id, input.fcm);
+
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
