@@ -1040,3 +1040,144 @@ abstract class _RealEstateBrokerTransactions
           _$RealEstateBrokerTransactionsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+RealEstateBrokerKpi1 _$RealEstateBrokerKpi1FromJson(Map<String, dynamic> json) {
+  return _RealEstateBrokerKpi1.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RealEstateBrokerKpi1 {
+  int get kpiVal => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RealEstateBrokerKpi1CopyWith<RealEstateBrokerKpi1> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RealEstateBrokerKpi1CopyWith<$Res> {
+  factory $RealEstateBrokerKpi1CopyWith(RealEstateBrokerKpi1 value,
+          $Res Function(RealEstateBrokerKpi1) then) =
+      _$RealEstateBrokerKpi1CopyWithImpl<$Res, RealEstateBrokerKpi1>;
+  @useResult
+  $Res call({int kpiVal});
+}
+
+/// @nodoc
+class _$RealEstateBrokerKpi1CopyWithImpl<$Res,
+        $Val extends RealEstateBrokerKpi1>
+    implements $RealEstateBrokerKpi1CopyWith<$Res> {
+  _$RealEstateBrokerKpi1CopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? kpiVal = null,
+  }) {
+    return _then(_value.copyWith(
+      kpiVal: null == kpiVal
+          ? _value.kpiVal
+          : kpiVal // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RealEstateBrokerKpi1ImplCopyWith<$Res>
+    implements $RealEstateBrokerKpi1CopyWith<$Res> {
+  factory _$$RealEstateBrokerKpi1ImplCopyWith(_$RealEstateBrokerKpi1Impl value,
+          $Res Function(_$RealEstateBrokerKpi1Impl) then) =
+      __$$RealEstateBrokerKpi1ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int kpiVal});
+}
+
+/// @nodoc
+class __$$RealEstateBrokerKpi1ImplCopyWithImpl<$Res>
+    extends _$RealEstateBrokerKpi1CopyWithImpl<$Res, _$RealEstateBrokerKpi1Impl>
+    implements _$$RealEstateBrokerKpi1ImplCopyWith<$Res> {
+  __$$RealEstateBrokerKpi1ImplCopyWithImpl(_$RealEstateBrokerKpi1Impl _value,
+      $Res Function(_$RealEstateBrokerKpi1Impl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? kpiVal = null,
+  }) {
+    return _then(_$RealEstateBrokerKpi1Impl(
+      kpiVal: null == kpiVal
+          ? _value.kpiVal
+          : kpiVal // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RealEstateBrokerKpi1Impl implements _RealEstateBrokerKpi1 {
+  _$RealEstateBrokerKpi1Impl({this.kpiVal = 0});
+
+  factory _$RealEstateBrokerKpi1Impl.fromJson(Map<String, dynamic> json) =>
+      _$$RealEstateBrokerKpi1ImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int kpiVal;
+
+  @override
+  String toString() {
+    return 'RealEstateBrokerKpi1(kpiVal: $kpiVal)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RealEstateBrokerKpi1Impl &&
+            (identical(other.kpiVal, kpiVal) || other.kpiVal == kpiVal));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, kpiVal);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RealEstateBrokerKpi1ImplCopyWith<_$RealEstateBrokerKpi1Impl>
+      get copyWith =>
+          __$$RealEstateBrokerKpi1ImplCopyWithImpl<_$RealEstateBrokerKpi1Impl>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RealEstateBrokerKpi1ImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RealEstateBrokerKpi1 implements RealEstateBrokerKpi1 {
+  factory _RealEstateBrokerKpi1({final int kpiVal}) =
+      _$RealEstateBrokerKpi1Impl;
+
+  factory _RealEstateBrokerKpi1.fromJson(Map<String, dynamic> json) =
+      _$RealEstateBrokerKpi1Impl.fromJson;
+
+  @override
+  int get kpiVal;
+  @override
+  @JsonKey(ignore: true)
+  _$$RealEstateBrokerKpi1ImplCopyWith<_$RealEstateBrokerKpi1Impl>
+      get copyWith => throw _privateConstructorUsedError;
+}

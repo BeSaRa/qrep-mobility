@@ -1177,6 +1177,38 @@ class _AppServiceClient implements AppServiceClient {
     return httpResponse;
   }
 
+  @override
+  Future<HttpResponse<List<RealEstateBrokerKpi1>>> getBrokerKpi1(
+      RequestBrokerValues requestBrokerValue) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = requestBrokerValue;
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<HttpResponse<List<RealEstateBrokerKpi1>>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/kpi/broker/kpi1',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data!
+        .map((dynamic i) =>
+            RealEstateBrokerKpi1.fromJson(i as Map<String, dynamic>))
+        .toList();
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
@@ -1313,7 +1345,7 @@ class _TranslationsServiceClient implements TranslationsServiceClient {
     String fcmToken,
   ) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'id': id};
+    // final queryParameters = <String, dynamic>{r'id': id};
     final _headers = <String, dynamic>{};
     final _data = {'fcm_token': fcmToken};
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -1324,8 +1356,8 @@ class _TranslationsServiceClient implements TranslationsServiceClient {
     )
             .compose(
               _dio.options,
-              '/users/',
-              queryParameters: queryParameters,
+              '/users/$id',
+              // queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(

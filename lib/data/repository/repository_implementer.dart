@@ -1077,7 +1077,7 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<RealEstateBrokerTransactions, FailureModel>>
-      getLockupTransactions(RequestBrokerValues input) async {
+      getBrokerTransactions(RequestBrokerValues input) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.getBrokerTransaction(input);
@@ -1097,13 +1097,36 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<UserResponse, FailureModel>> updateFcmToken(FcmInput input) async {
+  Future<Result<UserResponse, FailureModel>> updateFcmToken(
+      FcmInput input) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await translationsServiceClient.updateFcmToken(input.id, input.fcm);
+        final response =
+            await translationsServiceClient.updateFcmToken(input.id, input.fcm);
 
         if (response.response.statusCode == 200) {
           return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<RealEstateBrokerKpi1, FailureModel>> getBrokersCount(
+      RequestBrokerValues input) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.getBrokerKpi1(input);
+        if (response.response.statusCode == 200) {
+          return Success(response.data.first);
         } else {
           return Error(FailureModel.fromJson(response.response.data));
         }

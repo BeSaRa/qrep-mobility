@@ -110,3 +110,15 @@ Map<String, dynamic> _$$RealEstateBrokerTransactionsImplToJson(
       'count': instance.count,
       'transactionList': instance.transactionList,
     };
+
+_$RealEstateBrokerKpi1Impl _$$RealEstateBrokerKpi1ImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RealEstateBrokerKpi1Impl(
+      kpiVal: json['kpiVal'] as int? ?? 0,
+    );
+
+Map<String, dynamic> _$$RealEstateBrokerKpi1ImplToJson(
+        _$RealEstateBrokerKpi1Impl instance) =>
+    <String, dynamic>{
+      'kpiVal': instance.kpiVal,
+    };

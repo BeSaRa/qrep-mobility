@@ -181,6 +181,10 @@ abstract class AppServiceClient {
   @POST(EndPoints.brokerTransactions)
   Future<HttpResponse<RealEstateBrokerTransactions>> getBrokerTransaction(
       @Body() RequestBrokerValues requestBrokerValue);
+
+  @POST(EndPoints.brokerKpi1)
+  Future<HttpResponse<List<RealEstateBrokerKpi1>>> getBrokerKpi1(
+      @Body() RequestBrokerValues requestBrokerValue);
 }
 
 //---------------------------------DirectUs-----------------------------------------
@@ -203,7 +207,7 @@ abstract class TranslationsServiceClient {
 
   @PATCH(EndPoints.userEdit)
   Future<HttpResponse<UserResponse>> updateFcmToken(
-      @Query("id") String id, @Field("fcm_token") String fcmToken);
+      @Path() String id, @Field("fcm_token") String fcmToken);
 
 //---------------------------------CMS-----------------------------------------
   @GET(EndPoints.faq)

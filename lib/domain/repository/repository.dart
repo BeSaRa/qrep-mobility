@@ -23,7 +23,6 @@ abstract class Repository {
 
   Future<Result<FaqResponse, FailureModel>> getFaq(int id);
 
-
   Future<Result<UserResponse, FailureModel>> updateFcmToken(FcmInput input);
 
 //-------------Rent----------------
@@ -162,5 +161,8 @@ abstract class Repository {
   Future<Result<RealEstateBrokerLookUp, FailureModel>> getLockupBrokers();
 
   Future<Result<RealEstateBrokerTransactions, FailureModel>>
-      getLockupTransactions(RequestBrokerValues input);
+      getBrokerTransactions(RequestBrokerValues input);
+
+  Future<Result<RealEstateBrokerKpi1, FailureModel>> getBrokersCount(
+      RequestBrokerValues input);
 }

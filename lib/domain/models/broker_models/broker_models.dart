@@ -57,3 +57,12 @@ abstract class RealEstateBrokerTransactions
   factory RealEstateBrokerTransactions.fromJson(Map<String, dynamic> json) =>
       _$RealEstateBrokerTransactionsFromJson(json);
 }
+
+@freezed
+abstract class RealEstateBrokerKpi1 with _$RealEstateBrokerKpi1 {
+  factory RealEstateBrokerKpi1({@Default(0) int kpiVal}) =
+      _RealEstateBrokerKpi1;
+
+  factory RealEstateBrokerKpi1.fromJson(Map<String, dynamic> json) =>
+      _$RealEstateBrokerKpi1FromJson(json);
+}
