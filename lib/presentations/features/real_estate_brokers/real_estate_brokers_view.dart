@@ -1,8 +1,10 @@
+import 'package:ebla/presentations/features/real_estate_brokers/blocs/kpi1_bloc/brokers_count_bloc.dart';
 import 'package:ebla/presentations/features/real_estate_brokers/blocs/lookup_bloc/look_up_broker_bloc.dart';
 import 'package:ebla/presentations/features/real_estate_brokers/widgets/broker_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../../widgets/widgets.dart';
@@ -154,8 +156,12 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                     SizedBox(
                       height: AppSizeH.s25,
                     ),
-                    BrokerCountContainer(
-                      count: '106',
+                    BlocBuilder<BrokersCountBloc, BrokersCountState>(
+                      builder: (context, state) {
+                        return BrokerCountContainer(
+                          count: '106',
+                        );
+                      },
                     ),
                     SizedBox(
                       height: AppSizeH.s40,

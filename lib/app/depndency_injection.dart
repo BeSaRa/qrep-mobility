@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:ebla/domain/usecases/real_estate_broker/broker_count_usecase.dart';
 import 'package:ebla/presentations/features/auth/blocs/cubits/logged_in_user_cubit.dart';
 import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:ebla/presentations/features/main/blocs/lookup_bloc/lookup_bloc.d
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
+import 'package:ebla/presentations/features/real_estate_brokers/blocs/kpi1_bloc/brokers_count_bloc.dart';
 import 'package:ebla/presentations/features/real_estate_brokers/blocs/lookup_bloc/look_up_broker_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
@@ -433,12 +435,20 @@ Future<void> initRealEstateBroker() async {
     instance.registerFactory<BrokerTransactionUseCase>(
             () => BrokerTransactionUseCase(instance()));
   }
-
+  if (!GetIt.I.isRegistered<BrokerCountUseCase>()) {
+    instance.registerFactory<BrokerCountUseCase>(
+            () => BrokerCountUseCase(instance()));
+  }
   if (!GetIt.I.isRegistered<LookUpBrokerBloc>()) {
     instance.registerFactory<LookUpBrokerBloc>(() =>
         LookUpBrokerBloc(lookupBrokerUsecase: instance<BrokerLookUpUseCase>()));
   }
   if (!GetIt.I.isRegistered<BrokerTransactionBloc>()) {
+    instance.registerFactory<BrokerTransactionBloc>(() =>
+        BrokerTransactionBloc(
+            instance()));
+  }
+  if (!GetIt.I.isRegistered<BrokersCountBloc>()) {
     instance.registerFactory<BrokerTransactionBloc>(() =>
         BrokerTransactionBloc(
             instance()));
