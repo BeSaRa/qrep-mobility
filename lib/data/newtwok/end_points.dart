@@ -104,6 +104,7 @@ class EndPoints {
   static const String auth = '/auth/login';
   static const String refreshToken = '/auth/refresh';
   static const String userInfo = '/users/me';
+  static const String userEdit = '/users/';
 
   //Main menu
   static const String mainMenu =
@@ -112,4 +113,5 @@ class EndPoints {
   //broker
   static const String brokerLookUp = "/kpi/broker/lookup";
   static const String brokerTransactions = "/kpi/broker/transactions";
+  static const String brokerKpi1 = "/kpi/broker/kpi1";
 }

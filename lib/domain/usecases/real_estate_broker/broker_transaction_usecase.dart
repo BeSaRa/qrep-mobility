@@ -15,6 +15,6 @@ class BrokerTransactionUseCase
   @override
   Future<Result<RealEstateBrokerTransactions, FailureModel>> execute(
       RequestBrokerValues input) async {
-    return await repository.getLockupTransactions(input);
+    return await repository.getBrokerTransactions(input);
   }
 }

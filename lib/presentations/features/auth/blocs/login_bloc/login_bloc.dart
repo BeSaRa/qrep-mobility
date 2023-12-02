@@ -2,13 +2,15 @@ import 'package:bloc/bloc.dart';
 import 'package:ebla/app/app_preferences.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../../app/notifications/firebase_helper.dart';
 import '../../../../../domain/models/Auth/auth_models.dart';
 import '../../../../../domain/models/Auth/requests_auth/request_auth.dart';
-import '../../../../../domain/models/models.dart';
 import '../../../../../domain/usecases/auth_usecase/auth_usecases.dart';
 
 part 'login_bloc.freezed.dart';
+
 part 'login_event.dart';
+
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
@@ -24,18 +26,20 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           emit(state.copyWith(
               isLoading: true, isHasError: false, isSuccessLogin: false));
           final failureOrSuccess =
-              await loginUsecases.execute(value.authRequest);
-          failureOrSuccess.when((success) {
+          await loginUsecases.execute(value.authRequest);
+          failureOrSuccess.when((success) async {
             name = "";
             name = value.authRequest.email;
             appPreferences.setUserToken(success.data.token);
             appPreferences.setUserRefreshToken(success.data.refreshToken);
+            appPreferences.setUserLoggedIn(true);
 
             emit(state.copyWith(
                 isLoading: false,
                 isHasError: false,
                 isSuccessLogin: true,
                 successLogin: success));
+            String fcmToken = await registerFCMToken();
           }, (error) {
             emit(state.copyWith(
                 isLoading: false,

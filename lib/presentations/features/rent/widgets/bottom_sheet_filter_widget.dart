@@ -45,6 +45,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
   late ValidatorCubit validatorToValueCubit;
   late ValidatorCubit validatorFromAreaCubit;
   late ValidatorCubit validatorToAreaCubit;
+
   List<int>? getissueDateQuarterList(int id) {
     switch (id) {
       case 1:
@@ -218,6 +219,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
 
   late ValuesFiltersCubit valuesFiltersCubit;
   final _formkey = GlobalKey<FormState>();
+
   @override
   void initState() {
     validatorFromValueCubit = ValidatorCubit(0);

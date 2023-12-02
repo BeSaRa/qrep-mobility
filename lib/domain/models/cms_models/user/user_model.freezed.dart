@@ -177,6 +177,10 @@ mixin _$UserModel {
   String get lastName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  @JsonKey(name: "email_notifications")
+  bool get emailNotifications => throw _privateConstructorUsedError;
+  @JsonKey(name: "fcm_token")
+  String get fcmToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -194,7 +198,9 @@ abstract class $UserModelCopyWith<$Res> {
       @JsonKey(name: "first_name") String firstName,
       @JsonKey(name: "last_name") String lastName,
       String email,
-      String title});
+      String title,
+      @JsonKey(name: "email_notifications") bool emailNotifications,
+      @JsonKey(name: "fcm_token") String fcmToken});
 }
 
 /// @nodoc
@@ -215,6 +221,8 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? lastName = null,
     Object? email = null,
     Object? title = null,
+    Object? emailNotifications = null,
+    Object? fcmToken = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -237,6 +245,14 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      emailNotifications: null == emailNotifications
+          ? _value.emailNotifications
+          : emailNotifications // ignore: cast_nullable_to_non_nullable
+              as bool,
+      fcmToken: null == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -254,7 +270,9 @@ abstract class _$$UserModelImplCopyWith<$Res>
       @JsonKey(name: "first_name") String firstName,
       @JsonKey(name: "last_name") String lastName,
       String email,
-      String title});
+      String title,
+      @JsonKey(name: "email_notifications") bool emailNotifications,
+      @JsonKey(name: "fcm_token") String fcmToken});
 }
 
 /// @nodoc
@@ -273,6 +291,8 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? lastName = null,
     Object? email = null,
     Object? title = null,
+    Object? emailNotifications = null,
+    Object? fcmToken = null,
   }) {
     return _then(_$UserModelImpl(
       id: null == id
@@ -295,6 +315,14 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      emailNotifications: null == emailNotifications
+          ? _value.emailNotifications
+          : emailNotifications // ignore: cast_nullable_to_non_nullable
+              as bool,
+      fcmToken: null == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -307,7 +335,9 @@ class _$UserModelImpl implements _UserModel {
       @JsonKey(name: "first_name") this.firstName = "",
       @JsonKey(name: "last_name") this.lastName = "",
       this.email = "",
-      this.title = ""});
+      this.title = "",
+      @JsonKey(name: "email_notifications") this.emailNotifications = true,
+      @JsonKey(name: "fcm_token") this.fcmToken = ""});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -327,10 +357,16 @@ class _$UserModelImpl implements _UserModel {
   @override
   @JsonKey()
   final String title;
+  @override
+  @JsonKey(name: "email_notifications")
+  final bool emailNotifications;
+  @override
+  @JsonKey(name: "fcm_token")
+  final String fcmToken;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, title: $title)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, title: $title, emailNotifications: $emailNotifications, fcmToken: $fcmToken)';
   }
 
   @override
@@ -344,13 +380,17 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.title, title) || other.title == title));
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.emailNotifications, emailNotifications) ||
+                other.emailNotifications == emailNotifications) &&
+            (identical(other.fcmToken, fcmToken) ||
+                other.fcmToken == fcmToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, firstName, lastName, email, title);
+  int get hashCode => Object.hash(runtimeType, id, firstName, lastName, email,
+      title, emailNotifications, fcmToken);
 
   @JsonKey(ignore: true)
   @override
@@ -372,7 +412,9 @@ abstract class _UserModel implements UserModel {
       @JsonKey(name: "first_name") final String firstName,
       @JsonKey(name: "last_name") final String lastName,
       final String email,
-      final String title}) = _$UserModelImpl;
+      final String title,
+      @JsonKey(name: "email_notifications") final bool emailNotifications,
+      @JsonKey(name: "fcm_token") final String fcmToken}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -389,6 +431,12 @@ abstract class _UserModel implements UserModel {
   String get email;
   @override
   String get title;
+  @override
+  @JsonKey(name: "email_notifications")
+  bool get emailNotifications;
+  @override
+  @JsonKey(name: "fcm_token")
+  String get fcmToken;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>

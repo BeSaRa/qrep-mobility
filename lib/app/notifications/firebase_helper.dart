@@ -19,12 +19,13 @@ void getNotificationPermissions() async {
   }
 }
 
-void registerFCMToken() async {
-  String? token = await messaging.getToken();
+Future<String> registerFCMToken() async {
+  String token = await messaging.getToken() ?? '';
 
   if (kDebugMode) {
     print('Registration Token=$token');
   }
+  return token;
 }
 
 Future<void> forGroundHandler(RemoteMessage message) async {

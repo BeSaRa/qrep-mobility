@@ -21,6 +21,8 @@ abstract class UserModel with _$UserModel {
     @Default("") @JsonKey(name: "last_name") String lastName,
     @Default("") String email,
     @Default("") String title,
+    @Default(true)@JsonKey(name: "email_notifications") bool emailNotifications,
+    @Default("") @JsonKey(name: "fcm_token") String fcmToken
   }) = _UserModel;
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);

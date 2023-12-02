@@ -35,6 +35,7 @@ class _BottomSheetFilterMortgageWidgetState
   late ValidatorCubit validatorFromAreaCubit;
   late ValidatorCubit validatorToAreaCubit;
   final _formkey = GlobalKey<FormState>();
+
   List<int>? getissueDateQuarterList(int id) {
     switch (id) {
       case 1:
