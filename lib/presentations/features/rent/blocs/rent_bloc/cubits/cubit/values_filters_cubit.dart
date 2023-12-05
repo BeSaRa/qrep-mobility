@@ -204,4 +204,12 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
     emit(RentLookupModel(
         id: values.start.toInt(), lookupKey: values.end.toInt()));
   }
+
+  // -------------------------Broker Category Filters------------------------------------------
+  RentLookupModel brokerCategory = const RentLookupModel();
+
+  void changeBrokerCategory(RentLookupModel newBrokerCategory) {
+    brokerCategory = newBrokerCategory;
+    emit(brokerCategory);
+  }
 }

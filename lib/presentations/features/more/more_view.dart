@@ -7,11 +7,15 @@ import 'package:ebla/presentations/features/auth/views/login_view.dart';
 import 'package:ebla/presentations/features/more/blocs/cubits/change_language_cubit.dart';
 import 'package:ebla/presentations/features/more/blocs/user_bloc/user_bloc.dart';
 import 'package:ebla/presentations/features/more/widgets/more_view_shimmer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
+import '../../../domain/models/cms_models/user/requests/update_info_model.dart';
+import '../../../domain/models/models.dart';
 import '../../resources/resources.dart';
 import '../../widgets/widgets.dart';
 import '../auth/blocs/login_bloc/login_bloc.dart';
@@ -54,10 +58,7 @@ class _MoreViewState extends State<MoreView> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: MediaQuery
-                          .of(context)
-                          .size
-                          .height / 3.50,
+                      height: MediaQuery.of(context).size.height / 3.50,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -68,15 +69,11 @@ class _MoreViewState extends State<MoreView> {
                               borderRadius: BorderRadius.circular(AppSizeH.s25),
                               gradient: LinearGradient(
                                 colors: [
-                                  Theme
-                                      .of(context)
+                                  Theme.of(context)
                                       .shadowColor
                                       .withOpacity(0.7),
-                                  Theme
-                                      .of(context)
-                                      .primaryColor,
-                                  Theme
-                                      .of(context)
+                                  Theme.of(context).primaryColor,
+                                  Theme.of(context)
                                       .primaryColor
                                       .withOpacity(0.8),
                                 ],
@@ -84,41 +81,28 @@ class _MoreViewState extends State<MoreView> {
                             ),
                             child: Center(
                               child: Text(
-                                context
-                                    .read<UserBloc>()
-                                    .user
-                                    ?.id == guestId
+                                context.read<UserBloc>().user?.id == guestId
                                     ? "G"
                                     : context
-                                    .read<UserBloc>()
-                                    .user
-                                    ?.firstName[0] ??
-                                    "G",
-                                style: Theme
-                                    .of(context)
+                                            .read<UserBloc>()
+                                            .user
+                                            ?.firstName[0] ??
+                                        "G",
+                                style: Theme.of(context)
                                     .textTheme
                                     .displaySmall
                                     ?.copyWith(
-                                    fontSize: AppSizeSp.s18,
-                                    fontWeight: FontWeight.w800),
+                                        fontSize: AppSizeSp.s18,
+                                        fontWeight: FontWeight.w800),
                               ),
                             ),
                           ),
                           Text(
-                            context
-                                .read<UserBloc>()
-                                .user
-                                ?.id == guestId
+                            context.read<UserBloc>().user?.id == guestId
                                 ? "Guest"
-                                : context
-                                .read<UserBloc>()
-                                .user
-                                ?.firstName ??
-                                "Guest",
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .titleMedium,
+                                : context.read<UserBloc>().user?.firstName ??
+                                    "Guest",
+                            style: Theme.of(context).textTheme.titleMedium,
                           )
                         ],
                       ),
@@ -132,92 +116,79 @@ class _MoreViewState extends State<MoreView> {
                       bloc: loginBloc,
                       builder: (context, LoginState state) {
                         return MoreWidgetButton(
-                          icon: context
-                              .read<UserBloc>()
-                              .user
-                              ?.id == guestId
+                          icon: context.read<UserBloc>().user?.id == guestId
                               ? Icons.login
                               : Icons.person,
-                          title: context
-                              .read<UserBloc>()
-                              .user
-                              ?.id == guestId
+                          title: context.read<UserBloc>().user?.id == guestId
                               ? AppStrings().login
-                              : context
-                              .read<UserBloc>()
-                              .user != null
-                              ? context
-                              .read<UserBloc>()
-                              .user!
-                              .firstName
-                              : AppStrings().login,
-                          onPressed: context
-                              .read<UserBloc>()
-                              .user
-                              ?.id ==
-                              guestId
+                              : context.read<UserBloc>().user != null
+                                  ? context.read<UserBloc>().user!.firstName
+                                  : AppStrings().login,
+                          onPressed: context.read<UserBloc>().user?.id ==
+                                  guestId
                               ? () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext ctxt) =>
-                                  MultiBlocProvider(
-                                    providers: [
-                                      BlocProvider.value(value: loginBloc),
-                                      BlocProvider.value(
-                                          value: context.read<UserBloc>())
-                                    ],
-                                    child: _buildPopupDialog(context),
-                                  ),
-                            );
-                          }
-                              : null,
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext ctxt) =>
+                                        MultiBlocProvider(
+                                      providers: [
+                                        BlocProvider.value(value: loginBloc),
+                                        BlocProvider.value(
+                                            value: context.read<UserBloc>())
+                                      ],
+                                      child: _buildPopupDialog(context),
+                                    ),
+                                  );
+                                }
+                              : () {
+                                  context.pushNamed(RoutesNames.updateInfo);
+                                },
                         );
                       },
                     ),
                     ThemeSwitcher.withTheme(
                         builder: (context, switcher, theme) {
-                          return MoreWidgetButton(
-                              icon: Icons.color_lens_outlined,
-                              title: AppStrings().theme,
-                              isButton: false,
-                              widget: Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: EblaTabBarWidget(
-                                    initialIndex: instance<AppPreferences>()
-                                        .getTheme()
-                                        .brightness ==
+                      return MoreWidgetButton(
+                          icon: Icons.color_lens_outlined,
+                          title: AppStrings().theme,
+                          isButton: false,
+                          widget: Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: EblaTabBarWidget(
+                                initialIndex: instance<AppPreferences>()
+                                            .getTheme()
+                                            .brightness ==
                                         Brightness.light
-                                        ? 0
-                                        : 1,
-                                    firstTab: AppStrings().light,
-                                    secondTab: AppStrings().dark,
-                                    onPressed: (index) {
-                                      if (theme.brightness ==
-                                          Brightness.light &&
-                                          index == 1) {
-                                        ThemeData newTheme =
+                                    ? 0
+                                    : 1,
+                                firstTab: AppStrings().light,
+                                secondTab: AppStrings().dark,
+                                onPressed: (index) {
+                                  if (theme.brightness == Brightness.light &&
+                                      index == 1) {
+                                    ThemeData newTheme =
                                         (theme.brightness == Brightness.light &&
-                                            index == 1)
+                                                index == 1)
                                             ? darkTheme()
                                             : lightTheme();
-                                        switcher.changeTheme(theme: newTheme);
-                                        instance<AppPreferences>()
-                                            .setTheme(themeData: newTheme);
-                                      } else if (theme.brightness ==
+                                    switcher.changeTheme(theme: newTheme);
+                                    instance<AppPreferences>()
+                                        .setTheme(themeData: newTheme);
+                                  } else if (theme.brightness ==
                                           Brightness.dark &&
-                                          index == 0) {
-                                        ThemeData newTheme =
+                                      index == 0) {
+                                    ThemeData newTheme =
                                         (theme.brightness == Brightness.light &&
-                                            index == 1)
+                                                index == 1)
                                             ? darkTheme()
                                             : lightTheme();
-                                        switcher.changeTheme(theme: newTheme);
-                                        instance<AppPreferences>()
-                                            .setTheme(themeData: newTheme);
-                                      }
-                                    },
-                                  )));
-                        }),
+                                    switcher.changeTheme(theme: newTheme);
+                                    instance<AppPreferences>()
+                                        .setTheme(themeData: newTheme);
+                                  }
+                                },
+                              )));
+                    }),
                     MoreWidgetButton(
                       icon: Icons.language_outlined,
                       title: AppStrings().language,
@@ -239,49 +210,46 @@ class _MoreViewState extends State<MoreView> {
                         },
                       ),
                     ),
-                    context
-                        .read<UserBloc>()
-                        .user
-                        ?.id == guestId
+                    context.read<UserBloc>().user?.id == guestId
                         ? const SizedBox()
                         : GestureDetector(
-                      onTap: () async {
-                        var res = await showDialog(
-                          context: context,
-                          builder: (BuildContext ctxt) =>
-                              MultiBlocProvider(
-                                  providers: [
-                                    BlocProvider.value(value: loginBloc),
-                                    BlocProvider.value(
-                                        value: context.read<UserBloc>())
-                                  ],
-                                  child: const Dialog(
-                                    child: DialogsignOut(),
-                                  )),
-                        );
-                        if (res != null && res) {
-                          await instance<AppPreferences>()
-                              .setUserToken(Constant.guestToken);
-                          await instance<AppPreferences>()
-                              .setUserRefreshToken("");
-                          await resetAllModules();
-                          context
-                              .read<LookupBloc>()
-                              .add(const LookupEvent.initilaEvent());
-                          context
-                              .read<UserBloc>()
-                              .add(const UserEvent.initialUser());
-                          context
-                              .read<UserBloc>()
-                              .add(const UserEvent.getUserInfo());
-                        }
-                      },
-                      child: MoreWidgetButton(
-                        isButton: false,
-                        icon: Icons.logout,
-                        title: AppStrings().logout,
-                      ),
-                    ),
+                            onTap: () async {
+                              var res = await showDialog(
+                                context: context,
+                                builder: (BuildContext ctxt) =>
+                                    MultiBlocProvider(
+                                        providers: [
+                                      BlocProvider.value(value: loginBloc),
+                                      BlocProvider.value(
+                                          value: context.read<UserBloc>())
+                                    ],
+                                        child: const Dialog(
+                                          child: DialogsignOut(),
+                                        )),
+                              );
+                              if (res != null && res) {
+                                await instance<AppPreferences>()
+                                    .setUserToken(Constant.guestToken);
+                                await instance<AppPreferences>()
+                                    .setUserRefreshToken("");
+                                await resetAllModules();
+                                context
+                                    .read<LookupBloc>()
+                                    .add(const LookupEvent.initilaEvent());
+                                context
+                                    .read<UserBloc>()
+                                    .add(const UserEvent.initialUser());
+                                context
+                                    .read<UserBloc>()
+                                    .add(const UserEvent.getUserInfo());
+                              }
+                            },
+                            child: MoreWidgetButton(
+                              isButton: false,
+                              icon: Icons.logout,
+                              title: AppStrings().logout,
+                            ),
+                          ),
                   ],
                 ),
               );
@@ -299,10 +267,7 @@ class _MoreViewState extends State<MoreView> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: MediaQuery
-                          .of(context)
-                          .size
-                          .height / 3.50,
+                      height: MediaQuery.of(context).size.height / 3.50,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -313,15 +278,11 @@ class _MoreViewState extends State<MoreView> {
                               borderRadius: BorderRadius.circular(AppSizeH.s25),
                               gradient: LinearGradient(
                                 colors: [
-                                  Theme
-                                      .of(context)
+                                  Theme.of(context)
                                       .shadowColor
                                       .withOpacity(0.7),
-                                  Theme
-                                      .of(context)
-                                      .primaryColor,
-                                  Theme
-                                      .of(context)
+                                  Theme.of(context).primaryColor,
+                                  Theme.of(context)
                                       .primaryColor
                                       .withOpacity(0.8),
                                 ],
@@ -330,22 +291,18 @@ class _MoreViewState extends State<MoreView> {
                             child: Center(
                               child: Text(
                                 "G",
-                                style: Theme
-                                    .of(context)
+                                style: Theme.of(context)
                                     .textTheme
                                     .displaySmall
                                     ?.copyWith(
-                                    fontSize: AppSizeSp.s18,
-                                    fontWeight: FontWeight.w800),
+                                        fontSize: AppSizeSp.s18,
+                                        fontWeight: FontWeight.w800),
                               ),
                             ),
                           ),
                           Text(
                             "Guest",
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .titleMedium,
+                            style: Theme.of(context).textTheme.titleMedium,
                           )
                         ],
                       ),
@@ -364,15 +321,14 @@ class _MoreViewState extends State<MoreView> {
                           onPressed: () {
                             showDialog(
                               context: context,
-                              builder: (BuildContext ctxt) =>
-                                  MultiBlocProvider(
-                                    providers: [
-                                      BlocProvider.value(value: loginBloc),
-                                      BlocProvider.value(
-                                          value: context.read<UserBloc>())
-                                    ],
-                                    child: _buildPopupDialog(context),
-                                  ),
+                              builder: (BuildContext ctxt) => MultiBlocProvider(
+                                providers: [
+                                  BlocProvider.value(value: loginBloc),
+                                  BlocProvider.value(
+                                      value: context.read<UserBloc>())
+                                ],
+                                child: _buildPopupDialog(context),
+                              ),
                             );
                           },
                         );
@@ -380,48 +336,47 @@ class _MoreViewState extends State<MoreView> {
                     ),
                     ThemeSwitcher.withTheme(
                         builder: (context, switcher, theme) {
-                          return MoreWidgetButton(
-                              icon: Icons.color_lens_outlined,
-                              title: AppStrings().theme,
-                              isButton: false,
-                              widget: Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: EblaTabBarWidget(
-                                    initialIndex: instance<AppPreferences>()
-                                        .getTheme()
-                                        .brightness ==
+                      return MoreWidgetButton(
+                          icon: Icons.color_lens_outlined,
+                          title: AppStrings().theme,
+                          isButton: false,
+                          widget: Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: EblaTabBarWidget(
+                                initialIndex: instance<AppPreferences>()
+                                            .getTheme()
+                                            .brightness ==
                                         Brightness.light
-                                        ? 0
-                                        : 1,
-                                    firstTab: AppStrings().light,
-                                    secondTab: AppStrings().dark,
-                                    onPressed: (index) {
-                                      if (theme.brightness ==
-                                          Brightness.light &&
-                                          index == 1) {
-                                        ThemeData newTheme =
+                                    ? 0
+                                    : 1,
+                                firstTab: AppStrings().light,
+                                secondTab: AppStrings().dark,
+                                onPressed: (index) {
+                                  if (theme.brightness == Brightness.light &&
+                                      index == 1) {
+                                    ThemeData newTheme =
                                         (theme.brightness == Brightness.light &&
-                                            index == 1)
+                                                index == 1)
                                             ? darkTheme()
                                             : lightTheme();
-                                        switcher.changeTheme(theme: newTheme);
-                                        instance<AppPreferences>()
-                                            .setTheme(themeData: newTheme);
-                                      } else if (theme.brightness ==
+                                    switcher.changeTheme(theme: newTheme);
+                                    instance<AppPreferences>()
+                                        .setTheme(themeData: newTheme);
+                                  } else if (theme.brightness ==
                                           Brightness.dark &&
-                                          index == 0) {
-                                        ThemeData newTheme =
+                                      index == 0) {
+                                    ThemeData newTheme =
                                         (theme.brightness == Brightness.light &&
-                                            index == 1)
+                                                index == 1)
                                             ? darkTheme()
                                             : lightTheme();
-                                        switcher.changeTheme(theme: newTheme);
-                                        instance<AppPreferences>()
-                                            .setTheme(themeData: newTheme);
-                                      }
-                                    },
-                                  )));
-                        }),
+                                    switcher.changeTheme(theme: newTheme);
+                                    instance<AppPreferences>()
+                                        .setTheme(themeData: newTheme);
+                                  }
+                                },
+                              )));
+                    }),
                     MoreWidgetButton(
                       icon: Icons.language_outlined,
                       title: AppStrings().language,
@@ -443,9 +398,7 @@ class _MoreViewState extends State<MoreView> {
                         },
                       ),
                     ),
-
                     const SizedBox()
-
                   ],
                 ),
               );
@@ -460,6 +413,169 @@ class _MoreViewState extends State<MoreView> {
     return const Dialog(
       elevation: 0,
       child: LoginView(),
+    );
+  }
+}
+
+class UpdateInfo extends StatefulWidget {
+  final UserModel model;
+  const UpdateInfo({
+    super.key,
+    required this.model,
+  });
+
+  @override
+  State<UpdateInfo> createState() => _UpdateInfoState();
+}
+
+class _UpdateInfoState extends State<UpdateInfo> {
+  final firstNameController = TextEditingController();
+  @override
+  void initState() {
+    firstNameController.text = widget.model.firstName;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+          vertical: AppSizeH.s15, horizontal: AppSizeW.s30),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(AppSizeW.s15),
+        color: Theme.of(context).scaffoldBackgroundColor,
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "تحديث المعلومات",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            SizedBox(
+              height: AppSizeH.s15,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("الاسم الاول",
+                          style: Theme.of(context).textTheme.labelMedium),
+                      SearchTextFieldWidget(
+                          controller: TextEditingController(),
+                          hint: "الاسم الاول"),
+                    ],
+                  ),
+                ),
+                SizedBox(width: AppSizeW.s12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("الاسم الاخير",
+                          style: Theme.of(context).textTheme.labelMedium),
+                      SearchTextFieldWidget(
+                          controller: TextEditingController(),
+                          hint: "الاسم الاخير"),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: AppSizeH.s12),
+            Divider(
+              color: ColorManager.grey,
+              height: AppSizeH.s1,
+            ),
+            SizedBox(height: AppSizeH.s12),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("اللقب", style: Theme.of(context).textTheme.labelMedium),
+                SearchTextFieldWidget(
+                    controller: TextEditingController(), hint: "اللقب"),
+              ],
+            ),
+            SizedBox(height: AppSizeH.s12),
+            Divider(
+              color: ColorManager.grey,
+              height: AppSizeH.s1,
+            ),
+            SizedBox(height: AppSizeH.s12),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("البريد الالكتروني",
+                    style: Theme.of(context).textTheme.labelMedium),
+                SearchTextFieldWidget(
+                    controller: TextEditingController(),
+                    hint: "البريد الالكتروني"),
+              ],
+            ),
+            // SizedBox(height: AppSizeH.s20),
+            Row(
+              children: [
+                Checkbox(
+                  value: true,
+                  onChanged: (value) {},
+                ),
+                Text("اشعارات البريد الألكتروني",
+                    style: Theme.of(context).textTheme.labelMedium),
+              ],
+            ),
+            SizedBox(height: AppSizeH.s20),
+            BlocConsumer(
+              listener: (context, UserState state) {
+                state.mapOrNull(
+                  loaded: (value) {
+                    context.pop();
+                  },
+                );
+              },
+              bloc: context.read<UserBloc>(),
+              builder: (context, UserState state) {
+                return state.map(
+                  loading: (value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                  loaded: (value) {
+                    return CupertinoButton.filled(
+                      borderRadius: BorderRadius.circular(AppSizeR.s12),
+                      onPressed: () {
+                        context.read<UserBloc>().add(UserEvent.updateUserInfo(
+                            id: widget.model.id,
+                            requestUpdateInfo: RequestUpdateInfoModel(
+                                firstName: firstNameController.text)));
+                        // if (_formKey.currentState!.validate()) {
+                        //   context.read<LoginBloc>().add(LoginEvent.login(
+                        //       authRequest: RequestAuth(
+                        //           email: emailController.text,
+                        //           mode: "json",
+                        //           password: passwordController.text)));
+                        // }
+                      },
+                      child: const Text(
+                        "تحديث",
+                      ),
+                    );
+                  },
+                  error: (value) {
+                    return const SizedBox();
+                  },
+                  initial: (value) {
+                    return const SizedBox();
+                  },
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -515,10 +631,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
                       AppStrings().moreTitle,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .titleLarge,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
                 ),
@@ -536,10 +649,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
                   children: [
                     Text(
                       AppStrings().support,
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .titleSmall,
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                     SizedBox(
                       width: AppSizeW.s2,
@@ -590,13 +700,13 @@ class MoreWidgetButton extends StatelessWidget {
     return InkWell(
       onTap: isButton
           ? () {
-        onPressed!();
-      }
+              onPressed!();
+            }
           : null,
       child: Container(
         height: AppSizeH.s56,
         padding:
-        EdgeInsetsDirectional.only(start: AppSizeW.s19, end: AppSizeW.s7),
+            EdgeInsetsDirectional.only(start: AppSizeW.s19, end: AppSizeW.s7),
         margin: EdgeInsets.symmetric(
             horizontal: AppSizeH.s20, vertical: AppSizeW.s6),
         decoration: BoxDecoration(
@@ -612,27 +722,21 @@ class MoreWidgetButton extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: Theme
-                  .of(context)
-                  .primaryColor,
+              color: Theme.of(context).primaryColor,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: AppSizeH.s6),
               child: Text(title,
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontSize: AppSizeSp.s16, fontWeight: FontWeight.w400)),
             ),
             const Spacer(),
             isButton
                 ? Icon(
-              Icons.arrow_forward_ios,
-              color: ColorManager.grey,
-              size: AppSizeSp.s18,
-            )
+                    Icons.arrow_forward_ios,
+                    color: ColorManager.grey,
+                    size: AppSizeSp.s18,
+                  )
                 : widget ?? const SizedBox()
           ],
         ),

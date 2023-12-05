@@ -12,3 +12,5 @@ export 'requests/rent_requests/request_mean_value.dart';
 export 'requests/sell_requests/request_sell_values.dart';
 export 'sell_models/sell_models.dart';
 export 'translations_model/translations_model.dart';
+export 'Auth/auth_models.dart';
+export 'Auth/requests_auth/request_auth.dart';

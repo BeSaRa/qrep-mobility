@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/newtwok/failure_model/failure.dart';
+import 'package:ebla/domain/models/cms_models/user/requests/update_info_model.dart';
 import 'package:ebla/domain/models/models.dart';
 import 'package:ebla/domain/models/requests/broker_requests/request_broker_values.dart';
 import 'package:ebla/domain/usecases/CMS/update_fcm_usecase.dart';
@@ -1072,6 +1073,29 @@ class RepositoryImplementer extends Repository {
       }
     } else {
       return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<UserResponse, FailureResponse>> updateUserInfo(
+      {required String id,
+      required RequestUpdateInfoModel requestUpdateInfo}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await translationsServiceClient.updateUserInfo(
+            id, requestUpdateInfo);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureResponse.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(
+            FailureResponse.fromJson(e.response?.data ?? defaultError));
+      }
+    } else {
+      return Error(FailureResponse(
+          errors: [ErrorModel(message: AppStrings().noInternetError)]));
     }
   }
 
