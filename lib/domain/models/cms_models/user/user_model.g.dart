@@ -25,6 +25,8 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       lastName: json['last_name'] as String? ?? "",
       email: json['email'] as String? ?? "",
       title: json['title'] as String? ?? "",
+      emailNotifications: json['email_notifications'] as bool? ?? true,
+      fcmToken: json['fcm_token'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -34,4 +36,6 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'last_name': instance.lastName,
       'email': instance.email,
       'title': instance.title,
+      'email_notifications': instance.emailNotifications,
+      'fcm_token': instance.fcmToken,
     };

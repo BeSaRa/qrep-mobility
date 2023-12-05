@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/newtwok/end_points.dart';
+import 'package:ebla/domain/models/requests/broker_requests/request_broker_values.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../app/constants.dart';
@@ -175,6 +176,14 @@ abstract class AppServiceClient {
 
   @GET(EndPoints.brokerLookUp)
   Future<HttpResponse<RealEstateBrokerLookUp>> getBrokerLookUp();
+
+  @POST(EndPoints.brokerTransactions)
+  Future<HttpResponse<RealEstateBrokerTransactions>> getBrokerTransaction(
+      @Body() RequestBrokerValues requestBrokerValue);
+
+  @POST(EndPoints.brokerKpi1)
+  Future<HttpResponse<List<RealEstateBrokerKpi1>>> getBrokerKpi1(
+      @Body() RequestBrokerValues requestBrokerValue);
 }
 
 //---------------------------------DirectUs-----------------------------------------
@@ -197,6 +206,10 @@ abstract class TranslationsServiceClient {
   @PATCH(EndPoints.updateUserInfo)
   Future<HttpResponse<UserResponse>> updateUserInfo(
       @Path("id") String id, @Body() RequestUpdateInfoModel requestUpdateInfo);
+
+  @PATCH(EndPoints.userEdit)
+  Future<HttpResponse<UserResponse>> updateFcmToken(
+      @Path() String id, @Field("fcm_token") String fcmToken);
 
 //---------------------------------CMS-----------------------------------------
   @GET(EndPoints.faq)

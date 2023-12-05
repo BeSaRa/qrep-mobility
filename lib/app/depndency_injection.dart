@@ -1,11 +1,14 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:ebla/domain/usecases/real_estate_broker/broker_count_usecase.dart';
+import 'package:ebla/presentations/features/auth/blocs/cubits/logged_in_user_cubit.dart';
 import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/main/blocs/lookup_bloc/lookup_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
+import 'package:ebla/presentations/features/real_estate_brokers/blocs/kpi1_bloc/brokers_count_bloc.dart';
 import 'package:ebla/presentations/features/real_estate_brokers/blocs/lookup_bloc/look_up_broker_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
@@ -20,6 +23,8 @@ import '../data/newtwok/general_dio_interceptor.dart';
 import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
+import '../domain/usecases/CMS/update_fcm_usecase.dart';
+import '../domain/usecases/real_estate_broker/broker_transaction_usecase.dart';
 import '../domain/usecases/sell_usecases/top_values/top_values_sell_usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/auth/blocs/login_bloc/login_bloc.dart';
@@ -28,6 +33,7 @@ import '../presentations/features/info/blocs/news_bloc/news_bloc.dart';
 import '../presentations/features/main/blocs/main_menu_bloc/main_menu_bloc.dart';
 import '../presentations/features/main/cubit/bottom_nav_cubit.dart';
 import '../presentations/features/more/blocs/user_bloc/user_bloc.dart';
+import '../presentations/features/real_estate_brokers/blocs/transaction_bloc/broker_transaction_bloc.dart';
 import '../presentations/features/rent/blocs/rent_blocs.dart';
 import '../presentations/features/sell/blocs/sell_bloc/sell_bloc.dart';
 import '../presentations/features/splash_screen/bloc/bloc/guest_token_bloc.dart';
@@ -94,6 +100,11 @@ Future<void> initAppModule() async {
     instance.registerFactory<UpdateInfoUsecase>(
         () => UpdateInfoUsecase(repository: instance()));
   }
+  if (!GetIt.I.isRegistered<UpdateFcmTokenUseCase>()) {
+    instance.registerFactory<UpdateFcmTokenUseCase>(
+        () => UpdateFcmTokenUseCase(instance()));
+  }
+
   if (!GetIt.I.isRegistered<MainMenuUsecase>()) {
     instance.registerFactory<MainMenuUsecase>(
         () => MainMenuUsecase(repository: instance()));
@@ -112,6 +123,10 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<MainMenuBloc>()) {
     instance.registerFactory<MainMenuBloc>(
         () => MainMenuBloc(mainMenuUsecase: instance<MainMenuUsecase>()));
+  }
+  if (!GetIt.I.isRegistered<LoggedInUserCubit>()) {
+    instance.registerFactory<LoggedInUserCubit>(
+        () => LoggedInUserCubit(false, instance()));
   }
 }
 
@@ -410,10 +425,25 @@ Future<void> initRealEstateBroker() async {
     instance.registerFactory<BrokerLookUpUseCase>(
         () => BrokerLookUpUseCase(instance()));
   }
-
+  if (!GetIt.I.isRegistered<BrokerTransactionUseCase>()) {
+    instance.registerFactory<BrokerTransactionUseCase>(
+        () => BrokerTransactionUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<BrokerCountUseCase>()) {
+    instance.registerFactory<BrokerCountUseCase>(
+        () => BrokerCountUseCase(instance()));
+  }
   if (!GetIt.I.isRegistered<LookUpBrokerBloc>()) {
     instance.registerFactory<LookUpBrokerBloc>(() =>
         LookUpBrokerBloc(lookupBrokerUsecase: instance<BrokerLookUpUseCase>()));
+  }
+  if (!GetIt.I.isRegistered<BrokerTransactionBloc>()) {
+    instance.registerFactory<BrokerTransactionBloc>(
+        () => BrokerTransactionBloc(instance()));
+  }
+  if (!GetIt.I.isRegistered<BrokersCountBloc>()) {
+    instance.registerFactory<BrokerTransactionBloc>(
+        () => BrokerTransactionBloc(instance()));
   }
 }
 

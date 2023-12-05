@@ -8,4 +8,6 @@ class UserEvent with _$UserEvent {
           required RequestUpdateInfoModel requestUpdateInfo}) =
       _UpdateUserInfoEvent;
   const factory UserEvent.initialUser() = _GetInitialUserEvent;
+
+  const factory UserEvent.guestUser() = _GetGuestUserEvent;
 }

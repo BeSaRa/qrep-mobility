@@ -5,6 +5,8 @@ import '../models/Auth/auth_models.dart';
 import '../models/Auth/requests_auth/request_auth.dart';
 import '../models/cms_models/user/requests/update_info_model.dart';
 import '../models/models.dart';
+import '../models/requests/broker_requests/request_broker_values.dart';
+import '../usecases/CMS/update_fcm_usecase.dart';
 
 abstract class Repository {
   //-------------CMS
@@ -21,6 +23,8 @@ abstract class Repository {
   Future<Result<LawByIdResponse, FailureModel>> getLawById(int id);
 
   Future<Result<FaqResponse, FailureModel>> getFaq(int id);
+
+  Future<Result<UserResponse, FailureModel>> updateFcmToken(FcmInput input);
 
 //-------------Rent----------------
   Future<Result<RentLookupResponse, FailureModel>> getLockupRent();
@@ -158,4 +162,10 @@ abstract class Repository {
   //// ---------- real estate broker
 
   Future<Result<RealEstateBrokerLookUp, FailureModel>> getLockupBrokers();
+
+  Future<Result<RealEstateBrokerTransactions, FailureModel>>
+      getBrokerTransactions(RequestBrokerValues input);
+
+  Future<Result<RealEstateBrokerKpi1, FailureModel>> getBrokersCount(
+      RequestBrokerValues input);
 }

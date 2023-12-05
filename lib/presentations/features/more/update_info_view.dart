@@ -223,6 +223,9 @@ class _UpdateInfoViewState extends State<UpdateInfoView> {
                     error: (value) {
                       return const SizedBox();
                     },
+                    initial: (value) {
+                      return const SizedBox();
+                    },
                   );
                 },
               ),

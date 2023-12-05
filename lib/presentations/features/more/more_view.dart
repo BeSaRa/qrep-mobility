@@ -262,6 +262,147 @@ class _MoreViewState extends State<MoreView> {
                 },
               );
             },
+            initial: (value) {
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 3.50,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: AppSizeW.s65,
+                            height: AppSizeW.s65,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(AppSizeH.s25),
+                              gradient: LinearGradient(
+                                colors: [
+                                  Theme.of(context)
+                                      .shadowColor
+                                      .withOpacity(0.7),
+                                  Theme.of(context).primaryColor,
+                                  Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.8),
+                                ],
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "G",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall
+                                    ?.copyWith(
+                                        fontSize: AppSizeSp.s18,
+                                        fontWeight: FontWeight.w800),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "Guest",
+                            style: Theme.of(context).textTheme.titleMedium,
+                          )
+                        ],
+                      ),
+                    ),
+                    MoreWidgetButton(
+                      icon: Icons.remove_red_eye_outlined,
+                      title: AppStrings().watchList,
+                      onPressed: () {},
+                    ),
+                    BlocBuilder(
+                      bloc: loginBloc,
+                      builder: (context, LoginState state) {
+                        return MoreWidgetButton(
+                          icon: Icons.login,
+                          title: AppStrings().login,
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext ctxt) => MultiBlocProvider(
+                                providers: [
+                                  BlocProvider.value(value: loginBloc),
+                                  BlocProvider.value(
+                                      value: context.read<UserBloc>())
+                                ],
+                                child: _buildPopupDialog(context),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                    ThemeSwitcher.withTheme(
+                        builder: (context, switcher, theme) {
+                      return MoreWidgetButton(
+                          icon: Icons.color_lens_outlined,
+                          title: AppStrings().theme,
+                          isButton: false,
+                          widget: Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: EblaTabBarWidget(
+                                initialIndex: instance<AppPreferences>()
+                                            .getTheme()
+                                            .brightness ==
+                                        Brightness.light
+                                    ? 0
+                                    : 1,
+                                firstTab: AppStrings().light,
+                                secondTab: AppStrings().dark,
+                                onPressed: (index) {
+                                  if (theme.brightness == Brightness.light &&
+                                      index == 1) {
+                                    ThemeData newTheme =
+                                        (theme.brightness == Brightness.light &&
+                                                index == 1)
+                                            ? darkTheme()
+                                            : lightTheme();
+                                    switcher.changeTheme(theme: newTheme);
+                                    instance<AppPreferences>()
+                                        .setTheme(themeData: newTheme);
+                                  } else if (theme.brightness ==
+                                          Brightness.dark &&
+                                      index == 0) {
+                                    ThemeData newTheme =
+                                        (theme.brightness == Brightness.light &&
+                                                index == 1)
+                                            ? darkTheme()
+                                            : lightTheme();
+                                    switcher.changeTheme(theme: newTheme);
+                                    instance<AppPreferences>()
+                                        .setTheme(themeData: newTheme);
+                                  }
+                                },
+                              )));
+                    }),
+                    MoreWidgetButton(
+                      icon: Icons.language_outlined,
+                      title: AppStrings().language,
+                      isButton: false,
+                      widget: EblaTabBarWidget(
+                        initialIndex: context.locale == ARABIC_LOCAL ? 0 : 1,
+                        firstTab: 'عربي',
+                        secondTab: 'English',
+                        onPressed: (index) {
+                          changeLanguageCubit.save(index);
+                          if (changeLanguageCubit.state == 0) {
+                            _appPreferences.setAppLanguage(lang: 'ar');
+                            context.setLocale(ARABIC_LOCAL);
+                          }
+                          if (changeLanguageCubit.state == 1) {
+                            _appPreferences.setAppLanguage(lang: 'en');
+                            context.setLocale(ENGLISH_LOCAL);
+                          }
+                        },
+                      ),
+                    ),
+                    const SizedBox()
+                  ],
+                ),
+              );
+            },
           );
         },
       ),
@@ -424,6 +565,9 @@ class _UpdateInfoState extends State<UpdateInfo> {
                     );
                   },
                   error: (value) {
+                    return const SizedBox();
+                  },
+                  initial: (value) {
                     return const SizedBox();
                   },
                 );

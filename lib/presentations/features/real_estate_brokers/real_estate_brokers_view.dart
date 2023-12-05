@@ -1,11 +1,12 @@
+import 'package:ebla/presentations/features/real_estate_brokers/blocs/kpi1_bloc/brokers_count_bloc.dart';
 import 'package:ebla/presentations/features/real_estate_brokers/blocs/lookup_bloc/look_up_broker_bloc.dart';
+import 'package:ebla/presentations/features/real_estate_brokers/widgets/broker_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
-import '../../widgets/selected_municipality_widget.dart';
 import '../../widgets/widgets.dart';
 import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
 import 'widgets/bottom_sheet_filter_broker_widget.dart';
@@ -19,6 +20,7 @@ class RealEstateBrokersView extends StatefulWidget {
 
 class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
   late ChangeStatusCubit changeStatusCubit;
+
   @override
   void initState() {
     super.initState();
@@ -154,73 +156,13 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                     SizedBox(
                       height: AppSizeH.s25,
                     ),
-                    Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: AppSizeW.s47,
-                        ),
-                        child: Container(
-                          height: AppSizeH.s120,
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(AppSizeR.s20)),
-                            boxShadow: [
-                              BoxShadow(
-                                  spreadRadius: AppSizeR.s2,
-                                  blurRadius: AppSizeR.s11,
-                                  color: ColorManager.black.withAlpha(30)),
-                            ],
-                            gradient: LinearGradient(
-                              colors: [
-                                ColorManager.platinum,
-                                ColorManager.white,
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              stops: const [0.2, 1.0],
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      AppStrings().totalCertifiedRealEstate,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(fontSize: AppSizeSp.s16),
-                                    ),
-                                    SizedBox(
-                                      height: AppSizeH.s10,
-                                    ),
-                                    Text('12',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium
-                                            ?.copyWith(
-                                                fontSize: AppSizeSp.s16)),
-                                  ],
-                                ),
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  SizedBox(
-                                    height: AppSizeH.s20,
-                                  ),
-                                  SvgPicture.asset(
-                                    IconAssets.sellHome,
-                                    // color:
-                                    //     Theme.of(context).primaryColor.withOpacity(0.5),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        )),
+                    BlocBuilder<BrokersCountBloc, BrokersCountState>(
+                      builder: (context, state) {
+                        return BrokerCountContainer(
+                          count: '106',
+                        );
+                      },
+                    ),
                     SizedBox(
                       height: AppSizeH.s40,
                     ),
@@ -253,8 +195,8 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                             return RealEstateCard(
                               name: 'بست باي بروبرتيز',
                               country: 'الدوحة',
-                              phone: 'hgfdfghj',
-                              email: 'hgfdfghj',
+                              phone: '0994368478',
+                              email: 'fatina.haidar@nasca-sy.com',
                               divider: index != 4,
                             );
                           }),
@@ -273,102 +215,80 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
   }
 }
 
-class RealEstateCard extends StatelessWidget {
-  final String name;
-  final String country;
-  final String phone;
-  final String email;
-  final bool divider;
+class BrokerCountContainer extends StatelessWidget {
+  final String count;
 
-  const RealEstateCard({
+  const BrokerCountContainer({
     super.key,
-    required this.name,
-    required this.country,
-    required this.phone,
-    required this.email,
-    this.divider = true,
+    required this.count,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding:
-          EdgeInsets.symmetric(horizontal: AppSizeH.s20, vertical: AppSizeH.s5),
-      decoration: BoxDecoration(color: ColorManager.white),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: AppSizeW.s47,
+        ),
+        child: Container(
+          height: AppSizeH.s120,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(AppSizeR.s20)),
+            boxShadow: [
+              BoxShadow(
+                  spreadRadius: AppSizeR.s2,
+                  blurRadius: AppSizeR.s11,
+                  color: ColorManager.black.withAlpha(30)),
+            ],
+            gradient: LinearGradient(
+              colors: [
+                ColorManager.platinum,
+                ColorManager.white,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: const [0.2, 1.0],
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    name,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  Text(
-                    country,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      AppStrings().totalCertifiedRealEstate,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium
+                          ?.copyWith(fontSize: AppSizeSp.s16),
+                    ),
+                    SizedBox(
+                      height: AppSizeH.s10,
+                    ),
+                    Text(count,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontSize: AppSizeSp.s16)),
+                  ],
+                ),
               ),
               Column(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.local_phone_outlined,
-                        color: ColorManager.golden,
-                        size: AppSizeH.s20,
-                      ),
-                      SizedBox(
-                        width: AppSizeW.s5,
-                      ),
-                      Text(
-                        phone,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontSize: AppSizeSp.s16),
-                      ),
-                    ],
+                  SizedBox(
+                    height: AppSizeH.s20,
                   ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.email_outlined,
-                        color: ColorManager.golden,
-                      ),
-                      SizedBox(
-                        width: AppSizeW.s5,
-                      ),
-                      Text(
-                        email,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontSize: AppSizeSp.s16),
-                      ),
-                    ],
+                  SvgPicture.asset(
+                    IconAssets.sellHome,
+                    // color:
+                    //     Theme.of(context).primaryColor.withOpacity(0.5),
                   ),
                 ],
               ),
             ],
           ),
-          if (divider)
-            Padding(
-              padding: EdgeInsets.only(top: AppSizeH.s10),
-              child: Center(
-                child: Divider(
-                  color: ColorManager.lightSilver,
-                  endIndent: AppSizeW.s15,
-                  indent: AppSizeW.s15,
-                ),
-              ),
-            ),
-        ],
-      ),
-    );
+        ));
   }
 }

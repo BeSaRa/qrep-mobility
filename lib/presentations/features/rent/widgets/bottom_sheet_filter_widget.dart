@@ -21,7 +21,6 @@ import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
 import '../blocs/rent_bloc/rent_bloc.dart';
 import 'choose_unit_filters_widget.dart';
-import 'slider_filter_widget.dart';
 
 // enum PeriodTime { year, halfYear, quarterYear, monthly, specificPeriod }
 
@@ -46,6 +45,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
   late ValidatorCubit validatorToValueCubit;
   late ValidatorCubit validatorFromAreaCubit;
   late ValidatorCubit validatorToAreaCubit;
+
   List<int>? getissueDateQuarterList(int id) {
     switch (id) {
       case 1:
@@ -219,6 +219,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
 
   late ValuesFiltersCubit valuesFiltersCubit;
   final _formkey = GlobalKey<FormState>();
+
   @override
   void initState() {
     validatorFromValueCubit = ValidatorCubit(0);
