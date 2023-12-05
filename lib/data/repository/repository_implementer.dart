@@ -405,13 +405,14 @@ class RepositoryImplementer extends Repository {
     if (await networkInfo.isConnected) {
       try {
         final response = await translationsServiceClient.getNews();
-
+        print("fatina response $response");
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
           return Error(FailureModel.fromJson(response.response.data));
         }
       } on DioException catch (e) {
+        print("fatina the exception ${e.error} ");
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
         return Error(FailureModel(message: AppStrings().defaultError));

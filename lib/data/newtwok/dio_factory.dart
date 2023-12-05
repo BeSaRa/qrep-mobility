@@ -1,5 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -7,6 +9,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import '../../app/app_preferences.dart';
 import '../../app/constants.dart';
 import '../../app/depndency_injection.dart';
+import '../../utils/file_utils.dart';
 import 'general_dio_interceptor.dart';
 
 const String APPLICATION_JSON = 'application/json';
@@ -22,6 +25,7 @@ class DioFactory {
   DioFactory(this._appPreferences);
 
   Future<Dio> getDio() async {
+    HttpOverrides.global = MyHttpOverrides();
     Dio dio = Dio();
     Duration timeOut = const Duration(seconds: 60);
     String language = await _appPreferences.getAppLanguage();

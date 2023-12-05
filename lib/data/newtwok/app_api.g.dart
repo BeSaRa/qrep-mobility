@@ -13,7 +13,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.52.4:9080/mme-services';
+    baseUrl ??= 'https://qrepbe.mm.gov.qa/mme-services';
   }
 
   final Dio _dio;
@@ -1247,7 +1247,7 @@ class _TranslationsServiceClient implements TranslationsServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.52.5:8055';
+    baseUrl ??= 'https://qrepcms.mm.gov.qa/';
   }
 
   final Dio _dio;
@@ -1345,7 +1345,7 @@ class _TranslationsServiceClient implements TranslationsServiceClient {
     String fcmToken,
   ) async {
     const _extra = <String, dynamic>{};
-    // final queryParameters = <String, dynamic>{r'id': id};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = {'fcm_token': fcmToken};
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -1356,8 +1356,8 @@ class _TranslationsServiceClient implements TranslationsServiceClient {
     )
             .compose(
               _dio.options,
-              '/users/$id',
-              // queryParameters: queryParameters,
+              '/users/',
+              queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(

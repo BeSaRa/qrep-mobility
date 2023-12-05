@@ -52,7 +52,7 @@ Future<void> main() async {
   return runApp(
     EasyLocalization(
       assetLoader: TranslationsAssetsLoader(
-        loadRemoteAssets: true,
+        loadRemoteAssets: false,
         updateInterval: const Duration(days: 3),
       ),
       supportedLocales: supportedLocales,
