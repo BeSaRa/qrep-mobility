@@ -90,6 +90,10 @@ Future<void> initAppModule() async {
     instance.registerFactory<UserUsecase>(
         () => UserUsecase(repository: instance()));
   }
+  if (!GetIt.I.isRegistered<UpdateInfoUsecase>()) {
+    instance.registerFactory<UpdateInfoUsecase>(
+        () => UpdateInfoUsecase(repository: instance()));
+  }
   if (!GetIt.I.isRegistered<MainMenuUsecase>()) {
     instance.registerFactory<MainMenuUsecase>(
         () => MainMenuUsecase(repository: instance()));
@@ -101,8 +105,9 @@ Future<void> initAppModule() async {
         appPreferences: instance<AppPreferences>()));
   }
   if (!GetIt.I.isRegistered<UserBloc>()) {
-    instance.registerFactory<UserBloc>(
-        () => UserBloc(userUsecase: instance<UserUsecase>()));
+    instance.registerFactory<UserBloc>(() => UserBloc(
+        userUsecase: instance<UserUsecase>(),
+        updateInfoUsecase: instance<UpdateInfoUsecase>()));
   }
   if (!GetIt.I.isRegistered<MainMenuBloc>()) {
     instance.registerFactory<MainMenuBloc>(

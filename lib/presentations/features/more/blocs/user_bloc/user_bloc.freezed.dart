@@ -19,18 +19,25 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserInfo,
+    required TResult Function(
+            String id, RequestUpdateInfoModel requestUpdateInfo)
+        updateUserInfo,
     required TResult Function() initialUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserInfo,
+    TResult? Function(String id, RequestUpdateInfoModel requestUpdateInfo)?
+        updateUserInfo,
     TResult? Function()? initialUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserInfo,
+    TResult Function(String id, RequestUpdateInfoModel requestUpdateInfo)?
+        updateUserInfo,
     TResult Function()? initialUser,
     required TResult orElse(),
   }) =>
@@ -38,18 +45,21 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetUserInfoEvent value) getUserInfo,
+    required TResult Function(_UpdateUserInfoEvent value) updateUserInfo,
     required TResult Function(_GetInitialUserEvent value) initialUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult? Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult? Function(_GetInitialUserEvent value)? initialUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult Function(_GetInitialUserEvent value)? initialUser,
     required TResult orElse(),
   }) =>
@@ -112,6 +122,9 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserInfo,
+    required TResult Function(
+            String id, RequestUpdateInfoModel requestUpdateInfo)
+        updateUserInfo,
     required TResult Function() initialUser,
   }) {
     return getUserInfo();
@@ -121,6 +134,8 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserInfo,
+    TResult? Function(String id, RequestUpdateInfoModel requestUpdateInfo)?
+        updateUserInfo,
     TResult? Function()? initialUser,
   }) {
     return getUserInfo?.call();
@@ -130,6 +145,8 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserInfo,
+    TResult Function(String id, RequestUpdateInfoModel requestUpdateInfo)?
+        updateUserInfo,
     TResult Function()? initialUser,
     required TResult orElse(),
   }) {
@@ -143,6 +160,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetUserInfoEvent value) getUserInfo,
+    required TResult Function(_UpdateUserInfoEvent value) updateUserInfo,
     required TResult Function(_GetInitialUserEvent value) initialUser,
   }) {
     return getUserInfo(this);
@@ -152,6 +170,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult? Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult? Function(_GetInitialUserEvent value)? initialUser,
   }) {
     return getUserInfo?.call(this);
@@ -161,6 +180,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult Function(_GetInitialUserEvent value)? initialUser,
     required TResult orElse(),
   }) {
@@ -173,6 +193,175 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
 
 abstract class _GetUserInfoEvent implements UserEvent {
   const factory _GetUserInfoEvent() = _$GetUserInfoEventImpl;
+}
+
+/// @nodoc
+abstract class _$$UpdateUserInfoEventImplCopyWith<$Res> {
+  factory _$$UpdateUserInfoEventImplCopyWith(_$UpdateUserInfoEventImpl value,
+          $Res Function(_$UpdateUserInfoEventImpl) then) =
+      __$$UpdateUserInfoEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id, RequestUpdateInfoModel requestUpdateInfo});
+
+  $RequestUpdateInfoModelCopyWith<$Res> get requestUpdateInfo;
+}
+
+/// @nodoc
+class __$$UpdateUserInfoEventImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UpdateUserInfoEventImpl>
+    implements _$$UpdateUserInfoEventImplCopyWith<$Res> {
+  __$$UpdateUserInfoEventImplCopyWithImpl(_$UpdateUserInfoEventImpl _value,
+      $Res Function(_$UpdateUserInfoEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? requestUpdateInfo = null,
+  }) {
+    return _then(_$UpdateUserInfoEventImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      requestUpdateInfo: null == requestUpdateInfo
+          ? _value.requestUpdateInfo
+          : requestUpdateInfo // ignore: cast_nullable_to_non_nullable
+              as RequestUpdateInfoModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RequestUpdateInfoModelCopyWith<$Res> get requestUpdateInfo {
+    return $RequestUpdateInfoModelCopyWith<$Res>(_value.requestUpdateInfo,
+        (value) {
+      return _then(_value.copyWith(requestUpdateInfo: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$UpdateUserInfoEventImpl implements _UpdateUserInfoEvent {
+  const _$UpdateUserInfoEventImpl(
+      {required this.id, required this.requestUpdateInfo});
+
+  @override
+  final String id;
+  @override
+  final RequestUpdateInfoModel requestUpdateInfo;
+
+  @override
+  String toString() {
+    return 'UserEvent.updateUserInfo(id: $id, requestUpdateInfo: $requestUpdateInfo)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateUserInfoEventImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.requestUpdateInfo, requestUpdateInfo) ||
+                other.requestUpdateInfo == requestUpdateInfo));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, requestUpdateInfo);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateUserInfoEventImplCopyWith<_$UpdateUserInfoEventImpl> get copyWith =>
+      __$$UpdateUserInfoEventImplCopyWithImpl<_$UpdateUserInfoEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUserInfo,
+    required TResult Function(
+            String id, RequestUpdateInfoModel requestUpdateInfo)
+        updateUserInfo,
+    required TResult Function() initialUser,
+  }) {
+    return updateUserInfo(id, requestUpdateInfo);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getUserInfo,
+    TResult? Function(String id, RequestUpdateInfoModel requestUpdateInfo)?
+        updateUserInfo,
+    TResult? Function()? initialUser,
+  }) {
+    return updateUserInfo?.call(id, requestUpdateInfo);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUserInfo,
+    TResult Function(String id, RequestUpdateInfoModel requestUpdateInfo)?
+        updateUserInfo,
+    TResult Function()? initialUser,
+    required TResult orElse(),
+  }) {
+    if (updateUserInfo != null) {
+      return updateUserInfo(id, requestUpdateInfo);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetUserInfoEvent value) getUserInfo,
+    required TResult Function(_UpdateUserInfoEvent value) updateUserInfo,
+    required TResult Function(_GetInitialUserEvent value) initialUser,
+  }) {
+    return updateUserInfo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult? Function(_UpdateUserInfoEvent value)? updateUserInfo,
+    TResult? Function(_GetInitialUserEvent value)? initialUser,
+  }) {
+    return updateUserInfo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult Function(_UpdateUserInfoEvent value)? updateUserInfo,
+    TResult Function(_GetInitialUserEvent value)? initialUser,
+    required TResult orElse(),
+  }) {
+    if (updateUserInfo != null) {
+      return updateUserInfo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateUserInfoEvent implements UserEvent {
+  const factory _UpdateUserInfoEvent(
+          {required final String id,
+          required final RequestUpdateInfoModel requestUpdateInfo}) =
+      _$UpdateUserInfoEventImpl;
+
+  String get id;
+  RequestUpdateInfoModel get requestUpdateInfo;
+  @JsonKey(ignore: true)
+  _$$UpdateUserInfoEventImplCopyWith<_$UpdateUserInfoEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -215,6 +404,9 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserInfo,
+    required TResult Function(
+            String id, RequestUpdateInfoModel requestUpdateInfo)
+        updateUserInfo,
     required TResult Function() initialUser,
   }) {
     return initialUser();
@@ -224,6 +416,8 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getUserInfo,
+    TResult? Function(String id, RequestUpdateInfoModel requestUpdateInfo)?
+        updateUserInfo,
     TResult? Function()? initialUser,
   }) {
     return initialUser?.call();
@@ -233,6 +427,8 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserInfo,
+    TResult Function(String id, RequestUpdateInfoModel requestUpdateInfo)?
+        updateUserInfo,
     TResult Function()? initialUser,
     required TResult orElse(),
   }) {
@@ -246,6 +442,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetUserInfoEvent value) getUserInfo,
+    required TResult Function(_UpdateUserInfoEvent value) updateUserInfo,
     required TResult Function(_GetInitialUserEvent value) initialUser,
   }) {
     return initialUser(this);
@@ -255,6 +452,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult? Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult? Function(_GetInitialUserEvent value)? initialUser,
   }) {
     return initialUser?.call(this);
@@ -264,6 +462,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult Function(_GetInitialUserEvent value)? initialUser,
     required TResult orElse(),
   }) {

@@ -7,11 +7,15 @@ import 'package:ebla/presentations/features/auth/views/login_view.dart';
 import 'package:ebla/presentations/features/more/blocs/cubits/change_language_cubit.dart';
 import 'package:ebla/presentations/features/more/blocs/user_bloc/user_bloc.dart';
 import 'package:ebla/presentations/features/more/widgets/more_view_shimmer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
+import '../../../domain/models/cms_models/user/requests/update_info_model.dart';
+import '../../../domain/models/models.dart';
 import '../../resources/resources.dart';
 import '../../widgets/widgets.dart';
 import '../auth/blocs/login_bloc/login_bloc.dart';
@@ -136,7 +140,9 @@ class _MoreViewState extends State<MoreView> {
                                     ),
                                   );
                                 }
-                              : null,
+                              : () {
+                                  context.pushNamed(RoutesNames.updateInfo);
+                                },
                         );
                       },
                     ),
@@ -266,6 +272,166 @@ class _MoreViewState extends State<MoreView> {
     return const Dialog(
       elevation: 0,
       child: LoginView(),
+    );
+  }
+}
+
+class UpdateInfo extends StatefulWidget {
+  final UserModel model;
+  const UpdateInfo({
+    super.key,
+    required this.model,
+  });
+
+  @override
+  State<UpdateInfo> createState() => _UpdateInfoState();
+}
+
+class _UpdateInfoState extends State<UpdateInfo> {
+  final firstNameController = TextEditingController();
+  @override
+  void initState() {
+    firstNameController.text = widget.model.firstName;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+          vertical: AppSizeH.s15, horizontal: AppSizeW.s30),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(AppSizeW.s15),
+        color: Theme.of(context).scaffoldBackgroundColor,
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "تحديث المعلومات",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            SizedBox(
+              height: AppSizeH.s15,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("الاسم الاول",
+                          style: Theme.of(context).textTheme.labelMedium),
+                      SearchTextFieldWidget(
+                          controller: TextEditingController(),
+                          hint: "الاسم الاول"),
+                    ],
+                  ),
+                ),
+                SizedBox(width: AppSizeW.s12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("الاسم الاخير",
+                          style: Theme.of(context).textTheme.labelMedium),
+                      SearchTextFieldWidget(
+                          controller: TextEditingController(),
+                          hint: "الاسم الاخير"),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: AppSizeH.s12),
+            Divider(
+              color: ColorManager.grey,
+              height: AppSizeH.s1,
+            ),
+            SizedBox(height: AppSizeH.s12),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("اللقب", style: Theme.of(context).textTheme.labelMedium),
+                SearchTextFieldWidget(
+                    controller: TextEditingController(), hint: "اللقب"),
+              ],
+            ),
+            SizedBox(height: AppSizeH.s12),
+            Divider(
+              color: ColorManager.grey,
+              height: AppSizeH.s1,
+            ),
+            SizedBox(height: AppSizeH.s12),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("البريد الالكتروني",
+                    style: Theme.of(context).textTheme.labelMedium),
+                SearchTextFieldWidget(
+                    controller: TextEditingController(),
+                    hint: "البريد الالكتروني"),
+              ],
+            ),
+            // SizedBox(height: AppSizeH.s20),
+            Row(
+              children: [
+                Checkbox(
+                  value: true,
+                  onChanged: (value) {},
+                ),
+                Text("اشعارات البريد الألكتروني",
+                    style: Theme.of(context).textTheme.labelMedium),
+              ],
+            ),
+            SizedBox(height: AppSizeH.s20),
+            BlocConsumer(
+              listener: (context, UserState state) {
+                state.mapOrNull(
+                  loaded: (value) {
+                    context.pop();
+                  },
+                );
+              },
+              bloc: context.read<UserBloc>(),
+              builder: (context, UserState state) {
+                return state.map(
+                  loading: (value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                  loaded: (value) {
+                    return CupertinoButton.filled(
+                      borderRadius: BorderRadius.circular(AppSizeR.s12),
+                      onPressed: () {
+                        context.read<UserBloc>().add(UserEvent.updateUserInfo(
+                            id: widget.model.id,
+                            requestUpdateInfo: RequestUpdateInfoModel(
+                                firstName: firstNameController.text)));
+                        // if (_formKey.currentState!.validate()) {
+                        //   context.read<LoginBloc>().add(LoginEvent.login(
+                        //       authRequest: RequestAuth(
+                        //           email: emailController.text,
+                        //           mode: "json",
+                        //           password: passwordController.text)));
+                        // }
+                      },
+                      child: const Text(
+                        "تحديث",
+                      ),
+                    );
+                  },
+                  error: (value) {
+                    return const SizedBox();
+                  },
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

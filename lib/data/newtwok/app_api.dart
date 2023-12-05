@@ -3,6 +3,7 @@ import 'package:ebla/data/newtwok/end_points.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../app/constants.dart';
+import '../../domain/models/cms_models/user/requests/update_info_model.dart';
 import '../../domain/models/models.dart';
 
 part 'app_api.g.dart';
@@ -193,6 +194,9 @@ abstract class TranslationsServiceClient {
 //---------------------------------Profile-------------------------------------
   @GET(EndPoints.userInfo)
   Future<HttpResponse<UserResponse>> getUserInfo();
+  @PATCH(EndPoints.updateUserInfo)
+  Future<HttpResponse<UserResponse>> updateUserInfo(
+      @Path("id") String id, @Body() RequestUpdateInfoModel requestUpdateInfo);
 
 //---------------------------------CMS-----------------------------------------
   @GET(EndPoints.faq)

@@ -8,6 +8,7 @@ import 'package:ebla/presentations/features/info/views/faq_view.dart';
 import 'package:ebla/presentations/features/info/views/laws_details_view.dart';
 import 'package:ebla/presentations/features/main_scaffold.dart';
 import 'package:ebla/presentations/features/more/more_view.dart';
+import 'package:ebla/presentations/features/more/update_info_view.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
 import 'package:ebla/presentations/features/real_estate_brokers/real_estate_brokers_view.dart';
@@ -36,6 +37,7 @@ class RoutesNames {
   static const String sales = 'sales';
   static const String mortgage = 'mortgage';
   static const String more = 'more';
+  static const String updateInfo = 'updateInfo';
   static const String about = 'about';
   static const String laws = 'laws and decisions';
   static const String lawsDetails = 'laws details';
@@ -60,6 +62,7 @@ class RoutesPaths {
   static const String news = '/news';
   static const String newsbyId = '/news/:id';
   static const String realEstateBrokers = '/realestatebrokers';
+  static const String updateInfo = '/updateInfo';
 }
 
 class NavigationKeys {
@@ -407,6 +410,25 @@ class AppRouter {
               id: int.parse(state.pathParameters['id'] ?? '0'),
             ),
           ),
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.updateInfo,
+          path: RoutesPaths.updateInfo,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const UpdateInfoView(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
         ),
         GoRoute(
           name: RoutesNames.splash,
