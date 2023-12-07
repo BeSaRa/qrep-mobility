@@ -3,7 +3,7 @@ import "package:easy_localization/easy_localization.dart";
 class AppStrings {
   // shared
   String filterValuesShouldBeAsFollows =
-      "filter_values_should_be_as_follows".tr();
+  "filter_values_should_be_as_follows".tr();
   String valuesOtherThanAll = "value_other_than_all".tr();
   String singleValueOtherThanAll = "single_value_other_than_all".tr();
 
@@ -35,9 +35,9 @@ class AppStrings {
   // grid
   String totalRentalContractsNumber = "total_rental_contracts_number".tr();
   String totalPropertiesUnitsRented =
-      "the_total_number_of_properties_units_rented".tr();
+  "the_total_number_of_properties_units_rented".tr();
   String averageRentalPricePerUnitProperty =
-      "average_rental_price_per_unit_property".tr();
+  "average_rental_price_per_unit_property".tr();
   String totalValueOfLeaseContracts = "the_total_value_of_lease_contracts".tr();
 
   String rentContractList = "list_of_rental_transactions".tr();
@@ -76,7 +76,7 @@ class AppStrings {
   String confirm = "confirm".tr();
   String cancel = "cancel".tr();
   String dataBeingCollectedAndAudited =
-      "data_is_being_collected_and_audited".tr();
+  "data_is_being_collected_and_audited".tr();
   String userName = "identifier".tr();
   String email = "email".tr();
   String validatorEmailEmpty = "validator_email_empty".tr();
@@ -139,14 +139,14 @@ class AppStrings {
 
   // grid
   String totalNumberOfPropertiesUnitsSold =
-      "the_total_number_of_properties_units_sold".tr();
+  "the_total_number_of_properties_units_sold".tr();
   String totalSellContractsNumber = "the_total_number_of_sell_contracts".tr();
   String averageSellPricePerUnitProperty =
-      "average_sell_price_per_unit_property".tr();
+  "average_sell_price_per_unit_property".tr();
   String totalSellContractsValue = "the_total_value_of_sell_contracts".tr();
   String totalRentedSpaces = "total_rented_space".tr();
   String averageSquareMeterPrice =
-      "the_average_price_per_square_meter_square_foot".tr();
+  "the_average_price_per_square_meter_square_foot".tr();
   String sellPrice = "sold_for".tr();
   String theUnitPrice = "the_unit_price".tr();
   String sellContractList = "list_of_sell_transactions".tr();
@@ -168,4 +168,6 @@ class AppStrings {
   /// -------------real estate ------
   String totalCertifiedRealEstate = "total_certified_real_estate".tr();
   String realEstateBrokersDashboard = "real_estate_broker_dashboard".tr();
+  String sendEmail = "send_email".tr();
+
 }

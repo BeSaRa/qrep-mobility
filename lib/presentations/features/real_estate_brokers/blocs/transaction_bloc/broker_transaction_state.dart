@@ -6,7 +6,8 @@ class BrokerTransactionState with _$BrokerTransactionState {
 
   const factory BrokerTransactionState.loading() = _Loading;
 
-  const factory BrokerTransactionState.loaded() = _Loaded;
+  const factory BrokerTransactionState.loaded(
+      List<RealEstateBrokerTransactionData> response) = _Loaded;
 
-  const factory BrokerTransactionState.error() = _Error;
+  const factory BrokerTransactionState.error(String message) = _Error;
 }

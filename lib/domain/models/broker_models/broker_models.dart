@@ -60,7 +60,7 @@ abstract class RealEstateBrokerTransactions
 
 @freezed
 abstract class RealEstateBrokerKpi1 with _$RealEstateBrokerKpi1 {
-  factory RealEstateBrokerKpi1({@Default(0) int kpiVal}) =
+  factory RealEstateBrokerKpi1({@Default(0) double kpiVal}) =
       _RealEstateBrokerKpi1;
 
   factory RealEstateBrokerKpi1.fromJson(Map<String, dynamic> json) =>

@@ -7,8 +7,6 @@ import 'package:ebla/domain/usecases/CMS/update_fcm_usecase.dart';
 import 'package:flutter/foundation.dart';
 import 'package:multiple_result/multiple_result.dart';
 
-import '../../domain/models/Auth/auth_models.dart';
-import '../../domain/models/Auth/requests_auth/request_auth.dart';
 import '../../domain/repository/repository.dart';
 import '../../presentations/resources/strings_manager.dart';
 import '../newtwok/app_api.dart';
@@ -1153,11 +1151,13 @@ class RepositoryImplementer extends Repository {
         if (response.response.statusCode == 200) {
           return Success(response.data.first);
         } else {
+          print("fatina error ${response.response.data}");
           return Error(FailureModel.fromJson(response.response.data));
         }
       } on DioException catch (e) {
+        print("fatina error exception $e}");
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
-      } catch (e) {
+      } catch (e) {print("fatina error 2 $e}");
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {

@@ -1047,7 +1047,7 @@ RealEstateBrokerKpi1 _$RealEstateBrokerKpi1FromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RealEstateBrokerKpi1 {
-  int get kpiVal => throw _privateConstructorUsedError;
+  double get kpiVal => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1061,7 +1061,7 @@ abstract class $RealEstateBrokerKpi1CopyWith<$Res> {
           $Res Function(RealEstateBrokerKpi1) then) =
       _$RealEstateBrokerKpi1CopyWithImpl<$Res, RealEstateBrokerKpi1>;
   @useResult
-  $Res call({int kpiVal});
+  $Res call({double kpiVal});
 }
 
 /// @nodoc
@@ -1084,7 +1084,7 @@ class _$RealEstateBrokerKpi1CopyWithImpl<$Res,
       kpiVal: null == kpiVal
           ? _value.kpiVal
           : kpiVal // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ) as $Val);
   }
 }
@@ -1097,7 +1097,7 @@ abstract class _$$RealEstateBrokerKpi1ImplCopyWith<$Res>
       __$$RealEstateBrokerKpi1ImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int kpiVal});
+  $Res call({double kpiVal});
 }
 
 /// @nodoc
@@ -1117,7 +1117,7 @@ class __$$RealEstateBrokerKpi1ImplCopyWithImpl<$Res>
       kpiVal: null == kpiVal
           ? _value.kpiVal
           : kpiVal // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -1132,7 +1132,7 @@ class _$RealEstateBrokerKpi1Impl implements _RealEstateBrokerKpi1 {
 
   @override
   @JsonKey()
-  final int kpiVal;
+  final double kpiVal;
 
   @override
   String toString() {
@@ -1168,14 +1168,14 @@ class _$RealEstateBrokerKpi1Impl implements _RealEstateBrokerKpi1 {
 }
 
 abstract class _RealEstateBrokerKpi1 implements RealEstateBrokerKpi1 {
-  factory _RealEstateBrokerKpi1({final int kpiVal}) =
+  factory _RealEstateBrokerKpi1({final double kpiVal}) =
       _$RealEstateBrokerKpi1Impl;
 
   factory _RealEstateBrokerKpi1.fromJson(Map<String, dynamic> json) =
       _$RealEstateBrokerKpi1Impl.fromJson;
 
   @override
-  int get kpiVal;
+  double get kpiVal;
   @override
   @JsonKey(ignore: true)
   _$$RealEstateBrokerKpi1ImplCopyWith<_$RealEstateBrokerKpi1Impl>

@@ -214,6 +214,8 @@ abstract class _$$UpdateUserInfoEventImplCopyWith<$Res> {
       __$$UpdateUserInfoEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String id, RequestUpdateInfoModel requestUpdateInfo});
+
+  $RequestUpdateInfoModelCopyWith<$Res> get requestUpdateInfo;
 }
 
 /// @nodoc
@@ -228,18 +230,27 @@ class __$$UpdateUserInfoEventImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? requestUpdateInfo = freezed,
+    Object? requestUpdateInfo = null,
   }) {
     return _then(_$UpdateUserInfoEventImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      requestUpdateInfo: freezed == requestUpdateInfo
+      requestUpdateInfo: null == requestUpdateInfo
           ? _value.requestUpdateInfo
           : requestUpdateInfo // ignore: cast_nullable_to_non_nullable
               as RequestUpdateInfoModel,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RequestUpdateInfoModelCopyWith<$Res> get requestUpdateInfo {
+    return $RequestUpdateInfoModelCopyWith<$Res>(_value.requestUpdateInfo,
+        (value) {
+      return _then(_value.copyWith(requestUpdateInfo: value));
+    });
   }
 }
 
@@ -265,13 +276,12 @@ class _$UpdateUserInfoEventImpl implements _UpdateUserInfoEvent {
         (other.runtimeType == runtimeType &&
             other is _$UpdateUserInfoEventImpl &&
             (identical(other.id, id) || other.id == id) &&
-            const DeepCollectionEquality()
-                .equals(other.requestUpdateInfo, requestUpdateInfo));
+            (identical(other.requestUpdateInfo, requestUpdateInfo) ||
+                other.requestUpdateInfo == requestUpdateInfo));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, const DeepCollectionEquality().hash(requestUpdateInfo));
+  int get hashCode => Object.hash(runtimeType, id, requestUpdateInfo);
 
   @JsonKey(ignore: true)
   @override

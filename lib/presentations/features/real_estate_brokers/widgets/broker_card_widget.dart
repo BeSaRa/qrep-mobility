@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../resources/resources.dart';
+import '../../../widgets/shimmer_placeholder.dart';
 
 class RealEstateCard extends StatelessWidget {
   final String name;
@@ -45,7 +46,7 @@ class RealEstateCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding:
-          EdgeInsets.symmetric(horizontal: AppSizeH.s10, vertical: AppSizeH.s5),
+          EdgeInsets.symmetric(horizontal: AppSizeH.s5, vertical: AppSizeH.s5),
       decoration: BoxDecoration(color: ColorManager.white),
       child: Column(
         children: [
@@ -61,6 +62,8 @@ class RealEstateCard extends StatelessWidget {
                         .textTheme
                         .titleMedium
                         ?.copyWith(fontSize: AppSizeSp.s12),
+                    overflow: TextOverflow.visible,
+                    maxLines: 3,
                   ),
                   Text(
                     country,
@@ -68,6 +71,7 @@ class RealEstateCard extends StatelessWidget {
                         .textTheme
                         .bodyMedium
                         ?.copyWith(fontSize: AppSizeSp.s12),
+                    overflow: TextOverflow.visible,
                   ),
                 ],
               ),
@@ -98,28 +102,40 @@ class RealEstateCard extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: AppSizeH.s10,
+                  ),
                   GestureDetector(
                     onTap: () {
                       sendEmail(email);
                     },
-                    child: Row(
-                      children: [
-                        Text(
-                          email,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontSize: AppSizeSp.s14),
-                        ),
-                        SizedBox(
-                          width: AppSizeW.s5,
-                        ),
-                        Icon(
-                          Icons.email_outlined,
+                    child: Container(
+                      decoration: BoxDecoration(
                           color: ColorManager.golden,
-                          size: AppSizeH.s15,
-                        ),
-                      ],
+                          borderRadius: BorderRadius.circular(AppSizeR.s8)),
+                      padding: EdgeInsets.all(AppSizeH.s3),
+                      child: Row(
+                        children: [
+                          Text(
+                            AppStrings().sendEmail,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    fontSize: AppSizeSp.s12,
+                                    color: ColorManager.grey),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          SizedBox(
+                            width: AppSizeW.s5,
+                          ),
+                          Icon(
+                            Icons.email_outlined,
+                            color: ColorManager.white,
+                            size: AppSizeH.s15,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -137,6 +153,112 @@ class RealEstateCard extends StatelessWidget {
                 ),
               ),
             ),
+        ],
+      ),
+    );
+  }
+}
+
+class RealEstateCardShimmer extends StatelessWidget {
+  const RealEstateCardShimmer({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding:
+          EdgeInsets.symmetric(horizontal: AppSizeH.s5, vertical: AppSizeH.s5),
+      decoration: BoxDecoration(color: ColorManager.white),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ShimmerPlaceholder(
+                    child: Container(
+                      width: AppSizeW.s50,
+                      height: AppSizeH.s12,
+                      decoration: BoxDecoration(
+                          color: ColorManager.white,
+                          borderRadius: BorderRadius.circular(AppSizeR.s12)),
+                    ),
+                  ),
+                  ShimmerPlaceholder(
+                    child: Container(
+                      width: AppSizeW.s50,
+                      height: AppSizeH.s12,
+                      decoration: BoxDecoration(
+                          color: ColorManager.white,
+                          borderRadius: BorderRadius.circular(AppSizeR.s12)),
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Row(
+                    children: [
+                      ShimmerPlaceholder(
+                        child: Container(
+                          width: AppSizeW.s50,
+                          height: AppSizeH.s12,
+                          decoration: BoxDecoration(
+                              color: ColorManager.white,
+                              borderRadius:
+                                  BorderRadius.circular(AppSizeR.s12)),
+                        ),
+                      ),
+                      SizedBox(
+                        width: AppSizeW.s5,
+                      ),
+                      Icon(
+                        Icons.local_phone_outlined,
+                        color: ColorManager.golden,
+                        size: AppSizeH.s15,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      ShimmerPlaceholder(
+                        child: Container(
+                          width: AppSizeW.s50,
+                          height: AppSizeH.s12,
+                          decoration: BoxDecoration(
+                              color: ColorManager.white,
+                              borderRadius:
+                                  BorderRadius.circular(AppSizeR.s12)),
+                        ),
+                      ),
+                      SizedBox(
+                        width: AppSizeW.s5,
+                      ),
+                      Icon(
+                        Icons.email_outlined,
+                        color: ColorManager.golden,
+                        size: AppSizeH.s15,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: AppSizeH.s10),
+            child: Center(
+              child: Divider(
+                color: ColorManager.lightSilver,
+                endIndent: AppSizeW.s15,
+                indent: AppSizeW.s15,
+              ),
+            ),
+          ),
         ],
       ),
     );

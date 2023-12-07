@@ -220,22 +220,22 @@ ThemeData darkTheme() {
             fontWeight: FontWeight.w700),
         bodyLarge: TextStyle(
             fontFamily: FontConstants.fontFamily,
-            color: ColorManager.black,
+            color: ColorManager.white,
             fontSize: AppSizeSp.s23,
             fontWeight: FontWeight.w700),
         bodyMedium: TextStyle(
             fontFamily: FontConstants.fontFamily,
-            color: ColorManager.black,
+            color: ColorManager.white,
             fontSize: AppSizeSp.s13,
             fontWeight: FontWeight.w700),
         bodySmall: TextStyle(
             fontFamily: FontConstants.fontFamily,
-            color: ColorManager.black,
+            color: ColorManager.white,
             fontSize: AppSizeSp.s14,
             fontWeight: FontWeight.w400),
         labelMedium: TextStyle(
             fontFamily: FontConstants.fontFamily,
-            color: ColorManager.black,
+            color: ColorManager.white,
             fontSize: AppSizeSp.s16,
             fontWeight: FontWeight.w400),
         labelSmall: TextStyle(
@@ -245,7 +245,7 @@ ThemeData darkTheme() {
             fontWeight: FontWeight.w400),
         displaySmall: TextStyle(
             fontFamily: FontConstants.fontFamily,
-            color: ColorManager.white,
+            color: ColorManager.black,
             fontSize: AppSizeSp.s16,
             fontWeight: FontWeight.w400),
       ),

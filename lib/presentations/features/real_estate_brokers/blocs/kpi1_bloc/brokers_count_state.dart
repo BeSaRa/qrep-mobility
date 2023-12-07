@@ -6,7 +6,7 @@ class BrokersCountState with _$BrokersCountState {
 
   const factory BrokersCountState.loading() = _Loading;
 
-  const factory BrokersCountState.loaded() = _Loaded;
+  const factory BrokersCountState.loaded(double val) = _Loaded;
 
-  const factory BrokersCountState.error() = _Error;
+  const factory BrokersCountState.error(String message) = _Error;
 }

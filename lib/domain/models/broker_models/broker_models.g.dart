@@ -114,7 +114,7 @@ Map<String, dynamic> _$$RealEstateBrokerTransactionsImplToJson(
 _$RealEstateBrokerKpi1Impl _$$RealEstateBrokerKpi1ImplFromJson(
         Map<String, dynamic> json) =>
     _$RealEstateBrokerKpi1Impl(
-      kpiVal: json['kpiVal'] as int? ?? 0,
+      kpiVal: (json['kpiVal'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$RealEstateBrokerKpi1ImplToJson(

@@ -442,8 +442,8 @@ Future<void> initRealEstateBroker() async {
         () => BrokerTransactionBloc(instance()));
   }
   if (!GetIt.I.isRegistered<BrokersCountBloc>()) {
-    instance.registerFactory<BrokerTransactionBloc>(
-        () => BrokerTransactionBloc(instance()));
+    instance.registerFactory<BrokersCountBloc>(
+        () => BrokersCountBloc(instance()));
   }
 }
 
