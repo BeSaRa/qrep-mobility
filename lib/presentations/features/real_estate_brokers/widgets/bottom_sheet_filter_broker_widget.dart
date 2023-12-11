@@ -143,10 +143,10 @@ class _BottomSheetFilterBrokerWidgetState
                   onPress: () {
                     context.read<LookUpBrokerBloc>().requestBroker =
                         context.read<LookUpBrokerBloc>().requestBroker.copyWith(
-                              municipalityId: valuesFiltersCubit
-                                  .municapility.municipalityId,
+                              municipalityId:
+                                  valuesFiltersCubit.municapility.lookupKey,
                               brokerCategoryId:
-                                  valuesFiltersCubit.brokerCategory.id,
+                                  valuesFiltersCubit.brokerCategory.lookupKey,
                             );
                     Navigator.of(context).pop(true);
                   },

@@ -105,6 +105,13 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                             );
                                             if (res != null && res) {
                                               changeStatusCubit.changeStatus();
+                                              brokersCountBloc.add(
+                                                  BrokersCountEvent.started(
+                                                      // ignore: use_build_context_synchronously
+                                                      request: context
+                                                          .read<
+                                                              LookUpBrokerBloc>()
+                                                          .requestBroker));
                                             }
                                           },
                                           icon: Icon(
@@ -128,32 +135,44 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                     SizedBox(
                       height: AppSizeH.s25,
                     ),
-                    BlocBuilder<BrokersCountBloc, BrokersCountState>(
-                      bloc: brokersCountBloc,
+                    BlocBuilder(
+                      bloc: changeStatusCubit,
                       builder: (context, state) {
-                        return state.map(
-                            initial: (value) => const BrokerCountContainer(
-                                  count: '106',
-                                ),
-                            loading: (value) =>
-                                const BrokerCountContainerShimmer(),
-                            loaded: (value) {
-                              brokerTransactionBloc.add(
-                                  BrokerTransactionEvent.started(
-                                      request: context
-                                          .read<LookUpBrokerBloc>()
-                                          .requestBroker
-                                          .copyWith(limit: value.val.ceil())));
+                        return BlocBuilder<BrokersCountBloc, BrokersCountState>(
+                          bloc: brokersCountBloc,
+                          builder: (context, state) {
+                            return state.map(
+                                initial: (value) => const BrokerCountContainer(
+                                      count: '106',
+                                    ),
+                                loading: (value) =>
+                                    const BrokerCountContainerShimmer(),
+                                loaded: (value) {
+                                  brokerTransactionBloc.add(
+                                      BrokerTransactionEvent.started(
+                                          request: context
+                                              .read<LookUpBrokerBloc>()
+                                              .requestBroker
+                                              .copyWith(
+                                                  limit: value.val.ceil())));
 
-                              return BrokerCountContainer(
-                                count: value.val.toStringAsFixed(0),
-                              );
-                            },
-                            error: (value) => ErrorGlobalWidget(
-                                  small: true,
-                                  onPressed: () {},
-                                  message: value.message,
-                                ));
+                                  return BrokerCountContainer(
+                                    count: value.val.toStringAsFixed(0),
+                                  );
+                                },
+                                error: (value) => ErrorGlobalWidget(
+                                      small: true,
+                                      onPressed: () {
+                                        brokersCountBloc.add(
+                                            BrokersCountEvent.started(
+                                                request: context
+                                                    .read<LookUpBrokerBloc>()
+                                                    .requestBroker));
+                                      },
+                                      message: value.message,
+                                    ));
+                          },
+                        );
                       },
                     ),
                     SizedBox(
