@@ -12,6 +12,7 @@ part 'look_up_broker_state.dart';
 class LookUpBrokerBloc extends Bloc<LookUpBrokerEvent, LookUpBrokerState> {
   final BrokerLookUpUseCase lookupBrokerUsecase;
   RealEstateBrokerLookUp? lookupBroker;
+
   LookUpBrokerBloc({required this.lookupBrokerUsecase})
       : super(const LookUpBrokerState.loading()) {
     on<LookUpBrokerEvent>((event, emit) async {
@@ -29,7 +30,14 @@ class LookUpBrokerBloc extends Bloc<LookUpBrokerEvent, LookUpBrokerState> {
       );
     });
   }
+
   RequestBrokerValues requestBroker = RequestBrokerValues(
+    municipalityId: 4,
+    brokerCategoryId: 2,
+    limit: 5,
+    offset: 0,
+  );
+  RequestBrokerValues requestDefaultBroker = RequestBrokerValues(
     municipalityId: 4,
     brokerCategoryId: 2,
     limit: 5,

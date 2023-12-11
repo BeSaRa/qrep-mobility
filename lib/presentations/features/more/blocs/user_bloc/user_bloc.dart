@@ -9,7 +9,6 @@ import '../../../../../domain/models/cms_models/user/requests/update_info_model.
 import '../../../../../domain/usecases/CMS/update_fcm_usecase.dart';
 
 part 'user_bloc.freezed.dart';
-
 part 'user_event.dart';
 part 'user_state.dart';
 
@@ -19,6 +18,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UpdateFcmTokenUseCase updateFcmUseCase = instance<UpdateFcmTokenUseCase>();
 
   UserModel? user;
+
   UserBloc({required this.userUsecase, required this.updateInfoUsecase})
       : super(const UserState.loading()) {
     on<UserEvent>((event, emit) async {
@@ -39,7 +39,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           user = userInfo.data;
           emit(UserState.loaded(user: userInfo));
           String fcmToken = await registerFCMToken();
-          print("fcm token : $fcmToken");
           FcmInput input = FcmInput(id: userInfo.data.id, fcm: fcmToken);
           updateFcmUseCase.execute(input);
         }, (error) {
@@ -50,6 +49,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         emit(const UserState.loading());
       }, guestUser: (value) {
         emit(const UserState.initial());
+      }, updateFcm: (_GetUpdateFcmEvent value) async {
+        String fcmToken = await registerFCMToken();
+        FcmInput input = FcmInput(id: value.useId, fcm: fcmToken);
+        updateFcmUseCase.execute(input);
       });
     });
   }

@@ -37,6 +37,8 @@ class BrokerTransactionBloc
             }
           }).toList();
           emit(BrokerTransactionState.loaded(newData));
+        } else {
+          emit(BrokerTransactionState.loaded(data));
         }
       });
     });

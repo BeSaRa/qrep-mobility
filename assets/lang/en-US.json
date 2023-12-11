@@ -145,5 +145,9 @@
   "------------------------------real estate brokers -------------": "",
   "total_certified_real_estate": "Total number of licensed brokers",
   "real_estate_broker_dashboard": "Real estate brokers dashboard",
-  "send_email": "Send email"
+  "send_email": "Mail broker",
+  "call_broker": "Call broker",
+  "broker_company_name": "Brokerage company name",
+  "brokerage_company_activity": "Brokerage company activity",
+  "update_profile": "Update profile"
 }

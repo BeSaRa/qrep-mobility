@@ -82,24 +82,32 @@ class RealEstateCard extends StatelessWidget {
                     onTap: () {
                       _callNumber(phone);
                     },
-                    child: Row(
-                      children: [
-                        Text(
-                          phone,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontSize: AppSizeSp.s14),
-                        ),
-                        SizedBox(
-                          width: AppSizeW.s5,
-                        ),
-                        Icon(
-                          Icons.local_phone_outlined,
+                    child: Container(
+                      decoration: BoxDecoration(
                           color: ColorManager.golden,
-                          size: AppSizeH.s15,
-                        ),
-                      ],
+                          borderRadius: BorderRadius.circular(AppSizeR.s8)),
+                      padding: EdgeInsets.all(AppSizeH.s3),
+                      child: Row(
+                        children: [
+                          Text(
+                            AppStrings().callBroker,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    fontSize: AppSizeSp.s12,
+                                    color: ColorManager.white),
+                          ),
+                          SizedBox(
+                            width: AppSizeW.s5,
+                          ),
+                          Icon(
+                            Icons.local_phone_outlined,
+                            color: ColorManager.white,
+                            size: AppSizeH.s15,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -123,7 +131,7 @@ class RealEstateCard extends StatelessWidget {
                                 .bodyMedium
                                 ?.copyWith(
                                     fontSize: AppSizeSp.s12,
-                                    color: ColorManager.grey),
+                                    color: ColorManager.white),
                             overflow: TextOverflow.ellipsis,
                           ),
                           SizedBox(
@@ -180,17 +188,20 @@ class RealEstateCardShimmer extends StatelessWidget {
                 children: [
                   ShimmerPlaceholder(
                     child: Container(
-                      width: AppSizeW.s50,
-                      height: AppSizeH.s12,
+                      width: AppSizeW.s100,
+                      height: AppSizeH.s25,
                       decoration: BoxDecoration(
                           color: ColorManager.white,
                           borderRadius: BorderRadius.circular(AppSizeR.s12)),
                     ),
                   ),
+                  SizedBox(
+                    height: AppSizeH.s10,
+                  ),
                   ShimmerPlaceholder(
                     child: Container(
                       width: AppSizeW.s50,
-                      height: AppSizeH.s12,
+                      height: AppSizeH.s20,
                       decoration: BoxDecoration(
                           color: ColorManager.white,
                           borderRadius: BorderRadius.circular(AppSizeR.s12)),
@@ -201,49 +212,26 @@ class RealEstateCardShimmer extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Row(
-                    children: [
-                      ShimmerPlaceholder(
-                        child: Container(
-                          width: AppSizeW.s50,
-                          height: AppSizeH.s12,
-                          decoration: BoxDecoration(
-                              color: ColorManager.white,
-                              borderRadius:
-                                  BorderRadius.circular(AppSizeR.s12)),
-                        ),
-                      ),
-                      SizedBox(
-                        width: AppSizeW.s5,
-                      ),
-                      Icon(
-                        Icons.local_phone_outlined,
-                        color: ColorManager.golden,
-                        size: AppSizeH.s15,
-                      ),
-                    ],
+                  ShimmerPlaceholder(
+                    child: Container(
+                      width: AppSizeW.s70,
+                      height: AppSizeH.s22,
+                      decoration: BoxDecoration(
+                          color: ColorManager.white,
+                          borderRadius: BorderRadius.circular(AppSizeR.s12)),
+                    ),
                   ),
-                  Row(
-                    children: [
-                      ShimmerPlaceholder(
-                        child: Container(
-                          width: AppSizeW.s50,
-                          height: AppSizeH.s12,
-                          decoration: BoxDecoration(
-                              color: ColorManager.white,
-                              borderRadius:
-                                  BorderRadius.circular(AppSizeR.s12)),
-                        ),
-                      ),
-                      SizedBox(
-                        width: AppSizeW.s5,
-                      ),
-                      Icon(
-                        Icons.email_outlined,
-                        color: ColorManager.golden,
-                        size: AppSizeH.s15,
-                      ),
-                    ],
+                  SizedBox(
+                    height: AppSizeH.s10,
+                  ),
+                  ShimmerPlaceholder(
+                    child: Container(
+                      width: AppSizeW.s70,
+                      height: AppSizeH.s22,
+                      decoration: BoxDecoration(
+                          color: ColorManager.white,
+                          borderRadius: BorderRadius.circular(AppSizeR.s12)),
+                    ),
                   ),
                 ],
               ),

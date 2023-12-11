@@ -1,4 +1,5 @@
 import 'package:ebla/app/routing_observer.dart';
+import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 import 'package:ebla/presentations/features/home/home_view.dart';
 import 'package:ebla/presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
@@ -8,7 +9,6 @@ import 'package:ebla/presentations/features/info/views/faq_view.dart';
 import 'package:ebla/presentations/features/info/views/laws_details_view.dart';
 import 'package:ebla/presentations/features/main_scaffold.dart';
 import 'package:ebla/presentations/features/more/more_view.dart';
-import 'package:ebla/presentations/features/more/update_info_view.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
 import 'package:ebla/presentations/features/real_estate_brokers/real_estate_brokers_view.dart';
@@ -25,6 +25,7 @@ import '../features/info/views/laws_decisions_view.dart';
 import '../features/info/views/news/news_item_view.dart';
 import '../features/info/views/news/news_view.dart';
 import '../features/main/cubit/bottom_nav_cubit.dart';
+import '../features/more/update_info_view.dart';
 import '../features/real_estate_brokers/blocs/lookup_bloc/look_up_broker_bloc.dart';
 import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
 import '../features/sell/blocs/sell_bloc/sell_bloc.dart';
@@ -418,7 +419,9 @@ class AppRouter {
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              child: const UpdateInfoView(),
+              child: const UpdateInfo(
+                model: UserModel(),
+              ),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(

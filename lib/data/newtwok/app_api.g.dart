@@ -13,7 +13,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://qrepbe.mm.gov.qa/mme-services';
+    baseUrl ??= 'http://192.168.52.4:9080/mme-services';
   }
 
   final Dio _dio;
@@ -1247,7 +1247,7 @@ class _TranslationsServiceClient implements TranslationsServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://qrepcms.mm.gov.qa/';
+    baseUrl ??= 'http://192.168.52.5:8055';
   }
 
   final Dio _dio;

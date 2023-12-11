@@ -1,3 +1,7 @@
+// ignore_for_file: deprecated_member_use
+
+import 'dart:ui' as ui;
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/more/widgets/dialog_disabled_filters_warning.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
@@ -5,18 +9,13 @@ import 'package:ebla/presentations/features/rent/blocs/cubits/cubit/change_statu
 import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_bloc/sell_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
-
 import 'package:ebla/presentations/resources/resources.dart';
-
 import 'package:ebla/presentations/widgets/grid/grid_value_with_unit_widget.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'dart:ui' as ui;
 
 import '../../../domain/models/rent_models/rent_models.dart';
-
 import '../../features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
 
 class GridItemWidget extends StatefulWidget {

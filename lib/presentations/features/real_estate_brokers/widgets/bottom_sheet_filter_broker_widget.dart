@@ -19,6 +19,7 @@ class BottomSheetFilterBrokerWidget extends StatefulWidget {
 class _BottomSheetFilterBrokerWidgetState
     extends State<BottomSheetFilterBrokerWidget> {
   late ValuesFiltersCubit valuesFiltersCubit;
+
   @override
   void initState() {
     valuesFiltersCubit = ValuesFiltersCubit(const RentLookupModel());
@@ -33,6 +34,7 @@ class _BottomSheetFilterBrokerWidgetState
           context.read<LookUpBrokerBloc>().requestBroker.brokerCategoryId ?? 2,
         ) ??
         const RentLookupModel();
+
     super.initState();
   }
 
@@ -106,7 +108,7 @@ class _BottomSheetFilterBrokerWidgetState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("نوع الوسيط",
+                  Text(AppStrings().brokerageCompanyActivity,
                       style: Theme.of(context).textTheme.labelMedium),
                   // const SingleDropDownValue(),
                   BlocBuilder(
@@ -138,7 +140,16 @@ class _BottomSheetFilterBrokerWidgetState
                 child: CustomElevatedButton(
                   isPrimary: true,
                   title: AppStrings().search,
-                  onPress: () {},
+                  onPress: () {
+                    context.read<LookUpBrokerBloc>().requestBroker =
+                        context.read<LookUpBrokerBloc>().requestBroker.copyWith(
+                              municipalityId: valuesFiltersCubit
+                                  .municapility.municipalityId,
+                              brokerCategoryId:
+                                  valuesFiltersCubit.brokerCategory.id,
+                            );
+                    Navigator.of(context).pop(true);
+                  },
                 ),
               );
             },

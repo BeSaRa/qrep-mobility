@@ -24,6 +24,7 @@ mixin _$UserEvent {
         updateUserInfo,
     required TResult Function() initialUser,
     required TResult Function() guestUser,
+    required TResult Function(String useId) updateFcm,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,6 +34,7 @@ mixin _$UserEvent {
         updateUserInfo,
     TResult? Function()? initialUser,
     TResult? Function()? guestUser,
+    TResult? Function(String useId)? updateFcm,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +44,7 @@ mixin _$UserEvent {
         updateUserInfo,
     TResult Function()? initialUser,
     TResult Function()? guestUser,
+    TResult Function(String useId)? updateFcm,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,7 @@ mixin _$UserEvent {
     required TResult Function(_UpdateUserInfoEvent value) updateUserInfo,
     required TResult Function(_GetInitialUserEvent value) initialUser,
     required TResult Function(_GetGuestUserEvent value) guestUser,
+    required TResult Function(_GetUpdateFcmEvent value) updateFcm,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +63,7 @@ mixin _$UserEvent {
     TResult? Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult? Function(_GetInitialUserEvent value)? initialUser,
     TResult? Function(_GetGuestUserEvent value)? guestUser,
+    TResult? Function(_GetUpdateFcmEvent value)? updateFcm,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,6 +72,7 @@ mixin _$UserEvent {
     TResult Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult Function(_GetInitialUserEvent value)? initialUser,
     TResult Function(_GetGuestUserEvent value)? guestUser,
+    TResult Function(_GetUpdateFcmEvent value)? updateFcm,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,6 +139,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
         updateUserInfo,
     required TResult Function() initialUser,
     required TResult Function() guestUser,
+    required TResult Function(String useId) updateFcm,
   }) {
     return getUserInfo();
   }
@@ -145,6 +152,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
         updateUserInfo,
     TResult? Function()? initialUser,
     TResult? Function()? guestUser,
+    TResult? Function(String useId)? updateFcm,
   }) {
     return getUserInfo?.call();
   }
@@ -157,6 +165,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
         updateUserInfo,
     TResult Function()? initialUser,
     TResult Function()? guestUser,
+    TResult Function(String useId)? updateFcm,
     required TResult orElse(),
   }) {
     if (getUserInfo != null) {
@@ -172,6 +181,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
     required TResult Function(_UpdateUserInfoEvent value) updateUserInfo,
     required TResult Function(_GetInitialUserEvent value) initialUser,
     required TResult Function(_GetGuestUserEvent value) guestUser,
+    required TResult Function(_GetUpdateFcmEvent value) updateFcm,
   }) {
     return getUserInfo(this);
   }
@@ -183,6 +193,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
     TResult? Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult? Function(_GetInitialUserEvent value)? initialUser,
     TResult? Function(_GetGuestUserEvent value)? guestUser,
+    TResult? Function(_GetUpdateFcmEvent value)? updateFcm,
   }) {
     return getUserInfo?.call(this);
   }
@@ -194,6 +205,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
     TResult Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult Function(_GetInitialUserEvent value)? initialUser,
     TResult Function(_GetGuestUserEvent value)? guestUser,
+    TResult Function(_GetUpdateFcmEvent value)? updateFcm,
     required TResult orElse(),
   }) {
     if (getUserInfo != null) {
@@ -299,6 +311,7 @@ class _$UpdateUserInfoEventImpl implements _UpdateUserInfoEvent {
         updateUserInfo,
     required TResult Function() initialUser,
     required TResult Function() guestUser,
+    required TResult Function(String useId) updateFcm,
   }) {
     return updateUserInfo(id, requestUpdateInfo);
   }
@@ -311,6 +324,7 @@ class _$UpdateUserInfoEventImpl implements _UpdateUserInfoEvent {
         updateUserInfo,
     TResult? Function()? initialUser,
     TResult? Function()? guestUser,
+    TResult? Function(String useId)? updateFcm,
   }) {
     return updateUserInfo?.call(id, requestUpdateInfo);
   }
@@ -323,6 +337,7 @@ class _$UpdateUserInfoEventImpl implements _UpdateUserInfoEvent {
         updateUserInfo,
     TResult Function()? initialUser,
     TResult Function()? guestUser,
+    TResult Function(String useId)? updateFcm,
     required TResult orElse(),
   }) {
     if (updateUserInfo != null) {
@@ -338,6 +353,7 @@ class _$UpdateUserInfoEventImpl implements _UpdateUserInfoEvent {
     required TResult Function(_UpdateUserInfoEvent value) updateUserInfo,
     required TResult Function(_GetInitialUserEvent value) initialUser,
     required TResult Function(_GetGuestUserEvent value) guestUser,
+    required TResult Function(_GetUpdateFcmEvent value) updateFcm,
   }) {
     return updateUserInfo(this);
   }
@@ -349,6 +365,7 @@ class _$UpdateUserInfoEventImpl implements _UpdateUserInfoEvent {
     TResult? Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult? Function(_GetInitialUserEvent value)? initialUser,
     TResult? Function(_GetGuestUserEvent value)? guestUser,
+    TResult? Function(_GetUpdateFcmEvent value)? updateFcm,
   }) {
     return updateUserInfo?.call(this);
   }
@@ -360,6 +377,7 @@ class _$UpdateUserInfoEventImpl implements _UpdateUserInfoEvent {
     TResult Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult Function(_GetInitialUserEvent value)? initialUser,
     TResult Function(_GetGuestUserEvent value)? guestUser,
+    TResult Function(_GetUpdateFcmEvent value)? updateFcm,
     required TResult orElse(),
   }) {
     if (updateUserInfo != null) {
@@ -427,6 +445,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
         updateUserInfo,
     required TResult Function() initialUser,
     required TResult Function() guestUser,
+    required TResult Function(String useId) updateFcm,
   }) {
     return initialUser();
   }
@@ -439,6 +458,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
         updateUserInfo,
     TResult? Function()? initialUser,
     TResult? Function()? guestUser,
+    TResult? Function(String useId)? updateFcm,
   }) {
     return initialUser?.call();
   }
@@ -451,6 +471,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
         updateUserInfo,
     TResult Function()? initialUser,
     TResult Function()? guestUser,
+    TResult Function(String useId)? updateFcm,
     required TResult orElse(),
   }) {
     if (initialUser != null) {
@@ -466,6 +487,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
     required TResult Function(_UpdateUserInfoEvent value) updateUserInfo,
     required TResult Function(_GetInitialUserEvent value) initialUser,
     required TResult Function(_GetGuestUserEvent value) guestUser,
+    required TResult Function(_GetUpdateFcmEvent value) updateFcm,
   }) {
     return initialUser(this);
   }
@@ -477,6 +499,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
     TResult? Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult? Function(_GetInitialUserEvent value)? initialUser,
     TResult? Function(_GetGuestUserEvent value)? guestUser,
+    TResult? Function(_GetUpdateFcmEvent value)? updateFcm,
   }) {
     return initialUser?.call(this);
   }
@@ -488,6 +511,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
     TResult Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult Function(_GetInitialUserEvent value)? initialUser,
     TResult Function(_GetGuestUserEvent value)? guestUser,
+    TResult Function(_GetUpdateFcmEvent value)? updateFcm,
     required TResult orElse(),
   }) {
     if (initialUser != null) {
@@ -545,6 +569,7 @@ class _$GetGuestUserEventImpl implements _GetGuestUserEvent {
         updateUserInfo,
     required TResult Function() initialUser,
     required TResult Function() guestUser,
+    required TResult Function(String useId) updateFcm,
   }) {
     return guestUser();
   }
@@ -557,6 +582,7 @@ class _$GetGuestUserEventImpl implements _GetGuestUserEvent {
         updateUserInfo,
     TResult? Function()? initialUser,
     TResult? Function()? guestUser,
+    TResult? Function(String useId)? updateFcm,
   }) {
     return guestUser?.call();
   }
@@ -569,6 +595,7 @@ class _$GetGuestUserEventImpl implements _GetGuestUserEvent {
         updateUserInfo,
     TResult Function()? initialUser,
     TResult Function()? guestUser,
+    TResult Function(String useId)? updateFcm,
     required TResult orElse(),
   }) {
     if (guestUser != null) {
@@ -584,6 +611,7 @@ class _$GetGuestUserEventImpl implements _GetGuestUserEvent {
     required TResult Function(_UpdateUserInfoEvent value) updateUserInfo,
     required TResult Function(_GetInitialUserEvent value) initialUser,
     required TResult Function(_GetGuestUserEvent value) guestUser,
+    required TResult Function(_GetUpdateFcmEvent value) updateFcm,
   }) {
     return guestUser(this);
   }
@@ -595,6 +623,7 @@ class _$GetGuestUserEventImpl implements _GetGuestUserEvent {
     TResult? Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult? Function(_GetInitialUserEvent value)? initialUser,
     TResult? Function(_GetGuestUserEvent value)? guestUser,
+    TResult? Function(_GetUpdateFcmEvent value)? updateFcm,
   }) {
     return guestUser?.call(this);
   }
@@ -606,6 +635,7 @@ class _$GetGuestUserEventImpl implements _GetGuestUserEvent {
     TResult Function(_UpdateUserInfoEvent value)? updateUserInfo,
     TResult Function(_GetInitialUserEvent value)? initialUser,
     TResult Function(_GetGuestUserEvent value)? guestUser,
+    TResult Function(_GetUpdateFcmEvent value)? updateFcm,
     required TResult orElse(),
   }) {
     if (guestUser != null) {
@@ -617,6 +647,163 @@ class _$GetGuestUserEventImpl implements _GetGuestUserEvent {
 
 abstract class _GetGuestUserEvent implements UserEvent {
   const factory _GetGuestUserEvent() = _$GetGuestUserEventImpl;
+}
+
+/// @nodoc
+abstract class _$$GetUpdateFcmEventImplCopyWith<$Res> {
+  factory _$$GetUpdateFcmEventImplCopyWith(_$GetUpdateFcmEventImpl value,
+          $Res Function(_$GetUpdateFcmEventImpl) then) =
+      __$$GetUpdateFcmEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String useId});
+}
+
+/// @nodoc
+class __$$GetUpdateFcmEventImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$GetUpdateFcmEventImpl>
+    implements _$$GetUpdateFcmEventImplCopyWith<$Res> {
+  __$$GetUpdateFcmEventImplCopyWithImpl(_$GetUpdateFcmEventImpl _value,
+      $Res Function(_$GetUpdateFcmEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? useId = null,
+  }) {
+    return _then(_$GetUpdateFcmEventImpl(
+      null == useId
+          ? _value.useId
+          : useId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetUpdateFcmEventImpl implements _GetUpdateFcmEvent {
+  const _$GetUpdateFcmEventImpl(this.useId);
+
+  @override
+  final String useId;
+
+  @override
+  String toString() {
+    return 'UserEvent.updateFcm(useId: $useId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetUpdateFcmEventImpl &&
+            (identical(other.useId, useId) || other.useId == useId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, useId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetUpdateFcmEventImplCopyWith<_$GetUpdateFcmEventImpl> get copyWith =>
+      __$$GetUpdateFcmEventImplCopyWithImpl<_$GetUpdateFcmEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUserInfo,
+    required TResult Function(
+            String id, RequestUpdateInfoModel requestUpdateInfo)
+        updateUserInfo,
+    required TResult Function() initialUser,
+    required TResult Function() guestUser,
+    required TResult Function(String useId) updateFcm,
+  }) {
+    return updateFcm(useId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getUserInfo,
+    TResult? Function(String id, RequestUpdateInfoModel requestUpdateInfo)?
+        updateUserInfo,
+    TResult? Function()? initialUser,
+    TResult? Function()? guestUser,
+    TResult? Function(String useId)? updateFcm,
+  }) {
+    return updateFcm?.call(useId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUserInfo,
+    TResult Function(String id, RequestUpdateInfoModel requestUpdateInfo)?
+        updateUserInfo,
+    TResult Function()? initialUser,
+    TResult Function()? guestUser,
+    TResult Function(String useId)? updateFcm,
+    required TResult orElse(),
+  }) {
+    if (updateFcm != null) {
+      return updateFcm(useId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetUserInfoEvent value) getUserInfo,
+    required TResult Function(_UpdateUserInfoEvent value) updateUserInfo,
+    required TResult Function(_GetInitialUserEvent value) initialUser,
+    required TResult Function(_GetGuestUserEvent value) guestUser,
+    required TResult Function(_GetUpdateFcmEvent value) updateFcm,
+  }) {
+    return updateFcm(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult? Function(_UpdateUserInfoEvent value)? updateUserInfo,
+    TResult? Function(_GetInitialUserEvent value)? initialUser,
+    TResult? Function(_GetGuestUserEvent value)? guestUser,
+    TResult? Function(_GetUpdateFcmEvent value)? updateFcm,
+  }) {
+    return updateFcm?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetUserInfoEvent value)? getUserInfo,
+    TResult Function(_UpdateUserInfoEvent value)? updateUserInfo,
+    TResult Function(_GetInitialUserEvent value)? initialUser,
+    TResult Function(_GetGuestUserEvent value)? guestUser,
+    TResult Function(_GetUpdateFcmEvent value)? updateFcm,
+    required TResult orElse(),
+  }) {
+    if (updateFcm != null) {
+      return updateFcm(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetUpdateFcmEvent implements UserEvent {
+  const factory _GetUpdateFcmEvent(final String useId) =
+      _$GetUpdateFcmEventImpl;
+
+  String get useId;
+  @JsonKey(ignore: true)
+  _$$GetUpdateFcmEventImplCopyWith<_$GetUpdateFcmEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

@@ -4,67 +4,43 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../domain/models/cms_models/user/requests/update_info_model.dart';
+import '../../../domain/models/cms_models/user/user_model.dart';
 import '../../resources/resources.dart';
-import '../../widgets/widgets.dart';
+import '../../widgets/text_field_filter_widget.dart';
 import 'blocs/user_bloc/user_bloc.dart';
-import 'more_view.dart';
 
-class UpdateInfoView extends StatefulWidget {
-  const UpdateInfoView({super.key});
+class UpdateInfo extends StatefulWidget {
+  final UserModel model;
+
+  const UpdateInfo({
+    super.key,
+    required this.model,
+  });
 
   @override
-  State<UpdateInfoView> createState() => _UpdateInfoViewState();
+  State<UpdateInfo> createState() => _UpdateInfoState();
 }
 
-class _UpdateInfoViewState extends State<UpdateInfoView> {
+class _UpdateInfoState extends State<UpdateInfo> {
   final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final nickNameController = TextEditingController();
+
   @override
   void initState() {
-    firstNameController.text = context.read<UserBloc>().user?.firstName ?? "";
+    firstNameController.text = widget.model.firstName;
+    lastNameController.text = widget.model.lastName;
+    // nickNameController.text = widget.model.;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        surfaceTintColor: Colors.transparent,
-        flexibleSpace: ShaderMask(
-          shaderCallback: (rect) {
-            return const LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Colors.black, Colors.transparent],
-            ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
-          },
-          blendMode: BlendMode.dstIn,
-          child: Image.asset(
-            ImageAssets.appbarBg,
-            // height: 400,
-
-            fit: BoxFit.fill,
-          ),
-        ),
-        leading: IconButton(
-            onPressed: () {
-              Navigator.maybePop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back,
-              color: ColorManager.golden,
-            )),
-        // BackButton(
-        //   color: ColorManager.golden,
-        // ),
-        title: Text(
-          "تحديث المعلومات",
-          style: Theme.of(context).textTheme.headlineLarge,
-        ),
-        centerTitle: true,
+      appBar: EblaAppBar(
+        title: AppStrings().updateProfile,
       ),
       body: Container(
-        // alignment: Alignment.center,
         padding: EdgeInsets.symmetric(
             vertical: AppSizeH.s15, horizontal: AppSizeW.s30),
         decoration: BoxDecoration(
@@ -73,73 +49,14 @@ class _UpdateInfoViewState extends State<UpdateInfoView> {
         ),
         child: SingleChildScrollView(
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 3.50,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: AppSizeW.s65,
-                      height: AppSizeW.s65,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(AppSizeH.s25),
-                        gradient: LinearGradient(
-                          colors: [
-                            Theme.of(context).shadowColor.withOpacity(0.7),
-                            Theme.of(context).primaryColor,
-                            Theme.of(context).primaryColor.withOpacity(0.8),
-                          ],
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          context.read<UserBloc>().user?.firstName[0] ?? "G",
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall
-                              ?.copyWith(
-                                  fontSize: AppSizeSp.s18,
-                                  fontWeight: FontWeight.w800),
-                        ),
-                      ),
-                    ),
-                    Text(
-                      context.read<UserBloc>().user?.firstName ?? "Guest",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    )
-                  ],
-                ),
+              TextField(
+                controller: firstNameController,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("الاسم الاول",
-                            style: Theme.of(context).textTheme.labelMedium),
-                        SearchTextFieldWidget(
-                            controller: firstNameController,
-                            hint: "الاسم الاول"),
-                      ],
-                    ),
-                  ),
-                  SizedBox(width: AppSizeW.s12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("الاسم الاخير",
-                            style: Theme.of(context).textTheme.labelMedium),
-                        SearchTextFieldWidget(
-                            controller: TextEditingController(),
-                            hint: "الاسم الاخير"),
-                      ],
-                    ),
-                  ),
-                ],
+              SizedBox(width: AppSizeW.s12),
+              TextField(
+                controller: TextEditingController(),
               ),
               SizedBox(height: AppSizeH.s12),
               Divider(
@@ -147,13 +64,8 @@ class _UpdateInfoViewState extends State<UpdateInfoView> {
                 height: AppSizeH.s1,
               ),
               SizedBox(height: AppSizeH.s12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("اللقب", style: Theme.of(context).textTheme.labelMedium),
-                  SearchTextFieldWidget(
-                      controller: TextEditingController(), hint: "اللقب"),
-                ],
+              TextField(
+                controller: TextEditingController(),
               ),
               SizedBox(height: AppSizeH.s12),
               Divider(
@@ -161,15 +73,8 @@ class _UpdateInfoViewState extends State<UpdateInfoView> {
                 height: AppSizeH.s1,
               ),
               SizedBox(height: AppSizeH.s12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("البريد الالكتروني",
-                      style: Theme.of(context).textTheme.labelMedium),
-                  SearchTextFieldWidget(
-                      controller: TextEditingController(),
-                      hint: "البريد الالكتروني"),
-                ],
+              TextField(
+                controller: TextEditingController(),
               ),
               // SizedBox(height: AppSizeH.s20),
               Row(
@@ -204,16 +109,9 @@ class _UpdateInfoViewState extends State<UpdateInfoView> {
                         borderRadius: BorderRadius.circular(AppSizeR.s12),
                         onPressed: () {
                           context.read<UserBloc>().add(UserEvent.updateUserInfo(
-                              id: context.read<UserBloc>().user?.id ?? "",
+                              id: widget.model.id,
                               requestUpdateInfo: RequestUpdateInfoModel(
                                   firstName: firstNameController.text)));
-                          // if (_formKey.currentState!.validate()) {
-                          //   context.read<LoginBloc>().add(LoginEvent.login(
-                          //       authRequest: RequestAuth(
-                          //           email: emailController.text,
-                          //           mode: "json",
-                          //           password: passwordController.text)));
-                          // }
                         },
                         child: const Text(
                           "تحديث",

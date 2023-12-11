@@ -15,7 +15,7 @@
   "identifier": "اسم المستخدم",
   "email": "البريد الإلكتروني",
   "validator_email_empty": "البريد الإلكتروني مطلوب",
-  "validator_email_format": "الرجاء ادخال بريد إلكتروني صالح",
+  "validator_email_format": "الرجاء إدخال بريد إلكتروني صالح",
   "language": "اللغة",
   "light": "نهاري",
   "login": "تسجيل الدخول",
@@ -145,5 +145,9 @@
   "------------------------------real estate brokers -------------": "",
   "total_certified_real_estate": "إجمالي عدد الوسطاء المرخصين",
   "real_estate_broker_dashboard": "لوحة الوسطاء العقاريين",
-  "send_email": "إرسال بريد إلكتروني"
+  "send_email": "راسل الوسيط",
+  "call_broker": "اتصل بالوسيط",
+  "broker_company_name": "اسم شركة الوساطة العقارية",
+  "brokerage_company_activity": "نشاط شركة الوساطة",
+  "update_profile": "تحديث الملف الشخصي"
 }

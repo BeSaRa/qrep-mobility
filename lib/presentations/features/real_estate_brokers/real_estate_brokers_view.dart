@@ -49,39 +49,8 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
           },
           done: (value) {
             return Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.transparent,
-                surfaceTintColor: Colors.transparent,
-                flexibleSpace: ShaderMask(
-                  shaderCallback: (rect) {
-                    return const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Colors.black, Colors.transparent],
-                    ).createShader(
-                        Rect.fromLTRB(0, 0, rect.width, rect.height));
-                  },
-                  blendMode: BlendMode.dstIn,
-                  child: Image.asset(
-                    ImageAssets.appbarBg,
-                    // height: 400,
-
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                leading: IconButton(
-                    onPressed: () {
-                      Navigator.maybePop(context);
-                    },
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: ColorManager.golden,
-                    )),
-                title: Text(
-                  AppStrings().realEstateBrokers,
-                  style: Theme.of(context).textTheme.headlineLarge,
-                ),
-                centerTitle: true,
+              appBar: EblaAppBar(
+                title: AppStrings().realEstateBrokers,
               ),
               body: SingleChildScrollView(
                 child: Column(
@@ -93,26 +62,17 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               SizedBox(width: AppSizeW.s16),
-                              // TextField(),
-                              // SelectedMunicipality(
-                              //   value: getObjectByLookupKey(
-                              //       context
-                              //               .read<LookUpBrokerBloc>()
-                              //               .lookupBroker
-                              //               ?.municipalityList ??
-                              //           [],
-                              //       context
-                              //               .read<LookUpBrokerBloc>()
-                              //               .requestBroker
-                              //               .municipalityId ??
-                              //           4),
-                              //   list: context
-                              //           .read<LookUpBrokerBloc>()
-                              //           .lookupBroker
-                              //           ?.municipalityList ??
-                              //       [],
-                              //   onChanged: (municipal) {},
-                              // ),
+                              Flexible(
+                                child: SearchTextFieldWidget(
+                                  controller: searchcontrolller,
+                                  hint: AppStrings().brokerCompanyName,
+                                  onChange: (val) {
+                                    brokerTransactionBloc.add(
+                                        BrokerTransactionEvent.search(
+                                            name: val));
+                                  },
+                                ),
+                              ),
                               SizedBox(width: AppSizeW.s10),
                               BlocBuilder(
                                 bloc: context.read<LookUpBrokerBloc>(),
@@ -238,55 +198,60 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                 }),
                           );
                         }, loaded: (loaded) {
-                          return Container(
-                            margin:
-                                EdgeInsets.symmetric(horizontal: AppSizeW.s20),
-                            padding: EdgeInsets.symmetric(
-                                vertical: AppSizeH.s10,
-                                horizontal: AppSizeW.s20),
-                            decoration: BoxDecoration(
-                                color: ColorManager.white,
-                                borderRadius:
-                                    BorderRadius.circular(AppSizeR.s10)),
-                            child: ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: loaded.response.length,
-                                itemBuilder: (context, index) {
-                                  return RealEstateCard(
-                                    name: context.locale == ARABIC_LOCAL
-                                        ? loaded.response[index].brokerArName
-                                        : loaded.response[index].brokerEnName,
-                                    country: context.locale == ARABIC_LOCAL
-                                        ? getObjectByLookupKey(
-                                                    context
-                                                            .read<
-                                                                LookUpBrokerBloc>()
-                                                            .lookupBroker
-                                                            ?.municipalityList ??
-                                                        [],
-                                                    loaded.response[index]
-                                                        .municipalityId)
-                                                ?.arName ??
-                                            ''
-                                        : getObjectByLookupKey(
-                                                    context
-                                                            .read<
-                                                                LookUpBrokerBloc>()
-                                                            .lookupBroker
-                                                            ?.municipalityList ??
-                                                        [],
-                                                    loaded.response[index]
-                                                        .municipalityId)
-                                                ?.enName ??
-                                            '',
-                                    phone: loaded.response[index].brokerPhone1,
-                                    email: loaded.response[index].brokerEmail,
-                                    divider:
-                                        index != loaded.response.length - 1,
-                                  );
-                                }),
-                          );
+                          if (loaded.response.isEmpty) {
+                            return Text(AppStrings().noDataFound);
+                          } else {
+                            return Container(
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: AppSizeW.s20),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: AppSizeH.s10,
+                                  horizontal: AppSizeW.s20),
+                              decoration: BoxDecoration(
+                                  color: ColorManager.white,
+                                  borderRadius:
+                                      BorderRadius.circular(AppSizeR.s10)),
+                              child: ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: loaded.response.length,
+                                  itemBuilder: (context, index) {
+                                    return RealEstateCard(
+                                      name: context.locale == ARABIC_LOCAL
+                                          ? loaded.response[index].brokerArName
+                                          : loaded.response[index].brokerEnName,
+                                      country: context.locale == ARABIC_LOCAL
+                                          ? getObjectByLookupKey(
+                                                      context
+                                                              .read<
+                                                                  LookUpBrokerBloc>()
+                                                              .lookupBroker
+                                                              ?.municipalityList ??
+                                                          [],
+                                                      loaded.response[index]
+                                                          .municipalityId)
+                                                  ?.arName ??
+                                              ''
+                                          : getObjectByLookupKey(
+                                                      context
+                                                              .read<
+                                                                  LookUpBrokerBloc>()
+                                                              .lookupBroker
+                                                              ?.municipalityList ??
+                                                          [],
+                                                      loaded.response[index]
+                                                          .municipalityId)
+                                                  ?.enName ??
+                                              '',
+                                      phone:
+                                          loaded.response[index].brokerPhone1,
+                                      email: loaded.response[index].brokerEmail,
+                                      divider:
+                                          index != loaded.response.length - 1,
+                                    );
+                                  }),
+                            );
+                          }
                         }, error: (error) {
                           return const ErrorGlobalWidget();
                         });

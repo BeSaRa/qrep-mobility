@@ -21,5 +21,7 @@ export 'range_slider_filter_widget.dart';
 export 'range_slider_widget.dart';
 export 'search_text_field_widget.dart';
 export 'selected_municipality_widget.dart';
+export 'single_dropdown_search_widget.dart';
 export 'single_dropdown_widget.dart';
 export 'statistics_rent_widget.dart';
+export 'text_field_filter_widget.dart';
