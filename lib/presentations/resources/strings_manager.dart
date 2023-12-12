@@ -176,4 +176,9 @@ class AppStrings {
   ///------------- profile ---------
 
   String updateProfile = "update_profile".tr();
+  String firstName = "first_name".tr();
+  String lastName = "last_name".tr();
+  String nickName = "nick_name".tr();
+  String nameValidationLength = "nick_name".tr();
+// String nickName = "nick_name".tr();
 }

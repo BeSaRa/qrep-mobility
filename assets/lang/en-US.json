@@ -149,5 +149,8 @@
   "call_broker": "Call broker",
   "broker_company_name": "Brokerage company name",
   "brokerage_company_activity": "Brokerage company activity",
-  "update_profile": "Update profile"
+  "update_profile": "Update profile",
+  "first_name": "First name",
+  "last_name": "Last name",
+  "nick_name": "Nick name"
 }

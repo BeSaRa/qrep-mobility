@@ -149,5 +149,8 @@
   "call_broker": "اتصل بالوسيط",
   "broker_company_name": "اسم شركة الوساطة العقارية",
   "brokerage_company_activity": "نشاط شركة الوساطة",
-  "update_profile": "تحديث الملف الشخصي"
+  "update_profile": "تحديث الملف الشخصي",
+  "first_name": "الاسم الأول",
+  "last_name": "الاسم الأخير",
+  "nick_name": "اللقب"
 }
