@@ -6,6 +6,7 @@ import 'shimmer_placeholder.dart';
 
 class StatisticsRentWidget extends StatelessWidget {
   final List<StatisticsModel> statistics;
+
   const StatisticsRentWidget({
     super.key,
     required this.statistics,
@@ -55,7 +56,7 @@ class StatisticsRentWidget extends StatelessWidget {
                 offset: const Offset(1, 1),
                 spreadRadius: AppSizeR.s2,
                 blurRadius: AppSizeR.s11,
-                color: ColorManager.black.withAlpha(6))
+                color: ColorManager.textBlack.withAlpha(6))
           ]),
       child: Column(children: mywidgets),
     );
@@ -126,7 +127,7 @@ class StatisticsShimmerWidget extends StatelessWidget {
                 offset: const Offset(1, 1),
                 spreadRadius: AppSizeR.s2,
                 blurRadius: AppSizeR.s11,
-                color: ColorManager.black.withAlpha(6))
+                color: ColorManager.textBlack.withAlpha(6))
           ]),
       child: Column(children: mywidgets),
     );

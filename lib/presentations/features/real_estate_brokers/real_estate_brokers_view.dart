@@ -312,7 +312,7 @@ class BrokerCountContainer extends StatelessWidget {
               BoxShadow(
                   spreadRadius: AppSizeR.s2,
                   blurRadius: AppSizeR.s11,
-                  color: ColorManager.black.withAlpha(30)),
+                  color: ColorManager.textBlack.withAlpha(30)),
             ],
             gradient: LinearGradient(
               colors: [
@@ -387,7 +387,7 @@ class BrokerCountContainerShimmer extends StatelessWidget {
               BoxShadow(
                   spreadRadius: AppSizeR.s2,
                   blurRadius: AppSizeR.s11,
-                  color: ColorManager.black.withAlpha(30)),
+                  color: ColorManager.textBlack.withAlpha(30)),
             ],
             gradient: LinearGradient(
               colors: [

@@ -32,7 +32,7 @@ class TextFilterWidget extends StatelessWidget {
         inputFormatters: inputFormatters,
         keyboardType: TextInputType.number,
         style: Theme.of(context).textTheme.labelSmall,
-        cursorColor: ColorManager.darkGrey,
+        cursorColor: ColorManager.textFieldGrey,
         validator: validator,
         decoration: InputDecoration(
             errorStyle: const TextStyle(
@@ -43,7 +43,7 @@ class TextFilterWidget extends StatelessWidget {
             hintStyle: Theme.of(context)
                 .textTheme
                 .labelSmall!
-                .copyWith(color: ColorManager.darkGrey.withOpacity(0.5)),
+                .copyWith(color: ColorManager.textFieldGrey.withOpacity(0.5)),
             filled: true,
             fillColor: ColorManager.whiteSmoke,
             enabledBorder: OutlineInputBorder(

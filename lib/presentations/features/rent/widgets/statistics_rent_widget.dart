@@ -299,7 +299,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                           offset: const Offset(1, 1),
                           spreadRadius: AppSizeR.s2,
                           blurRadius: AppSizeR.s11,
-                          color: ColorManager.black.withAlpha(6))
+                          color: ColorManager.textBlack.withAlpha(6))
                     ]),
                 child: Text(AppStrings().noDataFound),
               );
@@ -334,7 +334,8 @@ class _TabContainerShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(AppSizeH.s1),
+      margin:
+          EdgeInsets.symmetric(vertical: AppSizeH.s1, horizontal: AppSizeW.s3),
       padding:
           EdgeInsets.symmetric(horizontal: AppSizeW.s3, vertical: AppSizeH.s6),
       decoration: BoxDecoration(

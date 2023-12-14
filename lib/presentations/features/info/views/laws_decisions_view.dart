@@ -178,7 +178,7 @@ class _LawWidgetState extends State<LawWidget> {
                   offset: const Offset(1, 1),
                   spreadRadius: AppSizeR.s2,
                   blurRadius: AppSizeR.s11,
-                  color: ColorManager.black.withAlpha(6),
+                  color: ColorManager.textBlack.withAlpha(6),
                 )
               ]),
           child: Padding(
@@ -193,7 +193,7 @@ class _LawWidgetState extends State<LawWidget> {
                     child: FittedBox(
                       child: Icon(
                         Icons.gavel,
-                        color: ColorManager.black,
+                        color: ColorManager.textBlack,
                       ),
                     )),
                 SizedBox(width: AppSizeW.s10),

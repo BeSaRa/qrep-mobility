@@ -13,10 +13,14 @@ ThemeData lightTheme() {
   return ThemeData(
     // colorSchemeSeed: const Color(0xFF8A1538),
     colorScheme: ColorScheme.light(
-      primary: ColorManager.primary,
-      brightness: Brightness.light,
-      surfaceVariant: Colors.transparent,
-    ),
+        primary: ColorManager.primary,
+        brightness: Brightness.light,
+        surfaceVariant: Colors.transparent,
+        secondary: ColorManager.silver,
+        onSecondary: ColorManager.primary,
+        onPrimary: ColorManager.golden,
+        onSurface: ColorManager.white,
+        surface: ColorManager.white),
     appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle(
         systemNavigationBarIconBrightness: Brightness.dark,
@@ -24,11 +28,13 @@ ThemeData lightTheme() {
         statusBarIconBrightness: Brightness.dark,
       ),
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(),
     brightness: Brightness.light,
     useMaterial3: true,
     dialogTheme: const DialogTheme(
       backgroundColor: Colors.transparent,
     ),
+    cardColor: ColorManager.grey,
     dividerColor: Colors.transparent,
     inputDecorationTheme: InputDecorationTheme(
       prefixIconColor: ColorManager.primary,
@@ -63,6 +69,7 @@ ThemeData lightTheme() {
       constraints: const BoxConstraints(minWidth: double.infinity),
       showDragHandle: true,
       modalElevation: 0,
+
       modalBackgroundColor: ColorManager.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusDirectional.only(
@@ -72,24 +79,24 @@ ThemeData lightTheme() {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-      foregroundColor: MaterialStateProperty.all(ColorManager.white),
-      textStyle: MaterialStatePropertyAll(
-        TextStyle(
-          fontFamily: FontConstants.fontFamily,
-          color: ColorManager.white,
-          fontSize: AppSizeSp.s16,
-          fontWeight: FontWeight.w400,
-        ),
-      ),
-      backgroundColor: MaterialStateProperty.all(ColorManager.primary),
-      shape: MaterialStateProperty.all(
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(AppSizeR.s5),
+          foregroundColor: MaterialStateProperty.all(ColorManager.white),
+          textStyle: MaterialStatePropertyAll(
+            TextStyle(
+              fontFamily: FontConstants.fontFamily,
+              color: ColorManager.white,
+              fontSize: AppSizeSp.s16,
+              fontWeight: FontWeight.w400,
+            ),
           ),
-        ),
-      ),
-    )),
+          backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(AppSizeR.s5),
+              ),
+            ),
+          ),
+        )),
     iconTheme: IconThemeData(color: ColorManager.primary),
     scaffoldBackgroundColor: const Color(0xFFF9F9F9),
     textTheme: TextTheme(
@@ -120,27 +127,27 @@ ThemeData lightTheme() {
           fontWeight: FontWeight.w700),
       bodyLarge: TextStyle(
           fontFamily: FontConstants.fontFamily,
-          color: ColorManager.black,
+          color: ColorManager.textBlack,
           fontSize: AppSizeSp.s23,
           fontWeight: FontWeight.w700),
       bodyMedium: TextStyle(
           fontFamily: FontConstants.fontFamily,
-          color: ColorManager.black,
+          color: ColorManager.textBlack,
           fontSize: AppSizeSp.s13,
           fontWeight: FontWeight.w700),
       bodySmall: TextStyle(
           fontFamily: FontConstants.fontFamily,
-          color: ColorManager.black,
+          color: ColorManager.textBlack,
           fontSize: AppSizeSp.s14,
           fontWeight: FontWeight.w400),
       labelMedium: TextStyle(
           fontFamily: FontConstants.fontFamily,
-          color: ColorManager.black,
+          color: ColorManager.textBlack,
           fontSize: AppSizeSp.s16,
           fontWeight: FontWeight.w400),
       labelSmall: TextStyle(
           fontFamily: FontConstants.fontFamily,
-          color: ColorManager.darkGrey,
+          color: ColorManager.textFieldGrey,
           fontSize: AppSizeSp.s13,
           fontWeight: FontWeight.w400),
       displayMedium: TextStyle(
@@ -164,58 +171,68 @@ ThemeData lightTheme() {
 
 ThemeData darkTheme() {
   return ThemeData(
-      // colorSchemeSeed: const Color(0xFF8A1538),
+    // colorSchemeSeed: const Color(0xFF222222),
+      scaffoldBackgroundColor: const Color(0xFF222222),
+      cardColor: ColorManager.cloudyGrey,
       colorScheme: ColorScheme.dark(
-        primary: ColorManager.primary,
-        brightness: Brightness.dark,
-        surfaceVariant: Colors.transparent,
-      ),
+          primary: ColorManager.primary,
+          onPrimary: ColorManager.primary,
+          brightness: Brightness.dark,
+          surfaceVariant: Colors.transparent,
+          secondary: ColorManager.golden,
+          onSecondary: ColorManager.golden,
+          onBackground: ColorManager.cloudyGrey,
+          onSurface: ColorManager.greyCloud,
+          surface: ColorManager.primary),
       dividerColor: Colors.transparent,
       brightness: Brightness.dark,
+      bottomNavigationBarTheme:
+      BottomNavigationBarThemeData(unselectedItemColor: ColorManager.white),
+      iconTheme: IconThemeData(color: ColorManager.white),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all(ColorManager.white),
-        textStyle: MaterialStatePropertyAll(
-          TextStyle(
-            fontFamily: FontConstants.fontFamily,
-            color: ColorManager.white,
-            fontSize: AppSizeSp.s16,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-        backgroundColor: MaterialStateProperty.all(ColorManager.primary),
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(AppSizeR.s5),
+            foregroundColor: MaterialStateProperty.all(Color(0xFF222222)),
+            textStyle: MaterialStatePropertyAll(
+              TextStyle(
+                fontFamily: FontConstants.fontFamily,
+                color: ColorManager.white,
+                fontSize: AppSizeSp.s16,
+                fontWeight: FontWeight.w400,
+              ),
             ),
-          ),
-        ),
-      )),
+            backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(AppSizeR.s5),
+                ),
+              ),
+            ),
+          )),
       textTheme: TextTheme(
         titleLarge: TextStyle(
             fontFamily: FontConstants.fontFamily,
-            color: ColorManager.primary,
+            color: ColorManager.white,
             fontSize: AppSizeSp.s20,
             fontWeight: FontWeight.w700),
         titleMedium: TextStyle(
             fontFamily: FontConstants.fontFamily,
-            color: ColorManager.primary,
+            color: ColorManager.white,
             fontSize: AppSizeSp.s16,
             fontWeight: FontWeight.w700),
         titleSmall: TextStyle(
             fontFamily: FontConstants.fontFamily,
-            color: ColorManager.golden,
+            color: ColorManager.white,
             fontSize: AppSizeSp.s13,
             fontWeight: FontWeight.w700),
         headlineSmall: TextStyle(
             fontFamily: FontConstants.fontFamily,
-            color: ColorManager.primary,
+            color: ColorManager.white,
             fontSize: AppSizeSp.s23,
             fontWeight: FontWeight.w700),
         headlineMedium: TextStyle(
             fontFamily: FontConstants.fontFamily,
-            color: ColorManager.cloudyGrey,
+            color: ColorManager.white,
             fontSize: AppSizeSp.s13,
             fontWeight: FontWeight.w700),
         bodyLarge: TextStyle(
@@ -240,12 +257,12 @@ ThemeData darkTheme() {
             fontWeight: FontWeight.w400),
         labelSmall: TextStyle(
             fontFamily: FontConstants.fontFamily,
-            color: ColorManager.darkGrey,
+            color: ColorManager.white,
             fontSize: AppSizeSp.s13,
             fontWeight: FontWeight.w400),
         displaySmall: TextStyle(
             fontFamily: FontConstants.fontFamily,
-            color: ColorManager.black,
+            color: ColorManager.white,
             fontSize: AppSizeSp.s16,
             fontWeight: FontWeight.w400),
       ),

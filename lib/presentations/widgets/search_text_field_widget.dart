@@ -33,7 +33,7 @@ class _SearchTextFieldWidgetState extends State<SearchTextFieldWidget> {
       height: AppSizeH.s40,
       child: TextField(
         style: Theme.of(context).textTheme.labelSmall,
-        cursorColor: ColorManager.darkGrey,
+        cursorColor: ColorManager.textFieldGrey,
         controller: widget.controller,
         onChanged: widget.onChange,
         decoration: InputDecoration(

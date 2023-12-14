@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/constants.dart';
 import 'package:ebla/app/extensions.dart';
-import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:ebla/presentations/widgets/shimmer_placeholder.dart';
 import 'package:flutter/material.dart';
 
@@ -220,10 +219,7 @@ class NewsItemWidget extends StatelessWidget {
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: ColorManager.golden),
-                              child: Icon(
-                                  context.locale == ARABIC_LOCAL
-                                      ? Icons.arrow_back_ios_new_rounded
-                                      : Icons.arrow_forward_ios_rounded,
+                              child: Icon(Icons.arrow_forward_ios_rounded,
                                   size: AppSizeSp.s10,
                                   color: ColorManager.white),
                             ),

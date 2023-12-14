@@ -40,7 +40,7 @@ class _SelectedYearWidgetState extends State<SelectedYearWidget> {
                 offset: const Offset(1, 1),
                 spreadRadius: AppSizeR.s2,
                 blurRadius: AppSizeR.s11,
-                color: ColorManager.black.withAlpha(6))
+                color: ColorManager.textBlack.withAlpha(6))
           ],
           color: ColorManager.white,
           border: Border.all(style: BorderStyle.none),

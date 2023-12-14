@@ -297,7 +297,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                           offset: const Offset(1, 1),
                           spreadRadius: AppSizeR.s2,
                           blurRadius: AppSizeR.s11,
-                          color: ColorManager.black.withAlpha(6))
+                          color: ColorManager.textBlack.withAlpha(6))
                     ]),
                 child: Text(AppStrings().noDataFound),
               );

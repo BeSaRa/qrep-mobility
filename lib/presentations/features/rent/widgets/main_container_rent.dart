@@ -14,6 +14,7 @@ class MainRentDataContainer extends StatelessWidget {
   final String location;
   final String? descripton;
   final bool hasRooms;
+
   const MainRentDataContainer({
     super.key,
     required this.title,
@@ -40,7 +41,7 @@ class MainRentDataContainer extends StatelessWidget {
               offset: const Offset(1, 1),
               spreadRadius: AppSizeR.s2,
               blurRadius: AppSizeR.s11,
-              color: ColorManager.black.withAlpha(6))
+              color: ColorManager.textBlack.withAlpha(6))
         ],
         borderRadius: BorderRadius.circular(AppSizeR.s12),
       ),
@@ -204,7 +205,7 @@ class ShimmerMainRentDataContainer extends StatelessWidget {
               offset: const Offset(1, 1),
               spreadRadius: AppSizeR.s2,
               blurRadius: AppSizeR.s11,
-              color: ColorManager.black.withAlpha(6))
+              color: ColorManager.textBlack.withAlpha(6))
         ],
         borderRadius: BorderRadius.circular(AppSizeR.s12),
       ),

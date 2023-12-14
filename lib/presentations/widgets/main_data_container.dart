@@ -42,7 +42,7 @@ class MainDataContainer extends StatelessWidget {
               offset: const Offset(1, 1),
               spreadRadius: AppSizeR.s2,
               blurRadius: AppSizeR.s11,
-              color: ColorManager.black.withAlpha(6))
+              color: ColorManager.textBlack.withAlpha(6))
         ],
         borderRadius: BorderRadius.circular(AppSizeR.s12),
       ),
@@ -187,7 +187,7 @@ class ShimmerMainContainer extends StatelessWidget {
               offset: const Offset(1, 1),
               spreadRadius: AppSizeR.s2,
               blurRadius: AppSizeR.s11,
-              color: ColorManager.black.withAlpha(6))
+              color: ColorManager.textBlack.withAlpha(6))
         ],
         borderRadius: BorderRadius.circular(AppSizeR.s12),
       ),
