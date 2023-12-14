@@ -179,6 +179,6 @@ class AppStrings {
   String firstName = "first_name".tr();
   String lastName = "last_name".tr();
   String nickName = "nick_name".tr();
-  String nameValidationLength = "nick_name".tr();
+  String nameValidationLength = "name_validation_length".tr();
 // String nickName = "nick_name".tr();
 }

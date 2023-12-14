@@ -152,5 +152,6 @@
   "update_profile": "تحديث الملف الشخصي",
   "first_name": "الاسم الأول",
   "last_name": "الاسم الأخير",
-  "nick_name": "اللقب"
+  "nick_name": "اللقب",
+  "name_validation_length": "يجب أن يكون الاسم أقل من 50 محرفاً"
 }

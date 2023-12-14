@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/extensions.dart';
-import 'package:ebla/presentations/features/more/widgets/dialog_data_audited_and_collected.dart';
 import 'package:ebla/presentations/features/more/widgets/dialog_disabled_filters_warning.dart';
 import 'package:ebla/presentations/features/rent/widgets/top_ten_index_cubit.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +49,12 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
             false);
   }
 
+  bool isOne() {
+    return (context.read<RentBloc>().requestMeanValue.propertyTypeList!.length >
+            1 ||
+        context.read<RentBloc>().requestMeanValue.purposeList!.length > 1);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -83,7 +88,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                               name: AppStrings().countPropertiesUnits,
                             ),
                             _TabContainerShimmer(
-                              isDisabled: isDisabled(),
+                              // isDisabled: isDisabled(),
                               tabIndex: 3,
                               name: AppStrings().avgPriceEveryMonth,
                             ),
@@ -91,16 +96,16 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                               tabIndex: 4,
                               name: AppStrings().contractsValue,
                             ),
-                            _TabContainerShimmer(
-                              isDisabled: isDisabled(),
-                              tabIndex: 5,
-                              name: AppStrings().avgPricePerMeter,
-                            ),
-                            _TabContainerShimmer(
-                              isDisabled: isDisabled(),
-                              tabIndex: 6,
-                              name: AppStrings().rentedAreas,
-                            ),
+                            // _TabContainerShimmer(
+                            //   isDisabled: isDisabled(),
+                            //   tabIndex: 5,
+                            //   name: AppStrings().avgPricePerMeter,
+                            // ),
+                            // _TabContainerShimmer(
+                            //   isDisabled: isDisabled(),
+                            //   tabIndex: 6,
+                            //   name: AppStrings().rentedAreas,
+                            // ),
                           ],
                         ),
                       ))
@@ -146,11 +151,11 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                                           .requestMeanValue));
                             }),
                         _TabContainer(
-                            isDisabled: isDisabled(),
+                            // isDisabled: isDisabled(),
                             indexTab: 3,
                             name: AppStrings().avgPriceEveryMonth,
                             onPress: () {
-                              if (isDisabled()) {
+                              if (isDisabled() || isOne()) {
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext ctxt) =>
@@ -179,49 +184,49 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                                           .read<RentBloc>()
                                           .requestMeanValue));
                             }),
-                        _TabContainer(
-                            // disabled because data is being collected and audited
-                            isDisabled: true,
-                            indexTab: 5,
-                            name: AppStrings().avgPricePerMeter,
-                            onPress: () {
-                              // todo: remove this when data is ready
-                              if (true) {
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext ctxt) =>
-                                        const DialogDataCollectedAndAudited());
-                              } else {
-                                tenIndexCubit.save(5);
-                                context.read<CertificateContractBloc>().add(
-                                    CertificateContractEvent
-                                        .rentValuePerMeterEvent(
-                                            request: context
-                                                .read<RentBloc>()
-                                                .requestMeanValue));
-                              }
-                            }),
-                        _TabContainer(
-                            // disabled because data is being collected and audited
-                            isDisabled: true,
-                            indexTab: 6,
-                            name: AppStrings().rentedAreas,
-                            onPress: () {
-                              // todo: remove this when data is ready
-                              if (true) {
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext ctxt) =>
-                                        const DialogDataCollectedAndAudited());
-                              } else {
-                                tenIndexCubit.save(6);
-                                context.read<CertificateContractBloc>().add(
-                                    CertificateContractEvent.rentedAreasEvent(
-                                        request: context
-                                            .read<RentBloc>()
-                                            .requestMeanValue));
-                              }
-                            }),
+                        // _TabContainer(
+                        //     // disabled because data is being collected and audited
+                        //     isDisabled: true,
+                        //     indexTab: 5,
+                        //     name: AppStrings().avgPricePerMeter,
+                        //     onPress: () {
+                        //       // todo: remove this when data is ready
+                        //       if (true) {
+                        //         showDialog(
+                        //             context: context,
+                        //             builder: (BuildContext ctxt) =>
+                        //                 const DialogDataCollectedAndAudited());
+                        //       } else {
+                        //         tenIndexCubit.save(5);
+                        //         context.read<CertificateContractBloc>().add(
+                        //             CertificateContractEvent
+                        //                 .rentValuePerMeterEvent(
+                        //                     request: context
+                        //                         .read<RentBloc>()
+                        //                         .requestMeanValue));
+                        //       }
+                        //     }),
+                        // _TabContainer(
+                        //     // disabled because data is being collected and audited
+                        //     isDisabled: true,
+                        //     indexTab: 6,
+                        //     name: AppStrings().rentedAreas,
+                        //     onPress: () {
+                        //       // todo: remove this when data is ready
+                        //       if (true) {
+                        //         showDialog(
+                        //             context: context,
+                        //             builder: (BuildContext ctxt) =>
+                        //                 const DialogDataCollectedAndAudited());
+                        //       } else {
+                        //         tenIndexCubit.save(6);
+                        //         context.read<CertificateContractBloc>().add(
+                        //             CertificateContractEvent.rentedAreasEvent(
+                        //                 request: context
+                        //                     .read<RentBloc>()
+                        //                     .requestMeanValue));
+                        //       }
+                        //     }),
                       ],
                     ),
                   ),
@@ -329,7 +334,7 @@ class _TabContainerShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(AppSizeH.s0_2),
+      margin: EdgeInsets.all(AppSizeH.s1),
       padding:
           EdgeInsets.symmetric(horizontal: AppSizeW.s3, vertical: AppSizeH.s6),
       decoration: BoxDecoration(
@@ -385,7 +390,7 @@ class _TabContainer extends StatelessWidget {
         onPress();
       },
       child: Container(
-        margin: EdgeInsets.all(AppSizeH.s0_2),
+        margin: EdgeInsets.all(AppSizeH.s1),
         padding: EdgeInsets.symmetric(
             horizontal: AppSizeW.s3, vertical: AppSizeH.s6),
         decoration: BoxDecoration(

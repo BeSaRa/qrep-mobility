@@ -10,13 +10,10 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import '../../../../domain/models/rent_models/rent_models.dart';
 import '../../../../utils/global_functions.dart';
 import '../../../resources/resources.dart';
-import '../../../widgets/single_dropdown_search_widget.dart';
-import '../../../widgets/text_field_filter_widget.dart';
 import '../../../widgets/widgets.dart';
 import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../../rent/blocs/cubits/cubit/validator_cubit.dart';
 import '../../rent/blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
-import '../../rent/widgets/choose_unit_filters_widget.dart';
 
 class BottomSheetFilterMortgageWidget extends StatefulWidget {
   const BottomSheetFilterMortgageWidget({super.key});
@@ -218,7 +215,26 @@ class _BottomSheetFilterMortgageWidgetState
       valuesFiltersCubit.yearsLists.add(RentLookupModel(
           arName: element.toString(), id: element, enName: element.toString()));
     });
-
+    List<RentLookupModel> listDistrictWithAll = [];
+    listDistrictWithAll
+        .addAll(context.read<LookupBloc>().lookUpMortgage?.districtList ?? []);
+    if (!listDistrictWithAll.contains(const RentLookupModel(
+        isActive: true,
+        lookupKey: -1,
+        arName: "الكل",
+        enName: "All",
+        id: -1))) {
+      listDistrictWithAll.add(const RentLookupModel(
+          isActive: true,
+          lookupKey: -1,
+          arName: "الكل",
+          enName: "All",
+          id: -1));
+    }
+    context.read<LookupBloc>().lookUpMortgage = context
+        .read<LookupBloc>()
+        .lookUpMortgage
+        ?.copyWith(districtList: listDistrictWithAll);
     //municipal and areaCode
     valuesFiltersCubit.municapility = getObjectByLookupKey(
           context.read<LookupBloc>().lookUpMortgage?.municipalityList ?? [],
@@ -625,37 +641,37 @@ class _BottomSheetFilterMortgageWidgetState
                     ),
                   ),
                   SizedBox(width: AppSizeW.s8),
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppStrings().propertyUsage,
-                          style: Theme.of(context).textTheme.labelMedium,
-                        ),
-                        BlocProvider.value(
-                          value: valuesFiltersCubit,
-                          child: BlocBuilder(
-                            bloc: valuesFiltersCubit,
-                            builder: (context, states) {
-                              return MultiChooseDropDownWidget(
-                                  isPurpose: true,
-                                  // selectedValue:
-                                  //     valuesFiltersCubit.purposeType,
-                                  selectedItems:
-                                      valuesFiltersCubit.rentPurposeList,
-                                  list: context
-                                          .read<LookupBloc>()
-                                          .lookUpMortgage
-                                          ?.rentPurposeList ??
-                                      []);
-                            },
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                  // Expanded(
+                  //   child: Column(
+                  //     mainAxisSize: MainAxisSize.min,
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       Text(
+                  //         AppStrings().propertyUsage,
+                  //         style: Theme.of(context).textTheme.labelMedium,
+                  //       ),
+                  //       BlocProvider.value(
+                  //         value: valuesFiltersCubit,
+                  //         child: BlocBuilder(
+                  //           bloc: valuesFiltersCubit,
+                  //           builder: (context, states) {
+                  //             return MultiChooseDropDownWidget(
+                  //                 isPurpose: true,
+                  //                 // selectedValue:
+                  //                 //     valuesFiltersCubit.purposeType,
+                  //                 selectedItems:
+                  //                     valuesFiltersCubit.rentPurposeList,
+                  //                 list: context
+                  //                         .read<LookupBloc>()
+                  //                         .lookUpMortgage
+                  //                         ?.rentPurposeList ??
+                  //                     []);
+                  //           },
+                  //         ),
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
               //Year and periodTime
@@ -727,19 +743,19 @@ class _BottomSheetFilterMortgageWidgetState
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppStrings().street,
-                          style: Theme.of(context).textTheme.labelMedium,
-                        ),
-                        TextFilterWidget(controller: streetController),
-                      ],
-                    ),
-                  ),
+                  // Expanded(
+                  //   child: Column(
+                  //     mainAxisSize: MainAxisSize.min,
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       Text(
+                  //         AppStrings().street,
+                  //         style: Theme.of(context).textTheme.labelMedium,
+                  //       ),
+                  //       TextFilterWidget(controller: streetController),
+                  //     ],
+                  //   ),
+                  // ),
                   SizedBox(width: AppSizeW.s8),
                   BlocBuilder(
                     bloc: valuesFiltersCubit,
@@ -755,15 +771,15 @@ class _BottomSheetFilterMortgageWidgetState
                   ),
                 ],
               ),
-              SizedBox(height: AppSizeH.s12),
-              Text(AppStrings().measuringUnit,
-                  style: Theme.of(context).textTheme.labelMedium),
-
-              SizedBox(height: AppSizeH.s12),
-              BlocProvider.value(
-                value: valuesFiltersCubit,
-                child: const ChooseUnitWidget(),
-              ),
+              // SizedBox(height: AppSizeH.s12),
+              // Text(AppStrings().measuringUnit,
+              //     style: Theme.of(context).textTheme.labelMedium),
+              //
+              // SizedBox(height: AppSizeH.s12),
+              // BlocProvider.value(
+              //   value: valuesFiltersCubit,
+              //   child: const ChooseUnitWidget(),
+              // ),
               SizedBox(height: AppSizeH.s12),
               // BlocBuilder(
               //   bloc: valuesFiltersCubit,

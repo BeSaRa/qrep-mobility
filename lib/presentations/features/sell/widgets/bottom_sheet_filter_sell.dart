@@ -228,6 +228,26 @@ class _BottomSheetFilterSellWidgetState
           context.read<SellBloc>().requestSell.municipalityId ?? 1,
         ) ??
         const RentLookupModel();
+    List<RentLookupModel> listDistrictWithAll = [];
+    listDistrictWithAll
+        .addAll(context.read<LookupBloc>().loockUpSell?.districtList ?? []);
+    if (!listDistrictWithAll.contains(const RentLookupModel(
+        isActive: true,
+        lookupKey: -1,
+        arName: "الكل",
+        enName: "All",
+        id: -1))) {
+      listDistrictWithAll.add(const RentLookupModel(
+          isActive: true,
+          lookupKey: -1,
+          arName: "الكل",
+          enName: "All",
+          id: -1));
+    }
+    context.read<LookupBloc>().loockUpSell = context
+        .read<LookupBloc>()
+        .loockUpSell
+        ?.copyWith(districtList: listDistrictWithAll);
     valuesFiltersCubit.zone = getObjectByLookupKey(
           context.read<LookupBloc>().loockUpSell?.districtList ?? [],
           context.read<SellBloc>().requestSell.areaCode.toInt(),
@@ -255,6 +275,7 @@ class _BottomSheetFilterSellWidgetState
         .read<LookupBloc>()
         .loockUpSell
         ?.copyWith(propertyTypeList: listPropertyWithAll);
+
     context.read<SellBloc>().requestSell.propertyTypeList?.forEach((element) {
       valuesFiltersCubit.propertyTypeList.add(getObjectByLookupKey(
             context.read<LookupBloc>().loockUpSell?.propertyTypeList ?? [],
@@ -713,19 +734,22 @@ class _BottomSheetFilterSellWidgetState
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppStrings().street,
-                          style: Theme.of(context).textTheme.labelMedium,
-                        ),
-                        TextFilterWidget(controller: streetController),
-                      ],
-                    ),
-                  ),
+                  // Expanded(
+                  //   child: Column(
+                  //     mainAxisSize: MainAxisSize.min,
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       Text(
+                  //         AppStrings().street,
+                  //         style: Theme
+                  //             .of(context)
+                  //             .textTheme
+                  //             .labelMedium,
+                  //       ),
+                  //       TextFilterWidget(controller: streetController),
+                  //     ],
+                  //   ),
+                  // ),
                   SizedBox(width: AppSizeW.s8),
                   BlocBuilder(
                     bloc: valuesFiltersCubit,
@@ -1016,8 +1040,7 @@ class _BottomSheetFilterSellWidgetState
                                           ],
                                           autovalidateMode: AutovalidateMode
                                               .onUserInteraction,
-                                          hintText:
-                                              '${context.read<LookupBloc>().loockUpSell?.maxParams[0].minVal}',
+                                          hintText: getHintMinValue(),
                                           controller: areaValueFromController,
                                           validator: (value) {
                                             validatorFromAreaCubit.validator(
@@ -1127,8 +1150,7 @@ class _BottomSheetFilterSellWidgetState
                                           ],
                                           autovalidateMode: AutovalidateMode
                                               .onUserInteraction,
-                                          hintText:
-                                              '${context.read<LookupBloc>().loockUpSell?.maxParams[0].maxVal}',
+                                          hintText: getHintMaxValue(),
                                           controller: areaValueToController,
                                           validator: (value) {
                                             validatorToAreaCubit.validator(
@@ -1322,5 +1344,25 @@ class _BottomSheetFilterSellWidgetState
         ),
       ),
     );
+  }
+
+  String getHintMinValue() {
+    String unitVal = '';
+    if (valuesFiltersCubit.unit == 1) {
+      unitVal = AppStrings().meterSquare;
+    } else {
+      unitVal = AppStrings().footSquare;
+    }
+    return '${context.read<LookupBloc>().loockUpSell?.maxParams[1].minVal} ($unitVal)';
+  }
+
+  String getHintMaxValue() {
+    String unitVal = '';
+    if (valuesFiltersCubit.unit == 1) {
+      unitVal = AppStrings().meterSquare;
+    } else {
+      unitVal = AppStrings().footSquare;
+    }
+    return '${context.read<LookupBloc>().loockUpSell?.maxParams[0].maxVal} ($unitVal)';
   }
 }

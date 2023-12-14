@@ -41,6 +41,12 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
             false);
   }
 
+  bool isOne() {
+    return (context.read<SellBloc>().requestSell.propertyTypeList!.length >
+            1) ||
+        (context.read<SellBloc>().requestSell.purposeList!.length > 1);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -84,7 +90,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                               name: AppStrings().sellContractCount,
                             ),
                             _TabContainerShimmer(
-                              isDisabled: isDisabled(),
+                              // isDisabled: isDisabled(),
                               tabIndex: 2,
                               name: AppStrings().avgPricePerUnit,
                             ),
@@ -102,7 +108,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                               name: AppStrings().countPropertiesUnits,
                             ),
                             _TabContainerShimmer(
-                              isDisabled: isDisabled(),
+                              // isDisabled: isDisabled(),
                               tabIndex: 6,
                               name: "${AppStrings().avgPricePer} "
                                   "(${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
@@ -140,11 +146,11 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                           },
                         ),
                         _TabContainer(
-                            isDisabled: isDisabled(),
+                            // isDisabled: isDisabled(),
                             indexTab: 2,
                             name: AppStrings().avgPricePerUnit,
                             onPress: () {
-                              if (isDisabled()) {
+                              if (isDisabled() || isOne()) {
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext ctxt) =>
@@ -196,12 +202,12 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                                           .requestSell));
                             }),
                         _TabContainer(
-                            isDisabled: isDisabled(),
+                            // isDisabled: isDisabled(),
                             indexTab: 6,
                             name: "${AppStrings().avgPricePer} "
                                 "(${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
                             onPress: () {
-                              if (isDisabled()) {
+                              if (isDisabled() || isOne()) {
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext ctxt) =>
@@ -332,6 +338,7 @@ class _TabContainerShimmer extends StatelessWidget {
   final int tabIndex;
   final String name;
   final bool isDisabled;
+
   const _TabContainerShimmer({
     required this.tabIndex,
     required this.name,

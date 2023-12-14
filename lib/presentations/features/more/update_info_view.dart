@@ -60,12 +60,12 @@ class _UpdateInfoState extends State<UpdateInfo> {
                     controller: firstNameController,
                     style: Theme.of(context).textTheme.bodyMedium,
                     validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return AppStrings().validatorEmailEmpty;
-                      }
-                      // if (value.emailReg()) {
-                      //   return AppStrings().validatorEmailFormat;
+                      // if (value == null || value.isEmpty) {
+                      //   return AppStrings().validatorEmailEmpty;
                       // }
+                      if (value!.length > 49) {
+                        return AppStrings().nameValidationLength;
+                      }
                       return null;
                     },
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -81,9 +81,10 @@ class _UpdateInfoState extends State<UpdateInfo> {
                     controller: lastNameController,
                     style: Theme.of(context).textTheme.bodyMedium,
                     validator: (value) {
-                      // if (value == null || value.isEmpty) {
-                      //   return AppStrings().validatorEmailEmpty;
-                      // }
+                      if (value!.length > 49) {
+                        return AppStrings().validatorEmailEmpty;
+                      }
+                      return null;
                       // if (value.emailReg()) {
                       //   return AppStrings().validatorEmailFormat;
                       // }
@@ -102,13 +103,13 @@ class _UpdateInfoState extends State<UpdateInfo> {
                     controller: nickNameController,
                     style: Theme.of(context).textTheme.bodyMedium,
                     validator: (value) {
-                      // if (value == null || value.isEmpty) {
-                      //   return AppStrings().validatorEmailEmpty;
-                      // }
+                      if (value!.length > 49) {
+                        return AppStrings().nameValidationLength;
+                      }
                       // if (value.emailReg()) {
                       //   return AppStrings().validatorEmailFormat;
                       // }
-                      // return null;
+                      return null;
                     },
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: InputDecoration(

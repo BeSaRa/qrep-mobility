@@ -20,7 +20,6 @@ import '../../../widgets/text_field_filter_widget.dart';
 import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
 import '../blocs/rent_bloc/rent_bloc.dart';
-import 'choose_unit_filters_widget.dart';
 
 // enum PeriodTime { year, halfYear, quarterYear, monthly, specificPeriod }
 
@@ -812,19 +811,19 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                     ),
                   ),
                   SizedBox(width: AppSizeW.s8),
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppStrings().street,
-                          style: Theme.of(context).textTheme.labelMedium,
-                        ),
-                        TextFilterWidget(controller: streetController),
-                      ],
-                    ),
-                  )
+                  // Expanded(
+                  //   child: Column(
+                  //     mainAxisSize: MainAxisSize.min,
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       Text(
+                  //         AppStrings().street,
+                  //         style: Theme.of(context).textTheme.labelMedium,
+                  //       ),
+                  //       TextFilterWidget(controller: streetController),
+                  //     ],
+                  //   ),
+                  // )
                   // Expanded(
                   //   child: Column(
                   // mainAxisSize: MainAxisSize.min,
@@ -855,14 +854,14 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                   // ),
                 ],
               ),
-              SizedBox(height: AppSizeH.s12),
-              Text(AppStrings().measuringUnit,
-                  style: Theme.of(context).textTheme.labelMedium),
-              SizedBox(height: AppSizeH.s12),
-              BlocProvider.value(
-                value: valuesFiltersCubit,
-                child: const ChooseUnitWidget(),
-              ),
+              // SizedBox(height: AppSizeH.s12),
+              // Text(AppStrings().measuringUnit,
+              //     style: Theme.of(context).textTheme.labelMedium),
+              // SizedBox(height: AppSizeH.s12),
+              // BlocProvider.value(
+              //   value: valuesFiltersCubit,
+              //   child: const ChooseUnitWidget(),
+              // ),
               SizedBox(height: AppSizeH.s12),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1098,280 +1097,280 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                 ],
               ),
               SizedBox(height: AppSizeH.s12),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                            "${AppStrings().areaRangeValue} (${AppStrings().from})",
-                            style: Theme.of(context).textTheme.labelMedium),
-                        Row(
-                          children: [
-                            BlocBuilder(
-                              bloc: validatorFromAreaCubit,
-                              builder: (context, state) {
-                                return Expanded(
-                                    child: BlocBuilder(
-                                  bloc: valuesFiltersCubit,
-                                  builder: (context, state) {
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        TextFilterWidget(
-                                          inputFormatters: [
-                                            LengthLimitingTextInputFormatter(
-                                                context
-                                                    .read<LookupBloc>()
-                                                    .loockUpRent
-                                                    ?.maxParams[0]
-                                                    .maxVal
-                                                    .toString()
-                                                    .length),
-                                            FilteringTextInputFormatter.allow(
-                                                RegExp(r'^[1-9]\d*')),
-                                          ],
-                                          autovalidateMode: AutovalidateMode
-                                              .onUserInteraction,
-                                          hintText:
-                                              '${context.read<LookupBloc>().loockUpRent?.maxParams[0].minVal}',
-                                          controller: areaValueFromController,
-                                          validator: (value) {
-                                            validatorFromAreaCubit.validator(
-                                                value,
-                                                context
-                                                        .read<LookupBloc>()
-                                                        .loockUpRent
-                                                        ?.maxParams[0]
-                                                        .maxVal ??
-                                                    0,
-                                                context
-                                                        .read<LookupBloc>()
-                                                        .loockUpRent
-                                                        ?.maxParams[0]
-                                                        .minVal ??
-                                                    0,
-                                                areaValueToController.text);
-                                            return validatorFromAreaCubit
-                                                        .state !=
-                                                    0
-                                                ? ""
-                                                : null;
-                                          },
-                                        ),
-                                        validatorFromAreaCubit.state == 3
-                                            ? Text(
-                                                AppStrings()
-                                                    .maxValueValidate
-                                                    .tr(args: [
-                                                  '(${AppStrings().to})'
-                                                ]),
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodySmall!
-                                                    .copyWith(
-                                                      color: ColorManager.red,
-                                                    ))
-                                            : validatorFromAreaCubit.state == 2
-                                                ? Text(
-                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].maxVal}",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodySmall!
-                                                        .copyWith(
-                                                          color:
-                                                              ColorManager.red,
-                                                        ))
-                                                : validatorFromAreaCubit
-                                                            .state ==
-                                                        1
-                                                    ? Text(
-                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].minVal}",
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodySmall!
-                                                            .copyWith(
-                                                              color:
-                                                                  ColorManager
-                                                                      .red,
-                                                            ))
-                                                    : const SizedBox()
-                                      ],
-                                    );
-                                  },
-                                ));
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(width: AppSizeW.s8),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                            "${AppStrings().areaRangeValue} (${AppStrings().to})",
-                            style: Theme.of(context).textTheme.labelMedium),
-                        Row(
-                          children: [
-                            BlocBuilder(
-                              bloc: validatorToAreaCubit,
-                              builder: (context, state) {
-                                return Expanded(
-                                    child: BlocBuilder(
-                                  bloc: valuesFiltersCubit,
-                                  builder: (context, state) {
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        TextFilterWidget(
-                                          inputFormatters: [
-                                            LengthLimitingTextInputFormatter(
-                                                context
-                                                    .read<LookupBloc>()
-                                                    .loockUpRent
-                                                    ?.maxParams[0]
-                                                    .maxVal
-                                                    .toString()
-                                                    .length),
-                                            FilteringTextInputFormatter.allow(
-                                                RegExp(r'^[1-9]\d*')),
-                                          ],
-                                          autovalidateMode: AutovalidateMode
-                                              .onUserInteraction,
-                                          hintText:
-                                              '${context.read<LookupBloc>().loockUpRent?.maxParams[0].maxVal}',
-                                          controller: areaValueToController,
-                                          validator: (value) {
-                                            validatorToAreaCubit.validator(
-                                                value,
-                                                context
-                                                        .read<LookupBloc>()
-                                                        .loockUpRent
-                                                        ?.maxParams[0]
-                                                        .maxVal ??
-                                                    0,
-                                                context
-                                                        .read<LookupBloc>()
-                                                        .loockUpRent
-                                                        ?.maxParams[0]
-                                                        .minVal ??
-                                                    0,
-                                                areaValueFromController.text,
-                                                isFromValue: false);
-                                            return validatorToAreaCubit.state !=
-                                                    0
-                                                ? ""
-                                                : null;
-                                          },
-                                        ),
-                                        validatorToAreaCubit.state == 3
-                                            ? Text(
-                                                AppStrings()
-                                                    .minValueValidate
-                                                    .tr(args: [
-                                                  '(${AppStrings().from})'
-                                                ]),
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodySmall!
-                                                    .copyWith(
-                                                      color: ColorManager.red,
-                                                    ))
-                                            : validatorToAreaCubit.state == 2
-                                                ? Text(
-                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].maxVal}",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodySmall!
-                                                        .copyWith(
-                                                          color:
-                                                              ColorManager.red,
-                                                        ))
-                                                : validatorToAreaCubit.state ==
-                                                        1
-                                                    ? Text(
-                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].minVal}",
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodySmall!
-                                                            .copyWith(
-                                                              color:
-                                                                  ColorManager
-                                                                      .red,
-                                                            ))
-                                                    : const SizedBox()
-                                      ],
-                                    );
-                                  },
-                                ));
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              // BlocBuilder(
-              //   bloc: valuesFiltersCubit,
-              //   builder: (context, state) {
-              //     return SliderWidget(
-              //       title: AppStrings().areaFromTo,
-              //       startValue:
-              //           '${(valuesFiltersCubit.rangeValuesArea?.start.toDouble() ?? context.read<LookupBloc>().loockUpRent?.maxParams[0].minVal.toDouble())?.toInt().formatWithCommas()}',
-              //       endValue:
-              //           '${(valuesFiltersCubit.rangeValuesArea?.end.toDouble() ?? context.read<LookupBloc>().loockUpRent?.maxParams[0].maxVal.toDouble())?.toInt().formatWithCommas()}',
-              //       values: valuesFiltersCubit.rangeValuesArea ??
-              //           RangeValues(
-              //               valuesFiltersCubit.areaFrom?.toDouble() ??
-              //                   context
-              //                       .read<LookupBloc>()
-              //                       .loockUpRent
-              //                       ?.maxParams[0]
-              //                       .minVal
-              //                       .toDouble() ??
-              //                   0,
-              //               valuesFiltersCubit.areaTo?.toDouble() ??
-              //                   context
-              //                       .read<LookupBloc>()
-              //                       .loockUpRent
-              //                       ?.maxParams[0]
-              //                       .maxVal
-              //                       .toDouble() ??
-              //                   1000000),
-              //       onChanges: (rangeValues) {
-              //         valuesFiltersCubit.changeRangeValuesArea(rangeValues);
-              //       },
-              //       min: context
-              //               .read<LookupBloc>()
-              //               .loockUpRent
-              //               ?.maxParams[0]
-              //               .minVal
-              //               .toDouble() ??
-              //           0,
-              //       max: context
-              //               .read<LookupBloc>()
-              //               .loockUpRent
-              //               ?.maxParams[0]
-              //               .maxVal
-              //               .toDouble() ??
-              //           1000000,
-              //     );
-              //   },
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     Expanded(
+              //       child: Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         // mainAxisAlignment: MainAxisAlignment.start,
+              //         children: [
+              //           Text(
+              //               "${AppStrings().areaRangeValue} (${AppStrings().from})",
+              //               style: Theme.of(context).textTheme.labelMedium),
+              //           Row(
+              //             children: [
+              //               BlocBuilder(
+              //                 bloc: validatorFromAreaCubit,
+              //                 builder: (context, state) {
+              //                   return Expanded(
+              //                       child: BlocBuilder(
+              //                     bloc: valuesFiltersCubit,
+              //                     builder: (context, state) {
+              //                       return Column(
+              //                         crossAxisAlignment:
+              //                             CrossAxisAlignment.start,
+              //                         children: [
+              //                           TextFilterWidget(
+              //                             inputFormatters: [
+              //                               LengthLimitingTextInputFormatter(
+              //                                   context
+              //                                       .read<LookupBloc>()
+              //                                       .loockUpRent
+              //                                       ?.maxParams[0]
+              //                                       .maxVal
+              //                                       .toString()
+              //                                       .length),
+              //                               FilteringTextInputFormatter.allow(
+              //                                   RegExp(r'^[1-9]\d*')),
+              //                             ],
+              //                             autovalidateMode: AutovalidateMode
+              //                                 .onUserInteraction,
+              //                             hintText:
+              //                                 '${context.read<LookupBloc>().loockUpRent?.maxParams[0].minVal}',
+              //                             controller: areaValueFromController,
+              //                             validator: (value) {
+              //                               validatorFromAreaCubit.validator(
+              //                                   value,
+              //                                   context
+              //                                           .read<LookupBloc>()
+              //                                           .loockUpRent
+              //                                           ?.maxParams[0]
+              //                                           .maxVal ??
+              //                                       0,
+              //                                   context
+              //                                           .read<LookupBloc>()
+              //                                           .loockUpRent
+              //                                           ?.maxParams[0]
+              //                                           .minVal ??
+              //                                       0,
+              //                                   areaValueToController.text);
+              //                               return validatorFromAreaCubit
+              //                                           .state !=
+              //                                       0
+              //                                   ? ""
+              //                                   : null;
+              //                             },
+              //                           ),
+              //                           validatorFromAreaCubit.state == 3
+              //                               ? Text(
+              //                                   AppStrings()
+              //                                       .maxValueValidate
+              //                                       .tr(args: [
+              //                                     '(${AppStrings().to})'
+              //                                   ]),
+              //                                   style: Theme.of(context)
+              //                                       .textTheme
+              //                                       .bodySmall!
+              //                                       .copyWith(
+              //                                         color: ColorManager.red,
+              //                                       ))
+              //                               : validatorFromAreaCubit.state == 2
+              //                                   ? Text(
+              //                                       "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].maxVal}",
+              //                                       style: Theme.of(context)
+              //                                           .textTheme
+              //                                           .bodySmall!
+              //                                           .copyWith(
+              //                                             color:
+              //                                                 ColorManager.red,
+              //                                           ))
+              //                                   : validatorFromAreaCubit
+              //                                               .state ==
+              //                                           1
+              //                                       ? Text(
+              //                                           "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].minVal}",
+              //                                           style: Theme.of(context)
+              //                                               .textTheme
+              //                                               .bodySmall!
+              //                                               .copyWith(
+              //                                                 color:
+              //                                                     ColorManager
+              //                                                         .red,
+              //                                               ))
+              //                                       : const SizedBox()
+              //                         ],
+              //                       );
+              //                     },
+              //                   ));
+              //                 },
+              //               ),
+              //             ],
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //     SizedBox(width: AppSizeW.s8),
+              //     Expanded(
+              //       child: Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         // mainAxisAlignment: MainAxisAlignment.start,
+              //         children: [
+              //           Text(
+              //               "${AppStrings().areaRangeValue} (${AppStrings().to})",
+              //               style: Theme.of(context).textTheme.labelMedium),
+              //           Row(
+              //             children: [
+              //               BlocBuilder(
+              //                 bloc: validatorToAreaCubit,
+              //                 builder: (context, state) {
+              //                   return Expanded(
+              //                       child: BlocBuilder(
+              //                     bloc: valuesFiltersCubit,
+              //                     builder: (context, state) {
+              //                       return Column(
+              //                         crossAxisAlignment:
+              //                             CrossAxisAlignment.start,
+              //                         children: [
+              //                           TextFilterWidget(
+              //                             inputFormatters: [
+              //                               LengthLimitingTextInputFormatter(
+              //                                   context
+              //                                       .read<LookupBloc>()
+              //                                       .loockUpRent
+              //                                       ?.maxParams[0]
+              //                                       .maxVal
+              //                                       .toString()
+              //                                       .length),
+              //                               FilteringTextInputFormatter.allow(
+              //                                   RegExp(r'^[1-9]\d*')),
+              //                             ],
+              //                             autovalidateMode: AutovalidateMode
+              //                                 .onUserInteraction,
+              //                             hintText:
+              //                                 '${context.read<LookupBloc>().loockUpRent?.maxParams[0].maxVal}',
+              //                             controller: areaValueToController,
+              //                             validator: (value) {
+              //                               validatorToAreaCubit.validator(
+              //                                   value,
+              //                                   context
+              //                                           .read<LookupBloc>()
+              //                                           .loockUpRent
+              //                                           ?.maxParams[0]
+              //                                           .maxVal ??
+              //                                       0,
+              //                                   context
+              //                                           .read<LookupBloc>()
+              //                                           .loockUpRent
+              //                                           ?.maxParams[0]
+              //                                           .minVal ??
+              //                                       0,
+              //                                   areaValueFromController.text,
+              //                                   isFromValue: false);
+              //                               return validatorToAreaCubit.state !=
+              //                                       0
+              //                                   ? ""
+              //                                   : null;
+              //                             },
+              //                           ),
+              //                           validatorToAreaCubit.state == 3
+              //                               ? Text(
+              //                                   AppStrings()
+              //                                       .minValueValidate
+              //                                       .tr(args: [
+              //                                     '(${AppStrings().from})'
+              //                                   ]),
+              //                                   style: Theme.of(context)
+              //                                       .textTheme
+              //                                       .bodySmall!
+              //                                       .copyWith(
+              //                                         color: ColorManager.red,
+              //                                       ))
+              //                               : validatorToAreaCubit.state == 2
+              //                                   ? Text(
+              //                                       "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].maxVal}",
+              //                                       style: Theme.of(context)
+              //                                           .textTheme
+              //                                           .bodySmall!
+              //                                           .copyWith(
+              //                                             color:
+              //                                                 ColorManager.red,
+              //                                           ))
+              //                                   : validatorToAreaCubit.state ==
+              //                                           1
+              //                                       ? Text(
+              //                                           "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[0].minVal}",
+              //                                           style: Theme.of(context)
+              //                                               .textTheme
+              //                                               .bodySmall!
+              //                                               .copyWith(
+              //                                                 color:
+              //                                                     ColorManager
+              //                                                         .red,
+              //                                               ))
+              //                                       : const SizedBox()
+              //                         ],
+              //                       );
+              //                     },
+              //                   ));
+              //                 },
+              //               ),
+              //             ],
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ],
               // ),
-
-              SizedBox(height: AppSizeH.s12),
+              // // BlocBuilder(
+              // //   bloc: valuesFiltersCubit,
+              // //   builder: (context, state) {
+              // //     return SliderWidget(
+              // //       title: AppStrings().areaFromTo,
+              // //       startValue:
+              // //           '${(valuesFiltersCubit.rangeValuesArea?.start.toDouble() ?? context.read<LookupBloc>().loockUpRent?.maxParams[0].minVal.toDouble())?.toInt().formatWithCommas()}',
+              // //       endValue:
+              // //           '${(valuesFiltersCubit.rangeValuesArea?.end.toDouble() ?? context.read<LookupBloc>().loockUpRent?.maxParams[0].maxVal.toDouble())?.toInt().formatWithCommas()}',
+              // //       values: valuesFiltersCubit.rangeValuesArea ??
+              // //           RangeValues(
+              // //               valuesFiltersCubit.areaFrom?.toDouble() ??
+              // //                   context
+              // //                       .read<LookupBloc>()
+              // //                       .loockUpRent
+              // //                       ?.maxParams[0]
+              // //                       .minVal
+              // //                       .toDouble() ??
+              // //                   0,
+              // //               valuesFiltersCubit.areaTo?.toDouble() ??
+              // //                   context
+              // //                       .read<LookupBloc>()
+              // //                       .loockUpRent
+              // //                       ?.maxParams[0]
+              // //                       .maxVal
+              // //                       .toDouble() ??
+              // //                   1000000),
+              // //       onChanges: (rangeValues) {
+              // //         valuesFiltersCubit.changeRangeValuesArea(rangeValues);
+              // //       },
+              // //       min: context
+              // //               .read<LookupBloc>()
+              // //               .loockUpRent
+              // //               ?.maxParams[0]
+              // //               .minVal
+              // //               .toDouble() ??
+              // //           0,
+              // //       max: context
+              // //               .read<LookupBloc>()
+              // //               .loockUpRent
+              // //               ?.maxParams[0]
+              // //               .maxVal
+              // //               .toDouble() ??
+              // //           1000000,
+              // //     );
+              // //   },
+              // // ),
+              //
+              // SizedBox(height: AppSizeH.s12),
               Row(children: [
                 BlocBuilder(
                   bloc: valuesFiltersCubit,
