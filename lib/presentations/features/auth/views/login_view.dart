@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/features/auth/blocs/cubits/face_id_check_cubit.dart';
+import 'package:ebla/presentations/features/auth/blocs/cubits/logged_in_user_cubit.dart';
 import 'package:ebla/presentations/features/auth/blocs/login_bloc/login_bloc.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/cupertino.dart';
@@ -99,7 +100,8 @@ class _LoginViewState extends State<LoginView> {
             }
             await resetAllModules();
             context.read<LookupBloc>().add(const LookupEvent.initilaEvent());
-            context.read<UserBloc>().add(const UserEvent.initialUser());
+            context.read<UserBloc>().add(const UserEvent.getUserInfo());
+            context.read<LoggedInUserCubit>().save(true);
             context.pop();
           }
           if (state.isHasError) {
@@ -172,8 +174,8 @@ class _LoginViewState extends State<LoginView> {
                       },
                       child: Icon(
                         isSecure
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
                         color: ColorManager.primary,
                         size: AppSizeSp.s18,
                       ),

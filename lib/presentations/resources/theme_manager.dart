@@ -12,15 +12,17 @@ class FontConstants {
 ThemeData lightTheme() {
   return ThemeData(
     // colorSchemeSeed: const Color(0xFF8A1538),
+    primaryColor: ColorManager.primary,
     colorScheme: ColorScheme.light(
-        primary: ColorManager.primary,
-        brightness: Brightness.light,
-        surfaceVariant: Colors.transparent,
-        secondary: ColorManager.silver,
-        onSecondary: ColorManager.primary,
-        onPrimary: ColorManager.golden,
-        onSurface: ColorManager.white,
-        surface: ColorManager.white),
+      primary: ColorManager.primary,
+      brightness: Brightness.light,
+      surfaceVariant: Colors.transparent,
+      secondary: ColorManager.silver,
+      onSecondary: ColorManager.primary,
+      // onPrimary: ColorManager.golden,
+      // onSurface: ColorManager.white,
+      // surface: ColorManager.white
+    ),
     appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle(
         systemNavigationBarIconBrightness: Brightness.dark,
@@ -28,7 +30,7 @@ ThemeData lightTheme() {
         statusBarIconBrightness: Brightness.dark,
       ),
     ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(),
+    // bottomNavigationBarTheme: BottomNavigationBarThemeData(),
     brightness: Brightness.light,
     useMaterial3: true,
     dialogTheme: const DialogTheme(
@@ -69,7 +71,6 @@ ThemeData lightTheme() {
       constraints: const BoxConstraints(minWidth: double.infinity),
       showDragHandle: true,
       modalElevation: 0,
-
       modalBackgroundColor: ColorManager.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusDirectional.only(
@@ -79,24 +80,24 @@ ThemeData lightTheme() {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          foregroundColor: MaterialStateProperty.all(ColorManager.white),
-          textStyle: MaterialStatePropertyAll(
-            TextStyle(
-              fontFamily: FontConstants.fontFamily,
-              color: ColorManager.white,
-              fontSize: AppSizeSp.s16,
-              fontWeight: FontWeight.w400,
-            ),
+      foregroundColor: MaterialStateProperty.all(ColorManager.white),
+      textStyle: MaterialStatePropertyAll(
+        TextStyle(
+          fontFamily: FontConstants.fontFamily,
+          color: ColorManager.white,
+          fontSize: AppSizeSp.s16,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+      backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+      shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(AppSizeR.s5),
           ),
-          backgroundColor: MaterialStateProperty.all(ColorManager.primary),
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(AppSizeR.s5),
-              ),
-            ),
-          ),
-        )),
+        ),
+      ),
+    )),
     iconTheme: IconThemeData(color: ColorManager.primary),
     scaffoldBackgroundColor: const Color(0xFFF9F9F9),
     textTheme: TextTheme(
@@ -171,44 +172,45 @@ ThemeData lightTheme() {
 
 ThemeData darkTheme() {
   return ThemeData(
-    // colorSchemeSeed: const Color(0xFF222222),
+      // colorSchemeSeed: const Color(0xFF222222),
       scaffoldBackgroundColor: const Color(0xFF222222),
       cardColor: ColorManager.cloudyGrey,
       colorScheme: ColorScheme.dark(
-          primary: ColorManager.primary,
-          onPrimary: ColorManager.primary,
-          brightness: Brightness.dark,
-          surfaceVariant: Colors.transparent,
-          secondary: ColorManager.golden,
-          onSecondary: ColorManager.golden,
-          onBackground: ColorManager.cloudyGrey,
-          onSurface: ColorManager.greyCloud,
-          surface: ColorManager.primary),
+        primary: ColorManager.primary,
+        // onPrimary: ColorManager.primary,
+        brightness: Brightness.dark,
+        surfaceVariant: Colors.transparent,
+        secondary: ColorManager.golden,
+        onSecondary: ColorManager.golden,
+        onBackground: ColorManager.cloudyGrey,
+        // onSurface: ColorManager.greyCloud,
+        // surface: ColorManager.primary
+      ),
       dividerColor: Colors.transparent,
       brightness: Brightness.dark,
       bottomNavigationBarTheme:
-      BottomNavigationBarThemeData(unselectedItemColor: ColorManager.white),
+          BottomNavigationBarThemeData(unselectedItemColor: ColorManager.white),
       iconTheme: IconThemeData(color: ColorManager.white),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(Color(0xFF222222)),
-            textStyle: MaterialStatePropertyAll(
-              TextStyle(
-                fontFamily: FontConstants.fontFamily,
-                color: ColorManager.white,
-                fontSize: AppSizeSp.s16,
-                fontWeight: FontWeight.w400,
-              ),
+        foregroundColor: MaterialStateProperty.all(Color(0xFF222222)),
+        textStyle: MaterialStatePropertyAll(
+          TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.white,
+            fontSize: AppSizeSp.s16,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(AppSizeR.s5),
             ),
-            backgroundColor: MaterialStateProperty.all(ColorManager.primary),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(AppSizeR.s5),
-                ),
-              ),
-            ),
-          )),
+          ),
+        ),
+      )),
       textTheme: TextTheme(
         titleLarge: TextStyle(
             fontFamily: FontConstants.fontFamily,

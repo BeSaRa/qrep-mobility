@@ -32,7 +32,7 @@ class EblaNavigationBar extends StatelessWidget {
       child: Container(
         // width: MediaQuery.of(context).size.width * 0.9,
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(AppSizeR.s50),
             boxShadow: [
               BoxShadow(
@@ -74,7 +74,7 @@ class EblaNavigationBar extends StatelessWidget {
                             : IconAssets.homeIcon,
                         // ignore: deprecated_member_use
                         color: currentPage == 0
-                            ? Theme.of(context).colorScheme.onSecondary
+                            ? Theme.of(context).primaryColor
                             : Theme.of(context)
                                 .bottomNavigationBarTheme
                                 .unselectedItemColor,
@@ -86,7 +86,7 @@ class EblaNavigationBar extends StatelessWidget {
                         style: TextStyle(
                           fontSize: AppSizeSp.s10,
                           color: currentPage == 0
-                              ? Theme.of(context).colorScheme.onSecondary
+                              ? Theme.of(context).primaryColor
                               : Theme.of(context)
                                   .bottomNavigationBarTheme
                                   .unselectedItemColor,
@@ -111,7 +111,7 @@ class EblaNavigationBar extends StatelessWidget {
                             : IconAssets.keyIcon,
                         // ignore: deprecated_member_use
                         color: currentPage == 1
-                            ? Theme.of(context).colorScheme.onSecondary
+                            ? Theme.of(context).primaryColor
                             : Theme.of(context)
                                 .bottomNavigationBarTheme
                                 .unselectedItemColor,
@@ -122,7 +122,7 @@ class EblaNavigationBar extends StatelessWidget {
                           style: TextStyle(
                             fontSize: AppSizeSp.s10,
                             color: currentPage == 1
-                                ? Theme.of(context).colorScheme.onSecondary
+                                ? Theme.of(context).primaryColor
                                 : Theme.of(context)
                                     .bottomNavigationBarTheme
                                     .unselectedItemColor,
@@ -146,7 +146,7 @@ class EblaNavigationBar extends StatelessWidget {
                             : IconAssets.sellIcon,
                         // ignore: deprecated_member_use
                         color: currentPage == 2
-                            ? Theme.of(context).colorScheme.onSecondary
+                            ? Theme.of(context).primaryColor
                             : Theme.of(context)
                                 .bottomNavigationBarTheme
                                 .unselectedItemColor,
@@ -158,7 +158,7 @@ class EblaNavigationBar extends StatelessWidget {
                         style: TextStyle(
                           fontSize: AppSizeSp.s10,
                           color: currentPage == 2
-                              ? Theme.of(context).colorScheme.onSecondary
+                              ? Theme.of(context).primaryColor
                               : Theme.of(context)
                                   .bottomNavigationBarTheme
                                   .unselectedItemColor,
@@ -183,7 +183,7 @@ class EblaNavigationBar extends StatelessWidget {
                               : IconAssets.realEstateIcon,
                           // ignore: deprecated_member_use
                           color: currentPage == 3
-                              ? Theme.of(context).colorScheme.onSecondary
+                              ? Theme.of(context).primaryColor
                               : Theme.of(context)
                                   .bottomNavigationBarTheme
                                   .unselectedItemColor),
@@ -194,7 +194,7 @@ class EblaNavigationBar extends StatelessWidget {
                         style: TextStyle(
                             fontSize: AppSizeSp.s10,
                             color: currentPage == 3
-                                ? Theme.of(context).colorScheme.onSecondary
+                                ? Theme.of(context).primaryColor
                                 : Theme.of(context)
                                     .bottomNavigationBarTheme
                                     .unselectedItemColor),
@@ -218,7 +218,7 @@ class EblaNavigationBar extends StatelessWidget {
                               : IconAssets.infoIcon,
                           // ignore: deprecated_member_use
                           color: currentPage == 4
-                              ? Theme.of(context).colorScheme.onSecondary
+                              ? Theme.of(context).primaryColor
                               : Theme.of(context)
                                   .bottomNavigationBarTheme
                                   .unselectedItemColor),
@@ -229,7 +229,7 @@ class EblaNavigationBar extends StatelessWidget {
                         style: TextStyle(
                             fontSize: AppSizeSp.s10,
                             color: currentPage == 4
-                                ? Theme.of(context).colorScheme.onSecondary
+                                ? Theme.of(context).primaryColor
                                 : Theme.of(context)
                                     .bottomNavigationBarTheme
                                     .unselectedItemColor),
