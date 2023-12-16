@@ -33,32 +33,35 @@ class DialogsignOut extends StatelessWidget {
           SizedBox(
             height: AppSizeH.s20,
           ),
-          Row(
-            children: [
-              Expanded(
-                child: CustomElevatedButton(
-                  isPrimary: false,
-                  titleStyle: Theme.of(context)
-                      .textTheme
-                      .displaySmall!
-                      .copyWith(color: ColorManager.primary),
-                  title: AppStrings().yes,
-                  onPress: () {
-                    Navigator.of(context).pop(true);
-                  },
+          Directionality(
+            textDirection: TextDirection.rtl,
+            child: Row(
+              children: [
+                Expanded(
+                  child: CustomElevatedButton(
+                    isPrimary: false,
+                    titleStyle: Theme.of(context)
+                        .textTheme
+                        .displaySmall!
+                        .copyWith(color: ColorManager.primary),
+                    title: AppStrings().yes,
+                    onPress: () {
+                      Navigator.of(context).pop(true);
+                    },
+                  ),
                 ),
-              ),
-              SizedBox(width: AppSizeW.s8),
-              Expanded(
-                child: CustomElevatedButton(
-                  isPrimary: true,
-                  title: AppStrings().no,
-                  onPress: () {
-                    Navigator.of(context).pop();
-                  },
+                SizedBox(width: AppSizeW.s8),
+                Expanded(
+                  child: CustomElevatedButton(
+                    isPrimary: true,
+                    title: AppStrings().no,
+                    onPress: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
 import '../../domain/models/cms_models/main_menu_models/main_menu_models.dart';
 import '../resources/resources.dart';
 
@@ -45,7 +46,7 @@ class _MessageNoteWidgetState extends State<MessageNoteWidget> {
                 child: Text(
                   context.locale == ARABIC_LOCAL
                       ? widget.message.arMessage
-                      : widget.message.enMessage,
+                      : widget.message.enMessage.trim(),
                   style: Theme.of(context)
                       .textTheme
                       .bodySmall!

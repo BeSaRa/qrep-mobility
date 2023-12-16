@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/features/auth/blocs/cubits/face_id_check_cubit.dart';
@@ -301,31 +301,34 @@ class _LoginViewState extends State<LoginView> {
                         '',
                       )
                 ]),
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
             ),
             const Spacer(),
-            Row(children: [
-              Expanded(
-                child: CustomElevatedButton(
-                  isPrimary: true,
-                  title: AppStrings().confirm,
-                  onPress: () {
-                    Navigator.of(context).pop(true);
-                  },
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: Row(children: [
+                Expanded(
+                  child: CustomElevatedButton(
+                    isPrimary: true,
+                    title: AppStrings().confirm,
+                    onPress: () {
+                      Navigator.of(context).pop(true);
+                    },
+                  ),
                 ),
-              ),
-              SizedBox(width: AppSizeW.s8),
-              Expanded(
-                child: CustomElevatedButton(
-                  isPrimary: false,
-                  title: AppStrings().cancel,
-                  onPress: () {
-                    Navigator.of(context).pop();
-                  },
+                SizedBox(width: AppSizeW.s8),
+                Expanded(
+                  child: CustomElevatedButton(
+                    isPrimary: false,
+                    title: AppStrings().cancel,
+                    onPress: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
                 ),
-              ),
-            ]),
+              ]),
+            ),
           ],
         ),
       ),
