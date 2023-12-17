@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../app/app_preferences.dart';
 import '../../resources/resources.dart';
 import '../info/blocs/news_bloc/news_bloc.dart';
 import '../main/cubit/bottom_nav_cubit.dart';
@@ -58,9 +59,15 @@ class _HomeViewState extends State<HomeView> {
                               child: HomeContainer(
                                 isBig: true,
                                 title: AppStrings().sellIndicators,
-                                color: ColorManager.white,
+                                color:
+                                    Theme.of(context).scaffoldBackgroundColor,
                                 image: IconAssets.sellHome,
-                                isShadow: true,
+                                isShadow: instance<AppPreferences>()
+                                            .getTheme()
+                                            .brightness ==
+                                        Brightness.light
+                                    ? true
+                                    : false,
                               ),
                             ),
                             GestureDetector(
@@ -117,9 +124,15 @@ class _HomeViewState extends State<HomeView> {
                               child: HomeContainer(
                                 isBig: true,
                                 title: AppStrings().realEstateBrokers,
-                                color: Colors.white.withOpacity(0.8),
+                                color:
+                                    Theme.of(context).scaffoldBackgroundColor,
                                 image: IconAssets.inMiddleHome,
-                                isShadow: true,
+                                isShadow: instance<AppPreferences>()
+                                            .getTheme()
+                                            .brightness ==
+                                        Brightness.light
+                                    ? true
+                                    : false,
                               ),
                             ),
                           ],
@@ -220,9 +233,10 @@ class StaticPagesContainer extends StatelessWidget {
       padding:
           EdgeInsets.symmetric(horizontal: AppSizeH.s6, vertical: AppSizeH.s10),
       decoration: BoxDecoration(
-          color: ColorManager.white,
+          color: Theme.of(context).cardTheme.color,
           borderRadius: BorderRadius.circular(AppSizeW.s14),
-          border: Border.all(color: ColorManager.mercury, width: AppSizeH.s1)),
+          border: Border.all(
+              color: Theme.of(context).dividerColor, width: AppSizeH.s1)),
       child: Center(
         child: Column(
           mainAxisAlignment: title is Text
@@ -280,12 +294,12 @@ class HomeContainer extends StatelessWidget {
           border: isShadow ? null : Border.all(color: ColorManager.grey),
           boxShadow: [
             BoxShadow(
-                color: ColorManager.grey,
+                color: Theme.of(context).shadowColor,
                 offset: const Offset(1, 1),
                 blurRadius: AppSizeW.s2,
                 spreadRadius: AppSizeW.s1),
             BoxShadow(
-                color: ColorManager.grey,
+                color: Theme.of(context).shadowColor,
                 offset: const Offset(-1, -1),
                 blurRadius: AppSizeW.s2,
                 spreadRadius: AppSizeW.s1),
@@ -337,7 +351,7 @@ class HomeContainer extends StatelessWidget {
                   image,
                   height: AppSizeH.s70,
                   width: AppSizeW.s70,
-                  color: imageColor ?? Theme.of(context).primaryColor,
+                  color: imageColor ?? Theme.of(context).colorScheme.primary,
                   fit: BoxFit.scaleDown,
                 ),
               ),

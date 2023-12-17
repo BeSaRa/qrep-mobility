@@ -374,6 +374,11 @@ class _MortagageViewState extends State<MortgageView> {
                                                       .propertyTypeList?[0] ??
                                                   1) ??
                                           const RentLookupModel(lookupKey: -1),
+                                      withoutZone: context
+                                              .read<MortgageBloc>()
+                                              .requestMeanValue
+                                              .areaCode ==
+                                          -1,
                                     );
                                   },
                                 ),
@@ -460,6 +465,11 @@ class _MortagageViewState extends State<MortgageView> {
                                                       .propertyTypeList?[0] ??
                                                   1) ??
                                           const RentLookupModel(lookupKey: -1),
+                                      withoutZone: context
+                                              .read<MortgageBloc>()
+                                              .requestMeanValue
+                                              .areaCode ==
+                                          -1,
                                     );
                                   },
                                 ),

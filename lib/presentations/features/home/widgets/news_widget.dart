@@ -66,21 +66,26 @@ class _NewsWidgetState extends State<NewsWidget> {
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(
-                          horizontal: AppSizeW.s14, vertical: AppSizeH.s2),
+                          horizontal: AppSizeW.s10, vertical: AppSizeH.s2),
                       decoration: BoxDecoration(
-                          color: ColorManager.white,
+                          color:
+                              Theme.of(context).colorScheme.tertiaryContainer,
                           border: Border.all(color: ColorManager.golden),
                           borderRadius: BorderRadius.circular(AppSizeR.s20)),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             AppStrings().more,
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
+                          SizedBox(
+                            width: AppSizeW.s8,
+                          ),
                           Icon(
                             Icons.arrow_forward_ios,
                             color: ColorManager.golden,
-                            size: AppSizeH.s14,
+                            size: AppSizeH.s10,
                           )
                         ],
                       ),

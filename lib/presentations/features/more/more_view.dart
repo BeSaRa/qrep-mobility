@@ -85,9 +85,7 @@ class _MoreViewState extends State<MoreView> {
                                         BorderRadius.circular(AppSizeH.s25),
                                     gradient: LinearGradient(
                                       colors: [
-                                        Theme.of(context)
-                                            .shadowColor
-                                            .withOpacity(0.7),
+                                        ColorManager.textBlack.withOpacity(0.6),
                                         Theme.of(context).primaryColor,
                                         Theme.of(context)
                                             .primaryColor
@@ -508,9 +506,9 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
               Container(
                 padding: EdgeInsets.symmetric(
-                    horizontal: AppSizeW.s12, vertical: AppSizeH.s10),
+                    horizontal: AppSizeW.s12, vertical: AppSizeH.s5),
                 decoration: BoxDecoration(
-                    color: ColorManager.mercury,
+                    color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.circular(AppSizeW.s20)),
                 child: Row(
                   children: [
@@ -519,7 +517,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     SizedBox(
-                      width: AppSizeW.s2,
+                      width: AppSizeW.s5,
                     ),
                     SizedBox(
                       height: AppSizeW.s30,

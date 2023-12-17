@@ -13,16 +13,16 @@ ThemeData lightTheme() {
   return ThemeData(
     // colorSchemeSeed: const Color(0xFF8A1538),
     primaryColor: ColorManager.primary,
+    cardTheme: CardTheme(color: ColorManager.white),
     colorScheme: ColorScheme.light(
-      primary: ColorManager.primary,
-      brightness: Brightness.light,
-      surfaceVariant: Colors.transparent,
-      secondary: ColorManager.silver,
-      onSecondary: ColorManager.primary,
-      // onPrimary: ColorManager.golden,
-      // onSurface: ColorManager.white,
-      // surface: ColorManager.white
-    ),
+        primary: ColorManager.primary,
+        brightness: Brightness.light,
+        surfaceVariant: Colors.transparent,
+        secondary: ColorManager.mercury,
+        onSecondary: ColorManager.primary,
+        tertiaryContainer: ColorManager.white,
+        onSurface: ColorManager.textBlack),
+    shadowColor: ColorManager.grey,
     appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle(
         systemNavigationBarIconBrightness: Brightness.dark,
@@ -30,14 +30,23 @@ ThemeData lightTheme() {
         statusBarIconBrightness: Brightness.dark,
       ),
     ),
-    // bottomNavigationBarTheme: BottomNavigationBarThemeData(),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: ColorManager.white,
+        selectedIconTheme: IconThemeData(color: ColorManager.primary),
+        unselectedIconTheme: IconThemeData(color: ColorManager.lightSilver),
+        selectedLabelStyle: TextStyle(
+          color: ColorManager.textBlack,
+          fontSize: AppSizeSp.s10,
+        ),
+        unselectedLabelStyle:
+            TextStyle(fontSize: AppSizeSp.s10, color: ColorManager.textBlack)),
     brightness: Brightness.light,
     useMaterial3: true,
     dialogTheme: const DialogTheme(
       backgroundColor: Colors.transparent,
     ),
     cardColor: ColorManager.grey,
-    dividerColor: Colors.transparent,
+    dividerColor: ColorManager.mercury,
     inputDecorationTheme: InputDecorationTheme(
       prefixIconColor: ColorManager.primary,
       enabledBorder: UnderlineInputBorder(
@@ -174,22 +183,31 @@ ThemeData darkTheme() {
   return ThemeData(
       // colorSchemeSeed: const Color(0xFF222222),
       scaffoldBackgroundColor: const Color(0xFF222222),
-      cardColor: ColorManager.cloudyGrey,
+      cardTheme: CardTheme(color: ColorManager.textFieldGrey),
+      // cardColor: ColorManager.cloudyGrey,
       colorScheme: ColorScheme.dark(
-        primary: ColorManager.primary,
-        // onPrimary: ColorManager.primary,
-        brightness: Brightness.dark,
-        surfaceVariant: Colors.transparent,
-        secondary: ColorManager.golden,
-        onSecondary: ColorManager.golden,
-        onBackground: ColorManager.cloudyGrey,
-        // onSurface: ColorManager.greyCloud,
-        // surface: ColorManager.primary
-      ),
+          primary: ColorManager.white,
+          brightness: Brightness.dark,
+          surfaceVariant: Colors.transparent,
+          secondary: ColorManager.golden,
+          onSecondary: ColorManager.golden,
+          onBackground: ColorManager.cloudyGrey,
+          tertiaryContainer: ColorManager.primary,
+          onSurface: ColorManager.white),
+      primaryColor: ColorManager.primary,
+      shadowColor: Colors.transparent,
       dividerColor: Colors.transparent,
       brightness: Brightness.dark,
-      bottomNavigationBarTheme:
-          BottomNavigationBarThemeData(unselectedItemColor: ColorManager.white),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: ColorManager.primary,
+          selectedIconTheme: IconThemeData(color: ColorManager.golden),
+          unselectedIconTheme: IconThemeData(color: ColorManager.white),
+          selectedLabelStyle: TextStyle(
+            color: ColorManager.white,
+            fontSize: AppSizeSp.s10,
+          ),
+          unselectedLabelStyle:
+              TextStyle(fontSize: AppSizeSp.s10, color: ColorManager.white)),
       iconTheme: IconThemeData(color: ColorManager.white),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(

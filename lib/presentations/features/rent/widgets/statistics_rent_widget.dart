@@ -337,7 +337,7 @@ class _TabContainerShimmer extends StatelessWidget {
       margin:
           EdgeInsets.symmetric(vertical: AppSizeH.s1, horizontal: AppSizeW.s3),
       padding:
-          EdgeInsets.symmetric(horizontal: AppSizeW.s3, vertical: AppSizeH.s6),
+          EdgeInsets.symmetric(horizontal: AppSizeW.s5, vertical: AppSizeH.s6),
       decoration: BoxDecoration(
           color: context.read<CertificateContractBloc>().index == tabIndex
               ? ColorManager.primary
@@ -391,9 +391,10 @@ class _TabContainer extends StatelessWidget {
         onPress();
       },
       child: Container(
-        margin: EdgeInsets.all(AppSizeH.s1),
+        margin: EdgeInsets.symmetric(
+            vertical: AppSizeH.s1, horizontal: AppSizeW.s3),
         padding: EdgeInsets.symmetric(
-            horizontal: AppSizeW.s3, vertical: AppSizeH.s6),
+            horizontal: AppSizeW.s5, vertical: AppSizeH.s6),
         decoration: BoxDecoration(
             color: context.read<CertificateContractBloc>().index == indexTab
                 ? ColorManager.primary
