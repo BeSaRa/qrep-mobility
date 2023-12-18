@@ -83,7 +83,9 @@ class _HomeViewState extends State<HomeView> {
                               child: HomeContainer(
                                 isBig: false,
                                 title: AppStrings().mortgageIndicators,
-                                color: ColorManager.silver,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onTertiaryContainer,
                                 image: IconAssets.mortagageHome,
                                 iconColor: ColorManager.white,
                                 isShadow: true,
@@ -108,7 +110,7 @@ class _HomeViewState extends State<HomeView> {
                               child: HomeContainer(
                                 isBig: false,
                                 title: AppStrings().rentIndicators,
-                                color: ColorManager.cloudyGrey,
+                                color: Theme.of(context).cardColor,
                                 image: IconAssets.rentHome,
                                 imageColor: ColorManager.white,
                                 textColor: ColorManager.white,

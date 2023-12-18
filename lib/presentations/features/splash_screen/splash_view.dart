@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../app/app_preferences.dart';
 import '../../resources/resources.dart';
 import 'bloc/bloc/guest_token_bloc.dart';
 
@@ -35,10 +36,13 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         // todo: when dark mode is ready change statusBarIconBrightness according to the theme
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light));
+        statusBarIconBrightness:
+            instance<AppPreferences>().getTheme().brightness == Brightness.light
+                ? Brightness.light
+                : Brightness.dark));
     guestToken = instance<GuestTokenBloc>()
       ..add(const GuestTokenEvent.tokenGuest());
 
@@ -94,7 +98,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
         duration: const Duration(milliseconds: 800),
         child: !isRed
             ? Scaffold(
-                backgroundColor: ColorManager.white,
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 body: Stack(
                   children: [
                     AnimatedPositioned(

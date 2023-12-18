@@ -29,16 +29,16 @@ class NewsItemWidget extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             horizontal: AppSizeW.s7, vertical: AppSizeH.s7),
         decoration: BoxDecoration(
-            color: ColorManager.white,
+            color: Theme.of(context).cardTheme.color,
             borderRadius: BorderRadius.circular(AppSizeR.s14),
             boxShadow: [
               BoxShadow(
-                  color: ColorManager.grey,
+                  color: Theme.of(context).shadowColor,
                   offset: const Offset(1, 1),
                   blurRadius: AppSizeW.s2,
                   spreadRadius: AppSizeW.s1),
               BoxShadow(
-                  color: ColorManager.grey,
+                  color: Theme.of(context).shadowColor,
                   offset: const Offset(-1, -1),
                   blurRadius: AppSizeW.s2,
                   spreadRadius: AppSizeW.s1),
@@ -218,7 +218,8 @@ class NewsItemWidget extends StatelessWidget {
                                   vertical: AppSizeH.s6),
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: ColorManager.golden),
+                                  color:
+                                      Theme.of(context).colorScheme.tertiary),
                               child: Icon(Icons.arrow_forward_ios_rounded,
                                   size: AppSizeSp.s10,
                                   color: ColorManager.white),

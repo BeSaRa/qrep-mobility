@@ -14,6 +14,7 @@ ThemeData lightTheme() {
     // colorSchemeSeed: const Color(0xFF8A1538),
     primaryColor: ColorManager.primary,
     cardTheme: CardTheme(color: ColorManager.white),
+    cardColor: ColorManager.cloudyGrey,
     colorScheme: ColorScheme.light(
         primary: ColorManager.primary,
         brightness: Brightness.light,
@@ -21,7 +22,9 @@ ThemeData lightTheme() {
         secondary: ColorManager.mercury,
         onSecondary: ColorManager.primary,
         tertiaryContainer: ColorManager.white,
-        onSurface: ColorManager.textBlack),
+        onSurface: ColorManager.textBlack,
+        onTertiaryContainer: ColorManager.silver,
+        tertiary: ColorManager.golden),
     shadowColor: ColorManager.grey,
     appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle(
@@ -45,7 +48,7 @@ ThemeData lightTheme() {
     dialogTheme: const DialogTheme(
       backgroundColor: Colors.transparent,
     ),
-    cardColor: ColorManager.grey,
+
     dividerColor: ColorManager.mercury,
     inputDecorationTheme: InputDecorationTheme(
       prefixIconColor: ColorManager.primary,
@@ -184,7 +187,7 @@ ThemeData darkTheme() {
       // colorSchemeSeed: const Color(0xFF222222),
       scaffoldBackgroundColor: const Color(0xFF222222),
       cardTheme: CardTheme(color: ColorManager.textFieldGrey),
-      // cardColor: ColorManager.cloudyGrey,
+      cardColor: ColorManager.primary,
       colorScheme: ColorScheme.dark(
           primary: ColorManager.white,
           brightness: Brightness.dark,
@@ -193,7 +196,9 @@ ThemeData darkTheme() {
           onSecondary: ColorManager.golden,
           onBackground: ColorManager.cloudyGrey,
           tertiaryContainer: ColorManager.primary,
-          onSurface: ColorManager.white),
+          onTertiaryContainer: ColorManager.cloudyGrey,
+          onSurface: ColorManager.white,
+          tertiary: ColorManager.primary),
       primaryColor: ColorManager.primary,
       shadowColor: Colors.transparent,
       dividerColor: Colors.transparent,
