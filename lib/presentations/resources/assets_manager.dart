@@ -19,8 +19,7 @@ class ImageAssets {
       "${IMAGE_PATH}average_price_per_square_meter_square_foot.svg";
 
   //------------------------------------------------
-  static const String quatarTowerCitySplash =
-      '${IMAGE_PATH}qatar_city_tower_splash.png';
+  static const String quatarTowerCitySplash = '${IMAGE_PATH}qtowers.svg';
   static const String ministryOfMunicipality =
       '${IMAGE_PATH}ministry_of_municiplaity.png';
   static const String splashBackground = '${IMAGE_PATH}splash_backgroudn.png';

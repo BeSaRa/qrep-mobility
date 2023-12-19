@@ -7,6 +7,7 @@ import 'package:ebla/presentations/features/splash_screen/widgets/animated_trans
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/app_preferences.dart';
@@ -98,7 +99,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
         duration: const Duration(milliseconds: 800),
         child: !isRed
             ? Scaffold(
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                backgroundColor: ColorManager.white,
                 body: Stack(
                   children: [
                     AnimatedPositioned(
@@ -123,7 +124,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
                             alignment: FractionalOffset.bottomCenter,
                             // onEnd: navigateAfterDelay,
                             onEnd: showRedScreenAfterDelay,
-                            child: Image.asset(
+                            child: SvgPicture.asset(
                               alignment: Alignment.bottomCenter,
                               ImageAssets.quatarTowerCitySplash,
                             ),

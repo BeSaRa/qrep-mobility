@@ -72,7 +72,7 @@ class _AnimatedPulesLogoState extends State<AnimatedPulesLogo>
             gradient: LinearGradient(
           colors: [
             ColorManager.primary,
-            ColorManager.white,
+            Theme.of(context).scaffoldBackgroundColor,
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,

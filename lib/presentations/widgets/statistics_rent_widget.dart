@@ -49,8 +49,9 @@ class StatisticsRentWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           vertical: AppSizeH.s13, horizontal: AppSizeW.s21),
       decoration: BoxDecoration(
-          color: ColorManager.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(AppSizeR.s12),
+          border: Border.all(color: Theme.of(context).cardTheme.color!),
           boxShadow: [
             BoxShadow(
                 offset: const Offset(1, 1),
@@ -89,7 +90,7 @@ class StatisticsShimmerWidget extends StatelessWidget {
                     // width: double.infinity,
                     height: AppSizeH.s12,
                     decoration: BoxDecoration(
-                        color: ColorManager.white,
+                        color: Theme.of(context).scaffoldBackgroundColor,
                         borderRadius: BorderRadius.circular(AppSizeR.s12)),
                   ),
                 ),
@@ -100,7 +101,7 @@ class StatisticsShimmerWidget extends StatelessWidget {
                   width: AppSizeW.s30,
                   height: AppSizeH.s12,
                   decoration: BoxDecoration(
-                      color: ColorManager.white,
+                      color: Theme.of(context).scaffoldBackgroundColor,
                       borderRadius: BorderRadius.circular(AppSizeR.s12)),
                 ),
               ),
@@ -120,7 +121,7 @@ class StatisticsShimmerWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           vertical: AppSizeH.s13, horizontal: AppSizeW.s21),
       decoration: BoxDecoration(
-          color: ColorManager.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(AppSizeR.s12),
           boxShadow: [
             BoxShadow(

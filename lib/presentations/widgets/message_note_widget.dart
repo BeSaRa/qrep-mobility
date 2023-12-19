@@ -31,16 +31,19 @@ class _MessageNoteWidgetState extends State<MessageNoteWidget> {
           padding: EdgeInsets.symmetric(
               horizontal: AppSizeW.s12, vertical: AppSizeH.s5),
           decoration: BoxDecoration(
-              color: ColorManager.lightBlue,
+              color: Theme.of(context).colorScheme.secondaryContainer,
               border: Border.all(
                   width: AppSizeSp.s1, color: ColorManager.lightSilver),
               borderRadius: BorderRadius.circular(AppSizeR.s7)),
           child: Row(
             children: [
-              Image(
-                  image: const AssetImage(ImageAssets.dbNote),
-                  width: AppSizeW.s29,
-                  height: AppSizeH.s28),
+              ImageIcon(
+                const AssetImage(
+                  ImageAssets.dbNote,
+                ),
+                size: AppSizeW.s29,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
               SizedBox(width: AppSizeW.s13),
               Expanded(
                 child: Text(

@@ -35,7 +35,7 @@ class _SelectedMunicipalityState extends State<SelectedMunicipality> {
                 blurRadius: AppSizeR.s11,
                 color: ColorManager.textBlack.withAlpha(6))
           ],
-          color: ColorManager.white,
+          color: Theme.of(context).cardTheme.color,
           border: Border.all(style: BorderStyle.none),
           borderRadius: BorderRadius.circular(AppSizeR.s25),
         ),
@@ -118,7 +118,7 @@ class _SingleDrowDownState<T> extends State<SingleDrowDown<T>> {
 
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppSizeR.s5),
-            color: ColorManager.whiteSmoke,
+            color: Theme.of(context).scaffoldBackgroundColor,
           ),
           // offset: const Offset(-20, 0),
           scrollbarTheme: ScrollbarThemeData(
@@ -130,11 +130,11 @@ class _SingleDrowDownState<T> extends State<SingleDrowDown<T>> {
         iconStyleData: IconStyleData(
             openMenuIcon: Icon(
               Icons.keyboard_arrow_up_rounded,
-              color: ColorManager.primary,
+              color: ColorManager.cloudyGrey,
             ),
             icon: Icon(
               Icons.keyboard_arrow_down_rounded,
-              color: ColorManager.primary,
+              color: ColorManager.cloudyGrey,
             )),
         buttonStyleData: ButtonStyleData(
           // padding: EdgeInsets.symmetric(horizontal: AppSizeW.s16),

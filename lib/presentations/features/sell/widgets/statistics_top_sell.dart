@@ -76,7 +76,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                       padding: EdgeInsets.symmetric(
                           horizontal: AppSizeW.s6, vertical: AppSizeH.s6),
                       decoration: BoxDecoration(
-                        color: ColorManager.grey,
+                        color: Theme.of(context).colorScheme.onTertiary,
                         borderRadius: BorderRadius.circular(AppSizeR.s12),
                       ),
                       child: SizedBox(
@@ -125,7 +125,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                   padding: EdgeInsets.symmetric(
                       horizontal: AppSizeW.s6, vertical: AppSizeH.s6),
                   decoration: BoxDecoration(
-                    color: ColorManager.grey,
+                    color: Theme.of(context).colorScheme.onTertiary,
                     borderRadius: BorderRadius.circular(AppSizeR.s12),
                   ),
                   child: SizedBox(
@@ -290,7 +290,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                 padding: EdgeInsets.symmetric(
                     vertical: AppSizeH.s13, horizontal: AppSizeW.s21),
                 decoration: BoxDecoration(
-                    color: ColorManager.white,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     borderRadius: BorderRadius.circular(AppSizeR.s12),
                     boxShadow: [
                       BoxShadow(

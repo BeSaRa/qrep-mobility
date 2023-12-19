@@ -282,8 +282,8 @@ class _GridItemWidgetState extends State<GridItemWidget> {
           ],
           gradient: LinearGradient(
             colors: [
-              ColorManager.platinum,
-              ColorManager.white,
+              Theme.of(context).colorScheme.onSecondaryContainer,
+              Theme.of(context).scaffoldBackgroundColor,
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -362,8 +362,10 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                                       child: SvgPicture.asset(
                                         getImagePath(),
                                         width: AppSizeW.s56,
-                                        color: ColorManager.primary
-                                            .withOpacity(0.6),
+                                        color: Theme.of(context)
+                                            .iconTheme
+                                            .color
+                                            ?.withOpacity(0.6),
                                       ),
                                     ),
                                   ],
@@ -609,8 +611,10 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                                       child: SvgPicture.asset(
                                         getImagePath(),
                                         width: AppSizeW.s56,
-                                        color: ColorManager.primary
-                                            .withOpacity(0.6),
+                                        color: Theme.of(context)
+                                            .iconTheme
+                                            .color
+                                            ?.withOpacity(0.6),
                                       ),
                                     ),
                                   ],

@@ -575,13 +575,23 @@ class MoreWidgetButton extends StatelessWidget {
         margin: EdgeInsets.symmetric(
             horizontal: AppSizeH.s20, vertical: AppSizeW.s6),
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+                color: Theme.of(context).colorScheme.shadow,
+                offset: const Offset(1, 1),
+                blurRadius: AppSizeW.s2,
+                spreadRadius: AppSizeW.s1),
+          ],
           borderRadius: BorderRadius.circular(AppSizeR.s20),
-          color: ColorManager.white,
-          border: Border.all(
-            width: AppSizeW.s2,
-            // assign the color to the border color
-            color: ColorManager.grey,
-          ),
+          color: Theme.of(context).colorScheme.onTertiary,
+          border: instance<AppPreferences>().getTheme().brightness ==
+                  Brightness.light
+              ? Border.all(
+                  width: AppSizeW.s2,
+                  // assign the color to the border color
+                  color: ColorManager.grey,
+                )
+              : null,
         ),
         child: Row(
           children: [

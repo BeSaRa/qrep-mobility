@@ -36,7 +36,7 @@ class MainDataContainer extends StatelessWidget {
           EdgeInsets.symmetric(vertical: AppSizeH.s4, horizontal: AppSizeH.s20),
       padding: EdgeInsets.symmetric(vertical: AppSizeH.s12),
       decoration: BoxDecoration(
-        color: ColorManager.white,
+        color: Theme.of(context).cardTheme.color,
         boxShadow: [
           BoxShadow(
               offset: const Offset(1, 1),
@@ -93,7 +93,7 @@ class MainDataContainer extends StatelessWidget {
                 if (hasRooms)
                   Container(
                     decoration: BoxDecoration(
-                        color: Hex16Color.fromHex('#FFE5FE'),
+                        color: Theme.of(context).colorScheme.onBackground,
                         borderRadius: BorderRadiusDirectional.only(
                             topStart: Radius.circular(AppSizeR.s5),
                             bottomStart: Radius.circular(AppSizeR.s5))),
@@ -123,7 +123,7 @@ class MainDataContainer extends StatelessWidget {
             padding: EdgeInsetsDirectional.only(
                 start: AppSizeW.s15, end: AppSizeW.s24),
             child: Divider(
-              color: ColorManager.grey,
+              color: Theme.of(context).dividerTheme.color,
               height: AppSizeH.s1,
             ),
           ),
@@ -138,7 +138,7 @@ class MainDataContainer extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.location_on_outlined,
-                        color: ColorManager.primary,
+                        color: Theme.of(context).colorScheme.onSecondary,
                         size: AppSizeH.s16,
                       ),
                       Text(
@@ -151,7 +151,7 @@ class MainDataContainer extends StatelessWidget {
                 Container(
                   width: AppSizeW.s1,
                   height: AppSizeH.s15,
-                  color: ColorManager.grey,
+                  color: Theme.of(context).dividerTheme.color,
                 ),
                 Expanded(
                   child: Text(

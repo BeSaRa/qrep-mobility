@@ -35,7 +35,7 @@ class MainRentDataContainer extends StatelessWidget {
           EdgeInsets.symmetric(vertical: AppSizeH.s4, horizontal: AppSizeH.s20),
       padding: EdgeInsets.symmetric(vertical: AppSizeH.s12),
       decoration: BoxDecoration(
-        color: ColorManager.white,
+        color: Theme.of(context).cardTheme.color,
         boxShadow: [
           BoxShadow(
               offset: const Offset(1, 1),
@@ -66,7 +66,7 @@ class MainRentDataContainer extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.location_on_outlined,
-                      color: ColorManager.primary,
+                      color: Theme.of(context).colorScheme.onSecondary,
                       size: AppSizeH.s16,
                     ),
                     Text(
@@ -103,7 +103,7 @@ class MainRentDataContainer extends StatelessWidget {
                 if (hasRooms)
                   Container(
                     decoration: BoxDecoration(
-                        color: Hex16Color.fromHex('#FFE5FE'),
+                        color: Theme.of(context).colorScheme.onBackground,
                         borderRadius: BorderRadiusDirectional.only(
                             topStart: Radius.circular(AppSizeR.s5),
                             bottomStart: Radius.circular(AppSizeR.s5))),
@@ -133,7 +133,7 @@ class MainRentDataContainer extends StatelessWidget {
             padding: EdgeInsetsDirectional.only(
                 start: AppSizeW.s15, end: AppSizeW.s24),
             child: Divider(
-              color: ColorManager.grey,
+              color: Theme.of(context).dividerTheme.color,
               height: AppSizeH.s1,
             ),
           ),
@@ -161,7 +161,7 @@ class MainRentDataContainer extends StatelessWidget {
                 Container(
                   width: AppSizeW.s1,
                   height: AppSizeH.s15,
-                  color: ColorManager.grey,
+                  color: Theme.of(context).dividerTheme.color,
                   margin: EdgeInsets.symmetric(horizontal: AppSizeW.s6),
                 ),
                 Expanded(
@@ -199,7 +199,7 @@ class ShimmerMainRentDataContainer extends StatelessWidget {
           EdgeInsets.symmetric(vertical: AppSizeH.s4, horizontal: AppSizeH.s20),
       padding: EdgeInsets.symmetric(vertical: AppSizeH.s12),
       decoration: BoxDecoration(
-        color: ColorManager.white,
+        color: Theme.of(context).cardTheme.color,
         boxShadow: [
           BoxShadow(
               offset: const Offset(1, 1),
@@ -222,7 +222,7 @@ class ShimmerMainRentDataContainer extends StatelessWidget {
                     // width: double.infinity,
                     height: AppSizeH.s12,
                     decoration: BoxDecoration(
-                        color: ColorManager.white,
+                        color: Theme.of(context).scaffoldBackgroundColor,
                         borderRadius: BorderRadius.circular(AppSizeR.s12)),
                   ),
                 ),
@@ -231,7 +231,7 @@ class ShimmerMainRentDataContainer extends StatelessWidget {
                     width: AppSizeW.s76,
                     height: AppSizeH.s12,
                     decoration: BoxDecoration(
-                        color: ColorManager.white,
+                        color: Theme.of(context).scaffoldBackgroundColor,
                         borderRadius: BorderRadius.circular(AppSizeR.s12)),
                   ),
                 ),
@@ -250,7 +250,7 @@ class ShimmerMainRentDataContainer extends StatelessWidget {
                       // width: double.infinity,
                       height: AppSizeH.s12,
                       decoration: BoxDecoration(
-                          color: ColorManager.white,
+                          color: Theme.of(context).scaffoldBackgroundColor,
                           borderRadius: BorderRadius.circular(AppSizeR.s12)),
                     ),
                   ),
@@ -270,7 +270,7 @@ class ShimmerMainRentDataContainer extends StatelessWidget {
                       // width: double.infinity,
                       height: AppSizeH.s12,
                       decoration: BoxDecoration(
-                          color: ColorManager.white,
+                          color: Theme.of(context).scaffoldBackgroundColor,
                           borderRadius: BorderRadius.circular(AppSizeR.s12)),
                     ),
                   ),
@@ -283,7 +283,7 @@ class ShimmerMainRentDataContainer extends StatelessWidget {
             padding: EdgeInsetsDirectional.only(
                 start: AppSizeW.s15, end: AppSizeW.s24),
             child: Divider(
-              color: ColorManager.grey,
+              color: Theme.of(context).dividerTheme.color,
               height: AppSizeH.s1,
             ),
           ),
@@ -301,7 +301,7 @@ class ShimmerMainRentDataContainer extends StatelessWidget {
                           width: AppSizeW.s50,
                           height: AppSizeH.s12,
                           decoration: BoxDecoration(
-                              color: ColorManager.white,
+                              color: Theme.of(context).scaffoldBackgroundColor,
                               borderRadius:
                                   BorderRadius.circular(AppSizeR.s12)),
                         ),
@@ -323,7 +323,7 @@ class ShimmerMainRentDataContainer extends StatelessWidget {
                           width: AppSizeW.s50,
                           height: AppSizeH.s12,
                           decoration: BoxDecoration(
-                              color: ColorManager.white,
+                              color: Theme.of(context).scaffoldBackgroundColor,
                               borderRadius:
                                   BorderRadius.circular(AppSizeR.s12)),
                         ),

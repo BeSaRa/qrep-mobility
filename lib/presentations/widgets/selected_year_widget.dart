@@ -42,7 +42,7 @@ class _SelectedYearWidgetState extends State<SelectedYearWidget> {
                 blurRadius: AppSizeR.s11,
                 color: ColorManager.textBlack.withAlpha(6))
           ],
-          color: ColorManager.white,
+          color: Theme.of(context).cardTheme.color,
           border: Border.all(style: BorderStyle.none),
           borderRadius: BorderRadius.circular(AppSizeR.s25),
         ),

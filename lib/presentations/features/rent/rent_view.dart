@@ -636,108 +636,98 @@ class _RentViewState extends State<RentView> {
                                     }
                                     if (state.rentSummery !=
                                         const RentListSummary()) {
-                                      return Column(
-                                        children: [
-                                          ListView.builder(
-                                              itemCount: state
-                                                          .rentSummery
-                                                          .transactionList
-                                                          .length >
-                                                      5
-                                                  ? 5
-                                                  : state.rentSummery
-                                                      .transactionList.length,
-                                              shrinkWrap: true,
-                                              physics:
-                                                  const NeverScrollableScrollPhysics(),
-                                              itemBuilder: (context, index) {
-                                                return MainRentDataContainer(
-                                                  title: AppStrings().rentValue,
-                                                  totalPrice:
-                                                      "${state.rentSummery.transactionList[index].rentPaymentMonthly?.formatWithCommasToInt()} ${AppStrings().currency}",
-                                                  titleInfo:
-                                                      "${AppStrings().roomsCount}:",
-                                                  valueInfo: state
+                                      return ListView.builder(
+                                          itemCount: state.rentSummery
+                                                      .transactionList.length >
+                                                  5
+                                              ? 5
+                                              : state.rentSummery
+                                                  .transactionList.length,
+                                          shrinkWrap: true,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          itemBuilder: (context, index) {
+                                            return MainRentDataContainer(
+                                              title: AppStrings().rentValue,
+                                              totalPrice:
+                                                  "${state.rentSummery.transactionList[index].rentPaymentMonthly?.formatWithCommasToInt()} ${AppStrings().currency}",
+                                              titleInfo:
+                                                  "${AppStrings().roomsCount}:",
+                                              valueInfo: state
+                                                      .rentSummery
+                                                      .transactionList[index]
+                                                      .bedRoomsCount
+                                                      ?.toStringAsFixed(0) ??
+                                                  '0',
+                                              location: context.locale ==
+                                                      ARABIC_LOCAL
+                                                  ? getObjectByLookupKey(
+                                                              context
+                                                                      .read<
+                                                                          LookupBloc>()
+                                                                      .loockUpRent
+                                                                      ?.municipalityList ??
+                                                                  [],
+                                                              state
+                                                                      .rentSummery
+                                                                      .transactionList[
+                                                                          index]
+                                                                      .municipalityid ??
+                                                                  0)
+                                                          ?.arName ??
+                                                      ''
+                                                  : getObjectByLookupKey(
+                                                              context
+                                                                      .read<
+                                                                          LookupBloc>()
+                                                                      .loockUpRent
+                                                                      ?.municipalityList ??
+                                                                  [],
+                                                              state
+                                                                      .rentSummery
+                                                                      .transactionList[
+                                                                          index]
+                                                                      .municipalityid ??
+                                                                  0)
+                                                          ?.enName ??
+                                                      '',
+                                              descripton: getUnitName(state
+                                                      .rentSummery
+                                                      .transactionList[index]
+                                                      .propertyTypeId ??
+                                                  0),
+                                              startDate: state
                                                           .rentSummery
                                                           .transactionList[
                                                               index]
-                                                          .bedRoomsCount
-                                                          ?.toStringAsFixed(
-                                                              0) ??
-                                                      '0',
-                                                  location: context.locale ==
-                                                          ARABIC_LOCAL
-                                                      ? getObjectByLookupKey(
-                                                                  context
-                                                                          .read<
-                                                                              LookupBloc>()
-                                                                          .loockUpRent
-                                                                          ?.municipalityList ??
-                                                                      [],
-                                                                  state
-                                                                          .rentSummery
-                                                                          .transactionList[
-                                                                              index]
-                                                                          .municipalityid ??
-                                                                      0)
-                                                              ?.arName ??
-                                                          ''
-                                                      : getObjectByLookupKey(
-                                                                  context
-                                                                          .read<
-                                                                              LookupBloc>()
-                                                                          .loockUpRent
-                                                                          ?.municipalityList ??
-                                                                      [],
-                                                                  state
-                                                                          .rentSummery
-                                                                          .transactionList[
-                                                                              index]
-                                                                          .municipalityid ??
-                                                                      0)
-                                                              ?.enName ??
-                                                          '',
-                                                  descripton: getUnitName(state
+                                                          .startDate
+                                                          ?.isNotEmpty ??
+                                                      false
+                                                  ? DateTime.parse(state
+                                                              .rentSummery
+                                                              .transactionList[
+                                                                  index]
+                                                              .startDate ??
+                                                          '')
+                                                      .toFormattedString()
+                                                  : "",
+                                              endDate: state
                                                           .rentSummery
                                                           .transactionList[
                                                               index]
-                                                          .propertyTypeId ??
-                                                      0),
-                                                  startDate: state
+                                                          .endDate
+                                                          ?.isNotEmpty ??
+                                                      false
+                                                  ? DateTime.parse(state
                                                               .rentSummery
                                                               .transactionList[
                                                                   index]
-                                                              .startDate
-                                                              ?.isNotEmpty ??
-                                                          false
-                                                      ? DateTime.parse(state
-                                                                  .rentSummery
-                                                                  .transactionList[
-                                                                      index]
-                                                                  .startDate ??
-                                                              '')
-                                                          .toFormattedString()
-                                                      : "",
-                                                  endDate: state
-                                                              .rentSummery
-                                                              .transactionList[
-                                                                  index]
-                                                              .endDate
-                                                              ?.isNotEmpty ??
-                                                          false
-                                                      ? DateTime.parse(state
-                                                                  .rentSummery
-                                                                  .transactionList[
-                                                                      index]
-                                                                  .endDate ??
-                                                              '')
-                                                          .toFormattedString()
-                                                      : "",
-                                                );
-                                              }),
-                                          // SizedBox(height: AppSizeH.s6),
-                                        ],
-                                      );
+                                                              .endDate ??
+                                                          '')
+                                                      .toFormattedString()
+                                                  : "",
+                                            );
+                                          });
                                     }
                                     if (state.isHasErrorRentSummery) {
                                       return SizedBox(
