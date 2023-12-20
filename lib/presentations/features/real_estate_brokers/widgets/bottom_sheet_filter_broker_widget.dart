@@ -2,6 +2,8 @@ import 'package:ebla/presentations/features/real_estate_brokers/blocs/lookup_blo
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../app/app_preferences.dart';
+import '../../../../app/depndency_injection.dart';
 import '../../../../domain/models/models.dart';
 import '../../../../utils/global_functions.dart';
 import '../../../resources/resources.dart';
@@ -162,6 +164,11 @@ class _BottomSheetFilterBrokerWidgetState
               onPress: () {
                 Navigator.of(context).pop();
               },
+              backgroundColor:
+                  instance<AppPreferences>().getTheme().brightness ==
+                          Brightness.light
+                      ? ColorManager.porcelain
+                      : ColorManager.greyCloud,
             ),
           ),
         ]),

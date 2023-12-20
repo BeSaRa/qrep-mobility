@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
+import '../../../../app/app_preferences.dart';
+import '../../../../app/depndency_injection.dart';
 import '../../../../domain/models/rent_models/rent_models.dart';
 import '../../../../utils/global_functions.dart';
 import '../../../resources/resources.dart';
@@ -1170,6 +1172,11 @@ class _BottomSheetFilterMortgageWidgetState
                     onPress: () {
                       Navigator.of(context).pop();
                     },
+                    backgroundColor:
+                        instance<AppPreferences>().getTheme().brightness ==
+                                Brightness.light
+                            ? ColorManager.porcelain
+                            : ColorManager.greyCloud,
                   ),
                 ),
               ]),

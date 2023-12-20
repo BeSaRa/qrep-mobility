@@ -53,22 +53,49 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           lazy: true,
         ),
       ],
-      child: ScreenUtilInit(
-        designSize: const Size(390, 844),
-        builder: (context, child) => ThemeProvider(
-          initTheme: instance<AppPreferences>().getTheme(),
-          builder: (p0, theme) => MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.locale,
-            title: 'Real State Qatar',
-            themeMode: theme.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
-            theme: theme,
-            routerConfig: AppRouter.router,
+      child: MediaQuery(
+        data: MediaQuery.of(context).copyWith(
+          textScaler: MediaQuery.of(context).textScaler == TextScaler.noScaling
+              ? TextScaler.linear(1.0)
+              : getScalarRatio(),
+        ),
+        child: ScreenUtilInit(
+          designSize: const Size(390, 844),
+          minTextAdapt: false,
+          splitScreenMode: false,
+          builder: (context, child) => ThemeProvider(
+            initTheme: instance<AppPreferences>().getTheme(),
+            builder: (p0, theme) => MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              title: 'Real State Qatar',
+              themeMode: theme.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
+              theme: theme,
+              routerConfig: AppRouter.router,
+            ),
           ),
         ),
       ),
     );
+  }
+
+  TextScaler getScalarRatio() {
+    TextScaler scalar = MediaQuery.of(context).textScaler;
+    String scale = scalar.toString();
+    //this is the printed linear (0.86x)
+    String theScale = scale
+        .replaceAll('linear', '')
+        .replaceAll("(", "")
+        .replaceAll(")", "")
+        .replaceAll("x", "")
+        .replaceAll(" ", "");
+    print(theScale);
+    if (double.parse(theScale) < 1.0) {
+      return TextScaler.linear(1.0);
+    } else {
+      return TextScaler.linear(1.15);
+    }
   }
 }

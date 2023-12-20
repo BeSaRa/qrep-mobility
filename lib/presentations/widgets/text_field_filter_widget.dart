@@ -40,12 +40,11 @@ class TextFilterWidget extends StatelessWidget {
             counterText: '',
             contentPadding: EdgeInsets.symmetric(horizontal: AppSizeW.s12),
             hintText: hintText ?? '0000',
-            hintStyle: Theme.of(context)
-                .textTheme
-                .labelSmall!
-                .copyWith(color: ColorManager.textFieldGrey.withOpacity(0.5)),
+            hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
+                color:
+                    Theme.of(context).colorScheme.onSurface.withOpacity(0.5)),
             filled: true,
-            fillColor: ColorManager.whiteSmoke,
+            fillColor: Theme.of(context).canvasColor,
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(width: 1, color: ColorManager.silver),
               borderRadius: BorderRadius.circular(AppSizeR.s5),
@@ -108,9 +107,11 @@ class EblaAppBar extends StatelessWidget implements PreferredSizeWidget {
             Icons.arrow_back,
             color: ColorManager.golden,
           )),
-      title: Text(
-        title,
-        style: Theme.of(context).textTheme.headlineLarge,
+      title: FittedBox(
+        child: Text(
+          title,
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
       ),
       centerTitle: true,
     );

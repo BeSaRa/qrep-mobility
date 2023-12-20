@@ -35,7 +35,7 @@ class _EblaTabBarWidgetState extends State<EblaTabBarWidget> {
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(AppSizeR.s12),
-          color: Theme.of(context).colorScheme.onTertiaryContainer,
+          color: Theme.of(context).canvasColor,
         ),
         child: TabBar(
           automaticIndicatorColorAdjustment: false,

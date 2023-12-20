@@ -3,6 +3,7 @@
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/app/extensions.dart';
+import 'package:ebla/presentations/features/auth/blocs/cubits/error_message_cubit.dart';
 import 'package:ebla/presentations/features/auth/blocs/cubits/face_id_check_cubit.dart';
 import 'package:ebla/presentations/features/auth/blocs/cubits/logged_in_user_cubit.dart';
 import 'package:ebla/presentations/features/auth/blocs/login_bloc/login_bloc.dart';
@@ -12,10 +13,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_auth/local_auth.dart';
 
+import '../../../../app/app_preferences.dart';
 import '../../../../domain/models/Auth/requests_auth/request_auth.dart';
 import '../../../widgets/widgets.dart';
 import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
@@ -37,6 +38,7 @@ class _LoginViewState extends State<LoginView> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final LocalAuthentication auth = LocalAuthentication();
+  late ErrorMessageCubit errorMessageCubit;
 
   late FaceIdCheckCubit faceIdCheck;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -45,6 +47,7 @@ class _LoginViewState extends State<LoginView> {
   void initState() {
     haveFaceId();
     faceIdCheck = FaceIdCheckCubit(false);
+    errorMessageCubit = ErrorMessageCubit('');
     light = faceIdCheck.appPreferences.getUserFaceId();
     super.initState();
   }
@@ -105,14 +108,17 @@ class _LoginViewState extends State<LoginView> {
             context.pop();
           }
           if (state.isHasError) {
-            Fluttertoast.showToast(
-                msg: state.errorMessage, backgroundColor: ColorManager.red);
+            errorMessageCubit.save(state.errorMessage);
+            Future.delayed(Duration(seconds: 15))
+                .then((value) => errorMessageCubit.remove());
+            // Fluttertoast.showToast(
+            //     msg: state.errorMessage, backgroundColor: ColorManager.red);
           }
         },
         child: Form(
           key: _formKey,
           child: Container(
-            height: AppSizeH.s400,
+            height: AppSizeH.s408,
             padding: EdgeInsets.symmetric(
                 vertical: AppSizeH.s30, horizontal: AppSizeW.s30),
             decoration: BoxDecoration(
@@ -212,7 +218,7 @@ class _LoginViewState extends State<LoginView> {
                           ),
                         ),
                         SizedBox(
-                          width: AppSizeW.s10,
+                          width: AppSizeW.s20,
                         ),
                         Text(
                           AppStrings().activateFaceId,
@@ -225,10 +231,12 @@ class _LoginViewState extends State<LoginView> {
                         Switch(
                           // This bool value toggles the switch.
                           value: light,
-                          activeColor: Theme.of(context).primaryColor,
-                          activeTrackColor: ColorManager.mercury,
+                          activeColor: Theme.of(context).colorScheme.primary,
+                          activeTrackColor:
+                              Theme.of(context).colorScheme.onTertiaryContainer,
                           inactiveThumbColor: Theme.of(context).primaryColor,
-                          inactiveTrackColor: ColorManager.mercury,
+                          inactiveTrackColor:
+                              Theme.of(context).colorScheme.onTertiary,
 
                           onChanged: (bool value) {
                             if (value == true) {
@@ -245,6 +253,30 @@ class _LoginViewState extends State<LoginView> {
                   } else {
                     return Container();
                   }
+                },
+              ),
+              SizedBox(
+                height: AppSizeH.s10,
+              ),
+              BlocBuilder(
+                bloc: errorMessageCubit,
+                builder: (context, state) {
+                  return Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: AppSizeH.s20, vertical: AppSizeW.s10),
+                    decoration: BoxDecoration(
+                        color: errorMessageCubit.state.length > 1
+                            ? Theme.of(context).canvasColor
+                            : Theme.of(context).scaffoldBackgroundColor,
+                        borderRadius: BorderRadius.circular(AppSizeH.s10)),
+                    child: Text(
+                      errorMessageCubit.state,
+                      style: Theme.of(context)
+                          .textTheme
+                          .displaySmall
+                          ?.copyWith(color: ColorManager.red),
+                    ),
+                  );
                 },
               ),
               const Spacer(),
@@ -325,6 +357,11 @@ class _LoginViewState extends State<LoginView> {
                     onPress: () {
                       Navigator.of(context).pop();
                     },
+                    backgroundColor:
+                        instance<AppPreferences>().getTheme().brightness ==
+                                Brightness.light
+                            ? ColorManager.porcelain
+                            : ColorManager.greyCloud,
                   ),
                 ),
               ]),

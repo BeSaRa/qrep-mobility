@@ -34,7 +34,7 @@ class _ChooseUnitWidgetState extends State<ChooseUnitWidget> {
                     decoration: BoxDecoration(
                       color: context.read<ValuesFiltersCubit>().unit == 1
                           ? ColorManager.golden
-                          : ColorManager.whiteSmoke,
+                          : Theme.of(context).canvasColor,
                       border: Border.all(width: 1, color: ColorManager.silver),
                       borderRadius: BorderRadius.circular(AppSizeR.s25),
                     ),
@@ -62,7 +62,7 @@ class _ChooseUnitWidgetState extends State<ChooseUnitWidget> {
                     decoration: BoxDecoration(
                       color: context.read<ValuesFiltersCubit>().unit == 2
                           ? ColorManager.golden
-                          : ColorManager.whiteSmoke,
+                          : Theme.of(context).canvasColor,
                       border: Border.all(width: 1, color: ColorManager.silver),
                       borderRadius: BorderRadius.circular(AppSizeR.s25),
                     ),

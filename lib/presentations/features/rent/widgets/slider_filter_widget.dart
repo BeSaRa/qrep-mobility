@@ -10,6 +10,7 @@ class SliderWidget extends StatefulWidget {
   final String startValue;
   final String endValue;
   final String title;
+
   const SliderWidget(
       {super.key,
       this.onChanges,
@@ -50,7 +51,7 @@ class _SliderWidgetState extends State<SliderWidget> {
             child: Container(
               height: AppSizeH.s36,
               decoration: ShapeDecoration(
-                  color: ColorManager.whiteSmoke,
+                  color: Theme.of(context).canvasColor,
                   shape: RoundedRectangleBorder(
                     side: BorderSide(width: 1, color: ColorManager.silver),
                     borderRadius: BorderRadius.circular(AppSizeR.s5),
@@ -68,7 +69,7 @@ class _SliderWidgetState extends State<SliderWidget> {
             child: Container(
               height: AppSizeH.s36,
               decoration: ShapeDecoration(
-                  color: ColorManager.whiteSmoke,
+                  color: Theme.of(context).canvasColor,
                   shape: RoundedRectangleBorder(
                     side: BorderSide(width: 1, color: ColorManager.silver),
                     borderRadius: BorderRadius.circular(AppSizeR.s5),

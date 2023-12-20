@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../app/app_preferences.dart';
+import '../../../../app/depndency_injection.dart';
 import '../../../resources/resources.dart';
 import '../../../widgets/widgets.dart';
 
@@ -58,6 +60,11 @@ class DialogsignOut extends StatelessWidget {
                     onPress: () {
                       Navigator.of(context).pop();
                     },
+                    backgroundColor:
+                        instance<AppPreferences>().getTheme().brightness ==
+                                Brightness.light
+                            ? ColorManager.porcelain
+                            : ColorManager.greyCloud,
                   ),
                 ),
               ],

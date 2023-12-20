@@ -205,7 +205,7 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                 vertical: AppSizeH.s10,
                                 horizontal: AppSizeW.s20),
                             decoration: BoxDecoration(
-                                color: ColorManager.white,
+                                color: Theme.of(context).cardTheme.color,
                                 borderRadius:
                                     BorderRadius.circular(AppSizeR.s10)),
                             child: ListView.builder(
@@ -227,7 +227,7 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                   vertical: AppSizeH.s10,
                                   horizontal: AppSizeW.s20),
                               decoration: BoxDecoration(
-                                  color: ColorManager.white,
+                                  color: Theme.of(context).cardTheme.color,
                                   borderRadius:
                                       BorderRadius.circular(AppSizeR.s10)),
                               child: ListView.builder(
@@ -316,32 +316,36 @@ class BrokerCountContainer extends StatelessWidget {
             ],
             gradient: LinearGradient(
               colors: [
-                ColorManager.platinum,
-                ColorManager.white,
+                Theme.of(context).colorScheme.onSecondaryContainer,
+                Theme.of(context).scaffoldBackgroundColor,
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               stops: const [0.2, 1.0],
             ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Stack(
             children: [
-              Expanded(
+              Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      AppStrings().totalCertifiedRealEstate,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(fontSize: AppSizeSp.s16),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: AppSizeW.s30),
+                      child: Text(
+                        AppStrings().totalCertifiedRealEstate,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontSize: AppSizeSp.s16),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                     SizedBox(
                       height: AppSizeH.s10,
                     ),
                     Text(count,
+                        textAlign: TextAlign.center,
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium
@@ -349,18 +353,12 @@ class BrokerCountContainer extends StatelessWidget {
                   ],
                 ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  SizedBox(
-                    height: AppSizeH.s20,
-                  ),
-                  SvgPicture.asset(
-                    IconAssets.sellHome,
-                    // color:
-                    //     Theme.of(context).primaryColor.withOpacity(0.5),
-                  ),
-                ],
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: SvgPicture.asset(
+                  IconAssets.sellHome,
+                  color: Theme.of(context).iconTheme.color!.withOpacity(0.5),
+                ),
               ),
             ],
           ),
@@ -391,8 +389,8 @@ class BrokerCountContainerShimmer extends StatelessWidget {
             ],
             gradient: LinearGradient(
               colors: [
-                ColorManager.platinum,
-                ColorManager.white,
+                Theme.of(context).colorScheme.onSecondaryContainer,
+                Theme.of(context).scaffoldBackgroundColor,
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -421,7 +419,7 @@ class BrokerCountContainerShimmer extends StatelessWidget {
                         width: AppSizeW.s50,
                         height: AppSizeH.s12,
                         decoration: BoxDecoration(
-                            color: ColorManager.white,
+                            color: Theme.of(context).scaffoldBackgroundColor,
                             borderRadius: BorderRadius.circular(AppSizeR.s12)),
                       ),
                     ),

@@ -47,7 +47,7 @@ class RealEstateCard extends StatelessWidget {
     return Container(
       padding:
           EdgeInsets.symmetric(horizontal: AppSizeH.s5, vertical: AppSizeH.s5),
-      decoration: BoxDecoration(color: ColorManager.white),
+      decoration: BoxDecoration(color: Theme.of(context).cardTheme.color),
       child: Column(
         children: [
           Row(
@@ -61,7 +61,7 @@ class RealEstateCard extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .titleMedium
-                        ?.copyWith(fontSize: AppSizeSp.s12),
+                        ?.copyWith(fontSize: AppSizeSp.s14),
                     overflow: TextOverflow.visible,
                     maxLines: 3,
                   ),
@@ -177,7 +177,7 @@ class RealEstateCardShimmer extends StatelessWidget {
     return Container(
       padding:
           EdgeInsets.symmetric(horizontal: AppSizeH.s5, vertical: AppSizeH.s5),
-      decoration: BoxDecoration(color: ColorManager.white),
+      decoration: BoxDecoration(color: Theme.of(context).cardTheme.color),
       child: Column(
         children: [
           Row(
@@ -191,7 +191,7 @@ class RealEstateCardShimmer extends StatelessWidget {
                       width: AppSizeW.s100,
                       height: AppSizeH.s25,
                       decoration: BoxDecoration(
-                          color: ColorManager.white,
+                          color: Theme.of(context).scaffoldBackgroundColor,
                           borderRadius: BorderRadius.circular(AppSizeR.s12)),
                     ),
                   ),
@@ -203,7 +203,7 @@ class RealEstateCardShimmer extends StatelessWidget {
                       width: AppSizeW.s50,
                       height: AppSizeH.s20,
                       decoration: BoxDecoration(
-                          color: ColorManager.white,
+                          color: Theme.of(context).scaffoldBackgroundColor,
                           borderRadius: BorderRadius.circular(AppSizeR.s12)),
                     ),
                   ),
@@ -217,7 +217,7 @@ class RealEstateCardShimmer extends StatelessWidget {
                       width: AppSizeW.s70,
                       height: AppSizeH.s22,
                       decoration: BoxDecoration(
-                          color: ColorManager.white,
+                          color: Theme.of(context).scaffoldBackgroundColor,
                           borderRadius: BorderRadius.circular(AppSizeR.s12)),
                     ),
                   ),
@@ -229,7 +229,7 @@ class RealEstateCardShimmer extends StatelessWidget {
                       width: AppSizeW.s70,
                       height: AppSizeH.s22,
                       decoration: BoxDecoration(
-                          color: ColorManager.white,
+                          color: Theme.of(context).scaffoldBackgroundColor,
                           borderRadius: BorderRadius.circular(AppSizeR.s12)),
                     ),
                   ),

@@ -118,11 +118,11 @@ class _MoreViewState extends State<MoreView> {
                               ],
                             ),
                           ),
-                          MoreWidgetButton(
-                            icon: Icons.remove_red_eye_outlined,
-                            title: AppStrings().watchList,
-                            onPressed: () {},
-                          ),
+                          // MoreWidgetButton(
+                          //   icon: Icons.remove_red_eye_outlined,
+                          //   title: AppStrings().watchList,
+                          //   onPressed: () {},
+                          // ),
                           BlocBuilder(
                             bloc: loginBloc,
                             builder: (context, LoginState state) {
@@ -333,11 +333,11 @@ class _MoreViewState extends State<MoreView> {
                           ],
                         ),
                       ),
-                      MoreWidgetButton(
-                        icon: Icons.remove_red_eye_outlined,
-                        title: AppStrings().watchList,
-                        onPressed: () {},
-                      ),
+                      // MoreWidgetButton(
+                      //   icon: Icons.remove_red_eye_outlined,
+                      //   title: AppStrings().watchList,
+                      //   onPressed: () {},
+                      // ),
                       BlocBuilder(
                         bloc: loginBloc,
                         builder: (context, LoginState state) {
@@ -501,36 +501,36 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                width: AppSizeW.s50,
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                    horizontal: AppSizeW.s12, vertical: AppSizeH.s5),
-                decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.secondary,
-                    borderRadius: BorderRadius.circular(AppSizeW.s20)),
-                child: Row(
-                  children: [
-                    Text(
-                      AppStrings().support,
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                    SizedBox(
-                      width: AppSizeW.s5,
-                    ),
-                    SizedBox(
-                      height: AppSizeW.s30,
-                      width: AppSizeW.s30,
-                      child: const Image(
-                        image: AssetImage(
-                          IconAssets.supportIcon,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // SizedBox(
+              //   width: AppSizeW.s50,
+              // ),
+              // Container(
+              //   padding: EdgeInsets.symmetric(
+              //       horizontal: AppSizeW.s12, vertical: AppSizeH.s5),
+              //   decoration: BoxDecoration(
+              //       color: Theme.of(context).colorScheme.secondary,
+              //       borderRadius: BorderRadius.circular(AppSizeW.s20)),
+              //   child: Row(
+              //     children: [
+              //       Text(
+              //         AppStrings().support,
+              //         style: Theme.of(context).textTheme.titleSmall,
+              //       ),
+              //       SizedBox(
+              //         width: AppSizeW.s5,
+              //       ),
+              //       SizedBox(
+              //         height: AppSizeW.s30,
+              //         width: AppSizeW.s30,
+              //         child: const Image(
+              //           image: AssetImage(
+              //             IconAssets.supportIcon,
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ],
@@ -578,12 +578,12 @@ class MoreWidgetButton extends StatelessWidget {
           boxShadow: [
             BoxShadow(
                 color: Theme.of(context).colorScheme.shadow,
-                offset: const Offset(1, 1),
+                offset: const Offset(0, 1),
                 blurRadius: AppSizeW.s2,
                 spreadRadius: AppSizeW.s1),
           ],
           borderRadius: BorderRadius.circular(AppSizeR.s20),
-          color: Theme.of(context).colorScheme.onTertiary,
+          color: Theme.of(context).cardTheme.color,
           border: instance<AppPreferences>().getTheme().brightness ==
                   Brightness.light
               ? Border.all(
@@ -597,13 +597,13 @@ class MoreWidgetButton extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).colorScheme.onSecondary,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: AppSizeH.s6),
               child: Text(title,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontSize: AppSizeSp.s16, fontWeight: FontWeight.w400)),
+                      fontSize: AppSizeSp.s18, fontWeight: FontWeight.w400)),
             ),
             const Spacer(),
             isButton

@@ -37,9 +37,11 @@ class _MultiChooseDropDownWidgetState extends State<MultiChooseDropDownWidget> {
   Widget build(BuildContext ctxt) {
     return Container(
       decoration: BoxDecoration(
-          color: ColorManager.whiteSmoke,
+          color: Theme.of(context).canvasColor,
           borderRadius: BorderRadius.circular(AppSizeR.s5),
-          border: Border.all(width: 1, color: ColorManager.silver)),
+          border: Border.all(
+              width: 1,
+              color: Theme.of(context).colorScheme.onTertiaryContainer)),
       child: DropdownButtonHideUnderline(
         child: DropdownButton2<RentLookupModel>(
           isExpanded: true,
@@ -210,7 +212,7 @@ class _MultiChooseDropDownWidgetState extends State<MultiChooseDropDownWidget> {
             useSafeArea: true,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppSizeR.s5),
-              color: ColorManager.whiteSmoke,
+              color: Theme.of(context).canvasColor,
             ),
             // offset: const Offset(-20, 0),
             scrollbarTheme: ScrollbarThemeData(

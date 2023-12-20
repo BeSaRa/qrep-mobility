@@ -27,9 +27,11 @@ class _SingleDropDowmSearchWidgetState<T>
     return Container(
       // height: AppSizeH.s36,
       decoration: BoxDecoration(
-          color: ColorManager.whiteSmoke,
+          color: Theme.of(context).canvasColor,
           borderRadius: BorderRadius.circular(AppSizeR.s5),
-          border: Border.all(width: 1, color: ColorManager.silver)),
+          border: Border.all(
+              width: 1,
+              color: Theme.of(context).colorScheme.onTertiaryContainer)),
       child: DropdownButtonHideUnderline(
         child: DropdownButton2<T>(
           isExpanded: true,
@@ -78,7 +80,7 @@ class _SingleDropDowmSearchWidgetState<T>
 
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppSizeR.s5),
-              color: ColorManager.whiteSmoke,
+              color: Theme.of(context).canvasColor,
             ),
             // offset: const Offset(-20, 0),
             scrollbarTheme: ScrollbarThemeData(
@@ -116,7 +118,8 @@ class _SingleDropDowmSearchWidgetState<T>
               ),
               child: TextFormField(
                 // expands: true,
-                maxLines: 1, minLines: 1,
+                maxLines: 1,
+                minLines: 1,
                 style: Theme.of(context).textTheme.labelSmall,
                 controller: textEditingController,
                 cursorColor: ColorManager.golden,
