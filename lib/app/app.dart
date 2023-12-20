@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       child: MediaQuery(
         data: MediaQuery.of(context).copyWith(
           textScaler: MediaQuery.of(context).textScaler == TextScaler.noScaling
-              ? TextScaler.linear(1.0)
+              ? const TextScaler.linear(1.0)
               : getScalarRatio(),
         ),
         child: ScreenUtilInit(
@@ -91,11 +91,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         .replaceAll(")", "")
         .replaceAll("x", "")
         .replaceAll(" ", "");
-    print(theScale);
+
     if (double.parse(theScale) < 1.0) {
-      return TextScaler.linear(1.0);
+      return const TextScaler.linear(1.0);
     } else {
-      return TextScaler.linear(1.15);
+      return const TextScaler.linear(1.15);
     }
   }
 }

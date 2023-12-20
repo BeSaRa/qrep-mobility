@@ -33,7 +33,7 @@ class _UpdateInfoState extends State<UpdateInfo> {
     lastNameController.text = widget.model.lastName;
     nickNameController.text = widget.model.title;
     emailNameController.text = widget.model.email;
-    print(widget.model);
+
     super.initState();
   }
 
@@ -138,7 +138,7 @@ class _UpdateInfoState extends State<UpdateInfo> {
                         value: true,
                         onChanged: (value) {},
                       ),
-                      Text("اشعارات البريد الألكتروني",
+                      Text(AppStrings().activateEmailNotifications,
                           style: Theme.of(context).textTheme.labelMedium),
                     ],
                   ),

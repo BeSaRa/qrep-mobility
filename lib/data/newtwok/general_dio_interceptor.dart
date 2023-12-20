@@ -38,7 +38,6 @@ class GeneralInterceptor extends Interceptor {
   @override
   Future<void> onError(
       DioException err, ErrorInterceptorHandler handler) async {
-    print(err.requestOptions.path);
     if (err.response?.statusCode == 401 &&
         (err.requestOptions.path != EndPoints.auth)) {
       try {

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+
 import '../domain/models/cms_models/main_menu_models/main_menu_models.dart';
 import '../domain/models/cms_models/news/news_model.dart';
 import '../domain/models/rent_models/rent_models.dart';
@@ -29,6 +30,7 @@ PeriodTimeDetails? getObjectByList(
     List<PeriodTimeDetails> objects, List<int> value) {
   PeriodTimeDetails item = objects.firstWhere((item) => item.value == value,
       orElse: () => const PeriodTimeDetails());
+  // ignore: unrelated_type_equality_checks
   if (item != const RentLookupModel()) {
     return item;
   } else {

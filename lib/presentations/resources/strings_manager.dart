@@ -180,5 +180,6 @@ class AppStrings {
   String lastName = "last_name".tr();
   String nickName = "nick_name".tr();
   String nameValidationLength = "name_validation_length".tr();
+  String activateEmailNotifications = "activate_email_notifications".tr();
 // String nickName = "nick_name".tr();
 }

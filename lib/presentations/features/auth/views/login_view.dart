@@ -109,7 +109,7 @@ class _LoginViewState extends State<LoginView> {
           }
           if (state.isHasError) {
             errorMessageCubit.save(state.errorMessage);
-            Future.delayed(Duration(seconds: 15))
+            Future.delayed(const Duration(seconds: 15))
                 .then((value) => errorMessageCubit.remove());
             // Fluttertoast.showToast(
             //     msg: state.errorMessage, backgroundColor: ColorManager.red);

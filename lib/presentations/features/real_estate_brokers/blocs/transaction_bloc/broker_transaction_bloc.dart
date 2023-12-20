@@ -18,7 +18,7 @@ class BrokerTransactionBloc
     List<RealEstateBrokerTransactionData> data = [];
     on<BrokerTransactionEvent>((event, emit) async {
       await event.map(started: (value) async {
-        emit(BrokerTransactionState.loading());
+        emit(const BrokerTransactionState.loading());
         final failureOrSuccess =
             await brokerTransactionUseCase.execute(value.request);
         failureOrSuccess.when((success) {

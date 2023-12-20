@@ -23,8 +23,6 @@ class FiltersApplied extends StatelessWidget {
   });
 
   String getNameFilter(RentLookupModel model, bool isArabic) {
-    print(withoutZone);
-    print("fatina ${model.lookupKey}");
     if (model.lookupKey == -1) {
       return "";
     } else {
@@ -34,30 +32,12 @@ class FiltersApplied extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('${
-        getNameFilter(
-            municipality, (context.locale == ARABIC_LOCAL))}${withoutZone ??
-        false
-        ? ""
-        :
-    getNameFilter(zone, (context.locale == ARABIC_LOCAL))}${getNameFilter(
-        propertyType, (context.locale == ARABIC_LOCAL))}${getNameFilter(
-        propertyPurpose, (context.locale == ARABIC_LOCAL))}$year'
-    );
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: AppSizeW.s8),
       child: FittedBox(
         child: Text(
-          '(${getNameFilter(
-              municipality, (context.locale == ARABIC_LOCAL))}${ withoutZone ??
-              false ? "" : getNameFilter(
-              zone, (context.locale == ARABIC_LOCAL))}${getNameFilter(
-              propertyType, (context.locale == ARABIC_LOCAL))}${getNameFilter(
-              propertyPurpose, (context.locale == ARABIC_LOCAL))}$year)',
-          style: Theme
-              .of(context)
-              .textTheme
-              .titleMedium,
+          '(${getNameFilter(municipality, (context.locale == ARABIC_LOCAL))}${withoutZone ?? false ? "" : getNameFilter(zone, (context.locale == ARABIC_LOCAL))}${getNameFilter(propertyType, (context.locale == ARABIC_LOCAL))}${getNameFilter(propertyPurpose, (context.locale == ARABIC_LOCAL))}$year)',
+          style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
     );

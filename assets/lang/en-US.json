@@ -2,7 +2,7 @@
   "-----------------------------Shared-----------------------------------------------": "",
   "filter_values_should_be_as_follows": "Filter values should be as follows",
   "value_other_than_all": "Any value other than (all)",
-  "single_value_other_than_all": "(Single) value other than (all)",
+  "single_value_other_than_all": "(single) value other than (all)",
   "----------------------------------------------------------------------------------": "",
   "activate_face_id": "Activate face id",
   "cancel": "Cancel",
@@ -153,5 +153,6 @@
   "first_name": "First name",
   "last_name": "Last name",
   "nick_name": "Nick name",
-  "name_validation_length": "The name length should be under 50 characters"
+  "name_validation_length": "The name length should be under 50 characters",
+  "activate_email_notifications": "Activate email notifications"
 }

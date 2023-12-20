@@ -226,7 +226,7 @@ ThemeData darkTheme() {
       iconTheme: IconThemeData(color: ColorManager.white),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all(Color(0xFF222222)),
+        foregroundColor: MaterialStateProperty.all(const Color(0xFF222222)),
         textStyle: MaterialStatePropertyAll(
           TextStyle(
             fontFamily: FontConstants.fontFamily,

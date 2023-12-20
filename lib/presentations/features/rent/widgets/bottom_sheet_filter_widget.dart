@@ -1,10 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/features/rent/blocs/cubits/cubit/validator_cubit.dart';
 import 'package:ebla/presentations/resources/resources.dart';
-import 'package:ebla/presentations/widgets/date_range_picker.dart';
-import 'package:ebla/presentations/widgets/mutli_dropdown_widget.dart';
-import 'package:ebla/presentations/widgets/single_dropdown_widget.dart';
 import 'package:ebla/utils/global_functions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +12,7 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import '../../../../app/app_preferences.dart';
 import '../../../../app/depndency_injection.dart';
 import '../../../../domain/models/rent_models/rent_models.dart';
-import '../../../widgets/custom_elevated_button.dart';
-import '../../../widgets/multi_choose_dropdown.dart';
-import '../../../widgets/single_dropdown_search_widget.dart';
-import '../../../widgets/text_field_filter_widget.dart';
+import '../../../widgets/widgets.dart';
 import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
 import '../blocs/rent_bloc/rent_bloc.dart';
@@ -1373,124 +1367,145 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
               // // ),
               //
               // SizedBox(height: AppSizeH.s12),
-              Row(children: [
-                BlocBuilder(
-                  bloc: valuesFiltersCubit,
-                  builder: (context, state) {
-                    return Expanded(
-                      child: CustomElevatedButton(
-                        isPrimary: true,
-                        title: AppStrings().search,
-                        onPress: () {
-                          if (_formkey.currentState!.validate()) {
-                            context.read<RentBloc>().requestMeanValue = context
-                                .read<RentBloc>()
-                                .requestMeanValue
-                                .copyWith(
-                                  areaFrom: areaValueFromController.text.isEmpty
-                                      ? null
-                                      : int.parse(areaValueFromController.text),
-                                  areaTo: areaValueToController.text.isEmpty
-                                      ? null
-                                      : int.parse(areaValueToController.text),
-                                  rentPaymentMonthlyPerUnitFrom:
-                                      rentValueFromController.text.isEmpty
-                                          ? null
-                                          : int.parse(
-                                              rentValueFromController.text),
-                                  rentPaymentMonthlyPerUnitTo:
-                                      rentValueToController.text.isEmpty
-                                          ? null
-                                          : int.parse(
-                                              rentValueToController.text),
-                                  bedRoomsCount:
-                                      valuesFiltersCubit.bedRoom.id == -1
-                                          ? 0
-                                          : valuesFiltersCubit.bedRoom.id,
-                                  municipalityId:
-                                      valuesFiltersCubit.municapility.lookupKey,
-                                  zoneId: valuesFiltersCubit.zone.lookupKey,
-                                  unit: valuesFiltersCubit.unit,
-                                  furnitureStatus:
-                                      valuesFiltersCubit.furniture.lookupKey,
-                                  issueDateYear: valuesFiltersCubit.year.id,
-                                  issueDateQuarterList: getissueDateQuarterList(
-                                      valuesFiltersCubit.periodTime.id),
-                                  issueDateStartMonth:
-                                      valuesFiltersCubit.periodTime.id == 4
-                                          ? valuesFiltersCubit.month.value[0] -
-                                              1
-                                          : 1,
-                                  issueDateEndMonth:
-                                      valuesFiltersCubit.periodTime.id == 4
-                                          ? valuesFiltersCubit.month.value[0]
-                                          : valuesFiltersCubit.periodTime.id ==
-                                                  1
-                                              ? valuesFiltersCubit.year.id ==
-                                                      DateTime.now().year
-                                                  ? DateTime.now().month
-                                                  : 12
-                                              : 12,
-                                  periodId: valuesFiltersCubit.periodTime.id,
-                                  issueDateFrom:
-                                      valuesFiltersCubit.periodTime.id == 5
-                                          ? valuesFiltersCubit
-                                              .pickerDateRange?.startDate
-                                              ?.toUtc()
-                                              .toIso8601String()
-                                          : null,
-                                  issueDateTo:
-                                      valuesFiltersCubit.periodTime.id == 5
-                                          ? valuesFiltersCubit
-                                              .pickerDateRange?.endDate
-                                              ?.toUtc()
-                                              .toIso8601String()
-                                          : null,
-                                  purposeList: valuesFiltersCubit
-                                      .rentPurposeList
-                                      .map((e) => e.lookupKey)
-                                      .toList(),
-                                  propertyTypeList: valuesFiltersCubit
-                                      .propertyTypeList
-                                      .map((e) => e.lookupKey)
-                                      .toList(),
-                                  halfYearDuration:
-                                      valuesFiltersCubit.periodTime.id == 2
-                                          ? listEquals(
-                                                  getissueDateQuarterList(
-                                                      valuesFiltersCubit
-                                                          .periodTime.id),
-                                                  [1, 2])
-                                              ? 1
-                                              : 2
-                                          : null,
-                                  offset: 0,
-                                  //         streetNo: streetController.text.isEmpty ? null
-                                  //            : int.parse(streetController.text),
-                                );
-                            Navigator.of(context).pop(true);
-                          }
-                        },
-                      ),
-                    );
-                  },
-                ),
-                SizedBox(width: AppSizeW.s8),
-                Expanded(
-                  child: CustomElevatedButton(
-                    isPrimary: false,
-                    title: AppStrings().cancel,
-                    onPress: () {
-                      Navigator.of(context).pop();
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: Row(children: [
+                  BlocBuilder(
+                    bloc: valuesFiltersCubit,
+                    builder: (context, state) {
+                      return Expanded(
+                        child: CustomElevatedButton(
+                          isPrimary: true,
+                          title: AppStrings().search,
+                          onPress: () {
+                            if (_formkey.currentState!.validate()) {
+                              context.read<RentBloc>().requestMeanValue =
+                                  context
+                                      .read<RentBloc>()
+                                      .requestMeanValue
+                                      .copyWith(
+                                        areaFrom: areaValueFromController
+                                                .text.isEmpty
+                                            ? null
+                                            : int.parse(
+                                                areaValueFromController.text),
+                                        areaTo:
+                                            areaValueToController.text.isEmpty
+                                                ? null
+                                                : int.parse(
+                                                    areaValueToController.text),
+                                        rentPaymentMonthlyPerUnitFrom:
+                                            rentValueFromController.text.isEmpty
+                                                ? null
+                                                : int.parse(
+                                                    rentValueFromController
+                                                        .text),
+                                        rentPaymentMonthlyPerUnitTo:
+                                            rentValueToController.text.isEmpty
+                                                ? null
+                                                : int.parse(
+                                                    rentValueToController.text),
+                                        bedRoomsCount:
+                                            valuesFiltersCubit.bedRoom.id == -1
+                                                ? 0
+                                                : valuesFiltersCubit.bedRoom.id,
+                                        municipalityId: valuesFiltersCubit
+                                            .municapility.lookupKey,
+                                        zoneId:
+                                            valuesFiltersCubit.zone.lookupKey,
+                                        unit: valuesFiltersCubit.unit,
+                                        furnitureStatus: valuesFiltersCubit
+                                            .furniture.lookupKey,
+                                        issueDateYear:
+                                            valuesFiltersCubit.year.id,
+                                        issueDateQuarterList:
+                                            getissueDateQuarterList(
+                                                valuesFiltersCubit
+                                                    .periodTime.id),
+                                        issueDateStartMonth:
+                                            valuesFiltersCubit.periodTime.id ==
+                                                    4
+                                                ? valuesFiltersCubit
+                                                        .month.value[0] -
+                                                    1
+                                                : 1,
+                                        issueDateEndMonth: valuesFiltersCubit
+                                                    .periodTime.id ==
+                                                4
+                                            ? valuesFiltersCubit.month.value[0]
+                                            : valuesFiltersCubit
+                                                        .periodTime.id ==
+                                                    1
+                                                ? valuesFiltersCubit.year.id ==
+                                                        DateTime.now().year
+                                                    ? DateTime.now().month
+                                                    : 12
+                                                : 12,
+                                        periodId:
+                                            valuesFiltersCubit.periodTime.id,
+                                        issueDateFrom:
+                                            valuesFiltersCubit.periodTime.id ==
+                                                    5
+                                                ? valuesFiltersCubit
+                                                    .pickerDateRange?.startDate
+                                                    ?.toUtc()
+                                                    .toIso8601String()
+                                                : null,
+                                        issueDateTo:
+                                            valuesFiltersCubit.periodTime.id ==
+                                                    5
+                                                ? valuesFiltersCubit
+                                                    .pickerDateRange?.endDate
+                                                    ?.toUtc()
+                                                    .toIso8601String()
+                                                : null,
+                                        purposeList: valuesFiltersCubit
+                                            .rentPurposeList
+                                            .map((e) => e.lookupKey)
+                                            .toList(),
+                                        propertyTypeList: valuesFiltersCubit
+                                            .propertyTypeList
+                                            .map((e) => e.lookupKey)
+                                            .toList(),
+                                        halfYearDuration:
+                                            valuesFiltersCubit.periodTime.id ==
+                                                    2
+                                                ? listEquals(
+                                                        getissueDateQuarterList(
+                                                            valuesFiltersCubit
+                                                                .periodTime.id),
+                                                        [1, 2])
+                                                    ? 1
+                                                    : 2
+                                                : null,
+                                        offset: 0,
+                                        //         streetNo: streetController.text.isEmpty ? null
+                                        //            : int.parse(streetController.text),
+                                      );
+                              Navigator.of(context).pop(true);
+                            }
+                          },
+                        ),
+                      );
                     },
-                    backgroundColor:
-                        instance<AppPreferences>().getTheme().brightness ==
-                                Brightness.light
-                            ? ColorManager.porcelain
-                            : ColorManager.greyCloud,
                   ),
-                ),
-              ]),
+                  SizedBox(width: AppSizeW.s8),
+                  Expanded(
+                    child: CustomElevatedButton(
+                      isPrimary: false,
+                      title: AppStrings().cancel,
+                      onPress: () {
+                        Navigator.of(context).pop();
+                      },
+                      backgroundColor:
+                          instance<AppPreferences>().getTheme().brightness ==
+                                  Brightness.light
+                              ? ColorManager.porcelain
+                              : ColorManager.greyCloud,
+                    ),
+                  ),
+                ]),
+              ),
               SizedBox(height: AppSizeW.s12),
             ],
           ),

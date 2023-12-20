@@ -337,12 +337,13 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
 class _TabContainerShimmer extends StatelessWidget {
   final int tabIndex;
   final String name;
-  final bool isDisabled;
+
+  // final bool isDisabled;
 
   const _TabContainerShimmer({
     required this.tabIndex,
     required this.name,
-    this.isDisabled = false,
+    // this.isDisabled = false,
   });
 
   @override
@@ -354,9 +355,11 @@ class _TabContainerShimmer extends StatelessWidget {
       decoration: BoxDecoration(
           color: context.read<TopvaluesBloc>().index == tabIndex
               ? ColorManager.primary
-              : isDisabled
-                  ? ColorManager.lightSilver.withOpacity(0.5)
-                  : Colors.transparent,
+              :
+              // isDisabled
+              //         ? ColorManager.lightSilver.withOpacity(0.5)
+              //         :
+              Colors.transparent,
           border: Border.all(
             color: ColorManager.silver,
             width: AppSizeH.s1,
@@ -372,9 +375,11 @@ class _TabContainerShimmer extends StatelessWidget {
             : Theme.of(context).textTheme.headlineMedium!.copyWith(
                   fontSize: AppSizeSp.s12,
                   decoration: TextDecoration.none,
-                  color: isDisabled
-                      ? ColorManager.cloudyGrey.withOpacity(0.5)
-                      : null,
+                  color:
+                      // isDisabled
+                      //     ? ColorManager.cloudyGrey.withOpacity(0.5)
+                      //     :
+                      null,
                 ),
       ),
     );
@@ -385,13 +390,12 @@ class _TabContainer extends StatelessWidget {
   final int indexTab;
   final String name;
   final Function onPress;
-  final bool isDisabled;
 
   const _TabContainer({
     required this.indexTab,
     required this.name,
     required this.onPress,
-    this.isDisabled = false,
+    // this.isDisabled = false,
   });
 
   @override
@@ -411,9 +415,7 @@ class _TabContainer extends StatelessWidget {
         decoration: BoxDecoration(
             color: context.read<TopvaluesBloc>().index == indexTab
                 ? ColorManager.primary
-                : isDisabled
-                    ? ColorManager.lightSilver.withOpacity(0.5)
-                    : Colors.transparent,
+                : Colors.transparent,
             border: Border.all(
               color: ColorManager.silver,
               width: AppSizeH.s1,
@@ -427,9 +429,7 @@ class _TabContainer extends StatelessWidget {
                   .displayMedium!
                   .copyWith(fontSize: AppSizeSp.s12)
               : Theme.of(context).textTheme.headlineMedium!.copyWith(
-                    color: isDisabled
-                        ? ColorManager.cloudyGrey.withOpacity(0.5)
-                        : null,
+                    color: null,
                     fontSize: AppSizeSp.s12,
                     decoration: TextDecoration.none,
                   ),

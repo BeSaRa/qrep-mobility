@@ -8,7 +8,7 @@ class LoggedInUserCubit extends Cubit<bool> {
 
   LoggedInUserCubit(super.initialState, this.appPreferences);
 
-  UserModel inUser = UserModel();
+  UserModel inUser = const UserModel();
 
   void save(bool val) => emit(val);
 

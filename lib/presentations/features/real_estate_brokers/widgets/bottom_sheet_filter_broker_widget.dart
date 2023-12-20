@@ -134,44 +134,49 @@ class _BottomSheetFilterBrokerWidgetState
           ],
         ),
         SizedBox(height: AppSizeW.s30),
-        Row(children: [
-          BlocBuilder(
-            bloc: valuesFiltersCubit,
-            builder: (context, state) {
-              return Expanded(
-                child: CustomElevatedButton(
-                  isPrimary: true,
-                  title: AppStrings().search,
-                  onPress: () {
-                    context.read<LookUpBrokerBloc>().requestBroker =
-                        context.read<LookUpBrokerBloc>().requestBroker.copyWith(
-                              municipalityId:
-                                  valuesFiltersCubit.municapility.lookupKey,
-                              brokerCategoryId:
-                                  valuesFiltersCubit.brokerCategory.lookupKey,
-                            );
-                    Navigator.of(context).pop(true);
-                  },
-                ),
-              );
-            },
-          ),
-          SizedBox(width: AppSizeW.s8),
-          Expanded(
-            child: CustomElevatedButton(
-              isPrimary: false,
-              title: AppStrings().cancel,
-              onPress: () {
-                Navigator.of(context).pop();
+        Directionality(
+          textDirection: TextDirection.rtl,
+          child: Row(children: [
+            BlocBuilder(
+              bloc: valuesFiltersCubit,
+              builder: (context, state) {
+                return Expanded(
+                  child: CustomElevatedButton(
+                    isPrimary: true,
+                    title: AppStrings().search,
+                    onPress: () {
+                      context.read<LookUpBrokerBloc>().requestBroker = context
+                          .read<LookUpBrokerBloc>()
+                          .requestBroker
+                          .copyWith(
+                            municipalityId:
+                                valuesFiltersCubit.municapility.lookupKey,
+                            brokerCategoryId:
+                                valuesFiltersCubit.brokerCategory.lookupKey,
+                          );
+                      Navigator.of(context).pop(true);
+                    },
+                  ),
+                );
               },
-              backgroundColor:
-                  instance<AppPreferences>().getTheme().brightness ==
-                          Brightness.light
-                      ? ColorManager.porcelain
-                      : ColorManager.greyCloud,
             ),
-          ),
-        ]),
+            SizedBox(width: AppSizeW.s8),
+            Expanded(
+              child: CustomElevatedButton(
+                isPrimary: false,
+                title: AppStrings().cancel,
+                onPress: () {
+                  Navigator.of(context).pop();
+                },
+                backgroundColor:
+                    instance<AppPreferences>().getTheme().brightness ==
+                            Brightness.light
+                        ? ColorManager.porcelain
+                        : ColorManager.greyCloud,
+              ),
+            ),
+          ]),
+        ),
         SizedBox(height: AppSizeW.s23),
       ],
     );

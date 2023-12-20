@@ -109,7 +109,7 @@ class TranslationsAssetsLoader extends AssetLoader {
 
     ColoredPrinter.printColored(
         'Number of extra keys: $extraKeys', AnsiColor.cyan);
-    print("----------------------------------------------------------");
+    // print("----------------------------------------------------------");
     ColoredPrinter.printColored(
         'Number of different values for existing keys: $differentValues',
         AnsiColor.cyan);
@@ -120,7 +120,8 @@ class TranslationsAssetsLoader extends AssetLoader {
   /// Returns `true` if the app is newly installed or if the last update is before [_updateInterval],
   /// indicating the need for an update; otherwise, returns `false`.
   Future<bool> shouldUpdate() async {
-    DateTime? lastUpdate = await appPreferences.getLocalizationsLastUpdate()?? DateTime.now();
+    DateTime? lastUpdate =
+        await appPreferences.getLocalizationsLastUpdate() ?? DateTime.now();
     return lastUpdate.isBefore(_updateInterval);
   }
 
