@@ -69,7 +69,7 @@ abstract class RentLookupResponse with _$RentLookupResponse {
       RentLookupModel(arName: 'نصف سنوي', id: 2, enName: 'Half Yearly'),
       RentLookupModel(arName: 'ربع سنوي ', id: 3, enName: 'Quarter Yearly'),
       RentLookupModel(arName: 'شهري', id: 4, enName: 'Monthly'),
-      RentLookupModel(arName: ' فترة محددة', id: 5, enName: 'Duration'),
+      // RentLookupModel(arName: ' فترة محددة', id: 5, enName: 'Duration'),
     ])
     List<RentLookupModel> periodTime,
     @Default([

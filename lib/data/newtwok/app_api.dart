@@ -4,6 +4,7 @@ import 'package:ebla/domain/models/requests/broker_requests/request_broker_value
 import 'package:retrofit/retrofit.dart';
 
 import '../../app/constants.dart';
+import '../../domain/models/cms_models/app_settings/app_settings.dart';
 import '../../domain/models/cms_models/user/requests/update_info_model.dart';
 import '../../domain/models/models.dart';
 
@@ -203,6 +204,7 @@ abstract class TranslationsServiceClient {
 //---------------------------------Profile-------------------------------------
   @GET(EndPoints.userInfo)
   Future<HttpResponse<UserResponse>> getUserInfo();
+
   @PATCH(EndPoints.updateUserInfo)
   Future<HttpResponse<UserResponse>> updateUserInfo(
       @Path("id") String id, @Body() RequestUpdateInfoModel requestUpdateInfo);
@@ -238,4 +240,8 @@ abstract class TranslationsServiceClient {
   //Main menu
   @GET(EndPoints.mainMenu)
   Future<HttpResponse<MainMenuResponse>> mainMenu();
+
+//appSettings
+  @GET(EndPoints.appSettings)
+  Future<HttpResponse<AppSettingsResponse>> appSettings();
 }

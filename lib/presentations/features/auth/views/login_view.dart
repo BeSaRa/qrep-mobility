@@ -231,13 +231,14 @@ class _LoginViewState extends State<LoginView> {
                         Switch(
                           // This bool value toggles the switch.
                           value: light,
-                          activeColor: Theme.of(context).colorScheme.primary,
+                          activeColor: Theme.of(context).primaryColor,
                           activeTrackColor:
                               Theme.of(context).colorScheme.onTertiaryContainer,
-                          inactiveThumbColor: Theme.of(context).primaryColor,
-                          inactiveTrackColor:
+                          inactiveThumbColor:
                               Theme.of(context).colorScheme.onTertiary,
-
+                          inactiveTrackColor:
+                              Theme.of(context).colorScheme.onTertiaryContainer,
+                          // trackOutlineColor: Theme.of(context).primaryColor,
                           onChanged: (bool value) {
                             if (value == true) {
                               haveFaceId();

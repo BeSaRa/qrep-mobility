@@ -1,0 +1,479 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'app_settings.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+ProjectDataResponse _$ProjectDataResponseFromJson(Map<String, dynamic> json) {
+  return _ProjectDataResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProjectDataResponse {
+  ProjectResponse get project => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProjectDataResponseCopyWith<ProjectDataResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProjectDataResponseCopyWith<$Res> {
+  factory $ProjectDataResponseCopyWith(
+          ProjectDataResponse value, $Res Function(ProjectDataResponse) then) =
+      _$ProjectDataResponseCopyWithImpl<$Res, ProjectDataResponse>;
+  @useResult
+  $Res call({ProjectResponse project});
+
+  $ProjectResponseCopyWith<$Res> get project;
+}
+
+/// @nodoc
+class _$ProjectDataResponseCopyWithImpl<$Res, $Val extends ProjectDataResponse>
+    implements $ProjectDataResponseCopyWith<$Res> {
+  _$ProjectDataResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? project = null,
+  }) {
+    return _then(_value.copyWith(
+      project: null == project
+          ? _value.project
+          : project // ignore: cast_nullable_to_non_nullable
+              as ProjectResponse,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProjectResponseCopyWith<$Res> get project {
+    return $ProjectResponseCopyWith<$Res>(_value.project, (value) {
+      return _then(_value.copyWith(project: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$ProjectDataResponseImplCopyWith<$Res>
+    implements $ProjectDataResponseCopyWith<$Res> {
+  factory _$$ProjectDataResponseImplCopyWith(_$ProjectDataResponseImpl value,
+          $Res Function(_$ProjectDataResponseImpl) then) =
+      __$$ProjectDataResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({ProjectResponse project});
+
+  @override
+  $ProjectResponseCopyWith<$Res> get project;
+}
+
+/// @nodoc
+class __$$ProjectDataResponseImplCopyWithImpl<$Res>
+    extends _$ProjectDataResponseCopyWithImpl<$Res, _$ProjectDataResponseImpl>
+    implements _$$ProjectDataResponseImplCopyWith<$Res> {
+  __$$ProjectDataResponseImplCopyWithImpl(_$ProjectDataResponseImpl _value,
+      $Res Function(_$ProjectDataResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? project = null,
+  }) {
+    return _then(_$ProjectDataResponseImpl(
+      project: null == project
+          ? _value.project
+          : project // ignore: cast_nullable_to_non_nullable
+              as ProjectResponse,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProjectDataResponseImpl implements _ProjectDataResponse {
+  const _$ProjectDataResponseImpl({this.project = const ProjectResponse()});
+
+  factory _$ProjectDataResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectDataResponseImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final ProjectResponse project;
+
+  @override
+  String toString() {
+    return 'ProjectDataResponse(project: $project)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectDataResponseImpl &&
+            (identical(other.project, project) || other.project == project));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, project);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectDataResponseImplCopyWith<_$ProjectDataResponseImpl> get copyWith =>
+      __$$ProjectDataResponseImplCopyWithImpl<_$ProjectDataResponseImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProjectDataResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProjectDataResponse implements ProjectDataResponse {
+  const factory _ProjectDataResponse({final ProjectResponse project}) =
+      _$ProjectDataResponseImpl;
+
+  factory _ProjectDataResponse.fromJson(Map<String, dynamic> json) =
+      _$ProjectDataResponseImpl.fromJson;
+
+  @override
+  ProjectResponse get project;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProjectDataResponseImplCopyWith<_$ProjectDataResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+AppSettingsResponse _$AppSettingsResponseFromJson(Map<String, dynamic> json) {
+  return _AppSettingsResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AppSettingsResponse {
+  ProjectDataResponse get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AppSettingsResponseCopyWith<AppSettingsResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AppSettingsResponseCopyWith<$Res> {
+  factory $AppSettingsResponseCopyWith(
+          AppSettingsResponse value, $Res Function(AppSettingsResponse) then) =
+      _$AppSettingsResponseCopyWithImpl<$Res, AppSettingsResponse>;
+  @useResult
+  $Res call({ProjectDataResponse data});
+
+  $ProjectDataResponseCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class _$AppSettingsResponseCopyWithImpl<$Res, $Val extends AppSettingsResponse>
+    implements $AppSettingsResponseCopyWith<$Res> {
+  _$AppSettingsResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as ProjectDataResponse,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProjectDataResponseCopyWith<$Res> get data {
+    return $ProjectDataResponseCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$AppSettingsResponseImplCopyWith<$Res>
+    implements $AppSettingsResponseCopyWith<$Res> {
+  factory _$$AppSettingsResponseImplCopyWith(_$AppSettingsResponseImpl value,
+          $Res Function(_$AppSettingsResponseImpl) then) =
+      __$$AppSettingsResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({ProjectDataResponse data});
+
+  @override
+  $ProjectDataResponseCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$$AppSettingsResponseImplCopyWithImpl<$Res>
+    extends _$AppSettingsResponseCopyWithImpl<$Res, _$AppSettingsResponseImpl>
+    implements _$$AppSettingsResponseImplCopyWith<$Res> {
+  __$$AppSettingsResponseImplCopyWithImpl(_$AppSettingsResponseImpl _value,
+      $Res Function(_$AppSettingsResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$AppSettingsResponseImpl(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as ProjectDataResponse,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AppSettingsResponseImpl implements _AppSettingsResponse {
+  _$AppSettingsResponseImpl({this.data = const ProjectDataResponse()});
+
+  factory _$AppSettingsResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AppSettingsResponseImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final ProjectDataResponse data;
+
+  @override
+  String toString() {
+    return 'AppSettingsResponse(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AppSettingsResponseImpl &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AppSettingsResponseImplCopyWith<_$AppSettingsResponseImpl> get copyWith =>
+      __$$AppSettingsResponseImplCopyWithImpl<_$AppSettingsResponseImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AppSettingsResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _AppSettingsResponse implements AppSettingsResponse {
+  factory _AppSettingsResponse({final ProjectDataResponse data}) =
+      _$AppSettingsResponseImpl;
+
+  factory _AppSettingsResponse.fromJson(Map<String, dynamic> json) =
+      _$AppSettingsResponseImpl.fromJson;
+
+  @override
+  ProjectDataResponse get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$AppSettingsResponseImplCopyWith<_$AppSettingsResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ProjectResponse _$ProjectResponseFromJson(Map<String, dynamic> json) {
+  return _ProjectResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProjectResponse {
+  String get ios_version => throw _privateConstructorUsedError;
+  String get android_version => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProjectResponseCopyWith<ProjectResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProjectResponseCopyWith<$Res> {
+  factory $ProjectResponseCopyWith(
+          ProjectResponse value, $Res Function(ProjectResponse) then) =
+      _$ProjectResponseCopyWithImpl<$Res, ProjectResponse>;
+  @useResult
+  $Res call({String ios_version, String android_version});
+}
+
+/// @nodoc
+class _$ProjectResponseCopyWithImpl<$Res, $Val extends ProjectResponse>
+    implements $ProjectResponseCopyWith<$Res> {
+  _$ProjectResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? ios_version = null,
+    Object? android_version = null,
+  }) {
+    return _then(_value.copyWith(
+      ios_version: null == ios_version
+          ? _value.ios_version
+          : ios_version // ignore: cast_nullable_to_non_nullable
+              as String,
+      android_version: null == android_version
+          ? _value.android_version
+          : android_version // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProjectResponseImplCopyWith<$Res>
+    implements $ProjectResponseCopyWith<$Res> {
+  factory _$$ProjectResponseImplCopyWith(_$ProjectResponseImpl value,
+          $Res Function(_$ProjectResponseImpl) then) =
+      __$$ProjectResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String ios_version, String android_version});
+}
+
+/// @nodoc
+class __$$ProjectResponseImplCopyWithImpl<$Res>
+    extends _$ProjectResponseCopyWithImpl<$Res, _$ProjectResponseImpl>
+    implements _$$ProjectResponseImplCopyWith<$Res> {
+  __$$ProjectResponseImplCopyWithImpl(
+      _$ProjectResponseImpl _value, $Res Function(_$ProjectResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? ios_version = null,
+    Object? android_version = null,
+  }) {
+    return _then(_$ProjectResponseImpl(
+      ios_version: null == ios_version
+          ? _value.ios_version
+          : ios_version // ignore: cast_nullable_to_non_nullable
+              as String,
+      android_version: null == android_version
+          ? _value.android_version
+          : android_version // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProjectResponseImpl implements _ProjectResponse {
+  const _$ProjectResponseImpl(
+      {this.ios_version = '', this.android_version = ''});
+
+  factory _$ProjectResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectResponseImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String ios_version;
+  @override
+  @JsonKey()
+  final String android_version;
+
+  @override
+  String toString() {
+    return 'ProjectResponse(ios_version: $ios_version, android_version: $android_version)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectResponseImpl &&
+            (identical(other.ios_version, ios_version) ||
+                other.ios_version == ios_version) &&
+            (identical(other.android_version, android_version) ||
+                other.android_version == android_version));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, ios_version, android_version);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectResponseImplCopyWith<_$ProjectResponseImpl> get copyWith =>
+      __$$ProjectResponseImplCopyWithImpl<_$ProjectResponseImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProjectResponseImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProjectResponse implements ProjectResponse {
+  const factory _ProjectResponse(
+      {final String ios_version,
+      final String android_version}) = _$ProjectResponseImpl;
+
+  factory _ProjectResponse.fromJson(Map<String, dynamic> json) =
+      _$ProjectResponseImpl.fromJson;
+
+  @override
+  String get ios_version;
+  @override
+  String get android_version;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProjectResponseImplCopyWith<_$ProjectResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

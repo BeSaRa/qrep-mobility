@@ -145,8 +145,7 @@ _$RentLookupResponseImpl _$$RentLookupResponseImplFromJson(
             RentLookupModel(arName: 'نصف سنوي', id: 2, enName: 'Half Yearly'),
             RentLookupModel(
                 arName: 'ربع سنوي ', id: 3, enName: 'Quarter Yearly'),
-            RentLookupModel(arName: 'شهري', id: 4, enName: 'Monthly'),
-            RentLookupModel(arName: ' فترة محددة', id: 5, enName: 'Duration')
+            RentLookupModel(arName: 'شهري', id: 4, enName: 'Monthly')
           ],
       bedRooms: (json['bedRooms'] as List<dynamic>?)
               ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))

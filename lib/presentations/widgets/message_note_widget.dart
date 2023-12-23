@@ -42,7 +42,7 @@ class _MessageNoteWidgetState extends State<MessageNoteWidget> {
                   ImageAssets.dbNote,
                 ),
                 size: AppSizeW.s29,
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
               SizedBox(width: AppSizeW.s13),
               Expanded(

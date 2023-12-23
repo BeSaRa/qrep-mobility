@@ -1193,8 +1193,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
         RentLookupModel(arName: 'سنوي', id: 1, enName: 'Yearly'),
         RentLookupModel(arName: 'نصف سنوي', id: 2, enName: 'Half Yearly'),
         RentLookupModel(arName: 'ربع سنوي ', id: 3, enName: 'Quarter Yearly'),
-        RentLookupModel(arName: 'شهري', id: 4, enName: 'Monthly'),
-        RentLookupModel(arName: ' فترة محددة', id: 5, enName: 'Duration')
+        RentLookupModel(arName: 'شهري', id: 4, enName: 'Monthly')
       ],
       final List<RentLookupModel> bedRooms = const [
         RentLookupModel(arName: 'استوديو', id: 6, enName: 'studio'),

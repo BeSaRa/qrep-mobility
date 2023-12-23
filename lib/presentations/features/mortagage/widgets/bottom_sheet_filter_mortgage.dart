@@ -47,7 +47,7 @@ class _BottomSheetFilterMortgageWidgetState
           values.add(element.value[0]);
         }
         return values;
-    //       break;
+      //       break;
       case 4:
         return [1, 2, 3, 4];
       default:
@@ -55,8 +55,10 @@ class _BottomSheetFilterMortgageWidgetState
     }
   }
 
-  Widget getPeriodTimeById(int id,
-      RentLookupResponse success,) {
+  Widget getPeriodTimeById(
+    int id,
+    RentLookupResponse success,
+  ) {
     switch (id) {
       case 1:
         valuesFiltersCubit.pickerDateRange = null;
@@ -72,9 +74,9 @@ class _BottomSheetFilterMortgageWidgetState
             valuesFiltersCubit.month = const PeriodTimeDetails();
             valuesFiltersCubit.quarterYear.clear();
             valuesFiltersCubit.periodTimeHalfDetails ==
-                const PeriodTimeDetails()
+                    const PeriodTimeDetails()
                 ? valuesFiltersCubit.periodTimeHalfDetails =
-                success.halfYearList.first
+                    success.halfYearList.first
                 : null;
             return SingleDropDownValue<PeriodTimeDetails>(
                 onChanged: (halfYear) {
@@ -91,12 +93,9 @@ class _BottomSheetFilterMortgageWidgetState
             valuesFiltersCubit.pickerDateRange = null;
             valuesFiltersCubit.month = const PeriodTimeDetails();
             valuesFiltersCubit.periodTimeHalfDetails =
-            const PeriodTimeDetails();
+                const PeriodTimeDetails();
 
-            if (context
-                .read<MortgageBloc>()
-                .requestMeanValue
-                .periodId != 3) {
+            if (context.read<MortgageBloc>().requestMeanValue.periodId != 3) {
               valuesFiltersCubit.quarterYear.clear();
               valuesFiltersCubit.quarterYear.add(success.quarterYearList.first);
             } else {
@@ -107,10 +106,10 @@ class _BottomSheetFilterMortgageWidgetState
                   ?.quarterYearList
                   .forEach((element) {
                 if (context
-                    .read<MortgageBloc>()
-                    .requestMeanValue
-                    .issueDateQuarterList
-                    ?.contains(element.value[0]) ??
+                        .read<MortgageBloc>()
+                        .requestMeanValue
+                        .issueDateQuarterList
+                        ?.contains(element.value[0]) ??
                     false) {
                   valuesFiltersCubit.quarterYear.add(element);
                 }
@@ -129,22 +128,19 @@ class _BottomSheetFilterMortgageWidgetState
           builder: (context, state) {
             valuesFiltersCubit.pickerDateRange = null;
             valuesFiltersCubit.periodTimeHalfDetails =
-            const PeriodTimeDetails();
+                const PeriodTimeDetails();
             valuesFiltersCubit.quarterYear.clear();
             valuesFiltersCubit.months = getAllMonthsInYear(context);
             if (valuesFiltersCubit.month == const PeriodTimeDetails()) {
-              context
-                  .read<MortgageBloc>()
-                  .requestMeanValue
-                  .issueDateEndMonth !=
-                  null
+              context.read<MortgageBloc>().requestMeanValue.issueDateEndMonth !=
+                      null
                   ? valuesFiltersCubit.month = valuesFiltersCubit.months
-                  .firstWhere((element) =>
-              element.value[0] ==
-                  context
-                      .read<MortgageBloc>()
-                      .requestMeanValue
-                      .issueDateEndMonth)
+                      .firstWhere((element) =>
+                          element.value[0] ==
+                          context
+                              .read<MortgageBloc>()
+                              .requestMeanValue
+                              .issueDateEndMonth)
                   : valuesFiltersCubit.month = valuesFiltersCubit.months.first;
             }
 
@@ -162,7 +158,7 @@ class _BottomSheetFilterMortgageWidgetState
           builder: (context, state) {
             valuesFiltersCubit.month = const PeriodTimeDetails();
             valuesFiltersCubit.periodTimeHalfDetails =
-            const PeriodTimeDetails();
+                const PeriodTimeDetails();
             valuesFiltersCubit.quarterYear.clear();
             return Container(
               alignment: AlignmentDirectional.centerStart,
@@ -176,8 +172,8 @@ class _BottomSheetFilterMortgageWidgetState
               child: InkWell(
                 onTap: () async {
                   valuesFiltersCubit.pickerDateRange =
-                  await showDatePickerPopup(
-                      context, valuesFiltersCubit.pickerDateRange);
+                      await showDatePickerPopup(
+                          context, valuesFiltersCubit.pickerDateRange);
                   setState(() {});
                 },
                 child: Row(
@@ -187,23 +183,13 @@ class _BottomSheetFilterMortgageWidgetState
                       child: FittedBox(
                         child: valuesFiltersCubit.pickerDateRange != null
                             ? Text(
-                          '${valuesFiltersCubit.pickerDateRange?.startDate
-                              ?.toLocal()
-                              .toFormattedString()}---${valuesFiltersCubit
-                              .pickerDateRange?.endDate?.toLocal()
-                              .toFormattedString()}',
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .labelSmall,
-                        )
+                                '${valuesFiltersCubit.pickerDateRange?.startDate?.toLocal().toFormattedString()}---${valuesFiltersCubit.pickerDateRange?.endDate?.toLocal().toFormattedString()}',
+                                style: Theme.of(context).textTheme.labelSmall,
+                              )
                             : Text(
-                          AppStrings().chooseDate,
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .labelSmall,
-                        ),
+                                AppStrings().chooseDate,
+                                style: Theme.of(context).textTheme.labelSmall,
+                              ),
                       ),
                     ),
                     SizedBox(width: AppSizeW.s4),
@@ -227,18 +213,13 @@ class _BottomSheetFilterMortgageWidgetState
     validatorToAreaCubit = ValidatorCubit(0);
     //Year
     valuesFiltersCubit = ValuesFiltersCubit(const RentLookupModel());
-    generateYears(2019, DateTime
-        .now()
-        .year).forEach((element) {
+    generateYears(2006, DateTime.now().year).forEach((element) {
       valuesFiltersCubit.yearsLists.add(RentLookupModel(
           arName: element.toString(), id: element, enName: element.toString()));
     });
     List<RentLookupModel> listDistrictWithAll = [];
     listDistrictWithAll
-        .addAll(context
-        .read<LookupBloc>()
-        .lookUpMortgage
-        ?.districtList ?? []);
+        .addAll(context.read<LookupBloc>().lookUpMortgage?.districtList ?? []);
     if (!listDistrictWithAll.contains(const RentLookupModel(
         isActive: true,
         lookupKey: -1,
@@ -252,43 +233,25 @@ class _BottomSheetFilterMortgageWidgetState
           enName: "All",
           id: -1));
     }
-    context
-        .read<LookupBloc>()
-        .lookUpMortgage = context
+    context.read<LookupBloc>().lookUpMortgage = context
         .read<LookupBloc>()
         .lookUpMortgage
         ?.copyWith(districtList: listDistrictWithAll);
     //municipal and areaCode
     valuesFiltersCubit.municapility = getObjectByLookupKey(
-      context
-          .read<LookupBloc>()
-          .lookUpMortgage
-          ?.municipalityList ?? [],
-      context
-          .read<MortgageBloc>()
-          .requestMeanValue
-          .municipalityId ?? 1,
-    ) ??
+          context.read<LookupBloc>().lookUpMortgage?.municipalityList ?? [],
+          context.read<MortgageBloc>().requestMeanValue.municipalityId ?? 1,
+        ) ??
         const RentLookupModel();
     valuesFiltersCubit.zone = getObjectByLookupKey(
-      context
-          .read<LookupBloc>()
-          .lookUpMortgage
-          ?.districtList ?? [],
-      context
-          .read<MortgageBloc>()
-          .requestMeanValue
-          .areaCode
-          .toInt(),
-    ) ??
+          context.read<LookupBloc>().lookUpMortgage?.districtList ?? [],
+          context.read<MortgageBloc>().requestMeanValue.areaCode.toInt(),
+        ) ??
         const RentLookupModel();
     //Property and Purpose
     List<RentLookupModel> listPropertyWithAll = [];
     listPropertyWithAll.addAll(
-        context
-            .read<LookupBloc>()
-            .lookUpMortgage
-            ?.propertyTypeList ?? []);
+        context.read<LookupBloc>().lookUpMortgage?.propertyTypeList ?? []);
     if (!listPropertyWithAll.contains(const RentLookupModel(
         isActive: true,
         lookupKey: -1,
@@ -302,9 +265,7 @@ class _BottomSheetFilterMortgageWidgetState
           enName: "All",
           id: -1));
     }
-    context
-        .read<LookupBloc>()
-        .lookUpMortgage = context
+    context.read<LookupBloc>().lookUpMortgage = context
         .read<LookupBloc>()
         .lookUpMortgage
         ?.copyWith(propertyTypeList: listPropertyWithAll);
@@ -314,12 +275,9 @@ class _BottomSheetFilterMortgageWidgetState
         .propertyTypeList
         ?.forEach((element) {
       valuesFiltersCubit.propertyTypeList.add(getObjectByLookupKey(
-        context
-            .read<LookupBloc>()
-            .lookUpMortgage
-            ?.propertyTypeList ?? [],
-        element,
-      ) ??
+            context.read<LookupBloc>().lookUpMortgage?.propertyTypeList ?? [],
+            element,
+          ) ??
           const RentLookupModel());
     });
     context
@@ -328,103 +286,65 @@ class _BottomSheetFilterMortgageWidgetState
         .purposeList
         ?.forEach((element) {
       valuesFiltersCubit.rentPurposeList.add(getObjectByLookupKey(
-        context
-            .read<LookupBloc>()
-            .lookUpMortgage
-            ?.rentPurposeList ?? [],
-        element,
-      ) ??
+            context.read<LookupBloc>().lookUpMortgage?.rentPurposeList ?? [],
+            element,
+          ) ??
           const RentLookupModel());
     });
     //Year
     valuesFiltersCubit.year =
-    context
-        .read<MortgageBloc>()
-        .requestMeanValue
-        .issueDateYear != null
-        ? getObjectById(
-      valuesFiltersCubit.yearsLists,
-      context
-          .read<MortgageBloc>()
-          .requestMeanValue
-          .issueDateYear ??
-          DateTime
-              .now()
-              .year,
-    ) ??
-        valuesFiltersCubit.yearsLists.last
-        : valuesFiltersCubit.yearsLists.last;
+        context.read<MortgageBloc>().requestMeanValue.issueDateYear != null
+            ? getObjectById(
+                  valuesFiltersCubit.yearsLists,
+                  context.read<MortgageBloc>().requestMeanValue.issueDateYear ??
+                      DateTime.now().year,
+                ) ??
+                valuesFiltersCubit.yearsLists.last
+            : valuesFiltersCubit.yearsLists.last;
 
     //Period
     valuesFiltersCubit.periodTime = getObjectById(
-      context
-          .read<LookupBloc>()
-          .lookUpMortgage
-          ?.periodTime ?? [],
-      context
-          .read<MortgageBloc>()
-          .requestMeanValue
-          .periodId,
-    ) ??
+          context.read<LookupBloc>().lookUpMortgage?.periodTime ?? [],
+          context.read<MortgageBloc>().requestMeanValue.periodId,
+        ) ??
         const RentLookupModel();
 
     //Half Year
-    context
-        .read<MortgageBloc>()
-        .requestMeanValue
-        .periodId == 2
+    context.read<MortgageBloc>().requestMeanValue.periodId == 2
         ? valuesFiltersCubit.periodTimeHalfDetails = context
-        .read<LookupBloc>()
-        .lookUpMortgage
-        ?.halfYearList
-        .firstWhere((element) =>
-    context
-        .read<MortgageBloc>()
-        .requestMeanValue
-        .issueDateQuarterList ==
-        element.value) ??
-        const PeriodTimeDetails()
+                .read<LookupBloc>()
+                .lookUpMortgage
+                ?.halfYearList
+                .firstWhere((element) =>
+                    context
+                        .read<MortgageBloc>()
+                        .requestMeanValue
+                        .issueDateQuarterList ==
+                    element.value) ??
+            const PeriodTimeDetails()
         : null;
     //Period Time
     valuesFiltersCubit.pickerDateRange = (context
-        .read<MortgageBloc>()
-        .requestMeanValue
-        .issueDateFrom !=
-        null &&
-        context
-            .read<MortgageBloc>()
-            .requestMeanValue
-            .issueDateTo != null)
+                    .read<MortgageBloc>()
+                    .requestMeanValue
+                    .issueDateFrom !=
+                null &&
+            context.read<MortgageBloc>().requestMeanValue.issueDateTo != null)
         ? PickerDateRange(
-        DateTime.parse(
-            context
-                .read<MortgageBloc>()
-                .requestMeanValue
-                .issueDateFrom ??
-                ''),
-        DateTime.parse(
-            context
-                .read<MortgageBloc>()
-                .requestMeanValue
-                .issueDateTo ??
-                ''))
+            DateTime.parse(
+                context.read<MortgageBloc>().requestMeanValue.issueDateFrom ??
+                    ''),
+            DateTime.parse(
+                context.read<MortgageBloc>().requestMeanValue.issueDateTo ??
+                    ''))
         : null;
     //Unit
     valuesFiltersCubit.unit =
-        context
-            .read<MortgageBloc>()
-            .requestMeanValue
-            .unit;
+        context.read<MortgageBloc>().requestMeanValue.unit;
     //Range realEstateValue
-    if (context
-        .read<MortgageBloc>()
-        .requestMeanValue
-        .realEstateValueFrom !=
-        null &&
-        context
-            .read<MortgageBloc>()
-            .requestMeanValue
-            .realEstateValueTo !=
+    if (context.read<MortgageBloc>().requestMeanValue.realEstateValueFrom !=
+            null &&
+        context.read<MortgageBloc>().requestMeanValue.realEstateValueTo !=
             null) {
       valuesFiltersCubit.changeRangeRealEstateValue(RangeValues(
           context
@@ -439,47 +359,19 @@ class _BottomSheetFilterMortgageWidgetState
               .toDouble()));
     }
     //Range Area
-    if (context
-        .read<MortgageBloc>()
-        .requestMeanValue
-        .areaFrom != null &&
-        context
-            .read<MortgageBloc>()
-            .requestMeanValue
-            .areaTo != null) {
+    if (context.read<MortgageBloc>().requestMeanValue.areaFrom != null &&
+        context.read<MortgageBloc>().requestMeanValue.areaTo != null) {
       valuesFiltersCubit.changeRangeValuesArea(RangeValues(
-          context
-              .read<MortgageBloc>()
-              .requestMeanValue
-              .areaFrom!
-              .toDouble(),
-          context
-              .read<MortgageBloc>()
-              .requestMeanValue
-              .areaTo!
-              .toDouble()));
+          context.read<MortgageBloc>().requestMeanValue.areaFrom!.toDouble(),
+          context.read<MortgageBloc>().requestMeanValue.areaTo!.toDouble()));
     }
-    context
-        .read<MortgageBloc>()
-        .requestMeanValue
-        .areaFrom != null
+    context.read<MortgageBloc>().requestMeanValue.areaFrom != null
         ? areaValueFromController.text =
-        context
-            .read<MortgageBloc>()
-            .requestMeanValue
-            .areaFrom
-            .toString()
+            context.read<MortgageBloc>().requestMeanValue.areaFrom.toString()
         : null;
-    context
-        .read<MortgageBloc>()
-        .requestMeanValue
-        .areaTo != null
+    context.read<MortgageBloc>().requestMeanValue.areaTo != null
         ? areaValueToController.text =
-        context
-            .read<MortgageBloc>()
-            .requestMeanValue
-            .areaTo
-            .toString()
+            context.read<MortgageBloc>().requestMeanValue.areaTo.toString()
         : null;
     //Street
     // context.read<MortgageBloc>().requestMeanValue.streetNo != null
@@ -519,22 +411,22 @@ class _BottomSheetFilterMortgageWidgetState
                       //     ) ??
                       //     const RentLookupModel();
                       valuesFiltersCubit.municapility = getObjectByLookupKey(
-                        context
-                            .read<LookupBloc>()
-                            .lookUpMortgage
-                            ?.municipalityList ??
-                            [],
-                        4,
-                      ) ??
+                            context
+                                    .read<LookupBloc>()
+                                    .lookUpMortgage
+                                    ?.municipalityList ??
+                                [],
+                            4,
+                          ) ??
                           const RentLookupModel();
                       valuesFiltersCubit.zone = getObjectByLookupKey(
-                        context
-                            .read<LookupBloc>()
-                            .lookUpMortgage
-                            ?.districtList ??
-                            [],
-                        -1,
-                      ) ??
+                            context
+                                    .read<LookupBloc>()
+                                    .lookUpMortgage
+                                    ?.districtList ??
+                                [],
+                            -1,
+                          ) ??
                           const RentLookupModel();
                       valuesFiltersCubit.realEstateValueFrom = null;
                       valuesFiltersCubit.realEstateValueTo = null;
@@ -542,36 +434,36 @@ class _BottomSheetFilterMortgageWidgetState
                       valuesFiltersCubit.year =
                           valuesFiltersCubit.yearsLists.last;
                       valuesFiltersCubit.periodTime = getObjectById(
-                        context
-                            .read<LookupBloc>()
-                            .lookUpMortgage
-                            ?.periodTime ??
-                            [],
-                        1,
-                      ) ??
+                            context
+                                    .read<LookupBloc>()
+                                    .lookUpMortgage
+                                    ?.periodTime ??
+                                [],
+                            1,
+                          ) ??
                           const RentLookupModel();
                       valuesFiltersCubit.rentPurposeList.clear();
                       valuesFiltersCubit.rentPurposeList
                           .add(getObjectByLookupKey(
-                        context
-                            .read<LookupBloc>()
-                            .lookUpMortgage
-                            ?.rentPurposeList ??
-                            [],
-                        -1,
-                      ) ??
-                          const RentLookupModel());
+                                context
+                                        .read<LookupBloc>()
+                                        .lookUpMortgage
+                                        ?.rentPurposeList ??
+                                    [],
+                                -1,
+                              ) ??
+                              const RentLookupModel());
                       valuesFiltersCubit.propertyTypeList.clear();
                       valuesFiltersCubit.propertyTypeList
                           .add(getObjectByLookupKey(
-                        context
-                            .read<LookupBloc>()
-                            .lookUpMortgage
-                            ?.propertyTypeList ??
-                            [],
-                        -1,
-                      ) ??
-                          const RentLookupModel());
+                                context
+                                        .read<LookupBloc>()
+                                        .lookUpMortgage
+                                        ?.propertyTypeList ??
+                                    [],
+                                -1,
+                              ) ??
+                              const RentLookupModel());
 
                       valuesFiltersCubit.changeUnit(2);
                       // valuesFiltersCubit.unit = 2;
@@ -638,13 +530,9 @@ class _BottomSheetFilterMortgageWidgetState
                         Text(
                           AppStrings().reset,
                           style:
-                          Theme
-                              .of(context)
-                              .textTheme
-                              .labelSmall!
-                              .copyWith(
-                            color: ColorManager.golden,
-                          ),
+                              Theme.of(context).textTheme.labelSmall!.copyWith(
+                                    color: ColorManager.golden,
+                                  ),
                         ),
                       ],
                     ),
@@ -661,10 +549,7 @@ class _BottomSheetFilterMortgageWidgetState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(AppStrings().municipal,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .labelMedium),
+                            style: Theme.of(context).textTheme.labelMedium),
                         // const SingleDropDownValue(),
                         BlocBuilder(
                           bloc: valuesFiltersCubit,
@@ -675,16 +560,16 @@ class _BottomSheetFilterMortgageWidgetState
                                   valuesFiltersCubit
                                       .changeMunicapility(municapility!);
                                   valuesFiltersCubit.changeZone(context
-                                      .read<LookupBloc>()
-                                      .lookUpMortgage
-                                      ?.zoneList
-                                      .first ??
+                                          .read<LookupBloc>()
+                                          .lookUpMortgage
+                                          ?.zoneList
+                                          .first ??
                                       const RentLookupModel());
                                 },
                                 list: context
-                                    .read<LookupBloc>()
-                                    .lookUpMortgage
-                                    ?.municipalityList ??
+                                        .read<LookupBloc>()
+                                        .lookUpMortgage
+                                        ?.municipalityList ??
                                     []);
                           },
                         ),
@@ -699,10 +584,7 @@ class _BottomSheetFilterMortgageWidgetState
                       children: [
                         Text(
                           AppStrings().zone,
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .labelMedium,
+                          style: Theme.of(context).textTheme.labelMedium,
                         ),
                         BlocBuilder(
                           bloc: valuesFiltersCubit,
@@ -715,9 +597,9 @@ class _BottomSheetFilterMortgageWidgetState
                                 list: filterDataBymunicipalityId(
                                     valuesFiltersCubit.municapility.lookupKey,
                                     context
-                                        .read<LookupBloc>()
-                                        .lookUpMortgage
-                                        ?.districtList ??
+                                            .read<LookupBloc>()
+                                            .lookUpMortgage
+                                            ?.districtList ??
                                         []));
                           },
                         ),
@@ -735,10 +617,7 @@ class _BottomSheetFilterMortgageWidgetState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(AppStrings().propertyType,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .labelMedium),
+                            style: Theme.of(context).textTheme.labelMedium),
                         // const SingleDropDownValue(),
                         BlocProvider.value(
                           value: valuesFiltersCubit,
@@ -750,11 +629,11 @@ class _BottomSheetFilterMortgageWidgetState
                                 // selectedValue:
                                 //     valuesFiltersCubit.propertyType,
                                 selectedItems:
-                                valuesFiltersCubit.propertyTypeList,
+                                    valuesFiltersCubit.propertyTypeList,
                                 list: context
-                                    .read<LookupBloc>()
-                                    .lookUpMortgage
-                                    ?.propertyTypeList ??
+                                        .read<LookupBloc>()
+                                        .lookUpMortgage
+                                        ?.propertyTypeList ??
                                     [],
                               );
                             },
@@ -806,10 +685,7 @@ class _BottomSheetFilterMortgageWidgetState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(AppStrings().durationDetails,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .labelMedium),
+                            style: Theme.of(context).textTheme.labelMedium),
                         // const SingleDropDownValue(),
                         Row(
                           children: [
@@ -841,10 +717,7 @@ class _BottomSheetFilterMortgageWidgetState
                       children: [
                         Text(
                           AppStrings().duration,
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .labelMedium,
+                          style: Theme.of(context).textTheme.labelMedium,
                         ),
                         BlocBuilder(
                           bloc: valuesFiltersCubit,
@@ -857,9 +730,9 @@ class _BottomSheetFilterMortgageWidgetState
                                 },
                                 value: valuesFiltersCubit.periodTime,
                                 list: context
-                                    .read<LookupBloc>()
-                                    .lookUpMortgage
-                                    ?.periodTime ??
+                                        .read<LookupBloc>()
+                                        .lookUpMortgage
+                                        ?.periodTime ??
                                     []);
                           },
                         ),
@@ -892,9 +765,7 @@ class _BottomSheetFilterMortgageWidgetState
                       return Expanded(
                         child: getPeriodTimeById(
                           valuesFiltersCubit.periodTime.id,
-                          context
-                              .read<LookupBloc>()
-                              .lookUpMortgage ??
+                          context.read<LookupBloc>().lookUpMortgage ??
                               const RentLookupResponse(),
                         ),
                       );
@@ -969,12 +840,8 @@ class _BottomSheetFilterMortgageWidgetState
                       // mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                            "${AppStrings().areaRangeValue} (${AppStrings()
-                                .from})",
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .labelMedium),
+                            "${AppStrings().areaRangeValue} (${AppStrings().from})",
+                            style: Theme.of(context).textTheme.labelMedium),
                         Row(
                           children: [
                             BlocBuilder(
@@ -982,111 +849,94 @@ class _BottomSheetFilterMortgageWidgetState
                               builder: (context, state) {
                                 return Expanded(
                                     child: BlocBuilder(
-                                      bloc: valuesFiltersCubit,
-                                      builder: (context, state) {
-                                        return Column(
-                                          crossAxisAlignment:
+                                  bloc: valuesFiltersCubit,
+                                  builder: (context, state) {
+                                    return Column(
+                                      crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                          children: [
-                                            TextFilterWidget(
-                                              inputFormatters: [
-                                                LengthLimitingTextInputFormatter(
-                                                    context
-                                                        .read<LookupBloc>()
-                                                        .lookUpMortgage
-                                                        ?.maxParams[0]
-                                                        .maxVal
-                                                        .toString()
-                                                        .length),
-                                                FilteringTextInputFormatter
-                                                    .allow(
-                                                    RegExp(r'^[1-9]\d*')),
-                                              ],
-                                              autovalidateMode: AutovalidateMode
-                                                  .onUserInteraction,
-                                              hintText:
-                                              '${context
-                                                  .read<LookupBloc>()
-                                                  .lookUpMortgage
-                                                  ?.maxParams[0].minVal}',
-                                              controller: areaValueFromController,
-                                              validator: (value) {
-                                                validatorFromAreaCubit
-                                                    .validator(
-                                                    value,
-                                                    context
+                                      children: [
+                                        TextFilterWidget(
+                                          inputFormatters: [
+                                            LengthLimitingTextInputFormatter(
+                                                context
+                                                    .read<LookupBloc>()
+                                                    .lookUpMortgage
+                                                    ?.maxParams[0]
+                                                    .maxVal
+                                                    .toString()
+                                                    .length),
+                                            FilteringTextInputFormatter.allow(
+                                                RegExp(r'^[1-9]\d*')),
+                                          ],
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
+                                          hintText:
+                                              '${context.read<LookupBloc>().lookUpMortgage?.maxParams[0].minVal}',
+                                          controller: areaValueFromController,
+                                          validator: (value) {
+                                            validatorFromAreaCubit.validator(
+                                                value,
+                                                context
                                                         .read<LookupBloc>()
                                                         .lookUpMortgage
                                                         ?.maxParams[0]
                                                         .maxVal ??
-                                                        0,
-                                                    context
+                                                    0,
+                                                context
                                                         .read<LookupBloc>()
                                                         .lookUpMortgage
                                                         ?.maxParams[0]
                                                         .minVal ??
-                                                        0,
-                                                    areaValueToController.text);
-                                                return validatorFromAreaCubit
-                                                    .state !=
+                                                    0,
+                                                areaValueToController.text);
+                                            return validatorFromAreaCubit
+                                                        .state !=
                                                     0
-                                                    ? ""
-                                                    : null;
-                                              },
-                                            ),
-                                            validatorFromAreaCubit.state == 3
-                                                ? Text(
+                                                ? ""
+                                                : null;
+                                          },
+                                        ),
+                                        validatorFromAreaCubit.state == 3
+                                            ? Text(
                                                 AppStrings()
                                                     .maxValueValidate
                                                     .tr(args: [
                                                   '(${AppStrings().to})'
                                                 ]),
-                                                style: Theme
-                                                    .of(context)
+                                                style: Theme.of(context)
                                                     .textTheme
                                                     .bodySmall!
                                                     .copyWith(
-                                                  color: ColorManager.red,
-                                                ))
-                                                : validatorFromAreaCubit
-                                                .state == 2
+                                                      color: ColorManager.red,
+                                                    ))
+                                            : validatorFromAreaCubit.state == 2
                                                 ? Text(
-                                                "${AppStrings()
-                                                    .maxValue}:${context
-                                                    .read<LookupBloc>()
-                                                    .lookUpMortgage
-                                                    ?.maxParams[0].maxVal}",
-                                                style: Theme
-                                                    .of(context)
-                                                    .textTheme
-                                                    .bodySmall!
-                                                    .copyWith(
-                                                  color:
-                                                  ColorManager.red,
-                                                ))
+                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[0].maxVal}",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodySmall!
+                                                        .copyWith(
+                                                          color:
+                                                              ColorManager.red,
+                                                        ))
                                                 : validatorFromAreaCubit
-                                                .state ==
-                                                1
-                                                ? Text(
-                                                "${AppStrings()
-                                                    .minValue}:${context
-                                                    .read<LookupBloc>()
-                                                    .lookUpMortgage
-                                                    ?.maxParams[0].minVal}",
-                                                style: Theme
-                                                    .of(context)
-                                                    .textTheme
-                                                    .bodySmall!
-                                                    .copyWith(
-                                                  color:
-                                                  ColorManager
-                                                      .red,
-                                                ))
-                                                : const SizedBox()
-                                          ],
-                                        );
-                                      },
-                                    ));
+                                                            .state ==
+                                                        1
+                                                    ? Text(
+                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[0].minVal}",
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodySmall!
+                                                            .copyWith(
+                                                              color:
+                                                                  ColorManager
+                                                                      .red,
+                                                            ))
+                                                    : const SizedBox()
+                                      ],
+                                    );
+                                  },
+                                ));
                               },
                             ),
                           ],
@@ -1101,12 +951,8 @@ class _BottomSheetFilterMortgageWidgetState
                       // mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                            "${AppStrings().areaRangeValue} (${AppStrings()
-                                .to})",
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .labelMedium),
+                            "${AppStrings().areaRangeValue} (${AppStrings().to})",
+                            style: Theme.of(context).textTheme.labelMedium),
                         Row(
                           children: [
                             BlocBuilder(
@@ -1114,111 +960,93 @@ class _BottomSheetFilterMortgageWidgetState
                               builder: (context, state) {
                                 return Expanded(
                                     child: BlocBuilder(
-                                      bloc: valuesFiltersCubit,
-                                      builder: (context, state) {
-                                        return Column(
-                                          crossAxisAlignment:
+                                  bloc: valuesFiltersCubit,
+                                  builder: (context, state) {
+                                    return Column(
+                                      crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                          children: [
-                                            TextFilterWidget(
-                                              inputFormatters: [
-                                                LengthLimitingTextInputFormatter(
-                                                    context
-                                                        .read<LookupBloc>()
-                                                        .lookUpMortgage
-                                                        ?.maxParams[0]
-                                                        .maxVal
-                                                        .toString()
-                                                        .length),
-                                                FilteringTextInputFormatter
-                                                    .allow(
-                                                    RegExp(r'^[1-9]\d*')),
-                                              ],
-                                              autovalidateMode: AutovalidateMode
-                                                  .onUserInteraction,
-                                              hintText:
-                                              '${context
-                                                  .read<LookupBloc>()
-                                                  .lookUpMortgage
-                                                  ?.maxParams[0].maxVal}',
-                                              controller: areaValueToController,
-                                              validator: (value) {
-                                                validatorToAreaCubit.validator(
-                                                    value,
-                                                    context
+                                      children: [
+                                        TextFilterWidget(
+                                          inputFormatters: [
+                                            LengthLimitingTextInputFormatter(
+                                                context
+                                                    .read<LookupBloc>()
+                                                    .lookUpMortgage
+                                                    ?.maxParams[0]
+                                                    .maxVal
+                                                    .toString()
+                                                    .length),
+                                            FilteringTextInputFormatter.allow(
+                                                RegExp(r'^[1-9]\d*')),
+                                          ],
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
+                                          hintText:
+                                              '${context.read<LookupBloc>().lookUpMortgage?.maxParams[0].maxVal}',
+                                          controller: areaValueToController,
+                                          validator: (value) {
+                                            validatorToAreaCubit.validator(
+                                                value,
+                                                context
                                                         .read<LookupBloc>()
                                                         .lookUpMortgage
                                                         ?.maxParams[0]
                                                         .maxVal ??
-                                                        0,
-                                                    context
+                                                    0,
+                                                context
                                                         .read<LookupBloc>()
                                                         .lookUpMortgage
                                                         ?.maxParams[0]
                                                         .minVal ??
-                                                        0,
-                                                    areaValueFromController
-                                                        .text,
-                                                    isFromValue: false);
-                                                return validatorToAreaCubit
-                                                    .state !=
+                                                    0,
+                                                areaValueFromController.text,
+                                                isFromValue: false);
+                                            return validatorToAreaCubit.state !=
                                                     0
-                                                    ? ""
-                                                    : null;
-                                              },
-                                            ),
-                                            validatorToAreaCubit.state == 3
-                                                ? Text(
+                                                ? ""
+                                                : null;
+                                          },
+                                        ),
+                                        validatorToAreaCubit.state == 3
+                                            ? Text(
                                                 AppStrings()
                                                     .minValueValidate
                                                     .tr(args: [
                                                   '(${AppStrings().from})'
                                                 ]),
-                                                style: Theme
-                                                    .of(context)
+                                                style: Theme.of(context)
                                                     .textTheme
                                                     .bodySmall!
                                                     .copyWith(
-                                                  color: ColorManager.red,
-                                                ))
-                                                : validatorToAreaCubit.state ==
-                                                2
+                                                      color: ColorManager.red,
+                                                    ))
+                                            : validatorToAreaCubit.state == 2
                                                 ? Text(
-                                                "${AppStrings()
-                                                    .maxValue}:${context
-                                                    .read<LookupBloc>()
-                                                    .lookUpMortgage
-                                                    ?.maxParams[0].maxVal}",
-                                                style: Theme
-                                                    .of(context)
-                                                    .textTheme
-                                                    .bodySmall!
-                                                    .copyWith(
-                                                  color:
-                                                  ColorManager.red,
-                                                ))
+                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[0].maxVal}",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodySmall!
+                                                        .copyWith(
+                                                          color:
+                                                              ColorManager.red,
+                                                        ))
                                                 : validatorToAreaCubit.state ==
-                                                1
-                                                ? Text(
-                                                "${AppStrings()
-                                                    .minValue}:${context
-                                                    .read<LookupBloc>()
-                                                    .lookUpMortgage
-                                                    ?.maxParams[0].minVal}",
-                                                style: Theme
-                                                    .of(context)
-                                                    .textTheme
-                                                    .bodySmall!
-                                                    .copyWith(
-                                                  color:
-                                                  ColorManager
-                                                      .red,
-                                                ))
-                                                : const SizedBox()
-                                          ],
-                                        );
-                                      },
-                                    ));
+                                                        1
+                                                    ? Text(
+                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[0].minVal}",
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodySmall!
+                                                            .copyWith(
+                                                              color:
+                                                                  ColorManager
+                                                                      .red,
+                                                            ))
+                                                    : const SizedBox()
+                                      ],
+                                    );
+                                  },
+                                ));
                               },
                             ),
                           ],
@@ -1243,97 +1071,99 @@ class _BottomSheetFilterMortgageWidgetState
                             // print(
                             //     'before request ${context.read<RentBloc>().requestMeanValue}');
                             if (_formkey.currentState!.validate()) {
-                              context
-                                  .read<MortgageBloc>()
-                                  .requestMeanValue =
+                              context.read<MortgageBloc>().requestMeanValue =
                                   context
                                       .read<MortgageBloc>()
                                       .requestMeanValue
                                       .copyWith(
-                                    areaFrom:
-                                    areaValueFromController.text.isEmpty
-                                        ? null
-                                        : int.parse(
-                                        areaValueFromController.text),
-                                    areaTo: areaValueToController.text.isEmpty
-                                        ? null
-                                        : int.parse(
-                                        areaValueToController.text),
-                                    // realEstateValueFrom:
-                                    //     valuesFiltersCubit.rangerealEstateValue?.start,
-                                    // realEstateValueTo:
-                                    //     valuesFiltersCubit.rangerealEstateValue?.end,
-                                    // bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
-                                    //     ? 0
-                                    //     : valuesFiltersCubit.bedRoom.id,
-                                    municipalityId: valuesFiltersCubit
-                                        .municapility.lookupKey,
-                                    // zoneId: valuesFiltersCubit.zone.lookupKey,
-                                    areaCode:
-                                    valuesFiltersCubit.zone.lookupKey,
-                                    unit: valuesFiltersCubit.unit,
-                                    issueDateYear: valuesFiltersCubit.year.id,
-                                    issueDateQuarterList:
-                                    getissueDateQuarterList(
-                                        valuesFiltersCubit.periodTime.id),
-                                    issueDateStartMonth:
-                                    valuesFiltersCubit.periodTime.id == 4
-                                        ? valuesFiltersCubit
-                                        .month.value[0] -
-                                        1
-                                        : 1,
-                                    issueDateEndMonth: valuesFiltersCubit
-                                        .periodTime.id ==
-                                        4
-                                        ? valuesFiltersCubit.month.value[0]
-                                        : valuesFiltersCubit.periodTime.id ==
-                                        1
-                                        ? valuesFiltersCubit.year.id ==
-                                        DateTime
-                                            .now()
-                                            .year
-                                        ? DateTime
-                                        .now()
-                                        .month
-                                        : 12
-                                        : 12,
-                                    periodId:
-                                    valuesFiltersCubit.periodTime.id,
-                                    issueDateFrom:
-                                    valuesFiltersCubit.periodTime.id == 5
-                                        ? valuesFiltersCubit
-                                        .pickerDateRange?.startDate
-                                        ?.toUtc()
-                                        .toIso8601String()
-                                        : null,
-                                    issueDateTo:
-                                    valuesFiltersCubit.periodTime.id == 5
-                                        ? valuesFiltersCubit
-                                        .pickerDateRange?.endDate
-                                        ?.toUtc()
-                                        .toIso8601String()
-                                        : null,
-                                    purposeList: valuesFiltersCubit
-                                        .rentPurposeList
-                                        .map((e) => e.lookupKey)
-                                        .toList(),
-                                    propertyTypeList: valuesFiltersCubit
-                                        .propertyTypeList
-                                        .map((e) => e.lookupKey)
-                                        .toList(),
-                                    halfYearDuration:
-                                    valuesFiltersCubit.periodTime.id == 2
-                                        ? listEquals(
-                                        getissueDateQuarterList(
-                                            valuesFiltersCubit
-                                                .periodTime.id),
-                                        [1, 2])
-                                        ? 1
-                                        : 2
-                                        : null,
-                                    offset: 0,
-                                    // streetNo: streetController.text.isEmpty ? null : int.parse(streetController.text)
-                                  );
+                                        areaFrom: areaValueFromController
+                                                .text.isEmpty
+                                            ? null
+                                            : int.parse(
+                                                areaValueFromController.text),
+                                        areaTo:
+                                            areaValueToController.text.isEmpty
+                                                ? null
+                                                : int.parse(
+                                                    areaValueToController.text),
+                                        // realEstateValueFrom:
+                                        //     valuesFiltersCubit.rangerealEstateValue?.start,
+                                        // realEstateValueTo:
+                                        //     valuesFiltersCubit.rangerealEstateValue?.end,
+                                        // bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
+                                        //     ? 0
+                                        //     : valuesFiltersCubit.bedRoom.id,
+                                        municipalityId: valuesFiltersCubit
+                                            .municapility.lookupKey,
+                                        // zoneId: valuesFiltersCubit.zone.lookupKey,
+                                        areaCode:
+                                            valuesFiltersCubit.zone.lookupKey,
+                                        unit: valuesFiltersCubit.unit,
+                                        issueDateYear:
+                                            valuesFiltersCubit.year.id,
+                                        issueDateQuarterList:
+                                            getissueDateQuarterList(
+                                                valuesFiltersCubit
+                                                    .periodTime.id),
+                                        issueDateStartMonth:
+                                            valuesFiltersCubit.periodTime.id ==
+                                                    4
+                                                ? valuesFiltersCubit
+                                                        .month.value[0] -
+                                                    1
+                                                : 1,
+                                        issueDateEndMonth: valuesFiltersCubit
+                                                    .periodTime.id ==
+                                                4
+                                            ? valuesFiltersCubit.month.value[0]
+                                            : valuesFiltersCubit
+                                                        .periodTime.id ==
+                                                    1
+                                                ? valuesFiltersCubit.year.id ==
+                                                        DateTime.now().year
+                                                    ? DateTime.now().month
+                                                    : 12
+                                                : 12,
+                                        periodId:
+                                            valuesFiltersCubit.periodTime.id,
+                                        issueDateFrom:
+                                            valuesFiltersCubit.periodTime.id ==
+                                                    5
+                                                ? valuesFiltersCubit
+                                                    .pickerDateRange?.startDate
+                                                    ?.toUtc()
+                                                    .toIso8601String()
+                                                : null,
+                                        issueDateTo:
+                                            valuesFiltersCubit.periodTime.id ==
+                                                    5
+                                                ? valuesFiltersCubit
+                                                    .pickerDateRange?.endDate
+                                                    ?.toUtc()
+                                                    .toIso8601String()
+                                                : null,
+                                        purposeList: valuesFiltersCubit
+                                            .rentPurposeList
+                                            .map((e) => e.lookupKey)
+                                            .toList(),
+                                        propertyTypeList: valuesFiltersCubit
+                                            .propertyTypeList
+                                            .map((e) => e.lookupKey)
+                                            .toList(),
+                                        halfYearDuration:
+                                            valuesFiltersCubit.periodTime.id ==
+                                                    2
+                                                ? listEquals(
+                                                        getissueDateQuarterList(
+                                                            valuesFiltersCubit
+                                                                .periodTime.id),
+                                                        [1, 2])
+                                                    ? 1
+                                                    : 2
+                                                : null,
+                                        offset: 0,
+                                        // streetNo: streetController.text.isEmpty ? null : int.parse(streetController.text)
+                                      );
                               Navigator.of(context).pop(true);
                             }
 
@@ -1353,12 +1183,10 @@ class _BottomSheetFilterMortgageWidgetState
                         Navigator.of(context).pop();
                       },
                       backgroundColor:
-                      instance<AppPreferences>()
-                          .getTheme()
-                          .brightness ==
-                          Brightness.light
-                          ? ColorManager.porcelain
-                          : ColorManager.greyCloud,
+                          instance<AppPreferences>().getTheme().brightness ==
+                                  Brightness.light
+                              ? ColorManager.porcelain
+                              : ColorManager.greyCloud,
                     ),
                   ),
                 ]),

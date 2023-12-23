@@ -230,7 +230,7 @@ class StaticPagesContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: context.locale == ARABIC_LOCAL ? AppSizeH.s90 : AppSizeH.s96,
+      height: AppSizeH.s100,
       width: AppSizeW.s112,
       padding:
           EdgeInsets.symmetric(horizontal: AppSizeH.s6, vertical: AppSizeH.s10),
@@ -349,12 +349,16 @@ class HomeContainer extends StatelessWidget {
               ),
               Align(
                 alignment: isBig ? Alignment.center : Alignment.bottomLeft,
-                child: SvgPicture.asset(
-                  image,
-                  height: AppSizeH.s70,
-                  width: AppSizeW.s70,
-                  color: imageColor ?? Theme.of(context).colorScheme.primary,
-                  fit: BoxFit.scaleDown,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(AppSizeR.s20)),
+                  child: SvgPicture.asset(
+                    image,
+                    height: AppSizeH.s70,
+                    width: AppSizeW.s70,
+                    color: imageColor ?? Theme.of(context).colorScheme.primary,
+                    fit: BoxFit.scaleDown,
+                  ),
                 ),
               ),
               if (isBig)
