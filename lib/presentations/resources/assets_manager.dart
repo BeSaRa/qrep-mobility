@@ -20,9 +20,15 @@ class ImageAssets {
 
   //------------------------------------------------
   static const String quatarTowerCitySplash = '${IMAGE_PATH}qtowers.svg';
-  static const String ministryOfMunicipality =
-      '${IMAGE_PATH}ministry_of_municiplaity.png';
-  static const String splashBackground = '${IMAGE_PATH}splash_backgroudn.png';
+
+  // static const String ministryOfMunicipality =
+  //     '${IMAGE_PATH}ministry_of_municiplaity.png';
+  static const String ministryOfMunicipalityDark =
+      '${IMAGE_PATH}negative_ministry_of_municipality.png';
+  static const String ministryOfMunicipalityLight =
+      '${IMAGE_PATH}rgb_ministry_of_municipality.png';
+
+  // static const String splashBackground = '${IMAGE_PATH}splash_backgroudn.png';
   static const String test = '${IMAGE_PATH}qq.png';
   static const String logoPng = '${IMAGE_PATH}splash_logo_trimmed.png';
   static const String homeBg = '${IMAGE_PATH}home_bg.png';

@@ -2,6 +2,8 @@ import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../app/app_preferences.dart';
+import '../../../../app/depndency_injection.dart';
 import '../../../resources/values_manager.dart';
 
 class AnimatedTransparentContainer extends StatefulWidget {
@@ -61,7 +63,10 @@ class _AnimatedTransparentContainerState
           child: Padding(
             padding: EdgeInsets.only(right: AppSizeW.s42, left: AppSizeW.s35),
             child: Image.asset(
-              ImageAssets.ministryOfMunicipality,
+              instance<AppPreferences>().getTheme().brightness ==
+                      Brightness.light
+                  ? ImageAssets.ministryOfMunicipalityLight
+                  : ImageAssets.ministryOfMunicipalityDark,
             ),
           ),
         ),

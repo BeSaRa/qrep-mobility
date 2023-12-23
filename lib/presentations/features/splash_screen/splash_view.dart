@@ -99,13 +99,13 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
         duration: const Duration(milliseconds: 800),
         child: !isRed
             ? Scaffold(
-                backgroundColor: ColorManager.white,
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 body: Stack(
                   children: [
                     AnimatedPositioned(
                         top: backgroundImageBottomPosition,
                         duration: const Duration(milliseconds: 800),
-                        child: Image.asset(ImageAssets.splashBackground)),
+                        child: Image.asset(ImageAssets.appbarBg)),
                     Column(
                       children: [
                         Expanded(
