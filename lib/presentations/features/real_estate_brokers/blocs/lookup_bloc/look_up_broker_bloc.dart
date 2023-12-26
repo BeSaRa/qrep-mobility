@@ -11,34 +11,49 @@ part 'look_up_broker_state.dart';
 
 class LookUpBrokerBloc extends Bloc<LookUpBrokerEvent, LookUpBrokerState> {
   final BrokerLookUpUseCase lookupBrokerUsecase;
+  final BrokerLookOVUpUseCase lookOVUpUseCase;
   RealEstateBrokerLookUp? lookupBroker;
+  RealEstateBrokerLookUp? lookupBrokerOv;
 
-  LookUpBrokerBloc({required this.lookupBrokerUsecase})
+  LookUpBrokerBloc(
+      {required this.lookupBrokerUsecase, required this.lookOVUpUseCase})
       : super(const LookUpBrokerState.loading()) {
     on<LookUpBrokerEvent>((event, emit) async {
       await event.map(
         getBrokerLookup: (value) async {
           emit(const LookUpBrokerState.loading());
           final failureOrSuccess = await lookupBrokerUsecase.execute();
-          failureOrSuccess.when((success) {
-            lookupBroker = success;
-            emit(LookUpBrokerState.done(success: success));
+          final ovFailureOrSucces = await lookOVUpUseCase.execute();
+          ovFailureOrSucces.when((success) {
+            lookupBrokerOv = success;
+            print("fatina successov $success");
           }, (error) {
             emit(LookUpBrokerState.error(message: error.message));
           });
+
+          failureOrSuccess.when((success) {
+            lookupBroker = success;
+            print("fatina success $success");
+          }, (error) {
+            emit(LookUpBrokerState.error(message: error.message));
+          });
+          if (lookupBrokerOv != null && lookupBroker != null) {
+            emit(LookUpBrokerState.done(
+                successov: lookupBrokerOv!, success: lookupBroker!));
+          }
         },
       );
     });
   }
 
   RequestBrokerValues requestBroker = RequestBrokerValues(
-    municipalityId: 4,
+    municipalityId: 1,
     brokerCategoryId: 2,
     limit: 5,
     offset: 0,
   );
   RequestBrokerValues requestDefaultBroker = RequestBrokerValues(
-    municipalityId: 4,
+    municipalityId: 1,
     brokerCategoryId: 2,
     limit: 5,
     offset: 0,

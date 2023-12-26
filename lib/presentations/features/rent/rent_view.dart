@@ -5,10 +5,7 @@ import 'package:ebla/app/extensions.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/presentations/features/main/blocs/lookup_bloc/lookup_bloc.dart';
 import 'package:ebla/presentations/features/main/blocs/main_menu_bloc/main_menu_bloc.dart';
-import 'package:ebla/presentations/features/rent/blocs/cubits/cubit/change_status_cubit.dart';
-import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_bloc.dart';
-import 'package:ebla/presentations/features/rent/blocs/rent_bloc/rent_grid_kpis_bloc/rent_grid_kpis_bloc.dart';
-import 'package:ebla/presentations/features/rent/blocs/summery_bloc/rent_summery_bloc.dart';
+import 'package:ebla/presentations/features/rent/rents.dart';
 import 'package:ebla/presentations/widgets/selected_year_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,10 +16,6 @@ import '../../../domain/models/cms_models/main_menu_models/main_menu_models.dart
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../../widgets/widgets.dart';
-import 'blocs/certificate_contract_bloc/certificate_contract_bloc.dart';
-import 'blocs/default_bloc/rent_default_bloc.dart';
-import 'widgets/main_container_rent.dart';
-import 'widgets/statistics_rent_widget.dart';
 
 class RentView extends StatefulWidget {
   const RentView({super.key});

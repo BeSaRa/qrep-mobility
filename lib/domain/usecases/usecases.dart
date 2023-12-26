@@ -9,8 +9,10 @@ export 'mortgage_usecases/total_mortgage_transactions_usecase.dart';
 export 'mortgage_usecases/total_num_of_mortgage_units_usecase.dart';
 export 'mortgage_usecases/total_val_of_mortgage_transactions_usecase.dart';
 export 'mortgage_usecases/transactions_mortgage_usecase.dart';
+export 'real_estate_broker/broker_count_usecase.dart';
 //-----------brokers
 export 'real_estate_broker/broker_lookup_usecase.dart';
+export 'real_estate_broker/broker_transaction_usecase.dart';
 // ------------------------rent---------------------------
 export 'rent_usecases/certificate_contract_usecases/certificate_usecase.dart';
 export 'rent_usecases/certificate_contract_usecases/contract_usecase.dart';

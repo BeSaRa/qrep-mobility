@@ -12,7 +12,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../app/app_preferences.dart';
 import '../../resources/resources.dart';
-import 'bloc/bloc/guest_token_bloc.dart';
+import 'bloc/app_bloc/guest_token_bloc.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});

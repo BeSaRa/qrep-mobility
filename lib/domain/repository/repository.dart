@@ -164,6 +164,8 @@ abstract class Repository {
 
   Future<Result<RealEstateBrokerLookUp, FailureModel>> getLockupBrokers();
 
+  Future<Result<RealEstateBrokerLookUp, FailureModel>> getLockupOVBrokers();
+
   Future<Result<RealEstateBrokerTransactions, FailureModel>>
   getBrokerTransactions(RequestBrokerValues input);
 

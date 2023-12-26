@@ -169,21 +169,27 @@ mixin _$LookUpBrokerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(RealEstateBrokerLookUp success) done,
+    required TResult Function(
+            RealEstateBrokerLookUp success, RealEstateBrokerLookUp successov)
+        done,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(RealEstateBrokerLookUp success)? done,
+    TResult? Function(
+            RealEstateBrokerLookUp success, RealEstateBrokerLookUp successov)?
+        done,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(RealEstateBrokerLookUp success)? done,
+    TResult Function(
+            RealEstateBrokerLookUp success, RealEstateBrokerLookUp successov)?
+        done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -269,7 +275,9 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(RealEstateBrokerLookUp success) done,
+    required TResult Function(
+            RealEstateBrokerLookUp success, RealEstateBrokerLookUp successov)
+        done,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -279,7 +287,9 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(RealEstateBrokerLookUp success)? done,
+    TResult? Function(
+            RealEstateBrokerLookUp success, RealEstateBrokerLookUp successov)?
+        done,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -289,7 +299,9 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(RealEstateBrokerLookUp success)? done,
+    TResult Function(
+            RealEstateBrokerLookUp success, RealEstateBrokerLookUp successov)?
+        done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -344,9 +356,10 @@ abstract class _$$DoneImplCopyWith<$Res> {
           _$DoneImpl value, $Res Function(_$DoneImpl) then) =
       __$$DoneImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({RealEstateBrokerLookUp success});
+  $Res call({RealEstateBrokerLookUp success, RealEstateBrokerLookUp successov});
 
   $RealEstateBrokerLookUpCopyWith<$Res> get success;
+  $RealEstateBrokerLookUpCopyWith<$Res> get successov;
 }
 
 /// @nodoc
@@ -360,11 +373,16 @@ class __$$DoneImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? success = null,
+    Object? successov = null,
   }) {
     return _then(_$DoneImpl(
       success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
+              as RealEstateBrokerLookUp,
+      successov: null == successov
+          ? _value.successov
+          : successov // ignore: cast_nullable_to_non_nullable
               as RealEstateBrokerLookUp,
     ));
   }
@@ -376,19 +394,29 @@ class __$$DoneImplCopyWithImpl<$Res>
       return _then(_value.copyWith(success: value));
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RealEstateBrokerLookUpCopyWith<$Res> get successov {
+    return $RealEstateBrokerLookUpCopyWith<$Res>(_value.successov, (value) {
+      return _then(_value.copyWith(successov: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$DoneImpl implements _Done {
-  const _$DoneImpl({required this.success});
+  const _$DoneImpl({required this.success, required this.successov});
 
   @override
   final RealEstateBrokerLookUp success;
+  @override
+  final RealEstateBrokerLookUp successov;
 
   @override
   String toString() {
-    return 'LookUpBrokerState.done(success: $success)';
+    return 'LookUpBrokerState.done(success: $success, successov: $successov)';
   }
 
   @override
@@ -396,11 +424,13 @@ class _$DoneImpl implements _Done {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DoneImpl &&
-            (identical(other.success, success) || other.success == success));
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.successov, successov) ||
+                other.successov == successov));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, success);
+  int get hashCode => Object.hash(runtimeType, success, successov);
 
   @JsonKey(ignore: true)
   @override
@@ -412,32 +442,38 @@ class _$DoneImpl implements _Done {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(RealEstateBrokerLookUp success) done,
+    required TResult Function(
+            RealEstateBrokerLookUp success, RealEstateBrokerLookUp successov)
+        done,
     required TResult Function(String message) error,
   }) {
-    return done(success);
+    return done(success, successov);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(RealEstateBrokerLookUp success)? done,
+    TResult? Function(
+            RealEstateBrokerLookUp success, RealEstateBrokerLookUp successov)?
+        done,
     TResult? Function(String message)? error,
   }) {
-    return done?.call(success);
+    return done?.call(success, successov);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(RealEstateBrokerLookUp success)? done,
+    TResult Function(
+            RealEstateBrokerLookUp success, RealEstateBrokerLookUp successov)?
+        done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (done != null) {
-      return done(success);
+      return done(success, successov);
     }
     return orElse();
   }
@@ -478,10 +514,12 @@ class _$DoneImpl implements _Done {
 }
 
 abstract class _Done implements LookUpBrokerState {
-  const factory _Done({required final RealEstateBrokerLookUp success}) =
-      _$DoneImpl;
+  const factory _Done(
+      {required final RealEstateBrokerLookUp success,
+      required final RealEstateBrokerLookUp successov}) = _$DoneImpl;
 
   RealEstateBrokerLookUp get success;
+  RealEstateBrokerLookUp get successov;
   @JsonKey(ignore: true)
   _$$DoneImplCopyWith<_$DoneImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -552,7 +590,9 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(RealEstateBrokerLookUp success) done,
+    required TResult Function(
+            RealEstateBrokerLookUp success, RealEstateBrokerLookUp successov)
+        done,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -562,7 +602,9 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(RealEstateBrokerLookUp success)? done,
+    TResult? Function(
+            RealEstateBrokerLookUp success, RealEstateBrokerLookUp successov)?
+        done,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -572,7 +614,9 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(RealEstateBrokerLookUp success)? done,
+    TResult Function(
+            RealEstateBrokerLookUp success, RealEstateBrokerLookUp successov)?
+        done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

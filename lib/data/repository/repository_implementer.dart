@@ -1182,4 +1182,25 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
+  @override
+  Future<Result<RealEstateBrokerLookUp, FailureModel>>
+      getLockupOVBrokers() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.getOvLookUp();
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
 }

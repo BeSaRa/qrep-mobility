@@ -43,11 +43,13 @@ ThemeData lightTheme() {
           selectedIconTheme: IconThemeData(color: ColorManager.primary),
           unselectedIconTheme: IconThemeData(color: ColorManager.lightSilver),
           selectedLabelStyle: TextStyle(
-            color: ColorManager.textBlack,
-            fontSize: AppSizeSp.s10,
-          ),
+              color: ColorManager.textBlack,
+              fontSize: AppSizeSp.s10,
+              fontFamily: FontConstants.fontFamily),
           unselectedLabelStyle: TextStyle(
-              fontSize: AppSizeSp.s10, color: ColorManager.textBlack)),
+              fontSize: AppSizeSp.s10,
+              color: ColorManager.textBlack,
+              fontFamily: FontConstants.fontFamily)),
       brightness: Brightness.light,
       useMaterial3: true,
       dialogTheme: const DialogTheme(
@@ -218,11 +220,13 @@ ThemeData darkTheme() {
           selectedIconTheme: IconThemeData(color: ColorManager.golden),
           unselectedIconTheme: IconThemeData(color: ColorManager.white),
           selectedLabelStyle: TextStyle(
-            color: ColorManager.white,
-            fontSize: AppSizeSp.s10,
-          ),
-          unselectedLabelStyle:
-              TextStyle(fontSize: AppSizeSp.s10, color: ColorManager.white)),
+              color: ColorManager.white,
+              fontSize: AppSizeSp.s10,
+              fontFamily: FontConstants.fontFamily),
+          unselectedLabelStyle: TextStyle(
+              fontSize: AppSizeSp.s10,
+              color: ColorManager.white,
+              fontFamily: FontConstants.fontFamily)),
       iconTheme: IconThemeData(color: ColorManager.white),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(

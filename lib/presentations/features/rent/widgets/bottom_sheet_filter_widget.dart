@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/app/extensions.dart';
-import 'package:ebla/presentations/features/rent/blocs/cubits/cubit/validator_cubit.dart';
+import 'package:ebla/presentations/features/rent/blocs/cubits/validator_cubit.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:ebla/utils/global_functions.dart';
 import 'package:flutter/foundation.dart';
@@ -14,7 +14,7 @@ import '../../../../app/depndency_injection.dart';
 import '../../../../domain/models/rent_models/rent_models.dart';
 import '../../../widgets/widgets.dart';
 import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
-import '../blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
+import '../blocs/cubits/values_filters_cubit.dart';
 import '../blocs/rent_bloc/rent_bloc.dart';
 
 // enum PeriodTime { year, halfYear, quarterYear, monthly, specificPeriod }

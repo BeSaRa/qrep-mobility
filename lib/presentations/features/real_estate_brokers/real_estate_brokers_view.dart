@@ -1,7 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ebla/presentations/features/real_estate_brokers/blocs/kpi1_bloc/brokers_count_bloc.dart';
-import 'package:ebla/presentations/features/real_estate_brokers/blocs/lookup_bloc/look_up_broker_bloc.dart';
-import 'package:ebla/presentations/features/real_estate_brokers/widgets/broker_card_widget.dart';
+import 'package:ebla/presentations/features/real_estate_brokers/real_estates.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,9 +9,7 @@ import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../../widgets/shimmer_placeholder.dart';
 import '../../widgets/widgets.dart';
-import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
-import 'blocs/transaction_bloc/broker_transaction_bloc.dart';
-import 'widgets/bottom_sheet_filter_broker_widget.dart';
+import '../rent/blocs/cubits/change_status_cubit.dart';
 
 class RealEstateBrokersView extends StatefulWidget {
   const RealEstateBrokersView({super.key});

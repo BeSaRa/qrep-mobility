@@ -19,7 +19,7 @@ import '../../resources/resources.dart';
 import '../../widgets/selected_year_widget.dart';
 import '../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../main/blocs/main_menu_bloc/main_menu_bloc.dart';
-import '../rent/blocs/cubits/cubit/change_status_cubit.dart';
+import '../rent/blocs/cubits/change_status_cubit.dart';
 import 'widgets/bottom_sheet_filter_mortgage.dart';
 
 class MortgageView extends StatefulWidget {

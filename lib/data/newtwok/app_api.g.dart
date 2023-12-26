@@ -1149,6 +1149,34 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
+  Future<HttpResponse<RealEstateBrokerLookUp>> getOvLookUp() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<RealEstateBrokerLookUp>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/kpi/ov/lookup',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = RealEstateBrokerLookUp.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
   Future<HttpResponse<RealEstateBrokerTransactions>> getBrokerTransaction(
       RequestBrokerValues requestBrokerValue) async {
     const _extra = <String, dynamic>{};

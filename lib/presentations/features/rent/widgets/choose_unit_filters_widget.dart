@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../resources/resources.dart';
-import '../blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
+import '../blocs/cubits/values_filters_cubit.dart';
 
 class ChooseUnitWidget extends StatefulWidget {
   const ChooseUnitWidget({

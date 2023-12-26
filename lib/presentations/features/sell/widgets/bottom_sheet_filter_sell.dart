@@ -14,8 +14,8 @@ import '../../../../utils/global_functions.dart';
 import '../../../resources/resources.dart';
 import '../../../widgets/widgets.dart';
 import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
-import '../../rent/blocs/cubits/cubit/validator_cubit.dart';
-import '../../rent/blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
+import '../../rent/blocs/cubits/validator_cubit.dart';
+import '../../rent/blocs/cubits/values_filters_cubit.dart';
 import '../../rent/widgets/choose_unit_filters_widget.dart';
 
 class BottomSheetFilterSellWidget extends StatefulWidget {

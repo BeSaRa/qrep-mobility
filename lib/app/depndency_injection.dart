@@ -1,19 +1,10 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:ebla/domain/usecases/real_estate_broker/broker_count_usecase.dart';
+import 'package:ebla/domain/usecases/CMS/app_settings_usecase.dart';
 import 'package:ebla/presentations/features/auth/blocs/cubits/logged_in_user_cubit.dart';
 import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/main/blocs/lookup_bloc/lookup_bloc.dart';
-import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
-import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_bloc/mortgage_grid_kpis_bloc.dart';
-import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
-import 'package:ebla/presentations/features/real_estate_brokers/blocs/kpi1_bloc/brokers_count_bloc.dart';
-import 'package:ebla/presentations/features/real_estate_brokers/blocs/lookup_bloc/look_up_broker_bloc.dart';
-import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
-import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
-import 'package:ebla/presentations/features/sell/blocs/sell_transaction/sell_transaction_bloc.dart';
-import 'package:ebla/presentations/features/sell/blocs/top_values_bloc/topvalues_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,7 +15,6 @@ import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecases/CMS/update_fcm_usecase.dart';
-import '../domain/usecases/real_estate_broker/broker_transaction_usecase.dart';
 import '../domain/usecases/sell_usecases/top_values/top_values_sell_usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/auth/blocs/login_bloc/login_bloc.dart';
@@ -33,10 +23,11 @@ import '../presentations/features/info/blocs/news_bloc/news_bloc.dart';
 import '../presentations/features/main/blocs/main_menu_bloc/main_menu_bloc.dart';
 import '../presentations/features/main/cubit/bottom_nav_cubit.dart';
 import '../presentations/features/more/blocs/user_bloc/user_bloc.dart';
-import '../presentations/features/real_estate_brokers/blocs/transaction_bloc/broker_transaction_bloc.dart';
-import '../presentations/features/rent/blocs/rent_blocs.dart';
-import '../presentations/features/sell/blocs/sell_bloc/sell_bloc.dart';
-import '../presentations/features/splash_screen/bloc/bloc/guest_token_bloc.dart';
+import '../presentations/features/mortagage/mortgages.dart';
+import '../presentations/features/real_estate_brokers/real_estates.dart';
+import '../presentations/features/rent/rents.dart';
+import '../presentations/features/sell/sells.dart';
+import '../presentations/features/splash_screen/splashes.dart';
 import 'app_preferences.dart';
 
 final instance = GetIt.instance;
@@ -88,9 +79,14 @@ Future<void> initAppModule() async {
         getSellLookupUseCase: instance<GetSellLookupUseCase>(),
         lookUpMortgageUseCase: instance<LookUpMortgageUseCase>()));
   }
+  if (!GetIt.I.isRegistered<AppSettingsUseCase>()) {
+    instance.registerFactory<AppSettingsUseCase>(
+        () => AppSettingsUseCase(instance()));
+  }
+
   if (!GetIt.I.isRegistered<GuestTokenBloc>()) {
-    instance.registerFactory<GuestTokenBloc>(
-        () => GuestTokenBloc(appPreferences: instance()));
+    instance.registerFactory<GuestTokenBloc>(() => GuestTokenBloc(
+        appPreferences: instance(), appSettingsUseCase: instance()));
   }
   if (!GetIt.I.isRegistered<UserUsecase>()) {
     instance.registerFactory<UserUsecase>(
@@ -425,6 +421,11 @@ Future<void> initRealEstateBroker() async {
     instance.registerFactory<BrokerLookUpUseCase>(
         () => BrokerLookUpUseCase(instance()));
   }
+
+  if (!GetIt.I.isRegistered<BrokerLookOVUpUseCase>()) {
+    instance.registerFactory<BrokerLookOVUpUseCase>(
+        () => BrokerLookOVUpUseCase(instance()));
+  }
   if (!GetIt.I.isRegistered<BrokerTransactionUseCase>()) {
     instance.registerFactory<BrokerTransactionUseCase>(
         () => BrokerTransactionUseCase(instance()));
@@ -434,16 +435,17 @@ Future<void> initRealEstateBroker() async {
         () => BrokerCountUseCase(instance()));
   }
   if (!GetIt.I.isRegistered<LookUpBrokerBloc>()) {
-    instance.registerFactory<LookUpBrokerBloc>(() =>
-        LookUpBrokerBloc(lookupBrokerUsecase: instance<BrokerLookUpUseCase>()));
+    instance.registerFactory<LookUpBrokerBloc>(() => LookUpBrokerBloc(
+        lookupBrokerUsecase: instance<BrokerLookUpUseCase>(),
+        lookOVUpUseCase: instance<BrokerLookOVUpUseCase>()));
   }
   if (!GetIt.I.isRegistered<BrokerTransactionBloc>()) {
     instance.registerFactory<BrokerTransactionBloc>(
         () => BrokerTransactionBloc(instance()));
   }
   if (!GetIt.I.isRegistered<BrokersCountBloc>()) {
-    instance.registerFactory<BrokersCountBloc>(
-        () => BrokersCountBloc(instance()));
+    instance
+        .registerFactory<BrokersCountBloc>(() => BrokersCountBloc(instance()));
   }
 }
 

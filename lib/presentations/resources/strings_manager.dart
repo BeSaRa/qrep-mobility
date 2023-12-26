@@ -149,6 +149,8 @@ class AppStrings {
       "the_average_price_per_square_meter_square_foot".tr();
   String sellPrice = "sold_for".tr();
   String theUnitPrice = "the_unit_price".tr();
+  String meterSquareFull = "meter_square_full".tr();
+  String footSquareFull = "foot_square_full".tr();
   String sellContractList = "list_of_sell_transactions".tr();
   String noTransactionFound = "no_transaction_found".tr();
 

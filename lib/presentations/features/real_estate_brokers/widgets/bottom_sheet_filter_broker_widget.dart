@@ -8,7 +8,7 @@ import '../../../../domain/models/models.dart';
 import '../../../../utils/global_functions.dart';
 import '../../../resources/resources.dart';
 import '../../../widgets/widgets.dart';
-import '../../rent/blocs/rent_bloc/cubits/cubit/values_filters_cubit.dart';
+import '../../rent/blocs/cubits/values_filters_cubit.dart';
 
 class BottomSheetFilterBrokerWidget extends StatefulWidget {
   const BottomSheetFilterBrokerWidget({super.key});
@@ -26,7 +26,8 @@ class _BottomSheetFilterBrokerWidgetState
   void initState() {
     valuesFiltersCubit = ValuesFiltersCubit(const RentLookupModel());
     valuesFiltersCubit.municapility = getObjectByLookupKey(
-          context.read<LookUpBrokerBloc>().lookupBroker?.municipalityList ?? [],
+          context.read<LookUpBrokerBloc>().lookupBrokerOv?.municipalityList ??
+              [],
           context.read<LookUpBrokerBloc>().requestBroker.municipalityId ?? 4,
         ) ??
         const RentLookupModel();
@@ -93,7 +94,7 @@ class _BottomSheetFilterBrokerWidgetState
                           },
                           list: context
                                   .read<LookUpBrokerBloc>()
-                                  .lookupBroker
+                                  .lookupBrokerOv
                                   ?.municipalityList ??
                               []);
                     },

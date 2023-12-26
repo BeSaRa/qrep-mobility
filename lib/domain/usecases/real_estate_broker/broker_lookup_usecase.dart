@@ -16,3 +16,15 @@ class BrokerLookUpUseCase
     return await repository.getLockupBrokers();
   }
 }
+
+class BrokerLookOVUpUseCase
+    implements BaseUseCaseEmptyInput<RealEstateBrokerLookUp> {
+  final Repository repository;
+
+  BrokerLookOVUpUseCase(this.repository);
+
+  @override
+  Future<Result<RealEstateBrokerLookUp, FailureModel>> execute() async {
+    return await repository.getLockupOVBrokers();
+  }
+}

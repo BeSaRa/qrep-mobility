@@ -178,6 +178,9 @@ abstract class AppServiceClient {
   @GET(EndPoints.brokerLookUp)
   Future<HttpResponse<RealEstateBrokerLookUp>> getBrokerLookUp();
 
+  @GET(EndPoints.brokerOVLookUp)
+  Future<HttpResponse<RealEstateBrokerLookUp>> getOvLookUp();
+
   @POST(EndPoints.brokerTransactions)
   Future<HttpResponse<RealEstateBrokerTransactions>> getBrokerTransaction(
       @Body() RequestBrokerValues requestBrokerValue);
