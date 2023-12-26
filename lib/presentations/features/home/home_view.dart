@@ -209,7 +209,10 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ],
               ),
-            )
+            ),
+            SizedBox(
+              height: AppSizeH.s24,
+            ),
           ],
         ),
       ),

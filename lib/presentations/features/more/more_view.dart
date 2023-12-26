@@ -454,7 +454,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       surfaceTintColor: Colors.transparent,
-      toolbarHeight: AppSizeH.s100,
+      toolbarHeight: AppSizeH.s60,
       // Set this height
       flexibleSpace: ShaderMask(
         shaderCallback: (rect) {
@@ -484,7 +484,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Column(
         children: [
           SizedBox(
-            height: AppSizeH.s40,
+            height: AppSizeH.s35,
           ),
           Row(
             children: [
@@ -540,7 +540,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => Size(double.infinity, AppSizeH.s100);
+  Size get preferredSize => Size(double.infinity, AppSizeH.s70);
 }
 
 class MoreWidgetButton extends StatelessWidget {

@@ -480,88 +480,82 @@ class _MortagageViewState extends State<MortgageView> {
                                 MortgageTransactionsState>(
                               bloc: mortgageTransactionsBloc,
                               builder: (context, state) => state.when(
-                                  initial: () => Container(),
+                                  initial: () => const SizedBox(),
                                   loading: () => ListView.builder(
                                       itemCount: 5,
                                       shrinkWrap: true,
+                                      padding: const EdgeInsets.all(0.0),
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       itemBuilder: (context, index) {
                                         return const ShimmerMainContainer();
                                       }),
-                                  done: (done) => Column(
-                                        children: [
-                                          ListView.builder(
-                                              itemCount: done.transactionList
-                                                          .length >
-                                                      5
-                                                  ? 5
-                                                  : done.transactionList.length,
-                                              shrinkWrap: true,
-                                              physics:
-                                                  const NeverScrollableScrollPhysics(),
-                                              itemBuilder: (context, index) {
-                                                return MainDataContainer(
-                                                  hasRooms: false,
-                                                  title: AppStrings()
-                                                      .mortgageValue,
-                                                  totalPrice:
-                                                      "${done.transactionList[index].realEstateValue?.formatWithCommas()}${AppStrings().currency}",
-                                                  value: done
+                                  done: (done) => ListView.builder(
+                                      itemCount: done.transactionList.length > 5
+                                          ? 5
+                                          : done.transactionList.length,
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      padding: const EdgeInsets.all(0.0),
+                                      itemBuilder: (context, index) {
+                                        return MainDataContainer(
+                                          hasRooms: false,
+                                          title: AppStrings().mortgageValue,
+                                          totalPrice:
+                                              "${done.transactionList[index].realEstateValue?.formatWithCommas()}${AppStrings().currency}",
+                                          value: done.transactionList[index]
+                                                  .realEstateArea
+                                                  ?.formatWithCommas() ??
+                                              '0',
+                                          valueDescription:
+                                              AppStrings().rentArea,
+                                          titleInfo: '',
+                                          valueInfo: '',
+                                          descripton: done
+                                                      .transactionList[index]
+                                                      .issueDate
+                                                      ?.isEmpty ??
+                                                  true
+                                              ? ""
+                                              : DateTime.parse(done
                                                           .transactionList[
                                                               index]
-                                                          .realEstateArea
-                                                          ?.formatWithCommas() ??
-                                                      '0',
-                                                  valueDescription:
-                                                      AppStrings().rentArea,
-                                                  titleInfo: '',
-                                                  valueInfo: '',
-                                                  descripton: done
-                                                              .transactionList[
-                                                                  index]
-                                                              .issueDate
-                                                              ?.isEmpty ??
-                                                          true
-                                                      ? ""
-                                                      : DateTime.parse(done
+                                                          .issueDate ??
+                                                      '')
+                                                  .toFormattedString(),
+                                          location: context.locale ==
+                                                  ARABIC_LOCAL
+                                              ? getObjectByLookupKey(
+                                                          context
+                                                                  .read<
+                                                                      LookupBloc>()
+                                                                  .lookUpMortgage
+                                                                  ?.municipalityList ??
+                                                              [],
+                                                          done
                                                                   .transactionList[
                                                                       index]
-                                                                  .issueDate ??
-                                                              '')
-                                                          .toFormattedString(),
-                                                  location: context.locale ==
-                                                          ARABIC_LOCAL
-                                                      ? getObjectByLookupKey(
-                                                                  context
-                                                                          .read<
-                                                                              LookupBloc>()
-                                                                          .lookUpMortgage
-                                                                          ?.municipalityList ??
-                                                                      [],
-                                                                  done
-                                                                          .transactionList[
-                                                                              index]
-                                                                          .municipalityId ??
-                                                                      0)
-                                                              ?.arName ??
-                                                          ''
-                                                      : getObjectByLookupKey(
-                                                                  context
-                                                                          .read<
-                                                                              LookupBloc>()
-                                                                          .lookUpMortgage
-                                                                          ?.municipalityList ??
-                                                                      [],
-                                                                  done.transactionList[index]
-                                                                          .municipalityId ??
-                                                                      0)
-                                                              ?.enName ??
-                                                          '',
-                                                );
-                                              }),
-                                        ],
-                                      ),
+                                                                  .municipalityId ??
+                                                              0)
+                                                      ?.arName ??
+                                                  ''
+                                              : getObjectByLookupKey(
+                                                          context
+                                                                  .read<
+                                                                      LookupBloc>()
+                                                                  .lookUpMortgage
+                                                                  ?.municipalityList ??
+                                                              [],
+                                                          done
+                                                                  .transactionList[
+                                                                      index]
+                                                                  .municipalityId ??
+                                                              0)
+                                                      ?.enName ??
+                                                  '',
+                                        );
+                                      }),
                                   error: (error) => SizedBox(
                                       height: AppSizeH.s200,
                                       width: AppSizeH.s200,

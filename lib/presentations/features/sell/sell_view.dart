@@ -669,6 +669,8 @@ class _SalesViewState extends State<SalesView> {
                                             return ListView.builder(
                                                 itemCount: 5,
                                                 shrinkWrap: true,
+                                                padding:
+                                                    const EdgeInsets.all(0.0),
                                                 physics:
                                                     const NeverScrollableScrollPhysics(),
                                                 itemBuilder: (context, index) {
@@ -685,6 +687,8 @@ class _SalesViewState extends State<SalesView> {
                                                       : success.transactionList
                                                           .length,
                                                   shrinkWrap: true,
+                                                  padding:
+                                                      const EdgeInsets.all(0.0),
                                                   physics:
                                                       const NeverScrollableScrollPhysics(),
                                                   itemBuilder:

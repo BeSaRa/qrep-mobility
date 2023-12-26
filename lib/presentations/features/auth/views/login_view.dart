@@ -289,7 +289,8 @@ class _LoginViewState extends State<LoginView> {
                       child: CircularProgressIndicator(),
                     );
                   }
-                  return CupertinoButton.filled(
+                  return CupertinoButton(
+                    color: ColorManager.primary,
                     borderRadius: BorderRadius.circular(AppSizeR.s12),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
@@ -302,6 +303,7 @@ class _LoginViewState extends State<LoginView> {
                     },
                     child: Text(
                       AppStrings().login,
+                      style: Theme.of(context).textTheme.displaySmall,
                     ),
                   );
                 },

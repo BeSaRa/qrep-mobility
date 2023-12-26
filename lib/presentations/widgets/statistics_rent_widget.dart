@@ -25,13 +25,24 @@ class StatisticsRentWidget extends StatelessWidget {
                 flex: 2,
                 child: Text(
                   statistics[i].title,
-                  style: Theme.of(context).textTheme.bodySmall,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .bodySmall,
                 ),
               ),
               const Spacer(),
               Text(
                 statistics[i].number,
-                style: Theme.of(context).textTheme.titleMedium,
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(
+                    color: Theme
+                        .of(context)
+                        .colorScheme
+                        .onSecondary),
               ),
             ],
           ),
@@ -39,9 +50,9 @@ class StatisticsRentWidget extends StatelessWidget {
           i == (statistics.length - 1)
               ? const SizedBox()
               : Divider(
-                  color: ColorManager.mercury,
-                  height: AppSizeH.s1,
-                ),
+
+            height: AppSizeH.s1,
+          ),
         ],
       ));
     }
@@ -49,9 +60,14 @@ class StatisticsRentWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           vertical: AppSizeH.s13, horizontal: AppSizeW.s21),
       decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: Theme
+              .of(context)
+              .scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(AppSizeR.s12),
-          border: Border.all(color: Theme.of(context).cardTheme.color!),
+          border: Border.all(color: Theme
+              .of(context)
+              .cardTheme
+              .color!),
           boxShadow: [
             BoxShadow(
                 offset: const Offset(1, 1),
@@ -90,7 +106,9 @@ class StatisticsShimmerWidget extends StatelessWidget {
                     // width: double.infinity,
                     height: AppSizeH.s12,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).scaffoldBackgroundColor,
+                        color: Theme
+                            .of(context)
+                            .scaffoldBackgroundColor,
                         borderRadius: BorderRadius.circular(AppSizeR.s12)),
                   ),
                 ),
@@ -101,7 +119,9 @@ class StatisticsShimmerWidget extends StatelessWidget {
                   width: AppSizeW.s30,
                   height: AppSizeH.s12,
                   decoration: BoxDecoration(
-                      color: Theme.of(context).scaffoldBackgroundColor,
+                      color: Theme
+                          .of(context)
+                          .scaffoldBackgroundColor,
                       borderRadius: BorderRadius.circular(AppSizeR.s12)),
                 ),
               ),
@@ -111,9 +131,9 @@ class StatisticsShimmerWidget extends StatelessWidget {
           i == (3 - 1)
               ? const SizedBox()
               : Divider(
-                  color: ColorManager.mercury,
-                  height: AppSizeH.s1,
-                ),
+            color: ColorManager.mercury,
+            height: AppSizeH.s1,
+          ),
         ],
       ));
     }
@@ -121,7 +141,9 @@ class StatisticsShimmerWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           vertical: AppSizeH.s13, horizontal: AppSizeW.s21),
       decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: Theme
+              .of(context)
+              .scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(AppSizeR.s12),
           boxShadow: [
             BoxShadow(

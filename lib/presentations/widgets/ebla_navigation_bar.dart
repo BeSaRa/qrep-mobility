@@ -32,10 +32,7 @@ class EblaNavigationBar extends StatelessWidget {
       child: Container(
         // width: MediaQuery.of(context).size.width * 0.9,
         decoration: BoxDecoration(
-            color: Theme
-                .of(context)
-                .bottomNavigationBarTheme
-                .backgroundColor,
+            color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
             borderRadius: BorderRadius.circular(AppSizeR.s50),
             boxShadow: [
               BoxShadow(
@@ -49,12 +46,12 @@ class EblaNavigationBar extends StatelessWidget {
           type: MaterialType.transparency,
           child: TabBar(
             onTap: onTap,
+            padding: EdgeInsets.symmetric(horizontal: AppSizeW.s12),
             splashBorderRadius: BorderRadius.circular(AppSizeR.s50),
             indicatorSize: TabBarIndicatorSize.label,
             indicatorPadding: EdgeInsets.all(AppSizeW.s5),
             controller: _controller,
             indicator: UnderlineTabIndicator(
-
               borderSide: BorderSide(
                 color: ColorManager.golden,
                 width: AppSizeW.s6,
@@ -78,29 +75,25 @@ class EblaNavigationBar extends StatelessWidget {
                             : IconAssets.homeIcon,
                         // ignore: deprecated_member_use
                         color: currentPage == 0
-                            ? Theme
-                            .of(context)
-                            .bottomNavigationBarTheme
-                            .selectedIconTheme!
-                            .color
-                            : Theme
-                            .of(context)
-                            .bottomNavigationBarTheme
-                            .unselectedIconTheme!
-                            .color,
+                            ? Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .selectedIconTheme!
+                                .color
+                            : Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .unselectedIconTheme!
+                                .color,
                       ),
                     ),
                     FittedBox(
                       child: Text(AppStrings().main,
                           style: currentPage == 0
-                              ? Theme
-                              .of(context)
-                              .bottomNavigationBarTheme
-                              .selectedLabelStyle
-                              : Theme
-                              .of(context)
-                              .bottomNavigationBarTheme
-                              .unselectedLabelStyle),
+                              ? Theme.of(context)
+                                  .bottomNavigationBarTheme
+                                  .selectedLabelStyle
+                              : Theme.of(context)
+                                  .bottomNavigationBarTheme
+                                  .unselectedLabelStyle),
                     ),
                     // const Spacer()
                   ],
@@ -120,29 +113,25 @@ class EblaNavigationBar extends StatelessWidget {
                             : IconAssets.keyIcon,
                         // ignore: deprecated_member_use
                         color: currentPage == 1
-                            ? Theme
-                            .of(context)
-                            .bottomNavigationBarTheme
-                            .selectedIconTheme!
-                            .color
-                            : Theme
-                            .of(context)
-                            .bottomNavigationBarTheme
-                            .unselectedIconTheme!
-                            .color,
+                            ? Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .selectedIconTheme!
+                                .color
+                            : Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .unselectedIconTheme!
+                                .color,
                       ),
                     ),
                     FittedBox(
                       child: Text(AppStrings().rent,
                           style: currentPage == 1
-                              ? Theme
-                              .of(context)
-                              .bottomNavigationBarTheme
-                              .selectedLabelStyle
-                              : Theme
-                              .of(context)
-                              .bottomNavigationBarTheme
-                              .unselectedLabelStyle),
+                              ? Theme.of(context)
+                                  .bottomNavigationBarTheme
+                                  .selectedLabelStyle
+                              : Theme.of(context)
+                                  .bottomNavigationBarTheme
+                                  .unselectedLabelStyle),
                     ),
                     // const Spacer()
                   ],
@@ -162,30 +151,26 @@ class EblaNavigationBar extends StatelessWidget {
                             : IconAssets.sellIcon,
                         // ignore: deprecated_member_use
                         color: currentPage == 2
-                            ? Theme
-                            .of(context)
-                            .bottomNavigationBarTheme
-                            .selectedIconTheme!
-                            .color
-                            : Theme
-                            .of(context)
-                            .bottomNavigationBarTheme
-                            .unselectedIconTheme!
-                            .color,
+                            ? Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .selectedIconTheme!
+                                .color
+                            : Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .unselectedIconTheme!
+                                .color,
                       ),
                     ),
                     FittedBox(
                       child: Text(
                         AppStrings().sell,
                         style: currentPage == 2
-                            ? Theme
-                            .of(context)
-                            .bottomNavigationBarTheme
-                            .selectedLabelStyle
-                            : Theme
-                            .of(context)
-                            .bottomNavigationBarTheme
-                            .unselectedLabelStyle,
+                            ? Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .selectedLabelStyle
+                            : Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .unselectedLabelStyle,
                       ),
                     ),
                     // const Spacer()
@@ -206,29 +191,25 @@ class EblaNavigationBar extends StatelessWidget {
                               : IconAssets.realEstateIcon,
                           // ignore: deprecated_member_use
                           color: currentPage == 3
-                              ? Theme
-                              .of(context)
-                              .bottomNavigationBarTheme
-                              .selectedIconTheme!
-                              .color
-                              : Theme
-                              .of(context)
-                              .bottomNavigationBarTheme
-                              .unselectedIconTheme!
-                              .color),
+                              ? Theme.of(context)
+                                  .bottomNavigationBarTheme
+                                  .selectedIconTheme!
+                                  .color
+                              : Theme.of(context)
+                                  .bottomNavigationBarTheme
+                                  .unselectedIconTheme!
+                                  .color),
                     ),
                     FittedBox(
                       child: Text(
                         AppStrings().mortgage,
                         style: currentPage == 3
-                            ? Theme
-                            .of(context)
-                            .bottomNavigationBarTheme
-                            .selectedLabelStyle
-                            : Theme
-                            .of(context)
-                            .bottomNavigationBarTheme
-                            .unselectedLabelStyle,
+                            ? Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .selectedLabelStyle
+                            : Theme.of(context)
+                                .bottomNavigationBarTheme
+                                .unselectedLabelStyle,
                       ),
                     ),
                     // const Spacer()
@@ -249,28 +230,24 @@ class EblaNavigationBar extends StatelessWidget {
                               : IconAssets.infoIcon,
                           // ignore: deprecated_member_use
                           color: currentPage == 4
-                              ? Theme
-                              .of(context)
-                              .bottomNavigationBarTheme
-                              .selectedIconTheme!
-                              .color
-                              : Theme
-                              .of(context)
-                              .bottomNavigationBarTheme
-                              .unselectedIconTheme!
-                              .color),
+                              ? Theme.of(context)
+                                  .bottomNavigationBarTheme
+                                  .selectedIconTheme!
+                                  .color
+                              : Theme.of(context)
+                                  .bottomNavigationBarTheme
+                                  .unselectedIconTheme!
+                                  .color),
                     ),
                     FittedBox(
                       child: Text(AppStrings().more,
                           style: currentPage == 4
-                              ? Theme
-                              .of(context)
-                              .bottomNavigationBarTheme
-                              .selectedLabelStyle
-                              : Theme
-                              .of(context)
-                              .bottomNavigationBarTheme
-                              .unselectedLabelStyle),
+                              ? Theme.of(context)
+                                  .bottomNavigationBarTheme
+                                  .selectedLabelStyle
+                              : Theme.of(context)
+                                  .bottomNavigationBarTheme
+                                  .unselectedLabelStyle),
                     ),
                     // const Spacer()
                   ],

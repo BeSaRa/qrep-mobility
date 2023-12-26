@@ -620,6 +620,7 @@ class _RentViewState extends State<RentView> {
                                     if (state.isLoadingRentSummery) {
                                       return ListView.builder(
                                           itemCount: 5,
+                                          padding: const EdgeInsets.all(0.0),
                                           shrinkWrap: true,
                                           physics:
                                               const NeverScrollableScrollPhysics(),
@@ -637,6 +638,7 @@ class _RentViewState extends State<RentView> {
                                               : state.rentSummery
                                                   .transactionList.length,
                                           shrinkWrap: true,
+                                          padding: const EdgeInsets.all(0.0),
                                           physics:
                                               const NeverScrollableScrollPhysics(),
                                           itemBuilder: (context, index) {
