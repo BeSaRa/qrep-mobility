@@ -237,6 +237,28 @@ class _BottomSheetFilterMortgageWidgetState
         .read<LookupBloc>()
         .lookUpMortgage
         ?.copyWith(districtList: listDistrictWithAll);
+    List<RentLookupModel> listMunicipalityWithAll = [];
+    listMunicipalityWithAll.addAll(
+        context.read<LookupBloc>().lookUpMortgage?.municipalityList ?? []);
+    if (!listMunicipalityWithAll.contains(const RentLookupModel(
+        isActive: true,
+        lookupKey: -1,
+        arName: "الكل",
+        enName: "All",
+        id: -1))) {
+      listMunicipalityWithAll.add(const RentLookupModel(
+          isActive: true,
+          lookupKey: -1,
+          arName: "الكل",
+          enName: "All",
+          id: -1));
+    }
+    context.read<LookupBloc>().lookUpMortgage = context
+        .read<LookupBloc>()
+        .lookUpMortgage
+        ?.copyWith(
+            municipalityList: listMunicipalityWithAll,
+            districtList: listDistrictWithAll);
     //municipal and areaCode
     valuesFiltersCubit.municapility = getObjectByLookupKey(
           context.read<LookupBloc>().lookUpMortgage?.municipalityList ?? [],
@@ -562,8 +584,10 @@ class _BottomSheetFilterMortgageWidgetState
                                   valuesFiltersCubit.changeZone(context
                                           .read<LookupBloc>()
                                           .lookUpMortgage
-                                          ?.zoneList
-                                          .first ??
+                                          ?.districtList
+                                          .firstWhere((element) {
+                                        return element.lookupKey == -1;
+                                      }) ??
                                       const RentLookupModel());
                                 },
                                 list: context

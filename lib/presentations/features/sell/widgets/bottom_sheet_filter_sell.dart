@@ -225,6 +225,28 @@ class _BottomSheetFilterSellWidgetState
     });
 
     //municipal and areaCode
+    List<RentLookupModel> listMunicipalityWithAll = [];
+    listMunicipalityWithAll
+        .addAll(context.read<LookupBloc>().loockUpSell?.municipalityList ?? []);
+    if (!listMunicipalityWithAll.contains(const RentLookupModel(
+        isActive: true,
+        lookupKey: -1,
+        arName: "الكل",
+        enName: "All",
+        value: -1,
+        id: -1))) {
+      listMunicipalityWithAll.add(const RentLookupModel(
+          isActive: true,
+          lookupKey: -1,
+          arName: "الكل",
+          enName: "All",
+          value: -1,
+          id: -1));
+    }
+    context.read<LookupBloc>().loockUpSell = context
+        .read<LookupBloc>()
+        .loockUpSell
+        ?.copyWith(municipalityList: listMunicipalityWithAll);
     valuesFiltersCubit.municapility = getObjectByLookupKey(
           context.read<LookupBloc>().loockUpSell?.municipalityList ?? [],
           context.read<SellBloc>().requestSell.municipalityId ?? 1,
@@ -553,9 +575,13 @@ class _BottomSheetFilterSellWidgetState
                                   valuesFiltersCubit.changeZone(context
                                           .read<LookupBloc>()
                                           .loockUpSell
-                                          ?.zoneList
-                                          .first ??
+                                          ?.districtList
+                                          .firstWhere((element) {
+                                        return element.lookupKey == -1;
+                                      }) ??
                                       const RentLookupModel());
+                                  // print(
+                                  //     "fatina the list ${filterDataBymunicipalityId(valuesFiltersCubit.municapility.lookupKey, context.read<LookupBloc>().loockUpSell?.districtList ?? [])}");
                                 },
                                 list: context
                                         .read<LookupBloc>()

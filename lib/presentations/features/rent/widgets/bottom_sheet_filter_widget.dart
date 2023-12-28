@@ -237,6 +237,27 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     //       context.read<RentBloc>().requestMeanValue.nationalityCode ?? 1,
     //     ) ??
     //     const RentLookupModel();
+    //Property and Purpose
+    List<RentLookupModel> listMunicipalityWithAll = [];
+    listMunicipalityWithAll
+        .addAll(context.read<LookupBloc>().loockUpRent?.municipalityList ?? []);
+    if (!listMunicipalityWithAll.contains(const RentLookupModel(
+        isActive: true,
+        lookupKey: -1,
+        arName: "الكل",
+        enName: "All",
+        id: -1))) {
+      listMunicipalityWithAll.add(const RentLookupModel(
+          isActive: true,
+          lookupKey: -1,
+          arName: "الكل",
+          enName: "All",
+          id: -1));
+    }
+    context.read<LookupBloc>().loockUpRent = context
+        .read<LookupBloc>()
+        .loockUpRent
+        ?.copyWith(municipalityList: listMunicipalityWithAll);
     valuesFiltersCubit.municapility = getObjectById(
           context.read<LookupBloc>().loockUpRent?.municipalityList ?? [],
           context.read<RentBloc>().requestMeanValue.municipalityId ?? 1,
@@ -560,7 +581,9 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                           .read<LookupBloc>()
                                           .loockUpRent
                                           ?.zoneList
-                                          .first ??
+                                          .firstWhere((element) {
+                                        return element.lookupKey == -1;
+                                      }) ??
                                       const RentLookupModel());
                                 },
                                 list: context
@@ -807,6 +830,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                     ),
                   ),
                   SizedBox(width: AppSizeW.s8),
+                  //todo change it to dropdown
                   // Expanded(
                   //   child: Column(
                   //     mainAxisSize: MainAxisSize.min,
@@ -1479,8 +1503,8 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                                     : 2
                                                 : null,
                                         offset: 0,
-                                        //         streetNo: streetController.text.isEmpty ? null
-                                        //            : int.parse(streetController.text),
+                                        // streetNo: streetController.text.isEmpty ? null
+                                        //    : int.parse(streetController.text),
                                       );
                               Navigator.of(context).pop(true);
                             }

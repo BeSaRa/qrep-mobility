@@ -27,7 +27,7 @@ class DioFactory {
   Future<Dio> getDio() async {
     HttpOverrides.global = MyHttpOverrides();
     Dio dio = Dio();
-    Duration timeOut = const Duration(seconds: 60);
+    Duration timeOut = const Duration(seconds: 90);
     String language = await _appPreferences.getAppLanguage();
     Map<String, String> headers = {
       CONTENT_TYPE: APPLICATION_JSON,

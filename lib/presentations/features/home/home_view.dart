@@ -253,7 +253,7 @@ class StaticPagesContainer extends StatelessWidget {
               height: AppSizeH.s36,
               width: AppSizeW.s32,
             ),
-            title,
+            Flexible(child: title),
           ],
         ),
       ),

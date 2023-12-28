@@ -196,6 +196,10 @@ _$RentLookupResponseImpl _$$RentLookupResponseImplFromJson(
               ?.map((e) => MaxParamsModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      streetList: (json['streetList'] as List<dynamic>?)
+              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$RentLookupResponseImplToJson(
@@ -223,6 +227,7 @@ Map<String, dynamic> _$$RentLookupResponseImplToJson(
       'ageCategoryList': instance.ageCategoryList,
       'ownerCategoryList': instance.ownerCategoryList,
       'maxParams': instance.maxParams,
+      'streetList': instance.streetList,
     };
 
 _$RentLookupModelImpl _$$RentLookupModelImplFromJson(

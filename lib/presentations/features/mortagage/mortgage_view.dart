@@ -43,6 +43,7 @@ class _MortagageViewState extends State<MortgageView> {
     mortgageTransactionsBloc = instance<MortgageTransactionsBloc>();
     mortgageGridKPIsBloc = instance<MortgageGridKPIsBloc>();
     changeStatusCubit = ChangeStatusCubit();
+
     super.initState();
   }
 
@@ -57,6 +58,27 @@ class _MortagageViewState extends State<MortgageView> {
               mortgageTransactionsBloc.add(MortgageTransactionsEvent.started(
                   requestMortgageValues:
                       context.read<MortgageBloc>().requestMeanValue));
+              List<RentLookupModel> listMunicipalityWithAll = [];
+              listMunicipalityWithAll.addAll(
+                  context.read<LookupBloc>().lookUpMortgage?.municipalityList ??
+                      []);
+              if (!listMunicipalityWithAll.contains(const RentLookupModel(
+                  isActive: true,
+                  lookupKey: -1,
+                  arName: "الكل",
+                  enName: "All",
+                  id: -1))) {
+                listMunicipalityWithAll.add(const RentLookupModel(
+                    isActive: true,
+                    lookupKey: -1,
+                    arName: "الكل",
+                    enName: "All",
+                    id: -1));
+              }
+              context.read<LookupBloc>().lookUpMortgage =
+                  context.read<LookupBloc>().lookUpMortgage?.copyWith(
+                        municipalityList: listMunicipalityWithAll,
+                      );
             },
           );
         },

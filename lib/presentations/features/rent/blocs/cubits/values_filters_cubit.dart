@@ -212,4 +212,28 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
     brokerCategory = newBrokerCategory;
     emit(brokerCategory);
   }
+
+  //-----------------------Property Type Filters------------------------------------------
+  List<RentLookupModel> streetList = [];
+
+  void addToStreetList(RentLookupModel street) {
+    propertyTypeList.add(street);
+    emit(RentLookupModel(
+      arName: street.arName,
+    ));
+  }
+
+  void removeFromStreetList(RentLookupModel street) {
+    if (streetList.length == 1) {
+      null;
+    } else {
+      streetList.remove(street);
+    }
+    emit(RentLookupModel(enName: street.enName));
+  }
+
+  RentLookupModel street = const RentLookupModel();
+
+// RentLookupModel propertyType = const RentLookupModel(
+//     lookupKey: -1, arName: "الكل", enName: "All", isActive: true);
 }

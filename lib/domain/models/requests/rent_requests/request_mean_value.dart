@@ -25,7 +25,7 @@ abstract class RequestMeanValue with _$RequestMeanValue {
     List<int>? purposeList,
     num? rentPaymentMonthlyPerUnitFrom,
     num? rentPaymentMonthlyPerUnitTo,
-    // int? streetNo,
+    List<int>? streetNo,
     int? zoneId,
     @Default(2) int unit,
     @Default(1) int periodId,

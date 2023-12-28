@@ -837,6 +837,7 @@ mixin _$RentLookupResponse {
   List<RentLookupModel> get ownerCategoryList =>
       throw _privateConstructorUsedError;
   List<MaxParamsModel> get maxParams => throw _privateConstructorUsedError;
+  List<RentLookupModel> get streetList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -872,7 +873,8 @@ abstract class $RentLookupResponseCopyWith<$Res> {
       List<RentLookupModel> genderList,
       List<RentLookupModel> ageCategoryList,
       List<RentLookupModel> ownerCategoryList,
-      List<MaxParamsModel> maxParams});
+      List<MaxParamsModel> maxParams,
+      List<RentLookupModel> streetList});
 }
 
 /// @nodoc
@@ -910,6 +912,7 @@ class _$RentLookupResponseCopyWithImpl<$Res, $Val extends RentLookupResponse>
     Object? ageCategoryList = null,
     Object? ownerCategoryList = null,
     Object? maxParams = null,
+    Object? streetList = null,
   }) {
     return _then(_value.copyWith(
       rooms: null == rooms
@@ -1000,6 +1003,10 @@ class _$RentLookupResponseCopyWithImpl<$Res, $Val extends RentLookupResponse>
           ? _value.maxParams
           : maxParams // ignore: cast_nullable_to_non_nullable
               as List<MaxParamsModel>,
+      streetList: null == streetList
+          ? _value.streetList
+          : streetList // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
     ) as $Val);
   }
 }
@@ -1034,7 +1041,8 @@ abstract class _$$RentLookupResponseImplCopyWith<$Res>
       List<RentLookupModel> genderList,
       List<RentLookupModel> ageCategoryList,
       List<RentLookupModel> ownerCategoryList,
-      List<MaxParamsModel> maxParams});
+      List<MaxParamsModel> maxParams,
+      List<RentLookupModel> streetList});
 }
 
 /// @nodoc
@@ -1070,6 +1078,7 @@ class __$$RentLookupResponseImplCopyWithImpl<$Res>
     Object? ageCategoryList = null,
     Object? ownerCategoryList = null,
     Object? maxParams = null,
+    Object? streetList = null,
   }) {
     return _then(_$RentLookupResponseImpl(
       rooms: null == rooms
@@ -1160,6 +1169,10 @@ class __$$RentLookupResponseImplCopyWithImpl<$Res>
           ? _value._maxParams
           : maxParams // ignore: cast_nullable_to_non_nullable
               as List<MaxParamsModel>,
+      streetList: null == streetList
+          ? _value._streetList
+          : streetList // ignore: cast_nullable_to_non_nullable
+              as List<RentLookupModel>,
     ));
   }
 }
@@ -1212,7 +1225,8 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
       final List<RentLookupModel> genderList = const [],
       final List<RentLookupModel> ageCategoryList = const [],
       final List<RentLookupModel> ownerCategoryList = const [],
-      final List<MaxParamsModel> maxParams = const []})
+      final List<MaxParamsModel> maxParams = const [],
+      final List<RentLookupModel> streetList = const []})
       : _rooms = rooms,
         _durations = durations,
         _halfYearDurations = halfYearDurations,
@@ -1234,7 +1248,8 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
         _genderList = genderList,
         _ageCategoryList = ageCategoryList,
         _ownerCategoryList = ownerCategoryList,
-        _maxParams = maxParams;
+        _maxParams = maxParams,
+        _streetList = streetList;
 
   factory _$RentLookupResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$RentLookupResponseImplFromJson(json);
@@ -1444,9 +1459,18 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
     return EqualUnmodifiableListView(_maxParams);
   }
 
+  final List<RentLookupModel> _streetList;
+  @override
+  @JsonKey()
+  List<RentLookupModel> get streetList {
+    if (_streetList is EqualUnmodifiableListView) return _streetList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_streetList);
+  }
+
   @override
   String toString() {
-    return 'RentLookupResponse(rooms: $rooms, durations: $durations, halfYearDurations: $halfYearDurations, quarterYearDurations: $quarterYearDurations, spaces: $spaces, unitStatus: $unitStatus, propertyTypeList: $propertyTypeList, rentPurposeList: $rentPurposeList, zoneList: $zoneList, halfYearList: $halfYearList, quarterYearList: $quarterYearList, periodTime: $periodTime, bedRooms: $bedRooms, districtList: $districtList, municipalityList: $municipalityList, furnitureStatusList: $furnitureStatusList, nationalityList: $nationalityList, nationalityCategoryList: $nationalityCategoryList, genderList: $genderList, ageCategoryList: $ageCategoryList, ownerCategoryList: $ownerCategoryList, maxParams: $maxParams)';
+    return 'RentLookupResponse(rooms: $rooms, durations: $durations, halfYearDurations: $halfYearDurations, quarterYearDurations: $quarterYearDurations, spaces: $spaces, unitStatus: $unitStatus, propertyTypeList: $propertyTypeList, rentPurposeList: $rentPurposeList, zoneList: $zoneList, halfYearList: $halfYearList, quarterYearList: $quarterYearList, periodTime: $periodTime, bedRooms: $bedRooms, districtList: $districtList, municipalityList: $municipalityList, furnitureStatusList: $furnitureStatusList, nationalityList: $nationalityList, nationalityCategoryList: $nationalityCategoryList, genderList: $genderList, ageCategoryList: $ageCategoryList, ownerCategoryList: $ownerCategoryList, maxParams: $maxParams, streetList: $streetList)';
   }
 
   @override
@@ -1493,7 +1517,9 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
             const DeepCollectionEquality()
                 .equals(other._ownerCategoryList, _ownerCategoryList) &&
             const DeepCollectionEquality()
-                .equals(other._maxParams, _maxParams));
+                .equals(other._maxParams, _maxParams) &&
+            const DeepCollectionEquality()
+                .equals(other._streetList, _streetList));
   }
 
   @JsonKey(ignore: true)
@@ -1521,7 +1547,8 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
         const DeepCollectionEquality().hash(_genderList),
         const DeepCollectionEquality().hash(_ageCategoryList),
         const DeepCollectionEquality().hash(_ownerCategoryList),
-        const DeepCollectionEquality().hash(_maxParams)
+        const DeepCollectionEquality().hash(_maxParams),
+        const DeepCollectionEquality().hash(_streetList)
       ]);
 
   @JsonKey(ignore: true)
@@ -1562,7 +1589,8 @@ abstract class _RentLookupResponse implements RentLookupResponse {
       final List<RentLookupModel> genderList,
       final List<RentLookupModel> ageCategoryList,
       final List<RentLookupModel> ownerCategoryList,
-      final List<MaxParamsModel> maxParams}) = _$RentLookupResponseImpl;
+      final List<MaxParamsModel> maxParams,
+      final List<RentLookupModel> streetList}) = _$RentLookupResponseImpl;
 
   factory _RentLookupResponse.fromJson(Map<String, dynamic> json) =
       _$RentLookupResponseImpl.fromJson;
@@ -1611,6 +1639,8 @@ abstract class _RentLookupResponse implements RentLookupResponse {
   List<RentLookupModel> get ownerCategoryList;
   @override
   List<MaxParamsModel> get maxParams;
+  @override
+  List<RentLookupModel> get streetList;
   @override
   @JsonKey(ignore: true)
   _$$RentLookupResponseImplCopyWith<_$RentLookupResponseImpl> get copyWith =>

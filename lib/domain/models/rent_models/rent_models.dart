@@ -91,6 +91,7 @@ abstract class RentLookupResponse with _$RentLookupResponse {
     @Default([]) List<RentLookupModel> ageCategoryList,
     @Default([]) List<RentLookupModel> ownerCategoryList,
     @Default([]) List<MaxParamsModel> maxParams,
+    @Default([]) List<RentLookupModel> streetList,
   }) = _RentLookupResponse;
 
   factory RentLookupResponse.fromJson(Map<String, dynamic> json) =>

@@ -38,8 +38,8 @@ mixin _$RequestMeanValue {
   List<int>? get propertyTypeList => throw _privateConstructorUsedError;
   List<int>? get purposeList => throw _privateConstructorUsedError;
   num? get rentPaymentMonthlyPerUnitFrom => throw _privateConstructorUsedError;
-  num? get rentPaymentMonthlyPerUnitTo =>
-      throw _privateConstructorUsedError; // int? streetNo,
+  num? get rentPaymentMonthlyPerUnitTo => throw _privateConstructorUsedError;
+  List<int>? get streetNo => throw _privateConstructorUsedError;
   int? get zoneId => throw _privateConstructorUsedError;
   int get unit => throw _privateConstructorUsedError;
   int get periodId => throw _privateConstructorUsedError;
@@ -76,6 +76,7 @@ abstract class $RequestMeanValueCopyWith<$Res> {
       List<int>? purposeList,
       num? rentPaymentMonthlyPerUnitFrom,
       num? rentPaymentMonthlyPerUnitTo,
+      List<int>? streetNo,
       int? zoneId,
       int unit,
       int periodId});
@@ -113,6 +114,7 @@ class _$RequestMeanValueCopyWithImpl<$Res, $Val extends RequestMeanValue>
     Object? purposeList = freezed,
     Object? rentPaymentMonthlyPerUnitFrom = freezed,
     Object? rentPaymentMonthlyPerUnitTo = freezed,
+    Object? streetNo = freezed,
     Object? zoneId = freezed,
     Object? unit = null,
     Object? periodId = null,
@@ -194,6 +196,10 @@ class _$RequestMeanValueCopyWithImpl<$Res, $Val extends RequestMeanValue>
           ? _value.rentPaymentMonthlyPerUnitTo
           : rentPaymentMonthlyPerUnitTo // ignore: cast_nullable_to_non_nullable
               as num?,
+      streetNo: freezed == streetNo
+          ? _value.streetNo
+          : streetNo // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
       zoneId: freezed == zoneId
           ? _value.zoneId
           : zoneId // ignore: cast_nullable_to_non_nullable
@@ -238,6 +244,7 @@ abstract class _$$RequestMeanValueImplCopyWith<$Res>
       List<int>? purposeList,
       num? rentPaymentMonthlyPerUnitFrom,
       num? rentPaymentMonthlyPerUnitTo,
+      List<int>? streetNo,
       int? zoneId,
       int unit,
       int periodId});
@@ -273,6 +280,7 @@ class __$$RequestMeanValueImplCopyWithImpl<$Res>
     Object? purposeList = freezed,
     Object? rentPaymentMonthlyPerUnitFrom = freezed,
     Object? rentPaymentMonthlyPerUnitTo = freezed,
+    Object? streetNo = freezed,
     Object? zoneId = freezed,
     Object? unit = null,
     Object? periodId = null,
@@ -354,6 +362,10 @@ class __$$RequestMeanValueImplCopyWithImpl<$Res>
           ? _value.rentPaymentMonthlyPerUnitTo
           : rentPaymentMonthlyPerUnitTo // ignore: cast_nullable_to_non_nullable
               as num?,
+      streetNo: freezed == streetNo
+          ? _value._streetNo
+          : streetNo // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
       zoneId: freezed == zoneId
           ? _value.zoneId
           : zoneId // ignore: cast_nullable_to_non_nullable
@@ -393,12 +405,14 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
       final List<int>? purposeList,
       this.rentPaymentMonthlyPerUnitFrom,
       this.rentPaymentMonthlyPerUnitTo,
+      final List<int>? streetNo,
       this.zoneId,
       this.unit = 2,
       this.periodId = 1})
       : _issueDateQuarterList = issueDateQuarterList,
         _propertyTypeList = propertyTypeList,
-        _purposeList = purposeList;
+        _purposeList = purposeList,
+        _streetNo = streetNo;
 
   factory _$RequestMeanValueImpl.fromJson(Map<String, dynamic> json) =>
       _$$RequestMeanValueImplFromJson(json);
@@ -467,7 +481,16 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
   final num? rentPaymentMonthlyPerUnitFrom;
   @override
   final num? rentPaymentMonthlyPerUnitTo;
-// int? streetNo,
+  final List<int>? _streetNo;
+  @override
+  List<int>? get streetNo {
+    final value = _streetNo;
+    if (value == null) return null;
+    if (_streetNo is EqualUnmodifiableListView) return _streetNo;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final int? zoneId;
   @override
@@ -479,7 +502,7 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
 
   @override
   String toString() {
-    return 'RequestMeanValue(areaFrom: $areaFrom, areaTo: $areaTo, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, halfYearDuration: $halfYearDuration, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, nationalityCode: $nationalityCode, propertyTypeList: $propertyTypeList, purposeList: $purposeList, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
+    return 'RequestMeanValue(areaFrom: $areaFrom, areaTo: $areaTo, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, halfYearDuration: $halfYearDuration, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, nationalityCode: $nationalityCode, propertyTypeList: $propertyTypeList, purposeList: $purposeList, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, streetNo: $streetNo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
   }
 
   @override
@@ -526,6 +549,7 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
                     rentPaymentMonthlyPerUnitTo) ||
                 other.rentPaymentMonthlyPerUnitTo ==
                     rentPaymentMonthlyPerUnitTo) &&
+            const DeepCollectionEquality().equals(other._streetNo, _streetNo) &&
             (identical(other.zoneId, zoneId) || other.zoneId == zoneId) &&
             (identical(other.unit, unit) || other.unit == unit) &&
             (identical(other.periodId, periodId) ||
@@ -555,6 +579,7 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
         const DeepCollectionEquality().hash(_purposeList),
         rentPaymentMonthlyPerUnitFrom,
         rentPaymentMonthlyPerUnitTo,
+        const DeepCollectionEquality().hash(_streetNo),
         zoneId,
         unit,
         periodId
@@ -596,6 +621,7 @@ abstract class _RequestMeanValue implements RequestMeanValue {
       final List<int>? purposeList,
       final num? rentPaymentMonthlyPerUnitFrom,
       final num? rentPaymentMonthlyPerUnitTo,
+      final List<int>? streetNo,
       final int? zoneId,
       final int unit,
       final int periodId}) = _$RequestMeanValueImpl;
@@ -641,7 +667,9 @@ abstract class _RequestMeanValue implements RequestMeanValue {
   num? get rentPaymentMonthlyPerUnitFrom;
   @override
   num? get rentPaymentMonthlyPerUnitTo;
-  @override // int? streetNo,
+  @override
+  List<int>? get streetNo;
+  @override
   int? get zoneId;
   @override
   int get unit;

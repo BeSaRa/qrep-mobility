@@ -70,6 +70,27 @@ class _RentViewState extends State<RentView> {
               certificateContractBloc.add(
                   CertificateContractEvent.certificateCountEvent(
                       request: context.read<RentBloc>().requestMeanValue));
+              List<RentLookupModel> listMunicipalityWithAll = [];
+              listMunicipalityWithAll.addAll(
+                  context.read<LookupBloc>().loockUpRent?.municipalityList ??
+                      []);
+              if (!listMunicipalityWithAll.contains(const RentLookupModel(
+                  isActive: true,
+                  lookupKey: -1,
+                  arName: "الكل",
+                  enName: "All",
+                  id: -1))) {
+                listMunicipalityWithAll.add(const RentLookupModel(
+                    isActive: true,
+                    lookupKey: -1,
+                    arName: "الكل",
+                    enName: "All",
+                    id: -1));
+              }
+              context.read<LookupBloc>().loockUpRent = context
+                  .read<LookupBloc>()
+                  .loockUpRent
+                  ?.copyWith(municipalityList: listMunicipalityWithAll);
             },
           );
 

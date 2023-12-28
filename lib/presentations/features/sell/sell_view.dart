@@ -54,6 +54,7 @@ class _SalesViewState extends State<SalesView> {
     topvaluesBloc = instance<TopvaluesBloc>();
     // sellTransactionBloc.add(SellTransactionEvent.started(
     //     request: context.read<SellBloc>().requestSellDefault));
+
     super.initState();
   }
 
@@ -69,6 +70,28 @@ class _SalesViewState extends State<SalesView> {
                 request: context.read<SellBloc>().requestSell));
             topvaluesBloc.add(TopvaluesEvent.countTransictionNumberEvent(
                 request: context.read<SellBloc>().requestSell));
+            List<RentLookupModel> listMunicipalityWithAll = [];
+            listMunicipalityWithAll.addAll(
+                context.read<LookupBloc>().loockUpSell?.municipalityList ?? []);
+            if (!listMunicipalityWithAll.contains(const RentLookupModel(
+                isActive: true,
+                lookupKey: -1,
+                arName: "الكل",
+                enName: "All",
+                value: -1,
+                id: -1))) {
+              listMunicipalityWithAll.add(const RentLookupModel(
+                  isActive: true,
+                  lookupKey: -1,
+                  arName: "الكل",
+                  enName: "All",
+                  value: -1,
+                  id: -1));
+            }
+            context.read<LookupBloc>().loockUpSell = context
+                .read<LookupBloc>()
+                .loockUpSell
+                ?.copyWith(municipalityList: listMunicipalityWithAll);
           },
         );
       },
