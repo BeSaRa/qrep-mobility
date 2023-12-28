@@ -3,7 +3,8 @@
 import 'dart:ui' as ui;
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ebla/presentations/features/more/widgets/dialog_disabled_filters_warning.dart';import 'package:ebla/presentations/resources/resources.dart';
+import 'package:ebla/presentations/features/more/widgets/dialog_disabled_filters_warning.dart';
+import 'package:ebla/presentations/resources/resources.dart';
 import 'package:ebla/presentations/widgets/grid/grid_value_with_unit_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -241,7 +242,15 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                         .requestMeanValue
                         .purposeList
                         ?.contains(-1) ??
-                    false));
+                    false) ||
+                (context.read<RentBloc>().requestMeanValue.purposeList!.length >
+                    1) ||
+                (context
+                        .read<RentBloc>()
+                        .requestMeanValue
+                        .propertyTypeList!
+                        .length >
+                    1));
       case GridItemType.sell:
         return (widget.sellKPI == SellGridKPIs.meanSellUnitValue ||
                 widget.sellKPI == SellGridKPIs.meanSoldAreaValue) &&
@@ -257,7 +266,10 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                         .requestSell
                         .purposeList
                         ?.contains(-1) ??
-                    false));
+                    false) ||
+                (context.read<SellBloc>().requestSell.propertyTypeList!.length >
+                    1) ||
+                (context.read<SellBloc>().requestSell.purposeList!.length > 1));
       default:
         return false;
     }

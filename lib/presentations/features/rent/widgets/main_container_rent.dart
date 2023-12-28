@@ -14,6 +14,7 @@ class MainRentDataContainer extends StatelessWidget {
   final String location;
   final String? descripton;
   final bool hasRooms;
+  final String? history;
 
   const MainRentDataContainer({
     super.key,
@@ -26,6 +27,7 @@ class MainRentDataContainer extends StatelessWidget {
     this.hasRooms = true,
     required this.startDate,
     required this.endDate,
+    required this.history,
   });
 
   @override
@@ -33,7 +35,7 @@ class MainRentDataContainer extends StatelessWidget {
     return Container(
       margin:
           EdgeInsets.symmetric(vertical: AppSizeH.s4, horizontal: AppSizeH.s20),
-      padding: EdgeInsets.symmetric(vertical: AppSizeH.s12),
+      padding: EdgeInsets.only(bottom: AppSizeH.s12),
       decoration: BoxDecoration(
         color: Theme.of(context).cardTheme.color,
         boxShadow: [
@@ -47,6 +49,23 @@ class MainRentDataContainer extends StatelessWidget {
       ),
       child: Column(
         children: [
+          Container(
+            margin: EdgeInsets.only(bottom: AppSizeH.s10),
+            padding: EdgeInsets.symmetric(
+                vertical: AppSizeH.s5, horizontal: AppSizeW.s10),
+            decoration: BoxDecoration(
+                color: ColorManager.golden,
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(AppSizeR.s10),
+                    bottomRight: Radius.circular(AppSizeR.s10))),
+            child: Text(
+              '${AppStrings().rentContractHistory}:$history',
+              style: Theme.of(context)
+                  .textTheme
+                  .displaySmall
+                  ?.copyWith(fontWeight: FontWeight.w600),
+            ),
+          ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: AppSizeW.s14),
             child: Row(

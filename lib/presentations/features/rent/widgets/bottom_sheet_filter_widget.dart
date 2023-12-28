@@ -222,7 +222,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     validatorFromAreaCubit = ValidatorCubit(0);
     validatorToAreaCubit = ValidatorCubit(0);
     valuesFiltersCubit = ValuesFiltersCubit(const RentLookupModel());
-    generateYears(2006, DateTime.now().year).forEach((element) {
+    generateYears(2019, DateTime.now().year).forEach((element) {
       valuesFiltersCubit.yearsLists.add(RentLookupModel(
           arName: element.toString(), id: element, enName: element.toString()));
     });

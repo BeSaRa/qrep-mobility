@@ -35,8 +35,6 @@ _$RequestMeanValueImpl _$$RequestMeanValueImplFromJson(
       rentPaymentMonthlyPerUnitFrom:
           json['rentPaymentMonthlyPerUnitFrom'] as num?,
       rentPaymentMonthlyPerUnitTo: json['rentPaymentMonthlyPerUnitTo'] as num?,
-      streetNo:
-          (json['streetNo'] as List<dynamic>?)?.map((e) => e as int).toList(),
       zoneId: json['zoneId'] as int?,
       unit: json['unit'] as int? ?? 2,
       periodId: json['periodId'] as int? ?? 1,
@@ -64,7 +62,6 @@ Map<String, dynamic> _$$RequestMeanValueImplToJson(
       'purposeList': instance.purposeList,
       'rentPaymentMonthlyPerUnitFrom': instance.rentPaymentMonthlyPerUnitFrom,
       'rentPaymentMonthlyPerUnitTo': instance.rentPaymentMonthlyPerUnitTo,
-      'streetNo': instance.streetNo,
       'zoneId': instance.zoneId,
       'unit': instance.unit,
       'periodId': instance.periodId,

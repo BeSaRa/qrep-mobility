@@ -264,6 +264,7 @@ class _RentViewState extends State<RentView> {
                                                                     RentBloc>()
                                                                 .requestMeanValue));
                                               },
+                                              isRent: true,
                                             ),
                                             SizedBox(width: AppSizeW.s7),
                                             BlocBuilder(
@@ -742,6 +743,14 @@ class _RentViewState extends State<RentView> {
                                                           '')
                                                       .toFormattedString()
                                                   : "",
+                                              // history: '',
+                                              history: DateTime.parse(state
+                                                          .rentSummery
+                                                          .transactionList[
+                                                              index]
+                                                          .issueDate ??
+                                                      '')
+                                                  .toFormattedString(),
                                             );
                                           });
                                     }

@@ -31,6 +31,7 @@ class AppStrings {
   String minValue = "min_value".tr();
   String maxValueValidate = "max_value_validate".tr();
   String minValueValidate = "min_value_validate".tr();
+  String rentContractHistory = "rent_contract_history".tr();
 
   // grid
   String totalRentalContractsNumber = "total_rental_contracts_number".tr();

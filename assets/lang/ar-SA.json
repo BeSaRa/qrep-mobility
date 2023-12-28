@@ -106,6 +106,7 @@
   "total_rental_contracts_number": "إجمالي عدد\n عقود الإيجار",
   "total_rented_space": "إجمالي المساحات المؤجرة",
   "unit_type": "نوع الوحدة",
+  "rent_contract_history": "تاريخ توثيق عقد الإيجار",
   "----------------------------------------------------SELL--------------------------": "",
   "average_price_per_square_foot": "متوسط السعر لكل قدم مربع",
   "average_price_per_square_meter": "متوسط السعر لكل متر مربع",

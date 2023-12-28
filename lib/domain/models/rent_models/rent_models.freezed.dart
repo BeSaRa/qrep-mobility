@@ -3684,6 +3684,7 @@ mixin _$RentSummaryObject {
   int? get bedRoomsCount => throw _privateConstructorUsedError;
   String? get endDate => throw _privateConstructorUsedError;
   int? get issueYear => throw _privateConstructorUsedError;
+  String? get issueDate => throw _privateConstructorUsedError;
   int? get municipalityid => throw _privateConstructorUsedError;
   int? get propertyTypeId => throw _privateConstructorUsedError;
   double? get rentPaymentMeterMT => throw _privateConstructorUsedError;
@@ -3712,6 +3713,7 @@ abstract class $RentSummaryObjectCopyWith<$Res> {
       int? bedRoomsCount,
       String? endDate,
       int? issueYear,
+      String? issueDate,
       int? municipalityid,
       int? propertyTypeId,
       double? rentPaymentMeterMT,
@@ -3741,6 +3743,7 @@ class _$RentSummaryObjectCopyWithImpl<$Res, $Val extends RentSummaryObject>
     Object? bedRoomsCount = freezed,
     Object? endDate = freezed,
     Object? issueYear = freezed,
+    Object? issueDate = freezed,
     Object? municipalityid = freezed,
     Object? propertyTypeId = freezed,
     Object? rentPaymentMeterMT = freezed,
@@ -3769,6 +3772,10 @@ class _$RentSummaryObjectCopyWithImpl<$Res, $Val extends RentSummaryObject>
           ? _value.issueYear
           : issueYear // ignore: cast_nullable_to_non_nullable
               as int?,
+      issueDate: freezed == issueDate
+          ? _value.issueDate
+          : issueDate // ignore: cast_nullable_to_non_nullable
+              as String?,
       municipalityid: freezed == municipalityid
           ? _value.municipalityid
           : municipalityid // ignore: cast_nullable_to_non_nullable
@@ -3826,6 +3833,7 @@ abstract class _$$RentSummaryObjectImplCopyWith<$Res>
       int? bedRoomsCount,
       String? endDate,
       int? issueYear,
+      String? issueDate,
       int? municipalityid,
       int? propertyTypeId,
       double? rentPaymentMeterMT,
@@ -3853,6 +3861,7 @@ class __$$RentSummaryObjectImplCopyWithImpl<$Res>
     Object? bedRoomsCount = freezed,
     Object? endDate = freezed,
     Object? issueYear = freezed,
+    Object? issueDate = freezed,
     Object? municipalityid = freezed,
     Object? propertyTypeId = freezed,
     Object? rentPaymentMeterMT = freezed,
@@ -3881,6 +3890,10 @@ class __$$RentSummaryObjectImplCopyWithImpl<$Res>
           ? _value.issueYear
           : issueYear // ignore: cast_nullable_to_non_nullable
               as int?,
+      issueDate: freezed == issueDate
+          ? _value.issueDate
+          : issueDate // ignore: cast_nullable_to_non_nullable
+              as String?,
       municipalityid: freezed == municipalityid
           ? _value.municipalityid
           : municipalityid // ignore: cast_nullable_to_non_nullable
@@ -3933,6 +3946,7 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
       this.bedRoomsCount = 0,
       this.endDate = '',
       this.issueYear = 0,
+      this.issueDate = '',
       this.municipalityid = 0,
       this.propertyTypeId = 0,
       this.rentPaymentMeterMT = 0,
@@ -3959,6 +3973,9 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
   @override
   @JsonKey()
   final int? issueYear;
+  @override
+  @JsonKey()
+  final String? issueDate;
   @override
   @JsonKey()
   final int? municipalityid;
@@ -3992,7 +4009,7 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
 
   @override
   String toString() {
-    return 'RentSummaryObject(area: $area, bedRoomsCount: $bedRoomsCount, endDate: $endDate, issueYear: $issueYear, municipalityid: $municipalityid, propertyTypeId: $propertyTypeId, rentPaymentMeterMT: $rentPaymentMeterMT, rentPaymentMeterSQT: $rentPaymentMeterSQT, rentPaymentMonthly: $rentPaymentMonthly, startDate: $startDate, unitBroker: $unitBroker, unitNo: $unitNo, unitOwner: $unitOwner, unitTenant: $unitTenant)';
+    return 'RentSummaryObject(area: $area, bedRoomsCount: $bedRoomsCount, endDate: $endDate, issueYear: $issueYear, issueDate: $issueDate, municipalityid: $municipalityid, propertyTypeId: $propertyTypeId, rentPaymentMeterMT: $rentPaymentMeterMT, rentPaymentMeterSQT: $rentPaymentMeterSQT, rentPaymentMonthly: $rentPaymentMonthly, startDate: $startDate, unitBroker: $unitBroker, unitNo: $unitNo, unitOwner: $unitOwner, unitTenant: $unitTenant)';
   }
 
   @override
@@ -4006,6 +4023,8 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
             (identical(other.issueYear, issueYear) ||
                 other.issueYear == issueYear) &&
+            (identical(other.issueDate, issueDate) ||
+                other.issueDate == issueDate) &&
             (identical(other.municipalityid, municipalityid) ||
                 other.municipalityid == municipalityid) &&
             (identical(other.propertyTypeId, propertyTypeId) ||
@@ -4035,6 +4054,7 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
       bedRoomsCount,
       endDate,
       issueYear,
+      issueDate,
       municipalityid,
       propertyTypeId,
       rentPaymentMeterMT,
@@ -4067,6 +4087,7 @@ abstract class _RentSummaryObject implements RentSummaryObject {
       final int? bedRoomsCount,
       final String? endDate,
       final int? issueYear,
+      final String? issueDate,
       final int? municipalityid,
       final int? propertyTypeId,
       final double? rentPaymentMeterMT,
@@ -4089,6 +4110,8 @@ abstract class _RentSummaryObject implements RentSummaryObject {
   String? get endDate;
   @override
   int? get issueYear;
+  @override
+  String? get issueDate;
   @override
   int? get municipalityid;
   @override

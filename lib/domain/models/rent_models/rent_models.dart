@@ -224,6 +224,7 @@ abstract class RentSummaryObject with _$RentSummaryObject {
       @Default(0) int? bedRoomsCount,
       @Default('') String? endDate,
       @Default(0) int? issueYear,
+      @Default('') String? issueDate,
       @Default(0) int? municipalityid,
       @Default(0) int? propertyTypeId,
       @Default(0) double? rentPaymentMeterMT,

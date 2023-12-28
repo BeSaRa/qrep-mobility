@@ -7,8 +7,10 @@ import 'selected_municipality_widget.dart';
 class SelectedYearWidget extends StatefulWidget {
   final Function(int?)? onChanged;
   final int value;
+  final bool isRent;
 
-  const SelectedYearWidget({super.key, this.onChanged, required this.value});
+  const SelectedYearWidget(
+      {super.key, this.onChanged, required this.value, this.isRent = false});
 
   @override
   State<SelectedYearWidget> createState() => _SelectedYearWidgetState();
@@ -19,7 +21,8 @@ class _SelectedYearWidgetState extends State<SelectedYearWidget> {
 
   @override
   void initState() {
-    generateYears(2019, DateTime.now().year).forEach((element) {
+    generateYears(widget.isRent ? 2019 : 2006, DateTime.now().year)
+        .forEach((element) {
       years.add(element);
     });
     super.initState();
