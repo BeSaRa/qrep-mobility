@@ -87,6 +87,7 @@ class AppStrings {
   String forgetPassword = "forget_password".tr();
   String activateFaceId = "activate_face_id".tr();
   static String loginWithUsernameStored = "login_with_user_name_stored";
+  String enterYourEmailToReset = "enter_your_email_to_reset".tr();
 
   //Errors
   String noInternetError = "noInternetError".tr();

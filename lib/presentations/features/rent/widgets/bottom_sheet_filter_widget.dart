@@ -136,7 +136,9 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
             valuesFiltersCubit.periodTimeHalfDetails =
                 const PeriodTimeDetails();
             valuesFiltersCubit.quarterYear.clear();
-            valuesFiltersCubit.months = getAllMonthsInYear(context);
+            valuesFiltersCubit.months = valuesFiltersCubit.year.yoy == 2019
+                ? getFromAprilMonths(context)
+                : getAllMonthsInYear(context);
             if (valuesFiltersCubit.month == const PeriodTimeDetails()) {
               context.read<RentBloc>().requestMeanValue.issueDateEndMonth !=
                       null

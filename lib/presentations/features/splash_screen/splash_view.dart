@@ -38,7 +38,6 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        // todo: when dark mode is ready change statusBarIconBrightness according to the theme
         statusBarColor: Colors.transparent,
         statusBarIconBrightness:
             instance<AppPreferences>().getTheme().brightness == Brightness.light

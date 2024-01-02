@@ -22,6 +22,7 @@ class GuestTokenBloc extends Bloc<GuestTokenEvent, GuestTokenState> {
         tokenGuest: (value) async {
           emit(const GuestTokenState.loading());
           var token = await appPreferences.getUserToken();
+          
           if (token.isEmpty) {
             await appPreferences.setUserToken(Constant.guestToken);
             await resetAllModules();

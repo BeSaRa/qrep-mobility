@@ -350,3 +350,145 @@ abstract class _AuthModel implements AuthModel {
   _$$AuthModelImplCopyWith<_$AuthModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+ResetPasswordModel _$ResetPasswordModelFromJson(Map<String, dynamic> json) {
+  return _ResetPasswordModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ResetPasswordModel {
+  @JsonKey(name: "reset_url")
+  String get token => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ResetPasswordModelCopyWith<ResetPasswordModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ResetPasswordModelCopyWith<$Res> {
+  factory $ResetPasswordModelCopyWith(
+          ResetPasswordModel value, $Res Function(ResetPasswordModel) then) =
+      _$ResetPasswordModelCopyWithImpl<$Res, ResetPasswordModel>;
+  @useResult
+  $Res call({@JsonKey(name: "reset_url") String token});
+}
+
+/// @nodoc
+class _$ResetPasswordModelCopyWithImpl<$Res, $Val extends ResetPasswordModel>
+    implements $ResetPasswordModelCopyWith<$Res> {
+  _$ResetPasswordModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = null,
+  }) {
+    return _then(_value.copyWith(
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ResetPasswordModelImplCopyWith<$Res>
+    implements $ResetPasswordModelCopyWith<$Res> {
+  factory _$$ResetPasswordModelImplCopyWith(_$ResetPasswordModelImpl value,
+          $Res Function(_$ResetPasswordModelImpl) then) =
+      __$$ResetPasswordModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: "reset_url") String token});
+}
+
+/// @nodoc
+class __$$ResetPasswordModelImplCopyWithImpl<$Res>
+    extends _$ResetPasswordModelCopyWithImpl<$Res, _$ResetPasswordModelImpl>
+    implements _$$ResetPasswordModelImplCopyWith<$Res> {
+  __$$ResetPasswordModelImplCopyWithImpl(_$ResetPasswordModelImpl _value,
+      $Res Function(_$ResetPasswordModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = null,
+  }) {
+    return _then(_$ResetPasswordModelImpl(
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ResetPasswordModelImpl implements _ResetPasswordModel {
+  const _$ResetPasswordModelImpl({@JsonKey(name: "reset_url") this.token = ""});
+
+  factory _$ResetPasswordModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ResetPasswordModelImplFromJson(json);
+
+  @override
+  @JsonKey(name: "reset_url")
+  final String token;
+
+  @override
+  String toString() {
+    return 'ResetPasswordModel(token: $token)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ResetPasswordModelImpl &&
+            (identical(other.token, token) || other.token == token));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, token);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ResetPasswordModelImplCopyWith<_$ResetPasswordModelImpl> get copyWith =>
+      __$$ResetPasswordModelImplCopyWithImpl<_$ResetPasswordModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ResetPasswordModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ResetPasswordModel implements ResetPasswordModel {
+  const factory _ResetPasswordModel(
+          {@JsonKey(name: "reset_url") final String token}) =
+      _$ResetPasswordModelImpl;
+
+  factory _ResetPasswordModel.fromJson(Map<String, dynamic> json) =
+      _$ResetPasswordModelImpl.fromJson;
+
+  @override
+  @JsonKey(name: "reset_url")
+  String get token;
+  @override
+  @JsonKey(ignore: true)
+  _$$ResetPasswordModelImplCopyWith<_$ResetPasswordModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

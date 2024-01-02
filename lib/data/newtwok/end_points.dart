@@ -102,6 +102,7 @@ class EndPoints {
 
   //Auth
   static const String auth = '/auth/login';
+  static const String resetPassword = '/auth/password/request';
   static const String refreshToken = '/auth/refresh';
   static const String userInfo = '/users/me';
   static const String updateUserInfo = '/users/{id}';

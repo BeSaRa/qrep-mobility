@@ -31,3 +31,15 @@ Map<String, dynamic> _$$AuthModelImplToJson(_$AuthModelImpl instance) =>
       'refresh_token': instance.refreshToken,
       'expires': instance.expires,
     };
+
+_$ResetPasswordModelImpl _$$ResetPasswordModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ResetPasswordModelImpl(
+      token: json['reset_url'] as String? ?? "",
+    );
+
+Map<String, dynamic> _$$ResetPasswordModelImplToJson(
+        _$ResetPasswordModelImpl instance) =>
+    <String, dynamic>{
+      'reset_url': instance.token,
+    };

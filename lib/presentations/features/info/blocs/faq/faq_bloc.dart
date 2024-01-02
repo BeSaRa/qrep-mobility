@@ -10,6 +10,7 @@ part 'faq_state.dart';
 class FaqBloc extends Bloc<FaqEvent, FaqState> {
   final FaqUsecase faqUsecase;
   final int limit = 10;
+
   FaqBloc({required this.faqUsecase}) : super(const _Initial(isLoading: true)) {
     on<FaqEvent>((event, emit) async {
       await event.map(getFaq: (value) async {
@@ -38,7 +39,6 @@ class FaqBloc extends Bloc<FaqEvent, FaqState> {
           );
         });
       });
-      // TODO: implement event handler
     });
   }
 }

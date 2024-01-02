@@ -67,6 +67,18 @@ List<PeriodTimeDetails> getAllMonthsInYear(BuildContext context) {
   return months;
 }
 
+List<PeriodTimeDetails> getFromAprilMonths(BuildContext context) {
+  List<PeriodTimeDetails> months = [];
+  for (int i = 1; i <= 9; i++) {
+    DateTime date = DateTime(DateTime.april, i);
+    String enMonthName = DateFormat('MMMM').format(date);
+    String monthName = DateFormat('MMMM', ARABIC_LOCAL.toString()).format(date);
+    months.add(
+        PeriodTimeDetails(name: monthName, value: [i], enName: enMonthName));
+  }
+  return months;
+}
+
 NewsModel? getObjectByIdNewsModel(List<NewsModel> objects, int id) {
   NewsModel item = objects.firstWhere((item) => item.id == id,
       orElse: () => const NewsModel());

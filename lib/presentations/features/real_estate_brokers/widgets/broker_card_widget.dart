@@ -58,14 +58,18 @@ class RealEstateCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    name,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(fontSize: AppSizeSp.s14),
-                    overflow: TextOverflow.visible,
-                    maxLines: 3,
+                  SizedBox(
+                    height: AppSizeH.s45,
+                    width: AppSizeW.s160,
+                    child: Text(
+                      name,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium
+                          ?.copyWith(fontSize: AppSizeSp.s14),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                    ),
                   ),
                   Text(
                     country,

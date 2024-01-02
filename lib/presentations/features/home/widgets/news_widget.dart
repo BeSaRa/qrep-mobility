@@ -20,7 +20,6 @@ class _NewsWidgetState extends State<NewsWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

@@ -25,3 +25,13 @@ abstract class AuthModel with _$AuthModel {
   factory AuthModel.fromJson(Map<String, dynamic> json) =>
       _$AuthModelFromJson(json);
 }
+
+@freezed
+abstract class ResetPasswordModel with _$ResetPasswordModel {
+  const factory ResetPasswordModel({
+    @Default("") @JsonKey(name: "reset_url") String token,
+  }) = _ResetPasswordModel;
+
+  factory ResetPasswordModel.fromJson(Map<String, dynamic> json) =>
+      _$ResetPasswordModelFromJson(json);
+}

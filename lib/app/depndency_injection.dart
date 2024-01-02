@@ -15,8 +15,10 @@ import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecases/CMS/update_fcm_usecase.dart';
+import '../domain/usecases/auth_usecase/forget_password_usecase.dart';
 import '../domain/usecases/sell_usecases/top_values/top_values_sell_usecases.dart';
 import '../domain/usecases/usecases.dart';
+import '../presentations/features/auth/blocs/forget_password_bloc/forget_password_bloc.dart';
 import '../presentations/features/auth/blocs/login_bloc/login_bloc.dart';
 import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import '../presentations/features/info/blocs/news_bloc/news_bloc.dart';
@@ -69,6 +71,10 @@ Future<void> initAppModule() async {
     instance.registerFactory<LoginUsecases>(
         () => LoginUsecases(repository: instance()));
   }
+  if (!GetIt.I.isRegistered<ForgetPasswordUseCase>()) {
+    instance.registerFactory<ForgetPasswordUseCase>(
+        () => ForgetPasswordUseCase(repository: instance()));
+  }
 
   if (!GetIt.I.isRegistered<BottomNavCubit>()) {
     instance.registerFactory<BottomNavCubit>(() => BottomNavCubit(0));
@@ -110,6 +116,11 @@ Future<void> initAppModule() async {
     instance.registerFactory<LoginBloc>(() => LoginBloc(
         loginUsecases: instance<LoginUsecases>(),
         appPreferences: instance<AppPreferences>()));
+  }
+  if (!GetIt.I.isRegistered<ForgetPasswordBloc>()) {
+    instance.registerFactory<ForgetPasswordBloc>(() => ForgetPasswordBloc(
+          instance<ForgetPasswordUseCase>(),
+        ));
   }
   if (!GetIt.I.isRegistered<UserBloc>()) {
     instance.registerFactory<UserBloc>(() => UserBloc(

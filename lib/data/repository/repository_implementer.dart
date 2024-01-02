@@ -1203,4 +1203,25 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
+  @override
+  Future<Result<ResetPasswordModel, FailureResponse>> resetPassword(
+      String email) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await translationsServiceClient.resetPassword(email);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureResponse.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(
+            FailureResponse.fromJson(e.response?.data ?? defaultError));
+      }
+    } else {
+      return Error(FailureResponse(
+          errors: [ErrorModel(message: AppStrings().noInternetError)]));
+    }
+  }
 }

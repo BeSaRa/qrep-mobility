@@ -89,7 +89,7 @@ abstract class Repository {
 
   // KPI10
   Future<Result<List<BaseRentResponsePerAreaUnitType>, FailureModel>>
-  getTotalSoldSpaces(RequestSellValues requestSellValues);
+      getTotalSoldSpaces(RequestSellValues requestSellValues);
 
   // KPI13
   Future<Result<List<BaseRentResponse>, FailureModel>> getMeanValueSell(
@@ -97,7 +97,7 @@ abstract class Repository {
 
   // KPI16
   Future<Result<List<BaseRentResponsePerAreaUnitType>, FailureModel>>
-  getMeanSoldArea(RequestSellValues requestSellValues);
+      getMeanSoldArea(RequestSellValues requestSellValues);
 
   Future<Result<List<RentDefault>, FailureModel>> getSellDefault(
       RequestSellValues requestSellValues);
@@ -121,7 +121,7 @@ abstract class Repository {
       RequestSellValues requestSellValues);
 
   Future<Result<List<BaseRentResponse>, FailureModel>>
-  averagePricePerSquareFoot(RequestSellValues requestSellValues);
+      averagePricePerSquareFoot(RequestSellValues requestSellValues);
 
   //----------------------------Mortgage----------------------------------------
 
@@ -130,22 +130,26 @@ abstract class Repository {
 
   // KPI1
   Future<Result<List<BaseRentResponse>, FailureModel>>
-  getTotalMortgageTransactions(RequestMortgageValues requestSellValues);
+      getTotalMortgageTransactions(RequestMortgageValues requestSellValues);
 
   // KPI3
   Future<Result<List<BaseRentResponse>, FailureModel>>
-  getTotalNumberOfMortgageUnits(RequestMortgageValues requestSellValues);
+      getTotalNumberOfMortgageUnits(RequestMortgageValues requestSellValues);
 
   // KPI5
   Future<Result<List<BaseRentResponse>, FailureModel>>
-  getTotalValueOfMortgageTransactions(RequestMortgageValues requestSellValues);
+      getTotalValueOfMortgageTransactions(
+          RequestMortgageValues requestSellValues);
 
   //KPI7
   Future<Result<MortgageTransactionResponse, FailureModel>>
-  getMortgageTransactions(RequestMortgageValues requestSellValues);
+      getMortgageTransactions(RequestMortgageValues requestSellValues);
 
   //Auth
   Future<Result<AuthResponse, FailureResponse>> login(RequestAuth requestAuth);
+
+  Future<Result<ResetPasswordModel, FailureResponse>> resetPassword(
+      String requestAuth);
 
   Future<Result<AuthResponse, FailureResponse>> refreshToken(
       RefreshToken refreshToken);
@@ -167,7 +171,7 @@ abstract class Repository {
   Future<Result<RealEstateBrokerLookUp, FailureModel>> getLockupOVBrokers();
 
   Future<Result<RealEstateBrokerTransactions, FailureModel>>
-  getBrokerTransactions(RequestBrokerValues input);
+      getBrokerTransactions(RequestBrokerValues input);
 
   Future<Result<RealEstateBrokerKpi1, FailureModel>> getBrokersCount(
       RequestBrokerValues input);

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../resources/assets_manager.dart';
-import '../resources/color_manager.dart';
-import '../resources/values_manager.dart';
+import '../../app/app_preferences.dart';
+import '../../app/depndency_injection.dart';
+import '../resources/resources.dart';
 
 class AnimatedPulesLogo extends StatefulWidget {
   const AnimatedPulesLogo({super.key});
@@ -47,10 +47,12 @@ class _AnimatedPulesLogoState extends State<AnimatedPulesLogo>
   @override
   void dispose() {
     motionController.dispose();
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      // todo: when dark mode is ready change statusBarIconBrightness according to the theme
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
+      statusBarIconBrightness:
+          instance<AppPreferences>().getTheme().brightness == Brightness.light
+              ? Brightness.light
+              : Brightness.dark,
     ));
     super.dispose();
   }
@@ -59,9 +61,12 @@ class _AnimatedPulesLogoState extends State<AnimatedPulesLogo>
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-          // todo: when dark mode is ready change statusBarIconBrightness according to the theme
           statusBarColor: ColorManager.primary,
-          statusBarIconBrightness: Brightness.light),
+          statusBarIconBrightness:
+              instance<AppPreferences>().getTheme().brightness ==
+                      Brightness.light
+                  ? Brightness.light
+                  : Brightness.dark),
     );
     return Scaffold(
       backgroundColor: ColorManager.primary,

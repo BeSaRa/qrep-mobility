@@ -10,6 +10,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/app_preferences.dart';
+import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../info/blocs/news_bloc/news_bloc.dart';
 import '../main/cubit/bottom_nav_cubit.dart';
@@ -29,6 +30,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    getFromAprilMonths(context);
     return Scaffold(
       appBar: const TitleAppBar(),
       // backgroundColor: Colors.transparent,

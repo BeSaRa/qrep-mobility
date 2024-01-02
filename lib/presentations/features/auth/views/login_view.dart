@@ -6,6 +6,7 @@ import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/features/auth/blocs/cubits/error_message_cubit.dart';
 import 'package:ebla/presentations/features/auth/blocs/cubits/face_id_check_cubit.dart';
 import 'package:ebla/presentations/features/auth/blocs/cubits/logged_in_user_cubit.dart';
+import 'package:ebla/presentations/features/auth/blocs/forget_password_bloc/forget_password_bloc.dart';
 import 'package:ebla/presentations/features/auth/blocs/login_bloc/login_bloc.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,12 +44,15 @@ class _LoginViewState extends State<LoginView> {
   late FaceIdCheckCubit faceIdCheck;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  late ForgetPasswordBloc forgetPasswordBloc;
+
   @override
   void initState() {
     haveFaceId();
     faceIdCheck = FaceIdCheckCubit(false);
     errorMessageCubit = ErrorMessageCubit('');
     light = faceIdCheck.appPreferences.getUserFaceId();
+    forgetPasswordBloc = instance<ForgetPasswordBloc>();
     super.initState();
   }
 
@@ -190,14 +194,22 @@ class _LoginViewState extends State<LoginView> {
               SizedBox(
                 height: AppSizeH.s8,
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  AppStrings().forgetPassword,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium
-                      ?.copyWith(fontSize: 12.sp),
+              GestureDetector(
+                onTap: () async {
+                  var res = await showDialog(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          _buildResetPasswordDialog(context, ''));
+                },
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    AppStrings().forgetPassword,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(fontSize: 12.sp),
+                  ),
                 ),
               ),
               BlocBuilder(
@@ -372,6 +384,144 @@ class _LoginViewState extends State<LoginView> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildResetPasswordDialog(BuildContext context, String data) {
+    return Dialog(
+      elevation: 0,
+      child: Form(
+        child: Container(
+          height: AppSizeH.s200,
+          padding: EdgeInsets.symmetric(
+              vertical: AppSizeH.s30, horizontal: AppSizeW.s30),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppSizeW.s15),
+            color: Theme.of(context).scaffoldBackgroundColor,
+          ),
+          child: Column(
+            children: [
+              Center(
+                child: Text(
+                  AppStrings().enterYourEmailToReset,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ),
+              TextFormField(
+                style: Theme.of(context).textTheme.bodyMedium,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppStrings().validatorEmailEmpty;
+                  }
+                  if (value.emailReg()) {
+                    return AppStrings().validatorEmailFormat;
+                  }
+                  return null;
+                },
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                decoration: InputDecoration(
+                  hintText: AppStrings().email,
+                  prefixIcon: const Icon(
+                    Icons.person_outline_outlined,
+                  ),
+                ),
+              ),
+              const Spacer(),
+              BlocConsumer<ForgetPasswordBloc, ForgetPasswordState>(
+                bloc: forgetPasswordBloc,
+                listener: (context, state) {
+                  state.map(
+                      initial: (val) {},
+                      loading: (val) {},
+                      done: (val) {
+                        errorMessageCubit.save(val.url);
+                      },
+                      error: (val) {
+                        errorMessageCubit.save(val.message);
+                      });
+                },
+                builder: (context, state) {
+                  state.map(initial: (val) {
+                    return _ConfirmButton(
+                      formKey: _formKey,
+                      confirm: () {
+                        if (_formKey.currentState!.validate()) {
+                          Navigator.of(context).pop(true);
+                        }
+                      },
+                    );
+                  }, loading: (valu) {
+                    return SizedBox(
+                        height: AppSizeH.s25,
+                        child: const CircularProgressIndicator());
+                  }, done: (done) {
+                    return _ConfirmButton(
+                      formKey: _formKey,
+                      confirm: () {
+                        if (_formKey.currentState!.validate()) {
+                          forgetPasswordBloc.add(ForgetPasswordEvent.started(
+                              emailController.text));
+                        }
+                      },
+                    );
+                  }, error: (val) {
+                    return _ConfirmButton(
+                      formKey: _formKey,
+                      confirm: () {},
+                    );
+                  });
+                  return Container();
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ConfirmButton extends StatelessWidget {
+  const _ConfirmButton({
+    super.key,
+    required GlobalKey<FormState> formKey,
+    required this.confirm,
+  }) : _formKey = formKey;
+
+  final GlobalKey<FormState> _formKey;
+  final Function confirm;
+
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Row(children: [
+        Expanded(
+          child: CustomElevatedButton(
+            isPrimary: true,
+            title: AppStrings().confirm,
+            onPress: () {
+              if (_formKey.currentState!.validate()) {
+                Navigator.of(context).pop(true);
+              }
+            },
+          ),
+        ),
+        SizedBox(width: AppSizeW.s8),
+        Expanded(
+          child: CustomElevatedButton(
+            isPrimary: false,
+            title: AppStrings().cancel,
+            onPress: () {
+              Navigator.of(context).pop();
+            },
+            backgroundColor: instance<AppPreferences>().getTheme().brightness ==
+                    Brightness.light
+                ? ColorManager.porcelain
+                : ColorManager.greyCloud,
+          ),
+        ),
+      ]),
     );
   }
 }
