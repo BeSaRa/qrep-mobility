@@ -380,6 +380,9 @@ mixin _$RealEstateBrokerTransactionData {
   bool get isActive => throw _privateConstructorUsedError;
   String get managerArName => throw _privateConstructorUsedError;
   String get managerEnName => throw _privateConstructorUsedError;
+  double get zoneNo => throw _privateConstructorUsedError;
+  double get streetNo => throw _privateConstructorUsedError;
+  double get buuildingNo => throw _privateConstructorUsedError;
   int get municipalityId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -412,6 +415,9 @@ abstract class $RealEstateBrokerTransactionDataCopyWith<$Res> {
       bool isActive,
       String managerArName,
       String managerEnName,
+      double zoneNo,
+      double streetNo,
+      double buuildingNo,
       int municipalityId});
 }
 
@@ -444,6 +450,9 @@ class _$RealEstateBrokerTransactionDataCopyWithImpl<$Res,
     Object? isActive = null,
     Object? managerArName = null,
     Object? managerEnName = null,
+    Object? zoneNo = null,
+    Object? streetNo = null,
+    Object? buuildingNo = null,
     Object? municipalityId = null,
   }) {
     return _then(_value.copyWith(
@@ -507,6 +516,18 @@ class _$RealEstateBrokerTransactionDataCopyWithImpl<$Res,
           ? _value.managerEnName
           : managerEnName // ignore: cast_nullable_to_non_nullable
               as String,
+      zoneNo: null == zoneNo
+          ? _value.zoneNo
+          : zoneNo // ignore: cast_nullable_to_non_nullable
+              as double,
+      streetNo: null == streetNo
+          ? _value.streetNo
+          : streetNo // ignore: cast_nullable_to_non_nullable
+              as double,
+      buuildingNo: null == buuildingNo
+          ? _value.buuildingNo
+          : buuildingNo // ignore: cast_nullable_to_non_nullable
+              as double,
       municipalityId: null == municipalityId
           ? _value.municipalityId
           : municipalityId // ignore: cast_nullable_to_non_nullable
@@ -540,6 +561,9 @@ abstract class _$$RealEstateBrokerTransactionDataImplCopyWith<$Res>
       bool isActive,
       String managerArName,
       String managerEnName,
+      double zoneNo,
+      double streetNo,
+      double buuildingNo,
       int municipalityId});
 }
 
@@ -571,6 +595,9 @@ class __$$RealEstateBrokerTransactionDataImplCopyWithImpl<$Res>
     Object? isActive = null,
     Object? managerArName = null,
     Object? managerEnName = null,
+    Object? zoneNo = null,
+    Object? streetNo = null,
+    Object? buuildingNo = null,
     Object? municipalityId = null,
   }) {
     return _then(_$RealEstateBrokerTransactionDataImpl(
@@ -634,6 +661,18 @@ class __$$RealEstateBrokerTransactionDataImplCopyWithImpl<$Res>
           ? _value.managerEnName
           : managerEnName // ignore: cast_nullable_to_non_nullable
               as String,
+      zoneNo: null == zoneNo
+          ? _value.zoneNo
+          : zoneNo // ignore: cast_nullable_to_non_nullable
+              as double,
+      streetNo: null == streetNo
+          ? _value.streetNo
+          : streetNo // ignore: cast_nullable_to_non_nullable
+              as double,
+      buuildingNo: null == buuildingNo
+          ? _value.buuildingNo
+          : buuildingNo // ignore: cast_nullable_to_non_nullable
+              as double,
       municipalityId: null == municipalityId
           ? _value.municipalityId
           : municipalityId // ignore: cast_nullable_to_non_nullable
@@ -662,6 +701,9 @@ class _$RealEstateBrokerTransactionDataImpl
       this.isActive = true,
       this.managerArName = '',
       this.managerEnName = '',
+      this.zoneNo = 0,
+      this.streetNo = 0,
+      this.buuildingNo = 0,
       this.municipalityId = 0});
 
   factory _$RealEstateBrokerTransactionDataImpl.fromJson(
@@ -715,11 +757,20 @@ class _$RealEstateBrokerTransactionDataImpl
   final String managerEnName;
   @override
   @JsonKey()
+  final double zoneNo;
+  @override
+  @JsonKey()
+  final double streetNo;
+  @override
+  @JsonKey()
+  final double buuildingNo;
+  @override
+  @JsonKey()
   final int municipalityId;
 
   @override
   String toString() {
-    return 'RealEstateBrokerTransactionData(brokerArDescription: $brokerArDescription, brokerArName: $brokerArName, brokerCategoryId: $brokerCategoryId, brokerEmail: $brokerEmail, brokerEnDescription: $brokerEnDescription, brokerEnName: $brokerEnName, brokerIcon: $brokerIcon, brokerPhone1: $brokerPhone1, brokerPhone2: $brokerPhone2, brokerPhone3: $brokerPhone3, brokerTypeId: $brokerTypeId, brokerlicenseNumber: $brokerlicenseNumber, isActive: $isActive, managerArName: $managerArName, managerEnName: $managerEnName, municipalityId: $municipalityId)';
+    return 'RealEstateBrokerTransactionData(brokerArDescription: $brokerArDescription, brokerArName: $brokerArName, brokerCategoryId: $brokerCategoryId, brokerEmail: $brokerEmail, brokerEnDescription: $brokerEnDescription, brokerEnName: $brokerEnName, brokerIcon: $brokerIcon, brokerPhone1: $brokerPhone1, brokerPhone2: $brokerPhone2, brokerPhone3: $brokerPhone3, brokerTypeId: $brokerTypeId, brokerlicenseNumber: $brokerlicenseNumber, isActive: $isActive, managerArName: $managerArName, managerEnName: $managerEnName, zoneNo: $zoneNo, streetNo: $streetNo, buuildingNo: $buuildingNo, municipalityId: $municipalityId)';
   }
 
   @override
@@ -757,30 +808,39 @@ class _$RealEstateBrokerTransactionDataImpl
                 other.managerArName == managerArName) &&
             (identical(other.managerEnName, managerEnName) ||
                 other.managerEnName == managerEnName) &&
+            (identical(other.zoneNo, zoneNo) || other.zoneNo == zoneNo) &&
+            (identical(other.streetNo, streetNo) ||
+                other.streetNo == streetNo) &&
+            (identical(other.buuildingNo, buuildingNo) ||
+                other.buuildingNo == buuildingNo) &&
             (identical(other.municipalityId, municipalityId) ||
                 other.municipalityId == municipalityId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      brokerArDescription,
-      brokerArName,
-      brokerCategoryId,
-      brokerEmail,
-      brokerEnDescription,
-      brokerEnName,
-      brokerIcon,
-      brokerPhone1,
-      brokerPhone2,
-      brokerPhone3,
-      brokerTypeId,
-      brokerlicenseNumber,
-      isActive,
-      managerArName,
-      managerEnName,
-      municipalityId);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        brokerArDescription,
+        brokerArName,
+        brokerCategoryId,
+        brokerEmail,
+        brokerEnDescription,
+        brokerEnName,
+        brokerIcon,
+        brokerPhone1,
+        brokerPhone2,
+        brokerPhone3,
+        brokerTypeId,
+        brokerlicenseNumber,
+        isActive,
+        managerArName,
+        managerEnName,
+        zoneNo,
+        streetNo,
+        buuildingNo,
+        municipalityId
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -816,6 +876,9 @@ abstract class _RealEstateBrokerTransactionData
       final bool isActive,
       final String managerArName,
       final String managerEnName,
+      final double zoneNo,
+      final double streetNo,
+      final double buuildingNo,
       final int municipalityId}) = _$RealEstateBrokerTransactionDataImpl;
 
   factory _RealEstateBrokerTransactionData.fromJson(Map<String, dynamic> json) =
@@ -851,6 +914,12 @@ abstract class _RealEstateBrokerTransactionData
   String get managerArName;
   @override
   String get managerEnName;
+  @override
+  double get zoneNo;
+  @override
+  double get streetNo;
+  @override
+  double get buuildingNo;
   @override
   int get municipalityId;
   @override

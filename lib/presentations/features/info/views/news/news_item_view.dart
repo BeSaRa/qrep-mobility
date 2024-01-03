@@ -177,7 +177,7 @@ class _NewsItemViewState extends State<NewsItemView> {
               ),
               SizedBox(height: AppSizeH.s18),
               Text(
-                AppStrings().releatedNews,
+                AppStrings().relatedNews,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               SizedBox(height: AppSizeH.s8),

@@ -40,6 +40,9 @@ abstract class RealEstateBrokerTransactionData
       @Default(true) bool isActive,
       @Default('') String managerArName,
       @Default('') String managerEnName,
+      @Default(0) double zoneNo,
+      @Default(0) double streetNo,
+      @Default(0) double buuildingNo,
       @Default(0) int municipalityId}) = _RealEstateBrokerTransactionData;
 
   factory RealEstateBrokerTransactionData.fromJson(Map<String, dynamic> json) =>

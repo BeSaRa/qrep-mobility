@@ -7,23 +7,26 @@ class ErrorGlobalWidget extends StatelessWidget {
   final Function()? onPressed;
   final String? message;
   final bool small;
+
   const ErrorGlobalWidget({
     super.key,
     this.onPressed,
-    this.message,  this.small = false,
+    this.message,
+    this.small = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: small?  AppSizeH.s150: MediaQuery.of(context).size.height,
-      width: small? AppSizeH.s150:MediaQuery.of(context).size.width,
+    return Container(
+      height: small ? AppSizeH.s150 : MediaQuery.of(context).size.height,
+      width: small ? AppSizeH.s150 : MediaQuery.of(context).size.width,
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-              height: small ? AppSizeH.s50: AppSizeH.s130,
-              width:small? AppSizeH.s50: AppSizeH.s130,
+              height: small ? AppSizeH.s50 : AppSizeH.s130,
+              width: small ? AppSizeH.s50 : AppSizeH.s130,
               child: Lottie.asset(ImageAssets.animationError)),
           message != null
               ? Column(

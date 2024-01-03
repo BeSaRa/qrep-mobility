@@ -12,6 +12,9 @@ class RealEstateCard extends StatelessWidget {
   final String phone;
   final String email;
   final bool divider;
+  final double zoneId;
+  final double streetNo;
+  final double buildingNo;
 
   const RealEstateCard({
     super.key,
@@ -20,6 +23,9 @@ class RealEstateCard extends StatelessWidget {
     required this.phone,
     required this.email,
     this.divider = true,
+    required this.zoneId,
+    required this.streetNo,
+    required this.buildingNo,
   });
 
   _callNumber(String num) async {
@@ -41,6 +47,14 @@ class RealEstateCard extends StatelessWidget {
       await launch(url);
     } else {
       throw 'Could not launch $url';
+    }
+  }
+
+  openMap() async {
+    var url = Uri.parse(
+        'https://geoportal.gisqatar.org.qa/inwani/index.html?zone=$zoneId&street=$streetNo&building=$buildingNo');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch ');
     }
   }
 
@@ -89,11 +103,13 @@ class RealEstateCard extends StatelessWidget {
                       _callNumber(phone);
                     },
                     child: Container(
+                      width: AppSizeW.s100,
                       decoration: BoxDecoration(
                           color: ColorManager.golden,
                           borderRadius: BorderRadius.circular(AppSizeR.s8)),
                       padding: EdgeInsets.all(AppSizeH.s3),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             AppStrings().callBroker,
@@ -124,11 +140,13 @@ class RealEstateCard extends StatelessWidget {
                       sendEmail(email);
                     },
                     child: Container(
+                      width: AppSizeW.s100,
                       decoration: BoxDecoration(
                           color: ColorManager.golden,
                           borderRadius: BorderRadius.circular(AppSizeR.s8)),
                       padding: EdgeInsets.all(AppSizeH.s3),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             AppStrings().sendEmail,
@@ -145,6 +163,44 @@ class RealEstateCard extends StatelessWidget {
                           ),
                           Icon(
                             Icons.email_outlined,
+                            color: ColorManager.white,
+                            size: AppSizeH.s15,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: AppSizeH.s10,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      openMap();
+                    },
+                    child: Container(
+                      width: AppSizeW.s100,
+                      decoration: BoxDecoration(
+                          color: ColorManager.golden,
+                          borderRadius: BorderRadius.circular(AppSizeR.s8)),
+                      padding: EdgeInsets.all(AppSizeH.s3),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            AppStrings().openLocation,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    fontSize: AppSizeSp.s12,
+                                    color: ColorManager.white),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          SizedBox(
+                            width: AppSizeW.s5,
+                          ),
+                          Icon(
+                            Icons.location_on_outlined,
                             color: ColorManager.white,
                             size: AppSizeH.s15,
                           ),

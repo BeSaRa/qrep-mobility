@@ -24,6 +24,7 @@ mixin _$RequestBrokerValues {
   int? get limit => throw _privateConstructorUsedError;
   int? get municipalityId => throw _privateConstructorUsedError;
   int? get offset => throw _privateConstructorUsedError;
+  String? get brokerName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +39,11 @@ abstract class $RequestBrokerValuesCopyWith<$Res> {
       _$RequestBrokerValuesCopyWithImpl<$Res, RequestBrokerValues>;
   @useResult
   $Res call(
-      {int? brokerCategoryId, int? limit, int? municipalityId, int? offset});
+      {int? brokerCategoryId,
+      int? limit,
+      int? municipalityId,
+      int? offset,
+      String? brokerName});
 }
 
 /// @nodoc
@@ -58,6 +63,7 @@ class _$RequestBrokerValuesCopyWithImpl<$Res, $Val extends RequestBrokerValues>
     Object? limit = freezed,
     Object? municipalityId = freezed,
     Object? offset = freezed,
+    Object? brokerName = freezed,
   }) {
     return _then(_value.copyWith(
       brokerCategoryId: freezed == brokerCategoryId
@@ -76,6 +82,10 @@ class _$RequestBrokerValuesCopyWithImpl<$Res, $Val extends RequestBrokerValues>
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
               as int?,
+      brokerName: freezed == brokerName
+          ? _value.brokerName
+          : brokerName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -89,7 +99,11 @@ abstract class _$$RequestBrokerValuesImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? brokerCategoryId, int? limit, int? municipalityId, int? offset});
+      {int? brokerCategoryId,
+      int? limit,
+      int? municipalityId,
+      int? offset,
+      String? brokerName});
 }
 
 /// @nodoc
@@ -107,6 +121,7 @@ class __$$RequestBrokerValuesImplCopyWithImpl<$Res>
     Object? limit = freezed,
     Object? municipalityId = freezed,
     Object? offset = freezed,
+    Object? brokerName = freezed,
   }) {
     return _then(_$RequestBrokerValuesImpl(
       brokerCategoryId: freezed == brokerCategoryId
@@ -125,6 +140,10 @@ class __$$RequestBrokerValuesImplCopyWithImpl<$Res>
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
               as int?,
+      brokerName: freezed == brokerName
+          ? _value.brokerName
+          : brokerName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -133,7 +152,11 @@ class __$$RequestBrokerValuesImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RequestBrokerValuesImpl implements _RequestBrokerValues {
   _$RequestBrokerValuesImpl(
-      {this.brokerCategoryId, this.limit, this.municipalityId, this.offset});
+      {this.brokerCategoryId,
+      this.limit,
+      this.municipalityId,
+      this.offset,
+      this.brokerName});
 
   factory _$RequestBrokerValuesImpl.fromJson(Map<String, dynamic> json) =>
       _$$RequestBrokerValuesImplFromJson(json);
@@ -146,10 +169,12 @@ class _$RequestBrokerValuesImpl implements _RequestBrokerValues {
   final int? municipalityId;
   @override
   final int? offset;
+  @override
+  final String? brokerName;
 
   @override
   String toString() {
-    return 'RequestBrokerValues(brokerCategoryId: $brokerCategoryId, limit: $limit, municipalityId: $municipalityId, offset: $offset)';
+    return 'RequestBrokerValues(brokerCategoryId: $brokerCategoryId, limit: $limit, municipalityId: $municipalityId, offset: $offset, brokerName: $brokerName)';
   }
 
   @override
@@ -162,13 +187,15 @@ class _$RequestBrokerValuesImpl implements _RequestBrokerValues {
             (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.municipalityId, municipalityId) ||
                 other.municipalityId == municipalityId) &&
-            (identical(other.offset, offset) || other.offset == offset));
+            (identical(other.offset, offset) || other.offset == offset) &&
+            (identical(other.brokerName, brokerName) ||
+                other.brokerName == brokerName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, brokerCategoryId, limit, municipalityId, offset);
+  int get hashCode => Object.hash(
+      runtimeType, brokerCategoryId, limit, municipalityId, offset, brokerName);
 
   @JsonKey(ignore: true)
   @override
@@ -190,7 +217,8 @@ abstract class _RequestBrokerValues implements RequestBrokerValues {
       {final int? brokerCategoryId,
       final int? limit,
       final int? municipalityId,
-      final int? offset}) = _$RequestBrokerValuesImpl;
+      final int? offset,
+      final String? brokerName}) = _$RequestBrokerValuesImpl;
 
   factory _RequestBrokerValues.fromJson(Map<String, dynamic> json) =
       _$RequestBrokerValuesImpl.fromJson;
@@ -203,6 +231,8 @@ abstract class _RequestBrokerValues implements RequestBrokerValues {
   int? get municipalityId;
   @override
   int? get offset;
+  @override
+  String? get brokerName;
   @override
   @JsonKey(ignore: true)
   _$$RequestBrokerValuesImplCopyWith<_$RequestBrokerValuesImpl> get copyWith =>

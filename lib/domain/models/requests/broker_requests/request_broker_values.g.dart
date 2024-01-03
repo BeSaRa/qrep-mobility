@@ -13,6 +13,7 @@ _$RequestBrokerValuesImpl _$$RequestBrokerValuesImplFromJson(
       limit: json['limit'] as int?,
       municipalityId: json['municipalityId'] as int?,
       offset: json['offset'] as int?,
+      brokerName: json['brokerName'] as String?,
     );
 
 Map<String, dynamic> _$$RequestBrokerValuesImplToJson(
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$RequestBrokerValuesImplToJson(
       'limit': instance.limit,
       'municipalityId': instance.municipalityId,
       'offset': instance.offset,
+      'brokerName': instance.brokerName,
     };

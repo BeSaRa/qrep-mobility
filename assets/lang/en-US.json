@@ -158,5 +158,6 @@
   "last_name": "Last name",
   "nick_name": "Nick name",
   "name_validation_length": "The name length should be under 50 characters",
-  "activate_email_notifications": "Activate email notifications"
+  "activate_email_notifications": "Activate email notifications",
+  "open_location": "View Location"
 }

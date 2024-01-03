@@ -5,5 +5,6 @@ class BrokerTransactionEvent with _$BrokerTransactionEvent {
   const factory BrokerTransactionEvent.started(
       {required RequestBrokerValues request}) = _Started;
 
-  const factory BrokerTransactionEvent.search({required String name}) = _Search;
+  const factory BrokerTransactionEvent.search(
+      {required RequestBrokerValues request}) = _Search;
 }

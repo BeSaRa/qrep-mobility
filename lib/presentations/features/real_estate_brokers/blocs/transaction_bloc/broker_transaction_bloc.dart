@@ -27,19 +27,16 @@ class BrokerTransactionBloc
         }, (error) {
           emit(BrokerTransactionState.error(error.message));
         });
-      }, search: (_Search value) {
-        List<RealEstateBrokerTransactionData> newData = [];
-        if (value.name.isNotEmpty) {
-          data.map((e) {
-            if (e.brokerEnName.contains(value.name) ||
-                e.brokerArName.contains(value.name)) {
-              newData.add(e);
-            }
-          }).toList();
-          emit(BrokerTransactionState.loaded(newData));
-        } else {
-          emit(BrokerTransactionState.loaded(data));
-        }
+      }, search: (_Search value) async {
+        emit(const BrokerTransactionState.loading());
+        final failureOrSuccess =
+            await brokerTransactionUseCase.execute(value.request);
+        failureOrSuccess.when((success) {
+          data = success.transactionList;
+          emit(BrokerTransactionState.loaded(success.transactionList));
+        }, (error) {
+          emit(BrokerTransactionState.error(error.message));
+        });
       });
     });
   }

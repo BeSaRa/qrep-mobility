@@ -47,13 +47,13 @@ class LookUpBrokerBloc extends Bloc<LookUpBrokerEvent, LookUpBrokerState> {
   }
 
   RequestBrokerValues requestBroker = RequestBrokerValues(
-    municipalityId: 1,
+    municipalityId: -1,
     brokerCategoryId: 2,
     limit: 5,
     offset: 0,
   );
   RequestBrokerValues requestDefaultBroker = RequestBrokerValues(
-    municipalityId: 1,
+    municipalityId: -1,
     brokerCategoryId: 2,
     limit: 5,
     offset: 0,

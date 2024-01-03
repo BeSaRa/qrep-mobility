@@ -158,5 +158,6 @@
   "last_name": "الاسم الأخير",
   "nick_name": "اللقب",
   "name_validation_length": "يجب أن يكون الاسم أقل من 50 محرفاً",
-  "activate_email_notifications": "تفعيل إشعارات البريد الإلكتروني"
+  "activate_email_notifications": "تفعيل إشعارات البريد الإلكتروني",
+  "open_location": "رؤية الموقع"
 }

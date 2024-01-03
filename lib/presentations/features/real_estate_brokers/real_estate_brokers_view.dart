@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/real_estate_brokers/real_estates.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,7 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
   late ChangeStatusCubit changeStatusCubit;
   late BrokersCountBloc brokersCountBloc;
   late BrokerTransactionBloc brokerTransactionBloc;
-  TextEditingController searchcontrolller = TextEditingController();
+  TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
@@ -34,6 +36,8 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
     brokerTransactionBloc = instance<BrokerTransactionBloc>();
   }
 
+  Timer? _debounce;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
@@ -44,178 +48,184 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
             return const AnimatedPulesLogo();
           },
           done: (value) {
-            return Scaffold(
-              appBar: EblaAppBar(
-                title: AppStrings().realEstateBrokers,
-              ),
-              body: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    BlocBuilder(
-                      bloc: changeStatusCubit,
-                      builder: (context, state) {
-                        return Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              SizedBox(width: AppSizeW.s16),
-                              Flexible(
-                                child: SearchTextFieldWidget(
-                                  controller: searchcontrolller,
-                                  hint: AppStrings().brokerCompanyName,
-                                  onChange: (val) {
-                                    brokerTransactionBloc.add(
-                                        BrokerTransactionEvent.search(
-                                            name: val));
-                                  },
-                                ),
-                              ),
-                              SizedBox(width: AppSizeW.s10),
-                              BlocBuilder(
-                                bloc: context.read<LookUpBrokerBloc>(),
-                                builder: (context, LookUpBrokerState state) {
-                                  return state.map(
-                                    loading: (value) {
-                                      return Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: AppSizeH.s5),
-                                        child: Icon(
-                                          Icons.filter_list_sharp,
-                                          color: ColorManager.golden,
-                                        ),
-                                      );
-                                    },
-                                    done: (value) {
-                                      return IconButton(
-                                          onPressed: () async {
-                                            var res = await bottomSheetWidget(
-                                              context,
-                                              child: MultiBlocProvider(
-                                                providers: [
-                                                  BlocProvider.value(
-                                                      value: context.read<
-                                                          LookUpBrokerBloc>()),
-                                                ],
-                                                child:
-                                                    const BottomSheetFilterBrokerWidget(),
-                                              ),
-                                            );
-                                            if (res != null && res) {
-                                              changeStatusCubit.changeStatus();
-                                              brokersCountBloc.add(
-                                                  BrokersCountEvent.started(
-                                                      // ignore: use_build_context_synchronously
-                                                      request: context
-                                                          .read<
-                                                              LookUpBrokerBloc>()
-                                                          .requestBroker));
-                                            }
-                                          },
-                                          icon: Icon(
-                                            size: AppSizeW.s32,
-                                            Icons.filter_list_sharp,
-                                            color: ColorManager.golden,
-                                          ));
-                                    },
-                                    error: (value) {
-                                      return const SizedBox();
-                                    },
-                                  );
-                                },
-                              ),
-                              SizedBox(
-                                width: AppSizeW.s7,
-                              ),
-                            ]);
-                      },
-                    ),
-                    SizedBox(
-                      height: AppSizeH.s25,
-                    ),
-                    BlocBuilder(
-                      bloc: changeStatusCubit,
-                      builder: (context, state) {
-                        return BlocBuilder<BrokersCountBloc, BrokersCountState>(
-                          bloc: brokersCountBloc,
-                          builder: (context, state) {
-                            return state.map(
-                                initial: (value) => const BrokerCountContainer(
-                                      count: '106',
-                                    ),
-                                loading: (value) =>
-                                    const BrokerCountContainerShimmer(),
-                                loaded: (value) {
-                                  brokerTransactionBloc.add(
-                                      BrokerTransactionEvent.started(
+            brokerTransactionBloc.add(BrokerTransactionEvent.started(
+                request: context
+                    .read<LookUpBrokerBloc>()
+                    .requestBroker
+                    .copyWith(limit: 5)));
+            return GestureDetector(
+              onTap: () {
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
+              child: Scaffold(
+                appBar: EblaAppBar(
+                  title: AppStrings().realEstateBrokers,
+                ),
+                body: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      BlocBuilder(
+                        bloc: changeStatusCubit,
+                        builder: (context, state) {
+                          return Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                SizedBox(width: AppSizeW.s16),
+                                Flexible(
+                                  child: SearchTextFieldWidget(
+                                    controller: searchController,
+                                    hint: AppStrings().brokerCompanyName,
+                                    onChange: (val) {
+                                      if (_debounce?.isActive ?? false)
+                                        _debounce?.cancel();
+                                      _debounce = Timer(
+                                          const Duration(milliseconds: 500),
+                                          () {
+                                        // do something with query
+                                        brokersCountBloc
+                                            .add(BrokersCountEvent.started(
                                           request: context
                                               .read<LookUpBrokerBloc>()
                                               .requestBroker
                                               .copyWith(
-                                                  limit: value.val.ceil())));
-
-                                  return BrokerCountContainer(
-                                    count: value.val.toStringAsFixed(0),
-                                  );
-                                },
-                                error: (value) => ErrorGlobalWidget(
-                                      small: true,
-                                      onPressed: () {
-                                        brokersCountBloc.add(
-                                            BrokersCountEvent.started(
+                                                  brokerName: val,
+                                                  limit: 5,
+                                                  offset: 0),
+                                        ));
+                                        brokerTransactionBloc.add(
+                                            BrokerTransactionEvent.search(
                                                 request: context
                                                     .read<LookUpBrokerBloc>()
-                                                    .requestBroker));
+                                                    .requestBroker
+                                                    .copyWith(
+                                                        brokerName: val,
+                                                        limit: 5,
+                                                        offset: 0)));
+                                      });
+                                    },
+                                  ),
+                                ),
+                                SizedBox(width: AppSizeW.s10),
+                                BlocBuilder(
+                                  bloc: context.read<LookUpBrokerBloc>(),
+                                  builder: (context, LookUpBrokerState state) {
+                                    return state.map(
+                                      loading: (value) {
+                                        return Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: AppSizeH.s5),
+                                          child: Icon(
+                                            Icons.filter_list_sharp,
+                                            color: ColorManager.golden,
+                                          ),
+                                        );
                                       },
-                                      message: value.message,
-                                    ));
-                          },
-                        );
-                      },
-                    ),
-                    SizedBox(
-                      height: AppSizeH.s40,
-                    ),
-                    Center(
-                      child: Text(
-                        AppStrings().realEstateBrokersDashboard,
-                        style: Theme.of(context).textTheme.titleMedium,
+                                      done: (value) {
+                                        return IconButton(
+                                            onPressed: () async {
+                                              var res = await bottomSheetWidget(
+                                                context,
+                                                child: MultiBlocProvider(
+                                                  providers: [
+                                                    BlocProvider.value(
+                                                        value: context.read<
+                                                            LookUpBrokerBloc>()),
+                                                  ],
+                                                  child:
+                                                      const BottomSheetFilterBrokerWidget(),
+                                                ),
+                                              );
+                                              if (res != null && res) {
+                                                changeStatusCubit
+                                                    .changeStatus();
+                                                brokersCountBloc.add(
+                                                    BrokersCountEvent.started(
+                                                        // ignore: use_build_context_synchronously
+                                                        request: context
+                                                            .read<
+                                                                LookUpBrokerBloc>()
+                                                            .requestBroker));
+                                              }
+                                            },
+                                            icon: Icon(
+                                              size: AppSizeW.s32,
+                                              Icons.filter_list_sharp,
+                                              color: ColorManager.golden,
+                                            ));
+                                      },
+                                      error: (value) {
+                                        return const SizedBox();
+                                      },
+                                    );
+                                  },
+                                ),
+                                SizedBox(
+                                  width: AppSizeW.s7,
+                                ),
+                              ]);
+                        },
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(
-                          horizontal: AppSizeW.s150, vertical: AppSizeH.s20),
-                      height: AppSizeH.s5,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(AppSizeR.s5),
-                          color: ColorManager.lightSilver),
-                    ),
-                    BlocBuilder<BrokerTransactionBloc, BrokerTransactionState>(
-                      bloc: brokerTransactionBloc,
-                      builder: (context, state) {
-                        return state.map(initial: (initial) {
-                          return Container();
-                        }, loading: (val) {
-                          return Container(
-                            margin:
-                                EdgeInsets.symmetric(horizontal: AppSizeW.s20),
-                            padding: EdgeInsets.symmetric(
-                                vertical: AppSizeH.s10,
-                                horizontal: AppSizeW.s20),
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).cardTheme.color,
-                                borderRadius:
-                                    BorderRadius.circular(AppSizeR.s10)),
-                            child: ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: 5,
-                                itemBuilder: (context, index) {
-                                  return const RealEstateCardShimmer();
-                                }),
+                      SizedBox(
+                        height: AppSizeH.s25,
+                      ),
+                      BlocBuilder(
+                        bloc: changeStatusCubit,
+                        builder: (context, state) {
+                          return BlocBuilder<BrokersCountBloc,
+                              BrokersCountState>(
+                            bloc: brokersCountBloc,
+                            builder: (context, state) {
+                              return state.map(
+                                  initial: (value) =>
+                                      const BrokerCountContainer(
+                                        count: '106',
+                                      ),
+                                  loading: (value) =>
+                                      const BrokerCountContainerShimmer(),
+                                  loaded: (value) {
+                                    return BrokerCountContainer(
+                                      count: value.val.toStringAsFixed(0),
+                                    );
+                                  },
+                                  error: (value) => ErrorGlobalWidget(
+                                        small: true,
+                                        onPressed: () {
+                                          brokersCountBloc.add(
+                                              BrokersCountEvent.started(
+                                                  request: context
+                                                      .read<LookUpBrokerBloc>()
+                                                      .requestBroker));
+                                        },
+                                        message: value.message,
+                                      ));
+                            },
                           );
-                        }, loaded: (loaded) {
-                          if (loaded.response.isEmpty) {
-                            return Text(AppStrings().noDataFound);
-                          } else {
+                        },
+                      ),
+                      SizedBox(
+                        height: AppSizeH.s40,
+                      ),
+                      Center(
+                        child: Text(
+                          AppStrings().realEstateBrokersDashboard,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                            horizontal: AppSizeW.s150, vertical: AppSizeH.s20),
+                        height: AppSizeH.s5,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(AppSizeR.s5),
+                            color: ColorManager.lightSilver),
+                      ),
+                      BlocBuilder<BrokerTransactionBloc,
+                          BrokerTransactionState>(
+                        bloc: brokerTransactionBloc,
+                        builder: (context, state) {
+                          return state.map(initial: (initial) {
+                            return Container();
+                          }, loading: (val) {
                             return Container(
                               margin: EdgeInsets.symmetric(
                                   horizontal: AppSizeW.s20),
@@ -229,60 +239,261 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                               child: ListView.builder(
                                   physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
-                                  itemCount: loaded.response.length,
+                                  itemCount: 5,
                                   itemBuilder: (context, index) {
-                                    return RealEstateCard(
-                                      name: context.locale == ARABIC_LOCAL
-                                          ? loaded.response[index].brokerArName
-                                          : loaded.response[index].brokerEnName,
-                                      country: context.locale == ARABIC_LOCAL
-                                          ? getObjectByLookupKey(
-                                                      context
-                                                              .read<
-                                                                  LookUpBrokerBloc>()
-                                                              .lookupBroker
-                                                              ?.municipalityList ??
-                                                          [],
-                                                      loaded.response[index]
-                                                          .municipalityId)
-                                                  ?.arName ??
-                                              ''
-                                          : getObjectByLookupKey(
-                                                      context
-                                                              .read<
-                                                                  LookUpBrokerBloc>()
-                                                              .lookupBroker
-                                                              ?.municipalityList ??
-                                                          [],
-                                                      loaded.response[index]
-                                                          .municipalityId)
-                                                  ?.enName ??
-                                              '',
-                                      phone:
-                                          loaded.response[index].brokerPhone1,
-                                      email: loaded.response[index].brokerEmail,
-                                      divider:
-                                          index != loaded.response.length - 1,
-                                    );
+                                    return const RealEstateCardShimmer();
                                   }),
                             );
-                          }
-                        }, error: (error) {
-                          return const ErrorGlobalWidget();
-                        });
-                      },
-                    ),
-                  ],
+                          }, loaded: (loaded) {
+                            if (loaded.response.isEmpty) {
+                              return Text(AppStrings().noDataFound);
+                            } else {
+                              return Column(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: AppSizeW.s20),
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: AppSizeH.s10,
+                                        horizontal: AppSizeW.s20),
+                                    decoration: BoxDecoration(
+                                        color:
+                                            Theme.of(context).cardTheme.color,
+                                        borderRadius: BorderRadius.circular(
+                                            AppSizeR.s10)),
+                                    child: ListView.builder(
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount: loaded.response.length,
+                                        itemBuilder: (context, index) {
+                                          return RealEstateCard(
+                                            name: context.locale == ARABIC_LOCAL
+                                                ? loaded.response[index]
+                                                    .brokerArName
+                                                : loaded.response[index]
+                                                    .brokerEnName,
+                                            country: context
+                                                        .locale ==
+                                                    ARABIC_LOCAL
+                                                ? getObjectByLookupKey(
+                                                            context
+                                                                    .read<
+                                                                        LookUpBrokerBloc>()
+                                                                    .lookupBroker
+                                                                    ?.municipalityList ??
+                                                                [],
+                                                            loaded
+                                                                .response[index]
+                                                                .municipalityId)
+                                                        ?.arName ??
+                                                    ''
+                                                : getObjectByLookupKey(
+                                                            context
+                                                                    .read<
+                                                                        LookUpBrokerBloc>()
+                                                                    .lookupBroker
+                                                                    ?.municipalityList ??
+                                                                [],
+                                                            loaded
+                                                                .response[index]
+                                                                .municipalityId)
+                                                        ?.enName ??
+                                                    '',
+                                            phone: loaded
+                                                .response[index].brokerPhone1,
+                                            email: loaded
+                                                .response[index].brokerEmail,
+                                            divider: index !=
+                                                loaded.response.length - 1,
+                                            zoneId:
+                                                loaded.response[index].zoneNo,
+                                            streetNo:
+                                                loaded.response[index].streetNo,
+                                            buildingNo: loaded
+                                                .response[index].buuildingNo,
+                                          );
+                                        }),
+                                  ),
+                                  Column(
+                                    children: [
+                                      FlutterCustomPagination(
+                                        currentPage: (context
+                                                    .read<LookUpBrokerBloc>()
+                                                    .requestBroker
+                                                    .offset ??
+                                                0) ~/
+                                            (context
+                                                    .read<LookUpBrokerBloc>()
+                                                    .requestBroker
+                                                    .limit ??
+                                                1),
+                                        limitPerPage: context
+                                                .read<LookUpBrokerBloc>()
+                                                .requestBroker
+                                                .limit ??
+                                            5,
+                                        totalDataCount:
+                                            brokersCountBloc.count.ceil(),
+                                        onPreviousPage: (previousPage) {
+                                          context.read<LookUpBrokerBloc>().requestBroker = context
+                                              .read<LookUpBrokerBloc>()
+                                              .requestBroker
+                                              .copyWith(
+                                                  offset: ((context
+                                                                      .read<
+                                                                          LookUpBrokerBloc>()
+                                                                      .requestBroker
+                                                                      .offset ??
+                                                                  0) ~/
+                                                              (context
+                                                                      .read<
+                                                                          LookUpBrokerBloc>()
+                                                                      .requestBroker
+                                                                      .limit ??
+                                                                  1) -
+                                                          1) *
+                                                      (context
+                                                              .read<
+                                                                  LookUpBrokerBloc>()
+                                                              .requestBroker
+                                                              .limit ??
+                                                          1));
+                                          brokerTransactionBloc.add(
+                                              BrokerTransactionEvent.started(
+                                                  request: context
+                                                      .read<LookUpBrokerBloc>()
+                                                      .requestBroker));
+                                        },
+                                        onBackToFirstPage: (firstPage) {
+                                          context
+                                                  .read<LookUpBrokerBloc>()
+                                                  .requestBroker =
+                                              context
+                                                  .read<LookUpBrokerBloc>()
+                                                  .requestBroker
+                                                  .copyWith(offset: 0);
+                                          brokerTransactionBloc.add(
+                                              BrokerTransactionEvent.started(
+                                                  request: context
+                                                      .read<LookUpBrokerBloc>()
+                                                      .requestBroker));
+                                        },
+                                        onNextPage: (nextPage) {
+                                          context.read<LookUpBrokerBloc>().requestBroker = context
+                                              .read<LookUpBrokerBloc>()
+                                              .requestBroker
+                                              .copyWith(
+                                                  offset: (((context
+                                                                      .read<
+                                                                          LookUpBrokerBloc>()
+                                                                      .requestBroker
+                                                                      .offset ??
+                                                                  0) ~/
+                                                              (context
+                                                                      .read<
+                                                                          LookUpBrokerBloc>()
+                                                                      .requestBroker
+                                                                      .limit ??
+                                                                  1) +
+                                                          1) *
+                                                      (context
+                                                              .read<
+                                                                  LookUpBrokerBloc>()
+                                                              .requestBroker
+                                                              .limit ??
+                                                          1)));
+                                          brokerTransactionBloc.add(
+                                              BrokerTransactionEvent.started(
+                                                  request: context
+                                                      .read<LookUpBrokerBloc>()
+                                                      .requestBroker));
+                                        },
+                                        onGoToLastPage: (lastPage) {
+                                          context.read<LookUpBrokerBloc>().requestBroker = context
+                                              .read<LookUpBrokerBloc>()
+                                              .requestBroker
+                                              .copyWith(
+                                                  offset: (((loaded.response.length) %
+                                                              (context
+                                                                      .read<
+                                                                          LookUpBrokerBloc>()
+                                                                      .requestBroker
+                                                                      .limit ??
+                                                                  1)) ==
+                                                          0
+                                                      ? loaded.response.length -
+                                                          (context.read<LookUpBrokerBloc>().requestBroker.limit ??
+                                                              5)
+                                                      : ((loaded.response.length) ~/
+                                                              (context.read<LookUpBrokerBloc>().requestBroker.limit ??
+                                                                  1)) *
+                                                          (context
+                                                                  .read<LookUpBrokerBloc>()
+                                                                  .requestBroker
+                                                                  .limit ??
+                                                              1)));
+                                          brokerTransactionBloc.add(
+                                              BrokerTransactionEvent.started(
+                                                  request: context
+                                                      .read<LookUpBrokerBloc>()
+                                                      .requestBroker));
+                                        },
+                                        backgroundColor: Theme.of(context)
+                                            .colorScheme
+                                            .background,
+                                        // textStyle: Theme.of(context)
+                                        //     .textTheme
+                                        //     .labelSmall,
+                                        previousPageIcon: context.locale ==
+                                                ARABIC_LOCAL
+                                            ? Icons.keyboard_arrow_right_sharp
+                                            : Icons.keyboard_arrow_left_sharp,
+                                        backToFirstPageIcon: Icons.first_page,
+                                        nextPageIcon: context.locale ==
+                                                ARABIC_LOCAL
+                                            ? Icons.keyboard_arrow_left_sharp
+                                            : Icons.keyboard_arrow_right_sharp,
+                                        goToLastPageIcon: Icons.last_page,
+                                      ),
+                                      SizedBox(height: AppSizeH.s10)
+                                    ],
+                                  )
+                                ],
+                              );
+                            }
+                          }, error: (error) {
+                            return const ErrorGlobalWidget();
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        height: AppSizeH.s30,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
           },
           error: (value) {
-            return const SizedBox();
+            return ErrorGlobalWidget(
+              message: value.message,
+              onPressed: () {
+                brokersCountBloc.add(BrokersCountEvent.started(
+                    request: context.read<LookUpBrokerBloc>().requestBroker));
+              },
+            );
           },
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    super.dispose();
   }
 }
 

@@ -25,6 +25,28 @@ class _BottomSheetFilterBrokerWidgetState
   @override
   void initState() {
     valuesFiltersCubit = ValuesFiltersCubit(const RentLookupModel());
+
+    List<RentLookupModel> listMunicipalityWithAll = [];
+    listMunicipalityWithAll.addAll(
+        context.read<LookUpBrokerBloc>().lookupBrokerOv?.municipalityList ??
+            []);
+    if (!listMunicipalityWithAll.contains(const RentLookupModel(
+        isActive: true,
+        lookupKey: -1,
+        arName: "الكل",
+        enName: "All",
+        id: -1))) {
+      listMunicipalityWithAll.add(const RentLookupModel(
+          isActive: true,
+          lookupKey: -1,
+          arName: "الكل",
+          enName: "All",
+          id: -1));
+    }
+    context.read<LookUpBrokerBloc>().lookupBrokerOv = context
+        .read<LookUpBrokerBloc>()
+        .lookupBrokerOv
+        ?.copyWith(municipalityList: listMunicipalityWithAll);
     valuesFiltersCubit.municapility = getObjectByLookupKey(
           context.read<LookUpBrokerBloc>().lookupBrokerOv?.municipalityList ??
               [],

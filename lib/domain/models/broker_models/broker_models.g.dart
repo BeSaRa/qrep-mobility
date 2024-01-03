@@ -69,6 +69,9 @@ _$RealEstateBrokerTransactionDataImpl
           isActive: json['isActive'] as bool? ?? true,
           managerArName: json['managerArName'] as String? ?? '',
           managerEnName: json['managerEnName'] as String? ?? '',
+          zoneNo: (json['zoneNo'] as num?)?.toDouble() ?? 0,
+          streetNo: (json['streetNo'] as num?)?.toDouble() ?? 0,
+          buuildingNo: (json['buuildingNo'] as num?)?.toDouble() ?? 0,
           municipalityId: json['municipalityId'] as int? ?? 0,
         );
 
@@ -90,6 +93,9 @@ Map<String, dynamic> _$$RealEstateBrokerTransactionDataImplToJson(
       'isActive': instance.isActive,
       'managerArName': instance.managerArName,
       'managerEnName': instance.managerEnName,
+      'zoneNo': instance.zoneNo,
+      'streetNo': instance.streetNo,
+      'buuildingNo': instance.buuildingNo,
       'municipalityId': instance.municipalityId,
     };
 

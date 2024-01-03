@@ -96,7 +96,7 @@ class AppStrings {
   //home
   String news = "news".tr();
   String newsDetails = "news_details".tr();
-  String releatedNews = "related_news".tr();
+  String relatedNews = "related_news".tr();
   String mortgageIndicators = "mortgage_indicators".tr();
   String rentIndicators = "rent_indicator".tr();
   String sellIndicators = "sell_indicators".tr();
@@ -176,6 +176,7 @@ class AppStrings {
   String callBroker = "call_broker".tr();
   String brokerCompanyName = "broker_company_name".tr();
   String brokerageCompanyActivity = "brokerage_company_activity".tr();
+  String openLocation = "open_location".tr();
 
   ///------------- profile ---------
 

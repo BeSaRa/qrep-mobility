@@ -54,6 +54,7 @@ dependencies:
   url_launcher: ^6.2.0
   local_auth: ^2.1.7
   biometric_storage: 5.0.0+1
+  
 
 
 dev_dependencies:
