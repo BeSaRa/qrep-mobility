@@ -170,21 +170,24 @@ mixin _$GuestTokenState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(bool canUpdate) success,
+    required TResult Function() shouldUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(bool canUpdate)? success,
+    TResult? Function()? shouldUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(bool canUpdate)? success,
+    TResult Function()? shouldUpdate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -193,6 +196,7 @@ mixin _$GuestTokenState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ShouldUpdate value) shouldUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -200,6 +204,7 @@ mixin _$GuestTokenState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ShouldUpdate value)? shouldUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -207,6 +212,7 @@ mixin _$GuestTokenState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ShouldUpdate value)? shouldUpdate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -270,7 +276,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(bool canUpdate) success,
+    required TResult Function() shouldUpdate,
   }) {
     return initial();
   }
@@ -280,7 +287,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(bool canUpdate)? success,
+    TResult? Function()? shouldUpdate,
   }) {
     return initial?.call();
   }
@@ -290,7 +298,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(bool canUpdate)? success,
+    TResult Function()? shouldUpdate,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -305,6 +314,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ShouldUpdate value) shouldUpdate,
   }) {
     return initial(this);
   }
@@ -315,6 +325,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ShouldUpdate value)? shouldUpdate,
   }) {
     return initial?.call(this);
   }
@@ -325,6 +336,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ShouldUpdate value)? shouldUpdate,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -378,7 +390,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(bool canUpdate) success,
+    required TResult Function() shouldUpdate,
   }) {
     return loading();
   }
@@ -388,7 +401,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(bool canUpdate)? success,
+    TResult? Function()? shouldUpdate,
   }) {
     return loading?.call();
   }
@@ -398,7 +412,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(bool canUpdate)? success,
+    TResult Function()? shouldUpdate,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -413,6 +428,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ShouldUpdate value) shouldUpdate,
   }) {
     return loading(this);
   }
@@ -423,6 +439,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ShouldUpdate value)? shouldUpdate,
   }) {
     return loading?.call(this);
   }
@@ -433,6 +450,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ShouldUpdate value)? shouldUpdate,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -451,6 +469,8 @@ abstract class _$$SuccessImplCopyWith<$Res> {
   factory _$$SuccessImplCopyWith(
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool canUpdate});
 }
 
 /// @nodoc
@@ -460,35 +480,61 @@ class __$$SuccessImplCopyWithImpl<$Res>
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? canUpdate = null,
+  }) {
+    return _then(_$SuccessImpl(
+      null == canUpdate
+          ? _value.canUpdate
+          : canUpdate // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl();
+  const _$SuccessImpl(this.canUpdate);
+
+  @override
+  final bool canUpdate;
 
   @override
   String toString() {
-    return 'GuestTokenState.success()';
+    return 'GuestTokenState.success(canUpdate: $canUpdate)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SuccessImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessImpl &&
+            (identical(other.canUpdate, canUpdate) ||
+                other.canUpdate == canUpdate));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, canUpdate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(bool canUpdate) success,
+    required TResult Function() shouldUpdate,
   }) {
-    return success();
+    return success(canUpdate);
   }
 
   @override
@@ -496,9 +542,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(bool canUpdate)? success,
+    TResult? Function()? shouldUpdate,
   }) {
-    return success?.call();
+    return success?.call(canUpdate);
   }
 
   @override
@@ -506,11 +553,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(bool canUpdate)? success,
+    TResult Function()? shouldUpdate,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(canUpdate);
     }
     return orElse();
   }
@@ -521,6 +569,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ShouldUpdate value) shouldUpdate,
   }) {
     return success(this);
   }
@@ -531,6 +580,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ShouldUpdate value)? shouldUpdate,
   }) {
     return success?.call(this);
   }
@@ -541,6 +591,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ShouldUpdate value)? shouldUpdate,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -551,5 +602,124 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements GuestTokenState {
-  const factory _Success() = _$SuccessImpl;
+  const factory _Success(final bool canUpdate) = _$SuccessImpl;
+
+  bool get canUpdate;
+  @JsonKey(ignore: true)
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ShouldUpdateImplCopyWith<$Res> {
+  factory _$$ShouldUpdateImplCopyWith(
+          _$ShouldUpdateImpl value, $Res Function(_$ShouldUpdateImpl) then) =
+      __$$ShouldUpdateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ShouldUpdateImplCopyWithImpl<$Res>
+    extends _$GuestTokenStateCopyWithImpl<$Res, _$ShouldUpdateImpl>
+    implements _$$ShouldUpdateImplCopyWith<$Res> {
+  __$$ShouldUpdateImplCopyWithImpl(
+      _$ShouldUpdateImpl _value, $Res Function(_$ShouldUpdateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ShouldUpdateImpl implements _ShouldUpdate {
+  const _$ShouldUpdateImpl();
+
+  @override
+  String toString() {
+    return 'GuestTokenState.shouldUpdate()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ShouldUpdateImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(bool canUpdate) success,
+    required TResult Function() shouldUpdate,
+  }) {
+    return shouldUpdate();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(bool canUpdate)? success,
+    TResult? Function()? shouldUpdate,
+  }) {
+    return shouldUpdate?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(bool canUpdate)? success,
+    TResult Function()? shouldUpdate,
+    required TResult orElse(),
+  }) {
+    if (shouldUpdate != null) {
+      return shouldUpdate();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_ShouldUpdate value) shouldUpdate,
+  }) {
+    return shouldUpdate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_ShouldUpdate value)? shouldUpdate,
+  }) {
+    return shouldUpdate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ShouldUpdate value)? shouldUpdate,
+    required TResult orElse(),
+  }) {
+    if (shouldUpdate != null) {
+      return shouldUpdate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ShouldUpdate implements GuestTokenState {
+  const factory _ShouldUpdate() = _$ShouldUpdateImpl;
 }

@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../app/app_preferences.dart';
 import '../../resources/resources.dart';
@@ -40,20 +41,13 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness:
-            instance<AppPreferences>().getTheme().brightness == Brightness.light
-                ? Brightness.light
-                : Brightness.dark));
+        instance<AppPreferences>()
+            .getTheme()
+            .brightness == Brightness.light
+            ? Brightness.light
+            : Brightness.dark));
     guestToken = instance<GuestTokenBloc>()
       ..add(const GuestTokenEvent.tokenGuest());
-
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Future.delayed(
-        const Duration(milliseconds: 200),
-        () {
-          _startAnimation();
-        },
-      );
-    });
   }
 
   Future<void> _startAnimation() async {
@@ -63,7 +57,9 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
       _isVisible = !_isVisible;
       backgroundImageBottomPosition = -15;
     });
-    if (context.read<LoggedInUserCubit>().state) {
+    if (context
+        .read<LoggedInUserCubit>()
+        .state) {
       context.read<UserBloc>().add(const UserEvent.getUserInfo());
     } else {
       context.read<UserBloc>().add(const UserEvent.guestUser());
@@ -95,49 +91,93 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
         switchInCurve: Curves.easeInOut,
-        duration: const Duration(milliseconds: 800),
+        duration: const Duration(milliseconds: 60000),
         child: !isRed
-            ? Scaffold(
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                body: Stack(
+            ? BlocConsumer<GuestTokenBloc, GuestTokenState>(
+          bloc: guestToken,
+          listener: (context, state) {
+            state.map(
+                initial: (initial) {},
+                loading: (loading) {},
+                success: (success) {
+                  if (success.canUpdate) {
+                    // here you can add a warning dialog to upgrade
+                  } else {
+                    WidgetsBinding.instance
+                        .addPostFrameCallback((timeStamp) {
+                      Future.delayed(
+                        const Duration(milliseconds: 200),
+                            () {
+                          _startAnimation();
+                        },
+                      );
+                    });
+                  }
+                },
+                shouldUpdate: (shouldUpdate) {
+
+                });
+          },
+          builder: (context, state) {
+            return state.map(initial: (val) {
+              return SplashScaffold(
+                backgroundImageBottomPosition:
+                backgroundImageBottomPosition,
+                isVisible: _isVisible,
+                scale: _scale,
+                showRedScreen: () {},
+              );
+            }, loading: (val) {
+              return SplashScaffold(
+                backgroundImageBottomPosition:
+                backgroundImageBottomPosition,
+                isVisible: _isVisible,
+                scale: _scale,
+                showRedScreen: () {},
+              );
+            }, success: (val) {
+              return SplashScaffold(
+                backgroundImageBottomPosition:
+                backgroundImageBottomPosition,
+                isVisible: _isVisible,
+                scale: _scale,
+                showRedScreen: showRedScreenAfterDelay,
+              );
+            }, shouldUpdate: (val) {
+              return Scaffold(
+                body: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    AnimatedPositioned(
-                        top: backgroundImageBottomPosition,
-                        duration: const Duration(milliseconds: 800),
-                        child: Image.asset(ImageAssets.appbarBg)),
-                    Column(
-                      children: [
-                        Expanded(
-                          child: AnimatedOpacity(
-                              duration: const Duration(milliseconds: 800),
-                              opacity: _isVisible ? 1.0 : 0.0,
-                              child: const AnimatedTransparentContainer()),
-                        ),
-                        SizedBox(
-                          height: AppSizeH.s30,
-                        ),
-                        Expanded(
-                          child: AnimatedScale(
-                            scale: _scale,
-                            duration: const Duration(milliseconds: 800),
-                            alignment: FractionalOffset.bottomCenter,
-                            // onEnd: navigateAfterDelay,
-                            onEnd: showRedScreenAfterDelay,
-                            child: SvgPicture.asset(
-                              alignment: Alignment.bottomCenter,
-                              ImageAssets.quatarTowerCitySplash,
-                            ),
-                          ),
-                        ),
-                      ],
+                    Center(
+                      child: SizedBox(
+                          height: AppSizeH.s304,
+                          width: AppSizeH.s304,
+                          child: Lottie.asset(ImageAssets.upgrade)),
                     ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: AppSizeH.s20,
+                          horizontal: AppSizeW.s40),
+                      child: Text(
+                        AppStrings().shouldUpdateApplication,
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .titleLarge,
+                        textAlign: TextAlign.center,
+                      ),
+                    )
                   ],
                 ),
-              )
+              );
+            });
+          },
+        )
             : Scaffold(
-                key: UniqueKey(),
-                backgroundColor: ColorManager.primary,
-              ));
+          key: UniqueKey(),
+          backgroundColor: ColorManager.primary,
+        ));
   }
 
 // @override
@@ -145,4 +185,62 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
 //   _animationController.dispose();
 //   super.dispose();
 // }
+}
+
+class SplashScaffold extends StatelessWidget {
+  final double backgroundImageBottomPosition;
+  final bool isVisible;
+  final double scale;
+  final Function showRedScreen;
+
+  const SplashScaffold({super.key,
+    required this.backgroundImageBottomPosition,
+    required this.isVisible,
+    required this.scale,
+    required this.showRedScreen});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Theme
+          .of(context)
+          .scaffoldBackgroundColor,
+      body: Stack(
+        children: [
+          AnimatedPositioned(
+              top: backgroundImageBottomPosition,
+              duration: const Duration(milliseconds: 800),
+              child: Image.asset(ImageAssets.appbarBg)),
+          Column(
+            children: [
+              Expanded(
+                child: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 800),
+                    opacity: isVisible ? 1.0 : 0.0,
+                    child: const AnimatedTransparentContainer()),
+              ),
+              SizedBox(
+                height: AppSizeH.s30,
+              ),
+              Expanded(
+                child: AnimatedScale(
+                  scale: scale,
+                  duration: const Duration(milliseconds: 800),
+                  alignment: FractionalOffset.bottomCenter,
+                  // onEnd: navigateAfterDelay,
+                  onEnd: () {
+                    showRedScreen();
+                  },
+                  child: SvgPicture.asset(
+                    alignment: Alignment.bottomCenter,
+                    ImageAssets.quatarTowerCitySplash,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }

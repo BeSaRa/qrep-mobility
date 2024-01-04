@@ -5,13 +5,13 @@ import '../../models/cms_models/app_settings/app_settings.dart';
 import '../../repository/repository.dart';
 import '../base_usecases/base_usecase.dart';
 
-class AppSettingsUseCase implements BaseUseCaseEmptyInput<ProjectDataResponse> {
+class AppSettingsUseCase implements BaseUseCaseEmptyInput<AppSettingsResponse> {
   final Repository repository;
 
   AppSettingsUseCase(this.repository);
 
   @override
-  Future<Result<ProjectDataResponse, FailureModel>> execute() async {
+  Future<Result<AppSettingsResponse, FailureModel>> execute() async {
     return await repository.getAppSettings();
   }
 }

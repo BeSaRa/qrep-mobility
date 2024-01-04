@@ -172,7 +172,7 @@ AppSettingsResponse _$AppSettingsResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AppSettingsResponse {
-  ProjectDataResponse get data => throw _privateConstructorUsedError;
+  ProjectResponse get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -186,9 +186,9 @@ abstract class $AppSettingsResponseCopyWith<$Res> {
           AppSettingsResponse value, $Res Function(AppSettingsResponse) then) =
       _$AppSettingsResponseCopyWithImpl<$Res, AppSettingsResponse>;
   @useResult
-  $Res call({ProjectDataResponse data});
+  $Res call({ProjectResponse data});
 
-  $ProjectDataResponseCopyWith<$Res> get data;
+  $ProjectResponseCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -210,14 +210,14 @@ class _$AppSettingsResponseCopyWithImpl<$Res, $Val extends AppSettingsResponse>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as ProjectDataResponse,
+              as ProjectResponse,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ProjectDataResponseCopyWith<$Res> get data {
-    return $ProjectDataResponseCopyWith<$Res>(_value.data, (value) {
+  $ProjectResponseCopyWith<$Res> get data {
+    return $ProjectResponseCopyWith<$Res>(_value.data, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -231,10 +231,10 @@ abstract class _$$AppSettingsResponseImplCopyWith<$Res>
       __$$AppSettingsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ProjectDataResponse data});
+  $Res call({ProjectResponse data});
 
   @override
-  $ProjectDataResponseCopyWith<$Res> get data;
+  $ProjectResponseCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -254,7 +254,7 @@ class __$$AppSettingsResponseImplCopyWithImpl<$Res>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as ProjectDataResponse,
+              as ProjectResponse,
     ));
   }
 }
@@ -262,14 +262,14 @@ class __$$AppSettingsResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AppSettingsResponseImpl implements _AppSettingsResponse {
-  _$AppSettingsResponseImpl({this.data = const ProjectDataResponse()});
+  _$AppSettingsResponseImpl({this.data = const ProjectResponse()});
 
   factory _$AppSettingsResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppSettingsResponseImplFromJson(json);
 
   @override
   @JsonKey()
-  final ProjectDataResponse data;
+  final ProjectResponse data;
 
   @override
   String toString() {
@@ -304,14 +304,14 @@ class _$AppSettingsResponseImpl implements _AppSettingsResponse {
 }
 
 abstract class _AppSettingsResponse implements AppSettingsResponse {
-  factory _AppSettingsResponse({final ProjectDataResponse data}) =
+  factory _AppSettingsResponse({final ProjectResponse data}) =
       _$AppSettingsResponseImpl;
 
   factory _AppSettingsResponse.fromJson(Map<String, dynamic> json) =
       _$AppSettingsResponseImpl.fromJson;
 
   @override
-  ProjectDataResponse get data;
+  ProjectResponse get data;
   @override
   @JsonKey(ignore: true)
   _$$AppSettingsResponseImplCopyWith<_$AppSettingsResponseImpl> get copyWith =>
@@ -325,7 +325,8 @@ ProjectResponse _$ProjectResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ProjectResponse {
   String get ios_version => throw _privateConstructorUsedError;
-  String get android_version => throw _privateConstructorUsedError;
+  double get android_version => throw _privateConstructorUsedError;
+  bool get force_update => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -339,7 +340,7 @@ abstract class $ProjectResponseCopyWith<$Res> {
           ProjectResponse value, $Res Function(ProjectResponse) then) =
       _$ProjectResponseCopyWithImpl<$Res, ProjectResponse>;
   @useResult
-  $Res call({String ios_version, String android_version});
+  $Res call({String ios_version, double android_version, bool force_update});
 }
 
 /// @nodoc
@@ -357,6 +358,7 @@ class _$ProjectResponseCopyWithImpl<$Res, $Val extends ProjectResponse>
   $Res call({
     Object? ios_version = null,
     Object? android_version = null,
+    Object? force_update = null,
   }) {
     return _then(_value.copyWith(
       ios_version: null == ios_version
@@ -366,7 +368,11 @@ class _$ProjectResponseCopyWithImpl<$Res, $Val extends ProjectResponse>
       android_version: null == android_version
           ? _value.android_version
           : android_version // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
+      force_update: null == force_update
+          ? _value.force_update
+          : force_update // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -379,7 +385,7 @@ abstract class _$$ProjectResponseImplCopyWith<$Res>
       __$$ProjectResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String ios_version, String android_version});
+  $Res call({String ios_version, double android_version, bool force_update});
 }
 
 /// @nodoc
@@ -395,6 +401,7 @@ class __$$ProjectResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? ios_version = null,
     Object? android_version = null,
+    Object? force_update = null,
   }) {
     return _then(_$ProjectResponseImpl(
       ios_version: null == ios_version
@@ -404,7 +411,11 @@ class __$$ProjectResponseImplCopyWithImpl<$Res>
       android_version: null == android_version
           ? _value.android_version
           : android_version // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
+      force_update: null == force_update
+          ? _value.force_update
+          : force_update // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -413,7 +424,9 @@ class __$$ProjectResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProjectResponseImpl implements _ProjectResponse {
   const _$ProjectResponseImpl(
-      {this.ios_version = '', this.android_version = ''});
+      {this.ios_version = '',
+      this.android_version = 0,
+      this.force_update = false});
 
   factory _$ProjectResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProjectResponseImplFromJson(json);
@@ -423,11 +436,14 @@ class _$ProjectResponseImpl implements _ProjectResponse {
   final String ios_version;
   @override
   @JsonKey()
-  final String android_version;
+  final double android_version;
+  @override
+  @JsonKey()
+  final bool force_update;
 
   @override
   String toString() {
-    return 'ProjectResponse(ios_version: $ios_version, android_version: $android_version)';
+    return 'ProjectResponse(ios_version: $ios_version, android_version: $android_version, force_update: $force_update)';
   }
 
   @override
@@ -438,12 +454,15 @@ class _$ProjectResponseImpl implements _ProjectResponse {
             (identical(other.ios_version, ios_version) ||
                 other.ios_version == ios_version) &&
             (identical(other.android_version, android_version) ||
-                other.android_version == android_version));
+                other.android_version == android_version) &&
+            (identical(other.force_update, force_update) ||
+                other.force_update == force_update));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, ios_version, android_version);
+  int get hashCode =>
+      Object.hash(runtimeType, ios_version, android_version, force_update);
 
   @JsonKey(ignore: true)
   @override
@@ -463,7 +482,8 @@ class _$ProjectResponseImpl implements _ProjectResponse {
 abstract class _ProjectResponse implements ProjectResponse {
   const factory _ProjectResponse(
       {final String ios_version,
-      final String android_version}) = _$ProjectResponseImpl;
+      final double android_version,
+      final bool force_update}) = _$ProjectResponseImpl;
 
   factory _ProjectResponse.fromJson(Map<String, dynamic> json) =
       _$ProjectResponseImpl.fromJson;
@@ -471,7 +491,9 @@ abstract class _ProjectResponse implements ProjectResponse {
   @override
   String get ios_version;
   @override
-  String get android_version;
+  double get android_version;
+  @override
+  bool get force_update;
   @override
   @JsonKey(ignore: true)
   _$$ProjectResponseImplCopyWith<_$ProjectResponseImpl> get copyWith =>

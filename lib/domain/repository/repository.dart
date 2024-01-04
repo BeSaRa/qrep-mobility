@@ -9,7 +9,7 @@ import '../usecases/CMS/update_fcm_usecase.dart';
 
 abstract class Repository {
   //-------------CMS
-  Future<Result<ProjectDataResponse, FailureModel>> getAppSettings();
+  Future<Result<AppSettingsResponse, FailureModel>> getAppSettings();
 
   Future<Result<TranslationsModel, FailureModel>> getTranslations(int limit);
 

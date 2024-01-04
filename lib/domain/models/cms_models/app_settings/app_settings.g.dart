@@ -24,8 +24,8 @@ _$AppSettingsResponseImpl _$$AppSettingsResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$AppSettingsResponseImpl(
       data: json['data'] == null
-          ? const ProjectDataResponse()
-          : ProjectDataResponse.fromJson(json['data'] as Map<String, dynamic>),
+          ? const ProjectResponse()
+          : ProjectResponse.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AppSettingsResponseImplToJson(
@@ -38,7 +38,8 @@ _$ProjectResponseImpl _$$ProjectResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$ProjectResponseImpl(
       ios_version: json['ios_version'] as String? ?? '',
-      android_version: json['android_version'] as String? ?? '',
+      android_version: (json['android_version'] as num?)?.toDouble() ?? 0,
+      force_update: json['force_update'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$ProjectResponseImplToJson(
@@ -46,4 +47,5 @@ Map<String, dynamic> _$$ProjectResponseImplToJson(
     <String, dynamic>{
       'ios_version': instance.ios_version,
       'android_version': instance.android_version,
+      'force_update': instance.force_update,
     };

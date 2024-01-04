@@ -119,5 +119,5 @@ class EndPoints {
   static const String brokerOVLookUp = "/kpi/ov/lookup";
 
   ///settings
-  static const String appSettings = "/server/info";
+  static const String appSettings = "/settings";
 }

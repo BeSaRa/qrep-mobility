@@ -37,6 +37,7 @@ class ImageAssets {
   static const String dbNote = "${IMAGE_PATH}db_note.png";
   static const String comingSoon = "${IMAGE_PATH}coming-soon.json";
   static const String animationError = "${IMAGE_PATH}animation_error.json";
+  static const String upgrade = "${IMAGE_PATH}upgrade.json";
 }
 
 class IconAssets {

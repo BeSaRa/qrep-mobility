@@ -201,7 +201,6 @@ abstract class TranslationsServiceClient {
   Future<HttpResponse<AuthResponse>> login(@Body() RequestAuth requestAuth);
 
   @POST(EndPoints.resetPassword)
-  @Header('authorization: null')
   Future<HttpResponse<ResetPasswordModel>> resetPassword(@Body() String email);
 
   @POST(EndPoints.refreshToken)

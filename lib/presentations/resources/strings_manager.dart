@@ -6,6 +6,7 @@ class AppStrings {
       "filter_values_should_be_as_follows".tr();
   String valuesOtherThanAll = "value_other_than_all".tr();
   String singleValueOtherThanAll = "single_value_other_than_all".tr();
+  String shouldUpdateApplication = "should_update_application".tr();
 
   //main scaffold locals
   String main = "home".tr();

@@ -18,7 +18,7 @@ abstract class ProjectDataResponse with _$ProjectDataResponse {
 @freezed
 abstract class AppSettingsResponse with _$AppSettingsResponse {
   factory AppSettingsResponse(
-          {@Default(ProjectDataResponse()) ProjectDataResponse data}) =
+          {@Default(ProjectResponse()) ProjectResponse data}) =
       _AppSettingsResponse;
 
   factory AppSettingsResponse.fromJson(Map<String, dynamic> json) =>
@@ -29,7 +29,8 @@ abstract class AppSettingsResponse with _$AppSettingsResponse {
 abstract class ProjectResponse with _$ProjectResponse {
   const factory ProjectResponse(
       {@Default('') String ios_version,
-      @Default('') String android_version}) = _ProjectResponse;
+      @Default(0) double android_version,
+      @Default(false) bool force_update}) = _ProjectResponse;
 
   factory ProjectResponse.fromJson(Map<String, dynamic> json) =>
       _$ProjectResponseFromJson(json);

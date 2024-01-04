@@ -1695,7 +1695,7 @@ class _TranslationsServiceClient implements TranslationsServiceClient {
     )
             .compose(
               _dio.options,
-              '/server/info',
+              '/settings',
               queryParameters: queryParameters,
               data: _data,
             )

@@ -3,6 +3,7 @@
   "filter_values_should_be_as_follows": "Filter values should be as follows",
   "value_other_than_all": "Any value other than (all)",
   "single_value_other_than_all": "(single) value other than (all)",
+  "should_update_application": "There is a newer version of Qatar real estate platform,Please update your app",
   "----------------------------------------------------------------------------------": "",
   "activate_face_id": "Activate face id",
   "cancel": "Cancel",
