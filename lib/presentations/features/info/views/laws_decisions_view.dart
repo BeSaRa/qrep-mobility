@@ -153,7 +153,7 @@ class _LawWidgetState extends State<LawWidget> {
   }
 
   String getFileUrl(String assetId) {
-    return "${Constant.secondaryBaseUrl}/assets/$assetId";
+    return "${Constant.cmsBaseUrl}/assets/$assetId";
   }
 
   @override

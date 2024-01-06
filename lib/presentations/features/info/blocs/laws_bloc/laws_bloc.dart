@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
-import 'package:ebla/domain/usecases/CMS/cms_usecases.dart';
+import 'package:ebla/domain/usecases/cms/cms_usecases.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'laws_bloc.freezed.dart';
@@ -12,6 +12,7 @@ class LawsBloc extends Bloc<LawsEvent, LawsState> {
   final LawByIdUsecase lawByIdUsecase;
   static List<LawsModel> laws = [];
   final int limit = 5;
+
   LawsBloc({required this.lawsUsecase, required this.lawByIdUsecase})
       : super(const _Initial()) {
     on<LawsEvent>((event, emit) async {

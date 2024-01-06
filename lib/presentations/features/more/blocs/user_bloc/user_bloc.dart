@@ -1,16 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/cms_models/user/user_model.dart';
-import 'package:ebla/domain/usecases/CMS/user_usecases.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../app/notifications/firebase_helper.dart';
 import '../../../../../domain/models/cms_models/user/requests/update_info_model.dart';
-import '../../../../../domain/usecases/CMS/update_fcm_usecase.dart';
+import '../../../../../domain/usecases/usecases.dart';
 
 part 'user_bloc.freezed.dart';
-part 'user_event.dart';
-part 'user_state.dart';
+part 'user_event.dart';part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   UserUsecase userUsecase;

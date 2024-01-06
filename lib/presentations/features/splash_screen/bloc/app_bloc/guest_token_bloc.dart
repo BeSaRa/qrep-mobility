@@ -8,7 +8,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../../../../../app/app_preferences.dart';
 import '../../../../../app/depndency_injection.dart';
 import '../../../../../domain/models/cms_models/app_settings/app_settings.dart';
-import '../../../../../domain/usecases/CMS/app_settings_usecase.dart';
+import '../../../../../domain/usecases/cms/app_settings_usecase.dart';
 
 part 'guest_token_bloc.freezed.dart';
 part 'guest_token_event.dart';
@@ -54,7 +54,7 @@ class GuestTokenBloc extends Bloc<GuestTokenEvent, GuestTokenState> {
             if (update == true) {
               emit(const GuestTokenState.shouldUpdate());
             } else {
-              emit(GuestTokenState.success(canUpdate));
+              successState(canUpdate);
             }
           }, (error) {
             emit(const GuestTokenState.initial());
@@ -62,5 +62,9 @@ class GuestTokenBloc extends Bloc<GuestTokenEvent, GuestTokenState> {
         },
       );
     });
+  }
+
+  void successState(bool canUpdate) {
+    emit(GuestTokenState.success(canUpdate));
   }
 }

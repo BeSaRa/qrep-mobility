@@ -13,7 +13,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.52.4:9080/mme-services';
+    baseUrl ??= 'https://qrepbe.mm.gov.qa/mme-services';
   }
 
   final Dio _dio;
@@ -1270,12 +1270,12 @@ class _AppServiceClient implements AppServiceClient {
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _TranslationsServiceClient implements TranslationsServiceClient {
-  _TranslationsServiceClient(
+class _CmsServiceClient implements CmsServiceClient {
+  _CmsServiceClient(
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.52.5:8055';
+    baseUrl ??= 'https://qrepcms.mm.gov.qa/';
   }
 
   final Dio _dio;

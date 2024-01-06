@@ -1,14 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:ebla/domain/models/cms_models/about/about_model.dart';
-import 'package:ebla/domain/usecases/CMS/cms_usecases.dart';
+import 'package:ebla/domain/usecases/cms/cms_usecases.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'about_bloc.freezed.dart';
 part 'about_event.dart';
 part 'about_state.dart';
-part 'about_bloc.freezed.dart';
 
 class AboutBloc extends Bloc<AboutEvent, AboutState> {
   final AboutUsecase aboutUsecase;
+
   AboutBloc({required this.aboutUsecase}) : super(const AboutState.loading()) {
     on<AboutEvent>((event, emit) async {
       await event.map(

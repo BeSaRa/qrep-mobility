@@ -5,7 +5,7 @@ import '../models/cms_models/app_settings/app_settings.dart';
 import '../models/cms_models/user/requests/update_info_model.dart';
 import '../models/models.dart';
 import '../models/requests/broker_requests/request_broker_values.dart';
-import '../usecases/CMS/update_fcm_usecase.dart';
+import '../usecases/cms/update_fcm_usecase.dart';
 
 abstract class Repository {
   //-------------CMS

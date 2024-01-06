@@ -43,6 +43,7 @@ class _LoginViewState extends State<LoginView> {
 
   late FaceIdCheckCubit faceIdCheck;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _resetFormKey = GlobalKey<FormState>();
 
   late ForgetPasswordBloc forgetPasswordBloc;
 
@@ -122,7 +123,7 @@ class _LoginViewState extends State<LoginView> {
         child: Form(
           key: _formKey,
           child: Container(
-            height: AppSizeH.s408,
+            height: AppSizeH.s465,
             padding: EdgeInsets.symmetric(
                 vertical: AppSizeH.s30, horizontal: AppSizeW.s30),
             decoration: BoxDecoration(
@@ -284,6 +285,7 @@ class _LoginViewState extends State<LoginView> {
                         borderRadius: BorderRadius.circular(AppSizeH.s10)),
                     child: Text(
                       errorMessageCubit.state,
+                      overflow: TextOverflow.clip,
                       style: Theme.of(context)
                           .textTheme
                           .displaySmall
@@ -391,8 +393,9 @@ class _LoginViewState extends State<LoginView> {
     return Dialog(
       elevation: 0,
       child: Form(
+        key: _resetFormKey,
         child: Container(
-          height: AppSizeH.s200,
+          height: AppSizeH.s250,
           padding: EdgeInsets.symmetric(
               vertical: AppSizeH.s30, horizontal: AppSizeW.s30),
           decoration: BoxDecoration(
@@ -434,19 +437,22 @@ class _LoginViewState extends State<LoginView> {
                       initial: (val) {},
                       loading: (val) {},
                       done: (val) {
+                        Navigator.of(context).pop(true);
                         errorMessageCubit.save(val.url);
                       },
                       error: (val) {
+                        Navigator.of(context).pop(true);
                         errorMessageCubit.save(val.message);
                       });
                 },
                 builder: (context, state) {
-                  state.map(initial: (val) {
+                  return state.map(initial: (val) {
                     return _ConfirmButton(
-                      formKey: _formKey,
+                      formKey: _resetFormKey,
                       confirm: () {
-                        if (_formKey.currentState!.validate()) {
-                          Navigator.of(context).pop(true);
+                        if (_resetFormKey.currentState!.validate()) {
+                          forgetPasswordBloc.add(ForgetPasswordEvent.started(
+                              emailController.text));
                         }
                       },
                     );
@@ -456,9 +462,9 @@ class _LoginViewState extends State<LoginView> {
                         child: const CircularProgressIndicator());
                   }, done: (done) {
                     return _ConfirmButton(
-                      formKey: _formKey,
+                      formKey: _resetFormKey,
                       confirm: () {
-                        if (_formKey.currentState!.validate()) {
+                        if (_resetFormKey.currentState!.validate()) {
                           forgetPasswordBloc.add(ForgetPasswordEvent.started(
                               emailController.text));
                         }
@@ -466,8 +472,13 @@ class _LoginViewState extends State<LoginView> {
                     );
                   }, error: (val) {
                     return _ConfirmButton(
-                      formKey: _formKey,
-                      confirm: () {},
+                      formKey: _resetFormKey,
+                      confirm: () {
+                        if (_resetFormKey.currentState!.validate()) {
+                          forgetPasswordBloc.add(ForgetPasswordEvent.started(
+                              emailController.text));
+                        }
+                      },
                     );
                   });
                   return Container();
@@ -499,6 +510,7 @@ class _ConfirmButton extends StatelessWidget {
         Expanded(
           child: CustomElevatedButton(
             isPrimary: true,
+            backgroundColor: Theme.of(context).primaryColor,
             title: AppStrings().confirm,
             onPress: () {
               if (_formKey.currentState!.validate()) {

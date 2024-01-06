@@ -74,7 +74,7 @@ class NewsItemWidget extends StatelessWidget {
                         //     Border.all(width: 1, color: ColorManager.golden),
                       ),
                       child: CachedNetworkImage(
-                        imageUrl: '${Constant.secondaryBaseUrl}/assets/$image',
+                        imageUrl: '${Constant.cmsBaseUrl}/assets/$image',
                         progressIndicatorBuilder: (context, url, progress) {
                           return const ShimmerPlaceholder(
                             child: Image(

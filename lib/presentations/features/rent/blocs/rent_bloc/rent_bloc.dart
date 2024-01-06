@@ -46,7 +46,7 @@ class RentBloc extends Bloc<RentEvent, RentState> {
   }
 
   RequestMeanValue requestDefault = RequestMeanValue(
-    municipalityId: 1,
+    municipalityId: -1,
     propertyTypeList: [-1],
     purposeList: [-1],
     issueDateQuarterList: [1, 2, 3, 4],
@@ -59,7 +59,7 @@ class RentBloc extends Bloc<RentEvent, RentState> {
     limit: 5,
   );
   RequestMeanValue requestMeanValue = RequestMeanValue(
-    municipalityId: 1,
+    municipalityId: -1,
     propertyTypeList: [-1],
     purposeList: [-1],
     issueDateQuarterList: [1, 2, 3, 4],

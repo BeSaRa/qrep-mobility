@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:ebla/domain/models/cms_models/faq/faq_model.dart';
-import 'package:ebla/domain/usecases/CMS/cms_usecases.dart';
+import 'package:ebla/domain/usecases/cms/cms_usecases.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'faq_bloc.freezed.dart';

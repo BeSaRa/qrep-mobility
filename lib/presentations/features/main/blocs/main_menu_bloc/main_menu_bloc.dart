@@ -1,16 +1,17 @@
 import 'package:bloc/bloc.dart';
-import 'package:ebla/domain/usecases/CMS/user_usecases.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../domain/models/cms_models/main_menu_models/main_menu_models.dart';
+import '../../../../../domain/usecases/cms/user_usecases.dart';
 
+part 'main_menu_bloc.freezed.dart';
 part 'main_menu_event.dart';
 part 'main_menu_state.dart';
-part 'main_menu_bloc.freezed.dart';
 
 class MainMenuBloc extends Bloc<MainMenuEvent, MainMenuState> {
   final MainMenuUsecase mainMenuUsecase;
   MainMenuResponse mainMenu = MainMenuResponse();
+
   MainMenuBloc({required this.mainMenuUsecase})
       : super(const MainMenuState.loading()) {
     on<MainMenuEvent>((event, emit) async {

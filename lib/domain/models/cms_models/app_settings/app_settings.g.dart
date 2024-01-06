@@ -6,20 +6,6 @@ part of 'app_settings.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProjectDataResponseImpl _$$ProjectDataResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ProjectDataResponseImpl(
-      project: json['project'] == null
-          ? const ProjectResponse()
-          : ProjectResponse.fromJson(json['project'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$$ProjectDataResponseImplToJson(
-        _$ProjectDataResponseImpl instance) =>
-    <String, dynamic>{
-      'project': instance.project,
-    };
-
 _$AppSettingsResponseImpl _$$AppSettingsResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$AppSettingsResponseImpl(

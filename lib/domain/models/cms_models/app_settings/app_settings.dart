@@ -6,16 +6,6 @@ part 'app_settings.freezed.dart';
 part 'app_settings.g.dart';
 
 @freezed
-abstract class ProjectDataResponse with _$ProjectDataResponse {
-  const factory ProjectDataResponse(
-          {@Default(ProjectResponse()) ProjectResponse project}) =
-      _ProjectDataResponse;
-
-  factory ProjectDataResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProjectDataResponseFromJson(json);
-}
-
-@freezed
 abstract class AppSettingsResponse with _$AppSettingsResponse {
   factory AppSettingsResponse(
           {@Default(ProjectResponse()) ProjectResponse data}) =

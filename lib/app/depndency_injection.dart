@@ -1,9 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:ebla/domain/usecases/CMS/app_settings_usecase.dart';
 import 'package:ebla/presentations/features/auth/blocs/cubits/logged_in_user_cubit.dart';
-import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
-import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/main/blocs/lookup_bloc/lookup_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,14 +11,11 @@ import '../data/newtwok/general_dio_interceptor.dart';
 import '../data/newtwok/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
-import '../domain/usecases/CMS/update_fcm_usecase.dart';
-import '../domain/usecases/auth_usecase/forget_password_usecase.dart';
 import '../domain/usecases/sell_usecases/top_values/top_values_sell_usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/auth/blocs/forget_password_bloc/forget_password_bloc.dart';
 import '../presentations/features/auth/blocs/login_bloc/login_bloc.dart';
-import '../presentations/features/info/blocs/about_bloc/about_bloc.dart';
-import '../presentations/features/info/blocs/news_bloc/news_bloc.dart';
+import '../presentations/features/info/infos.dart';
 import '../presentations/features/main/blocs/main_menu_bloc/main_menu_bloc.dart';
 import '../presentations/features/main/cubit/bottom_nav_cubit.dart';
 import '../presentations/features/more/blocs/user_bloc/user_bloc.dart';
@@ -38,7 +32,9 @@ Future<void> initAppModule() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   final dioRefreshToken = Dio();
   instance.registerFactory<SharedPreferences>(() => sharedPreferences);
+
   instance.registerFactory<AppPreferences>(() => AppPreferences(instance()));
+
   instance.registerLazySingleton<DioFactory>(() => DioFactory(instance()));
 
   instance.registerFactory<GeneralInterceptor>(
@@ -46,17 +42,21 @@ Future<void> initAppModule() async {
           GeneralInterceptor(instance<AppPreferences>(), dioRefreshToken));
   final dio = await instance<DioFactory>().getDio();
   instance.registerFactory<Dio>(() => dio);
+
   instance.registerLazySingleton<AppServiceClient>(
           () => AppServiceClient(instance<Dio>()));
-  instance.registerLazySingleton<TranslationsServiceClient>(
-          () => TranslationsServiceClient(dio));
+  instance.registerLazySingleton<CmsServiceClient>(() => CmsServiceClient(dio));
+
   instance.registerLazySingleton<NetworkInfo>(
           () => NetworkInfoImplementer(Connectivity()));
+
   instance.registerLazySingleton<Repository>(() =>
       RepositoryImplementer(
           appServiceClient: instance<AppServiceClient>(),
-          translationsServiceClient: instance<TranslationsServiceClient>(),
+          translationsServiceClient: instance<CmsServiceClient>(),
           networkInfo: instance<NetworkInfo>()));
+
+
   if (!GetIt.I.isRegistered<GetSellLookupUseCase>()) {
     instance.registerFactory<GetSellLookupUseCase>(
             () => GetSellLookupUseCase(instance()));
@@ -88,15 +88,17 @@ Future<void> initAppModule() async {
             getSellLookupUseCase: instance<GetSellLookupUseCase>(),
             lookUpMortgageUseCase: instance<LookUpMortgageUseCase>()));
   }
+
+
   if (!GetIt.I.isRegistered<AppSettingsUseCase>()) {
     instance.registerFactory<AppSettingsUseCase>(
-            () => AppSettingsUseCase(instance()));
+            () => AppSettingsUseCase(instance<Repository>()));
   }
-
   if (!GetIt.I.isRegistered<GuestTokenBloc>()) {
     instance.registerFactory<GuestTokenBloc>(() =>
         GuestTokenBloc(
-            appPreferences: instance(), appSettingsUseCase: instance()));
+            appPreferences: instance(),
+            appSettingsUseCase: instance<AppSettingsUseCase>()));
   }
   if (!GetIt.I.isRegistered<UserUsecase>()) {
     instance.registerFactory<UserUsecase>(

@@ -191,10 +191,9 @@ abstract class AppServiceClient {
 }
 
 //---------------------------------DirectUs-----------------------------------------
-@RestApi(baseUrl: Constant.secondaryBaseUrl)
-abstract class TranslationsServiceClient {
-  factory TranslationsServiceClient(Dio dio, {String baseUrl}) =
-      _TranslationsServiceClient;
+@RestApi(baseUrl: Constant.cmsBaseUrl)
+abstract class CmsServiceClient {
+  factory CmsServiceClient(Dio dio, {String baseUrl}) = _CmsServiceClient;
 
   //---------------------------------Auth-----------------------------------------
   @POST(EndPoints.auth)

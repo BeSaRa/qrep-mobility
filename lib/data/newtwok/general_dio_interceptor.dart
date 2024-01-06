@@ -42,7 +42,7 @@ class GeneralInterceptor extends Interceptor {
         (err.requestOptions.path != EndPoints.auth)) {
       try {
         final response = await dio.post(
-            "${Constant.secondaryBaseUrl}${EndPoints.refreshToken}",
+            "${Constant.cmsBaseUrl}${EndPoints.refreshToken}",
             data: json.encode({
               "refresh_token": appPreferences.getUserRefreshToken(),
               "mode": "json"

@@ -115,7 +115,7 @@ class _NewsItemViewState extends State<NewsItemView> {
                     ),
                   );
                 },
-                imageUrl: '${Constant.secondaryBaseUrl}/assets/${model.image}',
+                imageUrl: '${Constant.cmsBaseUrl}/assets/${model.image}',
                 imageBuilder: (context, imageProvider) {
                   return Container(
                     height: AppSizeH.s260,

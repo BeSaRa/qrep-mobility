@@ -62,8 +62,6 @@ abstract class $LoginEventCopyWith<$Res> {
       _$LoginEventCopyWithImpl<$Res, LoginEvent>;
   @useResult
   $Res call({RequestAuth authRequest});
-
-  $RequestAuthCopyWith<$Res> get authRequest;
 }
 
 /// @nodoc
@@ -79,22 +77,14 @@ class _$LoginEventCopyWithImpl<$Res, $Val extends LoginEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? authRequest = null,
+    Object? authRequest = freezed,
   }) {
     return _then(_value.copyWith(
-      authRequest: null == authRequest
+      authRequest: freezed == authRequest
           ? _value.authRequest
           : authRequest // ignore: cast_nullable_to_non_nullable
               as RequestAuth,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $RequestAuthCopyWith<$Res> get authRequest {
-    return $RequestAuthCopyWith<$Res>(_value.authRequest, (value) {
-      return _then(_value.copyWith(authRequest: value) as $Val);
-    });
   }
 }
 
@@ -106,9 +96,6 @@ abstract class _$$LoginImplCopyWith<$Res> implements $LoginEventCopyWith<$Res> {
   @override
   @useResult
   $Res call({RequestAuth authRequest});
-
-  @override
-  $RequestAuthCopyWith<$Res> get authRequest;
 }
 
 /// @nodoc
@@ -122,10 +109,10 @@ class __$$LoginImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? authRequest = null,
+    Object? authRequest = freezed,
   }) {
     return _then(_$LoginImpl(
-      authRequest: null == authRequest
+      authRequest: freezed == authRequest
           ? _value.authRequest
           : authRequest // ignore: cast_nullable_to_non_nullable
               as RequestAuth,
@@ -151,12 +138,13 @@ class _$LoginImpl implements _Login {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoginImpl &&
-            (identical(other.authRequest, authRequest) ||
-                other.authRequest == authRequest));
+            const DeepCollectionEquality()
+                .equals(other.authRequest, authRequest));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, authRequest);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(authRequest));
 
   @JsonKey(ignore: true)
   @override
@@ -295,8 +283,6 @@ abstract class $LoginStateCopyWith<$Res> {
       bool isSuccessLogin,
       String errorMessage,
       AuthResponse successLogin});
-
-  $AuthResponseCopyWith<$Res> get successLogin;
 }
 
 /// @nodoc
@@ -316,7 +302,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     Object? isHasError = null,
     Object? isSuccessLogin = null,
     Object? errorMessage = null,
-    Object? successLogin = null,
+    Object? successLogin = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -335,19 +321,11 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      successLogin: null == successLogin
+      successLogin: freezed == successLogin
           ? _value.successLogin
           : successLogin // ignore: cast_nullable_to_non_nullable
               as AuthResponse,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $AuthResponseCopyWith<$Res> get successLogin {
-    return $AuthResponseCopyWith<$Res>(_value.successLogin, (value) {
-      return _then(_value.copyWith(successLogin: value) as $Val);
-    });
   }
 }
 
@@ -365,9 +343,6 @@ abstract class _$$InitialImplCopyWith<$Res>
       bool isSuccessLogin,
       String errorMessage,
       AuthResponse successLogin});
-
-  @override
-  $AuthResponseCopyWith<$Res> get successLogin;
 }
 
 /// @nodoc
@@ -385,7 +360,7 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? isHasError = null,
     Object? isSuccessLogin = null,
     Object? errorMessage = null,
-    Object? successLogin = null,
+    Object? successLogin = freezed,
   }) {
     return _then(_$InitialImpl(
       isLoading: null == isLoading
@@ -404,7 +379,7 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
-      successLogin: null == successLogin
+      successLogin: freezed == successLogin
           ? _value.successLogin
           : successLogin // ignore: cast_nullable_to_non_nullable
               as AuthResponse,
@@ -456,13 +431,18 @@ class _$InitialImpl implements _Initial {
                 other.isSuccessLogin == isSuccessLogin) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.successLogin, successLogin) ||
-                other.successLogin == successLogin));
+            const DeepCollectionEquality()
+                .equals(other.successLogin, successLogin));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, isHasError,
-      isSuccessLogin, errorMessage, successLogin);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoading,
+      isHasError,
+      isSuccessLogin,
+      errorMessage,
+      const DeepCollectionEquality().hash(successLogin));
 
   @JsonKey(ignore: true)
   @override

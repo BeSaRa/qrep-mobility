@@ -16,12 +16,16 @@ class ForgetPasswordBloc
     on<ForgetPasswordEvent>((event, emit) async {
       await event.map(started: (value) async {
         emit(const ForgetPasswordState.loading());
-        final failureOrSuccess = await forgetPasswordUseCase.execute(
-            value.email);
+        final failureOrSuccess =
+            await forgetPasswordUseCase.execute(value.email);
         failureOrSuccess.when((success) async {
+          print("success");
           emit(ForgetPasswordState.done(success.token));
         }, (error) {
-          emit(ForgetPasswordState.error(error.errors[0].message,));
+          print("error");
+          emit(ForgetPasswordState.error(
+            error.errors[0].message,
+          ));
         });
       });
     });

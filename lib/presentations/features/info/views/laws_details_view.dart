@@ -34,7 +34,7 @@ class _LawsDetailsViewState extends State<LawsDetailsView> {
   }
 
   String getFileUrl(String assetId) {
-    return "${Constant.secondaryBaseUrl}/assets/$assetId";
+    return "${Constant.cmsBaseUrl}/assets/$assetId";
   }
 
   @override
