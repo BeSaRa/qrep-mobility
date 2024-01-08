@@ -98,3 +98,10 @@ LinkModel? getObjectLinkModelById(List<LinkModel> objects, int id) {
     return null;
   }
 }
+
+// Future sendAnalyticsEvent({String eventName, String? clickevent}) async {
+//   await _analytics.logEvent(
+//     name: '${eventName}',
+//     parameters: <String, dynamic>{'clickEvent': clickevent},
+//   );
+// }

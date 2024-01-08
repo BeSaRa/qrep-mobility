@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/notifications/firebase_helper.dart';
 import 'package:ebla/app/translations_assets_loader/translations_assets_loader.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -35,8 +36,11 @@ Future<void> main() async {
           forGroundHandler(message);
         },
       );
+      FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+      analytics.logAppOpen();
     },
   );
+
   await initAppModule();
   await initTranslationsModule();
   Bloc.observer = MyBlocObserver();

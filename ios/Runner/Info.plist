@@ -52,23 +52,11 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>comgooglemaps</string>
-        <string>baidumap</string>
-        <string>iosamap</string>
-        <string>waze</string>
-        <string>yandexmaps</string>
-        <string>yandexnavi</string>
-        <string>citymapper</string>
-        <string>mapswithme</string>
-        <string>osmandmaps</string>
-        <string>dgis</string>
-        <string>qqmap</string>
-        <string>here-location</string>
-        <string>tomtomgo</string>
-        <string>copilot</string>
-        <string>com.sygic.aura</string>
-    </array>
+    <key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
+    <string>YES</string>
+    <key>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</key>
+    <string>YES</string>
+    <key>FirebaseScreenReportingEnabled</key>
+    <true/>
 </dict>
 </plist>
