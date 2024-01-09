@@ -14,7 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'app/app.dart';
 import 'app/bloc_observer.dart';
 import 'app/depndency_injection.dart';
-import 'app/notifications/firebase_options.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,8 +36,13 @@ Future<void> main() async {
           forGroundHandler(message);
         },
       );
-      FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-      analytics.logAppOpen();
+      try {
+        FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+        print(FirebaseAnalytics.instance);
+        analytics.logAppOpen();
+      } catch (e) {
+        print("this is the $e");
+      }
     },
   );
 

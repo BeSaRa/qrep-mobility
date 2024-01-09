@@ -1,6 +1,7 @@
 import UIKit
 import Flutter
 import FirebaseCore
+import FirebaseAnalytics
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -8,7 +9,8 @@ import FirebaseCore
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-     FirebaseApp.configure();
+    FirebaseApp.configure();
+    Analytics.setAnalyticsCollectionEnabled(true)
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }

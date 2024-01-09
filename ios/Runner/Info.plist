@@ -19,7 +19,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>NSFaceIDUsageDescription</key>
-    <string>QREP wants to save your password and reach it from face id</string>
+	<string>QREP wants to save your password and reach it from face id</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
@@ -30,13 +30,12 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-
 	<key>ITSAppUsesNonExemptEncryption</key>
-    <false/>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-      <string>tel</string>
-    </array>
+	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>tel</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -52,11 +51,11 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-    <key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
-    <string>YES</string>
-    <key>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</key>
-    <string>YES</string>
-    <key>FirebaseScreenReportingEnabled</key>
-    <true/>
+	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
+	<true/>
+	<key>FirebaseScreenReportingEnabled</key>
+	<true/>
+	<key></key>
+	<string></string>
 </dict>
 </plist>

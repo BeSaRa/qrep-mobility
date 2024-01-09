@@ -985,6 +985,7 @@ class _RentViewState extends State<RentView> {
                                 return const SizedBox();
                               },
                             ),
+                            SizedBox(height: AppSizeH.s20),
                           ],
                         ),
                       ),
