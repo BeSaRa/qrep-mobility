@@ -145,6 +145,14 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                                             .read<
                                                                 LookUpBrokerBloc>()
                                                             .requestBroker));
+                                                brokerTransactionBloc.add(
+                                                    BrokerTransactionEvent
+                                                        .started(
+                                                            // ignore: use_build_context_synchronously
+                                                            request: context
+                                                                .read<
+                                                                    LookUpBrokerBloc>()
+                                                                .requestBroker));
                                               }
                                             },
                                             icon: Icon(
@@ -245,7 +253,7 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                   }),
                             );
                           }, loaded: (loaded) {
-                            if (loaded.response.isEmpty) {
+                            if (loaded.response.transactionList.isEmpty) {
                               return Text(AppStrings().noDataFound);
                             } else {
                               return Column(
@@ -265,13 +273,22 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                         physics:
                                             const NeverScrollableScrollPhysics(),
                                         shrinkWrap: true,
-                                        itemCount: loaded.response.length,
+                                        itemCount: loaded.response
+                                                    .transactionList.length >
+                                                5
+                                            ? 5
+                                            : loaded.response.transactionList
+                                                .length,
                                         itemBuilder: (context, index) {
                                           return RealEstateCard(
                                             name: context.locale == ARABIC_LOCAL
-                                                ? loaded.response[index]
+                                                ? loaded
+                                                    .response
+                                                    .transactionList[index]
                                                     .brokerArName
-                                                : loaded.response[index]
+                                                : loaded
+                                                    .response
+                                                    .transactionList[index]
                                                     .brokerEnName,
                                             country: context
                                                         .locale ==
@@ -280,11 +297,13 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                                             context
                                                                     .read<
                                                                         LookUpBrokerBloc>()
-                                                                    .lookupBroker
+                                                                    .lookupBrokerOv
                                                                     ?.municipalityList ??
                                                                 [],
                                                             loaded
-                                                                .response[index]
+                                                                .response
+                                                                .transactionList[
+                                                                    index]
                                                                 .municipalityId)
                                                         ?.arName ??
                                                     ''
@@ -292,26 +311,38 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                                             context
                                                                     .read<
                                                                         LookUpBrokerBloc>()
-                                                                    .lookupBroker
+                                                                    .lookupBrokerOv
                                                                     ?.municipalityList ??
                                                                 [],
                                                             loaded
-                                                                .response[index]
+                                                                .response
+                                                                .transactionList[
+                                                                    index]
                                                                 .municipalityId)
                                                         ?.enName ??
                                                     '',
                                             phone: loaded
-                                                .response[index].brokerPhone1,
+                                                .response
+                                                .transactionList[index]
+                                                .brokerPhone1,
                                             email: loaded
-                                                .response[index].brokerEmail,
+                                                .response
+                                                .transactionList[index]
+                                                .brokerEmail,
                                             divider: index !=
-                                                loaded.response.length - 1,
-                                            zoneId:
-                                                loaded.response[index].zoneNo,
-                                            streetNo:
-                                                loaded.response[index].streetNo,
+                                                loaded.response.transactionList
+                                                        .length -
+                                                    1,
+                                            zoneId: loaded.response
+                                                .transactionList[index].zoneNo,
+                                            streetNo: loaded
+                                                .response
+                                                .transactionList[index]
+                                                .streetNo,
                                             buildingNo: loaded
-                                                .response[index].buuildingNo,
+                                                .response
+                                                .transactionList[index]
+                                                .buuildingNo,
                                           );
                                         }),
                                   ),
@@ -414,18 +445,18 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                               .read<LookUpBrokerBloc>()
                                               .requestBroker
                                               .copyWith(
-                                                  offset: (((loaded.response.length) %
-                                                              (context
-                                                                      .read<
-                                                                          LookUpBrokerBloc>()
-                                                                      .requestBroker
-                                                                      .limit ??
+                                                  offset: (((loaded.response.count) %
+                                                              (context.read<LookUpBrokerBloc>().requestBroker.limit ??
                                                                   1)) ==
                                                           0
-                                                      ? loaded.response.length -
-                                                          (context.read<LookUpBrokerBloc>().requestBroker.limit ??
+                                                      ? loaded.response.count -
+                                                          (context
+                                                                  .read<
+                                                                      LookUpBrokerBloc>()
+                                                                  .requestBroker
+                                                                  .limit ??
                                                               5)
-                                                      : ((loaded.response.length) ~/
+                                                      : ((loaded.response.count) ~/
                                                               (context.read<LookUpBrokerBloc>().requestBroker.limit ??
                                                                   1)) *
                                                           (context

@@ -68,8 +68,9 @@ List<PeriodTimeDetails> getAllMonthsInYear(BuildContext context) {
 }
 
 List<PeriodTimeDetails> getFromAprilMonths(BuildContext context) {
+  print("month change ");
   List<PeriodTimeDetails> months = [];
-  for (int i = 1; i <= 9; i++) {
+  for (int i = 4; i <= 12; i++) {
     DateTime date = DateTime(DateTime.april, i);
     String enMonthName = DateFormat('MMMM').format(date);
     String monthName = DateFormat('MMMM', ARABIC_LOCAL.toString()).format(date);

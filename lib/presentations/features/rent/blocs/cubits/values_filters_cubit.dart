@@ -117,6 +117,7 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
   }
 
   List<PeriodTimeDetails> months = [];
+  List<PeriodTimeDetails> monthsFromApril = [];
   PeriodTimeDetails month = const PeriodTimeDetails();
 
   // -------------------------Nationality Filters------------------------------------------

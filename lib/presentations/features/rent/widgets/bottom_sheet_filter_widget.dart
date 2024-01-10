@@ -136,28 +136,47 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
             valuesFiltersCubit.periodTimeHalfDetails =
                 const PeriodTimeDetails();
             valuesFiltersCubit.quarterYear.clear();
-            valuesFiltersCubit.months = valuesFiltersCubit.year.yoy == 2019
-                ? getFromAprilMonths(context)
-                : getAllMonthsInYear(context);
+            valuesFiltersCubit.months = getAllMonthsInYear(context);
+            valuesFiltersCubit.monthsFromApril = getFromAprilMonths(context);
+
             if (valuesFiltersCubit.month == const PeriodTimeDetails()) {
-              context.read<RentBloc>().requestMeanValue.issueDateEndMonth !=
-                      null
-                  ? valuesFiltersCubit.month = valuesFiltersCubit.months
-                      .firstWhere((element) =>
-                          element.value[0] ==
-                          context
-                              .read<RentBloc>()
-                              .requestMeanValue
-                              .issueDateEndMonth)
-                  : valuesFiltersCubit.month = valuesFiltersCubit.months.first;
+              valuesFiltersCubit.changeMonth(valuesFiltersCubit.months.first);
+              if (valuesFiltersCubit.year.id != 2019) {
+                context.read<RentBloc>().requestMeanValue.issueDateEndMonth !=
+                        null
+                    ? valuesFiltersCubit.month = valuesFiltersCubit.months
+                        .firstWhere((element) =>
+                            element.value[0] ==
+                            context
+                                .read<RentBloc>()
+                                .requestMeanValue
+                                .issueDateEndMonth)
+                    : valuesFiltersCubit.month =
+                        valuesFiltersCubit.months.first;
+              } else {
+                valuesFiltersCubit.month =
+                    valuesFiltersCubit.monthsFromApril.first;
+              }
+            } else if (valuesFiltersCubit.year.id == 2019) {
+              valuesFiltersCubit.month =
+                  valuesFiltersCubit.monthsFromApril.first;
+            } else {
+              valuesFiltersCubit.month = valuesFiltersCubit.months.first;
             }
 
-            return SingleDropDownValue<PeriodTimeDetails>(
-                onChanged: (month) {
-                  valuesFiltersCubit.changeMonth(month!);
-                },
-                value: valuesFiltersCubit.month,
-                list: valuesFiltersCubit.months);
+            return valuesFiltersCubit.year.id == 2019
+                ? SingleDropDownValue<PeriodTimeDetails>(
+                    onChanged: (month) {
+                      valuesFiltersCubit.changeMonth(month!);
+                    },
+                    value: valuesFiltersCubit.month,
+                    list: valuesFiltersCubit.monthsFromApril)
+                : SingleDropDownValue<PeriodTimeDetails>(
+                    onChanged: (month) {
+                      valuesFiltersCubit.changeMonth(month!);
+                    },
+                    value: valuesFiltersCubit.month,
+                    list: valuesFiltersCubit.months);
           },
         );
       case 5:

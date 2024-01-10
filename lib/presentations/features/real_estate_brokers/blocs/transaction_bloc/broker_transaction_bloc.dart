@@ -23,7 +23,7 @@ class BrokerTransactionBloc
             await brokerTransactionUseCase.execute(value.request);
         failureOrSuccess.when((success) {
           data = success.transactionList;
-          emit(BrokerTransactionState.loaded(success.transactionList));
+          emit(BrokerTransactionState.loaded(success));
         }, (error) {
           emit(BrokerTransactionState.error(error.message));
         });
@@ -33,7 +33,7 @@ class BrokerTransactionBloc
             await brokerTransactionUseCase.execute(value.request);
         failureOrSuccess.when((success) {
           data = success.transactionList;
-          emit(BrokerTransactionState.loaded(success.transactionList));
+          emit(BrokerTransactionState.loaded(success));
         }, (error) {
           emit(BrokerTransactionState.error(error.message));
         });

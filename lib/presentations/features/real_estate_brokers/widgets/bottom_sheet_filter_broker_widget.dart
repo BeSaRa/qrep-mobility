@@ -73,7 +73,26 @@ class _BottomSheetFilterBrokerWidgetState
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             InkWell(
-              onTap: () {},
+              onTap: () {
+                valuesFiltersCubit.municapility = getObjectByLookupKey(
+                      context
+                              .read<LookUpBrokerBloc>()
+                              .lookupBrokerOv
+                              ?.municipalityList ??
+                          [],
+                      -1,
+                    ) ??
+                    const RentLookupModel();
+                valuesFiltersCubit.brokerCategory = getObjectByLookupKey(
+                      context
+                              .read<LookUpBrokerBloc>()
+                              .lookupBroker
+                              ?.brokerCategoryList ??
+                          [],
+                      2,
+                    ) ??
+                    const RentLookupModel();
+              },
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [

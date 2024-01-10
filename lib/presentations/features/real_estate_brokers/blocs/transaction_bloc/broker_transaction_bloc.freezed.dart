@@ -393,8 +393,7 @@ mixin _$BrokerTransactionState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<RealEstateBrokerTransactionData> response)
-        loaded,
+    required TResult Function(RealEstateBrokerTransactions response) loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -402,7 +401,7 @@ mixin _$BrokerTransactionState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<RealEstateBrokerTransactionData> response)? loaded,
+    TResult? Function(RealEstateBrokerTransactions response)? loaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -410,7 +409,7 @@ mixin _$BrokerTransactionState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<RealEstateBrokerTransactionData> response)? loaded,
+    TResult Function(RealEstateBrokerTransactions response)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -501,8 +500,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<RealEstateBrokerTransactionData> response)
-        loaded,
+    required TResult Function(RealEstateBrokerTransactions response) loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -513,7 +511,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<RealEstateBrokerTransactionData> response)? loaded,
+    TResult? Function(RealEstateBrokerTransactions response)? loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -524,7 +522,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<RealEstateBrokerTransactionData> response)? loaded,
+    TResult Function(RealEstateBrokerTransactions response)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -616,8 +614,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<RealEstateBrokerTransactionData> response)
-        loaded,
+    required TResult Function(RealEstateBrokerTransactions response) loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -628,7 +625,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<RealEstateBrokerTransactionData> response)? loaded,
+    TResult? Function(RealEstateBrokerTransactions response)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -639,7 +636,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<RealEstateBrokerTransactionData> response)? loaded,
+    TResult Function(RealEstateBrokerTransactions response)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -697,7 +694,9 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<RealEstateBrokerTransactionData> response});
+  $Res call({RealEstateBrokerTransactions response});
+
+  $RealEstateBrokerTransactionsCopyWith<$Res> get response;
 }
 
 /// @nodoc
@@ -715,26 +714,29 @@ class __$$LoadedImplCopyWithImpl<$Res>
   }) {
     return _then(_$LoadedImpl(
       null == response
-          ? _value._response
+          ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as List<RealEstateBrokerTransactionData>,
+              as RealEstateBrokerTransactions,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RealEstateBrokerTransactionsCopyWith<$Res> get response {
+    return $RealEstateBrokerTransactionsCopyWith<$Res>(_value.response,
+        (value) {
+      return _then(_value.copyWith(response: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(final List<RealEstateBrokerTransactionData> response)
-      : _response = response;
+  const _$LoadedImpl(this.response);
 
-  final List<RealEstateBrokerTransactionData> _response;
   @override
-  List<RealEstateBrokerTransactionData> get response {
-    if (_response is EqualUnmodifiableListView) return _response;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_response);
-  }
+  final RealEstateBrokerTransactions response;
 
   @override
   String toString() {
@@ -746,12 +748,12 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            const DeepCollectionEquality().equals(other._response, _response));
+            (identical(other.response, response) ||
+                other.response == response));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_response));
+  int get hashCode => Object.hash(runtimeType, response);
 
   @JsonKey(ignore: true)
   @override
@@ -764,8 +766,7 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<RealEstateBrokerTransactionData> response)
-        loaded,
+    required TResult Function(RealEstateBrokerTransactions response) loaded,
     required TResult Function(String message) error,
   }) {
     return loaded(response);
@@ -776,7 +777,7 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<RealEstateBrokerTransactionData> response)? loaded,
+    TResult? Function(RealEstateBrokerTransactions response)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(response);
@@ -787,7 +788,7 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<RealEstateBrokerTransactionData> response)? loaded,
+    TResult Function(RealEstateBrokerTransactions response)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -836,10 +837,10 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements BrokerTransactionState {
-  const factory _Loaded(final List<RealEstateBrokerTransactionData> response) =
+  const factory _Loaded(final RealEstateBrokerTransactions response) =
       _$LoadedImpl;
 
-  List<RealEstateBrokerTransactionData> get response;
+  RealEstateBrokerTransactions get response;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -911,8 +912,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<RealEstateBrokerTransactionData> response)
-        loaded,
+    required TResult Function(RealEstateBrokerTransactions response) loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -923,7 +923,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<RealEstateBrokerTransactionData> response)? loaded,
+    TResult? Function(RealEstateBrokerTransactions response)? loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -934,7 +934,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<RealEstateBrokerTransactionData> response)? loaded,
+    TResult Function(RealEstateBrokerTransactions response)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
