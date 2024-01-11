@@ -354,7 +354,7 @@ class _BottomSheetFilterSellWidgetState
                     context.read<SellBloc>().requestSell.issueDateTo ?? ''))
             : null;
     //Unit
-    valuesFiltersCubit.unit = context.read<SellBloc>().requestSell.unit;
+    valuesFiltersCubit.unit = context.read<SellBloc>().unit;
     //Range realEstateValue
     if (context.read<SellBloc>().requestSell.realEstateValueFrom != null &&
         context.read<SellBloc>().requestSell.realEstateValueTo != null) {
@@ -1271,14 +1271,8 @@ class _BottomSheetFilterSellWidgetState
                                   .read<SellBloc>()
                                   .requestSell
                                   .copyWith(
-                                    areaFrom:
-                                        areaValueFromController.text.isEmpty
-                                            ? null
-                                            : int.parse(
-                                                areaValueFromController.text),
-                                    areaTo: areaValueToController.text.isEmpty
-                                        ? null
-                                        : int.parse(areaValueToController.text),
+                                    areaFrom: getAreaFrom(),
+                                    areaTo: getAreaTo(),
                                     realEstateValueFrom:
                                         sellValueFromController.text.isEmpty
                                             ? null
@@ -1295,7 +1289,7 @@ class _BottomSheetFilterSellWidgetState
                                         .municapility.lookupKey,
                                     // zoneId: valuesFiltersCubit.zone.lookupKey,
                                     areaCode: valuesFiltersCubit.zone.lookupKey,
-                                    unit: valuesFiltersCubit.unit,
+                                    // unit: valuesFiltersCubit.unit,
                                     issueDateYear: valuesFiltersCubit.year.id,
                                     issueDateQuarterList:
                                         getissueDateQuarterList(
@@ -1384,6 +1378,32 @@ class _BottomSheetFilterSellWidgetState
         ),
       ),
     );
+  }
+
+  double? getAreaFrom() {
+    if (valuesFiltersCubit.unit == 1) {
+      print(
+          "the value from is ${areaValueFromController.text.isEmpty ? null : int.parse(areaValueFromController.text).toDouble()}");
+      return areaValueFromController.text.isEmpty
+          ? null
+          : int.parse(areaValueFromController.text).toDouble();
+    } else {
+      return areaValueFromController.text.isEmpty
+          ? null
+          : int.parse(areaValueFromController.text) / 10.8;
+    }
+  }
+
+  double? getAreaTo() {
+    if (valuesFiltersCubit.unit == 1) {
+      return areaValueToController.text.isEmpty
+          ? null
+          : int.parse(areaValueToController.text).toDouble();
+    } else {
+      return areaValueToController.text.isEmpty
+          ? null
+          : int.parse(areaValueToController.text) / 10.8;
+    }
   }
 
   String getHintMinValue() {

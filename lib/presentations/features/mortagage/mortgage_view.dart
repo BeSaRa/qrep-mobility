@@ -9,6 +9,7 @@ import 'package:ebla/presentations/features/mortagage/blocs/mortgage_grid_kpis_b
 import 'package:ebla/presentations/features/mortagage/blocs/transactions/mortgage_transactions_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/widgets/mortgage_grid_widget.dart';
 import 'package:ebla/presentations/widgets/widgets.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -36,6 +37,7 @@ class _MortagageViewState extends State<MortgageView> {
 
   @override
   void initState() {
+    FirebaseAnalytics.instance.logEvent(name: 'open_mortgage_view');
     context.read<LookupBloc>().add(const LookupEvent.getMortgageLookupEvent());
     context.read<MainMenuBloc>().mainMenu != MainMenuResponse()
         ? null

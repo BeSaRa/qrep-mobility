@@ -27,8 +27,9 @@ class SellBloc extends Bloc<SellEvent, SellState> {
     });
   }
 
+  int unit = 2;
   RequestSellValues requestSellDefault = RequestSellValues(
-      municipalityId: 4,
+      municipalityId: -1,
       propertyTypeList: [-1],
       purposeList: [-1],
       issueDateQuarterList: [1, 2, 3, 4],
@@ -40,7 +41,7 @@ class SellBloc extends Bloc<SellEvent, SellState> {
       offset: 0,
       areaCode: -1);
   RequestSellValues requestSell = RequestSellValues(
-      municipalityId: 4,
+      municipalityId: -1,
       propertyTypeList: [-1],
       purposeList: [-1],
       issueDateQuarterList: [1, 2, 3, 4],

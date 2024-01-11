@@ -7,6 +7,7 @@ import 'package:ebla/presentations/features/main/blocs/lookup_bloc/lookup_bloc.d
 import 'package:ebla/presentations/features/main/blocs/main_menu_bloc/main_menu_bloc.dart';
 import 'package:ebla/presentations/features/rent/rents.dart';
 import 'package:ebla/presentations/widgets/selected_year_widget.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -33,6 +34,7 @@ class _RentViewState extends State<RentView> {
 
   @override
   void initState() {
+    FirebaseAnalytics.instance.logEvent(name: 'open_rent_view');
     context.read<LookupBloc>().add(const LookupEvent.getRentLookupEvent());
     context.read<MainMenuBloc>().mainMenu != MainMenuResponse()
         ? null

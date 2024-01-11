@@ -101,7 +101,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                             _TabContainerShimmer(
                               tabIndex: 4,
                               name:
-                                  "${AppStrings().soldAreas} (${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
+                                  "${AppStrings().soldAreas} (${context.read<SellBloc>().unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
                             ),
                             _TabContainerShimmer(
                               tabIndex: 5,
@@ -111,7 +111,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                               // isDisabled: isDisabled(),
                               tabIndex: 6,
                               name: "${AppStrings().avgPricePer} "
-                                  "(${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
+                                  "(${context.read<SellBloc>().unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
                             ),
                           ],
                         ),
@@ -181,7 +181,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                         _TabContainer(
                             indexTab: 4,
                             name:
-                                "${AppStrings().soldAreas} (${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
+                                "${AppStrings().soldAreas} (${context.read<SellBloc>().unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
                             onPress: () {
                               tenIndexCubit.save(4);
                               context.read<TopvaluesBloc>().add(
@@ -205,7 +205,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                             // isDisabled: isDisabled(),
                             indexTab: 6,
                             name: "${AppStrings().avgPricePer} "
-                                "(${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
+                                "(${context.read<SellBloc>().unit == 1 ? AppStrings().meterSquare : AppStrings().footSquare})",
                             onPress: () {
                               if (isDisabled() || isOne()) {
                                 showDialog(
@@ -311,13 +311,13 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
 
   String getSpaces(BaseRentResponse e) {
     if (tenIndexCubit.state == 6) {
-      return context.read<SellBloc>().requestSell.unit == 1
+      return context.read<SellBloc>().unit == 1
           ? "${e.priceMT.round().formatWithCommas()} "
               "${AppStrings().currency}"
           : "${e.priceSQ.round().formatWithCommas()} "
               "${AppStrings().currency}";
     } else {
-      return context.read<SellBloc>().requestSell.unit == 1
+      return context.read<SellBloc>().unit == 1
           ? "${e.realEstateMT.round().formatWithCommas()} "
               "${AppStrings().meterSquare}"
           : "${e.realEstateSQT.round().formatWithCommas()} "

@@ -30,7 +30,7 @@ class MortgageBloc extends Bloc<MortgageEvent, MortgageState> {
   }
 
   RequestMortgageValues requestDefault = RequestMortgageValues(
-      municipalityId: 4,
+      municipalityId: -1,
       propertyTypeList: [-1],
       purposeList: [-1],
       issueDateQuarterList: [1, 2, 3, 4],
@@ -42,7 +42,7 @@ class MortgageBloc extends Bloc<MortgageEvent, MortgageState> {
       limit: 5,
       offset: 0);
   RequestMortgageValues requestMeanValue = RequestMortgageValues(
-    municipalityId: 4,
+    municipalityId: -1,
     areaCode: -1,
     propertyTypeList: [-1],
     purposeList: [-1],

@@ -34,7 +34,6 @@ _$RequestSellValuesImpl _$$RequestSellValuesImplFromJson(
       realEstateValueFrom: json['realEstateValueFrom'] as num?,
       realEstateValueTo: json['realEstateValueTo'] as num?,
       zoneId: json['zoneId'] as int?,
-      unit: json['unit'] as int? ?? 2,
       periodId: json['periodId'] as int? ?? 1,
     );
 
@@ -60,6 +59,5 @@ Map<String, dynamic> _$$RequestSellValuesImplToJson(
       'realEstateValueFrom': instance.realEstateValueFrom,
       'realEstateValueTo': instance.realEstateValueTo,
       'zoneId': instance.zoneId,
-      'unit': instance.unit,
       'periodId': instance.periodId,
     };

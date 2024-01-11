@@ -10,6 +10,7 @@ import 'package:ebla/presentations/features/sell/blocs/sell_transaction/sell_tra
 import 'package:ebla/presentations/features/sell/blocs/top_values_bloc/topvalues_bloc.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:ebla/presentations/widgets/widgets.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -40,6 +41,7 @@ class _SalesViewState extends State<SalesView> {
 
   @override
   void initState() {
+    FirebaseAnalytics.instance.logEvent(name: 'open_sell_view');
     context.read<LookupBloc>().add(const LookupEvent.getSellLookupEvent());
     context.read<MainMenuBloc>().mainMenu != MainMenuResponse()
         ? null
@@ -64,12 +66,6 @@ class _SalesViewState extends State<SalesView> {
       listener: (context, LookupState state) {
         state.mapOrNull(
           loadedLookup: (value) {
-            sellGridKPIsBloc.add(SellGridKPIsEvent.getData(
-                request: context.read<SellBloc>().requestSell));
-            sellTransactionBloc.add(SellTransactionEvent.started(
-                request: context.read<SellBloc>().requestSell));
-            topvaluesBloc.add(TopvaluesEvent.countTransictionNumberEvent(
-                request: context.read<SellBloc>().requestSell));
             List<RentLookupModel> listMunicipalityWithAll = [];
             listMunicipalityWithAll.addAll(
                 context.read<LookupBloc>().loockUpSell?.municipalityList ?? []);
@@ -92,6 +88,12 @@ class _SalesViewState extends State<SalesView> {
                 .read<LookupBloc>()
                 .loockUpSell
                 ?.copyWith(municipalityList: listMunicipalityWithAll);
+            sellGridKPIsBloc.add(SellGridKPIsEvent.getData(
+                request: context.read<SellBloc>().requestSell));
+            sellTransactionBloc.add(SellTransactionEvent.started(
+                request: context.read<SellBloc>().requestSell));
+            topvaluesBloc.add(TopvaluesEvent.countTransictionNumberEvent(
+                request: context.read<SellBloc>().requestSell));
           },
         );
       },
@@ -627,93 +629,107 @@ class _SalesViewState extends State<SalesView> {
                                       return const ShimmerMainContainer();
                                     });
                               },
-                              success: (success) => ListView.builder(
-                                  itemCount: success.transactionList.length > 5
-                                      ? 5
-                                      : success.transactionList.length,
-                                  shrinkWrap: true,
-                                  padding: const EdgeInsets.all(0.0),
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemBuilder: (context, index) {
-                                    return MainDataContainer(
-                                      title: AppStrings().sellPrice,
-                                      totalPrice:
-                                          "${success.transactionList[index].realEstateValue?.formatWithCommas()} ${AppStrings().currency}",
-                                      value: context
-                                                  .read<SellBloc>()
-                                                  .requestSell
-                                                  .unit ==
-                                              1
-                                          ? success.transactionList[index]
-                                                  .realEstateMT
-                                                  ?.formatWithCommas() ??
-                                              '0'
-                                          : success.transactionList[index]
-                                                  .realEstateSQT
-                                                  ?.formatWithCommas() ??
-                                              '0',
-                                      valueDescription: AppStrings().rentArea,
-                                      unit: context
-                                                  .read<SellBloc>()
-                                                  .requestSell
-                                                  .unit ==
-                                              1
-                                          ? AppStrings().meterSquare
-                                          : AppStrings().footSquare,
-                                      titleInfo: getTitleInfo(),
-                                      valueInfo: context
-                                                  .read<SellBloc>()
-                                                  .requestSell
-                                                  .unit ==
-                                              1
-                                          ? success.transactionList[index]
-                                                  .priceMT
-                                                  ?.formatWithCommas() ??
-                                              '0'
-                                          : success.transactionList[index]
-                                                  .priceSQ
-                                                  ?.formatWithCommas() ??
-                                              '0',
-                                      location: context.locale == ARABIC_LOCAL
-                                          ? getObjectByLookupKey(
-                                                      context
-                                                              .read<
-                                                                  LookupBloc>()
-                                                              .loockUpSell
-                                                              ?.municipalityList ??
-                                                          [],
-                                                      success
-                                                              .transactionList[
-                                                                  index]
-                                                              .municipalityId ??
-                                                          0)
-                                                  ?.arName ??
-                                              ''
-                                          : getObjectByLookupKey(
-                                                      context
-                                                              .read<
-                                                                  LookupBloc>()
-                                                              .loockUpSell
-                                                              ?.municipalityList ??
-                                                          [],
-                                                      success
-                                                              .transactionList[
-                                                                  index]
-                                                              .municipalityId ??
-                                                          0)
-                                                  ?.enName ??
-                                              '',
-                                      descripton: success.transactionList[index]
-                                                  .issueDate?.isEmpty ??
-                                              true
-                                          ? ""
-                                          : DateTime.parse(success
-                                                      .transactionList[index]
-                                                      .issueDate ??
-                                                  '')
-                                              .toFormattedString(),
-                                    );
-                                  }),
+                              success: (success) {
+                                return success.transactionList.isEmpty
+                                    ? Text(
+                                        AppStrings().noTransactionFound,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge,
+                                      )
+                                    : ListView.builder(
+                                        itemCount:
+                                            success.transactionList.length > 5
+                                                ? 5
+                                                : success
+                                                    .transactionList.length,
+                                        shrinkWrap: true,
+                                        padding: const EdgeInsets.all(0.0),
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        itemBuilder: (context, index) {
+                                          return MainDataContainer(
+                                            title: AppStrings().sellPrice,
+                                            totalPrice:
+                                                "${success.transactionList[index].realEstateValue?.formatWithCommas()} ${AppStrings().currency}",
+                                            value: context
+                                                        .read<SellBloc>()
+                                                        .unit ==
+                                                    1
+                                                ? success.transactionList[index]
+                                                        .realEstateMT
+                                                        ?.formatWithCommas() ??
+                                                    '0'
+                                                : success.transactionList[index]
+                                                        .realEstateSQT
+                                                        ?.formatWithCommas() ??
+                                                    '0',
+                                            valueDescription:
+                                                AppStrings().rentArea,
+                                            unit:
+                                                context.read<SellBloc>().unit ==
+                                                        1
+                                                    ? AppStrings().meterSquare
+                                                    : AppStrings().footSquare,
+                                            titleInfo: getTitleInfo(),
+                                            valueInfo: context
+                                                        .read<SellBloc>()
+                                                        .unit ==
+                                                    1
+                                                ? success.transactionList[index]
+                                                        .priceMT
+                                                        ?.formatWithCommas() ??
+                                                    '0'
+                                                : success.transactionList[index]
+                                                        .priceSQ
+                                                        ?.formatWithCommas() ??
+                                                    '0',
+                                            location: context
+                                                        .locale ==
+                                                    ARABIC_LOCAL
+                                                ? getObjectByLookupKey(
+                                                            context
+                                                                    .read<
+                                                                        LookupBloc>()
+                                                                    .loockUpSell
+                                                                    ?.municipalityList ??
+                                                                [],
+                                                            success
+                                                                    .transactionList[
+                                                                        index]
+                                                                    .municipalityId ??
+                                                                0)
+                                                        ?.arName ??
+                                                    ''
+                                                : getObjectByLookupKey(
+                                                            context
+                                                                    .read<
+                                                                        LookupBloc>()
+                                                                    .loockUpSell
+                                                                    ?.municipalityList ??
+                                                                [],
+                                                            success
+                                                                    .transactionList[
+                                                                        index]
+                                                                    .municipalityId ??
+                                                                0)
+                                                        ?.enName ??
+                                                    '',
+                                            descripton: success
+                                                        .transactionList[index]
+                                                        .issueDate
+                                                        ?.isEmpty ??
+                                                    true
+                                                ? ""
+                                                : DateTime.parse(success
+                                                            .transactionList[
+                                                                index]
+                                                            .issueDate ??
+                                                        '')
+                                                    .toFormattedString(),
+                                          );
+                                        });
+                              },
                               error: (String message) => SizedBox(
                                 height: AppSizeH.s200,
                                 width: AppSizeH.s200,
@@ -786,13 +802,6 @@ class _SalesViewState extends State<SalesView> {
                                   );
                                 },
                                 success: (value) {
-                                  if (value.response.transactionList.isEmpty) {
-                                    return Text(
-                                      AppStrings().noTransactionFound,
-                                      style:
-                                          Theme.of(context).textTheme.bodyLarge,
-                                    );
-                                  }
                                   return value.response.count <
                                           (context
                                                   .read<SellBloc>()
@@ -1973,9 +1982,9 @@ class _SalesViewState extends State<SalesView> {
   String getTitleInfo() {
     return context.locale == ARABIC_LOCAL
         ? "${AppStrings().theUnitPrice} "
-            "${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquareFull : AppStrings().footSquareFull}"
+            "${context.read<SellBloc>().unit == 1 ? AppStrings().meterSquareFull : AppStrings().footSquareFull}"
             ": "
-        : "${context.read<SellBloc>().requestSell.unit == 1 ? AppStrings().meterSquareFull : AppStrings().footSquareFull} ${AppStrings().theUnitPrice}"
+        : "${context.read<SellBloc>().unit == 1 ? AppStrings().meterSquareFull : AppStrings().footSquareFull} ${AppStrings().theUnitPrice}"
             ": ";
   }
 }

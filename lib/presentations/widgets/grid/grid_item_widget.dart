@@ -189,7 +189,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
 
         case GridItemType.sell:
           return widget.sellKPI == SellGridKPIs.meanSoldAreaValue
-              ? context.read<SellBloc>().requestSell.unit == 1
+              ? context.read<SellBloc>().unit == 1
                   ? AppStrings().avgPricePerSquareMeter
                   : AppStrings().avgPricePerSquareFoot
               : sellGridItemsData
@@ -477,7 +477,6 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                                                 dataState: dataState,
                                                 unitType: context
                                                     .read<SellBloc>()
-                                                    .requestSell
                                                     .unit,
                                                 returnYoYVal: false);
                                   }
@@ -490,7 +489,6 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                                                 dataState: dataState,
                                                 unitType: context
                                                     .read<SellBloc>()
-                                                    .requestSell
                                                     .unit,
                                                 returnYoYVal: true)
                                         : 0;
@@ -500,11 +498,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                                     end: endVal,
                                     unit: widget.sellKPI ==
                                             SellGridKPIs.totalSoldSpaces
-                                        ? context
-                                                    .read<SellBloc>()
-                                                    .requestSell
-                                                    .unit ==
-                                                1
+                                        ? context.read<SellBloc>().unit == 1
                                             ? 'square_meter'
                                             : 'square_foot'
                                         : sellGridItemsData
