@@ -68,7 +68,7 @@ class _SalesViewState extends State<SalesView> {
           loadedLookup: (value) {
             List<RentLookupModel> listMunicipalityWithAll = [];
             listMunicipalityWithAll.addAll(
-                context.read<LookupBloc>().loockUpSell?.municipalityList ?? []);
+                context.read<LookupBloc>().lookUpSell?.municipalityList ?? []);
             if (!listMunicipalityWithAll.contains(const RentLookupModel(
                 isActive: true,
                 lookupKey: -1,
@@ -84,9 +84,9 @@ class _SalesViewState extends State<SalesView> {
                   value: -1,
                   id: -1));
             }
-            context.read<LookupBloc>().loockUpSell = context
+            context.read<LookupBloc>().lookUpSell = context
                 .read<LookupBloc>()
-                .loockUpSell
+                .lookUpSell
                 ?.copyWith(municipalityList: listMunicipalityWithAll);
             sellGridKPIsBloc.add(SellGridKPIsEvent.getData(
                 request: context.read<SellBloc>().requestSell));
@@ -155,7 +155,7 @@ class _SalesViewState extends State<SalesView> {
                                         value: getObjectByLookupKey(
                                                 context
                                                         .read<LookupBloc>()
-                                                        .loockUpSell
+                                                        .lookUpSell
                                                         ?.municipalityList ??
                                                     [],
                                                 context
@@ -166,7 +166,7 @@ class _SalesViewState extends State<SalesView> {
                                             const RentLookupModel(),
                                         list: context
                                                 .read<LookupBloc>()
-                                                .loockUpSell
+                                                .lookUpSell
                                                 ?.municipalityList ??
                                             [],
                                         onChanged: (municipal) {
@@ -370,7 +370,7 @@ class _SalesViewState extends State<SalesView> {
                                     municipality: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.municipalityList ??
                                                 [],
                                             context
@@ -382,7 +382,7 @@ class _SalesViewState extends State<SalesView> {
                                     zone: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.districtList ??
                                                 [],
                                             context
@@ -394,7 +394,7 @@ class _SalesViewState extends State<SalesView> {
                                     propertyPurpose: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.rentPurposeList ??
                                                 [],
                                             context
@@ -406,7 +406,7 @@ class _SalesViewState extends State<SalesView> {
                                     propertyType: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.propertyTypeList ??
                                                 [],
                                             context
@@ -478,7 +478,7 @@ class _SalesViewState extends State<SalesView> {
                                     municipality: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.municipalityList ??
                                                 [],
                                             context
@@ -490,7 +490,7 @@ class _SalesViewState extends State<SalesView> {
                                     zone: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.districtList ??
                                                 [],
                                             context
@@ -502,7 +502,7 @@ class _SalesViewState extends State<SalesView> {
                                     propertyPurpose: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.rentPurposeList ??
                                                 [],
                                             context
@@ -514,7 +514,7 @@ class _SalesViewState extends State<SalesView> {
                                     propertyType: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.propertyTypeList ??
                                                 [],
                                             context
@@ -557,7 +557,7 @@ class _SalesViewState extends State<SalesView> {
                                     municipality: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.municipalityList ??
                                                 [],
                                             context
@@ -569,7 +569,7 @@ class _SalesViewState extends State<SalesView> {
                                     zone: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.districtList ??
                                                 [],
                                             context
@@ -581,7 +581,7 @@ class _SalesViewState extends State<SalesView> {
                                     propertyPurpose: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.rentPurposeList ??
                                                 [],
                                             context
@@ -593,7 +593,7 @@ class _SalesViewState extends State<SalesView> {
                                     propertyType: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.propertyTypeList ??
                                                 [],
                                             context
@@ -691,7 +691,7 @@ class _SalesViewState extends State<SalesView> {
                                                             context
                                                                     .read<
                                                                         LookupBloc>()
-                                                                    .loockUpSell
+                                                                    .lookUpSell
                                                                     ?.municipalityList ??
                                                                 [],
                                                             success
@@ -705,7 +705,7 @@ class _SalesViewState extends State<SalesView> {
                                                             context
                                                                     .read<
                                                                         LookupBloc>()
-                                                                    .loockUpSell
+                                                                    .lookUpSell
                                                                     ?.municipalityList ??
                                                                 [],
                                                             success

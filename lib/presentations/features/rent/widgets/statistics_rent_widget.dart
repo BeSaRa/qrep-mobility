@@ -268,7 +268,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                         ? getObjectByLookupKey(
                                     context
                                         .read<LookupBloc>()
-                                        .loockUpRent!
+                                        .lookUpRent!
                                         .zoneList,
                                     e.zoneId.toInt())
                                 ?.arName ??
@@ -276,7 +276,7 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                         : getObjectByLookupKey(
                                     context
                                         .read<LookupBloc>()
-                                        .loockUpRent!
+                                        .lookUpRent!
                                         .zoneList,
                                     e.zoneId.toInt())
                                 ?.enName ??

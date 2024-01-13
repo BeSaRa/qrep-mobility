@@ -265,7 +265,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                         ? getObjectByLookupKey(
                                     context
                                         .read<LookupBloc>()
-                                        .loockUpSell!
+                                        .lookUpSell!
                                         .districtList,
                                     e.zoneId.toInt())
                                 ?.arName ??
@@ -273,7 +273,7 @@ class _StatisticsTopSellWidgetState extends State<StatisticsTopSellWidget> {
                         : getObjectByLookupKey(
                                     context
                                         .read<LookupBloc>()
-                                        .loockUpSell!
+                                        .lookUpSell!
                                         .districtList,
                                     e.zoneId.toInt())
                                 ?.enName ??

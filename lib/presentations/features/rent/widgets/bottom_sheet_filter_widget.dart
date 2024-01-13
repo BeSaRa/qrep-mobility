@@ -108,7 +108,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
               valuesFiltersCubit.quarterYear.clear();
               context
                   .read<LookupBloc>()
-                  .loockUpRent
+                  .lookUpRent
                   ?.quarterYearList
                   .forEach((element) {
                 if (context
@@ -248,7 +248,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           arName: element.toString(), id: element, enName: element.toString()));
     });
     valuesFiltersCubit.furniture = getObjectByLookupKey(
-          context.read<LookupBloc>().loockUpRent?.furnitureStatusList ?? [],
+          context.read<LookupBloc>().lookUpRent?.furnitureStatusList ?? [],
           context.read<RentBloc>().requestMeanValue.furnitureStatus ?? -1,
         ) ??
         const RentLookupModel();
@@ -261,7 +261,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     //Property and Purpose
     List<RentLookupModel> listMunicipalityWithAll = [];
     listMunicipalityWithAll
-        .addAll(context.read<LookupBloc>().loockUpRent?.municipalityList ?? []);
+        .addAll(context.read<LookupBloc>().lookUpRent?.municipalityList ?? []);
     if (!listMunicipalityWithAll.contains(const RentLookupModel(
         isActive: true,
         lookupKey: -1,
@@ -275,17 +275,17 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           enName: "All",
           id: -1));
     }
-    context.read<LookupBloc>().loockUpRent = context
+    context.read<LookupBloc>().lookUpRent = context
         .read<LookupBloc>()
-        .loockUpRent
+        .lookUpRent
         ?.copyWith(municipalityList: listMunicipalityWithAll);
     valuesFiltersCubit.municapility = getObjectById(
-          context.read<LookupBloc>().loockUpRent?.municipalityList ?? [],
+          context.read<LookupBloc>().lookUpRent?.municipalityList ?? [],
           context.read<RentBloc>().requestMeanValue.municipalityId ?? 1,
         ) ??
         const RentLookupModel();
     valuesFiltersCubit.zone = getObjectByLookupKey(
-          context.read<LookupBloc>().loockUpRent?.zoneList ?? [],
+          context.read<LookupBloc>().lookUpRent?.zoneList ?? [],
           context.read<RentBloc>().requestMeanValue.zoneId ?? 0,
         ) ??
         const RentLookupModel();
@@ -295,27 +295,27 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
         .propertyTypeList
         ?.forEach((element) {
       valuesFiltersCubit.propertyTypeList.add(getObjectByLookupKey(
-            context.read<LookupBloc>().loockUpRent?.propertyTypeList ?? [],
+            context.read<LookupBloc>().lookUpRent?.propertyTypeList ?? [],
             element,
           ) ??
           const RentLookupModel());
     });
     context.read<RentBloc>().requestMeanValue.purposeList?.forEach((element) {
       valuesFiltersCubit.rentPurposeList.add(getObjectByLookupKey(
-            context.read<LookupBloc>().loockUpRent?.rentPurposeList ?? [],
+            context.read<LookupBloc>().lookUpRent?.rentPurposeList ?? [],
             element,
           ) ??
           const RentLookupModel());
     });
     valuesFiltersCubit.bedRoom = getObjectById(
-          context.read<LookupBloc>().loockUpRent?.bedRooms ?? [],
+          context.read<LookupBloc>().lookUpRent?.bedRooms ?? [],
           context.read<RentBloc>().requestMeanValue.bedRoomsCount == 0
               ? -1
               : context.read<RentBloc>().requestMeanValue.bedRoomsCount ?? -1,
         ) ??
         const RentLookupModel();
     valuesFiltersCubit.periodTime = getObjectById(
-          context.read<LookupBloc>().loockUpRent?.periodTime ?? [],
+          context.read<LookupBloc>().lookUpRent?.periodTime ?? [],
           context.read<RentBloc>().requestMeanValue.periodId,
         ) ??
         const RentLookupModel();
@@ -331,7 +331,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     context.read<RentBloc>().requestMeanValue.periodId == 2
         ? valuesFiltersCubit.periodTimeHalfDetails = context
                 .read<LookupBloc>()
-                .loockUpRent
+                .lookUpRent
                 ?.halfYearList
                 .firstWhere((element) =>
                     context
@@ -440,7 +440,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                       valuesFiltersCubit
                           .changeRangeRentPaymentMonthlyPerUnitReset();
                       valuesFiltersCubit.bedRoom = getObjectById(
-                            context.read<LookupBloc>().loockUpRent?.bedRooms ??
+                            context.read<LookupBloc>().lookUpRent?.bedRooms ??
                                 [],
                             -1,
                           ) ??
@@ -448,14 +448,14 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                       valuesFiltersCubit.municapility = getObjectByLookupKey(
                             context
                                     .read<LookupBloc>()
-                                    .loockUpRent
+                                    .lookUpRent
                                     ?.municipalityList ??
                                 [],
                             1,
                           ) ??
                           const RentLookupModel();
                       valuesFiltersCubit.zone = getObjectByLookupKey(
-                            context.read<LookupBloc>().loockUpRent?.zoneList ??
+                            context.read<LookupBloc>().lookUpRent?.zoneList ??
                                 [],
                             -1,
                           ) ??
@@ -466,10 +466,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                       valuesFiltersCubit.year =
                           valuesFiltersCubit.yearsLists.last;
                       valuesFiltersCubit.periodTime = getObjectById(
-                            context
-                                    .read<LookupBloc>()
-                                    .loockUpRent
-                                    ?.periodTime ??
+                            context.read<LookupBloc>().lookUpRent?.periodTime ??
                                 [],
                             1,
                           ) ??
@@ -479,7 +476,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                           .add(getObjectByLookupKey(
                                 context
                                         .read<LookupBloc>()
-                                        .loockUpRent
+                                        .lookUpRent
                                         ?.rentPurposeList ??
                                     [],
                                 -1,
@@ -490,7 +487,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                           .add(getObjectByLookupKey(
                                 context
                                         .read<LookupBloc>()
-                                        .loockUpRent
+                                        .lookUpRent
                                         ?.propertyTypeList ??
                                     [],
                                 -1,
@@ -500,7 +497,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                       valuesFiltersCubit.furniture = getObjectByLookupKey(
                             context
                                     .read<LookupBloc>()
-                                    .loockUpRent
+                                    .lookUpRent
                                     ?.furnitureStatusList ??
                                 [],
                             -1,
@@ -600,7 +597,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                       .changeMunicapility(municapility!);
                                   valuesFiltersCubit.changeZone(context
                                           .read<LookupBloc>()
-                                          .loockUpRent
+                                          .lookUpRent
                                           ?.zoneList
                                           .firstWhere((element) {
                                         return element.lookupKey == -1;
@@ -609,7 +606,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 },
                                 list: context
                                         .read<LookupBloc>()
-                                        .loockUpRent
+                                        .lookUpRent
                                         ?.municipalityList ??
                                     []);
                           },
@@ -639,7 +636,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                     valuesFiltersCubit.municapility.id,
                                     context
                                             .read<LookupBloc>()
-                                            .loockUpRent
+                                            .lookUpRent
                                             ?.zoneList ??
                                         []));
                           },
@@ -672,7 +669,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                     valuesFiltersCubit.propertyTypeList,
                                 list: context
                                         .read<LookupBloc>()
-                                        .loockUpRent
+                                        .lookUpRent
                                         ?.propertyTypeList ??
                                     [],
                               );
@@ -705,7 +702,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                       valuesFiltersCubit.rentPurposeList,
                                   list: context
                                           .read<LookupBloc>()
-                                          .loockUpRent
+                                          .lookUpRent
                                           ?.rentPurposeList ??
                                       []);
                             },
@@ -736,7 +733,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 },
                                 list: context
                                         .read<LookupBloc>()
-                                        .loockUpRent
+                                        .lookUpRent
                                         ?.bedRooms ??
                                     []);
                           },
@@ -766,7 +763,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 value: valuesFiltersCubit.periodTime,
                                 list: context
                                         .read<LookupBloc>()
-                                        .loockUpRent
+                                        .lookUpRent
                                         ?.periodTime ??
                                     []);
                           },
@@ -809,7 +806,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 return Expanded(
                                     child: getPeriodTimeById(
                                   valuesFiltersCubit.periodTime.id,
-                                  context.read<LookupBloc>().loockUpRent ??
+                                  context.read<LookupBloc>().lookUpRent ??
                                       const RentLookupResponse(),
                                 ));
                               },
@@ -842,7 +839,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 },
                                 list: context
                                         .read<LookupBloc>()
-                                        .loockUpRent
+                                        .lookUpRent
                                         ?.furnitureStatusList ??
                                     []);
                           },
@@ -933,7 +930,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                             LengthLimitingTextInputFormatter(
                                                 context
                                                     .read<LookupBloc>()
-                                                    .loockUpRent
+                                                    .lookUpRent
                                                     ?.maxParams[1]
                                                     .maxVal
                                                     .toString()
@@ -944,20 +941,20 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                           autovalidateMode: AutovalidateMode
                                               .onUserInteraction,
                                           hintText:
-                                              '${context.read<LookupBloc>().loockUpRent?.maxParams[1].minVal}',
+                                              '${context.read<LookupBloc>().lookUpRent?.maxParams[1].minVal}',
                                           controller: rentValueFromController,
                                           validator: (value) {
                                             validatorFromValueCubit.validator(
                                                 value,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .loockUpRent
+                                                        .lookUpRent
                                                         ?.maxParams[1]
                                                         .maxVal ??
                                                     0,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .loockUpRent
+                                                        .lookUpRent
                                                         ?.maxParams[1]
                                                         .minVal ??
                                                     0,
@@ -988,7 +985,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                                     ))
                                             : validatorFromValueCubit.state == 2
                                                 ? Text(
-                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[1].maxVal}",
+                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpRent?.maxParams[1].maxVal}",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodySmall!
@@ -1000,7 +997,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                                             .state ==
                                                         1
                                                     ? Text(
-                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[1].minVal}",
+                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpRent?.maxParams[1].minVal}",
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodySmall!
@@ -1048,7 +1045,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                             LengthLimitingTextInputFormatter(
                                                 context
                                                     .read<LookupBloc>()
-                                                    .loockUpRent
+                                                    .lookUpRent
                                                     ?.maxParams[1]
                                                     .maxVal
                                                     .toString()
@@ -1059,20 +1056,20 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                           autovalidateMode: AutovalidateMode
                                               .onUserInteraction,
                                           hintText:
-                                              '${context.read<LookupBloc>().loockUpRent?.maxParams[1].maxVal}',
+                                              '${context.read<LookupBloc>().lookUpRent?.maxParams[1].maxVal}',
                                           controller: rentValueToController,
                                           validator: (value) {
                                             validatorToValueCubit.validator(
                                                 value,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .loockUpRent
+                                                        .lookUpRent
                                                         ?.maxParams[1]
                                                         .maxVal ??
                                                     0,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .loockUpRent
+                                                        .lookUpRent
                                                         ?.maxParams[1]
                                                         .minVal ??
                                                     0,
@@ -1103,7 +1100,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                                     ))
                                             : validatorToValueCubit.state == 2
                                                 ? Text(
-                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[1].maxVal}",
+                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpRent?.maxParams[1].maxVal}",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodySmall!
@@ -1114,7 +1111,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                                 : validatorToValueCubit.state ==
                                                         1
                                                     ? Text(
-                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpRent?.maxParams[1].minVal}",
+                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpRent?.maxParams[1].minVal}",
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodySmall!

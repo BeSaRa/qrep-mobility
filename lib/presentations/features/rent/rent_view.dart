@@ -73,7 +73,7 @@ class _RentViewState extends State<RentView> {
                       request: context.read<RentBloc>().requestMeanValue));
               List<RentLookupModel> listMunicipalityWithAll = [];
               listMunicipalityWithAll.addAll(
-                  context.read<LookupBloc>().loockUpRent?.municipalityList ??
+                  context.read<LookupBloc>().lookUpRent?.municipalityList ??
                       []);
               if (!listMunicipalityWithAll.contains(const RentLookupModel(
                   isActive: true,
@@ -88,9 +88,9 @@ class _RentViewState extends State<RentView> {
                     enName: "All",
                     id: -1));
               }
-              context.read<LookupBloc>().loockUpRent = context
+              context.read<LookupBloc>().lookUpRent = context
                   .read<LookupBloc>()
-                  .loockUpRent
+                  .lookUpRent
                   ?.copyWith(municipalityList: listMunicipalityWithAll);
             },
           );
@@ -162,13 +162,13 @@ class _RentViewState extends State<RentView> {
                                         SelectedMunicipality(
                                           list: context
                                                   .read<LookupBloc>()
-                                                  .loockUpRent
+                                                  .lookUpRent
                                                   ?.municipalityList ??
                                               [],
                                           value: getObjectById(
                                                   context
                                                           .read<LookupBloc>()
-                                                          .loockUpRent
+                                                          .lookUpRent
                                                           ?.municipalityList ??
                                                       [],
                                                   context
@@ -373,7 +373,7 @@ class _RentViewState extends State<RentView> {
                                       municipality: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
-                                                      .loockUpRent
+                                                      .lookUpRent
                                                       ?.municipalityList ??
                                                   [],
                                               context
@@ -385,7 +385,7 @@ class _RentViewState extends State<RentView> {
                                       zone: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
-                                                      .loockUpRent
+                                                      .lookUpRent
                                                       ?.zoneList ??
                                                   [],
                                               context
@@ -397,7 +397,7 @@ class _RentViewState extends State<RentView> {
                                       propertyPurpose: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
-                                                      .loockUpRent
+                                                      .lookUpRent
                                                       ?.rentPurposeList ??
                                                   [],
                                               context
@@ -409,7 +409,7 @@ class _RentViewState extends State<RentView> {
                                       propertyType: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
-                                                      .loockUpRent
+                                                      .lookUpRent
                                                       ?.propertyTypeList ??
                                                   [],
                                               context
@@ -478,7 +478,7 @@ class _RentViewState extends State<RentView> {
                                       municipality: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
-                                                      .loockUpRent
+                                                      .lookUpRent
                                                       ?.municipalityList ??
                                                   [],
                                               context
@@ -490,7 +490,7 @@ class _RentViewState extends State<RentView> {
                                       zone: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
-                                                      .loockUpRent
+                                                      .lookUpRent
                                                       ?.zoneList ??
                                                   [],
                                               context
@@ -502,7 +502,7 @@ class _RentViewState extends State<RentView> {
                                       propertyPurpose: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
-                                                      .loockUpRent
+                                                      .lookUpRent
                                                       ?.rentPurposeList ??
                                                   [],
                                               context
@@ -514,7 +514,7 @@ class _RentViewState extends State<RentView> {
                                       propertyType: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
-                                                      .loockUpRent
+                                                      .lookUpRent
                                                       ?.propertyTypeList ??
                                                   [],
                                               context
@@ -561,7 +561,7 @@ class _RentViewState extends State<RentView> {
                                       municipality: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
-                                                      .loockUpRent
+                                                      .lookUpRent
                                                       ?.municipalityList ??
                                                   [],
                                               context
@@ -573,7 +573,7 @@ class _RentViewState extends State<RentView> {
                                       zone: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
-                                                      .loockUpRent
+                                                      .lookUpRent
                                                       ?.zoneList ??
                                                   [],
                                               context
@@ -585,7 +585,7 @@ class _RentViewState extends State<RentView> {
                                       propertyPurpose: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
-                                                      .loockUpRent
+                                                      .lookUpRent
                                                       ?.rentPurposeList ??
                                                   [],
                                               context
@@ -597,7 +597,7 @@ class _RentViewState extends State<RentView> {
                                       propertyType: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
-                                                      .loockUpRent
+                                                      .lookUpRent
                                                       ?.propertyTypeList ??
                                                   [],
                                               context
@@ -652,14 +652,13 @@ class _RentViewState extends State<RentView> {
                                                   .bedRoomsCount
                                                   ?.toStringAsFixed(0) ??
                                               '0',
-                                          location: context
-                                                      .locale ==
+                                          location: context.locale ==
                                                   ARABIC_LOCAL
                                               ? getObjectByLookupKey(
                                                           context
                                                                   .read<
                                                                       LookupBloc>()
-                                                                  .loockUpRent
+                                                                  .lookUpRent
                                                                   ?.municipalityList ??
                                                               [],
                                                           state
@@ -674,7 +673,7 @@ class _RentViewState extends State<RentView> {
                                                           context
                                                                   .read<
                                                                       LookupBloc>()
-                                                                  .loockUpRent
+                                                                  .lookUpRent
                                                                   ?.municipalityList ??
                                                               [],
                                                           state
@@ -1964,9 +1963,9 @@ class _RentViewState extends State<RentView> {
 
   String getUnitName(int id) {
     if (context.locale == ARABIC_LOCAL) {
-      return "${AppStrings().unitType}: ${getObjectByLookupKey(context.read<LookupBloc>().loockUpRent?.propertyTypeList ?? [], id)?.arName ?? ''}";
+      return "${AppStrings().unitType}: ${getObjectByLookupKey(context.read<LookupBloc>().lookUpRent?.propertyTypeList ?? [], id)?.arName ?? ''}";
     } else {
-      return "${AppStrings().unitType}: ${getObjectByLookupKey(context.read<LookupBloc>().loockUpRent?.propertyTypeList ?? [], id)?.enName ?? ''}";
+      return "${AppStrings().unitType}: ${getObjectByLookupKey(context.read<LookupBloc>().lookUpRent?.propertyTypeList ?? [], id)?.enName ?? ''}";
     }
   }
 }

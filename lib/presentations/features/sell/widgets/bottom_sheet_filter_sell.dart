@@ -107,7 +107,7 @@ class _BottomSheetFilterSellWidgetState
               valuesFiltersCubit.quarterYear.clear();
               context
                   .read<LookupBloc>()
-                  .loockUpSell
+                  .lookUpSell
                   ?.quarterYearList
                   .forEach((element) {
                 if (context
@@ -227,7 +227,7 @@ class _BottomSheetFilterSellWidgetState
     //municipal and areaCode
     List<RentLookupModel> listMunicipalityWithAll = [];
     listMunicipalityWithAll
-        .addAll(context.read<LookupBloc>().loockUpSell?.municipalityList ?? []);
+        .addAll(context.read<LookupBloc>().lookUpSell?.municipalityList ?? []);
     if (!listMunicipalityWithAll.contains(const RentLookupModel(
         isActive: true,
         lookupKey: -1,
@@ -243,18 +243,18 @@ class _BottomSheetFilterSellWidgetState
           value: -1,
           id: -1));
     }
-    context.read<LookupBloc>().loockUpSell = context
+    context.read<LookupBloc>().lookUpSell = context
         .read<LookupBloc>()
-        .loockUpSell
+        .lookUpSell
         ?.copyWith(municipalityList: listMunicipalityWithAll);
     valuesFiltersCubit.municapility = getObjectByLookupKey(
-          context.read<LookupBloc>().loockUpSell?.municipalityList ?? [],
+          context.read<LookupBloc>().lookUpSell?.municipalityList ?? [],
           context.read<SellBloc>().requestSell.municipalityId ?? 1,
         ) ??
         const RentLookupModel();
     List<RentLookupModel> listDistrictWithAll = [];
     listDistrictWithAll
-        .addAll(context.read<LookupBloc>().loockUpSell?.districtList ?? []);
+        .addAll(context.read<LookupBloc>().lookUpSell?.districtList ?? []);
     if (!listDistrictWithAll.contains(const RentLookupModel(
         isActive: true,
         lookupKey: -1,
@@ -268,19 +268,19 @@ class _BottomSheetFilterSellWidgetState
           enName: "All",
           id: -1));
     }
-    context.read<LookupBloc>().loockUpSell = context
+    context.read<LookupBloc>().lookUpSell = context
         .read<LookupBloc>()
-        .loockUpSell
+        .lookUpSell
         ?.copyWith(districtList: listDistrictWithAll);
     valuesFiltersCubit.zone = getObjectByLookupKey(
-          context.read<LookupBloc>().loockUpSell?.districtList ?? [],
+          context.read<LookupBloc>().lookUpSell?.districtList ?? [],
           context.read<SellBloc>().requestSell.areaCode.toInt(),
         ) ??
         const RentLookupModel();
     //Property and Purpose
     List<RentLookupModel> listPropertyWithAll = [];
     listPropertyWithAll
-        .addAll(context.read<LookupBloc>().loockUpSell?.propertyTypeList ?? []);
+        .addAll(context.read<LookupBloc>().lookUpSell?.propertyTypeList ?? []);
     if (!listPropertyWithAll.contains(const RentLookupModel(
         isActive: true,
         lookupKey: -1,
@@ -295,21 +295,21 @@ class _BottomSheetFilterSellWidgetState
           id: -1));
     }
 
-    context.read<LookupBloc>().loockUpSell = context
+    context.read<LookupBloc>().lookUpSell = context
         .read<LookupBloc>()
-        .loockUpSell
+        .lookUpSell
         ?.copyWith(propertyTypeList: listPropertyWithAll);
 
     context.read<SellBloc>().requestSell.propertyTypeList?.forEach((element) {
       valuesFiltersCubit.propertyTypeList.add(getObjectByLookupKey(
-            context.read<LookupBloc>().loockUpSell?.propertyTypeList ?? [],
+            context.read<LookupBloc>().lookUpSell?.propertyTypeList ?? [],
             element,
           ) ??
           const RentLookupModel());
     });
     context.read<SellBloc>().requestSell.purposeList?.forEach((element) {
       valuesFiltersCubit.rentPurposeList.add(getObjectByLookupKey(
-            context.read<LookupBloc>().loockUpSell?.rentPurposeList ?? [],
+            context.read<LookupBloc>().lookUpSell?.rentPurposeList ?? [],
             element,
           ) ??
           const RentLookupModel());
@@ -327,7 +327,7 @@ class _BottomSheetFilterSellWidgetState
 
     //Period
     valuesFiltersCubit.periodTime = getObjectById(
-          context.read<LookupBloc>().loockUpSell?.periodTime ?? [],
+          context.read<LookupBloc>().lookUpSell?.periodTime ?? [],
           context.read<SellBloc>().requestSell.periodId,
         ) ??
         const RentLookupModel();
@@ -336,7 +336,7 @@ class _BottomSheetFilterSellWidgetState
     context.read<SellBloc>().requestSell.periodId == 2
         ? valuesFiltersCubit.periodTimeHalfDetails = context
                 .read<LookupBloc>()
-                .loockUpSell
+                .lookUpSell
                 ?.halfYearList
                 .firstWhere((element) =>
                     context.read<SellBloc>().requestSell.issueDateQuarterList ==
@@ -417,7 +417,7 @@ class _BottomSheetFilterSellWidgetState
                       // valuesFiltersCubit.bedRoom = const RentLookupModel(
                       //     arName: 'الكل', id: -1, enName: 'ALL');
                       valuesFiltersCubit.bedRoom = getObjectById(
-                            context.read<LookupBloc>().loockUpSell?.bedRooms ??
+                            context.read<LookupBloc>().lookUpSell?.bedRooms ??
                                 [],
                             -1,
                           ) ??
@@ -425,7 +425,7 @@ class _BottomSheetFilterSellWidgetState
                       valuesFiltersCubit.municapility = getObjectByLookupKey(
                             context
                                     .read<LookupBloc>()
-                                    .loockUpSell
+                                    .lookUpSell
                                     ?.municipalityList ??
                                 [],
                             4,
@@ -434,7 +434,7 @@ class _BottomSheetFilterSellWidgetState
                       valuesFiltersCubit.zone = getObjectByLookupKey(
                             context
                                     .read<LookupBloc>()
-                                    .loockUpSell
+                                    .lookUpSell
                                     ?.districtList ??
                                 [],
                             -1,
@@ -446,10 +446,7 @@ class _BottomSheetFilterSellWidgetState
                       valuesFiltersCubit.year =
                           valuesFiltersCubit.yearsLists.last;
                       valuesFiltersCubit.periodTime = getObjectById(
-                            context
-                                    .read<LookupBloc>()
-                                    .loockUpSell
-                                    ?.periodTime ??
+                            context.read<LookupBloc>().lookUpSell?.periodTime ??
                                 [],
                             1,
                           ) ??
@@ -459,7 +456,7 @@ class _BottomSheetFilterSellWidgetState
                           .add(getObjectByLookupKey(
                                 context
                                         .read<LookupBloc>()
-                                        .loockUpSell
+                                        .lookUpSell
                                         ?.rentPurposeList ??
                                     [],
                                 -1,
@@ -470,7 +467,7 @@ class _BottomSheetFilterSellWidgetState
                           .add(getObjectByLookupKey(
                                 context
                                         .read<LookupBloc>()
-                                        .loockUpSell
+                                        .lookUpSell
                                         ?.propertyTypeList ??
                                     [],
                                 -1,
@@ -574,7 +571,7 @@ class _BottomSheetFilterSellWidgetState
                                       .changeMunicapility(municapility!);
                                   valuesFiltersCubit.changeZone(context
                                           .read<LookupBloc>()
-                                          .loockUpSell
+                                          .lookUpSell
                                           ?.districtList
                                           .firstWhere((element) {
                                         return element.lookupKey == -1;
@@ -585,7 +582,7 @@ class _BottomSheetFilterSellWidgetState
                                 },
                                 list: context
                                         .read<LookupBloc>()
-                                        .loockUpSell
+                                        .lookUpSell
                                         ?.municipalityList ??
                                     []);
                           },
@@ -615,7 +612,7 @@ class _BottomSheetFilterSellWidgetState
                                     valuesFiltersCubit.municapility.lookupKey,
                                     context
                                             .read<LookupBloc>()
-                                            .loockUpSell
+                                            .lookUpSell
                                             ?.districtList ??
                                         []));
                           },
@@ -649,7 +646,7 @@ class _BottomSheetFilterSellWidgetState
                                     valuesFiltersCubit.propertyTypeList,
                                 list: context
                                         .read<LookupBloc>()
-                                        .loockUpSell
+                                        .lookUpSell
                                         ?.propertyTypeList ??
                                     [],
                               );
@@ -682,7 +679,7 @@ class _BottomSheetFilterSellWidgetState
                                       valuesFiltersCubit.rentPurposeList,
                                   list: context
                                           .read<LookupBloc>()
-                                          .loockUpSell
+                                          .lookUpSell
                                           ?.rentPurposeList ??
                                       []);
                             },
@@ -748,7 +745,7 @@ class _BottomSheetFilterSellWidgetState
                                 value: valuesFiltersCubit.periodTime,
                                 list: context
                                         .read<LookupBloc>()
-                                        .loockUpSell
+                                        .lookUpSell
                                         ?.periodTime ??
                                     []);
                           },
@@ -785,7 +782,7 @@ class _BottomSheetFilterSellWidgetState
                       return Expanded(
                         child: getPeriodTimeById(
                           valuesFiltersCubit.periodTime.id,
-                          context.read<LookupBloc>().loockUpSell ??
+                          context.read<LookupBloc>().lookUpSell ??
                               const RentLookupResponse(),
                         ),
                       );
@@ -831,7 +828,7 @@ class _BottomSheetFilterSellWidgetState
                                             LengthLimitingTextInputFormatter(
                                                 context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.maxParams[1]
                                                     .maxVal
                                                     .toString()
@@ -842,20 +839,20 @@ class _BottomSheetFilterSellWidgetState
                                           autovalidateMode: AutovalidateMode
                                               .onUserInteraction,
                                           hintText:
-                                              '${context.read<LookupBloc>().loockUpSell?.maxParams[1].minVal}',
+                                              '${context.read<LookupBloc>().lookUpSell?.maxParams[1].minVal}',
                                           controller: sellValueFromController,
                                           validator: (value) {
                                             validatorFromValueCubit.validator(
                                                 value,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .loockUpSell
+                                                        .lookUpSell
                                                         ?.maxParams[1]
                                                         .maxVal ??
                                                     0,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .loockUpSell
+                                                        .lookUpSell
                                                         ?.maxParams[1]
                                                         .minVal ??
                                                     0,
@@ -882,7 +879,7 @@ class _BottomSheetFilterSellWidgetState
                                                     ))
                                             : validatorFromValueCubit.state == 2
                                                 ? Text(
-                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[1].maxVal}",
+                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[1].maxVal}",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodySmall!
@@ -894,7 +891,7 @@ class _BottomSheetFilterSellWidgetState
                                                             .state ==
                                                         1
                                                     ? Text(
-                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[1].minVal}",
+                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[1].minVal}",
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodySmall!
@@ -942,7 +939,7 @@ class _BottomSheetFilterSellWidgetState
                                             LengthLimitingTextInputFormatter(
                                                 context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.maxParams[1]
                                                     .maxVal
                                                     .toString()
@@ -953,20 +950,20 @@ class _BottomSheetFilterSellWidgetState
                                           autovalidateMode: AutovalidateMode
                                               .onUserInteraction,
                                           hintText:
-                                              '${context.read<LookupBloc>().loockUpSell?.maxParams[1].maxVal}',
+                                              '${context.read<LookupBloc>().lookUpSell?.maxParams[1].maxVal}',
                                           controller: sellValueToController,
                                           validator: (value) {
                                             validatorToValueCubit.validator(
                                                 value,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .loockUpSell
+                                                        .lookUpSell
                                                         ?.maxParams[1]
                                                         .maxVal ??
                                                     0,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .loockUpSell
+                                                        .lookUpSell
                                                         ?.maxParams[1]
                                                         .minVal ??
                                                     0,
@@ -994,7 +991,7 @@ class _BottomSheetFilterSellWidgetState
                                                     ))
                                             : validatorToValueCubit.state == 2
                                                 ? Text(
-                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[1].maxVal}",
+                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[1].maxVal}",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodySmall!
@@ -1005,7 +1002,7 @@ class _BottomSheetFilterSellWidgetState
                                                 : validatorToValueCubit.state ==
                                                         1
                                                     ? Text(
-                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[1].minVal}",
+                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[1].minVal}",
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodySmall!
@@ -1058,7 +1055,7 @@ class _BottomSheetFilterSellWidgetState
                                             LengthLimitingTextInputFormatter(
                                                 context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.maxParams[0]
                                                     .maxVal
                                                     .toString()
@@ -1075,13 +1072,13 @@ class _BottomSheetFilterSellWidgetState
                                                 value,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .loockUpSell
+                                                        .lookUpSell
                                                         ?.maxParams[0]
                                                         .maxVal ??
                                                     0,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .loockUpSell
+                                                        .lookUpSell
                                                         ?.maxParams[0]
                                                         .minVal ??
                                                     0,
@@ -1108,7 +1105,7 @@ class _BottomSheetFilterSellWidgetState
                                                     ))
                                             : validatorFromAreaCubit.state == 2
                                                 ? Text(
-                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[0].maxVal}",
+                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[0].maxVal}",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodySmall!
@@ -1120,7 +1117,7 @@ class _BottomSheetFilterSellWidgetState
                                                             .state ==
                                                         1
                                                     ? Text(
-                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[0].minVal}",
+                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[0].minVal}",
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodySmall!
@@ -1168,7 +1165,7 @@ class _BottomSheetFilterSellWidgetState
                                             LengthLimitingTextInputFormatter(
                                                 context
                                                     .read<LookupBloc>()
-                                                    .loockUpSell
+                                                    .lookUpSell
                                                     ?.maxParams[0]
                                                     .maxVal
                                                     .toString()
@@ -1185,13 +1182,13 @@ class _BottomSheetFilterSellWidgetState
                                                 value,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .loockUpSell
+                                                        .lookUpSell
                                                         ?.maxParams[0]
                                                         .maxVal ??
                                                     0,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .loockUpSell
+                                                        .lookUpSell
                                                         ?.maxParams[0]
                                                         .minVal ??
                                                     0,
@@ -1218,7 +1215,7 @@ class _BottomSheetFilterSellWidgetState
                                                     ))
                                             : validatorToAreaCubit.state == 2
                                                 ? Text(
-                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[0].maxVal}",
+                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[0].maxVal}",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodySmall!
@@ -1229,7 +1226,7 @@ class _BottomSheetFilterSellWidgetState
                                                 : validatorToAreaCubit.state ==
                                                         1
                                                     ? Text(
-                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().loockUpSell?.maxParams[0].minVal}",
+                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[0].minVal}",
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodySmall!
@@ -1413,7 +1410,7 @@ class _BottomSheetFilterSellWidgetState
     } else {
       unitVal = AppStrings().footSquare;
     }
-    return '${context.read<LookupBloc>().loockUpSell?.maxParams[1].minVal} ($unitVal)';
+    return '${context.read<LookupBloc>().lookUpSell?.maxParams[1].minVal} ($unitVal)';
   }
 
   String getHintMaxValue() {
@@ -1423,6 +1420,6 @@ class _BottomSheetFilterSellWidgetState
     } else {
       unitVal = AppStrings().footSquare;
     }
-    return '${context.read<LookupBloc>().loockUpSell?.maxParams[0].maxVal} ($unitVal)';
+    return '${context.read<LookupBloc>().lookUpSell?.maxParams[0].maxVal} ($unitVal)';
   }
 }
