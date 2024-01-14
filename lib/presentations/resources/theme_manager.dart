@@ -11,10 +11,11 @@ class FontConstants {
 
 ThemeData lightTheme() {
   return ThemeData(
-    // colorSchemeSeed: const Color(0xFF8A1538),
+      // colorSchemeSeed: const Color(0xFF8A1538),
       primaryColor: ColorManager.primary,
       cardTheme: CardTheme(color: ColorManager.white),
       cardColor: ColorManager.cloudyGrey,
+      //using color scheme to manage colors in the app for light and dark
       colorScheme: ColorScheme.light(
           primary: ColorManager.primary,
           brightness: Brightness.light,
@@ -98,28 +99,28 @@ ThemeData lightTheme() {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(ColorManager.white),
-            textStyle: MaterialStatePropertyAll(
-              TextStyle(
-                fontFamily: FontConstants.fontFamily,
-                color: ColorManager.white,
-                fontSize: AppSizeSp.s16,
-                fontWeight: FontWeight.w400,
-              ),
+        foregroundColor: MaterialStateProperty.all(ColorManager.white),
+        textStyle: MaterialStatePropertyAll(
+          TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.white,
+            fontSize: AppSizeSp.s16,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(AppSizeR.s5),
             ),
-            backgroundColor: MaterialStateProperty.all(ColorManager.primary),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(AppSizeR.s5),
-                ),
-              ),
-            ),
-          )),
+          ),
+        ),
+      )),
       buttonTheme: ButtonThemeData(
         buttonColor: ColorManager.primary, //  <-- dark color
         textTheme:
-        ButtonTextTheme.primary, //  <-- this auto selects the right color
+            ButtonTextTheme.primary, //  <-- this auto selects the right color
       ),
       iconTheme: IconThemeData(color: ColorManager.primary),
       scaffoldBackgroundColor: const Color(0xFFF9F9F9),
@@ -196,11 +197,10 @@ ThemeData lightTheme() {
 
 ThemeData darkTheme() {
   return ThemeData(
-    // colorSchemeSeed: const Color(0xFF222222),
+      // colorSchemeSeed: const Color(0xFF222222),
       scaffoldBackgroundColor: const Color(0xFF222222),
       cardTheme: CardTheme(color: ColorManager.textFieldGrey),
       cardColor: ColorManager.primary,
-
       colorScheme: ColorScheme.dark(
         primary: ColorManager.white,
         brightness: Brightness.dark,
@@ -236,24 +236,24 @@ ThemeData darkTheme() {
       iconTheme: IconThemeData(color: ColorManager.white),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(const Color(0xFF222222)),
-            textStyle: MaterialStatePropertyAll(
-              TextStyle(
-                fontFamily: FontConstants.fontFamily,
-                color: ColorManager.white,
-                fontSize: AppSizeSp.s16,
-                fontWeight: FontWeight.w400,
-              ),
+        foregroundColor: MaterialStateProperty.all(const Color(0xFF222222)),
+        textStyle: MaterialStatePropertyAll(
+          TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.white,
+            fontSize: AppSizeSp.s16,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all(ColorManager.primary),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(AppSizeR.s5),
             ),
-            backgroundColor: MaterialStateProperty.all(ColorManager.primary),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(AppSizeR.s5),
-                ),
-              ),
-            ),
-          )),
+          ),
+        ),
+      )),
       textTheme: TextTheme(
         titleLarge: TextStyle(
           fontFamily: FontConstants.fontFamily,
@@ -313,7 +313,7 @@ ThemeData darkTheme() {
             fontWeight: FontWeight.w400),
       ),
       dividerTheme:
-      DividerThemeData(color: ColorManager.textBlack.withOpacity(0.6)),
+          DividerThemeData(color: ColorManager.textBlack.withOpacity(0.6)),
       canvasColor: ColorManager.cloudyGrey,
       useMaterial3: true);
 }

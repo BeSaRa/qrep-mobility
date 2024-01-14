@@ -7,7 +7,7 @@ import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart'
 import 'package:ebla/presentations/features/info/views/about_us_view.dart';
 import 'package:ebla/presentations/features/info/views/faq_view.dart';
 import 'package:ebla/presentations/features/info/views/laws_details_view.dart';
-import 'package:ebla/presentations/features/main_scaffold.dart';
+import 'package:ebla/presentations/features/main/main_scaffold.dart';
 import 'package:ebla/presentations/features/more/more_view.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
@@ -68,7 +68,7 @@ class RoutesPaths {
 
 class NavigationKeys {
   static final GlobalKey<NavigatorState> rootNavigatorKey =
-  GlobalKey<NavigatorState>();
+      GlobalKey<NavigatorState>();
   static final shellNavigatorKey = GlobalKey<NavigatorState>();
 }
 
@@ -143,8 +143,7 @@ class AppRouter {
                 return CustomTransitionPage(
                   key: state.pageKey,
                   child: BlocProvider(
-                    create: (context) =>
-                    instance<RentBloc>()
+                    create: (context) => instance<RentBloc>()
                       ..add(const RentEvent.getRentLookupEvent()),
                     child: const RentView(),
                   ),
@@ -166,8 +165,7 @@ class AppRouter {
                 return CustomTransitionPage(
                   key: state.pageKey,
                   child: BlocProvider(
-                    create: (context) =>
-                    instance<SellBloc>()
+                    create: (context) => instance<SellBloc>()
                       ..add(const SellEvent.getSellLookupEvent()),
                     child: const SalesView(),
                   ),
@@ -189,8 +187,7 @@ class AppRouter {
                 return CustomTransitionPage(
                   key: state.pageKey,
                   child: BlocProvider(
-                    create: (context) =>
-                    instance<MortgageBloc>()
+                    create: (context) => instance<MortgageBloc>()
                       ..add(const MortgageEvent.started()),
                     child: const MortgageView(),
                   ),
@@ -335,23 +332,19 @@ class AppRouter {
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.about,
           path: RoutesPaths.about,
-          builder: (context, state) =>
-              BlocProvider(
-                create: (context) =>
-                instance<AboutBloc>()
-                  ..add(const AboutEvent.getAbout()),
-                child: const AboutUsView(),
-              ),
+          builder: (context, state) => BlocProvider(
+            create: (context) =>
+                instance<AboutBloc>()..add(const AboutEvent.getAbout()),
+            child: const AboutUsView(),
+          ),
         ),
         GoRoute(
             parentNavigatorKey: NavigationKeys.rootNavigatorKey,
             name: RoutesNames.laws,
             path: RoutesPaths.laws,
-            builder: (context, state) =>
-                BlocProvider(
+            builder: (context, state) => BlocProvider(
                   create: (context) =>
-                  instance<LawsBloc>()
-                    ..add(const LawsEvent.getLaws()),
+                      instance<LawsBloc>()..add(const LawsEvent.getLaws()),
                   child: const LawsDecisionsView(),
                 ),
             routes: [
@@ -380,23 +373,20 @@ class AppRouter {
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.faq,
           path: RoutesPaths.faq,
-          builder: (context, state) =>
-              BlocProvider(
-                create: (context) =>
-                instance<FaqBloc>()
-                  ..add(const FaqEvent.getFaq()),
-                child: const FAQView(),
-              ),
+          builder: (context, state) => BlocProvider(
+            create: (context) =>
+                instance<FaqBloc>()..add(const FaqEvent.getFaq()),
+            child: const FAQView(),
+          ),
         ),
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.news,
           path: RoutesPaths.news,
-          builder: (context, state) =>
-              BlocProvider.value(
-                value: state.extra! as NewsBloc,
-                child: const NewsView(),
-              ),
+          builder: (context, state) => BlocProvider.value(
+            value: state.extra! as NewsBloc,
+            child: const NewsView(),
+          ),
         ),
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
@@ -405,8 +395,7 @@ class AppRouter {
           builder: (context, state) {
             initRealEstateBroker();
             return BlocProvider(
-              create: (context) =>
-              instance<LookUpBrokerBloc>()
+              create: (context) => instance<LookUpBrokerBloc>()
                 ..add(const LookUpBrokerEvent.getBrokerLookup()),
               child: const RealEstateBrokersView(),
             );
@@ -416,13 +405,12 @@ class AppRouter {
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.newsbyId,
           path: RoutesPaths.newsbyId,
-          builder: (context, state) =>
-              BlocProvider.value(
-                value: state.extra! as NewsBloc,
-                child: NewsItemView(
-                  id: int.parse(state.pathParameters['id'] ?? '0'),
-                ),
-              ),
+          builder: (context, state) => BlocProvider.value(
+            value: state.extra! as NewsBloc,
+            child: NewsItemView(
+              id: int.parse(state.pathParameters['id'] ?? '0'),
+            ),
+          ),
         ),
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,

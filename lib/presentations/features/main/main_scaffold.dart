@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../app/depndency_injection.dart';
-import '../widgets/ebla_navigation_bar.dart';
-import 'main/cubit/bottom_nav_cubit.dart';
+import '../../../app/depndency_injection.dart';
+import '../../widgets/ebla_navigation_bar.dart';
+import 'cubit/bottom_nav_cubit.dart';
 
 class MainScaffold extends StatefulWidget {
   // final StatefulNavigationShell navigationShell;
