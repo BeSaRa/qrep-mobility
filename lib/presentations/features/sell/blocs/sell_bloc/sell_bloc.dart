@@ -28,6 +28,11 @@ class SellBloc extends Bloc<SellEvent, SellState> {
   }
 
   int unit = 2;
+
+  setUnit(int val) {
+    unit = val;
+  }
+
   RequestSellValues requestSellDefault = RequestSellValues(
       areaCode: -1,
       areaFrom: null,

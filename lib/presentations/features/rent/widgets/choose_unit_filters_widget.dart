@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../resources/resources.dart';
+import '../../sell/blocs/sell_bloc/sell_bloc.dart';
 import '../blocs/cubits/values_filters_cubit.dart';
 
 class ChooseUnitWidget extends StatefulWidget {
@@ -28,6 +29,7 @@ class _ChooseUnitWidgetState extends State<ChooseUnitWidget> {
                   borderRadius: BorderRadius.circular(AppSizeR.s25),
                   onTap: () {
                     context.read<ValuesFiltersCubit>().changeUnit(1);
+                    context.read<SellBloc>().setUnit(1);
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -55,6 +57,7 @@ class _ChooseUnitWidgetState extends State<ChooseUnitWidget> {
                 child: InkWell(
                   onTap: () {
                     context.read<ValuesFiltersCubit>().changeUnit(2);
+                    context.read<SellBloc>().setUnit(2);
                   },
                   borderRadius: BorderRadius.circular(AppSizeR.s25),
                   child: Container(

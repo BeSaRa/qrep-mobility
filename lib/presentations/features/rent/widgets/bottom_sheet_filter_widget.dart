@@ -140,8 +140,23 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
             valuesFiltersCubit.monthsFromApril = getFromAprilMonths(context);
 
             if (valuesFiltersCubit.month == const PeriodTimeDetails()) {
-              valuesFiltersCubit.changeMonth(valuesFiltersCubit.months.first);
-              if (valuesFiltersCubit.year.id != 2019) {
+              if (valuesFiltersCubit.year.id == 2019) {
+                valuesFiltersCubit
+                    .changeMonth(valuesFiltersCubit.monthsFromApril.first);
+                context.read<RentBloc>().requestMeanValue.issueDateEndMonth !=
+                        null
+                    ? valuesFiltersCubit.month = valuesFiltersCubit
+                        .monthsFromApril
+                        .firstWhere((element) =>
+                            element.value[0] ==
+                            context
+                                .read<RentBloc>()
+                                .requestMeanValue
+                                .issueDateEndMonth)
+                    : valuesFiltersCubit.month =
+                        valuesFiltersCubit.monthsFromApril.first;
+              } else {
+                valuesFiltersCubit.changeMonth(valuesFiltersCubit.months.first);
                 context.read<RentBloc>().requestMeanValue.issueDateEndMonth !=
                         null
                     ? valuesFiltersCubit.month = valuesFiltersCubit.months
@@ -153,15 +168,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 .issueDateEndMonth)
                     : valuesFiltersCubit.month =
                         valuesFiltersCubit.months.first;
-              } else {
-                valuesFiltersCubit.month =
-                    valuesFiltersCubit.monthsFromApril.first;
               }
-            } else if (valuesFiltersCubit.year.id == 2019) {
-              valuesFiltersCubit.month =
-                  valuesFiltersCubit.monthsFromApril.first;
-            } else {
-              valuesFiltersCubit.month = valuesFiltersCubit.months.first;
             }
 
             return valuesFiltersCubit.year.id == 2019
@@ -1464,13 +1471,11 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                             getissueDateQuarterList(
                                                 valuesFiltersCubit
                                                     .periodTime.id),
-                                        issueDateStartMonth:
-                                            valuesFiltersCubit.periodTime.id ==
-                                                    4
-                                                ? valuesFiltersCubit
-                                                        .month.value[0] -
-                                                    1
-                                                : 1,
+                                        issueDateStartMonth: valuesFiltersCubit
+                                                    .periodTime.id ==
+                                                4
+                                            ? valuesFiltersCubit.month.value[0]
+                                            : 1,
                                         issueDateEndMonth: valuesFiltersCubit
                                                     .periodTime.id ==
                                                 4

@@ -475,6 +475,7 @@ class _BottomSheetFilterSellWidgetState
                               const RentLookupModel());
 
                       valuesFiltersCubit.changeUnit(2);
+                      context.read<SellBloc>().setUnit(2);
                       // valuesFiltersCubit.unit = 2;
                       // });
                       // streetController.clear();
