@@ -585,8 +585,11 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                 ],
               ),
               SizedBox(height: AppSizeH.s8),
+
+              ///first row for define municipality and zone
               Row(
                 children: [
+                  ///municipality
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -622,6 +625,8 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                     ),
                   ),
                   SizedBox(width: AppSizeW.s8),
+
+                  ///zone
                   Expanded(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -654,8 +659,11 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                 ],
               ),
               SizedBox(height: AppSizeH.s12),
+
+              ///second row for define property type and property usage
               Row(
                 children: [
+                  ///property list
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -687,6 +695,8 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                     ),
                   ),
                   SizedBox(width: AppSizeW.s8),
+
+                  ///property usage
                   Expanded(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -721,8 +731,11 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                 ],
               ),
               SizedBox(height: AppSizeH.s12),
+
+              ///third row for rooms
               Row(
                 children: [
+                  /// number of rooms
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -749,6 +762,8 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                     ),
                   ),
                   SizedBox(width: AppSizeW.s8),
+
+                  /// duration
                   Expanded(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -781,8 +796,11 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                 ],
               ),
               SizedBox(height: AppSizeH.s12),
+
+              ///
               Row(
                 children: [
+                  ///duration details
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
