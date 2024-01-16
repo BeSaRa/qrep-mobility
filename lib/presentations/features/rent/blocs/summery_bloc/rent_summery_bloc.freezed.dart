@@ -16,20 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RentSummeryEvent {
-  RequestMeanValue get request => throw _privateConstructorUsedError;
+  RentRequest get request => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) getRentSummary,
+    required TResult Function(RentRequest request) getRentSummary,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? getRentSummary,
+    TResult? Function(RentRequest request)? getRentSummary,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? getRentSummary,
+    TResult Function(RentRequest request)? getRentSummary,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,9 +61,9 @@ abstract class $RentSummeryEventCopyWith<$Res> {
           RentSummeryEvent value, $Res Function(RentSummeryEvent) then) =
       _$RentSummeryEventCopyWithImpl<$Res, RentSummeryEvent>;
   @useResult
-  $Res call({RequestMeanValue request});
+  $Res call({RentRequest request});
 
-  $RequestMeanValueCopyWith<$Res> get request;
+  $RentRequestCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -85,14 +85,14 @@ class _$RentSummeryEventCopyWithImpl<$Res, $Val extends RentSummeryEvent>
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
+              as RentRequest,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RequestMeanValueCopyWith<$Res> get request {
-    return $RequestMeanValueCopyWith<$Res>(_value.request, (value) {
+  $RentRequestCopyWith<$Res> get request {
+    return $RentRequestCopyWith<$Res>(_value.request, (value) {
       return _then(_value.copyWith(request: value) as $Val);
     });
   }
@@ -106,10 +106,10 @@ abstract class _$$RentSummaryEventImplCopyWith<$Res>
       __$$RentSummaryEventImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RequestMeanValue request});
+  $Res call({RentRequest request});
 
   @override
-  $RequestMeanValueCopyWith<$Res> get request;
+  $RentRequestCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -129,7 +129,7 @@ class __$$RentSummaryEventImplCopyWithImpl<$Res>
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
+              as RentRequest,
     ));
   }
 }
@@ -140,7 +140,7 @@ class _$RentSummaryEventImpl implements _RentSummaryEvent {
   const _$RentSummaryEventImpl({required this.request});
 
   @override
-  final RequestMeanValue request;
+  final RentRequest request;
 
   @override
   String toString() {
@@ -168,7 +168,7 @@ class _$RentSummaryEventImpl implements _RentSummaryEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) getRentSummary,
+    required TResult Function(RentRequest request) getRentSummary,
   }) {
     return getRentSummary(request);
   }
@@ -176,7 +176,7 @@ class _$RentSummaryEventImpl implements _RentSummaryEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? getRentSummary,
+    TResult? Function(RentRequest request)? getRentSummary,
   }) {
     return getRentSummary?.call(request);
   }
@@ -184,7 +184,7 @@ class _$RentSummaryEventImpl implements _RentSummaryEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? getRentSummary,
+    TResult Function(RentRequest request)? getRentSummary,
     required TResult orElse(),
   }) {
     if (getRentSummary != null) {
@@ -223,11 +223,11 @@ class _$RentSummaryEventImpl implements _RentSummaryEvent {
 }
 
 abstract class _RentSummaryEvent implements RentSummeryEvent {
-  const factory _RentSummaryEvent({required final RequestMeanValue request}) =
+  const factory _RentSummaryEvent({required final RentRequest request}) =
       _$RentSummaryEventImpl;
 
   @override
-  RequestMeanValue get request;
+  RentRequest get request;
   @override
   @JsonKey(ignore: true)
   _$$RentSummaryEventImplCopyWith<_$RentSummaryEventImpl> get copyWith =>

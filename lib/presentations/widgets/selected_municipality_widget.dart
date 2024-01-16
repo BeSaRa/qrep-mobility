@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import '../resources/resources.dart';
 
 class SelectedMunicipality extends StatefulWidget {
-  final List<RentLookupModel> list;
-  final RentLookupModel? value;
-  final Function(RentLookupModel?)? onChanged;
+  final List<LookupModel> list;
+  final LookupModel? value;
+  final Function(LookupModel?)? onChanged;
 
   const SelectedMunicipality(
       {super.key, this.onChanged, this.value, required this.list});
@@ -39,7 +39,7 @@ class _SelectedMunicipalityState extends State<SelectedMunicipality> {
           border: Border.all(style: BorderStyle.none),
           borderRadius: BorderRadius.circular(AppSizeR.s25),
         ),
-        child: SingleDrowDown<RentLookupModel>(
+        child: SingleDrowDown<LookupModel>(
             onChanged: widget.onChanged,
             value: widget.value,
             // getObjectById(
@@ -87,7 +87,7 @@ class _SingleDrowDownState<T> extends State<SingleDrowDown<T>> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppSizeW.s11),
                     child: Text(
-                      item is RentLookupModel
+                      item is LookupModel
                           ? context.locale == ARABIC_LOCAL
                               ? item.arName
                               : item.enName

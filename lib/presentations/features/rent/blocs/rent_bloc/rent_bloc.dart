@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../domain/models/rent_models/rent_models.dart';
-import '../../../../../domain/models/requests/rent_requests/request_mean_value.dart';
+import '../../../../../domain/models/requests/rent_requests/request_rent.dart';
 
 part 'rent_bloc.freezed.dart';
 part 'rent_event.dart';
@@ -45,7 +45,7 @@ class RentBloc extends Bloc<RentEvent, RentState> {
     });
   }
 
-  RequestMeanValue requestDefault = RequestMeanValue(
+  RentRequest requestDefault = RentRequest(
       areaFrom: null,
       areaTo: null,
       bedRoomsCount: 0,
@@ -68,7 +68,7 @@ class RentBloc extends Bloc<RentEvent, RentState> {
       zoneId: -1,
       unit: 2,
       periodId: 1);
-  RequestMeanValue requestMeanValue = RequestMeanValue(
+  RentRequest requestMeanValue = RentRequest(
       areaFrom: null,
       areaTo: null,
       bedRoomsCount: 0,

@@ -71,17 +71,17 @@ class _RentViewState extends State<RentView> {
               certificateContractBloc.add(
                   CertificateContractEvent.certificateCountEvent(
                       request: context.read<RentBloc>().requestMeanValue));
-              List<RentLookupModel> listMunicipalityWithAll = [];
+              List<LookupModel> listMunicipalityWithAll = [];
               listMunicipalityWithAll.addAll(
                   context.read<LookupBloc>().lookUpRent?.municipalityList ??
                       []);
-              if (!listMunicipalityWithAll.contains(const RentLookupModel(
+              if (!listMunicipalityWithAll.contains(const LookupModel(
                   isActive: true,
                   lookupKey: -1,
                   arName: "الكل",
                   enName: "All",
                   id: -1))) {
-                listMunicipalityWithAll.add(const RentLookupModel(
+                listMunicipalityWithAll.add(const LookupModel(
                     isActive: true,
                     lookupKey: -1,
                     arName: "الكل",
@@ -176,7 +176,7 @@ class _RentViewState extends State<RentView> {
                                                           .requestMeanValue
                                                           .municipalityId ??
                                                       1) ??
-                                              const RentLookupModel(),
+                                              const LookupModel(),
                                           onChanged: (municipal) {
                                             context
                                                     .read<RentBloc>()
@@ -381,7 +381,7 @@ class _RentViewState extends State<RentView> {
                                                       .requestMeanValue
                                                       .municipalityId ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                       zone: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
@@ -393,7 +393,7 @@ class _RentViewState extends State<RentView> {
                                                       .requestMeanValue
                                                       .zoneId ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                       propertyPurpose: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
@@ -405,7 +405,7 @@ class _RentViewState extends State<RentView> {
                                                       .requestMeanValue
                                                       .purposeList?[0] ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                       propertyType: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
@@ -417,7 +417,7 @@ class _RentViewState extends State<RentView> {
                                                       .requestMeanValue
                                                       .propertyTypeList?[0] ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                     );
                                   },
                                 ),
@@ -486,7 +486,7 @@ class _RentViewState extends State<RentView> {
                                                       .requestMeanValue
                                                       .municipalityId ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                       zone: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
@@ -498,7 +498,7 @@ class _RentViewState extends State<RentView> {
                                                       .requestMeanValue
                                                       .zoneId ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                       propertyPurpose: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
@@ -510,7 +510,7 @@ class _RentViewState extends State<RentView> {
                                                       .requestMeanValue
                                                       .purposeList?[0] ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                       propertyType: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
@@ -522,7 +522,7 @@ class _RentViewState extends State<RentView> {
                                                       .requestMeanValue
                                                       .propertyTypeList?[0] ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                     );
                                   },
                                 ),
@@ -569,7 +569,7 @@ class _RentViewState extends State<RentView> {
                                                       .requestMeanValue
                                                       .municipalityId ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                       zone: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
@@ -581,7 +581,7 @@ class _RentViewState extends State<RentView> {
                                                       .requestMeanValue
                                                       .zoneId ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                       propertyPurpose: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
@@ -593,7 +593,7 @@ class _RentViewState extends State<RentView> {
                                                       .requestMeanValue
                                                       .purposeList?[0] ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                       propertyType: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
@@ -605,7 +605,7 @@ class _RentViewState extends State<RentView> {
                                                       .requestMeanValue
                                                       .propertyTypeList?[0] ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                     );
                                   },
                                 ),

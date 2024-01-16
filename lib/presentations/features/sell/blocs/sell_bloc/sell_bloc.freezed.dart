@@ -168,21 +168,21 @@ mixin _$SellState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadingSellLookup,
-    required TResult Function(RentLookupResponse sellLookup) loadedSellLookup,
+    required TResult Function(LookupResponse sellLookup) loadedSellLookup,
     required TResult Function(String message) errorSellLookUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadingSellLookup,
-    TResult? Function(RentLookupResponse sellLookup)? loadedSellLookup,
+    TResult? Function(LookupResponse sellLookup)? loadedSellLookup,
     TResult? Function(String message)? errorSellLookUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadingSellLookup,
-    TResult Function(RentLookupResponse sellLookup)? loadedSellLookup,
+    TResult Function(LookupResponse sellLookup)? loadedSellLookup,
     TResult Function(String message)? errorSellLookUp,
     required TResult orElse(),
   }) =>
@@ -267,7 +267,7 @@ class _$LoadingSellLookUpImpl implements _LoadingSellLookUp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadingSellLookup,
-    required TResult Function(RentLookupResponse sellLookup) loadedSellLookup,
+    required TResult Function(LookupResponse sellLookup) loadedSellLookup,
     required TResult Function(String message) errorSellLookUp,
   }) {
     return loadingSellLookup();
@@ -277,7 +277,7 @@ class _$LoadingSellLookUpImpl implements _LoadingSellLookUp {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadingSellLookup,
-    TResult? Function(RentLookupResponse sellLookup)? loadedSellLookup,
+    TResult? Function(LookupResponse sellLookup)? loadedSellLookup,
     TResult? Function(String message)? errorSellLookUp,
   }) {
     return loadingSellLookup?.call();
@@ -287,7 +287,7 @@ class _$LoadingSellLookUpImpl implements _LoadingSellLookUp {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadingSellLookup,
-    TResult Function(RentLookupResponse sellLookup)? loadedSellLookup,
+    TResult Function(LookupResponse sellLookup)? loadedSellLookup,
     TResult Function(String message)? errorSellLookUp,
     required TResult orElse(),
   }) {
@@ -342,9 +342,9 @@ abstract class _$$LoadedSellLookUpImplCopyWith<$Res> {
           $Res Function(_$LoadedSellLookUpImpl) then) =
       __$$LoadedSellLookUpImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({RentLookupResponse sellLookup});
+  $Res call({LookupResponse sellLookup});
 
-  $RentLookupResponseCopyWith<$Res> get sellLookup;
+  $LookupResponseCopyWith<$Res> get sellLookup;
 }
 
 /// @nodoc
@@ -364,14 +364,14 @@ class __$$LoadedSellLookUpImplCopyWithImpl<$Res>
       sellLookup: null == sellLookup
           ? _value.sellLookup
           : sellLookup // ignore: cast_nullable_to_non_nullable
-              as RentLookupResponse,
+              as LookupResponse,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RentLookupResponseCopyWith<$Res> get sellLookup {
-    return $RentLookupResponseCopyWith<$Res>(_value.sellLookup, (value) {
+  $LookupResponseCopyWith<$Res> get sellLookup {
+    return $LookupResponseCopyWith<$Res>(_value.sellLookup, (value) {
       return _then(_value.copyWith(sellLookup: value));
     });
   }
@@ -383,7 +383,7 @@ class _$LoadedSellLookUpImpl implements _LoadedSellLookUp {
   const _$LoadedSellLookUpImpl({required this.sellLookup});
 
   @override
-  final RentLookupResponse sellLookup;
+  final LookupResponse sellLookup;
 
   @override
   String toString() {
@@ -413,7 +413,7 @@ class _$LoadedSellLookUpImpl implements _LoadedSellLookUp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadingSellLookup,
-    required TResult Function(RentLookupResponse sellLookup) loadedSellLookup,
+    required TResult Function(LookupResponse sellLookup) loadedSellLookup,
     required TResult Function(String message) errorSellLookUp,
   }) {
     return loadedSellLookup(sellLookup);
@@ -423,7 +423,7 @@ class _$LoadedSellLookUpImpl implements _LoadedSellLookUp {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadingSellLookup,
-    TResult? Function(RentLookupResponse sellLookup)? loadedSellLookup,
+    TResult? Function(LookupResponse sellLookup)? loadedSellLookup,
     TResult? Function(String message)? errorSellLookUp,
   }) {
     return loadedSellLookup?.call(sellLookup);
@@ -433,7 +433,7 @@ class _$LoadedSellLookUpImpl implements _LoadedSellLookUp {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadingSellLookup,
-    TResult Function(RentLookupResponse sellLookup)? loadedSellLookup,
+    TResult Function(LookupResponse sellLookup)? loadedSellLookup,
     TResult Function(String message)? errorSellLookUp,
     required TResult orElse(),
   }) {
@@ -479,10 +479,10 @@ class _$LoadedSellLookUpImpl implements _LoadedSellLookUp {
 }
 
 abstract class _LoadedSellLookUp implements SellState {
-  const factory _LoadedSellLookUp(
-      {required final RentLookupResponse sellLookup}) = _$LoadedSellLookUpImpl;
+  const factory _LoadedSellLookUp({required final LookupResponse sellLookup}) =
+      _$LoadedSellLookUpImpl;
 
-  RentLookupResponse get sellLookup;
+  LookupResponse get sellLookup;
   @JsonKey(ignore: true)
   _$$LoadedSellLookUpImplCopyWith<_$LoadedSellLookUpImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -554,7 +554,7 @@ class _$ErrorSellLookUpImpl implements _ErrorSellLookUp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadingSellLookup,
-    required TResult Function(RentLookupResponse sellLookup) loadedSellLookup,
+    required TResult Function(LookupResponse sellLookup) loadedSellLookup,
     required TResult Function(String message) errorSellLookUp,
   }) {
     return errorSellLookUp(message);
@@ -564,7 +564,7 @@ class _$ErrorSellLookUpImpl implements _ErrorSellLookUp {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadingSellLookup,
-    TResult? Function(RentLookupResponse sellLookup)? loadedSellLookup,
+    TResult? Function(LookupResponse sellLookup)? loadedSellLookup,
     TResult? Function(String message)? errorSellLookUp,
   }) {
     return errorSellLookUp?.call(message);
@@ -574,7 +574,7 @@ class _$ErrorSellLookUpImpl implements _ErrorSellLookUp {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadingSellLookup,
-    TResult Function(RentLookupResponse sellLookup)? loadedSellLookup,
+    TResult Function(LookupResponse sellLookup)? loadedSellLookup,
     TResult Function(String message)? errorSellLookUp,
     required TResult orElse(),
   }) {

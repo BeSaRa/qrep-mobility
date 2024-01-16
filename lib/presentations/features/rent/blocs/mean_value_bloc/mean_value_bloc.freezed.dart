@@ -16,20 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MeanValueEvent {
-  RequestMeanValue get request => throw _privateConstructorUsedError;
+  RentRequest get request => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) getMeanValue,
+    required TResult Function(RentRequest request) getMeanValue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? getMeanValue,
+    TResult? Function(RentRequest request)? getMeanValue,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? getMeanValue,
+    TResult Function(RentRequest request)? getMeanValue,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,9 +61,9 @@ abstract class $MeanValueEventCopyWith<$Res> {
           MeanValueEvent value, $Res Function(MeanValueEvent) then) =
       _$MeanValueEventCopyWithImpl<$Res, MeanValueEvent>;
   @useResult
-  $Res call({RequestMeanValue request});
+  $Res call({RentRequest request});
 
-  $RequestMeanValueCopyWith<$Res> get request;
+  $RentRequestCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -85,14 +85,14 @@ class _$MeanValueEventCopyWithImpl<$Res, $Val extends MeanValueEvent>
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
+              as RentRequest,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RequestMeanValueCopyWith<$Res> get request {
-    return $RequestMeanValueCopyWith<$Res>(_value.request, (value) {
+  $RentRequestCopyWith<$Res> get request {
+    return $RentRequestCopyWith<$Res>(_value.request, (value) {
       return _then(_value.copyWith(request: value) as $Val);
     });
   }
@@ -106,10 +106,10 @@ abstract class _$$GetMeanValueEventImplCopyWith<$Res>
       __$$GetMeanValueEventImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RequestMeanValue request});
+  $Res call({RentRequest request});
 
   @override
-  $RequestMeanValueCopyWith<$Res> get request;
+  $RentRequestCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -129,7 +129,7 @@ class __$$GetMeanValueEventImplCopyWithImpl<$Res>
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
+              as RentRequest,
     ));
   }
 }
@@ -140,7 +140,7 @@ class _$GetMeanValueEventImpl implements _GetMeanValueEvent {
   const _$GetMeanValueEventImpl({required this.request});
 
   @override
-  final RequestMeanValue request;
+  final RentRequest request;
 
   @override
   String toString() {
@@ -168,7 +168,7 @@ class _$GetMeanValueEventImpl implements _GetMeanValueEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) getMeanValue,
+    required TResult Function(RentRequest request) getMeanValue,
   }) {
     return getMeanValue(request);
   }
@@ -176,7 +176,7 @@ class _$GetMeanValueEventImpl implements _GetMeanValueEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? getMeanValue,
+    TResult? Function(RentRequest request)? getMeanValue,
   }) {
     return getMeanValue?.call(request);
   }
@@ -184,7 +184,7 @@ class _$GetMeanValueEventImpl implements _GetMeanValueEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? getMeanValue,
+    TResult Function(RentRequest request)? getMeanValue,
     required TResult orElse(),
   }) {
     if (getMeanValue != null) {
@@ -223,11 +223,11 @@ class _$GetMeanValueEventImpl implements _GetMeanValueEvent {
 }
 
 abstract class _GetMeanValueEvent implements MeanValueEvent {
-  const factory _GetMeanValueEvent({required final RequestMeanValue request}) =
+  const factory _GetMeanValueEvent({required final RentRequest request}) =
       _$GetMeanValueEventImpl;
 
   @override
-  RequestMeanValue get request;
+  RentRequest get request;
   @override
   @JsonKey(ignore: true)
   _$$GetMeanValueEventImplCopyWith<_$GetMeanValueEventImpl> get copyWith =>

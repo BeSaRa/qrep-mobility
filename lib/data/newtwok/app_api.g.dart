@@ -22,7 +22,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<List<RentDefault>>> getRentDefault(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -52,13 +52,13 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<HttpResponse<RentLookupResponse>> getLockupRent() async {
+  Future<HttpResponse<LookupResponse>> getLockupRent() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<RentLookupResponse>>(Options(
+        _setStreamType<HttpResponse<LookupResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -74,14 +74,14 @@ class _AppServiceClient implements AppServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = RentLookupResponse.fromJson(_result.data!);
+    final value = LookupResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
   Future<HttpResponse<List<BaseRentResponse>>> meanValue(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -113,7 +113,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<List<MeanAreaResponse>>> meanArea(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -145,7 +145,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<List<BaseRentResponse>>> certificateCount(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -177,7 +177,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<List<BaseRentResponse>>> contractCount(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -209,7 +209,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<List<BaseRentResponse>>> contractValue(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -241,7 +241,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<List<BaseRentResponse>>> totalContract(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -273,7 +273,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<List<BaseRentResponse>>> getTotalRentedUnits(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -305,7 +305,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<RentListSummary>> rentSummary(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -334,7 +334,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<List<BaseRentResponse>>> getTotalRentedSpace(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -366,7 +366,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<List<BaseRentResponse>>> avgMeanRentAmount(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -398,7 +398,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<List<BaseRentResponse>>> rentAmount(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -430,7 +430,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<List<BaseRentResponse>>> meanRentMeter(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -462,7 +462,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<HttpResponse<List<BaseRentResponse>>> getRentedAreas(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -493,13 +493,13 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<HttpResponse<RentLookupResponse>> getLockupSell() async {
+  Future<HttpResponse<LookupResponse>> getLockupSell() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<RentLookupResponse>>(Options(
+        _setStreamType<HttpResponse<LookupResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -515,7 +515,7 @@ class _AppServiceClient implements AppServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = RentLookupResponse.fromJson(_result.data!);
+    final value = LookupResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -967,13 +967,13 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<HttpResponse<RentLookupResponse>> getLockupMortgage() async {
+  Future<HttpResponse<LookupResponse>> getLockupMortgage() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<RentLookupResponse>>(Options(
+        _setStreamType<HttpResponse<LookupResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -989,7 +989,7 @@ class _AppServiceClient implements AppServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = RentLookupResponse.fromJson(_result.data!);
+    final value = LookupResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

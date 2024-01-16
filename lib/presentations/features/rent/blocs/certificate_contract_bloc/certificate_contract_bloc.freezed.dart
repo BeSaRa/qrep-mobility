@@ -16,35 +16,35 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CertificateContractEvent {
-  RequestMeanValue get request => throw _privateConstructorUsedError;
+  RentRequest get request => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) certificateCountEvent,
-    required TResult Function(RequestMeanValue request) contractCountEvent,
-    required TResult Function(RequestMeanValue request) meanRentAmountEvent,
-    required TResult Function(RequestMeanValue request) rentAmountEvent,
-    required TResult Function(RequestMeanValue request) rentValuePerMeterEvent,
-    required TResult Function(RequestMeanValue request) rentedAreasEvent,
+    required TResult Function(RentRequest request) certificateCountEvent,
+    required TResult Function(RentRequest request) contractCountEvent,
+    required TResult Function(RentRequest request) meanRentAmountEvent,
+    required TResult Function(RentRequest request) rentAmountEvent,
+    required TResult Function(RentRequest request) rentValuePerMeterEvent,
+    required TResult Function(RentRequest request) rentedAreasEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? certificateCountEvent,
-    TResult? Function(RequestMeanValue request)? contractCountEvent,
-    TResult? Function(RequestMeanValue request)? meanRentAmountEvent,
-    TResult? Function(RequestMeanValue request)? rentAmountEvent,
-    TResult? Function(RequestMeanValue request)? rentValuePerMeterEvent,
-    TResult? Function(RequestMeanValue request)? rentedAreasEvent,
+    TResult? Function(RentRequest request)? certificateCountEvent,
+    TResult? Function(RentRequest request)? contractCountEvent,
+    TResult? Function(RentRequest request)? meanRentAmountEvent,
+    TResult? Function(RentRequest request)? rentAmountEvent,
+    TResult? Function(RentRequest request)? rentValuePerMeterEvent,
+    TResult? Function(RentRequest request)? rentedAreasEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? certificateCountEvent,
-    TResult Function(RequestMeanValue request)? contractCountEvent,
-    TResult Function(RequestMeanValue request)? meanRentAmountEvent,
-    TResult Function(RequestMeanValue request)? rentAmountEvent,
-    TResult Function(RequestMeanValue request)? rentValuePerMeterEvent,
-    TResult Function(RequestMeanValue request)? rentedAreasEvent,
+    TResult Function(RentRequest request)? certificateCountEvent,
+    TResult Function(RentRequest request)? contractCountEvent,
+    TResult Function(RentRequest request)? meanRentAmountEvent,
+    TResult Function(RentRequest request)? rentAmountEvent,
+    TResult Function(RentRequest request)? rentValuePerMeterEvent,
+    TResult Function(RentRequest request)? rentedAreasEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -93,9 +93,9 @@ abstract class $CertificateContractEventCopyWith<$Res> {
           $Res Function(CertificateContractEvent) then) =
       _$CertificateContractEventCopyWithImpl<$Res, CertificateContractEvent>;
   @useResult
-  $Res call({RequestMeanValue request});
+  $Res call({RentRequest request});
 
-  $RequestMeanValueCopyWith<$Res> get request;
+  $RentRequestCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -118,14 +118,14 @@ class _$CertificateContractEventCopyWithImpl<$Res,
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
+              as RentRequest,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RequestMeanValueCopyWith<$Res> get request {
-    return $RequestMeanValueCopyWith<$Res>(_value.request, (value) {
+  $RentRequestCopyWith<$Res> get request {
+    return $RentRequestCopyWith<$Res>(_value.request, (value) {
       return _then(_value.copyWith(request: value) as $Val);
     });
   }
@@ -140,10 +140,10 @@ abstract class _$$CertificateCountEventImplCopyWith<$Res>
       __$$CertificateCountEventImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RequestMeanValue request});
+  $Res call({RentRequest request});
 
   @override
-  $RequestMeanValueCopyWith<$Res> get request;
+  $RentRequestCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -164,7 +164,7 @@ class __$$CertificateCountEventImplCopyWithImpl<$Res>
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
+              as RentRequest,
     ));
   }
 }
@@ -175,7 +175,7 @@ class _$CertificateCountEventImpl implements _CertificateCountEvent {
   const _$CertificateCountEventImpl({required this.request});
 
   @override
-  final RequestMeanValue request;
+  final RentRequest request;
 
   @override
   String toString() {
@@ -203,12 +203,12 @@ class _$CertificateCountEventImpl implements _CertificateCountEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) certificateCountEvent,
-    required TResult Function(RequestMeanValue request) contractCountEvent,
-    required TResult Function(RequestMeanValue request) meanRentAmountEvent,
-    required TResult Function(RequestMeanValue request) rentAmountEvent,
-    required TResult Function(RequestMeanValue request) rentValuePerMeterEvent,
-    required TResult Function(RequestMeanValue request) rentedAreasEvent,
+    required TResult Function(RentRequest request) certificateCountEvent,
+    required TResult Function(RentRequest request) contractCountEvent,
+    required TResult Function(RentRequest request) meanRentAmountEvent,
+    required TResult Function(RentRequest request) rentAmountEvent,
+    required TResult Function(RentRequest request) rentValuePerMeterEvent,
+    required TResult Function(RentRequest request) rentedAreasEvent,
   }) {
     return certificateCountEvent(request);
   }
@@ -216,12 +216,12 @@ class _$CertificateCountEventImpl implements _CertificateCountEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? certificateCountEvent,
-    TResult? Function(RequestMeanValue request)? contractCountEvent,
-    TResult? Function(RequestMeanValue request)? meanRentAmountEvent,
-    TResult? Function(RequestMeanValue request)? rentAmountEvent,
-    TResult? Function(RequestMeanValue request)? rentValuePerMeterEvent,
-    TResult? Function(RequestMeanValue request)? rentedAreasEvent,
+    TResult? Function(RentRequest request)? certificateCountEvent,
+    TResult? Function(RentRequest request)? contractCountEvent,
+    TResult? Function(RentRequest request)? meanRentAmountEvent,
+    TResult? Function(RentRequest request)? rentAmountEvent,
+    TResult? Function(RentRequest request)? rentValuePerMeterEvent,
+    TResult? Function(RentRequest request)? rentedAreasEvent,
   }) {
     return certificateCountEvent?.call(request);
   }
@@ -229,12 +229,12 @@ class _$CertificateCountEventImpl implements _CertificateCountEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? certificateCountEvent,
-    TResult Function(RequestMeanValue request)? contractCountEvent,
-    TResult Function(RequestMeanValue request)? meanRentAmountEvent,
-    TResult Function(RequestMeanValue request)? rentAmountEvent,
-    TResult Function(RequestMeanValue request)? rentValuePerMeterEvent,
-    TResult Function(RequestMeanValue request)? rentedAreasEvent,
+    TResult Function(RentRequest request)? certificateCountEvent,
+    TResult Function(RentRequest request)? contractCountEvent,
+    TResult Function(RentRequest request)? meanRentAmountEvent,
+    TResult Function(RentRequest request)? rentAmountEvent,
+    TResult Function(RentRequest request)? rentValuePerMeterEvent,
+    TResult Function(RentRequest request)? rentedAreasEvent,
     required TResult orElse(),
   }) {
     if (certificateCountEvent != null) {
@@ -290,11 +290,11 @@ class _$CertificateCountEventImpl implements _CertificateCountEvent {
 }
 
 abstract class _CertificateCountEvent implements CertificateContractEvent {
-  const factory _CertificateCountEvent(
-      {required final RequestMeanValue request}) = _$CertificateCountEventImpl;
+  const factory _CertificateCountEvent({required final RentRequest request}) =
+      _$CertificateCountEventImpl;
 
   @override
-  RequestMeanValue get request;
+  RentRequest get request;
   @override
   @JsonKey(ignore: true)
   _$$CertificateCountEventImplCopyWith<_$CertificateCountEventImpl>
@@ -309,10 +309,10 @@ abstract class _$$ContractCountEventImplCopyWith<$Res>
       __$$ContractCountEventImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RequestMeanValue request});
+  $Res call({RentRequest request});
 
   @override
-  $RequestMeanValueCopyWith<$Res> get request;
+  $RentRequestCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -333,7 +333,7 @@ class __$$ContractCountEventImplCopyWithImpl<$Res>
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
+              as RentRequest,
     ));
   }
 }
@@ -344,7 +344,7 @@ class _$ContractCountEventImpl implements _ContractCountEvent {
   const _$ContractCountEventImpl({required this.request});
 
   @override
-  final RequestMeanValue request;
+  final RentRequest request;
 
   @override
   String toString() {
@@ -372,12 +372,12 @@ class _$ContractCountEventImpl implements _ContractCountEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) certificateCountEvent,
-    required TResult Function(RequestMeanValue request) contractCountEvent,
-    required TResult Function(RequestMeanValue request) meanRentAmountEvent,
-    required TResult Function(RequestMeanValue request) rentAmountEvent,
-    required TResult Function(RequestMeanValue request) rentValuePerMeterEvent,
-    required TResult Function(RequestMeanValue request) rentedAreasEvent,
+    required TResult Function(RentRequest request) certificateCountEvent,
+    required TResult Function(RentRequest request) contractCountEvent,
+    required TResult Function(RentRequest request) meanRentAmountEvent,
+    required TResult Function(RentRequest request) rentAmountEvent,
+    required TResult Function(RentRequest request) rentValuePerMeterEvent,
+    required TResult Function(RentRequest request) rentedAreasEvent,
   }) {
     return contractCountEvent(request);
   }
@@ -385,12 +385,12 @@ class _$ContractCountEventImpl implements _ContractCountEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? certificateCountEvent,
-    TResult? Function(RequestMeanValue request)? contractCountEvent,
-    TResult? Function(RequestMeanValue request)? meanRentAmountEvent,
-    TResult? Function(RequestMeanValue request)? rentAmountEvent,
-    TResult? Function(RequestMeanValue request)? rentValuePerMeterEvent,
-    TResult? Function(RequestMeanValue request)? rentedAreasEvent,
+    TResult? Function(RentRequest request)? certificateCountEvent,
+    TResult? Function(RentRequest request)? contractCountEvent,
+    TResult? Function(RentRequest request)? meanRentAmountEvent,
+    TResult? Function(RentRequest request)? rentAmountEvent,
+    TResult? Function(RentRequest request)? rentValuePerMeterEvent,
+    TResult? Function(RentRequest request)? rentedAreasEvent,
   }) {
     return contractCountEvent?.call(request);
   }
@@ -398,12 +398,12 @@ class _$ContractCountEventImpl implements _ContractCountEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? certificateCountEvent,
-    TResult Function(RequestMeanValue request)? contractCountEvent,
-    TResult Function(RequestMeanValue request)? meanRentAmountEvent,
-    TResult Function(RequestMeanValue request)? rentAmountEvent,
-    TResult Function(RequestMeanValue request)? rentValuePerMeterEvent,
-    TResult Function(RequestMeanValue request)? rentedAreasEvent,
+    TResult Function(RentRequest request)? certificateCountEvent,
+    TResult Function(RentRequest request)? contractCountEvent,
+    TResult Function(RentRequest request)? meanRentAmountEvent,
+    TResult Function(RentRequest request)? rentAmountEvent,
+    TResult Function(RentRequest request)? rentValuePerMeterEvent,
+    TResult Function(RentRequest request)? rentedAreasEvent,
     required TResult orElse(),
   }) {
     if (contractCountEvent != null) {
@@ -459,11 +459,11 @@ class _$ContractCountEventImpl implements _ContractCountEvent {
 }
 
 abstract class _ContractCountEvent implements CertificateContractEvent {
-  const factory _ContractCountEvent({required final RequestMeanValue request}) =
+  const factory _ContractCountEvent({required final RentRequest request}) =
       _$ContractCountEventImpl;
 
   @override
-  RequestMeanValue get request;
+  RentRequest get request;
   @override
   @JsonKey(ignore: true)
   _$$ContractCountEventImplCopyWith<_$ContractCountEventImpl> get copyWith =>
@@ -478,10 +478,10 @@ abstract class _$$MeanRentAmountEventImplCopyWith<$Res>
       __$$MeanRentAmountEventImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RequestMeanValue request});
+  $Res call({RentRequest request});
 
   @override
-  $RequestMeanValueCopyWith<$Res> get request;
+  $RentRequestCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -502,7 +502,7 @@ class __$$MeanRentAmountEventImplCopyWithImpl<$Res>
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
+              as RentRequest,
     ));
   }
 }
@@ -513,7 +513,7 @@ class _$MeanRentAmountEventImpl implements _MeanRentAmountEvent {
   const _$MeanRentAmountEventImpl({required this.request});
 
   @override
-  final RequestMeanValue request;
+  final RentRequest request;
 
   @override
   String toString() {
@@ -541,12 +541,12 @@ class _$MeanRentAmountEventImpl implements _MeanRentAmountEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) certificateCountEvent,
-    required TResult Function(RequestMeanValue request) contractCountEvent,
-    required TResult Function(RequestMeanValue request) meanRentAmountEvent,
-    required TResult Function(RequestMeanValue request) rentAmountEvent,
-    required TResult Function(RequestMeanValue request) rentValuePerMeterEvent,
-    required TResult Function(RequestMeanValue request) rentedAreasEvent,
+    required TResult Function(RentRequest request) certificateCountEvent,
+    required TResult Function(RentRequest request) contractCountEvent,
+    required TResult Function(RentRequest request) meanRentAmountEvent,
+    required TResult Function(RentRequest request) rentAmountEvent,
+    required TResult Function(RentRequest request) rentValuePerMeterEvent,
+    required TResult Function(RentRequest request) rentedAreasEvent,
   }) {
     return meanRentAmountEvent(request);
   }
@@ -554,12 +554,12 @@ class _$MeanRentAmountEventImpl implements _MeanRentAmountEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? certificateCountEvent,
-    TResult? Function(RequestMeanValue request)? contractCountEvent,
-    TResult? Function(RequestMeanValue request)? meanRentAmountEvent,
-    TResult? Function(RequestMeanValue request)? rentAmountEvent,
-    TResult? Function(RequestMeanValue request)? rentValuePerMeterEvent,
-    TResult? Function(RequestMeanValue request)? rentedAreasEvent,
+    TResult? Function(RentRequest request)? certificateCountEvent,
+    TResult? Function(RentRequest request)? contractCountEvent,
+    TResult? Function(RentRequest request)? meanRentAmountEvent,
+    TResult? Function(RentRequest request)? rentAmountEvent,
+    TResult? Function(RentRequest request)? rentValuePerMeterEvent,
+    TResult? Function(RentRequest request)? rentedAreasEvent,
   }) {
     return meanRentAmountEvent?.call(request);
   }
@@ -567,12 +567,12 @@ class _$MeanRentAmountEventImpl implements _MeanRentAmountEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? certificateCountEvent,
-    TResult Function(RequestMeanValue request)? contractCountEvent,
-    TResult Function(RequestMeanValue request)? meanRentAmountEvent,
-    TResult Function(RequestMeanValue request)? rentAmountEvent,
-    TResult Function(RequestMeanValue request)? rentValuePerMeterEvent,
-    TResult Function(RequestMeanValue request)? rentedAreasEvent,
+    TResult Function(RentRequest request)? certificateCountEvent,
+    TResult Function(RentRequest request)? contractCountEvent,
+    TResult Function(RentRequest request)? meanRentAmountEvent,
+    TResult Function(RentRequest request)? rentAmountEvent,
+    TResult Function(RentRequest request)? rentValuePerMeterEvent,
+    TResult Function(RentRequest request)? rentedAreasEvent,
     required TResult orElse(),
   }) {
     if (meanRentAmountEvent != null) {
@@ -628,11 +628,11 @@ class _$MeanRentAmountEventImpl implements _MeanRentAmountEvent {
 }
 
 abstract class _MeanRentAmountEvent implements CertificateContractEvent {
-  const factory _MeanRentAmountEvent(
-      {required final RequestMeanValue request}) = _$MeanRentAmountEventImpl;
+  const factory _MeanRentAmountEvent({required final RentRequest request}) =
+      _$MeanRentAmountEventImpl;
 
   @override
-  RequestMeanValue get request;
+  RentRequest get request;
   @override
   @JsonKey(ignore: true)
   _$$MeanRentAmountEventImplCopyWith<_$MeanRentAmountEventImpl> get copyWith =>
@@ -647,10 +647,10 @@ abstract class _$$RentAmountEventImplCopyWith<$Res>
       __$$RentAmountEventImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RequestMeanValue request});
+  $Res call({RentRequest request});
 
   @override
-  $RequestMeanValueCopyWith<$Res> get request;
+  $RentRequestCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -670,7 +670,7 @@ class __$$RentAmountEventImplCopyWithImpl<$Res>
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
+              as RentRequest,
     ));
   }
 }
@@ -681,7 +681,7 @@ class _$RentAmountEventImpl implements _RentAmountEvent {
   const _$RentAmountEventImpl({required this.request});
 
   @override
-  final RequestMeanValue request;
+  final RentRequest request;
 
   @override
   String toString() {
@@ -709,12 +709,12 @@ class _$RentAmountEventImpl implements _RentAmountEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) certificateCountEvent,
-    required TResult Function(RequestMeanValue request) contractCountEvent,
-    required TResult Function(RequestMeanValue request) meanRentAmountEvent,
-    required TResult Function(RequestMeanValue request) rentAmountEvent,
-    required TResult Function(RequestMeanValue request) rentValuePerMeterEvent,
-    required TResult Function(RequestMeanValue request) rentedAreasEvent,
+    required TResult Function(RentRequest request) certificateCountEvent,
+    required TResult Function(RentRequest request) contractCountEvent,
+    required TResult Function(RentRequest request) meanRentAmountEvent,
+    required TResult Function(RentRequest request) rentAmountEvent,
+    required TResult Function(RentRequest request) rentValuePerMeterEvent,
+    required TResult Function(RentRequest request) rentedAreasEvent,
   }) {
     return rentAmountEvent(request);
   }
@@ -722,12 +722,12 @@ class _$RentAmountEventImpl implements _RentAmountEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? certificateCountEvent,
-    TResult? Function(RequestMeanValue request)? contractCountEvent,
-    TResult? Function(RequestMeanValue request)? meanRentAmountEvent,
-    TResult? Function(RequestMeanValue request)? rentAmountEvent,
-    TResult? Function(RequestMeanValue request)? rentValuePerMeterEvent,
-    TResult? Function(RequestMeanValue request)? rentedAreasEvent,
+    TResult? Function(RentRequest request)? certificateCountEvent,
+    TResult? Function(RentRequest request)? contractCountEvent,
+    TResult? Function(RentRequest request)? meanRentAmountEvent,
+    TResult? Function(RentRequest request)? rentAmountEvent,
+    TResult? Function(RentRequest request)? rentValuePerMeterEvent,
+    TResult? Function(RentRequest request)? rentedAreasEvent,
   }) {
     return rentAmountEvent?.call(request);
   }
@@ -735,12 +735,12 @@ class _$RentAmountEventImpl implements _RentAmountEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? certificateCountEvent,
-    TResult Function(RequestMeanValue request)? contractCountEvent,
-    TResult Function(RequestMeanValue request)? meanRentAmountEvent,
-    TResult Function(RequestMeanValue request)? rentAmountEvent,
-    TResult Function(RequestMeanValue request)? rentValuePerMeterEvent,
-    TResult Function(RequestMeanValue request)? rentedAreasEvent,
+    TResult Function(RentRequest request)? certificateCountEvent,
+    TResult Function(RentRequest request)? contractCountEvent,
+    TResult Function(RentRequest request)? meanRentAmountEvent,
+    TResult Function(RentRequest request)? rentAmountEvent,
+    TResult Function(RentRequest request)? rentValuePerMeterEvent,
+    TResult Function(RentRequest request)? rentedAreasEvent,
     required TResult orElse(),
   }) {
     if (rentAmountEvent != null) {
@@ -796,11 +796,11 @@ class _$RentAmountEventImpl implements _RentAmountEvent {
 }
 
 abstract class _RentAmountEvent implements CertificateContractEvent {
-  const factory _RentAmountEvent({required final RequestMeanValue request}) =
+  const factory _RentAmountEvent({required final RentRequest request}) =
       _$RentAmountEventImpl;
 
   @override
-  RequestMeanValue get request;
+  RentRequest get request;
   @override
   @JsonKey(ignore: true)
   _$$RentAmountEventImplCopyWith<_$RentAmountEventImpl> get copyWith =>
@@ -816,10 +816,10 @@ abstract class _$$RentValuePerMeterEventImplCopyWith<$Res>
       __$$RentValuePerMeterEventImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RequestMeanValue request});
+  $Res call({RentRequest request});
 
   @override
-  $RequestMeanValueCopyWith<$Res> get request;
+  $RentRequestCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -841,7 +841,7 @@ class __$$RentValuePerMeterEventImplCopyWithImpl<$Res>
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
+              as RentRequest,
     ));
   }
 }
@@ -852,7 +852,7 @@ class _$RentValuePerMeterEventImpl implements _RentValuePerMeterEvent {
   const _$RentValuePerMeterEventImpl({required this.request});
 
   @override
-  final RequestMeanValue request;
+  final RentRequest request;
 
   @override
   String toString() {
@@ -880,12 +880,12 @@ class _$RentValuePerMeterEventImpl implements _RentValuePerMeterEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) certificateCountEvent,
-    required TResult Function(RequestMeanValue request) contractCountEvent,
-    required TResult Function(RequestMeanValue request) meanRentAmountEvent,
-    required TResult Function(RequestMeanValue request) rentAmountEvent,
-    required TResult Function(RequestMeanValue request) rentValuePerMeterEvent,
-    required TResult Function(RequestMeanValue request) rentedAreasEvent,
+    required TResult Function(RentRequest request) certificateCountEvent,
+    required TResult Function(RentRequest request) contractCountEvent,
+    required TResult Function(RentRequest request) meanRentAmountEvent,
+    required TResult Function(RentRequest request) rentAmountEvent,
+    required TResult Function(RentRequest request) rentValuePerMeterEvent,
+    required TResult Function(RentRequest request) rentedAreasEvent,
   }) {
     return rentValuePerMeterEvent(request);
   }
@@ -893,12 +893,12 @@ class _$RentValuePerMeterEventImpl implements _RentValuePerMeterEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? certificateCountEvent,
-    TResult? Function(RequestMeanValue request)? contractCountEvent,
-    TResult? Function(RequestMeanValue request)? meanRentAmountEvent,
-    TResult? Function(RequestMeanValue request)? rentAmountEvent,
-    TResult? Function(RequestMeanValue request)? rentValuePerMeterEvent,
-    TResult? Function(RequestMeanValue request)? rentedAreasEvent,
+    TResult? Function(RentRequest request)? certificateCountEvent,
+    TResult? Function(RentRequest request)? contractCountEvent,
+    TResult? Function(RentRequest request)? meanRentAmountEvent,
+    TResult? Function(RentRequest request)? rentAmountEvent,
+    TResult? Function(RentRequest request)? rentValuePerMeterEvent,
+    TResult? Function(RentRequest request)? rentedAreasEvent,
   }) {
     return rentValuePerMeterEvent?.call(request);
   }
@@ -906,12 +906,12 @@ class _$RentValuePerMeterEventImpl implements _RentValuePerMeterEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? certificateCountEvent,
-    TResult Function(RequestMeanValue request)? contractCountEvent,
-    TResult Function(RequestMeanValue request)? meanRentAmountEvent,
-    TResult Function(RequestMeanValue request)? rentAmountEvent,
-    TResult Function(RequestMeanValue request)? rentValuePerMeterEvent,
-    TResult Function(RequestMeanValue request)? rentedAreasEvent,
+    TResult Function(RentRequest request)? certificateCountEvent,
+    TResult Function(RentRequest request)? contractCountEvent,
+    TResult Function(RentRequest request)? meanRentAmountEvent,
+    TResult Function(RentRequest request)? rentAmountEvent,
+    TResult Function(RentRequest request)? rentValuePerMeterEvent,
+    TResult Function(RentRequest request)? rentedAreasEvent,
     required TResult orElse(),
   }) {
     if (rentValuePerMeterEvent != null) {
@@ -967,11 +967,11 @@ class _$RentValuePerMeterEventImpl implements _RentValuePerMeterEvent {
 }
 
 abstract class _RentValuePerMeterEvent implements CertificateContractEvent {
-  const factory _RentValuePerMeterEvent(
-      {required final RequestMeanValue request}) = _$RentValuePerMeterEventImpl;
+  const factory _RentValuePerMeterEvent({required final RentRequest request}) =
+      _$RentValuePerMeterEventImpl;
 
   @override
-  RequestMeanValue get request;
+  RentRequest get request;
   @override
   @JsonKey(ignore: true)
   _$$RentValuePerMeterEventImplCopyWith<_$RentValuePerMeterEventImpl>
@@ -986,10 +986,10 @@ abstract class _$$RentedAreasEventImplCopyWith<$Res>
       __$$RentedAreasEventImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RequestMeanValue request});
+  $Res call({RentRequest request});
 
   @override
-  $RequestMeanValueCopyWith<$Res> get request;
+  $RentRequestCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -1009,7 +1009,7 @@ class __$$RentedAreasEventImplCopyWithImpl<$Res>
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
+              as RentRequest,
     ));
   }
 }
@@ -1020,7 +1020,7 @@ class _$RentedAreasEventImpl implements _RentedAreasEvent {
   const _$RentedAreasEventImpl({required this.request});
 
   @override
-  final RequestMeanValue request;
+  final RentRequest request;
 
   @override
   String toString() {
@@ -1048,12 +1048,12 @@ class _$RentedAreasEventImpl implements _RentedAreasEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) certificateCountEvent,
-    required TResult Function(RequestMeanValue request) contractCountEvent,
-    required TResult Function(RequestMeanValue request) meanRentAmountEvent,
-    required TResult Function(RequestMeanValue request) rentAmountEvent,
-    required TResult Function(RequestMeanValue request) rentValuePerMeterEvent,
-    required TResult Function(RequestMeanValue request) rentedAreasEvent,
+    required TResult Function(RentRequest request) certificateCountEvent,
+    required TResult Function(RentRequest request) contractCountEvent,
+    required TResult Function(RentRequest request) meanRentAmountEvent,
+    required TResult Function(RentRequest request) rentAmountEvent,
+    required TResult Function(RentRequest request) rentValuePerMeterEvent,
+    required TResult Function(RentRequest request) rentedAreasEvent,
   }) {
     return rentedAreasEvent(request);
   }
@@ -1061,12 +1061,12 @@ class _$RentedAreasEventImpl implements _RentedAreasEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? certificateCountEvent,
-    TResult? Function(RequestMeanValue request)? contractCountEvent,
-    TResult? Function(RequestMeanValue request)? meanRentAmountEvent,
-    TResult? Function(RequestMeanValue request)? rentAmountEvent,
-    TResult? Function(RequestMeanValue request)? rentValuePerMeterEvent,
-    TResult? Function(RequestMeanValue request)? rentedAreasEvent,
+    TResult? Function(RentRequest request)? certificateCountEvent,
+    TResult? Function(RentRequest request)? contractCountEvent,
+    TResult? Function(RentRequest request)? meanRentAmountEvent,
+    TResult? Function(RentRequest request)? rentAmountEvent,
+    TResult? Function(RentRequest request)? rentValuePerMeterEvent,
+    TResult? Function(RentRequest request)? rentedAreasEvent,
   }) {
     return rentedAreasEvent?.call(request);
   }
@@ -1074,12 +1074,12 @@ class _$RentedAreasEventImpl implements _RentedAreasEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? certificateCountEvent,
-    TResult Function(RequestMeanValue request)? contractCountEvent,
-    TResult Function(RequestMeanValue request)? meanRentAmountEvent,
-    TResult Function(RequestMeanValue request)? rentAmountEvent,
-    TResult Function(RequestMeanValue request)? rentValuePerMeterEvent,
-    TResult Function(RequestMeanValue request)? rentedAreasEvent,
+    TResult Function(RentRequest request)? certificateCountEvent,
+    TResult Function(RentRequest request)? contractCountEvent,
+    TResult Function(RentRequest request)? meanRentAmountEvent,
+    TResult Function(RentRequest request)? rentAmountEvent,
+    TResult Function(RentRequest request)? rentValuePerMeterEvent,
+    TResult Function(RentRequest request)? rentedAreasEvent,
     required TResult orElse(),
   }) {
     if (rentedAreasEvent != null) {
@@ -1135,11 +1135,11 @@ class _$RentedAreasEventImpl implements _RentedAreasEvent {
 }
 
 abstract class _RentedAreasEvent implements CertificateContractEvent {
-  const factory _RentedAreasEvent({required final RequestMeanValue request}) =
+  const factory _RentedAreasEvent({required final RentRequest request}) =
       _$RentedAreasEventImpl;
 
   @override
-  RequestMeanValue get request;
+  RentRequest get request;
   @override
   @JsonKey(ignore: true)
   _$$RentedAreasEventImplCopyWith<_$RentedAreasEventImpl> get copyWith =>

@@ -5,14 +5,13 @@ import '../../models/rent_models/rent_models.dart';
 import '../../repository/repository.dart';
 import '../base_usecases/base_usecase.dart';
 
-class LookUpMortgageUseCase
-    implements BaseUseCaseEmptyInput<RentLookupResponse> {
+class LookUpMortgageUseCase implements BaseUseCaseEmptyInput<LookupResponse> {
   final Repository repository;
 
   LookUpMortgageUseCase(this.repository);
 
   @override
-  Future<Result<RentLookupResponse, FailureModel>> execute() async {
+  Future<Result<LookupResponse, FailureModel>> execute() async {
     return await repository.getLockupMortgage();
   }
 }

@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../domain/models/rent_models/rent_models.dart';
-import '../../../../../domain/models/requests/rent_requests/request_mean_value.dart';
+import '../../../../../domain/models/requests/rent_requests/request_rent.dart';
 import '../../../../../domain/usecases/usecases.dart';
 
 part 'rent_summery_bloc.freezed.dart';

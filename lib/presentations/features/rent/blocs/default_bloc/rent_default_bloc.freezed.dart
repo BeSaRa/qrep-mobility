@@ -16,20 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RentDefaultEvent {
-  RequestMeanValue get request => throw _privateConstructorUsedError;
+  RentRequest get request => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) started,
+    required TResult Function(RentRequest request) started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? started,
+    TResult? Function(RentRequest request)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? started,
+    TResult Function(RentRequest request)? started,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,9 +61,9 @@ abstract class $RentDefaultEventCopyWith<$Res> {
           RentDefaultEvent value, $Res Function(RentDefaultEvent) then) =
       _$RentDefaultEventCopyWithImpl<$Res, RentDefaultEvent>;
   @useResult
-  $Res call({RequestMeanValue request});
+  $Res call({RentRequest request});
 
-  $RequestMeanValueCopyWith<$Res> get request;
+  $RentRequestCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -85,14 +85,14 @@ class _$RentDefaultEventCopyWithImpl<$Res, $Val extends RentDefaultEvent>
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
+              as RentRequest,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RequestMeanValueCopyWith<$Res> get request {
-    return $RequestMeanValueCopyWith<$Res>(_value.request, (value) {
+  $RentRequestCopyWith<$Res> get request {
+    return $RentRequestCopyWith<$Res>(_value.request, (value) {
       return _then(_value.copyWith(request: value) as $Val);
     });
   }
@@ -106,10 +106,10 @@ abstract class _$$StartedImplCopyWith<$Res>
       __$$StartedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RequestMeanValue request});
+  $Res call({RentRequest request});
 
   @override
-  $RequestMeanValueCopyWith<$Res> get request;
+  $RentRequestCopyWith<$Res> get request;
 }
 
 /// @nodoc
@@ -129,7 +129,7 @@ class __$$StartedImplCopyWithImpl<$Res>
       request: null == request
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
-              as RequestMeanValue,
+              as RentRequest,
     ));
   }
 }
@@ -140,7 +140,7 @@ class _$StartedImpl implements _Started {
   const _$StartedImpl({required this.request});
 
   @override
-  final RequestMeanValue request;
+  final RentRequest request;
 
   @override
   String toString() {
@@ -167,7 +167,7 @@ class _$StartedImpl implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(RequestMeanValue request) started,
+    required TResult Function(RentRequest request) started,
   }) {
     return started(request);
   }
@@ -175,7 +175,7 @@ class _$StartedImpl implements _Started {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RequestMeanValue request)? started,
+    TResult? Function(RentRequest request)? started,
   }) {
     return started?.call(request);
   }
@@ -183,7 +183,7 @@ class _$StartedImpl implements _Started {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RequestMeanValue request)? started,
+    TResult Function(RentRequest request)? started,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -222,11 +222,10 @@ class _$StartedImpl implements _Started {
 }
 
 abstract class _Started implements RentDefaultEvent {
-  const factory _Started({required final RequestMeanValue request}) =
-      _$StartedImpl;
+  const factory _Started({required final RentRequest request}) = _$StartedImpl;
 
   @override
-  RequestMeanValue get request;
+  RentRequest get request;
   @override
   @JsonKey(ignore: true)
   _$$StartedImplCopyWith<_$StartedImpl> get copyWith =>

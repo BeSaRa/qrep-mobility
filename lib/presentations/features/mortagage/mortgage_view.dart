@@ -60,17 +60,17 @@ class _MortagageViewState extends State<MortgageView> {
               mortgageTransactionsBloc.add(MortgageTransactionsEvent.started(
                   requestMortgageValues:
                       context.read<MortgageBloc>().requestMeanValue));
-              List<RentLookupModel> listMunicipalityWithAll = [];
+              List<LookupModel> listMunicipalityWithAll = [];
               listMunicipalityWithAll.addAll(
                   context.read<LookupBloc>().lookUpMortgage?.municipalityList ??
                       []);
-              if (!listMunicipalityWithAll.contains(const RentLookupModel(
+              if (!listMunicipalityWithAll.contains(const LookupModel(
                   isActive: true,
                   lookupKey: -1,
                   arName: "الكل",
                   enName: "All",
                   id: -1))) {
-                listMunicipalityWithAll.add(const RentLookupModel(
+                listMunicipalityWithAll.add(const LookupModel(
                     isActive: true,
                     lookupKey: -1,
                     arName: "الكل",
@@ -151,7 +151,7 @@ class _MortagageViewState extends State<MortgageView> {
                                                           .requestMeanValue
                                                           .municipalityId ??
                                                       4) ??
-                                              const RentLookupModel(),
+                                              const LookupModel(),
                                           list: context
                                                   .read<LookupBloc>()
                                                   .lookUpMortgage
@@ -361,7 +361,7 @@ class _MortagageViewState extends State<MortgageView> {
                                                       .requestMeanValue
                                                       .municipalityId ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                       zone: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
@@ -373,7 +373,7 @@ class _MortagageViewState extends State<MortgageView> {
                                                   .requestMeanValue
                                                   .areaCode
                                                   .toInt()) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                       propertyPurpose: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
@@ -385,7 +385,7 @@ class _MortagageViewState extends State<MortgageView> {
                                                       .requestMeanValue
                                                       .purposeList?[0] ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                       propertyType: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
@@ -397,7 +397,7 @@ class _MortagageViewState extends State<MortgageView> {
                                                       .requestMeanValue
                                                       .propertyTypeList?[0] ??
                                                   1) ??
-                                          const RentLookupModel(lookupKey: -1),
+                                          const LookupModel(lookupKey: -1),
                                       withoutZone: context
                                               .read<MortgageBloc>()
                                               .requestMeanValue
@@ -452,7 +452,7 @@ class _MortagageViewState extends State<MortgageView> {
                                                       .requestMeanValue
                                                       .municipalityId ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                       zone: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
@@ -464,7 +464,7 @@ class _MortagageViewState extends State<MortgageView> {
                                                   .requestMeanValue
                                                   .areaCode
                                                   .toInt()) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                       propertyPurpose: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
@@ -476,7 +476,7 @@ class _MortagageViewState extends State<MortgageView> {
                                                       .requestMeanValue
                                                       .purposeList?[0] ??
                                                   1) ??
-                                          const RentLookupModel(),
+                                          const LookupModel(),
                                       propertyType: getObjectByLookupKey(
                                               context
                                                       .read<LookupBloc>()
@@ -488,7 +488,7 @@ class _MortagageViewState extends State<MortgageView> {
                                                       .requestMeanValue
                                                       .propertyTypeList?[0] ??
                                                   1) ??
-                                          const RentLookupModel(lookupKey: -1),
+                                          const LookupModel(lookupKey: -1),
                                       withoutZone: context
                                               .read<MortgageBloc>()
                                               .requestMeanValue

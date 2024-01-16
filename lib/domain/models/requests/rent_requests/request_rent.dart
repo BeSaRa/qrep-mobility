@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'request_mean_value.freezed.dart';
-part 'request_mean_value.g.dart';
+part 'request_rent.freezed.dart';
+part 'request_rent.g.dart';
 
 @freezed
-abstract class RequestMeanValue with _$RequestMeanValue {
-  factory RequestMeanValue({
+abstract class RentRequest with _$RentRequest {
+  factory RentRequest({
     num? areaFrom,
     num? areaTo,
     int? bedRoomsCount,
@@ -31,6 +31,6 @@ abstract class RequestMeanValue with _$RequestMeanValue {
     @Default(1) int periodId,
   }) = _RequestMeanValue;
 
-  factory RequestMeanValue.fromJson(Map<String, dynamic> json) =>
-      _$RequestMeanValueFromJson(json);
+  factory RentRequest.fromJson(Map<String, dynamic> json) =>
+      _$RentRequestFromJson(json);
 }

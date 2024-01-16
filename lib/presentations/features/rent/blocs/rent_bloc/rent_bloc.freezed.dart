@@ -168,28 +168,28 @@ mixin _$RentState {
   bool get isLoadingRentLookup => throw _privateConstructorUsedError;
   bool get isHasErrorRentLookup => throw _privateConstructorUsedError;
   String get errorMessageRentLookup => throw _privateConstructorUsedError;
-  RentLookupResponse get rentLookup => throw _privateConstructorUsedError;
+  LookupResponse get rentLookup => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
             bool isLoadingRentLookup,
             bool isHasErrorRentLookup,
             String errorMessageRentLookup,
-            RentLookupResponse rentLookup)
+            LookupResponse rentLookup)
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isLoadingRentLookup, bool isHasErrorRentLookup,
-            String errorMessageRentLookup, RentLookupResponse rentLookup)?
+            String errorMessageRentLookup, LookupResponse rentLookup)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoadingRentLookup, bool isHasErrorRentLookup,
-            String errorMessageRentLookup, RentLookupResponse rentLookup)?
+            String errorMessageRentLookup, LookupResponse rentLookup)?
         initial,
     required TResult orElse(),
   }) =>
@@ -225,9 +225,9 @@ abstract class $RentStateCopyWith<$Res> {
       {bool isLoadingRentLookup,
       bool isHasErrorRentLookup,
       String errorMessageRentLookup,
-      RentLookupResponse rentLookup});
+      LookupResponse rentLookup});
 
-  $RentLookupResponseCopyWith<$Res> get rentLookup;
+  $LookupResponseCopyWith<$Res> get rentLookup;
 }
 
 /// @nodoc
@@ -264,14 +264,14 @@ class _$RentStateCopyWithImpl<$Res, $Val extends RentState>
       rentLookup: null == rentLookup
           ? _value.rentLookup
           : rentLookup // ignore: cast_nullable_to_non_nullable
-              as RentLookupResponse,
+              as LookupResponse,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RentLookupResponseCopyWith<$Res> get rentLookup {
-    return $RentLookupResponseCopyWith<$Res>(_value.rentLookup, (value) {
+  $LookupResponseCopyWith<$Res> get rentLookup {
+    return $LookupResponseCopyWith<$Res>(_value.rentLookup, (value) {
       return _then(_value.copyWith(rentLookup: value) as $Val);
     });
   }
@@ -289,10 +289,10 @@ abstract class _$$InitialImplCopyWith<$Res>
       {bool isLoadingRentLookup,
       bool isHasErrorRentLookup,
       String errorMessageRentLookup,
-      RentLookupResponse rentLookup});
+      LookupResponse rentLookup});
 
   @override
-  $RentLookupResponseCopyWith<$Res> get rentLookup;
+  $LookupResponseCopyWith<$Res> get rentLookup;
 }
 
 /// @nodoc
@@ -327,7 +327,7 @@ class __$$InitialImplCopyWithImpl<$Res>
       rentLookup: null == rentLookup
           ? _value.rentLookup
           : rentLookup // ignore: cast_nullable_to_non_nullable
-              as RentLookupResponse,
+              as LookupResponse,
     ));
   }
 }
@@ -339,7 +339,7 @@ class _$InitialImpl implements _Initial {
       {this.isLoadingRentLookup = false,
       this.isHasErrorRentLookup = false,
       this.errorMessageRentLookup = '',
-      this.rentLookup = const RentLookupResponse()});
+      this.rentLookup = const LookupResponse()});
 
   @override
   @JsonKey()
@@ -352,7 +352,7 @@ class _$InitialImpl implements _Initial {
   final String errorMessageRentLookup;
   @override
   @JsonKey()
-  final RentLookupResponse rentLookup;
+  final LookupResponse rentLookup;
 
   @override
   String toString() {
@@ -391,7 +391,7 @@ class _$InitialImpl implements _Initial {
             bool isLoadingRentLookup,
             bool isHasErrorRentLookup,
             String errorMessageRentLookup,
-            RentLookupResponse rentLookup)
+            LookupResponse rentLookup)
         initial,
   }) {
     return initial(isLoadingRentLookup, isHasErrorRentLookup,
@@ -402,7 +402,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isLoadingRentLookup, bool isHasErrorRentLookup,
-            String errorMessageRentLookup, RentLookupResponse rentLookup)?
+            String errorMessageRentLookup, LookupResponse rentLookup)?
         initial,
   }) {
     return initial?.call(isLoadingRentLookup, isHasErrorRentLookup,
@@ -413,7 +413,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoadingRentLookup, bool isHasErrorRentLookup,
-            String errorMessageRentLookup, RentLookupResponse rentLookup)?
+            String errorMessageRentLookup, LookupResponse rentLookup)?
         initial,
     required TResult orElse(),
   }) {
@@ -458,7 +458,7 @@ abstract class _Initial implements RentState {
       {final bool isLoadingRentLookup,
       final bool isHasErrorRentLookup,
       final String errorMessageRentLookup,
-      final RentLookupResponse rentLookup}) = _$InitialImpl;
+      final LookupResponse rentLookup}) = _$InitialImpl;
 
   @override
   bool get isLoadingRentLookup;
@@ -467,7 +467,7 @@ abstract class _Initial implements RentState {
   @override
   String get errorMessageRentLookup;
   @override
-  RentLookupResponse get rentLookup;
+  LookupResponse get rentLookup;
   @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>

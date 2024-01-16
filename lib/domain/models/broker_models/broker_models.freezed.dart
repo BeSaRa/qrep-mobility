@@ -21,18 +21,14 @@ RealEstateBrokerLookUp _$RealEstateBrokerLookUpFromJson(
 
 /// @nodoc
 mixin _$RealEstateBrokerLookUp {
-  List<RentLookupModel> get propertyTypeList =>
+  List<LookupModel> get propertyTypeList => throw _privateConstructorUsedError;
+  List<LookupModel> get rentPurposeList => throw _privateConstructorUsedError;
+  List<LookupModel> get zoneList => throw _privateConstructorUsedError;
+  List<LookupModel> get districtList => throw _privateConstructorUsedError;
+  List<LookupModel> get municipalityList => throw _privateConstructorUsedError;
+  List<LookupModel> get brokerCategoryList =>
       throw _privateConstructorUsedError;
-  List<RentLookupModel> get rentPurposeList =>
-      throw _privateConstructorUsedError;
-  List<RentLookupModel> get zoneList => throw _privateConstructorUsedError;
-  List<RentLookupModel> get districtList => throw _privateConstructorUsedError;
-  List<RentLookupModel> get municipalityList =>
-      throw _privateConstructorUsedError;
-  List<RentLookupModel> get brokerCategoryList =>
-      throw _privateConstructorUsedError;
-  List<RentLookupModel> get brokerTypeList =>
-      throw _privateConstructorUsedError;
+  List<LookupModel> get brokerTypeList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,13 +43,13 @@ abstract class $RealEstateBrokerLookUpCopyWith<$Res> {
       _$RealEstateBrokerLookUpCopyWithImpl<$Res, RealEstateBrokerLookUp>;
   @useResult
   $Res call(
-      {List<RentLookupModel> propertyTypeList,
-      List<RentLookupModel> rentPurposeList,
-      List<RentLookupModel> zoneList,
-      List<RentLookupModel> districtList,
-      List<RentLookupModel> municipalityList,
-      List<RentLookupModel> brokerCategoryList,
-      List<RentLookupModel> brokerTypeList});
+      {List<LookupModel> propertyTypeList,
+      List<LookupModel> rentPurposeList,
+      List<LookupModel> zoneList,
+      List<LookupModel> districtList,
+      List<LookupModel> municipalityList,
+      List<LookupModel> brokerCategoryList,
+      List<LookupModel> brokerTypeList});
 }
 
 /// @nodoc
@@ -82,31 +78,31 @@ class _$RealEstateBrokerLookUpCopyWithImpl<$Res,
       propertyTypeList: null == propertyTypeList
           ? _value.propertyTypeList
           : propertyTypeList // ignore: cast_nullable_to_non_nullable
-              as List<RentLookupModel>,
+              as List<LookupModel>,
       rentPurposeList: null == rentPurposeList
           ? _value.rentPurposeList
           : rentPurposeList // ignore: cast_nullable_to_non_nullable
-              as List<RentLookupModel>,
+              as List<LookupModel>,
       zoneList: null == zoneList
           ? _value.zoneList
           : zoneList // ignore: cast_nullable_to_non_nullable
-              as List<RentLookupModel>,
+              as List<LookupModel>,
       districtList: null == districtList
           ? _value.districtList
           : districtList // ignore: cast_nullable_to_non_nullable
-              as List<RentLookupModel>,
+              as List<LookupModel>,
       municipalityList: null == municipalityList
           ? _value.municipalityList
           : municipalityList // ignore: cast_nullable_to_non_nullable
-              as List<RentLookupModel>,
+              as List<LookupModel>,
       brokerCategoryList: null == brokerCategoryList
           ? _value.brokerCategoryList
           : brokerCategoryList // ignore: cast_nullable_to_non_nullable
-              as List<RentLookupModel>,
+              as List<LookupModel>,
       brokerTypeList: null == brokerTypeList
           ? _value.brokerTypeList
           : brokerTypeList // ignore: cast_nullable_to_non_nullable
-              as List<RentLookupModel>,
+              as List<LookupModel>,
     ) as $Val);
   }
 }
@@ -121,13 +117,13 @@ abstract class _$$RealEstateBrokerLookUpImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<RentLookupModel> propertyTypeList,
-      List<RentLookupModel> rentPurposeList,
-      List<RentLookupModel> zoneList,
-      List<RentLookupModel> districtList,
-      List<RentLookupModel> municipalityList,
-      List<RentLookupModel> brokerCategoryList,
-      List<RentLookupModel> brokerTypeList});
+      {List<LookupModel> propertyTypeList,
+      List<LookupModel> rentPurposeList,
+      List<LookupModel> zoneList,
+      List<LookupModel> districtList,
+      List<LookupModel> municipalityList,
+      List<LookupModel> brokerCategoryList,
+      List<LookupModel> brokerTypeList});
 }
 
 /// @nodoc
@@ -155,31 +151,31 @@ class __$$RealEstateBrokerLookUpImplCopyWithImpl<$Res>
       propertyTypeList: null == propertyTypeList
           ? _value._propertyTypeList
           : propertyTypeList // ignore: cast_nullable_to_non_nullable
-              as List<RentLookupModel>,
+              as List<LookupModel>,
       rentPurposeList: null == rentPurposeList
           ? _value._rentPurposeList
           : rentPurposeList // ignore: cast_nullable_to_non_nullable
-              as List<RentLookupModel>,
+              as List<LookupModel>,
       zoneList: null == zoneList
           ? _value._zoneList
           : zoneList // ignore: cast_nullable_to_non_nullable
-              as List<RentLookupModel>,
+              as List<LookupModel>,
       districtList: null == districtList
           ? _value._districtList
           : districtList // ignore: cast_nullable_to_non_nullable
-              as List<RentLookupModel>,
+              as List<LookupModel>,
       municipalityList: null == municipalityList
           ? _value._municipalityList
           : municipalityList // ignore: cast_nullable_to_non_nullable
-              as List<RentLookupModel>,
+              as List<LookupModel>,
       brokerCategoryList: null == brokerCategoryList
           ? _value._brokerCategoryList
           : brokerCategoryList // ignore: cast_nullable_to_non_nullable
-              as List<RentLookupModel>,
+              as List<LookupModel>,
       brokerTypeList: null == brokerTypeList
           ? _value._brokerTypeList
           : brokerTypeList // ignore: cast_nullable_to_non_nullable
-              as List<RentLookupModel>,
+              as List<LookupModel>,
     ));
   }
 }
@@ -188,13 +184,13 @@ class __$$RealEstateBrokerLookUpImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RealEstateBrokerLookUpImpl implements _RealEstateBrokerLookUp {
   _$RealEstateBrokerLookUpImpl(
-      {final List<RentLookupModel> propertyTypeList = const [],
-      final List<RentLookupModel> rentPurposeList = const [],
-      final List<RentLookupModel> zoneList = const [],
-      final List<RentLookupModel> districtList = const [],
-      final List<RentLookupModel> municipalityList = const [],
-      final List<RentLookupModel> brokerCategoryList = const [],
-      final List<RentLookupModel> brokerTypeList = const []})
+      {final List<LookupModel> propertyTypeList = const [],
+      final List<LookupModel> rentPurposeList = const [],
+      final List<LookupModel> zoneList = const [],
+      final List<LookupModel> districtList = const [],
+      final List<LookupModel> municipalityList = const [],
+      final List<LookupModel> brokerCategoryList = const [],
+      final List<LookupModel> brokerTypeList = const []})
       : _propertyTypeList = propertyTypeList,
         _rentPurposeList = rentPurposeList,
         _zoneList = zoneList,
@@ -206,67 +202,67 @@ class _$RealEstateBrokerLookUpImpl implements _RealEstateBrokerLookUp {
   factory _$RealEstateBrokerLookUpImpl.fromJson(Map<String, dynamic> json) =>
       _$$RealEstateBrokerLookUpImplFromJson(json);
 
-  final List<RentLookupModel> _propertyTypeList;
+  final List<LookupModel> _propertyTypeList;
   @override
   @JsonKey()
-  List<RentLookupModel> get propertyTypeList {
+  List<LookupModel> get propertyTypeList {
     if (_propertyTypeList is EqualUnmodifiableListView)
       return _propertyTypeList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_propertyTypeList);
   }
 
-  final List<RentLookupModel> _rentPurposeList;
+  final List<LookupModel> _rentPurposeList;
   @override
   @JsonKey()
-  List<RentLookupModel> get rentPurposeList {
+  List<LookupModel> get rentPurposeList {
     if (_rentPurposeList is EqualUnmodifiableListView) return _rentPurposeList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_rentPurposeList);
   }
 
-  final List<RentLookupModel> _zoneList;
+  final List<LookupModel> _zoneList;
   @override
   @JsonKey()
-  List<RentLookupModel> get zoneList {
+  List<LookupModel> get zoneList {
     if (_zoneList is EqualUnmodifiableListView) return _zoneList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_zoneList);
   }
 
-  final List<RentLookupModel> _districtList;
+  final List<LookupModel> _districtList;
   @override
   @JsonKey()
-  List<RentLookupModel> get districtList {
+  List<LookupModel> get districtList {
     if (_districtList is EqualUnmodifiableListView) return _districtList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_districtList);
   }
 
-  final List<RentLookupModel> _municipalityList;
+  final List<LookupModel> _municipalityList;
   @override
   @JsonKey()
-  List<RentLookupModel> get municipalityList {
+  List<LookupModel> get municipalityList {
     if (_municipalityList is EqualUnmodifiableListView)
       return _municipalityList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_municipalityList);
   }
 
-  final List<RentLookupModel> _brokerCategoryList;
+  final List<LookupModel> _brokerCategoryList;
   @override
   @JsonKey()
-  List<RentLookupModel> get brokerCategoryList {
+  List<LookupModel> get brokerCategoryList {
     if (_brokerCategoryList is EqualUnmodifiableListView)
       return _brokerCategoryList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_brokerCategoryList);
   }
 
-  final List<RentLookupModel> _brokerTypeList;
+  final List<LookupModel> _brokerTypeList;
   @override
   @JsonKey()
-  List<RentLookupModel> get brokerTypeList {
+  List<LookupModel> get brokerTypeList {
     if (_brokerTypeList is EqualUnmodifiableListView) return _brokerTypeList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_brokerTypeList);
@@ -326,32 +322,31 @@ class _$RealEstateBrokerLookUpImpl implements _RealEstateBrokerLookUp {
 
 abstract class _RealEstateBrokerLookUp implements RealEstateBrokerLookUp {
   factory _RealEstateBrokerLookUp(
-          {final List<RentLookupModel> propertyTypeList,
-          final List<RentLookupModel> rentPurposeList,
-          final List<RentLookupModel> zoneList,
-          final List<RentLookupModel> districtList,
-          final List<RentLookupModel> municipalityList,
-          final List<RentLookupModel> brokerCategoryList,
-          final List<RentLookupModel> brokerTypeList}) =
-      _$RealEstateBrokerLookUpImpl;
+      {final List<LookupModel> propertyTypeList,
+      final List<LookupModel> rentPurposeList,
+      final List<LookupModel> zoneList,
+      final List<LookupModel> districtList,
+      final List<LookupModel> municipalityList,
+      final List<LookupModel> brokerCategoryList,
+      final List<LookupModel> brokerTypeList}) = _$RealEstateBrokerLookUpImpl;
 
   factory _RealEstateBrokerLookUp.fromJson(Map<String, dynamic> json) =
       _$RealEstateBrokerLookUpImpl.fromJson;
 
   @override
-  List<RentLookupModel> get propertyTypeList;
+  List<LookupModel> get propertyTypeList;
   @override
-  List<RentLookupModel> get rentPurposeList;
+  List<LookupModel> get rentPurposeList;
   @override
-  List<RentLookupModel> get zoneList;
+  List<LookupModel> get zoneList;
   @override
-  List<RentLookupModel> get districtList;
+  List<LookupModel> get districtList;
   @override
-  List<RentLookupModel> get municipalityList;
+  List<LookupModel> get municipalityList;
   @override
-  List<RentLookupModel> get brokerCategoryList;
+  List<LookupModel> get brokerCategoryList;
   @override
-  List<RentLookupModel> get brokerTypeList;
+  List<LookupModel> get brokerTypeList;
   @override
   @JsonKey(ignore: true)
   _$$RealEstateBrokerLookUpImplCopyWith<_$RealEstateBrokerLookUpImpl>

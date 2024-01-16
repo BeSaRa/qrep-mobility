@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'request_mean_value.dart';
+part of 'request_rent.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-RequestMeanValue _$RequestMeanValueFromJson(Map<String, dynamic> json) {
+RentRequest _$RentRequestFromJson(Map<String, dynamic> json) {
   return _RequestMeanValue.fromJson(json);
 }
 
 /// @nodoc
-mixin _$RequestMeanValue {
+mixin _$RentRequest {
   num? get areaFrom => throw _privateConstructorUsedError;
   num? get areaTo => throw _privateConstructorUsedError;
   int? get bedRoomsCount => throw _privateConstructorUsedError;
@@ -46,15 +46,15 @@ mixin _$RequestMeanValue {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RequestMeanValueCopyWith<RequestMeanValue> get copyWith =>
+  $RentRequestCopyWith<RentRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RequestMeanValueCopyWith<$Res> {
-  factory $RequestMeanValueCopyWith(
-          RequestMeanValue value, $Res Function(RequestMeanValue) then) =
-      _$RequestMeanValueCopyWithImpl<$Res, RequestMeanValue>;
+abstract class $RentRequestCopyWith<$Res> {
+  factory $RentRequestCopyWith(
+          RentRequest value, $Res Function(RentRequest) then) =
+      _$RentRequestCopyWithImpl<$Res, RentRequest>;
   @useResult
   $Res call(
       {num? areaFrom,
@@ -82,9 +82,9 @@ abstract class $RequestMeanValueCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RequestMeanValueCopyWithImpl<$Res, $Val extends RequestMeanValue>
-    implements $RequestMeanValueCopyWith<$Res> {
-  _$RequestMeanValueCopyWithImpl(this._value, this._then);
+class _$RentRequestCopyWithImpl<$Res, $Val extends RentRequest>
+    implements $RentRequestCopyWith<$Res> {
+  _$RentRequestCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -212,7 +212,7 @@ class _$RequestMeanValueCopyWithImpl<$Res, $Val extends RequestMeanValue>
 
 /// @nodoc
 abstract class _$$RequestMeanValueImplCopyWith<$Res>
-    implements $RequestMeanValueCopyWith<$Res> {
+    implements $RentRequestCopyWith<$Res> {
   factory _$$RequestMeanValueImplCopyWith(_$RequestMeanValueImpl value,
           $Res Function(_$RequestMeanValueImpl) then) =
       __$$RequestMeanValueImplCopyWithImpl<$Res>;
@@ -245,7 +245,7 @@ abstract class _$$RequestMeanValueImplCopyWith<$Res>
 
 /// @nodoc
 class __$$RequestMeanValueImplCopyWithImpl<$Res>
-    extends _$RequestMeanValueCopyWithImpl<$Res, _$RequestMeanValueImpl>
+    extends _$RentRequestCopyWithImpl<$Res, _$RequestMeanValueImpl>
     implements _$$RequestMeanValueImplCopyWith<$Res> {
   __$$RequestMeanValueImplCopyWithImpl(_$RequestMeanValueImpl _value,
       $Res Function(_$RequestMeanValueImpl) _then)
@@ -479,7 +479,7 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
 
   @override
   String toString() {
-    return 'RequestMeanValue(areaFrom: $areaFrom, areaTo: $areaTo, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, halfYearDuration: $halfYearDuration, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, nationalityCode: $nationalityCode, propertyTypeList: $propertyTypeList, purposeList: $purposeList, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
+    return 'RentRequest(areaFrom: $areaFrom, areaTo: $areaTo, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, halfYearDuration: $halfYearDuration, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, nationalityCode: $nationalityCode, propertyTypeList: $propertyTypeList, purposeList: $purposeList, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
   }
 
   @override
@@ -575,7 +575,7 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
   }
 }
 
-abstract class _RequestMeanValue implements RequestMeanValue {
+abstract class _RequestMeanValue implements RentRequest {
   factory _RequestMeanValue(
       {final num? areaFrom,
       final num? areaTo,

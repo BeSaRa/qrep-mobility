@@ -6,7 +6,7 @@ class MortgageState with _$MortgageState {
 
   const factory MortgageState.loading() = _Loading;
 
-  const factory MortgageState.success(RentLookupResponse response) = _Success;
+  const factory MortgageState.success(LookupResponse response) = _Success;
 
   const factory MortgageState.error(String message) = _Error;
 }

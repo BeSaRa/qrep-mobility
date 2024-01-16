@@ -21,66 +21,66 @@ abstract class AppServiceClient {
 //-----------------------Rent---------------------------
   @POST(EndPoints.rentDefault)
   Future<HttpResponse<List<RentDefault>>> getRentDefault(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RentRequest requestMeanValue);
 
   @GET(EndPoints.lockupRent)
-  Future<HttpResponse<RentLookupResponse>> getLockupRent();
+  Future<HttpResponse<LookupResponse>> getLockupRent();
 
   @POST(EndPoints.meanValue)
   Future<HttpResponse<List<BaseRentResponse>>> meanValue(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RentRequest requestMeanValue);
 
   @POST(EndPoints.meanArea)
   Future<HttpResponse<List<MeanAreaResponse>>> meanArea(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RentRequest requestMeanValue);
 
   @POST(EndPoints.certificateCount)
   Future<HttpResponse<List<BaseRentResponse>>> certificateCount(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RentRequest requestMeanValue);
 
   @POST(EndPoints.contractCount)
   Future<HttpResponse<List<BaseRentResponse>>> contractCount(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RentRequest requestMeanValue);
 
   @POST(EndPoints.contractValue)
   Future<HttpResponse<List<BaseRentResponse>>> contractValue(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RentRequest requestMeanValue);
 
   @POST(EndPoints.totalContracts)
   Future<HttpResponse<List<BaseRentResponse>>> totalContract(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RentRequest requestMeanValue);
 
   @POST(EndPoints.totalRentedUnits)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalRentedUnits(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RentRequest requestMeanValue);
 
   @POST(EndPoints.rentSummary)
   Future<HttpResponse<RentListSummary>> rentSummary(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RentRequest requestMeanValue);
 
   @POST(EndPoints.totalRentedSpace)
   Future<HttpResponse<List<BaseRentResponse>>> getTotalRentedSpace(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RentRequest requestMeanValue);
 
   @POST(EndPoints.avgPriceTop)
   Future<HttpResponse<List<BaseRentResponse>>> avgMeanRentAmount(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RentRequest requestMeanValue);
 
   @POST(EndPoints.rentAmountTop)
   Future<HttpResponse<List<BaseRentResponse>>> rentAmount(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RentRequest requestMeanValue);
 
   @POST(EndPoints.meanRentMeter)
   Future<HttpResponse<List<BaseRentResponse>>> meanRentMeter(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RentRequest requestMeanValue);
 
   @POST(EndPoints.rentedAreas)
   Future<HttpResponse<List<BaseRentResponse>>> getRentedAreas(
-      @Body() RequestMeanValue requestMeanValue);
+      @Body() RentRequest requestMeanValue);
 
   //----------------------------------Sell--------------------------------------
   @GET(EndPoints.lookupSell)
-  Future<HttpResponse<RentLookupResponse>> getLockupSell();
+  Future<HttpResponse<LookupResponse>> getLockupSell();
 
   // KPI1
 
@@ -150,7 +150,7 @@ abstract class AppServiceClient {
 
   //----------------------------------Mortgage----------------------------------
   @GET(EndPoints.mortgageLookUp)
-  Future<HttpResponse<RentLookupResponse>> getLockupMortgage();
+  Future<HttpResponse<LookupResponse>> getLockupMortgage();
 
   // KPI1
   @POST(EndPoints.totalMortgageTransactions)

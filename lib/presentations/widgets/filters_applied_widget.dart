@@ -6,10 +6,10 @@ import '../../domain/models/rent_models/rent_models.dart';
 
 class FiltersApplied extends StatelessWidget {
   final bool? withoutZone;
-  final RentLookupModel municipality;
-  final RentLookupModel zone;
-  final RentLookupModel propertyType;
-  final RentLookupModel propertyPurpose;
+  final LookupModel municipality;
+  final LookupModel zone;
+  final LookupModel propertyType;
+  final LookupModel propertyPurpose;
   final int year;
 
   const FiltersApplied({
@@ -22,7 +22,7 @@ class FiltersApplied extends StatelessWidget {
     this.withoutZone,
   });
 
-  String getNameFilter(RentLookupModel model, bool isArabic) {
+  String getNameFilter(LookupModel model, bool isArabic) {
     if (model.lookupKey == -1) {
       return "";
     } else {

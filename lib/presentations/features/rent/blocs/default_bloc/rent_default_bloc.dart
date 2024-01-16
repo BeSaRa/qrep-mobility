@@ -3,7 +3,7 @@ import 'package:ebla/domain/usecases/rent_usecases/defualt_rent_usecase.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../domain/models/rent_models/rent_models.dart';
-import '../../../../../domain/models/requests/rent_requests/request_mean_value.dart';
+import '../../../../../domain/models/requests/rent_requests/request_rent.dart';
 
 part 'rent_default_bloc.freezed.dart';
 part 'rent_default_event.dart';

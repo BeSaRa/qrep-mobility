@@ -50,7 +50,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<RentLookupResponse, FailureModel>> getLockupRent() async {
+  Future<Result<LookupResponse, FailureModel>> getLockupRent() async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.getLockupRent();
@@ -71,7 +71,7 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> meanValue(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.meanValue(requestMeanValue);
@@ -92,7 +92,7 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<List<MeanAreaResponse>, FailureModel>> meanArea(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.meanArea(requestMeanValue);
@@ -113,7 +113,7 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> certificateCount(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response =
@@ -143,7 +143,7 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> contractCount(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.contractCount(requestMeanValue);
@@ -164,7 +164,7 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<List<RentDefault>, FailureModel>> getRentDefault(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response =
@@ -186,7 +186,7 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> meanRentAmount(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response =
@@ -209,7 +209,7 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> rentValueAmount(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.rentAmount(requestMeanValue);
@@ -231,7 +231,7 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> contractValue(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.contractValue(requestMeanValue);
@@ -253,7 +253,7 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContracts(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.totalContract(requestMeanValue);
@@ -274,7 +274,7 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedSpace(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response =
@@ -296,7 +296,7 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedUnits(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response =
@@ -321,7 +321,7 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<RentListSummary, FailureModel>> getRentSummary(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.rentSummary(requestMeanValue);
@@ -451,7 +451,7 @@ class RepositoryImplementer extends Repository {
   // ------------------------------sell----------------------------------------
 
   @override
-  Future<Result<RentLookupResponse, FailureModel>> getLockupSell() async {
+  Future<Result<LookupResponse, FailureModel>> getLockupSell() async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.getLockupSell();
@@ -680,7 +680,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<RentLookupResponse, FailureModel>> getLockupMortgage() async {
+  Future<Result<LookupResponse, FailureModel>> getLockupMortgage() async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.getLockupMortgage();
@@ -723,7 +723,7 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> meanRentValueMeter(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.meanRentMeter(requestMeanValue);
@@ -752,7 +752,7 @@ class RepositoryImplementer extends Repository {
 
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> getRentedAreas(
-      RequestMeanValue requestMeanValue) async {
+      RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response =

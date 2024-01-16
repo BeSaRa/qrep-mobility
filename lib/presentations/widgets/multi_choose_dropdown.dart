@@ -8,8 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../resources/resources.dart';
 
 class MultiChooseDropDownWidget extends StatefulWidget {
-  final List<RentLookupModel> list;
-  final List<RentLookupModel> selectedItems;
+  final List<LookupModel> list;
+  final List<LookupModel> selectedItems;
 
   // final RentLookupModel? selectedValue;
   final bool? isPurpose;
@@ -43,7 +43,7 @@ class _MultiChooseDropDownWidgetState extends State<MultiChooseDropDownWidget> {
               width: 1,
               color: Theme.of(context).colorScheme.onTertiaryContainer)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton2<RentLookupModel>(
+        child: DropdownButton2<LookupModel>(
           isExpanded: true,
           isDense: true,
           hint: BlocBuilder(
@@ -78,7 +78,7 @@ class _MultiChooseDropDownWidgetState extends State<MultiChooseDropDownWidget> {
                     );
             },
           ),
-          items: widget.list.map((RentLookupModel item) {
+          items: widget.list.map((LookupModel item) {
             return DropdownMenuItem(
               value: item,
               enabled: false,
@@ -205,7 +205,7 @@ class _MultiChooseDropDownWidgetState extends State<MultiChooseDropDownWidget> {
               ),
             );
           }).toList(),
-          onChanged: (RentLookupModel? value) {},
+          onChanged: (LookupModel? value) {},
           dropdownStyleData: DropdownStyleData(
             maxHeight: AppSizeH.s200,
             width: double.infinity,

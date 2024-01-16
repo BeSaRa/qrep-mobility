@@ -2,12 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../domain/models/rent_models/rent_models.dart';
-import '../../../../../domain/models/requests/rent_requests/request_mean_value.dart';
+import '../../../../../domain/models/requests/rent_requests/request_rent.dart';
 import '../../../../../domain/usecases/rent_usecases/mean_value_usecases/mean_value_usecases.dart';
 
+part 'mean_value_bloc.freezed.dart';
 part 'mean_value_event.dart';
 part 'mean_value_state.dart';
-part 'mean_value_bloc.freezed.dart';
 
 class MeanValueBloc extends Bloc<MeanValueEvent, MeanValueState> {
   final MeanValueUsecase meanValueUsecase;

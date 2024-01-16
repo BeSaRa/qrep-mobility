@@ -66,17 +66,17 @@ class _SalesViewState extends State<SalesView> {
       listener: (context, LookupState state) {
         state.mapOrNull(
           loadedLookup: (value) {
-            List<RentLookupModel> listMunicipalityWithAll = [];
+            List<LookupModel> listMunicipalityWithAll = [];
             listMunicipalityWithAll.addAll(
                 context.read<LookupBloc>().lookUpSell?.municipalityList ?? []);
-            if (!listMunicipalityWithAll.contains(const RentLookupModel(
+            if (!listMunicipalityWithAll.contains(const LookupModel(
                 isActive: true,
                 lookupKey: -1,
                 arName: "الكل",
                 enName: "All",
                 value: -1,
                 id: -1))) {
-              listMunicipalityWithAll.add(const RentLookupModel(
+              listMunicipalityWithAll.add(const LookupModel(
                   isActive: true,
                   lookupKey: -1,
                   arName: "الكل",
@@ -163,7 +163,7 @@ class _SalesViewState extends State<SalesView> {
                                                         .requestSell
                                                         .municipalityId ??
                                                     4) ??
-                                            const RentLookupModel(),
+                                            const LookupModel(),
                                         list: context
                                                 .read<LookupBloc>()
                                                 .lookUpSell
@@ -378,7 +378,7 @@ class _SalesViewState extends State<SalesView> {
                                                     .requestSell
                                                     .municipalityId ??
                                                 1) ??
-                                        const RentLookupModel(),
+                                        const LookupModel(),
                                     zone: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
@@ -390,7 +390,7 @@ class _SalesViewState extends State<SalesView> {
                                                 .requestSell
                                                 .areaCode
                                                 .toInt()) ??
-                                        const RentLookupModel(),
+                                        const LookupModel(),
                                     propertyPurpose: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
@@ -402,7 +402,7 @@ class _SalesViewState extends State<SalesView> {
                                                     .requestSell
                                                     .purposeList?[0] ??
                                                 1) ??
-                                        const RentLookupModel(),
+                                        const LookupModel(),
                                     propertyType: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
@@ -414,7 +414,7 @@ class _SalesViewState extends State<SalesView> {
                                                     .requestSell
                                                     .propertyTypeList?[0] ??
                                                 1) ??
-                                        const RentLookupModel(lookupKey: -1),
+                                        const LookupModel(lookupKey: -1),
                                     withoutZone: context
                                             .read<SellBloc>()
                                             .requestSell
@@ -486,7 +486,7 @@ class _SalesViewState extends State<SalesView> {
                                                     .requestSell
                                                     .municipalityId ??
                                                 1) ??
-                                        const RentLookupModel(),
+                                        const LookupModel(),
                                     zone: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
@@ -498,7 +498,7 @@ class _SalesViewState extends State<SalesView> {
                                                 .requestSell
                                                 .areaCode
                                                 .toInt()) ??
-                                        const RentLookupModel(),
+                                        const LookupModel(),
                                     propertyPurpose: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
@@ -510,7 +510,7 @@ class _SalesViewState extends State<SalesView> {
                                                     .requestSell
                                                     .purposeList?[0] ??
                                                 1) ??
-                                        const RentLookupModel(),
+                                        const LookupModel(),
                                     propertyType: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
@@ -522,7 +522,7 @@ class _SalesViewState extends State<SalesView> {
                                                     .requestSell
                                                     .propertyTypeList?[0] ??
                                                 1) ??
-                                        const RentLookupModel(lookupKey: -1),
+                                        const LookupModel(lookupKey: -1),
                                   );
                                 },
                               ),
@@ -565,7 +565,7 @@ class _SalesViewState extends State<SalesView> {
                                                     .requestSell
                                                     .municipalityId ??
                                                 1) ??
-                                        const RentLookupModel(),
+                                        const LookupModel(),
                                     zone: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
@@ -577,7 +577,7 @@ class _SalesViewState extends State<SalesView> {
                                                 .requestSell
                                                 .areaCode
                                                 .toInt()) ??
-                                        const RentLookupModel(),
+                                        const LookupModel(),
                                     propertyPurpose: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
@@ -589,7 +589,7 @@ class _SalesViewState extends State<SalesView> {
                                                     .requestSell
                                                     .purposeList?[0] ??
                                                 1) ??
-                                        const RentLookupModel(),
+                                        const LookupModel(),
                                     propertyType: getObjectByLookupKey(
                                             context
                                                     .read<LookupBloc>()
@@ -601,7 +601,7 @@ class _SalesViewState extends State<SalesView> {
                                                     .requestSell
                                                     .propertyTypeList?[0] ??
                                                 1) ??
-                                        const RentLookupModel(lookupKey: -1),
+                                        const LookupModel(lookupKey: -1),
                                     withoutZone: context
                                             .read<SellBloc>()
                                             .requestSell

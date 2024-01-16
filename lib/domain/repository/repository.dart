@@ -28,52 +28,52 @@ abstract class Repository {
   Future<Result<UserResponse, FailureModel>> updateFcmToken(FcmInput input);
 
 //-------------Rent----------------
-  Future<Result<RentLookupResponse, FailureModel>> getLockupRent();
+  Future<Result<LookupResponse, FailureModel>> getLockupRent();
 
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContracts(
-      RequestMeanValue requestMeanValue);
+      RentRequest requestMeanValue);
 
   Future<Result<List<BaseRentResponse>, FailureModel>> meanValue(
-      RequestMeanValue requestMeanValue);
+      RentRequest requestMeanValue);
 
   Future<Result<List<MeanAreaResponse>, FailureModel>> meanArea(
-      RequestMeanValue requestMeanValue);
+      RentRequest requestMeanValue);
 
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedUnits(
-      RequestMeanValue requestMeanValue);
+      RentRequest requestMeanValue);
 
   Future<Result<List<BaseRentResponse>, FailureModel>> certificateCount(
-      RequestMeanValue requestMeanValue);
+      RentRequest requestMeanValue);
 
   Future<Result<List<BaseRentResponse>, FailureModel>> contractCount(
-      RequestMeanValue requestMeanValue);
+      RentRequest requestMeanValue);
 
   Future<Result<List<RentDefault>, FailureModel>> getRentDefault(
-      RequestMeanValue requestMeanValue);
+      RentRequest requestMeanValue);
 
   Future<Result<List<BaseRentResponse>, FailureModel>> contractValue(
-      RequestMeanValue requestMeanValue);
+      RentRequest requestMeanValue);
 
   Future<Result<RentListSummary, FailureModel>> getRentSummary(
-      RequestMeanValue requestMeanValue);
+      RentRequest requestMeanValue);
 
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedSpace(
-      RequestMeanValue requestMeanValue);
+      RentRequest requestMeanValue);
 
   Future<Result<List<BaseRentResponse>, FailureModel>> meanRentAmount(
-      RequestMeanValue requestMeanValue);
+      RentRequest requestMeanValue);
 
   Future<Result<List<BaseRentResponse>, FailureModel>> rentValueAmount(
-      RequestMeanValue requestMeanValue);
+      RentRequest requestMeanValue);
 
   Future<Result<List<BaseRentResponse>, FailureModel>> meanRentValueMeter(
-      RequestMeanValue requestMeanValue);
+      RentRequest requestMeanValue);
 
   Future<Result<List<BaseRentResponse>, FailureModel>> getRentedAreas(
-      RequestMeanValue requestMeanValue);
+      RentRequest requestMeanValue);
 
   //----------------------------sell---------------------------------------
-  Future<Result<RentLookupResponse, FailureModel>> getLockupSell();
+  Future<Result<LookupResponse, FailureModel>> getLockupSell();
 
   // KPI1
   Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContractsSell(
@@ -126,7 +126,7 @@ abstract class Repository {
   //----------------------------Mortgage----------------------------------------
 
   //look up
-  Future<Result<RentLookupResponse, FailureModel>> getLockupMortgage();
+  Future<Result<LookupResponse, FailureModel>> getLockupMortgage();
 
   // KPI1
   Future<Result<List<BaseRentResponse>, FailureModel>>

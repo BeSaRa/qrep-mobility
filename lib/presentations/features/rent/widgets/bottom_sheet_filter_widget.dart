@@ -63,7 +63,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
 
   Widget getPeriodTimeById(
     int id,
-    RentLookupResponse success,
+    LookupResponse success,
   ) {
     switch (id) {
       case 1:
@@ -249,16 +249,16 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     validatorToValueCubit = ValidatorCubit(0);
     validatorFromAreaCubit = ValidatorCubit(0);
     validatorToAreaCubit = ValidatorCubit(0);
-    valuesFiltersCubit = ValuesFiltersCubit(const RentLookupModel());
+    valuesFiltersCubit = ValuesFiltersCubit(const LookupModel());
     generateYears(2019, DateTime.now().year).forEach((element) {
-      valuesFiltersCubit.yearsLists.add(RentLookupModel(
+      valuesFiltersCubit.yearsLists.add(LookupModel(
           arName: element.toString(), id: element, enName: element.toString()));
     });
     valuesFiltersCubit.furniture = getObjectByLookupKey(
           context.read<LookupBloc>().lookUpRent?.furnitureStatusList ?? [],
           context.read<RentBloc>().requestMeanValue.furnitureStatus ?? -1,
         ) ??
-        const RentLookupModel();
+        const LookupModel();
     //Nationality
     // valuesFiltersCubit.nationality = getObjectByLookupKey(
     //       context.read<RentBloc>().loockUpRent?.nationalityList ?? [],
@@ -266,16 +266,16 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     //     ) ??
     //     const RentLookupModel();
     //Property and Purpose
-    List<RentLookupModel> listMunicipalityWithAll = [];
+    List<LookupModel> listMunicipalityWithAll = [];
     listMunicipalityWithAll
         .addAll(context.read<LookupBloc>().lookUpRent?.municipalityList ?? []);
-    if (!listMunicipalityWithAll.contains(const RentLookupModel(
+    if (!listMunicipalityWithAll.contains(const LookupModel(
         isActive: true,
         lookupKey: -1,
         arName: "الكل",
         enName: "All",
         id: -1))) {
-      listMunicipalityWithAll.add(const RentLookupModel(
+      listMunicipalityWithAll.add(const LookupModel(
           isActive: true,
           lookupKey: -1,
           arName: "الكل",
@@ -290,12 +290,12 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           context.read<LookupBloc>().lookUpRent?.municipalityList ?? [],
           context.read<RentBloc>().requestMeanValue.municipalityId ?? 1,
         ) ??
-        const RentLookupModel();
+        const LookupModel();
     valuesFiltersCubit.zone = getObjectByLookupKey(
           context.read<LookupBloc>().lookUpRent?.zoneList ?? [],
           context.read<RentBloc>().requestMeanValue.zoneId ?? 0,
         ) ??
-        const RentLookupModel();
+        const LookupModel();
     context
         .read<RentBloc>()
         .requestMeanValue
@@ -305,14 +305,14 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
             context.read<LookupBloc>().lookUpRent?.propertyTypeList ?? [],
             element,
           ) ??
-          const RentLookupModel());
+          const LookupModel());
     });
     context.read<RentBloc>().requestMeanValue.purposeList?.forEach((element) {
       valuesFiltersCubit.rentPurposeList.add(getObjectByLookupKey(
             context.read<LookupBloc>().lookUpRent?.rentPurposeList ?? [],
             element,
           ) ??
-          const RentLookupModel());
+          const LookupModel());
     });
     valuesFiltersCubit.bedRoom = getObjectById(
           context.read<LookupBloc>().lookUpRent?.bedRooms ?? [],
@@ -320,12 +320,12 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
               ? -1
               : context.read<RentBloc>().requestMeanValue.bedRoomsCount ?? -1,
         ) ??
-        const RentLookupModel();
+        const LookupModel();
     valuesFiltersCubit.periodTime = getObjectById(
           context.read<LookupBloc>().lookUpRent?.periodTime ?? [],
           context.read<RentBloc>().requestMeanValue.periodId,
         ) ??
-        const RentLookupModel();
+        const LookupModel();
     valuesFiltersCubit.year =
         context.read<RentBloc>().requestMeanValue.issueDateYear != null
             ? getObjectById(
@@ -451,7 +451,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 [],
                             -1,
                           ) ??
-                          const RentLookupModel();
+                          const LookupModel();
                       valuesFiltersCubit.municapility = getObjectByLookupKey(
                             context
                                     .read<LookupBloc>()
@@ -460,13 +460,13 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 [],
                             1,
                           ) ??
-                          const RentLookupModel();
+                          const LookupModel();
                       valuesFiltersCubit.zone = getObjectByLookupKey(
                             context.read<LookupBloc>().lookUpRent?.zoneList ??
                                 [],
                             -1,
                           ) ??
-                          const RentLookupModel();
+                          const LookupModel();
                       valuesFiltersCubit.rentPaymentMonthlyPerUnitFrom = null;
                       valuesFiltersCubit.rentPaymentMonthlyPerUnitTo = null;
                       valuesFiltersCubit.unit = 2;
@@ -477,7 +477,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 [],
                             1,
                           ) ??
-                          const RentLookupModel();
+                          const LookupModel();
                       valuesFiltersCubit.rentPurposeList.clear();
                       valuesFiltersCubit.rentPurposeList
                           .add(getObjectByLookupKey(
@@ -488,7 +488,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                     [],
                                 -1,
                               ) ??
-                              const RentLookupModel());
+                              const LookupModel());
                       valuesFiltersCubit.propertyTypeList.clear();
                       valuesFiltersCubit.propertyTypeList
                           .add(getObjectByLookupKey(
@@ -499,7 +499,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                     [],
                                 -1,
                               ) ??
-                              const RentLookupModel());
+                              const LookupModel());
                       valuesFiltersCubit.changeUnit(2);
                       valuesFiltersCubit.furniture = getObjectByLookupKey(
                             context
@@ -509,7 +509,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 [],
                             -1,
                           ) ??
-                          const RentLookupModel();
+                          const LookupModel();
                       // });
                       streetController.clear();
                       rentValueFromController.clear();
@@ -600,7 +600,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                         BlocBuilder(
                           bloc: valuesFiltersCubit,
                           builder: (context, states) {
-                            return SingleDropDownValue<RentLookupModel>(
+                            return SingleDropDownValue<LookupModel>(
                                 value: valuesFiltersCubit.municapility,
                                 onChanged: (municapility) {
                                   valuesFiltersCubit
@@ -612,7 +612,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                           .firstWhere((element) {
                                         return element.lookupKey == -1;
                                       }) ??
-                                      const RentLookupModel());
+                                      const LookupModel());
                                 },
                                 list: context
                                         .read<LookupBloc>()
@@ -639,7 +639,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                         BlocBuilder(
                           bloc: valuesFiltersCubit,
                           builder: (context, states) {
-                            return SingleDropDowmSearchWidget<RentLookupModel>(
+                            return SingleDropDowmSearchWidget<LookupModel>(
                                 onChanged: (zone) {
                                   valuesFiltersCubit.changeZone(zone!);
                                 },
@@ -746,7 +746,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                         BlocBuilder(
                           bloc: valuesFiltersCubit,
                           builder: (context, states) {
-                            return SingleDropDownValue<RentLookupModel>(
+                            return SingleDropDownValue<LookupModel>(
                                 value: valuesFiltersCubit.bedRoom,
                                 onChanged: (bedRooms) {
                                   valuesFiltersCubit.changeBedRooms(bedRooms!);
@@ -776,7 +776,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                         BlocBuilder(
                           bloc: valuesFiltersCubit,
                           builder: (context, states) {
-                            return SingleDropDownValue<RentLookupModel>(
+                            return SingleDropDownValue<LookupModel>(
                                 onChanged: (periodTime) {
                                   valuesFiltersCubit
                                       .changePeriodTime(periodTime!);
@@ -816,7 +816,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 child: BlocBuilder(
                               bloc: valuesFiltersCubit,
                               builder: (context, state) {
-                                return SingleDropDownValue<RentLookupModel>(
+                                return SingleDropDownValue<LookupModel>(
                                     onChanged: (year) {
                                       valuesFiltersCubit.changeYear(year!);
                                     },
@@ -832,7 +832,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                     child: getPeriodTimeById(
                                   valuesFiltersCubit.periodTime.id,
                                   context.read<LookupBloc>().lookUpRent ??
-                                      const RentLookupResponse(),
+                                      const LookupResponse(),
                                 ));
                               },
                             )
@@ -856,7 +856,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                         BlocBuilder(
                           bloc: valuesFiltersCubit,
                           builder: (context, states) {
-                            return SingleDropDownValue<RentLookupModel>(
+                            return SingleDropDownValue<LookupModel>(
                                 value: valuesFiltersCubit.furniture,
                                 onChanged: (furniture) {
                                   valuesFiltersCubit

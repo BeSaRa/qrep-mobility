@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
-import 'package:ebla/domain/models/requests/rent_requests/request_mean_value.dart';
+import 'package:ebla/domain/models/requests/rent_requests/request_rent.dart';
 import 'package:ebla/domain/usecases/usecases.dart';
 import 'package:ebla/presentations/widgets/grid/grid_item_widget.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -168,6 +168,7 @@ class RentGridKPIsBloc extends Bloc<RentGridKPIsEvent, RentGridKPIsState> {
       //========================================================================
     });
   }
+
   static bool getErrorValue(RentGridKPIsState state, RentGridKPIs? kpi) {
     switch (kpi) {
       case RentGridKPIs.totalContracts:

@@ -41,17 +41,17 @@ abstract class RentDefault with _$RentDefault {
 }
 
 @freezed
-abstract class RentLookupResponse with _$RentLookupResponse {
-  const factory RentLookupResponse({
-    @Default([]) List<RentLookupModel> rooms,
-    @Default([]) List<RentLookupModel> durations,
-    @Default([]) List<RentLookupModel> halfYearDurations,
-    @Default([]) List<RentLookupModel> quarterYearDurations,
-    @Default([]) List<RentLookupModel> spaces,
-    @Default([]) List<RentLookupModel> unitStatus,
-    @Default([]) List<RentLookupModel> propertyTypeList,
-    @Default([]) List<RentLookupModel> rentPurposeList,
-    @Default([]) List<RentLookupModel> zoneList,
+abstract class LookupResponse with _$LookupResponse {
+  const factory LookupResponse({
+    @Default([]) List<LookupModel> rooms,
+    @Default([]) List<LookupModel> durations,
+    @Default([]) List<LookupModel> halfYearDurations,
+    @Default([]) List<LookupModel> quarterYearDurations,
+    @Default([]) List<LookupModel> spaces,
+    @Default([]) List<LookupModel> unitStatus,
+    @Default([]) List<LookupModel> propertyTypeList,
+    @Default([]) List<LookupModel> rentPurposeList,
+    @Default([]) List<LookupModel> zoneList,
     @Default([
       PeriodTimeDetails(name: 'نصف اول', value: [1, 2], enName: 'First Half'),
       PeriodTimeDetails(name: 'نصف ثاني', value: [3, 4], enName: 'Last Half')
@@ -65,42 +65,42 @@ abstract class RentLookupResponse with _$RentLookupResponse {
     ])
     List<PeriodTimeDetails> quarterYearList,
     @Default([
-      RentLookupModel(arName: 'سنوي', id: 1, enName: 'Yearly'),
-      RentLookupModel(arName: 'نصف سنوي', id: 2, enName: 'Half Yearly'),
-      RentLookupModel(arName: 'ربع سنوي ', id: 3, enName: 'Quarter Yearly'),
-      RentLookupModel(arName: 'شهري', id: 4, enName: 'Monthly'),
+      LookupModel(arName: 'سنوي', id: 1, enName: 'Yearly'),
+      LookupModel(arName: 'نصف سنوي', id: 2, enName: 'Half Yearly'),
+      LookupModel(arName: 'ربع سنوي ', id: 3, enName: 'Quarter Yearly'),
+      LookupModel(arName: 'شهري', id: 4, enName: 'Monthly'),
       // RentLookupModel(arName: ' فترة محددة', id: 5, enName: 'Duration'),
     ])
-    List<RentLookupModel> periodTime,
+    List<LookupModel> periodTime,
     @Default([
-      RentLookupModel(arName: 'استوديو', id: 6, enName: 'studio'),
-      RentLookupModel(arName: 'غرفة', id: 1, enName: 'one room'),
-      RentLookupModel(arName: 'غرفتين', id: 2, enName: '2 rooms'),
-      RentLookupModel(arName: '3 غرف', id: 3, enName: '3 rooms'),
-      RentLookupModel(arName: '4 غرف', id: 4, enName: '4 rooms'),
-      RentLookupModel(arName: '5 غرف', id: 5, enName: '5 rooms'),
-      RentLookupModel(arName: 'الكل', id: -1, enName: 'ALL')
+      LookupModel(arName: 'استوديو', id: 6, enName: 'studio'),
+      LookupModel(arName: 'غرفة', id: 1, enName: 'one room'),
+      LookupModel(arName: 'غرفتين', id: 2, enName: '2 rooms'),
+      LookupModel(arName: '3 غرف', id: 3, enName: '3 rooms'),
+      LookupModel(arName: '4 غرف', id: 4, enName: '4 rooms'),
+      LookupModel(arName: '5 غرف', id: 5, enName: '5 rooms'),
+      LookupModel(arName: 'الكل', id: -1, enName: 'ALL')
     ])
-    List<RentLookupModel> bedRooms,
-    @Default([]) List<RentLookupModel> districtList,
-    @Default([]) List<RentLookupModel> municipalityList,
-    @Default([]) List<RentLookupModel> furnitureStatusList,
-    @Default([]) List<RentLookupModel> nationalityList,
-    @Default([]) List<RentLookupModel> nationalityCategoryList,
-    @Default([]) List<RentLookupModel> genderList,
-    @Default([]) List<RentLookupModel> ageCategoryList,
-    @Default([]) List<RentLookupModel> ownerCategoryList,
+    List<LookupModel> bedRooms,
+    @Default([]) List<LookupModel> districtList,
+    @Default([]) List<LookupModel> municipalityList,
+    @Default([]) List<LookupModel> furnitureStatusList,
+    @Default([]) List<LookupModel> nationalityList,
+    @Default([]) List<LookupModel> nationalityCategoryList,
+    @Default([]) List<LookupModel> genderList,
+    @Default([]) List<LookupModel> ageCategoryList,
+    @Default([]) List<LookupModel> ownerCategoryList,
     @Default([]) List<MaxParamsModel> maxParams,
-    @Default([]) List<RentLookupModel> streetList,
+    @Default([]) List<LookupModel> streetList,
   }) = _RentLookupResponse;
 
-  factory RentLookupResponse.fromJson(Map<String, dynamic> json) =>
-      _$RentLookupResponseFromJson(json);
+  factory LookupResponse.fromJson(Map<String, dynamic> json) =>
+      _$LookupResponseFromJson(json);
 }
 
 @freezed
-abstract class RentLookupModel with _$RentLookupModel {
-  const factory RentLookupModel({
+abstract class LookupModel with _$LookupModel {
+  const factory LookupModel({
     @Default(0) int value,
     @Default(0) int yoy,
     @Default(false) bool selected,
@@ -114,8 +114,8 @@ abstract class RentLookupModel with _$RentLookupModel {
     @Default(false) bool isActive,
   }) = _RentLookupModel;
 
-  factory RentLookupModel.fromJson(Map<String, dynamic> json) =>
-      _$RentLookupModelFromJson(json);
+  factory LookupModel.fromJson(Map<String, dynamic> json) =>
+      _$LookupModelFromJson(json);
 }
 
 @freezed

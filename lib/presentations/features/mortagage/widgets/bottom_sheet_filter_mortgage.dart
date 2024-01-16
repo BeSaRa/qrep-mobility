@@ -57,7 +57,7 @@ class _BottomSheetFilterMortgageWidgetState
 
   Widget getPeriodTimeById(
     int id,
-    RentLookupResponse success,
+    LookupResponse success,
   ) {
     switch (id) {
       case 1:
@@ -208,25 +208,25 @@ class _BottomSheetFilterMortgageWidgetState
 
   @override
   void initState() {
-    valuesFiltersCubit = ValuesFiltersCubit(const RentLookupModel());
+    valuesFiltersCubit = ValuesFiltersCubit(const LookupModel());
     validatorFromAreaCubit = ValidatorCubit(0);
     validatorToAreaCubit = ValidatorCubit(0);
     //Year
-    valuesFiltersCubit = ValuesFiltersCubit(const RentLookupModel());
+    valuesFiltersCubit = ValuesFiltersCubit(const LookupModel());
     generateYears(2006, DateTime.now().year).forEach((element) {
-      valuesFiltersCubit.yearsLists.add(RentLookupModel(
+      valuesFiltersCubit.yearsLists.add(LookupModel(
           arName: element.toString(), id: element, enName: element.toString()));
     });
-    List<RentLookupModel> listDistrictWithAll = [];
+    List<LookupModel> listDistrictWithAll = [];
     listDistrictWithAll
         .addAll(context.read<LookupBloc>().lookUpMortgage?.districtList ?? []);
-    if (!listDistrictWithAll.contains(const RentLookupModel(
+    if (!listDistrictWithAll.contains(const LookupModel(
         isActive: true,
         lookupKey: -1,
         arName: "الكل",
         enName: "All",
         id: -1))) {
-      listDistrictWithAll.add(const RentLookupModel(
+      listDistrictWithAll.add(const LookupModel(
           isActive: true,
           lookupKey: -1,
           arName: "الكل",
@@ -237,16 +237,16 @@ class _BottomSheetFilterMortgageWidgetState
         .read<LookupBloc>()
         .lookUpMortgage
         ?.copyWith(districtList: listDistrictWithAll);
-    List<RentLookupModel> listMunicipalityWithAll = [];
+    List<LookupModel> listMunicipalityWithAll = [];
     listMunicipalityWithAll.addAll(
         context.read<LookupBloc>().lookUpMortgage?.municipalityList ?? []);
-    if (!listMunicipalityWithAll.contains(const RentLookupModel(
+    if (!listMunicipalityWithAll.contains(const LookupModel(
         isActive: true,
         lookupKey: -1,
         arName: "الكل",
         enName: "All",
         id: -1))) {
-      listMunicipalityWithAll.add(const RentLookupModel(
+      listMunicipalityWithAll.add(const LookupModel(
           isActive: true,
           lookupKey: -1,
           arName: "الكل",
@@ -264,23 +264,23 @@ class _BottomSheetFilterMortgageWidgetState
           context.read<LookupBloc>().lookUpMortgage?.municipalityList ?? [],
           context.read<MortgageBloc>().requestMeanValue.municipalityId ?? 1,
         ) ??
-        const RentLookupModel();
+        const LookupModel();
     valuesFiltersCubit.zone = getObjectByLookupKey(
           context.read<LookupBloc>().lookUpMortgage?.districtList ?? [],
           context.read<MortgageBloc>().requestMeanValue.areaCode.toInt(),
         ) ??
-        const RentLookupModel();
+        const LookupModel();
     //Property and Purpose
-    List<RentLookupModel> listPropertyWithAll = [];
+    List<LookupModel> listPropertyWithAll = [];
     listPropertyWithAll.addAll(
         context.read<LookupBloc>().lookUpMortgage?.propertyTypeList ?? []);
-    if (!listPropertyWithAll.contains(const RentLookupModel(
+    if (!listPropertyWithAll.contains(const LookupModel(
         isActive: true,
         lookupKey: -1,
         arName: "الكل",
         enName: "All",
         id: -1))) {
-      listPropertyWithAll.add(const RentLookupModel(
+      listPropertyWithAll.add(const LookupModel(
           isActive: true,
           lookupKey: -1,
           arName: "الكل",
@@ -300,7 +300,7 @@ class _BottomSheetFilterMortgageWidgetState
             context.read<LookupBloc>().lookUpMortgage?.propertyTypeList ?? [],
             element,
           ) ??
-          const RentLookupModel());
+          const LookupModel());
     });
     context
         .read<MortgageBloc>()
@@ -311,7 +311,7 @@ class _BottomSheetFilterMortgageWidgetState
             context.read<LookupBloc>().lookUpMortgage?.rentPurposeList ?? [],
             element,
           ) ??
-          const RentLookupModel());
+          const LookupModel());
     });
     //Year
     valuesFiltersCubit.year =
@@ -329,7 +329,7 @@ class _BottomSheetFilterMortgageWidgetState
           context.read<LookupBloc>().lookUpMortgage?.periodTime ?? [],
           context.read<MortgageBloc>().requestMeanValue.periodId,
         ) ??
-        const RentLookupModel();
+        const LookupModel();
 
     //Half Year
     context.read<MortgageBloc>().requestMeanValue.periodId == 2
@@ -440,7 +440,7 @@ class _BottomSheetFilterMortgageWidgetState
                                 [],
                             4,
                           ) ??
-                          const RentLookupModel();
+                          const LookupModel();
                       valuesFiltersCubit.zone = getObjectByLookupKey(
                             context
                                     .read<LookupBloc>()
@@ -449,7 +449,7 @@ class _BottomSheetFilterMortgageWidgetState
                                 [],
                             -1,
                           ) ??
-                          const RentLookupModel();
+                          const LookupModel();
                       valuesFiltersCubit.realEstateValueFrom = null;
                       valuesFiltersCubit.realEstateValueTo = null;
 
@@ -463,7 +463,7 @@ class _BottomSheetFilterMortgageWidgetState
                                 [],
                             1,
                           ) ??
-                          const RentLookupModel();
+                          const LookupModel();
                       valuesFiltersCubit.rentPurposeList.clear();
                       valuesFiltersCubit.rentPurposeList
                           .add(getObjectByLookupKey(
@@ -474,7 +474,7 @@ class _BottomSheetFilterMortgageWidgetState
                                     [],
                                 -1,
                               ) ??
-                              const RentLookupModel());
+                              const LookupModel());
                       valuesFiltersCubit.propertyTypeList.clear();
                       valuesFiltersCubit.propertyTypeList
                           .add(getObjectByLookupKey(
@@ -485,7 +485,7 @@ class _BottomSheetFilterMortgageWidgetState
                                     [],
                                 -1,
                               ) ??
-                              const RentLookupModel());
+                              const LookupModel());
 
                       valuesFiltersCubit.changeUnit(2);
                       // valuesFiltersCubit.unit = 2;
@@ -576,7 +576,7 @@ class _BottomSheetFilterMortgageWidgetState
                         BlocBuilder(
                           bloc: valuesFiltersCubit,
                           builder: (context, states) {
-                            return SingleDropDownValue<RentLookupModel>(
+                            return SingleDropDownValue<LookupModel>(
                                 value: valuesFiltersCubit.municapility,
                                 onChanged: (municapility) {
                                   valuesFiltersCubit
@@ -588,7 +588,7 @@ class _BottomSheetFilterMortgageWidgetState
                                           .firstWhere((element) {
                                         return element.lookupKey == -1;
                                       }) ??
-                                      const RentLookupModel());
+                                      const LookupModel());
                                 },
                                 list: context
                                         .read<LookupBloc>()
@@ -613,7 +613,7 @@ class _BottomSheetFilterMortgageWidgetState
                         BlocBuilder(
                           bloc: valuesFiltersCubit,
                           builder: (context, states) {
-                            return SingleDropDowmSearchWidget<RentLookupModel>(
+                            return SingleDropDowmSearchWidget<LookupModel>(
                                 onChanged: (zone) {
                                   valuesFiltersCubit.changeZone(zone!);
                                 },
@@ -717,7 +717,7 @@ class _BottomSheetFilterMortgageWidgetState
                               child: BlocBuilder(
                                 bloc: valuesFiltersCubit,
                                 builder: (context, state) {
-                                  return SingleDropDownValue<RentLookupModel>(
+                                  return SingleDropDownValue<LookupModel>(
                                       onChanged: (year) {
                                         valuesFiltersCubit.changeYear(year!);
                                       },
@@ -746,7 +746,7 @@ class _BottomSheetFilterMortgageWidgetState
                         BlocBuilder(
                           bloc: valuesFiltersCubit,
                           builder: (context, states) {
-                            return SingleDropDownValue<RentLookupModel>(
+                            return SingleDropDownValue<LookupModel>(
                                 onChanged: (periodTime) {
                                   valuesFiltersCubit
                                       .changePeriodTime(periodTime!);
@@ -790,7 +790,7 @@ class _BottomSheetFilterMortgageWidgetState
                         child: getPeriodTimeById(
                           valuesFiltersCubit.periodTime.id,
                           context.read<LookupBloc>().lookUpMortgage ??
-                              const RentLookupResponse(),
+                              const LookupResponse(),
                         ),
                       );
                     },

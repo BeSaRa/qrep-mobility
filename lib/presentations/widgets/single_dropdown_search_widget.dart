@@ -49,7 +49,7 @@ class _SingleDropDowmSearchWidgetState<T>
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: AppSizeW.s11),
                       child: Text(
-                        item is RentLookupModel
+                        item is LookupModel
                             ? context.locale == ARABIC_LOCAL
                                 ? item.arName
                                 : item.enName

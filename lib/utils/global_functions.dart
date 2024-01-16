@@ -6,20 +6,20 @@ import '../domain/models/cms_models/news/news_model.dart';
 import '../domain/models/rent_models/rent_models.dart';
 import '../presentations/resources/resources.dart';
 
-RentLookupModel? getObjectById(List<RentLookupModel> objects, int id) {
-  RentLookupModel item = objects.firstWhere((item) => item.id == id,
-      orElse: () => const RentLookupModel());
-  if (item != const RentLookupModel()) {
+LookupModel? getObjectById(List<LookupModel> objects, int id) {
+  LookupModel item = objects.firstWhere((item) => item.id == id,
+      orElse: () => const LookupModel());
+  if (item != const LookupModel()) {
     return item;
   } else {
     return null;
   }
 }
 
-RentLookupModel? getObjectByLookupKey(List<RentLookupModel> objects, int id) {
-  RentLookupModel item = objects.firstWhere((item) => item.lookupKey == id,
-      orElse: () => const RentLookupModel());
-  if (item != const RentLookupModel()) {
+LookupModel? getObjectByLookupKey(List<LookupModel> objects, int id) {
+  LookupModel item = objects.firstWhere((item) => item.lookupKey == id,
+      orElse: () => const LookupModel());
+  if (item != const LookupModel()) {
     return item;
   } else {
     return null;
@@ -31,15 +31,15 @@ PeriodTimeDetails? getObjectByList(
   PeriodTimeDetails item = objects.firstWhere((item) => item.value == value,
       orElse: () => const PeriodTimeDetails());
   // ignore: unrelated_type_equality_checks
-  if (item != const RentLookupModel()) {
+  if (item != const LookupModel()) {
     return item;
   } else {
     return null;
   }
 }
 
-List<RentLookupModel> filterDataBymunicipalityId(
-    int id, List<RentLookupModel> dataList) {
+List<LookupModel> filterDataBymunicipalityId(
+    int id, List<LookupModel> dataList) {
   return dataList
       .where((item) => item.municipalityId == id || item.lookupKey == -1)
       .toList();

@@ -4,7 +4,7 @@ import 'package:ebla/domain/usecases/rent_usecases/certificate_contract_usecases
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../domain/models/rent_models/rent_models.dart';
-import '../../../../../domain/models/requests/rent_requests/request_mean_value.dart';
+import '../../../../../domain/models/requests/rent_requests/request_rent.dart';
 import '../../../../../domain/usecases/rent_usecases/certificate_contract_usecases/certificate_usecase.dart';
 import '../../../../../domain/usecases/rent_usecases/certificate_contract_usecases/contract_usecase.dart';
 import '../../../../../domain/usecases/rent_usecases/certificate_contract_usecases/mean_rent_amount_usecase.dart';

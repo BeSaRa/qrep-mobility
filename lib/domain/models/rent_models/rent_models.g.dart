@@ -78,39 +78,39 @@ _$RentLookupResponseImpl _$$RentLookupResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$RentLookupResponseImpl(
       rooms: (json['rooms'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       durations: (json['durations'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       halfYearDurations: (json['halfYearDurations'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       quarterYearDurations: (json['quarterYearDurations'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       spaces: (json['spaces'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       unitStatus: (json['unitStatus'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       propertyTypeList: (json['propertyTypeList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       rentPurposeList: (json['rentPurposeList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       zoneList: (json['zoneList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       halfYearList: (json['halfYearList'] as List<dynamic>?)
@@ -138,58 +138,57 @@ _$RentLookupResponseImpl _$$RentLookupResponseImplFromJson(
                 name: 'ربع اخير', value: [4], enName: 'Last Quarter')
           ],
       periodTime: (json['periodTime'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [
-            RentLookupModel(arName: 'سنوي', id: 1, enName: 'Yearly'),
-            RentLookupModel(arName: 'نصف سنوي', id: 2, enName: 'Half Yearly'),
-            RentLookupModel(
-                arName: 'ربع سنوي ', id: 3, enName: 'Quarter Yearly'),
-            RentLookupModel(arName: 'شهري', id: 4, enName: 'Monthly')
+            LookupModel(arName: 'سنوي', id: 1, enName: 'Yearly'),
+            LookupModel(arName: 'نصف سنوي', id: 2, enName: 'Half Yearly'),
+            LookupModel(arName: 'ربع سنوي ', id: 3, enName: 'Quarter Yearly'),
+            LookupModel(arName: 'شهري', id: 4, enName: 'Monthly')
           ],
       bedRooms: (json['bedRooms'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [
-            RentLookupModel(arName: 'استوديو', id: 6, enName: 'studio'),
-            RentLookupModel(arName: 'غرفة', id: 1, enName: 'one room'),
-            RentLookupModel(arName: 'غرفتين', id: 2, enName: '2 rooms'),
-            RentLookupModel(arName: '3 غرف', id: 3, enName: '3 rooms'),
-            RentLookupModel(arName: '4 غرف', id: 4, enName: '4 rooms'),
-            RentLookupModel(arName: '5 غرف', id: 5, enName: '5 rooms'),
-            RentLookupModel(arName: 'الكل', id: -1, enName: 'ALL')
+            LookupModel(arName: 'استوديو', id: 6, enName: 'studio'),
+            LookupModel(arName: 'غرفة', id: 1, enName: 'one room'),
+            LookupModel(arName: 'غرفتين', id: 2, enName: '2 rooms'),
+            LookupModel(arName: '3 غرف', id: 3, enName: '3 rooms'),
+            LookupModel(arName: '4 غرف', id: 4, enName: '4 rooms'),
+            LookupModel(arName: '5 غرف', id: 5, enName: '5 rooms'),
+            LookupModel(arName: 'الكل', id: -1, enName: 'ALL')
           ],
       districtList: (json['districtList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       municipalityList: (json['municipalityList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       furnitureStatusList: (json['furnitureStatusList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       nationalityList: (json['nationalityList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      nationalityCategoryList: (json['nationalityCategoryList']
-                  as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      nationalityCategoryList:
+          (json['nationalityCategoryList'] as List<dynamic>?)
+                  ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
+                  .toList() ??
+              const [],
       genderList: (json['genderList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       ageCategoryList: (json['ageCategoryList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       ownerCategoryList: (json['ownerCategoryList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       maxParams: (json['maxParams'] as List<dynamic>?)
@@ -197,7 +196,7 @@ _$RentLookupResponseImpl _$$RentLookupResponseImplFromJson(
               .toList() ??
           const [],
       streetList: (json['streetList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
     );

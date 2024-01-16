@@ -3,90 +3,90 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-class ValuesFiltersCubit extends Cubit<RentLookupModel> {
+class ValuesFiltersCubit extends Cubit<LookupModel> {
   ValuesFiltersCubit(super.initialState);
 
 // -------------------------Municaplity Filters------------------------------------------
-  RentLookupModel municapility = const RentLookupModel();
+  LookupModel municapility = const LookupModel();
 
-  void changeMunicapility(RentLookupModel newmunicapility) {
+  void changeMunicapility(LookupModel newmunicapility) {
     municapility = newmunicapility;
     emit(municapility);
   }
 
   // --------------------------Zone Filter----------------------------------
-  RentLookupModel zone = const RentLookupModel();
+  LookupModel zone = const LookupModel();
 
-  void changeZone(RentLookupModel newZone) {
+  void changeZone(LookupModel newZone) {
     zone = newZone;
     emit(zone);
   }
 
 //-----------------------Property Type Filters------------------------------------------
-  List<RentLookupModel> propertyTypeList = [];
+  List<LookupModel> propertyTypeList = [];
 
-  void addToPropertyList(RentLookupModel newPropertyType) {
+  void addToPropertyList(LookupModel newPropertyType) {
     propertyTypeList.add(newPropertyType);
-    emit(RentLookupModel(arName: newPropertyType.arName));
+    emit(LookupModel(arName: newPropertyType.arName));
   }
 
-  void removeFromPropertyList(RentLookupModel newPropertyType) {
+  void removeFromPropertyList(LookupModel newPropertyType) {
     if (propertyTypeList.length == 1) {
       null;
     } else {
       propertyTypeList.remove(newPropertyType);
     }
-    emit(RentLookupModel(enName: newPropertyType.enName));
+    emit(LookupModel(enName: newPropertyType.enName));
   }
 
-  RentLookupModel propertyType = const RentLookupModel();
+  LookupModel propertyType = const LookupModel();
 
   // RentLookupModel propertyType = const RentLookupModel(
   //     lookupKey: -1, arName: "الكل", enName: "All", isActive: true);
 
 //-----------------------------rentPurpose List-------------------------------------------
-  List<RentLookupModel> rentPurposeList = [];
-  RentLookupModel purposeType = const RentLookupModel(
+  List<LookupModel> rentPurposeList = [];
+  LookupModel purposeType = const LookupModel(
       id: 6, lookupKey: -1, arName: "الكل", enName: "All", isActive: true);
 
-  void addToPurposeList(RentLookupModel newPurposeType) {
+  void addToPurposeList(LookupModel newPurposeType) {
     rentPurposeList.add(newPurposeType);
-    emit(RentLookupModel(arName: newPurposeType.arName));
+    emit(LookupModel(arName: newPurposeType.arName));
   }
 
-  void removeFromPurposeList(RentLookupModel newPurposeType) {
+  void removeFromPurposeList(LookupModel newPurposeType) {
     if (rentPurposeList.length == 1) {
       null;
     } else {
       rentPurposeList.remove(newPurposeType);
     }
-    emit(RentLookupModel(enName: newPurposeType.enName));
+    emit(LookupModel(enName: newPurposeType.enName));
   }
 
   //---------------------------BedRooms Count-------------------------------
   // List<RentLookupModel> bedRoomsList = [];
   // RentLookupModel bedRoom = const RentLookupModel(id: -1, arName: "الكل");
-  RentLookupModel bedRoom = const RentLookupModel();
+  LookupModel bedRoom = const LookupModel();
 
-  void changeBedRooms(RentLookupModel newBedRoom) {
+  void changeBedRooms(LookupModel newBedRoom) {
     bedRoom = newBedRoom;
     emit(bedRoom);
   }
 
 //-------------------------Preiod Time---------------------------------------------
 
-  RentLookupModel periodTime = const RentLookupModel();
+  LookupModel periodTime = const LookupModel();
 
-  void changePeriodTime(RentLookupModel period) {
+  void changePeriodTime(LookupModel period) {
     periodTime = period;
     emit(periodTime);
   }
 
   //-------------------------Year-------------------------------
-  RentLookupModel year = const RentLookupModel();
-  List<RentLookupModel> yearsLists = [];
+  LookupModel year = const LookupModel();
+  List<LookupModel> yearsLists = [];
 
-  void changeYear(RentLookupModel newYear) {
+  void changeYear(LookupModel newYear) {
     year = newYear;
     emit(year);
   }
@@ -96,7 +96,7 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
 
   void changehalfYear(PeriodTimeDetails newhalfYear) {
     periodTimeHalfDetails = newhalfYear;
-    emit(RentLookupModel(arName: periodTimeHalfDetails.name));
+    emit(LookupModel(arName: periodTimeHalfDetails.name));
   }
 
   PeriodTimeDetails periodTimeHalfDetails = const PeriodTimeDetails();
@@ -113,7 +113,7 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
   //--------------------Month------------------------------------------------------
   void changeMonth(PeriodTimeDetails newMonth) {
     month = newMonth;
-    emit(RentLookupModel(arName: month.name));
+    emit(LookupModel(arName: month.name));
   }
 
   List<PeriodTimeDetails> months = [];
@@ -121,17 +121,17 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
   PeriodTimeDetails month = const PeriodTimeDetails();
 
   // -------------------------Nationality Filters------------------------------------------
-  RentLookupModel nationality = const RentLookupModel();
+  LookupModel nationality = const LookupModel();
 
-  void changeNationality(RentLookupModel newnationality) {
+  void changeNationality(LookupModel newnationality) {
     nationality = newnationality;
     emit(nationality);
   }
 
   // --------------------------Furniture status Filter----------------------------------
-  RentLookupModel furniture = const RentLookupModel();
+  LookupModel furniture = const LookupModel();
 
-  void changeFurniture(RentLookupModel newfurniture) {
+  void changeFurniture(LookupModel newfurniture) {
     furniture = newfurniture;
     emit(furniture);
   }
@@ -141,7 +141,7 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
 
   void changeUnit(int newUnit) {
     unit = newUnit;
-    emit(RentLookupModel(id: unit));
+    emit(LookupModel(id: unit));
   }
 
   //---------------------------PaymentMonthlyPerUnit-------------------------------
@@ -156,13 +156,12 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
     areaFrom = null;
     areaTo = null;
     rangeValuesArea = null;
-    emit(const RentLookupModel(id: 8, lookupKey: 7));
+    emit(const LookupModel(id: 8, lookupKey: 7));
   }
 
   void changeRangeRentPaymentMonthlyPerUnit(RangeValues values) {
     rangeRentPaymentMonthlyPerUnit = values;
-    emit(RentLookupModel(
-        id: values.start.toInt(), lookupKey: values.end.toInt()));
+    emit(LookupModel(id: values.start.toInt(), lookupKey: values.end.toInt()));
   }
 
   // void changePaymentMonthlyPerUnit(num start, num end) {
@@ -178,8 +177,7 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
 
   void changeRangeValuesArea(RangeValues values) {
     rangeValuesArea = values;
-    emit(RentLookupModel(
-        id: values.start.toInt(), lookupKey: values.end.toInt()));
+    emit(LookupModel(id: values.start.toInt(), lookupKey: values.end.toInt()));
   }
 
   //----------------------Range DateTime-------------------------
@@ -197,43 +195,42 @@ class ValuesFiltersCubit extends Cubit<RentLookupModel> {
     areaFrom = null;
     areaTo = null;
     rangeValuesArea = null;
-    emit(const RentLookupModel(id: 8, lookupKey: 7));
+    emit(const LookupModel(id: 8, lookupKey: 7));
   }
 
   void changeRangeRealEstateValue(RangeValues values) {
     rangerealEstateValue = values;
-    emit(RentLookupModel(
-        id: values.start.toInt(), lookupKey: values.end.toInt()));
+    emit(LookupModel(id: values.start.toInt(), lookupKey: values.end.toInt()));
   }
 
   // -------------------------Broker Category Filters------------------------------------------
-  RentLookupModel brokerCategory = const RentLookupModel();
+  LookupModel brokerCategory = const LookupModel();
 
-  void changeBrokerCategory(RentLookupModel newBrokerCategory) {
+  void changeBrokerCategory(LookupModel newBrokerCategory) {
     brokerCategory = newBrokerCategory;
     emit(brokerCategory);
   }
 
   //-----------------------Property Type Filters------------------------------------------
-  List<RentLookupModel> streetList = [];
+  List<LookupModel> streetList = [];
 
-  void addToStreetList(RentLookupModel street) {
+  void addToStreetList(LookupModel street) {
     propertyTypeList.add(street);
-    emit(RentLookupModel(
+    emit(LookupModel(
       arName: street.arName,
     ));
   }
 
-  void removeFromStreetList(RentLookupModel street) {
+  void removeFromStreetList(LookupModel street) {
     if (streetList.length == 1) {
       null;
     } else {
       streetList.remove(street);
     }
-    emit(RentLookupModel(enName: street.enName));
+    emit(LookupModel(enName: street.enName));
   }
 
-  RentLookupModel street = const RentLookupModel();
+  LookupModel street = const LookupModel();
 
 // RentLookupModel propertyType = const RentLookupModel(
 //     lookupKey: -1, arName: "الكل", enName: "All", isActive: true);

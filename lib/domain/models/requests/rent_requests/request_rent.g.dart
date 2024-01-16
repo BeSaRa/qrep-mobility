@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'request_mean_value.dart';
+part of 'request_rent.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

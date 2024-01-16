@@ -6,6 +6,6 @@ class RentState with _$RentState {
     @Default(false) bool isLoadingRentLookup,
     @Default(false) bool isHasErrorRentLookup,
     @Default('') String errorMessageRentLookup,
-    @Default(RentLookupResponse()) RentLookupResponse rentLookup,
+    @Default(LookupResponse()) LookupResponse rentLookup,
   }) = _Initial;
 }

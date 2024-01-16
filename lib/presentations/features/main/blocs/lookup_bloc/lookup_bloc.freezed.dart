@@ -555,21 +555,21 @@ mixin _$LookupState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadingLookup,
-    required TResult Function(RentLookupResponse lookup) loadedLookup,
+    required TResult Function(LookupResponse lookup) loadedLookup,
     required TResult Function(String message) errorLookUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadingLookup,
-    TResult? Function(RentLookupResponse lookup)? loadedLookup,
+    TResult? Function(LookupResponse lookup)? loadedLookup,
     TResult? Function(String message)? errorLookUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadingLookup,
-    TResult Function(RentLookupResponse lookup)? loadedLookup,
+    TResult Function(LookupResponse lookup)? loadedLookup,
     TResult Function(String message)? errorLookUp,
     required TResult orElse(),
   }) =>
@@ -655,7 +655,7 @@ class _$LoadingLookUpImpl implements _LoadingLookUp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadingLookup,
-    required TResult Function(RentLookupResponse lookup) loadedLookup,
+    required TResult Function(LookupResponse lookup) loadedLookup,
     required TResult Function(String message) errorLookUp,
   }) {
     return loadingLookup();
@@ -665,7 +665,7 @@ class _$LoadingLookUpImpl implements _LoadingLookUp {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadingLookup,
-    TResult? Function(RentLookupResponse lookup)? loadedLookup,
+    TResult? Function(LookupResponse lookup)? loadedLookup,
     TResult? Function(String message)? errorLookUp,
   }) {
     return loadingLookup?.call();
@@ -675,7 +675,7 @@ class _$LoadingLookUpImpl implements _LoadingLookUp {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadingLookup,
-    TResult Function(RentLookupResponse lookup)? loadedLookup,
+    TResult Function(LookupResponse lookup)? loadedLookup,
     TResult Function(String message)? errorLookUp,
     required TResult orElse(),
   }) {
@@ -730,9 +730,9 @@ abstract class _$$LoadedLookUpImplCopyWith<$Res> {
           _$LoadedLookUpImpl value, $Res Function(_$LoadedLookUpImpl) then) =
       __$$LoadedLookUpImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({RentLookupResponse lookup});
+  $Res call({LookupResponse lookup});
 
-  $RentLookupResponseCopyWith<$Res> get lookup;
+  $LookupResponseCopyWith<$Res> get lookup;
 }
 
 /// @nodoc
@@ -752,14 +752,14 @@ class __$$LoadedLookUpImplCopyWithImpl<$Res>
       lookup: null == lookup
           ? _value.lookup
           : lookup // ignore: cast_nullable_to_non_nullable
-              as RentLookupResponse,
+              as LookupResponse,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $RentLookupResponseCopyWith<$Res> get lookup {
-    return $RentLookupResponseCopyWith<$Res>(_value.lookup, (value) {
+  $LookupResponseCopyWith<$Res> get lookup {
+    return $LookupResponseCopyWith<$Res>(_value.lookup, (value) {
       return _then(_value.copyWith(lookup: value));
     });
   }
@@ -771,7 +771,7 @@ class _$LoadedLookUpImpl implements _LoadedLookUp {
   const _$LoadedLookUpImpl({required this.lookup});
 
   @override
-  final RentLookupResponse lookup;
+  final LookupResponse lookup;
 
   @override
   String toString() {
@@ -799,7 +799,7 @@ class _$LoadedLookUpImpl implements _LoadedLookUp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadingLookup,
-    required TResult Function(RentLookupResponse lookup) loadedLookup,
+    required TResult Function(LookupResponse lookup) loadedLookup,
     required TResult Function(String message) errorLookUp,
   }) {
     return loadedLookup(lookup);
@@ -809,7 +809,7 @@ class _$LoadedLookUpImpl implements _LoadedLookUp {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadingLookup,
-    TResult? Function(RentLookupResponse lookup)? loadedLookup,
+    TResult? Function(LookupResponse lookup)? loadedLookup,
     TResult? Function(String message)? errorLookUp,
   }) {
     return loadedLookup?.call(lookup);
@@ -819,7 +819,7 @@ class _$LoadedLookUpImpl implements _LoadedLookUp {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadingLookup,
-    TResult Function(RentLookupResponse lookup)? loadedLookup,
+    TResult Function(LookupResponse lookup)? loadedLookup,
     TResult Function(String message)? errorLookUp,
     required TResult orElse(),
   }) {
@@ -865,10 +865,10 @@ class _$LoadedLookUpImpl implements _LoadedLookUp {
 }
 
 abstract class _LoadedLookUp implements LookupState {
-  const factory _LoadedLookUp({required final RentLookupResponse lookup}) =
+  const factory _LoadedLookUp({required final LookupResponse lookup}) =
       _$LoadedLookUpImpl;
 
-  RentLookupResponse get lookup;
+  LookupResponse get lookup;
   @JsonKey(ignore: true)
   _$$LoadedLookUpImplCopyWith<_$LoadedLookUpImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -939,7 +939,7 @@ class _$ErrorLookUpImpl implements _ErrorLookUp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadingLookup,
-    required TResult Function(RentLookupResponse lookup) loadedLookup,
+    required TResult Function(LookupResponse lookup) loadedLookup,
     required TResult Function(String message) errorLookUp,
   }) {
     return errorLookUp(message);
@@ -949,7 +949,7 @@ class _$ErrorLookUpImpl implements _ErrorLookUp {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadingLookup,
-    TResult? Function(RentLookupResponse lookup)? loadedLookup,
+    TResult? Function(LookupResponse lookup)? loadedLookup,
     TResult? Function(String message)? errorLookUp,
   }) {
     return errorLookUp?.call(message);
@@ -959,7 +959,7 @@ class _$ErrorLookUpImpl implements _ErrorLookUp {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadingLookup,
-    TResult Function(RentLookupResponse lookup)? loadedLookup,
+    TResult Function(LookupResponse lookup)? loadedLookup,
     TResult Function(String message)? errorLookUp,
     required TResult orElse(),
   }) {

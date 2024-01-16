@@ -10,31 +10,31 @@ _$RealEstateBrokerLookUpImpl _$$RealEstateBrokerLookUpImplFromJson(
         Map<String, dynamic> json) =>
     _$RealEstateBrokerLookUpImpl(
       propertyTypeList: (json['propertyTypeList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       rentPurposeList: (json['rentPurposeList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       zoneList: (json['zoneList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       districtList: (json['districtList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       municipalityList: (json['municipalityList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       brokerCategoryList: (json['brokerCategoryList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       brokerTypeList: (json['brokerTypeList'] as List<dynamic>?)
-              ?.map((e) => RentLookupModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
     );
