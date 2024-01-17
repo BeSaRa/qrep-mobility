@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:ebla/app/depndency_injection.dart';
-import 'package:ebla/data/newtwok/failure_model/failure.dart';
+import 'package:ebla/data/network/failure_model/failure.dart';
 import 'package:ebla/domain/models/cms_models/app_settings/app_settings.dart';
 import 'package:ebla/domain/models/cms_models/user/requests/update_info_model.dart';
 import 'package:ebla/domain/models/models.dart';
@@ -14,9 +14,9 @@ import 'package:multiple_result/multiple_result.dart';
 import '../../app/constants.dart';
 import '../../domain/repository/repository.dart';
 import '../../presentations/resources/strings_manager.dart';
-import '../newtwok/app_api.dart';
-import '../newtwok/end_points.dart';
-import '../newtwok/network_info.dart';
+import '../network/app_api.dart';
+import '../network/end_points.dart';
+import '../network/network_info.dart';
 
 class RepositoryImplementer extends Repository {
   final AppServiceClient appServiceClient;
@@ -1256,6 +1256,34 @@ class RepositoryImplementer extends Repository {
     } else {
       return Error(FailureResponse(
           errors: [ErrorModel(message: AppStrings().noInternetError)]));
+    }
+  }
+
+  @override
+  Future<Result<String, FailureModel>> getCmsToken() async {
+    try {
+      Dio dio = instance<Dio>();
+      try {
+        final response =
+            await dio.get("${Constant.cmsBaseUrl}${EndPoints.getTokenApi}",
+                options: Options(
+                  headers: {
+                    "content-type": "application/json",
+                    "accept": "application/json",
+                  },
+                ));
+        if (response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel.fromJson(defaultError));
+      }
+    } catch (e) {
+      return Error(FailureModel.fromJson(defaultError));
     }
   }
 }

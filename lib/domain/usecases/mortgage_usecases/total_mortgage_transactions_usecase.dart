@@ -1,8 +1,9 @@
-import 'package:ebla/data/newtwok/failure_model/failure.dart';
+import 'package:ebla/data/network/failure_model/failure.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/domain/models/requests/mortgage_requests/request_mortgage_values.dart';
 import 'package:ebla/domain/repository/repository.dart';
-import 'package:ebla/domain/usecases/base_usecases/base_usecase.dart';import 'package:multiple_result/multiple_result.dart';
+import 'package:ebla/domain/usecases/base_usecases/base_usecase.dart';
+import 'package:multiple_result/multiple_result.dart';
 
 class TotalMortgageTransactionsUseCase
     implements BaseUseCase<RequestMortgageValues, List<BaseRentResponse>> {

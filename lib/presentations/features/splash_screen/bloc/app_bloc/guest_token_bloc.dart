@@ -6,21 +6,22 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../../../../../app/app_preferences.dart';
 import '../../../../../app/depndency_injection.dart';
 import '../../../../../domain/models/cms_models/app_settings/app_settings.dart';
-import '../../../../../domain/usecases/cms/app_settings_usecase.dart';
+import '../../../../../domain/usecases/usecases.dart';
 
 part 'guest_token_bloc.freezed.dart';
-
 part 'guest_token_event.dart';
-
 part 'guest_token_state.dart';
 
 class GuestTokenBloc extends Bloc<GuestTokenEvent, GuestTokenState> {
   final AppPreferences appPreferences;
   final AppSettingsUseCase appSettingsUseCase;
+  final GetCmsTokenUseCase getCmsTokenUsecase;
 
-  GuestTokenBloc(
-      {required this.appPreferences, required this.appSettingsUseCase})
-      : super(const _Initial()) {
+  GuestTokenBloc({
+    required this.appPreferences,
+    required this.appSettingsUseCase,
+    required this.getCmsTokenUsecase,
+  }) : super(const _Initial()) {
     AppSettingsResponse projectDataResponse;
     on<GuestTokenEvent>((event, emit) async {
       await event.map(
@@ -30,11 +31,20 @@ class GuestTokenBloc extends Bloc<GuestTokenEvent, GuestTokenState> {
           PackageInfo packageInfo = await PackageInfo.fromPlatform();
           bool update = false;
           bool canUpdate = false;
+          String cmsToken = "";
           if (token.isEmpty) {
             await appPreferences.setUserToken(Constant.guestToken);
             await resetAllModules();
           }
           successState(false);
+          final getTokenSuccess = await getCmsTokenUsecase.execute();
+          getTokenSuccess.when((success) {
+            print("the success token");
+            print(success);
+            cmsToken = success;
+          }, (error) {
+            emit(const GuestTokenState.initial());
+          });
           // final failureOrSuccess = await appSettingsUseCase.execute();
           // failureOrSuccess.when((success) async {
           //   projectDataResponse = success;

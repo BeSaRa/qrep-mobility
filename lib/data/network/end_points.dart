@@ -120,4 +120,7 @@ class EndPoints {
 
   ///settings
   static const String appSettings = "/settings";
+
+  static const String getTokenApi =
+      "/flows/trigger/412A3B92-16F9-437D-AAFC-BBE5E25ED9F5";
 }

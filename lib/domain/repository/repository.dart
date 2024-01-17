@@ -1,6 +1,6 @@
 import 'package:multiple_result/multiple_result.dart';
 
-import '../../data/newtwok/failure_model/failure.dart';
+import '../../data/network/failure_model/failure.dart';
 import '../models/cms_models/app_settings/app_settings.dart';
 import '../models/cms_models/user/requests/update_info_model.dart';
 import '../models/models.dart';
@@ -9,6 +9,8 @@ import '../usecases/cms/update_fcm_usecase.dart';
 
 abstract class Repository {
   //-------------CMS
+  Future<Result<String, FailureModel>> getCmsToken();
+
   Future<Result<AppSettingsResponse, FailureModel>> getAppSettings();
 
   Future<Result<TranslationsModel, FailureModel>> getTranslations(int limit);

@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:ebla/app/constants.dart';
 import 'package:ebla/app/depndency_injection.dart';
-import 'package:ebla/data/newtwok/end_points.dart';
+import 'package:ebla/data/network/end_points.dart';
 import 'package:ebla/presentations/features/main/blocs/lookup_bloc/lookup_bloc.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,4 +1,4 @@
-import 'package:ebla/data/newtwok/failure_model/failure.dart';
+import 'package:ebla/data/network/failure_model/failure.dart';
 import 'package:ebla/domain/models/requests/sell_requests/request_sell_values.dart';
 import 'package:ebla/domain/repository/repository.dart';
 import 'package:ebla/domain/usecases/base_usecases/base_usecase.dart';

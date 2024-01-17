@@ -2,7 +2,7 @@ import 'package:ebla/domain/models/mrtgage_models/mortgage_models.dart';
 import 'package:ebla/domain/models/requests/mortgage_requests/request_mortgage_values.dart';
 import 'package:multiple_result/multiple_result.dart';
 
-import '../../../data/newtwok/failure_model/failure.dart';
+import '../../../data/network/failure_model/failure.dart';
 import '../../repository/repository.dart';
 import '../base_usecases/base_usecase.dart';
 

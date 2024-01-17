@@ -1,4 +1,4 @@
-import 'package:ebla/data/newtwok/failure_model/failure.dart';
+import 'package:ebla/data/network/failure_model/failure.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 import '../../models/rent_models/rent_models.dart';

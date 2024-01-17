@@ -3,10 +3,10 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../data/newtwok/app_api.dart';
-import '../data/newtwok/dio_factory.dart';
-import '../data/newtwok/general_dio_interceptor.dart';
-import '../data/newtwok/network_info.dart';
+import '../data/network/app_api.dart';
+import '../data/network/dio_factory.dart';
+import '../data/network/general_dio_interceptor.dart';
+import '../data/network/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecases/usecases.dart';
@@ -84,10 +84,19 @@ Future<void> initAppModule() async {
     instance.registerFactory<AppSettingsUseCase>(
         () => AppSettingsUseCase(instance<Repository>()));
   }
+
+  if (!GetIt.I.isRegistered<GetCmsTokenUseCase>()) {
+    instance.registerFactory<GetCmsTokenUseCase>(
+        () => GetCmsTokenUseCase(instance<Repository>()));
+  }
+
   if (!GetIt.I.isRegistered<GuestTokenBloc>()) {
-    instance.registerFactory<GuestTokenBloc>(() => GuestTokenBloc(
-        appPreferences: instance(),
-        appSettingsUseCase: instance<AppSettingsUseCase>()));
+    instance.registerFactory<GuestTokenBloc>(
+      () => GuestTokenBloc(
+          appPreferences: instance(),
+          appSettingsUseCase: instance<AppSettingsUseCase>(),
+          getCmsTokenUsecase: instance<GetCmsTokenUseCase>()),
+    );
   }
   if (!GetIt.I.isRegistered<UserUsecase>()) {
     instance.registerFactory<UserUsecase>(

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:ebla/data/newtwok/end_points.dart';
+import 'package:ebla/data/network/end_points.dart';
 import 'package:ebla/domain/models/requests/broker_requests/request_broker_values.dart';
 import 'package:retrofit/retrofit.dart';
 

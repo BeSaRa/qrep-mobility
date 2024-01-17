@@ -5,6 +5,7 @@ export 'base_usecases/base_usecase.dart';
 //--------------------cms------------------
 export 'cms/app_settings_usecase.dart';
 export 'cms/cms_usecases.dart';
+export 'cms/get_token_usecase.dart';
 export 'cms/update_fcm_usecase.dart';
 export 'cms/user_usecases.dart';
 export 'mortgage_usecases/lookup_mortgage_usecase.dart';

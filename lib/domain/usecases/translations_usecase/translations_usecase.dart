@@ -3,7 +3,7 @@ import 'package:ebla/domain/repository/repository.dart';
 import 'package:ebla/domain/usecases/usecases.dart';
 import 'package:multiple_result/multiple_result.dart';
 
-import '../../../../data/newtwok/failure_model/failure.dart';
+import '../../../../data/network/failure_model/failure.dart';
 
 class TranslationsUseCase implements BaseUseCase<int, TranslationsModel> {
   final Repository repository;

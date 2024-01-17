@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/app_preferences.dart';
 import 'package:ebla/app/depndency_injection.dart';
-import 'package:ebla/data/newtwok/failure_model/failure.dart';
+import 'package:ebla/data/network/failure_model/failure.dart';
 import 'package:ebla/domain/models/translations_model/translations_model.dart';
 import 'package:ebla/domain/usecases/translations_usecase/translations_usecase.dart';
 import 'package:ebla/utils/colored_printer.dart';
