@@ -92,3 +92,79 @@ class ResponseStatusCode {
   static const int SUCCESS = 200;
   static const int TOKEN_EXPIRED = 401;
 }
+
+class GeneralCMSInterceptor extends Interceptor {
+  final Dio dio;
+  final AppPreferences appPreferences;
+
+  GeneralCMSInterceptor(
+    this.appPreferences,
+    this.dio,
+  );
+
+  @override
+  Future onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
+    if (options.headers['authorization'] ==
+        "Bearer ${await appPreferences.getUserToken()}") {
+      return handler.next(options);
+    }
+
+    options.headers.addAll(
+        {'authorization': 'Bearer ${await appPreferences.getCmsUserToken()}'});
+    return handler.next(options);
+  }
+
+  @override
+  Future<void> onError(
+      DioException err, ErrorInterceptorHandler handler) async {
+    if (err.response?.statusCode == 401 &&
+        (err.requestOptions.path != EndPoints.auth)) {
+      try {
+        final response = await dio.post(
+            "${Constant.cmsBaseUrl}${EndPoints.refreshToken}",
+            data: json.encode({
+              "refresh_token": appPreferences.getUserRefreshToken(),
+              "mode": "json"
+            }),
+            options: Options(
+              headers: {
+                "content-type": "application/json",
+                "accept": "application/json",
+              },
+            ));
+        if (response.statusCode == 200) {
+          var newToken = response.data["data"]["access_token"];
+          var refreshToken = response.data["data"]["refresh_token"];
+          await appPreferences.setUserToken(newToken);
+          await appPreferences.setUserRefreshToken(refreshToken);
+          NavigationKeys.rootNavigatorKey.currentContext!
+              .read<LookupBloc>()
+              .add(const LookupEvent.initilaEvent());
+          await resetAllModules();
+          await initHomeModule();
+          instance<Dio>().options.headers["authorization"] = "Bearer $newToken";
+          return handler
+              .resolve(await instance<Dio>().fetch(err.requestOptions));
+        } else {
+          //todo
+          await appPreferences.setUserToken(Constant.guestToken);
+          await appPreferences.setUserRefreshToken("");
+          instance<Dio>().options.headers["authorization"] =
+              "Bearer ${Constant.guestToken}";
+
+          return handler
+              .resolve(await instance<Dio>().fetch(err.requestOptions));
+        }
+      } catch (e) {
+        await appPreferences.setUserToken(Constant.guestToken);
+        await appPreferences.setUserRefreshToken("");
+
+        instance<Dio>().options.headers["authorization"] =
+            "Bearer ${Constant.guestToken}";
+        return handler.resolve(await instance<Dio>().fetch(err.requestOptions));
+      }
+    }
+    return handler.next(err);
+  }
+}

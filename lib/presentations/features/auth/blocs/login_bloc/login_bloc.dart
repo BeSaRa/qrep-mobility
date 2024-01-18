@@ -28,6 +28,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             name = "";
             name = value.authRequest.email;
             appPreferences.setUserToken(success.data.token);
+            appPreferences.setCmsUserToken(success.data.token);
             appPreferences.setUserRefreshToken(success.data.refreshToken);
             appPreferences.setUserLoggedIn(true);
 

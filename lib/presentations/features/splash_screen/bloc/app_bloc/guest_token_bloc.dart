@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:ebla/app/constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -26,52 +28,49 @@ class GuestTokenBloc extends Bloc<GuestTokenEvent, GuestTokenState> {
     on<GuestTokenEvent>((event, emit) async {
       await event.map(
         tokenGuest: (value) async {
+          //1-  should get the token from cms which will be the backend token
+          //2-  should check if the user is logged in or not
+          //3-  should check the app setting if should update
+          //for the scenario check the app preference for the token if null then get the
+
           emit(const GuestTokenState.loading());
           var token = await appPreferences.getUserToken();
           PackageInfo packageInfo = await PackageInfo.fromPlatform();
           bool update = false;
           bool canUpdate = false;
-          String cmsToken = "";
           if (token.isEmpty) {
-            await appPreferences.setUserToken(Constant.guestToken);
-            await resetAllModules();
+            final getTokenSuccess = await getCmsTokenUsecase.execute();
+            getTokenSuccess.when((success) {
+              appPreferences.setCmsUserToken(Constant.guestToken);
+              appPreferences.setUserToken(success);
+              resetAllModules();
+            }, (error) {});
           }
-          successState(false);
-          final getTokenSuccess = await getCmsTokenUsecase.execute();
-          getTokenSuccess.when((success) {
-            print("the success token");
-            print(success);
-            cmsToken = success;
+          final failureOrSuccess = await appSettingsUseCase.execute();
+          failureOrSuccess.when((success) async {
+            projectDataResponse = success;
+            String version = packageInfo.version;
+            String buildNumber = packageInfo.buildNumber;
+            if (Platform.isAndroid) {
+              update = int.parse(buildNumber) < success.data.android_version &&
+                  success.data.force_update;
+              canUpdate =
+                  int.parse(buildNumber) < success.data.android_version &&
+                      success.data.force_update == false;
+            } else {
+              update = version != success.data.ios_version &&
+                  success.data.force_update;
+              canUpdate = version != success.data.ios_version &&
+                  success.data.force_update == false;
+            }
+            if (update == true) {
+              emit(const GuestTokenState.shouldUpdate());
+            } else {
+              successState(canUpdate);
+            }
           }, (error) {
             emit(const GuestTokenState.initial());
           });
-          // final failureOrSuccess = await appSettingsUseCase.execute();
-          // failureOrSuccess.when((success) async {
-          //   projectDataResponse = success;
-          //
-          //
-          //   // String version = packageInfo.version;
-          //   // String buildNumber = packageInfo.buildNumber;
-          //   // if (Platform.isAndroid) {
-          //   //   update = int.parse(buildNumber) < success.data.android_version &&
-          //   //       success.data.force_update;
-          //   //   canUpdate =
-          //   //       int.parse(buildNumber) < success.data.android_version &&
-          //   //           success.data.force_update == false;
-          //   // } else {
-          //   //   update = version != success.data.ios_version &&
-          //   //       success.data.force_update;
-          //   //   canUpdate = version != success.data.ios_version &&
-          //   //       success.data.force_update == false;
-          //   // }
-          //   // if (update == true) {
-          //   //   emit(const GuestTokenState.shouldUpdate());
-          //   // } else {
-          //   //   successState(canUpdate);
-          //   // }
-          // }, (error) {
-          //   emit(const GuestTokenState.initial());
-          // });
         },
       );
     });

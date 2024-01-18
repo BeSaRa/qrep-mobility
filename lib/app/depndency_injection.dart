@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/network/app_api.dart';
+import '../data/network/cms_dio_factory.dart';
 import '../data/network/dio_factory.dart';
 import '../data/network/general_dio_interceptor.dart';
 import '../data/network/network_info.dart';
@@ -31,15 +32,21 @@ Future<void> initAppModule() async {
   instance.registerFactory<AppPreferences>(() => AppPreferences(instance()));
 
   instance.registerLazySingleton<DioFactory>(() => DioFactory(instance()));
+  instance
+      .registerLazySingleton<CmsDioFactory>(() => CmsDioFactory(instance()));
 
   instance.registerFactory<GeneralInterceptor>(
       () => GeneralInterceptor(instance<AppPreferences>(), dioRefreshToken));
+  instance.registerFactory<GeneralCMSInterceptor>(
+      () => GeneralCMSInterceptor(instance<AppPreferences>(), dioRefreshToken));
   final dio = await instance<DioFactory>().getDio();
+  final cmsDio = await instance<CmsDioFactory>().getDio();
   instance.registerFactory<Dio>(() => dio);
 
   instance.registerLazySingleton<AppServiceClient>(
       () => AppServiceClient(instance<Dio>()));
-  instance.registerLazySingleton<CmsServiceClient>(() => CmsServiceClient(dio));
+  instance
+      .registerLazySingleton<CmsServiceClient>(() => CmsServiceClient(cmsDio));
 
   instance.registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImplementer(Connectivity()));
@@ -93,9 +100,10 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<GuestTokenBloc>()) {
     instance.registerFactory<GuestTokenBloc>(
       () => GuestTokenBloc(
-          appPreferences: instance(),
-          appSettingsUseCase: instance<AppSettingsUseCase>(),
-          getCmsTokenUsecase: instance<GetCmsTokenUseCase>()),
+        appPreferences: instance(),
+        appSettingsUseCase: instance<AppSettingsUseCase>(),
+        getCmsTokenUsecase: instance<GetCmsTokenUseCase>(),
+      ),
     );
   }
   if (!GetIt.I.isRegistered<UserUsecase>()) {
@@ -130,7 +138,9 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<UserBloc>()) {
     instance.registerFactory<UserBloc>(() => UserBloc(
         userUsecase: instance<UserUsecase>(),
-        updateInfoUsecase: instance<UpdateInfoUsecase>()));
+        updateInfoUsecase: instance<UpdateInfoUsecase>(),
+        getCmsTokenUsecase: instance<GetCmsTokenUseCase>(),
+        appPreferences: instance<AppPreferences>()));
   }
   if (!GetIt.I.isRegistered<MainMenuBloc>()) {
     instance.registerFactory<MainMenuBloc>(

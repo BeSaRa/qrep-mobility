@@ -1443,7 +1443,7 @@ class _CmsServiceClient implements CmsServiceClient {
     )
             .compose(
               _dio.options,
-              '/users/',
+              '/users/${id}',
               queryParameters: queryParameters,
               data: _data,
             )

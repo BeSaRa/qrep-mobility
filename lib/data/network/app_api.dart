@@ -214,7 +214,7 @@ abstract class CmsServiceClient {
   Future<HttpResponse<UserResponse>> updateUserInfo(
       @Path("id") String id, @Body() RequestUpdateInfoModel requestUpdateInfo);
 
-  @PATCH(EndPoints.userEdit)
+  @PATCH(EndPoints.updateUserInfo)
   Future<HttpResponse<UserResponse>> updateFcmToken(
       @Path() String id, @Field("fcm_token") String fcmToken);
 

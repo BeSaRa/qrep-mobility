@@ -13,6 +13,7 @@ class AppPreferences {
 
   String PREFS_KEY_LANG = 'PREFS_KEY_LANG';
   String PREFS_KEY_TOKEN = 'PREFS_KEY_TOKEN';
+  String PREFS_KEY_CMS_TOKEN = 'PREFS_KEY_CMS_TOKEN';
   String PREFS_KEY_REFRESH_TOKEN = 'PREFS_KEY_REFRESH_TOKEN';
   String PREFS_KEY_THEME = 'PREFS_KEY_THEME';
   String PREFS_KEY_FACE_ID = 'PREFS_KEY_FACE';
@@ -21,7 +22,7 @@ class AppPreferences {
       'PREFS_KEY_LOCALIZATIONS_LAST_UPDATE';
 
   Future<String> getAppLanguage() async {
-    String? language = _sharedPreferences.getString(PREFS_KEY_LANG) ??'';
+    String? language = _sharedPreferences.getString(PREFS_KEY_LANG) ?? '';
     if (language.isNotEmpty) {
       return language;
     } else {
@@ -73,6 +74,14 @@ class AppPreferences {
 
   String getUserRefreshToken() {
     return _sharedPreferences.getString(PREFS_KEY_REFRESH_TOKEN) ?? '';
+  }
+
+  Future<void> setCmsUserToken(String token) async {
+    _sharedPreferences.setString(PREFS_KEY_CMS_TOKEN, token);
+  }
+
+  Future<String> getCmsUserToken() async {
+    return _sharedPreferences.getString(PREFS_KEY_CMS_TOKEN) ?? '';
   }
 
   Future<void> setUserFaceId(bool val) async {

@@ -249,12 +249,13 @@ class _MoreViewState extends State<MoreView> {
                                                 value: context.read<UserBloc>())
                                           ],
                                               child: const Dialog(
-                                                child: DialogsignOut(),
+                                                child: DialogSignOut(),
                                               )),
                                     );
                                     if (res != null && res) {
                                       await instance<AppPreferences>()
                                           .setUserLoggedIn(false);
+
                                       await instance<AppPreferences>()
                                           .setUserToken(Constant.guestToken);
                                       await instance<AppPreferences>()

@@ -41,11 +41,9 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness:
-        instance<AppPreferences>()
-            .getTheme()
-            .brightness == Brightness.light
-            ? Brightness.light
-            : Brightness.dark));
+            instance<AppPreferences>().getTheme().brightness == Brightness.light
+                ? Brightness.light
+                : Brightness.dark));
     guestToken = instance<GuestTokenBloc>()
       ..add(const GuestTokenEvent.tokenGuest());
   }
@@ -57,9 +55,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
       _isVisible = !_isVisible;
       backgroundImageBottomPosition = -15;
     });
-    if (context
-        .read<LoggedInUserCubit>()
-        .state) {
+    if (context.read<LoggedInUserCubit>().state) {
       context.read<UserBloc>().add(const UserEvent.getUserInfo());
     } else {
       context.read<UserBloc>().add(const UserEvent.guestUser());
@@ -94,90 +90,95 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
         duration: const Duration(milliseconds: 60000),
         child: !isRed
             ? BlocConsumer<GuestTokenBloc, GuestTokenState>(
-          bloc: guestToken,
-          listener: (context, state) {
-            state.map(
-                initial: (initial) {},
-                loading: (loading) {},
-                success: (success) {
-                  if (success.canUpdate) {
-                    // here you can add a warning dialog to upgrade
-                  } else {
-                    WidgetsBinding.instance
-                        .addPostFrameCallback((timeStamp) {
-                      Future.delayed(
-                        const Duration(milliseconds: 200),
+                bloc: guestToken,
+                listener: (context, state) {
+                  state.map(
+                      initial: (initial) {
+                        WidgetsBinding.instance
+                            .addPostFrameCallback((timeStamp) {
+                          Future.delayed(
+                            const Duration(milliseconds: 1000),
                             () {
-                          _startAnimation();
-                        },
-                      );
-                    });
-                  }
+                              _startAnimation();
+                            },
+                          );
+                        });
+                      },
+                      loading: (loading) {},
+                      success: (success) {
+                        if (success.canUpdate) {
+                          // here you can add a warning dialog to upgrade
+                        } else {
+                          WidgetsBinding.instance
+                              .addPostFrameCallback((timeStamp) {
+                            Future.delayed(
+                              const Duration(milliseconds: 200),
+                              () {
+                                _startAnimation();
+                              },
+                            );
+                          });
+                        }
+                      },
+                      shouldUpdate: (shouldUpdate) {});
                 },
-                shouldUpdate: (shouldUpdate) {
-
-                });
-          },
-          builder: (context, state) {
-            return state.map(initial: (val) {
-              return SplashScaffold(
-                backgroundImageBottomPosition:
-                backgroundImageBottomPosition,
-                isVisible: _isVisible,
-                scale: _scale,
-                showRedScreen: () {},
-              );
-            }, loading: (val) {
-              return SplashScaffold(
-                backgroundImageBottomPosition:
-                backgroundImageBottomPosition,
-                isVisible: _isVisible,
-                scale: _scale,
-                showRedScreen: () {},
-              );
-            }, success: (val) {
-              return SplashScaffold(
-                backgroundImageBottomPosition:
-                backgroundImageBottomPosition,
-                isVisible: _isVisible,
-                scale: _scale,
-                showRedScreen: showRedScreenAfterDelay,
-              );
-            }, shouldUpdate: (val) {
-              return Scaffold(
-                body: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: SizedBox(
-                          height: AppSizeH.s304,
-                          width: AppSizeH.s304,
-                          child: Lottie.asset(ImageAssets.upgrade)),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: AppSizeH.s20,
-                          horizontal: AppSizeW.s40),
-                      child: Text(
-                        AppStrings().shouldUpdateApplication,
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .titleLarge,
-                        textAlign: TextAlign.center,
+                builder: (context, state) {
+                  return state.map(initial: (val) {
+                    return SplashScaffold(
+                      backgroundImageBottomPosition:
+                          backgroundImageBottomPosition,
+                      isVisible: _isVisible,
+                      scale: _scale,
+                      showRedScreen: () {},
+                    );
+                  }, loading: (val) {
+                    return SplashScaffold(
+                      backgroundImageBottomPosition:
+                          backgroundImageBottomPosition,
+                      isVisible: _isVisible,
+                      scale: _scale,
+                      showRedScreen: () {},
+                    );
+                  }, success: (val) {
+                    return SplashScaffold(
+                      backgroundImageBottomPosition:
+                          backgroundImageBottomPosition,
+                      isVisible: _isVisible,
+                      scale: _scale,
+                      showRedScreen: showRedScreenAfterDelay,
+                    );
+                  }, shouldUpdate: (val) {
+                    return Scaffold(
+                      body: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: SizedBox(
+                                height: AppSizeH.s304,
+                                width: AppSizeH.s304,
+                                child: Lottie.asset(ImageAssets.upgrade)),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: AppSizeH.s20,
+                                horizontal: AppSizeW.s40),
+                            child: Text(
+                              AppStrings().shouldUpdateApplication,
+                              style: Theme.of(context).textTheme.titleLarge,
+                              textAlign: TextAlign.center,
+                            ),
+                          )
+                        ],
                       ),
-                    )
-                  ],
-                ),
-              );
-            });
-          },
-        )
+                    );
+                  });
+                },
+              )
             : Scaffold(
-          key: UniqueKey(),
-          backgroundColor: ColorManager.primary,
-        ));
+                key: UniqueKey(),
+                backgroundColor: ColorManager.primary,
+              ));
   }
 
 // @override
@@ -193,18 +194,17 @@ class SplashScaffold extends StatelessWidget {
   final double scale;
   final Function showRedScreen;
 
-  const SplashScaffold({super.key,
-    required this.backgroundImageBottomPosition,
-    required this.isVisible,
-    required this.scale,
-    required this.showRedScreen});
+  const SplashScaffold(
+      {super.key,
+      required this.backgroundImageBottomPosition,
+      required this.isVisible,
+      required this.scale,
+      required this.showRedScreen});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme
-          .of(context)
-          .scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Stack(
         children: [
           AnimatedPositioned(

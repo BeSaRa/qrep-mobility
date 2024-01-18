@@ -5,8 +5,8 @@ import '../../../../app/depndency_injection.dart';
 import '../../../resources/resources.dart';
 import '../../../widgets/widgets.dart';
 
-class DialogsignOut extends StatelessWidget {
-  const DialogsignOut({super.key});
+class DialogSignOut extends StatelessWidget {
+  const DialogSignOut({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,29 +16,21 @@ class DialogsignOut extends StatelessWidget {
           vertical: AppSizeH.s30, horizontal: AppSizeW.s30),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppSizeW.s15),
-        color: Theme
-            .of(context)
-            .scaffoldBackgroundColor,
+        color: Theme.of(context).scaffoldBackgroundColor,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             AppStrings().logout,
-            style: Theme
-                .of(context)
-                .textTheme
-                .bodyLarge,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           SizedBox(
             height: AppSizeH.s20,
           ),
           Text(
             AppStrings().validateLogout,
-            style: Theme
-                .of(context)
-                .textTheme
-                .titleMedium,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           SizedBox(
             height: AppSizeH.s20,
@@ -50,8 +42,7 @@ class DialogsignOut extends StatelessWidget {
                 Expanded(
                   child: CustomElevatedButton(
                     isPrimary: false,
-                    titleStyle: Theme
-                        .of(context)
+                    titleStyle: Theme.of(context)
                         .textTheme
                         .displaySmall!
                         .copyWith(color: ColorManager.primary),
@@ -66,17 +57,14 @@ class DialogsignOut extends StatelessWidget {
                   child: CustomElevatedButton(
                     isPrimary: true,
                     title: AppStrings().no,
-
                     onPress: () {
                       Navigator.of(context).pop();
                     },
                     backgroundColor:
-                    instance<AppPreferences>()
-                        .getTheme()
-                        .brightness ==
-                        Brightness.light
-                        ? ColorManager.primary
-                        : ColorManager.greyCloud,
+                        instance<AppPreferences>().getTheme().brightness ==
+                                Brightness.light
+                            ? ColorManager.primary
+                            : ColorManager.greyCloud,
                   ),
                 ),
               ],
