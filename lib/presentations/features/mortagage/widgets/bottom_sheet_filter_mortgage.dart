@@ -218,8 +218,7 @@ class _BottomSheetFilterMortgageWidgetState
           arName: element.toString(), id: element, enName: element.toString()));
     });
     List<LookupModel> listDistrictWithAll = [];
-    listDistrictWithAll
-        .addAll(context.read<LookupBloc>().lookUpMortgage?.districtList ?? []);
+
     if (!listDistrictWithAll.contains(const LookupModel(
         isActive: true,
         lookupKey: -1,
@@ -233,13 +232,14 @@ class _BottomSheetFilterMortgageWidgetState
           enName: "All",
           id: -1));
     }
+    listDistrictWithAll
+        .addAll(context.read<LookupBloc>().lookUpMortgage?.districtList ?? []);
     context.read<LookupBloc>().lookUpMortgage = context
         .read<LookupBloc>()
         .lookUpMortgage
         ?.copyWith(districtList: listDistrictWithAll);
     List<LookupModel> listMunicipalityWithAll = [];
-    listMunicipalityWithAll.addAll(
-        context.read<LookupBloc>().lookUpMortgage?.municipalityList ?? []);
+
     if (!listMunicipalityWithAll.contains(const LookupModel(
         isActive: true,
         lookupKey: -1,
@@ -253,6 +253,8 @@ class _BottomSheetFilterMortgageWidgetState
           enName: "All",
           id: -1));
     }
+    listMunicipalityWithAll.addAll(
+        context.read<LookupBloc>().lookUpMortgage?.municipalityList ?? []);
     context.read<LookupBloc>().lookUpMortgage = context
         .read<LookupBloc>()
         .lookUpMortgage
@@ -272,8 +274,7 @@ class _BottomSheetFilterMortgageWidgetState
         const LookupModel();
     //Property and Purpose
     List<LookupModel> listPropertyWithAll = [];
-    listPropertyWithAll.addAll(
-        context.read<LookupBloc>().lookUpMortgage?.propertyTypeList ?? []);
+
     if (!listPropertyWithAll.contains(const LookupModel(
         isActive: true,
         lookupKey: -1,
@@ -287,6 +288,8 @@ class _BottomSheetFilterMortgageWidgetState
           enName: "All",
           id: -1));
     }
+    listPropertyWithAll.addAll(
+        context.read<LookupBloc>().lookUpMortgage?.propertyTypeList ?? []);
     context.read<LookupBloc>().lookUpMortgage = context
         .read<LookupBloc>()
         .lookUpMortgage

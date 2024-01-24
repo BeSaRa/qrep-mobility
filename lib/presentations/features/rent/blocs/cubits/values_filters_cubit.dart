@@ -173,6 +173,7 @@ class ValuesFiltersCubit extends Cubit<LookupModel> {
   //---------------------------Area-------------------------------
   num? areaFrom;
   num? areaTo;
+
   RangeValues? rangeValuesArea;
 
   void changeRangeValuesArea(RangeValues values) {

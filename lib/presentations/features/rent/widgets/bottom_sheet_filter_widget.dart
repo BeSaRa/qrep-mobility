@@ -267,8 +267,6 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     //     const RentLookupModel();
     //Property and Purpose
     List<LookupModel> listMunicipalityWithAll = [];
-    listMunicipalityWithAll
-        .addAll(context.read<LookupBloc>().lookUpRent?.municipalityList ?? []);
     if (!listMunicipalityWithAll.contains(const LookupModel(
         isActive: true,
         lookupKey: -1,
@@ -282,6 +280,8 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           enName: "All",
           id: -1));
     }
+    listMunicipalityWithAll
+        .addAll(context.read<LookupBloc>().lookUpRent?.municipalityList ?? []);
     context.read<LookupBloc>().lookUpRent = context
         .read<LookupBloc>()
         .lookUpRent

@@ -235,13 +235,22 @@ class _BottomSheetFilterSellWidgetState
         enName: "All",
         value: -1,
         id: -1))) {
-      listMunicipalityWithAll.add(const LookupModel(
-          isActive: true,
-          lookupKey: -1,
-          arName: "الكل",
-          enName: "All",
-          value: -1,
-          id: -1));
+      listMunicipalityWithAll.insert(
+          0,
+          LookupModel(
+              isActive: true,
+              lookupKey: -1,
+              arName: "الكل",
+              enName: "All",
+              value: -1,
+              id: -1));
+      // listMunicipalityWithAll.add(const LookupModel(
+      //     isActive: true,
+      //     lookupKey: -1,
+      //     arName: "الكل",
+      //     enName: "All",
+      //     value: -1,
+      //     id: -1));
     }
     context.read<LookupBloc>().lookUpSell = context
         .read<LookupBloc>()
@@ -261,12 +270,20 @@ class _BottomSheetFilterSellWidgetState
         arName: "الكل",
         enName: "All",
         id: -1))) {
-      listDistrictWithAll.add(const LookupModel(
-          isActive: true,
-          lookupKey: -1,
-          arName: "الكل",
-          enName: "All",
-          id: -1));
+      // listDistrictWithAll.add(const LookupModel(
+      //     isActive: true,
+      //     lookupKey: -1,
+      //     arName: "الكل",
+      //     enName: "All",
+      //     id: -1));
+      listDistrictWithAll.insert(
+          0,
+          LookupModel(
+              isActive: true,
+              lookupKey: -1,
+              arName: "الكل",
+              enName: "All",
+              id: -1));
     }
     context.read<LookupBloc>().lookUpSell = context
         .read<LookupBloc>()
@@ -365,18 +382,37 @@ class _BottomSheetFilterSellWidgetState
     //Range Area
     if (context.read<SellBloc>().requestSell.areaFrom != null &&
         context.read<SellBloc>().requestSell.areaTo != null) {
-      valuesFiltersCubit.changeRangeValuesArea(RangeValues(
-          context.read<SellBloc>().requestSell.areaFrom!.toDouble(),
-          context.read<SellBloc>().requestSell.areaTo!.toDouble()));
+      print("fatina");
+      areaValueFromController.text = context.read<SellBloc>().unit == 1
+          ? context
+              .read<SellBloc>()
+              .requestSell
+              .areaFrom!
+              .toDouble()
+              .toStringAsFixed(0)
+          : (context.read<SellBloc>().requestSell.areaFrom! * 10.8)
+              .toStringAsFixed(0);
+      areaValueToController.text = context.read<SellBloc>().unit == 1
+          ? context
+              .read<SellBloc>()
+              .requestSell
+              .areaTo!
+              .toDouble()
+              .toStringAsFixed(0)
+          : (context.read<SellBloc>().requestSell.areaTo!.toDouble() * 10.8)
+              .toStringAsFixed(0);
+      print(areaValueToController.text);
+      print((context.read<SellBloc>().requestSell.areaTo!.toDouble() * 10.8)
+          .toStringAsFixed(0));
     }
-    context.read<SellBloc>().requestSell.areaFrom != null
-        ? areaValueFromController.text =
-            context.read<SellBloc>().requestSell.areaFrom.toString()
-        : null;
-    context.read<SellBloc>().requestSell.areaTo != null
-        ? areaValueToController.text =
-            context.read<SellBloc>().requestSell.areaTo.toString()
-        : null;
+    // context.read<SellBloc>().requestSell.areaFrom != null
+    //     ? areaValueFromController.text =
+    //         context.read<SellBloc>().requestSell.areaFrom.toString()
+    //     : null;
+    // context.read<SellBloc>().requestSell.areaTo != null
+    //     ? areaValueToController.text =
+    //         context.read<SellBloc>().requestSell.areaTo.toString()
+    //     : null;
     context.read<SellBloc>().requestSell.realEstateValueFrom != null
         ? sellValueFromController.text =
             context.read<SellBloc>().requestSell.realEstateValueFrom.toString()
@@ -756,6 +792,7 @@ class _BottomSheetFilterSellWidgetState
                   ),
                 ],
               ),
+              //period time and street
               SizedBox(height: AppSizeH.s12),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -791,6 +828,7 @@ class _BottomSheetFilterSellWidgetState
                   ),
                 ],
               ),
+              //choose unit
               SizedBox(height: AppSizeH.s12),
               Text(AppStrings().measuringUnit,
                   style: Theme.of(context).textTheme.labelMedium),
@@ -799,6 +837,7 @@ class _BottomSheetFilterSellWidgetState
                 value: valuesFiltersCubit,
                 child: const ChooseUnitWidget(),
               ),
+              // max and min value
               SizedBox(height: AppSizeH.s12),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -1026,6 +1065,7 @@ class _BottomSheetFilterSellWidgetState
                   ),
                 ],
               ),
+              //area from to
               SizedBox(height: AppSizeH.s12),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

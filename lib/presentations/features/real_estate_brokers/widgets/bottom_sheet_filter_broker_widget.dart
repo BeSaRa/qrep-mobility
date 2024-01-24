@@ -27,9 +27,7 @@ class _BottomSheetFilterBrokerWidgetState
     valuesFiltersCubit = ValuesFiltersCubit(const LookupModel());
 
     List<LookupModel> listMunicipalityWithAll = [];
-    listMunicipalityWithAll.addAll(
-        context.read<LookUpBrokerBloc>().lookupBrokerOv?.municipalityList ??
-            []);
+
     if (!listMunicipalityWithAll.contains(const LookupModel(
         isActive: true,
         lookupKey: -1,
@@ -43,6 +41,9 @@ class _BottomSheetFilterBrokerWidgetState
           enName: "All",
           id: -1));
     }
+    listMunicipalityWithAll.addAll(
+        context.read<LookUpBrokerBloc>().lookupBrokerOv?.municipalityList ??
+            []);
     context.read<LookUpBrokerBloc>().lookupBrokerOv = context
         .read<LookUpBrokerBloc>()
         .lookupBrokerOv

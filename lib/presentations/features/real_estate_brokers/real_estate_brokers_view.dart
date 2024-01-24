@@ -90,7 +90,8 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                               .read<LookUpBrokerBloc>()
                                               .requestBroker
                                               .copyWith(
-                                                  brokerName: val,
+                                                  brokerName:
+                                                      searchController.text,
                                                   limit: 5,
                                                   offset: 0),
                                         ));
@@ -100,7 +101,9 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                                     .read<LookUpBrokerBloc>()
                                                     .requestBroker
                                                     .copyWith(
-                                                        brokerName: val,
+                                                        brokerName:
+                                                            searchController
+                                                                .text,
                                                         limit: 5,
                                                         offset: 0)));
                                       });
@@ -366,8 +369,9 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                                 .requestBroker
                                                 .limit ??
                                             5,
-                                        totalDataCount:
-                                            brokersCountBloc.count.ceil(),
+                                        totalDataCount: getCount(
+                                            loaded.response.transactionList),
+                                        // .  brokersCountBloc.count.ceil(),
                                         onPreviousPage: (previousPage) {
                                           context.read<LookUpBrokerBloc>().requestBroker = context
                                               .read<LookUpBrokerBloc>()
@@ -391,7 +395,9 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                                                   LookUpBrokerBloc>()
                                                               .requestBroker
                                                               .limit ??
-                                                          1));
+                                                          1),
+                                                  brokerName:
+                                                      searchController.text);
                                           brokerTransactionBloc.add(
                                               BrokerTransactionEvent.started(
                                                   request: context
@@ -435,7 +441,9 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                                                   LookUpBrokerBloc>()
                                                               .requestBroker
                                                               .limit ??
-                                                          1)));
+                                                          1)),
+                                                  brokerName:
+                                                      searchController.text);
                                           brokerTransactionBloc.add(
                                               BrokerTransactionEvent.started(
                                                   request: context
@@ -521,6 +529,20 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
         );
       },
     );
+  }
+
+  int getCount(List list) {
+    if (((context.read<LookUpBrokerBloc>().requestBroker.offset ?? 0) ~/
+            (context.read<LookUpBrokerBloc>().requestBroker.limit ?? 1)) ==
+        0) {
+      print("fatina in condition");
+      if (list.length < 5) {
+        return 1;
+      } else
+        return brokersCountBloc.count.ceil();
+    } else {
+      return brokersCountBloc.count.ceil();
+    }
   }
 
   @override
