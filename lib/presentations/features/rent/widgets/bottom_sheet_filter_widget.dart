@@ -273,12 +273,14 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
         arName: "الكل",
         enName: "All",
         id: -1))) {
-      listMunicipalityWithAll.add(const LookupModel(
-          isActive: true,
-          lookupKey: -1,
-          arName: "الكل",
-          enName: "All",
-          id: -1));
+      listMunicipalityWithAll.insert(
+          0,
+          const LookupModel(
+              isActive: true,
+              lookupKey: -1,
+              arName: "الكل",
+              enName: "All",
+              id: -1));
     }
     listMunicipalityWithAll
         .addAll(context.read<LookupBloc>().lookUpRent?.municipalityList ?? []);

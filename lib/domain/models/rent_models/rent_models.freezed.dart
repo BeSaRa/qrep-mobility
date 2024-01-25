@@ -21,36 +21,65 @@ RentDefault _$RentDefaultFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RentDefault {
   int? get issueYear => throw _privateConstructorUsedError;
+
   double? get kpi10PreviousYear => throw _privateConstructorUsedError;
+
   double? get kpi10Val => throw _privateConstructorUsedError;
+
   double? get kpi13PreviousYear => throw _privateConstructorUsedError;
+
   double? get kpi13Val => throw _privateConstructorUsedError;
+
   double? get kpi16PreviousYear => throw _privateConstructorUsedError;
+
   double? get kpi16Val => throw _privateConstructorUsedError;
+
   double? get kpi16_2PreviousYear => throw _privateConstructorUsedError;
+
   double? get kpi16_2Val => throw _privateConstructorUsedError;
+
   double? get kpi1PreviousYear => throw _privateConstructorUsedError;
+
   double? get kpi1Val => throw _privateConstructorUsedError;
+
   double? get kpi4PreviousYear => throw _privateConstructorUsedError;
+
   double? get kpi4Val => throw _privateConstructorUsedError;
+
   double? get kpi7PreviousYear => throw _privateConstructorUsedError;
+
   double? get kpi7Val => throw _privateConstructorUsedError;
+
   double? get kpiYoY1 => throw _privateConstructorUsedError;
+
   double? get kpiYoY10 => throw _privateConstructorUsedError;
+
   double? get kpiYoY10Difference => throw _privateConstructorUsedError;
+
   double? get kpiYoY13 => throw _privateConstructorUsedError;
+
   double? get kpiYoY13Difference => throw _privateConstructorUsedError;
+
   double? get kpiYoY16 => throw _privateConstructorUsedError;
+
   double? get kpiYoY16Difference => throw _privateConstructorUsedError;
+
   double? get kpiYoY16_2 => throw _privateConstructorUsedError;
+
   double? get kpiYoY16_2Difference => throw _privateConstructorUsedError;
+
   double? get kpiYoY1Difference => throw _privateConstructorUsedError;
+
   double? get kpiYoY4 => throw _privateConstructorUsedError;
+
   double? get kpiYoY4Difference => throw _privateConstructorUsedError;
+
   double? get kpiYoY7 => throw _privateConstructorUsedError;
+
   double? get kpiYoY7Difference => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $RentDefaultCopyWith<RentDefault> get copyWith =>
       throw _privateConstructorUsedError;
@@ -61,6 +90,7 @@ abstract class $RentDefaultCopyWith<$Res> {
   factory $RentDefaultCopyWith(
           RentDefault value, $Res Function(RentDefault) then) =
       _$RentDefaultCopyWithImpl<$Res, RentDefault>;
+
   @useResult
   $Res call(
       {int? issueYear,
@@ -101,6 +131,7 @@ class _$RentDefaultCopyWithImpl<$Res, $Val extends RentDefault>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -264,6 +295,7 @@ abstract class _$$RentDefaultImplCopyWith<$Res>
   factory _$$RentDefaultImplCopyWith(
           _$RentDefaultImpl value, $Res Function(_$RentDefaultImpl) then) =
       __$$RentDefaultImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -735,62 +767,91 @@ abstract class _RentDefault implements RentDefault {
 
   @override
   int? get issueYear;
+
   @override
   double? get kpi10PreviousYear;
+
   @override
   double? get kpi10Val;
+
   @override
   double? get kpi13PreviousYear;
+
   @override
   double? get kpi13Val;
+
   @override
   double? get kpi16PreviousYear;
+
   @override
   double? get kpi16Val;
+
   @override
   double? get kpi16_2PreviousYear;
+
   @override
   double? get kpi16_2Val;
+
   @override
   double? get kpi1PreviousYear;
+
   @override
   double? get kpi1Val;
+
   @override
   double? get kpi4PreviousYear;
+
   @override
   double? get kpi4Val;
+
   @override
   double? get kpi7PreviousYear;
+
   @override
   double? get kpi7Val;
+
   @override
   double? get kpiYoY1;
+
   @override
   double? get kpiYoY10;
+
   @override
   double? get kpiYoY10Difference;
+
   @override
   double? get kpiYoY13;
+
   @override
   double? get kpiYoY13Difference;
+
   @override
   double? get kpiYoY16;
+
   @override
   double? get kpiYoY16Difference;
+
   @override
   double? get kpiYoY16_2;
+
   @override
   double? get kpiYoY16_2Difference;
+
   @override
   double? get kpiYoY1Difference;
+
   @override
   double? get kpiYoY4;
+
   @override
   double? get kpiYoY4Difference;
+
   @override
   double? get kpiYoY7;
+
   @override
   double? get kpiYoY7Difference;
+
   @override
   @JsonKey(ignore: true)
   _$$RentDefaultImplCopyWith<_$RentDefaultImpl> get copyWith =>
@@ -804,35 +865,58 @@ LookupResponse _$LookupResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$LookupResponse {
   List<LookupModel> get rooms => throw _privateConstructorUsedError;
+
   List<LookupModel> get durations => throw _privateConstructorUsedError;
+
   List<LookupModel> get halfYearDurations => throw _privateConstructorUsedError;
+
   List<LookupModel> get quarterYearDurations =>
       throw _privateConstructorUsedError;
+
   List<LookupModel> get spaces => throw _privateConstructorUsedError;
+
   List<LookupModel> get unitStatus => throw _privateConstructorUsedError;
+
   List<LookupModel> get propertyTypeList => throw _privateConstructorUsedError;
+
   List<LookupModel> get rentPurposeList => throw _privateConstructorUsedError;
+
   List<LookupModel> get zoneList => throw _privateConstructorUsedError;
+
   List<PeriodTimeDetails> get halfYearList =>
       throw _privateConstructorUsedError;
+
   List<PeriodTimeDetails> get quarterYearList =>
       throw _privateConstructorUsedError;
+
   List<LookupModel> get periodTime => throw _privateConstructorUsedError;
+
   List<LookupModel> get bedRooms => throw _privateConstructorUsedError;
+
   List<LookupModel> get districtList => throw _privateConstructorUsedError;
+
   List<LookupModel> get municipalityList => throw _privateConstructorUsedError;
+
   List<LookupModel> get furnitureStatusList =>
       throw _privateConstructorUsedError;
+
   List<LookupModel> get nationalityList => throw _privateConstructorUsedError;
+
   List<LookupModel> get nationalityCategoryList =>
       throw _privateConstructorUsedError;
+
   List<LookupModel> get genderList => throw _privateConstructorUsedError;
+
   List<LookupModel> get ageCategoryList => throw _privateConstructorUsedError;
+
   List<LookupModel> get ownerCategoryList => throw _privateConstructorUsedError;
+
   List<MaxParamsModel> get maxParams => throw _privateConstructorUsedError;
+
   List<LookupModel> get streetList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $LookupResponseCopyWith<LookupResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -843,6 +927,7 @@ abstract class $LookupResponseCopyWith<$Res> {
   factory $LookupResponseCopyWith(
           LookupResponse value, $Res Function(LookupResponse) then) =
       _$LookupResponseCopyWithImpl<$Res, LookupResponse>;
+
   @useResult
   $Res call(
       {List<LookupModel> rooms,
@@ -877,6 +962,7 @@ class _$LookupResponseCopyWithImpl<$Res, $Val extends LookupResponse>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -1010,6 +1096,7 @@ abstract class _$$RentLookupResponseImplCopyWith<$Res>
   factory _$$RentLookupResponseImplCopyWith(_$RentLookupResponseImpl value,
           $Res Function(_$RentLookupResponseImpl) then) =
       __$$RentLookupResponseImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -1202,13 +1289,13 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
         LookupModel(arName: 'شهري', id: 4, enName: 'Monthly')
       ],
       final List<LookupModel> bedRooms = const [
+        LookupModel(arName: 'الكل', id: -1, enName: 'ALL'),
         LookupModel(arName: 'استوديو', id: 6, enName: 'studio'),
         LookupModel(arName: 'غرفة', id: 1, enName: 'one room'),
         LookupModel(arName: 'غرفتين', id: 2, enName: '2 rooms'),
         LookupModel(arName: '3 غرف', id: 3, enName: '3 rooms'),
         LookupModel(arName: '4 غرف', id: 4, enName: '4 rooms'),
         LookupModel(arName: '5 غرف', id: 5, enName: '5 rooms'),
-        LookupModel(arName: 'الكل', id: -1, enName: 'ALL')
       ],
       final List<LookupModel> districtList = const [],
       final List<LookupModel> municipalityList = const [],
@@ -1248,6 +1335,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
       _$$RentLookupResponseImplFromJson(json);
 
   final List<LookupModel> _rooms;
+
   @override
   @JsonKey()
   List<LookupModel> get rooms {
@@ -1257,6 +1345,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _durations;
+
   @override
   @JsonKey()
   List<LookupModel> get durations {
@@ -1266,6 +1355,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _halfYearDurations;
+
   @override
   @JsonKey()
   List<LookupModel> get halfYearDurations {
@@ -1276,6 +1366,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _quarterYearDurations;
+
   @override
   @JsonKey()
   List<LookupModel> get quarterYearDurations {
@@ -1286,6 +1377,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _spaces;
+
   @override
   @JsonKey()
   List<LookupModel> get spaces {
@@ -1295,6 +1387,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _unitStatus;
+
   @override
   @JsonKey()
   List<LookupModel> get unitStatus {
@@ -1304,6 +1397,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _propertyTypeList;
+
   @override
   @JsonKey()
   List<LookupModel> get propertyTypeList {
@@ -1314,6 +1408,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _rentPurposeList;
+
   @override
   @JsonKey()
   List<LookupModel> get rentPurposeList {
@@ -1323,6 +1418,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _zoneList;
+
   @override
   @JsonKey()
   List<LookupModel> get zoneList {
@@ -1332,6 +1428,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<PeriodTimeDetails> _halfYearList;
+
   @override
   @JsonKey()
   List<PeriodTimeDetails> get halfYearList {
@@ -1341,6 +1438,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<PeriodTimeDetails> _quarterYearList;
+
   @override
   @JsonKey()
   List<PeriodTimeDetails> get quarterYearList {
@@ -1350,6 +1448,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _periodTime;
+
   @override
   @JsonKey()
   List<LookupModel> get periodTime {
@@ -1359,6 +1458,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _bedRooms;
+
   @override
   @JsonKey()
   List<LookupModel> get bedRooms {
@@ -1368,6 +1468,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _districtList;
+
   @override
   @JsonKey()
   List<LookupModel> get districtList {
@@ -1377,6 +1478,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _municipalityList;
+
   @override
   @JsonKey()
   List<LookupModel> get municipalityList {
@@ -1387,6 +1489,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _furnitureStatusList;
+
   @override
   @JsonKey()
   List<LookupModel> get furnitureStatusList {
@@ -1397,6 +1500,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _nationalityList;
+
   @override
   @JsonKey()
   List<LookupModel> get nationalityList {
@@ -1406,6 +1510,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _nationalityCategoryList;
+
   @override
   @JsonKey()
   List<LookupModel> get nationalityCategoryList {
@@ -1416,6 +1521,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _genderList;
+
   @override
   @JsonKey()
   List<LookupModel> get genderList {
@@ -1425,6 +1531,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _ageCategoryList;
+
   @override
   @JsonKey()
   List<LookupModel> get ageCategoryList {
@@ -1434,6 +1541,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _ownerCategoryList;
+
   @override
   @JsonKey()
   List<LookupModel> get ownerCategoryList {
@@ -1444,6 +1552,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<MaxParamsModel> _maxParams;
+
   @override
   @JsonKey()
   List<MaxParamsModel> get maxParams {
@@ -1453,6 +1562,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   final List<LookupModel> _streetList;
+
   @override
   @JsonKey()
   List<LookupModel> get streetList {
@@ -1590,50 +1700,73 @@ abstract class _RentLookupResponse implements LookupResponse {
 
   @override
   List<LookupModel> get rooms;
+
   @override
   List<LookupModel> get durations;
+
   @override
   List<LookupModel> get halfYearDurations;
+
   @override
   List<LookupModel> get quarterYearDurations;
+
   @override
   List<LookupModel> get spaces;
+
   @override
   List<LookupModel> get unitStatus;
+
   @override
   List<LookupModel> get propertyTypeList;
+
   @override
   List<LookupModel> get rentPurposeList;
+
   @override
   List<LookupModel> get zoneList;
+
   @override
   List<PeriodTimeDetails> get halfYearList;
+
   @override
   List<PeriodTimeDetails> get quarterYearList;
+
   @override
   List<LookupModel> get periodTime;
+
   @override
   List<LookupModel> get bedRooms;
+
   @override
   List<LookupModel> get districtList;
+
   @override
   List<LookupModel> get municipalityList;
+
   @override
   List<LookupModel> get furnitureStatusList;
+
   @override
   List<LookupModel> get nationalityList;
+
   @override
   List<LookupModel> get nationalityCategoryList;
+
   @override
   List<LookupModel> get genderList;
+
   @override
   List<LookupModel> get ageCategoryList;
+
   @override
   List<LookupModel> get ownerCategoryList;
+
   @override
   List<MaxParamsModel> get maxParams;
+
   @override
   List<LookupModel> get streetList;
+
   @override
   @JsonKey(ignore: true)
   _$$RentLookupResponseImplCopyWith<_$RentLookupResponseImpl> get copyWith =>
@@ -1647,18 +1780,29 @@ LookupModel _$LookupModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$LookupModel {
   int get value => throw _privateConstructorUsedError;
+
   int get yoy => throw _privateConstructorUsedError;
+
   bool get selected => throw _privateConstructorUsedError;
+
   String get url => throw _privateConstructorUsedError;
+
   bool get hasPrice => throw _privateConstructorUsedError;
+
   int get id => throw _privateConstructorUsedError;
+
   int get lookupKey => throw _privateConstructorUsedError;
+
   String get arName => throw _privateConstructorUsedError;
+
   String get enName => throw _privateConstructorUsedError;
+
   int get municipalityId => throw _privateConstructorUsedError;
+
   bool get isActive => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $LookupModelCopyWith<LookupModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1669,6 +1813,7 @@ abstract class $LookupModelCopyWith<$Res> {
   factory $LookupModelCopyWith(
           LookupModel value, $Res Function(LookupModel) then) =
       _$LookupModelCopyWithImpl<$Res, LookupModel>;
+
   @useResult
   $Res call(
       {int value,
@@ -1691,6 +1836,7 @@ class _$LookupModelCopyWithImpl<$Res, $Val extends LookupModel>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -1764,6 +1910,7 @@ abstract class _$$RentLookupModelImplCopyWith<$Res>
   factory _$$RentLookupModelImplCopyWith(_$RentLookupModelImpl value,
           $Res Function(_$RentLookupModelImpl) then) =
       __$$RentLookupModelImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -1972,26 +2119,37 @@ abstract class _RentLookupModel implements LookupModel {
 
   @override
   int get value;
+
   @override
   int get yoy;
+
   @override
   bool get selected;
+
   @override
   String get url;
+
   @override
   bool get hasPrice;
+
   @override
   int get id;
+
   @override
   int get lookupKey;
+
   @override
   String get arName;
+
   @override
   String get enName;
+
   @override
   int get municipalityId;
+
   @override
   bool get isActive;
+
   @override
   @JsonKey(ignore: true)
   _$$RentLookupModelImplCopyWith<_$RentLookupModelImpl> get copyWith =>
@@ -2005,10 +2163,13 @@ PeriodTimeDetails _$PeriodTimeDetailsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PeriodTimeDetails {
   String get name => throw _privateConstructorUsedError;
+
   String get enName => throw _privateConstructorUsedError;
+
   List<int> get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $PeriodTimeDetailsCopyWith<PeriodTimeDetails> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2019,6 +2180,7 @@ abstract class $PeriodTimeDetailsCopyWith<$Res> {
   factory $PeriodTimeDetailsCopyWith(
           PeriodTimeDetails value, $Res Function(PeriodTimeDetails) then) =
       _$PeriodTimeDetailsCopyWithImpl<$Res, PeriodTimeDetails>;
+
   @useResult
   $Res call({String name, String enName, List<int> value});
 }
@@ -2030,6 +2192,7 @@ class _$PeriodTimeDetailsCopyWithImpl<$Res, $Val extends PeriodTimeDetails>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -2063,6 +2226,7 @@ abstract class _$$PeriodTimeDetailsImplCopyWith<$Res>
   factory _$$PeriodTimeDetailsImplCopyWith(_$PeriodTimeDetailsImpl value,
           $Res Function(_$PeriodTimeDetailsImpl) then) =
       __$$PeriodTimeDetailsImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call({String name, String enName, List<int> value});
@@ -2117,6 +2281,7 @@ class _$PeriodTimeDetailsImpl implements _PeriodTimeDetails {
   @JsonKey()
   final String enName;
   final List<int> _value;
+
   @override
   @JsonKey()
   List<int> get value {
@@ -2171,10 +2336,13 @@ abstract class _PeriodTimeDetails implements PeriodTimeDetails {
 
   @override
   String get name;
+
   @override
   String get enName;
+
   @override
   List<int> get value;
+
   @override
   @JsonKey(ignore: true)
   _$$PeriodTimeDetailsImplCopyWith<_$PeriodTimeDetailsImpl> get copyWith =>
@@ -2188,13 +2356,19 @@ MaxParamsModel _$MaxParamsModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MaxParamsModel {
   int get id => throw _privateConstructorUsedError;
+
   String get fieldName => throw _privateConstructorUsedError;
+
   int get minVal => throw _privateConstructorUsedError;
+
   int get maxVal => throw _privateConstructorUsedError;
+
   String get model => throw _privateConstructorUsedError;
+
   bool get isActive => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $MaxParamsModelCopyWith<MaxParamsModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2205,6 +2379,7 @@ abstract class $MaxParamsModelCopyWith<$Res> {
   factory $MaxParamsModelCopyWith(
           MaxParamsModel value, $Res Function(MaxParamsModel) then) =
       _$MaxParamsModelCopyWithImpl<$Res, MaxParamsModel>;
+
   @useResult
   $Res call(
       {int id,
@@ -2222,6 +2397,7 @@ class _$MaxParamsModelCopyWithImpl<$Res, $Val extends MaxParamsModel>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -2270,6 +2446,7 @@ abstract class _$$MaxParamsModelImplCopyWith<$Res>
   factory _$$MaxParamsModelImplCopyWith(_$MaxParamsModelImpl value,
           $Res Function(_$MaxParamsModelImpl) then) =
       __$$MaxParamsModelImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -2415,16 +2592,22 @@ abstract class _MaxParamsModel implements MaxParamsModel {
 
   @override
   int get id;
+
   @override
   String get fieldName;
+
   @override
   int get minVal;
+
   @override
   int get maxVal;
+
   @override
   String get model;
+
   @override
   bool get isActive;
+
   @override
   @JsonKey(ignore: true)
   _$$MaxParamsModelImplCopyWith<_$MaxParamsModelImpl> get copyWith =>
@@ -2438,19 +2621,31 @@ BaseRentResponse _$BaseRentResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BaseRentResponse {
   num get issueYear => throw _privateConstructorUsedError;
+
   num get kpiPreviousYear => throw _privateConstructorUsedError;
+
   num get kpiVal => throw _privateConstructorUsedError;
+
   num get zoneId => throw _privateConstructorUsedError;
+
   num get kpiYoYDifference => throw _privateConstructorUsedError;
+
   num get kpiYoYVal => throw _privateConstructorUsedError;
+
   num get purposeId => throw _privateConstructorUsedError;
+
   num get propertyTypeId => throw _privateConstructorUsedError;
+
   num get realEstateMT => throw _privateConstructorUsedError;
+
   num get realEstateSQT => throw _privateConstructorUsedError;
+
   num get priceMT => throw _privateConstructorUsedError;
+
   num get priceSQ => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $BaseRentResponseCopyWith<BaseRentResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2461,6 +2656,7 @@ abstract class $BaseRentResponseCopyWith<$Res> {
   factory $BaseRentResponseCopyWith(
           BaseRentResponse value, $Res Function(BaseRentResponse) then) =
       _$BaseRentResponseCopyWithImpl<$Res, BaseRentResponse>;
+
   @useResult
   $Res call(
       {num issueYear,
@@ -2484,6 +2680,7 @@ class _$BaseRentResponseCopyWithImpl<$Res, $Val extends BaseRentResponse>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -2562,6 +2759,7 @@ abstract class _$$BaseRentResponseImplCopyWith<$Res>
   factory _$$BaseRentResponseImplCopyWith(_$BaseRentResponseImpl value,
           $Res Function(_$BaseRentResponseImpl) then) =
       __$$BaseRentResponseImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -2797,28 +2995,40 @@ abstract class _BaseRentResponse implements BaseRentResponse {
 
   @override
   num get issueYear;
+
   @override
   num get kpiPreviousYear;
+
   @override
   num get kpiVal;
+
   @override
   num get zoneId;
+
   @override
   num get kpiYoYDifference;
+
   @override
   num get kpiYoYVal;
+
   @override
   num get purposeId;
+
   @override
   num get propertyTypeId;
+
   @override
   num get realEstateMT;
+
   @override
   num get realEstateSQT;
+
   @override
   num get priceMT;
+
   @override
   num get priceSQ;
+
   @override
   @JsonKey(ignore: true)
   _$$BaseRentResponseImplCopyWith<_$BaseRentResponseImpl> get copyWith =>
@@ -2835,18 +3045,23 @@ mixin _$BaseRentResponsePerAreaUnitType {
   num get issueYear =>
       throw _privateConstructorUsedError; //----------------------
   num get kpiSqft => throw _privateConstructorUsedError;
+
   num get kpiSqmt =>
       throw _privateConstructorUsedError; //----------------------
   num get kpiSqftPreviousYear => throw _privateConstructorUsedError;
+
   num get kpiSqmtPreviousYear =>
       throw _privateConstructorUsedError; //----------------------
   num get kpiSqftYoYDifference => throw _privateConstructorUsedError;
+
   num get kpiSqmtYoYDifference =>
       throw _privateConstructorUsedError; //----------------------
   num get kpiSqftYoYVal => throw _privateConstructorUsedError;
+
   num get kpiSqmtYoYVal => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $BaseRentResponsePerAreaUnitTypeCopyWith<BaseRentResponsePerAreaUnitType>
       get copyWith => throw _privateConstructorUsedError;
@@ -2859,6 +3074,7 @@ abstract class $BaseRentResponsePerAreaUnitTypeCopyWith<$Res> {
           $Res Function(BaseRentResponsePerAreaUnitType) then) =
       _$BaseRentResponsePerAreaUnitTypeCopyWithImpl<$Res,
           BaseRentResponsePerAreaUnitType>;
+
   @useResult
   $Res call(
       {num issueYear,
@@ -2880,6 +3096,7 @@ class _$BaseRentResponsePerAreaUnitTypeCopyWithImpl<$Res,
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -2944,6 +3161,7 @@ abstract class _$$BaseRentResponsePerAreaUnitTypeImplCopyWith<$Res>
           _$BaseRentResponsePerAreaUnitTypeImpl value,
           $Res Function(_$BaseRentResponsePerAreaUnitTypeImpl) then) =
       __$$BaseRentResponsePerAreaUnitTypeImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -3044,6 +3262,7 @@ class _$BaseRentResponsePerAreaUnitTypeImpl
   @override
   @JsonKey()
   final num issueYear;
+
 //----------------------
   @override
   @JsonKey()
@@ -3051,6 +3270,7 @@ class _$BaseRentResponsePerAreaUnitTypeImpl
   @override
   @JsonKey()
   final num kpiSqmt;
+
 //----------------------
   @override
   @JsonKey()
@@ -3058,6 +3278,7 @@ class _$BaseRentResponsePerAreaUnitTypeImpl
   @override
   @JsonKey()
   final num kpiSqmtPreviousYear;
+
 //----------------------
   @override
   @JsonKey()
@@ -3065,6 +3286,7 @@ class _$BaseRentResponsePerAreaUnitTypeImpl
   @override
   @JsonKey()
   final num kpiSqmtYoYDifference;
+
 //----------------------
   @override
   @JsonKey()
@@ -3149,22 +3371,31 @@ abstract class _BaseRentResponsePerAreaUnitType
 
   @override
   num get issueYear;
+
   @override //----------------------
   num get kpiSqft;
+
   @override
   num get kpiSqmt;
+
   @override //----------------------
   num get kpiSqftPreviousYear;
+
   @override
   num get kpiSqmtPreviousYear;
+
   @override //----------------------
   num get kpiSqftYoYDifference;
+
   @override
   num get kpiSqmtYoYDifference;
+
   @override //----------------------
   num get kpiSqftYoYVal;
+
   @override
   num get kpiSqmtYoYVal;
+
   @override
   @JsonKey(ignore: true)
   _$$BaseRentResponsePerAreaUnitTypeImplCopyWith<
@@ -3179,16 +3410,25 @@ MeanAreaResponse _$MeanAreaResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MeanAreaResponse {
   int get issueYear => throw _privateConstructorUsedError;
+
   int get kpi2PreviousYear => throw _privateConstructorUsedError;
+
   int get kpi2Val => throw _privateConstructorUsedError;
+
   int get kpi2YoYDifference => throw _privateConstructorUsedError;
+
   int get kpi2YoYVal => throw _privateConstructorUsedError;
+
   int get kpiPreviousYear => throw _privateConstructorUsedError;
+
   int get kpiVal => throw _privateConstructorUsedError;
+
   int get kpiYoYDifference => throw _privateConstructorUsedError;
+
   int get kpiYoYVal => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $MeanAreaResponseCopyWith<MeanAreaResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3199,6 +3439,7 @@ abstract class $MeanAreaResponseCopyWith<$Res> {
   factory $MeanAreaResponseCopyWith(
           MeanAreaResponse value, $Res Function(MeanAreaResponse) then) =
       _$MeanAreaResponseCopyWithImpl<$Res, MeanAreaResponse>;
+
   @useResult
   $Res call(
       {int issueYear,
@@ -3219,6 +3460,7 @@ class _$MeanAreaResponseCopyWithImpl<$Res, $Val extends MeanAreaResponse>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -3282,6 +3524,7 @@ abstract class _$$MeanAreaResponseImplCopyWith<$Res>
   factory _$$MeanAreaResponseImplCopyWith(_$MeanAreaResponseImpl value,
           $Res Function(_$MeanAreaResponseImpl) then) =
       __$$MeanAreaResponseImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -3477,22 +3720,31 @@ abstract class _MeanAreaResponse implements MeanAreaResponse {
 
   @override
   int get issueYear;
+
   @override
   int get kpi2PreviousYear;
+
   @override
   int get kpi2Val;
+
   @override
   int get kpi2YoYDifference;
+
   @override
   int get kpi2YoYVal;
+
   @override
   int get kpiPreviousYear;
+
   @override
   int get kpiVal;
+
   @override
   int get kpiYoYDifference;
+
   @override
   int get kpiYoYVal;
+
   @override
   @JsonKey(ignore: true)
   _$$MeanAreaResponseImplCopyWith<_$MeanAreaResponseImpl> get copyWith =>
@@ -3506,10 +3758,12 @@ RentListSummary _$RentListSummaryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RentListSummary {
   int get count => throw _privateConstructorUsedError;
+
   List<RentSummaryObject> get transactionList =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $RentListSummaryCopyWith<RentListSummary> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3520,6 +3774,7 @@ abstract class $RentListSummaryCopyWith<$Res> {
   factory $RentListSummaryCopyWith(
           RentListSummary value, $Res Function(RentListSummary) then) =
       _$RentListSummaryCopyWithImpl<$Res, RentListSummary>;
+
   @useResult
   $Res call({int count, List<RentSummaryObject> transactionList});
 }
@@ -3531,6 +3786,7 @@ class _$RentListSummaryCopyWithImpl<$Res, $Val extends RentListSummary>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -3559,6 +3815,7 @@ abstract class _$$RentListSummaryImplCopyWith<$Res>
   factory _$$RentListSummaryImplCopyWith(_$RentListSummaryImpl value,
           $Res Function(_$RentListSummaryImpl) then) =
       __$$RentListSummaryImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call({int count, List<RentSummaryObject> transactionList});
@@ -3606,6 +3863,7 @@ class _$RentListSummaryImpl implements _RentListSummary {
   @JsonKey()
   final int count;
   final List<RentSummaryObject> _transactionList;
+
   @override
   @JsonKey()
   List<RentSummaryObject> get transactionList {
@@ -3659,8 +3917,10 @@ abstract class _RentListSummary implements RentListSummary {
 
   @override
   int get count;
+
   @override
   List<RentSummaryObject> get transactionList;
+
   @override
   @JsonKey(ignore: true)
   _$$RentListSummaryImplCopyWith<_$RentListSummaryImpl> get copyWith =>
@@ -3674,22 +3934,37 @@ RentSummaryObject _$RentSummaryObjectFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RentSummaryObject {
   double? get area => throw _privateConstructorUsedError;
+
   int? get bedRoomsCount => throw _privateConstructorUsedError;
+
   String? get endDate => throw _privateConstructorUsedError;
+
   int? get issueYear => throw _privateConstructorUsedError;
+
   String? get issueDate => throw _privateConstructorUsedError;
+
   int? get municipalityid => throw _privateConstructorUsedError;
+
   int? get propertyTypeId => throw _privateConstructorUsedError;
+
   double? get rentPaymentMeterMT => throw _privateConstructorUsedError;
+
   double? get rentPaymentMeterSQT => throw _privateConstructorUsedError;
+
   double? get rentPaymentMonthly => throw _privateConstructorUsedError;
+
   String? get startDate => throw _privateConstructorUsedError;
+
   String? get unitBroker => throw _privateConstructorUsedError;
+
   String? get unitNo => throw _privateConstructorUsedError;
+
   String? get unitOwner => throw _privateConstructorUsedError;
+
   String? get unitTenant => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $RentSummaryObjectCopyWith<RentSummaryObject> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3700,6 +3975,7 @@ abstract class $RentSummaryObjectCopyWith<$Res> {
   factory $RentSummaryObjectCopyWith(
           RentSummaryObject value, $Res Function(RentSummaryObject) then) =
       _$RentSummaryObjectCopyWithImpl<$Res, RentSummaryObject>;
+
   @useResult
   $Res call(
       {double? area,
@@ -3726,6 +4002,7 @@ class _$RentSummaryObjectCopyWithImpl<$Res, $Val extends RentSummaryObject>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -3819,6 +4096,7 @@ abstract class _$$RentSummaryObjectImplCopyWith<$Res>
   factory _$$RentSummaryObjectImplCopyWith(_$RentSummaryObjectImpl value,
           $Res Function(_$RentSummaryObjectImpl) then) =
       __$$RentSummaryObjectImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -4097,34 +4375,49 @@ abstract class _RentSummaryObject implements RentSummaryObject {
 
   @override
   double? get area;
+
   @override
   int? get bedRoomsCount;
+
   @override
   String? get endDate;
+
   @override
   int? get issueYear;
+
   @override
   String? get issueDate;
+
   @override
   int? get municipalityid;
+
   @override
   int? get propertyTypeId;
+
   @override
   double? get rentPaymentMeterMT;
+
   @override
   double? get rentPaymentMeterSQT;
+
   @override
   double? get rentPaymentMonthly;
+
   @override
   String? get startDate;
+
   @override
   String? get unitBroker;
+
   @override
   String? get unitNo;
+
   @override
   String? get unitOwner;
+
   @override
   String? get unitTenant;
+
   @override
   @JsonKey(ignore: true)
   _$$RentSummaryObjectImplCopyWith<_$RentSummaryObjectImpl> get copyWith =>

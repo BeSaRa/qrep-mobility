@@ -278,7 +278,7 @@ class _BottomSheetFilterSellWidgetState
       //     id: -1));
       listDistrictWithAll.insert(
           0,
-          LookupModel(
+          const LookupModel(
               isActive: true,
               lookupKey: -1,
               arName: "الكل",
@@ -304,12 +304,14 @@ class _BottomSheetFilterSellWidgetState
         arName: "الكل",
         enName: "All",
         id: -1))) {
-      listPropertyWithAll.add(const LookupModel(
-          isActive: true,
-          lookupKey: -1,
-          arName: "الكل",
-          enName: "All",
-          id: -1));
+      listPropertyWithAll.insert(
+          0,
+          const LookupModel(
+              isActive: true,
+              lookupKey: -1,
+              arName: "الكل",
+              enName: "All",
+              id: -1));
     }
 
     context.read<LookupBloc>().lookUpSell = context
@@ -401,9 +403,6 @@ class _BottomSheetFilterSellWidgetState
               .toStringAsFixed(0)
           : (context.read<SellBloc>().requestSell.areaTo!.toDouble() * 10.8)
               .toStringAsFixed(0);
-      print(areaValueToController.text);
-      print((context.read<SellBloc>().requestSell.areaTo!.toDouble() * 10.8)
-          .toStringAsFixed(0));
     }
     // context.read<SellBloc>().requestSell.areaFrom != null
     //     ? areaValueFromController.text =

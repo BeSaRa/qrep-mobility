@@ -70,12 +70,14 @@ class _MortagageViewState extends State<MortgageView> {
                   arName: "الكل",
                   enName: "All",
                   id: -1))) {
-                listMunicipalityWithAll.add(const LookupModel(
-                    isActive: true,
-                    lookupKey: -1,
-                    arName: "الكل",
-                    enName: "All",
-                    id: -1));
+                listMunicipalityWithAll.insert(
+                    0,
+                    const LookupModel(
+                        isActive: true,
+                        lookupKey: -1,
+                        arName: "الكل",
+                        enName: "All",
+                        id: -1));
               }
               context.read<LookupBloc>().lookUpMortgage =
                   context.read<LookupBloc>().lookUpMortgage?.copyWith(

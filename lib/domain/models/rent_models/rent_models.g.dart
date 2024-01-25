@@ -150,13 +150,13 @@ _$RentLookupResponseImpl _$$RentLookupResponseImplFromJson(
               ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [
+            LookupModel(arName: 'الكل', id: -1, enName: 'ALL'),
             LookupModel(arName: 'استوديو', id: 6, enName: 'studio'),
             LookupModel(arName: 'غرفة', id: 1, enName: 'one room'),
             LookupModel(arName: 'غرفتين', id: 2, enName: '2 rooms'),
             LookupModel(arName: '3 غرف', id: 3, enName: '3 rooms'),
             LookupModel(arName: '4 غرف', id: 4, enName: '4 rooms'),
             LookupModel(arName: '5 غرف', id: 5, enName: '5 rooms'),
-            LookupModel(arName: 'الكل', id: -1, enName: 'ALL')
           ],
       districtList: (json['districtList'] as List<dynamic>?)
               ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))

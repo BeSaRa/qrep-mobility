@@ -76,13 +76,15 @@ class _SalesViewState extends State<SalesView> {
                 enName: "All",
                 value: -1,
                 id: -1))) {
-              listMunicipalityWithAll.add(const LookupModel(
-                  isActive: true,
-                  lookupKey: -1,
-                  arName: "الكل",
-                  enName: "All",
-                  value: -1,
-                  id: -1));
+              listMunicipalityWithAll.insert(
+                  0,
+                  const LookupModel(
+                      isActive: true,
+                      lookupKey: -1,
+                      arName: "الكل",
+                      enName: "All",
+                      value: -1,
+                      id: -1));
             }
             context.read<LookupBloc>().lookUpSell = context
                 .read<LookupBloc>()

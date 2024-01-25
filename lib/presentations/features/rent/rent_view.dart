@@ -81,12 +81,14 @@ class _RentViewState extends State<RentView> {
                   arName: "الكل",
                   enName: "All",
                   id: -1))) {
-                listMunicipalityWithAll.add(const LookupModel(
-                    isActive: true,
-                    lookupKey: -1,
-                    arName: "الكل",
-                    enName: "All",
-                    id: -1));
+                listMunicipalityWithAll.insert(
+                    0,
+                    const LookupModel(
+                        isActive: true,
+                        lookupKey: -1,
+                        arName: "الكل",
+                        enName: "All",
+                        id: -1));
               }
               context.read<LookupBloc>().lookUpRent = context
                   .read<LookupBloc>()
