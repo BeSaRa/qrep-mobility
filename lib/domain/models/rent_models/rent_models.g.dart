@@ -156,7 +156,7 @@ _$RentLookupResponseImpl _$$RentLookupResponseImplFromJson(
             LookupModel(arName: 'غرفتين', id: 2, enName: '2 rooms'),
             LookupModel(arName: '3 غرف', id: 3, enName: '3 rooms'),
             LookupModel(arName: '4 غرف', id: 4, enName: '4 rooms'),
-            LookupModel(arName: '5 غرف', id: 5, enName: '5 rooms'),
+            LookupModel(arName: '5 غرف', id: 5, enName: '5 rooms')
           ],
       districtList: (json['districtList'] as List<dynamic>?)
               ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
