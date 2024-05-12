@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:ebla/app/constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -46,31 +44,32 @@ class GuestTokenBloc extends Bloc<GuestTokenEvent, GuestTokenState> {
               resetAllModules();
             }, (error) {});
           }
-          final failureOrSuccess = await appSettingsUseCase.execute();
-          failureOrSuccess.when((success) async {
-            projectDataResponse = success;
-            String version = packageInfo.version;
-            String buildNumber = packageInfo.buildNumber;
-            if (Platform.isAndroid) {
-              update = int.parse(buildNumber) < success.data.android_version &&
-                  success.data.force_update;
-              canUpdate =
-                  int.parse(buildNumber) < success.data.android_version &&
-                      success.data.force_update == false;
-            } else {
-              update = version != success.data.ios_version &&
-                  success.data.force_update;
-              canUpdate = version != success.data.ios_version &&
-                  success.data.force_update == false;
-            }
-            if (update == true) {
-              emit(const GuestTokenState.shouldUpdate());
-            } else {
-              successState(canUpdate);
-            }
-          }, (error) {
-            emit(const GuestTokenState.initial());
-          });
+          // final failureOrSuccess = await appSettingsUseCase.execute();
+          // failureOrSuccess.when((success) async {
+          //   projectDataResponse = success;
+          //   String version = packageInfo.version;
+          //   String buildNumber = packageInfo.buildNumber;
+          //   if (Platform.isAndroid) {
+          //     update = int.parse(buildNumber) < success.data.android_version &&
+          //         success.data.force_update;
+          //     canUpdate =
+          //         int.parse(buildNumber) < success.data.android_version &&
+          //             success.data.force_update == false;
+          //   } else {
+          //     update = version != success.data.ios_version &&
+          //         success.data.force_update;
+          //     canUpdate = version != success.data.ios_version &&
+          //         success.data.force_update == false;
+          //   }
+          //   if (update == true) {
+          //     emit(const GuestTokenState.shouldUpdate());
+          //   } else {
+          //     successState(canUpdate);
+          //   }
+          // }, (error) {
+          //   emit(const GuestTokenState.initial());
+          // });
+          successState(false);
         },
       );
     });
