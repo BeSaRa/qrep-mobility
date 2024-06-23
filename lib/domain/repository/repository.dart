@@ -27,103 +27,75 @@ abstract class Repository {
 
   Future<Result<FaqResponse, FailureModel>> getFaq(int id);
 
-  Future<Result<UserResponse, FailureModel>> updateFcmToken(FcmInput input);
+  Future<Result<UserResponse, FailureModel>> updateFcmToken(input);
 
 //-------------Rent----------------
   Future<Result<LookupResponse, FailureModel>> getLockupRent();
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContracts(
-      RentRequest requestMeanValue);
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContracts(RentRequest requestMeanValue);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> meanValue(
-      RentRequest requestMeanValue);
+  Future<Result<List<BaseRentResponse>, FailureModel>> meanValue(RentRequest requestMeanValue);
 
-  Future<Result<List<MeanAreaResponse>, FailureModel>> meanArea(
-      RentRequest requestMeanValue);
+  Future<Result<List<MeanAreaResponse>, FailureModel>> meanArea(RentRequest requestMeanValue);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedUnits(
-      RentRequest requestMeanValue);
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedUnits(RentRequest requestMeanValue);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> certificateCount(
-      RentRequest requestMeanValue);
+  Future<Result<List<BaseRentResponse>, FailureModel>> certificateCount(RentRequest requestMeanValue);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> contractCount(
-      RentRequest requestMeanValue);
+  Future<Result<List<BaseRentResponse>, FailureModel>> contractCount(RentRequest requestMeanValue);
 
-  Future<Result<List<RentDefault>, FailureModel>> getRentDefault(
-      RentRequest requestMeanValue);
+  Future<Result<List<RentDefault>, FailureModel>> getRentDefault(RentRequest requestMeanValue);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> contractValue(
-      RentRequest requestMeanValue);
+  Future<Result<List<BaseRentResponse>, FailureModel>> contractValue(RentRequest requestMeanValue);
 
-  Future<Result<RentListSummary, FailureModel>> getRentSummary(
-      RentRequest requestMeanValue);
+  Future<Result<RentListSummary, FailureModel>> getRentSummary(RentRequest requestMeanValue);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedSpace(
-      RentRequest requestMeanValue);
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedSpace(RentRequest requestMeanValue);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> meanRentAmount(
-      RentRequest requestMeanValue);
+  Future<Result<List<BaseRentResponse>, FailureModel>> meanRentAmount(RentRequest requestMeanValue);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> rentValueAmount(
-      RentRequest requestMeanValue);
+  Future<Result<List<BaseRentResponse>, FailureModel>> rentValueAmount(RentRequest requestMeanValue);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> meanRentValueMeter(
-      RentRequest requestMeanValue);
+  Future<Result<List<BaseRentResponse>, FailureModel>> meanRentValueMeter(RentRequest requestMeanValue);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> getRentedAreas(
-      RentRequest requestMeanValue);
+  Future<Result<List<BaseRentResponse>, FailureModel>> getRentedAreas(RentRequest requestMeanValue);
 
   //----------------------------sell---------------------------------------
   Future<Result<LookupResponse, FailureModel>> getLockupSell();
 
   // KPI1
-  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContractsSell(
-      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContractsSell(RequestSellValues requestSellValues);
 
   // KPI4
-  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalSoldUnits(
-      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalSoldUnits(RequestSellValues requestSellValues);
 
   // KPI7
-  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalTransactionsSell(
-      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalTransactionsSell(RequestSellValues requestSellValues);
 
   // KPI10
-  Future<Result<List<BaseRentResponsePerAreaUnitType>, FailureModel>>
-      getTotalSoldSpaces(RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponsePerAreaUnitType>, FailureModel>> getTotalSoldSpaces(RequestSellValues requestSellValues);
 
   // KPI13
-  Future<Result<List<BaseRentResponse>, FailureModel>> getMeanValueSell(
-      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> getMeanValueSell(RequestSellValues requestSellValues);
 
   // KPI16
-  Future<Result<List<BaseRentResponsePerAreaUnitType>, FailureModel>>
-      getMeanSoldArea(RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponsePerAreaUnitType>, FailureModel>> getMeanSoldArea(RequestSellValues requestSellValues);
 
-  Future<Result<List<RentDefault>, FailureModel>> getSellDefault(
-      RequestSellValues requestSellValues);
+  Future<Result<List<RentDefault>, FailureModel>> getSellDefault(RequestSellValues requestSellValues);
 
-  Future<Result<SellTransactionResponse, FailureModel>> getSellTransaction(
-      RequestSellValues requestSellValues);
+  Future<Result<SellTransactionResponse, FailureModel>> getSellTransaction(RequestSellValues requestSellValues);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> sellContractCount(
-      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> sellContractCount(RequestSellValues requestSellValues);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> avgPricePerUnit(
-      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> avgPricePerUnit(RequestSellValues requestSellValues);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> transactionsValue(
-      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> transactionsValue(RequestSellValues requestSellValues);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> soldAreas(
-      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> soldAreas(RequestSellValues requestSellValues);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>> realStateNumber(
-      RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> realStateNumber(RequestSellValues requestSellValues);
 
-  Future<Result<List<BaseRentResponse>, FailureModel>>
-      averagePricePerSquareFoot(RequestSellValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> averagePricePerSquareFoot(RequestSellValues requestSellValues);
 
   //----------------------------Mortgage----------------------------------------
 
@@ -131,36 +103,28 @@ abstract class Repository {
   Future<Result<LookupResponse, FailureModel>> getLockupMortgage();
 
   // KPI1
-  Future<Result<List<BaseRentResponse>, FailureModel>>
-      getTotalMortgageTransactions(RequestMortgageValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalMortgageTransactions(RequestMortgageValues requestSellValues);
 
   // KPI3
-  Future<Result<List<BaseRentResponse>, FailureModel>>
-      getTotalNumberOfMortgageUnits(RequestMortgageValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalNumberOfMortgageUnits(RequestMortgageValues requestSellValues);
 
   // KPI5
-  Future<Result<List<BaseRentResponse>, FailureModel>>
-      getTotalValueOfMortgageTransactions(
-          RequestMortgageValues requestSellValues);
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalValueOfMortgageTransactions(RequestMortgageValues requestSellValues);
 
   //KPI7
-  Future<Result<MortgageTransactionResponse, FailureModel>>
-      getMortgageTransactions(RequestMortgageValues requestSellValues);
+  Future<Result<MortgageTransactionResponse, FailureModel>> getMortgageTransactions(RequestMortgageValues requestSellValues);
 
   //Auth
   Future<Result<AuthResponse, FailureResponse>> login(RequestAuth requestAuth);
 
-  Future<Result<ResetPasswordModel, FailureResponse>> resetPassword(
-      String requestAuth);
+  Future<Result<ResetPasswordModel, FailureResponse>> resetPassword(String requestAuth);
 
-  Future<Result<AuthResponse, FailureResponse>> refreshToken(
-      RefreshToken refreshToken);
+  Future<Result<AuthResponse, FailureResponse>> refreshToken(RefreshToken refreshToken);
 
   //Profile
   Future<Result<UserResponse, FailureModel>> getUserInfo();
 
-  Future<Result<UserResponse, FailureResponse>> updateUserInfo(
-      {required String id, required RequestUpdateInfoModel requestUpdateInfo});
+  Future<Result<UserResponse, FailureResponse>> updateUserInfo({required String id, required RequestUpdateInfoModel requestUpdateInfo});
 
   //Main Menu
 
@@ -172,9 +136,7 @@ abstract class Repository {
 
   Future<Result<RealEstateBrokerLookUp, FailureModel>> getLockupOVBrokers();
 
-  Future<Result<RealEstateBrokerTransactions, FailureModel>>
-      getBrokerTransactions(RequestBrokerValues input);
+  Future<Result<RealEstateBrokerTransactions, FailureModel>> getBrokerTransactions(RequestBrokerValues input);
 
-  Future<Result<RealEstateBrokerKpi1, FailureModel>> getBrokersCount(
-      RequestBrokerValues input);
+  Future<Result<RealEstateBrokerKpi1, FailureModel>> getBrokersCount(RequestBrokerValues input);
 }

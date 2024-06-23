@@ -11,7 +11,7 @@ class UpdateFcmTokenUseCase implements BaseUseCase<FcmInput, UserResponse> {
   UpdateFcmTokenUseCase(this.repository);
 
   @override
-  Future<Result<UserResponse, FailureModel>> execute(FcmInput input) async {
+  Future<Result<UserResponse, FailureModel>> execute(input) async {
     return await repository.updateFcmToken(input);
   }
 }

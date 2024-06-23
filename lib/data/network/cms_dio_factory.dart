@@ -47,17 +47,18 @@ class CmsDioFactory {
         print('release mode no logs');
       }
     } else {
-      dio.interceptors.add(PrettyDioLogger(
-        requestHeader: true,
-        compact: true,
-        responseHeader: true,
-        requestBody: true,
-        request: true,
-        responseBody: true,
-      ));
+      dio.interceptors.add(
+        PrettyDioLogger(
+          requestHeader: true,
+          compact: true,
+          responseHeader: true,
+          requestBody: true,
+          request: true,
+          responseBody: true,
+        ),
+      );
     }
-// Add the interceptor
-
+    // Add the interceptor
     // dio.interceptors.add(InterceptorsWrapper(
     //   onError: (e, handler) async {
     //   if (e.response?.statusCode == 401) {
