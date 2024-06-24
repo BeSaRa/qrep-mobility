@@ -23,16 +23,12 @@ class RepositoryImplementer extends Repository {
   final CmsServiceClient translationsServiceClient;
   final NetworkInfo networkInfo;
 
-  RepositoryImplementer(
-      {required this.appServiceClient,
-      required this.translationsServiceClient,
-      required this.networkInfo});
+  RepositoryImplementer({required this.appServiceClient, required this.translationsServiceClient, required this.networkInfo});
 
   /// ---------------------cms ----------------
 
   @override
-  Future<Result<TranslationsModel, FailureModel>> getTranslations(
-      int limit) async {
+  Future<Result<TranslationsModel, FailureModel>> getTranslations(int limit) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await translationsServiceClient.getTranslations(limit);
@@ -73,8 +69,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<LawsResponse, FailureModel>> getLaws(
-      {required int limit}) async {
+  Future<Result<LawsResponse, FailureModel>> getLaws({required int limit}) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await translationsServiceClient.getLaws(limit);
@@ -137,8 +132,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<NewsByIdResponse, FailureModel>> getNewsById(
-      {required int id}) async {
+  Future<Result<NewsByIdResponse, FailureModel>> getNewsById({required int id}) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await translationsServiceClient.getNewsById(id: id);
@@ -179,47 +173,38 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<AuthResponse, FailureResponse>> login(
-      RequestAuth requestAuth) async {
+  Future<Result<AuthResponse, FailureResponse>> login(RequestAuth requestAuth) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await translationsServiceClient.login(requestAuth);
-        if (response.response.statusCode == 200 ||
-            response.response.statusCode == 201) {
+        if (response.response.statusCode == 200 || response.response.statusCode == 201) {
           return Success(response.data);
         } else {
           return Error(FailureResponse.fromJson(response.response.data));
         }
       } on DioException catch (e) {
-        return Error(
-            FailureResponse.fromJson(e.response?.data ?? defaultError));
+        return Error(FailureResponse.fromJson(e.response?.data ?? defaultError));
       }
     } else {
-      return Error(FailureResponse(
-          errors: [ErrorModel(message: AppStrings().noInternetError)]));
+      return Error(FailureResponse(errors: [ErrorModel(message: AppStrings().noInternetError)]));
     }
   }
 
   @override
-  Future<Result<AuthResponse, FailureResponse>> refreshToken(
-      RefreshToken refreshToken) async {
+  Future<Result<AuthResponse, FailureResponse>> refreshToken(RefreshToken refreshToken) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await translationsServiceClient.refreshToken(refreshToken);
-        if (response.response.statusCode == 200 ||
-            response.response.statusCode == 201) {
+        final response = await translationsServiceClient.refreshToken(refreshToken);
+        if (response.response.statusCode == 200 || response.response.statusCode == 201) {
           return Success(response.data);
         } else {
           return Error(FailureResponse.fromJson(response.response.data));
         }
       } on DioException catch (e) {
-        return Error(
-            FailureResponse.fromJson(e.response?.data ?? defaultError));
+        return Error(FailureResponse.fromJson(e.response?.data ?? defaultError));
       }
     } else {
-      return Error(FailureResponse(
-          errors: [ErrorModel(message: AppStrings().noInternetError)]));
+      return Error(FailureResponse(errors: [ErrorModel(message: AppStrings().noInternetError)]));
     }
   }
 
@@ -242,63 +227,52 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<UserResponse, FailureResponse>> updateUserInfo(
-      {required String id,
-      required RequestUpdateInfoModel requestUpdateInfo}) async {
+  Future<Result<UserResponse, FailureResponse>> updateUserInfo({required String id, required RequestUpdateInfoModel requestUpdateInfo}) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await translationsServiceClient.updateUserInfo(
-            id, requestUpdateInfo);
+        final response = await translationsServiceClient.updateUserInfo(id, requestUpdateInfo);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
           return Error(FailureResponse.fromJson(response.response.data));
         }
       } on DioException catch (e) {
-        return Error(
-            FailureResponse.fromJson(e.response?.data ?? defaultError));
+        return Error(FailureResponse.fromJson(e.response?.data ?? defaultError));
       }
     } else {
-      return Error(FailureResponse(
-          errors: [ErrorModel(message: AppStrings().noInternetError)]));
+      return Error(FailureResponse(errors: [ErrorModel(message: AppStrings().noInternetError)]));
     }
   }
 
   @override
-  Future<Result<ResetPasswordModel, FailureResponse>> resetPassword(
-      String email) async {
+  Future<Result<ResetPasswordModel, FailureResponse>> resetPassword(String email) async {
     if (await networkInfo.isConnected) {
       try {
         Dio dio = instance<Dio>();
         try {
-          final response =
-              await dio.post("${Constant.cmsBaseUrl}${EndPoints.resetPassword}",
-                  data: json.encode({'email': email}),
-                  options: Options(
-                    headers: {
-                      "content-type": "application/json",
-                      "accept": "application/json",
-                    },
-                  ));
+          final response = await dio.post("${Constant.cmsBaseUrl}${EndPoints.resetPassword}",
+              data: json.encode({'email': email}),
+              options: Options(
+                headers: {
+                  "content-type": "application/json",
+                  "accept": "application/json",
+                },
+              ));
           if (response.statusCode == 200) {
             return Success(response.data);
           } else {
             return Error(FailureResponse.fromJson(response.data));
           }
         } on DioException catch (e) {
-          return Error(
-              FailureResponse.fromJson(e.response?.data ?? defaultError));
+          return Error(FailureResponse.fromJson(e.response?.data ?? defaultError));
         } catch (e) {
-          return Error(FailureResponse(
-              errors: [ErrorModel(message: AppStrings().noInternetError)]));
+          return Error(FailureResponse(errors: [ErrorModel(message: AppStrings().noInternetError)]));
         }
       } catch (e) {
-        return Error(FailureResponse(
-            errors: [ErrorModel(message: AppStrings().noInternetError)]));
+        return Error(FailureResponse(errors: [ErrorModel(message: AppStrings().noInternetError)]));
       }
     } else {
-      return Error(FailureResponse(
-          errors: [ErrorModel(message: AppStrings().noInternetError)]));
+      return Error(FailureResponse(errors: [ErrorModel(message: AppStrings().noInternetError)]));
     }
   }
 
@@ -307,14 +281,13 @@ class RepositoryImplementer extends Repository {
     try {
       Dio dio = instance<Dio>();
       try {
-        final response =
-            await dio.get("${Constant.cmsBaseUrl}${EndPoints.getTokenApi}",
-                options: Options(
-                  headers: {
-                    "content-type": "application/json",
-                    "accept": "application/json",
-                  },
-                ));
+        final response = await dio.get("${Constant.cmsBaseUrl}${EndPoints.getTokenApi}",
+            options: Options(
+              headers: {
+                "content-type": "application/json",
+                "accept": "application/json",
+              },
+            ));
         if (response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -331,12 +304,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<UserResponse, FailureModel>> updateFcmToken(
-      FcmInput input) async {
+  Future<Result<UserResponse, FailureModel>> updateFcmToken(input) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await translationsServiceClient.updateFcmToken(input.id, input.fcm);
+        final response = await translationsServiceClient.updateFcmToken(input.id, input.fcm);
 
         if (response.response.statusCode == 200) {
           return Success(response.data);
@@ -359,14 +330,13 @@ class RepositoryImplementer extends Repository {
       try {
         Dio dio = instance<Dio>();
         try {
-          final response =
-              await dio.get("${Constant.cmsBaseUrl}${EndPoints.appSettings}",
-                  options: Options(
-                    headers: {
-                      "content-type": "application/json",
-                      "accept": "application/json",
-                    },
-                  ));
+          final response = await dio.get("${Constant.cmsBaseUrl}${EndPoints.appSettings}",
+              options: Options(
+                headers: {
+                  "content-type": "application/json",
+                  "accept": "application/json",
+                },
+              ));
           if (response.statusCode == 200) {
             return Success(AppSettingsResponse.fromJson(response.data));
           } else {
@@ -390,19 +360,16 @@ class RepositoryImplementer extends Repository {
     if (await networkInfo.isConnected) {
       try {
         final response = await translationsServiceClient.mainMenu();
-        if (response.response.statusCode == 200 ||
-            response.response.statusCode == 201) {
+        if (response.response.statusCode == 200 || response.response.statusCode == 201) {
           return Success(response.data);
         } else {
           return Error(FailureResponse.fromJson(response.response.data));
         }
       } on DioException catch (e) {
-        return Error(
-            FailureResponse.fromJson(e.response?.data ?? defaultError));
+        return Error(FailureResponse.fromJson(e.response?.data ?? defaultError));
       }
     } else {
-      return Error(FailureResponse(
-          errors: [ErrorModel(message: AppStrings().noInternetError)]));
+      return Error(FailureResponse(errors: [ErrorModel(message: AppStrings().noInternetError)]));
     }
   }
 
@@ -429,8 +396,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> meanValue(
-      RentRequest requestMeanValue) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> meanValue(RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.meanValue(requestMeanValue);
@@ -450,8 +416,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<MeanAreaResponse>, FailureModel>> meanArea(
-      RentRequest requestMeanValue) async {
+  Future<Result<List<MeanAreaResponse>, FailureModel>> meanArea(RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.meanArea(requestMeanValue);
@@ -471,12 +436,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> certificateCount(
-      RentRequest requestMeanValue) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> certificateCount(RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.certificateCount(requestMeanValue);
+        final response = await appServiceClient.certificateCount(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -501,8 +464,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> contractCount(
-      RentRequest requestMeanValue) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> contractCount(RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.contractCount(requestMeanValue);
@@ -522,12 +484,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<RentDefault>, FailureModel>> getRentDefault(
-      RentRequest requestMeanValue) async {
+  Future<Result<List<RentDefault>, FailureModel>> getRentDefault(RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.getRentDefault(requestMeanValue);
+        final response = await appServiceClient.getRentDefault(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -544,12 +504,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> meanRentAmount(
-      RentRequest requestMeanValue) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> meanRentAmount(RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.avgMeanRentAmount(requestMeanValue);
+        final response = await appServiceClient.avgMeanRentAmount(requestMeanValue);
 
         if (response.response.statusCode == 200) {
           return Success(response.data);
@@ -567,8 +525,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> rentValueAmount(
-      RentRequest requestMeanValue) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> rentValueAmount(RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.rentAmount(requestMeanValue);
@@ -589,8 +546,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> contractValue(
-      RentRequest requestMeanValue) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> contractValue(RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.contractValue(requestMeanValue);
@@ -611,8 +567,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContracts(
-      RentRequest requestMeanValue) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContracts(RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.totalContract(requestMeanValue);
@@ -632,12 +587,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedSpace(
-      RentRequest requestMeanValue) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedSpace(RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.getTotalRentedSpace(requestMeanValue);
+        final response = await appServiceClient.getTotalRentedSpace(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -654,12 +607,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedUnits(
-      RentRequest requestMeanValue) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalRentedUnits(RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.getTotalRentedUnits(requestMeanValue);
+        final response = await appServiceClient.getTotalRentedUnits(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -679,8 +630,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<RentListSummary, FailureModel>> getRentSummary(
-      RentRequest requestMeanValue) async {
+  Future<Result<RentListSummary, FailureModel>> getRentSummary(RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.rentSummary(requestMeanValue);
@@ -701,8 +651,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> meanRentValueMeter(
-      RentRequest requestMeanValue) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> meanRentValueMeter(RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.meanRentMeter(requestMeanValue);
@@ -730,12 +679,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> getRentedAreas(
-      RentRequest requestMeanValue) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> getRentedAreas(RentRequest requestMeanValue) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.getRentedAreas(requestMeanValue);
+        final response = await appServiceClient.getRentedAreas(requestMeanValue);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -783,12 +730,10 @@ class RepositoryImplementer extends Repository {
 
   // KPI1
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContractsSell(
-      RequestSellValues requestSellValues) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalContractsSell(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.getTotalContractsSell(requestSellValues);
+        final response = await appServiceClient.getTotalContractsSell(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -806,12 +751,10 @@ class RepositoryImplementer extends Repository {
 
   // KPI4
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalSoldUnits(
-      RequestSellValues requestSellValues) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalSoldUnits(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.getTotalSoldUnits(requestSellValues);
+        final response = await appServiceClient.getTotalSoldUnits(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -829,12 +772,10 @@ class RepositoryImplementer extends Repository {
 
   // KPI7
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalTransactionsSell(
-      RequestSellValues requestSellValues) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalTransactionsSell(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.getTotalTransactionsSell(requestSellValues);
+        final response = await appServiceClient.getTotalTransactionsSell(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -852,12 +793,10 @@ class RepositoryImplementer extends Repository {
 
   // KP13
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> getMeanValueSell(
-      RequestSellValues requestSellValues) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> getMeanValueSell(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.getMeanValueSell(requestSellValues);
+        final response = await appServiceClient.getMeanValueSell(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -874,12 +813,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<RentDefault>, FailureModel>> getSellDefault(
-      RequestSellValues requestSellValues) async {
+  Future<Result<List<RentDefault>, FailureModel>> getSellDefault(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.getSellDefault(requestSellValues);
+        final response = await appServiceClient.getSellDefault(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -896,12 +833,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<SellTransactionResponse, FailureModel>> getSellTransaction(
-      RequestSellValues requestSellValues) async {
+  Future<Result<SellTransactionResponse, FailureModel>> getSellTransaction(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.getSellTransactions(requestSellValues);
+        final response = await appServiceClient.getSellTransactions(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -918,12 +853,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponsePerAreaUnitType>, FailureModel>>
-      getMeanSoldArea(RequestSellValues requestSellValues) async {
+  Future<Result<List<BaseRentResponsePerAreaUnitType>, FailureModel>> getMeanSoldArea(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.getMeanSoldArea(requestSellValues);
+        final response = await appServiceClient.getMeanSoldArea(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -940,8 +873,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> soldAreas(
-      RequestSellValues requestSellValues) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> soldAreas(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.soldAreas(requestSellValues);
@@ -961,12 +893,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> sellContractCount(
-      RequestSellValues requestSellValues) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> sellContractCount(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.sellContractCount(requestSellValues);
+        final response = await appServiceClient.sellContractCount(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -983,12 +913,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponsePerAreaUnitType>, FailureModel>>
-      getTotalSoldSpaces(RequestSellValues requestSellValues) async {
+  Future<Result<List<BaseRentResponsePerAreaUnitType>, FailureModel>> getTotalSoldSpaces(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.getTotalSoldSpaces(requestSellValues);
+        final response = await appServiceClient.getTotalSoldSpaces(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -1005,12 +933,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>>
-      averagePricePerSquareFoot(RequestSellValues requestSellValues) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> averagePricePerSquareFoot(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.averagePricePerSquareFoot(requestSellValues);
+        final response = await appServiceClient.averagePricePerSquareFoot(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -1027,12 +953,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> transactionsValue(
-      RequestSellValues requestSellValues) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> transactionsValue(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.transactionsValue(requestSellValues);
+        final response = await appServiceClient.transactionsValue(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -1049,12 +973,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> avgPricePerUnit(
-      RequestSellValues requestSellValues) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> avgPricePerUnit(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.avgPricePerUnit(requestSellValues);
+        final response = await appServiceClient.avgPricePerUnit(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -1073,13 +995,10 @@ class RepositoryImplementer extends Repository {
   //----------------------------------Mortgage----------------------------------
   // KPI1
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>>
-      getTotalMortgageTransactions(
-          RequestMortgageValues requestSellValues) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalMortgageTransactions(RequestMortgageValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await appServiceClient
-            .getTotalMortgageTransactions(requestSellValues);
+        final response = await appServiceClient.getTotalMortgageTransactions(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -1097,13 +1016,10 @@ class RepositoryImplementer extends Repository {
 
   // KPI3
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>>
-      getTotalNumberOfMortgageUnits(
-          RequestMortgageValues requestSellValues) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalNumberOfMortgageUnits(RequestMortgageValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await appServiceClient
-            .getTotalNumberOfMortgageUnits(requestSellValues);
+        final response = await appServiceClient.getTotalNumberOfMortgageUnits(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -1121,13 +1037,10 @@ class RepositoryImplementer extends Repository {
 
   // KPI5
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>>
-      getTotalValueOfMortgageTransactions(
-          RequestMortgageValues requestSellValues) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> getTotalValueOfMortgageTransactions(RequestMortgageValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await appServiceClient
-            .getTotalValueOfMortgageTransactions(requestSellValues);
+        final response = await appServiceClient.getTotalValueOfMortgageTransactions(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -1164,12 +1077,10 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<MortgageTransactionResponse, FailureModel>>
-      getMortgageTransactions(RequestMortgageValues requestSellValues) async {
+  Future<Result<MortgageTransactionResponse, FailureModel>> getMortgageTransactions(RequestMortgageValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.getMortgageTransactions(requestSellValues);
+        final response = await appServiceClient.getMortgageTransactions(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -1188,12 +1099,10 @@ class RepositoryImplementer extends Repository {
   ///------------------real estate brokers------------
 
   @override
-  Future<Result<List<BaseRentResponse>, FailureModel>> realStateNumber(
-      RequestSellValues requestSellValues) async {
+  Future<Result<List<BaseRentResponse>, FailureModel>> realStateNumber(RequestSellValues requestSellValues) async {
     if (await networkInfo.isConnected) {
       try {
-        final response =
-            await appServiceClient.realStateNumber(requestSellValues);
+        final response = await appServiceClient.realStateNumber(requestSellValues);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -1210,8 +1119,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<RealEstateBrokerLookUp, FailureModel>>
-      getLockupBrokers() async {
+  Future<Result<RealEstateBrokerLookUp, FailureModel>> getLockupBrokers() async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.getBrokerLookUp();
@@ -1231,8 +1139,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<RealEstateBrokerTransactions, FailureModel>>
-      getBrokerTransactions(RequestBrokerValues input) async {
+  Future<Result<RealEstateBrokerTransactions, FailureModel>> getBrokerTransactions(RequestBrokerValues input) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.getBrokerTransaction(input);
@@ -1252,8 +1159,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<RealEstateBrokerKpi1, FailureModel>> getBrokersCount(
-      RequestBrokerValues input) async {
+  Future<Result<RealEstateBrokerKpi1, FailureModel>> getBrokersCount(RequestBrokerValues input) async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.getBrokerKpi1(input);
@@ -1273,8 +1179,7 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<RealEstateBrokerLookUp, FailureModel>>
-      getLockupOVBrokers() async {
+  Future<Result<RealEstateBrokerLookUp, FailureModel>> getLockupOVBrokers() async {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.getOvLookUp();

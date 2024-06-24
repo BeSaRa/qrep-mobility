@@ -13,8 +13,7 @@ class EndPoints {
   static const String lockupRent = '/kpi/rent/lookup';
   static const String rentDefault = '/kpi/rent/default';
   static const String totalContracts = '/kpi/rent/kpi1/total-contracts';
-  static const String rentTotalContracts =
-      '/kpi/rent/kpi2/total-contracts/purpose';
+  static const String rentTotalContracts = '/kpi/rent/kpi2/total-contracts/purpose';
   static const String totalRentedUnits = '/kpi/rent/kpi4/total-units';
   static const String contractValue = '/kpi/rent/kpi7/contract-value';
   static const String meanValue = '/kpi/rent/kpi13/mean-value';
@@ -24,8 +23,7 @@ class EndPoints {
   static const String totalRentedSpace = '/kpi/rent/kpi10/total-areas';
 
   static const String rentSummary = '/kpi/rent/kpi29/summary';
-  static const String certificateCount =
-      '/kpi/rent/kpi30/stats/certificate-count';
+  static const String certificateCount = '/kpi/rent/kpi30/stats/certificate-count';
   static const String contractCount = '/kpi/rent/kpi30_1/stats/contract-count';
 
   //kpi 31 for top 10 section
@@ -49,30 +47,24 @@ class EndPoints {
   static const String totalSoldUnits = '/kpi/sell/kpi4/total-units';
 
   // اجمالي قيمة معاملات البيع
-  static const String totalTransactionsSell =
-      '/kpi/sell/kpi7/total-transactions';
+  static const String totalTransactionsSell = '/kpi/sell/kpi7/total-transactions';
 
   // متوسط سعر الوحدة
   static const String meanValueSell = '/kpi/sell/kpi13/mean-value';
 
   // أفضل عشر مناطق من حيث عدد العقود
-  static const String certificateCountSell =
-      '/kpi/sell/kpi19/chart/certificate-count';
+  static const String certificateCountSell = '/kpi/sell/kpi19/chart/certificate-count';
 
   // قائمة معاملات البيع
   static const String sellTransactions = '/kpi/sell/kpi29/transactions';
 
   // أفضل عشر مناطق من حيث عدد الوحدات المباعة
-  static const String sellContractCount =
-      '/kpi/sell/kpi30/zones/transactions-number';
+  static const String sellContractCount = '/kpi/sell/kpi30/zones/transactions-number';
   static const String avgPricePerUnit = '/kpi/sell/kpi31/zones/unit-price';
-  static const String transactionsValue =
-      '/kpi/sell/kpi32/zones/transactions-value';
+  static const String transactionsValue = '/kpi/sell/kpi32/zones/transactions-value';
   static const String soldAreas = '/kpi/sell/kpi33/zones/areas';
-  static const String realStateNumber =
-      '/kpi/sell/kpi33_1/zones/real-estate-number';
-  static const String averagePricePerSquareFoot =
-      '/kpi/sell/kpi33_2/zones/real-estate-mt-value';
+  static const String realStateNumber = '/kpi/sell/kpi33_1/zones/real-estate-number';
+  static const String averagePricePerSquareFoot = '/kpi/sell/kpi33_2/zones/real-estate-mt-value';
 
   // إجمالي المساحات المباعة
   static const String totalSoldSpaces = '/kpi/sell/kpi10/total-areas';
@@ -85,20 +77,16 @@ class EndPoints {
   static const String mortgageLookUp = '/kpi/mortgage/lookup';
 
   // KPI1
-  static const String totalMortgageTransactions =
-      '/kpi/mortgage/kpi1/transaction-number';
+  static const String totalMortgageTransactions = '/kpi/mortgage/kpi1/transaction-number';
 
   // KPI3
-  static const String totalNumberOfMortgageUnits =
-      '/kpi/mortgage/kpi3/unit-num';
+  static const String totalNumberOfMortgageUnits = '/kpi/mortgage/kpi3/unit-num';
 
   // KPI5
-  static const String totalValueOfMortgageTransactions =
-      '/kpi/mortgage/kpi5/stats/transaction-value';
+  static const String totalValueOfMortgageTransactions = '/kpi/mortgage/kpi5/stats/transaction-value';
 
   //KPI7
-  static const String mortgageTransactions =
-      '/kpi/mortgage/kpi7/detail/transaction';
+  static const String mortgageTransactions = '/kpi/mortgage/kpi7/detail/transaction';
 
   //Auth
   static const String auth = '/auth/login';
@@ -109,8 +97,7 @@ class EndPoints {
   static const String userEdit = '/users/';
 
   //Main menu
-  static const String mainMenu =
-      '/flows/trigger/F0D286AC-588E-4863-B6A1-6230EB88F710';
+  static const String mainMenu = '/flows/trigger/F0D286AC-588E-4863-B6A1-6230EB88F710';
 
   //broker
   static const String brokerLookUp = "/kpi/broker/lookup";
@@ -121,6 +108,5 @@ class EndPoints {
   ///settings
   static const String appSettings = "/settings";
 
-  static const String getTokenApi =
-      "/flows/trigger/412A3B92-16F9-437D-AAFC-BBE5E25ED9F5";
+  static const String getTokenApi = "/flows/trigger/412A3B92-16F9-437D-AAFC-BBE5E25ED9F5";
 }
