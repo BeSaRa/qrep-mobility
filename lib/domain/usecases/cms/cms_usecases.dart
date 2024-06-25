@@ -71,3 +71,14 @@ class FaqUsecase implements BaseUseCase<int, FaqResponse> {
     return await repository.getFaq(limit);
   }
 }
+
+class GetCmsTokenUseCase implements BaseUseCaseEmptyInput<String> {
+  final Repository repository;
+
+  GetCmsTokenUseCase(this.repository);
+
+  @override
+  Future<Result<String, FailureModel>> execute() async {
+    return await repository.getCmsToken();
+  }
+}

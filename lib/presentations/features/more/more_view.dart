@@ -118,11 +118,11 @@ class _MoreViewState extends State<MoreView> {
                               ],
                             ),
                           ),
-                          // MoreWidgetButton(
-                          //   icon: Icons.remove_red_eye_outlined,
-                          //   title: AppStrings().watchList,
-                          //   onPressed: () {},
-                          // ),
+                          MoreWidgetButton(
+                            icon: Icons.star,
+                            title: AppStrings().watchList,
+                            onPressed: () {},
+                          ),
                           BlocBuilder(
                             bloc: loginBloc,
                             builder: (context, LoginState state) {
@@ -334,11 +334,12 @@ class _MoreViewState extends State<MoreView> {
                           ],
                         ),
                       ),
-                      // MoreWidgetButton(
-                      //   icon: Icons.remove_red_eye_outlined,
-                      //   title: AppStrings().watchList,
-                      //   onPressed: () {},
-                      // ),
+                      //todo remember to remove it from here
+                      MoreWidgetButton(
+                        icon: Icons.remove_red_eye_outlined,
+                        title: AppStrings().watchList,
+                        onPressed: () {},
+                      ),
                       BlocBuilder(
                         bloc: loginBloc,
                         builder: (context, LoginState state) {
