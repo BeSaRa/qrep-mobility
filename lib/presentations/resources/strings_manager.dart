@@ -188,4 +188,10 @@ class AppStrings {
   String nameValidationLength = "name_validation_length".tr();
   String activateEmailNotifications = "activate_email_notifications".tr();
 // String nickName = "nick_name".tr();
+
+  ///----------------watchlist--------------------------///
+  String favName = "fav_name".tr();
+  String edit = "edit".tr();
+  String delete = "delete".tr();
+  String apply = "apply".tr();
 }

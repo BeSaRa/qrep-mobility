@@ -1,5 +1,6 @@
 import 'package:ebla/app/routing_observer.dart';
 import 'package:ebla/domain/models/cms_models/user/user_model.dart';
+import 'package:ebla/presentations/features/favourite/fav_view.dart';
 import 'package:ebla/presentations/features/home/home_view.dart';
 import 'package:ebla/presentations/features/info/blocs/about_bloc/about_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
@@ -46,6 +47,7 @@ class RoutesNames {
   static const String news = 'news';
   static const String newsbyId = 'news item';
   static const String realEstateBrokers = 'real estate brokers';
+  static const String favourite = 'favourite';
 }
 
 class RoutesPaths {
@@ -64,6 +66,7 @@ class RoutesPaths {
   static const String newsbyId = '/news/:id';
   static const String realEstateBrokers = '/realestatebrokers';
   static const String updateInfo = '/updateInfo';
+  static const String favourite = '/favourite';
 }
 
 class NavigationKeys {
@@ -387,6 +390,12 @@ class AppRouter {
             value: state.extra! as NewsBloc,
             child: const NewsView(),
           ),
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.favourite,
+          path: RoutesPaths.favourite,
+          builder: (context, state) => const FavView(),
         ),
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,

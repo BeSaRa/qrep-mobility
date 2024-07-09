@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/presentations/features/favourite/fav_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/models/rent_models/rent_models.dart';
@@ -61,7 +62,11 @@ class _SingleDropDownValue<T> extends State<SingleDropDownValue<T>> {
                                 ? context.locale == ARABIC_LOCAL
                                     ? item.name
                                     : item.enName
-                                : '$item',
+                                : item is PagesNames
+                                    ? context.locale == ARABIC_LOCAL
+                                        ? item.arName
+                                        : item.enName
+                                    : '$item',
                         style: Theme.of(context).textTheme.labelSmall,
                         softWrap: true,
                       ),

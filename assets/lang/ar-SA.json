@@ -22,7 +22,7 @@
   "login": "تسجيل الدخول",
   "more": "المزيد",
   "mortgage": "الرهن",
-  "my_watch_list": "قائمة مشاهداتي",
+  "my_watch_list": "تفضيلات المستخدم",
   "noInternetError": "لا يوجد اتصال بالإنترنت",
   "password": "كلمة المرور",
   "validator_password_empty": "كلمة المرور مطلوبة",
@@ -160,5 +160,10 @@
   "nick_name": "اللقب",
   "name_validation_length": "يجب أن يكون الاسم أقل من 50 محرفاً",
   "activate_email_notifications": "تفعيل إشعارات البريد الإلكتروني",
-  "open_location": "رؤية الموقع"
+  "open_location": "رؤية الموقع",
+  "-----------favourite----------": "--------------------------",
+  "fav_name": "اسم المفضلة",
+  "edit": "تعديل",
+  "delete": "حذف",
+  "apply": "تطبيق"
 }

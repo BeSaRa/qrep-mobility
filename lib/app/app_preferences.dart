@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:ebla/app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,7 +19,8 @@ class AppPreferences {
   String PREFS_KEY_THEME = 'PREFS_KEY_THEME';
   String PREFS_KEY_FACE_ID = 'PREFS_KEY_FACE';
   String PREFS_KEY_IS_LOGGED_IN = 'PREFS_KEY_IS_LOGGED_IN';
-  String PREFS_KEY_LOCALIZATIONS_LAST_UPDATE = 'PREFS_KEY_LOCALIZATIONS_LAST_UPDATE';
+  String PREFS_KEY_LOCALIZATIONS_LAST_UPDATE =
+      'PREFS_KEY_LOCALIZATIONS_LAST_UPDATE';
 
   Future<String> getAppLanguage() async {
     String? language = _sharedPreferences.getString(PREFS_KEY_LANG) ?? '';
@@ -48,13 +50,15 @@ class AppPreferences {
   }
 
   Future<DateTime?> getLocalizationsLastUpdate() async {
-    String dateString = _sharedPreferences.getString(PREFS_KEY_LOCALIZATIONS_LAST_UPDATE) ?? '';
+    String dateString =
+        _sharedPreferences.getString(PREFS_KEY_LOCALIZATIONS_LAST_UPDATE) ?? '';
     DateTime? date = DateTime.tryParse(dateString);
     return date;
   }
 
   Future<void> setLocalizationsLastUpdate({required DateTime date}) async {
-    _sharedPreferences.setString(PREFS_KEY_LOCALIZATIONS_LAST_UPDATE, date.toString());
+    _sharedPreferences.setString(
+        PREFS_KEY_LOCALIZATIONS_LAST_UPDATE, date.toString());
   }
 
   Future<void> setUserToken(String token) async {
@@ -78,7 +82,8 @@ class AppPreferences {
   }
 
   Future<String> getCmsUserToken() async {
-    return _sharedPreferences.getString(PREFS_KEY_CMS_TOKEN) ?? '';
+    return _sharedPreferences.getString(PREFS_KEY_CMS_TOKEN) ??
+        Constant.guestToken;
   }
 
   Future<void> setUserFaceId(bool val) async {

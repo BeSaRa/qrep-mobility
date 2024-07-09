@@ -121,7 +121,10 @@ class _MoreViewState extends State<MoreView> {
                           MoreWidgetButton(
                             icon: Icons.star,
                             title: AppStrings().watchList,
-                            onPressed: () {},
+                            onPressed: () {
+                              initFavourite();
+                              context.pushNamed(RoutesNames.favourite);
+                            },
                           ),
                           BlocBuilder(
                             bloc: loginBloc,
@@ -334,12 +337,14 @@ class _MoreViewState extends State<MoreView> {
                           ],
                         ),
                       ),
-                      //todo remember to remove it from here
-                      MoreWidgetButton(
-                        icon: Icons.remove_red_eye_outlined,
-                        title: AppStrings().watchList,
-                        onPressed: () {},
-                      ),
+
+                      // MoreWidgetButton(
+                      //   icon: Icons.remove_red_eye_outlined,
+                      //   title: AppStrings().watchList,
+                      //   onPressed: () {
+                      //     context.pushNamed(RoutesNames.favourite);
+                      //   },
+                      // ),
                       BlocBuilder(
                         bloc: loginBloc,
                         builder: (context, LoginState state) {
