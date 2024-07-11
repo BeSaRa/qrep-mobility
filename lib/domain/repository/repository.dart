@@ -183,4 +183,8 @@ abstract class Repository {
 
   Future<Result<List<FavouriteResponse>, FailureModel>> getUserFavourites(
       String id);
+
+  Future<Result<bool, FailureModel>> deleteFavourite(int id);
+  Future<Result<FavouriteResponse, FailureModel>> updateFavourite(
+      FavouriteResponse id);
 }

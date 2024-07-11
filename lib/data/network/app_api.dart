@@ -193,9 +193,16 @@ abstract class AppServiceClient {
 
   ///-----------------favourite -----------------///
 
-  @GET(EndPoints.getUserWishListById + "{id}")
+  @GET("${EndPoints.getUserWishListById}{id}")
   Future<HttpResponse<List<FavouriteResponse>>> getWishlist(
       @Path("id") String id);
+
+  @DELETE("${EndPoints.getUserWishList}/{id}")
+  Future<HttpResponse<bool>> deleteFav(@Path("id") int id);
+
+  @PUT(EndPoints.getUserWishList)
+  Future<HttpResponse<FavouriteResponse>> updateFav(
+      @Path("id") int id, @Body() FavouriteResponse fav);
 }
 
 //---------------------------------DirectUs-----------------------------------------

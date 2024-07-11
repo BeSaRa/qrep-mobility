@@ -1314,4 +1314,45 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
+  @override
+  Future<Result<bool, FailureModel>> deleteFavourite(int id) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.deleteFav(id);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<FavouriteResponse, FailureModel>> updateFavourite(
+      FavouriteResponse id) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.updateFav(id.id ?? 0, id);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
 }

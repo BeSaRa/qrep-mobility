@@ -20,18 +20,24 @@ mixin _$GetFavouriteEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String id) started,
     required TResult Function(int? page, String? name) filter,
+    required TResult Function(int? id, String? userId) delete,
+    required TResult Function(String id) reload,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id)? started,
     TResult? Function(int? page, String? name)? filter,
+    TResult? Function(int? id, String? userId)? delete,
+    TResult? Function(String id)? reload,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id)? started,
     TResult Function(int? page, String? name)? filter,
+    TResult Function(int? id, String? userId)? delete,
+    TResult Function(String id)? reload,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +45,24 @@ mixin _$GetFavouriteEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Filter value) filter,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Reload value) reload,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Filter value)? filter,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Reload value)? reload,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Filter value)? filter,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Reload value)? reload,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,6 +152,8 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function(String id) started,
     required TResult Function(int? page, String? name) filter,
+    required TResult Function(int? id, String? userId) delete,
+    required TResult Function(String id) reload,
   }) {
     return started(id);
   }
@@ -149,6 +163,8 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id)? started,
     TResult? Function(int? page, String? name)? filter,
+    TResult? Function(int? id, String? userId)? delete,
+    TResult? Function(String id)? reload,
   }) {
     return started?.call(id);
   }
@@ -158,6 +174,8 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id)? started,
     TResult Function(int? page, String? name)? filter,
+    TResult Function(int? id, String? userId)? delete,
+    TResult Function(String id)? reload,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -171,6 +189,8 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Filter value) filter,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Reload value) reload,
   }) {
     return started(this);
   }
@@ -180,6 +200,8 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Filter value)? filter,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Reload value)? reload,
   }) {
     return started?.call(this);
   }
@@ -189,6 +211,8 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Filter value)? filter,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Reload value)? reload,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -281,6 +305,8 @@ class _$FilterImpl implements _Filter {
   TResult when<TResult extends Object?>({
     required TResult Function(String id) started,
     required TResult Function(int? page, String? name) filter,
+    required TResult Function(int? id, String? userId) delete,
+    required TResult Function(String id) reload,
   }) {
     return filter(page, name);
   }
@@ -290,6 +316,8 @@ class _$FilterImpl implements _Filter {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String id)? started,
     TResult? Function(int? page, String? name)? filter,
+    TResult? Function(int? id, String? userId)? delete,
+    TResult? Function(String id)? reload,
   }) {
     return filter?.call(page, name);
   }
@@ -299,6 +327,8 @@ class _$FilterImpl implements _Filter {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id)? started,
     TResult Function(int? page, String? name)? filter,
+    TResult Function(int? id, String? userId)? delete,
+    TResult Function(String id)? reload,
     required TResult orElse(),
   }) {
     if (filter != null) {
@@ -312,6 +342,8 @@ class _$FilterImpl implements _Filter {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Filter value) filter,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Reload value) reload,
   }) {
     return filter(this);
   }
@@ -321,6 +353,8 @@ class _$FilterImpl implements _Filter {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Filter value)? filter,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Reload value)? reload,
   }) {
     return filter?.call(this);
   }
@@ -330,6 +364,8 @@ class _$FilterImpl implements _Filter {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Filter value)? filter,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Reload value)? reload,
     required TResult orElse(),
   }) {
     if (filter != null) {
@@ -346,6 +382,305 @@ abstract class _Filter implements GetFavouriteEvent {
   String? get name;
   @JsonKey(ignore: true)
   _$$FilterImplCopyWith<_$FilterImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteImplCopyWith<$Res> {
+  factory _$$DeleteImplCopyWith(
+          _$DeleteImpl value, $Res Function(_$DeleteImpl) then) =
+      __$$DeleteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? id, String? userId});
+}
+
+/// @nodoc
+class __$$DeleteImplCopyWithImpl<$Res>
+    extends _$GetFavouriteEventCopyWithImpl<$Res, _$DeleteImpl>
+    implements _$$DeleteImplCopyWith<$Res> {
+  __$$DeleteImplCopyWithImpl(
+      _$DeleteImpl _value, $Res Function(_$DeleteImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? userId = freezed,
+  }) {
+    return _then(_$DeleteImpl(
+      freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteImpl implements _Delete {
+  const _$DeleteImpl(this.id, this.userId);
+
+  @override
+  final int? id;
+  @override
+  final String? userId;
+
+  @override
+  String toString() {
+    return 'GetFavouriteEvent.delete(id: $id, userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, userId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
+      __$$DeleteImplCopyWithImpl<_$DeleteImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) started,
+    required TResult Function(int? page, String? name) filter,
+    required TResult Function(int? id, String? userId) delete,
+    required TResult Function(String id) reload,
+  }) {
+    return delete(id, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id)? started,
+    TResult? Function(int? page, String? name)? filter,
+    TResult? Function(int? id, String? userId)? delete,
+    TResult? Function(String id)? reload,
+  }) {
+    return delete?.call(id, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? started,
+    TResult Function(int? page, String? name)? filter,
+    TResult Function(int? id, String? userId)? delete,
+    TResult Function(String id)? reload,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(id, userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Filter value) filter,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Reload value) reload,
+  }) {
+    return delete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Filter value)? filter,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Reload value)? reload,
+  }) {
+    return delete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Filter value)? filter,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Reload value)? reload,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Delete implements GetFavouriteEvent {
+  const factory _Delete(final int? id, final String? userId) = _$DeleteImpl;
+
+  int? get id;
+  String? get userId;
+  @JsonKey(ignore: true)
+  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ReloadImplCopyWith<$Res> {
+  factory _$$ReloadImplCopyWith(
+          _$ReloadImpl value, $Res Function(_$ReloadImpl) then) =
+      __$$ReloadImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$ReloadImplCopyWithImpl<$Res>
+    extends _$GetFavouriteEventCopyWithImpl<$Res, _$ReloadImpl>
+    implements _$$ReloadImplCopyWith<$Res> {
+  __$$ReloadImplCopyWithImpl(
+      _$ReloadImpl _value, $Res Function(_$ReloadImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$ReloadImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ReloadImpl implements _Reload {
+  const _$ReloadImpl(this.id);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'GetFavouriteEvent.reload(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ReloadImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ReloadImplCopyWith<_$ReloadImpl> get copyWith =>
+      __$$ReloadImplCopyWithImpl<_$ReloadImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) started,
+    required TResult Function(int? page, String? name) filter,
+    required TResult Function(int? id, String? userId) delete,
+    required TResult Function(String id) reload,
+  }) {
+    return reload(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id)? started,
+    TResult? Function(int? page, String? name)? filter,
+    TResult? Function(int? id, String? userId)? delete,
+    TResult? Function(String id)? reload,
+  }) {
+    return reload?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? started,
+    TResult Function(int? page, String? name)? filter,
+    TResult Function(int? id, String? userId)? delete,
+    TResult Function(String id)? reload,
+    required TResult orElse(),
+  }) {
+    if (reload != null) {
+      return reload(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Filter value) filter,
+    required TResult Function(_Delete value) delete,
+    required TResult Function(_Reload value) reload,
+  }) {
+    return reload(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Filter value)? filter,
+    TResult? Function(_Delete value)? delete,
+    TResult? Function(_Reload value)? reload,
+  }) {
+    return reload?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Filter value)? filter,
+    TResult Function(_Delete value)? delete,
+    TResult Function(_Reload value)? reload,
+    required TResult orElse(),
+  }) {
+    if (reload != null) {
+      return reload(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Reload implements GetFavouriteEvent {
+  const factory _Reload(final String id) = _$ReloadImpl;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$ReloadImplCopyWith<_$ReloadImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

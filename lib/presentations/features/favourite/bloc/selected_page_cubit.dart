@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:ebla/presentations/features/favourite/fav_view.dart';
+
+import '../fav_widgets.dart';
 
 class SelectedPageCubit extends Cubit<int> {
   SelectedPageCubit(super.initialState);

@@ -1,6 +1,8 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:ebla/domain/usecases/favourite_usecases/update_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/user_favourite_usecase.dart';
+import 'package:ebla/presentations/features/favourite/bloc/UpdateFav/update_favourite_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/get_favourite_bloc/get_favourite_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,6 +14,7 @@ import '../data/network/general_dio_interceptor.dart';
 import '../data/network/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
+import '../domain/usecases/favourite_usecases/delete_favourite_usecase.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/auth/authes.dart';
 import '../presentations/features/info/infos.dart';
@@ -482,9 +485,27 @@ Future<void> initFavourite() async {
     instance.registerFactory<GetUserFavouriteUseCase>(
         () => GetUserFavouriteUseCase(instance()));
   }
+
+  if (!GetIt.I.isRegistered<DeleteFavouriteUseCase>()) {
+    instance.registerFactory<DeleteFavouriteUseCase>(
+        () => DeleteFavouriteUseCase(instance()));
+  }
+
+  if (!GetIt.I.isRegistered<UpdateFavouriteUseCase>()) {
+    instance.registerFactory<UpdateFavouriteUseCase>(
+        () => UpdateFavouriteUseCase(instance()));
+  }
+
   if (!GetIt.I.isRegistered<GetFavouriteBloc>()) {
     instance.registerFactory<GetFavouriteBloc>(() => GetFavouriteBloc(
-        getUserFavouriteUseCase: instance(), appPreferences: instance()));
+        getUserFavouriteUseCase: instance(),
+        appPreferences: instance(),
+        deleteFavouriteUseCase: instance()));
+  }
+
+  if (!GetIt.I.isRegistered<UpdateFavouriteBloc>()) {
+    instance.registerFactory<UpdateFavouriteBloc>(
+        () => UpdateFavouriteBloc(updateFavouriteUseCase: instance()));
   }
 }
 

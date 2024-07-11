@@ -447,7 +447,7 @@ class _LoginViewState extends State<LoginView> {
                 },
                 builder: (context, state) {
                   return state.map(initial: (val) {
-                    return _ConfirmButton(
+                    return ConfirmButton(
                       formKey: _resetFormKey,
                       confirm: () {
                         if (_resetFormKey.currentState!.validate()) {
@@ -461,7 +461,7 @@ class _LoginViewState extends State<LoginView> {
                         height: AppSizeH.s25,
                         child: const CircularProgressIndicator());
                   }, done: (done) {
-                    return _ConfirmButton(
+                    return ConfirmButton(
                       formKey: _resetFormKey,
                       confirm: () {
                         if (_resetFormKey.currentState!.validate()) {
@@ -471,7 +471,7 @@ class _LoginViewState extends State<LoginView> {
                       },
                     );
                   }, error: (val) {
-                    return _ConfirmButton(
+                    return ConfirmButton(
                       formKey: _resetFormKey,
                       confirm: () {
                         if (_resetFormKey.currentState!.validate()) {
@@ -492,8 +492,8 @@ class _LoginViewState extends State<LoginView> {
   }
 }
 
-class _ConfirmButton extends StatelessWidget {
-  const _ConfirmButton({
+class ConfirmButton extends StatelessWidget {
+  const ConfirmButton({
     super.key,
     required GlobalKey<FormState> formKey,
     required this.confirm,

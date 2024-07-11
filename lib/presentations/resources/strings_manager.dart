@@ -194,4 +194,7 @@ class AppStrings {
   String edit = "edit".tr();
   String delete = "delete".tr();
   String apply = "apply".tr();
+  String checkDeleteFav = "check_delete_fav".tr();
+  String editName = "edit_name".tr();
+  String validatorNameEmpty = "validator_name_empty".tr();
 }
