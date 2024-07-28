@@ -8,12 +8,15 @@ import 'package:ebla/presentations/features/main/blocs/main_menu_bloc/main_menu_
 import 'package:ebla/presentations/features/rent/rents.dart';
 import 'package:ebla/presentations/widgets/selected_year_widget.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../app/depndency_injection.dart';
 import '../../../domain/models/cms_models/main_menu_models/main_menu_models.dart';
+import '../../../domain/models/favourite/favourite_models.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../../widgets/widgets.dart';
@@ -31,6 +34,16 @@ class _RentViewState extends State<RentView> {
   late RentDefaultBloc rentDefaultBloc;
   late CertificateContractBloc certificateContractBloc;
   late ChangeStatusCubit changeStatusCubit;
+
+  late CriteriaObject criteriaObject;
+  getCriteria() {
+    if (GoRouterState.of(context).extra != null) {
+      criteriaObject = GoRouterState.of(context).extra as CriteriaObject;
+      if (kDebugMode) {
+        print("i get the criteria");
+      }
+    }
+  }
 
   @override
   void initState() {
@@ -62,6 +75,10 @@ class _RentViewState extends State<RentView> {
         listener: (context, LookupState state) {
           state.mapOrNull(
             loadedLookup: (value) {
+              if (GoRouterState.of(context).extra != null) {
+                getCriteria();
+                context.read<RentBloc>().setRequestCriteria(criteriaObject);
+              }
               // rentDefaultBloc.add(RentDefaultEvent.started(
               //     request: context.read<RentBloc>().requestMeanValue));
               rentGridKPIsBloc.add(RentGridKPIsEvent.getData(
@@ -80,7 +97,12 @@ class _RentViewState extends State<RentView> {
                   lookupKey: -1,
                   arName: "الكل",
                   enName: "All",
-                  id: -1))) {
+                  id: -1,
+                  value: 0,
+                  selected: false,
+                  yoy: 0,
+                  hasPrice: false,
+                  municipalityId: 0))) {
                 listMunicipalityWithAll.insert(
                     0,
                     const LookupModel(
@@ -88,7 +110,12 @@ class _RentViewState extends State<RentView> {
                         lookupKey: -1,
                         arName: "الكل",
                         enName: "All",
-                        id: -1));
+                        id: -1,
+                        value: 0,
+                        selected: false,
+                        yoy: 0,
+                        hasPrice: false,
+                        municipalityId: 0));
               }
               context.read<LookupBloc>().lookUpRent = context
                   .read<LookupBloc>()
@@ -782,7 +809,7 @@ class _RentViewState extends State<RentView> {
                                         onGoToLastPage: (lastPage) {},
                                         backgroundColor: Theme.of(context)
                                             .colorScheme
-                                            .background,
+                                            .surface,
                                         previousPageIcon: context.locale ==
                                                 ARABIC_LOCAL
                                             ? Icons.keyboard_arrow_right_sharp
@@ -960,7 +987,7 @@ class _RentViewState extends State<RentView> {
                                               },
                                               backgroundColor: Theme.of(context)
                                                   .colorScheme
-                                                  .background,
+                                                  .surface,
                                               // textStyle: Theme.of(context)
                                               //     .textTheme
                                               //     .labelSmall,

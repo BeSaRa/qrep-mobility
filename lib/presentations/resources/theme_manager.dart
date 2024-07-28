@@ -99,8 +99,8 @@ ThemeData lightTheme() {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all(ColorManager.white),
-        textStyle: MaterialStatePropertyAll(
+        foregroundColor: WidgetStateProperty.all(ColorManager.white),
+        textStyle: WidgetStatePropertyAll(
           TextStyle(
             fontFamily: FontConstants.fontFamily,
             color: ColorManager.white,
@@ -108,8 +108,8 @@ ThemeData lightTheme() {
             fontWeight: FontWeight.w400,
           ),
         ),
-        backgroundColor: MaterialStateProperty.all(ColorManager.primary),
-        shape: MaterialStateProperty.all(
+        backgroundColor: WidgetStateProperty.all(ColorManager.primary),
+        shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(AppSizeR.s5),
@@ -236,8 +236,8 @@ ThemeData darkTheme() {
       iconTheme: IconThemeData(color: ColorManager.white),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all(const Color(0xFF222222)),
-        textStyle: MaterialStatePropertyAll(
+        foregroundColor: WidgetStateProperty.all(const Color(0xFF222222)),
+        textStyle: WidgetStatePropertyAll(
           TextStyle(
             fontFamily: FontConstants.fontFamily,
             color: ColorManager.white,
@@ -245,8 +245,8 @@ ThemeData darkTheme() {
             fontWeight: FontWeight.w400,
           ),
         ),
-        backgroundColor: MaterialStateProperty.all(ColorManager.primary),
-        shape: MaterialStateProperty.all(
+        backgroundColor: WidgetStateProperty.all(ColorManager.primary),
+        shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(AppSizeR.s5),

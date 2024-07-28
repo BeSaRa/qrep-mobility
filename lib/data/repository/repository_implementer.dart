@@ -1297,7 +1297,6 @@ class RepositoryImplementer extends Repository {
   Future<Result<List<FavouriteResponse>, FailureModel>> getUserFavourites(
       String id) async {
     if (await networkInfo.isConnected) {
-      print(id);
       try {
         final response = await appServiceClient.getWishlist(id);
         if (response.response.statusCode == 200) {
@@ -1341,6 +1340,27 @@ class RepositoryImplementer extends Repository {
     if (await networkInfo.isConnected) {
       try {
         final response = await appServiceClient.updateFav(id.id ?? 0, id);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<FavouriteResponse, FailureModel>> createFavourite(
+      FavouriteResponse id) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.createWishList(id);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {

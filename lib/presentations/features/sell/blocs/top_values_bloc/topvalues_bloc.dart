@@ -33,11 +33,13 @@ class TopvaluesBloc extends Bloc<TopvaluesEvent, TopvaluesState> {
           final failureOrSuccess =
               await countTransictionNumberUseCase.execute(value.request);
           failureOrSuccess.when((success) {
+            print("i get success in sell count transiction number");
             emit(state.copyWith(
                 isLoading: false,
                 isHasErrorContract: false,
                 listResponse: success));
           }, (error) {
+            print("i get error in sell count transiction number");
             emit(state.copyWith(
                 isLoading: false,
                 isHasErrorContract: true,
@@ -51,11 +53,13 @@ class TopvaluesBloc extends Bloc<TopvaluesEvent, TopvaluesState> {
           final failureOrSuccess =
               await countUnitPriceUseCase.execute(value.request);
           failureOrSuccess.when((success) {
+            print("i get success in sell count unite price");
             emit(state.copyWith(
                 isLoading: false,
                 isHasErrorContract: false,
                 listResponse: success));
           }, (error) {
+            print("i get error in sell count unite price");
             emit(state.copyWith(
                 isLoading: false,
                 isHasErrorContract: true,
@@ -69,11 +73,13 @@ class TopvaluesBloc extends Bloc<TopvaluesEvent, TopvaluesState> {
           final failureOrSuccess =
               await countTransictionsValueUseCase.execute(value.request);
           failureOrSuccess.when((success) {
+            print("i get success in sell count transiction value");
             emit(state.copyWith(
                 isLoading: false,
                 isHasErrorContract: false,
                 listResponse: success));
           }, (error) {
+            print("i get error in sell count transiction value");
             emit(state.copyWith(
                 isLoading: false,
                 isHasErrorContract: true,

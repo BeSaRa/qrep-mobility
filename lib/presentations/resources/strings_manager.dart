@@ -33,6 +33,9 @@ class AppStrings {
   String maxValueValidate = "max_value_validate".tr();
   String minValueValidate = "min_value_validate".tr();
   String rentContractHistory = "rent_contract_history".tr();
+  String nationality = "nationality".tr();
+  String month = "month".tr();
+  String occupancy = "occupancy".tr();
 
   // grid
   String totalRentalContractsNumber = "total_rental_contracts_number".tr();
@@ -130,6 +133,7 @@ class AppStrings {
   String furnitureStatus = "furniture_status".tr(); // "حالة الاثاث"
   String street = "street".tr(); // "الشارع"
   String selectItems = "select_items".tr();
+  String year = "year".tr();
 
   //---------------- sell ----------
   String sellContractCount = "sell_contracts_count".tr();
@@ -197,4 +201,10 @@ class AppStrings {
   String checkDeleteFav = "check_delete_fav".tr();
   String editName = "edit_name".tr();
   String validatorNameEmpty = "validator_name_empty".tr();
+  String somethingWentWrong = "something_went_wrong".tr();
+  String mobileAppDonSupport = "mobile_app_don_support".tr();
+  String quarter = "quarter".tr();
+  String addFavourite = "add_favourite".tr();
+  String addFavouriteSuccess = "add_favourite_success".tr();
+  String halfYear = "half_year".tr();
 }

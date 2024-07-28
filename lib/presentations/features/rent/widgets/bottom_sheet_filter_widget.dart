@@ -11,8 +11,12 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../../app/app_preferences.dart';
 import '../../../../app/depndency_injection.dart';
+import '../../../../domain/models/favourite/favourite_models.dart';
 import '../../../../domain/models/rent_models/rent_models.dart';
+import '../../../widgets/taost_widget.dart';
 import '../../../widgets/widgets.dart';
+import '../../auth/blocs/cubits/logged_in_user_cubit.dart';
+import '../../favourite/fav_widgets.dart';
 import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../blocs/cubits/values_filters_cubit.dart';
 import '../blocs/rent_bloc/rent_bloc.dart';
@@ -266,28 +270,38 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     //     ) ??
     //     const RentLookupModel();
     //Property and Purpose
-    List<LookupModel> listMunicipalityWithAll = [];
-    if (!listMunicipalityWithAll.contains(const LookupModel(
-        isActive: true,
-        lookupKey: -1,
-        arName: "الكل",
-        enName: "All",
-        id: -1))) {
-      listMunicipalityWithAll.insert(
-          0,
-          const LookupModel(
-              isActive: true,
-              lookupKey: -1,
-              arName: "الكل",
-              enName: "All",
-              id: -1));
-    }
-    listMunicipalityWithAll
-        .addAll(context.read<LookupBloc>().lookUpRent?.municipalityList ?? []);
-    context.read<LookupBloc>().lookUpRent = context
-        .read<LookupBloc>()
-        .lookUpRent
-        ?.copyWith(municipalityList: listMunicipalityWithAll);
+    // List<LookupModel> listMunicipalityWithAll = [];
+    // if (!listMunicipalityWithAll.contains(const LookupModel(
+    //     isActive: true,
+    //     lookupKey: -1,
+    //     arName: "الكل",
+    //     enName: "All",
+    //     id: -1,
+    //     value: 0,
+    //     selected: false,
+    //     yoy: 0,
+    //     hasPrice: false,
+    //     municipalityId: 0))) {
+    //   listMunicipalityWithAll.insert(
+    //       0,
+    //       const LookupModel(
+    //           isActive: true,
+    //           lookupKey: -1,
+    //           arName: "الكل",
+    //           enName: "All",
+    //           id: -1,
+    //           value: 0,
+    //           selected: false,
+    //           yoy: 0,
+    //           hasPrice: false,
+    //           municipalityId: 0));
+    // }
+    // listMunicipalityWithAll
+    //     .addAll(context.read<LookupBloc>().lookUpRent?.municipalityList ?? []);
+    // context.read<LookupBloc>().lookUpRent = context
+    //     .read<LookupBloc>()
+    //     .lookUpRent
+    //     ?.copyWith(municipalityList: listMunicipalityWithAll);
     valuesFiltersCubit.municapility = getObjectById(
           context.read<LookupBloc>().lookUpRent?.municipalityList ?? [],
           context.read<RentBloc>().requestMeanValue.municipalityId ?? 1,
@@ -1574,6 +1588,83 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                 ]),
               ),
               SizedBox(height: AppSizeW.s12),
+              if (context.read<LoggedInUserCubit>().state)
+                Center(
+                  child: CustomElevatedButton(
+                    isPrimary: true,
+                    title: AppStrings().addFavourite,
+                    onPress: () async {
+                      if (_formkey.currentState!.validate()) {
+                        CriteriaObject criteria = CriteriaObject(
+                          areaFrom: areaValueFromController.text.isEmpty
+                              ? null
+                              : double.parse(areaValueFromController.text),
+                          areaTo: areaValueToController.text.isEmpty
+                              ? null
+                              : double.parse(areaValueToController.text),
+                          municipalityId:
+                              valuesFiltersCubit.municapility.lookupKey,
+                          areaCode: valuesFiltersCubit.zone.lookupKey,
+                          unit: valuesFiltersCubit.unit,
+                          issueDateYear: valuesFiltersCubit.year.id,
+                          issueDateQuarterList: getissueDateQuarterList(
+                              valuesFiltersCubit.periodTime.id),
+                          issueDateStartMonth:
+                              valuesFiltersCubit.periodTime.id == 4
+                                  ? valuesFiltersCubit.month.value[0] - 1
+                                  : 1,
+                          issueDateEndMonth:
+                              valuesFiltersCubit.periodTime.id == 4
+                                  ? valuesFiltersCubit.month.value[0]
+                                  : valuesFiltersCubit.periodTime.id == 1
+                                      ? valuesFiltersCubit.year.id ==
+                                              DateTime.now().year
+                                          ? DateTime.now().month
+                                          : 12
+                                      : 12,
+                          periodId: valuesFiltersCubit.periodTime.id,
+                          issueDateFrom: valuesFiltersCubit.periodTime.id == 5
+                              ? valuesFiltersCubit.pickerDateRange?.startDate
+                                  ?.toUtc()
+                                  .toIso8601String()
+                              : null,
+                          issueDateTo: valuesFiltersCubit.periodTime.id == 5
+                              ? valuesFiltersCubit.pickerDateRange?.endDate
+                                  ?.toUtc()
+                                  .toIso8601String()
+                              : null,
+                          purposeList: valuesFiltersCubit.rentPurposeList
+                              .map((e) => e.lookupKey)
+                              .toList(),
+                          propertyTypeList: valuesFiltersCubit.propertyTypeList
+                              .map((e) => e.lookupKey)
+                              .toList(),
+                          halfYearDuration:
+                              valuesFiltersCubit.periodTime.id == 2
+                                  ? listEquals(
+                                          getissueDateQuarterList(
+                                              valuesFiltersCubit.periodTime.id),
+                                          [1, 2])
+                                      ? 1
+                                      : 2
+                                  : null,
+                        );
+                        var res = await showDialog(
+                            context: context,
+                            builder: (BuildContext ctxt) => Dialog(
+                                    child: CreateFavWidget(
+                                  criteria: criteria,
+                                  page: Indicators.rental,
+                                )));
+                        if (res != null && res == true) {
+                          successToast(
+                              AppStrings().addFavouriteSuccess, context);
+                        }
+                      }
+                    },
+                  ),
+                ),
+              SizedBox(height: AppSizeH.s12),
             ],
           ),
         ),

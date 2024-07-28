@@ -395,7 +395,10 @@ class AppRouter {
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.favourite,
           path: RoutesPaths.favourite,
-          builder: (context, state) => const FavView(),
+          builder: (context, state) => BlocProvider.value(
+            value: instance<BottomNavCubit>(),
+            child: const FavView(),
+          ),
         ),
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
@@ -406,7 +409,7 @@ class AppRouter {
             return BlocProvider(
               create: (context) => instance<LookUpBrokerBloc>()
                 ..add(const LookUpBrokerEvent.getBrokerLookup()),
-              child: const RealEstateBrokersView(),
+              child: RealEstateBrokersView(),
             );
           },
         ),

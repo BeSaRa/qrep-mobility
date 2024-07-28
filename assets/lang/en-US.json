@@ -81,6 +81,10 @@
   "min_value": "Min value",
   "min_value_validate": "Smaller than {} value",
   "max_value_validate": "Larger than {} value",
+  "nationality": "Nationality",
+  "year": "Year",
+  "month": "Month",
+  "occupancy": "occupancy",
   "----------------------------------------------------RENT--------------------------": "",
   "average_price_per_month": "Average Price per month",
   "average_rental_price_per_unit_property": "Average rental price per unit / property",
@@ -168,5 +172,11 @@
   "apply": "Apply",
   "check_delete_fav": "Are you sure you want delete item from wishlist?",
   "edit_name": "Edit name",
-  "validator_name_empty":"you can't left the field empty"
+  "validator_name_empty":"you can't left the field empty",
+  "something_went_wrong": "Something went wrong, please try again",
+  "mobile_app_don_support": "Sorry,Mobile application do not support this page!",
+  "quarter": "Quarter",
+  "add_favourite": "Add to favourite",
+  "add_favourite_success": "Added to favourite successfully",
+  "half_year": "Half year"
 }

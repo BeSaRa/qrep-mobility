@@ -18,6 +18,7 @@ import '../../resources/resources.dart';
 import '../../widgets/widgets.dart';
 import '../auth/blocs/login_bloc/login_bloc.dart';
 import '../main/blocs/lookup_bloc/lookup_bloc.dart';
+import '../main/cubit/bottom_nav_cubit.dart';
 import 'widgets/dialog_signout.dart';
 
 class MoreView extends StatefulWidget {
@@ -121,9 +122,25 @@ class _MoreViewState extends State<MoreView> {
                           MoreWidgetButton(
                             icon: Icons.star,
                             title: AppStrings().watchList,
-                            onPressed: () {
+                            onPressed: () async {
                               initFavourite();
-                              context.pushNamed(RoutesNames.favourite);
+                              Map? res = await context
+                                  .pushNamed(RoutesNames.favourite);
+                              if (res != null) {
+                                context
+                                    .read<BottomNavCubit>()
+                                    .changePage(res["class"]);
+                                context.goNamed(
+                                    context
+                                        .read<BottomNavCubit>()
+                                        .paths[res["class"]],
+                                    extra: res["object"]);
+                                if (res["class"] == 0) {
+                                  context.pushNamed(
+                                      RoutesNames.realEstateBrokers,
+                                      extra: res["object"]);
+                                }
+                              }
                             },
                           ),
                           BlocBuilder(

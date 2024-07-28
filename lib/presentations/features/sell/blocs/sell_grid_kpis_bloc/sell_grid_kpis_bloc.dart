@@ -72,12 +72,14 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       //-------------------------------KPI1-------------------------------------
       failureOrSuccessTotalContracts.when(
         (success) {
+          print("i get success in -KPI1-");
           emit(state.copyWith(
               isLoading: false,
               hasErrorTotalContracts: false,
               totalContracts: success));
         },
         (error) {
+          print("i get error in -KPI1-");
           emit(state.copyWith(
               isLoading: false,
               hasErrorTotalContracts: true,
@@ -89,12 +91,14 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       //-------------------------------KPI4-------------------------------------
       failureOrSuccessTotalSoldUnits.when(
         (success) {
+          print("i get success in -KPI4-");
           emit(state.copyWith(
               isLoading: false,
               hasErrorTotalSoldUnits: false,
               totalSoldUnits: success));
         },
         (error) {
+          print("i get error in -KPI4-");
           emit(state.copyWith(
               isLoading: false,
               hasErrorTotalSoldUnits: true,
@@ -105,12 +109,14 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       //-------------------------------KPI7-------------------------------------
       failureOrSuccessTotalTransactions.when(
         (success) {
+          print("i get success in -KPI7-");
           emit(state.copyWith(
               isLoading: false,
               hasErrorTotalTransactionsValue: false,
               totalTransactionsValue: success));
         },
         (error) {
+          print("i get error in -KPI7-");
           emit(state.copyWith(
               isLoading: false,
               hasErrorTotalTransactionsValue: true,
@@ -121,12 +127,14 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       //-------------------------------KPI10------------------------------------
       failureOrSuccessTotalSoldSpaces.when(
         (success) {
+          print("i get success in -KPI10-");
           emit(state.copyWith(
               isLoading: false,
               hasErrorTotalSoldSpaces: false,
               totalSoldSpaces: success));
         },
         (error) {
+          print("i get error in -KPI10-");
           emit(state.copyWith(
               isLoading: false,
               hasErrorTotalSoldSpaces: true,
@@ -137,12 +145,14 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       //-------------------------------KPI3-------------------------------------
       failureOrSuccessMeanValue.when(
         (success) {
+          print("i get success in -KPI13-");
           emit(state.copyWith(
               isLoading: false,
               hasErrorMeanSellUnitValue: false,
               meanSellUnitValue: success));
         },
         (error) {
+          print("i get error in -KPI13-");
           emit(state.copyWith(
               isLoading: false,
               hasErrorMeanSellUnitValue: true,
@@ -153,12 +163,14 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       //-------------------------------KPI16------------------------------------
       failureOrSuccessMeanSoldAreaUsecase.when(
         (success) {
+          print("i get success in -KPI16-");
           emit(state.copyWith(
               isLoading: false,
               hasErrorMeanSoldAreaValue: false,
               meanSoldAreaValue: success));
         },
         (error) {
+          print("i get error in -KPI16-");
           emit(state.copyWith(
               isLoading: false,
               hasErrorMeanSoldAreaValue: true,

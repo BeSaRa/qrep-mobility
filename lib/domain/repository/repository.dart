@@ -6,7 +6,6 @@ import '../models/cms_models/user/requests/update_info_model.dart';
 import '../models/favourite/favourite_models.dart';
 import '../models/models.dart';
 import '../models/requests/broker_requests/request_broker_values.dart';
-import '../usecases/cms/update_fcm_usecase.dart';
 
 abstract class Repository {
   //-------------CMS
@@ -185,6 +184,10 @@ abstract class Repository {
       String id);
 
   Future<Result<bool, FailureModel>> deleteFavourite(int id);
+
   Future<Result<FavouriteResponse, FailureModel>> updateFavourite(
+      FavouriteResponse id);
+
+  Future<Result<FavouriteResponse, FailureModel>> createFavourite(
       FavouriteResponse id);
 }

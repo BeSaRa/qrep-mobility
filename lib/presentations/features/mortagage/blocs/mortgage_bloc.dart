@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:ebla/domain/models/requests/mortgage_requests/request_mortgage_values.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../domain/models/favourite/favourite_models.dart';
 import '../../../../domain/models/rent_models/rent_models.dart';
 
 part 'mortgage_bloc.freezed.dart';
@@ -27,6 +28,30 @@ class MortgageBloc extends Bloc<MortgageEvent, MortgageState> {
       //   },
       // );
     });
+  }
+  setRequestCriteria(CriteriaObject criteriaObject) {
+    requestMeanValue = RequestMortgageValues(
+        areaCode: criteriaObject.areaCode ?? -1,
+        areaFrom: criteriaObject.areaFrom,
+        areaTo: criteriaObject.areaTo,
+        issueDateEndMonth: 12,
+        issueDateFrom: null,
+        issueDateQuarterList: criteriaObject.issueDateQuarterList,
+        issueDateStartMonth: 1,
+        issueDateMonth: criteriaObject.issueDateMonth,
+        halfYearDuration: criteriaObject.halfYearDuration,
+        issueDateTo: null,
+        issueDateYear: criteriaObject.issueDateYear ?? 2023,
+        limit: 5,
+        municipalityId: criteriaObject.municipalityId ?? -1,
+        offset: 0,
+        propertyTypeList: criteriaObject.propertyTypeList ?? [-1],
+        purposeList: criteriaObject.purposeList ?? [-1],
+        realEstateValueFrom: criteriaObject.realEstateValueFrom,
+        realEstateValueTo: criteriaObject.realEstateValueTo,
+        zoneId: criteriaObject.zoneId ?? -1,
+        unit: criteriaObject.unit ?? 2,
+        periodId: 1);
   }
 
   RequestMortgageValues requestDefault = RequestMortgageValues(

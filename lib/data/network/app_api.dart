@@ -203,6 +203,10 @@ abstract class AppServiceClient {
   @PUT(EndPoints.getUserWishList)
   Future<HttpResponse<FavouriteResponse>> updateFav(
       @Path("id") int id, @Body() FavouriteResponse fav);
+
+  @POST(EndPoints.getUserWishList)
+  Future<HttpResponse<FavouriteResponse>> createWishList(
+      @Body() FavouriteResponse criteria);
 }
 
 //---------------------------------DirectUs-----------------------------------------

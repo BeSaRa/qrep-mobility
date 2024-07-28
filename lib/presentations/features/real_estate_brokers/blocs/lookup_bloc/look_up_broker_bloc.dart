@@ -26,14 +26,12 @@ class LookUpBrokerBloc extends Bloc<LookUpBrokerEvent, LookUpBrokerState> {
           final ovFailureOrSucces = await lookOVUpUseCase.execute();
           ovFailureOrSucces.when((success) {
             lookupBrokerOv = success;
-            print("fatina successov $success");
           }, (error) {
             emit(LookUpBrokerState.error(message: error.message));
           });
 
           failureOrSuccess.when((success) {
             lookupBroker = success;
-            print("fatina success $success");
           }, (error) {
             emit(LookUpBrokerState.error(message: error.message));
           });

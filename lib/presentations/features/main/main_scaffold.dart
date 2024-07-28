@@ -36,38 +36,43 @@ class _MainScaffoldState extends State<MainScaffold>
 
   @override
   Widget build(BuildContext context) {
-    _controller.animateTo(context.read<BottomNavCubit>().currentPage,
+    _controller.animateTo(context.read<BottomNavCubit>().state,
         duration: kTabScrollDuration, curve: Curves.ease);
 
-    return Scaffold(
-      body: widget.child,
-      bottomNavigationBar: EblaNavigationBar(
-        onTap: (index) async {
-          switch (index) {
-            case 0:
-              await initHomeModule();
-            case 1:
-              await initRentModule();
-            case 2:
-              await initSellModule();
-            case 3:
-              await initMortgageModule();
-            // case 4:
-            //   initLoginModule();
+    return BlocBuilder(
+      bloc: context.read<BottomNavCubit>(),
+      builder: (context, state) {
+        return Scaffold(
+          body: widget.child,
+          bottomNavigationBar: EblaNavigationBar(
+            onTap: (index) async {
+              switch (index) {
+                case 0:
+                  await initHomeModule();
+                case 1:
+                  await initRentModule();
+                case 2:
+                  await initSellModule();
+                case 3:
+                  await initMortgageModule();
+                // case 4:
+                //   initLoginModule();
 
-            default:
-              null;
-          }
+                default:
+                  null;
+              }
 
-          context.read<BottomNavCubit>().changePage(index);
-          context.goNamed(context.read<BottomNavCubit>().paths[index]);
-        },
-        body: Container(
-          color: Colors.transparent,
-        ),
-        currentPage: context.read<BottomNavCubit>().currentPage,
-        controller: _controller,
-      ),
+              context.read<BottomNavCubit>().changePage(index);
+              context.goNamed(context.read<BottomNavCubit>().paths[index]);
+            },
+            body: Container(
+              color: Colors.transparent,
+            ),
+            // currentPage: context.watch<BottomNavCubit>().state,
+            controller: _controller,
+          ),
+        );
+      },
     );
   }
 }

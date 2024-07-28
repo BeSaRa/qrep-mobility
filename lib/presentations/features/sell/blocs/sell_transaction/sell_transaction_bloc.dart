@@ -23,9 +23,10 @@ class SellTransactionBloc
             await sellTransactionUseCase.execute(event.request);
         failureOrSuccess.when((success) {
           sellTransaction = success;
-
+          print("i get success in sell transaction");
           emit(SellTransactionState.success(success));
         }, (error) {
+          print("i get error in sell transaction");
           emit(SellTransactionState.error(error.message));
         });
       });

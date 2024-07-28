@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../../domain/models/favourite/favourite_models.dart';
 import '../../../../../domain/models/rent_models/rent_models.dart';
 import '../../../../../domain/models/requests/rent_requests/request_rent.dart';
 
@@ -43,6 +44,30 @@ class RentBloc extends Bloc<RentEvent, RentState> {
       //   },
       // );
     });
+  }
+
+  setRequestCriteria(CriteriaObject criteriaObject) {
+    requestMeanValue = RentRequest(
+        zoneId: criteriaObject.zoneId ?? -1,
+        areaFrom: criteriaObject.areaFrom,
+        areaTo: criteriaObject.areaTo,
+        issueDateEndMonth: 12,
+        issueDateFrom: null,
+        issueDateQuarterList: criteriaObject.issueDateQuarterList,
+        issueDateStartMonth: 1,
+        halfYearDuration: criteriaObject.halfYearDuration,
+        issueDateTo: null,
+        issueDateYear: criteriaObject.issueDateYear ?? 2023,
+        limit: 5,
+        municipalityId: criteriaObject.municipalityId ?? -1,
+        offset: 0,
+        propertyTypeList: criteriaObject.propertyTypeList ?? [-1],
+        purposeList: criteriaObject.purposeList ?? [-1],
+        rentPaymentMonthlyPerUnitFrom:
+            criteriaObject.rentPaymentMonthlyPerUnitFrom,
+        rentPaymentMonthlyPerUnitTo: criteriaObject.rentPaymentMonthlyPerUnitTo,
+        unit: criteriaObject.unit ?? 2,
+        periodId: 1);
   }
 
   RentRequest requestDefault = RentRequest(

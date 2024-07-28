@@ -6,6 +6,7 @@ import '../resources/resources.dart';
 class TextFilterWidget extends StatelessWidget {
   final TextEditingController controller;
   final String? hintText;
+  final bool enabled;
   final String? Function(String?)? validator;
   final AutovalidateMode? autovalidateMode;
   final List<TextInputFormatter>? inputFormatters;
@@ -17,6 +18,7 @@ class TextFilterWidget extends StatelessWidget {
     this.validator,
     this.autovalidateMode,
     this.inputFormatters,
+    this.enabled = true,
   });
 
   @override
@@ -24,6 +26,7 @@ class TextFilterWidget extends StatelessWidget {
     return SizedBox(
       height: AppSizeH.s38,
       child: TextFormField(
+        enabled: enabled,
         expands: true,
         maxLines: null,
         minLines: null,

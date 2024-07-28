@@ -197,7 +197,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               GestureDetector(
                 onTap: () async {
-                  var res = await showDialog(
+                  await showDialog(
                       context: context,
                       builder: (BuildContext context) =>
                           _buildResetPasswordDialog(context, ''));
@@ -481,7 +481,6 @@ class _LoginViewState extends State<LoginView> {
                       },
                     );
                   });
-                  return Container();
                 },
               ),
             ],

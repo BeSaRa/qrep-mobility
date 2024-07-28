@@ -217,8 +217,8 @@ class _MultiChooseDropDownWidgetState extends State<MultiChooseDropDownWidget> {
             // offset: const Offset(-20, 0),
             scrollbarTheme: ScrollbarThemeData(
               radius: Radius.circular(AppSizeR.s5),
-              thickness: MaterialStateProperty.all(6),
-              thumbVisibility: MaterialStateProperty.all(true),
+              thickness: WidgetStateProperty.all(6),
+              thumbVisibility: WidgetStateProperty.all(true),
             ),
           ),
           iconStyleData: IconStyleData(

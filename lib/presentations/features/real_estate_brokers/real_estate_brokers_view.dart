@@ -1,11 +1,13 @@
 import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/domain/models/favourite/favourite_models.dart';
 import 'package:ebla/presentations/features/real_estate_brokers/real_estates.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../app/depndency_injection.dart';
 import '../../../utils/global_functions.dart';
@@ -30,12 +32,20 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
   @override
   void initState() {
     super.initState();
+
     FirebaseAnalytics.instance.logEvent(name: 'open_brokers_view');
     changeStatusCubit = ChangeStatusCubit();
     brokersCountBloc = instance<BrokersCountBloc>()
       ..add(BrokersCountEvent.started(
           request: context.read<LookUpBrokerBloc>().requestBroker));
     brokerTransactionBloc = instance<BrokerTransactionBloc>();
+  }
+
+  late CriteriaObject criteriaObject;
+  getCriteria() {
+    if (GoRouterState.of(context).extra != null) {
+      criteriaObject = GoRouterState.of(context).extra as CriteriaObject;
+    }
   }
 
   Timer? _debounce;
@@ -50,11 +60,26 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
             return const AnimatedPulesLogo();
           },
           done: (value) {
+            if (GoRouterState.of(context).extra != null) {
+              getCriteria();
+              context.read<LookUpBrokerBloc>().requestBroker = context
+                  .read<LookUpBrokerBloc>()
+                  .requestBroker
+                  .copyWith(
+                      limit: 5,
+                      municipalityId: criteriaObject.municipalityId ?? -1,
+                      brokerName: criteriaObject.brokerName,
+                      brokerCategoryId: criteriaObject.brokerCategoryId ?? 2);
+              searchController.text = criteriaObject.brokerName ?? '';
+            } else {
+              context.read<LookUpBrokerBloc>().requestBroker = context
+                  .read<LookUpBrokerBloc>()
+                  .requestBroker
+                  .copyWith(limit: 5, municipalityId: -1, brokerCategoryId: 2);
+            }
             brokerTransactionBloc.add(BrokerTransactionEvent.started(
-                request: context
-                    .read<LookUpBrokerBloc>()
-                    .requestBroker
-                    .copyWith(limit: 5)));
+                request: context.read<LookUpBrokerBloc>().requestBroker));
+
             return GestureDetector(
               onTap: () {
                 FocusManager.instance.primaryFocus?.unfocus();
@@ -482,7 +507,7 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                         },
                                         backgroundColor: Theme.of(context)
                                             .colorScheme
-                                            .background,
+                                            .surface,
                                         // textStyle: Theme.of(context)
                                         //     .textTheme
                                         //     .labelSmall,
@@ -535,7 +560,6 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
     if (((context.read<LookUpBrokerBloc>().requestBroker.offset ?? 0) ~/
             (context.read<LookUpBrokerBloc>().requestBroker.limit ?? 1)) ==
         0) {
-      print("fatina in condition");
       if (list.length < 5) {
         return 1;
       } else

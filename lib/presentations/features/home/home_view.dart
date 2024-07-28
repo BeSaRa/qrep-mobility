@@ -15,6 +15,7 @@ import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../info/blocs/news_bloc/news_bloc.dart';
 import '../main/cubit/bottom_nav_cubit.dart';
+import '../main/mains.dart';
 import '../more/more_view.dart';
 import 'widgets/news_widget.dart';
 
@@ -32,6 +33,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     FirebaseAnalytics.instance.logEvent(name: 'open_home_view');
+
     super.initState();
   }
 
@@ -50,10 +52,7 @@ class _HomeViewState extends State<HomeView> {
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
                 child: SizedBox(
-                  height: MediaQuery
-                      .of(context)
-                      .size
-                      .height / 2.5,
+                  height: MediaQuery.of(context).size.height / 2.5,
                   child: Row(
                     children: [
                       Expanded(
@@ -64,24 +63,19 @@ class _HomeViewState extends State<HomeView> {
                                 await initSellModule();
                                 context.read<BottomNavCubit>().changePage(2);
                                 context.goNamed(
-                                    context
-                                        .read<BottomNavCubit>()
-                                        .paths[context
-                                        .read<BottomNavCubit>()
-                                        .currentPage]);
+                                    context.read<BottomNavCubit>().paths[
+                                        context.read<BottomNavCubit>().state]);
                               },
                               child: HomeContainer(
                                 isBig: true,
                                 title: AppStrings().sellIndicators,
                                 color:
-                                Theme
-                                    .of(context)
-                                    .scaffoldBackgroundColor,
+                                    Theme.of(context).scaffoldBackgroundColor,
                                 image: IconAssets.sellHome,
                                 isShadow: instance<AppPreferences>()
-                                    .getTheme()
-                                    .brightness ==
-                                    Brightness.light
+                                            .getTheme()
+                                            .brightness ==
+                                        Brightness.light
                                     ? true
                                     : false,
                               ),
@@ -92,17 +86,13 @@ class _HomeViewState extends State<HomeView> {
                                 // context.goNamed(RoutesNames.mortgage);
                                 context.read<BottomNavCubit>().changePage(3);
                                 context.goNamed(
-                                    context
-                                        .read<BottomNavCubit>()
-                                        .paths[context
-                                        .read<BottomNavCubit>()
-                                        .currentPage]);
+                                    context.read<BottomNavCubit>().paths[
+                                        context.read<BottomNavCubit>().state]);
                               },
                               child: HomeContainer(
                                 isBig: false,
                                 title: AppStrings().mortgageIndicators,
-                                color: Theme
-                                    .of(context)
+                                color: Theme.of(context)
                                     .colorScheme
                                     .onTertiaryContainer,
                                 image: IconAssets.mortagageHome,
@@ -122,18 +112,13 @@ class _HomeViewState extends State<HomeView> {
                                 // context.goNamed(RoutesNames.rent);
                                 context.read<BottomNavCubit>().changePage(1);
                                 context.goNamed(
-                                    context
-                                        .read<BottomNavCubit>()
-                                        .paths[context
-                                        .read<BottomNavCubit>()
-                                        .currentPage]);
+                                    context.read<BottomNavCubit>().paths[
+                                        context.read<BottomNavCubit>().state]);
                               },
                               child: HomeContainer(
                                 isBig: false,
                                 title: AppStrings().rentIndicators,
-                                color: Theme
-                                    .of(context)
-                                    .cardColor,
+                                color: Theme.of(context).cardColor,
                                 image: IconAssets.rentHome,
                                 imageColor: ColorManager.white,
                                 textColor: ColorManager.white,
@@ -150,14 +135,12 @@ class _HomeViewState extends State<HomeView> {
                                 isBig: true,
                                 title: AppStrings().realEstateBrokers,
                                 color:
-                                Theme
-                                    .of(context)
-                                    .scaffoldBackgroundColor,
+                                    Theme.of(context).scaffoldBackgroundColor,
                                 image: IconAssets.inMiddleHome,
                                 isShadow: instance<AppPreferences>()
-                                    .getTheme()
-                                    .brightness ==
-                                    Brightness.light
+                                            .getTheme()
+                                            .brightness ==
+                                        Brightness.light
                                     ? true
                                     : false,
                               ),
@@ -173,8 +156,7 @@ class _HomeViewState extends State<HomeView> {
             ),
             BlocProvider(
               create: (context) =>
-              instance<NewsBloc>()
-                ..add(const NewsEvent.getNewsEvent()),
+                  instance<NewsBloc>()..add(const NewsEvent.getNewsEvent()),
               child: const NewsWidget(),
             ),
             SizedBox(
@@ -193,10 +175,7 @@ class _HomeViewState extends State<HomeView> {
                       icon: IconAssets.aboutHome,
                       title: Text(
                         AppStrings().aboutUs,
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .bodyMedium,
+                        style: Theme.of(context).textTheme.bodyMedium,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         softWrap: true,
@@ -212,10 +191,7 @@ class _HomeViewState extends State<HomeView> {
                       icon: IconAssets.lawsHome,
                       title: Text(
                         AppStrings().lawsAndDecisions,
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .bodyMedium,
+                        style: Theme.of(context).textTheme.bodyMedium,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         softWrap: true,
@@ -231,10 +207,7 @@ class _HomeViewState extends State<HomeView> {
                       icon: IconAssets.faqHome,
                       title: Text(
                         AppStrings().faqs,
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .bodyMedium,
+                        style: Theme.of(context).textTheme.bodyMedium,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         softWrap: true,
@@ -271,17 +244,12 @@ class StaticPagesContainer extends StatelessWidget {
       height: AppSizeH.s100,
       width: AppSizeW.s112,
       padding:
-      EdgeInsets.symmetric(horizontal: AppSizeH.s6, vertical: AppSizeH.s10),
+          EdgeInsets.symmetric(horizontal: AppSizeH.s6, vertical: AppSizeH.s10),
       decoration: BoxDecoration(
-          color: Theme
-              .of(context)
-              .cardTheme
-              .color,
+          color: Theme.of(context).cardTheme.color,
           borderRadius: BorderRadius.circular(AppSizeW.s14),
           border: Border.all(
-              color: Theme
-                  .of(context)
-                  .dividerColor, width: AppSizeH.s1)),
+              color: Theme.of(context).dividerColor, width: AppSizeH.s1)),
       child: Center(
         child: Column(
           mainAxisAlignment: title is Text
@@ -332,26 +300,19 @@ class HomeContainer extends StatelessWidget {
       margin: EdgeInsets.symmetric(
           horizontal: AppSizeW.s10, vertical: AppSizeH.s10),
       height:
-      (MediaQuery
-          .of(context)
-          .size
-          .height / 2.5) * (isBig ? 0.50 : 0.36),
+          (MediaQuery.of(context).size.height / 2.5) * (isBig ? 0.50 : 0.36),
       decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(AppSizeR.s20),
           border: isShadow ? null : Border.all(color: ColorManager.grey),
           boxShadow: [
             BoxShadow(
-                color: Theme
-                    .of(context)
-                    .shadowColor,
+                color: Theme.of(context).shadowColor,
                 offset: const Offset(1, 1),
                 blurRadius: AppSizeW.s2,
                 spreadRadius: AppSizeW.s1),
             BoxShadow(
-                color: Theme
-                    .of(context)
-                    .shadowColor,
+                color: Theme.of(context).shadowColor,
                 offset: const Offset(-1, -1),
                 blurRadius: AppSizeW.s2,
                 spreadRadius: AppSizeW.s1),
@@ -369,11 +330,7 @@ class HomeContainer extends StatelessWidget {
                     title,
                     maxLines: 6,
                     softWrap: true,
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: textColor,
                         fontWeight: FontWeight.w800,
                         fontSize: AppSizeSp.s16),
@@ -410,10 +367,7 @@ class HomeContainer extends StatelessWidget {
                     image,
                     height: AppSizeH.s70,
                     width: AppSizeW.s70,
-                    color: imageColor ?? Theme
-                        .of(context)
-                        .colorScheme
-                        .primary,
+                    color: imageColor ?? Theme.of(context).colorScheme.primary,
                     fit: BoxFit.scaleDown,
                   ),
                 ),
@@ -428,11 +382,7 @@ class HomeContainer extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       softWrap: true,
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w700, fontSize: AppSizeSp.s16),
                     ),
                   ),

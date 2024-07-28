@@ -22,6 +22,7 @@ mixin _$LookupEvent {
     required TResult Function() getRentLookupEvent,
     required TResult Function() getMortgageLookupEvent,
     required TResult Function() getSellLookupEvent,
+    required TResult Function() getBrokerLookupEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$LookupEvent {
     TResult? Function()? getRentLookupEvent,
     TResult? Function()? getMortgageLookupEvent,
     TResult? Function()? getSellLookupEvent,
+    TResult? Function()? getBrokerLookupEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$LookupEvent {
     TResult Function()? getRentLookupEvent,
     TResult Function()? getMortgageLookupEvent,
     TResult Function()? getSellLookupEvent,
+    TResult Function()? getBrokerLookupEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +51,7 @@ mixin _$LookupEvent {
     required TResult Function(__GetMortgageLookupEvent value)
         getMortgageLookupEvent,
     required TResult Function(_GetSellLookupEvent value) getSellLookupEvent,
+    required TResult Function(_GetBrokerLookupEvent value) getBrokerLookupEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +60,7 @@ mixin _$LookupEvent {
     TResult? Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult? Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult? Function(_GetSellLookupEvent value)? getSellLookupEvent,
+    TResult? Function(_GetBrokerLookupEvent value)? getBrokerLookupEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,6 +69,7 @@ mixin _$LookupEvent {
     TResult Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult Function(_GetSellLookupEvent value)? getSellLookupEvent,
+    TResult Function(_GetBrokerLookupEvent value)? getBrokerLookupEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -105,12 +111,20 @@ class __$$LookUpInitialEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LookUpInitialEventImpl implements _LookUpInitialEvent {
+class _$LookUpInitialEventImpl
+    with DiagnosticableTreeMixin
+    implements _LookUpInitialEvent {
   const _$LookUpInitialEventImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LookupEvent.initilaEvent()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'LookupEvent.initilaEvent'));
   }
 
   @override
@@ -129,6 +143,7 @@ class _$LookUpInitialEventImpl implements _LookUpInitialEvent {
     required TResult Function() getRentLookupEvent,
     required TResult Function() getMortgageLookupEvent,
     required TResult Function() getSellLookupEvent,
+    required TResult Function() getBrokerLookupEvent,
   }) {
     return initilaEvent();
   }
@@ -140,6 +155,7 @@ class _$LookUpInitialEventImpl implements _LookUpInitialEvent {
     TResult? Function()? getRentLookupEvent,
     TResult? Function()? getMortgageLookupEvent,
     TResult? Function()? getSellLookupEvent,
+    TResult? Function()? getBrokerLookupEvent,
   }) {
     return initilaEvent?.call();
   }
@@ -151,6 +167,7 @@ class _$LookUpInitialEventImpl implements _LookUpInitialEvent {
     TResult Function()? getRentLookupEvent,
     TResult Function()? getMortgageLookupEvent,
     TResult Function()? getSellLookupEvent,
+    TResult Function()? getBrokerLookupEvent,
     required TResult orElse(),
   }) {
     if (initilaEvent != null) {
@@ -167,6 +184,7 @@ class _$LookUpInitialEventImpl implements _LookUpInitialEvent {
     required TResult Function(__GetMortgageLookupEvent value)
         getMortgageLookupEvent,
     required TResult Function(_GetSellLookupEvent value) getSellLookupEvent,
+    required TResult Function(_GetBrokerLookupEvent value) getBrokerLookupEvent,
   }) {
     return initilaEvent(this);
   }
@@ -178,6 +196,7 @@ class _$LookUpInitialEventImpl implements _LookUpInitialEvent {
     TResult? Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult? Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult? Function(_GetSellLookupEvent value)? getSellLookupEvent,
+    TResult? Function(_GetBrokerLookupEvent value)? getBrokerLookupEvent,
   }) {
     return initilaEvent?.call(this);
   }
@@ -189,6 +208,7 @@ class _$LookUpInitialEventImpl implements _LookUpInitialEvent {
     TResult Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult Function(_GetSellLookupEvent value)? getSellLookupEvent,
+    TResult Function(_GetBrokerLookupEvent value)? getBrokerLookupEvent,
     required TResult orElse(),
   }) {
     if (initilaEvent != null) {
@@ -220,12 +240,21 @@ class __$$GetRentLookupEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetRentLookupEventImpl implements _GetRentLookupEvent {
+class _$GetRentLookupEventImpl
+    with DiagnosticableTreeMixin
+    implements _GetRentLookupEvent {
   const _$GetRentLookupEventImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LookupEvent.getRentLookupEvent()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'LookupEvent.getRentLookupEvent'));
   }
 
   @override
@@ -244,6 +273,7 @@ class _$GetRentLookupEventImpl implements _GetRentLookupEvent {
     required TResult Function() getRentLookupEvent,
     required TResult Function() getMortgageLookupEvent,
     required TResult Function() getSellLookupEvent,
+    required TResult Function() getBrokerLookupEvent,
   }) {
     return getRentLookupEvent();
   }
@@ -255,6 +285,7 @@ class _$GetRentLookupEventImpl implements _GetRentLookupEvent {
     TResult? Function()? getRentLookupEvent,
     TResult? Function()? getMortgageLookupEvent,
     TResult? Function()? getSellLookupEvent,
+    TResult? Function()? getBrokerLookupEvent,
   }) {
     return getRentLookupEvent?.call();
   }
@@ -266,6 +297,7 @@ class _$GetRentLookupEventImpl implements _GetRentLookupEvent {
     TResult Function()? getRentLookupEvent,
     TResult Function()? getMortgageLookupEvent,
     TResult Function()? getSellLookupEvent,
+    TResult Function()? getBrokerLookupEvent,
     required TResult orElse(),
   }) {
     if (getRentLookupEvent != null) {
@@ -282,6 +314,7 @@ class _$GetRentLookupEventImpl implements _GetRentLookupEvent {
     required TResult Function(__GetMortgageLookupEvent value)
         getMortgageLookupEvent,
     required TResult Function(_GetSellLookupEvent value) getSellLookupEvent,
+    required TResult Function(_GetBrokerLookupEvent value) getBrokerLookupEvent,
   }) {
     return getRentLookupEvent(this);
   }
@@ -293,6 +326,7 @@ class _$GetRentLookupEventImpl implements _GetRentLookupEvent {
     TResult? Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult? Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult? Function(_GetSellLookupEvent value)? getSellLookupEvent,
+    TResult? Function(_GetBrokerLookupEvent value)? getBrokerLookupEvent,
   }) {
     return getRentLookupEvent?.call(this);
   }
@@ -304,6 +338,7 @@ class _$GetRentLookupEventImpl implements _GetRentLookupEvent {
     TResult Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult Function(_GetSellLookupEvent value)? getSellLookupEvent,
+    TResult Function(_GetBrokerLookupEvent value)? getBrokerLookupEvent,
     required TResult orElse(),
   }) {
     if (getRentLookupEvent != null) {
@@ -337,12 +372,21 @@ class __$$_GetMortgageLookupEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GetMortgageLookupEventImpl implements __GetMortgageLookupEvent {
+class _$_GetMortgageLookupEventImpl
+    with DiagnosticableTreeMixin
+    implements __GetMortgageLookupEvent {
   const _$_GetMortgageLookupEventImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LookupEvent.getMortgageLookupEvent()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'LookupEvent.getMortgageLookupEvent'));
   }
 
   @override
@@ -362,6 +406,7 @@ class _$_GetMortgageLookupEventImpl implements __GetMortgageLookupEvent {
     required TResult Function() getRentLookupEvent,
     required TResult Function() getMortgageLookupEvent,
     required TResult Function() getSellLookupEvent,
+    required TResult Function() getBrokerLookupEvent,
   }) {
     return getMortgageLookupEvent();
   }
@@ -373,6 +418,7 @@ class _$_GetMortgageLookupEventImpl implements __GetMortgageLookupEvent {
     TResult? Function()? getRentLookupEvent,
     TResult? Function()? getMortgageLookupEvent,
     TResult? Function()? getSellLookupEvent,
+    TResult? Function()? getBrokerLookupEvent,
   }) {
     return getMortgageLookupEvent?.call();
   }
@@ -384,6 +430,7 @@ class _$_GetMortgageLookupEventImpl implements __GetMortgageLookupEvent {
     TResult Function()? getRentLookupEvent,
     TResult Function()? getMortgageLookupEvent,
     TResult Function()? getSellLookupEvent,
+    TResult Function()? getBrokerLookupEvent,
     required TResult orElse(),
   }) {
     if (getMortgageLookupEvent != null) {
@@ -400,6 +447,7 @@ class _$_GetMortgageLookupEventImpl implements __GetMortgageLookupEvent {
     required TResult Function(__GetMortgageLookupEvent value)
         getMortgageLookupEvent,
     required TResult Function(_GetSellLookupEvent value) getSellLookupEvent,
+    required TResult Function(_GetBrokerLookupEvent value) getBrokerLookupEvent,
   }) {
     return getMortgageLookupEvent(this);
   }
@@ -411,6 +459,7 @@ class _$_GetMortgageLookupEventImpl implements __GetMortgageLookupEvent {
     TResult? Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult? Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult? Function(_GetSellLookupEvent value)? getSellLookupEvent,
+    TResult? Function(_GetBrokerLookupEvent value)? getBrokerLookupEvent,
   }) {
     return getMortgageLookupEvent?.call(this);
   }
@@ -422,6 +471,7 @@ class _$_GetMortgageLookupEventImpl implements __GetMortgageLookupEvent {
     TResult Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult Function(_GetSellLookupEvent value)? getSellLookupEvent,
+    TResult Function(_GetBrokerLookupEvent value)? getBrokerLookupEvent,
     required TResult orElse(),
   }) {
     if (getMortgageLookupEvent != null) {
@@ -453,12 +503,21 @@ class __$$GetSellLookupEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetSellLookupEventImpl implements _GetSellLookupEvent {
+class _$GetSellLookupEventImpl
+    with DiagnosticableTreeMixin
+    implements _GetSellLookupEvent {
   const _$GetSellLookupEventImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LookupEvent.getSellLookupEvent()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'LookupEvent.getSellLookupEvent'));
   }
 
   @override
@@ -477,6 +536,7 @@ class _$GetSellLookupEventImpl implements _GetSellLookupEvent {
     required TResult Function() getRentLookupEvent,
     required TResult Function() getMortgageLookupEvent,
     required TResult Function() getSellLookupEvent,
+    required TResult Function() getBrokerLookupEvent,
   }) {
     return getSellLookupEvent();
   }
@@ -488,6 +548,7 @@ class _$GetSellLookupEventImpl implements _GetSellLookupEvent {
     TResult? Function()? getRentLookupEvent,
     TResult? Function()? getMortgageLookupEvent,
     TResult? Function()? getSellLookupEvent,
+    TResult? Function()? getBrokerLookupEvent,
   }) {
     return getSellLookupEvent?.call();
   }
@@ -499,6 +560,7 @@ class _$GetSellLookupEventImpl implements _GetSellLookupEvent {
     TResult Function()? getRentLookupEvent,
     TResult Function()? getMortgageLookupEvent,
     TResult Function()? getSellLookupEvent,
+    TResult Function()? getBrokerLookupEvent,
     required TResult orElse(),
   }) {
     if (getSellLookupEvent != null) {
@@ -515,6 +577,7 @@ class _$GetSellLookupEventImpl implements _GetSellLookupEvent {
     required TResult Function(__GetMortgageLookupEvent value)
         getMortgageLookupEvent,
     required TResult Function(_GetSellLookupEvent value) getSellLookupEvent,
+    required TResult Function(_GetBrokerLookupEvent value) getBrokerLookupEvent,
   }) {
     return getSellLookupEvent(this);
   }
@@ -526,6 +589,7 @@ class _$GetSellLookupEventImpl implements _GetSellLookupEvent {
     TResult? Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult? Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult? Function(_GetSellLookupEvent value)? getSellLookupEvent,
+    TResult? Function(_GetBrokerLookupEvent value)? getBrokerLookupEvent,
   }) {
     return getSellLookupEvent?.call(this);
   }
@@ -537,6 +601,7 @@ class _$GetSellLookupEventImpl implements _GetSellLookupEvent {
     TResult Function(_GetRentLookupEvent value)? getRentLookupEvent,
     TResult Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
     TResult Function(_GetSellLookupEvent value)? getSellLookupEvent,
+    TResult Function(_GetBrokerLookupEvent value)? getBrokerLookupEvent,
     required TResult orElse(),
   }) {
     if (getSellLookupEvent != null) {
@@ -548,6 +613,137 @@ class _$GetSellLookupEventImpl implements _GetSellLookupEvent {
 
 abstract class _GetSellLookupEvent implements LookupEvent {
   const factory _GetSellLookupEvent() = _$GetSellLookupEventImpl;
+}
+
+/// @nodoc
+abstract class _$$GetBrokerLookupEventImplCopyWith<$Res> {
+  factory _$$GetBrokerLookupEventImplCopyWith(_$GetBrokerLookupEventImpl value,
+          $Res Function(_$GetBrokerLookupEventImpl) then) =
+      __$$GetBrokerLookupEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetBrokerLookupEventImplCopyWithImpl<$Res>
+    extends _$LookupEventCopyWithImpl<$Res, _$GetBrokerLookupEventImpl>
+    implements _$$GetBrokerLookupEventImplCopyWith<$Res> {
+  __$$GetBrokerLookupEventImplCopyWithImpl(_$GetBrokerLookupEventImpl _value,
+      $Res Function(_$GetBrokerLookupEventImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetBrokerLookupEventImpl
+    with DiagnosticableTreeMixin
+    implements _GetBrokerLookupEvent {
+  const _$GetBrokerLookupEventImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LookupEvent.getBrokerLookupEvent()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'LookupEvent.getBrokerLookupEvent'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetBrokerLookupEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initilaEvent,
+    required TResult Function() getRentLookupEvent,
+    required TResult Function() getMortgageLookupEvent,
+    required TResult Function() getSellLookupEvent,
+    required TResult Function() getBrokerLookupEvent,
+  }) {
+    return getBrokerLookupEvent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initilaEvent,
+    TResult? Function()? getRentLookupEvent,
+    TResult? Function()? getMortgageLookupEvent,
+    TResult? Function()? getSellLookupEvent,
+    TResult? Function()? getBrokerLookupEvent,
+  }) {
+    return getBrokerLookupEvent?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initilaEvent,
+    TResult Function()? getRentLookupEvent,
+    TResult Function()? getMortgageLookupEvent,
+    TResult Function()? getSellLookupEvent,
+    TResult Function()? getBrokerLookupEvent,
+    required TResult orElse(),
+  }) {
+    if (getBrokerLookupEvent != null) {
+      return getBrokerLookupEvent();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LookUpInitialEvent value) initilaEvent,
+    required TResult Function(_GetRentLookupEvent value) getRentLookupEvent,
+    required TResult Function(__GetMortgageLookupEvent value)
+        getMortgageLookupEvent,
+    required TResult Function(_GetSellLookupEvent value) getSellLookupEvent,
+    required TResult Function(_GetBrokerLookupEvent value) getBrokerLookupEvent,
+  }) {
+    return getBrokerLookupEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LookUpInitialEvent value)? initilaEvent,
+    TResult? Function(_GetRentLookupEvent value)? getRentLookupEvent,
+    TResult? Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
+    TResult? Function(_GetSellLookupEvent value)? getSellLookupEvent,
+    TResult? Function(_GetBrokerLookupEvent value)? getBrokerLookupEvent,
+  }) {
+    return getBrokerLookupEvent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LookUpInitialEvent value)? initilaEvent,
+    TResult Function(_GetRentLookupEvent value)? getRentLookupEvent,
+    TResult Function(__GetMortgageLookupEvent value)? getMortgageLookupEvent,
+    TResult Function(_GetSellLookupEvent value)? getSellLookupEvent,
+    TResult Function(_GetBrokerLookupEvent value)? getBrokerLookupEvent,
+    required TResult orElse(),
+  }) {
+    if (getBrokerLookupEvent != null) {
+      return getBrokerLookupEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetBrokerLookupEvent implements LookupEvent {
+  const factory _GetBrokerLookupEvent() = _$GetBrokerLookupEventImpl;
 }
 
 /// @nodoc
@@ -634,12 +830,20 @@ class __$$LoadingLookUpImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingLookUpImpl implements _LoadingLookUp {
+class _$LoadingLookUpImpl
+    with DiagnosticableTreeMixin
+    implements _LoadingLookUp {
   const _$LoadingLookUpImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LookupState.loadingLookup()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'LookupState.loadingLookup'));
   }
 
   @override
@@ -767,15 +971,23 @@ class __$$LoadedLookUpImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedLookUpImpl implements _LoadedLookUp {
+class _$LoadedLookUpImpl with DiagnosticableTreeMixin implements _LoadedLookUp {
   const _$LoadedLookUpImpl({required this.lookup});
 
   @override
   final LookupResponse lookup;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LookupState.loadedLookup(lookup: $lookup)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LookupState.loadedLookup'))
+      ..add(DiagnosticsProperty('lookup', lookup));
   }
 
   @override
@@ -907,15 +1119,23 @@ class __$$ErrorLookUpImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorLookUpImpl implements _ErrorLookUp {
+class _$ErrorLookUpImpl with DiagnosticableTreeMixin implements _ErrorLookUp {
   const _$ErrorLookUpImpl({required this.message});
 
   @override
   final String message;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'LookupState.errorLookUp(message: $message)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LookupState.errorLookUp'))
+      ..add(DiagnosticsProperty('message', message));
   }
 
   @override

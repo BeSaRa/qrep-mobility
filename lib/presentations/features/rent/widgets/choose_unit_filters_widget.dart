@@ -32,7 +32,7 @@ class _ChooseUnitWidgetState extends State<ChooseUnitWidget> {
                         context.read<SellBloc>().requestSell.areaTo != null) {
                       context
                           .read<ValuesFiltersCubit>()
-                          .changeRangeValuesArea(RangeValues(0.0, 0.0));
+                          .changeRangeValuesArea(const RangeValues(0.0, 0.0));
                     }
                     context.read<ValuesFiltersCubit>().changeUnit(1);
                     context.read<SellBloc>().setUnit(1);
@@ -66,7 +66,7 @@ class _ChooseUnitWidgetState extends State<ChooseUnitWidget> {
                         context.read<SellBloc>().requestSell.areaTo != null) {
                       context
                           .read<ValuesFiltersCubit>()
-                          .changeRangeValuesArea(RangeValues(0.0, 0.0));
+                          .changeRangeValuesArea(const RangeValues(0.0, 0.0));
                     }
                     context.read<ValuesFiltersCubit>().changeUnit(2);
                     context.read<SellBloc>().setUnit(2);

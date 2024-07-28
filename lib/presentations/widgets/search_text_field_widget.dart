@@ -6,6 +6,7 @@ import '../resources/values_manager.dart';
 class SearchTextFieldWidget extends StatefulWidget {
   final TextEditingController controller;
   final String hint;
+  final bool enabled;
   final Function(String) onChange;
 
   const SearchTextFieldWidget({
@@ -13,6 +14,7 @@ class SearchTextFieldWidget extends StatefulWidget {
     required this.controller,
     required this.hint,
     required this.onChange,
+    this.enabled = true,
   });
 
   @override
@@ -32,6 +34,7 @@ class _SearchTextFieldWidgetState extends State<SearchTextFieldWidget> {
     return SizedBox(
       height: AppSizeH.s40,
       child: TextField(
+        enabled: widget.enabled,
         style: Theme.of(context).textTheme.labelSmall,
         cursorColor: ColorManager.textFieldGrey,
         controller: widget.controller,

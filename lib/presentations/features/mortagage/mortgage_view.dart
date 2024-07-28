@@ -12,8 +12,10 @@ import 'package:ebla/presentations/widgets/widgets.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../../domain/models/favourite/favourite_models.dart';
 import '../../../domain/models/rent_models/rent_models.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
@@ -49,12 +51,24 @@ class _MortagageViewState extends State<MortgageView> {
     super.initState();
   }
 
+  late CriteriaObject criteriaObject;
+  getCriteria() {
+    if (GoRouterState.of(context).extra != null) {
+      criteriaObject = GoRouterState.of(context).extra as CriteriaObject;
+      print("i get the criteria");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer(
         listener: (context, LookupState state) {
           state.mapOrNull(
             loadedLookup: (value) {
+              if (GoRouterState.of(context).extra != null) {
+                getCriteria();
+                context.read<MortgageBloc>().setRequestCriteria(criteriaObject);
+              }
               mortgageGridKPIsBloc.add(MortgageGridKPIsEvent.getData(
                   request: context.read<MortgageBloc>().requestMeanValue));
               mortgageTransactionsBloc.add(MortgageTransactionsEvent.started(

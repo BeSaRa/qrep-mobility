@@ -1,6 +1,11 @@
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/app/extensions.dart';
+import 'package:ebla/domain/models/favourite/favourite_models.dart';
+import 'package:ebla/presentations/features/auth/authes.dart';
+import 'package:ebla/presentations/features/favourite/bloc/create_favourite_bloc/create_favourite_bloc.dart';
+import 'package:ebla/presentations/features/favourite/fav_widgets.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
+import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,6 +38,7 @@ class _BottomSheetFilterMortgageWidgetState
   late ValuesFiltersCubit valuesFiltersCubit;
   late ValidatorCubit validatorFromAreaCubit;
   late ValidatorCubit validatorToAreaCubit;
+  late CreateFavouriteBloc favouriteBloc;
   final _formkey = GlobalKey<FormState>();
 
   List<int>? getissueDateQuarterList(int id) {
@@ -217,6 +223,7 @@ class _BottomSheetFilterMortgageWidgetState
       valuesFiltersCubit.yearsLists.add(LookupModel(
           arName: element.toString(), id: element, enName: element.toString()));
     });
+    favouriteBloc = instance<CreateFavouriteBloc>();
     List<LookupModel> listDistrictWithAll = [];
     listDistrictWithAll
         .addAll(context.read<LookupBloc>().lookUpMortgage?.districtList ?? []);
@@ -1090,6 +1097,7 @@ class _BottomSheetFilterMortgageWidgetState
                 ],
               ),
               SizedBox(height: AppSizeH.s12),
+
               Directionality(
                 textDirection: TextDirection.rtl,
                 child: Row(children: [
@@ -1225,6 +1233,83 @@ class _BottomSheetFilterMortgageWidgetState
                 ]),
               ),
               SizedBox(height: AppSizeW.s12),
+              if (context.read<LoggedInUserCubit>().state)
+                Center(
+                  child: CustomElevatedButton(
+                    isPrimary: true,
+                    title: AppStrings().addFavourite,
+                    onPress: () async {
+                      if (_formkey.currentState!.validate()) {
+                        CriteriaObject criteria = CriteriaObject(
+                          areaFrom: areaValueFromController.text.isEmpty
+                              ? null
+                              : double.parse(areaValueFromController.text),
+                          areaTo: areaValueToController.text.isEmpty
+                              ? null
+                              : double.parse(areaValueToController.text),
+                          municipalityId:
+                              valuesFiltersCubit.municapility.lookupKey,
+                          areaCode: valuesFiltersCubit.zone.lookupKey,
+                          unit: valuesFiltersCubit.unit,
+                          issueDateYear: valuesFiltersCubit.year.id,
+                          issueDateQuarterList: getissueDateQuarterList(
+                              valuesFiltersCubit.periodTime.id),
+                          issueDateStartMonth:
+                              valuesFiltersCubit.periodTime.id == 4
+                                  ? valuesFiltersCubit.month.value[0] - 1
+                                  : 1,
+                          issueDateEndMonth:
+                              valuesFiltersCubit.periodTime.id == 4
+                                  ? valuesFiltersCubit.month.value[0]
+                                  : valuesFiltersCubit.periodTime.id == 1
+                                      ? valuesFiltersCubit.year.id ==
+                                              DateTime.now().year
+                                          ? DateTime.now().month
+                                          : 12
+                                      : 12,
+                          periodId: valuesFiltersCubit.periodTime.id,
+                          issueDateFrom: valuesFiltersCubit.periodTime.id == 5
+                              ? valuesFiltersCubit.pickerDateRange?.startDate
+                                  ?.toUtc()
+                                  .toIso8601String()
+                              : null,
+                          issueDateTo: valuesFiltersCubit.periodTime.id == 5
+                              ? valuesFiltersCubit.pickerDateRange?.endDate
+                                  ?.toUtc()
+                                  .toIso8601String()
+                              : null,
+                          purposeList: valuesFiltersCubit.rentPurposeList
+                              .map((e) => e.lookupKey)
+                              .toList(),
+                          propertyTypeList: valuesFiltersCubit.propertyTypeList
+                              .map((e) => e.lookupKey)
+                              .toList(),
+                          halfYearDuration:
+                              valuesFiltersCubit.periodTime.id == 2
+                                  ? listEquals(
+                                          getissueDateQuarterList(
+                                              valuesFiltersCubit.periodTime.id),
+                                          [1, 2])
+                                      ? 1
+                                      : 2
+                                  : null,
+                        );
+                        var res = await showDialog(
+                            context: context,
+                            builder: (BuildContext ctxt) => Dialog(
+                                    child: CreateFavWidget(
+                                  criteria: criteria,
+                                  page: Indicators.mortgage,
+                                )));
+                        if (res != null && res == true) {
+                          successToast(
+                              AppStrings().addFavouriteSuccess, context);
+                        }
+                      }
+                    },
+                  ),
+                ),
+              SizedBox(height: AppSizeH.s12),
             ],
           ),
         ),

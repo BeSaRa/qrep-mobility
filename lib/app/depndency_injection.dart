@@ -1,8 +1,10 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:ebla/domain/usecases/favourite_usecases/create_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/update_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/user_favourite_usecase.dart';
 import 'package:ebla/presentations/features/favourite/bloc/UpdateFav/update_favourite_bloc.dart';
+import 'package:ebla/presentations/features/favourite/bloc/create_favourite_bloc/create_favourite_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/get_favourite_bloc/get_favourite_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -85,11 +87,22 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<BottomNavCubit>()) {
     instance.registerFactory<BottomNavCubit>(() => BottomNavCubit(0));
   }
+  if (!GetIt.I.isRegistered<BrokerLookOVUpUseCase>()) {
+    instance.registerFactory<BrokerLookOVUpUseCase>(
+        () => BrokerLookOVUpUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<BrokerLookUpUseCase>()) {
+    instance.registerFactory<BrokerLookUpUseCase>(
+        () => BrokerLookUpUseCase(instance()));
+  }
+
   if (!GetIt.I.isRegistered<LookupBloc>()) {
     instance.registerFactory<LookupBloc>(() => LookupBloc(
         getRentLookupUseCase: instance<GetRentLookupUseCase>(),
         getSellLookupUseCase: instance<GetSellLookupUseCase>(),
-        lookUpMortgageUseCase: instance<LookUpMortgageUseCase>()));
+        lookUpMortgageUseCase: instance<LookUpMortgageUseCase>(),
+        lookOVUpUseCase: instance<BrokerLookOVUpUseCase>(),
+        lookupBrokerUsecase: instance<BrokerLookUpUseCase>()));
   }
 
   if (!GetIt.I.isRegistered<AppSettingsUseCase>()) {
@@ -154,6 +167,15 @@ Future<void> initAppModule() async {
   if (!GetIt.I.isRegistered<LoggedInUserCubit>()) {
     instance.registerFactory<LoggedInUserCubit>(
         () => LoggedInUserCubit(false, instance()));
+  }
+  if (!GetIt.I.isRegistered<CreateFavouriteUseCase>()) {
+    instance.registerFactory<CreateFavouriteUseCase>(
+        () => CreateFavouriteUseCase(instance()));
+  }
+  if (!GetIt.I.isRegistered<CreateFavouriteBloc>()) {
+    instance.registerFactory(() => CreateFavouriteBloc(
+          createFavouriteUseCase: instance(),
+        ));
   }
 }
 

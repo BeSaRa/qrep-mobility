@@ -216,7 +216,7 @@ class _NewsWidgetState extends State<NewsWidget> {
                                 .add(const NewsEvent.getNewsEvent());
                           },
                           style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
+                              backgroundColor: WidgetStateProperty.all(
                                   ColorManager.primary)),
                           icon: Icon(
                             Icons.replay_outlined,

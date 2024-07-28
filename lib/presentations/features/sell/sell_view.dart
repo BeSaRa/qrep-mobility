@@ -3,6 +3,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/app/extensions.dart';
+import 'package:ebla/domain/models/favourite/favourite_models.dart';
 import 'package:ebla/domain/models/rent_models/rent_models.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_default/sell_default_bloc.dart';
 import 'package:ebla/presentations/features/sell/blocs/sell_grid_kpis_bloc/sell_grid_kpis_bloc.dart';
@@ -13,6 +14,7 @@ import 'package:ebla/presentations/widgets/widgets.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../domain/models/cms_models/main_menu_models/main_menu_models.dart';
@@ -60,12 +62,23 @@ class _SalesViewState extends State<SalesView> {
     super.initState();
   }
 
+  late CriteriaObject criteriaObject;
+  getCriteria() {
+    if (GoRouterState.of(context).extra != null) {
+      criteriaObject = GoRouterState.of(context).extra as CriteriaObject;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer(
       listener: (context, LookupState state) {
         state.mapOrNull(
           loadedLookup: (value) {
+            if (GoRouterState.of(context).extra != null) {
+              getCriteria();
+              context.read<SellBloc>().setRequestCriteria(criteriaObject);
+            }
             List<LookupModel> listMunicipalityWithAll = [];
             listMunicipalityWithAll.addAll(
                 context.read<LookupBloc>().lookUpSell?.municipalityList ?? []);
@@ -784,7 +797,7 @@ class _SalesViewState extends State<SalesView> {
                                         onGoToLastPage: (lastPage) {},
                                         backgroundColor: Theme.of(context)
                                             .colorScheme
-                                            .background,
+                                            .surface,
                                         // textStyle: Theme.of(context)
                                         //     .textTheme
                                         //     .labelSmall,
@@ -946,7 +959,7 @@ class _SalesViewState extends State<SalesView> {
                                               },
                                               backgroundColor: Theme.of(context)
                                                   .colorScheme
-                                                  .background,
+                                                  .surface,
                                               // textStyle: Theme.of(context)
                                               //     .textTheme
                                               //     .labelSmall,

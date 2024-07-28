@@ -10,9 +10,13 @@ class SingleDropDownValue<T> extends StatefulWidget {
   final List<T> list;
   final T? value;
   final Function(T?)? onChanged;
-
+  final String hint;
   const SingleDropDownValue(
-      {super.key, required this.list, this.value, this.onChanged});
+      {super.key,
+      required this.list,
+      this.value,
+      this.onChanged,
+      this.hint = ""});
 
   @override
   State<SingleDropDownValue<T>> createState() => _SingleDropDownValue<T>();
@@ -40,11 +44,10 @@ class _SingleDropDownValue<T> extends State<SingleDropDownValue<T>> {
       child: DropdownButtonHideUnderline(
         child: DropdownButton2<T>(
           isExpanded: true,
-          // isDense: true,
           hint: Padding(
             padding: EdgeInsets.symmetric(horizontal: AppSizeW.s10),
             child: Text(
-              AppStrings().selectItems,
+              widget.hint.isNotEmpty ? widget.hint : AppStrings().selectItems,
               style: Theme.of(context).textTheme.labelSmall,
             ),
           ),
@@ -73,14 +76,7 @@ class _SingleDropDownValue<T> extends State<SingleDropDownValue<T>> {
                     ),
                   ))
               .toList(),
-          // value: selectedValue?.enName ?? '',
           value: widget.value,
-          // onChanged: (T? value) {
-          //   setState(() {
-          //     // selectedValue?.copyWith(enName: value ?? '');
-          //     selectedValue = value;
-          //   });
-          // },
           onChanged: widget.onChanged,
           dropdownStyleData: DropdownStyleData(
             maxHeight: AppSizeH.s200,
@@ -94,8 +90,8 @@ class _SingleDropDownValue<T> extends State<SingleDropDownValue<T>> {
             // offset: const Offset(-20, 0),
             scrollbarTheme: ScrollbarThemeData(
               radius: Radius.circular(AppSizeR.s5),
-              thickness: MaterialStateProperty.all(6),
-              thumbVisibility: MaterialStateProperty.all(true),
+              thickness: WidgetStateProperty.all(6),
+              thumbVisibility: WidgetStateProperty.all(true),
             ),
           ),
           iconStyleData: IconStyleData(

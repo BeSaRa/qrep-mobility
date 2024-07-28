@@ -19,10 +19,8 @@ class ForgetPasswordBloc
         final failureOrSuccess =
             await forgetPasswordUseCase.execute(value.email);
         failureOrSuccess.when((success) async {
-          print("success");
           emit(ForgetPasswordState.done(success.token));
         }, (error) {
-          print("error");
           emit(ForgetPasswordState.error(
             error.errors[0].message,
           ));

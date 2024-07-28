@@ -78,7 +78,7 @@ class GetFavouriteBloc extends Bloc<GetFavouriteEvent, GetFavouriteState> {
         reload: (_Reload value) async {
           emit(const GetFavouriteState.searchLoading());
           final failureOrSuccess =
-              await getUserFavouriteUseCase.execute(value.id ?? '');
+              await getUserFavouriteUseCase.execute(value.id);
           await failureOrSuccess.when((success) async {
             fullResponse.addAll(success);
             emit(GetFavouriteState.done(success));

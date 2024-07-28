@@ -41,7 +41,9 @@ Future<void> main() async {
         print(FirebaseAnalytics.instance);
         analytics.logAppOpen();
       } catch (e) {
-        print("this is the $e");
+        if (kDebugMode) {
+          print("this is the $e");
+        }
       }
     },
   );

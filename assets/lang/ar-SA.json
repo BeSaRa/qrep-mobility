@@ -10,7 +10,7 @@
   "confirm": "تأكيد",
   "dark": "ليلي",
   "data_is_being_collected_and_audited": "البيانات قيد الجمع والتدقيق",
-  "defaultError": "حصل خطأ ما، الرجا، المحاولة لاحقا",
+  "defaultError": "حصل خطأ ما، الرجاء المحاولة لاحقا",
   "forget_password": "هل نسيت كلمة المرور؟",
   "home": "الرئيسية",
   "identifier": "اسم المستخدم",
@@ -81,6 +81,10 @@
   "min_value": "أصغر قيمة",
   "min_value_validate": "أصغر من قيمة {}",
   "max_value_validate": "أكبر من قيمة {}",
+  "nationality": "الجنسية",
+  "year": "السنة",
+  "month": "الشهر",
+  "occupancy": "occupancy",
   "----------------------------------------------------RENT--------------------------": "",
   "average_price_per_month": "متوسط السعر لكل شهر",
   "average_rental_price_per_unit_property": "متوسط قيمة الإيجار لكل وحدة \\ عقار",
@@ -168,5 +172,11 @@
   "apply": "تطبيق",
   "check_delete_fav": "هل أنت متأكد أنك تريد حذف العنصر من القائمة؟",
   "edit_name": "تعديل الاسم",
-  "validator_name_empty":"لا يمكنك ترك الحقل فارغاً"
+  "validator_name_empty":"لا يمكنك ترك الحقل فارغاً",
+  "something_went_wrong": "حصل خطأ ما, الرجاء المحاولة مجدداً",
+  "mobile_app_don_support": "عذراً, تطبيق الموبايل لا يدعم هذه الصفحة!",
+  "quarter": "الربع",
+  "add_favourite": "إضافة إلى المفضلة",
+  "add_favourite_success": "تمت الإضافة إلى المفضلة بنجاح",
+  "half_year": "نصف السنة"
 }
