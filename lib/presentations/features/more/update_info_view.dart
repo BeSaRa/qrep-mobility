@@ -1,3 +1,4 @@
+import 'package:ebla/presentations/features/more/blocs/cubits/change_notification_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,6 +27,7 @@ class _UpdateInfoState extends State<UpdateInfo> {
   final lastNameController = TextEditingController();
   final nickNameController = TextEditingController();
   final emailNameController = TextEditingController();
+  late ChangeNotificationCubit notificationCubit;
 
   @override
   void initState() {
@@ -33,7 +35,8 @@ class _UpdateInfoState extends State<UpdateInfo> {
     lastNameController.text = widget.model.lastName;
     nickNameController.text = widget.model.title;
     emailNameController.text = widget.model.email;
-
+    notificationCubit =
+        ChangeNotificationCubit(widget.model.emailNotifications);
     super.initState();
   }
 
@@ -132,15 +135,22 @@ class _UpdateInfoState extends State<UpdateInfo> {
                     ),
                   ),
                   SizedBox(height: AppSizeH.s20),
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: true,
-                        onChanged: (value) {},
-                      ),
-                      Text(AppStrings().activateEmailNotifications,
-                          style: Theme.of(context).textTheme.labelMedium),
-                    ],
+                  BlocBuilder(
+                    bloc: notificationCubit,
+                    builder: (context, state) {
+                      return Row(
+                        children: [
+                          Checkbox(
+                            value: notificationCubit.state,
+                            onChanged: (value) {
+                              notificationCubit.save(!notificationCubit.state);
+                            },
+                          ),
+                          Text(AppStrings().activateEmailNotifications,
+                              style: Theme.of(context).textTheme.labelMedium),
+                        ],
+                      );
+                    },
                   ),
                 ],
               ),
@@ -168,7 +178,10 @@ class _UpdateInfoState extends State<UpdateInfo> {
                         context.read<UserBloc>().add(UserEvent.updateUserInfo(
                             id: widget.model.id,
                             requestUpdateInfo: RequestUpdateInfoModel(
-                                firstName: firstNameController.text)));
+                                firstName: firstNameController.text,
+                                lastName: lastNameController.text,
+                                title: nickNameController.text,
+                                emailNotifications: notificationCubit.state)));
                       },
                       child: Text(
                         AppStrings().confirm,

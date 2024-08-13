@@ -12,7 +12,7 @@ abstract class RequestUpdateInfoModel with _$RequestUpdateInfoModel {
     @JsonKey(name: "last_name") String? lastName,
     @JsonKey(name: "fcm_token") String? fcmToken,
     @JsonKey(name: "email_notifications") bool? emailNotifications,
-    String? title,
+    @JsonKey(name: "title") String? title,
   }) = _RequestUpdateInfoModel;
   factory RequestUpdateInfoModel.fromJson(Map<String, dynamic> json) =>
       _$RequestUpdateInfoModelFromJson(json);

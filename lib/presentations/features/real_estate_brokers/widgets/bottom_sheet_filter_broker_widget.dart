@@ -27,13 +27,20 @@ class _BottomSheetFilterBrokerWidgetState
     valuesFiltersCubit = ValuesFiltersCubit(const LookupModel());
 
     List<LookupModel> listMunicipalityWithAll = [];
+    List<LookupModel> oldMunicipalityList =
+        context.read<LookUpBrokerBloc>().lookupBrokerOv?.municipalityList ?? [];
 
-    if (!listMunicipalityWithAll.contains(const LookupModel(
+    if (!oldMunicipalityList.contains(const LookupModel(
         isActive: true,
         lookupKey: -1,
         arName: "الكل",
         enName: "All",
-        id: -1))) {
+        id: -1,
+        value: 0,
+        selected: false,
+        yoy: 0,
+        hasPrice: false,
+        municipalityId: 0))) {
       listMunicipalityWithAll.insert(
           0,
           const LookupModel(
@@ -41,7 +48,12 @@ class _BottomSheetFilterBrokerWidgetState
               lookupKey: -1,
               arName: "الكل",
               enName: "All",
-              id: -1));
+              id: -1,
+              value: 0,
+              selected: false,
+              yoy: 0,
+              hasPrice: false,
+              municipalityId: 0));
     }
     listMunicipalityWithAll.addAll(
         context.read<LookUpBrokerBloc>().lookupBrokerOv?.municipalityList ??
