@@ -52,13 +52,11 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
+    return BlocConsumer(
       bloc: context.read<LookUpBrokerBloc>(),
-      builder: (context, LookUpBrokerState state) {
-        return state.map(
-          loading: (value) {
-            return const AnimatedPulesLogo();
-          },
+      listener: (context, LookUpBrokerState state) {
+        state.map(
+          loading: (value) {},
           done: (value) {
             if (GoRouterState.of(context).extra != null) {
               getCriteria();
@@ -79,6 +77,35 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
             }
             brokerTransactionBloc.add(BrokerTransactionEvent.started(
                 request: context.read<LookUpBrokerBloc>().requestBroker));
+          },
+          error: (value) {},
+        );
+      },
+      builder: (context, LookUpBrokerState state) {
+        return state.map(
+          loading: (value) {
+            return const AnimatedPulesLogo();
+          },
+          done: (value) {
+            // if (GoRouterState.of(context).extra != null) {
+            //   getCriteria();
+            //   context.read<LookUpBrokerBloc>().requestBroker = context
+            //       .read<LookUpBrokerBloc>()
+            //       .requestBroker
+            //       .copyWith(
+            //           limit: 5,
+            //           municipalityId: criteriaObject.municipalityId ?? -1,
+            //           brokerName: criteriaObject.brokerName,
+            //           brokerCategoryId: criteriaObject.brokerCategoryId ?? 2);
+            //   searchController.text = criteriaObject.brokerName ?? '';
+            // } else {
+            //   context.read<LookUpBrokerBloc>().requestBroker = context
+            //       .read<LookUpBrokerBloc>()
+            //       .requestBroker
+            //       .copyWith(limit: 5, municipalityId: -1, brokerCategoryId: 2);
+            // }
+            // brokerTransactionBloc.add(BrokerTransactionEvent.started(
+            //     request: context.read<LookUpBrokerBloc>().requestBroker));
 
             return GestureDetector(
               onTap: () {
@@ -162,7 +189,10 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                                             LookUpBrokerBloc>()),
                                                   ],
                                                   child:
-                                                      const BottomSheetFilterBrokerWidget(),
+                                                      BottomSheetFilterBrokerWidget(
+                                                    brokerName:
+                                                        searchController.text,
+                                                  ),
                                                 ),
                                               );
                                               if (res != null && res) {

@@ -35,7 +35,11 @@ class _BottomSheetFilterMortgageWidgetState
   final streetController = TextEditingController();
   final areaValueFromController = TextEditingController();
   final areaValueToController = TextEditingController();
+  final mortgageValueFromController = TextEditingController();
+  final mortgageValueToController = TextEditingController();
   late ValuesFiltersCubit valuesFiltersCubit;
+  late ValidatorCubit validatorFromValueCubit;
+  late ValidatorCubit validatorToValueCubit;
   late ValidatorCubit validatorFromAreaCubit;
   late ValidatorCubit validatorToAreaCubit;
   late CreateFavouriteBloc favouriteBloc;
@@ -215,6 +219,8 @@ class _BottomSheetFilterMortgageWidgetState
   @override
   void initState() {
     valuesFiltersCubit = ValuesFiltersCubit(const LookupModel());
+    validatorFromValueCubit = ValidatorCubit(0);
+    validatorToValueCubit = ValidatorCubit(0);
     validatorFromAreaCubit = ValidatorCubit(0);
     validatorToAreaCubit = ValidatorCubit(0);
     //Year
@@ -302,7 +308,20 @@ class _BottomSheetFilterMortgageWidgetState
               enName: "All",
               id: -1));
     }
-
+    context.read<MortgageBloc>().requestMeanValue.realEstateValueFrom != null
+        ? mortgageValueFromController.text = context
+            .read<MortgageBloc>()
+            .requestMeanValue
+            .realEstateValueFrom
+            .toString()
+        : null;
+    context.read<MortgageBloc>().requestMeanValue.realEstateValueTo != null
+        ? mortgageValueToController.text = context
+            .read<MortgageBloc>()
+            .requestMeanValue
+            .realEstateValueTo
+            .toString()
+        : null;
     context.read<LookupBloc>().lookUpMortgage = context
         .read<LookupBloc>()
         .lookUpMortgage
@@ -503,7 +522,9 @@ class _BottomSheetFilterMortgageWidgetState
                               ) ??
                               const LookupModel());
 
-                      valuesFiltersCubit.changeUnit(2);
+                      valuesFiltersCubit.changeUnit(1);
+                      mortgageValueFromController.clear();
+                      mortgageValueToController.clear();
                       // valuesFiltersCubit.unit = 2;
                       // });
                       streetController.clear();
@@ -822,6 +843,235 @@ class _BottomSheetFilterMortgageWidgetState
               //   value: valuesFiltersCubit,
               //   child: const ChooseUnitWidget(),
               // ),
+              SizedBox(height: AppSizeH.s12),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                            "${AppStrings().realStateValue} (${AppStrings().from})",
+                            style: Theme.of(context).textTheme.labelMedium),
+                        Row(
+                          children: [
+                            BlocBuilder(
+                              bloc: validatorFromValueCubit,
+                              builder: (context, state) {
+                                return Expanded(
+                                    child: BlocBuilder(
+                                  bloc: valuesFiltersCubit,
+                                  builder: (context, state) {
+                                    return Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        TextFilterWidget(
+                                          inputFormatters: [
+                                            LengthLimitingTextInputFormatter(
+                                                context
+                                                    .read<LookupBloc>()
+                                                    .lookUpSell
+                                                    ?.maxParams[1]
+                                                    .maxVal
+                                                    .toString()
+                                                    .length),
+                                            FilteringTextInputFormatter.allow(
+                                                RegExp(r'^[1-9]\d*')),
+                                          ],
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
+                                          hintText:
+                                              '${context.read<LookupBloc>().lookUpSell?.maxParams[1].minVal}',
+                                          controller:
+                                              mortgageValueFromController,
+                                          validator: (value) {
+                                            validatorFromValueCubit.validator(
+                                                value,
+                                                context
+                                                        .read<LookupBloc>()
+                                                        .lookUpSell
+                                                        ?.maxParams[1]
+                                                        .maxVal ??
+                                                    0,
+                                                context
+                                                        .read<LookupBloc>()
+                                                        .lookUpSell
+                                                        ?.maxParams[1]
+                                                        .minVal ??
+                                                    0,
+                                                mortgageValueToController.text);
+                                            return validatorFromValueCubit
+                                                        .state !=
+                                                    0
+                                                ? ""
+                                                : null;
+                                          },
+                                        ),
+                                        validatorFromValueCubit.state == 3
+                                            ? Text(
+                                                AppStrings()
+                                                    .maxValueValidate
+                                                    .tr(args: [
+                                                  '(${AppStrings().to})'
+                                                ]),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall!
+                                                    .copyWith(
+                                                      color: ColorManager.red,
+                                                    ))
+                                            : validatorFromValueCubit.state == 2
+                                                ? Text(
+                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[1].maxVal}",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodySmall!
+                                                        .copyWith(
+                                                          color:
+                                                              ColorManager.red,
+                                                        ))
+                                                : validatorFromValueCubit
+                                                            .state ==
+                                                        1
+                                                    ? Text(
+                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[1].minVal}",
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodySmall!
+                                                            .copyWith(
+                                                              color:
+                                                                  ColorManager
+                                                                      .red,
+                                                            ))
+                                                    : const SizedBox()
+                                      ],
+                                    );
+                                  },
+                                ));
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: AppSizeW.s8),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                            "${AppStrings().realStateValue} (${AppStrings().to})",
+                            style: Theme.of(context).textTheme.labelMedium),
+                        Row(
+                          children: [
+                            BlocBuilder(
+                              bloc: validatorToValueCubit,
+                              builder: (context, state) {
+                                return Expanded(
+                                    child: BlocBuilder(
+                                  bloc: valuesFiltersCubit,
+                                  builder: (context, state) {
+                                    return Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        TextFilterWidget(
+                                          inputFormatters: [
+                                            LengthLimitingTextInputFormatter(
+                                                context
+                                                    .read<LookupBloc>()
+                                                    .lookUpSell
+                                                    ?.maxParams[1]
+                                                    .maxVal
+                                                    .toString()
+                                                    .length),
+                                            FilteringTextInputFormatter.allow(
+                                                RegExp(r'^[1-9]\d*')),
+                                          ],
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
+                                          hintText:
+                                              '${context.read<LookupBloc>().lookUpSell?.maxParams[1].maxVal}',
+                                          controller: mortgageValueToController,
+                                          validator: (value) {
+                                            validatorToValueCubit.validator(
+                                                value,
+                                                context
+                                                        .read<LookupBloc>()
+                                                        .lookUpSell
+                                                        ?.maxParams[1]
+                                                        .maxVal ??
+                                                    0,
+                                                context
+                                                        .read<LookupBloc>()
+                                                        .lookUpSell
+                                                        ?.maxParams[1]
+                                                        .minVal ??
+                                                    0,
+                                                mortgageValueFromController
+                                                    .text,
+                                                isFromValue: false);
+                                            return validatorToValueCubit
+                                                        .state !=
+                                                    0
+                                                ? ""
+                                                : null;
+                                          },
+                                        ),
+                                        validatorToValueCubit.state == 3
+                                            ? Text(
+                                                AppStrings()
+                                                    .minValueValidate
+                                                    .tr(args: [
+                                                  '(${AppStrings().from})'
+                                                ]),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall!
+                                                    .copyWith(
+                                                      color: ColorManager.red,
+                                                    ))
+                                            : validatorToValueCubit.state == 2
+                                                ? Text(
+                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[1].maxVal}",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodySmall!
+                                                        .copyWith(
+                                                          color:
+                                                              ColorManager.red,
+                                                        ))
+                                                : validatorToValueCubit.state ==
+                                                        1
+                                                    ? Text(
+                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[1].minVal}",
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodySmall!
+                                                            .copyWith(
+                                                              color:
+                                                                  ColorManager
+                                                                      .red,
+                                                            ))
+                                                    : const SizedBox()
+                                      ],
+                                    );
+                                  },
+                                ));
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
               SizedBox(height: AppSizeH.s12),
               // BlocBuilder(
               //   bloc: valuesFiltersCubit,
@@ -1251,6 +1501,14 @@ class _BottomSheetFilterMortgageWidgetState
                               valuesFiltersCubit.municapility.lookupKey,
                           areaCode: valuesFiltersCubit.zone.lookupKey,
                           unit: valuesFiltersCubit.unit,
+                          realEstateValueFrom: mortgageValueFromController
+                                  .text.isEmpty
+                              ? null
+                              : double.parse(mortgageValueFromController.text),
+                          realEstateValueTo: mortgageValueToController
+                                  .text.isEmpty
+                              ? null
+                              : double.parse(mortgageValueToController.text),
                           issueDateYear: valuesFiltersCubit.year.id,
                           issueDateQuarterList: getissueDateQuarterList(
                               valuesFiltersCubit.periodTime.id),

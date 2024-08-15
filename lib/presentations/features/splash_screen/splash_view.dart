@@ -55,11 +55,11 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
       _isVisible = !_isVisible;
       backgroundImageBottomPosition = -15;
     });
-    if (context.read<LoggedInUserCubit>().state) {
-      context.read<UserBloc>().add(const UserEvent.getUserInfo());
-    } else {
-      context.read<UserBloc>().add(const UserEvent.guestUser());
-    }
+    // if (context.read<LoggedInUserCubit>().state) {
+    //   context.read<UserBloc>().add(const UserEvent.getUserInfo());
+    // } else {
+    //   context.read<UserBloc>().add(const UserEvent.guestUser());
+    // }
   }
 
   void navigateAfterDelay() {
@@ -92,6 +92,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
             ? BlocConsumer<GuestTokenBloc, GuestTokenState>(
                 bloc: guestToken,
                 listener: (context, state) {
+                  print("quest token listener $state");
                   state.map(
                       initial: (initial) {
                         WidgetsBinding.instance
@@ -104,8 +105,23 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
                           );
                         });
                       },
-                      loading: (loading) {},
+                      loading: (loading) {
+                        context.read<LoggedInUserCubit>().checkLoggedIn();
+                      },
                       success: (success) {
+                        if (context.read<LoggedInUserCubit>().state) {
+                          print(
+                              "quest token listener ${context.read<LoggedInUserCubit>().state}");
+                          context
+                              .read<UserBloc>()
+                              .add(const UserEvent.getUserInfo());
+                        } else {
+                          print(
+                              "quest token quest user ${context.read<LoggedInUserCubit>().state}");
+                          context
+                              .read<UserBloc>()
+                              .add(const UserEvent.guestUser());
+                        }
                         if (success.canUpdate) {
                           // here you can add a warning dialog to upgrade
                         } else {

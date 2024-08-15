@@ -1605,10 +1605,13 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                           municipalityId:
                               valuesFiltersCubit.municapility.lookupKey,
                           areaCode: valuesFiltersCubit.zone.lookupKey,
-                          unit: valuesFiltersCubit.unit,
+                          unit: null,
                           issueDateYear: valuesFiltersCubit.year.id,
-                          issueDateQuarterList: getissueDateQuarterList(
-                              valuesFiltersCubit.periodTime.id),
+                          issueDateQuarterList:
+                              valuesFiltersCubit.periodTime.id == 3
+                                  ? getissueDateQuarterList(
+                                      valuesFiltersCubit.periodTime.id)
+                                  : null,
                           issueDateStartMonth:
                               valuesFiltersCubit.periodTime.id == 4
                                   ? valuesFiltersCubit.month.value[0] - 1
@@ -1648,6 +1651,16 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                       ? 1
                                       : 2
                                   : null,
+                          bedRoomsCount: valuesFiltersCubit.bedRoom.id,
+                          furnitureStatus: valuesFiltersCubit.furniture.id,
+                          rentPaymentMonthlyPerUnitFrom:
+                              rentValueFromController.text.isEmpty
+                                  ? null
+                                  : int.parse(rentValueFromController.text),
+                          rentPaymentMonthlyPerUnitTo:
+                              rentValueToController.text.isEmpty
+                                  ? null
+                                  : int.parse(rentValueToController.text),
                         );
                         var res = await showDialog(
                             context: context,

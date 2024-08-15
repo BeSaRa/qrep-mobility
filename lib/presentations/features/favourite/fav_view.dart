@@ -156,8 +156,7 @@ class _FavViewState extends State<FavView> {
                                     name: loaded.response[index].name ?? '',
                                     page: getPageName(
                                         loaded.response[index].pageName),
-                                    date: loaded
-                                            .response[index].lastModifiedTime ??
+                                    date: loaded.response[index].creationTime ??
                                         '',
                                     divider:
                                         index != loaded.response.length - 1,

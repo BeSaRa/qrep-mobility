@@ -29,6 +29,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }) : super(const UserState.loading()) {
     on<UserEvent>((event, emit) async {
       await event.map(getUserInfo: (value) async {
+        print("loading user infor");
         emit(const UserState.loading());
         final failureOrUser = await userUsecase.execute();
         failureOrUser.when((userInfo) {
@@ -38,6 +39,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           emit(UserState.error(message: error.message));
         });
       }, updateUserInfo: (value) async {
+
         emit(const UserState.loading());
         final failureOrUser = await updateInfoUsecase.execute(
             (id: value.id, requestUpdateInfo: value.requestUpdateInfo));

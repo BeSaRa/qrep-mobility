@@ -4,14 +4,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../app/app_preferences.dart';
 import '../../../../app/depndency_injection.dart';
+import '../../../../domain/models/favourite/favourite_models.dart';
 import '../../../../domain/models/models.dart';
 import '../../../../utils/global_functions.dart';
 import '../../../resources/resources.dart';
+import '../../../widgets/taost_widget.dart';
 import '../../../widgets/widgets.dart';
+import '../../auth/blocs/cubits/logged_in_user_cubit.dart';
+import '../../favourite/fav_widgets.dart';
 import '../../rent/blocs/cubits/values_filters_cubit.dart';
 
 class BottomSheetFilterBrokerWidget extends StatefulWidget {
-  const BottomSheetFilterBrokerWidget({super.key});
+  final String brokerName;
+  const BottomSheetFilterBrokerWidget({super.key, required this.brokerName});
 
   @override
   State<BottomSheetFilterBrokerWidget> createState() =>
@@ -21,9 +26,12 @@ class BottomSheetFilterBrokerWidget extends StatefulWidget {
 class _BottomSheetFilterBrokerWidgetState
     extends State<BottomSheetFilterBrokerWidget> {
   late ValuesFiltersCubit valuesFiltersCubit;
-
   @override
   void initState() {
+    print("municipalityId");
+    print(context.read<LookUpBrokerBloc>().requestBroker.municipalityId);
+    print("brokerCategoryId");
+    print(context.read<LookUpBrokerBloc>().requestBroker.brokerCategoryId);
     valuesFiltersCubit = ValuesFiltersCubit(const LookupModel());
 
     List<LookupModel> listMunicipalityWithAll = [];
@@ -234,6 +242,32 @@ class _BottomSheetFilterBrokerWidgetState
             ),
           ]),
         ),
+        SizedBox(height: AppSizeW.s12),
+        if (context.read<LoggedInUserCubit>().state)
+          Center(
+            child: CustomElevatedButton(
+              isPrimary: true,
+              title: AppStrings().addFavourite,
+              onPress: () async {
+                CriteriaObject criteria = CriteriaObject(
+                    municipalityId: valuesFiltersCubit.municapility.lookupKey,
+                    brokerCategoryId:
+                        valuesFiltersCubit.brokerCategory.lookupKey,
+                    brokerName:
+                        widget.brokerName.isEmpty ? null : widget.brokerName);
+                var res = await showDialog(
+                    context: context,
+                    builder: (BuildContext ctxt) => Dialog(
+                            child: CreateFavWidget(
+                          criteria: criteria,
+                          page: Indicators.broker,
+                        )));
+                if (res != null && res == true) {
+                  successToast(AppStrings().addFavouriteSuccess, context);
+                }
+              },
+            ),
+          ),
         SizedBox(height: AppSizeW.s23),
       ],
     );

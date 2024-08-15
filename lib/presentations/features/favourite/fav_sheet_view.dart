@@ -163,22 +163,22 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
                         ),
 
                       ///month start
-                      if (criteriaObject.issueDateStartMonth != null)
-                        FavFilterWidget(
-                          label: AppStrings().month,
-                          value: getIssueMonthName(
-                                  criteriaObject.issueDateStartMonth ?? 1) ??
-                              '',
-                        ),
-
-                      ///month end
-                      if (criteriaObject.issueDateEndMonth != null)
-                        FavFilterWidget(
-                          label: AppStrings().month,
-                          value: getIssueMonthName(
-                                  criteriaObject.issueDateEndMonth ?? 1) ??
-                              '',
-                        ),
+                      // if (criteriaObject.issueDateStartMonth != null)
+                      //   FavFilterWidget(
+                      //     label: AppStrings().month,
+                      //     value: getIssueMonthName(
+                      //             criteriaObject.issueDateStartMonth ?? 1) ??
+                      //         '',
+                      //   ),
+                      //
+                      // ///month end
+                      // if (criteriaObject.issueDateEndMonth != null)
+                      //   FavFilterWidget(
+                      //     label: AppStrings().month,
+                      //     value: getIssueMonthName(
+                      //             criteriaObject.issueDateEndMonth ?? 1) ??
+                      //         '',
+                      //   ),
 
                       ///furniture status
                       if (criteriaObject.furnitureStatus != null)

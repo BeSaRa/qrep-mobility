@@ -1426,21 +1426,19 @@ class _BottomSheetFilterSellWidgetState
                         realEstateValueFrom:
                             sellValueFromController.text.isEmpty
                                 ? null
-                                : int.parse(sellValueFromController.text),
+                                : double.parse(sellValueFromController.text),
                         realEstateValueTo: sellValueToController.text.isEmpty
                             ? null
-                            : int.parse(sellValueToController.text),
-                        // bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
-                        //     ? 0
-                        //     : valuesFiltersCubit.bedRoom.id,
+                            : double.parse(sellValueToController.text),
+                        bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
+                            ? 0
+                            : valuesFiltersCubit.bedRoom.id,
                         municipalityId:
                             valuesFiltersCubit.municapility.lookupKey,
-                        // zoneId: valuesFiltersCubit.zone.lookupKey,
+                        zoneId: valuesFiltersCubit.zone.lookupKey,
                         areaCode: valuesFiltersCubit.zone.lookupKey,
-                        // unit: valuesFiltersCubit.unit,
+                        unit: valuesFiltersCubit.unit,
                         issueDateYear: valuesFiltersCubit.year.id,
-                        issueDateQuarterList: getissueDateQuarterList(
-                            valuesFiltersCubit.periodTime.id),
                         issueDateStartMonth:
                             valuesFiltersCubit.periodTime.id == 4
                                 ? valuesFiltersCubit.month.value[0] - 1
@@ -1453,6 +1451,11 @@ class _BottomSheetFilterSellWidgetState
                                     ? DateTime.now().month
                                     : 12
                                 : 12,
+                        issueDateQuarterList:
+                            valuesFiltersCubit.periodTime.id == 3
+                                ? getissueDateQuarterList(
+                                    valuesFiltersCubit.periodTime.id)
+                                : null,
                         periodId: valuesFiltersCubit.periodTime.id,
                         issueDateFrom: valuesFiltersCubit.periodTime.id == 5
                             ? valuesFiltersCubit.pickerDateRange?.startDate

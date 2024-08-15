@@ -73,6 +73,7 @@ class _SalesViewState extends State<SalesView> {
   Widget build(BuildContext context) {
     return BlocConsumer(
       listener: (context, LookupState state) {
+        print("the state of get lookup $state");
         state.mapOrNull(
           loadedLookup: (value) {
             if (GoRouterState.of(context).extra != null) {

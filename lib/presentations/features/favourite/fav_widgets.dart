@@ -148,41 +148,6 @@ class FavouriteItemWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          deleteFav();
-                        },
-                        child: Container(
-                          width: AppSizeW.s42,
-                          decoration: BoxDecoration(
-                              color: ColorManager.golden,
-                              borderRadius: BorderRadius.circular(AppSizeR.s8)),
-                          padding: EdgeInsets.all(AppSizeH.s3),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Icon(
-                                Icons.delete,
-                                color: ColorManager.white,
-                                size: AppSizeH.s24,
-                              ),
-                              SizedBox(
-                                width: AppSizeW.s5,
-                              ),
-                              Text(
-                                AppStrings().delete,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.copyWith(
-                                        fontSize: AppSizeSp.s12,
-                                        color: ColorManager.white),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
                       if (showApply)
                         GestureDetector(
                           onTap: () async {
@@ -220,6 +185,41 @@ class FavouriteItemWidget extends StatelessWidget {
                             ),
                           ),
                         ),
+                      GestureDetector(
+                        onTap: () {
+                          deleteFav();
+                        },
+                        child: Container(
+                          width: AppSizeW.s42,
+                          decoration: BoxDecoration(
+                              color: ColorManager.golden,
+                              borderRadius: BorderRadius.circular(AppSizeR.s8)),
+                          padding: EdgeInsets.all(AppSizeH.s3),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(
+                                Icons.delete,
+                                color: ColorManager.white,
+                                size: AppSizeH.s24,
+                              ),
+                              SizedBox(
+                                width: AppSizeW.s5,
+                              ),
+                              Text(
+                                AppStrings().delete,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                        fontSize: AppSizeSp.s12,
+                                        color: ColorManager.white),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -601,9 +601,7 @@ class _UpdateFavWidgetState extends State<UpdateFavWidget> {
               autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: InputDecoration(
                 hintText: widget.name.name,
-                prefixIcon: const Icon(
-                  Icons.abc,
-                ),
+                prefixIcon: null,
               ),
             ),
             const Spacer(),
@@ -781,7 +779,7 @@ class _CreateFavWidgetState extends State<CreateFavWidget> {
           children: [
             Center(
               child: Text(
-                AppStrings().editName,
+                AppStrings().addFavourite,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
@@ -796,10 +794,8 @@ class _CreateFavWidgetState extends State<CreateFavWidget> {
               },
               autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: InputDecoration(
-                hintText: AppStrings().nickName,
-                prefixIcon: const Icon(
-                  Icons.abc,
-                ),
+                hintText: AppStrings().favName,
+                prefixIcon: null,
               ),
             ),
             const Spacer(),

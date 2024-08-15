@@ -29,6 +29,7 @@ mixin _$RequestUpdateInfoModel {
   String? get fcmToken => throw _privateConstructorUsedError;
   @JsonKey(name: "email_notifications")
   bool? get emailNotifications => throw _privateConstructorUsedError;
+  @JsonKey(name: "title")
   String? get title => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,7 +49,7 @@ abstract class $RequestUpdateInfoModelCopyWith<$Res> {
       @JsonKey(name: "last_name") String? lastName,
       @JsonKey(name: "fcm_token") String? fcmToken,
       @JsonKey(name: "email_notifications") bool? emailNotifications,
-      String? title});
+      @JsonKey(name: "title") String? title});
 }
 
 /// @nodoc
@@ -110,7 +111,7 @@ abstract class _$$RequestUpdateInfoModelImplCopyWith<$Res>
       @JsonKey(name: "last_name") String? lastName,
       @JsonKey(name: "fcm_token") String? fcmToken,
       @JsonKey(name: "email_notifications") bool? emailNotifications,
-      String? title});
+      @JsonKey(name: "title") String? title});
 }
 
 /// @nodoc
@@ -165,7 +166,7 @@ class _$RequestUpdateInfoModelImpl implements _RequestUpdateInfoModel {
       @JsonKey(name: "last_name") this.lastName,
       @JsonKey(name: "fcm_token") this.fcmToken,
       @JsonKey(name: "email_notifications") this.emailNotifications,
-      this.title});
+      @JsonKey(name: "title") this.title});
 
   factory _$RequestUpdateInfoModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RequestUpdateInfoModelImplFromJson(json);
@@ -183,6 +184,7 @@ class _$RequestUpdateInfoModelImpl implements _RequestUpdateInfoModel {
   @JsonKey(name: "email_notifications")
   final bool? emailNotifications;
   @override
+  @JsonKey(name: "title")
   final String? title;
 
   @override
@@ -228,11 +230,12 @@ class _$RequestUpdateInfoModelImpl implements _RequestUpdateInfoModel {
 
 abstract class _RequestUpdateInfoModel implements RequestUpdateInfoModel {
   factory _RequestUpdateInfoModel(
-      {@JsonKey(name: "first_name") final String? firstName,
-      @JsonKey(name: "last_name") final String? lastName,
-      @JsonKey(name: "fcm_token") final String? fcmToken,
-      @JsonKey(name: "email_notifications") final bool? emailNotifications,
-      final String? title}) = _$RequestUpdateInfoModelImpl;
+          {@JsonKey(name: "first_name") final String? firstName,
+          @JsonKey(name: "last_name") final String? lastName,
+          @JsonKey(name: "fcm_token") final String? fcmToken,
+          @JsonKey(name: "email_notifications") final bool? emailNotifications,
+          @JsonKey(name: "title") final String? title}) =
+      _$RequestUpdateInfoModelImpl;
 
   factory _RequestUpdateInfoModel.fromJson(Map<String, dynamic> json) =
       _$RequestUpdateInfoModelImpl.fromJson;
@@ -250,6 +253,7 @@ abstract class _RequestUpdateInfoModel implements RequestUpdateInfoModel {
   @JsonKey(name: "email_notifications")
   bool? get emailNotifications;
   @override
+  @JsonKey(name: "title")
   String? get title;
   @override
   @JsonKey(ignore: true)

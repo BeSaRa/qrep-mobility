@@ -327,8 +327,8 @@ mixin _$CriteriaObject {
   int? get rentPaymentMonthlyPerUnitTo => throw _privateConstructorUsedError;
   int? get zoneId => throw _privateConstructorUsedError;
   int? get durationType => throw _privateConstructorUsedError;
-  int? get realEstateValueFrom => throw _privateConstructorUsedError;
-  int? get realEstateValueTo => throw _privateConstructorUsedError;
+  double? get realEstateValueFrom => throw _privateConstructorUsedError;
+  double? get realEstateValueTo => throw _privateConstructorUsedError;
   int? get halfYearDuration => throw _privateConstructorUsedError;
   double? get areaFrom => throw _privateConstructorUsedError;
   double? get areaTo => throw _privateConstructorUsedError;
@@ -372,8 +372,8 @@ abstract class $CriteriaObjectCopyWith<$Res> {
       int? rentPaymentMonthlyPerUnitTo,
       int? zoneId,
       int? durationType,
-      int? realEstateValueFrom,
-      int? realEstateValueTo,
+      double? realEstateValueFrom,
+      double? realEstateValueTo,
       int? halfYearDuration,
       double? areaFrom,
       double? areaTo,
@@ -502,11 +502,11 @@ class _$CriteriaObjectCopyWithImpl<$Res, $Val extends CriteriaObject>
       realEstateValueFrom: freezed == realEstateValueFrom
           ? _value.realEstateValueFrom
           : realEstateValueFrom // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       realEstateValueTo: freezed == realEstateValueTo
           ? _value.realEstateValueTo
           : realEstateValueTo // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       halfYearDuration: freezed == halfYearDuration
           ? _value.halfYearDuration
           : halfYearDuration // ignore: cast_nullable_to_non_nullable
@@ -588,8 +588,8 @@ abstract class _$$CriteriaObjectImplCopyWith<$Res>
       int? rentPaymentMonthlyPerUnitTo,
       int? zoneId,
       int? durationType,
-      int? realEstateValueFrom,
-      int? realEstateValueTo,
+      double? realEstateValueFrom,
+      double? realEstateValueTo,
       int? halfYearDuration,
       double? areaFrom,
       double? areaTo,
@@ -716,11 +716,11 @@ class __$$CriteriaObjectImplCopyWithImpl<$Res>
       realEstateValueFrom: freezed == realEstateValueFrom
           ? _value.realEstateValueFrom
           : realEstateValueFrom // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       realEstateValueTo: freezed == realEstateValueTo
           ? _value.realEstateValueTo
           : realEstateValueTo // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       halfYearDuration: freezed == halfYearDuration
           ? _value.halfYearDuration
           : halfYearDuration // ignore: cast_nullable_to_non_nullable
@@ -890,9 +890,9 @@ class _$CriteriaObjectImpl implements _CriteriaObject {
   @override
   final int? durationType;
   @override
-  final int? realEstateValueFrom;
+  final double? realEstateValueFrom;
   @override
-  final int? realEstateValueTo;
+  final double? realEstateValueTo;
   @override
   final int? halfYearDuration;
   @override
@@ -1072,8 +1072,8 @@ abstract class _CriteriaObject implements CriteriaObject {
       final int? rentPaymentMonthlyPerUnitTo,
       final int? zoneId,
       final int? durationType,
-      final int? realEstateValueFrom,
-      final int? realEstateValueTo,
+      final double? realEstateValueFrom,
+      final double? realEstateValueTo,
       final int? halfYearDuration,
       final double? areaFrom,
       final double? areaTo,
@@ -1124,9 +1124,9 @@ abstract class _CriteriaObject implements CriteriaObject {
   @override
   int? get durationType;
   @override
-  int? get realEstateValueFrom;
+  double? get realEstateValueFrom;
   @override
-  int? get realEstateValueTo;
+  double? get realEstateValueTo;
   @override
   int? get halfYearDuration;
   @override

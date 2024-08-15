@@ -36,6 +36,7 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
     on<LookupEvent>((event, emit) async {
       await event.map(
         getRentLookupEvent: (value) async {
+          print("get getRentLookupEvent ");
           if (lookUpRent == LookupResponse()) {
             if (kDebugMode) {
               print("this event is been called");
@@ -53,6 +54,7 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
           }
         },
         getMortgageLookupEvent: (value) async {
+          print("get getRentLookupEvent ");
           if (lookUpMortgage == LookupResponse()) {
             emit(const LookupState.loadingLookup());
             final failureOrSuccess = await lookUpMortgageUseCase.execute();
@@ -67,6 +69,7 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
           }
         },
         getSellLookupEvent: (value) async {
+          print("get getRentLookupEvent ");
           if (lookUpSell == LookupResponse()) {
             emit(const LookupState.loadingLookup());
             final failureOrSuccess = await getSellLookupUseCase.execute();
@@ -86,9 +89,9 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
           lookUpMortgageUseCase = instance<LookUpMortgageUseCase>();
           lookupBrokerUsecase = instance<BrokerLookUpUseCase>();
           lookOVUpUseCase = instance<BrokerLookOVUpUseCase>();
-          emit(const LookupState.loadingLookup());
         },
         getBrokerLookupEvent: (_GetBrokerLookupEvent value) async {
+          print("get getRentLookupEvent ");
           emit(const LookupState.loadingLookup());
           if (lookUpRent == LookupResponse()) {
             final failureOrSuccessRent = await getRentLookupUseCase.execute();

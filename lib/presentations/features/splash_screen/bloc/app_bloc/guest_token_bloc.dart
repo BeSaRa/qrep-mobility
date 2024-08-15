@@ -32,11 +32,11 @@ class GuestTokenBloc extends Bloc<GuestTokenEvent, GuestTokenState> {
           //for the scenario check the app preference for the token if null then get the
 
           emit(const GuestTokenState.loading());
-          var token = await appPreferences.getUserToken();
+          bool token = appPreferences.getUserLoggedIn();
           PackageInfo packageInfo = await PackageInfo.fromPlatform();
           bool update = false;
           bool canUpdate = false;
-          if (token.isEmpty) {
+          if (!token) {
             final getTokenSuccess = await getCmsTokenUsecase.execute();
             getTokenSuccess.when((success) {
               appPreferences.setCmsUserToken(Constant.guestToken);

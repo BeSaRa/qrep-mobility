@@ -70,7 +70,7 @@ class AppPreferences {
   }
 
   Future<String> getUserToken() async {
-    return _sharedPreferences.getString(PREFS_KEY_TOKEN) ?? '';
+    return _sharedPreferences.getString(PREFS_KEY_TOKEN) ?? Constant.guestToken;
   }
 
   String getUserRefreshToken() {
