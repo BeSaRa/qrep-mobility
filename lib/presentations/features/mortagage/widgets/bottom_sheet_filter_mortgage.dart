@@ -853,7 +853,7 @@ class _BottomSheetFilterMortgageWidgetState
                       // mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                            "${AppStrings().realStateValue} (${AppStrings().from})",
+                            "${AppStrings().mortgageRealEstateValue} (${AppStrings().from})",
                             style: Theme.of(context).textTheme.labelMedium),
                         Row(
                           children: [
@@ -873,7 +873,7 @@ class _BottomSheetFilterMortgageWidgetState
                                             LengthLimitingTextInputFormatter(
                                                 context
                                                     .read<LookupBloc>()
-                                                    .lookUpSell
+                                                    .lookUpMortgage
                                                     ?.maxParams[1]
                                                     .maxVal
                                                     .toString()
@@ -884,7 +884,7 @@ class _BottomSheetFilterMortgageWidgetState
                                           autovalidateMode: AutovalidateMode
                                               .onUserInteraction,
                                           hintText:
-                                              '${context.read<LookupBloc>().lookUpSell?.maxParams[1].minVal}',
+                                              '${context.read<LookupBloc>().lookUpMortgage?.maxParams[1].minVal}',
                                           controller:
                                               mortgageValueFromController,
                                           validator: (value) {
@@ -892,13 +892,13 @@ class _BottomSheetFilterMortgageWidgetState
                                                 value,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .lookUpSell
+                                                        .lookUpMortgage
                                                         ?.maxParams[1]
                                                         .maxVal ??
                                                     0,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .lookUpSell
+                                                        .lookUpMortgage
                                                         ?.maxParams[1]
                                                         .minVal ??
                                                     0,
@@ -925,7 +925,7 @@ class _BottomSheetFilterMortgageWidgetState
                                                     ))
                                             : validatorFromValueCubit.state == 2
                                                 ? Text(
-                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[1].maxVal}",
+                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[1].maxVal}",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodySmall!
@@ -937,7 +937,7 @@ class _BottomSheetFilterMortgageWidgetState
                                                             .state ==
                                                         1
                                                     ? Text(
-                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[1].minVal}",
+                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[1].minVal}",
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodySmall!
@@ -965,7 +965,7 @@ class _BottomSheetFilterMortgageWidgetState
                       // mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                            "${AppStrings().realStateValue} (${AppStrings().to})",
+                            "${AppStrings().mortgageRealEstateValue} (${AppStrings().to})",
                             style: Theme.of(context).textTheme.labelMedium),
                         Row(
                           children: [
@@ -984,32 +984,33 @@ class _BottomSheetFilterMortgageWidgetState
                                           inputFormatters: [
                                             LengthLimitingTextInputFormatter(
                                                 context
-                                                    .read<LookupBloc>()
-                                                    .lookUpSell
-                                                    ?.maxParams[1]
-                                                    .maxVal
-                                                    .toString()
-                                                    .length),
+                                                        .read<LookupBloc>()
+                                                        .lookUpMortgage
+                                                        ?.maxParams[1]
+                                                        .maxVal
+                                                        .toString()
+                                                        .length ??
+                                                    100000000),
                                             FilteringTextInputFormatter.allow(
                                                 RegExp(r'^[1-9]\d*')),
                                           ],
                                           autovalidateMode: AutovalidateMode
                                               .onUserInteraction,
                                           hintText:
-                                              '${context.read<LookupBloc>().lookUpSell?.maxParams[1].maxVal}',
+                                              '${context.read<LookupBloc>().lookUpMortgage?.maxParams[1].maxVal}',
                                           controller: mortgageValueToController,
                                           validator: (value) {
                                             validatorToValueCubit.validator(
                                                 value,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .lookUpSell
+                                                        .lookUpMortgage
                                                         ?.maxParams[1]
                                                         .maxVal ??
                                                     0,
                                                 context
                                                         .read<LookupBloc>()
-                                                        .lookUpSell
+                                                        .lookUpMortgage
                                                         ?.maxParams[1]
                                                         .minVal ??
                                                     0,
@@ -1038,7 +1039,7 @@ class _BottomSheetFilterMortgageWidgetState
                                                     ))
                                             : validatorToValueCubit.state == 2
                                                 ? Text(
-                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[1].maxVal}",
+                                                    "${AppStrings().maxValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[1].maxVal}",
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .bodySmall!
@@ -1049,7 +1050,7 @@ class _BottomSheetFilterMortgageWidgetState
                                                 : validatorToValueCubit.state ==
                                                         1
                                                     ? Text(
-                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpSell?.maxParams[1].minVal}",
+                                                        "${AppStrings().minValue}:${context.read<LookupBloc>().lookUpMortgage?.maxParams[1].minVal}",
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .bodySmall!
@@ -1377,10 +1378,10 @@ class _BottomSheetFilterMortgageWidgetState
                                                 ? null
                                                 : int.parse(
                                                     areaValueToController.text),
-                                        // realEstateValueFrom:
-                                        //     valuesFiltersCubit.rangerealEstateValue?.start,
-                                        // realEstateValueTo:
-                                        //     valuesFiltersCubit.rangerealEstateValue?.end,
+                                        realEstateValueFrom: valuesFiltersCubit
+                                            .rangerealEstateValue?.start,
+                                        realEstateValueTo: valuesFiltersCubit
+                                            .rangerealEstateValue?.end,
                                         // bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
                                         //     ? 0
                                         //     : valuesFiltersCubit.bedRoom.id,
@@ -1393,9 +1394,15 @@ class _BottomSheetFilterMortgageWidgetState
                                         issueDateYear:
                                             valuesFiltersCubit.year.id,
                                         issueDateQuarterList:
-                                            getissueDateQuarterList(
-                                                valuesFiltersCubit
-                                                    .periodTime.id),
+                                            valuesFiltersCubit.periodTime.id ==
+                                                    3
+                                                ? getissueDateQuarterList(
+                                                    valuesFiltersCubit
+                                                        .periodTime.id)
+                                                : null,
+                                        // getissueDateQuarterList(
+                                        //     valuesFiltersCubit
+                                        //         .periodTime.id),
                                         issueDateStartMonth:
                                             valuesFiltersCubit.periodTime.id ==
                                                     4
@@ -1500,7 +1507,7 @@ class _BottomSheetFilterMortgageWidgetState
                           municipalityId:
                               valuesFiltersCubit.municapility.lookupKey,
                           areaCode: valuesFiltersCubit.zone.lookupKey,
-                          unit: valuesFiltersCubit.unit,
+                          unit: null,
                           realEstateValueFrom: mortgageValueFromController
                                   .text.isEmpty
                               ? null
@@ -1510,8 +1517,11 @@ class _BottomSheetFilterMortgageWidgetState
                               ? null
                               : double.parse(mortgageValueToController.text),
                           issueDateYear: valuesFiltersCubit.year.id,
-                          issueDateQuarterList: getissueDateQuarterList(
-                              valuesFiltersCubit.periodTime.id),
+                          issueDateQuarterList:
+                              valuesFiltersCubit.periodTime.id == 3
+                                  ? getissueDateQuarterList(
+                                      valuesFiltersCubit.periodTime.id)
+                                  : null,
                           issueDateStartMonth:
                               valuesFiltersCubit.periodTime.id == 4
                                   ? valuesFiltersCubit.month.value[0] - 1

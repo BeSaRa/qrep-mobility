@@ -253,6 +253,9 @@ class _FavViewState extends State<FavView> {
                                                 '',
                                             indicator:
                                                 loaded.response[index].pageName,
+                                            title:
+                                                loaded.response[index].name ??
+                                                    '',
                                           ),
                                         );
                                         if (res != null) {

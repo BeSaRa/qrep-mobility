@@ -1502,9 +1502,12 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                         issueDateYear:
                                             valuesFiltersCubit.year.id,
                                         issueDateQuarterList:
-                                            getissueDateQuarterList(
-                                                valuesFiltersCubit
-                                                    .periodTime.id),
+                                            valuesFiltersCubit.periodTime.id ==
+                                                    3
+                                                ? getissueDateQuarterList(
+                                                    valuesFiltersCubit
+                                                        .periodTime.id)
+                                                : null,
                                         issueDateStartMonth: valuesFiltersCubit
                                                     .periodTime.id ==
                                                 4

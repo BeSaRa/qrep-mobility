@@ -143,6 +143,7 @@
   "total_mortgage_transactions": "Total mortgage transactions",
   "total_value_of_mortgage_transactions": "Total value of mortgage transactions",
   "no_mortgage_found": "No mortgage contracts found",
+  "mortgage_value": "Mortgage value",
   "----------------------------------------------------OWNERSHIP--------------------------": "",
   "----------------------------------------------Pagination-------------------------------:": "",
   "paginator_first_page_label": "First page",

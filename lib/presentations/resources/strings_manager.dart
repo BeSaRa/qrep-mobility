@@ -134,6 +134,7 @@ class AppStrings {
   String street = "street".tr(); // "الشارع"
   String selectItems = "select_items".tr();
   String year = "year".tr();
+  String mortgageRealEstateValue = "mortgage_value".tr();
 
   //---------------- sell ----------
   String sellContractCount = "sell_contracts_count".tr();

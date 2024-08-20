@@ -50,7 +50,6 @@ class MortgageBloc extends Bloc<MortgageEvent, MortgageState> {
         realEstateValueFrom: criteriaObject.realEstateValueFrom,
         realEstateValueTo: criteriaObject.realEstateValueTo,
         zoneId: criteriaObject.zoneId ?? -1,
-        unit: criteriaObject.unit ?? 2,
         periodId: 1);
   }
 
@@ -74,7 +73,7 @@ class MortgageBloc extends Bloc<MortgageEvent, MortgageState> {
       realEstateValueFrom: null,
       realEstateValueTo: null,
       zoneId: -1,
-      unit: 2,
+      unit: 1,
       periodId: 1);
   RequestMortgageValues requestMeanValue = RequestMortgageValues(
       areaCode: -1,
@@ -96,6 +95,6 @@ class MortgageBloc extends Bloc<MortgageEvent, MortgageState> {
       realEstateValueFrom: null,
       realEstateValueTo: null,
       zoneId: -1,
-      unit: 2,
+      unit: 1,
       periodId: 1);
 }

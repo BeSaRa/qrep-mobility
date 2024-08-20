@@ -58,6 +58,7 @@ class GeneralInterceptor extends Interceptor {
           var refreshToken = response.data["data"]["refresh_token"];
           await appPreferences.setUserToken(newToken);
           await appPreferences.setUserRefreshToken(refreshToken);
+          await appPreferences.setCmsUserToken(newToken);
           NavigationKeys.rootNavigatorKey.currentContext!
               .read<LookupBloc>()
               .add(const LookupEvent.initilaEvent());
@@ -67,21 +68,44 @@ class GeneralInterceptor extends Interceptor {
           return handler
               .resolve(await instance<Dio>().fetch(err.requestOptions));
         } else {
-          await appPreferences.setUserToken(Constant.guestToken);
-          await appPreferences.setUserRefreshToken("");
-          instance<Dio>().options.headers["authorization"] =
-              "Bearer ${Constant.guestToken}";
-
-          return handler
-              .resolve(await instance<Dio>().fetch(err.requestOptions));
+          final response =
+              await dio.get("${Constant.cmsBaseUrl}${EndPoints.getTokenApi}",
+                  options: Options(
+                    headers: {
+                      "content-type": "application/json",
+                      "accept": "application/json",
+                    },
+                  ));
+          if (response.statusCode == 200) {
+            await appPreferences.setUserToken(response.data);
+            await appPreferences.setCmsUserToken(Constant.guestToken);
+            await appPreferences.setUserRefreshToken("");
+            await appPreferences.setUserLoggedIn(false);
+            return handler
+                .resolve(await instance<Dio>().fetch(err.requestOptions));
+          } else {
+            return handler.reject(err);
+          }
         }
       } catch (e) {
-        await appPreferences.setUserToken(Constant.guestToken);
-        await appPreferences.setUserRefreshToken("");
-
-        instance<Dio>().options.headers["authorization"] =
-            "Bearer ${Constant.guestToken}";
-        return handler.resolve(await instance<Dio>().fetch(err.requestOptions));
+        final response =
+            await dio.get("${Constant.cmsBaseUrl}${EndPoints.getTokenApi}",
+                options: Options(
+                  headers: {
+                    "content-type": "application/json",
+                    "accept": "application/json",
+                  },
+                ));
+        if (response.statusCode == 200) {
+          await appPreferences.setUserToken(response.data);
+          await appPreferences.setCmsUserToken(Constant.guestToken);
+          await appPreferences.setUserRefreshToken("");
+          await appPreferences.setUserLoggedIn(false);
+          return handler
+              .resolve(await instance<Dio>().fetch(err.requestOptions));
+        } else {
+          return handler.reject(err);
+        }
       }
     }
     return handler.next(err);
@@ -138,6 +162,7 @@ class GeneralCMSInterceptor extends Interceptor {
           var refreshToken = response.data["data"]["refresh_token"];
           await appPreferences.setUserToken(newToken);
           await appPreferences.setUserRefreshToken(refreshToken);
+          await appPreferences.setCmsUserToken(newToken);
           NavigationKeys.rootNavigatorKey.currentContext!
               .read<LookupBloc>()
               .add(const LookupEvent.initilaEvent());
@@ -146,23 +171,45 @@ class GeneralCMSInterceptor extends Interceptor {
           instance<Dio>().options.headers["authorization"] = "Bearer $newToken";
           return handler
               .resolve(await instance<Dio>().fetch(err.requestOptions));
-        } else {
-          //todo
-          await appPreferences.setUserToken(Constant.guestToken);
-          await appPreferences.setUserRefreshToken("");
-          instance<Dio>().options.headers["authorization"] =
-              "Bearer ${Constant.guestToken}";
-
-          return handler
-              .resolve(await instance<Dio>().fetch(err.requestOptions));
+        } else if (response.statusCode == 401) {
+          final response =
+              await dio.get("${Constant.cmsBaseUrl}${EndPoints.getTokenApi}",
+                  options: Options(
+                    headers: {
+                      "content-type": "application/json",
+                      "accept": "application/json",
+                    },
+                  ));
+          if (response.statusCode == 200) {
+            await appPreferences.setUserToken(response.data);
+            await appPreferences.setCmsUserToken(Constant.guestToken);
+            await appPreferences.setUserRefreshToken("");
+            await appPreferences.setUserLoggedIn(false);
+            return handler
+                .resolve(await instance<Dio>().fetch(err.requestOptions));
+          } else {
+            return handler.reject(err);
+          }
         }
       } catch (e) {
-        await appPreferences.setUserToken(Constant.guestToken);
-        await appPreferences.setUserRefreshToken("");
-
-        instance<Dio>().options.headers["authorization"] =
-            "Bearer ${Constant.guestToken}";
-        return handler.resolve(await instance<Dio>().fetch(err.requestOptions));
+        final response =
+            await dio.get("${Constant.cmsBaseUrl}${EndPoints.getTokenApi}",
+                options: Options(
+                  headers: {
+                    "content-type": "application/json",
+                    "accept": "application/json",
+                  },
+                ));
+        if (response.statusCode == 200) {
+          await appPreferences.setUserToken(response.data);
+          await appPreferences.setCmsUserToken(Constant.guestToken);
+          await appPreferences.setUserRefreshToken("");
+          await appPreferences.setUserLoggedIn(false);
+          return handler
+              .resolve(await instance<Dio>().fetch(err.requestOptions));
+        } else {
+          return handler.reject(err);
+        }
       }
     }
     return handler.next(err);

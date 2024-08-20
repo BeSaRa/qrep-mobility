@@ -16,9 +16,13 @@ import '../main/mains.dart';
 
 class BottomSheetFavWidget extends StatefulWidget {
   final String criteria;
+  final String title;
   final Indicators indicator;
   const BottomSheetFavWidget(
-      {super.key, required this.criteria, required this.indicator});
+      {super.key,
+      required this.criteria,
+      required this.indicator,
+      required this.title});
 
   @override
   State<BottomSheetFavWidget> createState() => _BottomSheetFavWidgetState();
@@ -39,6 +43,8 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print("the month is ");
+    print(criteriaObject.issueDateMonth);
     return GestureDetector(
         onTap: () {
           FocusManager.instance.primaryFocus?.unfocus();
@@ -50,6 +56,15 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: AppSizeH.s8),
+                  Center(
+                    child: Text(
+                      widget.title,
+                      style: Theme.of(context).textTheme.headlineLarge,
+                    ),
+                  ),
+                  SizedBox(height: AppSizeH.s8),
+                  const Divider(),
                   SizedBox(height: AppSizeH.s8),
                   Wrap(
                     spacing: AppSizeW.s8,
@@ -199,7 +214,8 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
                         ),
 
                       ///unit
-                      if (criteriaObject.unit != null)
+                      if (criteriaObject.unit != null &&
+                          widget.indicator == Indicators.sell)
                         FavFilterWidget(
                           label: AppStrings().measuringUnit,
                           value: criteriaObject.unit == 1
@@ -220,7 +236,11 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
                         FavFilterWidget(
                           label:
                               "${AppStrings().areaRangeValue} ${AppStrings().to}",
-                          value: criteriaObject.areaTo.toString(),
+                          value: criteriaObject.unit == 2
+                              ? (criteriaObject.rentPaymentMonthlyPerUnitFrom! /
+                                      10.8)
+                                  .toString()
+                              : criteriaObject.areaTo.toString(),
                         ),
 
                       /// from rent monthly
@@ -228,8 +248,12 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
                         FavFilterWidget(
                           label:
                               '${AppStrings().realStateValue} ${AppStrings().from}',
-                          value: criteriaObject.rentPaymentMonthlyPerUnitFrom
-                              .toString(),
+                          value: criteriaObject.unit == 2
+                              ? (criteriaObject.rentPaymentMonthlyPerUnitTo! /
+                                      10.8)
+                                  .toString()
+                              : criteriaObject.rentPaymentMonthlyPerUnitFrom
+                                  .toString(),
                         ),
 
                       ///to rent monthly
@@ -928,6 +952,8 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
   }
 
   String? getIssueMonthName(int id) {
+    print(id);
+    String name = "";
     if (id == -1) {
       return context.locale == ARABIC_LOCAL ? "الكل" : "All";
     } else {
@@ -935,12 +961,13 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
       PeriodTimeDetails month = const PeriodTimeDetails();
       months = getAllMonthsInYear(context);
       months.map((e) {
+        print(e.value.first);
         if (e.value.first == id) {
-          return context.locale == ARABIC_LOCAL ? e.name : e.enName;
-        } else {
-          return "";
+          print("in true");
+          name = context.locale == ARABIC_LOCAL ? e.name : e.enName;
         }
       }).toList();
+      return name;
     }
   }
 
