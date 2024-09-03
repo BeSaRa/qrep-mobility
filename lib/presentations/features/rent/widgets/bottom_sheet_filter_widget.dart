@@ -263,6 +263,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
           context.read<RentBloc>().requestMeanValue.furnitureStatus ?? -1,
         ) ??
         const LookupModel();
+
     //Nationality
     // valuesFiltersCubit.nationality = getObjectByLookupKey(
     //       context.read<RentBloc>().loockUpRent?.nationalityList ?? [],
@@ -270,38 +271,40 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     //     ) ??
     //     const RentLookupModel();
     //Property and Purpose
-    // List<LookupModel> listMunicipalityWithAll = [];
-    // if (!listMunicipalityWithAll.contains(const LookupModel(
-    //     isActive: true,
-    //     lookupKey: -1,
-    //     arName: "الكل",
-    //     enName: "All",
-    //     id: -1,
-    //     value: 0,
-    //     selected: false,
-    //     yoy: 0,
-    //     hasPrice: false,
-    //     municipalityId: 0))) {
-    //   listMunicipalityWithAll.insert(
-    //       0,
-    //       const LookupModel(
-    //           isActive: true,
-    //           lookupKey: -1,
-    //           arName: "الكل",
-    //           enName: "All",
-    //           id: -1,
-    //           value: 0,
-    //           selected: false,
-    //           yoy: 0,
-    //           hasPrice: false,
-    //           municipalityId: 0));
-    // }
-    // listMunicipalityWithAll
-    //     .addAll(context.read<LookupBloc>().lookUpRent?.municipalityList ?? []);
-    // context.read<LookupBloc>().lookUpRent = context
-    //     .read<LookupBloc>()
-    //     .lookUpRent
-    //     ?.copyWith(municipalityList: listMunicipalityWithAll);
+    List<LookupModel> listServiceTypeWithAll = [];
+    List<LookupModel> listService =
+        context.read<LookupBloc>().lookUpRent?.serviceTypeList ?? [];
+    if (!listService.contains(LookupModel(
+        isActive: true,
+        lookupKey: -1,
+        arName: "الكل",
+        enName: "All",
+        id: -1,
+        value: 0,
+        selected: false,
+        yoy: 0,
+        hasPrice: false,
+        municipalityId: 0))) {
+      listServiceTypeWithAll.insert(
+          0,
+          const LookupModel(
+              isActive: true,
+              lookupKey: -1,
+              arName: "الكل",
+              enName: "All",
+              id: -1,
+              value: 0,
+              selected: false,
+              yoy: 0,
+              hasPrice: false,
+              municipalityId: 0));
+    }
+    listServiceTypeWithAll
+        .addAll(context.read<LookupBloc>().lookUpRent?.serviceTypeList ?? []);
+    context.read<LookupBloc>().lookUpRent = context
+        .read<LookupBloc>()
+        .lookUpRent
+        ?.copyWith(serviceTypeList: listServiceTypeWithAll);
     valuesFiltersCubit.municapility = getObjectById(
           context.read<LookupBloc>().lookUpRent?.municipalityList ?? [],
           context.read<RentBloc>().requestMeanValue.municipalityId ?? 1,
@@ -310,6 +313,11 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     valuesFiltersCubit.zone = getObjectByLookupKey(
           context.read<LookupBloc>().lookUpRent?.zoneList ?? [],
           context.read<RentBloc>().requestMeanValue.zoneId ?? 0,
+        ) ??
+        const LookupModel();
+    valuesFiltersCubit.contract = getObjectByLookupKey(
+          context.read<LookupBloc>().lookUpRent?.serviceTypeList ?? [],
+          context.read<RentBloc>().requestMeanValue.serviceType ?? -1,
         ) ??
         const LookupModel();
     context
@@ -889,6 +897,37 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                     ),
                   ),
                   SizedBox(width: AppSizeW.s8),
+
+                  /// contract type
+                  Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          AppStrings().contractType,
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                        BlocBuilder(
+                          bloc: valuesFiltersCubit,
+                          builder: (context, states) {
+                            return SingleDropDownValue<LookupModel>(
+                                onChanged: (periodTime) {
+                                  valuesFiltersCubit
+                                      .changeContract(periodTime!);
+                                  // valuesFiltersCubit.periodTime = periodTime!;
+                                },
+                                value: valuesFiltersCubit.contract,
+                                list: context
+                                        .read<LookupBloc>()
+                                        .lookUpRent
+                                        ?.serviceTypeList ??
+                                    []);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                   //todo change it to dropdown
                   // Expanded(
                   //   child: Column(
@@ -1488,6 +1527,8 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                                 ? null
                                                 : int.parse(
                                                     rentValueToController.text),
+                                        serviceType: valuesFiltersCubit
+                                            .contract.lookupKey,
                                         bedRoomsCount:
                                             valuesFiltersCubit.bedRoom.id == -1
                                                 ? 0
@@ -1605,6 +1646,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                           areaTo: areaValueToController.text.isEmpty
                               ? null
                               : double.parse(areaValueToController.text),
+                          serviceType: valuesFiltersCubit.contract.lookupKey,
                           municipalityId:
                               valuesFiltersCubit.municapility.lookupKey,
                           areaCode: valuesFiltersCubit.zone.lookupKey,

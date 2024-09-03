@@ -113,6 +113,7 @@
   "total_rented_space": "Total rented space",
   "unit_type": "Unit type",
   "rent_contract_history": "Rent contract history",
+  "contract_type": "Contract type",
   "----------------------------------------------------SELL--------------------------": "",
   "average_price_per_square_foot": "Average price per square foot",
   "average_price_per_square_meter": "Average price per square meter",
@@ -179,5 +180,6 @@
   "quarter": "Quarter",
   "add_favourite": "Add to favourite",
   "add_favourite_success": "Added to favourite successfully",
-  "half_year": "Half year"
+  "half_year": "Half year",
+  "session_expired": "Your session has expired, please log in again"
 }

@@ -36,6 +36,7 @@ class AppStrings {
   String nationality = "nationality".tr();
   String month = "month".tr();
   String occupancy = "occupancy".tr();
+  String contractType = "contract_type".tr();
 
   // grid
   String totalRentalContractsNumber = "total_rental_contracts_number".tr();
@@ -208,4 +209,6 @@ class AppStrings {
   String addFavourite = "add_favourite".tr();
   String addFavouriteSuccess = "add_favourite_success".tr();
   String halfYear = "half_year".tr();
+
+  String sessionExpired = "session_expired".tr();
 }

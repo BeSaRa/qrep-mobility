@@ -93,6 +93,7 @@ _$CriteriaObjectImpl _$$CriteriaObjectImplFromJson(Map<String, dynamic> json) =>
           .toList(),
       ownerCategoryCode: json['ownerCategoryCode'] as String?,
       brokerName: json['brokerName'] as String?,
+      serviceType: json['serviceType'] as int?,
       brokerCategoryId: json['brokerCategoryId'] as int?,
       nationalityCode: json['nationalityCode'] as int?,
     );
@@ -138,6 +139,7 @@ Map<String, dynamic> _$$CriteriaObjectImplToJson(
   writeNotNull('premiseTypeList', instance.premiseTypeList);
   writeNotNull('ownerCategoryCode', instance.ownerCategoryCode);
   writeNotNull('brokerName', instance.brokerName);
+  writeNotNull('serviceType', instance.serviceType);
   writeNotNull('brokerCategoryId', instance.brokerCategoryId);
   writeNotNull('nationalityCode', instance.nationalityCode);
   return val;

@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 RentRequest _$RentRequestFromJson(Map<String, dynamic> json) {
-  return _RequestMeanValue.fromJson(json);
+  return _RentRequest.fromJson(json);
 }
 
 /// @nodoc
@@ -35,6 +35,7 @@ mixin _$RentRequest {
   int? get municipalityId => throw _privateConstructorUsedError;
   int? get offset => throw _privateConstructorUsedError;
   int? get nationalityCode => throw _privateConstructorUsedError;
+  int? get serviceType => throw _privateConstructorUsedError;
   List<int>? get propertyTypeList => throw _privateConstructorUsedError;
   List<int>? get purposeList => throw _privateConstructorUsedError;
   num? get rentPaymentMonthlyPerUnitFrom => throw _privateConstructorUsedError;
@@ -72,6 +73,7 @@ abstract class $RentRequestCopyWith<$Res> {
       int? municipalityId,
       int? offset,
       int? nationalityCode,
+      int? serviceType,
       List<int>? propertyTypeList,
       List<int>? purposeList,
       num? rentPaymentMonthlyPerUnitFrom,
@@ -109,6 +111,7 @@ class _$RentRequestCopyWithImpl<$Res, $Val extends RentRequest>
     Object? municipalityId = freezed,
     Object? offset = freezed,
     Object? nationalityCode = freezed,
+    Object? serviceType = freezed,
     Object? propertyTypeList = freezed,
     Object? purposeList = freezed,
     Object? rentPaymentMonthlyPerUnitFrom = freezed,
@@ -178,6 +181,10 @@ class _$RentRequestCopyWithImpl<$Res, $Val extends RentRequest>
           ? _value.nationalityCode
           : nationalityCode // ignore: cast_nullable_to_non_nullable
               as int?,
+      serviceType: freezed == serviceType
+          ? _value.serviceType
+          : serviceType // ignore: cast_nullable_to_non_nullable
+              as int?,
       propertyTypeList: freezed == propertyTypeList
           ? _value.propertyTypeList
           : propertyTypeList // ignore: cast_nullable_to_non_nullable
@@ -211,11 +218,11 @@ class _$RentRequestCopyWithImpl<$Res, $Val extends RentRequest>
 }
 
 /// @nodoc
-abstract class _$$RequestMeanValueImplCopyWith<$Res>
+abstract class _$$RentRequestImplCopyWith<$Res>
     implements $RentRequestCopyWith<$Res> {
-  factory _$$RequestMeanValueImplCopyWith(_$RequestMeanValueImpl value,
-          $Res Function(_$RequestMeanValueImpl) then) =
-      __$$RequestMeanValueImplCopyWithImpl<$Res>;
+  factory _$$RentRequestImplCopyWith(
+          _$RentRequestImpl value, $Res Function(_$RentRequestImpl) then) =
+      __$$RentRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -234,6 +241,7 @@ abstract class _$$RequestMeanValueImplCopyWith<$Res>
       int? municipalityId,
       int? offset,
       int? nationalityCode,
+      int? serviceType,
       List<int>? propertyTypeList,
       List<int>? purposeList,
       num? rentPaymentMonthlyPerUnitFrom,
@@ -244,11 +252,11 @@ abstract class _$$RequestMeanValueImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$RequestMeanValueImplCopyWithImpl<$Res>
-    extends _$RentRequestCopyWithImpl<$Res, _$RequestMeanValueImpl>
-    implements _$$RequestMeanValueImplCopyWith<$Res> {
-  __$$RequestMeanValueImplCopyWithImpl(_$RequestMeanValueImpl _value,
-      $Res Function(_$RequestMeanValueImpl) _then)
+class __$$RentRequestImplCopyWithImpl<$Res>
+    extends _$RentRequestCopyWithImpl<$Res, _$RentRequestImpl>
+    implements _$$RentRequestImplCopyWith<$Res> {
+  __$$RentRequestImplCopyWithImpl(
+      _$RentRequestImpl _value, $Res Function(_$RentRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -269,6 +277,7 @@ class __$$RequestMeanValueImplCopyWithImpl<$Res>
     Object? municipalityId = freezed,
     Object? offset = freezed,
     Object? nationalityCode = freezed,
+    Object? serviceType = freezed,
     Object? propertyTypeList = freezed,
     Object? purposeList = freezed,
     Object? rentPaymentMonthlyPerUnitFrom = freezed,
@@ -277,7 +286,7 @@ class __$$RequestMeanValueImplCopyWithImpl<$Res>
     Object? unit = null,
     Object? periodId = null,
   }) {
-    return _then(_$RequestMeanValueImpl(
+    return _then(_$RentRequestImpl(
       areaFrom: freezed == areaFrom
           ? _value.areaFrom
           : areaFrom // ignore: cast_nullable_to_non_nullable
@@ -338,6 +347,10 @@ class __$$RequestMeanValueImplCopyWithImpl<$Res>
           ? _value.nationalityCode
           : nationalityCode // ignore: cast_nullable_to_non_nullable
               as int?,
+      serviceType: freezed == serviceType
+          ? _value.serviceType
+          : serviceType // ignore: cast_nullable_to_non_nullable
+              as int?,
       propertyTypeList: freezed == propertyTypeList
           ? _value._propertyTypeList
           : propertyTypeList // ignore: cast_nullable_to_non_nullable
@@ -372,8 +385,8 @@ class __$$RequestMeanValueImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$RequestMeanValueImpl implements _RequestMeanValue {
-  _$RequestMeanValueImpl(
+class _$RentRequestImpl implements _RentRequest {
+  _$RentRequestImpl(
       {this.areaFrom,
       this.areaTo,
       this.bedRoomsCount,
@@ -389,6 +402,7 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
       this.municipalityId,
       this.offset,
       this.nationalityCode,
+      this.serviceType,
       final List<int>? propertyTypeList,
       final List<int>? purposeList,
       this.rentPaymentMonthlyPerUnitFrom,
@@ -400,8 +414,8 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
         _propertyTypeList = propertyTypeList,
         _purposeList = purposeList;
 
-  factory _$RequestMeanValueImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RequestMeanValueImplFromJson(json);
+  factory _$RentRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RentRequestImplFromJson(json);
 
   @override
   final num? areaFrom;
@@ -442,6 +456,8 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
   final int? offset;
   @override
   final int? nationalityCode;
+  @override
+  final int? serviceType;
   final List<int>? _propertyTypeList;
   @override
   List<int>? get propertyTypeList {
@@ -479,14 +495,14 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
 
   @override
   String toString() {
-    return 'RentRequest(areaFrom: $areaFrom, areaTo: $areaTo, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, halfYearDuration: $halfYearDuration, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, nationalityCode: $nationalityCode, propertyTypeList: $propertyTypeList, purposeList: $purposeList, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
+    return 'RentRequest(areaFrom: $areaFrom, areaTo: $areaTo, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, halfYearDuration: $halfYearDuration, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, nationalityCode: $nationalityCode, serviceType: $serviceType, propertyTypeList: $propertyTypeList, purposeList: $purposeList, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RequestMeanValueImpl &&
+            other is _$RentRequestImpl &&
             (identical(other.areaFrom, areaFrom) ||
                 other.areaFrom == areaFrom) &&
             (identical(other.areaTo, areaTo) || other.areaTo == areaTo) &&
@@ -514,6 +530,8 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
             (identical(other.offset, offset) || other.offset == offset) &&
             (identical(other.nationalityCode, nationalityCode) ||
                 other.nationalityCode == nationalityCode) &&
+            (identical(other.serviceType, serviceType) ||
+                other.serviceType == serviceType) &&
             const DeepCollectionEquality()
                 .equals(other._propertyTypeList, _propertyTypeList) &&
             const DeepCollectionEquality()
@@ -551,6 +569,7 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
         municipalityId,
         offset,
         nationalityCode,
+        serviceType,
         const DeepCollectionEquality().hash(_propertyTypeList),
         const DeepCollectionEquality().hash(_purposeList),
         rentPaymentMonthlyPerUnitFrom,
@@ -563,20 +582,19 @@ class _$RequestMeanValueImpl implements _RequestMeanValue {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RequestMeanValueImplCopyWith<_$RequestMeanValueImpl> get copyWith =>
-      __$$RequestMeanValueImplCopyWithImpl<_$RequestMeanValueImpl>(
-          this, _$identity);
+  _$$RentRequestImplCopyWith<_$RentRequestImpl> get copyWith =>
+      __$$RentRequestImplCopyWithImpl<_$RentRequestImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$RequestMeanValueImplToJson(
+    return _$$RentRequestImplToJson(
       this,
     );
   }
 }
 
-abstract class _RequestMeanValue implements RentRequest {
-  factory _RequestMeanValue(
+abstract class _RentRequest implements RentRequest {
+  factory _RentRequest(
       {final num? areaFrom,
       final num? areaTo,
       final int? bedRoomsCount,
@@ -592,16 +610,17 @@ abstract class _RequestMeanValue implements RentRequest {
       final int? municipalityId,
       final int? offset,
       final int? nationalityCode,
+      final int? serviceType,
       final List<int>? propertyTypeList,
       final List<int>? purposeList,
       final num? rentPaymentMonthlyPerUnitFrom,
       final num? rentPaymentMonthlyPerUnitTo,
       final int? zoneId,
       final int unit,
-      final int periodId}) = _$RequestMeanValueImpl;
+      final int periodId}) = _$RentRequestImpl;
 
-  factory _RequestMeanValue.fromJson(Map<String, dynamic> json) =
-      _$RequestMeanValueImpl.fromJson;
+  factory _RentRequest.fromJson(Map<String, dynamic> json) =
+      _$RentRequestImpl.fromJson;
 
   @override
   num? get areaFrom;
@@ -634,6 +653,8 @@ abstract class _RequestMeanValue implements RentRequest {
   @override
   int? get nationalityCode;
   @override
+  int? get serviceType;
+  @override
   List<int>? get propertyTypeList;
   @override
   List<int>? get purposeList;
@@ -649,6 +670,6 @@ abstract class _RequestMeanValue implements RentRequest {
   int get periodId;
   @override
   @JsonKey(ignore: true)
-  _$$RequestMeanValueImplCopyWith<_$RequestMeanValueImpl> get copyWith =>
+  _$$RentRequestImplCopyWith<_$RentRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

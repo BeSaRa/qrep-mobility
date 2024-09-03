@@ -96,11 +96,14 @@ class _MoreViewState extends State<MoreView> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      context
-                                              .read<UserBloc>()
-                                              .user
-                                              ?.firstName[0] ??
-                                          "G",
+                                      context.read<LoggedInUserCubit>().state ==
+                                              true
+                                          ? context
+                                                  .read<UserBloc>()
+                                                  .user
+                                                  ?.firstName[0] ??
+                                              "G"
+                                          : "G",
                                       style: Theme.of(context)
                                           .textTheme
                                           .displaySmall
@@ -111,38 +114,45 @@ class _MoreViewState extends State<MoreView> {
                                   ),
                                 ),
                                 Text(
-                                  context.read<UserBloc>().user?.firstName ??
-                                      "Guest",
+                                  context.read<LoggedInUserCubit>().state ==
+                                          true
+                                      ? context
+                                              .read<UserBloc>()
+                                              .user
+                                              ?.firstName ??
+                                          "Guest"
+                                      : "Guest",
                                   style:
                                       Theme.of(context).textTheme.titleMedium,
                                 )
                               ],
                             ),
                           ),
-                          MoreWidgetButton(
-                            icon: Icons.star,
-                            title: AppStrings().watchList,
-                            onPressed: () async {
-                              initFavourite();
-                              Map? res = await context
-                                  .pushNamed(RoutesNames.favourite);
-                              if (res != null) {
-                                context
-                                    .read<BottomNavCubit>()
-                                    .changePage(res["class"]);
-                                context.goNamed(
-                                    context
-                                        .read<BottomNavCubit>()
-                                        .paths[res["class"]],
-                                    extra: res["object"]);
-                                if (res["class"] == 0) {
-                                  context.pushNamed(
-                                      RoutesNames.realEstateBrokers,
+                          if (context.read<LoggedInUserCubit>().state)
+                            MoreWidgetButton(
+                              icon: Icons.star,
+                              title: AppStrings().watchList,
+                              onPressed: () async {
+                                initFavourite();
+                                Map? res = await context
+                                    .pushNamed(RoutesNames.favourite);
+                                if (res != null) {
+                                  context
+                                      .read<BottomNavCubit>()
+                                      .changePage(res["class"]);
+                                  context.goNamed(
+                                      context
+                                          .read<BottomNavCubit>()
+                                          .paths[res["class"]],
                                       extra: res["object"]);
+                                  if (res["class"] == 0) {
+                                    context.pushNamed(
+                                        RoutesNames.realEstateBrokers,
+                                        extra: res["object"]);
+                                  }
                                 }
-                              }
-                            },
-                          ),
+                              },
+                            ),
                           BlocBuilder(
                             bloc: loginBloc,
                             builder: (context, LoginState state) {

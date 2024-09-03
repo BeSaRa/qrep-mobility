@@ -22,6 +22,14 @@ class ValuesFiltersCubit extends Cubit<LookupModel> {
     emit(zone);
   }
 
+  // --------------------------contract type Filter----------------------------------
+  LookupModel contract = const LookupModel();
+
+  void changeContract(LookupModel newZone) {
+    contract = newZone;
+    emit(contract);
+  }
+
 //-----------------------Property Type Filters------------------------------------------
   List<LookupModel> propertyTypeList = [];
 

@@ -4,6 +4,7 @@ part 'request_rent.freezed.dart';
 part 'request_rent.g.dart';
 
 @freezed
+@JsonSerializable(includeIfNull: false)
 abstract class RentRequest with _$RentRequest {
   factory RentRequest({
     num? areaFrom,
@@ -21,6 +22,7 @@ abstract class RentRequest with _$RentRequest {
     int? municipalityId,
     int? offset,
     int? nationalityCode,
+    int? serviceType,
     List<int>? propertyTypeList,
     List<int>? purposeList,
     num? rentPaymentMonthlyPerUnitFrom,
@@ -29,7 +31,7 @@ abstract class RentRequest with _$RentRequest {
     int? zoneId,
     @Default(2) int unit,
     @Default(1) int periodId,
-  }) = _RequestMeanValue;
+  }) = _RentRequest;
 
   factory RentRequest.fromJson(Map<String, dynamic> json) =>
       _$RentRequestFromJson(json);

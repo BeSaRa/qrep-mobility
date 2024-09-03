@@ -7,8 +7,10 @@ import 'package:dio/dio.dart';
 import 'package:ebla/app/constants.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/data/network/end_points.dart';
+import 'package:ebla/presentations/features/auth/authes.dart';
 import 'package:ebla/presentations/features/main/blocs/lookup_bloc/lookup_bloc.dart';
 import 'package:ebla/presentations/resources/resources.dart';
+import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../app/app_preferences.dart';
@@ -81,6 +83,20 @@ class GeneralInterceptor extends Interceptor {
             await appPreferences.setCmsUserToken(Constant.guestToken);
             await appPreferences.setUserRefreshToken("");
             await appPreferences.setUserLoggedIn(false);
+            NavigationKeys.rootNavigatorKey.currentContext
+                ?.read<LoggedInUserCubit>()
+                .save(false);
+            errorToast(
+                AppStrings().sessionExpired,
+                NavigationKeys.rootNavigatorKey.currentContext
+                    ?.read<LoggedInUserCubit>());
+            NavigationKeys.rootNavigatorKey.currentContext!
+                .read<LookupBloc>()
+                .add(const LookupEvent.initilaEvent());
+            await resetAllModules();
+            await initHomeModule();
+            instance<Dio>().options.headers["authorization"] =
+                "Bearer ${response.data}";
             return handler
                 .resolve(await instance<Dio>().fetch(err.requestOptions));
           } else {
@@ -101,9 +117,30 @@ class GeneralInterceptor extends Interceptor {
           await appPreferences.setCmsUserToken(Constant.guestToken);
           await appPreferences.setUserRefreshToken("");
           await appPreferences.setUserLoggedIn(false);
+          NavigationKeys.rootNavigatorKey.currentContext
+              ?.read<LoggedInUserCubit>()
+              .save(false);
+          errorToast(
+              AppStrings().sessionExpired,
+              NavigationKeys.rootNavigatorKey.currentContext
+                  ?.read<LoggedInUserCubit>());
+          NavigationKeys.rootNavigatorKey.currentContext!
+              .read<LookupBloc>()
+              .add(const LookupEvent.initilaEvent());
+          await resetAllModules();
+          await initHomeModule();
+          instance<Dio>().options.headers["authorization"] =
+              "Bearer ${response.data}";
           return handler
               .resolve(await instance<Dio>().fetch(err.requestOptions));
         } else {
+          NavigationKeys.rootNavigatorKey.currentContext
+              ?.read<LoggedInUserCubit>()
+              .save(false);
+          errorToast(
+              AppStrings().sessionExpired,
+              NavigationKeys.rootNavigatorKey.currentContext
+                  ?.read<LoggedInUserCubit>());
           return handler.reject(err);
         }
       }
@@ -185,9 +222,30 @@ class GeneralCMSInterceptor extends Interceptor {
             await appPreferences.setCmsUserToken(Constant.guestToken);
             await appPreferences.setUserRefreshToken("");
             await appPreferences.setUserLoggedIn(false);
+            NavigationKeys.rootNavigatorKey.currentContext
+                ?.read<LoggedInUserCubit>()
+                .save(false);
+            errorToast(
+                AppStrings().sessionExpired,
+                NavigationKeys.rootNavigatorKey.currentContext
+                    ?.read<LoggedInUserCubit>());
+            NavigationKeys.rootNavigatorKey.currentContext!
+                .read<LookupBloc>()
+                .add(const LookupEvent.initilaEvent());
+            await resetAllModules();
+            await initHomeModule();
+            instance<Dio>().options.headers["authorization"] =
+                "Bearer ${response.data}";
             return handler
                 .resolve(await instance<Dio>().fetch(err.requestOptions));
           } else {
+            NavigationKeys.rootNavigatorKey.currentContext
+                ?.read<LoggedInUserCubit>()
+                .save(false);
+            errorToast(
+                AppStrings().sessionExpired,
+                NavigationKeys.rootNavigatorKey.currentContext
+                    ?.read<LoggedInUserCubit>());
             return handler.reject(err);
           }
         }
@@ -205,6 +263,20 @@ class GeneralCMSInterceptor extends Interceptor {
           await appPreferences.setCmsUserToken(Constant.guestToken);
           await appPreferences.setUserRefreshToken("");
           await appPreferences.setUserLoggedIn(false);
+          NavigationKeys.rootNavigatorKey.currentContext
+              ?.read<LoggedInUserCubit>()
+              .save(false);
+          errorToast(
+              AppStrings().sessionExpired,
+              NavigationKeys.rootNavigatorKey.currentContext
+                  ?.read<LoggedInUserCubit>());
+          NavigationKeys.rootNavigatorKey.currentContext!
+              .read<LookupBloc>()
+              .add(const LookupEvent.initilaEvent());
+          await resetAllModules();
+          await initHomeModule();
+          instance<Dio>().options.headers["authorization"] =
+              "Bearer ${response.data}";
           return handler
               .resolve(await instance<Dio>().fetch(err.requestOptions));
         } else {

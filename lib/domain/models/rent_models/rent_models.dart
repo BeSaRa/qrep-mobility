@@ -52,6 +52,7 @@ abstract class LookupResponse with _$LookupResponse {
     @Default([]) List<LookupModel> propertyTypeList,
     @Default([]) List<LookupModel> rentPurposeList,
     @Default([]) List<LookupModel> zoneList,
+    @Default([]) List<LookupModel> serviceTypeList,
     @Default([
       PeriodTimeDetails(name: 'نصف اول', value: [1, 2], enName: 'First Half'),
       PeriodTimeDetails(name: 'نصف ثاني', value: [3, 4], enName: 'Last Half')
@@ -230,6 +231,7 @@ abstract class RentSummaryObject with _$RentSummaryObject {
       @Default(0) double? rentPaymentMeterMT,
       @Default(0) double? rentPaymentMeterSQT,
       @Default(0) double? rentPaymentMonthly,
+      @Default(0) int? serviceTypeId,
       @Default('') String? startDate,
       @Default('') String? unitBroker,
       @Default('') String? unitNo,

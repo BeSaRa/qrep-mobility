@@ -80,6 +80,7 @@ abstract class CriteriaObject with _$CriteriaObject {
     List<int>? premiseTypeList,
     String? ownerCategoryCode,
     String? brokerName,
+    int? serviceType,
     int? brokerCategoryId,
     int? nationalityCode,
   }) = _CriteriaObject;

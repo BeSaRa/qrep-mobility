@@ -204,6 +204,16 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
                               '',
                         ),
 
+                      ///contract type
+                      if (criteriaObject.serviceType != null &&
+                          widget.indicator == Indicators.rental)
+                        FavFilterWidget(
+                          label: AppStrings().furnitureStatus,
+                          value: getServiceTypeName(widget.indicator,
+                                  criteriaObject.serviceType) ??
+                              '',
+                        ),
+
                       ///nationality
                       if (criteriaObject.nationalityCode != null)
                         FavFilterWidget(
@@ -1028,6 +1038,57 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
               : (getObjectByLookupKey(
                   context.read<LookupBloc>().lookUpRent?.furnitureStatusList ??
                       [],
+                  id ?? 1,
+                )?.enName);
+      }
+    }
+  }
+
+  String? getServiceTypeName(Indicators indicator, id) {
+    if (id == -1) {
+      return context.locale == ARABIC_LOCAL ? "الكل" : "All";
+    } else {
+      switch (indicator) {
+        case Indicators.sell:
+          return context.locale == ARABIC_LOCAL
+              ? (getObjectByLookupKey(
+                  context.read<LookupBloc>().lookUpSell?.serviceTypeList ?? [],
+                  id ?? 1,
+                )?.arName)
+              : (getObjectByLookupKey(
+                  context.read<LookupBloc>().lookUpSell?.serviceTypeList ?? [],
+                  id ?? 1,
+                )?.enName);
+        case Indicators.mortgage:
+          return context.locale == ARABIC_LOCAL
+              ? (getObjectByLookupKey(
+                  context.read<LookupBloc>().lookUpMortgage?.serviceTypeList ??
+                      [],
+                  id ?? 1,
+                )?.arName)
+              : (getObjectByLookupKey(
+                  context.read<LookupBloc>().lookUpMortgage?.serviceTypeList ??
+                      [],
+                  id ?? 1,
+                )?.enName);
+        case Indicators.rental:
+          return context.locale == ARABIC_LOCAL
+              ? (getObjectByLookupKey(
+                  context.read<LookupBloc>().lookUpRent?.serviceTypeList ?? [],
+                  id ?? 1,
+                )?.arName)
+              : (getObjectByLookupKey(
+                  context.read<LookupBloc>().lookUpRent?.serviceTypeList ?? [],
+                  id ?? 1,
+                )?.enName);
+        default:
+          return context.locale == ARABIC_LOCAL
+              ? (getObjectByLookupKey(
+                  context.read<LookupBloc>().lookUpRent?.serviceTypeList ?? [],
+                  id ?? 1,
+                )?.arName)
+              : (getObjectByLookupKey(
+                  context.read<LookupBloc>().lookUpRent?.serviceTypeList ?? [],
                   id ?? 1,
                 )?.enName);
       }

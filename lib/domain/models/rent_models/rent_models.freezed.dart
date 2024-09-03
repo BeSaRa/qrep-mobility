@@ -813,6 +813,7 @@ mixin _$LookupResponse {
   List<LookupModel> get propertyTypeList => throw _privateConstructorUsedError;
   List<LookupModel> get rentPurposeList => throw _privateConstructorUsedError;
   List<LookupModel> get zoneList => throw _privateConstructorUsedError;
+  List<LookupModel> get serviceTypeList => throw _privateConstructorUsedError;
   List<PeriodTimeDetails> get halfYearList =>
       throw _privateConstructorUsedError;
   List<PeriodTimeDetails> get quarterYearList =>
@@ -854,6 +855,7 @@ abstract class $LookupResponseCopyWith<$Res> {
       List<LookupModel> propertyTypeList,
       List<LookupModel> rentPurposeList,
       List<LookupModel> zoneList,
+      List<LookupModel> serviceTypeList,
       List<PeriodTimeDetails> halfYearList,
       List<PeriodTimeDetails> quarterYearList,
       List<LookupModel> periodTime,
@@ -892,6 +894,7 @@ class _$LookupResponseCopyWithImpl<$Res, $Val extends LookupResponse>
     Object? propertyTypeList = null,
     Object? rentPurposeList = null,
     Object? zoneList = null,
+    Object? serviceTypeList = null,
     Object? halfYearList = null,
     Object? quarterYearList = null,
     Object? periodTime = null,
@@ -943,6 +946,10 @@ class _$LookupResponseCopyWithImpl<$Res, $Val extends LookupResponse>
       zoneList: null == zoneList
           ? _value.zoneList
           : zoneList // ignore: cast_nullable_to_non_nullable
+              as List<LookupModel>,
+      serviceTypeList: null == serviceTypeList
+          ? _value.serviceTypeList
+          : serviceTypeList // ignore: cast_nullable_to_non_nullable
               as List<LookupModel>,
       halfYearList: null == halfYearList
           ? _value.halfYearList
@@ -1022,6 +1029,7 @@ abstract class _$$RentLookupResponseImplCopyWith<$Res>
       List<LookupModel> propertyTypeList,
       List<LookupModel> rentPurposeList,
       List<LookupModel> zoneList,
+      List<LookupModel> serviceTypeList,
       List<PeriodTimeDetails> halfYearList,
       List<PeriodTimeDetails> quarterYearList,
       List<LookupModel> periodTime,
@@ -1058,6 +1066,7 @@ class __$$RentLookupResponseImplCopyWithImpl<$Res>
     Object? propertyTypeList = null,
     Object? rentPurposeList = null,
     Object? zoneList = null,
+    Object? serviceTypeList = null,
     Object? halfYearList = null,
     Object? quarterYearList = null,
     Object? periodTime = null,
@@ -1109,6 +1118,10 @@ class __$$RentLookupResponseImplCopyWithImpl<$Res>
       zoneList: null == zoneList
           ? _value._zoneList
           : zoneList // ignore: cast_nullable_to_non_nullable
+              as List<LookupModel>,
+      serviceTypeList: null == serviceTypeList
+          ? _value._serviceTypeList
+          : serviceTypeList // ignore: cast_nullable_to_non_nullable
               as List<LookupModel>,
       halfYearList: null == halfYearList
           ? _value._halfYearList
@@ -1183,6 +1196,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
       final List<LookupModel> propertyTypeList = const [],
       final List<LookupModel> rentPurposeList = const [],
       final List<LookupModel> zoneList = const [],
+      final List<LookupModel> serviceTypeList = const [],
       final List<PeriodTimeDetails> halfYearList = const [
         PeriodTimeDetails(name: 'نصف اول', value: [1, 2], enName: 'First Half'),
         PeriodTimeDetails(name: 'نصف ثاني', value: [3, 4], enName: 'Last Half')
@@ -1229,6 +1243,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
         _propertyTypeList = propertyTypeList,
         _rentPurposeList = rentPurposeList,
         _zoneList = zoneList,
+        _serviceTypeList = serviceTypeList,
         _halfYearList = halfYearList,
         _quarterYearList = quarterYearList,
         _periodTime = periodTime,
@@ -1329,6 +1344,15 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
     if (_zoneList is EqualUnmodifiableListView) return _zoneList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_zoneList);
+  }
+
+  final List<LookupModel> _serviceTypeList;
+  @override
+  @JsonKey()
+  List<LookupModel> get serviceTypeList {
+    if (_serviceTypeList is EqualUnmodifiableListView) return _serviceTypeList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_serviceTypeList);
   }
 
   final List<PeriodTimeDetails> _halfYearList;
@@ -1463,7 +1487,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
 
   @override
   String toString() {
-    return 'LookupResponse(rooms: $rooms, durations: $durations, halfYearDurations: $halfYearDurations, quarterYearDurations: $quarterYearDurations, spaces: $spaces, unitStatus: $unitStatus, propertyTypeList: $propertyTypeList, rentPurposeList: $rentPurposeList, zoneList: $zoneList, halfYearList: $halfYearList, quarterYearList: $quarterYearList, periodTime: $periodTime, bedRooms: $bedRooms, districtList: $districtList, municipalityList: $municipalityList, furnitureStatusList: $furnitureStatusList, nationalityList: $nationalityList, nationalityCategoryList: $nationalityCategoryList, genderList: $genderList, ageCategoryList: $ageCategoryList, ownerCategoryList: $ownerCategoryList, maxParams: $maxParams, streetList: $streetList)';
+    return 'LookupResponse(rooms: $rooms, durations: $durations, halfYearDurations: $halfYearDurations, quarterYearDurations: $quarterYearDurations, spaces: $spaces, unitStatus: $unitStatus, propertyTypeList: $propertyTypeList, rentPurposeList: $rentPurposeList, zoneList: $zoneList, serviceTypeList: $serviceTypeList, halfYearList: $halfYearList, quarterYearList: $quarterYearList, periodTime: $periodTime, bedRooms: $bedRooms, districtList: $districtList, municipalityList: $municipalityList, furnitureStatusList: $furnitureStatusList, nationalityList: $nationalityList, nationalityCategoryList: $nationalityCategoryList, genderList: $genderList, ageCategoryList: $ageCategoryList, ownerCategoryList: $ownerCategoryList, maxParams: $maxParams, streetList: $streetList)';
   }
 
   @override
@@ -1486,6 +1510,8 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
             const DeepCollectionEquality()
                 .equals(other._rentPurposeList, _rentPurposeList) &&
             const DeepCollectionEquality().equals(other._zoneList, _zoneList) &&
+            const DeepCollectionEquality()
+                .equals(other._serviceTypeList, _serviceTypeList) &&
             const DeepCollectionEquality()
                 .equals(other._halfYearList, _halfYearList) &&
             const DeepCollectionEquality()
@@ -1528,6 +1554,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
         const DeepCollectionEquality().hash(_propertyTypeList),
         const DeepCollectionEquality().hash(_rentPurposeList),
         const DeepCollectionEquality().hash(_zoneList),
+        const DeepCollectionEquality().hash(_serviceTypeList),
         const DeepCollectionEquality().hash(_halfYearList),
         const DeepCollectionEquality().hash(_quarterYearList),
         const DeepCollectionEquality().hash(_periodTime),
@@ -1570,6 +1597,7 @@ abstract class _RentLookupResponse implements LookupResponse {
       final List<LookupModel> propertyTypeList,
       final List<LookupModel> rentPurposeList,
       final List<LookupModel> zoneList,
+      final List<LookupModel> serviceTypeList,
       final List<PeriodTimeDetails> halfYearList,
       final List<PeriodTimeDetails> quarterYearList,
       final List<LookupModel> periodTime,
@@ -1606,6 +1634,8 @@ abstract class _RentLookupResponse implements LookupResponse {
   List<LookupModel> get rentPurposeList;
   @override
   List<LookupModel> get zoneList;
+  @override
+  List<LookupModel> get serviceTypeList;
   @override
   List<PeriodTimeDetails> get halfYearList;
   @override
@@ -3683,6 +3713,7 @@ mixin _$RentSummaryObject {
   double? get rentPaymentMeterMT => throw _privateConstructorUsedError;
   double? get rentPaymentMeterSQT => throw _privateConstructorUsedError;
   double? get rentPaymentMonthly => throw _privateConstructorUsedError;
+  int? get serviceTypeId => throw _privateConstructorUsedError;
   String? get startDate => throw _privateConstructorUsedError;
   String? get unitBroker => throw _privateConstructorUsedError;
   String? get unitNo => throw _privateConstructorUsedError;
@@ -3712,6 +3743,7 @@ abstract class $RentSummaryObjectCopyWith<$Res> {
       double? rentPaymentMeterMT,
       double? rentPaymentMeterSQT,
       double? rentPaymentMonthly,
+      int? serviceTypeId,
       String? startDate,
       String? unitBroker,
       String? unitNo,
@@ -3742,6 +3774,7 @@ class _$RentSummaryObjectCopyWithImpl<$Res, $Val extends RentSummaryObject>
     Object? rentPaymentMeterMT = freezed,
     Object? rentPaymentMeterSQT = freezed,
     Object? rentPaymentMonthly = freezed,
+    Object? serviceTypeId = freezed,
     Object? startDate = freezed,
     Object? unitBroker = freezed,
     Object? unitNo = freezed,
@@ -3789,6 +3822,10 @@ class _$RentSummaryObjectCopyWithImpl<$Res, $Val extends RentSummaryObject>
           ? _value.rentPaymentMonthly
           : rentPaymentMonthly // ignore: cast_nullable_to_non_nullable
               as double?,
+      serviceTypeId: freezed == serviceTypeId
+          ? _value.serviceTypeId
+          : serviceTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
       startDate: freezed == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -3832,6 +3869,7 @@ abstract class _$$RentSummaryObjectImplCopyWith<$Res>
       double? rentPaymentMeterMT,
       double? rentPaymentMeterSQT,
       double? rentPaymentMonthly,
+      int? serviceTypeId,
       String? startDate,
       String? unitBroker,
       String? unitNo,
@@ -3860,6 +3898,7 @@ class __$$RentSummaryObjectImplCopyWithImpl<$Res>
     Object? rentPaymentMeterMT = freezed,
     Object? rentPaymentMeterSQT = freezed,
     Object? rentPaymentMonthly = freezed,
+    Object? serviceTypeId = freezed,
     Object? startDate = freezed,
     Object? unitBroker = freezed,
     Object? unitNo = freezed,
@@ -3907,6 +3946,10 @@ class __$$RentSummaryObjectImplCopyWithImpl<$Res>
           ? _value.rentPaymentMonthly
           : rentPaymentMonthly // ignore: cast_nullable_to_non_nullable
               as double?,
+      serviceTypeId: freezed == serviceTypeId
+          ? _value.serviceTypeId
+          : serviceTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
       startDate: freezed == startDate
           ? _value.startDate
           : startDate // ignore: cast_nullable_to_non_nullable
@@ -3945,6 +3988,7 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
       this.rentPaymentMeterMT = 0,
       this.rentPaymentMeterSQT = 0,
       this.rentPaymentMonthly = 0,
+      this.serviceTypeId = 0,
       this.startDate = '',
       this.unitBroker = '',
       this.unitNo = '',
@@ -3986,6 +4030,9 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
   final double? rentPaymentMonthly;
   @override
   @JsonKey()
+  final int? serviceTypeId;
+  @override
+  @JsonKey()
   final String? startDate;
   @override
   @JsonKey()
@@ -4002,7 +4049,7 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
 
   @override
   String toString() {
-    return 'RentSummaryObject(area: $area, bedRoomsCount: $bedRoomsCount, endDate: $endDate, issueYear: $issueYear, issueDate: $issueDate, municipalityid: $municipalityid, propertyTypeId: $propertyTypeId, rentPaymentMeterMT: $rentPaymentMeterMT, rentPaymentMeterSQT: $rentPaymentMeterSQT, rentPaymentMonthly: $rentPaymentMonthly, startDate: $startDate, unitBroker: $unitBroker, unitNo: $unitNo, unitOwner: $unitOwner, unitTenant: $unitTenant)';
+    return 'RentSummaryObject(area: $area, bedRoomsCount: $bedRoomsCount, endDate: $endDate, issueYear: $issueYear, issueDate: $issueDate, municipalityid: $municipalityid, propertyTypeId: $propertyTypeId, rentPaymentMeterMT: $rentPaymentMeterMT, rentPaymentMeterSQT: $rentPaymentMeterSQT, rentPaymentMonthly: $rentPaymentMonthly, serviceTypeId: $serviceTypeId, startDate: $startDate, unitBroker: $unitBroker, unitNo: $unitNo, unitOwner: $unitOwner, unitTenant: $unitTenant)';
   }
 
   @override
@@ -4028,6 +4075,8 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
                 other.rentPaymentMeterSQT == rentPaymentMeterSQT) &&
             (identical(other.rentPaymentMonthly, rentPaymentMonthly) ||
                 other.rentPaymentMonthly == rentPaymentMonthly) &&
+            (identical(other.serviceTypeId, serviceTypeId) ||
+                other.serviceTypeId == serviceTypeId) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.unitBroker, unitBroker) ||
@@ -4053,6 +4102,7 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
       rentPaymentMeterMT,
       rentPaymentMeterSQT,
       rentPaymentMonthly,
+      serviceTypeId,
       startDate,
       unitBroker,
       unitNo,
@@ -4086,6 +4136,7 @@ abstract class _RentSummaryObject implements RentSummaryObject {
       final double? rentPaymentMeterMT,
       final double? rentPaymentMeterSQT,
       final double? rentPaymentMonthly,
+      final int? serviceTypeId,
       final String? startDate,
       final String? unitBroker,
       final String? unitNo,
@@ -4115,6 +4166,8 @@ abstract class _RentSummaryObject implements RentSummaryObject {
   double? get rentPaymentMeterSQT;
   @override
   double? get rentPaymentMonthly;
+  @override
+  int? get serviceTypeId;
   @override
   String? get startDate;
   @override

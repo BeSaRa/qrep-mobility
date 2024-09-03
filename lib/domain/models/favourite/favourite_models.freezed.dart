@@ -340,6 +340,7 @@ mixin _$CriteriaObject {
   List<int>? get premiseTypeList => throw _privateConstructorUsedError;
   String? get ownerCategoryCode => throw _privateConstructorUsedError;
   String? get brokerName => throw _privateConstructorUsedError;
+  int? get serviceType => throw _privateConstructorUsedError;
   int? get brokerCategoryId => throw _privateConstructorUsedError;
   int? get nationalityCode => throw _privateConstructorUsedError;
 
@@ -385,6 +386,7 @@ abstract class $CriteriaObjectCopyWith<$Res> {
       List<int>? premiseTypeList,
       String? ownerCategoryCode,
       String? brokerName,
+      int? serviceType,
       int? brokerCategoryId,
       int? nationalityCode});
 }
@@ -431,6 +433,7 @@ class _$CriteriaObjectCopyWithImpl<$Res, $Val extends CriteriaObject>
     Object? premiseTypeList = freezed,
     Object? ownerCategoryCode = freezed,
     Object? brokerName = freezed,
+    Object? serviceType = freezed,
     Object? brokerCategoryId = freezed,
     Object? nationalityCode = freezed,
   }) {
@@ -551,6 +554,10 @@ class _$CriteriaObjectCopyWithImpl<$Res, $Val extends CriteriaObject>
           ? _value.brokerName
           : brokerName // ignore: cast_nullable_to_non_nullable
               as String?,
+      serviceType: freezed == serviceType
+          ? _value.serviceType
+          : serviceType // ignore: cast_nullable_to_non_nullable
+              as int?,
       brokerCategoryId: freezed == brokerCategoryId
           ? _value.brokerCategoryId
           : brokerCategoryId // ignore: cast_nullable_to_non_nullable
@@ -601,6 +608,7 @@ abstract class _$$CriteriaObjectImplCopyWith<$Res>
       List<int>? premiseTypeList,
       String? ownerCategoryCode,
       String? brokerName,
+      int? serviceType,
       int? brokerCategoryId,
       int? nationalityCode});
 }
@@ -645,6 +653,7 @@ class __$$CriteriaObjectImplCopyWithImpl<$Res>
     Object? premiseTypeList = freezed,
     Object? ownerCategoryCode = freezed,
     Object? brokerName = freezed,
+    Object? serviceType = freezed,
     Object? brokerCategoryId = freezed,
     Object? nationalityCode = freezed,
   }) {
@@ -765,6 +774,10 @@ class __$$CriteriaObjectImplCopyWithImpl<$Res>
           ? _value.brokerName
           : brokerName // ignore: cast_nullable_to_non_nullable
               as String?,
+      serviceType: freezed == serviceType
+          ? _value.serviceType
+          : serviceType // ignore: cast_nullable_to_non_nullable
+              as int?,
       brokerCategoryId: freezed == brokerCategoryId
           ? _value.brokerCategoryId
           : brokerCategoryId // ignore: cast_nullable_to_non_nullable
@@ -811,6 +824,7 @@ class _$CriteriaObjectImpl implements _CriteriaObject {
       final List<int>? premiseTypeList,
       this.ownerCategoryCode,
       this.brokerName,
+      this.serviceType,
       this.brokerCategoryId,
       this.nationalityCode})
       : _propertyTypeList = propertyTypeList,
@@ -924,13 +938,15 @@ class _$CriteriaObjectImpl implements _CriteriaObject {
   @override
   final String? brokerName;
   @override
+  final int? serviceType;
+  @override
   final int? brokerCategoryId;
   @override
   final int? nationalityCode;
 
   @override
   String toString() {
-    return 'CriteriaObject(municipalityId: $municipalityId, areaCode: $areaCode, propertyTypeList: $propertyTypeList, purposeList: $purposeList, issueDateQuarterList: $issueDateQuarterList, premiseCategoryList: $premiseCategoryList, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateYear: $issueDateYear, issueDateMonth: $issueDateMonth, issueDateStartMonth: $issueDateStartMonth, issueDateEndMonth: $issueDateEndMonth, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, zoneId: $zoneId, durationType: $durationType, realEstateValueFrom: $realEstateValueFrom, realEstateValueTo: $realEstateValueTo, halfYearDuration: $halfYearDuration, areaFrom: $areaFrom, areaTo: $areaTo, occupancyStatus: $occupancyStatus, unit: $unit, periodId: $periodId, issueDateFrom: $issueDateFrom, issueDateTo: $issueDateTo, premiseTypeList: $premiseTypeList, ownerCategoryCode: $ownerCategoryCode, brokerName: $brokerName, brokerCategoryId: $brokerCategoryId, nationalityCode: $nationalityCode)';
+    return 'CriteriaObject(municipalityId: $municipalityId, areaCode: $areaCode, propertyTypeList: $propertyTypeList, purposeList: $purposeList, issueDateQuarterList: $issueDateQuarterList, premiseCategoryList: $premiseCategoryList, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateYear: $issueDateYear, issueDateMonth: $issueDateMonth, issueDateStartMonth: $issueDateStartMonth, issueDateEndMonth: $issueDateEndMonth, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, zoneId: $zoneId, durationType: $durationType, realEstateValueFrom: $realEstateValueFrom, realEstateValueTo: $realEstateValueTo, halfYearDuration: $halfYearDuration, areaFrom: $areaFrom, areaTo: $areaTo, occupancyStatus: $occupancyStatus, unit: $unit, periodId: $periodId, issueDateFrom: $issueDateFrom, issueDateTo: $issueDateTo, premiseTypeList: $premiseTypeList, ownerCategoryCode: $ownerCategoryCode, brokerName: $brokerName, serviceType: $serviceType, brokerCategoryId: $brokerCategoryId, nationalityCode: $nationalityCode)';
   }
 
   @override
@@ -996,6 +1012,8 @@ class _$CriteriaObjectImpl implements _CriteriaObject {
                 other.ownerCategoryCode == ownerCategoryCode) &&
             (identical(other.brokerName, brokerName) ||
                 other.brokerName == brokerName) &&
+            (identical(other.serviceType, serviceType) ||
+                other.serviceType == serviceType) &&
             (identical(other.brokerCategoryId, brokerCategoryId) ||
                 other.brokerCategoryId == brokerCategoryId) &&
             (identical(other.nationalityCode, nationalityCode) ||
@@ -1035,6 +1053,7 @@ class _$CriteriaObjectImpl implements _CriteriaObject {
         const DeepCollectionEquality().hash(_premiseTypeList),
         ownerCategoryCode,
         brokerName,
+        serviceType,
         brokerCategoryId,
         nationalityCode
       ]);
@@ -1085,6 +1104,7 @@ abstract class _CriteriaObject implements CriteriaObject {
       final List<int>? premiseTypeList,
       final String? ownerCategoryCode,
       final String? brokerName,
+      final int? serviceType,
       final int? brokerCategoryId,
       final int? nationalityCode}) = _$CriteriaObjectImpl;
 
@@ -1149,6 +1169,8 @@ abstract class _CriteriaObject implements CriteriaObject {
   String? get ownerCategoryCode;
   @override
   String? get brokerName;
+  @override
+  int? get serviceType;
   @override
   int? get brokerCategoryId;
   @override

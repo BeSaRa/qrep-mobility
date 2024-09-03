@@ -113,6 +113,10 @@ _$RentLookupResponseImpl _$$RentLookupResponseImplFromJson(
               ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      serviceTypeList: (json['serviceTypeList'] as List<dynamic>?)
+              ?.map((e) => LookupModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       halfYearList: (json['halfYearList'] as List<dynamic>?)
               ?.map(
                   (e) => PeriodTimeDetails.fromJson(e as Map<String, dynamic>))
@@ -213,6 +217,7 @@ Map<String, dynamic> _$$RentLookupResponseImplToJson(
       'propertyTypeList': instance.propertyTypeList,
       'rentPurposeList': instance.rentPurposeList,
       'zoneList': instance.zoneList,
+      'serviceTypeList': instance.serviceTypeList,
       'halfYearList': instance.halfYearList,
       'quarterYearList': instance.quarterYearList,
       'periodTime': instance.periodTime,
@@ -421,6 +426,7 @@ _$RentSummaryObjectImpl _$$RentSummaryObjectImplFromJson(
       rentPaymentMeterSQT:
           (json['rentPaymentMeterSQT'] as num?)?.toDouble() ?? 0,
       rentPaymentMonthly: (json['rentPaymentMonthly'] as num?)?.toDouble() ?? 0,
+      serviceTypeId: json['serviceTypeId'] as int? ?? 0,
       startDate: json['startDate'] as String? ?? '',
       unitBroker: json['unitBroker'] as String? ?? '',
       unitNo: json['unitNo'] as String? ?? '',
@@ -441,6 +447,7 @@ Map<String, dynamic> _$$RentSummaryObjectImplToJson(
       'rentPaymentMeterMT': instance.rentPaymentMeterMT,
       'rentPaymentMeterSQT': instance.rentPaymentMeterSQT,
       'rentPaymentMonthly': instance.rentPaymentMonthly,
+      'serviceTypeId': instance.serviceTypeId,
       'startDate': instance.startDate,
       'unitBroker': instance.unitBroker,
       'unitNo': instance.unitNo,

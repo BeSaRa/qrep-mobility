@@ -4,6 +4,7 @@ part 'request_sell_values.freezed.dart';
 part 'request_sell_values.g.dart';
 
 @freezed
+@JsonSerializable(includeIfNull: false)
 abstract class RequestSellValues with _$RequestSellValues {
   factory RequestSellValues({
     @Default(-1) num areaCode,

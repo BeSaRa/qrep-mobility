@@ -8,7 +8,7 @@ class MainRentDataContainer extends StatelessWidget {
   final String totalPrice;
   final String startDate;
   final String endDate;
-
+  final String contract;
   final String titleInfo;
   final String valueInfo;
   final String location;
@@ -28,6 +28,7 @@ class MainRentDataContainer extends StatelessWidget {
     required this.startDate,
     required this.endDate,
     required this.history,
+    required this.contract,
   });
 
   @override
@@ -103,10 +104,19 @@ class MainRentDataContainer extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  descripton ?? "",
-                  textDirection: TextDirection.ltr,
-                  style: Theme.of(context).textTheme.titleSmall,
+                Column(
+                  children: [
+                    Text(
+                      descripton ?? "",
+                      textDirection: TextDirection.ltr,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    Text(
+                      "${AppStrings().contractType}: ${contract}",
+                      textDirection: TextDirection.ltr,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
                 ),
                 // Row(
                 //   children: [
