@@ -12,7 +12,7 @@ part of 'mortgage_grid_kpis_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MortgageGridKPIsState {
@@ -95,7 +95,9 @@ mixin _$MortgageGridKPIsState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MortgageGridKPIsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MortgageGridKPIsStateCopyWith<MortgageGridKPIsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -128,6 +130,8 @@ class _$MortgageGridKPIsStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MortgageGridKPIsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -206,6 +210,8 @@ class __$$InitialStateImplCopyWithImpl<$Res>
       _$InitialStateImpl _value, $Res Function(_$InitialStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MortgageGridKPIsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -336,7 +342,7 @@ class _$InitialStateImpl implements _InitialState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialStateImpl &&
@@ -377,7 +383,9 @@ class _$InitialStateImpl implements _InitialState {
       hasErrortotalMortgageUnitsNum,
       hasErrorTotalMortgageTransactionsValue);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MortgageGridKPIsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InitialStateImplCopyWith<_$InitialStateImpl> get copyWith =>
@@ -506,26 +514,30 @@ abstract class _InitialState implements MortgageGridKPIsState {
   bool get isLoading;
   @override
   String get errorMessage;
-  @override
 
   /// KPI1
-  List<BaseRentResponse> get totalMortgageTransactions;
   @override
+  List<BaseRentResponse> get totalMortgageTransactions;
 
   /// KPI3
-  List<BaseRentResponse> get totalMortgageUnitsNum;
   @override
+  List<BaseRentResponse> get totalMortgageUnitsNum;
 
   /// KPI5
-  List<BaseRentResponse> get totalMortgageTransactionsValue;
-  @override //-------------------------------errors----------------------------
+  @override
+  List<BaseRentResponse>
+      get totalMortgageTransactionsValue; //-------------------------------errors----------------------------
+  @override
   bool get hasErrorTotalMortgageTransactions;
   @override
   bool get hasErrortotalMortgageUnitsNum;
   @override
   bool get hasErrorTotalMortgageTransactionsValue;
+
+  /// Create a copy of MortgageGridKPIsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitialStateImplCopyWith<_$InitialStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -566,7 +578,9 @@ mixin _$MortgageGridKPIsEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MortgageGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MortgageGridKPIsEventCopyWith<MortgageGridKPIsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -593,6 +607,8 @@ class _$MortgageGridKPIsEventCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MortgageGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -606,6 +622,8 @@ class _$MortgageGridKPIsEventCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of MortgageGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RequestMortgageValuesCopyWith<$Res> get request {
@@ -639,6 +657,8 @@ class __$$MortgageGridKPIsEventImplCopyWithImpl<$Res>
       $Res Function(_$MortgageGridKPIsEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MortgageGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -667,7 +687,7 @@ class _$MortgageGridKPIsEventImpl implements _MortgageGridKPIsEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MortgageGridKPIsEventImpl &&
@@ -677,7 +697,9 @@ class _$MortgageGridKPIsEventImpl implements _MortgageGridKPIsEvent {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MortgageGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MortgageGridKPIsEventImplCopyWith<_$MortgageGridKPIsEventImpl>
@@ -748,8 +770,11 @@ abstract class _MortgageGridKPIsEvent implements MortgageGridKPIsEvent {
 
   @override
   RequestMortgageValues get request;
+
+  /// Create a copy of MortgageGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MortgageGridKPIsEventImplCopyWith<_$MortgageGridKPIsEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

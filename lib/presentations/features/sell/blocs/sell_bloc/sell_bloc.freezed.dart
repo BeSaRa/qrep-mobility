@@ -12,7 +12,7 @@ part of 'sell_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SellEvent {
@@ -65,6 +65,9 @@ class _$SellEventCopyWithImpl<$Res, $Val extends SellEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SellEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -81,6 +84,9 @@ class __$$GetSellLookupEventImplCopyWithImpl<$Res>
   __$$GetSellLookupEventImplCopyWithImpl(_$GetSellLookupEventImpl _value,
       $Res Function(_$GetSellLookupEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SellEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -94,7 +100,7 @@ class _$GetSellLookupEventImpl implements _GetSellLookupEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$GetSellLookupEventImpl);
   }
@@ -226,6 +232,9 @@ class _$SellStateCopyWithImpl<$Res, $Val extends SellState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SellState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -242,6 +251,9 @@ class __$$LoadingSellLookUpImplCopyWithImpl<$Res>
   __$$LoadingSellLookUpImplCopyWithImpl(_$LoadingSellLookUpImpl _value,
       $Res Function(_$LoadingSellLookUpImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SellState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -255,7 +267,7 @@ class _$LoadingSellLookUpImpl implements _LoadingSellLookUp {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$LoadingSellLookUpImpl);
   }
@@ -355,6 +367,8 @@ class __$$LoadedSellLookUpImplCopyWithImpl<$Res>
       $Res Function(_$LoadedSellLookUpImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SellState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -368,6 +382,8 @@ class __$$LoadedSellLookUpImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of SellState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LookupResponseCopyWith<$Res> get sellLookup {
@@ -391,7 +407,7 @@ class _$LoadedSellLookUpImpl implements _LoadedSellLookUp {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedSellLookUpImpl &&
@@ -402,7 +418,9 @@ class _$LoadedSellLookUpImpl implements _LoadedSellLookUp {
   @override
   int get hashCode => Object.hash(runtimeType, sellLookup);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SellState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoadedSellLookUpImplCopyWith<_$LoadedSellLookUpImpl> get copyWith =>
@@ -483,7 +501,10 @@ abstract class _LoadedSellLookUp implements SellState {
       _$LoadedSellLookUpImpl;
 
   LookupResponse get sellLookup;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SellState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadedSellLookUpImplCopyWith<_$LoadedSellLookUpImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -505,6 +526,8 @@ class __$$ErrorSellLookUpImplCopyWithImpl<$Res>
       _$ErrorSellLookUpImpl _value, $Res Function(_$ErrorSellLookUpImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SellState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -533,7 +556,7 @@ class _$ErrorSellLookUpImpl implements _ErrorSellLookUp {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorSellLookUpImpl &&
@@ -543,7 +566,9 @@ class _$ErrorSellLookUpImpl implements _ErrorSellLookUp {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SellState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorSellLookUpImplCopyWith<_$ErrorSellLookUpImpl> get copyWith =>
@@ -624,7 +649,10 @@ abstract class _ErrorSellLookUp implements SellState {
       _$ErrorSellLookUpImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SellState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorSellLookUpImplCopyWith<_$ErrorSellLookUpImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'about_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$AboutEvent {
@@ -66,6 +66,9 @@ class _$AboutEventCopyWithImpl<$Res, $Val extends AboutEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AboutEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -82,6 +85,9 @@ class __$$GetAboutEventImplCopyWithImpl<$Res>
   __$$GetAboutEventImplCopyWithImpl(
       _$GetAboutEventImpl _value, $Res Function(_$GetAboutEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AboutEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -95,7 +101,7 @@ class _$GetAboutEventImpl implements _GetAboutEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$GetAboutEventImpl);
   }
@@ -228,6 +234,9 @@ class _$AboutStateCopyWithImpl<$Res, $Val extends AboutState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AboutState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -244,6 +253,9 @@ class __$$_LoadingImplCopyWithImpl<$Res>
   __$$_LoadingImplCopyWithImpl(
       _$_LoadingImpl _value, $Res Function(_$_LoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AboutState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -257,7 +269,7 @@ class _$_LoadingImpl implements __Loading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$_LoadingImpl);
   }
@@ -357,6 +369,8 @@ class __$$_LoadedImplCopyWithImpl<$Res>
       _$_LoadedImpl _value, $Res Function(_$_LoadedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AboutState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -370,6 +384,8 @@ class __$$_LoadedImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of AboutState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AboutModelsCopyWith<$Res> get about {
@@ -393,7 +409,7 @@ class _$_LoadedImpl implements __Loaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoadedImpl &&
@@ -403,7 +419,9 @@ class _$_LoadedImpl implements __Loaded {
   @override
   int get hashCode => Object.hash(runtimeType, about);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AboutState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$_LoadedImplCopyWith<_$_LoadedImpl> get copyWith =>
@@ -482,7 +500,10 @@ abstract class __Loaded implements AboutState {
   const factory __Loaded({required final AboutModels about}) = _$_LoadedImpl;
 
   AboutModels get about;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AboutState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$_LoadedImplCopyWith<_$_LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -504,6 +525,8 @@ class __$$_ErrorImplCopyWithImpl<$Res>
       _$_ErrorImpl _value, $Res Function(_$_ErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AboutState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -532,7 +555,7 @@ class _$_ErrorImpl implements __Error {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ErrorImpl &&
@@ -542,7 +565,9 @@ class _$_ErrorImpl implements __Error {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AboutState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$_ErrorImplCopyWith<_$_ErrorImpl> get copyWith =>
@@ -621,7 +646,10 @@ abstract class __Error implements AboutState {
   const factory __Error({required final String message}) = _$_ErrorImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AboutState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$_ErrorImplCopyWith<_$_ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -6,40 +6,40 @@ part of 'request_mortgage_values.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-// RequestMortgageValues _$RequestMortgageValuesFromJson(
-//         Map<String, dynamic> json) =>
-//     RequestMortgageValues(
-//       areaCode: json['areaCode'] as num,
-//       areaFrom: json['areaFrom'] as num?,
-//       areaTo: json['areaTo'] as num?,
-//       issueDateEndMonth: json['issueDateEndMonth'] as int?,
-//       issueDateFrom: json['issueDateFrom'] as String?,
-//       issueDateQuarterList: (json['issueDateQuarterList'] as List<dynamic>?)
-//           ?.map((e) => e as int)
-//           .toList(),
-//       issueDateStartMonth: json['issueDateStartMonth'] as int?,
-//       issueDateMonth: json['issueDateMonth'] as int?,
-//       issueDateTo: json['issueDateTo'] as String?,
-//       issueDateYear: json['issueDateYear'] as int?,
-//       halfYearDuration: json['halfYearDuration'] as int?,
-//       limit: json['limit'] as int?,
-//       municipalityId: json['municipalityId'] as int?,
-//       offset: json['offset'] as int?,
-//       propertyTypeList: (json['propertyTypeList'] as List<dynamic>?)
-//           ?.map((e) => e as int)
-//           .toList(),
-//       purposeList: (json['purposeList'] as List<dynamic>?)
-//           ?.map((e) => e as int)
-//           .toList(),
-//       realEstateValueFrom: json['realEstateValueFrom'] as num?,
-//       realEstateValueTo: json['realEstateValueTo'] as num?,
-//       zoneId: json['zoneId'] as int?,
-//       unit: json['unit'] as int,
-//       periodId: json['periodId'] as int,
-//     );
+_$RequestMortgageValuesImpl _$$RequestMortgageValuesImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RequestMortgageValuesImpl(
+      areaCode: json['areaCode'] as num? ?? -1,
+      areaFrom: json['areaFrom'] as num?,
+      areaTo: json['areaTo'] as num?,
+      issueDateEndMonth: (json['issueDateEndMonth'] as num?)?.toInt(),
+      issueDateFrom: json['issueDateFrom'] as String?,
+      issueDateQuarterList: (json['issueDateQuarterList'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      issueDateStartMonth: (json['issueDateStartMonth'] as num?)?.toInt(),
+      issueDateMonth: (json['issueDateMonth'] as num?)?.toInt(),
+      issueDateTo: json['issueDateTo'] as String?,
+      issueDateYear: (json['issueDateYear'] as num?)?.toInt(),
+      halfYearDuration: (json['halfYearDuration'] as num?)?.toInt(),
+      limit: (json['limit'] as num?)?.toInt(),
+      municipalityId: (json['municipalityId'] as num?)?.toInt(),
+      offset: (json['offset'] as num?)?.toInt(),
+      propertyTypeList: (json['propertyTypeList'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      purposeList: (json['purposeList'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      realEstateValueFrom: json['realEstateValueFrom'] as num?,
+      realEstateValueTo: json['realEstateValueTo'] as num?,
+      zoneId: (json['zoneId'] as num?)?.toInt(),
+      unit: (json['unit'] as num?)?.toInt() ?? 2,
+      periodId: (json['periodId'] as num?)?.toInt() ?? 1,
+    );
 
-Map<String, dynamic> _$RequestMortgageValuesToJson(
-    RequestMortgageValues instance) {
+Map<String, dynamic> _$$RequestMortgageValuesImplToJson(
+    _$RequestMortgageValuesImpl instance) {
   final val = <String, dynamic>{
     'areaCode': instance.areaCode,
   };
@@ -72,61 +72,3 @@ Map<String, dynamic> _$RequestMortgageValuesToJson(
   val['periodId'] = instance.periodId;
   return val;
 }
-
-_$RequestMortgageValuesImpl _$$RequestMortgageValuesImplFromJson(
-        Map<String, dynamic> json) =>
-    _$RequestMortgageValuesImpl(
-      areaCode: json['areaCode'] as num? ?? -1,
-      areaFrom: json['areaFrom'] as num?,
-      areaTo: json['areaTo'] as num?,
-      issueDateEndMonth: json['issueDateEndMonth'] as int?,
-      issueDateFrom: json['issueDateFrom'] as String?,
-      issueDateQuarterList: (json['issueDateQuarterList'] as List<dynamic>?)
-          ?.map((e) => e as int)
-          .toList(),
-      issueDateStartMonth: json['issueDateStartMonth'] as int?,
-      issueDateMonth: json['issueDateMonth'] as int?,
-      issueDateTo: json['issueDateTo'] as String?,
-      issueDateYear: json['issueDateYear'] as int?,
-      halfYearDuration: json['halfYearDuration'] as int?,
-      limit: json['limit'] as int?,
-      municipalityId: json['municipalityId'] as int?,
-      offset: json['offset'] as int?,
-      propertyTypeList: (json['propertyTypeList'] as List<dynamic>?)
-          ?.map((e) => e as int)
-          .toList(),
-      purposeList: (json['purposeList'] as List<dynamic>?)
-          ?.map((e) => e as int)
-          .toList(),
-      realEstateValueFrom: json['realEstateValueFrom'] as num?,
-      realEstateValueTo: json['realEstateValueTo'] as num?,
-      zoneId: json['zoneId'] as int?,
-      unit: json['unit'] as int? ?? 2,
-      periodId: json['periodId'] as int? ?? 1,
-    );
-
-Map<String, dynamic> _$$RequestMortgageValuesImplToJson(
-        _$RequestMortgageValuesImpl instance) =>
-    <String, dynamic>{
-      'areaCode': instance.areaCode,
-      'areaFrom': instance.areaFrom,
-      'areaTo': instance.areaTo,
-      'issueDateEndMonth': instance.issueDateEndMonth,
-      'issueDateFrom': instance.issueDateFrom,
-      'issueDateQuarterList': instance.issueDateQuarterList,
-      'issueDateStartMonth': instance.issueDateStartMonth,
-      'issueDateMonth': instance.issueDateMonth,
-      'issueDateTo': instance.issueDateTo,
-      'issueDateYear': instance.issueDateYear,
-      'halfYearDuration': instance.halfYearDuration,
-      'limit': instance.limit,
-      'municipalityId': instance.municipalityId,
-      'offset': instance.offset,
-      'propertyTypeList': instance.propertyTypeList,
-      'purposeList': instance.purposeList,
-      'realEstateValueFrom': instance.realEstateValueFrom,
-      'realEstateValueTo': instance.realEstateValueTo,
-      'zoneId': instance.zoneId,
-      'unit': instance.unit,
-      'periodId': instance.periodId,
-    };

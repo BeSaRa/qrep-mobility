@@ -12,7 +12,7 @@ part of 'news_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 NewsResponse _$NewsResponseFromJson(Map<String, dynamic> json) {
   return _NewsResponse.fromJson(json);
@@ -22,8 +22,12 @@ NewsResponse _$NewsResponseFromJson(Map<String, dynamic> json) {
 mixin _$NewsResponse {
   List<NewsModel> get data => throw _privateConstructorUsedError;
 
+  /// Serializes this NewsResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of NewsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $NewsResponseCopyWith<NewsResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$NewsResponseCopyWithImpl<$Res, $Val extends NewsResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of NewsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class __$$NewsResponseImplCopyWithImpl<$Res>
       _$NewsResponseImpl _value, $Res Function(_$NewsResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of NewsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -117,19 +125,21 @@ class _$NewsResponseImpl implements _NewsResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NewsResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NewsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NewsResponseImplCopyWith<_$NewsResponseImpl> get copyWith =>
@@ -151,8 +161,11 @@ abstract class _NewsResponse implements NewsResponse {
 
   @override
   List<NewsModel> get data;
+
+  /// Create a copy of NewsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NewsResponseImplCopyWith<_$NewsResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -165,8 +178,12 @@ NewsByIdResponse _$NewsByIdResponseFromJson(Map<String, dynamic> json) {
 mixin _$NewsByIdResponse {
   NewsModel get data => throw _privateConstructorUsedError;
 
+  /// Serializes this NewsByIdResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of NewsByIdResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $NewsByIdResponseCopyWith<NewsByIdResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -192,6 +209,8 @@ class _$NewsByIdResponseCopyWithImpl<$Res, $Val extends NewsByIdResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of NewsByIdResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -205,6 +224,8 @@ class _$NewsByIdResponseCopyWithImpl<$Res, $Val extends NewsByIdResponse>
     ) as $Val);
   }
 
+  /// Create a copy of NewsByIdResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NewsModelCopyWith<$Res> get data {
@@ -236,6 +257,8 @@ class __$$NewsByIdResponseImplCopyWithImpl<$Res>
       $Res Function(_$NewsByIdResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of NewsByIdResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -268,18 +291,20 @@ class _$NewsByIdResponseImpl implements _NewsByIdResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NewsByIdResponseImpl &&
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NewsByIdResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NewsByIdResponseImplCopyWith<_$NewsByIdResponseImpl> get copyWith =>
@@ -302,8 +327,11 @@ abstract class _NewsByIdResponse implements NewsByIdResponse {
 
   @override
   NewsModel get data;
+
+  /// Create a copy of NewsByIdResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NewsByIdResponseImplCopyWith<_$NewsByIdResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -329,8 +357,12 @@ mixin _$NewsModel {
   String get image => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
 
+  /// Serializes this NewsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of NewsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $NewsModelCopyWith<NewsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -363,6 +395,8 @@ class _$NewsModelCopyWithImpl<$Res, $Val extends NewsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of NewsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -451,6 +485,8 @@ class __$$NewsModelImplCopyWithImpl<$Res>
       _$NewsModelImpl _value, $Res Function(_$NewsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of NewsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -565,7 +601,7 @@ class _$NewsModelImpl implements _NewsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NewsModelImpl &&
@@ -585,12 +621,14 @@ class _$NewsModelImpl implements _NewsModel {
             (identical(other.content, content) || other.content == content));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, status, userCreated,
       dateCreated, userUpdated, dateUpdated, excerpt, title, image, content);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of NewsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NewsModelImplCopyWith<_$NewsModelImpl> get copyWith =>
@@ -644,8 +682,11 @@ abstract class _NewsModel implements NewsModel {
   String get image;
   @override
   String get content;
+
+  /// Create a copy of NewsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NewsModelImplCopyWith<_$NewsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

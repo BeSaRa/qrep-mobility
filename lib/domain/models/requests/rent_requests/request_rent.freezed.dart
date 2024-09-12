@@ -12,7 +12,7 @@ part of 'request_rent.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 RentRequest _$RentRequestFromJson(Map<String, dynamic> json) {
   return _RentRequest.fromJson(json);
@@ -45,8 +45,12 @@ mixin _$RentRequest {
   int get unit => throw _privateConstructorUsedError;
   int get periodId => throw _privateConstructorUsedError;
 
+  /// Serializes this RentRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RentRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RentRequestCopyWith<RentRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -93,6 +97,8 @@ class _$RentRequestCopyWithImpl<$Res, $Val extends RentRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RentRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -259,6 +265,8 @@ class __$$RentRequestImplCopyWithImpl<$Res>
       _$RentRequestImpl _value, $Res Function(_$RentRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RentRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -384,7 +392,8 @@ class __$$RentRequestImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$RentRequestImpl implements _RentRequest {
   _$RentRequestImpl(
       {this.areaFrom,
@@ -499,7 +508,7 @@ class _$RentRequestImpl implements _RentRequest {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RentRequestImpl &&
@@ -550,7 +559,7 @@ class _$RentRequestImpl implements _RentRequest {
                 other.periodId == periodId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -579,7 +588,9 @@ class _$RentRequestImpl implements _RentRequest {
         periodId
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RentRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RentRequestImplCopyWith<_$RentRequestImpl> get copyWith =>
@@ -661,15 +672,18 @@ abstract class _RentRequest implements RentRequest {
   @override
   num? get rentPaymentMonthlyPerUnitFrom;
   @override
-  num? get rentPaymentMonthlyPerUnitTo;
-  @override // List<int>? streetNo,
+  num? get rentPaymentMonthlyPerUnitTo; // List<int>? streetNo,
+  @override
   int? get zoneId;
   @override
   int get unit;
   @override
   int get periodId;
+
+  /// Create a copy of RentRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RentRequestImplCopyWith<_$RentRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

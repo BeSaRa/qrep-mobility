@@ -12,7 +12,7 @@ part of 'translations_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TranslationsModel _$TranslationsModelFromJson(Map<String, dynamic> json) {
   return _TranslationsModel.fromJson(json);
@@ -22,8 +22,12 @@ TranslationsModel _$TranslationsModelFromJson(Map<String, dynamic> json) {
 mixin _$TranslationsModel {
   List<TranslationDataItem> get data => throw _privateConstructorUsedError;
 
+  /// Serializes this TranslationsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TranslationsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TranslationsModelCopyWith<TranslationsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$TranslationsModelCopyWithImpl<$Res, $Val extends TranslationsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TranslationsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class __$$TranslationsModelImplCopyWithImpl<$Res>
       $Res Function(_$TranslationsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TranslationsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -118,19 +126,21 @@ class _$TranslationsModelImpl implements _TranslationsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TranslationsModelImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TranslationsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TranslationsModelImplCopyWith<_$TranslationsModelImpl> get copyWith =>
@@ -154,8 +164,11 @@ abstract class _TranslationsModel implements TranslationsModel {
 
   @override
   List<TranslationDataItem> get data;
+
+  /// Create a copy of TranslationsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TranslationsModelImplCopyWith<_$TranslationsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -171,8 +184,12 @@ mixin _$TranslationDataItem {
   String? get key => throw _privateConstructorUsedError;
   String? get value => throw _privateConstructorUsedError;
 
+  /// Serializes this TranslationDataItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TranslationDataItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TranslationDataItemCopyWith<TranslationDataItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -196,6 +213,8 @@ class _$TranslationDataItemCopyWithImpl<$Res, $Val extends TranslationDataItem>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TranslationDataItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -244,6 +263,8 @@ class __$$TranslationDataItemImplCopyWithImpl<$Res>
       $Res Function(_$TranslationDataItemImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TranslationDataItem
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -301,7 +322,7 @@ class _$TranslationDataItemImpl implements _TranslationDataItem {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TranslationDataItemImpl &&
@@ -312,11 +333,13 @@ class _$TranslationDataItemImpl implements _TranslationDataItem {
             (identical(other.value, value) || other.value == value));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, language, key, value);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TranslationDataItem
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TranslationDataItemImplCopyWith<_$TranslationDataItemImpl> get copyWith =>
@@ -349,8 +372,11 @@ abstract class _TranslationDataItem implements TranslationDataItem {
   String? get key;
   @override
   String? get value;
+
+  /// Create a copy of TranslationDataItem
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TranslationDataItemImplCopyWith<_$TranslationDataItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

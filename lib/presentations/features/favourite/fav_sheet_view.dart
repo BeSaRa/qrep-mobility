@@ -43,8 +43,6 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print("the month is ");
-    print(criteriaObject.issueDateMonth);
     return GestureDetector(
         onTap: () {
           FocusManager.instance.primaryFocus?.unfocus();
@@ -125,7 +123,8 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
                         ),
 
                       ///number of rooms
-                      if (criteriaObject.bedRoomsCount != null)
+                      if (criteriaObject.bedRoomsCount != null &&
+                          widget.indicator != Indicators.sell)
                         FavFilterWidget(
                           label: AppStrings().numberOfRooms,
                           value: getBedRoomsCount(widget.indicator,

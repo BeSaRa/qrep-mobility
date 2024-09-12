@@ -35,7 +35,7 @@ Map<String, dynamic> _$$MainMenuModelImplToJson(_$MainMenuModelImpl instance) =>
 
 _$LinkModelImpl _$$LinkModelImplFromJson(Map<String, dynamic> json) =>
     _$LinkModelImpl(
-      id: json['id'] as int? ?? 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       url: json['url'] as String? ?? "",
       dataSourceMessage: json['datasource_message_id'] == null
           ? const DataSourceMessageModel()
@@ -53,7 +53,7 @@ Map<String, dynamic> _$$LinkModelImplToJson(_$LinkModelImpl instance) =>
 _$DataSourceMessageModelImpl _$$DataSourceMessageModelImplFromJson(
         Map<String, dynamic> json) =>
     _$DataSourceMessageModelImpl(
-      id: json['id'] as int? ?? 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       arMessage: json['arMessage'] as String? ?? "",
       enMessage: json['enMessage'] as String? ?? "",
     );

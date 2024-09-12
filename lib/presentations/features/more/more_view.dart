@@ -128,74 +128,74 @@ class _MoreViewState extends State<MoreView> {
                               ],
                             ),
                           ),
-                          if (context.read<LoggedInUserCubit>().state)
-                            MoreWidgetButton(
-                              icon: Icons.star,
-                              title: AppStrings().watchList,
-                              onPressed: () async {
-                                initFavourite();
-                                Map? res = await context
-                                    .pushNamed(RoutesNames.favourite);
-                                if (res != null) {
-                                  context
-                                      .read<BottomNavCubit>()
-                                      .changePage(res["class"]);
-                                  context.goNamed(
-                                      context
-                                          .read<BottomNavCubit>()
-                                          .paths[res["class"]],
-                                      extra: res["object"]);
-                                  if (res["class"] == 0) {
-                                    context.pushNamed(
-                                        RoutesNames.realEstateBrokers,
-                                        extra: res["object"]);
-                                  }
-                                }
-                              },
-                            ),
-                          BlocBuilder(
-                            bloc: loginBloc,
-                            builder: (context, LoginState state) {
-                              return MoreWidgetButton(
-                                icon: context.read<LoggedInUserCubit>().state
-                                    ? Icons.person_outline
-                                    : Icons.login,
-                                title: !context.read<LoggedInUserCubit>().state
-                                    ? AppStrings().login
-                                    : context.read<UserBloc>().user != null
-                                        ? context
-                                            .read<UserBloc>()
-                                            .user!
-                                            .firstName
-                                        : AppStrings().login,
-                                onPressed: !context
-                                        .read<LoggedInUserCubit>()
-                                        .state
-                                    ? () {
-                                        showDialog(
-                                          context: context,
-                                          builder: (BuildContext ctxt) =>
-                                              MultiBlocProvider(
-                                            providers: [
-                                              BlocProvider.value(
-                                                  value: loginBloc),
-                                              BlocProvider.value(
-                                                  value:
-                                                      context.read<UserBloc>())
-                                            ],
-                                            child: _buildPopupDialog(context),
-                                          ),
-                                        );
-                                      }
-                                    : () {
-                                        context.pushNamed(
-                                            RoutesNames.updateInfo,
-                                            extra:
-                                                context.read<UserBloc>().user);
-                                      },
-                              );
-                            },
-                          ),
+                          // if (context.read<LoggedInUserCubit>().state)
+                          //   MoreWidgetButton(
+                          //     icon: Icons.star,
+                          //     title: AppStrings().watchList,
+                          //     onPressed: () async {
+                          //       initFavourite();
+                          //       Map? res = await context
+                          //           .pushNamed(RoutesNames.favourite);
+                          //       if (res != null) {
+                          //         context
+                          //             .read<BottomNavCubit>()
+                          //             .changePage(res["class"]);
+                          //         context.goNamed(
+                          //             context
+                          //                 .read<BottomNavCubit>()
+                          //                 .paths[res["class"]],
+                          //             extra: res["object"]);
+                          //         if (res["class"] == 0) {
+                          //           context.pushNamed(
+                          //               RoutesNames.realEstateBrokers,
+                          //               extra: res["object"]);
+                          //         }
+                          //       }
+                          //     },
+                          //   ),
+                          // BlocBuilder(
+                          //   bloc: loginBloc,
+                          //   builder: (context, LoginState state) {
+                          //     return MoreWidgetButton(
+                          //       icon: context.read<LoggedInUserCubit>().state
+                          //           ? Icons.person_outline
+                          //           : Icons.login,
+                          //       title: !context.read<LoggedInUserCubit>().state
+                          //           ? AppStrings().login
+                          //           : context.read<UserBloc>().user != null
+                          //               ? context
+                          //                   .read<UserBloc>()
+                          //                   .user!
+                          //                   .firstName
+                          //               : AppStrings().login,
+                          //       onPressed: !context
+                          //               .read<LoggedInUserCubit>()
+                          //               .state
+                          //           ? () {
+                          //               showDialog(
+                          //                 context: context,
+                          //                 builder: (BuildContext ctxt) =>
+                          //                     MultiBlocProvider(
+                          //                   providers: [
+                          //                     BlocProvider.value(
+                          //                         value: loginBloc),
+                          //                     BlocProvider.value(
+                          //                         value:
+                          //                             context.read<UserBloc>())
+                          //                   ],
+                          //                   child: _buildPopupDialog(context),
+                          //                 ),
+                          //               );
+                          //             }
+                          //           : () {
+                          //               context.pushNamed(
+                          //                   RoutesNames.updateInfo,
+                          //                   extra:
+                          //                       context.read<UserBloc>().user);
+                          //             },
+                          //     );
+                          //   },
+                          // ),
                           ThemeSwitcher.withTheme(
                               builder: (context, switcher, theme) {
                             return MoreWidgetButton(
@@ -294,6 +294,9 @@ class _MoreViewState extends State<MoreView> {
                                       context.read<LookupBloc>().add(
                                           const LookupEvent.initilaEvent());
                                       context
+                                          .read<LoggedInUserCubit>()
+                                          .save(false);
+                                      context
                                           .read<UserBloc>()
                                           .add(const UserEvent.guestUser());
                                     }
@@ -372,29 +375,29 @@ class _MoreViewState extends State<MoreView> {
                       //     context.pushNamed(RoutesNames.favourite);
                       //   },
                       // ),
-                      BlocBuilder(
-                        bloc: loginBloc,
-                        builder: (context, LoginState state) {
-                          return MoreWidgetButton(
-                            icon: Icons.login,
-                            title: AppStrings().login,
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext ctxt) =>
-                                    MultiBlocProvider(
-                                  providers: [
-                                    BlocProvider.value(value: loginBloc),
-                                    BlocProvider.value(
-                                        value: context.read<UserBloc>())
-                                  ],
-                                  child: _buildPopupDialog(context),
-                                ),
-                              );
-                            },
-                          );
-                        },
-                      ),
+                      // BlocBuilder(
+                      //   bloc: loginBloc,
+                      //   builder: (context, LoginState state) {
+                      //     return MoreWidgetButton(
+                      //       icon: Icons.login,
+                      //       title: AppStrings().login,
+                      //       onPressed: () {
+                      //         showDialog(
+                      //           context: context,
+                      //           builder: (BuildContext ctxt) =>
+                      //               MultiBlocProvider(
+                      //             providers: [
+                      //               BlocProvider.value(value: loginBloc),
+                      //               BlocProvider.value(
+                      //                   value: context.read<UserBloc>())
+                      //             ],
+                      //             child: _buildPopupDialog(context),
+                      //           ),
+                      //         );
+                      //       },
+                      //     );
+                      //   },
+                      // ),
                       ThemeSwitcher.withTheme(
                           builder: (context, switcher, theme) {
                         return MoreWidgetButton(

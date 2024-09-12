@@ -12,7 +12,7 @@ part of 'faq_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 FaqResponse _$FaqResponseFromJson(Map<String, dynamic> json) {
   return _FaqResponse.fromJson(json);
@@ -22,8 +22,12 @@ FaqResponse _$FaqResponseFromJson(Map<String, dynamic> json) {
 mixin _$FaqResponse {
   List<FaqItemModel> get data => throw _privateConstructorUsedError;
 
+  /// Serializes this FaqResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FaqResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FaqResponseCopyWith<FaqResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$FaqResponseCopyWithImpl<$Res, $Val extends FaqResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FaqResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class __$$FaqResponseImplCopyWithImpl<$Res>
       _$FaqResponseImpl _value, $Res Function(_$FaqResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FaqResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -118,19 +126,21 @@ class _$FaqResponseImpl implements _FaqResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FaqResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FaqResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FaqResponseImplCopyWith<_$FaqResponseImpl> get copyWith =>
@@ -153,8 +163,11 @@ abstract class _FaqResponse implements FaqResponse {
 
   @override
   List<FaqItemModel> get data;
+
+  /// Create a copy of FaqResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FaqResponseImplCopyWith<_$FaqResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -169,8 +182,12 @@ mixin _$FaqItemModel {
   int get id => throw _privateConstructorUsedError;
   String get question => throw _privateConstructorUsedError;
 
+  /// Serializes this FaqItemModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FaqItemModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FaqItemModelCopyWith<FaqItemModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -194,6 +211,8 @@ class _$FaqItemModelCopyWithImpl<$Res, $Val extends FaqItemModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FaqItemModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -237,6 +256,8 @@ class __$$FaqItemModelImplCopyWithImpl<$Res>
       _$FaqItemModelImpl _value, $Res Function(_$FaqItemModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FaqItemModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -285,7 +306,7 @@ class _$FaqItemModelImpl implements _FaqItemModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FaqItemModelImpl &&
@@ -295,11 +316,13 @@ class _$FaqItemModelImpl implements _FaqItemModel {
                 other.question == question));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, answer, id, question);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FaqItemModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FaqItemModelImplCopyWith<_$FaqItemModelImpl> get copyWith =>
@@ -328,8 +351,11 @@ abstract class _FaqItemModel implements FaqItemModel {
   int get id;
   @override
   String get question;
+
+  /// Create a copy of FaqItemModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FaqItemModelImplCopyWith<_$FaqItemModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

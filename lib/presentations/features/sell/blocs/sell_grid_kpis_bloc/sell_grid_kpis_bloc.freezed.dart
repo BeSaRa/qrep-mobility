@@ -12,7 +12,7 @@ part of 'sell_grid_kpis_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SellGridKPIsEvent {
@@ -50,7 +50,9 @@ mixin _$SellGridKPIsEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SellGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SellGridKPIsEventCopyWith<SellGridKPIsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -76,6 +78,8 @@ class _$SellGridKPIsEventCopyWithImpl<$Res, $Val extends SellGridKPIsEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SellGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,6 +93,8 @@ class _$SellGridKPIsEventCopyWithImpl<$Res, $Val extends SellGridKPIsEvent>
     ) as $Val);
   }
 
+  /// Create a copy of SellGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RequestSellValuesCopyWith<$Res> get request {
@@ -120,6 +126,8 @@ class __$$SellGridKPIsEventImplCopyWithImpl<$Res>
       $Res Function(_$SellGridKPIsEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SellGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -158,7 +166,7 @@ class _$SellGridKPIsEventImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SellGridKPIsEventImpl &&
@@ -168,7 +176,9 @@ class _$SellGridKPIsEventImpl
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SellGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SellGridKPIsEventImplCopyWith<_$SellGridKPIsEventImpl> get copyWith =>
@@ -238,8 +248,11 @@ abstract class _SellGridKPIsEvent implements SellGridKPIsEvent {
 
   @override
   RequestSellValues get request;
+
+  /// Create a copy of SellGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SellGridKPIsEventImplCopyWith<_$SellGridKPIsEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -344,7 +357,9 @@ mixin _$SellGridKPIsState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SellGridKPIsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SellGridKPIsStateCopyWith<SellGridKPIsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -382,6 +397,8 @@ class _$SellGridKPIsStateCopyWithImpl<$Res, $Val extends SellGridKPIsState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SellGridKPIsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -494,6 +511,8 @@ class __$$InitialStateImplCopyWithImpl<$Res>
       _$InitialStateImpl _value, $Res Function(_$InitialStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SellGridKPIsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -715,7 +734,7 @@ class _$InitialStateImpl with DiagnosticableTreeMixin implements _InitialState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialStateImpl &&
@@ -772,7 +791,9 @@ class _$InitialStateImpl with DiagnosticableTreeMixin implements _InitialState {
       hasErrorTotalSoldSpaces,
       hasErrorMeanSoldAreaValue);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SellGridKPIsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InitialStateImplCopyWith<_$InitialStateImpl> get copyWith =>
@@ -954,8 +975,9 @@ abstract class _InitialState implements SellGridKPIsState {
   @override
   List<BaseRentResponsePerAreaUnitType> get totalSoldSpaces;
   @override
-  List<BaseRentResponsePerAreaUnitType> get meanSoldAreaValue;
-  @override //----------------------------errors----------------------------------------
+  List<BaseRentResponsePerAreaUnitType>
+      get meanSoldAreaValue; //----------------------------errors----------------------------------------
+  @override
   bool get hasErrorTotalContracts;
   @override
   bool get hasErrorTotalSoldUnits;
@@ -967,8 +989,11 @@ abstract class _InitialState implements SellGridKPIsState {
   bool get hasErrorTotalSoldSpaces;
   @override
   bool get hasErrorMeanSoldAreaValue;
+
+  /// Create a copy of SellGridKPIsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitialStateImplCopyWith<_$InitialStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

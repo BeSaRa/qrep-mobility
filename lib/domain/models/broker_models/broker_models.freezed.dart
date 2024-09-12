@@ -12,7 +12,7 @@ part of 'broker_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 RealEstateBrokerLookUp _$RealEstateBrokerLookUpFromJson(
     Map<String, dynamic> json) {
@@ -30,8 +30,12 @@ mixin _$RealEstateBrokerLookUp {
       throw _privateConstructorUsedError;
   List<LookupModel> get brokerTypeList => throw _privateConstructorUsedError;
 
+  /// Serializes this RealEstateBrokerLookUp to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RealEstateBrokerLookUp
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RealEstateBrokerLookUpCopyWith<RealEstateBrokerLookUp> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -63,6 +67,8 @@ class _$RealEstateBrokerLookUpCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RealEstateBrokerLookUp
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -136,6 +142,8 @@ class __$$RealEstateBrokerLookUpImplCopyWithImpl<$Res>
       $Res Function(_$RealEstateBrokerLookUpImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RealEstateBrokerLookUp
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -274,7 +282,7 @@ class _$RealEstateBrokerLookUpImpl implements _RealEstateBrokerLookUp {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RealEstateBrokerLookUpImpl &&
@@ -293,7 +301,7 @@ class _$RealEstateBrokerLookUpImpl implements _RealEstateBrokerLookUp {
                 .equals(other._brokerTypeList, _brokerTypeList));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -305,7 +313,9 @@ class _$RealEstateBrokerLookUpImpl implements _RealEstateBrokerLookUp {
       const DeepCollectionEquality().hash(_brokerCategoryList),
       const DeepCollectionEquality().hash(_brokerTypeList));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RealEstateBrokerLookUp
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RealEstateBrokerLookUpImplCopyWith<_$RealEstateBrokerLookUpImpl>
@@ -347,8 +357,11 @@ abstract class _RealEstateBrokerLookUp implements RealEstateBrokerLookUp {
   List<LookupModel> get brokerCategoryList;
   @override
   List<LookupModel> get brokerTypeList;
+
+  /// Create a copy of RealEstateBrokerLookUp
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RealEstateBrokerLookUpImplCopyWith<_$RealEstateBrokerLookUpImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -380,8 +393,12 @@ mixin _$RealEstateBrokerTransactionData {
   double get buuildingNo => throw _privateConstructorUsedError;
   int get municipalityId => throw _privateConstructorUsedError;
 
+  /// Serializes this RealEstateBrokerTransactionData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RealEstateBrokerTransactionData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RealEstateBrokerTransactionDataCopyWith<RealEstateBrokerTransactionData>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -427,6 +444,8 @@ class _$RealEstateBrokerTransactionDataCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RealEstateBrokerTransactionData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -572,6 +591,8 @@ class __$$RealEstateBrokerTransactionDataImplCopyWithImpl<$Res>
       $Res Function(_$RealEstateBrokerTransactionDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RealEstateBrokerTransactionData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -769,7 +790,7 @@ class _$RealEstateBrokerTransactionDataImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RealEstateBrokerTransactionDataImpl &&
@@ -812,7 +833,7 @@ class _$RealEstateBrokerTransactionDataImpl
                 other.municipalityId == municipalityId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -837,7 +858,9 @@ class _$RealEstateBrokerTransactionDataImpl
         municipalityId
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RealEstateBrokerTransactionData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RealEstateBrokerTransactionDataImplCopyWith<
@@ -917,8 +940,11 @@ abstract class _RealEstateBrokerTransactionData
   double get buuildingNo;
   @override
   int get municipalityId;
+
+  /// Create a copy of RealEstateBrokerTransactionData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RealEstateBrokerTransactionDataImplCopyWith<
           _$RealEstateBrokerTransactionDataImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -935,8 +961,12 @@ mixin _$RealEstateBrokerTransactions {
   List<RealEstateBrokerTransactionData> get transactionList =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this RealEstateBrokerTransactions to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RealEstateBrokerTransactions
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RealEstateBrokerTransactionsCopyWith<RealEstateBrokerTransactions>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -963,6 +993,8 @@ class _$RealEstateBrokerTransactionsCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RealEstateBrokerTransactions
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1004,6 +1036,8 @@ class __$$RealEstateBrokerTransactionsImplCopyWithImpl<$Res>
       $Res Function(_$RealEstateBrokerTransactionsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RealEstateBrokerTransactions
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1054,7 +1088,7 @@ class _$RealEstateBrokerTransactionsImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RealEstateBrokerTransactionsImpl &&
@@ -1063,12 +1097,14 @@ class _$RealEstateBrokerTransactionsImpl
                 .equals(other._transactionList, _transactionList));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, count,
       const DeepCollectionEquality().hash(_transactionList));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RealEstateBrokerTransactions
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RealEstateBrokerTransactionsImplCopyWith<
@@ -1098,8 +1134,11 @@ abstract class _RealEstateBrokerTransactions
   int get count;
   @override
   List<RealEstateBrokerTransactionData> get transactionList;
+
+  /// Create a copy of RealEstateBrokerTransactions
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RealEstateBrokerTransactionsImplCopyWith<
           _$RealEstateBrokerTransactionsImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -1113,8 +1152,12 @@ RealEstateBrokerKpi1 _$RealEstateBrokerKpi1FromJson(Map<String, dynamic> json) {
 mixin _$RealEstateBrokerKpi1 {
   double get kpiVal => throw _privateConstructorUsedError;
 
+  /// Serializes this RealEstateBrokerKpi1 to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RealEstateBrokerKpi1
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RealEstateBrokerKpi1CopyWith<RealEstateBrokerKpi1> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1139,6 +1182,8 @@ class _$RealEstateBrokerKpi1CopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RealEstateBrokerKpi1
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1172,6 +1217,8 @@ class __$$RealEstateBrokerKpi1ImplCopyWithImpl<$Res>
       $Res Function(_$RealEstateBrokerKpi1Impl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RealEstateBrokerKpi1
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1204,18 +1251,20 @@ class _$RealEstateBrokerKpi1Impl implements _RealEstateBrokerKpi1 {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RealEstateBrokerKpi1Impl &&
             (identical(other.kpiVal, kpiVal) || other.kpiVal == kpiVal));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, kpiVal);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RealEstateBrokerKpi1
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RealEstateBrokerKpi1ImplCopyWith<_$RealEstateBrokerKpi1Impl>
@@ -1240,8 +1289,11 @@ abstract class _RealEstateBrokerKpi1 implements RealEstateBrokerKpi1 {
 
   @override
   double get kpiVal;
+
+  /// Create a copy of RealEstateBrokerKpi1
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RealEstateBrokerKpi1ImplCopyWith<_$RealEstateBrokerKpi1Impl>
       get copyWith => throw _privateConstructorUsedError;
 }

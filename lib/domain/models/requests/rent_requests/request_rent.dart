@@ -4,8 +4,8 @@ part 'request_rent.freezed.dart';
 part 'request_rent.g.dart';
 
 @freezed
-@JsonSerializable(includeIfNull: false)
 abstract class RentRequest with _$RentRequest {
+  @JsonSerializable(includeIfNull: false)
   factory RentRequest({
     num? areaFrom,
     num? areaTo,

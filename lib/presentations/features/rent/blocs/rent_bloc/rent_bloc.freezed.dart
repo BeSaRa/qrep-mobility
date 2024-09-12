@@ -12,7 +12,7 @@ part of 'rent_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$RentEvent {
@@ -65,6 +65,9 @@ class _$RentEventCopyWithImpl<$Res, $Val extends RentEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of RentEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -81,6 +84,9 @@ class __$$GetRentLookupEventImplCopyWithImpl<$Res>
   __$$GetRentLookupEventImplCopyWithImpl(_$GetRentLookupEventImpl _value,
       $Res Function(_$GetRentLookupEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RentEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -94,7 +100,7 @@ class _$GetRentLookupEventImpl implements _GetRentLookupEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$GetRentLookupEventImpl);
   }
@@ -211,7 +217,9 @@ mixin _$RentState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RentState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RentStateCopyWith<RentState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -240,6 +248,8 @@ class _$RentStateCopyWithImpl<$Res, $Val extends RentState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RentState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -268,6 +278,8 @@ class _$RentStateCopyWithImpl<$Res, $Val extends RentState>
     ) as $Val);
   }
 
+  /// Create a copy of RentState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LookupResponseCopyWith<$Res> get rentLookup {
@@ -303,6 +315,8 @@ class __$$InitialImplCopyWithImpl<$Res>
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RentState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -360,7 +374,7 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
@@ -378,7 +392,9 @@ class _$InitialImpl implements _Initial {
   int get hashCode => Object.hash(runtimeType, isLoadingRentLookup,
       isHasErrorRentLookup, errorMessageRentLookup, rentLookup);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RentState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
@@ -468,8 +484,11 @@ abstract class _Initial implements RentState {
   String get errorMessageRentLookup;
   @override
   LookupResponse get rentLookup;
+
+  /// Create a copy of RentState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

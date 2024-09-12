@@ -12,7 +12,7 @@ part of 'lookup_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LookupEvent {
@@ -91,6 +91,9 @@ class _$LookupEventCopyWithImpl<$Res, $Val extends LookupEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of LookupEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -107,6 +110,9 @@ class __$$LookUpInitialEventImplCopyWithImpl<$Res>
   __$$LookUpInitialEventImplCopyWithImpl(_$LookUpInitialEventImpl _value,
       $Res Function(_$LookUpInitialEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LookupEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -128,7 +134,7 @@ class _$LookUpInitialEventImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$LookUpInitialEventImpl);
   }
@@ -236,6 +242,9 @@ class __$$GetRentLookupEventImplCopyWithImpl<$Res>
   __$$GetRentLookupEventImplCopyWithImpl(_$GetRentLookupEventImpl _value,
       $Res Function(_$GetRentLookupEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LookupEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -258,7 +267,7 @@ class _$GetRentLookupEventImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$GetRentLookupEventImpl);
   }
@@ -368,6 +377,9 @@ class __$$_GetMortgageLookupEventImplCopyWithImpl<$Res>
       _$_GetMortgageLookupEventImpl _value,
       $Res Function(_$_GetMortgageLookupEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LookupEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -390,7 +402,7 @@ class _$_GetMortgageLookupEventImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GetMortgageLookupEventImpl);
@@ -499,6 +511,9 @@ class __$$GetSellLookupEventImplCopyWithImpl<$Res>
   __$$GetSellLookupEventImplCopyWithImpl(_$GetSellLookupEventImpl _value,
       $Res Function(_$GetSellLookupEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LookupEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -521,7 +536,7 @@ class _$GetSellLookupEventImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$GetSellLookupEventImpl);
   }
@@ -629,6 +644,9 @@ class __$$GetBrokerLookupEventImplCopyWithImpl<$Res>
   __$$GetBrokerLookupEventImplCopyWithImpl(_$GetBrokerLookupEventImpl _value,
       $Res Function(_$GetBrokerLookupEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LookupEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -651,7 +669,7 @@ class _$GetBrokerLookupEventImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetBrokerLookupEventImpl);
@@ -810,6 +828,9 @@ class _$LookupStateCopyWithImpl<$Res, $Val extends LookupState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of LookupState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -826,6 +847,9 @@ class __$$LoadingLookUpImplCopyWithImpl<$Res>
   __$$LoadingLookUpImplCopyWithImpl(
       _$LoadingLookUpImpl _value, $Res Function(_$LoadingLookUpImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LookupState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -847,7 +871,7 @@ class _$LoadingLookUpImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$LoadingLookUpImpl);
   }
@@ -947,6 +971,8 @@ class __$$LoadedLookUpImplCopyWithImpl<$Res>
       _$LoadedLookUpImpl _value, $Res Function(_$LoadedLookUpImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LookupState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -960,6 +986,8 @@ class __$$LoadedLookUpImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of LookupState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LookupResponseCopyWith<$Res> get lookup {
@@ -991,7 +1019,7 @@ class _$LoadedLookUpImpl with DiagnosticableTreeMixin implements _LoadedLookUp {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedLookUpImpl &&
@@ -1001,7 +1029,9 @@ class _$LoadedLookUpImpl with DiagnosticableTreeMixin implements _LoadedLookUp {
   @override
   int get hashCode => Object.hash(runtimeType, lookup);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LookupState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoadedLookUpImplCopyWith<_$LoadedLookUpImpl> get copyWith =>
@@ -1081,7 +1111,10 @@ abstract class _LoadedLookUp implements LookupState {
       _$LoadedLookUpImpl;
 
   LookupResponse get lookup;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LookupState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadedLookUpImplCopyWith<_$LoadedLookUpImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1103,6 +1136,8 @@ class __$$ErrorLookUpImplCopyWithImpl<$Res>
       _$ErrorLookUpImpl _value, $Res Function(_$ErrorLookUpImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LookupState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1139,7 +1174,7 @@ class _$ErrorLookUpImpl with DiagnosticableTreeMixin implements _ErrorLookUp {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorLookUpImpl &&
@@ -1149,7 +1184,9 @@ class _$ErrorLookUpImpl with DiagnosticableTreeMixin implements _ErrorLookUp {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LookupState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorLookUpImplCopyWith<_$ErrorLookUpImpl> get copyWith =>
@@ -1229,7 +1266,10 @@ abstract class _ErrorLookUp implements LookupState {
       _$ErrorLookUpImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LookupState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorLookUpImplCopyWith<_$ErrorLookUpImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

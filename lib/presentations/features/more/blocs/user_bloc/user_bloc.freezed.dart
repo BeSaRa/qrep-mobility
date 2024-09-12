@@ -12,7 +12,7 @@ part of 'user_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$UserEvent {
@@ -93,6 +93,9 @@ class _$UserEventCopyWithImpl<$Res, $Val extends UserEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -109,6 +112,9 @@ class __$$GetUserInfoEventImplCopyWithImpl<$Res>
   __$$GetUserInfoEventImplCopyWithImpl(_$GetUserInfoEventImpl _value,
       $Res Function(_$GetUserInfoEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -122,7 +128,7 @@ class _$GetUserInfoEventImpl implements _GetUserInfoEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$GetUserInfoEventImpl);
   }
@@ -238,6 +244,8 @@ class __$$UpdateUserInfoEventImplCopyWithImpl<$Res>
       $Res Function(_$UpdateUserInfoEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -256,6 +264,8 @@ class __$$UpdateUserInfoEventImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RequestUpdateInfoModelCopyWith<$Res> get requestUpdateInfo {
@@ -283,7 +293,7 @@ class _$UpdateUserInfoEventImpl implements _UpdateUserInfoEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateUserInfoEventImpl &&
@@ -295,7 +305,9 @@ class _$UpdateUserInfoEventImpl implements _UpdateUserInfoEvent {
   @override
   int get hashCode => Object.hash(runtimeType, id, requestUpdateInfo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UpdateUserInfoEventImplCopyWith<_$UpdateUserInfoEventImpl> get copyWith =>
@@ -395,7 +407,10 @@ abstract class _UpdateUserInfoEvent implements UserEvent {
 
   String get id;
   RequestUpdateInfoModel get requestUpdateInfo;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateUserInfoEventImplCopyWith<_$UpdateUserInfoEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -414,6 +429,9 @@ class __$$GetInitialUserEventImplCopyWithImpl<$Res>
   __$$GetInitialUserEventImplCopyWithImpl(_$GetInitialUserEventImpl _value,
       $Res Function(_$GetInitialUserEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -427,7 +445,7 @@ class _$GetInitialUserEventImpl implements _GetInitialUserEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetInitialUserEventImpl);
@@ -539,6 +557,9 @@ class __$$GetGuestUserEventImplCopyWithImpl<$Res>
   __$$GetGuestUserEventImplCopyWithImpl(_$GetGuestUserEventImpl _value,
       $Res Function(_$GetGuestUserEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -552,7 +573,7 @@ class _$GetGuestUserEventImpl implements _GetGuestUserEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$GetGuestUserEventImpl);
   }
@@ -666,6 +687,8 @@ class __$$GetUpdateFcmEventImplCopyWithImpl<$Res>
       $Res Function(_$GetUpdateFcmEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -694,7 +717,7 @@ class _$GetUpdateFcmEventImpl implements _GetUpdateFcmEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetUpdateFcmEventImpl &&
@@ -704,7 +727,9 @@ class _$GetUpdateFcmEventImpl implements _GetUpdateFcmEvent {
   @override
   int get hashCode => Object.hash(runtimeType, useId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetUpdateFcmEventImplCopyWith<_$GetUpdateFcmEventImpl> get copyWith =>
@@ -801,7 +826,10 @@ abstract class _GetUpdateFcmEvent implements UserEvent {
       _$GetUpdateFcmEventImpl;
 
   String get useId;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetUpdateFcmEventImplCopyWith<_$GetUpdateFcmEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -875,6 +903,9 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -891,6 +922,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -904,7 +938,7 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
@@ -1005,6 +1039,9 @@ class __$$LoadingImplCopyWithImpl<$Res>
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1018,7 +1055,7 @@ class _$LoadingImpl implements _Loading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$LoadingImpl);
   }
@@ -1124,6 +1161,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1137,6 +1176,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserResponseCopyWith<$Res> get user {
@@ -1160,7 +1201,7 @@ class _$LoadedImpl implements _Loaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
@@ -1170,7 +1211,9 @@ class _$LoadedImpl implements _Loaded {
   @override
   int get hashCode => Object.hash(runtimeType, user);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
@@ -1255,7 +1298,10 @@ abstract class _Loaded implements UserState {
   const factory _Loaded({required final UserResponse user}) = _$LoadedImpl;
 
   UserResponse get user;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1277,6 +1323,8 @@ class __$$ErrorImplCopyWithImpl<$Res>
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1305,7 +1353,7 @@ class _$ErrorImpl implements _Error {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorImpl &&
@@ -1315,7 +1363,9 @@ class _$ErrorImpl implements _Error {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
@@ -1400,7 +1450,10 @@ abstract class _Error implements UserState {
   const factory _Error({required final String message}) = _$ErrorImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

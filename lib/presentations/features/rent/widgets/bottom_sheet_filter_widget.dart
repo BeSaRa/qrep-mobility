@@ -359,6 +359,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                 ) ??
                 valuesFiltersCubit.yearsLists.last
             : valuesFiltersCubit.yearsLists.last;
+    print("fatina : ${context.read<LookupBloc>().lookUpRent?.halfYearList}");
     context.read<RentBloc>().requestMeanValue.periodId == 2
         ? valuesFiltersCubit.periodTimeHalfDetails = context
                 .read<LookupBloc>()
@@ -368,8 +369,9 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                     context
                         .read<RentBloc>()
                         .requestMeanValue
-                        .issueDateQuarterList ==
-                    element.value) ??
+                        .issueDateQuarterList
+                        ?.first ==
+                    element.value.first) ??
             const PeriodTimeDetails()
         : null;
     if (context
@@ -482,7 +484,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                     .lookUpRent
                                     ?.municipalityList ??
                                 [],
-                            1,
+                            -1,
                           ) ??
                           const LookupModel();
                       valuesFiltersCubit.zone = getObjectByLookupKey(
@@ -524,6 +526,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 -1,
                               ) ??
                               const LookupModel());
+
                       valuesFiltersCubit.changeUnit(2);
                       valuesFiltersCubit.furniture = getObjectByLookupKey(
                             context
@@ -534,12 +537,22 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                             -1,
                           ) ??
                           const LookupModel();
+                      valuesFiltersCubit.contract = getObjectByLookupKey(
+                            context
+                                    .read<LookupBloc>()
+                                    .lookUpRent
+                                    ?.serviceTypeList ??
+                                [],
+                            -1,
+                          ) ??
+                          const LookupModel();
                       // });
                       streetController.clear();
                       rentValueFromController.clear();
                       rentValueToController.clear();
                       areaValueFromController.clear();
                       areaValueToController.clear();
+
                       // context.read<RentBloc>().requestMeanValue = context
                       //     .read<RentBloc>()
                       //     .requestMeanValue
@@ -1542,13 +1555,23 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                             .furniture.lookupKey,
                                         issueDateYear:
                                             valuesFiltersCubit.year.id,
-                                        issueDateQuarterList:
-                                            valuesFiltersCubit.periodTime.id ==
-                                                    3
-                                                ? getissueDateQuarterList(
-                                                    valuesFiltersCubit
-                                                        .periodTime.id)
-                                                : null,
+                                        issueDateQuarterList: valuesFiltersCubit
+                                                    .periodTime.id ==
+                                                3
+                                            ? getissueDateQuarterList(
+                                                valuesFiltersCubit
+                                                    .periodTime.id)
+                                            : valuesFiltersCubit
+                                                        .periodTime.id ==
+                                                    2
+                                                ? valuesFiltersCubit
+                                                            .periodTimeHalfDetails
+                                                            .value
+                                                            .first ==
+                                                        1
+                                                    ? [1, 2]
+                                                    : [3, 4]
+                                                : [1, 2, 3, 4],
                                         issueDateStartMonth: valuesFiltersCubit
                                                     .periodTime.id ==
                                                 4
@@ -1632,97 +1655,97 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                 ]),
               ),
               SizedBox(height: AppSizeW.s12),
-              if (context.read<LoggedInUserCubit>().state)
-                Center(
-                  child: CustomElevatedButton(
-                    isPrimary: true,
-                    title: AppStrings().addFavourite,
-                    onPress: () async {
-                      if (_formkey.currentState!.validate()) {
-                        CriteriaObject criteria = CriteriaObject(
-                          areaFrom: areaValueFromController.text.isEmpty
-                              ? null
-                              : double.parse(areaValueFromController.text),
-                          areaTo: areaValueToController.text.isEmpty
-                              ? null
-                              : double.parse(areaValueToController.text),
-                          serviceType: valuesFiltersCubit.contract.lookupKey,
-                          municipalityId:
-                              valuesFiltersCubit.municapility.lookupKey,
-                          areaCode: valuesFiltersCubit.zone.lookupKey,
-                          unit: null,
-                          issueDateYear: valuesFiltersCubit.year.id,
-                          issueDateQuarterList:
-                              valuesFiltersCubit.periodTime.id == 3
-                                  ? getissueDateQuarterList(
-                                      valuesFiltersCubit.periodTime.id)
-                                  : null,
-                          issueDateStartMonth:
-                              valuesFiltersCubit.periodTime.id == 4
-                                  ? valuesFiltersCubit.month.value[0] - 1
-                                  : 1,
-                          issueDateEndMonth:
-                              valuesFiltersCubit.periodTime.id == 4
-                                  ? valuesFiltersCubit.month.value[0]
-                                  : valuesFiltersCubit.periodTime.id == 1
-                                      ? valuesFiltersCubit.year.id ==
-                                              DateTime.now().year
-                                          ? DateTime.now().month
-                                          : 12
-                                      : 12,
-                          periodId: valuesFiltersCubit.periodTime.id,
-                          issueDateFrom: valuesFiltersCubit.periodTime.id == 5
-                              ? valuesFiltersCubit.pickerDateRange?.startDate
-                                  ?.toUtc()
-                                  .toIso8601String()
-                              : null,
-                          issueDateTo: valuesFiltersCubit.periodTime.id == 5
-                              ? valuesFiltersCubit.pickerDateRange?.endDate
-                                  ?.toUtc()
-                                  .toIso8601String()
-                              : null,
-                          purposeList: valuesFiltersCubit.rentPurposeList
-                              .map((e) => e.lookupKey)
-                              .toList(),
-                          propertyTypeList: valuesFiltersCubit.propertyTypeList
-                              .map((e) => e.lookupKey)
-                              .toList(),
-                          halfYearDuration:
-                              valuesFiltersCubit.periodTime.id == 2
-                                  ? listEquals(
-                                          getissueDateQuarterList(
-                                              valuesFiltersCubit.periodTime.id),
-                                          [1, 2])
-                                      ? 1
-                                      : 2
-                                  : null,
-                          bedRoomsCount: valuesFiltersCubit.bedRoom.id,
-                          furnitureStatus: valuesFiltersCubit.furniture.id,
-                          rentPaymentMonthlyPerUnitFrom:
-                              rentValueFromController.text.isEmpty
-                                  ? null
-                                  : int.parse(rentValueFromController.text),
-                          rentPaymentMonthlyPerUnitTo:
-                              rentValueToController.text.isEmpty
-                                  ? null
-                                  : int.parse(rentValueToController.text),
-                        );
-                        var res = await showDialog(
-                            context: context,
-                            builder: (BuildContext ctxt) => Dialog(
-                                    child: CreateFavWidget(
-                                  criteria: criteria,
-                                  page: Indicators.rental,
-                                )));
-                        if (res != null && res == true) {
-                          successToast(
-                              AppStrings().addFavouriteSuccess, context);
-                        }
-                      }
-                    },
-                  ),
-                ),
-              SizedBox(height: AppSizeH.s12),
+              // if (context.read<LoggedInUserCubit>().state)
+              //   Center(
+              //     child: CustomElevatedButton(
+              //       isPrimary: true,
+              //       title: AppStrings().addFavourite,
+              //       onPress: () async {
+              //         if (_formkey.currentState!.validate()) {
+              //           CriteriaObject criteria = CriteriaObject(
+              //             areaFrom: areaValueFromController.text.isEmpty
+              //                 ? null
+              //                 : double.parse(areaValueFromController.text),
+              //             areaTo: areaValueToController.text.isEmpty
+              //                 ? null
+              //                 : double.parse(areaValueToController.text),
+              //             serviceType: valuesFiltersCubit.contract.lookupKey,
+              //             municipalityId:
+              //                 valuesFiltersCubit.municapility.lookupKey,
+              //             areaCode: valuesFiltersCubit.zone.lookupKey,
+              //             unit: null,
+              //             issueDateYear: valuesFiltersCubit.year.id,
+              //             issueDateQuarterList:
+              //                 valuesFiltersCubit.periodTime.id == 3
+              //                     ? getissueDateQuarterList(
+              //                         valuesFiltersCubit.periodTime.id)
+              //                     : null,
+              //             issueDateStartMonth:
+              //                 valuesFiltersCubit.periodTime.id == 4
+              //                     ? valuesFiltersCubit.month.value[0] - 1
+              //                     : 1,
+              //             issueDateEndMonth:
+              //                 valuesFiltersCubit.periodTime.id == 4
+              //                     ? valuesFiltersCubit.month.value[0]
+              //                     : valuesFiltersCubit.periodTime.id == 1
+              //                         ? valuesFiltersCubit.year.id ==
+              //                                 DateTime.now().year
+              //                             ? DateTime.now().month
+              //                             : 12
+              //                         : 12,
+              //             periodId: valuesFiltersCubit.periodTime.id,
+              //             issueDateFrom: valuesFiltersCubit.periodTime.id == 5
+              //                 ? valuesFiltersCubit.pickerDateRange?.startDate
+              //                     ?.toUtc()
+              //                     .toIso8601String()
+              //                 : null,
+              //             issueDateTo: valuesFiltersCubit.periodTime.id == 5
+              //                 ? valuesFiltersCubit.pickerDateRange?.endDate
+              //                     ?.toUtc()
+              //                     .toIso8601String()
+              //                 : null,
+              //             purposeList: valuesFiltersCubit.rentPurposeList
+              //                 .map((e) => e.lookupKey)
+              //                 .toList(),
+              //             propertyTypeList: valuesFiltersCubit.propertyTypeList
+              //                 .map((e) => e.lookupKey)
+              //                 .toList(),
+              //             halfYearDuration:
+              //                 valuesFiltersCubit.periodTime.id == 2
+              //                     ? listEquals(
+              //                             getissueDateQuarterList(
+              //                                 valuesFiltersCubit.periodTime.id),
+              //                             [1, 2])
+              //                         ? 1
+              //                         : 2
+              //                     : null,
+              //             bedRoomsCount: valuesFiltersCubit.bedRoom.id,
+              //             furnitureStatus: valuesFiltersCubit.furniture.id,
+              //             rentPaymentMonthlyPerUnitFrom:
+              //                 rentValueFromController.text.isEmpty
+              //                     ? null
+              //                     : int.parse(rentValueFromController.text),
+              //             rentPaymentMonthlyPerUnitTo:
+              //                 rentValueToController.text.isEmpty
+              //                     ? null
+              //                     : int.parse(rentValueToController.text),
+              //           );
+              //           var res = await showDialog(
+              //               context: context,
+              //               builder: (BuildContext ctxt) => Dialog(
+              //                       child: CreateFavWidget(
+              //                     criteria: criteria,
+              //                     page: Indicators.rental,
+              //                   )));
+              //           if (res != null && res == true) {
+              //             successToast(
+              //                 AppStrings().addFavouriteSuccess, context);
+              //           }
+              //         }
+              //       },
+              //     ),
+              //   ),
+              // SizedBox(height: AppSizeH.s12),
             ],
           ),
         ),

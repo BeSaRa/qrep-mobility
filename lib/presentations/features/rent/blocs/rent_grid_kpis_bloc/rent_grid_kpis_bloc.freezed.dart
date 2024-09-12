@@ -12,7 +12,7 @@ part of 'rent_grid_kpis_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$RentGridKPIsEvent {
@@ -50,7 +50,9 @@ mixin _$RentGridKPIsEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RentGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RentGridKPIsEventCopyWith<RentGridKPIsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -76,6 +78,8 @@ class _$RentGridKPIsEventCopyWithImpl<$Res, $Val extends RentGridKPIsEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RentGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,6 +93,8 @@ class _$RentGridKPIsEventCopyWithImpl<$Res, $Val extends RentGridKPIsEvent>
     ) as $Val);
   }
 
+  /// Create a copy of RentGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RentRequestCopyWith<$Res> get request {
@@ -120,6 +126,8 @@ class __$$RentGridKPIsEventImplCopyWithImpl<$Res>
       $Res Function(_$RentGridKPIsEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RentGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,7 +156,7 @@ class _$RentGridKPIsEventImpl implements _RentGridKPIsEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RentGridKPIsEventImpl &&
@@ -158,7 +166,9 @@ class _$RentGridKPIsEventImpl implements _RentGridKPIsEvent {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RentGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RentGridKPIsEventImplCopyWith<_$RentGridKPIsEventImpl> get copyWith =>
@@ -228,8 +238,11 @@ abstract class _RentGridKPIsEvent implements RentGridKPIsEvent {
 
   @override
   RentRequest get request;
+
+  /// Create a copy of RentGridKPIsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RentGridKPIsEventImplCopyWith<_$RentGridKPIsEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -358,7 +371,9 @@ mixin _$RentGridKPIsState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RentGridKPIsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RentGridKPIsStateCopyWith<RentGridKPIsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -396,6 +411,8 @@ class _$RentGridKPIsStateCopyWithImpl<$Res, $Val extends RentGridKPIsState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RentGridKPIsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -508,6 +525,8 @@ class __$$InitialStateImplCopyWithImpl<$Res>
       _$InitialStateImpl _value, $Res Function(_$InitialStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RentGridKPIsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -733,7 +752,7 @@ class _$InitialStateImpl implements _InitialState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialStateImpl &&
@@ -790,7 +809,9 @@ class _$InitialStateImpl implements _InitialState {
       hasErrorMeanRentUnitValue,
       hasErrorMeanAreaValue);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RentGridKPIsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InitialStateImplCopyWith<_$InitialStateImpl> get copyWith =>
@@ -959,58 +980,62 @@ abstract class _InitialState implements RentGridKPIsState {
 
   @override
   bool get isLoading;
-  @override
 
   /// KPI1
+  @override
   List<BaseRentResponse> get totalContracts;
-  @override
 
   /// KPI4
-  List<BaseRentResponse> get totalRentedUnits;
   @override
+  List<BaseRentResponse> get totalRentedUnits;
 
   /// KPI7
-  List<BaseRentResponse> get totalContractsValue;
   @override
+  List<BaseRentResponse> get totalContractsValue;
 
   /// KPI10
-  List<BaseRentResponse> get totalRentedSpace;
   @override
+  List<BaseRentResponse> get totalRentedSpace;
 
   /// KPI13
-  List<BaseRentResponse> get meanRentUnitValue;
   @override
+  List<BaseRentResponse> get meanRentUnitValue;
 
   /// KPI16
-  List<BaseRentResponse> get meanAreaValue;
-  @override //--------------------Error-------------------------------------------------
-  String get errorMessage;
   @override
+  List<BaseRentResponse>
+      get meanAreaValue; //--------------------Error-------------------------------------------------
+  @override
+  String get errorMessage;
 
   /// KPI1
-  bool get hasErrorTotalContracts;
   @override
+  bool get hasErrorTotalContracts;
 
   /// KPI4
-  bool get hasErrorTotalRentedUnits;
   @override
+  bool get hasErrorTotalRentedUnits;
 
   /// KPI7
-  bool get hasErrorTotalContractsValue;
   @override
+  bool get hasErrorTotalContractsValue;
 
   /// KPI10
-  bool get hasErrorTotalRentedSpace;
   @override
+  bool get hasErrorTotalRentedSpace;
 
   /// KPI13
-  bool get hasErrorMeanRentUnitValue;
   @override
+  bool get hasErrorMeanRentUnitValue;
 
   /// KPI16
-  bool get hasErrorMeanAreaValue;
   @override
-  @JsonKey(ignore: true)
+  bool get hasErrorMeanAreaValue;
+
+  /// Create a copy of RentGridKPIsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitialStateImplCopyWith<_$InitialStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

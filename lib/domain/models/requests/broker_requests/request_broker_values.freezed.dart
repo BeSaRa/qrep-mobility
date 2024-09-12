@@ -12,7 +12,7 @@ part of 'request_broker_values.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 RequestBrokerValues _$RequestBrokerValuesFromJson(Map<String, dynamic> json) {
   return _RequestBrokerValues.fromJson(json);
@@ -26,8 +26,12 @@ mixin _$RequestBrokerValues {
   int? get offset => throw _privateConstructorUsedError;
   String? get brokerName => throw _privateConstructorUsedError;
 
+  /// Serializes this RequestBrokerValues to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RequestBrokerValues
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RequestBrokerValuesCopyWith<RequestBrokerValues> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +60,8 @@ class _$RequestBrokerValuesCopyWithImpl<$Res, $Val extends RequestBrokerValues>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RequestBrokerValues
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,6 +120,8 @@ class __$$RequestBrokerValuesImplCopyWithImpl<$Res>
       $Res Function(_$RequestBrokerValuesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RequestBrokerValues
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -149,7 +157,8 @@ class __$$RequestBrokerValuesImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$RequestBrokerValuesImpl implements _RequestBrokerValues {
   _$RequestBrokerValuesImpl(
       {this.brokerCategoryId,
@@ -178,7 +187,7 @@ class _$RequestBrokerValuesImpl implements _RequestBrokerValues {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RequestBrokerValuesImpl &&
@@ -192,12 +201,14 @@ class _$RequestBrokerValuesImpl implements _RequestBrokerValues {
                 other.brokerName == brokerName));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, brokerCategoryId, limit, municipalityId, offset, brokerName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequestBrokerValues
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestBrokerValuesImplCopyWith<_$RequestBrokerValuesImpl> get copyWith =>
@@ -233,8 +244,11 @@ abstract class _RequestBrokerValues implements RequestBrokerValues {
   int? get offset;
   @override
   String? get brokerName;
+
+  /// Create a copy of RequestBrokerValues
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RequestBrokerValuesImplCopyWith<_$RequestBrokerValuesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

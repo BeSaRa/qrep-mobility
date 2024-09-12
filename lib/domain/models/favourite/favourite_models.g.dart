@@ -11,7 +11,7 @@ _$FavouriteResponseImpl _$$FavouriteResponseImplFromJson(
     _$FavouriteResponseImpl(
       creationTime: json['creationTime'] as String?,
       criteria: json['criteria'] as String? ?? "",
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       lastModifiedTime: json['lastModifiedTime'] as String?,
       name: json['name'] as String? ?? "",
       pageDescription: json['pageDescription'] as String?,
@@ -53,49 +53,50 @@ const _$IndicatorsEnumMap = {
 
 _$CriteriaObjectImpl _$$CriteriaObjectImplFromJson(Map<String, dynamic> json) =>
     _$CriteriaObjectImpl(
-      municipalityId: json['municipalityId'] as int?,
-      areaCode: json['areaCode'] as int?,
+      municipalityId: (json['municipalityId'] as num?)?.toInt(),
+      areaCode: (json['areaCode'] as num?)?.toInt(),
       propertyTypeList: (json['propertyTypeList'] as List<dynamic>?)
-          ?.map((e) => e as int)
+          ?.map((e) => (e as num).toInt())
           .toList(),
       purposeList: (json['purposeList'] as List<dynamic>?)
-          ?.map((e) => e as int)
+          ?.map((e) => (e as num).toInt())
           .toList(),
       issueDateQuarterList: (json['issueDateQuarterList'] as List<dynamic>?)
-          ?.map((e) => e as int)
+          ?.map((e) => (e as num).toInt())
           .toList(),
       premiseCategoryList: (json['premiseCategoryList'] as List<dynamic>?)
-          ?.map((e) => e as int)
+          ?.map((e) => (e as num).toInt())
           .toList(),
-      bedRoomsCount: json['bedRoomsCount'] as int?,
-      furnitureStatus: json['furnitureStatus'] as int?,
-      issueDateYear: json['issueDateYear'] as int?,
-      issueDateMonth: json['issueDateMonth'] as int?,
-      issueDateStartMonth: json['issueDateStartMonth'] as int?,
-      issueDateEndMonth: json['issueDateEndMonth'] as int?,
+      bedRoomsCount: (json['bedRoomsCount'] as num?)?.toInt(),
+      furnitureStatus: (json['furnitureStatus'] as num?)?.toInt(),
+      issueDateYear: (json['issueDateYear'] as num?)?.toInt(),
+      issueDateMonth: (json['issueDateMonth'] as num?)?.toInt(),
+      issueDateStartMonth: (json['issueDateStartMonth'] as num?)?.toInt(),
+      issueDateEndMonth: (json['issueDateEndMonth'] as num?)?.toInt(),
       rentPaymentMonthlyPerUnitFrom:
-          json['rentPaymentMonthlyPerUnitFrom'] as int?,
-      rentPaymentMonthlyPerUnitTo: json['rentPaymentMonthlyPerUnitTo'] as int?,
-      zoneId: json['zoneId'] as int?,
-      durationType: json['durationType'] as int?,
+          (json['rentPaymentMonthlyPerUnitFrom'] as num?)?.toInt(),
+      rentPaymentMonthlyPerUnitTo:
+          (json['rentPaymentMonthlyPerUnitTo'] as num?)?.toInt(),
+      zoneId: (json['zoneId'] as num?)?.toInt(),
+      durationType: (json['durationType'] as num?)?.toInt(),
       realEstateValueFrom: (json['realEstateValueFrom'] as num?)?.toDouble(),
       realEstateValueTo: (json['realEstateValueTo'] as num?)?.toDouble(),
-      halfYearDuration: json['halfYearDuration'] as int?,
+      halfYearDuration: (json['halfYearDuration'] as num?)?.toInt(),
       areaFrom: (json['areaFrom'] as num?)?.toDouble(),
       areaTo: (json['areaTo'] as num?)?.toDouble(),
-      occupancyStatus: json['occupancyStatus'] as int?,
-      unit: json['unit'] as int?,
-      periodId: json['periodId'] as int?,
+      occupancyStatus: (json['occupancyStatus'] as num?)?.toInt(),
+      unit: (json['unit'] as num?)?.toInt(),
+      periodId: (json['periodId'] as num?)?.toInt(),
       issueDateFrom: json['issueDateFrom'] as String?,
       issueDateTo: json['issueDateTo'] as String?,
       premiseTypeList: (json['premiseTypeList'] as List<dynamic>?)
-          ?.map((e) => e as int)
+          ?.map((e) => (e as num).toInt())
           .toList(),
       ownerCategoryCode: json['ownerCategoryCode'] as String?,
       brokerName: json['brokerName'] as String?,
-      serviceType: json['serviceType'] as int?,
-      brokerCategoryId: json['brokerCategoryId'] as int?,
-      nationalityCode: json['nationalityCode'] as int?,
+      serviceType: (json['serviceType'] as num?)?.toInt(),
+      brokerCategoryId: (json['brokerCategoryId'] as num?)?.toInt(),
+      nationalityCode: (json['nationalityCode'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$CriteriaObjectImplToJson(

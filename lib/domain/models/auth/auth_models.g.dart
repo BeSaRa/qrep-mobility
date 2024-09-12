@@ -22,7 +22,7 @@ _$AuthModelImpl _$$AuthModelImplFromJson(Map<String, dynamic> json) =>
     _$AuthModelImpl(
       token: json['access_token'] as String? ?? "",
       refreshToken: json['refresh_token'] as String? ?? "",
-      expires: json['expires'] as int? ?? 0,
+      expires: (json['expires'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$AuthModelImplToJson(_$AuthModelImpl instance) =>

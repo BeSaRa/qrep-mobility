@@ -12,7 +12,7 @@ part of 'laws_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 LawsResponse _$LawsResponseFromJson(Map<String, dynamic> json) {
   return _LawsResponse.fromJson(json);
@@ -22,8 +22,12 @@ LawsResponse _$LawsResponseFromJson(Map<String, dynamic> json) {
 mixin _$LawsResponse {
   List<LawsModel> get data => throw _privateConstructorUsedError;
 
+  /// Serializes this LawsResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LawsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LawsResponseCopyWith<LawsResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$LawsResponseCopyWithImpl<$Res, $Val extends LawsResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LawsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class __$$LawsResponseImplCopyWithImpl<$Res>
       _$LawsResponseImpl _value, $Res Function(_$LawsResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LawsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -118,19 +126,21 @@ class _$LawsResponseImpl implements _LawsResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LawsResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LawsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LawsResponseImplCopyWith<_$LawsResponseImpl> get copyWith =>
@@ -153,8 +163,11 @@ abstract class _LawsResponse implements LawsResponse {
 
   @override
   List<LawsModel> get data;
+
+  /// Create a copy of LawsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LawsResponseImplCopyWith<_$LawsResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -167,8 +180,12 @@ LawByIdResponse _$LawByIdResponseFromJson(Map<String, dynamic> json) {
 mixin _$LawByIdResponse {
   LawsModel get data => throw _privateConstructorUsedError;
 
+  /// Serializes this LawByIdResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LawByIdResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LawByIdResponseCopyWith<LawByIdResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -194,6 +211,8 @@ class _$LawByIdResponseCopyWithImpl<$Res, $Val extends LawByIdResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LawByIdResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -207,6 +226,8 @@ class _$LawByIdResponseCopyWithImpl<$Res, $Val extends LawByIdResponse>
     ) as $Val);
   }
 
+  /// Create a copy of LawByIdResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LawsModelCopyWith<$Res> get data {
@@ -238,6 +259,8 @@ class __$$LawByIdResponseImplCopyWithImpl<$Res>
       _$LawByIdResponseImpl _value, $Res Function(_$LawByIdResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LawByIdResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -270,18 +293,20 @@ class _$LawByIdResponseImpl implements _LawByIdResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LawByIdResponseImpl &&
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LawByIdResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LawByIdResponseImplCopyWith<_$LawByIdResponseImpl> get copyWith =>
@@ -305,8 +330,11 @@ abstract class _LawByIdResponse implements LawByIdResponse {
 
   @override
   LawsModel get data;
+
+  /// Create a copy of LawByIdResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LawByIdResponseImplCopyWith<_$LawByIdResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -326,8 +354,12 @@ mixin _$LawsModel {
   String get file => throw _privateConstructorUsedError;
   List<ArticleModel> get articles => throw _privateConstructorUsedError;
 
+  /// Serializes this LawsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LawsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LawsModelCopyWith<LawsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -356,6 +388,8 @@ class _$LawsModelCopyWithImpl<$Res, $Val extends LawsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LawsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -420,6 +454,8 @@ class __$$LawsModelImplCopyWithImpl<$Res>
       _$LawsModelImpl _value, $Res Function(_$LawsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LawsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -504,7 +540,7 @@ class _$LawsModelImpl implements _LawsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LawsModelImpl &&
@@ -518,12 +554,14 @@ class _$LawsModelImpl implements _LawsModel {
             const DeepCollectionEquality().equals(other._articles, _articles));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, issueDate, lawNumber,
       file, const DeepCollectionEquality().hash(_articles));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LawsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LawsModelImplCopyWith<_$LawsModelImpl> get copyWith =>
@@ -563,8 +601,11 @@ abstract class _LawsModel implements LawsModel {
   String get file;
   @override
   List<ArticleModel> get articles;
+
+  /// Create a copy of LawsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LawsModelImplCopyWith<_$LawsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -578,8 +619,12 @@ mixin _$ArticleModel {
   String get title => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
 
+  /// Serializes this ArticleModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ArticleModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ArticleModelCopyWith<ArticleModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -603,6 +648,8 @@ class _$ArticleModelCopyWithImpl<$Res, $Val extends ArticleModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ArticleModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -641,6 +688,8 @@ class __$$ArticleModelImplCopyWithImpl<$Res>
       _$ArticleModelImpl _value, $Res Function(_$ArticleModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ArticleModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -681,7 +730,7 @@ class _$ArticleModelImpl implements _ArticleModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ArticleModelImpl &&
@@ -689,11 +738,13 @@ class _$ArticleModelImpl implements _ArticleModel {
             (identical(other.content, content) || other.content == content));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, title, content);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ArticleModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ArticleModelImplCopyWith<_$ArticleModelImpl> get copyWith =>
@@ -718,8 +769,11 @@ abstract class _ArticleModel implements ArticleModel {
   String get title;
   @override
   String get content;
+
+  /// Create a copy of ArticleModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ArticleModelImplCopyWith<_$ArticleModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

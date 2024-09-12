@@ -12,7 +12,7 @@ part of 'sell_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 SellTransaction _$SellTransactionFromJson(Map<String, dynamic> json) {
   return _SellTransaction.fromJson(json);
@@ -33,8 +33,12 @@ mixin _$SellTransaction {
   double? get unitNo => throw _privateConstructorUsedError;
   int? get unitStatus => throw _privateConstructorUsedError;
 
+  /// Serializes this SellTransaction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SellTransaction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SellTransactionCopyWith<SellTransaction> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -70,6 +74,8 @@ class _$SellTransactionCopyWithImpl<$Res, $Val extends SellTransaction>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SellTransaction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -170,6 +176,8 @@ class __$$SellTransactionImplCopyWithImpl<$Res>
       _$SellTransactionImpl _value, $Res Function(_$SellTransactionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SellTransaction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -302,7 +310,7 @@ class _$SellTransactionImpl implements _SellTransaction {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SellTransactionImpl &&
@@ -327,7 +335,7 @@ class _$SellTransactionImpl implements _SellTransaction {
                 other.unitStatus == unitStatus));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -344,7 +352,9 @@ class _$SellTransactionImpl implements _SellTransaction {
       unitNo,
       unitStatus);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SellTransaction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SellTransactionImplCopyWith<_$SellTransactionImpl> get copyWith =>
@@ -401,8 +411,11 @@ abstract class _SellTransaction implements SellTransaction {
   double? get unitNo;
   @override
   int? get unitStatus;
+
+  /// Create a copy of SellTransaction
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SellTransactionImplCopyWith<_$SellTransactionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -418,8 +431,12 @@ mixin _$SellTransactionResponse {
   List<SellTransaction> get transactionList =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this SellTransactionResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SellTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SellTransactionResponseCopyWith<SellTransactionResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -444,6 +461,8 @@ class _$SellTransactionResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SellTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -482,6 +501,8 @@ class __$$SellResponseImplCopyWithImpl<$Res>
       _$SellResponseImpl _value, $Res Function(_$SellResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SellTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -529,7 +550,7 @@ class _$SellResponseImpl implements _SellResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SellResponseImpl &&
@@ -538,12 +559,14 @@ class _$SellResponseImpl implements _SellResponse {
                 .equals(other._transactionList, _transactionList));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, count,
       const DeepCollectionEquality().hash(_transactionList));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SellTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SellResponseImplCopyWith<_$SellResponseImpl> get copyWith =>
@@ -569,8 +592,11 @@ abstract class _SellResponse implements SellTransactionResponse {
   int get count;
   @override
   List<SellTransaction> get transactionList;
+
+  /// Create a copy of SellTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SellResponseImplCopyWith<_$SellResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

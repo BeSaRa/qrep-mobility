@@ -12,7 +12,7 @@ part of 'app_settings.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AppSettingsResponse _$AppSettingsResponseFromJson(Map<String, dynamic> json) {
   return _AppSettingsResponse.fromJson(json);
@@ -22,8 +22,12 @@ AppSettingsResponse _$AppSettingsResponseFromJson(Map<String, dynamic> json) {
 mixin _$AppSettingsResponse {
   ProjectResponse get data => throw _privateConstructorUsedError;
 
+  /// Serializes this AppSettingsResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AppSettingsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AppSettingsResponseCopyWith<AppSettingsResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$AppSettingsResponseCopyWithImpl<$Res, $Val extends AppSettingsResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AppSettingsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -62,6 +68,8 @@ class _$AppSettingsResponseCopyWithImpl<$Res, $Val extends AppSettingsResponse>
     ) as $Val);
   }
 
+  /// Create a copy of AppSettingsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProjectResponseCopyWith<$Res> get data {
@@ -93,6 +101,8 @@ class __$$AppSettingsResponseImplCopyWithImpl<$Res>
       $Res Function(_$AppSettingsResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AppSettingsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -125,18 +135,20 @@ class _$AppSettingsResponseImpl implements _AppSettingsResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppSettingsResponseImpl &&
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppSettingsResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AppSettingsResponseImplCopyWith<_$AppSettingsResponseImpl> get copyWith =>
@@ -160,8 +172,11 @@ abstract class _AppSettingsResponse implements AppSettingsResponse {
 
   @override
   ProjectResponse get data;
+
+  /// Create a copy of AppSettingsResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AppSettingsResponseImplCopyWith<_$AppSettingsResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -176,8 +191,12 @@ mixin _$ProjectResponse {
   double get android_version => throw _privateConstructorUsedError;
   bool get force_update => throw _privateConstructorUsedError;
 
+  /// Serializes this ProjectResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProjectResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProjectResponseCopyWith<ProjectResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -201,6 +220,8 @@ class _$ProjectResponseCopyWithImpl<$Res, $Val extends ProjectResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProjectResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -244,6 +265,8 @@ class __$$ProjectResponseImplCopyWithImpl<$Res>
       _$ProjectResponseImpl _value, $Res Function(_$ProjectResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProjectResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -295,7 +318,7 @@ class _$ProjectResponseImpl implements _ProjectResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectResponseImpl &&
@@ -307,12 +330,14 @@ class _$ProjectResponseImpl implements _ProjectResponse {
                 other.force_update == force_update));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, ios_version, android_version, force_update);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProjectResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProjectResponseImplCopyWith<_$ProjectResponseImpl> get copyWith =>
@@ -342,8 +367,11 @@ abstract class _ProjectResponse implements ProjectResponse {
   double get android_version;
   @override
   bool get force_update;
+
+  /// Create a copy of ProjectResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectResponseImplCopyWith<_$ProjectResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

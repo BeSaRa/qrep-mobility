@@ -12,7 +12,7 @@ part of 'main_menu_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 MainMenuResponse _$MainMenuResponseFromJson(Map<String, dynamic> json) {
   return _MainMenuResponse.fromJson(json);
@@ -23,8 +23,12 @@ mixin _$MainMenuResponse {
   @JsonKey(name: "main_menu")
   MainMenuModel get mainMenu => throw _privateConstructorUsedError;
 
+  /// Serializes this MainMenuResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MainMenuResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MainMenuResponseCopyWith<MainMenuResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$MainMenuResponseCopyWithImpl<$Res, $Val extends MainMenuResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MainMenuResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -63,6 +69,8 @@ class _$MainMenuResponseCopyWithImpl<$Res, $Val extends MainMenuResponse>
     ) as $Val);
   }
 
+  /// Create a copy of MainMenuResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MainMenuModelCopyWith<$Res> get mainMenu {
@@ -94,6 +102,8 @@ class __$$MainMenuResponseImplCopyWithImpl<$Res>
       $Res Function(_$MainMenuResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MainMenuResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -127,7 +137,7 @@ class _$MainMenuResponseImpl implements _MainMenuResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MainMenuResponseImpl &&
@@ -135,11 +145,13 @@ class _$MainMenuResponseImpl implements _MainMenuResponse {
                 other.mainMenu == mainMenu));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, mainMenu);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MainMenuResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MainMenuResponseImplCopyWith<_$MainMenuResponseImpl> get copyWith =>
@@ -165,8 +177,11 @@ abstract class _MainMenuResponse implements MainMenuResponse {
   @override
   @JsonKey(name: "main_menu")
   MainMenuModel get mainMenu;
+
+  /// Create a copy of MainMenuResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MainMenuResponseImplCopyWith<_$MainMenuResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -179,8 +194,12 @@ MainMenuModel _$MainMenuModelFromJson(Map<String, dynamic> json) {
 mixin _$MainMenuModel {
   List<LinkModel> get links => throw _privateConstructorUsedError;
 
+  /// Serializes this MainMenuModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MainMenuModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MainMenuModelCopyWith<MainMenuModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -204,6 +223,8 @@ class _$MainMenuModelCopyWithImpl<$Res, $Val extends MainMenuModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MainMenuModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -237,6 +258,8 @@ class __$$MainMenuModelImplCopyWithImpl<$Res>
       _$MainMenuModelImpl _value, $Res Function(_$MainMenuModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MainMenuModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -275,19 +298,21 @@ class _$MainMenuModelImpl implements _MainMenuModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MainMenuModelImpl &&
             const DeepCollectionEquality().equals(other._links, _links));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_links));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MainMenuModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MainMenuModelImplCopyWith<_$MainMenuModelImpl> get copyWith =>
@@ -310,8 +335,11 @@ abstract class _MainMenuModel implements MainMenuModel {
 
   @override
   List<LinkModel> get links;
+
+  /// Create a copy of MainMenuModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MainMenuModelImplCopyWith<_$MainMenuModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -328,8 +356,12 @@ mixin _$LinkModel {
   DataSourceMessageModel get dataSourceMessage =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this LinkModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LinkModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LinkModelCopyWith<LinkModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -358,6 +390,8 @@ class _$LinkModelCopyWithImpl<$Res, $Val extends LinkModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LinkModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -381,6 +415,8 @@ class _$LinkModelCopyWithImpl<$Res, $Val extends LinkModel>
     ) as $Val);
   }
 
+  /// Create a copy of LinkModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DataSourceMessageModelCopyWith<$Res> get dataSourceMessage {
@@ -417,6 +453,8 @@ class __$$LinkModelImplCopyWithImpl<$Res>
       _$LinkModelImpl _value, $Res Function(_$LinkModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LinkModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -469,7 +507,7 @@ class _$LinkModelImpl implements _LinkModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LinkModelImpl &&
@@ -479,11 +517,13 @@ class _$LinkModelImpl implements _LinkModel {
                 other.dataSourceMessage == dataSourceMessage));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, url, dataSourceMessage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LinkModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LinkModelImplCopyWith<_$LinkModelImpl> get copyWith =>
@@ -514,8 +554,11 @@ abstract class _LinkModel implements LinkModel {
   @override
   @JsonKey(name: "datasource_message_id")
   DataSourceMessageModel get dataSourceMessage;
+
+  /// Create a copy of LinkModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LinkModelImplCopyWith<_$LinkModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -531,8 +574,12 @@ mixin _$DataSourceMessageModel {
   String get arMessage => throw _privateConstructorUsedError;
   String get enMessage => throw _privateConstructorUsedError;
 
+  /// Serializes this DataSourceMessageModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DataSourceMessageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DataSourceMessageModelCopyWith<DataSourceMessageModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -557,6 +604,8 @@ class _$DataSourceMessageModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DataSourceMessageModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -603,6 +652,8 @@ class __$$DataSourceMessageModelImplCopyWithImpl<$Res>
       $Res Function(_$DataSourceMessageModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DataSourceMessageModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -652,7 +703,7 @@ class _$DataSourceMessageModelImpl implements _DataSourceMessageModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DataSourceMessageModelImpl &&
@@ -663,11 +714,13 @@ class _$DataSourceMessageModelImpl implements _DataSourceMessageModel {
                 other.enMessage == enMessage));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, arMessage, enMessage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DataSourceMessageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DataSourceMessageModelImplCopyWith<_$DataSourceMessageModelImpl>
@@ -697,8 +750,11 @@ abstract class _DataSourceMessageModel implements DataSourceMessageModel {
   String get arMessage;
   @override
   String get enMessage;
+
+  /// Create a copy of DataSourceMessageModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DataSourceMessageModelImplCopyWith<_$DataSourceMessageModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -9,12 +9,12 @@ part of 'mortgage_models.dart';
 _$MortgageTransactionImpl _$$MortgageTransactionImplFromJson(
         Map<String, dynamic> json) =>
     _$MortgageTransactionImpl(
-      municipalityId: json['municipalityId'] as int? ?? 0,
+      municipalityId: (json['municipalityId'] as num?)?.toInt() ?? 0,
       unitStatus: json['unitStatus'] as String? ?? '',
       realEstateValue: (json['realEstateValue'] as num?)?.toDouble() ?? 0,
       realEstateArea: (json['realEstateArea'] as num?)?.toDouble() ?? 0,
       issueDate: json['issueDate'] as String? ?? '',
-      areaCode: json['areaCode'] as int? ?? 0,
+      areaCode: (json['areaCode'] as num?)?.toInt() ?? 0,
       seller: json['seller'] as String? ?? '',
       buyer: json['buyer'] as String? ?? '',
       unitNo: json['unitNo'] as String? ?? '',
@@ -37,7 +37,7 @@ Map<String, dynamic> _$$MortgageTransactionImplToJson(
 _$MortgageTransactionResponseImpl _$$MortgageTransactionResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$MortgageTransactionResponseImpl(
-      count: json['count'] as int? ?? 0,
+      count: (json['count'] as num?)?.toInt() ?? 0,
       transactionList: (json['transactionList'] as List<dynamic>?)
               ?.map((e) =>
                   MortgageTransaction.fromJson(e as Map<String, dynamic>))

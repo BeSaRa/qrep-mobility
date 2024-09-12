@@ -12,7 +12,7 @@ part of 'mortgage_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 MortgageTransaction _$MortgageTransactionFromJson(Map<String, dynamic> json) {
   return _MortgageTransaction.fromJson(json);
@@ -30,8 +30,12 @@ mixin _$MortgageTransaction {
   String? get buyer => throw _privateConstructorUsedError;
   String? get unitNo => throw _privateConstructorUsedError;
 
+  /// Serializes this MortgageTransaction to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MortgageTransaction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MortgageTransactionCopyWith<MortgageTransaction> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -64,6 +68,8 @@ class _$MortgageTransactionCopyWithImpl<$Res, $Val extends MortgageTransaction>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MortgageTransaction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -146,6 +152,8 @@ class __$$MortgageTransactionImplCopyWithImpl<$Res>
       $Res Function(_$MortgageTransactionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MortgageTransaction
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -251,7 +259,7 @@ class _$MortgageTransactionImpl implements _MortgageTransaction {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MortgageTransactionImpl &&
@@ -272,7 +280,7 @@ class _$MortgageTransactionImpl implements _MortgageTransaction {
             (identical(other.unitNo, unitNo) || other.unitNo == unitNo));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -286,7 +294,9 @@ class _$MortgageTransactionImpl implements _MortgageTransaction {
       buyer,
       unitNo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MortgageTransaction
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MortgageTransactionImplCopyWith<_$MortgageTransactionImpl> get copyWith =>
@@ -334,8 +344,11 @@ abstract class _MortgageTransaction implements MortgageTransaction {
   String? get buyer;
   @override
   String? get unitNo;
+
+  /// Create a copy of MortgageTransaction
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MortgageTransactionImplCopyWith<_$MortgageTransactionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -351,8 +364,12 @@ mixin _$MortgageTransactionResponse {
   List<MortgageTransaction> get transactionList =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this MortgageTransactionResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MortgageTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MortgageTransactionResponseCopyWith<MortgageTransactionResponse>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -379,6 +396,8 @@ class _$MortgageTransactionResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MortgageTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -420,6 +439,8 @@ class __$$MortgageTransactionResponseImplCopyWithImpl<$Res>
       $Res Function(_$MortgageTransactionResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MortgageTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -470,7 +491,7 @@ class _$MortgageTransactionResponseImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MortgageTransactionResponseImpl &&
@@ -479,12 +500,14 @@ class _$MortgageTransactionResponseImpl
                 .equals(other._transactionList, _transactionList));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, count,
       const DeepCollectionEquality().hash(_transactionList));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MortgageTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MortgageTransactionResponseImplCopyWith<_$MortgageTransactionResponseImpl>
@@ -512,8 +535,11 @@ abstract class _MortgageTransactionResponse
   int get count;
   @override
   List<MortgageTransaction> get transactionList;
+
+  /// Create a copy of MortgageTransactionResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MortgageTransactionResponseImplCopyWith<_$MortgageTransactionResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

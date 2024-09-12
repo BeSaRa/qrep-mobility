@@ -12,7 +12,7 @@ part of 'guest_token_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$GuestTokenEvent {
@@ -66,6 +66,9 @@ class _$GuestTokenEventCopyWithImpl<$Res, $Val extends GuestTokenEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GuestTokenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -82,6 +85,9 @@ class __$$SetTokenGuestImplCopyWithImpl<$Res>
   __$$SetTokenGuestImplCopyWithImpl(
       _$SetTokenGuestImpl _value, $Res Function(_$SetTokenGuestImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GuestTokenEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -95,7 +101,7 @@ class _$SetTokenGuestImpl implements _SetTokenGuest {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$SetTokenGuestImpl);
   }
@@ -234,6 +240,9 @@ class _$GuestTokenStateCopyWithImpl<$Res, $Val extends GuestTokenState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GuestTokenState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -250,6 +259,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GuestTokenState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -263,7 +275,7 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
@@ -364,6 +376,9 @@ class __$$LoadingImplCopyWithImpl<$Res>
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GuestTokenState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -377,7 +392,7 @@ class _$LoadingImpl implements _Loading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$LoadingImpl);
   }
@@ -481,6 +496,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GuestTokenState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -509,7 +526,7 @@ class _$SuccessImpl implements _Success {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
@@ -520,7 +537,9 @@ class _$SuccessImpl implements _Success {
   @override
   int get hashCode => Object.hash(runtimeType, canUpdate);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GuestTokenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -605,7 +624,10 @@ abstract class _Success implements GuestTokenState {
   const factory _Success(final bool canUpdate) = _$SuccessImpl;
 
   bool get canUpdate;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GuestTokenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -624,6 +646,9 @@ class __$$ShouldUpdateImplCopyWithImpl<$Res>
   __$$ShouldUpdateImplCopyWithImpl(
       _$ShouldUpdateImpl _value, $Res Function(_$ShouldUpdateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GuestTokenState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -637,7 +662,7 @@ class _$ShouldUpdateImpl implements _ShouldUpdate {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$ShouldUpdateImpl);
   }

@@ -12,7 +12,7 @@ part of 'request_sell_values.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 RequestSellValues _$RequestSellValuesFromJson(Map<String, dynamic> json) {
   return _RequestSellValues.fromJson(json);
@@ -39,12 +39,16 @@ mixin _$RequestSellValues {
   num? get realEstateValueFrom => throw _privateConstructorUsedError;
   num? get realEstateValueTo =>
       throw _privateConstructorUsedError; // int? streetNo,
-  int? get zoneId =>
-      throw _privateConstructorUsedError; // @Default(2) int unit,
+  int? get zoneId => throw _privateConstructorUsedError;
+  int? get unit => throw _privateConstructorUsedError;
   int get periodId => throw _privateConstructorUsedError;
 
+  /// Serializes this RequestSellValues to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RequestSellValues
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RequestSellValuesCopyWith<RequestSellValues> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -75,6 +79,7 @@ abstract class $RequestSellValuesCopyWith<$Res> {
       num? realEstateValueFrom,
       num? realEstateValueTo,
       int? zoneId,
+      int? unit,
       int periodId});
 }
 
@@ -88,6 +93,8 @@ class _$RequestSellValuesCopyWithImpl<$Res, $Val extends RequestSellValues>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RequestSellValues
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -110,6 +117,7 @@ class _$RequestSellValuesCopyWithImpl<$Res, $Val extends RequestSellValues>
     Object? realEstateValueFrom = freezed,
     Object? realEstateValueTo = freezed,
     Object? zoneId = freezed,
+    Object? unit = freezed,
     Object? periodId = null,
   }) {
     return _then(_value.copyWith(
@@ -189,6 +197,10 @@ class _$RequestSellValuesCopyWithImpl<$Res, $Val extends RequestSellValues>
           ? _value.zoneId
           : zoneId // ignore: cast_nullable_to_non_nullable
               as int?,
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as int?,
       periodId: null == periodId
           ? _value.periodId
           : periodId // ignore: cast_nullable_to_non_nullable
@@ -225,6 +237,7 @@ abstract class _$$RequestSellValuesImplCopyWith<$Res>
       num? realEstateValueFrom,
       num? realEstateValueTo,
       int? zoneId,
+      int? unit,
       int periodId});
 }
 
@@ -236,6 +249,8 @@ class __$$RequestSellValuesImplCopyWithImpl<$Res>
       $Res Function(_$RequestSellValuesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RequestSellValues
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -258,6 +273,7 @@ class __$$RequestSellValuesImplCopyWithImpl<$Res>
     Object? realEstateValueFrom = freezed,
     Object? realEstateValueTo = freezed,
     Object? zoneId = freezed,
+    Object? unit = freezed,
     Object? periodId = null,
   }) {
     return _then(_$RequestSellValuesImpl(
@@ -337,6 +353,10 @@ class __$$RequestSellValuesImplCopyWithImpl<$Res>
           ? _value.zoneId
           : zoneId // ignore: cast_nullable_to_non_nullable
               as int?,
+      unit: freezed == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as int?,
       periodId: null == periodId
           ? _value.periodId
           : periodId // ignore: cast_nullable_to_non_nullable
@@ -346,7 +366,8 @@ class __$$RequestSellValuesImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$RequestSellValuesImpl implements _RequestSellValues {
   _$RequestSellValuesImpl(
       {this.areaCode = -1,
@@ -368,6 +389,7 @@ class _$RequestSellValuesImpl implements _RequestSellValues {
       this.realEstateValueFrom,
       this.realEstateValueTo,
       this.zoneId,
+      this.unit = 2,
       this.periodId = 1})
       : _issueDateQuarterList = issueDateQuarterList,
         _propertyTypeList = propertyTypeList,
@@ -442,18 +464,20 @@ class _$RequestSellValuesImpl implements _RequestSellValues {
 // int? streetNo,
   @override
   final int? zoneId;
-// @Default(2) int unit,
+  @override
+  @JsonKey()
+  final int? unit;
   @override
   @JsonKey()
   final int periodId;
 
   @override
   String toString() {
-    return 'RequestSellValues(areaCode: $areaCode, areaFrom: $areaFrom, areaTo: $areaTo, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateMonth: $issueDateMonth, halfYearDuration: $halfYearDuration, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, propertyTypeList: $propertyTypeList, purposeList: $purposeList, realEstateValueFrom: $realEstateValueFrom, realEstateValueTo: $realEstateValueTo, zoneId: $zoneId, periodId: $periodId)';
+    return 'RequestSellValues(areaCode: $areaCode, areaFrom: $areaFrom, areaTo: $areaTo, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, issueDateMonth: $issueDateMonth, halfYearDuration: $halfYearDuration, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, propertyTypeList: $propertyTypeList, purposeList: $purposeList, realEstateValueFrom: $realEstateValueFrom, realEstateValueTo: $realEstateValueTo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RequestSellValuesImpl &&
@@ -491,11 +515,12 @@ class _$RequestSellValuesImpl implements _RequestSellValues {
             (identical(other.realEstateValueTo, realEstateValueTo) ||
                 other.realEstateValueTo == realEstateValueTo) &&
             (identical(other.zoneId, zoneId) || other.zoneId == zoneId) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
             (identical(other.periodId, periodId) ||
                 other.periodId == periodId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -518,10 +543,13 @@ class _$RequestSellValuesImpl implements _RequestSellValues {
         realEstateValueFrom,
         realEstateValueTo,
         zoneId,
+        unit,
         periodId
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequestSellValues
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestSellValuesImplCopyWith<_$RequestSellValuesImpl> get copyWith =>
@@ -557,6 +585,7 @@ abstract class _RequestSellValues implements RequestSellValues {
       final num? realEstateValueFrom,
       final num? realEstateValueTo,
       final int? zoneId,
+      final int? unit,
       final int periodId}) = _$RequestSellValuesImpl;
 
   factory _RequestSellValues.fromJson(Map<String, dynamic> json) =
@@ -597,13 +626,18 @@ abstract class _RequestSellValues implements RequestSellValues {
   @override
   num? get realEstateValueFrom;
   @override
-  num? get realEstateValueTo;
-  @override // int? streetNo,
-  int? get zoneId;
-  @override // @Default(2) int unit,
-  int get periodId;
+  num? get realEstateValueTo; // int? streetNo,
   @override
-  @JsonKey(ignore: true)
+  int? get zoneId;
+  @override
+  int? get unit;
+  @override
+  int get periodId;
+
+  /// Create a copy of RequestSellValues
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RequestSellValuesImplCopyWith<_$RequestSellValuesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -4,8 +4,8 @@ part 'request_mortgage_values.freezed.dart';
 part 'request_mortgage_values.g.dart';
 
 @freezed
-@JsonSerializable(includeIfNull: false)
 abstract class RequestMortgageValues with _$RequestMortgageValues {
+  @JsonSerializable(includeIfNull: false)
   factory RequestMortgageValues({
     @Default(-1) num areaCode,
     num? areaFrom,

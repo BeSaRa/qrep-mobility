@@ -56,7 +56,7 @@ _$RealEstateBrokerTransactionDataImpl
         _$RealEstateBrokerTransactionDataImpl(
           brokerArDescription: json['brokerArDescription'] as String? ?? '',
           brokerArName: json['brokerArName'] as String? ?? '',
-          brokerCategoryId: json['brokerCategoryId'] as int? ?? 0,
+          brokerCategoryId: (json['brokerCategoryId'] as num?)?.toInt() ?? 0,
           brokerEmail: json['brokerEmail'] as String? ?? '',
           brokerEnDescription: json['brokerEnDescription'] as String? ?? '',
           brokerEnName: json['brokerEnName'] as String? ?? '',
@@ -64,7 +64,7 @@ _$RealEstateBrokerTransactionDataImpl
           brokerPhone1: json['brokerPhone1'] as String? ?? '',
           brokerPhone2: json['brokerPhone2'] as String? ?? '',
           brokerPhone3: json['brokerPhone3'] as String? ?? '',
-          brokerTypeId: json['brokerTypeId'] as int? ?? 0,
+          brokerTypeId: (json['brokerTypeId'] as num?)?.toInt() ?? 0,
           brokerlicenseNumber: json['brokerlicenseNumber'] as String? ?? '',
           isActive: json['isActive'] as bool? ?? true,
           managerArName: json['managerArName'] as String? ?? '',
@@ -72,7 +72,7 @@ _$RealEstateBrokerTransactionDataImpl
           zoneNo: (json['zoneNo'] as num?)?.toDouble() ?? 0,
           streetNo: (json['streetNo'] as num?)?.toDouble() ?? 0,
           buuildingNo: (json['buuildingNo'] as num?)?.toDouble() ?? 0,
-          municipalityId: json['municipalityId'] as int? ?? 0,
+          municipalityId: (json['municipalityId'] as num?)?.toInt() ?? 0,
         );
 
 Map<String, dynamic> _$$RealEstateBrokerTransactionDataImplToJson(
@@ -102,7 +102,7 @@ Map<String, dynamic> _$$RealEstateBrokerTransactionDataImplToJson(
 _$RealEstateBrokerTransactionsImpl _$$RealEstateBrokerTransactionsImplFromJson(
         Map<String, dynamic> json) =>
     _$RealEstateBrokerTransactionsImpl(
-      count: json['count'] as int? ?? 0,
+      count: (json['count'] as num?)?.toInt() ?? 0,
       transactionList: (json['transactionList'] as List<dynamic>?)
               ?.map((e) => RealEstateBrokerTransactionData.fromJson(
                   e as Map<String, dynamic>))

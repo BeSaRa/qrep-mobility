@@ -12,7 +12,7 @@ part of 'topvalues_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$TopvaluesEvent {
@@ -92,7 +92,9 @@ mixin _$TopvaluesEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TopvaluesEventCopyWith<TopvaluesEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -118,6 +120,8 @@ class _$TopvaluesEventCopyWithImpl<$Res, $Val extends TopvaluesEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -131,6 +135,8 @@ class _$TopvaluesEventCopyWithImpl<$Res, $Val extends TopvaluesEvent>
     ) as $Val);
   }
 
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RequestSellValuesCopyWith<$Res> get request {
@@ -165,6 +171,8 @@ class __$$CountTransictionNumberEventImplCopyWithImpl<$Res>
       $Res Function(_$CountTransictionNumberEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -194,7 +202,7 @@ class _$CountTransictionNumberEventImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CountTransictionNumberEventImpl &&
@@ -204,7 +212,9 @@ class _$CountTransictionNumberEventImpl
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CountTransictionNumberEventImplCopyWith<_$CountTransictionNumberEventImpl>
@@ -317,8 +327,11 @@ abstract class _CountTransictionNumberEvent implements TopvaluesEvent {
 
   @override
   RequestSellValues get request;
+
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CountTransictionNumberEventImplCopyWith<_$CountTransictionNumberEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -345,6 +358,8 @@ class __$$CountUnitPriceEventImplCopyWithImpl<$Res>
       $Res Function(_$CountUnitPriceEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -373,7 +388,7 @@ class _$CountUnitPriceEventImpl implements _CountUnitPriceEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CountUnitPriceEventImpl &&
@@ -383,7 +398,9 @@ class _$CountUnitPriceEventImpl implements _CountUnitPriceEvent {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CountUnitPriceEventImplCopyWith<_$CountUnitPriceEventImpl> get copyWith =>
@@ -495,8 +512,11 @@ abstract class _CountUnitPriceEvent implements TopvaluesEvent {
 
   @override
   RequestSellValues get request;
+
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CountUnitPriceEventImplCopyWith<_$CountUnitPriceEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -526,6 +546,8 @@ class __$$CountTransictionsValueEventImplCopyWithImpl<$Res>
       $Res Function(_$CountTransictionsValueEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -555,7 +577,7 @@ class _$CountTransictionsValueEventImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CountTransictionsValueEventImpl &&
@@ -565,7 +587,9 @@ class _$CountTransictionsValueEventImpl
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CountTransictionsValueEventImplCopyWith<_$CountTransictionsValueEventImpl>
@@ -678,8 +702,11 @@ abstract class _CountTransictionsValueEvent implements TopvaluesEvent {
 
   @override
   RequestSellValues get request;
+
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CountTransictionsValueEventImplCopyWith<_$CountTransictionsValueEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -706,6 +733,8 @@ class __$$CountAreasEventImplCopyWithImpl<$Res>
       _$CountAreasEventImpl _value, $Res Function(_$CountAreasEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -734,7 +763,7 @@ class _$CountAreasEventImpl implements _CountAreasEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CountAreasEventImpl &&
@@ -744,7 +773,9 @@ class _$CountAreasEventImpl implements _CountAreasEvent {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CountAreasEventImplCopyWith<_$CountAreasEventImpl> get copyWith =>
@@ -856,8 +887,11 @@ abstract class _CountAreasEvent implements TopvaluesEvent {
 
   @override
   RequestSellValues get request;
+
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CountAreasEventImplCopyWith<_$CountAreasEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -884,6 +918,8 @@ class __$$RealStateNumberEventImplCopyWithImpl<$Res>
       $Res Function(_$RealStateNumberEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -912,7 +948,7 @@ class _$RealStateNumberEventImpl implements _RealStateNumberEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RealStateNumberEventImpl &&
@@ -922,7 +958,9 @@ class _$RealStateNumberEventImpl implements _RealStateNumberEvent {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RealStateNumberEventImplCopyWith<_$RealStateNumberEventImpl>
@@ -1035,8 +1073,11 @@ abstract class _RealStateNumberEvent implements TopvaluesEvent {
 
   @override
   RequestSellValues get request;
+
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RealStateNumberEventImplCopyWith<_$RealStateNumberEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1065,6 +1106,8 @@ class __$$RealStateNumberMeterEventImplCopyWithImpl<$Res>
       $Res Function(_$RealStateNumberMeterEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1093,7 +1136,7 @@ class _$RealStateNumberMeterEventImpl implements _RealStateNumberMeterEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RealStateNumberMeterEventImpl &&
@@ -1103,7 +1146,9 @@ class _$RealStateNumberMeterEventImpl implements _RealStateNumberMeterEvent {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RealStateNumberMeterEventImplCopyWith<_$RealStateNumberMeterEventImpl>
@@ -1216,8 +1261,11 @@ abstract class _RealStateNumberMeterEvent implements TopvaluesEvent {
 
   @override
   RequestSellValues get request;
+
+  /// Create a copy of TopvaluesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RealStateNumberMeterEventImplCopyWith<_$RealStateNumberMeterEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1267,7 +1315,9 @@ mixin _$TopvaluesState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TopvaluesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TopvaluesStateCopyWith<TopvaluesState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1295,6 +1345,8 @@ class _$TopvaluesStateCopyWithImpl<$Res, $Val extends TopvaluesState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TopvaluesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1347,6 +1399,8 @@ class __$$InitialImplCopyWithImpl<$Res>
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TopvaluesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1410,7 +1464,7 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
@@ -1428,7 +1482,9 @@ class _$InitialImpl implements _Initial {
   int get hashCode => Object.hash(runtimeType, isLoading, isHasErrorContract,
       errorMessage, const DeepCollectionEquality().hash(_listResponse));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TopvaluesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
@@ -1513,8 +1569,11 @@ abstract class _Initial implements TopvaluesState {
   String get errorMessage;
   @override
   List<BaseRentResponse> get listResponse;
+
+  /// Create a copy of TopvaluesState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

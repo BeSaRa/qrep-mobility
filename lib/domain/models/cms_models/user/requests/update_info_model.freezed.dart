@@ -12,7 +12,7 @@ part of 'update_info_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 RequestUpdateInfoModel _$RequestUpdateInfoModelFromJson(
     Map<String, dynamic> json) {
@@ -32,8 +32,12 @@ mixin _$RequestUpdateInfoModel {
   @JsonKey(name: "title")
   String? get title => throw _privateConstructorUsedError;
 
+  /// Serializes this RequestUpdateInfoModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RequestUpdateInfoModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RequestUpdateInfoModelCopyWith<RequestUpdateInfoModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -63,6 +67,8 @@ class _$RequestUpdateInfoModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RequestUpdateInfoModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -124,6 +130,8 @@ class __$$RequestUpdateInfoModelImplCopyWithImpl<$Res>
       $Res Function(_$RequestUpdateInfoModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RequestUpdateInfoModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -193,7 +201,7 @@ class _$RequestUpdateInfoModelImpl implements _RequestUpdateInfoModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RequestUpdateInfoModelImpl &&
@@ -208,12 +216,14 @@ class _$RequestUpdateInfoModelImpl implements _RequestUpdateInfoModel {
             (identical(other.title, title) || other.title == title));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, firstName, lastName, fcmToken, emailNotifications, title);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequestUpdateInfoModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestUpdateInfoModelImplCopyWith<_$RequestUpdateInfoModelImpl>
@@ -255,8 +265,11 @@ abstract class _RequestUpdateInfoModel implements RequestUpdateInfoModel {
   @override
   @JsonKey(name: "title")
   String? get title;
+
+  /// Create a copy of RequestUpdateInfoModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RequestUpdateInfoModelImplCopyWith<_$RequestUpdateInfoModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'about_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AboutResponse _$AboutResponseFromJson(Map<String, dynamic> json) {
   return _AboutResponse.fromJson(json);
@@ -22,8 +22,12 @@ AboutResponse _$AboutResponseFromJson(Map<String, dynamic> json) {
 mixin _$AboutResponse {
   AboutModels get data => throw _privateConstructorUsedError;
 
+  /// Serializes this AboutResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AboutResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AboutResponseCopyWith<AboutResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$AboutResponseCopyWithImpl<$Res, $Val extends AboutResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AboutResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -62,6 +68,8 @@ class _$AboutResponseCopyWithImpl<$Res, $Val extends AboutResponse>
     ) as $Val);
   }
 
+  /// Create a copy of AboutResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AboutModelsCopyWith<$Res> get data {
@@ -93,6 +101,8 @@ class __$$AboutResponseImplCopyWithImpl<$Res>
       _$AboutResponseImpl _value, $Res Function(_$AboutResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AboutResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -125,18 +135,20 @@ class _$AboutResponseImpl implements _AboutResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AboutResponseImpl &&
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AboutResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AboutResponseImplCopyWith<_$AboutResponseImpl> get copyWith =>
@@ -158,8 +170,11 @@ abstract class _AboutResponse implements AboutResponse {
 
   @override
   AboutModels get data;
+
+  /// Create a copy of AboutResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AboutResponseImplCopyWith<_$AboutResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -174,8 +189,12 @@ mixin _$AboutModels {
   String get status => throw _privateConstructorUsedError;
   List<AboutDataModel> get translations => throw _privateConstructorUsedError;
 
+  /// Serializes this AboutModels to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AboutModels
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AboutModelsCopyWith<AboutModels> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -199,6 +218,8 @@ class _$AboutModelsCopyWithImpl<$Res, $Val extends AboutModels>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AboutModels
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -242,6 +263,8 @@ class __$$AboutModelsImplCopyWithImpl<$Res>
       _$AboutModelsImpl _value, $Res Function(_$AboutModelsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AboutModels
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -299,7 +322,7 @@ class _$AboutModelsImpl implements _AboutModels {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AboutModelsImpl &&
@@ -309,12 +332,14 @@ class _$AboutModelsImpl implements _AboutModels {
                 .equals(other._translations, _translations));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, status,
       const DeepCollectionEquality().hash(_translations));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AboutModels
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AboutModelsImplCopyWith<_$AboutModelsImpl> get copyWith =>
@@ -343,8 +368,11 @@ abstract class _AboutModels implements AboutModels {
   String get status;
   @override
   List<AboutDataModel> get translations;
+
+  /// Create a copy of AboutModels
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AboutModelsImplCopyWith<_$AboutModelsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -363,8 +391,12 @@ mixin _$AboutDataModel {
   String get title => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
 
+  /// Serializes this AboutDataModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AboutDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AboutDataModelCopyWith<AboutDataModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -393,6 +425,8 @@ class _$AboutDataModelCopyWithImpl<$Res, $Val extends AboutDataModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AboutDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -451,6 +485,8 @@ class __$$AboutDataModelImplCopyWithImpl<$Res>
       _$AboutDataModelImpl _value, $Res Function(_$AboutDataModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AboutDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -520,7 +556,7 @@ class _$AboutDataModelImpl implements _AboutDataModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AboutDataModelImpl &&
@@ -532,12 +568,14 @@ class _$AboutDataModelImpl implements _AboutDataModel {
             (identical(other.content, content) || other.content == content));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, aboutId, languagesCode, title, content);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AboutDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AboutDataModelImplCopyWith<_$AboutDataModelImpl> get copyWith =>
@@ -575,8 +613,11 @@ abstract class _AboutDataModel implements AboutDataModel {
   String get title;
   @override
   String get content;
+
+  /// Create a copy of AboutDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AboutDataModelImplCopyWith<_$AboutDataModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

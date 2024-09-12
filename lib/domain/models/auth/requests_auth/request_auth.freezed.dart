@@ -12,7 +12,7 @@ part of 'request_auth.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 RequestAuth _$RequestAuthFromJson(Map<String, dynamic> json) {
   return _RequestAuth.fromJson(json);
@@ -24,8 +24,12 @@ mixin _$RequestAuth {
   String get mode => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
+  /// Serializes this RequestAuth to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RequestAuth
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RequestAuthCopyWith<RequestAuth> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$RequestAuthCopyWithImpl<$Res, $Val extends RequestAuth>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RequestAuth
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$RequestAuthImplCopyWithImpl<$Res>
       _$RequestAuthImpl _value, $Res Function(_$RequestAuthImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RequestAuth
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,7 +146,7 @@ class _$RequestAuthImpl implements _RequestAuth {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RequestAuthImpl &&
@@ -148,11 +156,13 @@ class _$RequestAuthImpl implements _RequestAuth {
                 other.password == password));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, email, mode, password);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequestAuth
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestAuthImplCopyWith<_$RequestAuthImpl> get copyWith =>
@@ -181,8 +191,11 @@ abstract class _RequestAuth implements RequestAuth {
   String get mode;
   @override
   String get password;
+
+  /// Create a copy of RequestAuth
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RequestAuthImplCopyWith<_$RequestAuthImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -196,8 +209,12 @@ mixin _$RefreshToken {
   String get refresh_token => throw _privateConstructorUsedError;
   String get mode => throw _privateConstructorUsedError;
 
+  /// Serializes this RefreshToken to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RefreshToken
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RefreshTokenCopyWith<RefreshToken> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -221,6 +238,8 @@ class _$RefreshTokenCopyWithImpl<$Res, $Val extends RefreshToken>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RefreshToken
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -259,6 +278,8 @@ class __$$RefreshTokenImplCopyWithImpl<$Res>
       _$RefreshTokenImpl _value, $Res Function(_$RefreshTokenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RefreshToken
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -297,7 +318,7 @@ class _$RefreshTokenImpl implements _RefreshToken {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RefreshTokenImpl &&
@@ -306,11 +327,13 @@ class _$RefreshTokenImpl implements _RefreshToken {
             (identical(other.mode, mode) || other.mode == mode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, refresh_token, mode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RefreshToken
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RefreshTokenImplCopyWith<_$RefreshTokenImpl> get copyWith =>
@@ -336,8 +359,11 @@ abstract class _RefreshToken implements RefreshToken {
   String get refresh_token;
   @override
   String get mode;
+
+  /// Create a copy of RefreshToken
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RefreshTokenImplCopyWith<_$RefreshTokenImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

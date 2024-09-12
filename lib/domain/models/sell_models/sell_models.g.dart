@@ -9,9 +9,9 @@ part of 'sell_models.dart';
 _$SellTransactionImpl _$$SellTransactionImplFromJson(
         Map<String, dynamic> json) =>
     _$SellTransactionImpl(
-      areaCode: json['areaCode'] as int? ?? 0,
+      areaCode: (json['areaCode'] as num?)?.toInt() ?? 0,
       issueDate: json['issueDate'] as String? ?? '',
-      municipalityId: json['municipalityId'] as int? ?? 0,
+      municipalityId: (json['municipalityId'] as num?)?.toInt() ?? 0,
       priceMT: (json['priceMT'] as num?)?.toDouble() ?? 0,
       priceSQ: (json['priceSQ'] as num?)?.toDouble() ?? 0,
       realEstateMT: (json['realEstateMT'] as num?)?.toDouble() ?? 0,
@@ -20,7 +20,7 @@ _$SellTransactionImpl _$$SellTransactionImplFromJson(
       roi: (json['roi'] as num?)?.toDouble() ?? 0,
       soldTo: json['soldTo'] as String? ?? '',
       unitNo: (json['unitNo'] as num?)?.toDouble() ?? 0,
-      unitStatus: json['unitStatus'] as int? ?? 0,
+      unitStatus: (json['unitStatus'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$SellTransactionImplToJson(
@@ -42,7 +42,7 @@ Map<String, dynamic> _$$SellTransactionImplToJson(
 
 _$SellResponseImpl _$$SellResponseImplFromJson(Map<String, dynamic> json) =>
     _$SellResponseImpl(
-      count: json['count'] as int? ?? 0,
+      count: (json['count'] as num?)?.toInt() ?? 0,
       transactionList: (json['transactionList'] as List<dynamic>?)
               ?.map((e) => SellTransaction.fromJson(e as Map<String, dynamic>))
               .toList() ??

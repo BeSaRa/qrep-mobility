@@ -12,7 +12,7 @@ part of 'favourite_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 FavouriteResponse _$FavouriteResponseFromJson(Map<String, dynamic> json) {
   return _FavouriteResponse.fromJson(json);
@@ -29,8 +29,12 @@ mixin _$FavouriteResponse {
   Indicators get pageName => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
 
+  /// Serializes this FavouriteResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FavouriteResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FavouriteResponseCopyWith<FavouriteResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -62,6 +66,8 @@ class _$FavouriteResponseCopyWithImpl<$Res, $Val extends FavouriteResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FavouriteResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,6 +144,8 @@ class __$$FavouriteResponseImplCopyWithImpl<$Res>
       $Res Function(_$FavouriteResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FavouriteResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -230,7 +238,7 @@ class _$FavouriteResponseImpl implements _FavouriteResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FavouriteResponseImpl &&
@@ -249,12 +257,14 @@ class _$FavouriteResponseImpl implements _FavouriteResponse {
             (identical(other.userId, userId) || other.userId == userId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, creationTime, criteria, id,
       lastModifiedTime, name, pageDescription, pageName, userId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FavouriteResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FavouriteResponseImplCopyWith<_$FavouriteResponseImpl> get copyWith =>
@@ -299,8 +309,11 @@ abstract class _FavouriteResponse implements FavouriteResponse {
   Indicators get pageName;
   @override
   String? get userId;
+
+  /// Create a copy of FavouriteResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FavouriteResponseImplCopyWith<_$FavouriteResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -344,8 +357,12 @@ mixin _$CriteriaObject {
   int? get brokerCategoryId => throw _privateConstructorUsedError;
   int? get nationalityCode => throw _privateConstructorUsedError;
 
+  /// Serializes this CriteriaObject to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CriteriaObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CriteriaObjectCopyWith<CriteriaObject> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -401,6 +418,8 @@ class _$CriteriaObjectCopyWithImpl<$Res, $Val extends CriteriaObject>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CriteriaObject
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -621,6 +640,8 @@ class __$$CriteriaObjectImplCopyWithImpl<$Res>
       _$CriteriaObjectImpl _value, $Res Function(_$CriteriaObjectImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CriteriaObject
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -950,7 +971,7 @@ class _$CriteriaObjectImpl implements _CriteriaObject {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CriteriaObjectImpl &&
@@ -1020,7 +1041,7 @@ class _$CriteriaObjectImpl implements _CriteriaObject {
                 other.nationalityCode == nationalityCode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1058,7 +1079,9 @@ class _$CriteriaObjectImpl implements _CriteriaObject {
         nationalityCode
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CriteriaObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CriteriaObjectImplCopyWith<_$CriteriaObjectImpl> get copyWith =>
@@ -1175,8 +1198,11 @@ abstract class _CriteriaObject implements CriteriaObject {
   int? get brokerCategoryId;
   @override
   int? get nationalityCode;
+
+  /// Create a copy of CriteriaObject
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CriteriaObjectImplCopyWith<_$CriteriaObjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

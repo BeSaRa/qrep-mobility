@@ -8,7 +8,7 @@ part of 'rent_models.dart';
 
 _$RentDefaultImpl _$$RentDefaultImplFromJson(Map<String, dynamic> json) =>
     _$RentDefaultImpl(
-      issueYear: json['issueYear'] as int? ?? 0,
+      issueYear: (json['issueYear'] as num?)?.toInt() ?? 0,
       kpi10PreviousYear: (json['kpi10PreviousYear'] as num?)?.toDouble() ?? 0,
       kpi10Val: (json['kpi10Val'] as num?)?.toDouble() ?? 0,
       kpi13PreviousYear: (json['kpi13PreviousYear'] as num?)?.toDouble() ?? 0,
@@ -237,16 +237,16 @@ Map<String, dynamic> _$$RentLookupResponseImplToJson(
 _$RentLookupModelImpl _$$RentLookupModelImplFromJson(
         Map<String, dynamic> json) =>
     _$RentLookupModelImpl(
-      value: json['value'] as int? ?? 0,
-      yoy: json['yoy'] as int? ?? 0,
+      value: (json['value'] as num?)?.toInt() ?? 0,
+      yoy: (json['yoy'] as num?)?.toInt() ?? 0,
       selected: json['selected'] as bool? ?? false,
       url: json['url'] as String? ?? '',
       hasPrice: json['hasPrice'] as bool? ?? false,
-      id: json['id'] as int? ?? 0,
-      lookupKey: json['lookupKey'] as int? ?? 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
+      lookupKey: (json['lookupKey'] as num?)?.toInt() ?? 0,
       arName: json['arName'] as String? ?? '',
       enName: json['enName'] as String? ?? '',
-      municipalityId: json['municipalityId'] as int? ?? 0,
+      municipalityId: (json['municipalityId'] as num?)?.toInt() ?? 0,
       isActive: json['isActive'] as bool? ?? false,
     );
 
@@ -271,7 +271,9 @@ _$PeriodTimeDetailsImpl _$$PeriodTimeDetailsImplFromJson(
     _$PeriodTimeDetailsImpl(
       name: json['name'] as String? ?? '',
       enName: json['enName'] as String? ?? '',
-      value: (json['value'] as List<dynamic>?)?.map((e) => e as int).toList() ??
+      value: (json['value'] as List<dynamic>?)
+              ?.map((e) => (e as num).toInt())
+              .toList() ??
           const [],
     );
 
@@ -285,10 +287,10 @@ Map<String, dynamic> _$$PeriodTimeDetailsImplToJson(
 
 _$MaxParamsModelImpl _$$MaxParamsModelImplFromJson(Map<String, dynamic> json) =>
     _$MaxParamsModelImpl(
-      id: json['id'] as int? ?? 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       fieldName: json['fieldName'] as String? ?? '',
-      minVal: json['minVal'] as int? ?? 0,
-      maxVal: json['maxVal'] as int? ?? 0,
+      minVal: (json['minVal'] as num?)?.toInt() ?? 0,
+      maxVal: (json['maxVal'] as num?)?.toInt() ?? 0,
       model: json['model'] as String? ?? '',
       isActive: json['isActive'] as bool? ?? false,
     );
@@ -369,15 +371,15 @@ Map<String, dynamic> _$$BaseRentResponsePerAreaUnitTypeImplToJson(
 _$MeanAreaResponseImpl _$$MeanAreaResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$MeanAreaResponseImpl(
-      issueYear: json['issueYear'] as int? ?? 0,
-      kpi2PreviousYear: json['kpi2PreviousYear'] as int? ?? 0,
-      kpi2Val: json['kpi2Val'] as int? ?? 0,
-      kpi2YoYDifference: json['kpi2YoYDifference'] as int? ?? 0,
-      kpi2YoYVal: json['kpi2YoYVal'] as int? ?? 0,
-      kpiPreviousYear: json['kpiPreviousYear'] as int? ?? 0,
-      kpiVal: json['kpiVal'] as int? ?? 0,
-      kpiYoYDifference: json['kpiYoYDifference'] as int? ?? 0,
-      kpiYoYVal: json['kpiYoYVal'] as int? ?? 0,
+      issueYear: (json['issueYear'] as num?)?.toInt() ?? 0,
+      kpi2PreviousYear: (json['kpi2PreviousYear'] as num?)?.toInt() ?? 0,
+      kpi2Val: (json['kpi2Val'] as num?)?.toInt() ?? 0,
+      kpi2YoYDifference: (json['kpi2YoYDifference'] as num?)?.toInt() ?? 0,
+      kpi2YoYVal: (json['kpi2YoYVal'] as num?)?.toInt() ?? 0,
+      kpiPreviousYear: (json['kpiPreviousYear'] as num?)?.toInt() ?? 0,
+      kpiVal: (json['kpiVal'] as num?)?.toInt() ?? 0,
+      kpiYoYDifference: (json['kpiYoYDifference'] as num?)?.toInt() ?? 0,
+      kpiYoYVal: (json['kpiYoYVal'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$MeanAreaResponseImplToJson(
@@ -397,7 +399,7 @@ Map<String, dynamic> _$$MeanAreaResponseImplToJson(
 _$RentListSummaryImpl _$$RentListSummaryImplFromJson(
         Map<String, dynamic> json) =>
     _$RentListSummaryImpl(
-      count: json['count'] as int? ?? 0,
+      count: (json['count'] as num?)?.toInt() ?? 0,
       transactionList: (json['transactionList'] as List<dynamic>?)
               ?.map(
                   (e) => RentSummaryObject.fromJson(e as Map<String, dynamic>))
@@ -416,17 +418,17 @@ _$RentSummaryObjectImpl _$$RentSummaryObjectImplFromJson(
         Map<String, dynamic> json) =>
     _$RentSummaryObjectImpl(
       area: (json['area'] as num?)?.toDouble() ?? 0,
-      bedRoomsCount: json['bedRoomsCount'] as int? ?? 0,
+      bedRoomsCount: (json['bedRoomsCount'] as num?)?.toInt() ?? 0,
       endDate: json['endDate'] as String? ?? '',
-      issueYear: json['issueYear'] as int? ?? 0,
+      issueYear: (json['issueYear'] as num?)?.toInt() ?? 0,
       issueDate: json['issueDate'] as String? ?? '',
-      municipalityid: json['municipalityid'] as int? ?? 0,
-      propertyTypeId: json['propertyTypeId'] as int? ?? 0,
+      municipalityid: (json['municipalityid'] as num?)?.toInt() ?? 0,
+      propertyTypeId: (json['propertyTypeId'] as num?)?.toInt() ?? 0,
       rentPaymentMeterMT: (json['rentPaymentMeterMT'] as num?)?.toDouble() ?? 0,
       rentPaymentMeterSQT:
           (json['rentPaymentMeterSQT'] as num?)?.toDouble() ?? 0,
       rentPaymentMonthly: (json['rentPaymentMonthly'] as num?)?.toDouble() ?? 0,
-      serviceTypeId: json['serviceTypeId'] as int? ?? 0,
+      serviceTypeId: (json['serviceTypeId'] as num?)?.toInt() ?? 0,
       startDate: json['startDate'] as String? ?? '',
       unitBroker: json['unitBroker'] as String? ?? '',
       unitNo: json['unitNo'] as String? ?? '',

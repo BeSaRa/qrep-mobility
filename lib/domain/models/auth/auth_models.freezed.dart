@@ -12,7 +12,7 @@ part of 'auth_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) {
   return _AuthResponse.fromJson(json);
@@ -22,8 +22,12 @@ AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) {
 mixin _$AuthResponse {
   AuthModel get data => throw _privateConstructorUsedError;
 
+  /// Serializes this AuthResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AuthResponseCopyWith<AuthResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AuthResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -62,6 +68,8 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
     ) as $Val);
   }
 
+  /// Create a copy of AuthResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AuthModelCopyWith<$Res> get data {
@@ -93,6 +101,8 @@ class __$$AuthResponseImplCopyWithImpl<$Res>
       _$AuthResponseImpl _value, $Res Function(_$AuthResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -125,18 +135,20 @@ class _$AuthResponseImpl implements _AuthResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthResponseImpl &&
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthResponseImplCopyWith<_$AuthResponseImpl> get copyWith =>
@@ -158,8 +170,11 @@ abstract class _AuthResponse implements AuthResponse {
 
   @override
   AuthModel get data;
+
+  /// Create a copy of AuthResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthResponseImplCopyWith<_$AuthResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -176,8 +191,12 @@ mixin _$AuthModel {
   String get refreshToken => throw _privateConstructorUsedError;
   int get expires => throw _privateConstructorUsedError;
 
+  /// Serializes this AuthModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AuthModelCopyWith<AuthModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -203,6 +222,8 @@ class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -249,6 +270,8 @@ class __$$AuthModelImplCopyWithImpl<$Res>
       _$AuthModelImpl _value, $Res Function(_$AuthModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -300,7 +323,7 @@ class _$AuthModelImpl implements _AuthModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthModelImpl &&
@@ -310,11 +333,13 @@ class _$AuthModelImpl implements _AuthModel {
             (identical(other.expires, expires) || other.expires == expires));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, token, refreshToken, expires);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthModelImplCopyWith<_$AuthModelImpl> get copyWith =>
@@ -345,8 +370,11 @@ abstract class _AuthModel implements AuthModel {
   String get refreshToken;
   @override
   int get expires;
+
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthModelImplCopyWith<_$AuthModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -360,8 +388,12 @@ mixin _$ResetPasswordModel {
   @JsonKey(name: "reset_url")
   String get token => throw _privateConstructorUsedError;
 
+  /// Serializes this ResetPasswordModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ResetPasswordModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ResetPasswordModelCopyWith<ResetPasswordModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -385,6 +417,8 @@ class _$ResetPasswordModelCopyWithImpl<$Res, $Val extends ResetPasswordModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ResetPasswordModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -418,6 +452,8 @@ class __$$ResetPasswordModelImplCopyWithImpl<$Res>
       $Res Function(_$ResetPasswordModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ResetPasswordModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -450,18 +486,20 @@ class _$ResetPasswordModelImpl implements _ResetPasswordModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ResetPasswordModelImpl &&
             (identical(other.token, token) || other.token == token));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, token);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ResetPasswordModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResetPasswordModelImplCopyWith<_$ResetPasswordModelImpl> get copyWith =>
@@ -487,8 +525,11 @@ abstract class _ResetPasswordModel implements ResetPasswordModel {
   @override
   @JsonKey(name: "reset_url")
   String get token;
+
+  /// Create a copy of ResetPasswordModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResetPasswordModelImplCopyWith<_$ResetPasswordModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

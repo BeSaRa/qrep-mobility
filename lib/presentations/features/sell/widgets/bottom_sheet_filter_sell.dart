@@ -298,6 +298,8 @@ class _BottomSheetFilterSellWidgetState
           context.read<SellBloc>().requestSell.areaCode.toInt(),
         ) ??
         const LookupModel();
+    valuesFiltersCubit
+        .changeUnit(context.read<SellBloc>().requestSell.unit ?? 2);
     //Property and Purpose
     List<LookupModel> listPropertyWithAll = [];
     listPropertyWithAll
@@ -454,19 +456,19 @@ class _BottomSheetFilterSellWidgetState
                       valuesFiltersCubit.changeRangeRealEstateValueReset();
                       // valuesFiltersCubit.bedRoom = const RentLookupModel(
                       //     arName: 'الكل', id: -1, enName: 'ALL');
-                      valuesFiltersCubit.bedRoom = getObjectById(
-                            context.read<LookupBloc>().lookUpSell?.bedRooms ??
-                                [],
-                            -1,
-                          ) ??
-                          const LookupModel();
+                      // valuesFiltersCubit.bedRoom = getObjectById(
+                      //       context.read<LookupBloc>().lookUpSell?.bedRooms ??
+                      //           [],
+                      //       -1,
+                      //     ) ??
+                      //     const LookupModel();
                       valuesFiltersCubit.municapility = getObjectByLookupKey(
                             context
                                     .read<LookupBloc>()
                                     .lookUpSell
                                     ?.municipalityList ??
                                 [],
-                            4,
+                            -1,
                           ) ??
                           const LookupModel();
                       valuesFiltersCubit.zone = getObjectByLookupKey(
@@ -1329,16 +1331,15 @@ class _BottomSheetFilterSellWidgetState
                                         .municapility.lookupKey,
                                     // zoneId: valuesFiltersCubit.zone.lookupKey,
                                     areaCode: valuesFiltersCubit.zone.lookupKey,
-                                    // unit: valuesFiltersCubit.unit,
+                                    unit: valuesFiltersCubit.unit,
                                     issueDateYear: valuesFiltersCubit.year.id,
                                     issueDateQuarterList:
                                         getissueDateQuarterList(
                                             valuesFiltersCubit.periodTime.id),
-                                    issueDateStartMonth: valuesFiltersCubit
-                                                .periodTime.id ==
-                                            4
-                                        ? valuesFiltersCubit.month.value[0] - 1
-                                        : 1,
+                                    issueDateStartMonth:
+                                        valuesFiltersCubit.periodTime.id == 4
+                                            ? valuesFiltersCubit.month.value[0]
+                                            : 1,
                                     issueDateEndMonth: valuesFiltersCubit
                                                 .periodTime.id ==
                                             4
@@ -1413,89 +1414,91 @@ class _BottomSheetFilterSellWidgetState
                 ]),
               ),
               SizedBox(height: AppSizeW.s12),
-              if (context.read<LoggedInUserCubit>().state)
-                Center(
-                    child: CustomElevatedButton(
-                  isPrimary: true,
-                  title: AppStrings().addFavourite,
-                  onPress: () async {
-                    if (_formkey.currentState!.validate()) {
-                      CriteriaObject criteria = CriteriaObject(
-                        areaFrom: getAreaFrom(),
-                        areaTo: getAreaTo(),
-                        realEstateValueFrom:
-                            sellValueFromController.text.isEmpty
-                                ? null
-                                : double.parse(sellValueFromController.text),
-                        realEstateValueTo: sellValueToController.text.isEmpty
-                            ? null
-                            : double.parse(sellValueToController.text),
-                        bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
-                            ? 0
-                            : valuesFiltersCubit.bedRoom.id,
-                        municipalityId:
-                            valuesFiltersCubit.municapility.lookupKey,
-                        zoneId: valuesFiltersCubit.zone.lookupKey,
-                        areaCode: valuesFiltersCubit.zone.lookupKey,
-                        unit: valuesFiltersCubit.unit,
-                        issueDateYear: valuesFiltersCubit.year.id,
-                        issueDateStartMonth:
-                            valuesFiltersCubit.periodTime.id == 4
-                                ? valuesFiltersCubit.month.value[0] - 1
-                                : 1,
-                        issueDateEndMonth: valuesFiltersCubit.periodTime.id == 4
-                            ? valuesFiltersCubit.month.value[0]
-                            : valuesFiltersCubit.periodTime.id == 1
-                                ? valuesFiltersCubit.year.id ==
-                                        DateTime.now().year
-                                    ? DateTime.now().month
-                                    : 12
-                                : 12,
-                        issueDateQuarterList:
-                            valuesFiltersCubit.periodTime.id == 3
-                                ? getissueDateQuarterList(
-                                    valuesFiltersCubit.periodTime.id)
-                                : null,
-                        periodId: valuesFiltersCubit.periodTime.id,
-                        issueDateFrom: valuesFiltersCubit.periodTime.id == 5
-                            ? valuesFiltersCubit.pickerDateRange?.startDate
-                                ?.toUtc()
-                                .toIso8601String()
-                            : null,
-                        issueDateTo: valuesFiltersCubit.periodTime.id == 5
-                            ? valuesFiltersCubit.pickerDateRange?.endDate
-                                ?.toUtc()
-                                .toIso8601String()
-                            : null,
-                        purposeList: valuesFiltersCubit.rentPurposeList
-                            .map((e) => e.lookupKey)
-                            .toList(),
-                        propertyTypeList: valuesFiltersCubit.propertyTypeList
-                            .map((e) => e.lookupKey)
-                            .toList(),
-                        halfYearDuration: valuesFiltersCubit.periodTime.id == 2
-                            ? listEquals(
-                                    getissueDateQuarterList(
-                                        valuesFiltersCubit.periodTime.id),
-                                    [1, 2])
-                                ? 1
-                                : 2
-                            : null,
-                      );
-                      var res = await showDialog(
-                          context: context,
-                          builder: (BuildContext ctxt) => Dialog(
-                                  child: CreateFavWidget(
-                                criteria: criteria,
-                                page: Indicators.sell,
-                              )));
-                      if (res != null && res == true) {
-                        successToast(AppStrings().addFavouriteSuccess, context);
-                      }
-                    }
-                  },
-                )),
-              SizedBox(height: AppSizeH.s12),
+              // if (context.read<LoggedInUserCubit>().state)
+              //   Center(
+              //       child: CustomElevatedButton(
+              //     isPrimary: true,
+              //     title: AppStrings().addFavourite,
+              //     onPress: () async {
+              //       if (_formkey.currentState!.validate()) {
+              //         CriteriaObject criteria = CriteriaObject(
+              //           areaFrom:
+              //               int.parse(areaValueFromController.text).toDouble(),
+              //           areaTo:
+              //               int.parse(areaValueToController.text).toDouble(),
+              //           realEstateValueFrom:
+              //               sellValueFromController.text.isEmpty
+              //                   ? null
+              //                   : double.parse(sellValueFromController.text),
+              //           realEstateValueTo: sellValueToController.text.isEmpty
+              //               ? null
+              //               : double.parse(sellValueToController.text),
+              //           // bedRoomsCount: valuesFiltersCubit.bedRoom.id == -1
+              //           //     ? 0
+              //           //     : valuesFiltersCubit.bedRoom.id,
+              //           municipalityId:
+              //               valuesFiltersCubit.municapility.lookupKey,
+              //           zoneId: valuesFiltersCubit.zone.lookupKey,
+              //           areaCode: valuesFiltersCubit.zone.lookupKey,
+              //           unit: valuesFiltersCubit.unit,
+              //           issueDateYear: valuesFiltersCubit.year.id,
+              //           issueDateStartMonth:
+              //               valuesFiltersCubit.periodTime.id == 4
+              //                   ? valuesFiltersCubit.month.value[0] - 1
+              //                   : 1,
+              //           issueDateEndMonth: valuesFiltersCubit.periodTime.id == 4
+              //               ? valuesFiltersCubit.month.value[0]
+              //               : valuesFiltersCubit.periodTime.id == 1
+              //                   ? valuesFiltersCubit.year.id ==
+              //                           DateTime.now().year
+              //                       ? DateTime.now().month
+              //                       : 12
+              //                   : 12,
+              //           issueDateQuarterList:
+              //               valuesFiltersCubit.periodTime.id == 3
+              //                   ? getissueDateQuarterList(
+              //                       valuesFiltersCubit.periodTime.id)
+              //                   : null,
+              //           periodId: valuesFiltersCubit.periodTime.id,
+              //           issueDateFrom: valuesFiltersCubit.periodTime.id == 5
+              //               ? valuesFiltersCubit.pickerDateRange?.startDate
+              //                   ?.toUtc()
+              //                   .toIso8601String()
+              //               : null,
+              //           issueDateTo: valuesFiltersCubit.periodTime.id == 5
+              //               ? valuesFiltersCubit.pickerDateRange?.endDate
+              //                   ?.toUtc()
+              //                   .toIso8601String()
+              //               : null,
+              //           purposeList: valuesFiltersCubit.rentPurposeList
+              //               .map((e) => e.lookupKey)
+              //               .toList(),
+              //           propertyTypeList: valuesFiltersCubit.propertyTypeList
+              //               .map((e) => e.lookupKey)
+              //               .toList(),
+              //           halfYearDuration: valuesFiltersCubit.periodTime.id == 2
+              //               ? listEquals(
+              //                       getissueDateQuarterList(
+              //                           valuesFiltersCubit.periodTime.id),
+              //                       [1, 2])
+              //                   ? 1
+              //                   : 2
+              //               : null,
+              //         );
+              //         var res = await showDialog(
+              //             context: context,
+              //             builder: (BuildContext ctxt) => Dialog(
+              //                     child: CreateFavWidget(
+              //                   criteria: criteria,
+              //                   page: Indicators.sell,
+              //                 )));
+              //         if (res != null && res == true) {
+              //           successToast(AppStrings().addFavouriteSuccess, context);
+              //         }
+              //       }
+              //     },
+              //   )),
+              // SizedBox(height: AppSizeH.s12),
             ],
           ),
         ),

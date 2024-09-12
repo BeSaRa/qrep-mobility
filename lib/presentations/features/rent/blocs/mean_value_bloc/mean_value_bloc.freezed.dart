@@ -12,7 +12,7 @@ part of 'mean_value_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MeanValueEvent {
@@ -50,7 +50,9 @@ mixin _$MeanValueEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MeanValueEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MeanValueEventCopyWith<MeanValueEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -76,6 +78,8 @@ class _$MeanValueEventCopyWithImpl<$Res, $Val extends MeanValueEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MeanValueEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,6 +93,8 @@ class _$MeanValueEventCopyWithImpl<$Res, $Val extends MeanValueEvent>
     ) as $Val);
   }
 
+  /// Create a copy of MeanValueEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RentRequestCopyWith<$Res> get request {
@@ -120,6 +126,8 @@ class __$$GetMeanValueEventImplCopyWithImpl<$Res>
       $Res Function(_$GetMeanValueEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MeanValueEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,7 +156,7 @@ class _$GetMeanValueEventImpl implements _GetMeanValueEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetMeanValueEventImpl &&
@@ -158,7 +166,9 @@ class _$GetMeanValueEventImpl implements _GetMeanValueEvent {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MeanValueEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetMeanValueEventImplCopyWith<_$GetMeanValueEventImpl> get copyWith =>
@@ -228,8 +238,11 @@ abstract class _GetMeanValueEvent implements MeanValueEvent {
 
   @override
   RentRequest get request;
+
+  /// Create a copy of MeanValueEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetMeanValueEventImplCopyWith<_$GetMeanValueEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -324,7 +337,9 @@ mixin _$MeanValueState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MeanValueState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MeanValueStateCopyWith<MeanValueState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -360,6 +375,8 @@ class _$MeanValueStateCopyWithImpl<$Res, $Val extends MeanValueState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MeanValueState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -460,6 +477,8 @@ class __$$InitialImplCopyWithImpl<$Res>
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MeanValueState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -612,7 +631,7 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
@@ -665,7 +684,9 @@ class _$InitialImpl implements _Initial {
       const DeepCollectionEquality().hash(_meanValueResponseProperty),
       const DeepCollectionEquality().hash(_meanValueResponsePurpose));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MeanValueState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
@@ -842,8 +863,11 @@ abstract class _Initial implements MeanValueState {
   List<BaseRentResponse> get meanValueResponseProperty;
   @override
   List<BaseRentResponse> get meanValueResponsePurpose;
+
+  /// Create a copy of MeanValueState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'certificate_contract_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CertificateContractEvent {
@@ -82,7 +82,9 @@ mixin _$CertificateContractEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CertificateContractEventCopyWith<CertificateContractEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -109,6 +111,8 @@ class _$CertificateContractEventCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -122,6 +126,8 @@ class _$CertificateContractEventCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RentRequestCopyWith<$Res> get request {
@@ -155,6 +161,8 @@ class __$$CertificateCountEventImplCopyWithImpl<$Res>
       $Res Function(_$CertificateCountEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -183,7 +191,7 @@ class _$CertificateCountEventImpl implements _CertificateCountEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CertificateCountEventImpl &&
@@ -193,7 +201,9 @@ class _$CertificateCountEventImpl implements _CertificateCountEvent {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CertificateCountEventImplCopyWith<_$CertificateCountEventImpl>
@@ -295,8 +305,11 @@ abstract class _CertificateCountEvent implements CertificateContractEvent {
 
   @override
   RentRequest get request;
+
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CertificateCountEventImplCopyWith<_$CertificateCountEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -324,6 +337,8 @@ class __$$ContractCountEventImplCopyWithImpl<$Res>
       $Res Function(_$ContractCountEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -352,7 +367,7 @@ class _$ContractCountEventImpl implements _ContractCountEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ContractCountEventImpl &&
@@ -362,7 +377,9 @@ class _$ContractCountEventImpl implements _ContractCountEvent {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractCountEventImplCopyWith<_$ContractCountEventImpl> get copyWith =>
@@ -464,8 +481,11 @@ abstract class _ContractCountEvent implements CertificateContractEvent {
 
   @override
   RentRequest get request;
+
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractCountEventImplCopyWith<_$ContractCountEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -493,6 +513,8 @@ class __$$MeanRentAmountEventImplCopyWithImpl<$Res>
       $Res Function(_$MeanRentAmountEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -521,7 +543,7 @@ class _$MeanRentAmountEventImpl implements _MeanRentAmountEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MeanRentAmountEventImpl &&
@@ -531,7 +553,9 @@ class _$MeanRentAmountEventImpl implements _MeanRentAmountEvent {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MeanRentAmountEventImplCopyWith<_$MeanRentAmountEventImpl> get copyWith =>
@@ -633,8 +657,11 @@ abstract class _MeanRentAmountEvent implements CertificateContractEvent {
 
   @override
   RentRequest get request;
+
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MeanRentAmountEventImplCopyWith<_$MeanRentAmountEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -661,6 +688,8 @@ class __$$RentAmountEventImplCopyWithImpl<$Res>
       _$RentAmountEventImpl _value, $Res Function(_$RentAmountEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -689,7 +718,7 @@ class _$RentAmountEventImpl implements _RentAmountEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RentAmountEventImpl &&
@@ -699,7 +728,9 @@ class _$RentAmountEventImpl implements _RentAmountEvent {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RentAmountEventImplCopyWith<_$RentAmountEventImpl> get copyWith =>
@@ -801,8 +832,11 @@ abstract class _RentAmountEvent implements CertificateContractEvent {
 
   @override
   RentRequest get request;
+
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RentAmountEventImplCopyWith<_$RentAmountEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -832,6 +866,8 @@ class __$$RentValuePerMeterEventImplCopyWithImpl<$Res>
       $Res Function(_$RentValuePerMeterEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -860,7 +896,7 @@ class _$RentValuePerMeterEventImpl implements _RentValuePerMeterEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RentValuePerMeterEventImpl &&
@@ -870,7 +906,9 @@ class _$RentValuePerMeterEventImpl implements _RentValuePerMeterEvent {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RentValuePerMeterEventImplCopyWith<_$RentValuePerMeterEventImpl>
@@ -972,8 +1010,11 @@ abstract class _RentValuePerMeterEvent implements CertificateContractEvent {
 
   @override
   RentRequest get request;
+
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RentValuePerMeterEventImplCopyWith<_$RentValuePerMeterEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1000,6 +1041,8 @@ class __$$RentedAreasEventImplCopyWithImpl<$Res>
       $Res Function(_$RentedAreasEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1028,7 +1071,7 @@ class _$RentedAreasEventImpl implements _RentedAreasEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RentedAreasEventImpl &&
@@ -1038,7 +1081,9 @@ class _$RentedAreasEventImpl implements _RentedAreasEvent {
   @override
   int get hashCode => Object.hash(runtimeType, request);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RentedAreasEventImplCopyWith<_$RentedAreasEventImpl> get copyWith =>
@@ -1140,8 +1185,11 @@ abstract class _RentedAreasEvent implements CertificateContractEvent {
 
   @override
   RentRequest get request;
+
+  /// Create a copy of CertificateContractEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RentedAreasEventImplCopyWith<_$RentedAreasEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1191,7 +1239,9 @@ mixin _$CertificateContractState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CertificateContractState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CertificateContractStateCopyWith<CertificateContractState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1220,6 +1270,8 @@ class _$CertificateContractStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CertificateContractState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1272,6 +1324,8 @@ class __$$InitialImplCopyWithImpl<$Res>
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CertificateContractState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1335,7 +1389,7 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
@@ -1353,7 +1407,9 @@ class _$InitialImpl implements _Initial {
   int get hashCode => Object.hash(runtimeType, isLoading, isHasErrorContract,
       errorMessage, const DeepCollectionEquality().hash(_listResponse));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CertificateContractState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
@@ -1438,8 +1494,11 @@ abstract class _Initial implements CertificateContractState {
   String get errorMessage;
   @override
   List<BaseRentResponse> get listResponse;
+
+  /// Create a copy of CertificateContractState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

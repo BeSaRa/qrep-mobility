@@ -243,32 +243,32 @@ class _BottomSheetFilterBrokerWidgetState
           ]),
         ),
         SizedBox(height: AppSizeW.s12),
-        if (context.read<LoggedInUserCubit>().state)
-          Center(
-            child: CustomElevatedButton(
-              isPrimary: true,
-              title: AppStrings().addFavourite,
-              onPress: () async {
-                CriteriaObject criteria = CriteriaObject(
-                    municipalityId: valuesFiltersCubit.municapility.lookupKey,
-                    brokerCategoryId:
-                        valuesFiltersCubit.brokerCategory.lookupKey,
-                    brokerName:
-                        widget.brokerName.isEmpty ? null : widget.brokerName);
-                var res = await showDialog(
-                    context: context,
-                    builder: (BuildContext ctxt) => Dialog(
-                            child: CreateFavWidget(
-                          criteria: criteria,
-                          page: Indicators.broker,
-                        )));
-                if (res != null && res == true) {
-                  successToast(AppStrings().addFavouriteSuccess, context);
-                }
-              },
-            ),
-          ),
-        SizedBox(height: AppSizeW.s23),
+        // if (context.read<LoggedInUserCubit>().state)
+        //   Center(
+        //     child: CustomElevatedButton(
+        //       isPrimary: true,
+        //       title: AppStrings().addFavourite,
+        //       onPress: () async {
+        //         CriteriaObject criteria = CriteriaObject(
+        //             municipalityId: valuesFiltersCubit.municapility.lookupKey,
+        //             brokerCategoryId:
+        //                 valuesFiltersCubit.brokerCategory.lookupKey,
+        //             brokerName:
+        //                 widget.brokerName.isEmpty ? null : widget.brokerName);
+        //         var res = await showDialog(
+        //             context: context,
+        //             builder: (BuildContext ctxt) => Dialog(
+        //                     child: CreateFavWidget(
+        //                   criteria: criteria,
+        //                   page: Indicators.broker,
+        //                 )));
+        //         if (res != null && res == true) {
+        //           successToast(AppStrings().addFavouriteSuccess, context);
+        //         }
+        //       },
+        //     ),
+        //   ),
+        // SizedBox(height: AppSizeW.s23),
       ],
     );
   }

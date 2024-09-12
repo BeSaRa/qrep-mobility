@@ -13,7 +13,7 @@ _$FailureModelImpl _$$FailureModelImplFromJson(Map<String, dynamic> json) =>
               .toList() ??
           const [],
       message: json['message'] as String? ?? '',
-      statusCode: json['statusCode'] as int? ?? 0,
+      statusCode: (json['statusCode'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$FailureModelImplToJson(_$FailureModelImpl instance) =>

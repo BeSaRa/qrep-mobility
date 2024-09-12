@@ -35,14 +35,20 @@ class SellBloc extends Bloc<SellEvent, SellState> {
   }
 
   setRequestCriteria(CriteriaObject criteriaObject) {
+    print(
+        "this is the criteria object i got ${criteriaObject.unit},${criteriaObject.areaFrom}");
     requestSell = RequestSellValues(
         areaCode: criteriaObject.areaCode ?? -1,
-        areaFrom: criteriaObject.areaFrom,
-        areaTo: criteriaObject.areaTo,
-        issueDateEndMonth: 12,
+        areaFrom:
+            getAreaFrom(criteriaObject.unit ?? 2, criteriaObject.areaFrom),
+        areaTo: getAreaTo(criteriaObject.unit ?? 2, criteriaObject.areaTo),
+        issueDateEndMonth: criteriaObject.issueDateEndMonth ?? 12,
         issueDateFrom: null,
-        issueDateQuarterList: criteriaObject.issueDateQuarterList,
-        issueDateStartMonth: 1,
+        issueDateQuarterList: getQuarterList(
+            criteriaObject.durationType,
+            criteriaObject.halfYearDuration,
+            criteriaObject.issueDateQuarterList),
+        issueDateStartMonth: criteriaObject.issueDateStartMonth ?? 1,
         issueDateMonth: criteriaObject.issueDateMonth,
         halfYearDuration: criteriaObject.halfYearDuration,
         issueDateTo: null,
@@ -55,7 +61,8 @@ class SellBloc extends Bloc<SellEvent, SellState> {
         realEstateValueFrom: criteriaObject.realEstateValueFrom,
         realEstateValueTo: criteriaObject.realEstateValueTo,
         zoneId: criteriaObject.zoneId ?? -1,
-        periodId: 1);
+        periodId: criteriaObject.periodId ?? 1,
+        unit: criteriaObject.unit ?? 2);
   }
 
   RequestSellValues requestSellDefault = RequestSellValues(
@@ -78,7 +85,8 @@ class SellBloc extends Bloc<SellEvent, SellState> {
       realEstateValueFrom: null,
       realEstateValueTo: null,
       zoneId: -1,
-      periodId: 1);
+      periodId: 1,
+      unit: null);
   RequestSellValues requestSell = RequestSellValues(
       areaCode: -1,
       areaFrom: null,
@@ -99,5 +107,37 @@ class SellBloc extends Bloc<SellEvent, SellState> {
       realEstateValueFrom: null,
       realEstateValueTo: null,
       zoneId: -1,
-      periodId: 1);
+      periodId: 1,
+      unit: null);
+
+  List<int>? getQuarterList(
+      int? durationType, int? halfYearDuration, List<int>? quarter) {
+    if (durationType == 2) {
+      if (halfYearDuration == 1) {
+        return [1, 2];
+      } else {
+        return [3, 4];
+      }
+    } else if (durationType == 3) {
+      return quarter;
+    } else {
+      return [1, 2, 3, 4];
+    }
+  }
+
+  double? getAreaFrom(int unit, double? area) {
+    if (unit == 1) {
+      return area;
+    } else {
+      return area != null ? null : area! / 10.8;
+    }
+  }
+
+  double? getAreaTo(int unit, double? area) {
+    if (unit == 1) {
+      return area;
+    } else {
+      return area != null ? null : area! / 10.8;
+    }
+  }
 }

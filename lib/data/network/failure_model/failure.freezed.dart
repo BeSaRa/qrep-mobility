@@ -12,7 +12,7 @@ part of 'failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 FailureModel _$FailureModelFromJson(Map<String, dynamic> json) {
   return _FailureModel.fromJson(json);
@@ -24,8 +24,12 @@ mixin _$FailureModel {
   String get message => throw _privateConstructorUsedError;
   int get statusCode => throw _privateConstructorUsedError;
 
+  /// Serializes this FailureModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FailureModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FailureModelCopyWith<FailureModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$FailureModelCopyWithImpl<$Res, $Val extends FailureModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FailureModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$FailureModelImplCopyWithImpl<$Res>
       _$FailureModelImpl _value, $Res Function(_$FailureModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FailureModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -151,7 +159,7 @@ class _$FailureModelImpl implements _FailureModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FailureModelImpl &&
@@ -162,7 +170,7 @@ class _$FailureModelImpl implements _FailureModel {
                 other.statusCode == statusCode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -170,7 +178,9 @@ class _$FailureModelImpl implements _FailureModel {
       message,
       statusCode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FailureModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailureModelImplCopyWith<_$FailureModelImpl> get copyWith =>
@@ -199,8 +209,11 @@ abstract class _FailureModel implements FailureModel {
   String get message;
   @override
   int get statusCode;
+
+  /// Create a copy of FailureModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureModelImplCopyWith<_$FailureModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -213,8 +226,12 @@ FailureResponse _$FailureResponseFromJson(Map<String, dynamic> json) {
 mixin _$FailureResponse {
   List<ErrorModel> get errors => throw _privateConstructorUsedError;
 
+  /// Serializes this FailureResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FailureResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FailureResponseCopyWith<FailureResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -238,6 +255,8 @@ class _$FailureResponseCopyWithImpl<$Res, $Val extends FailureResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FailureResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -271,6 +290,8 @@ class __$$FailureResponseImplCopyWithImpl<$Res>
       _$FailureResponseImpl _value, $Res Function(_$FailureResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FailureResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -309,19 +330,21 @@ class _$FailureResponseImpl implements _FailureResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FailureResponseImpl &&
             const DeepCollectionEquality().equals(other._errors, _errors));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_errors));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FailureResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailureResponseImplCopyWith<_$FailureResponseImpl> get copyWith =>
@@ -345,8 +368,11 @@ abstract class _FailureResponse implements FailureResponse {
 
   @override
   List<ErrorModel> get errors;
+
+  /// Create a copy of FailureResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureResponseImplCopyWith<_$FailureResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -359,8 +385,12 @@ ErrorModel _$ErrorModelFromJson(Map<String, dynamic> json) {
 mixin _$ErrorModel {
   String get message => throw _privateConstructorUsedError;
 
+  /// Serializes this ErrorModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ErrorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ErrorModelCopyWith<ErrorModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -384,6 +414,8 @@ class _$ErrorModelCopyWithImpl<$Res, $Val extends ErrorModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ErrorModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -417,6 +449,8 @@ class __$$ErrorModelImplCopyWithImpl<$Res>
       _$ErrorModelImpl _value, $Res Function(_$ErrorModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ErrorModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -449,18 +483,20 @@ class _$ErrorModelImpl implements _ErrorModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorModelImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ErrorModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorModelImplCopyWith<_$ErrorModelImpl> get copyWith =>
@@ -482,8 +518,11 @@ abstract class _ErrorModel implements ErrorModel {
 
   @override
   String get message;
+
+  /// Create a copy of ErrorModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorModelImplCopyWith<_$ErrorModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

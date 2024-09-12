@@ -35,10 +35,10 @@ Map<String, dynamic> _$$LawByIdResponseImplToJson(
 
 _$LawsModelImpl _$$LawsModelImplFromJson(Map<String, dynamic> json) =>
     _$LawsModelImpl(
-      id: json['id'] as int? ?? 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       title: json['title'] as String? ?? '',
       issueDate: json['issue_date'] as String? ?? '',
-      lawNumber: json['law_number'] as int? ?? 0,
+      lawNumber: (json['law_number'] as num?)?.toInt() ?? 0,
       file: json['file'] as String? ?? '',
       articles: (json['articles'] as List<dynamic>?)
               ?.map((e) => ArticleModel.fromJson(e as Map<String, dynamic>))

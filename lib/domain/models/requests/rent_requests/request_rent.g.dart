@@ -6,40 +6,41 @@ part of 'request_rent.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-// RentRequest _$RentRequestFromJson(Map<String, dynamic> json) => RentRequest(
-//       areaFrom: json['areaFrom'] as num?,
-//       areaTo: json['areaTo'] as num?,
-//       bedRoomsCount: json['bedRoomsCount'] as int?,
-//       furnitureStatus: json['furnitureStatus'] as int?,
-//       issueDateEndMonth: json['issueDateEndMonth'] as int?,
-//       issueDateFrom: json['issueDateFrom'] as String?,
-//       issueDateQuarterList: (json['issueDateQuarterList'] as List<dynamic>?)
-//           ?.map((e) => e as int)
-//           .toList(),
-//       issueDateStartMonth: json['issueDateStartMonth'] as int?,
-//       halfYearDuration: json['halfYearDuration'] as int?,
-//       issueDateTo: json['issueDateTo'] as String?,
-//       issueDateYear: json['issueDateYear'] as int?,
-//       limit: json['limit'] as int?,
-//       municipalityId: json['municipalityId'] as int?,
-//       offset: json['offset'] as int?,
-//       nationalityCode: json['nationalityCode'] as int?,
-//       serviceType: json['serviceType'] as int?,
-//       propertyTypeList: (json['propertyTypeList'] as List<dynamic>?)
-//           ?.map((e) => e as int)
-//           .toList(),
-//       purposeList: (json['purposeList'] as List<dynamic>?)
-//           ?.map((e) => e as int)
-//           .toList(),
-//       rentPaymentMonthlyPerUnitFrom:
-//           json['rentPaymentMonthlyPerUnitFrom'] as num?,
-//       rentPaymentMonthlyPerUnitTo: json['rentPaymentMonthlyPerUnitTo'] as num?,
-//       zoneId: json['zoneId'] as int?,
-//       unit: json['unit'] as int,
-//       periodId: json['periodId'] as int,
-//     );
+_$RentRequestImpl _$$RentRequestImplFromJson(Map<String, dynamic> json) =>
+    _$RentRequestImpl(
+      areaFrom: json['areaFrom'] as num?,
+      areaTo: json['areaTo'] as num?,
+      bedRoomsCount: (json['bedRoomsCount'] as num?)?.toInt(),
+      furnitureStatus: (json['furnitureStatus'] as num?)?.toInt(),
+      issueDateEndMonth: (json['issueDateEndMonth'] as num?)?.toInt(),
+      issueDateFrom: json['issueDateFrom'] as String?,
+      issueDateQuarterList: (json['issueDateQuarterList'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      issueDateStartMonth: (json['issueDateStartMonth'] as num?)?.toInt(),
+      halfYearDuration: (json['halfYearDuration'] as num?)?.toInt(),
+      issueDateTo: json['issueDateTo'] as String?,
+      issueDateYear: (json['issueDateYear'] as num?)?.toInt(),
+      limit: (json['limit'] as num?)?.toInt(),
+      municipalityId: (json['municipalityId'] as num?)?.toInt(),
+      offset: (json['offset'] as num?)?.toInt(),
+      nationalityCode: (json['nationalityCode'] as num?)?.toInt(),
+      serviceType: (json['serviceType'] as num?)?.toInt(),
+      propertyTypeList: (json['propertyTypeList'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      purposeList: (json['purposeList'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      rentPaymentMonthlyPerUnitFrom:
+          json['rentPaymentMonthlyPerUnitFrom'] as num?,
+      rentPaymentMonthlyPerUnitTo: json['rentPaymentMonthlyPerUnitTo'] as num?,
+      zoneId: (json['zoneId'] as num?)?.toInt(),
+      unit: (json['unit'] as num?)?.toInt() ?? 2,
+      periodId: (json['periodId'] as num?)?.toInt() ?? 1,
+    );
 
-Map<String, dynamic> _$RentRequestToJson(RentRequest instance) {
+Map<String, dynamic> _$$RentRequestImplToJson(_$RentRequestImpl instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -75,64 +76,3 @@ Map<String, dynamic> _$RentRequestToJson(RentRequest instance) {
   val['periodId'] = instance.periodId;
   return val;
 }
-
-_$RentRequestImpl _$$RentRequestImplFromJson(Map<String, dynamic> json) =>
-    _$RentRequestImpl(
-      areaFrom: json['areaFrom'] as num?,
-      areaTo: json['areaTo'] as num?,
-      bedRoomsCount: json['bedRoomsCount'] as int?,
-      furnitureStatus: json['furnitureStatus'] as int?,
-      issueDateEndMonth: json['issueDateEndMonth'] as int?,
-      issueDateFrom: json['issueDateFrom'] as String?,
-      issueDateQuarterList: (json['issueDateQuarterList'] as List<dynamic>?)
-          ?.map((e) => e as int)
-          .toList(),
-      issueDateStartMonth: json['issueDateStartMonth'] as int?,
-      halfYearDuration: json['halfYearDuration'] as int?,
-      issueDateTo: json['issueDateTo'] as String?,
-      issueDateYear: json['issueDateYear'] as int?,
-      limit: json['limit'] as int?,
-      municipalityId: json['municipalityId'] as int?,
-      offset: json['offset'] as int?,
-      nationalityCode: json['nationalityCode'] as int?,
-      serviceType: json['serviceType'] as int?,
-      propertyTypeList: (json['propertyTypeList'] as List<dynamic>?)
-          ?.map((e) => e as int)
-          .toList(),
-      purposeList: (json['purposeList'] as List<dynamic>?)
-          ?.map((e) => e as int)
-          .toList(),
-      rentPaymentMonthlyPerUnitFrom:
-          json['rentPaymentMonthlyPerUnitFrom'] as num?,
-      rentPaymentMonthlyPerUnitTo: json['rentPaymentMonthlyPerUnitTo'] as num?,
-      zoneId: json['zoneId'] as int?,
-      unit: json['unit'] as int? ?? 2,
-      periodId: json['periodId'] as int? ?? 1,
-    );
-
-Map<String, dynamic> _$$RentRequestImplToJson(_$RentRequestImpl instance) =>
-    <String, dynamic>{
-      'areaFrom': instance.areaFrom,
-      'areaTo': instance.areaTo,
-      'bedRoomsCount': instance.bedRoomsCount,
-      'furnitureStatus': instance.furnitureStatus,
-      'issueDateEndMonth': instance.issueDateEndMonth,
-      'issueDateFrom': instance.issueDateFrom,
-      'issueDateQuarterList': instance.issueDateQuarterList,
-      'issueDateStartMonth': instance.issueDateStartMonth,
-      'halfYearDuration': instance.halfYearDuration,
-      'issueDateTo': instance.issueDateTo,
-      'issueDateYear': instance.issueDateYear,
-      'limit': instance.limit,
-      'municipalityId': instance.municipalityId,
-      'offset': instance.offset,
-      'nationalityCode': instance.nationalityCode,
-      'serviceType': instance.serviceType,
-      'propertyTypeList': instance.propertyTypeList,
-      'purposeList': instance.purposeList,
-      'rentPaymentMonthlyPerUnitFrom': instance.rentPaymentMonthlyPerUnitFrom,
-      'rentPaymentMonthlyPerUnitTo': instance.rentPaymentMonthlyPerUnitTo,
-      'zoneId': instance.zoneId,
-      'unit': instance.unit,
-      'periodId': instance.periodId,
-    };

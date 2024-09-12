@@ -12,7 +12,7 @@ part of 'look_up_broker_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LookUpBrokerEvent {
@@ -66,6 +66,9 @@ class _$LookUpBrokerEventCopyWithImpl<$Res, $Val extends LookUpBrokerEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of LookUpBrokerEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -82,6 +85,9 @@ class __$$GetBrokerLookupImplCopyWithImpl<$Res>
   __$$GetBrokerLookupImplCopyWithImpl(
       _$GetBrokerLookupImpl _value, $Res Function(_$GetBrokerLookupImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LookUpBrokerEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -95,7 +101,7 @@ class _$GetBrokerLookupImpl implements _GetBrokerLookup {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$GetBrokerLookupImpl);
   }
@@ -234,6 +240,9 @@ class _$LookUpBrokerStateCopyWithImpl<$Res, $Val extends LookUpBrokerState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of LookUpBrokerState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -250,6 +259,9 @@ class __$$LoadingImplCopyWithImpl<$Res>
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LookUpBrokerState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -263,7 +275,7 @@ class _$LoadingImpl implements _Loading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$LoadingImpl);
   }
@@ -369,6 +381,8 @@ class __$$DoneImplCopyWithImpl<$Res>
   __$$DoneImplCopyWithImpl(_$DoneImpl _value, $Res Function(_$DoneImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LookUpBrokerState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -387,6 +401,8 @@ class __$$DoneImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of LookUpBrokerState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RealEstateBrokerLookUpCopyWith<$Res> get success {
@@ -395,6 +411,8 @@ class __$$DoneImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of LookUpBrokerState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RealEstateBrokerLookUpCopyWith<$Res> get successov {
@@ -420,7 +438,7 @@ class _$DoneImpl implements _Done {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DoneImpl &&
@@ -432,7 +450,9 @@ class _$DoneImpl implements _Done {
   @override
   int get hashCode => Object.hash(runtimeType, success, successov);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LookUpBrokerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DoneImplCopyWith<_$DoneImpl> get copyWith =>
@@ -520,7 +540,10 @@ abstract class _Done implements LookUpBrokerState {
 
   RealEstateBrokerLookUp get success;
   RealEstateBrokerLookUp get successov;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LookUpBrokerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DoneImplCopyWith<_$DoneImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -542,6 +565,8 @@ class __$$ErrorImplCopyWithImpl<$Res>
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LookUpBrokerState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -570,7 +595,7 @@ class _$ErrorImpl implements _Error {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorImpl &&
@@ -580,7 +605,9 @@ class _$ErrorImpl implements _Error {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LookUpBrokerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
@@ -665,7 +692,10 @@ abstract class _Error implements LookUpBrokerState {
   const factory _Error({required final String message}) = _$ErrorImpl;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LookUpBrokerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

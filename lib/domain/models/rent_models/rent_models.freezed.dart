@@ -12,7 +12,7 @@ part of 'rent_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 RentDefault _$RentDefaultFromJson(Map<String, dynamic> json) {
   return _RentDefault.fromJson(json);
@@ -50,8 +50,12 @@ mixin _$RentDefault {
   double? get kpiYoY7 => throw _privateConstructorUsedError;
   double? get kpiYoY7Difference => throw _privateConstructorUsedError;
 
+  /// Serializes this RentDefault to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RentDefault
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RentDefaultCopyWith<RentDefault> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -104,6 +108,8 @@ class _$RentDefaultCopyWithImpl<$Res, $Val extends RentDefault>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RentDefault
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -306,6 +312,8 @@ class __$$RentDefaultImplCopyWithImpl<$Res>
       _$RentDefaultImpl _value, $Res Function(_$RentDefaultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RentDefault
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -591,7 +599,7 @@ class _$RentDefaultImpl implements _RentDefault {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RentDefaultImpl &&
@@ -649,7 +657,7 @@ class _$RentDefaultImpl implements _RentDefault {
                 other.kpiYoY7Difference == kpiYoY7Difference));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -684,7 +692,9 @@ class _$RentDefaultImpl implements _RentDefault {
         kpiYoY7Difference
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RentDefault
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RentDefaultImplCopyWith<_$RentDefaultImpl> get copyWith =>
@@ -791,8 +801,11 @@ abstract class _RentDefault implements RentDefault {
   double? get kpiYoY7;
   @override
   double? get kpiYoY7Difference;
+
+  /// Create a copy of RentDefault
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RentDefaultImplCopyWith<_$RentDefaultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -833,8 +846,12 @@ mixin _$LookupResponse {
   List<MaxParamsModel> get maxParams => throw _privateConstructorUsedError;
   List<LookupModel> get streetList => throw _privateConstructorUsedError;
 
+  /// Serializes this LookupResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LookupResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LookupResponseCopyWith<LookupResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -882,6 +899,8 @@ class _$LookupResponseCopyWithImpl<$Res, $Val extends LookupResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LookupResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1054,6 +1073,8 @@ class __$$RentLookupResponseImplCopyWithImpl<$Res>
       $Res Function(_$RentLookupResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LookupResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1491,7 +1512,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RentLookupResponseImpl &&
@@ -1541,7 +1562,7 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
                 .equals(other._streetList, _streetList));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -1571,7 +1592,9 @@ class _$RentLookupResponseImpl implements _RentLookupResponse {
         const DeepCollectionEquality().hash(_streetList)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LookupResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RentLookupResponseImplCopyWith<_$RentLookupResponseImpl> get copyWith =>
@@ -1664,8 +1687,11 @@ abstract class _RentLookupResponse implements LookupResponse {
   List<MaxParamsModel> get maxParams;
   @override
   List<LookupModel> get streetList;
+
+  /// Create a copy of LookupResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RentLookupResponseImplCopyWith<_$RentLookupResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1688,8 +1714,12 @@ mixin _$LookupModel {
   int get municipalityId => throw _privateConstructorUsedError;
   bool get isActive => throw _privateConstructorUsedError;
 
+  /// Serializes this LookupModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LookupModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LookupModelCopyWith<LookupModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1724,6 +1754,8 @@ class _$LookupModelCopyWithImpl<$Res, $Val extends LookupModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LookupModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1818,6 +1850,8 @@ class __$$RentLookupModelImplCopyWithImpl<$Res>
       _$RentLookupModelImpl _value, $Res Function(_$RentLookupModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LookupModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1941,7 +1975,7 @@ class _$RentLookupModelImpl implements _RentLookupModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RentLookupModelImpl &&
@@ -1963,12 +1997,14 @@ class _$RentLookupModelImpl implements _RentLookupModel {
                 other.isActive == isActive));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, value, yoy, selected, url,
       hasPrice, id, lookupKey, arName, enName, municipalityId, isActive);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LookupModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RentLookupModelImplCopyWith<_$RentLookupModelImpl> get copyWith =>
@@ -2022,8 +2058,11 @@ abstract class _RentLookupModel implements LookupModel {
   int get municipalityId;
   @override
   bool get isActive;
+
+  /// Create a copy of LookupModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RentLookupModelImplCopyWith<_$RentLookupModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2038,8 +2077,12 @@ mixin _$PeriodTimeDetails {
   String get enName => throw _privateConstructorUsedError;
   List<int> get value => throw _privateConstructorUsedError;
 
+  /// Serializes this PeriodTimeDetails to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PeriodTimeDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PeriodTimeDetailsCopyWith<PeriodTimeDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2063,6 +2106,8 @@ class _$PeriodTimeDetailsCopyWithImpl<$Res, $Val extends PeriodTimeDetails>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PeriodTimeDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2106,6 +2151,8 @@ class __$$PeriodTimeDetailsImplCopyWithImpl<$Res>
       $Res Function(_$PeriodTimeDetailsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PeriodTimeDetails
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2161,7 +2208,7 @@ class _$PeriodTimeDetailsImpl implements _PeriodTimeDetails {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PeriodTimeDetailsImpl &&
@@ -2170,12 +2217,14 @@ class _$PeriodTimeDetailsImpl implements _PeriodTimeDetails {
             const DeepCollectionEquality().equals(other._value, _value));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, name, enName, const DeepCollectionEquality().hash(_value));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PeriodTimeDetails
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PeriodTimeDetailsImplCopyWith<_$PeriodTimeDetailsImpl> get copyWith =>
@@ -2205,8 +2254,11 @@ abstract class _PeriodTimeDetails implements PeriodTimeDetails {
   String get enName;
   @override
   List<int> get value;
+
+  /// Create a copy of PeriodTimeDetails
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PeriodTimeDetailsImplCopyWith<_$PeriodTimeDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2224,8 +2276,12 @@ mixin _$MaxParamsModel {
   String get model => throw _privateConstructorUsedError;
   bool get isActive => throw _privateConstructorUsedError;
 
+  /// Serializes this MaxParamsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MaxParamsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MaxParamsModelCopyWith<MaxParamsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2255,6 +2311,8 @@ class _$MaxParamsModelCopyWithImpl<$Res, $Val extends MaxParamsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MaxParamsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2319,6 +2377,8 @@ class __$$MaxParamsModelImplCopyWithImpl<$Res>
       _$MaxParamsModelImpl _value, $Res Function(_$MaxParamsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MaxParamsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2397,7 +2457,7 @@ class _$MaxParamsModelImpl implements _MaxParamsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MaxParamsModelImpl &&
@@ -2411,12 +2471,14 @@ class _$MaxParamsModelImpl implements _MaxParamsModel {
                 other.isActive == isActive));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, fieldName, minVal, maxVal, model, isActive);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MaxParamsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MaxParamsModelImplCopyWith<_$MaxParamsModelImpl> get copyWith =>
@@ -2455,8 +2517,11 @@ abstract class _MaxParamsModel implements MaxParamsModel {
   String get model;
   @override
   bool get isActive;
+
+  /// Create a copy of MaxParamsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MaxParamsModelImplCopyWith<_$MaxParamsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2480,8 +2545,12 @@ mixin _$BaseRentResponse {
   num get priceMT => throw _privateConstructorUsedError;
   num get priceSQ => throw _privateConstructorUsedError;
 
+  /// Serializes this BaseRentResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BaseRentResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BaseRentResponseCopyWith<BaseRentResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2517,6 +2586,8 @@ class _$BaseRentResponseCopyWithImpl<$Res, $Val extends BaseRentResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BaseRentResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2617,6 +2688,8 @@ class __$$BaseRentResponseImplCopyWithImpl<$Res>
       $Res Function(_$BaseRentResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BaseRentResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2749,7 +2822,7 @@ class _$BaseRentResponseImpl implements _BaseRentResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BaseRentResponseImpl &&
@@ -2775,7 +2848,7 @@ class _$BaseRentResponseImpl implements _BaseRentResponse {
             (identical(other.priceSQ, priceSQ) || other.priceSQ == priceSQ));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2792,7 +2865,9 @@ class _$BaseRentResponseImpl implements _BaseRentResponse {
       priceMT,
       priceSQ);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BaseRentResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BaseRentResponseImplCopyWith<_$BaseRentResponseImpl> get copyWith =>
@@ -2849,8 +2924,11 @@ abstract class _BaseRentResponse implements BaseRentResponse {
   num get priceMT;
   @override
   num get priceSQ;
+
+  /// Create a copy of BaseRentResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BaseRentResponseImplCopyWith<_$BaseRentResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2876,8 +2954,12 @@ mixin _$BaseRentResponsePerAreaUnitType {
   num get kpiSqftYoYVal => throw _privateConstructorUsedError;
   num get kpiSqmtYoYVal => throw _privateConstructorUsedError;
 
+  /// Serializes this BaseRentResponsePerAreaUnitType to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BaseRentResponsePerAreaUnitType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BaseRentResponsePerAreaUnitTypeCopyWith<BaseRentResponsePerAreaUnitType>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2913,6 +2995,8 @@ class _$BaseRentResponsePerAreaUnitTypeCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BaseRentResponsePerAreaUnitType
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2998,6 +3082,8 @@ class __$$BaseRentResponsePerAreaUnitTypeImplCopyWithImpl<$Res>
       $Res Function(_$BaseRentResponsePerAreaUnitTypeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BaseRentResponsePerAreaUnitType
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3109,7 +3195,7 @@ class _$BaseRentResponsePerAreaUnitTypeImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BaseRentResponsePerAreaUnitTypeImpl &&
@@ -3131,7 +3217,7 @@ class _$BaseRentResponsePerAreaUnitTypeImpl
                 other.kpiSqmtYoYVal == kpiSqmtYoYVal));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3145,7 +3231,9 @@ class _$BaseRentResponsePerAreaUnitTypeImpl
       kpiSqftYoYVal,
       kpiSqmtYoYVal);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BaseRentResponsePerAreaUnitType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BaseRentResponsePerAreaUnitTypeImplCopyWith<
@@ -3178,25 +3266,28 @@ abstract class _BaseRentResponsePerAreaUnitType
       _$BaseRentResponsePerAreaUnitTypeImpl.fromJson;
 
   @override
-  num get issueYear;
-  @override //----------------------
+  num get issueYear; //----------------------
+  @override
   num get kpiSqft;
   @override
-  num get kpiSqmt;
-  @override //----------------------
+  num get kpiSqmt; //----------------------
+  @override
   num get kpiSqftPreviousYear;
   @override
-  num get kpiSqmtPreviousYear;
-  @override //----------------------
+  num get kpiSqmtPreviousYear; //----------------------
+  @override
   num get kpiSqftYoYDifference;
   @override
-  num get kpiSqmtYoYDifference;
-  @override //----------------------
+  num get kpiSqmtYoYDifference; //----------------------
+  @override
   num get kpiSqftYoYVal;
   @override
   num get kpiSqmtYoYVal;
+
+  /// Create a copy of BaseRentResponsePerAreaUnitType
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BaseRentResponsePerAreaUnitTypeImplCopyWith<
           _$BaseRentResponsePerAreaUnitTypeImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -3218,8 +3309,12 @@ mixin _$MeanAreaResponse {
   int get kpiYoYDifference => throw _privateConstructorUsedError;
   int get kpiYoYVal => throw _privateConstructorUsedError;
 
+  /// Serializes this MeanAreaResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MeanAreaResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MeanAreaResponseCopyWith<MeanAreaResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3252,6 +3347,8 @@ class _$MeanAreaResponseCopyWithImpl<$Res, $Val extends MeanAreaResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MeanAreaResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3334,6 +3431,8 @@ class __$$MeanAreaResponseImplCopyWithImpl<$Res>
       $Res Function(_$MeanAreaResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MeanAreaResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3439,7 +3538,7 @@ class _$MeanAreaResponseImpl implements _MeanAreaResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MeanAreaResponseImpl &&
@@ -3461,7 +3560,7 @@ class _$MeanAreaResponseImpl implements _MeanAreaResponse {
                 other.kpiYoYVal == kpiYoYVal));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3475,7 +3574,9 @@ class _$MeanAreaResponseImpl implements _MeanAreaResponse {
       kpiYoYDifference,
       kpiYoYVal);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MeanAreaResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MeanAreaResponseImplCopyWith<_$MeanAreaResponseImpl> get copyWith =>
@@ -3523,8 +3624,11 @@ abstract class _MeanAreaResponse implements MeanAreaResponse {
   int get kpiYoYDifference;
   @override
   int get kpiYoYVal;
+
+  /// Create a copy of MeanAreaResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MeanAreaResponseImplCopyWith<_$MeanAreaResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3539,8 +3643,12 @@ mixin _$RentListSummary {
   List<RentSummaryObject> get transactionList =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this RentListSummary to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RentListSummary
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RentListSummaryCopyWith<RentListSummary> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3564,6 +3672,8 @@ class _$RentListSummaryCopyWithImpl<$Res, $Val extends RentListSummary>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RentListSummary
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3602,6 +3712,8 @@ class __$$RentListSummaryImplCopyWithImpl<$Res>
       _$RentListSummaryImpl _value, $Res Function(_$RentListSummaryImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RentListSummary
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3650,7 +3762,7 @@ class _$RentListSummaryImpl implements _RentListSummary {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RentListSummaryImpl &&
@@ -3659,12 +3771,14 @@ class _$RentListSummaryImpl implements _RentListSummary {
                 .equals(other._transactionList, _transactionList));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, count,
       const DeepCollectionEquality().hash(_transactionList));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RentListSummary
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RentListSummaryImplCopyWith<_$RentListSummaryImpl> get copyWith =>
@@ -3691,8 +3805,11 @@ abstract class _RentListSummary implements RentListSummary {
   int get count;
   @override
   List<RentSummaryObject> get transactionList;
+
+  /// Create a copy of RentListSummary
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RentListSummaryImplCopyWith<_$RentListSummaryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3720,8 +3837,12 @@ mixin _$RentSummaryObject {
   String? get unitOwner => throw _privateConstructorUsedError;
   String? get unitTenant => throw _privateConstructorUsedError;
 
+  /// Serializes this RentSummaryObject to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RentSummaryObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RentSummaryObjectCopyWith<RentSummaryObject> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3761,6 +3882,8 @@ class _$RentSummaryObjectCopyWithImpl<$Res, $Val extends RentSummaryObject>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RentSummaryObject
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3885,6 +4008,8 @@ class __$$RentSummaryObjectImplCopyWithImpl<$Res>
       $Res Function(_$RentSummaryObjectImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RentSummaryObject
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4053,7 +4178,7 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RentSummaryObjectImpl &&
@@ -4088,7 +4213,7 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
                 other.unitTenant == unitTenant));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4109,7 +4234,9 @@ class _$RentSummaryObjectImpl implements _RentSummaryObject {
       unitOwner,
       unitTenant);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RentSummaryObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RentSummaryObjectImplCopyWith<_$RentSummaryObjectImpl> get copyWith =>
@@ -4178,8 +4305,11 @@ abstract class _RentSummaryObject implements RentSummaryObject {
   String? get unitOwner;
   @override
   String? get unitTenant;
+
+  /// Create a copy of RentSummaryObject
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RentSummaryObjectImplCopyWith<_$RentSummaryObjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

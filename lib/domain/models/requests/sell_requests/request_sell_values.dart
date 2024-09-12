@@ -4,8 +4,8 @@ part 'request_sell_values.freezed.dart';
 part 'request_sell_values.g.dart';
 
 @freezed
-@JsonSerializable(includeIfNull: false)
 abstract class RequestSellValues with _$RequestSellValues {
+  @JsonSerializable(includeIfNull: false)
   factory RequestSellValues({
     @Default(-1) num areaCode,
     num? areaFrom,
@@ -27,7 +27,7 @@ abstract class RequestSellValues with _$RequestSellValues {
     num? realEstateValueTo,
     // int? streetNo,
     int? zoneId,
-    // @Default(2) int unit,
+    @Default(2) int? unit,
     @Default(1) int periodId,
   }) = _RequestSellValues;
 

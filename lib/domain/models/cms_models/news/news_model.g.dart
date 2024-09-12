@@ -35,7 +35,7 @@ Map<String, dynamic> _$$NewsByIdResponseImplToJson(
 
 _$NewsModelImpl _$$NewsModelImplFromJson(Map<String, dynamic> json) =>
     _$NewsModelImpl(
-      id: json['id'] as int? ?? 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       status: json['status'] as String? ?? '',
       userCreated: json['user_created'] as String? ?? '',
       dateCreated: json['date_created'] as String? ?? '',

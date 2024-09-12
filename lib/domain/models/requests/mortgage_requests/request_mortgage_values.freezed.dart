@@ -12,7 +12,7 @@ part of 'request_mortgage_values.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 RequestMortgageValues _$RequestMortgageValuesFromJson(
     Map<String, dynamic> json) {
@@ -44,8 +44,12 @@ mixin _$RequestMortgageValues {
   int get unit => throw _privateConstructorUsedError;
   int get periodId => throw _privateConstructorUsedError;
 
+  /// Serializes this RequestMortgageValues to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RequestMortgageValues
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RequestMortgageValuesCopyWith<RequestMortgageValues> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -91,6 +95,8 @@ class _$RequestMortgageValuesCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RequestMortgageValues
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -247,6 +253,8 @@ class __$$RequestMortgageValuesImplCopyWithImpl<$Res>
       $Res Function(_$RequestMortgageValuesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RequestMortgageValues
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -362,7 +370,8 @@ class __$$RequestMortgageValuesImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
   _$RequestMortgageValuesImpl(
       {this.areaCode = -1,
@@ -472,7 +481,7 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RequestMortgageValuesImpl &&
@@ -515,7 +524,7 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
                 other.periodId == periodId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -542,7 +551,9 @@ class _$RequestMortgageValuesImpl implements _RequestMortgageValues {
         periodId
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequestMortgageValues
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RequestMortgageValuesImplCopyWith<_$RequestMortgageValuesImpl>
@@ -619,15 +630,18 @@ abstract class _RequestMortgageValues implements RequestMortgageValues {
   @override
   num? get realEstateValueFrom;
   @override
-  num? get realEstateValueTo;
-  @override // int? streetNo,
+  num? get realEstateValueTo; // int? streetNo,
+  @override
   int? get zoneId;
   @override
   int get unit;
   @override
   int get periodId;
+
+  /// Create a copy of RequestMortgageValues
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RequestMortgageValuesImplCopyWith<_$RequestMortgageValuesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

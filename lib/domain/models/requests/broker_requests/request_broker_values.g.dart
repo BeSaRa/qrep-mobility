@@ -6,16 +6,18 @@ part of 'request_broker_values.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-// RequestBrokerValues _$RequestBrokerValuesFromJson(Map<String, dynamic> json) =>
-//     RequestBrokerValues(
-//       brokerCategoryId: json['brokerCategoryId'] as int?,
-//       limit: json['limit'] as int?,
-//       municipalityId: json['municipalityId'] as int?,
-//       offset: json['offset'] as int?,
-//       brokerName: json['brokerName'] as String?,
-//     );
+_$RequestBrokerValuesImpl _$$RequestBrokerValuesImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RequestBrokerValuesImpl(
+      brokerCategoryId: (json['brokerCategoryId'] as num?)?.toInt(),
+      limit: (json['limit'] as num?)?.toInt(),
+      municipalityId: (json['municipalityId'] as num?)?.toInt(),
+      offset: (json['offset'] as num?)?.toInt(),
+      brokerName: json['brokerName'] as String?,
+    );
 
-Map<String, dynamic> _$RequestBrokerValuesToJson(RequestBrokerValues instance) {
+Map<String, dynamic> _$$RequestBrokerValuesImplToJson(
+    _$RequestBrokerValuesImpl instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -31,23 +33,3 @@ Map<String, dynamic> _$RequestBrokerValuesToJson(RequestBrokerValues instance) {
   writeNotNull('brokerName', instance.brokerName);
   return val;
 }
-
-_$RequestBrokerValuesImpl _$$RequestBrokerValuesImplFromJson(
-        Map<String, dynamic> json) =>
-    _$RequestBrokerValuesImpl(
-      brokerCategoryId: json['brokerCategoryId'] as int?,
-      limit: json['limit'] as int?,
-      municipalityId: json['municipalityId'] as int?,
-      offset: json['offset'] as int?,
-      brokerName: json['brokerName'] as String?,
-    );
-
-Map<String, dynamic> _$$RequestBrokerValuesImplToJson(
-        _$RequestBrokerValuesImpl instance) =>
-    <String, dynamic>{
-      'brokerCategoryId': instance.brokerCategoryId,
-      'limit': instance.limit,
-      'municipalityId': instance.municipalityId,
-      'offset': instance.offset,
-      'brokerName': instance.brokerName,
-    };

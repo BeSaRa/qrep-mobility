@@ -12,7 +12,7 @@ part of 'laws_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LawsEvent {
@@ -71,6 +71,9 @@ class _$LawsEventCopyWithImpl<$Res, $Val extends LawsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of LawsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -87,6 +90,9 @@ class __$$GetLawsImplCopyWithImpl<$Res>
   __$$GetLawsImplCopyWithImpl(
       _$GetLawsImpl _value, $Res Function(_$GetLawsImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LawsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -100,7 +106,7 @@ class _$GetLawsImpl implements _GetLaws {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$GetLawsImpl);
   }
@@ -192,6 +198,8 @@ class __$$GetLawByIdImplCopyWithImpl<$Res>
       _$GetLawByIdImpl _value, $Res Function(_$GetLawByIdImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LawsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -220,7 +228,7 @@ class _$GetLawByIdImpl implements _GetLawById {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetLawByIdImpl &&
@@ -230,7 +238,9 @@ class _$GetLawByIdImpl implements _GetLawById {
   @override
   int get hashCode => Object.hash(runtimeType, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LawsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GetLawByIdImplCopyWith<_$GetLawByIdImpl> get copyWith =>
@@ -303,7 +313,10 @@ abstract class _GetLawById implements LawsEvent {
   const factory _GetLawById({required final int id}) = _$GetLawByIdImpl;
 
   int get id;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LawsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetLawByIdImplCopyWith<_$GetLawByIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -358,7 +371,9 @@ mixin _$LawsState {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LawsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LawsStateCopyWith<LawsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -389,6 +404,8 @@ class _$LawsStateCopyWithImpl<$Res, $Val extends LawsState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LawsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -422,6 +439,8 @@ class _$LawsStateCopyWithImpl<$Res, $Val extends LawsState>
     ) as $Val);
   }
 
+  /// Create a copy of LawsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LawsResponseCopyWith<$Res> get lawsResponse {
@@ -430,6 +449,8 @@ class _$LawsStateCopyWithImpl<$Res, $Val extends LawsState>
     });
   }
 
+  /// Create a copy of LawsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LawByIdResponseCopyWith<$Res> get lawByIdResponse {
@@ -468,6 +489,8 @@ class __$$InitialImplCopyWithImpl<$Res>
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LawsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -534,7 +557,7 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
@@ -554,7 +577,9 @@ class _$InitialImpl implements _Initial {
   int get hashCode => Object.hash(runtimeType, isLoading, hasError,
       errorMessage, lawsResponse, lawByIdResponse);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LawsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
@@ -648,8 +673,11 @@ abstract class _Initial implements LawsState {
   LawsResponse get lawsResponse;
   @override
   LawByIdResponse get lawByIdResponse;
+
+  /// Create a copy of LawsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
