@@ -708,11 +708,17 @@ class _RentViewState extends State<RentView> {
                                           titleInfo:
                                               "${AppStrings().roomsCount}:",
                                           valueInfo: state
-                                                  .rentSummery
-                                                  .transactionList[index]
-                                                  .bedRoomsCount
-                                                  ?.toStringAsFixed(0) ??
-                                              '0',
+                                                      .rentSummery
+                                                      .transactionList[index]
+                                                      .bedRoomsCount ==
+                                                  0
+                                              ? AppStrings().unspecified
+                                              : state
+                                                      .rentSummery
+                                                      .transactionList[index]
+                                                      .bedRoomsCount
+                                                      ?.toStringAsFixed(0) ??
+                                                  AppStrings().unspecified,
                                           location: context.locale ==
                                                   ARABIC_LOCAL
                                               ? getObjectByLookupKey(

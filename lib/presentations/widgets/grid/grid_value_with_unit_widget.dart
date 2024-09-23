@@ -9,13 +9,15 @@ class GridValueWithUnitWidget extends StatelessWidget {
   final String unit;
   final int duration;
   final bool dataCollectedAndAudited;
+  final bool loading;
   const GridValueWithUnitWidget(
       {super.key,
       this.unit = '',
       this.duration = 1,
       this.begin = 0,
       this.end = 0,
-      this.dataCollectedAndAudited = false});
+      this.dataCollectedAndAudited = false,
+      this.loading = false});
 
   @override
   Widget build(BuildContext context) {
@@ -36,17 +38,24 @@ class GridValueWithUnitWidget extends StatelessWidget {
                 AppStrings().dataBeingCollectedAndAudited,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
-              child: Countup(
-                  duration: Duration(seconds: duration),
-                  separator: ',',
-                  begin: begin.round().toDouble(),
-                  end: end.round().toDouble(),
-                  maxLines: 3,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(fontSize: AppSizeSp.s18, height: 1)),
+              child: loading
+                  ? SizedBox(
+                      width: AppSizeR.s12,
+                      height: AppSizeR.s12,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 1.0,
+                      ))
+                  : Countup(
+                      duration: Duration(seconds: duration),
+                      separator: ',',
+                      begin: begin.round().toDouble(),
+                      end: end.round().toDouble(),
+                      maxLines: 3,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(fontSize: AppSizeSp.s18, height: 1)),
             ),
             SizedBox(width: unit.isNotEmpty ? AppSizeW.s4 : 0),
             unit.isNotEmpty

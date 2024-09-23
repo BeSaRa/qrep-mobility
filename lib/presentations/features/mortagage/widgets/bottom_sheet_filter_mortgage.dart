@@ -1424,13 +1424,11 @@ class _BottomSheetFilterMortgageWidgetState
                                         // getissueDateQuarterList(
                                         //     valuesFiltersCubit
                                         //         .periodTime.id),
-                                        issueDateStartMonth:
-                                            valuesFiltersCubit.periodTime.id ==
-                                                    4
-                                                ? valuesFiltersCubit
-                                                        .month.value[0] -
-                                                    1
-                                                : 1,
+                                        issueDateStartMonth: valuesFiltersCubit
+                                                    .periodTime.id ==
+                                                4
+                                            ? valuesFiltersCubit.month.value[0]
+                                            : 1,
                                         issueDateEndMonth: valuesFiltersCubit
                                                     .periodTime.id ==
                                                 4

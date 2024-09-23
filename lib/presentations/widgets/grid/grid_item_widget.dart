@@ -441,6 +441,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                                         : 0;
                                   });
                                   return GridValueWithUnitWidget(
+                                    loading: state.isLoading,
                                     begin: beginVal,
                                     end: endVal,
                                     unit: (widget.rentKPI ==
@@ -494,6 +495,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                                         : 0;
                                   });
                                   return GridValueWithUnitWidget(
+                                    loading: state.isLoading,
                                     begin: beginVal,
                                     end: endVal,
                                     unit: widget.sellKPI ==
@@ -532,6 +534,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                                   });
 
                                   return GridValueWithUnitWidget(
+                                    loading: state.isLoading,
                                     begin: beginVal,
                                     end: endVal,
                                     unit: mortgageGridItemsData

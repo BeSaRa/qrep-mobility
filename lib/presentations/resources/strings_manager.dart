@@ -37,6 +37,7 @@ class AppStrings {
   String month = "month".tr();
   String occupancy = "occupancy".tr();
   String contractType = "contract_type".tr();
+  String unspecified = "unspecified".tr();
 
   // grid
   String totalRentalContractsNumber = "total_rental_contracts_number".tr();

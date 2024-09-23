@@ -149,7 +149,12 @@ class MainRentDataContainer extends StatelessWidget {
                         ),
                         Text(
                           valueInfo,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          style: valueInfo.contains(AppStrings().unspecified)
+                              ? Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(fontSize: AppSizeSp.s10)
+                              : Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
                     ),
