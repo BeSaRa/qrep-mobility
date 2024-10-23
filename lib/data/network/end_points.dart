@@ -2,7 +2,8 @@ class EndPoints {
   //CMS
   static const String translations = '/translations';
 
-  static const String news = '/items/news';
+  static const String news =
+      '/items/news?sort=-date_created&filter%5Bstatus%5D%5B_eq%5D=published';
   static const String newsById = '/items/news/{id}';
   static const String laws = '/items/laws';
   static const String lawsById = '/items/laws/{id}';

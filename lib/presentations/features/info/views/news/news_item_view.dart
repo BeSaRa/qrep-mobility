@@ -145,22 +145,22 @@ class _NewsItemViewState extends State<NewsItemView> {
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               SizedBox(height: AppSizeH.s8),
-              Row(
-                children: [
-                  Icon(
-                    Icons.access_time_outlined,
-                    size: AppSizeSp.s14,
-                    color: ColorManager.cloudyGrey,
-                  ),
-                  SizedBox(width: AppSizeW.s5),
-                  Text(
-                    DateTime.parse(model.dateCreated)
-                        .toShowDateTime(local: context.locale.languageCode),
-                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                        fontSize: AppSizeSp.s14, fontWeight: FontWeight.w400),
-                  )
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     Icon(
+              //       Icons.access_time_outlined,
+              //       size: AppSizeSp.s14,
+              //       color: ColorManager.cloudyGrey,
+              //     ),
+              //     SizedBox(width: AppSizeW.s5),
+              //     Text(
+              //       DateTime.parse(model.dateCreated)
+              //           .toShowDateTime(local: context.locale.languageCode),
+              //       style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+              //           fontSize: AppSizeSp.s14, fontWeight: FontWeight.w400),
+              //     )
+              //   ],
+              // ),
               SizedBox(height: AppSizeH.s6),
               Divider(
                 color: ColorManager.grey,

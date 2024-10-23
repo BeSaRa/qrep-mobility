@@ -13,7 +13,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://qrepbe.mm.gov.qa/mme-services';
+    baseUrl ??= 'Https://qrepbe.aqarat.gov.qa/mme-services';
   }
 
   final Dio _dio;
@@ -1394,7 +1394,7 @@ class _CmsServiceClient implements CmsServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://qrepcms.mm.gov.qa';
+    baseUrl ??= 'https://qrepcms.aqarat.gov.qa';
   }
 
   final Dio _dio;
@@ -1674,7 +1674,7 @@ class _CmsServiceClient implements CmsServiceClient {
     )
             .compose(
               _dio.options,
-              '/items/news',
+              '/items/news?sort=-date_created&filter%5Bstatus%5D%5B_eq%5D=published',
               queryParameters: queryParameters,
               data: _data,
             )

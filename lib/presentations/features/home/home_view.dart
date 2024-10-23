@@ -67,7 +67,7 @@ class _HomeViewState extends State<HomeView> {
                                         context.read<BottomNavCubit>().state]);
                               },
                               child: HomeContainer(
-                                isBig: true,
+                                isBig: false,
                                 title: AppStrings().sellIndicators,
                                 color:
                                     Theme.of(context).scaffoldBackgroundColor,
@@ -105,6 +105,7 @@ class _HomeViewState extends State<HomeView> {
                       ),
                       Expanded(
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             GestureDetector(
                               onTap: () async {
@@ -116,7 +117,7 @@ class _HomeViewState extends State<HomeView> {
                                         context.read<BottomNavCubit>().state]);
                               },
                               child: HomeContainer(
-                                isBig: false,
+                                isBig: true,
                                 title: AppStrings().rentIndicators,
                                 color: Theme.of(context).cardColor,
                                 image: IconAssets.rentHome,
@@ -126,25 +127,25 @@ class _HomeViewState extends State<HomeView> {
                                 isShadow: true,
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                context
-                                    .pushNamed(RoutesNames.realEstateBrokers);
-                              },
-                              child: HomeContainer(
-                                isBig: true,
-                                title: AppStrings().realEstateBrokers,
-                                color:
-                                    Theme.of(context).scaffoldBackgroundColor,
-                                image: IconAssets.inMiddleHome,
-                                isShadow: instance<AppPreferences>()
-                                            .getTheme()
-                                            .brightness ==
-                                        Brightness.light
-                                    ? true
-                                    : false,
-                              ),
-                            ),
+                            // GestureDetector(
+                            //   onTap: () {
+                            //     context
+                            //         .pushNamed(RoutesNames.realEstateBrokers);
+                            //   },
+                            //   child: HomeContainer(
+                            //     isBig: true,
+                            //     title: AppStrings().realEstateBrokers,
+                            //     color:
+                            //         Theme.of(context).scaffoldBackgroundColor,
+                            //     image: IconAssets.inMiddleHome,
+                            //     isShadow: instance<AppPreferences>()
+                            //                 .getTheme()
+                            //                 .brightness ==
+                            //             Brightness.light
+                            //         ? true
+                            //         : false,
+                            //   ),
+                            // ),
                           ],
                         ),
                       )

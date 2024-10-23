@@ -20,6 +20,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
           failureOrSuccess.when((news) {
             newsList.clear();
             newsList.addAll(news.data);
+
             emit(NewsState.loaded(news: news.data));
           }, (error) {
             emit(NewsState.error(message: error.message));

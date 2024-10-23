@@ -11,7 +11,7 @@ class LawsBloc extends Bloc<LawsEvent, LawsState> {
   final LawsUsecase lawsUsecase;
   final LawByIdUsecase lawByIdUsecase;
   static List<LawsModel> laws = [];
-  final int limit = 5;
+  final int limit = 20;
 
   LawsBloc({required this.lawsUsecase, required this.lawByIdUsecase})
       : super(const _Initial()) {

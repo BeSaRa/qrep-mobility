@@ -112,6 +112,7 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                               horizontal: AppSizeW.s15, vertical: AppSizeH.s10),
                           child: ListView.builder(
                             shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
                             itemCount: state.lawsResponse.data.length,
                             itemBuilder: (context, index) {
                               return LawWidget(

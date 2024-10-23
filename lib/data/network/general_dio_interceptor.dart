@@ -120,10 +120,8 @@ class GeneralInterceptor extends Interceptor {
           NavigationKeys.rootNavigatorKey.currentContext
               ?.read<LoggedInUserCubit>()
               .save(false);
-          errorToast(
-              AppStrings().sessionExpired,
-              NavigationKeys.rootNavigatorKey.currentContext
-                  ?.read<LoggedInUserCubit>());
+          errorToast(AppStrings().sessionExpired,
+              NavigationKeys.rootNavigatorKey.currentContext);
           NavigationKeys.rootNavigatorKey.currentContext!
               .read<LookupBloc>()
               .add(const LookupEvent.initilaEvent());

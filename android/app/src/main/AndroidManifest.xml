@@ -9,11 +9,6 @@
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="tel" />
         </intent>
-        <!-- If your app checks for call support -->
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <data android:scheme="tel" />
-        </intent>
 
         <intent>
             <action android:name="android.intent.action.VIEW" />
@@ -28,7 +23,7 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="ebla">
+        android:label="عقارات">
 
         <activity
             android:name=".MainActivity"

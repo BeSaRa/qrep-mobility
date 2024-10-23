@@ -212,6 +212,7 @@ class NewsItemWidget extends StatelessWidget {
                                 )
                               ],
                             ),
+                            // SizedBox(),
                             Container(
                               padding: EdgeInsets.symmetric(
                                   horizontal: AppSizeW.s6,
