@@ -243,7 +243,7 @@ class StaticPagesContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: AppSizeH.s100,
-      width: AppSizeW.s112,
+      width: isTablet ? AppSizeW.s226 : AppSizeW.s112,
       padding:
           EdgeInsets.symmetric(horizontal: AppSizeH.s6, vertical: AppSizeH.s10),
       decoration: BoxDecoration(
@@ -326,7 +326,7 @@ class HomeContainer extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
-                  width: AppSizeW.s70,
+                  width: isTablet ? AppSizeW.s100 : AppSizeW.s70,
                   child: Text(
                     title,
                     maxLines: 6,

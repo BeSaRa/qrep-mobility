@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../presentations/features/main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../presentations/features/more/blocs/user_bloc/user_bloc.dart';
+import '../utils/global_functions.dart';
 import 'app_preferences.dart';
 import 'depndency_injection.dart';
 
@@ -61,11 +62,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       child: MediaQuery(
         data: MediaQuery.of(context).copyWith(
           textScaler: MediaQuery.of(context).textScaler == TextScaler.noScaling
-              ? const TextScaler.linear(1.0)
+              ? TextScaler.linear(isTablet ? 1.5 : 1.0)
               : getScalarRatio(),
         ),
         child: ScreenUtilInit(
-          designSize: const Size(390, 844),
+          designSize: isTablet ? const Size(1194, 834) : const Size(390, 844),
           minTextAdapt: false,
           splitScreenMode: false,
           builder: (context, child) => ThemeProvider(

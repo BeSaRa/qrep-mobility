@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../utils/global_functions.dart';
 import '../resources/color_manager.dart';
 import '../resources/values_manager.dart';
 
@@ -29,7 +30,7 @@ class _EblaTabBarWidgetState extends State<EblaTabBarWidget> {
       initialIndex: widget.initialIndex,
       child: Container(
         height: AppSizeH.s40,
-        width: AppSizeW.s160,
+        width: isTablet ? AppSizeW.s226 : AppSizeW.s160,
         padding: EdgeInsets.symmetric(
             vertical: AppSizeH.s5, horizontal: AppSizeW.s8),
         decoration: BoxDecoration(
