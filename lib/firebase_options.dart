@@ -59,7 +59,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCDuzozMOj4UDD-xAXcmbGZOWNGm19gV4E',
-    appId: '1:630145217979:ios:7a46f594683fe9065a409e',
+    appId: '1:630145217979:ios:f125d08b929b31c55a409e',
     messagingSenderId: '630145217979',
     projectId: 'qrep-d6577',
     storageBucket: 'qrep-d6577.appspot.com',

@@ -89,19 +89,24 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   TextScaler getScalarRatio() {
     TextScaler scalar = MediaQuery.of(context).textScaler;
-    String scale = scalar.toString();
-    //this is the printed linear (0.86x)
-    String theScale = scale
-        .replaceAll('linear', '')
-        .replaceAll("(", "")
-        .replaceAll(")", "")
-        .replaceAll("x", "")
-        .replaceAll(" ", "");
+    String scaleString = scalar.toString();
 
-    if (double.parse(theScale) < 1.0) {
-      return const TextScaler.linear(1.0);
+    // Extract the scale factor using a regular expression
+    RegExp regex = RegExp(r'linear \(([\d.]+)x\)');
+    Match? match = regex.firstMatch(scaleString);
+
+    if (match != null) {
+      String scaleFactorString = match.group(1)!;
+      double scaleFactor = double.parse(scaleFactorString);
+
+      if (scaleFactor < 1.0) {
+        return TextScaler.linear(isTablet ? 1.5 : 1.0);
+      } else {
+        return TextScaler.linear(isTablet ? 1.6 : 1.15);
+      }
     } else {
-      return const TextScaler.linear(1.15);
+      // Handle cases where the scale factor cannot be extracted
+      return TextScaler.linear(isTablet ? 1.5 : 1.0); // Or a default value
     }
   }
 }

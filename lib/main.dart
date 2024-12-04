@@ -5,6 +5,7 @@ import 'package:ebla/app/translations_assets_loader/translations_assets_loader.d
 import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,11 @@ Future<void> main() async {
           forGroundHandler(message);
         },
       );
+      FlutterError.onError =
+          FirebaseCrashlytics.instance.recordFlutterFatalError;
+      FlutterError.onError = (errorDetails) {
+        FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+      };
       try {
         FirebaseAnalytics analytics = FirebaseAnalytics.instance;
         print(FirebaseAnalytics.instance);
