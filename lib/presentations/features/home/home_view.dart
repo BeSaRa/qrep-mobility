@@ -4,6 +4,7 @@ import 'dart:math' as math;
 
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/app/depndency_injection.dart';
+import 'package:ebla/presentations/features/home/widgets/investors_cards_widget.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -152,9 +153,12 @@ class _HomeViewState extends State<HomeView> {
                     ],
                   ),
                 )),
+            //=============================================================
+            const InvestorsCardsWidget(),
             SizedBox(
-              height: AppSizeH.s10,
+              height: AppSizeH.s20,
             ),
+            //=============================================================
             BlocProvider(
               create: (context) =>
                   instance<NewsBloc>()..add(const NewsEvent.getNewsEvent()),
