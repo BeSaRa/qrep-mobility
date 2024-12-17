@@ -23,7 +23,9 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="عقارات">
+        android:label="عقارات"
+        android:usesCleartextTraffic="true"
+        >
 
         <activity
             android:name=".MainActivity"
