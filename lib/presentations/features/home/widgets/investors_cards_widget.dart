@@ -79,7 +79,7 @@ class InvestorsCardsWidget extends StatelessWidget {
             },
             child: InvestorsCard(
               color: ColorManager.golden,
-              icon: IconAssets.professionPracticers,
+              icon: IconAssets.totalSellTransactionsValue,
               title: SizedBox(
                 width: AppSizeW.s80,
                 child: Text(
