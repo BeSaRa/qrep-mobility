@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/material.dart';
@@ -14,22 +15,32 @@ class InvestorJourneyView extends StatefulWidget {
 class _InvestorJourneyViewState extends State<InvestorJourneyView> {
   late final WebViewController _controller;
   bool _isLoading = true;
+  String _url = '';
   String _getUrl(String stepNumber) {
     switch (stepNumber) {
       case "0":
-        return 'https://ministry.v2202305135856227727.ultrasrv.de/%D8%B1%D8%AD%D9%84%D8%A9-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AB%D9%85%D8%B1/';
+        return context.locale == ENGLISH_LOCAL
+            ? 'https://ministry.v2202305135856227727.ultrasrv.de/en/investors-journey/'
+            : 'https://ministry.v2202305135856227727.ultrasrv.de/%D8%B1%D8%AD%D9%84%D8%A9-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AB%D9%85%D8%B1/';
       case "1":
-        return 'property developer URL';
+        return context.locale == ENGLISH_LOCAL
+            ? "property developer EN URL"
+            : 'property developer URL';
       case "2":
-        return 'profession practicers URL';
+        return context.locale == ENGLISH_LOCAL
+            ? "profession practicers EN URL"
+            : 'profession practicers URL';
       default:
-        return 'https://ministry.v2202305135856227727.ultrasrv.de/%D8%B1%D8%AD%D9%84%D8%A9-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AB%D9%85%D8%B1/';
+        return context.locale == ENGLISH_LOCAL
+            ? 'https://ministry.v2202305135856227727.ultrasrv.de/en/investors-journey/'
+            : 'https://ministry.v2202305135856227727.ultrasrv.de/%D8%B1%D8%AD%D9%84%D8%A9-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AB%D9%85%D8%B1/';
     }
   }
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _url = _getUrl(widget.stepNumber);
     _initializeWebView();
   }
 
@@ -49,12 +60,12 @@ class _InvestorJourneyViewState extends State<InvestorJourneyView> {
           _injectCustomJavaScript();
         },
       ))
-      ..loadRequest(Uri.parse(_getUrl(widget.stepNumber)));
+      ..loadRequest(Uri.parse(_url));
   }
 
   void _injectCustomJavaScript() async {
     const String webviewsURL = "assets/webviews";
-    // Load JS file content as a string
+
     final String jsCode =
         await rootBundle.loadString('$webviewsURL/investor_journey.js');
     _controller.runJavaScript(jsCode);
@@ -70,11 +81,6 @@ class _InvestorJourneyViewState extends State<InvestorJourneyView> {
         await _controller.runJavaScript(darkModeCss);
       }
     }
-    // if (Theme.of(context).brightness == Brightness.dark) {
-    //   final String darkModeCss = await rootBundle
-    //       .loadString('$webviewsURL/investor_journey_dark_styles.js');
-    //   await _controller.runJavaScript(darkModeCss);
-    // }
   }
 
   @override
