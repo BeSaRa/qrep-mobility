@@ -33,7 +33,6 @@ class _InvestorJourneyViewState extends State<InvestorJourneyView> {
     _initializeWebView();
   }
 
-  // webView initialization
   void _initializeWebView() {
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -54,10 +53,28 @@ class _InvestorJourneyViewState extends State<InvestorJourneyView> {
   }
 
   void _injectCustomJavaScript() async {
+    const String webviewsURL = "assets/webviews";
     // Load JS file content as a string
     final String jsCode =
-        await rootBundle.loadString('assets/webviews/investor_journey.js');
+        await rootBundle.loadString('$webviewsURL/investor_journey.js');
     _controller.runJavaScript(jsCode);
+
+    // dark mode CSS if the theme is dark
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    if (isDarkMode) {
+      final String darkModeCss = await rootBundle
+          .loadString('$webviewsURL/investor_journey_dark_styles.js');
+
+      if (mounted) {
+        await _controller.runJavaScript(darkModeCss);
+      }
+    }
+    // if (Theme.of(context).brightness == Brightness.dark) {
+    //   final String darkModeCss = await rootBundle
+    //       .loadString('$webviewsURL/investor_journey_dark_styles.js');
+    //   await _controller.runJavaScript(darkModeCss);
+    // }
   }
 
   @override
@@ -76,7 +93,9 @@ class _InvestorJourneyViewState extends State<InvestorJourneyView> {
                 child: Container(
                   width: double.infinity,
                   height: MediaQuery.sizeOf(context).height,
-                  color: ColorManager.white,
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Theme.of(context).scaffoldBackgroundColor
+                      : ColorManager.white,
                 ),
               ),
             if (_isLoading) const Center(child: CircularProgressIndicator()),
@@ -136,7 +155,7 @@ class _InvestorJourneyViewState extends State<InvestorJourneyView> {
     );
   }
 
-  // Get the page title based on step number
+  // get the page title based on step number
   String _getPageTitle(String stepNumber) {
     switch (stepNumber) {
       case "0":

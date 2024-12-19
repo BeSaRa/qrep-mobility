@@ -74,7 +74,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/lang/
-    - assets/webviews/investor_journey.js
+    - assets/webviews/
   fonts:
     - family: Lusail
       fonts:
