@@ -24,12 +24,12 @@ class _InvestorJourneyViewState extends State<InvestorJourneyView> {
             : 'https://ministry.v2202305135856227727.ultrasrv.de/%D8%B1%D8%AD%D9%84%D8%A9-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AB%D9%85%D8%B1/';
       case "1":
         return context.locale == ENGLISH_LOCAL
-            ? "property developer EN URL"
-            : 'property developer URL';
+            ? "https://ministry.v2202305135856227727.ultrasrv.de/en/real-estate-developers/?lang=en"
+            : 'https://ministry.v2202305135856227727.ultrasrv.de/%d8%a7%d9%84%d9%85%d8%b7%d9%88%d8%b1%d9%8a%d9%86-%d8%a7%d9%84%d8%b9%d9%82%d8%a7%d8%b1%d9%8a%d9%8a%d9%86/';
       case "2":
         return context.locale == ENGLISH_LOCAL
-            ? "profession practicers EN URL"
-            : 'profession practicers URL';
+            ? "https://www.aqarat.gov.qa/en/professionals/?lang=en"
+            : 'https://ministry.v2202305135856227727.ultrasrv.de/%d9%85%d8%b2%d8%a7%d9%88%d9%84%d9%8a-%d8%a7%d9%84%d9%85%d9%87%d9%86%d8%a9-3/';
       default:
         return context.locale == ENGLISH_LOCAL
             ? 'https://ministry.v2202305135856227727.ultrasrv.de/en/investors-journey/'
@@ -66,21 +66,38 @@ class _InvestorJourneyViewState extends State<InvestorJourneyView> {
   void _injectCustomJavaScript() async {
     const String webviewsURL = "assets/webviews";
 
-    final String jsCode =
-        await rootBundle.loadString('$webviewsURL/investor_journey.js');
-    _controller.runJavaScript(jsCode);
-
     // dark mode CSS if the theme is dark
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     if (isDarkMode) {
-      final String darkModeCss = await rootBundle
-          .loadString('$webviewsURL/investor_journey_dark_styles.js');
+      final String darkModeCss =
+          await rootBundle.loadString('$webviewsURL/webviews_dark_styles.js');
 
       if (mounted) {
         await _controller.runJavaScript(darkModeCss);
       }
     }
+//===========================Start Investor Journey=====================
+    if (widget.stepNumber == "0") {
+      final String investorJsCode =
+          await rootBundle.loadString('$webviewsURL/investor_journey.js');
+      _controller.runJavaScript(investorJsCode);
+    }
+//===========================End Investor Journey=====================
+//===========================Start Property Developer=================
+    else if (widget.stepNumber == "1") {
+      final String propertyDeveloperJsCode =
+          await rootBundle.loadString('$webviewsURL/property_developer.js');
+      _controller.runJavaScript(propertyDeveloperJsCode);
+    }
+//===========================End Property Developer===================
+//===========================Start Professionals======================
+    else {
+      final String professionalsJsCode =
+          await rootBundle.loadString('$webviewsURL/professionals.js');
+      _controller.runJavaScript(professionalsJsCode);
+    }
+//===========================End Professionals===================
   }
 
   @override
@@ -90,10 +107,7 @@ class _InvestorJourneyViewState extends State<InvestorJourneyView> {
         appBar: _costumeAppBar(context),
         body: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 0.0),
-              child: WebViewWidget(controller: _controller),
-            ),
+            WebViewWidget(controller: _controller),
             if (_isLoading)
               Center(
                 child: Container(

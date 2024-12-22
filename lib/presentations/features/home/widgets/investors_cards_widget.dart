@@ -49,8 +49,8 @@ class InvestorsCardsWidget extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              // context.pushNamed(RoutesNames.investorJourney,
-              //     pathParameters: {"stepNumber": "1"});
+              context.pushNamed(RoutesNames.investorJourney,
+                  pathParameters: {"stepNumber": "1"});
             },
             child: InvestorsCard(
               color: ColorManager.primaryBlue,
@@ -74,8 +74,8 @@ class InvestorsCardsWidget extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              // context.pushNamed(RoutesNames.investorJourney,
-              //     pathParameters: {"stepNumber": "2"});
+              context.pushNamed(RoutesNames.investorJourney,
+                  pathParameters: {"stepNumber": "2"});
             },
             child: InvestorsCard(
               color: ColorManager.golden,

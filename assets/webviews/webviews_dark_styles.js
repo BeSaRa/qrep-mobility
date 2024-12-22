@@ -1,11 +1,11 @@
 (function () {
-let style = document.createElement("style");
-const primaryBg = "#161616"; /* Main background color */
-const secondaryBg = "#222222"; /* Secondary background color */
-const primaryText = "#ffffff"; /* Primary text color */
-const borderColor = "#434343"; /* border color */
+  let style = document.createElement("style");
+  const primaryBg = "#161616"; /* Main background color */
+  const secondaryBg = "#222222"; /* Secondary background color */
+  const primaryText = "#ffffff"; /* Primary text color */
+  const borderColor = "#434343"; /* border color */
 
-style.innerHTML = `
+  style.innerHTML = `
 	body {
 	background-color: ${primaryBg} !important;
 	color: ${primaryText} !important;
@@ -14,7 +14,7 @@ style.innerHTML = `
 		background-color: ${primaryBg} !important;
 	color: ${primaryText} !important;
 	}
-
+/************************************ Investor Journey **************************************/
 	/*=========================================Start Study idea Dark theme====================================================*/
 
 	/*----------background in the investing features----------*/
@@ -107,6 +107,105 @@ style.innerHTML = `
 	img {
 	filter: brightness(0.8) contrast(1.2);
 	}
+
+/************************************ Property Debelopers **************************************/
+/*-------Steps Boxs Ar----*/
+	body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-90737a5.e-con-full.e-flex.e-con.e-parent.e-lazyloaded > div > div.elementor-element.elementor-element-bf94f63.e-flex.e-con-boxed.e-con.e-child > div > div > div > div > div > .step-red > .circle-box > .circle{
+		background-image: linear-gradient(${primaryBg}, ${primaryBg}), linear-gradient(180deg, #8A1538 0%, #26050F 100%) !important;
+	}
+	body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-90737a5.e-con-full.e-flex.e-con.e-parent.e-lazyloaded > div > div.elementor-element.elementor-element-bf94f63.e-flex.e-con-boxed.e-con.e-child > div > div > div > div > div > .step-blue > .circle-box > .circle{
+		background-image: linear-gradient(${primaryBg}, ${primaryBg}), linear-gradient(180deg, #0D4261 0%, #030A1F 100%) !important;
+	}
+	body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-90737a5.e-con-full.e-flex.e-con.e-parent.e-lazyloaded > div > div.elementor-element.elementor-element-bf94f63.e-flex.e-con-boxed.e-con.e-child > div > div > div > div > div > .step-yellow > .circle-box > .circle{
+		background-image:  linear-gradient(${primaryBg}, ${primaryBg}), linear-gradient(180deg, #B79769 0%, #432c0c 100%) !important;
+	}
+/*-------Steps Boxs En----*/
+	body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-bd0f3b3.e-con-full.e-flex.e-con.e-parent.e-lazyloaded > div > div.elementor-element.elementor-element-0259d4a.e-flex.e-con-boxed.e-con.e-child > div > div > div > div > div > .step-red > .circle-box > .circle{
+		background-image: linear-gradient(${primaryBg}, ${primaryBg}), linear-gradient(180deg, #8A1538 0%, #26050F 100%) !important;
+	}
+	body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-bd0f3b3.e-con-full.e-flex.e-con.e-parent.e-lazyloaded > div > div.elementor-element.elementor-element-0259d4a.e-flex.e-con-boxed.e-con.e-child > div > div > div > div > div > .step-blue > .circle-box > .circle{
+		background-image: linear-gradient(${primaryBg}, ${primaryBg}), linear-gradient(180deg, #0D4261 0%, #030A1F 100%) !important;
+	}
+	body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-bd0f3b3.e-con-full.e-flex.e-con.e-parent.e-lazyloaded > div > div.elementor-element.elementor-element-0259d4a.e-flex.e-con-boxed.e-con.e-child > div > div > div > div > div > .step-yellow > .circle-box > .circle{
+		background-image:  linear-gradient(${primaryBg}, ${primaryBg}), linear-gradient(180deg, #B79769 0%, #432c0c 100%) !important;
+	}
+/*-------Steps Cards Content Ar----*/
+	body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-90737a5.e-con-full.e-flex.e-con.e-parent.e-lazyloaded > div > div.elementor-element.elementor-element-bf94f63.e-flex.e-con-boxed.e-con.e-child > div > div > div > div > div > .step-box .content{
+	background-color:${secondaryBg} !important;
+	}
+	
+/*-------Steps Cards Content En----*/
+	body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-bd0f3b3.e-con-full.e-flex.e-con.e-parent.e-lazyloaded > div > div.elementor-element.elementor-element-0259d4a.e-flex.e-con-boxed.e-con.e-child > div > div > div > div > div > .step-box .content{
+	background-color:${secondaryBg} !important;
+	}
+	
+/*-------تراخيص المطورون ----*/
+	#developer-licenses > div.elementor-element.elementor-element-9ace9cc.e-con-full.e-flex.e-con.e-child > div.elementor-element.elementor-element-a226c1b.e-con-full.e-flex.e-con.e-child > .elementor-element {
+		background: ${secondaryBg} !important;
+	}
+	#developer-licenses > div.elementor-element.elementor-element-9ace9cc.e-con-full.e-flex.e-con.e-child > div.elementor-element.elementor-element-a226c1b.e-con-full.e-flex.e-con.e-child > .elementor-shape {
+		display:none;
+	}
+	/*زر المزيد*/	
+	div.elementor-element-718304c .elementor-element{
+		background: ${secondaryBg} !important;
+		}
+	div.elementor-element-718304c .elementor-shape{
+		display:none !important;
+	}
+
+/*------- ترخيص البيع على الخارطة -----*/
+	div.elementor-element-3ffc396 .elementor-shape{
+		display:none;
+	}
+	/*red cards*/	
+		.elementor-element-a0072aa > .elementor-element > div > div > div{
+			background: ${primaryBg} !important;
+		}
+	/*blue cards*/
+		.elementor-element-7ec650a > .elementor-element > div > div > div{
+			background: ${primaryBg} !important;
+		}
+		div.elementor-element-fb703a7{
+			background: ${secondaryBg} !important;
+		} 
+	/*زر المزيد*//*-----For Ar-----*/	
+	div.elementor-element-175eafd .elementor-shape{
+		display:none;
+	}
+	/*red cards*/	
+		.elementor-element-855dd3f > .elementor-element > div > div > div{
+			background: ${primaryBg} !important;
+		}
+	/*blue cards*/
+		.elementor-element-00f6fd3 > .elementor-element > div > div > div{
+			background: ${primaryBg} !important;
+		}
+	/*زر المزيد*//*-----For en-----*/
+		div.elementor-element-5013af4 .elementor-shape{
+			display:none;
+		}
+		div.elementor-element-dcfc6e8{
+			background: ${secondaryBg} !important;
+		} 
+		/*red cards*/	
+		.elementor-element-b070a64  > .elementor-element > div > div > div{
+			background: ${primaryBg} !important;
+		}
+		/*blue cards*/
+		.elementor-element-1ad609f > .elementor-element > div > div > div{
+			background: ${primaryBg} !important;
+		}	
+/*------- رخصة اعلان -----*/	
+	.elementor-element-1ffce4c{
+		background:${secondaryBg} !important;
+	}
+/************************************ 	Professionals **************************************/
+/*المثمن العقاري*/
+	.elementor-element-0e302bc{
+		background:${secondaryBg} !important;
+	}
+
 `;
-document.head.appendChild(style);
+  document.head.appendChild(style);
 })();
