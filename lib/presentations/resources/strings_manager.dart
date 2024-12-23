@@ -114,6 +114,15 @@ class AppStrings {
   String lawNumber = "law_number".tr();
   String lawDetails = "law_details".tr();
   String downloadFile = "download_file".tr();
+  String investorJourney= "investor_journey".tr();//رحلة المستثمر
+  String propertyDevelopers= "property_developers".tr();
+  String professionPracticers= "profession_practicers".tr();
+
+  String studyTheIdea= "study_the_idea".tr();
+  String connectWithExperts= "connect_with_experts".tr();
+  String chooseYourProject= "choose_your_project".tr();
+  String ownRealEstate= "own_real_estate".tr();
+  String manageYourProperty= "manage_your_property".tr();
 
   //filter
   String measuringUnit = "measuring_unit".tr(); // وحدة القياس

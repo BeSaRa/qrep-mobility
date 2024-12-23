@@ -8,6 +8,7 @@ import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart'
 import 'package:ebla/presentations/features/info/views/about_us_view.dart';
 import 'package:ebla/presentations/features/info/views/faq_view.dart';
 import 'package:ebla/presentations/features/info/views/laws_details_view.dart';
+import 'package:ebla/presentations/features/investor_journey/view/investor_journey_view.dart';
 import 'package:ebla/presentations/features/main/main_scaffold.dart';
 import 'package:ebla/presentations/features/more/more_view.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
@@ -48,6 +49,7 @@ class RoutesNames {
   static const String newsbyId = 'news item';
   static const String realEstateBrokers = 'real estate brokers';
   static const String favourite = 'favourite';
+  static const String investorJourney = 'investor journey';
 }
 
 class RoutesPaths {
@@ -67,6 +69,7 @@ class RoutesPaths {
   static const String realEstateBrokers = '/realestatebrokers';
   static const String updateInfo = '/updateInfo';
   static const String favourite = '/favourite';
+  static const String investorJourney = '/investorjourney';
 }
 
 class NavigationKeys {
@@ -450,5 +453,25 @@ class AppRouter {
           path: RoutesPaths.splash,
           builder: (context, state) => const SplashView(),
         ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.investorJourney,
+          path: '${RoutesPaths.investorJourney}:stepNumber',
+          builder: (context, state) {
+            final stepNumber = state.pathParameters['stepNumber'] ??
+                '0'; // Default to '0' which is investor journey web view
+            return InvestorJourneyView(stepNumber: stepNumber);
+          },
+        ),
+        // GoRoute(
+        //   parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+        //   name: RoutesNames.investorJourney,
+        //   path: '${RoutesPaths.investorJourney}:stepNumber',
+        //   builder: (context, state) {
+        //     final stepNumber = state.pathParameters['stepNumber'] ??
+        //         '0'; // Default to '0' which is investor journey web view
+        //     return InvestorJourneyView(stepNumber: stepNumber);
+        //   },
+        // ),
       ]);
 }
