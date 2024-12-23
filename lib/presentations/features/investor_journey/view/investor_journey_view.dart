@@ -1,22 +1,19 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:ebla/presentations/features/investor_journey/blocs/investor_journey_bloc.dart';
+import 'package:ebla/presentations/features/investor_journey/blocs/investor_journey_state.dart';
+import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class InvestorJourneyView extends StatefulWidget {
-  const InvestorJourneyView({super.key, required this.stepNumber});
+import '../blocs/investor_journey_event.dart';
+
+class InvestorJourneyView extends StatelessWidget {
+  InvestorJourneyView({super.key, required this.stepNumber});
+
   final String stepNumber;
-
-  @override
-  _InvestorJourneyViewState createState() => _InvestorJourneyViewState();
-}
-
-class _InvestorJourneyViewState extends State<InvestorJourneyView> {
-  late final WebViewController _controller;
-  bool _isLoading = true;
-  String _url = '';
-  String _getUrl(String stepNumber) {
+  String _getUrl(BuildContext context, String stepNumber) {
     switch (stepNumber) {
       case "0":
         return context.locale == ENGLISH_LOCAL
@@ -38,89 +35,51 @@ class _InvestorJourneyViewState extends State<InvestorJourneyView> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _url = _getUrl(widget.stepNumber);
-    _initializeWebView();
-  }
-
-  void _initializeWebView() {
-    _controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setNavigationDelegate(NavigationDelegate(
-        onPageStarted: (url) {
-          setState(() {
-            _isLoading = true;
-          });
-        },
-        onPageFinished: (url) {
-          setState(() {
-            _isLoading = false;
-          });
-          _injectCustomJavaScript();
-        },
-      ))
-      ..loadRequest(Uri.parse(_url));
-  }
-
-  void _injectCustomJavaScript() async {
-    const String webviewsURL = "assets/webviews";
-
-    // dark mode CSS if the theme is dark
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
-    if (isDarkMode) {
-      final String darkModeCss =
-          await rootBundle.loadString('$webviewsURL/webviews_dark_styles.js');
-
-      if (mounted) {
-        await _controller.runJavaScript(darkModeCss);
-      }
-    }
-//===========================Start Investor Journey=====================
-    if (widget.stepNumber == "0") {
-      final String investorJsCode =
-          await rootBundle.loadString('$webviewsURL/investor_journey.js');
-      _controller.runJavaScript(investorJsCode);
-    }
-//===========================End Investor Journey=====================
-//===========================Start Property Developer=================
-    else if (widget.stepNumber == "1") {
-      final String propertyDeveloperJsCode =
-          await rootBundle.loadString('$webviewsURL/property_developer.js');
-      _controller.runJavaScript(propertyDeveloperJsCode);
-    }
-//===========================End Property Developer===================
-//===========================Start Professionals======================
-    else {
-      final String professionalsJsCode =
-          await rootBundle.loadString('$webviewsURL/professionals.js');
-      _controller.runJavaScript(professionalsJsCode);
-    }
-//===========================End Professionals===================
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: _costumeAppBar(context),
-        body: Stack(
-          children: [
-            WebViewWidget(controller: _controller),
-            if (_isLoading)
-              Center(
-                child: Container(
-                  width: double.infinity,
-                  height: MediaQuery.sizeOf(context).height,
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? Theme.of(context).scaffoldBackgroundColor
-                      : ColorManager.white,
-                ),
+    final url = _getUrl(context, stepNumber);
+
+    return BlocProvider(
+      create: (context) =>
+          InvestorJourneyBloc(WebViewController())..add(InitializeWebView(url)),
+      child: BlocBuilder<InvestorJourneyBloc, InvestorJourneyState>(
+        builder: (context, state) {
+          final bloc = context.read<InvestorJourneyBloc>();
+          if (state is InvestorJourneyLoaded) {
+            final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+            bloc.add(RunJavaScript(stepNumber, isDarkMode));
+          }
+          return SafeArea(
+            child: Scaffold(
+              appBar: _costumeAppBar(context),
+              body: Stack(
+                children: [
+                  if (state is InvestorJourneyLoading)
+                    Center(
+                      child: Container(
+                        width: double.infinity,
+                        height: MediaQuery.sizeOf(context).height,
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Theme.of(context).scaffoldBackgroundColor
+                            : ColorManager.white,
+                      ),
+                    ),
+                  if (state is InvestorJourneyLoading)
+                    const Center(child: CircularProgressIndicator()),
+                  if (state is InvestorJourneyLoaded)
+                    WebViewWidget(controller: bloc.controller),
+                  if (state is InvestorJourneyError)
+                    ErrorGlobalWidget(
+                      message: state.message,
+                      onPressed: () {
+                        bloc.add(
+                            InitializeWebView(_getUrl(context, stepNumber)));
+                      },
+                    ),
+                ],
               ),
-            if (_isLoading) const Center(child: CircularProgressIndicator()),
-          ],
-        ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -167,7 +126,7 @@ class _InvestorJourneyViewState extends State<InvestorJourneyView> {
             ),
           ),
           Text(
-            _getPageTitle(widget.stepNumber),
+            _getPageTitle(stepNumber),
             style: Theme.of(context).textTheme.headlineLarge,
           ),
         ],
