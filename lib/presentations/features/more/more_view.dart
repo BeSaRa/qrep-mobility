@@ -1,24 +1,23 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart' as local;
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:ebla/app/constants.dart';
 import 'package:ebla/presentations/features/auth/blocs/cubits/logged_in_user_cubit.dart';
 import 'package:ebla/presentations/features/auth/views/login_view.dart';
 import 'package:ebla/presentations/features/more/blocs/cubits/change_language_cubit.dart';
 import 'package:ebla/presentations/features/more/blocs/user_bloc/user_bloc.dart';
-import 'package:ebla/presentations/features/more/widgets/more_view_shimmer.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
 import '../../resources/resources.dart';
 import '../../widgets/widgets.dart';
 import '../auth/blocs/login_bloc/login_bloc.dart';
 import '../main/blocs/lookup_bloc/lookup_bloc.dart';
-import '../main/cubit/bottom_nav_cubit.dart';
 import 'widgets/dialog_signout.dart';
 
 class MoreView extends StatefulWidget {
@@ -140,70 +139,11 @@ class _MoreViewState extends State<MoreView> {
                       //     );
                       //   },
                       // ),
-                      ThemeSwitcher.withTheme(
-                          builder: (context, switcher, theme) {
-                        return MoreWidgetButton(
-                            icon: Icons.color_lens_outlined,
-                            title: AppStrings().theme,
-                            isButton: false,
-                            widget: Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: EblaTabBarWidget(
-                                  initialIndex: instance<AppPreferences>()
-                                              .getTheme()
-                                              .brightness ==
-                                          Brightness.light
-                                      ? 0
-                                      : 1,
-                                  firstTab: AppStrings().light,
-                                  secondTab: AppStrings().dark,
-                                  onPressed: (index) {
-                                    if (theme.brightness == Brightness.light &&
-                                        index == 1) {
-                                      ThemeData newTheme = (theme.brightness ==
-                                                  Brightness.light &&
-                                              index == 1)
-                                          ? darkTheme()
-                                          : lightTheme();
-                                      switcher.changeTheme(theme: newTheme);
-                                      instance<AppPreferences>()
-                                          .setTheme(themeData: newTheme);
-                                    } else if (theme.brightness ==
-                                            Brightness.dark &&
-                                        index == 0) {
-                                      ThemeData newTheme = (theme.brightness ==
-                                                  Brightness.light &&
-                                              index == 1)
-                                          ? darkTheme()
-                                          : lightTheme();
-                                      switcher.changeTheme(theme: newTheme);
-                                      instance<AppPreferences>()
-                                          .setTheme(themeData: newTheme);
-                                    }
-                                  },
-                                )));
-                      }),
-                      MoreWidgetButton(
-                        icon: Icons.language_outlined,
-                        title: AppStrings().language,
-                        isButton: false,
-                        widget: EblaTabBarWidget(
-                          initialIndex: context.locale == ARABIC_LOCAL ? 0 : 1,
-                          firstTab: 'عربي',
-                          secondTab: 'English',
-                          onPressed: (index) {
-                            changeLanguageCubit.save(index);
-                            if (changeLanguageCubit.state == 0) {
-                              _appPreferences.setAppLanguage(lang: 'ar');
-                              context.setLocale(ARABIC_LOCAL);
-                            }
-                            if (changeLanguageCubit.state == 1) {
-                              _appPreferences.setAppLanguage(lang: 'en');
-                              context.setLocale(ENGLISH_LOCAL);
-                            }
-                          },
-                        ),
-                      ),
+
+                      BlocProvider.value(
+                          value: changeLanguageCubit,
+                          child: MainMoreButtonsList(
+                              appPreferences: _appPreferences)),
                       const SizedBox()
                     ],
                   ),
@@ -340,74 +280,13 @@ class _MoreViewState extends State<MoreView> {
                           //     );
                           //   },
                           // ),
-                          ThemeSwitcher.withTheme(
-                              builder: (context, switcher, theme) {
-                            return MoreWidgetButton(
-                                icon: Icons.color_lens_outlined,
-                                title: AppStrings().theme,
-                                isButton: false,
-                                widget: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: EblaTabBarWidget(
-                                      initialIndex: instance<AppPreferences>()
-                                                  .getTheme()
-                                                  .brightness ==
-                                              Brightness.light
-                                          ? 0
-                                          : 1,
-                                      firstTab: AppStrings().light,
-                                      secondTab: AppStrings().dark,
-                                      onPressed: (index) {
-                                        if (theme.brightness ==
-                                                Brightness.light &&
-                                            index == 1) {
-                                          ThemeData newTheme =
-                                              (theme.brightness ==
-                                                          Brightness.light &&
-                                                      index == 1)
-                                                  ? darkTheme()
-                                                  : lightTheme();
-                                          switcher.changeTheme(theme: newTheme);
-                                          instance<AppPreferences>()
-                                              .setTheme(themeData: newTheme);
-                                        } else if (theme.brightness ==
-                                                Brightness.dark &&
-                                            index == 0) {
-                                          ThemeData newTheme =
-                                              (theme.brightness ==
-                                                          Brightness.light &&
-                                                      index == 1)
-                                                  ? darkTheme()
-                                                  : lightTheme();
-                                          switcher.changeTheme(theme: newTheme);
-                                          instance<AppPreferences>()
-                                              .setTheme(themeData: newTheme);
-                                        }
-                                      },
-                                    )));
-                          }),
-                          MoreWidgetButton(
-                            icon: Icons.language_outlined,
-                            title: AppStrings().language,
-                            isButton: false,
-                            widget: EblaTabBarWidget(
-                              initialIndex:
-                                  context.locale == ARABIC_LOCAL ? 0 : 1,
-                              firstTab: 'عربي',
-                              secondTab: 'English',
-                              onPressed: (index) {
-                                changeLanguageCubit.save(index);
-                                if (changeLanguageCubit.state == 0) {
-                                  _appPreferences.setAppLanguage(lang: 'ar');
-                                  context.setLocale(ARABIC_LOCAL);
-                                }
-                                if (changeLanguageCubit.state == 1) {
-                                  _appPreferences.setAppLanguage(lang: 'en');
-                                  context.setLocale(ENGLISH_LOCAL);
-                                }
-                              },
-                            ),
-                          ),
+
+                          //--------------------------------------------
+                          BlocProvider.value(
+                              value: changeLanguageCubit,
+                              child: MainMoreButtonsList(
+                                  appPreferences: _appPreferences)),
+                          //--------------------------------------------
                           !context.read<LoggedInUserCubit>().state
                               ? const SizedBox()
                               : GestureDetector(
@@ -542,70 +421,74 @@ class _MoreViewState extends State<MoreView> {
                       //     );
                       //   },
                       // ),
-                      ThemeSwitcher.withTheme(
-                          builder: (context, switcher, theme) {
-                        return MoreWidgetButton(
-                            icon: Icons.color_lens_outlined,
-                            title: AppStrings().theme,
-                            isButton: false,
-                            widget: Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: EblaTabBarWidget(
-                                  initialIndex: instance<AppPreferences>()
-                                              .getTheme()
-                                              .brightness ==
-                                          Brightness.light
-                                      ? 0
-                                      : 1,
-                                  firstTab: AppStrings().light,
-                                  secondTab: AppStrings().dark,
-                                  onPressed: (index) {
-                                    if (theme.brightness == Brightness.light &&
-                                        index == 1) {
-                                      ThemeData newTheme = (theme.brightness ==
-                                                  Brightness.light &&
-                                              index == 1)
-                                          ? darkTheme()
-                                          : lightTheme();
-                                      switcher.changeTheme(theme: newTheme);
-                                      instance<AppPreferences>()
-                                          .setTheme(themeData: newTheme);
-                                    } else if (theme.brightness ==
-                                            Brightness.dark &&
-                                        index == 0) {
-                                      ThemeData newTheme = (theme.brightness ==
-                                                  Brightness.light &&
-                                              index == 1)
-                                          ? darkTheme()
-                                          : lightTheme();
-                                      switcher.changeTheme(theme: newTheme);
-                                      instance<AppPreferences>()
-                                          .setTheme(themeData: newTheme);
-                                    }
-                                  },
-                                )));
-                      }),
-                      MoreWidgetButton(
-                        icon: Icons.language_outlined,
-                        title: AppStrings().language,
-                        isButton: false,
-                        widget: EblaTabBarWidget(
-                          initialIndex: context.locale == ARABIC_LOCAL ? 0 : 1,
-                          firstTab: 'عربي',
-                          secondTab: 'English',
-                          onPressed: (index) {
-                            changeLanguageCubit.save(index);
-                            if (changeLanguageCubit.state == 0) {
-                              _appPreferences.setAppLanguage(lang: 'ar');
-                              context.setLocale(ARABIC_LOCAL);
-                            }
-                            if (changeLanguageCubit.state == 1) {
-                              _appPreferences.setAppLanguage(lang: 'en');
-                              context.setLocale(ENGLISH_LOCAL);
-                            }
-                          },
-                        ),
-                      ),
+                      // ThemeSwitcher.withTheme(
+                      //     builder: (context, switcher, theme) {
+                      //   return MoreWidgetButton(
+                      //       icon: Icons.color_lens_outlined,
+                      //       title: AppStrings().theme,
+                      //       isButton: false,
+                      //       widget: Directionality(
+                      //           textDirection: TextDirection.rtl,
+                      //           child: EblaTabBarWidget(
+                      //             initialIndex: instance<AppPreferences>()
+                      //                         .getTheme()
+                      //                         .brightness ==
+                      //                     Brightness.light
+                      //                 ? 0
+                      //                 : 1,
+                      //             firstTab: AppStrings().light,
+                      //             secondTab: AppStrings().dark,
+                      //             onPressed: (index) {
+                      //               if (theme.brightness == Brightness.light &&
+                      //                   index == 1) {
+                      //                 ThemeData newTheme = (theme.brightness ==
+                      //                             Brightness.light &&
+                      //                         index == 1)
+                      //                     ? darkTheme()
+                      //                     : lightTheme();
+                      //                 switcher.changeTheme(theme: newTheme);
+                      //                 instance<AppPreferences>()
+                      //                     .setTheme(themeData: newTheme);
+                      //               } else if (theme.brightness ==
+                      //                       Brightness.dark &&
+                      //                   index == 0) {
+                      //                 ThemeData newTheme = (theme.brightness ==
+                      //                             Brightness.light &&
+                      //                         index == 1)
+                      //                     ? darkTheme()
+                      //                     : lightTheme();
+                      //                 switcher.changeTheme(theme: newTheme);
+                      //                 instance<AppPreferences>()
+                      //                     .setTheme(themeData: newTheme);
+                      //               }
+                      //             },
+                      //           )));
+                      // }),
+                      // MoreWidgetButton(
+                      //   icon: Icons.language_outlined,
+                      //   title: AppStrings().language,
+                      //   isButton: false,
+                      //   widget: EblaTabBarWidget(
+                      //     initialIndex: context.locale == ARABIC_LOCAL ? 0 : 1,
+                      //     firstTab: 'عربي',
+                      //     secondTab: 'English',
+                      //     onPressed: (index) {
+                      //       changeLanguageCubit.save(index);
+                      //       if (changeLanguageCubit.state == 0) {
+                      //         _appPreferences.setAppLanguage(lang: 'ar');
+                      //         context.setLocale(ARABIC_LOCAL);
+                      //       }
+                      //       if (changeLanguageCubit.state == 1) {
+                      //         _appPreferences.setAppLanguage(lang: 'en');
+                      //         context.setLocale(ENGLISH_LOCAL);
+                      //       }
+                      //     },
+                      //   ),
+                      // ),
+                      BlocProvider.value(
+                          value: changeLanguageCubit,
+                          child: MainMoreButtonsList(
+                              appPreferences: _appPreferences)),
                       const SizedBox()
                     ],
                   ),
@@ -623,6 +506,157 @@ class _MoreViewState extends State<MoreView> {
       elevation: 0,
       child: LoginView(),
     );
+  }
+}
+
+class MainMoreButtonsList extends StatelessWidget {
+  const MainMoreButtonsList({
+    Key? key,
+    required this.appPreferences,
+  }) : super(key: key);
+  final AppPreferences appPreferences;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ThemeSwitcher.withTheme(builder: (context, switcher, theme) {
+          return MoreWidgetButton(
+              icon: Icons.color_lens_outlined,
+              title: AppStrings().theme,
+              isButton: false,
+              widget: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: EblaTabBarWidget(
+                    initialIndex:
+                        instance<AppPreferences>().getTheme().brightness ==
+                                Brightness.light
+                            ? 0
+                            : 1,
+                    firstTab: AppStrings().light,
+                    secondTab: AppStrings().dark,
+                    onPressed: (index) {
+                      if (theme.brightness == Brightness.light && index == 1) {
+                        ThemeData newTheme =
+                            (theme.brightness == Brightness.light && index == 1)
+                                ? darkTheme()
+                                : lightTheme();
+                        switcher.changeTheme(theme: newTheme);
+                        instance<AppPreferences>()
+                            .setTheme(themeData: newTheme);
+                      } else if (theme.brightness == Brightness.dark &&
+                          index == 0) {
+                        ThemeData newTheme =
+                            (theme.brightness == Brightness.light && index == 1)
+                                ? darkTheme()
+                                : lightTheme();
+                        switcher.changeTheme(theme: newTheme);
+                        instance<AppPreferences>()
+                            .setTheme(themeData: newTheme);
+                      }
+                    },
+                  )));
+        }),
+        MoreWidgetButton(
+          icon: Icons.language_outlined,
+          title: AppStrings().language,
+          isButton: false,
+          widget: EblaTabBarWidget(
+            initialIndex: context.locale == ARABIC_LOCAL ? 0 : 1,
+            firstTab: 'عربي',
+            secondTab: 'English',
+            onPressed: (index) {
+              context.read<ChangeLanguageCubit>().save(index);
+              if (context.read<ChangeLanguageCubit>().state == 0) {
+                appPreferences.setAppLanguage(lang: 'ar');
+                context.setLocale(ARABIC_LOCAL);
+              }
+              if (context.read<ChangeLanguageCubit>().state == 1) {
+                appPreferences.setAppLanguage(lang: 'en');
+                context.setLocale(ENGLISH_LOCAL);
+              }
+            },
+          ),
+        ),
+        //=====================نبذة عن الهيئة===================
+        MoreWidgetButton(
+            icon: Icons.details,
+            title: AppStrings().aboutTheAuthority,
+            isButton: true,
+            onPressed: () {
+              context.pushNamed(RoutesNames.aboutTheAuthority,
+                  pathParameters: {"pageName": "aboutTheAuthority"});
+            },
+            widget: const Icon(Icons.arrow_forward_ios)),
+        //===================== رؤية مستقبلية ===================
+        MoreWidgetButton(
+          icon: Icons.color_lens_outlined,
+          title: AppStrings().visionAndMission,
+          isButton: true,
+          onPressed: () {
+            context.pushNamed(RoutesNames.aboutTheAuthority,
+                pathParameters: {"pageName": "visionAndMission"});
+          },
+        ),
+        //===================== مهام ومسؤوليات ===================
+        MoreWidgetButton(
+          icon: Icons.color_lens_outlined,
+          title: AppStrings().tasksAndResponsibilitiesOftheAuthority,
+          isButton: true,
+          onPressed: () {
+            context.pushNamed(RoutesNames.aboutTheAuthority, pathParameters: {
+              "pageName": "tasksAndResponsibilitiesOftheAuthority"
+            });
+          },
+        ),
+        //===================== موقع الهيئة ===================
+        MoreWidgetButton(
+          icon: Icons.color_lens_outlined,
+          title: AppStrings().authorityLocation,
+          isButton: true,
+          onPressed: () {
+            openMap();
+          },
+        ),
+        //===================== تواصل معنا ===================
+        MoreWidgetButton(
+          icon: Icons.color_lens_outlined,
+          title: AppStrings().contactUs,
+          isButton: true,
+          onPressed: () {
+            context.pushNamed(RoutesNames.aboutTheAuthority,
+                pathParameters: {"pageName": "contactUs"});
+          },
+        ),
+        //===================== اخبار الهيئة ===================
+        // MoreWidgetButton(
+        //   icon: Icons.color_lens_outlined,
+        //   title: AppStrings().authorityNews,
+        //   isButton: true,
+        //   onPressed: () {
+        //     context.pushNamed(RoutesNames.aboutTheAuthority,
+        //         pathParameters: {"pageName": "authorityNews"});
+        //   },
+        // ),
+        //===================== services ===================
+        MoreWidgetButton(
+          icon: Icons.color_lens_outlined,
+          title: AppStrings().services,
+          isButton: true,
+          onPressed: () {
+            context.pushNamed(RoutesNames.aboutTheAuthority,
+                pathParameters: {"pageName": "services"});
+          },
+        ),
+      ],
+    );
+  }
+
+  openMap() async {
+    var url = Uri.parse('');
+    // 'https://geoportal.gisqatar.org.qa/inwani/index.html?zone=$zoneId&street=$streetNo&building=$buildingNo');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch ');
+    }
   }
 }
 

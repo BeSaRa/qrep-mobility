@@ -1,0 +1,167 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/presentations/features/more/all_more_web_views/blocs/all_more_web_views_bloc.dart';
+import 'package:ebla/presentations/features/more/all_more_web_views/blocs/all_more_web_views_event.dart';
+import 'package:ebla/presentations/features/more/all_more_web_views/blocs/all_more_web_views_state.dart';
+import 'package:ebla/presentations/widgets/error_widget.dart';
+import 'package:ebla/presentations/resources/resources.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
+class AllMoreWebViews extends StatelessWidget {
+  const AllMoreWebViews({super.key, required this.pageName});
+
+  final String pageName;
+
+  String _getInitUrl(BuildContext context, String pageName) {
+    switch (pageName) {
+      case "aboutTheAuthority":
+        return context.locale == ENGLISH_LOCAL
+            ? 'https://www.aqarat.gov.qa/en/about-the-authority/'
+            : 'https://www.aqarat.gov.qa/%d9%86%d8%a8%d8%b0%d8%a9-%d8%b9%d9%86-%d8%a7%d9%84%d9%87%d9%8a%d8%a6%d8%a9/';
+      case "visionAndMission":
+        return context.locale == ENGLISH_LOCAL
+            ? "https://www.aqarat.gov.qa/en/vision-and-mission/"
+            : 'https://www.aqarat.gov.qa/%d8%a7%d9%84%d8%b1%d8%a4%d9%8a%d8%a9-%d9%88%d8%a7%d9%84%d8%b1%d8%b3%d8%a7%d9%84%d8%a9/';
+      case "tasksAndResponsibilitiesOftheAuthority":
+        return context.locale == ENGLISH_LOCAL
+            ? "https://www.aqarat.gov.qa/en/tasks-and-responsibilities-of-the-authority/"
+            : 'https://www.aqarat.gov.qa/%d9%85%d9%87%d8%a7%d9%85-%d9%88%d8%a7%d8%ae%d8%aa%d8%b5%d8%a7%d8%b5%d8%a7%d8%aa-%d8%a7%d9%84%d9%87%d9%8a%d8%a6%d8%a9/';
+      case "contactUs":
+        return context.locale == ENGLISH_LOCAL
+            ? "https://www.aqarat.gov.qa/en/contact-us/"
+            : 'https://www.aqarat.gov.qa/%d8%aa%d9%88%d8%a7%d8%b5%d9%84-%d9%85%d8%b9%d9%86%d8%a7/';
+      case "authorityNews":
+        return context.locale == ENGLISH_LOCAL
+            ? "https://www.aqarat.gov.qa/en/authority-news/"
+            : 'https://www.aqarat.gov.qa/%d8%a3%d8%ae%d8%a8%d8%a7%d8%b1-%d8%a7%d9%84%d9%87%d9%8a%d8%a6%d8%a9/';
+      case "services":
+        return context.locale == ENGLISH_LOCAL
+            ? "https://www.aqarat.gov.qa/en/services/"
+            : 'https://www.aqarat.gov.qa/%d8%a7%d9%84%d8%ae%d8%af%d9%85%d8%a7%d8%aa/';
+      default:
+        return context.locale == ENGLISH_LOCAL
+            ? 'https://www.aqarat.gov.qa/en/about-the-authority/'
+            : 'https://www.aqarat.gov.qa/%d9%86%d8%a8%d8%b0%d8%a9-%d8%b9%d9%86-%d8%a7%d9%84%d9%87%d9%8a%d8%a6%d8%a9/';
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final url = _getInitUrl(context, pageName);
+    return BlocProvider(
+      create: (context) => AboutTheAuthorityBloc(WebViewController())
+        ..add(InitializeAboutAuthWebView(url)),
+      child: BlocBuilder<AboutTheAuthorityBloc, AboutTheAuthorityState>(
+        builder: (context, state) {
+          final bloc = context.read<AboutTheAuthorityBloc>();
+          if (state is AboutTheAuthorityLoaded) {
+            final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+            bloc.add(RunJavaScript(pageName, isDarkMode, context.locale));
+          }
+          return Scaffold(
+            appBar: _costumeAppBar(context),
+            body: Stack(
+              children: [
+                if (state is AboutTheAuthorityLoading)
+                  Center(
+                    child: Container(
+                      width: double.infinity,
+                      height: MediaQuery.sizeOf(context).height,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Theme.of(context).scaffoldBackgroundColor
+                          : ColorManager.white,
+                    ),
+                  ),
+                if (state is AboutTheAuthorityLoading)
+                  const Center(child: CircularProgressIndicator()),
+                if (state is AboutTheAuthorityLoaded)
+                  WebViewWidget(controller: bloc.controller),
+                if (state is AboutTheAuthorityError)
+                  ErrorGlobalWidget(
+                    message: state.message,
+                    onPressed: () {
+                      bloc.add(InitializeAboutAuthWebView(
+                          _getInitUrl(context, pageName)));
+                    },
+                  ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  AppBar _costumeAppBar(BuildContext context) {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.transparent,
+      surfaceTintColor: Colors.transparent,
+      flexibleSpace: ShaderMask(
+        shaderCallback: (rect) {
+          return const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.black, Colors.transparent],
+          ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
+        },
+        blendMode: BlendMode.dstIn,
+        child: Image.asset(
+          ImageAssets.appbarBg,
+          fit: BoxFit.fill,
+        ),
+      ),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            onTap: () {
+              Navigator.maybePop(context);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Icon(
+                  Icons.arrow_back,
+                  color: ColorManager.cloudyGrey,
+                ),
+                SizedBox(width: AppSizeW.s5),
+                Text(
+                  AppStrings().main,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+              ],
+            ),
+          ),
+          Text(
+            _getPageTitle(pageName),
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+        ],
+      ),
+    );
+  }
+
+  // get the page title based on step number
+  String _getPageTitle(String pageName) {
+    switch (pageName) {
+      case "aboutTheAuthority":
+        return AppStrings().aboutTheAuthority;
+      case "visionAndMission":
+        return AppStrings().visionAndMission;
+      case "tasksAndResponsibilitiesOftheAuthority":
+        return AppStrings().tasksAndResponsibilitiesOftheAuthority;
+      case "contactUs":
+        return AppStrings().contactUs;
+      case "authorityNews":
+        return AppStrings().authorityNews;
+      case "services":
+        return AppStrings().services;
+      default:
+        return AppStrings().aboutTheAuthority;
+    }
+  }
+}
+
+//worked one in en

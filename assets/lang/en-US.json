@@ -62,6 +62,9 @@
   "manage_your_property":"Manage your property",
   "property_developers":"Property Developers",
   "profession_practicers":"Professionals",
+  "----------------InvestorJourny------------------": "----------------------",
+  "back":"Back",
+  "next":"Next",
   "-------------------------------Filter---------------------------": "-------------",
   "area_from_to": "Area from - to",
   "choose_date": "select",
@@ -190,5 +193,14 @@
   "add_favourite": "Add to favourite",
   "add_favourite_success": "Added to favourite successfully",
   "half_year": "Half year",
-  "session_expired": "Your session has expired, please log in again"
+  "session_expired": "Your session has expired, please log in again",
+  "-----------webViews----------": "--------------------------",
+  "about_the_authority": "About the Authority",
+  "tasks_and_responsibilities_of_the_authority": "Tasks and Responsibilities",
+  "vision_and_mission": "Vision and Mission",
+  "authority_location": "Authority Location",
+  "contact_us":"Contact Us",
+  "authority_news":"Authority News",
+  "services":"Services"
+  
 }

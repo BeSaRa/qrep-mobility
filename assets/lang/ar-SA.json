@@ -62,7 +62,9 @@
   "manage_your_property":"أدر عقارك",
   "property_developers":"المطورون العقاريون",
   "profession_practicers":"مزاولي المهنة",
-
+  "----------------InvestorJourny------------------": "----------------------",
+"back":"السابق",
+"next":"التالي",
   "----------------Filter--------------------------": "----------------------",
   "area_from_to": "المساحة من - إلى",
   "choose_date": "اختار",
@@ -191,5 +193,14 @@
   "add_favourite": "إضافة إلى المفضلة",
   "add_favourite_success": "تمت الإضافة إلى المفضلة بنجاح",
   "half_year": "نصف السنة",
-  "session_expired": "لقد انتهت صلاحية الجلسة، يرجى تسجيل الدخول مرة أخرى"
+  "session_expired": "لقد انتهت صلاحية الجلسة، يرجى تسجيل الدخول مرة أخرى",
+  "-----------webViews----------": "--------------------------",
+  "about_the_authority": "نبذة عن الهيئة",
+  "tasks_and_responsibilities_of_the_authority": "مهام واختصاصات الهيئة",
+  "vision_and_mission": "الرؤية والرسالة",
+  "authority_location": "موقع الهيئة",
+  "contact_us": "تواصل معنا",
+  "authority_news":"أخبار الهيئة",
+  "services":"الخدمات"
+  
 }

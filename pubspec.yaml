@@ -75,6 +75,10 @@ flutter:
     - assets/icons/
     - assets/lang/
     - assets/webviews/
+    - assets/webviews/investor_journey/
+    - assets/webviews/about_the_authority/
+    - assets/webviews/contact/
+    - assets/webviews/media_center/
   fonts:
     - family: Lusail
       fonts:

@@ -78,9 +78,19 @@
 		background-color: ${secondaryBg} !important;
 	}
 	/*مشاريع التطوير العقاري*/
-	div.elementor-element-bf9e44c > .elementor-element > div > div > div > div > .elementskit-box-body{
-		background-color: ${secondaryBg} !important;
+	/*English*/
+	body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-4f906f4 > div > div.elementor-element.elementor-element-a97fe92 > div.elementor-element> div > div > div > div > div.elementskit-box-body.ekit-image-box-body{
+	
+	background-color: ${secondaryBg} !important;
 	border-color: transparent !important;
+	}
+	body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-4f906f4 > div > div.elementor-element.elementor-element-a97fe92{
+	margin-bottom: 40px;
+	}
+	/*Arabic*/
+	body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-433933a > div > div.elementor-element.elementor-element-042fb81> div.elementor-element> div > div > div > div > div.elementskit-box-body.ekit-image-box-body{
+		background-color: ${secondaryBg} !important;
+		border-color: transparent !important;
 	}
 	/*=========================================End Choose your project Dark theme===========================================*/
 	/*=========================================Start Own your real state Dark theme===========================================*/
@@ -107,7 +117,10 @@
 	img {
 	filter: brightness(0.8) contrast(1.2);
 	}
-
+/*------------------------Tow Bottom buttons----------------*/
+div.elementor-element-758c1d1, div.elementor-element-a991969, div.elementor-element-4b8d8d7, div.elementor-element-135492c, div.elementor-element-91f6e2a{
+background: ${primaryBg} !important;
+}
 /************************************ Property Debelopers **************************************/
 /*-------Steps Boxs Ar----*/
 	body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-90737a5.e-con-full.e-flex.e-con.e-parent.e-lazyloaded > div > div.elementor-element.elementor-element-bf94f63.e-flex.e-con-boxed.e-con.e-child > div > div > div > div > div > .step-red > .circle-box > .circle{
@@ -206,6 +219,56 @@
 		background:${secondaryBg} !important;
 	}
 
+/*********************************** Authority News (In more bottm bar tap) ****************************/
+/*background of cards list*/
+body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-6e559a6c.e-con-full.e-flex.e-con.e-parent.e-lazyloaded > div.elementor-element.elementor-element-5c3de537.e-con-full.e-flex.e-con.e-child > div.elementor-element.elementor-element-315ed2fe.e-con-full.blogs-news-page.e-flex.e-con.e-child > div > div > div > div > ul{
+	background: ${primaryBg} !important;
+}
+/*card color*/
+body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-6e559a6c.e-con-full.e-flex.e-con.e-parent.e-lazyloaded > div.elementor-element.elementor-element-5c3de537.e-con-full.e-flex.e-con.e-child > div.elementor-element.elementor-element-315ed2fe.e-con-full.blogs-news-page.e-flex.e-con.e-child > div > div > div > div > ul > li > div{
+	background: ${secondaryBg} !important;
+	box-shadow: none;
+}
+/*More button*/
+body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-6e559a6c.e-con-full.e-flex.e-con.e-parent.e-lazyloaded > div.elementor-element.elementor-element-5c3de537.e-con-full.e-flex.e-con.e-child > div.elementor-element.elementor-element-315ed2fe.e-con-full.blogs-news-page.e-flex.e-con.e-child > div > div > div > div > ul > li > div > div.mkdf-bli-content > div.mkdf-bli-excerpt > div.mkdf-post-read-more-button > a{
+	color:white;
+	
+}
+body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-6e559a6c.e-con-full.e-flex.e-con.e-parent.e-lazyloaded > div.elementor-element.elementor-element-5c3de537.e-con-full.e-flex.e-con.e-child > div.elementor-element.elementor-element-315ed2fe.e-con-full.blogs-news-page.e-flex.e-con.e-child > div > div > div > div > ul > li > div > div.mkdf-bli-content > div.mkdf-bli-excerpt > div.mkdf-post-read-more-button > a::after{
+	background: ${secondaryBg} !important;
+	box-shadow: none;
+}
+/*shadow in search faild*/
+body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-6e559a6c.e-con-full.e-flex.e-con.e-parent.e-lazyloaded > div.elementor-element.elementor-element-5c3de537.e-con-full.e-flex.e-con.e-child > div.elementor-element.elementor-element-686455eb.e-con-full.e-flex.e-con.e-child > div.elementor-element.elementor-element-1f346d6.elementor-widget-tablet__width-inherit.news-search.elementor-widget.elementor-widget-sidebar > div > div > form > div{
+	box-shadow: none !important;
+}
+body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-6e559a6c.e-con-full.e-flex.e-con.e-parent.e-lazyloaded > div.elementor-element.elementor-element-5c3de537.e-con-full.e-flex.e-con.e-child > div.elementor-element.elementor-element-686455eb.e-con-full.e-flex.e-con.e-child > div.elementor-element.elementor-element-1f346d6.elementor-widget-tablet__width-inherit.news-search.elementor-widget.elementor-widget-sidebar > div > div > form > div > button{
+    margin-top: 5px;
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+}
+/*last news card*/
+body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-6e559a6c> div.elementor-element.elementor-element-5c3de537 > div.elementor-element.elementor-element-686455eb > div.elementor-element.elementor-element-72d20da4.elementor-widget-tablet__width-inherit.latest-posts.elementor-widget.elementor-widget-sidebar > div > div.widget.mkdf-blog-list-widget > div.mkdf-blog-list-holder.mkdf-grid-list.mkdf-disable-bottom-space.mkdf-bl-simple.mkdf-one-columns.mkdf-normal-space.mkdf-bl-pag-no-pagination.mkdf-bl-skin- > div > ul
+> li > div:nth-child(1){
+background: ${secondaryBg} !important;
+    box-shadow: none !important;
+}
+
+/*********************************** AServices (In services tap) ****************************/
+#services > div.services-flex > ul > li{
+background: ${secondaryBg} !important;
+border-color: ${borderColor}
+}
+#services > div.services-flex > ul > li > div > h4{
+	color: ${primaryText} !important;
+	font-weight: 500;
+
+}
+	/*قريبا*/
+#all{
+background: ${secondaryBg} !important;
+}
 `;
   document.head.appendChild(style);
 })();

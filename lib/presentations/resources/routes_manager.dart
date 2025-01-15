@@ -1,5 +1,6 @@
 import 'package:ebla/app/routing_observer.dart';
 import 'package:ebla/domain/models/cms_models/user/user_model.dart';
+import 'package:ebla/presentations/features/more/all_more_web_views/view/all_more_web_views_view.dart';
 import 'package:ebla/presentations/features/favourite/fav_view.dart';
 import 'package:ebla/presentations/features/home/home_view.dart';
 import 'package:ebla/presentations/features/info/blocs/about_bloc/about_bloc.dart';
@@ -50,6 +51,7 @@ class RoutesNames {
   static const String realEstateBrokers = 'real estate brokers';
   static const String favourite = 'favourite';
   static const String investorJourney = 'investor journey';
+  static const String aboutTheAuthority = "about the authority";
 }
 
 class RoutesPaths {
@@ -70,6 +72,7 @@ class RoutesPaths {
   static const String updateInfo = '/updateInfo';
   static const String favourite = '/favourite';
   static const String investorJourney = '/investorjourney';
+  static const String aboutTheAuthority = '/abouttheauthority';
 }
 
 class NavigationKeys {
@@ -463,15 +466,14 @@ class AppRouter {
             return InvestorJourneyView(stepNumber: stepNumber);
           },
         ),
-        // GoRoute(
-        //   parentNavigatorKey: NavigationKeys.rootNavigatorKey,
-        //   name: RoutesNames.investorJourney,
-        //   path: '${RoutesPaths.investorJourney}:stepNumber',
-        //   builder: (context, state) {
-        //     final stepNumber = state.pathParameters['stepNumber'] ??
-        //         '0'; // Default to '0' which is investor journey web view
-        //     return InvestorJourneyView(stepNumber: stepNumber);
-        //   },
-        // ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.aboutTheAuthority,
+          path: '${RoutesPaths.aboutTheAuthority}:pageName',
+          builder: (context, state) {
+            final pageName = state.pathParameters['pageName'] ?? '0';
+            return AllMoreWebViews(pageName: pageName);
+          },
+        ),
       ]);
 }
