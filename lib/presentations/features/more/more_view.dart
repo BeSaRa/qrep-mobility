@@ -652,8 +652,8 @@ class MainMoreButtonsList extends StatelessWidget {
   }
 
   openMap() async {
-    var url = Uri.parse('');
-    // 'https://geoportal.gisqatar.org.qa/inwani/index.html?zone=$zoneId&street=$streetNo&building=$buildingNo');
+    final url = Uri.parse(
+        "https://www.google.com/maps/place/25%C2%B022'13.8%22N+51%C2%B033'10.6%22E/@25.370494,51.552943,17z/data=!3m1!4b1!4m4!3m3!8m2!3d25.370494!4d51.552943?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D");
     if (!await launchUrl(url)) {
       throw Exception('Could not launch ');
     }

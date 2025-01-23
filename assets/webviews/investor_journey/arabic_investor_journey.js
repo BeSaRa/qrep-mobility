@@ -137,9 +137,19 @@ function hideElement(selector) {
   //-------تملك عقارك وتمتع بالمميزات------
   bottomTowBackNextButtons("div.elementor-element-a991969");
   //----------أدر ​عقارك----------
-  bottomTowBackNextButtons("div.elementor-element-758c1d1");
-  
-  bottomButtonDesign("body > div.mkdf-wrapper > div > div > div > div > div.elementor-element > div:nth-child(1) > div > div > a","#394D84");
+  //i made it manually cause just this page make a conflict
+  var element = document.querySelector("div.elementor-element-758c1d1");
+  if (element) {
+    // element.style.bottom = "0";
+    element.style.margin = "30px 0 0 0";
+    element.style.padding = "10px 0";
+    element.style.justifyContent = "space-around";
+    element.style.alignItems = "end";
+    element.style.background = "white";
+    element.style.top = "100%";
+    element.style.transform = "translate(-2px, calc(-100% - 30px))";
+  }
+  bottomButtonDesign("body > div.mkdf-wrapper > div > div > div > div > div.elementor-element > div:nth-child(1) > div > div > a","#0D4261");
   bottomButtonDesign("body > div.mkdf-wrapper > div > div > div > div > div.elementor-element > div:nth-child(2) > div > div > a","#8A1538");
   
   

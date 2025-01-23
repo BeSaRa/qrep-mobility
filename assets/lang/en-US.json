@@ -201,6 +201,9 @@
   "authority_location": "Authority Location",
   "contact_us":"Contact Us",
   "authority_news":"Authority News",
-  "services":"Services"
+  "services":"Services",
+  "-----------chatbot----------": "--------------------------",
+  "defult_bot_message": "This is the smart assistant of the Real Estate Regulatory Authority-Aqarat, how can I help you?",
+  "write_your_message": "Write your message..."
   
 }

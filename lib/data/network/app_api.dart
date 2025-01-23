@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/network/end_points.dart';
+import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/domain/models/favourite/favourite_models.dart';
 import 'package:ebla/domain/models/requests/broker_requests/request_broker_values.dart';
+import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
 import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -207,6 +209,12 @@ abstract class AppServiceClient {
   @POST(EndPoints.getUserWishList)
   Future<HttpResponse<FavouriteResponse>> createWishList(
       @Body() FavouriteResponse criteria);
+
+      
+//------------- chatbot---------------
+  @POST('https://afnqcpcbai01.azurewebsites.net/api/v1/chatbot/chat/website')
+  Future<HttpResponse<ChatbotResponseModel>> sendMessageToChatbot(@Body() ChatbotRequestModel request);
+
 }
 
 //---------------------------------DirectUs-----------------------------------------
@@ -248,15 +256,19 @@ abstract class CmsServiceClient {
   @GET(EndPoints.about)
   Future<HttpResponse<AboutResponse>> getAbout();
 
-  @GET(EndPoints.news)
-  Future<HttpResponse<NewsResponse>> getNews();
+  // @GET(EndPoints.news)
+  // Future<HttpResponse<List<NewsModel>>> getNews();
+
+  @GET("https://www.aqarat.gov.qa/wp-json/wp/v2/posts")
+  Future<HttpResponse<List<NewsModel>>> getNews();
 
   @GET(EndPoints.newsById)
   Future<HttpResponse<NewsByIdResponse>> getNewsById(
       {@Path('id') required int id});
 
-  @GET(EndPoints.laws)
-  Future<HttpResponse<LawsResponse>> getLaws(@Query("limit") int limit);
+  // @GET(EndPoints.laws)
+  // Future<HttpResponse<LawsResponse>> getLaws(@Query("limit") int limit);
+
 
   @GET(EndPoints.lawsById)
   Future<HttpResponse<LawByIdResponse>> getLawId(@Path("id") int id);
@@ -268,4 +280,8 @@ abstract class CmsServiceClient {
 //appSettings
   @GET(EndPoints.appSettings)
   Future<HttpResponse<AppSettingsResponse>> appSettings();
+
+    //zak
+  @GET("https://ministry-municipality.v2202305135856227727.ultrasrv.de/wp-json/legislation/v1/all")
+  Future<HttpResponse<List<LawsModel>>> getLaws();
 }

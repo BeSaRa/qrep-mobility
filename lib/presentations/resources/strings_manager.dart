@@ -231,5 +231,8 @@ class AppStrings {
   String contactUs = "contact_us".tr();
   String authorityNews = "authority_news".tr();
   String services= "services".tr();
+  //--------------chatbot---------------
+  String defultBotMessage = "defult_bot_message".tr();
+  String writeUourMessage = "write_your_message".tr();
 
 }

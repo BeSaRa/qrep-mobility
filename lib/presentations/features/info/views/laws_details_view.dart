@@ -132,12 +132,12 @@ class _LawsDetailsViewState extends State<LawsDetailsView> {
                   },
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: lawsModel.articles.length,
+                  itemCount: lawsModel.articles!.length,
                   itemBuilder: (context, index) {
                     return LawArticleWidget(
                       index: index,
                       faqItemModel: null,
-                      article: lawsModel.articles[index],
+                      article: lawsModel.articles![index],
                       maxExpandedHeight: AppSizeH.s250,
                     );
                   },

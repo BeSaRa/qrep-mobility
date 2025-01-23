@@ -326,7 +326,7 @@ mixin _$LawsState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get hasError => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
-  LawsResponse get lawsResponse => throw _privateConstructorUsedError;
+  List<LawsModel> get lawsResponse => throw _privateConstructorUsedError;
   LawByIdResponse get lawByIdResponse => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -334,7 +334,7 @@ mixin _$LawsState {
             bool isLoading,
             bool hasError,
             String errorMessage,
-            LawsResponse lawsResponse,
+            List<LawsModel> lawsResponse,
             LawByIdResponse lawByIdResponse)
         initial,
   }) =>
@@ -342,14 +342,14 @@ mixin _$LawsState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isLoading, bool hasError, String errorMessage,
-            LawsResponse lawsResponse, LawByIdResponse lawByIdResponse)?
+            List<LawsModel> lawsResponse, LawByIdResponse lawByIdResponse)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoading, bool hasError, String errorMessage,
-            LawsResponse lawsResponse, LawByIdResponse lawByIdResponse)?
+            List<LawsModel> lawsResponse, LawByIdResponse lawByIdResponse)?
         initial,
     required TResult orElse(),
   }) =>
@@ -387,10 +387,9 @@ abstract class $LawsStateCopyWith<$Res> {
       {bool isLoading,
       bool hasError,
       String errorMessage,
-      LawsResponse lawsResponse,
+      List<LawsModel> lawsResponse,
       LawByIdResponse lawByIdResponse});
 
-  $LawsResponseCopyWith<$Res> get lawsResponse;
   $LawByIdResponseCopyWith<$Res> get lawByIdResponse;
 }
 
@@ -431,22 +430,12 @@ class _$LawsStateCopyWithImpl<$Res, $Val extends LawsState>
       lawsResponse: null == lawsResponse
           ? _value.lawsResponse
           : lawsResponse // ignore: cast_nullable_to_non_nullable
-              as LawsResponse,
+              as List<LawsModel>,
       lawByIdResponse: null == lawByIdResponse
           ? _value.lawByIdResponse
           : lawByIdResponse // ignore: cast_nullable_to_non_nullable
               as LawByIdResponse,
     ) as $Val);
-  }
-
-  /// Create a copy of LawsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $LawsResponseCopyWith<$Res> get lawsResponse {
-    return $LawsResponseCopyWith<$Res>(_value.lawsResponse, (value) {
-      return _then(_value.copyWith(lawsResponse: value) as $Val);
-    });
   }
 
   /// Create a copy of LawsState
@@ -472,11 +461,9 @@ abstract class _$$InitialImplCopyWith<$Res>
       {bool isLoading,
       bool hasError,
       String errorMessage,
-      LawsResponse lawsResponse,
+      List<LawsModel> lawsResponse,
       LawByIdResponse lawByIdResponse});
 
-  @override
-  $LawsResponseCopyWith<$Res> get lawsResponse;
   @override
   $LawByIdResponseCopyWith<$Res> get lawByIdResponse;
 }
@@ -514,9 +501,9 @@ class __$$InitialImplCopyWithImpl<$Res>
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
       lawsResponse: null == lawsResponse
-          ? _value.lawsResponse
+          ? _value._lawsResponse
           : lawsResponse // ignore: cast_nullable_to_non_nullable
-              as LawsResponse,
+              as List<LawsModel>,
       lawByIdResponse: null == lawByIdResponse
           ? _value.lawByIdResponse
           : lawByIdResponse // ignore: cast_nullable_to_non_nullable
@@ -532,8 +519,9 @@ class _$InitialImpl implements _Initial {
       {this.isLoading = false,
       this.hasError = false,
       this.errorMessage = '',
-      this.lawsResponse = const LawsResponse(),
-      this.lawByIdResponse = const LawByIdResponse()});
+      final List<LawsModel> lawsResponse = const [],
+      this.lawByIdResponse = const LawByIdResponse()})
+      : _lawsResponse = lawsResponse;
 
   @override
   @JsonKey()
@@ -544,9 +532,15 @@ class _$InitialImpl implements _Initial {
   @override
   @JsonKey()
   final String errorMessage;
+  final List<LawsModel> _lawsResponse;
   @override
   @JsonKey()
-  final LawsResponse lawsResponse;
+  List<LawsModel> get lawsResponse {
+    if (_lawsResponse is EqualUnmodifiableListView) return _lawsResponse;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_lawsResponse);
+  }
+
   @override
   @JsonKey()
   final LawByIdResponse lawByIdResponse;
@@ -567,15 +561,20 @@ class _$InitialImpl implements _Initial {
                 other.hasError == hasError) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.lawsResponse, lawsResponse) ||
-                other.lawsResponse == lawsResponse) &&
+            const DeepCollectionEquality()
+                .equals(other._lawsResponse, _lawsResponse) &&
             (identical(other.lawByIdResponse, lawByIdResponse) ||
                 other.lawByIdResponse == lawByIdResponse));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, hasError,
-      errorMessage, lawsResponse, lawByIdResponse);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoading,
+      hasError,
+      errorMessage,
+      const DeepCollectionEquality().hash(_lawsResponse),
+      lawByIdResponse);
 
   /// Create a copy of LawsState
   /// with the given fields replaced by the non-null parameter values.
@@ -592,7 +591,7 @@ class _$InitialImpl implements _Initial {
             bool isLoading,
             bool hasError,
             String errorMessage,
-            LawsResponse lawsResponse,
+            List<LawsModel> lawsResponse,
             LawByIdResponse lawByIdResponse)
         initial,
   }) {
@@ -604,7 +603,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isLoading, bool hasError, String errorMessage,
-            LawsResponse lawsResponse, LawByIdResponse lawByIdResponse)?
+            List<LawsModel> lawsResponse, LawByIdResponse lawByIdResponse)?
         initial,
   }) {
     return initial?.call(
@@ -615,7 +614,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoading, bool hasError, String errorMessage,
-            LawsResponse lawsResponse, LawByIdResponse lawByIdResponse)?
+            List<LawsModel> lawsResponse, LawByIdResponse lawByIdResponse)?
         initial,
     required TResult orElse(),
   }) {
@@ -660,7 +659,7 @@ abstract class _Initial implements LawsState {
       {final bool isLoading,
       final bool hasError,
       final String errorMessage,
-      final LawsResponse lawsResponse,
+      final List<LawsModel> lawsResponse,
       final LawByIdResponse lawByIdResponse}) = _$InitialImpl;
 
   @override
@@ -670,7 +669,7 @@ abstract class _Initial implements LawsState {
   @override
   String get errorMessage;
   @override
-  LawsResponse get lawsResponse;
+  List<LawsModel> get lawsResponse;
   @override
   LawByIdResponse get lawByIdResponse;
 

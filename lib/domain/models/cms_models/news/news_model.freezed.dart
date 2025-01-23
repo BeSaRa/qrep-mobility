@@ -343,19 +343,21 @@ NewsModel _$NewsModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$NewsModel {
   int get id => throw _privateConstructorUsedError;
+  String get date => throw _privateConstructorUsedError; //==
+  String get modified => throw _privateConstructorUsedError; //==
   String get status => throw _privateConstructorUsedError;
+  TitleModel get title => throw _privateConstructorUsedError;
+  ContentModel get content => throw _privateConstructorUsedError;
+  @JsonKey(name: 'og_image')
+  List<OgImageModel> get ogImage => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_created')
-  String get userCreated => throw _privateConstructorUsedError;
+  String? get userCreated => throw _privateConstructorUsedError;
   @JsonKey(name: 'date_created')
-  String get dateCreated => throw _privateConstructorUsedError;
+  String? get dateCreated => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_updated')
-  String get userUpdated => throw _privateConstructorUsedError;
+  String? get userUpdated => throw _privateConstructorUsedError;
   @JsonKey(name: 'date_updated')
-  String get dateUpdated => throw _privateConstructorUsedError;
-  String get excerpt => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
+  String? get dateUpdated => throw _privateConstructorUsedError;
 
   /// Serializes this NewsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -374,15 +376,19 @@ abstract class $NewsModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
+      String date,
+      String modified,
       String status,
-      @JsonKey(name: 'user_created') String userCreated,
-      @JsonKey(name: 'date_created') String dateCreated,
-      @JsonKey(name: 'user_updated') String userUpdated,
-      @JsonKey(name: 'date_updated') String dateUpdated,
-      String excerpt,
-      String title,
-      String image,
-      String content});
+      TitleModel title,
+      ContentModel content,
+      @JsonKey(name: 'og_image') List<OgImageModel> ogImage,
+      @JsonKey(name: 'user_created') String? userCreated,
+      @JsonKey(name: 'date_created') String? dateCreated,
+      @JsonKey(name: 'user_updated') String? userUpdated,
+      @JsonKey(name: 'date_updated') String? dateUpdated});
+
+  $TitleModelCopyWith<$Res> get title;
+  $ContentModelCopyWith<$Res> get content;
 }
 
 /// @nodoc
@@ -401,58 +407,83 @@ class _$NewsModelCopyWithImpl<$Res, $Val extends NewsModel>
   @override
   $Res call({
     Object? id = null,
+    Object? date = null,
+    Object? modified = null,
     Object? status = null,
-    Object? userCreated = null,
-    Object? dateCreated = null,
-    Object? userUpdated = null,
-    Object? dateUpdated = null,
-    Object? excerpt = null,
     Object? title = null,
-    Object? image = null,
     Object? content = null,
+    Object? ogImage = null,
+    Object? userCreated = freezed,
+    Object? dateCreated = freezed,
+    Object? userUpdated = freezed,
+    Object? dateUpdated = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String,
+      modified: null == modified
+          ? _value.modified
+          : modified // ignore: cast_nullable_to_non_nullable
+              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      userCreated: null == userCreated
-          ? _value.userCreated
-          : userCreated // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateCreated: null == dateCreated
-          ? _value.dateCreated
-          : dateCreated // ignore: cast_nullable_to_non_nullable
-              as String,
-      userUpdated: null == userUpdated
-          ? _value.userUpdated
-          : userUpdated // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateUpdated: null == dateUpdated
-          ? _value.dateUpdated
-          : dateUpdated // ignore: cast_nullable_to_non_nullable
-              as String,
-      excerpt: null == excerpt
-          ? _value.excerpt
-          : excerpt // ignore: cast_nullable_to_non_nullable
-              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TitleModel,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as ContentModel,
+      ogImage: null == ogImage
+          ? _value.ogImage
+          : ogImage // ignore: cast_nullable_to_non_nullable
+              as List<OgImageModel>,
+      userCreated: freezed == userCreated
+          ? _value.userCreated
+          : userCreated // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateCreated: freezed == dateCreated
+          ? _value.dateCreated
+          : dateCreated // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userUpdated: freezed == userUpdated
+          ? _value.userUpdated
+          : userUpdated // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateUpdated: freezed == dateUpdated
+          ? _value.dateUpdated
+          : dateUpdated // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
+  }
+
+  /// Create a copy of NewsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TitleModelCopyWith<$Res> get title {
+    return $TitleModelCopyWith<$Res>(_value.title, (value) {
+      return _then(_value.copyWith(title: value) as $Val);
+    });
+  }
+
+  /// Create a copy of NewsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ContentModelCopyWith<$Res> get content {
+    return $ContentModelCopyWith<$Res>(_value.content, (value) {
+      return _then(_value.copyWith(content: value) as $Val);
+    });
   }
 }
 
@@ -466,15 +497,21 @@ abstract class _$$NewsModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
+      String date,
+      String modified,
       String status,
-      @JsonKey(name: 'user_created') String userCreated,
-      @JsonKey(name: 'date_created') String dateCreated,
-      @JsonKey(name: 'user_updated') String userUpdated,
-      @JsonKey(name: 'date_updated') String dateUpdated,
-      String excerpt,
-      String title,
-      String image,
-      String content});
+      TitleModel title,
+      ContentModel content,
+      @JsonKey(name: 'og_image') List<OgImageModel> ogImage,
+      @JsonKey(name: 'user_created') String? userCreated,
+      @JsonKey(name: 'date_created') String? dateCreated,
+      @JsonKey(name: 'user_updated') String? userUpdated,
+      @JsonKey(name: 'date_updated') String? dateUpdated});
+
+  @override
+  $TitleModelCopyWith<$Res> get title;
+  @override
+  $ContentModelCopyWith<$Res> get content;
 }
 
 /// @nodoc
@@ -491,57 +528,62 @@ class __$$NewsModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? date = null,
+    Object? modified = null,
     Object? status = null,
-    Object? userCreated = null,
-    Object? dateCreated = null,
-    Object? userUpdated = null,
-    Object? dateUpdated = null,
-    Object? excerpt = null,
     Object? title = null,
-    Object? image = null,
     Object? content = null,
+    Object? ogImage = null,
+    Object? userCreated = freezed,
+    Object? dateCreated = freezed,
+    Object? userUpdated = freezed,
+    Object? dateUpdated = freezed,
   }) {
     return _then(_$NewsModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String,
+      modified: null == modified
+          ? _value.modified
+          : modified // ignore: cast_nullable_to_non_nullable
+              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      userCreated: null == userCreated
-          ? _value.userCreated
-          : userCreated // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateCreated: null == dateCreated
-          ? _value.dateCreated
-          : dateCreated // ignore: cast_nullable_to_non_nullable
-              as String,
-      userUpdated: null == userUpdated
-          ? _value.userUpdated
-          : userUpdated // ignore: cast_nullable_to_non_nullable
-              as String,
-      dateUpdated: null == dateUpdated
-          ? _value.dateUpdated
-          : dateUpdated // ignore: cast_nullable_to_non_nullable
-              as String,
-      excerpt: null == excerpt
-          ? _value.excerpt
-          : excerpt // ignore: cast_nullable_to_non_nullable
-              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TitleModel,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as ContentModel,
+      ogImage: null == ogImage
+          ? _value._ogImage
+          : ogImage // ignore: cast_nullable_to_non_nullable
+              as List<OgImageModel>,
+      userCreated: freezed == userCreated
+          ? _value.userCreated
+          : userCreated // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateCreated: freezed == dateCreated
+          ? _value.dateCreated
+          : dateCreated // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userUpdated: freezed == userUpdated
+          ? _value.userUpdated
+          : userUpdated // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateUpdated: freezed == dateUpdated
+          ? _value.dateUpdated
+          : dateUpdated // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -551,15 +593,17 @@ class __$$NewsModelImplCopyWithImpl<$Res>
 class _$NewsModelImpl implements _NewsModel {
   const _$NewsModelImpl(
       {this.id = 0,
+      this.date = "",
+      this.modified = "",
       this.status = '',
+      this.title = const TitleModel(),
+      this.content = const ContentModel(),
+      @JsonKey(name: 'og_image') final List<OgImageModel> ogImage = const [],
       @JsonKey(name: 'user_created') this.userCreated = '',
       @JsonKey(name: 'date_created') this.dateCreated = '',
       @JsonKey(name: 'user_updated') this.userUpdated = '',
-      @JsonKey(name: 'date_updated') this.dateUpdated = '',
-      this.excerpt = '',
-      this.title = '',
-      this.image = '',
-      this.content = ''});
+      @JsonKey(name: 'date_updated') this.dateUpdated = ''})
+      : _ogImage = ogImage;
 
   factory _$NewsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$NewsModelImplFromJson(json);
@@ -569,35 +613,46 @@ class _$NewsModelImpl implements _NewsModel {
   final int id;
   @override
   @JsonKey()
+  final String date;
+//==
+  @override
+  @JsonKey()
+  final String modified;
+//==
+  @override
+  @JsonKey()
   final String status;
   @override
+  @JsonKey()
+  final TitleModel title;
+  @override
+  @JsonKey()
+  final ContentModel content;
+  final List<OgImageModel> _ogImage;
+  @override
+  @JsonKey(name: 'og_image')
+  List<OgImageModel> get ogImage {
+    if (_ogImage is EqualUnmodifiableListView) return _ogImage;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_ogImage);
+  }
+
+  @override
   @JsonKey(name: 'user_created')
-  final String userCreated;
+  final String? userCreated;
   @override
   @JsonKey(name: 'date_created')
-  final String dateCreated;
+  final String? dateCreated;
   @override
   @JsonKey(name: 'user_updated')
-  final String userUpdated;
+  final String? userUpdated;
   @override
   @JsonKey(name: 'date_updated')
-  final String dateUpdated;
-  @override
-  @JsonKey()
-  final String excerpt;
-  @override
-  @JsonKey()
-  final String title;
-  @override
-  @JsonKey()
-  final String image;
-  @override
-  @JsonKey()
-  final String content;
+  final String? dateUpdated;
 
   @override
   String toString() {
-    return 'NewsModel(id: $id, status: $status, userCreated: $userCreated, dateCreated: $dateCreated, userUpdated: $userUpdated, dateUpdated: $dateUpdated, excerpt: $excerpt, title: $title, image: $image, content: $content)';
+    return 'NewsModel(id: $id, date: $date, modified: $modified, status: $status, title: $title, content: $content, ogImage: $ogImage, userCreated: $userCreated, dateCreated: $dateCreated, userUpdated: $userUpdated, dateUpdated: $dateUpdated)';
   }
 
   @override
@@ -606,7 +661,13 @@ class _$NewsModelImpl implements _NewsModel {
         (other.runtimeType == runtimeType &&
             other is _$NewsModelImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.modified, modified) ||
+                other.modified == modified) &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.content, content) || other.content == content) &&
+            const DeepCollectionEquality().equals(other._ogImage, _ogImage) &&
             (identical(other.userCreated, userCreated) ||
                 other.userCreated == userCreated) &&
             (identical(other.dateCreated, dateCreated) ||
@@ -614,17 +675,24 @@ class _$NewsModelImpl implements _NewsModel {
             (identical(other.userUpdated, userUpdated) ||
                 other.userUpdated == userUpdated) &&
             (identical(other.dateUpdated, dateUpdated) ||
-                other.dateUpdated == dateUpdated) &&
-            (identical(other.excerpt, excerpt) || other.excerpt == excerpt) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.content, content) || other.content == content));
+                other.dateUpdated == dateUpdated));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, status, userCreated,
-      dateCreated, userUpdated, dateUpdated, excerpt, title, image, content);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      date,
+      modified,
+      status,
+      title,
+      content,
+      const DeepCollectionEquality().hash(_ogImage),
+      userCreated,
+      dateCreated,
+      userUpdated,
+      dateUpdated);
 
   /// Create a copy of NewsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -644,16 +712,18 @@ class _$NewsModelImpl implements _NewsModel {
 
 abstract class _NewsModel implements NewsModel {
   const factory _NewsModel(
-      {final int id,
-      final String status,
-      @JsonKey(name: 'user_created') final String userCreated,
-      @JsonKey(name: 'date_created') final String dateCreated,
-      @JsonKey(name: 'user_updated') final String userUpdated,
-      @JsonKey(name: 'date_updated') final String dateUpdated,
-      final String excerpt,
-      final String title,
-      final String image,
-      final String content}) = _$NewsModelImpl;
+          {final int id,
+          final String date,
+          final String modified,
+          final String status,
+          final TitleModel title,
+          final ContentModel content,
+          @JsonKey(name: 'og_image') final List<OgImageModel> ogImage,
+          @JsonKey(name: 'user_created') final String? userCreated,
+          @JsonKey(name: 'date_created') final String? dateCreated,
+          @JsonKey(name: 'user_updated') final String? userUpdated,
+          @JsonKey(name: 'date_updated') final String? dateUpdated}) =
+      _$NewsModelImpl;
 
   factory _NewsModel.fromJson(Map<String, dynamic> json) =
       _$NewsModelImpl.fromJson;
@@ -661,32 +731,505 @@ abstract class _NewsModel implements NewsModel {
   @override
   int get id;
   @override
+  String get date; //==
+  @override
+  String get modified; //==
+  @override
   String get status;
   @override
+  TitleModel get title;
+  @override
+  ContentModel get content;
+  @override
+  @JsonKey(name: 'og_image')
+  List<OgImageModel> get ogImage;
+  @override
   @JsonKey(name: 'user_created')
-  String get userCreated;
+  String? get userCreated;
   @override
   @JsonKey(name: 'date_created')
-  String get dateCreated;
+  String? get dateCreated;
   @override
   @JsonKey(name: 'user_updated')
-  String get userUpdated;
+  String? get userUpdated;
   @override
   @JsonKey(name: 'date_updated')
-  String get dateUpdated;
-  @override
-  String get excerpt;
-  @override
-  String get title;
-  @override
-  String get image;
-  @override
-  String get content;
+  String? get dateUpdated;
 
   /// Create a copy of NewsModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NewsModelImplCopyWith<_$NewsModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+TitleModel _$TitleModelFromJson(Map<String, dynamic> json) {
+  return _TitleModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TitleModel {
+  String get rendered => throw _privateConstructorUsedError;
+
+  /// Serializes this TitleModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of TitleModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $TitleModelCopyWith<TitleModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TitleModelCopyWith<$Res> {
+  factory $TitleModelCopyWith(
+          TitleModel value, $Res Function(TitleModel) then) =
+      _$TitleModelCopyWithImpl<$Res, TitleModel>;
+  @useResult
+  $Res call({String rendered});
+}
+
+/// @nodoc
+class _$TitleModelCopyWithImpl<$Res, $Val extends TitleModel>
+    implements $TitleModelCopyWith<$Res> {
+  _$TitleModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of TitleModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? rendered = null,
+  }) {
+    return _then(_value.copyWith(
+      rendered: null == rendered
+          ? _value.rendered
+          : rendered // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TitleModelImplCopyWith<$Res>
+    implements $TitleModelCopyWith<$Res> {
+  factory _$$TitleModelImplCopyWith(
+          _$TitleModelImpl value, $Res Function(_$TitleModelImpl) then) =
+      __$$TitleModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String rendered});
+}
+
+/// @nodoc
+class __$$TitleModelImplCopyWithImpl<$Res>
+    extends _$TitleModelCopyWithImpl<$Res, _$TitleModelImpl>
+    implements _$$TitleModelImplCopyWith<$Res> {
+  __$$TitleModelImplCopyWithImpl(
+      _$TitleModelImpl _value, $Res Function(_$TitleModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TitleModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? rendered = null,
+  }) {
+    return _then(_$TitleModelImpl(
+      rendered: null == rendered
+          ? _value.rendered
+          : rendered // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TitleModelImpl implements _TitleModel {
+  const _$TitleModelImpl({this.rendered = ""});
+
+  factory _$TitleModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TitleModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String rendered;
+
+  @override
+  String toString() {
+    return 'TitleModel(rendered: $rendered)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TitleModelImpl &&
+            (identical(other.rendered, rendered) ||
+                other.rendered == rendered));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, rendered);
+
+  /// Create a copy of TitleModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TitleModelImplCopyWith<_$TitleModelImpl> get copyWith =>
+      __$$TitleModelImplCopyWithImpl<_$TitleModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TitleModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TitleModel implements TitleModel {
+  const factory _TitleModel({final String rendered}) = _$TitleModelImpl;
+
+  factory _TitleModel.fromJson(Map<String, dynamic> json) =
+      _$TitleModelImpl.fromJson;
+
+  @override
+  String get rendered;
+
+  /// Create a copy of TitleModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TitleModelImplCopyWith<_$TitleModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ContentModel _$ContentModelFromJson(Map<String, dynamic> json) {
+  return _ContentModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ContentModel {
+  String get rendered => throw _privateConstructorUsedError;
+
+  /// Serializes this ContentModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ContentModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ContentModelCopyWith<ContentModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ContentModelCopyWith<$Res> {
+  factory $ContentModelCopyWith(
+          ContentModel value, $Res Function(ContentModel) then) =
+      _$ContentModelCopyWithImpl<$Res, ContentModel>;
+  @useResult
+  $Res call({String rendered});
+}
+
+/// @nodoc
+class _$ContentModelCopyWithImpl<$Res, $Val extends ContentModel>
+    implements $ContentModelCopyWith<$Res> {
+  _$ContentModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ContentModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? rendered = null,
+  }) {
+    return _then(_value.copyWith(
+      rendered: null == rendered
+          ? _value.rendered
+          : rendered // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ContentModelImplCopyWith<$Res>
+    implements $ContentModelCopyWith<$Res> {
+  factory _$$ContentModelImplCopyWith(
+          _$ContentModelImpl value, $Res Function(_$ContentModelImpl) then) =
+      __$$ContentModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String rendered});
+}
+
+/// @nodoc
+class __$$ContentModelImplCopyWithImpl<$Res>
+    extends _$ContentModelCopyWithImpl<$Res, _$ContentModelImpl>
+    implements _$$ContentModelImplCopyWith<$Res> {
+  __$$ContentModelImplCopyWithImpl(
+      _$ContentModelImpl _value, $Res Function(_$ContentModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ContentModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? rendered = null,
+  }) {
+    return _then(_$ContentModelImpl(
+      rendered: null == rendered
+          ? _value.rendered
+          : rendered // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ContentModelImpl implements _ContentModel {
+  const _$ContentModelImpl({this.rendered = ""});
+
+  factory _$ContentModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ContentModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String rendered;
+
+  @override
+  String toString() {
+    return 'ContentModel(rendered: $rendered)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ContentModelImpl &&
+            (identical(other.rendered, rendered) ||
+                other.rendered == rendered));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, rendered);
+
+  /// Create a copy of ContentModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ContentModelImplCopyWith<_$ContentModelImpl> get copyWith =>
+      __$$ContentModelImplCopyWithImpl<_$ContentModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ContentModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ContentModel implements ContentModel {
+  const factory _ContentModel({final String rendered}) = _$ContentModelImpl;
+
+  factory _ContentModel.fromJson(Map<String, dynamic> json) =
+      _$ContentModelImpl.fromJson;
+
+  @override
+  String get rendered;
+
+  /// Create a copy of ContentModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ContentModelImplCopyWith<_$ContentModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+OgImageModel _$OgImageModelFromJson(Map<String, dynamic> json) {
+  return _OgImageModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OgImageModel {
+  String get url => throw _privateConstructorUsedError;
+  int get width => throw _privateConstructorUsedError;
+
+  /// Serializes this OgImageModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of OgImageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $OgImageModelCopyWith<OgImageModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OgImageModelCopyWith<$Res> {
+  factory $OgImageModelCopyWith(
+          OgImageModel value, $Res Function(OgImageModel) then) =
+      _$OgImageModelCopyWithImpl<$Res, OgImageModel>;
+  @useResult
+  $Res call({String url, int width});
+}
+
+/// @nodoc
+class _$OgImageModelCopyWithImpl<$Res, $Val extends OgImageModel>
+    implements $OgImageModelCopyWith<$Res> {
+  _$OgImageModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of OgImageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = null,
+    Object? width = null,
+  }) {
+    return _then(_value.copyWith(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      width: null == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$OgImageModelImplCopyWith<$Res>
+    implements $OgImageModelCopyWith<$Res> {
+  factory _$$OgImageModelImplCopyWith(
+          _$OgImageModelImpl value, $Res Function(_$OgImageModelImpl) then) =
+      __$$OgImageModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String url, int width});
+}
+
+/// @nodoc
+class __$$OgImageModelImplCopyWithImpl<$Res>
+    extends _$OgImageModelCopyWithImpl<$Res, _$OgImageModelImpl>
+    implements _$$OgImageModelImplCopyWith<$Res> {
+  __$$OgImageModelImplCopyWithImpl(
+      _$OgImageModelImpl _value, $Res Function(_$OgImageModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OgImageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = null,
+    Object? width = null,
+  }) {
+    return _then(_$OgImageModelImpl(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      width: null == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$OgImageModelImpl implements _OgImageModel {
+  const _$OgImageModelImpl({this.url = "", this.width = 0});
+
+  factory _$OgImageModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OgImageModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String url;
+  @override
+  @JsonKey()
+  final int width;
+
+  @override
+  String toString() {
+    return 'OgImageModel(url: $url, width: $width)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OgImageModelImpl &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.width, width) || other.width == width));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, url, width);
+
+  /// Create a copy of OgImageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OgImageModelImplCopyWith<_$OgImageModelImpl> get copyWith =>
+      __$$OgImageModelImplCopyWithImpl<_$OgImageModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$OgImageModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OgImageModel implements OgImageModel {
+  const factory _OgImageModel({final String url, final int width}) =
+      _$OgImageModelImpl;
+
+  factory _OgImageModel.fromJson(Map<String, dynamic> json) =
+      _$OgImageModelImpl.fromJson;
+
+  @override
+  String get url;
+  @override
+  int get width;
+
+  /// Create a copy of OgImageModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OgImageModelImplCopyWith<_$OgImageModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

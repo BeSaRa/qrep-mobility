@@ -26,10 +26,14 @@ abstract class LawsModel with _$LawsModel {
   const factory LawsModel(
       {@Default(0) int id,
       @Default('') String title,
-      @Default('') @JsonKey(name: 'issue_date') String issueDate,
-      @Default(0) @JsonKey(name: 'law_number') int lawNumber,
-      @Default('') String file,
-      @Default([]) List<ArticleModel> articles}) = _LawsModel;
+      @Default('') String content,//==
+      @Default('') String date,//==
+      @Default([]) List<String> categories,//==
+      @Default('') String pdf,//==
+      @Default('') @JsonKey(name: 'issue_date') String? issueDate,
+      @Default(0) @JsonKey(name: 'law_number') int? lawNumber,
+      @Default([]) List<ArticleModel>? articles
+      }) = _LawsModel;
   factory LawsModel.fromJson(Map<String, dynamic> json) =>
       _$LawsModelFromJson(json);
 }

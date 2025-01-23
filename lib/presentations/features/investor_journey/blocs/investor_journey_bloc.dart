@@ -55,7 +55,6 @@ class InvestorJourneyBloc
     ) async {
       try {
         const String webviewsURL = "assets/webviews/investor_journey";
-
         if (event.isDarkMode) {
           final String darkModeCss = await rootBundle
               .loadString('assets/webviews/webviews_dark_styles.js');
@@ -66,18 +65,19 @@ class InvestorJourneyBloc
           final String investorJsCode = event.locale == ARABIC_LOCAL
               ?
               //This for the 2 button (back and next in the arabic screen but just in arabic)
-              await rootBundle.loadString('$webviewsURL/arabic_investor_journey.js')
+              await rootBundle
+                  .loadString('$webviewsURL/arabic_investor_journey.js')
               : await rootBundle.loadString('$webviewsURL/investor_journey.js');
 
           await controller.runJavaScript(investorJsCode);
         } else if (event.stepNumber == "1") {
           final String propertyDeveloperJsCode =
-            await rootBundle.loadString('$webviewsURL/property_developer.js');
-            await controller.runJavaScript(propertyDeveloperJsCode);
+              await rootBundle.loadString('$webviewsURL/property_developer.js');
+          await controller.runJavaScript(propertyDeveloperJsCode);
         } else {
           final String professionalsJsCode =
-            await rootBundle.loadString('$webviewsURL/professionals.js');
-            await controller.runJavaScript(professionalsJsCode);
+              await rootBundle.loadString('$webviewsURL/professionals.js');
+          await controller.runJavaScript(professionalsJsCode);
         }
       } catch (e) {
         emit(InvestorJourneyError("Failed to run JavaScript: ${e.toString()}"));

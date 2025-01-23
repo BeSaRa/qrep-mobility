@@ -1356,6 +1356,35 @@ class _AppServiceClient implements AppServiceClient {
     return httpResponse;
   }
 
+  @override
+  Future<HttpResponse<ChatbotResponseModel>> sendMessageToChatbot(
+      ChatbotRequestModel request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ChatbotResponseModel>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'https://afnqcpcbai01.azurewebsites.net/api/v1/chatbot/chat/website',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ChatbotResponseModel.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
@@ -1485,7 +1514,6 @@ class _CmsServiceClient implements CmsServiceClient {
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
-
   @override
   Future<HttpResponse<UserResponse>> getUserInfo() async {
     const _extra = <String, dynamic>{};
@@ -1661,20 +1689,20 @@ class _CmsServiceClient implements CmsServiceClient {
   }
 
   @override
-  Future<HttpResponse<NewsResponse>> getNews() async {
+  Future<HttpResponse<List<NewsModel>>> getNews() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<NewsResponse>>(Options(
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<HttpResponse<List<NewsModel>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/items/news?sort=-date_created&filter%5Bstatus%5D%5B_eq%5D=published',
+              'https://www.aqarat.gov.qa/wp-json/wp/v2/posts',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1683,7 +1711,9 @@ class _CmsServiceClient implements CmsServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = NewsResponse.fromJson(_result.data!);
+    var value = _result.data!
+        .map((dynamic i) => NewsModel.fromJson(i as Map<String, dynamic>))
+        .toList();
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -1712,34 +1742,6 @@ class _CmsServiceClient implements CmsServiceClient {
               baseUrl,
             ))));
     final value = NewsByIdResponse.fromJson(_result.data!);
-    final httpResponse = HttpResponse(value, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<LawsResponse>> getLaws(int limit) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'limit': limit};
-    final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<LawsResponse>>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/items/laws',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = LawsResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -1824,6 +1826,36 @@ class _CmsServiceClient implements CmsServiceClient {
               baseUrl,
             ))));
     final value = AppSettingsResponse.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<List<LawsModel>>> getLaws() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<HttpResponse<List<LawsModel>>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'https://ministry-municipality.v2202305135856227727.ultrasrv.de/wp-json/legislation/v1/all',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data!
+        .map((dynamic i) => LawsModel.fromJson(i as Map<String, dynamic>))
+        .toList();
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

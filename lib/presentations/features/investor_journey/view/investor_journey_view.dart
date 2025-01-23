@@ -107,24 +107,27 @@ class InvestorJourneyView extends StatelessWidget {
             onTap: () {
               Navigator.maybePop(context);
             },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Icon(
-                  Icons.arrow_back,
-                  color: ColorManager.cloudyGrey,
-                ),
-                SizedBox(width: AppSizeW.s5),
-                Text(
-                  AppStrings().main,
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-              ],
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: AppSizeW.s10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Icon(
+                    Icons.arrow_back,
+                    color: ColorManager.cloudyGrey,
+                  ),
+                  SizedBox(width: AppSizeW.s5),
+                  Text(
+                    AppStrings().main,
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                ],
+              ),
             ),
           ),
           Text(
             _getPageTitle(stepNumber),
-            style: Theme.of(context).textTheme.headlineMedium,
+            style: Theme.of(context).textTheme.headlineLarge,
           ),
         ],
       ),

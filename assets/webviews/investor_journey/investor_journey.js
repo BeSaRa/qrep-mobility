@@ -145,12 +145,19 @@ var element = document.querySelector("div.elementor-element-4b8d8d7");
     element.style.background = "white";
   }
 //-------تملك عقارك وتمتع بالمميزات------
-bottomTowBackNextButtons("div.elementor-element-a991969");
+var element2 = document.querySelector("div.elementor-element-a991969");
+	if (element2) {
+		element2.style.bottom = "0";
+		element2.style.margin = "30px 0 0 0";
+		element2.style.padding = "10px 0";
+		element2.style.justifyContent = "space-around";
+		element2.style.alignItems = "end";
+		element2.style.background = "white";
+	}
 //----------أدر ​عقارك----------
 bottomTowBackNextButtons("div.elementor-element-758c1d1");
-bottomTowBackNextButtons("div.elementor-element-758c1d1");
 
-bottomButtonDesign("body > div.mkdf-wrapper > div > div > div > div > div.elementor-element > div:nth-child(1) > div > div > a","#394D84");
+bottomButtonDesign("body > div.mkdf-wrapper > div > div > div > div > div.elementor-element > div:nth-child(1) > div > div > a","#0D4261");
 // bottomBackButtonDesign("body > div.mkdf-wrapper > div > div > div > div > div.elementor-element > div.elementor-element.elementor-widget-button > div > div > a","#394D84");
 bottomButtonDesign("body > div.mkdf-wrapper > div > div > div > div > div.elementor-element > div:nth-child(2) > div > div > a","#8A1538");
 // bottomBackButtonDesign("body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-758c1d1.e-con-full.next-prev-buttons-investor-journey.e-flex.e-con.e-child > div.elementor-element.elementor-element-9421409.elementor-align-center.elementor-widget__width-initial.elementor-widget.elementor-widget-button > div > div > a","#394D84");

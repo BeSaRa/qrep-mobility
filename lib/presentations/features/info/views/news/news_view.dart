@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -76,6 +77,7 @@ class _NewsViewState extends State<NewsView> {
               padding: EdgeInsets.symmetric(vertical: AppSizeH.s40),
               itemCount: context.read<NewsBloc>().newsList.length,
               itemBuilder: (context, index) {
+       
                 return Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: AppSizeW.s20, vertical: AppSizeH.s4),
@@ -94,13 +96,17 @@ class _NewsViewState extends State<NewsView> {
                     child: SizedBox(
                       height: AppSizeH.s100,
                       child: NewsItemWidget(
-                          image: context.read<NewsBloc>().newsList[index].image,
-                          date: context
+                          image: context
                               .read<NewsBloc>()
                               .newsList[index]
-                              .dateCreated,
-                          label:
-                              context.read<NewsBloc>().newsList[index].title),
+                              .ogImage[0]
+                              .url,
+                          date: context.read<NewsBloc>().newsList[index].date,
+                          label: context
+                              .read<NewsBloc>()
+                              .newsList[index]
+                              .title
+                              .rendered),
                     ),
                   ),
                 );

@@ -1,3 +1,5 @@
+import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
+import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 import '../../data/network/failure_model/failure.dart';
@@ -17,11 +19,11 @@ abstract class Repository {
 
   Future<Result<AboutResponse, FailureModel>> getAbout();
 
-  Future<Result<NewsResponse, FailureModel>> getNews();
+  Future<Result<List<NewsModel>, FailureModel>> getNews();
 
   Future<Result<NewsByIdResponse, FailureModel>> getNewsById({required int id});
 
-  Future<Result<LawsResponse, FailureModel>> getLaws({required int limit});
+  // Future<Result<LawsResponse, FailureModel>> getLaws({required int limit});
 
   Future<Result<LawByIdResponse, FailureModel>> getLawById(int id);
 
@@ -190,4 +192,10 @@ abstract class Repository {
 
   Future<Result<FavouriteResponse, FailureModel>> createFavourite(
       FavouriteResponse id);
+      //-------chatbot---------
+  Future<Result<ChatbotResponseModel, FailureModel>> sendMessageToChatbot(
+      ChatbotRequestModel request);
+
+      //-----new laws----
+    Future<Result<List<LawsModel>, FailureModel>> getLaws();
 }

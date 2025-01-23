@@ -37,9 +37,15 @@ _$LawsModelImpl _$$LawsModelImplFromJson(Map<String, dynamic> json) =>
     _$LawsModelImpl(
       id: (json['id'] as num?)?.toInt() ?? 0,
       title: json['title'] as String? ?? '',
+      content: json['content'] as String? ?? '',
+      date: json['date'] as String? ?? '',
+      categories: (json['categories'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      pdf: json['pdf'] as String? ?? '',
       issueDate: json['issue_date'] as String? ?? '',
       lawNumber: (json['law_number'] as num?)?.toInt() ?? 0,
-      file: json['file'] as String? ?? '',
       articles: (json['articles'] as List<dynamic>?)
               ?.map((e) => ArticleModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -50,9 +56,12 @@ Map<String, dynamic> _$$LawsModelImplToJson(_$LawsModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'content': instance.content,
+      'date': instance.date,
+      'categories': instance.categories,
+      'pdf': instance.pdf,
       'issue_date': instance.issueDate,
       'law_number': instance.lawNumber,
-      'file': instance.file,
       'articles': instance.articles,
     };
 
