@@ -36,27 +36,68 @@ Map<String, dynamic> _$$NewsByIdResponseImplToJson(
 _$NewsModelImpl _$$NewsModelImplFromJson(Map<String, dynamic> json) =>
     _$NewsModelImpl(
       id: (json['id'] as num?)?.toInt() ?? 0,
+      date: json['date'] as String? ?? "",
+      modified: json['modified'] as String? ?? "",
       status: json['status'] as String? ?? '',
+      title: json['title'] == null
+          ? const TitleModel()
+          : TitleModel.fromJson(json['title'] as Map<String, dynamic>),
+      content: json['content'] == null
+          ? const ContentModel()
+          : ContentModel.fromJson(json['content'] as Map<String, dynamic>),
+      ogImage: (json['og_image'] as List<OgImageModel>?)
+              ?.map((e) => OgImageModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       userCreated: json['user_created'] as String? ?? '',
       dateCreated: json['date_created'] as String? ?? '',
       userUpdated: json['user_updated'] as String? ?? '',
       dateUpdated: json['date_updated'] as String? ?? '',
-      excerpt: json['excerpt'] as String? ?? '',
-      title: json['title'] as String? ?? '',
-      image: json['image'] as String? ?? '',
-      content: json['content'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$NewsModelImplToJson(_$NewsModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'date': instance.date,
+      'modified': instance.modified,
       'status': instance.status,
+      'title': instance.title,
+      'content': instance.content,
+      'og_image': instance.ogImage,
       'user_created': instance.userCreated,
       'date_created': instance.dateCreated,
       'user_updated': instance.userUpdated,
       'date_updated': instance.dateUpdated,
-      'excerpt': instance.excerpt,
-      'title': instance.title,
-      'image': instance.image,
-      'content': instance.content,
+    };
+
+_$TitleModelImpl _$$TitleModelImplFromJson(Map<String, dynamic> json) =>
+    _$TitleModelImpl(
+      rendered: json['rendered'] as String? ?? "",
+    );
+
+Map<String, dynamic> _$$TitleModelImplToJson(_$TitleModelImpl instance) =>
+    <String, dynamic>{
+      'rendered': instance.rendered,
+    };
+
+_$ContentModelImpl _$$ContentModelImplFromJson(Map<String, dynamic> json) =>
+    _$ContentModelImpl(
+      rendered: json['rendered'] as String? ?? "",
+    );
+
+Map<String, dynamic> _$$ContentModelImplToJson(_$ContentModelImpl instance) =>
+    <String, dynamic>{
+      'rendered': instance.rendered,
+    };
+
+_$OgImageModelImpl _$$OgImageModelImplFromJson(Map<String, dynamic> json) =>
+    _$OgImageModelImpl(
+      url: json['url'] as String? ?? "",
+      width: (json['width'] as num?)?.toInt() ?? 0,
+    );
+
+Map<String, dynamic> _$$OgImageModelImplToJson(_$OgImageModelImpl instance) =>
+    <String, dynamic>{
+      'url': instance.url,
+      'width': instance.width,
     };

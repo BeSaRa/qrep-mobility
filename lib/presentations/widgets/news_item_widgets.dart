@@ -2,8 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/constants.dart';
 import 'package:ebla/app/extensions.dart';
+import 'package:ebla/presentations/resources/theme_manager.dart';
 import 'package:ebla/presentations/widgets/shimmer_placeholder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
@@ -74,7 +76,8 @@ class NewsItemWidget extends StatelessWidget {
                         //     Border.all(width: 1, color: ColorManager.golden),
                       ),
                       child: CachedNetworkImage(
-                        imageUrl: '${Constant.cmsBaseUrl}/assets/$image',
+                        imageUrl: image,
+                        // imageUrl: '${Constant.cmsBaseUrl}/assets/$image',
                         progressIndicatorBuilder: (context, url, progress) {
                           return const ShimmerPlaceholder(
                             child: Image(
@@ -181,12 +184,16 @@ class NewsItemWidget extends StatelessWidget {
                       children: [
                         SizedBox(height: AppSizeH.s6),
                         Expanded(
-                          child: Text(
-                            label,
-                            style: Theme.of(context).textTheme.bodySmall,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                          ),
+                          child: Html(data: label, style: {
+                            "body": Style(
+                                margin: Margins.all(0),
+                                fontFamily: FontConstants.fontFamily,
+                                color: ColorManager.textBlack,
+                                fontSize: FontSize(AppSizeSp.s14),
+                                textOverflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                fontWeight: FontWeight.w400)
+                          }),
                         ),
                         // SizedBox(height: AppSizeH.s6),
                         Row(

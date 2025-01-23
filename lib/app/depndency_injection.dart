@@ -1,8 +1,12 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:ebla/domain/usecases/chatbot_usecase/chatbot_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/create_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/update_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/user_favourite_usecase.dart';
+import 'package:ebla/domain/usecases/laws_usecases/laws_usecases.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/send_message_bloc/chat_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/UpdateFav/update_favourite_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/create_favourite_bloc/create_favourite_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/get_favourite_bloc/get_favourite_bloc.dart';
@@ -17,6 +21,7 @@ import '../data/network/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecases/favourite_usecases/delete_favourite_usecase.dart';
+// import '../domain/usecases/usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/auth/authes.dart';
 import '../presentations/features/info/infos.dart';
@@ -198,7 +203,7 @@ Future<void> initHomeModule() async {
   //       .registerFactory<NewsByIdUsecase>(() => NewsByIdUsecase(instance()));
   // }
   if (!GetIt.I.isRegistered<LawsUsecase>()) {
-    instance.registerFactory<LawsUsecase>(() => LawsUsecase(instance()));
+    instance.registerFactory<LawsUsecase>(() => LawsUsecase(repository:instance()));
   }
   if (!GetIt.I.isRegistered<LawByIdUsecase>()) {
     instance.registerFactory<LawByIdUsecase>(() => LawByIdUsecase(instance()));
@@ -224,6 +229,20 @@ Future<void> initHomeModule() async {
           faqUsecase: instance(),
         ));
   }
+  //--------- chatbot --------------
+   //Usecases
+  if (!GetIt.I.isRegistered<ChatbotUsecase>()) {
+    instance.registerFactory<ChatbotUsecase>(
+        () => ChatbotUsecase(instance()));
+  }
+   //bloc
+  if (!GetIt.I.isRegistered<ChatBotBloc>()) {
+    instance.registerFactory(() => ChatBotBloc(instance()));
+  }
+  if (!GetIt.I.isRegistered<ChatHistoryCubit>()) {
+    instance.registerFactory(() => ChatHistoryCubit());
+  }
+
 }
 
 Future<void> initSellModule() async {

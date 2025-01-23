@@ -123,7 +123,9 @@ class AppStrings {
   String chooseYourProject= "choose_your_project".tr();
   String ownRealEstate= "own_real_estate".tr();
   String manageYourProperty= "manage_your_property".tr();
-
+  //InvestorJourny
+  String back = "back".tr();
+  String next = "next".tr();
   //filter
   String measuringUnit = "measuring_unit".tr(); // وحدة القياس
   String meter = "square_meter".tr(); //متر مربع
@@ -221,4 +223,16 @@ class AppStrings {
   String halfYear = "half_year".tr();
 
   String sessionExpired = "session_expired".tr();
+  //--------------webviews---------------
+  String tasksAndResponsibilitiesOftheAuthority = "tasks_and_responsibilities_of_the_authority".tr();
+  String visionAndMission = "vision_and_mission".tr();
+  String aboutTheAuthority = "about_the_authority".tr();
+  String authorityLocation = "authority_location".tr();
+  String contactUs = "contact_us".tr();
+  String authorityNews = "authority_news".tr();
+  String services= "services".tr();
+  //--------------chatbot---------------
+  String defultBotMessage = "defult_bot_message".tr();
+  String writeUourMessage = "write_your_message".tr();
+
 }

@@ -1,3 +1,7 @@
+import 'dart:developer';
+
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/domain/models/cms_models/news/news_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -55,7 +59,9 @@ class _NewsWidgetState extends State<NewsWidget> {
               BlocBuilder(
                 bloc: context.read<NewsBloc>(),
                 builder: (context, state) {
-                  if (context.read<NewsBloc>().newsList.isEmpty) {
+                  if (context.locale == ARABIC_LOCAL
+                      ? context.read<NewsBloc>().arNewsList.isEmpty
+                      : context.read<NewsBloc>().enNewsList.isEmpty) {
                     return const SizedBox();
                   }
                   return InkWell(
@@ -154,14 +160,34 @@ class _NewsWidgetState extends State<NewsWidget> {
                       style: Theme.of(context).textTheme.bodyMedium,
                     );
                   }
+                  log("zakImage${value.news[index].ogImage}");
+                  // Filter the news based on the current locale
+                  List<NewsModel> filteredNews = [];
+                  if (context.locale == ARABIC_LOCAL) {
+                    // Show only Arabic news
+                    filteredNews = value.news.where((news) {
+                      return RegExp(r'[\u0600-\u06FF]')
+                          .hasMatch(news.title.rendered);
+                    }).toList();
+                    log("zakImagefilter${filteredNews[index].ogImage}");
+                  } else {
+                    // Show only English news
+                    filteredNews = value.news.where((news) {
+                      return !RegExp(r'[\u0600-\u06FF]')
+                          .hasMatch(news.title.rendered);
+                    }).toList();
+                  }
+
                   return Column(
                     children: [
                       SizedBox(
                         height: AppSizeH.s100,
                         child: PageView.builder(
                             controller: _pageController,
-                            itemCount:
-                                value.news.length > 5 ? 5 : value.news.length,
+                            itemCount: filteredNews.length > 5
+                                ? 5
+                                : filteredNews.length,
+                            // value.news.length > 5 ? 5 : value.news.length,
                             onPageChanged: (indexx) {
                               index = indexx;
                               setState(() {
@@ -170,24 +196,46 @@ class _NewsWidgetState extends State<NewsWidget> {
                               });
                             },
                             itemBuilder: (context, index) {
+                              // final newsTitle =
+                              //     value.news[index].title.rendered;
+                              // // Check if the current law matches the app language
+                              // final isArabic = context.locale == ARABIC_LOCAL;
+                              // final isNewsInArabic = RegExp(r'[\u0600-\u06FF]')
+                              //     .hasMatch(newsTitle);
+                              // // Show the item only if it matches the app's language
+                              // if ((isArabic && isNewsInArabic) ||
+                              //     (!isArabic && !isNewsInArabic)) {
+
                               return Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: AppSizeW.s20,
                                     vertical: AppSizeH.s4),
                                 child: InkWell(
                                   onTap: () {
-                                    context.pushNamed(RoutesNames.newsbyId,
-                                        pathParameters: {
-                                          "id": value.news[index].id.toString()
-                                        },
-                                        extra: context.read<NewsBloc>());
+                                    // context.pushNamed(RoutesNames.newsbyId,
+                                    //     pathParameters: {
+                                    //       "id":
+                                    //           filteredNews[index].id.toString()
+                                    //     },
+                                    //     extra: context.read<NewsBloc>());
+                                    print(
+                                        "zakaria ${filteredNews[index].ogImage}");
                                   },
                                   child: NewsItemWidget(
-                                      image: value.news[index].image,
-                                      date: value.news[index].dateCreated,
-                                      label: value.news[index].title),
+                                      image: filteredNews[index]
+                                              .ogImage
+                                              .isNotEmpty
+                                          ? filteredNews[index].ogImage[0].url
+                                          : ImageAssets.test,
+                                      date: filteredNews[index].date,
+                                      label:
+                                          filteredNews[index].title.rendered),
                                 ),
                               );
+                              // }
+
+                              // // return an empty container for items that don't match the condition
+                              // return const SizedBox.shrink();
                             }),
                       ),
                       SizedBox(height: AppSizeH.s10),

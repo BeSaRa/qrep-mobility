@@ -1,5 +1,6 @@
 import 'package:ebla/presentations/features/investor_journey/blocs/investor_journey_event.dart';
 import 'package:ebla/presentations/features/investor_journey/blocs/investor_journey_state.dart';
+import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/services.dart';
@@ -30,11 +31,16 @@ class InvestorJourneyBloc
     });
 
     on<PageLoaded>((event, emit) async {
+      print("The function is being called");
       //Here i ensure that we do not emit the loaded state if an error occurred
       if (state is InvestorJourneyError) {
         return;
       }
-      emit(InvestorJourneyLoaded());
+      try {
+        emit(InvestorJourneyLoaded());
+      } catch (e) {
+        emit(InvestorJourneyError("Failed to retrieve URL: ${e.toString()}"));
+      }
     });
 
     on<PageDidnNotLoad>((event, emit) {
@@ -43,22 +49,26 @@ class InvestorJourneyBloc
       emit(InvestorJourneyError(errorMessage));
     });
 
-    on<RunJavaScript>((event, emit) async {
+    on<RunJavaScript>((
+      event,
+      emit,
+    ) async {
       try {
-        const String webviewsURL = "assets/webviews";
-
-        // Check theme mode
-        // final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+        const String webviewsURL = "assets/webviews/investor_journey";
         if (event.isDarkMode) {
           final String darkModeCss = await rootBundle
-              .loadString('$webviewsURL/webviews_dark_styles.js');
+              .loadString('assets/webviews/webviews_dark_styles.js');
           await controller.runJavaScript(darkModeCss);
         }
-
         // Load JavaScript based on the step number
         if (event.stepNumber == "0") {
-          final String investorJsCode =
-              await rootBundle.loadString('$webviewsURL/investor_journey.js');
+          final String investorJsCode = event.locale == ARABIC_LOCAL
+              ?
+              //This for the 2 button (back and next in the arabic screen but just in arabic)
+              await rootBundle
+                  .loadString('$webviewsURL/arabic_investor_journey.js')
+              : await rootBundle.loadString('$webviewsURL/investor_journey.js');
+
           await controller.runJavaScript(investorJsCode);
         } else if (event.stepNumber == "1") {
           final String propertyDeveloperJsCode =

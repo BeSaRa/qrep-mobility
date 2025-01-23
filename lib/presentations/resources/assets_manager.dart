@@ -32,6 +32,8 @@ class ImageAssets {
   static const String test = '${IMAGE_PATH}qq.png';
   static const String logoPng = '${IMAGE_PATH}splash_logo_trimmed.png';
   static const String homeBg = '${IMAGE_PATH}home_bg.png';
+  static const String chatBot = '${IMAGE_PATH}chatgpt.png';
+  static const String chatBotIndecetor = '${IMAGE_PATH}chat_bot_loading_indecetor.json';
 
   static const String appbarBg = "${IMAGE_PATH}bg_appbar.png";
   static const String dbNote = "${IMAGE_PATH}db_note.png";

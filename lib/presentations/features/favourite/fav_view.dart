@@ -63,13 +63,15 @@ class _FavViewState extends State<FavView> {
   Widget build(BuildContext context) {
     return BlocBuilder<LookupBloc, LookupState>(
       builder: (context, state) {
-        return state.map(loadingLookup: (val) {
+        return state.map(
+          loadingLookup: (val) {
           return const AnimatedPulesLogo();
         }, loadedLookup: (val) {
           return BlocBuilder<GetFavouriteBloc, GetFavouriteState>(
             bloc: favouriteBloc,
             builder: (context, state) {
-              return state.map(initial: (val) {
+              return state.map(
+                initial: (val) {
                 return Container();
               }, loading: (val) {
                 return const AnimatedPulesLogo();

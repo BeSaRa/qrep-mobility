@@ -16,13 +16,13 @@ class AboutUsecase implements BaseUseCaseEmptyInput<AboutResponse> {
   }
 }
 
-class NewsUsecase implements BaseUseCaseEmptyInput<NewsResponse> {
+class NewsUsecase implements BaseUseCaseEmptyInput<List<NewsModel>> {
   final Repository repository;
 
   NewsUsecase(this.repository);
 
   @override
-  Future<Result<NewsResponse, FailureModel>> execute() async {
+  Future<Result<List<NewsModel>, FailureModel>> execute() async {
     return await repository.getNews();
   }
 }
@@ -39,16 +39,16 @@ class NewsByIdUsecase implements BaseUseCase<({int id}), NewsByIdResponse> {
   }
 }
 
-class LawsUsecase implements BaseUseCase<int, LawsResponse> {
-  final Repository repository;
+// class LawsUsecase implements BaseUseCase<int, LawsResponse> {
+//   final Repository repository;
 
-  LawsUsecase(this.repository);
+//   LawsUsecase(this.repository);
 
-  @override
-  Future<Result<LawsResponse, FailureModel>> execute(int limit) async {
-    return await repository.getLaws(limit: limit);
-  }
-}
+//   @override
+//   Future<Result<LawsResponse, FailureModel>> execute(int limit) async {
+//     return await repository.getLaws(limit: limit);
+//   }
+// }
 
 class LawByIdUsecase implements BaseUseCase<int, LawByIdResponse> {
   final Repository repository;

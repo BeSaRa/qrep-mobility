@@ -1,4 +1,4 @@
-import 'package:ebla/app/constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
@@ -6,7 +6,6 @@ import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../resources/resources.dart';
@@ -34,7 +33,8 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                     context.read<LawsBloc>().add(const LawsEvent.getLaws());
                   },
                 );
-              } else if (state.lawsResponse.data.isNotEmpty) {
+              } else if (state.lawsResponse.isNotEmpty) {
+                // } else if (state.lawsResponse.data.isNotEmpty) {
                 return Scaffold(
                   appBar: AppBar(
                     backgroundColor: Colors.transparent,
@@ -51,8 +51,6 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                       blendMode: BlendMode.dstIn,
                       child: Image.asset(
                         ImageAssets.appbarBg,
-                        // height: 400,
-
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -112,12 +110,27 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                               horizontal: AppSizeW.s15, vertical: AppSizeH.s10),
                           child: ListView.builder(
                             shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: state.lawsResponse.data.length,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: state.lawsResponse.length,
+                            // itemCount: state.lawsResponse.data.length,
                             itemBuilder: (context, index) {
-                              return LawWidget(
-                                law: state.lawsResponse.data[index],
-                              );
+                              final law = state.lawsResponse[index];
+
+                              // Check if the current law matches the app language
+                              final isArabic = context.locale ==
+                                  ARABIC_LOCAL; // Example: Using localization
+                              final isLawInArabic = RegExp(r'[\u0600-\u06FF]')
+                                  .hasMatch(law.title);
+                              // Show the item only if it matches the app's language
+                              if ((isArabic && isLawInArabic) ||
+                                  (!isArabic && !isLawInArabic)) {
+                                return LawWidget(
+                                  law: law,
+                                );
+                              }
+
+                              // Return an empty container for items that don't match the condition
+                              return const SizedBox.shrink();
                             },
                           ),
                         ),
@@ -125,7 +138,8 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                     ),
                   ),
                 );
-              } else if (state.lawsResponse.data.isEmpty) {}
+              } else if (state.lawsResponse.isEmpty) {}
+              // } else if (state.lawsResponse.data.isEmpty) {}
               return Container();
             }));
   }
@@ -153,9 +167,9 @@ class _LawWidgetState extends State<LawWidget> {
     }
   }
 
-  String getFileUrl(String assetId) {
-    return "${Constant.cmsBaseUrl}/assets/$assetId";
-  }
+  // String getFileUrl(String assetId) {
+  //   return "${Constant.cmsBaseUrl}/assets/$assetId";
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -166,11 +180,11 @@ class _LawWidgetState extends State<LawWidget> {
         splashColor: ColorManager.primary.withOpacity(0.1),
         borderRadius: BorderRadius.circular(AppSizeR.s20),
         onTap: () {
-          context.pushNamed(RoutesNames.lawsDetails,
-              pathParameters: {'id': widget.law.id.toString()});
+          // context.pushNamed(RoutesNames.lawsDetails,
+          //     pathParameters: {'id': widget.law.id.toString()});
         },
         child: Ink(
-          height: widget.law.title.length > 70 ? AppSizeH.s130 : AppSizeH.s110,
+          height: widget.law.title.length > 200 ? AppSizeH.s130 : AppSizeH.s110,
           decoration: BoxDecoration(
               color: ColorManager.lightSilver.withOpacity(0.3),
               borderRadius: BorderRadius.circular(AppSizeR.s20),
@@ -221,9 +235,14 @@ class _LawWidgetState extends State<LawWidget> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
-                              '${AppStrings().issueDate}${DateTime.tryParse(widget.law.issueDate)?.year}',
-                              style: Theme.of(context).textTheme.labelSmall,
+                            Flexible(
+                              child: Text(
+                                widget.law.categories[0],
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                // '${AppStrings().issueDate}${DateTime.tryParse(widget.law.issueDate)?.year}',
+                                style: Theme.of(context).textTheme.labelSmall,
+                              ),
                             ),
                             Container(
                               margin:
@@ -233,7 +252,8 @@ class _LawWidgetState extends State<LawWidget> {
                               color: ColorManager.lightSilver,
                             ),
                             Text(
-                              '${AppStrings().lawNumber}${widget.law.lawNumber}',
+                              widget.law.date,
+                              // '${DateFormat('MMM d, y').format(DateTime.parse('${widget.law.date}'))}',
                               style: Theme.of(context).textTheme.labelSmall,
                             )
                           ],
@@ -249,7 +269,8 @@ class _LawWidgetState extends State<LawWidget> {
                     message: AppStrings().downloadFile,
                     child: GestureDetector(
                       onTap: () {
-                        String fileUrl = getFileUrl(widget.law.file);
+                        String fileUrl = widget.law.pdf;
+                        // String fileUrl = getFileUrl(widget.law.pdf);
                         if (isValidUrl(fileUrl)) {
                           launchUrl(Uri.parse(fileUrl));
                         }

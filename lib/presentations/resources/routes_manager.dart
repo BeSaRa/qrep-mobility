@@ -1,5 +1,7 @@
 import 'package:ebla/app/routing_observer.dart';
 import 'package:ebla/domain/models/cms_models/user/user_model.dart';
+import 'package:ebla/presentations/features/chatbot/view/chat_view.dart';
+import 'package:ebla/presentations/features/more/all_more_web_views/view/all_more_web_views_view.dart';
 import 'package:ebla/presentations/features/favourite/fav_view.dart';
 import 'package:ebla/presentations/features/home/home_view.dart';
 import 'package:ebla/presentations/features/info/blocs/about_bloc/about_bloc.dart';
@@ -50,6 +52,8 @@ class RoutesNames {
   static const String realEstateBrokers = 'real estate brokers';
   static const String favourite = 'favourite';
   static const String investorJourney = 'investor journey';
+  static const String aboutTheAuthority = "about the authority";
+  static const String chatbot = "chatbot";
 }
 
 class RoutesPaths {
@@ -70,6 +74,8 @@ class RoutesPaths {
   static const String updateInfo = '/updateInfo';
   static const String favourite = '/favourite';
   static const String investorJourney = '/investorjourney';
+  static const String aboutTheAuthority = '/abouttheauthority';
+  static const String chatbot = '/chatbot';
 }
 
 class NavigationKeys {
@@ -463,15 +469,41 @@ class AppRouter {
             return InvestorJourneyView(stepNumber: stepNumber);
           },
         ),
-        // GoRoute(
-        //   parentNavigatorKey: NavigationKeys.rootNavigatorKey,
-        //   name: RoutesNames.investorJourney,
-        //   path: '${RoutesPaths.investorJourney}:stepNumber',
-        //   builder: (context, state) {
-        //     final stepNumber = state.pathParameters['stepNumber'] ??
-        //         '0'; // Default to '0' which is investor journey web view
-        //     return InvestorJourneyView(stepNumber: stepNumber);
-        //   },
-        // ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.aboutTheAuthority,
+          path: '${RoutesPaths.aboutTheAuthority}:pageName',
+          builder: (context, state) {
+            final pageName = state.pathParameters['pageName'] ?? '0';
+            return AllMoreWebViews(pageName: pageName);
+          },
+        ),
+        //-------------- Chatbot ----------------
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.chatbot,
+          path: RoutesPaths.chatbot,
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: ChatView(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                const begin = Offset(1.0, 0.0);
+                const end = Offset.zero;
+                const curve = Curves.easeInOut;
+
+                var tween = Tween(begin: begin, end: end)
+                    .chain(CurveTween(curve: curve));
+                var offsetAnimation = animation.drive(tween);
+
+                return SlideTransition(
+                  position: offsetAnimation,
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
       ]);
 }

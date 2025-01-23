@@ -1,6 +1,7 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ebla/app/extensions.dart';
 import 'package:ebla/utils/global_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -115,7 +116,10 @@ class _NewsItemViewState extends State<NewsItemView> {
                     ),
                   );
                 },
-                imageUrl: '${Constant.cmsBaseUrl}/assets/${model.image}',
+                imageUrl: model.ogImage[0].url,
+                // imageUrl:
+                //     'https://www.aqarat.gov.qa/wp-content/uploads/2024/10/1.webp',
+                // imageUrl: '${Constant.cmsBaseUrl}/assets/${model.image}',
                 imageBuilder: (context, imageProvider) {
                   return Container(
                     height: AppSizeH.s260,
@@ -140,10 +144,15 @@ class _NewsItemViewState extends State<NewsItemView> {
                 },
               ),
               SizedBox(height: AppSizeH.s16),
-              Text(
-                model.title,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
+              Html(data: model.title.rendered, style: {
+                "body": Style(
+                    margin: Margins.all(0),
+                    fontFamily: FontConstants.fontFamily,
+                    color: ColorManager.primary,
+                    fontSize: FontSize(AppSizeSp.s16),
+                    fontWeight: FontWeight.w700),
+              }),
+
               SizedBox(height: AppSizeH.s8),
               // Row(
               //   children: [
@@ -168,7 +177,7 @@ class _NewsItemViewState extends State<NewsItemView> {
               ),
               SizedBox(height: AppSizeH.s14),
               Html(
-                data: model.content,
+                data: model.content.rendered,
               ),
               SizedBox(height: AppSizeH.s14),
               Divider(
@@ -192,23 +201,35 @@ class _NewsItemViewState extends State<NewsItemView> {
               Wrap(
                 runSpacing: AppSizeH.s10,
                 children: values.map((e) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: AppSizeW.s2),
-                    child: InkWell(
-                      onTap: () {
-                        context.pushNamed(RoutesNames.newsbyId,
-                            pathParameters: {"id": e.id.toString()},
-                            extra: context.read<NewsBloc>());
-                      },
-                      child: SizedBox(
-                        height: AppSizeH.s100,
-                        child: NewsItemWidget(
-                            image: e.image,
-                            date: e.dateCreated,
-                            label: e.title),
+                  final newsTitle = e.title.rendered;
+                  // Check if the current law matches the app language
+                  final isArabic = context.locale == ARABIC_LOCAL;
+                  final isNewsInArabic =
+                      RegExp(r'[\u0600-\u06FF]').hasMatch(newsTitle);
+                  // Show the item only if it matches the app's language
+                  if ((isArabic && isNewsInArabic) ||
+                      (!isArabic && !isNewsInArabic)) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(horizontal: AppSizeW.s2),
+                      child: InkWell(
+                        onTap: () {
+                          context.pushNamed(RoutesNames.newsbyId,
+                              pathParameters: {"id": e.id.toString()},
+                              extra: context.read<NewsBloc>());
+                        },
+                        child: SizedBox(
+                          height: AppSizeH.s100,
+                          child: NewsItemWidget(
+                              image: e.ogImage[0].url,
+                              date: e.date,
+                              label: e.title.rendered),
+                        ),
                       ),
-                    ),
-                  );
+                    );
+                  }
+
+                  // return an empty container for items that don't match the condition
+                  return const SizedBox.shrink();
                 }).toList(),
               ),
               SizedBox(height: AppSizeH.s20),

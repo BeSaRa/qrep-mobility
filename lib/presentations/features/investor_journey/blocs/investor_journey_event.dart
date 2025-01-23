@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 abstract class InvestorJourneyEvent {}
 
 class InitializeWebView extends InvestorJourneyEvent {
@@ -19,6 +21,6 @@ class PageDidnNotLoad extends InvestorJourneyEvent {
 class RunJavaScript extends InvestorJourneyEvent {
   final String stepNumber;
   final bool isDarkMode;
-  RunJavaScript(this.stepNumber, this.isDarkMode);
+  final Locale locale;
+  RunJavaScript(this.stepNumber, this.isDarkMode, this.locale);
 }
-

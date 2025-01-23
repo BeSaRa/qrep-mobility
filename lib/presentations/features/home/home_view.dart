@@ -42,6 +42,20 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     getFromAprilMonths(context);
     return Scaffold(
+      floatingActionButton: ClipRRect(
+        borderRadius: BorderRadius.circular(AppSizeR.s100),
+        child: FloatingActionButton(
+          onPressed: () {
+            context.pushNamed(RoutesNames.chatbot);
+          },
+          backgroundColor: Theme.of(context).primaryColor,
+          child: Image(
+            image: const AssetImage(ImageAssets.chatBot),
+            width: AppSizeW.s40,
+            height: AppSizeH.s40,
+          ),
+        ),
+      ),
       appBar: const TitleAppBar(),
       // backgroundColor: Colors.transparent,
       body: Container(
@@ -50,6 +64,7 @@ class _HomeViewState extends State<HomeView> {
                 image: AssetImage(ImageAssets.homeBg), fit: BoxFit.fill)),
         child: ListView(
           children: [
+           
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
                 child: SizedBox(

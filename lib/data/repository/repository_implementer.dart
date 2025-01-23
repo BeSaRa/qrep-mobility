@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/data/network/failure_model/failure.dart';
+import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/domain/models/cms_models/app_settings/app_settings.dart';
 import 'package:ebla/domain/models/cms_models/user/requests/update_info_model.dart';
 import 'package:ebla/domain/models/favourite/favourite_models.dart';
 import 'package:ebla/domain/models/models.dart';
 import 'package:ebla/domain/models/requests/broker_requests/request_broker_values.dart';
+import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:multiple_result/multiple_result.dart';
@@ -22,6 +24,7 @@ import '../network/network_info.dart';
 class RepositoryImplementer extends Repository {
   final AppServiceClient appServiceClient;
   final CmsServiceClient translationsServiceClient;
+
   final NetworkInfo networkInfo;
 
   RepositoryImplementer(
@@ -73,27 +76,27 @@ class RepositoryImplementer extends Repository {
     }
   }
 
-  @override
-  Future<Result<LawsResponse, FailureModel>> getLaws(
-      {required int limit}) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final response = await translationsServiceClient.getLaws(limit);
+  // @override
+  // Future<Result<LawsResponse, FailureModel>> getLaws(
+  //     {required int limit}) async {
+  //   if (await networkInfo.isConnected) {
+  //     try {
+  //       final response = await translationsServiceClient.getLaws(limit);
 
-        if (response.response.statusCode == 200) {
-          return Success(response.data);
-        } else {
-          return Error(FailureModel.fromJson(response.response.data));
-        }
-      } on DioException catch (e) {
-        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
-      } catch (e) {
-        return Error(FailureModel(message: AppStrings().defaultError));
-      }
-    } else {
-      return Error(FailureModel(message: AppStrings().noInternetError));
-    }
-  }
+  //       if (response.response.statusCode == 200) {
+  //         return Success(response.data);
+  //       } else {
+  //         return Error(FailureModel.fromJson(response.response.data));
+  //       }
+  //     } on DioException catch (e) {
+  //       return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+  //     } catch (e) {
+  //       return Error(FailureModel(message: AppStrings().defaultError));
+  //     }
+  //   } else {
+  //     return Error(FailureModel(message: AppStrings().noInternetError));
+  //   }
+  // }
 
   @override
   Future<Result<LawByIdResponse, FailureModel>> getLawById(int id) async {
@@ -117,12 +120,13 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
-  Future<Result<NewsResponse, FailureModel>> getNews() async {
+  Future<Result<List<NewsModel>, FailureModel>> getNews() async {
     if (await networkInfo.isConnected) {
       try {
         final response = await translationsServiceClient.getNews();
 
         if (response.response.statusCode == 200) {
+                      print("repoImp ${response.data[0].ogImage}");
           return Success(response.data);
         } else {
           return Error(FailureModel.fromJson(response.response.data));
@@ -1375,4 +1379,49 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
+//---------------- chatbot ------------------
+  @override
+  Future<Result<ChatbotResponseModel, FailureModel>> sendMessageToChatbot(
+      ChatbotRequestModel request) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.sendMessageToChatbot(request);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  //---------------------zak-------------------------------
+  @override
+  Future<Result<List<LawsModel>, FailureModel>> getLaws() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await translationsServiceClient.getLaws();
+
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+  //---------------------end zak-------------------------------
 }

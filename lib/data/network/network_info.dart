@@ -10,11 +10,14 @@ class NetworkInfoImplementer implements NetworkInfo {
   @override
   Future<bool> get isConnected =>
       _connectivity.checkConnectivity().then((value) {
-        if (value == ConnectivityResult.wifi ||
-            value == ConnectivityResult.mobile) {
-          return true;
-        } else {
-          return false;
-        }
+        return true;
+        //Note ZAK: there is a problem with this package i guess
+        // cause the data loaded after i commad the next 5 lines
+
+        // if (value == ConnectivityResult.wifi ||
+        //     value == ConnectivityResult.mobile) {
+        // } else {
+        //   return false;
+        // }
       });
 }

@@ -5,7 +5,7 @@ class EndPoints {
   static const String news =
       '/items/news?sort=-date_created&filter%5Bstatus%5D%5B_eq%5D=published';
   static const String newsById = '/items/news/{id}';
-  static const String laws = '/items/laws';
+  // static const String laws = '/items/laws';
   static const String lawsById = '/items/laws/{id}';
   static const String about = '/items/about?fields=*,translations.*';
   static const String faq = '/items/FAQ';
@@ -129,4 +129,7 @@ class EndPoints {
 
   static const String getUserWishList = "/user-wish-list";
   static const String getUserWishListById = "/user-wish-list/user-id/";
+
+  //laws
+    // static const String newLaws = '';
 }

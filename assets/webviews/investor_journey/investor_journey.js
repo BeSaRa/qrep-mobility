@@ -12,6 +12,36 @@ function setTransparentBackground(selector) {
     element.style.color = "transparent";
   }
 }
+function bottomTowBackNextButtons(selector) {
+  var element = document.querySelector(selector);
+  if (element) {
+    // element.style.bottom = "0";
+    element.style.margin = "30px 0 0 0";
+    element.style.padding = "10px 0";
+    element.style.justifyContent = "space-around";
+    element.style.alignItems = "end";
+    element.style.background = "white";
+    element.style.top = "100%";
+    element.style.transform = "translate(-2px, calc(-100% - 30px))";
+  }
+}
+function bottomButtonDesign(selector, color) {
+  var element = document.querySelector(selector);
+  if (element) {
+    element.style.width = "120px";
+    element.style.borderRadius = "10px";
+
+    element.style.fontSize = "16px";
+    element.style.height = "50px";
+    element.style.textAlign = "center";
+    element.style.display = "flex";
+    element.style.justifyContent = "center";
+    element.style.alignItems = "center";
+    element.style.background = `${color}`;
+    element.style.boxShadow = "none";
+    
+  }
+}
 //===================== remove elements from <<Connect with real estate experts>> section =====================
 hideElement("div.elementor-element-8e79833");
 
@@ -99,6 +129,39 @@ hideElement("div.pojo-a11y-toolbar-toggle");
 
 //=============================== remove elements from <<STUDY IDEA>> section ======================================
 hideElement(".elementor-element-71b215f");
+//=============================== Make the 2 buttons(next and back) in the bottom ======================================
+//--------دراسة فكرة شراء العقار---------
+bottomTowBackNextButtons("div.elementor-element-91f6e2a");
+//-------تواصل مع الخبراء ​العقاريين المرخصين------
+bottomTowBackNextButtons("div.elementor-element-135492c");
+//-----------اختر مشروعك-------------
+var element = document.querySelector("div.elementor-element-4b8d8d7");
+  if (element) {
+    element.style.bottom = "0";
+    element.style.margin = "30px 0 0 0";
+    element.style.padding = "10px 0";
+    element.style.justifyContent = "space-around";
+    element.style.alignItems = "end";
+    element.style.background = "white";
+  }
+//-------تملك عقارك وتمتع بالمميزات------
+var element2 = document.querySelector("div.elementor-element-a991969");
+	if (element2) {
+		element2.style.bottom = "0";
+		element2.style.margin = "30px 0 0 0";
+		element2.style.padding = "10px 0";
+		element2.style.justifyContent = "space-around";
+		element2.style.alignItems = "end";
+		element2.style.background = "white";
+	}
+//----------أدر ​عقارك----------
+bottomTowBackNextButtons("div.elementor-element-758c1d1");
+
+bottomButtonDesign("body > div.mkdf-wrapper > div > div > div > div > div.elementor-element > div:nth-child(1) > div > div > a","#0D4261");
+// bottomBackButtonDesign("body > div.mkdf-wrapper > div > div > div > div > div.elementor-element > div.elementor-element.elementor-widget-button > div > div > a","#394D84");
+bottomButtonDesign("body > div.mkdf-wrapper > div > div > div > div > div.elementor-element > div:nth-child(2) > div > div > a","#8A1538");
+// bottomBackButtonDesign("body > div.mkdf-wrapper > div > div > div > div > div.elementor-element.elementor-element-758c1d1.e-con-full.next-prev-buttons-investor-journey.e-flex.e-con.e-child > div.elementor-element.elementor-element-9421409.elementor-align-center.elementor-widget__width-initial.elementor-widget.elementor-widget-button > div > div > a","#394D84");
+
 
 //===================================== viewport for responsiveness =======================================================
 var meta = document.createElement("meta");
