@@ -1,11 +1,13 @@
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/data/network/failure_model/failure.dart';
+import 'package:ebla/domain/models/Auth/auth_models.dart';
+import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/domain/models/cms_models/app_settings/app_settings.dart';
 import 'package:ebla/domain/models/cms_models/user/requests/update_info_model.dart';
+import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 import 'package:ebla/domain/models/favourite/favourite_models.dart';
 import 'package:ebla/domain/models/models.dart';
 import 'package:ebla/domain/models/requests/broker_requests/request_broker_values.dart';
@@ -76,78 +78,11 @@ class RepositoryImplementer extends Repository {
     }
   }
 
-  // @override
-  // Future<Result<LawsResponse, FailureModel>> getLaws(
-  //     {required int limit}) async {
-  //   if (await networkInfo.isConnected) {
-  //     try {
-  //       final response = await translationsServiceClient.getLaws(limit);
-
-  //       if (response.response.statusCode == 200) {
-  //         return Success(response.data);
-  //       } else {
-  //         return Error(FailureModel.fromJson(response.response.data));
-  //       }
-  //     } on DioException catch (e) {
-  //       return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
-  //     } catch (e) {
-  //       return Error(FailureModel(message: AppStrings().defaultError));
-  //     }
-  //   } else {
-  //     return Error(FailureModel(message: AppStrings().noInternetError));
-  //   }
-  // }
-
-  @override
-  Future<Result<LawByIdResponse, FailureModel>> getLawById(int id) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final response = await translationsServiceClient.getLawId(id);
-
-        if (response.response.statusCode == 200) {
-          return Success(response.data);
-        } else {
-          return Error(FailureModel.fromJson(response.response.data));
-        }
-      } on DioException catch (e) {
-        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
-      } catch (e) {
-        return Error(FailureModel(message: AppStrings().defaultError));
-      }
-    } else {
-      return Error(FailureModel(message: AppStrings().noInternetError));
-    }
-  }
-
   @override
   Future<Result<List<NewsModel>, FailureModel>> getNews() async {
     if (await networkInfo.isConnected) {
       try {
         final response = await translationsServiceClient.getNews();
-
-        if (response.response.statusCode == 200) {
-                      print("repoImp ${response.data[0].ogImage}");
-          return Success(response.data);
-        } else {
-          return Error(FailureModel.fromJson(response.response.data));
-        }
-      } on DioException catch (e) {
-        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
-      } catch (e) {
-        return Error(FailureModel(message: AppStrings().defaultError));
-      }
-    } else {
-      return Error(FailureModel(message: AppStrings().noInternetError));
-    }
-  }
-
-  @override
-  Future<Result<NewsByIdResponse, FailureModel>> getNewsById(
-      {required int id}) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final response = await translationsServiceClient.getNewsById(id: id);
-
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -1402,7 +1337,7 @@ class RepositoryImplementer extends Repository {
     }
   }
 
-  //---------------------zak-------------------------------
+  //---------------------get laws-------------------------------
   @override
   Future<Result<List<LawsModel>, FailureModel>> getLaws() async {
     if (await networkInfo.isConnected) {
@@ -1423,5 +1358,5 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
-  //---------------------end zak-------------------------------
+  //---------------------end get laws-------------------------------
 }

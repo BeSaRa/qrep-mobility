@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/more/all_more_web_views/blocs/all_more_web_views_bloc.dart';
 import 'package:ebla/presentations/features/more/all_more_web_views/blocs/all_more_web_views_event.dart';
 import 'package:ebla/presentations/features/more/all_more_web_views/blocs/all_more_web_views_state.dart';
+import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
 import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/material.dart';
@@ -55,39 +56,25 @@ class AllMoreWebViews extends StatelessWidget {
       child: BlocBuilder<AboutTheAuthorityBloc, AboutTheAuthorityState>(
         builder: (context, state) {
           final bloc = context.read<AboutTheAuthorityBloc>();
-          if (state is AboutTheAuthorityLoaded) {
+          if (state is AboutTheAuthorityLoading) {
+            return const AnimatedPulesLogo();
+          } else if (state is AboutTheAuthorityError) {
+            return ErrorGlobalWidget(
+              message: state.message,
+              onPressed: () {
+                bloc.add(
+                    InitializeAboutAuthWebView(_getInitUrl(context, pageName)));
+              },
+            );
+          } else {
             final isDarkMode = Theme.of(context).brightness == Brightness.dark;
             bloc.add(RunJavaScript(pageName, isDarkMode, context.locale));
+
+            return Scaffold(
+              appBar: _costumeAppBar(context),
+              body: WebViewWidget(controller: bloc.controller),
+            );
           }
-          return Scaffold(
-            appBar: _costumeAppBar(context),
-            body: Stack(
-              children: [
-                if (state is AboutTheAuthorityLoading)
-                  Center(
-                    child: Container(
-                      width: double.infinity,
-                      height: MediaQuery.sizeOf(context).height,
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? Theme.of(context).scaffoldBackgroundColor
-                          : ColorManager.white,
-                    ),
-                  ),
-                if (state is AboutTheAuthorityLoading)
-                  const Center(child: CircularProgressIndicator()),
-                if (state is AboutTheAuthorityLoaded)
-                  WebViewWidget(controller: bloc.controller),
-                if (state is AboutTheAuthorityError)
-                  ErrorGlobalWidget(
-                    message: state.message,
-                    onPressed: () {
-                      bloc.add(InitializeAboutAuthWebView(
-                          _getInitUrl(context, pageName)));
-                    },
-                  ),
-              ],
-            ),
-          );
         },
       ),
     );

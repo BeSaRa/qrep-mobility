@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
@@ -56,45 +55,52 @@ class _NewsWidgetState extends State<NewsWidget> {
                 ],
               ),
               const Spacer(),
-              BlocBuilder(
+              BlocBuilder<NewsBloc, NewsState>(
                 bloc: context.read<NewsBloc>(),
                 builder: (context, state) {
-                  if (context.locale == ARABIC_LOCAL
-                      ? context.read<NewsBloc>().arNewsList.isEmpty
-                      : context.read<NewsBloc>().enNewsList.isEmpty) {
-                    return const SizedBox();
-                  }
-                  return InkWell(
-                    onTap: () {
-                      context.pushNamed(RoutesNames.news,
-                          extra: context.read<NewsBloc>());
+                  return state.map(
+                    error: (value) {
+                      return const SizedBox();
                     },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: AppSizeW.s10, vertical: AppSizeH.s2),
-                      decoration: BoxDecoration(
-                          color:
-                              Theme.of(context).colorScheme.tertiaryContainer,
-                          border: Border.all(color: ColorManager.golden),
-                          borderRadius: BorderRadius.circular(AppSizeR.s20)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            AppStrings().more,
-                            style: Theme.of(context).textTheme.titleSmall,
+                    loading: (value) {
+                      return const SizedBox();
+                    },
+                    loaded: (value) {
+                      return InkWell(
+                        onTap: () {
+                          context.pushNamed(RoutesNames.news,
+                              extra: context.read<NewsBloc>());
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: AppSizeW.s10, vertical: AppSizeH.s2),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .tertiaryContainer,
+                              border: Border.all(color: ColorManager.golden),
+                              borderRadius:
+                                  BorderRadius.circular(AppSizeR.s20)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                AppStrings().more,
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
+                              SizedBox(
+                                width: AppSizeW.s8,
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                color: ColorManager.golden,
+                                size: AppSizeH.s10,
+                              )
+                            ],
                           ),
-                          SizedBox(
-                            width: AppSizeW.s8,
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            color: ColorManager.golden,
-                            size: AppSizeH.s10,
-                          )
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    },
                   );
                 },
               )
@@ -160,7 +166,7 @@ class _NewsWidgetState extends State<NewsWidget> {
                       style: Theme.of(context).textTheme.bodyMedium,
                     );
                   }
-                  log("zakImage${value.news[index].ogImage}");
+
                   // Filter the news based on the current locale
                   List<NewsModel> filteredNews = [];
                   if (context.locale == ARABIC_LOCAL) {
@@ -169,7 +175,6 @@ class _NewsWidgetState extends State<NewsWidget> {
                       return RegExp(r'[\u0600-\u06FF]')
                           .hasMatch(news.title.rendered);
                     }).toList();
-                    log("zakImagefilter${filteredNews[index].ogImage}");
                   } else {
                     // Show only English news
                     filteredNews = value.news.where((news) {
@@ -212,21 +217,24 @@ class _NewsWidgetState extends State<NewsWidget> {
                                     vertical: AppSizeH.s4),
                                 child: InkWell(
                                   onTap: () {
-                                    // context.pushNamed(RoutesNames.newsbyId,
-                                    //     pathParameters: {
-                                    //       "id":
-                                    //           filteredNews[index].id.toString()
-                                    //     },
-                                    //     extra: context.read<NewsBloc>());
-                                    print(
-                                        "zakaria ${filteredNews[index].ogImage}");
+                                    context.pushNamed(RoutesNames.newsbyId,
+                                        pathParameters: {
+                                          "id":
+                                              filteredNews[index].id.toString()
+                                        },
+                                        extra: context.read<NewsBloc>());
                                   },
                                   child: NewsItemWidget(
                                       image: filteredNews[index]
+                                              .yoastHeadJsonModel
                                               .ogImage
                                               .isNotEmpty
-                                          ? filteredNews[index].ogImage[0].url
+                                          ? filteredNews[index]
+                                              .yoastHeadJsonModel
+                                              .ogImage[0]
+                                              .url
                                           : ImageAssets.test,
+                                      // image:filteredNews[index].ogImage.isNotEmpty? filteredNews[index].ogImage[0].url:ImageAssets.test,
                                       date: filteredNews[index].date,
                                       label:
                                           filteredNews[index].title.rendered),

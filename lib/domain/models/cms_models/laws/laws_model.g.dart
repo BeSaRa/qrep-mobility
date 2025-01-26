@@ -19,20 +19,6 @@ Map<String, dynamic> _$$LawsResponseImplToJson(_$LawsResponseImpl instance) =>
       'data': instance.data,
     };
 
-_$LawByIdResponseImpl _$$LawByIdResponseImplFromJson(
-        Map<String, dynamic> json) =>
-    _$LawByIdResponseImpl(
-      data: json['data'] == null
-          ? const LawsModel()
-          : LawsModel.fromJson(json['data'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$$LawByIdResponseImplToJson(
-        _$LawByIdResponseImpl instance) =>
-    <String, dynamic>{
-      'data': instance.data,
-    };
-
 _$LawsModelImpl _$$LawsModelImplFromJson(Map<String, dynamic> json) =>
     _$LawsModelImpl(
       id: (json['id'] as num?)?.toInt() ?? 0,

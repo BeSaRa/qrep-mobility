@@ -49,7 +49,7 @@ class RealEstateCard extends StatelessWidget {
       throw 'Could not launch $url';
     }
   }
-//zak
+  
   openMap() async {
     var url = Uri.parse(
         'https://geoportal.gisqatar.org.qa/inwani/index.html?zone=$zoneId&street=$streetNo&building=$buildingNo');

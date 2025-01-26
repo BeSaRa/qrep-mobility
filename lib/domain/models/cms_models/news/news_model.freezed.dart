@@ -343,13 +343,15 @@ NewsModel _$NewsModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$NewsModel {
   int get id => throw _privateConstructorUsedError;
+  String get link => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError; //==
   String get modified => throw _privateConstructorUsedError; //==
   String get status => throw _privateConstructorUsedError;
   TitleModel get title => throw _privateConstructorUsedError;
   ContentModel get content => throw _privateConstructorUsedError;
-  @JsonKey(name: 'og_image')
-  List<OgImageModel> get ogImage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'yoast_head_json')
+  YoastHeadJsonModel get yoastHeadJsonModel =>
+      throw _privateConstructorUsedError;
   @JsonKey(name: 'user_created')
   String? get userCreated => throw _privateConstructorUsedError;
   @JsonKey(name: 'date_created')
@@ -376,12 +378,13 @@ abstract class $NewsModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
+      String link,
       String date,
       String modified,
       String status,
       TitleModel title,
       ContentModel content,
-      @JsonKey(name: 'og_image') List<OgImageModel> ogImage,
+      @JsonKey(name: 'yoast_head_json') YoastHeadJsonModel yoastHeadJsonModel,
       @JsonKey(name: 'user_created') String? userCreated,
       @JsonKey(name: 'date_created') String? dateCreated,
       @JsonKey(name: 'user_updated') String? userUpdated,
@@ -389,6 +392,7 @@ abstract class $NewsModelCopyWith<$Res> {
 
   $TitleModelCopyWith<$Res> get title;
   $ContentModelCopyWith<$Res> get content;
+  $YoastHeadJsonModelCopyWith<$Res> get yoastHeadJsonModel;
 }
 
 /// @nodoc
@@ -407,12 +411,13 @@ class _$NewsModelCopyWithImpl<$Res, $Val extends NewsModel>
   @override
   $Res call({
     Object? id = null,
+    Object? link = null,
     Object? date = null,
     Object? modified = null,
     Object? status = null,
     Object? title = null,
     Object? content = null,
-    Object? ogImage = null,
+    Object? yoastHeadJsonModel = null,
     Object? userCreated = freezed,
     Object? dateCreated = freezed,
     Object? userUpdated = freezed,
@@ -423,6 +428,10 @@ class _$NewsModelCopyWithImpl<$Res, $Val extends NewsModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      link: null == link
+          ? _value.link
+          : link // ignore: cast_nullable_to_non_nullable
+              as String,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -443,10 +452,10 @@ class _$NewsModelCopyWithImpl<$Res, $Val extends NewsModel>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as ContentModel,
-      ogImage: null == ogImage
-          ? _value.ogImage
-          : ogImage // ignore: cast_nullable_to_non_nullable
-              as List<OgImageModel>,
+      yoastHeadJsonModel: null == yoastHeadJsonModel
+          ? _value.yoastHeadJsonModel
+          : yoastHeadJsonModel // ignore: cast_nullable_to_non_nullable
+              as YoastHeadJsonModel,
       userCreated: freezed == userCreated
           ? _value.userCreated
           : userCreated // ignore: cast_nullable_to_non_nullable
@@ -485,6 +494,17 @@ class _$NewsModelCopyWithImpl<$Res, $Val extends NewsModel>
       return _then(_value.copyWith(content: value) as $Val);
     });
   }
+
+  /// Create a copy of NewsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $YoastHeadJsonModelCopyWith<$Res> get yoastHeadJsonModel {
+    return $YoastHeadJsonModelCopyWith<$Res>(_value.yoastHeadJsonModel,
+        (value) {
+      return _then(_value.copyWith(yoastHeadJsonModel: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -497,12 +517,13 @@ abstract class _$$NewsModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
+      String link,
       String date,
       String modified,
       String status,
       TitleModel title,
       ContentModel content,
-      @JsonKey(name: 'og_image') List<OgImageModel> ogImage,
+      @JsonKey(name: 'yoast_head_json') YoastHeadJsonModel yoastHeadJsonModel,
       @JsonKey(name: 'user_created') String? userCreated,
       @JsonKey(name: 'date_created') String? dateCreated,
       @JsonKey(name: 'user_updated') String? userUpdated,
@@ -512,6 +533,8 @@ abstract class _$$NewsModelImplCopyWith<$Res>
   $TitleModelCopyWith<$Res> get title;
   @override
   $ContentModelCopyWith<$Res> get content;
+  @override
+  $YoastHeadJsonModelCopyWith<$Res> get yoastHeadJsonModel;
 }
 
 /// @nodoc
@@ -528,12 +551,13 @@ class __$$NewsModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? link = null,
     Object? date = null,
     Object? modified = null,
     Object? status = null,
     Object? title = null,
     Object? content = null,
-    Object? ogImage = null,
+    Object? yoastHeadJsonModel = null,
     Object? userCreated = freezed,
     Object? dateCreated = freezed,
     Object? userUpdated = freezed,
@@ -544,6 +568,10 @@ class __$$NewsModelImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      link: null == link
+          ? _value.link
+          : link // ignore: cast_nullable_to_non_nullable
+              as String,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -564,10 +592,10 @@ class __$$NewsModelImplCopyWithImpl<$Res>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as ContentModel,
-      ogImage: null == ogImage
-          ? _value._ogImage
-          : ogImage // ignore: cast_nullable_to_non_nullable
-              as List<OgImageModel>,
+      yoastHeadJsonModel: null == yoastHeadJsonModel
+          ? _value.yoastHeadJsonModel
+          : yoastHeadJsonModel // ignore: cast_nullable_to_non_nullable
+              as YoastHeadJsonModel,
       userCreated: freezed == userCreated
           ? _value.userCreated
           : userCreated // ignore: cast_nullable_to_non_nullable
@@ -593,17 +621,18 @@ class __$$NewsModelImplCopyWithImpl<$Res>
 class _$NewsModelImpl implements _NewsModel {
   const _$NewsModelImpl(
       {this.id = 0,
+      this.link = "",
       this.date = "",
       this.modified = "",
       this.status = '',
       this.title = const TitleModel(),
       this.content = const ContentModel(),
-      @JsonKey(name: 'og_image') final List<OgImageModel> ogImage = const [],
+      @JsonKey(name: 'yoast_head_json')
+      this.yoastHeadJsonModel = const YoastHeadJsonModel(),
       @JsonKey(name: 'user_created') this.userCreated = '',
       @JsonKey(name: 'date_created') this.dateCreated = '',
       @JsonKey(name: 'user_updated') this.userUpdated = '',
-      @JsonKey(name: 'date_updated') this.dateUpdated = ''})
-      : _ogImage = ogImage;
+      @JsonKey(name: 'date_updated') this.dateUpdated = ''});
 
   factory _$NewsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$NewsModelImplFromJson(json);
@@ -611,6 +640,9 @@ class _$NewsModelImpl implements _NewsModel {
   @override
   @JsonKey()
   final int id;
+  @override
+  @JsonKey()
+  final String link;
   @override
   @JsonKey()
   final String date;
@@ -628,15 +660,9 @@ class _$NewsModelImpl implements _NewsModel {
   @override
   @JsonKey()
   final ContentModel content;
-  final List<OgImageModel> _ogImage;
   @override
-  @JsonKey(name: 'og_image')
-  List<OgImageModel> get ogImage {
-    if (_ogImage is EqualUnmodifiableListView) return _ogImage;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_ogImage);
-  }
-
+  @JsonKey(name: 'yoast_head_json')
+  final YoastHeadJsonModel yoastHeadJsonModel;
   @override
   @JsonKey(name: 'user_created')
   final String? userCreated;
@@ -652,7 +678,7 @@ class _$NewsModelImpl implements _NewsModel {
 
   @override
   String toString() {
-    return 'NewsModel(id: $id, date: $date, modified: $modified, status: $status, title: $title, content: $content, ogImage: $ogImage, userCreated: $userCreated, dateCreated: $dateCreated, userUpdated: $userUpdated, dateUpdated: $dateUpdated)';
+    return 'NewsModel(id: $id, link: $link, date: $date, modified: $modified, status: $status, title: $title, content: $content, yoastHeadJsonModel: $yoastHeadJsonModel, userCreated: $userCreated, dateCreated: $dateCreated, userUpdated: $userUpdated, dateUpdated: $dateUpdated)';
   }
 
   @override
@@ -661,13 +687,15 @@ class _$NewsModelImpl implements _NewsModel {
         (other.runtimeType == runtimeType &&
             other is _$NewsModelImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.link, link) || other.link == link) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.modified, modified) ||
                 other.modified == modified) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.content, content) || other.content == content) &&
-            const DeepCollectionEquality().equals(other._ogImage, _ogImage) &&
+            (identical(other.yoastHeadJsonModel, yoastHeadJsonModel) ||
+                other.yoastHeadJsonModel == yoastHeadJsonModel) &&
             (identical(other.userCreated, userCreated) ||
                 other.userCreated == userCreated) &&
             (identical(other.dateCreated, dateCreated) ||
@@ -683,12 +711,13 @@ class _$NewsModelImpl implements _NewsModel {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      link,
       date,
       modified,
       status,
       title,
       content,
-      const DeepCollectionEquality().hash(_ogImage),
+      yoastHeadJsonModel,
       userCreated,
       dateCreated,
       userUpdated,
@@ -713,12 +742,14 @@ class _$NewsModelImpl implements _NewsModel {
 abstract class _NewsModel implements NewsModel {
   const factory _NewsModel(
           {final int id,
+          final String link,
           final String date,
           final String modified,
           final String status,
           final TitleModel title,
           final ContentModel content,
-          @JsonKey(name: 'og_image') final List<OgImageModel> ogImage,
+          @JsonKey(name: 'yoast_head_json')
+          final YoastHeadJsonModel yoastHeadJsonModel,
           @JsonKey(name: 'user_created') final String? userCreated,
           @JsonKey(name: 'date_created') final String? dateCreated,
           @JsonKey(name: 'user_updated') final String? userUpdated,
@@ -731,6 +762,8 @@ abstract class _NewsModel implements NewsModel {
   @override
   int get id;
   @override
+  String get link;
+  @override
   String get date; //==
   @override
   String get modified; //==
@@ -741,8 +774,8 @@ abstract class _NewsModel implements NewsModel {
   @override
   ContentModel get content;
   @override
-  @JsonKey(name: 'og_image')
-  List<OgImageModel> get ogImage;
+  @JsonKey(name: 'yoast_head_json')
+  YoastHeadJsonModel get yoastHeadJsonModel;
   @override
   @JsonKey(name: 'user_created')
   String? get userCreated;
@@ -1231,5 +1264,168 @@ abstract class _OgImageModel implements OgImageModel {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OgImageModelImplCopyWith<_$OgImageModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+YoastHeadJsonModel _$YoastHeadJsonModelFromJson(Map<String, dynamic> json) {
+  return _YoastHeadJsonModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$YoastHeadJsonModel {
+  @JsonKey(name: 'og_image')
+  List<OgImageModel> get ogImage => throw _privateConstructorUsedError;
+
+  /// Serializes this YoastHeadJsonModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of YoastHeadJsonModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $YoastHeadJsonModelCopyWith<YoastHeadJsonModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $YoastHeadJsonModelCopyWith<$Res> {
+  factory $YoastHeadJsonModelCopyWith(
+          YoastHeadJsonModel value, $Res Function(YoastHeadJsonModel) then) =
+      _$YoastHeadJsonModelCopyWithImpl<$Res, YoastHeadJsonModel>;
+  @useResult
+  $Res call({@JsonKey(name: 'og_image') List<OgImageModel> ogImage});
+}
+
+/// @nodoc
+class _$YoastHeadJsonModelCopyWithImpl<$Res, $Val extends YoastHeadJsonModel>
+    implements $YoastHeadJsonModelCopyWith<$Res> {
+  _$YoastHeadJsonModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of YoastHeadJsonModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? ogImage = null,
+  }) {
+    return _then(_value.copyWith(
+      ogImage: null == ogImage
+          ? _value.ogImage
+          : ogImage // ignore: cast_nullable_to_non_nullable
+              as List<OgImageModel>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$YoastHeadJsonModelImplCopyWith<$Res>
+    implements $YoastHeadJsonModelCopyWith<$Res> {
+  factory _$$YoastHeadJsonModelImplCopyWith(_$YoastHeadJsonModelImpl value,
+          $Res Function(_$YoastHeadJsonModelImpl) then) =
+      __$$YoastHeadJsonModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'og_image') List<OgImageModel> ogImage});
+}
+
+/// @nodoc
+class __$$YoastHeadJsonModelImplCopyWithImpl<$Res>
+    extends _$YoastHeadJsonModelCopyWithImpl<$Res, _$YoastHeadJsonModelImpl>
+    implements _$$YoastHeadJsonModelImplCopyWith<$Res> {
+  __$$YoastHeadJsonModelImplCopyWithImpl(_$YoastHeadJsonModelImpl _value,
+      $Res Function(_$YoastHeadJsonModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of YoastHeadJsonModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? ogImage = null,
+  }) {
+    return _then(_$YoastHeadJsonModelImpl(
+      ogImage: null == ogImage
+          ? _value._ogImage
+          : ogImage // ignore: cast_nullable_to_non_nullable
+              as List<OgImageModel>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$YoastHeadJsonModelImpl implements _YoastHeadJsonModel {
+  const _$YoastHeadJsonModelImpl(
+      {@JsonKey(name: 'og_image') final List<OgImageModel> ogImage = const []})
+      : _ogImage = ogImage;
+
+  factory _$YoastHeadJsonModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$YoastHeadJsonModelImplFromJson(json);
+
+  final List<OgImageModel> _ogImage;
+  @override
+  @JsonKey(name: 'og_image')
+  List<OgImageModel> get ogImage {
+    if (_ogImage is EqualUnmodifiableListView) return _ogImage;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_ogImage);
+  }
+
+  @override
+  String toString() {
+    return 'YoastHeadJsonModel(ogImage: $ogImage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$YoastHeadJsonModelImpl &&
+            const DeepCollectionEquality().equals(other._ogImage, _ogImage));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_ogImage));
+
+  /// Create a copy of YoastHeadJsonModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$YoastHeadJsonModelImplCopyWith<_$YoastHeadJsonModelImpl> get copyWith =>
+      __$$YoastHeadJsonModelImplCopyWithImpl<_$YoastHeadJsonModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$YoastHeadJsonModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _YoastHeadJsonModel implements YoastHeadJsonModel {
+  const factory _YoastHeadJsonModel(
+          {@JsonKey(name: 'og_image') final List<OgImageModel> ogImage}) =
+      _$YoastHeadJsonModelImpl;
+
+  factory _YoastHeadJsonModel.fromJson(Map<String, dynamic> json) =
+      _$YoastHeadJsonModelImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'og_image')
+  List<OgImageModel> get ogImage;
+
+  /// Create a copy of YoastHeadJsonModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$YoastHeadJsonModelImplCopyWith<_$YoastHeadJsonModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

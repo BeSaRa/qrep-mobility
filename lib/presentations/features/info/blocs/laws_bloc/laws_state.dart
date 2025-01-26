@@ -7,6 +7,6 @@ class LawsState with _$LawsState {
     @Default(false) bool hasError,
     @Default('') String errorMessage,
     @Default([]) List<LawsModel> lawsResponse,
-    @Default(LawByIdResponse()) LawByIdResponse lawByIdResponse,
+    // @Default(LawByIdResponse()) LawByIdResponse lawByIdResponse,
   }) = _Initial;
 }

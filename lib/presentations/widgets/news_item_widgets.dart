@@ -76,8 +76,7 @@ class NewsItemWidget extends StatelessWidget {
                         //     Border.all(width: 1, color: ColorManager.golden),
                       ),
                       child: CachedNetworkImage(
-                        imageUrl: image,
-                        // imageUrl: '${Constant.cmsBaseUrl}/assets/$image',
+                        imageUrl: image == "" ? ImageAssets.test : image,
                         progressIndicatorBuilder: (context, url, progress) {
                           return const ShimmerPlaceholder(
                             child: Image(
@@ -188,7 +187,7 @@ class NewsItemWidget extends StatelessWidget {
                             "body": Style(
                                 margin: Margins.all(0),
                                 fontFamily: FontConstants.fontFamily,
-                                color: ColorManager.textBlack,
+                                color:Theme.of(context).textTheme.bodySmall?.color,
                                 fontSize: FontSize(AppSizeSp.s14),
                                 textOverflow: TextOverflow.ellipsis,
                                 maxLines: 2,

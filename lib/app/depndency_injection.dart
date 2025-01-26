@@ -198,16 +198,11 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<NewsUsecase>()) {
     instance.registerFactory<NewsUsecase>(() => NewsUsecase(instance()));
   }
-  // if (!GetIt.I.isRegistered<NewsByIdUsecase>()) {
-  //   instance
-  //       .registerFactory<NewsByIdUsecase>(() => NewsByIdUsecase(instance()));
-  // }
+
   if (!GetIt.I.isRegistered<LawsUsecase>()) {
     instance.registerFactory<LawsUsecase>(() => LawsUsecase(repository:instance()));
   }
-  if (!GetIt.I.isRegistered<LawByIdUsecase>()) {
-    instance.registerFactory<LawByIdUsecase>(() => LawByIdUsecase(instance()));
-  }
+
   if (!GetIt.I.isRegistered<FaqUsecase>()) {
     instance.registerFactory<FaqUsecase>(() => FaqUsecase(instance()));
   }
@@ -222,7 +217,7 @@ Future<void> initHomeModule() async {
 
   if (!GetIt.I.isRegistered<LawsBloc>()) {
     instance.registerFactory(
-        () => LawsBloc(lawsUsecase: instance(), lawByIdUsecase: instance()));
+        () => LawsBloc(lawsUsecase: instance()));
   }
   if (!GetIt.I.isRegistered<FaqBloc>()) {
     instance.registerFactory(() => FaqBloc(

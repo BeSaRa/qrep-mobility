@@ -1,4 +1,7 @@
+import 'package:ebla/domain/models/Auth/auth_models.dart';
+import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
+import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
 import 'package:multiple_result/multiple_result.dart';
 
@@ -20,12 +23,6 @@ abstract class Repository {
   Future<Result<AboutResponse, FailureModel>> getAbout();
 
   Future<Result<List<NewsModel>, FailureModel>> getNews();
-
-  Future<Result<NewsByIdResponse, FailureModel>> getNewsById({required int id});
-
-  // Future<Result<LawsResponse, FailureModel>> getLaws({required int limit});
-
-  Future<Result<LawByIdResponse, FailureModel>> getLawById(int id);
 
   Future<Result<FaqResponse, FailureModel>> getFaq(int id);
 

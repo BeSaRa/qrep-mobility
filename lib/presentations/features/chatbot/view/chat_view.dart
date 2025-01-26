@@ -70,6 +70,7 @@ class _ChatViewState extends State<ChatView> {
               ),
             ),
           ),
+
           MultiBlocProvider(
             providers: [
               // BlocProvider(create: (_) => ChatHistoryCubit()),
@@ -101,11 +102,27 @@ class _ChatViewState extends State<ChatView> {
                 },
                 bloc: chatBotBloc,
                 builder: (context, sendState) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: <Widget>[
-                        Expanded(
+                  return Column(
+                    children: <Widget>[
+                      ClipPath(
+                        clipper: AppBarClipper(),
+                        child: Container(
+                          height: preferredSize.height,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                ColorManager.primary,
+                                ColorManager.primary.withOpacity(.8),
+                              ], // Blue gradient
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.all(AppSizeW.s8),
                           child:
                               BlocConsumer<ChatHistoryCubit, ChatHistoryState>(
                             listener: (context, state) {},
@@ -139,8 +156,34 @@ class _ChatViewState extends State<ChatView> {
                             },
                           ),
                         ),
-                        Row(
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(AppSizeW.s8),
+                        child: Row(
                           children: <Widget>[
+                            Container(
+                                width: AppSizeW.s40,
+                                height: AppSizeH.s40,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: AppSizeW.s5),
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                        right: BorderSide(
+                                            width: 1,
+                                            color:
+                                                Theme.of(context).hoverColor))),
+                                child: Image.asset(
+                                  ImageAssets.chatBot,
+                                  // color:Theme.of(context).primaryColor,
+                                )),
+                            SizedBox(
+                              width: AppSizeW.s5,
+                            ),
+                            /*========================For record========================= */
+                            GestureDetector(child: Icon(Icons.mic)),
+                            SizedBox(
+                              width: AppSizeW.s5,
+                            ),
                             Expanded(
                               child: ReraTextFaild(
                                 onChange: (p0) {
@@ -203,8 +246,8 @@ class _ChatViewState extends State<ChatView> {
                             // }),
                           ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   );
                 }),
           ),
@@ -212,6 +255,28 @@ class _ChatViewState extends State<ChatView> {
       ),
     );
   }
+
+  Size get preferredSize => Size.fromHeight(AppSizeH.s40);
+}
+
+class AppBarClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    path.lineTo(0, size.height - 35);
+
+    path.quadraticBezierTo(
+        size.width / 4, size.height, size.width / 2, size.height - 20);
+    path.quadraticBezierTo(
+        size.width * 3 / 4, size.height - 40, size.width, size.height - 20);
+
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
 class SendButtonWidget extends StatelessWidget {
@@ -229,9 +294,8 @@ class SendButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Opacity(
       opacity: !enabled ? .5 : 1,
-      child: IconButton(
-        icon: const Icon(Icons.send_rounded),
-        onPressed: !enabled
+      child: GestureDetector(
+        onTap: !enabled
             ? () {}
             : () {
                 final message = controller.text;
@@ -264,6 +328,26 @@ class SendButtonWidget extends StatelessWidget {
                   controller.clear();
                 }
               },
+        child: Container(
+            padding: EdgeInsets.all(AppSizeW.s10),
+            margin: EdgeInsets.symmetric(horizontal: AppSizeH.s5),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    ColorManager.primary,
+                    ColorManager.primary.withOpacity(.7),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                color: Theme.of(context).primaryColor,
+                borderRadius: BorderRadius.circular(AppSizeR.s100)),
+            child: Center(
+              child: Icon(
+                Icons.send_rounded,
+                color: Theme.of(context).scaffoldBackgroundColor,
+              ),
+            )),
       ),
     );
   }
@@ -390,18 +474,31 @@ AppBar costumeChatAppBar(BuildContext context) {
     automaticallyImplyLeading: false,
     backgroundColor: Colors.transparent,
     surfaceTintColor: Colors.transparent,
-    flexibleSpace: ShaderMask(
-      shaderCallback: (rect) {
-        return const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Colors.black, Colors.transparent],
-        ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
-      },
-      blendMode: BlendMode.dstIn,
-      child: Image.asset(
-        ImageAssets.appbarBg,
-        fit: BoxFit.fill,
+    // flexibleSpace: ShaderMask(
+    //   shaderCallback: (rect) {
+    //     return const LinearGradient(
+    //       begin: Alignment.topCenter,
+    //       end: Alignment.bottomCenter,
+    //       colors: [Colors.black, Colors.transparent],
+    //     ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
+    //   },
+    //   blendMode: BlendMode.dstIn,
+    //   child: Image.asset(
+    //     ImageAssets.appbarBg,
+    //     fit: BoxFit.fill,
+    //   ),
+    // ),
+    flexibleSpace: Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            ColorManager.primary,
+            ColorManager.primary.withOpacity(.8),
+            // ColorManager.primary,
+          ], // Blue Gradient
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
       ),
     ),
     title: Row(

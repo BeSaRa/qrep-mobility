@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/investor_journey/blocs/investor_journey_bloc.dart';
 import 'package:ebla/presentations/features/investor_journey/blocs/investor_journey_state.dart';
+import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
 import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/material.dart';
@@ -47,35 +48,21 @@ class InvestorJourneyView extends StatelessWidget {
             final isDarkMode = Theme.of(context).brightness == Brightness.dark;
             bloc.add(RunJavaScript(stepNumber, isDarkMode, context.locale));
           }
-          return Scaffold(
-            appBar: _costumeAppBar(context),
-            body: Stack(
-              children: [
-                if (state is InvestorJourneyLoading)
-                  Center(
-                    child: Container(
-                      width: double.infinity,
-                      height: MediaQuery.sizeOf(context).height,
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? Theme.of(context).scaffoldBackgroundColor
-                          : ColorManager.white,
-                    ),
-                  ),
-                if (state is InvestorJourneyLoading)
-                  const Center(child: CircularProgressIndicator()),
-                if (state is InvestorJourneyLoaded)
-                  WebViewWidget(controller: bloc.controller),
-                if (state is InvestorJourneyError)
-                  ErrorGlobalWidget(
-                    message: state.message,
-                    onPressed: () {
-                      bloc.add(
-                          InitializeWebView(_getInitUrl(context, stepNumber)));
-                    },
-                  ),
-              ],
-            ),
-          );
+          if (state is InvestorJourneyLoading) {
+            return const AnimatedPulesLogo();
+          } else if (state is InvestorJourneyError) {
+            return ErrorGlobalWidget(
+              message: state.message,
+              onPressed: () {
+                bloc.add(InitializeWebView(_getInitUrl(context, stepNumber)));
+              },
+            );
+          } else {
+            return Scaffold(
+              appBar: _costumeAppBar(context),
+              body: WebViewWidget(controller: bloc.controller),
+            );
+          }
         },
       ),
     );

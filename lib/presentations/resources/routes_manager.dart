@@ -9,9 +9,9 @@ import 'package:ebla/presentations/features/info/blocs/faq/faq_bloc.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/features/info/views/about_us_view.dart';
 import 'package:ebla/presentations/features/info/views/faq_view.dart';
-import 'package:ebla/presentations/features/info/views/laws_details_view.dart';
 import 'package:ebla/presentations/features/investor_journey/view/investor_journey_view.dart';
 import 'package:ebla/presentations/features/main/main_scaffold.dart';
+import 'package:ebla/presentations/features/more/all_more_web_views/view/authority_map_view.dart';
 import 'package:ebla/presentations/features/more/more_view.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
@@ -54,6 +54,7 @@ class RoutesNames {
   static const String investorJourney = 'investor journey';
   static const String aboutTheAuthority = "about the authority";
   static const String chatbot = "chatbot";
+  static const String authorityMap = "authority map";
 }
 
 class RoutesPaths {
@@ -76,6 +77,7 @@ class RoutesPaths {
   static const String investorJourney = '/investorjourney';
   static const String aboutTheAuthority = '/abouttheauthority';
   static const String chatbot = '/chatbot';
+  static const String authorityMap = '/authoritymap';
 }
 
 class NavigationKeys {
@@ -360,26 +362,26 @@ class AppRouter {
                   child: const LawsDecisionsView(),
                 ),
             routes: [
-              GoRoute(
-                parentNavigatorKey: NavigationKeys.rootNavigatorKey,
-                name: RoutesNames.lawsDetails,
-                path: RoutesPaths.lawsDetails,
-                builder: (context, state) {
-                  // be careful when using state.extra because it might be _Map<String, dynamic> when pressing 'i' to inspect widgets
-                  // because of issue: https://github.com/flutter/flutter/issues/99099
-                  // if (state.extra is LawsModel) {
-                  //   return LawsDetailsView(
-                  //     law: state.extra as LawsModel,
-                  //   );
-                  // }
-                  return BlocProvider(
-                    create: (context) => instance<LawsBloc>(),
-                    child: LawsDetailsView(
-                        id: int.tryParse(state.pathParameters['id'] ?? '1') ??
-                            1),
-                  );
-                },
-              ),
+              // GoRoute(
+              //   parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+              //   name: RoutesNames.lawsDetails,
+              //   path: RoutesPaths.lawsDetails,
+              //   builder: (context, state) {
+              //     // be careful when using state.extra because it might be _Map<String, dynamic> when pressing 'i' to inspect widgets
+              //     // because of issue: https://github.com/flutter/flutter/issues/99099
+              //     // if (state.extra is LawsModel) {
+              //     //   return LawsDetailsView(
+              //     //     law: state.extra as LawsModel,
+              //     //   );
+              //     // }
+              //     return BlocProvider(
+              //       create: (context) => instance<LawsBloc>(),
+              //       child: LawsDetailsView(
+              //           id: int.tryParse(state.pathParameters['id'] ?? '1') ??
+              //               1),
+              //     );
+              //   },
+              // ),
             ]),
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
@@ -479,6 +481,7 @@ class AppRouter {
           },
         ),
         //-------------- Chatbot ----------------
+
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.chatbot,
@@ -486,7 +489,7 @@ class AppRouter {
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              child: ChatView(),
+              child: const ChatView(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 const begin = Offset(1.0, 0.0);
@@ -503,6 +506,15 @@ class AppRouter {
                 );
               },
             );
+          },
+        ),
+
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.authorityMap,
+          path: RoutesPaths.authorityMap,
+          builder: (context, state) {
+            return const AuthorityMapView();
           },
         ),
       ]);
