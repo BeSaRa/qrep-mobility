@@ -1,5 +1,5 @@
 part of 'chat_history_cubit.dart';
-// State class to hold the chat history
+
 class ChatHistoryState {
   final List<MessageRequestModel>   messages;
 

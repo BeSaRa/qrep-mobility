@@ -1,0 +1,112 @@
+import 'package:bloc/bloc.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
+
+part 'voice_state.dart';
+
+class VoiceCubit extends Cubit<VoiceState> {
+  final stt.SpeechToText _speech = stt.SpeechToText();
+  List<stt.LocaleName> _availableLocales = [];
+  String selectedLocale = 'en_US'; // Default locale
+
+  VoiceCubit() : super(VoiceState());
+
+//-----------------------------INIT---------------------------------
+  void initializeSpeech() async {
+    bool available = await _speech.initialize(
+      onError: (error) {
+        emit(VoiceState(
+          isListening: false,
+          text: '',
+          errorMessage: error.errorMsg,
+        ));
+      },
+    );
+
+    if (available) {
+      _availableLocales = await _speech.locales(); // Fetch available locales
+      emit(VoiceState(
+          isListening: false, text: '', availableLocales: _availableLocales));
+    } else {
+      emit(VoiceState(
+          isListening: false,
+          text: '',
+          errorMessage: "Speech recognition not available"));
+    }
+  }
+//-----------------------------LANG---------------------------------
+
+  void selectLocale(String localeId) {
+    if (_availableLocales.any((locale) => locale.localeId == localeId)) {
+      selectedLocale = localeId;
+      emit(VoiceState(
+        isListening: state.isListening,
+        text: state.text,
+        availableLocales: _availableLocales,
+        selectedLocale: selectedLocale,
+      ));
+    }
+  }
+
+//-----------------------------START---------------------------------
+  void startListening() {
+    if (!_speech.isAvailable) {
+      emit(VoiceState(
+          isListening: false,
+          text: '',
+          errorMessage: "Speech recognition not available"));
+      return;
+    }
+
+    _speech.listen(
+      onResult: (val) async {
+        if (RegExp(r'[\u0600-\u06FF]').hasMatch(val.recognizedWords)) {
+          selectedLocale = "ar_DZ";
+        } else {
+          selectedLocale = "en_US";
+        }
+        print("Detected language: $selectedLocale");
+
+        emit(VoiceState(
+          isListening: !val.finalResult,
+          text: val.recognizedWords,
+          confidence: val.confidence,
+          availableLocales: _availableLocales,
+          selectedLocale: selectedLocale,
+        ));
+      },
+      localeId: "ar_DZ",
+      // localeId: selectedLocale,
+      listenMode: stt.ListenMode.dictation,
+    );
+
+    emit(VoiceState(
+        isListening: true,
+        text: state.text,
+        confidence: state.confidence,
+        availableLocales: _availableLocales,
+        selectedLocale: selectedLocale));
+  }
+
+//-----------------------------STOP---------------------------------
+  void stopListening() {
+    _speech.stop();
+    emit(VoiceState(
+        isListening: false,
+        text: state.text,
+        confidence: state.confidence,
+        availableLocales: _availableLocales,
+        selectedLocale: selectedLocale));
+  }
+//-----------------------------CLEAR TEXT---------------------------------
+
+  void clearText() {
+    emit(VoiceState(
+      isListening: false,
+      text: '',
+      confidence: state.confidence,
+      availableLocales: _availableLocales,
+      selectedLocale: selectedLocale,
+    ));
+  }
+}
+

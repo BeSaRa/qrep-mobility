@@ -31,7 +31,7 @@ class Constant {
   // static const String chatBotBaseUrl = 'https://afnqcpcbai01.azurewebsites.net';
 
   static const String guestToken = "lyHWSTHj1SBm9IRECnLAHviNHnXGaS27";
-  /*Authority Map Points*/
+  /*Authority Map Points*/  
 
   static const double latitude = 25.370494;
   static const double longitude = 51.552943;

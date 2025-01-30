@@ -217,7 +217,22 @@ abstract class AppServiceClient {
   @POST('${Constant.chatBotBaseUrl}/api/v1/chatbot/chat/website')
   Future<HttpResponse<ChatbotResponseModel>> sendMessageToChatbot(@Body() ChatbotRequestModel request);
 
+  @POST('${Constant.chatBotBaseUrl}/api/v1/avatar/start-stream')
+  Future<HttpResponse<StartStreamModel>> startStream();
+
+  @PUT('${Constant.chatBotBaseUrl}/api/v1/avatar/send-answer/{id}')
+  Future<HttpResponse<SendAnswerResponseModel>> sendAnswer(
+    @Path("id") String id, @Body() MainSendAnswerRequestModel body
+  );
+  @PUT('${Constant.chatBotBaseUrl}/api/v1/avatar/send-candidate/{id}')
+  Future<HttpResponse<SendAnswerResponseModel>> sendCandidate(
+    @Path("id") String id, @Body() MainSendCandidateRequestModel body
+  );
+/// ******* close stream *******
+  @DELETE("${Constant.chatBotBaseUrl}/api/v1/avatar/close-stream/{id}")
+  Future<HttpResponse<SendAnswerResponseModel>> closeStream(@Path("id") String id);
 }
+
 
 //---------------------------------DirectUs-----------------------------------------
 @RestApi(baseUrl: Constant.cmsBaseUrl)
@@ -258,11 +273,6 @@ abstract class CmsServiceClient {
   @GET(EndPoints.about)
   Future<HttpResponse<AboutResponse>> getAbout();
 
-//get news
-
-  @GET("${Constant.aqaratBaseUrl}/wp-json/wp/v2/posts")
-  Future<HttpResponse<List<NewsModel>>> getNews();
-
 
   //Main menu
   @GET(EndPoints.mainMenu)
@@ -272,6 +282,11 @@ abstract class CmsServiceClient {
   @GET(EndPoints.appSettings)
   Future<HttpResponse<AppSettingsResponse>> appSettings();
 
+
+//get news
+
+  @GET("${Constant.aqaratBaseUrl}/wp-json/wp/v2/posts")
+  Future<HttpResponse<List<NewsModel>>> getNews();
     //get laws
   @GET("${Constant.aqaratBaseUrl2}/wp-json/legislation/v1/all")
   Future<HttpResponse<List<LawsModel>>> getLaws();

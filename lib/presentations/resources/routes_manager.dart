@@ -1,5 +1,8 @@
 import 'package:ebla/app/routing_observer.dart';
 import 'package:ebla/domain/models/cms_models/user/user_model.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/drobdown_cubit.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/record_cubit/voice_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/view/chat_view.dart';
 import 'package:ebla/presentations/features/more/all_more_web_views/view/all_more_web_views_view.dart';
 import 'package:ebla/presentations/features/favourite/fav_view.dart';
@@ -489,7 +492,21 @@ class AppRouter {
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              child: const ChatView(),
+              child: MultiBlocProvider(
+                providers: [
+                  BlocProvider<ChatHistoryCubit>.value(
+                    //it's main value come from homepage
+                    value: state.extra as ChatHistoryCubit,
+                  ),
+                  BlocProvider(
+                    create: (context) => VoiceCubit(),
+                  ),
+                  BlocProvider(
+                       create: (context) => DropdownCubit(),
+                  )
+                ],
+                child: const ChatView(),
+              ),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 const begin = Offset(1.0, 0.0);

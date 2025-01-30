@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/data/network/failure_model/failure.dart';
@@ -1334,6 +1335,94 @@ class RepositoryImplementer extends Repository {
       }
     } else {
       return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<StartStreamModel, FailureModel>> startStream() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.startStream();
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendAnswer(
+      MainSendAnswerRequestModel request, String id) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.sendAnswer(id, request);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureCloseStreamModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureCloseStreamModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureCloseStreamModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendCandidate(
+      MainSendCandidateRequestModel request, String id) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.sendCandidate(id, request);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureCloseStreamModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureCloseStreamModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureCloseStreamModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> closeStream(
+      String id) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await appServiceClient.closeStream(id);
+        log("Zak1 $response");
+        if (response.response.statusCode == 200) {
+          log("Zak2 $response");
+          return Success(response.data);
+        } else {
+          log("Zak3 $response");
+          return Error(FailureCloseStreamModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        log("Zak4 ${e.message}");
+        return Error(FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        log("Zak5 ${e.toString()}");
+        return Error(FailureCloseStreamModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureCloseStreamModel(message: AppStrings().noInternetError));
     }
   }
 

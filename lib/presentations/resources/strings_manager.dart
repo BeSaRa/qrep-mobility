@@ -69,6 +69,7 @@ class AppStrings {
 
   //more view locals
   String moreTitle = "qatar_real_estate_platform".tr();
+  String realEstateRegulatoryAuthority = "real_estate_regulatory_authority".tr();
   String support = "support".tr();
   String watchList = "my_watch_list".tr();
   String login = "login".tr();

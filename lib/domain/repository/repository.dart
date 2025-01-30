@@ -192,7 +192,16 @@ abstract class Repository {
       //-------chatbot---------
   Future<Result<ChatbotResponseModel, FailureModel>> sendMessageToChatbot(
       ChatbotRequestModel request);
+      
+  Future<Result<StartStreamModel, FailureModel>> startStream();
 
+  Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendAnswer(
+      MainSendAnswerRequestModel request,String id);
+
+  Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendCandidate(
+      MainSendCandidateRequestModel request,String id);
+
+  Future<Result<SendAnswerResponseModel , FailureCloseStreamModel>> closeStream(String id);
       //-----new laws----
     Future<Result<List<LawsModel>, FailureModel>> getLaws();
 }

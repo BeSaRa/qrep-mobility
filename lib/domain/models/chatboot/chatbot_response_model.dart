@@ -66,4 +66,89 @@ abstract class Citation with _$Citation {
   factory Citation.fromJson(Map<String, dynamic> json) =>
       _$CitationFromJson(json);
 }
+/*================================Start Stream Response============================ */
+@freezed
+abstract class StartStreamModel with _$StartStreamModel {
+  const factory StartStreamModel({
+    @Default(200) int statusCode,
+    @Default('') String status,
+    @Default('') String message,
+    WebRTCDataModel? data,
+  }) = _StartStreamModel;
 
+  factory StartStreamModel.fromJson(Map<String, dynamic> json) =>
+      _$StartStreamModelFromJson(json);
+}
+
+@freezed
+abstract class WebRTCDataModel with _$WebRTCDataModel {
+  const factory WebRTCDataModel({
+    @Default('') String id,
+    WebRTCDetailsModel? webrtcData,
+  }) = _WebRTCDataModel;
+
+  factory WebRTCDataModel.fromJson(Map<String, dynamic> json) =>
+      _$WebRTCDataModelFromJson(json);
+}
+
+@freezed
+abstract class WebRTCDetailsModel with _$WebRTCDetailsModel {
+  const factory WebRTCDetailsModel({
+    OfferModel? offer,
+    @Default([]) List<ICEServerModel> iceServers,
+  }) = _WebRTCDetailsModel;
+
+  factory WebRTCDetailsModel.fromJson(Map<String, dynamic> json) =>
+      _$WebRTCDetailsModelFromJson(json);
+}
+
+@freezed
+abstract class OfferModel with _$OfferModel {
+  const factory OfferModel({
+    @Default('') String type,
+    @Default('') String sdp,
+  }) = _OfferModel;
+
+  factory OfferModel.fromJson(Map<String, dynamic> json) =>
+      _$OfferModelFromJson(json);
+}
+
+@freezed
+abstract class ICEServerModel with _$ICEServerModel {
+  const factory ICEServerModel({
+    @Default('') String urls,
+    @Default('') String username,
+    @Default('') String credential,
+  }) = _ICEServerModel;
+
+  factory ICEServerModel.fromJson(Map<String, dynamic> json) =>
+      _$ICEServerModelFromJson(json);
+}
+/*================================== send answer========================== */
+
+@freezed
+abstract class SendAnswerResponseModel with _$SendAnswerResponseModel {
+  const factory SendAnswerResponseModel({
+    @Default(0) @JsonKey(name: "status_code") int  statusCode,
+    @Default('') String status,
+    @Default('') String message,
+
+    // @Default('') Null data,
+  }) = _SendAnswerResponseModel;
+
+  factory SendAnswerResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$SendAnswerResponseModelFromJson(json);
+}
+
+@freezed
+class FailureCloseStreamModel with _$FailureCloseStreamModel {
+  const factory FailureCloseStreamModel({
+    @Default([]) List<String>? errorDescription,
+    @Default(null) String? message,
+    @Default(null) String? detail,
+    @Default(0) int? statusCode,
+  }) = _FailureCloseStreamModel;
+
+  factory FailureCloseStreamModel.fromJson(Map<String, dynamic> json) =>
+      _$FailureCloseStreamModelFromJson(json);
+}
