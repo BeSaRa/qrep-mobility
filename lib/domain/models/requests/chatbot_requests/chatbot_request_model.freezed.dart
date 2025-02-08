@@ -199,8 +199,9 @@ MessageRequestModel _$MessageRequestModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MessageRequestModel {
-  String get role => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
+  String get role =>
+      throw _privateConstructorUsedError; //it' dynamic for the platform chat
+  dynamic get content => throw _privateConstructorUsedError;
 
   /// Serializes this MessageRequestModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -218,7 +219,7 @@ abstract class $MessageRequestModelCopyWith<$Res> {
           MessageRequestModel value, $Res Function(MessageRequestModel) then) =
       _$MessageRequestModelCopyWithImpl<$Res, MessageRequestModel>;
   @useResult
-  $Res call({String role, String content});
+  $Res call({String role, dynamic content});
 }
 
 /// @nodoc
@@ -237,17 +238,17 @@ class _$MessageRequestModelCopyWithImpl<$Res, $Val extends MessageRequestModel>
   @override
   $Res call({
     Object? role = null,
-    Object? content = null,
+    Object? content = freezed,
   }) {
     return _then(_value.copyWith(
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
-      content: null == content
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
     ) as $Val);
   }
 }
@@ -260,7 +261,7 @@ abstract class _$$MessageRequestModelImplCopyWith<$Res>
       __$$MessageRequestModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String role, String content});
+  $Res call({String role, dynamic content});
 }
 
 /// @nodoc
@@ -277,17 +278,17 @@ class __$$MessageRequestModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? role = null,
-    Object? content = null,
+    Object? content = freezed,
   }) {
     return _then(_$MessageRequestModelImpl(
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
-      content: null == content
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
     ));
   }
 }
@@ -303,9 +304,10 @@ class _$MessageRequestModelImpl implements _MessageRequestModel {
   @override
   @JsonKey()
   final String role;
+//it' dynamic for the platform chat
   @override
   @JsonKey()
-  final String content;
+  final dynamic content;
 
   @override
   String toString() {
@@ -318,12 +320,13 @@ class _$MessageRequestModelImpl implements _MessageRequestModel {
         (other.runtimeType == runtimeType &&
             other is _$MessageRequestModelImpl &&
             (identical(other.role, role) || other.role == role) &&
-            (identical(other.content, content) || other.content == content));
+            const DeepCollectionEquality().equals(other.content, content));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, role, content);
+  int get hashCode => Object.hash(
+      runtimeType, role, const DeepCollectionEquality().hash(content));
 
   /// Create a copy of MessageRequestModel
   /// with the given fields replaced by the non-null parameter values.
@@ -344,15 +347,15 @@ class _$MessageRequestModelImpl implements _MessageRequestModel {
 
 abstract class _MessageRequestModel implements MessageRequestModel {
   const factory _MessageRequestModel(
-      {final String role, final String content}) = _$MessageRequestModelImpl;
+      {final String role, final dynamic content}) = _$MessageRequestModelImpl;
 
   factory _MessageRequestModel.fromJson(Map<String, dynamic> json) =
       _$MessageRequestModelImpl.fromJson;
 
   @override
-  String get role;
+  String get role; //it' dynamic for the platform chat
   @override
-  String get content;
+  dynamic get content;
 
   /// Create a copy of MessageRequestModel
   /// with the given fields replaced by the non-null parameter values.
@@ -1099,5 +1102,186 @@ abstract class _SendCandidateRequestModel implements SendCandidateRequestModel {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SendCandidateRequestModelImplCopyWith<_$SendCandidateRequestModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+PlatformChatbotRequestModel _$PlatformChatbotRequestModelFromJson(
+    Map<String, dynamic> json) {
+  return _PlatformChatbotRequestModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PlatformChatbotRequestModel {
+  int? get lang => throw _privateConstructorUsedError;
+  String? get question => throw _privateConstructorUsedError;
+
+  /// Serializes this PlatformChatbotRequestModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of PlatformChatbotRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $PlatformChatbotRequestModelCopyWith<PlatformChatbotRequestModel>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PlatformChatbotRequestModelCopyWith<$Res> {
+  factory $PlatformChatbotRequestModelCopyWith(
+          PlatformChatbotRequestModel value,
+          $Res Function(PlatformChatbotRequestModel) then) =
+      _$PlatformChatbotRequestModelCopyWithImpl<$Res,
+          PlatformChatbotRequestModel>;
+  @useResult
+  $Res call({int? lang, String? question});
+}
+
+/// @nodoc
+class _$PlatformChatbotRequestModelCopyWithImpl<$Res,
+        $Val extends PlatformChatbotRequestModel>
+    implements $PlatformChatbotRequestModelCopyWith<$Res> {
+  _$PlatformChatbotRequestModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of PlatformChatbotRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? lang = freezed,
+    Object? question = freezed,
+  }) {
+    return _then(_value.copyWith(
+      lang: freezed == lang
+          ? _value.lang
+          : lang // ignore: cast_nullable_to_non_nullable
+              as int?,
+      question: freezed == question
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PlatformChatbotRequestModelImplCopyWith<$Res>
+    implements $PlatformChatbotRequestModelCopyWith<$Res> {
+  factory _$$PlatformChatbotRequestModelImplCopyWith(
+          _$PlatformChatbotRequestModelImpl value,
+          $Res Function(_$PlatformChatbotRequestModelImpl) then) =
+      __$$PlatformChatbotRequestModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int? lang, String? question});
+}
+
+/// @nodoc
+class __$$PlatformChatbotRequestModelImplCopyWithImpl<$Res>
+    extends _$PlatformChatbotRequestModelCopyWithImpl<$Res,
+        _$PlatformChatbotRequestModelImpl>
+    implements _$$PlatformChatbotRequestModelImplCopyWith<$Res> {
+  __$$PlatformChatbotRequestModelImplCopyWithImpl(
+      _$PlatformChatbotRequestModelImpl _value,
+      $Res Function(_$PlatformChatbotRequestModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PlatformChatbotRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? lang = freezed,
+    Object? question = freezed,
+  }) {
+    return _then(_$PlatformChatbotRequestModelImpl(
+      lang: freezed == lang
+          ? _value.lang
+          : lang // ignore: cast_nullable_to_non_nullable
+              as int?,
+      question: freezed == question
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PlatformChatbotRequestModelImpl
+    implements _PlatformChatbotRequestModel {
+  const _$PlatformChatbotRequestModelImpl({this.lang = 0, this.question = ''});
+
+  factory _$PlatformChatbotRequestModelImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$PlatformChatbotRequestModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int? lang;
+  @override
+  @JsonKey()
+  final String? question;
+
+  @override
+  String toString() {
+    return 'PlatformChatbotRequestModel(lang: $lang, question: $question)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PlatformChatbotRequestModelImpl &&
+            (identical(other.lang, lang) || other.lang == lang) &&
+            (identical(other.question, question) ||
+                other.question == question));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, lang, question);
+
+  /// Create a copy of PlatformChatbotRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PlatformChatbotRequestModelImplCopyWith<_$PlatformChatbotRequestModelImpl>
+      get copyWith => __$$PlatformChatbotRequestModelImplCopyWithImpl<
+          _$PlatformChatbotRequestModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PlatformChatbotRequestModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PlatformChatbotRequestModel
+    implements PlatformChatbotRequestModel {
+  const factory _PlatformChatbotRequestModel(
+      {final int? lang,
+      final String? question}) = _$PlatformChatbotRequestModelImpl;
+
+  factory _PlatformChatbotRequestModel.fromJson(Map<String, dynamic> json) =
+      _$PlatformChatbotRequestModelImpl.fromJson;
+
+  @override
+  int? get lang;
+  @override
+  String? get question;
+
+  /// Create a copy of PlatformChatbotRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PlatformChatbotRequestModelImplCopyWith<_$PlatformChatbotRequestModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

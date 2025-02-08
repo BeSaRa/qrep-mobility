@@ -10,6 +10,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'app/app.dart';
@@ -18,6 +19,8 @@ import 'app/depndency_injection.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
+  //zak
+   await dotenv.load();  // Load .env file
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
 

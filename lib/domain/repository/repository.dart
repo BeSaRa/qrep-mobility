@@ -192,6 +192,9 @@ abstract class Repository {
       //-------chatbot---------
   Future<Result<ChatbotResponseModel, FailureModel>> sendMessageToChatbot(
       ChatbotRequestModel request);
+      //---- platform chatbot -----
+  Future<Result<PlatformChatbotResponseModel, FailureModel>> sendMessageToPlatformChatbot(
+      PlatformChatbotRequestModel request);
       
   Future<Result<StartStreamModel, FailureModel>> startStream();
 

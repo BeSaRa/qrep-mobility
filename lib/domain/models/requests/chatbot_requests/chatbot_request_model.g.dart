@@ -28,7 +28,7 @@ _$MessageRequestModelImpl _$$MessageRequestModelImplFromJson(
         Map<String, dynamic> json) =>
     _$MessageRequestModelImpl(
       role: json['role'] as String? ?? '',
-      content: json['content'] as String? ?? '',
+      content: json['content'] ?? '',
     );
 
 Map<String, dynamic> _$$MessageRequestModelImplToJson(
@@ -95,4 +95,18 @@ Map<String, dynamic> _$$SendCandidateRequestModelImplToJson(
       'sdpMLineIndex': instance.sdpMLineIndex,
       'sdpMid': instance.sdpMid,
       'usernameFragment': instance.usernameFragment,
+    };
+
+_$PlatformChatbotRequestModelImpl _$$PlatformChatbotRequestModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PlatformChatbotRequestModelImpl(
+      lang: (json['lang'] as num?)?.toInt() ?? 0,
+      question: json['question'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$PlatformChatbotRequestModelImplToJson(
+        _$PlatformChatbotRequestModelImpl instance) =>
+    <String, dynamic>{
+      'lang': instance.lang,
+      'question': instance.question,
     };

@@ -3,6 +3,7 @@ import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/drobdown_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/record_cubit/voice_cubit.dart';
+import 'package:ebla/presentations/features/chatbot/routes_extras.dart';
 import 'package:ebla/presentations/features/chatbot/view/chat_view.dart';
 import 'package:ebla/presentations/features/more/all_more_web_views/view/all_more_web_views_view.dart';
 import 'package:ebla/presentations/features/favourite/fav_view.dart';
@@ -494,16 +495,16 @@ class AppRouter {
               key: state.pageKey,
               child: MultiBlocProvider(
                 providers: [
+                  //it's main value come from homepage
                   BlocProvider<ChatHistoryCubit>.value(
-                    //it's main value come from homepage
-                    value: state.extra as ChatHistoryCubit,
+                    value: (state.extra as RouteExtras).chatHistoryCubit,
                   ),
                   BlocProvider(
                     create: (context) => VoiceCubit(),
                   ),
-                  BlocProvider(
-                       create: (context) => DropdownCubit(),
-                  )
+                  BlocProvider<DropdownCubit>.value(
+                    value: (state.extra as RouteExtras).dropdownCubit,
+                  ),
                 ],
                 child: const ChatView(),
               ),

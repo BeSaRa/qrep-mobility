@@ -1,25 +1,66 @@
-// lib/cubits/chat_history_cubit.dart
-import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+// // lib/cubits/chat_history_cubit.dart
+// import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
 
-// Include the part directive to reference the state file
+// // Include the part directive to reference the state file
+// part 'chat_history_state.dart';
+
+// // Cubit to manage chat history
+// class ChatHistoryCubit extends Cubit<ChatHistoryState> {
+//   ChatHistoryCubit() : super(ChatHistoryState(messages: []));
+
+//   // Add a message to the history
+//   void addMessage(MessageRequestModel message) {
+//     print('Adding message to chat history: ${state.messages}');
+//     emit(
+//       ChatHistoryState(messages: [...state.messages, message]),
+//       // state.copyWith(messages: List.from(state.messages)..add(message)),
+//     );
+//   }
+
+//   // Clear the history (if needed)
+//   void clearHistory() {
+//     emit(ChatHistoryState(messages: []));
+//   }
+// }
+import 'package:ebla/presentations/features/chatbot/utility/chatbot_enums.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
+
 part 'chat_history_state.dart';
 
-// Cubit to manage chat history
-class ChatHistoryCubit extends Cubit<ChatHistoryState> {
-  ChatHistoryCubit() : super(ChatHistoryState(messages: []));
+// enum ChatType { authority, platform } // ✅ Enum to distinguish chats
 
-  // Add a message to the history
-  void addMessage(MessageRequestModel message) {
-    print('Adding message to chat history: ${state.messages}');
-    emit(
-      ChatHistoryState(messages: [...state.messages, message]),
-      // state.copyWith(messages: List.from(state.messages)..add(message)),
-    );
+class ChatHistoryCubit extends Cubit<ChatHistoryState> {
+  ChatHistoryCubit()
+      : super(ChatHistoryState(
+          authorityMessages: [],
+          platformMessages: [],
+          activeChat: ChatTypeEnum.authority, // ✅ Default chat type
+        ));
+
+  // ✅ Switch between chat types
+  void switchChat(ChatTypeEnum chatType) {
+    emit(state.copyWith(activeChat: chatType));
   }
 
-  // Clear the history (if needed)
-  void clearHistory() {
-    emit(ChatHistoryState(messages: []));
+  // ✅ Add a message to the active chat history
+  void addMessage(MessageRequestModel message) {
+    if (state.activeChat == ChatTypeEnum.authority) {
+      emit(state
+          .copyWith(authorityMessages: [...state.authorityMessages, message]));
+    } else {
+      emit(state
+          .copyWith(platformMessages: [...state.platformMessages, message]));
+    }
+  }
+
+  // ✅ Clear history for a specific chat
+  void clearHistory(ChatTypeEnum chatType) {
+    if (chatType == ChatTypeEnum.authority) {
+      emit(state.copyWith(authorityMessages: []));
+    } else {
+      emit(state.copyWith(platformMessages: []));
+    }
   }
 }

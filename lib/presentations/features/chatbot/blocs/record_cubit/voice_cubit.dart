@@ -35,21 +35,22 @@ class VoiceCubit extends Cubit<VoiceState> {
   }
 //-----------------------------LANG---------------------------------
 
-  void selectLocale(String localeId) {
-    if (_availableLocales.any((locale) => locale.localeId == localeId)) {
-      selectedLocale = localeId;
-      emit(VoiceState(
-        isListening: state.isListening,
-        text: state.text,
-        availableLocales: _availableLocales,
-        selectedLocale: selectedLocale,
-      ));
-    }
-  }
+  // void selectLocale(String localeId) {
+  //   if (_availableLocales.any((locale) => locale.localeId == localeId)) {
+  //     selectedLocale = localeId;
+  //     emit(VoiceState(
+  //       isListening: state.isListening,
+  //       text: state.text,
+  //       availableLocales: _availableLocales,
+  //       selectedLocale: selectedLocale,
+  //     ));
+  //   }
+  // }
 
 //-----------------------------START---------------------------------
   void startListening() {
     if (!_speech.isAvailable) {
+      // if (isClosed) return; // Check if the Cubit is closed
       emit(VoiceState(
           isListening: false,
           text: '',
@@ -65,7 +66,7 @@ class VoiceCubit extends Cubit<VoiceState> {
           selectedLocale = "en_US";
         }
         print("Detected language: $selectedLocale");
-
+        // if (isClosed) return; // Check if the Cubit is closed
         emit(VoiceState(
           isListening: !val.finalResult,
           text: val.recognizedWords,
@@ -78,7 +79,7 @@ class VoiceCubit extends Cubit<VoiceState> {
       // localeId: selectedLocale,
       listenMode: stt.ListenMode.dictation,
     );
-
+    // if (isClosed) return; // Check if the Cubit is closed
     emit(VoiceState(
         isListening: true,
         text: state.text,
@@ -89,7 +90,9 @@ class VoiceCubit extends Cubit<VoiceState> {
 
 //-----------------------------STOP---------------------------------
   void stopListening() {
+    // if (isClosed) return; // Check if the Cubit is closed
     _speech.stop();
+
     emit(VoiceState(
         isListening: false,
         text: state.text,
@@ -109,4 +112,3 @@ class VoiceCubit extends Cubit<VoiceState> {
     ));
   }
 }
-

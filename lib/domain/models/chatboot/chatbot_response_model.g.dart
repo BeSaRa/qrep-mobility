@@ -219,3 +219,19 @@ Map<String, dynamic> _$$FailureCloseStreamModelImplToJson(
       'detail': instance.detail,
       'statusCode': instance.statusCode,
     };
+
+_$PlatformChatbotResponseModelImpl _$$PlatformChatbotResponseModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PlatformChatbotResponseModelImpl(
+      conversationId: json['conversationId'] as String? ?? null,
+      response: json['response'] as List<dynamic>? ?? const [],
+      responseFormat: json['responseFormat'] as String? ?? "",
+    );
+
+Map<String, dynamic> _$$PlatformChatbotResponseModelImplToJson(
+        _$PlatformChatbotResponseModelImpl instance) =>
+    <String, dynamic>{
+      'conversationId': instance.conversationId,
+      'response': instance.response,
+      'responseFormat': instance.responseFormat,
+    };

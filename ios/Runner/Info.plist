@@ -46,8 +46,6 @@
 	<!-- delete me zak -->
 	<key>NSCameraUsageDescription</key>
 	<string>Your message to request camera access</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Your message to request microphone access</string>
 
 	<key>NSMicrophoneUsageDescription</key>
 	<string>QREP wants to save your password and reach it from face id</string>

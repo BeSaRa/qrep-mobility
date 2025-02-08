@@ -2611,3 +2611,218 @@ abstract class _FailureCloseStreamModel implements FailureCloseStreamModel {
   _$$FailureCloseStreamModelImplCopyWith<_$FailureCloseStreamModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+PlatformChatbotResponseModel _$PlatformChatbotResponseModelFromJson(
+    Map<String, dynamic> json) {
+  return _PlatformChatbotResponseModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PlatformChatbotResponseModel {
+  String? get conversationId => throw _privateConstructorUsedError;
+  List<dynamic> get response => throw _privateConstructorUsedError;
+  String? get responseFormat => throw _privateConstructorUsedError;
+
+  /// Serializes this PlatformChatbotResponseModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of PlatformChatbotResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $PlatformChatbotResponseModelCopyWith<PlatformChatbotResponseModel>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PlatformChatbotResponseModelCopyWith<$Res> {
+  factory $PlatformChatbotResponseModelCopyWith(
+          PlatformChatbotResponseModel value,
+          $Res Function(PlatformChatbotResponseModel) then) =
+      _$PlatformChatbotResponseModelCopyWithImpl<$Res,
+          PlatformChatbotResponseModel>;
+  @useResult
+  $Res call(
+      {String? conversationId, List<dynamic> response, String? responseFormat});
+}
+
+/// @nodoc
+class _$PlatformChatbotResponseModelCopyWithImpl<$Res,
+        $Val extends PlatformChatbotResponseModel>
+    implements $PlatformChatbotResponseModelCopyWith<$Res> {
+  _$PlatformChatbotResponseModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of PlatformChatbotResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? conversationId = freezed,
+    Object? response = null,
+    Object? responseFormat = freezed,
+  }) {
+    return _then(_value.copyWith(
+      conversationId: freezed == conversationId
+          ? _value.conversationId
+          : conversationId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      response: null == response
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      responseFormat: freezed == responseFormat
+          ? _value.responseFormat
+          : responseFormat // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PlatformChatbotResponseModelImplCopyWith<$Res>
+    implements $PlatformChatbotResponseModelCopyWith<$Res> {
+  factory _$$PlatformChatbotResponseModelImplCopyWith(
+          _$PlatformChatbotResponseModelImpl value,
+          $Res Function(_$PlatformChatbotResponseModelImpl) then) =
+      __$$PlatformChatbotResponseModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String? conversationId, List<dynamic> response, String? responseFormat});
+}
+
+/// @nodoc
+class __$$PlatformChatbotResponseModelImplCopyWithImpl<$Res>
+    extends _$PlatformChatbotResponseModelCopyWithImpl<$Res,
+        _$PlatformChatbotResponseModelImpl>
+    implements _$$PlatformChatbotResponseModelImplCopyWith<$Res> {
+  __$$PlatformChatbotResponseModelImplCopyWithImpl(
+      _$PlatformChatbotResponseModelImpl _value,
+      $Res Function(_$PlatformChatbotResponseModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PlatformChatbotResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? conversationId = freezed,
+    Object? response = null,
+    Object? responseFormat = freezed,
+  }) {
+    return _then(_$PlatformChatbotResponseModelImpl(
+      conversationId: freezed == conversationId
+          ? _value.conversationId
+          : conversationId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      response: null == response
+          ? _value._response
+          : response // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      responseFormat: freezed == responseFormat
+          ? _value.responseFormat
+          : responseFormat // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PlatformChatbotResponseModelImpl
+    implements _PlatformChatbotResponseModel {
+  const _$PlatformChatbotResponseModelImpl(
+      {this.conversationId = null,
+      final List<dynamic> response = const [],
+      this.responseFormat = ""})
+      : _response = response;
+
+  factory _$PlatformChatbotResponseModelImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$PlatformChatbotResponseModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String? conversationId;
+  final List<dynamic> _response;
+  @override
+  @JsonKey()
+  List<dynamic> get response {
+    if (_response is EqualUnmodifiableListView) return _response;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_response);
+  }
+
+  @override
+  @JsonKey()
+  final String? responseFormat;
+
+  @override
+  String toString() {
+    return 'PlatformChatbotResponseModel(conversationId: $conversationId, response: $response, responseFormat: $responseFormat)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PlatformChatbotResponseModelImpl &&
+            (identical(other.conversationId, conversationId) ||
+                other.conversationId == conversationId) &&
+            const DeepCollectionEquality().equals(other._response, _response) &&
+            (identical(other.responseFormat, responseFormat) ||
+                other.responseFormat == responseFormat));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, conversationId,
+      const DeepCollectionEquality().hash(_response), responseFormat);
+
+  /// Create a copy of PlatformChatbotResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PlatformChatbotResponseModelImplCopyWith<
+          _$PlatformChatbotResponseModelImpl>
+      get copyWith => __$$PlatformChatbotResponseModelImplCopyWithImpl<
+          _$PlatformChatbotResponseModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PlatformChatbotResponseModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PlatformChatbotResponseModel
+    implements PlatformChatbotResponseModel {
+  const factory _PlatformChatbotResponseModel(
+      {final String? conversationId,
+      final List<dynamic> response,
+      final String? responseFormat}) = _$PlatformChatbotResponseModelImpl;
+
+  factory _PlatformChatbotResponseModel.fromJson(Map<String, dynamic> json) =
+      _$PlatformChatbotResponseModelImpl.fromJson;
+
+  @override
+  String? get conversationId;
+  @override
+  List<dynamic> get response;
+  @override
+  String? get responseFormat;
+
+  /// Create a copy of PlatformChatbotResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PlatformChatbotResponseModelImplCopyWith<
+          _$PlatformChatbotResponseModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

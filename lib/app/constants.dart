@@ -1,4 +1,6 @@
 //* after changing the urls you should run this command in terminal
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 ///flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
 
 class Constant {
@@ -21,7 +23,9 @@ class Constant {
   /*--- */
   static const String aqaratBaseUrl = 'https://www.aqarat.gov.qa';
   static const String aqaratBaseUrl2 = 'https://ministry-municipality.v2202305135856227727.ultrasrv.de';
-  static const String chatBotBaseUrl = 'https://afnqcpcbai01.azurewebsites.net';
+  static const String authorityChatBotBaseUrl = 'https://afnqcpcbai01.azurewebsites.net';
+  static String xFunctionsAuthorityChatbotKey =  dotenv.env['X_FUNCTION_AUTHORITY_CHATBOT_KEY'] ?? 'NO_KEY_FOUND';
+
 
 
   // static const String baseUrl = 'http://192.168.52.4:9080/mme-services';

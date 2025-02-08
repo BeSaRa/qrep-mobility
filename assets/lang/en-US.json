@@ -204,7 +204,10 @@
   "authority_news":"Authority News",
   "services":"Services",
   "-----------chatbot----------": "--------------------------",
-  "defult_bot_message": "This is the smart assistant of the Real Estate Regulatory Authority-Aqarat, how can I help you?",
-  "write_your_message": "Write your message..."
+  "defult_bot_message": "This is the smart assistant of the Real Estate Regulatory Authority-Aqarat, how can I assist you?",
+  "defult_platform_bot_message": "This is the smart assistant for the Qatar Real Estate platform. How can I assist you?",
+  "write_your_message": "Write your message...",
+  "chart_note":"A table was used to display the chart data because the number of columns is more than 2.",
+  "note":"Note"
   
 }

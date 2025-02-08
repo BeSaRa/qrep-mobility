@@ -1,13 +1,38 @@
+// part of 'chat_history_cubit.dart';
+
+// class ChatHistoryState {
+//   final List<MessageRequestModel>   messages;
+
+//   ChatHistoryState({required this.messages});
+
+//   ChatHistoryState copyWith({List<MessageRequestModel>? messages}) {
+//     return ChatHistoryState(
+//       messages: messages ?? this.messages,
+//     );
+//   }
+// }
 part of 'chat_history_cubit.dart';
 
 class ChatHistoryState {
-  final List<MessageRequestModel>   messages;
+  final List<MessageRequestModel> authorityMessages;
+  final List<MessageRequestModel> platformMessages;
+  final ChatTypeEnum activeChat; // ✅ Track current active chat
 
-  ChatHistoryState({required this.messages});
+  ChatHistoryState({
+    required this.authorityMessages,
+    required this.platformMessages,
+    required this.activeChat,
+  });
 
-  ChatHistoryState copyWith({List<MessageRequestModel>? messages}) {
+  ChatHistoryState copyWith({
+    List<MessageRequestModel>? authorityMessages,
+    List<MessageRequestModel>? platformMessages,
+    ChatTypeEnum? activeChat,
+  }) {
     return ChatHistoryState(
-      messages: messages ?? this.messages,
+      authorityMessages: authorityMessages ?? this.authorityMessages,
+      platformMessages: platformMessages ?? this.platformMessages,
+      activeChat: activeChat ?? this.activeChat,
     );
   }
 }

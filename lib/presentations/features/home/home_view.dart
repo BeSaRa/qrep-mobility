@@ -5,7 +5,9 @@ import 'dart:math' as math;
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/drobdown_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
+import 'package:ebla/presentations/features/chatbot/routes_extras.dart';
 import 'package:ebla/presentations/features/home/widgets/investors_cards_widget.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -33,29 +35,58 @@ class _HomeViewState extends State<HomeView> {
   // final PageController _pageController = PageController();
   // final int _indexCubit = 0;
   late ChatHistoryCubit chatHistoryCubit;
+  late DropdownCubit dropdownCubit;
 
   @override
   void initState() {
     FirebaseAnalytics.instance.logEvent(name: 'open_home_view');
     chatHistoryCubit = ChatHistoryCubit();
+    dropdownCubit = DropdownCubit();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     getFromAprilMonths(context);
+
+    // Add default message based on the active chat type
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Check if it's the first time or if there are no messages yet
+      if (chatHistoryCubit.state.authorityMessages.isEmpty &&
+          chatHistoryCubit.state.platformMessages.isEmpty) {
+        // Add default message based on active chat
+        chatHistoryCubit.addMessage(MessageRequestModel(
+          role: 'assistant',
+          content: AppStrings().defaultAuthorityBotMessage,
+        ));
+        chatHistoryCubit.state.platformMessages.add(MessageRequestModel(
+          role: 'assistant',
+          content: AppStrings().defaultPlatformBotMessage,
+        ));
+        // chatHistoryCubit.addMessage(MessageRequestModel(
+        //   role: 'assistant',
+        //   content: AppStrings().defaultPlatformBotMessage,
+        // ));
+      }
+    });
     return Scaffold(
       floatingActionButton: ClipRRect(
         borderRadius: BorderRadius.circular(AppSizeR.s100),
         child: BlocProvider<ChatHistoryCubit>.value(
-          value: chatHistoryCubit
-            ..addMessage(MessageRequestModel(
-              role: 'assistant',
-              content: AppStrings().defultBotMessage,
-            )),
+          value: chatHistoryCubit,
+          // ..addMessage(MessageRequestModel(
+          //   role: 'assistant',
+          //   content: AppStrings().defaultAuthorityBotMessage,
+          // )),
           child: FloatingActionButton(
             onPressed: () {
-              context.pushNamed(RoutesNames.chatbot, extra: chatHistoryCubit);
+              context.pushNamed(
+                RoutesNames.chatbot,
+                extra: RouteExtras(
+                  chatHistoryCubit: chatHistoryCubit,
+                  dropdownCubit: dropdownCubit,
+                ),
+              );
             },
             backgroundColor: Theme.of(context).primaryColor,
             child: Image(

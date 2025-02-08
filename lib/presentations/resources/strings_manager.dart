@@ -69,7 +69,8 @@ class AppStrings {
 
   //more view locals
   String moreTitle = "qatar_real_estate_platform".tr();
-  String realEstateRegulatoryAuthority = "real_estate_regulatory_authority".tr();
+  String realEstateRegulatoryAuthority =
+      "real_estate_regulatory_authority".tr();
   String support = "support".tr();
   String watchList = "my_watch_list".tr();
   String login = "login".tr();
@@ -115,15 +116,15 @@ class AppStrings {
   String lawNumber = "law_number".tr();
   String lawDetails = "law_details".tr();
   String downloadFile = "download_file".tr();
-  String investorJourney= "investor_journey".tr();//رحلة المستثمر
-  String propertyDevelopers= "property_developers".tr();
-  String professionPracticers= "profession_practicers".tr();
+  String investorJourney = "investor_journey".tr(); //رحلة المستثمر
+  String propertyDevelopers = "property_developers".tr();
+  String professionPracticers = "profession_practicers".tr();
 
-  String studyTheIdea= "study_the_idea".tr();
-  String connectWithExperts= "connect_with_experts".tr();
-  String chooseYourProject= "choose_your_project".tr();
-  String ownRealEstate= "own_real_estate".tr();
-  String manageYourProperty= "manage_your_property".tr();
+  String studyTheIdea = "study_the_idea".tr();
+  String connectWithExperts = "connect_with_experts".tr();
+  String chooseYourProject = "choose_your_project".tr();
+  String ownRealEstate = "own_real_estate".tr();
+  String manageYourProperty = "manage_your_property".tr();
   //InvestorJourny
   String back = "back".tr();
   String next = "next".tr();
@@ -225,15 +226,18 @@ class AppStrings {
 
   String sessionExpired = "session_expired".tr();
   //--------------webviews---------------
-  String tasksAndResponsibilitiesOftheAuthority = "tasks_and_responsibilities_of_the_authority".tr();
+  String tasksAndResponsibilitiesOftheAuthority =
+      "tasks_and_responsibilities_of_the_authority".tr();
   String visionAndMission = "vision_and_mission".tr();
   String aboutTheAuthority = "about_the_authority".tr();
   String authorityLocation = "authority_location".tr();
   String contactUs = "contact_us".tr();
   String authorityNews = "authority_news".tr();
-  String services= "services".tr();
+  String services = "services".tr();
   //--------------chatbot---------------
-  String defultBotMessage = "defult_bot_message".tr();
+  String defaultAuthorityBotMessage = "defult_bot_message".tr();
+  String defaultPlatformBotMessage = "defult_platform_bot_message".tr();
   String writeUourMessage = "write_your_message".tr();
-
+  String chartNote = "chart_note".tr();
+  String note = "note".tr();
 }

@@ -16,7 +16,8 @@ abstract class ChatbotRequestModel with _$ChatbotRequestModel {
 abstract class MessageRequestModel with _$MessageRequestModel {
   const factory MessageRequestModel({
     @Default('') String role,
-    @Default('') String content,
+    //it' dynamic for the platform chat
+    @Default('') dynamic content,
   }) = _MessageRequestModel;
 
   factory MessageRequestModel.fromJson(Map<String, dynamic> json) =>
@@ -65,4 +66,15 @@ abstract class SendCandidateRequestModel with _$SendCandidateRequestModel {
 
   factory SendCandidateRequestModel.fromJson(Map<String, dynamic> json) =>
       _$SendCandidateRequestModelFromJson(json);
+}
+//----------- platform chatbot ------------------
+@freezed
+abstract class PlatformChatbotRequestModel with _$PlatformChatbotRequestModel {
+  const factory PlatformChatbotRequestModel({
+    @Default(0) int? lang,
+    @Default('') String? question,
+  }) = _PlatformChatbotRequestModel;
+
+  factory PlatformChatbotRequestModel.fromJson(Map<String, dynamic> json) =>
+      _$PlatformChatbotRequestModelFromJson(json);
 }

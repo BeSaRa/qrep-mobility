@@ -20,7 +20,9 @@ mixin _$ChatBotState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ChatbotResponseModel response) done,
+    required TResult Function(ChatbotResponseModel? response,
+            PlatformChatbotResponseModel? platformResponse)
+        done,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +30,9 @@ mixin _$ChatBotState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ChatbotResponseModel response)? done,
+    TResult? Function(ChatbotResponseModel? response,
+            PlatformChatbotResponseModel? platformResponse)?
+        done,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +40,9 @@ mixin _$ChatBotState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ChatbotResponseModel response)? done,
+    TResult Function(ChatbotResponseModel? response,
+            PlatformChatbotResponseModel? platformResponse)?
+        done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -132,7 +138,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ChatbotResponseModel response) done,
+    required TResult Function(ChatbotResponseModel? response,
+            PlatformChatbotResponseModel? platformResponse)
+        done,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -143,7 +151,9 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ChatbotResponseModel response)? done,
+    TResult? Function(ChatbotResponseModel? response,
+            PlatformChatbotResponseModel? platformResponse)?
+        done,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -154,7 +164,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ChatbotResponseModel response)? done,
+    TResult Function(ChatbotResponseModel? response,
+            PlatformChatbotResponseModel? platformResponse)?
+        done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -249,7 +261,9 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ChatbotResponseModel response) done,
+    required TResult Function(ChatbotResponseModel? response,
+            PlatformChatbotResponseModel? platformResponse)
+        done,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -260,7 +274,9 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ChatbotResponseModel response)? done,
+    TResult? Function(ChatbotResponseModel? response,
+            PlatformChatbotResponseModel? platformResponse)?
+        done,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -271,7 +287,9 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ChatbotResponseModel response)? done,
+    TResult Function(ChatbotResponseModel? response,
+            PlatformChatbotResponseModel? platformResponse)?
+        done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -329,9 +347,12 @@ abstract class _$$DoneImplCopyWith<$Res> {
           _$DoneImpl value, $Res Function(_$DoneImpl) then) =
       __$$DoneImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ChatbotResponseModel response});
+  $Res call(
+      {ChatbotResponseModel? response,
+      PlatformChatbotResponseModel? platformResponse});
 
-  $ChatbotResponseModelCopyWith<$Res> get response;
+  $ChatbotResponseModelCopyWith<$Res>? get response;
+  $PlatformChatbotResponseModelCopyWith<$Res>? get platformResponse;
 }
 
 /// @nodoc
@@ -346,13 +367,18 @@ class __$$DoneImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? response = null,
+    Object? response = freezed,
+    Object? platformResponse = freezed,
   }) {
     return _then(_$DoneImpl(
-      response: null == response
+      response: freezed == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as ChatbotResponseModel,
+              as ChatbotResponseModel?,
+      platformResponse: freezed == platformResponse
+          ? _value.platformResponse
+          : platformResponse // ignore: cast_nullable_to_non_nullable
+              as PlatformChatbotResponseModel?,
     ));
   }
 
@@ -360,9 +386,28 @@ class __$$DoneImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ChatbotResponseModelCopyWith<$Res> get response {
-    return $ChatbotResponseModelCopyWith<$Res>(_value.response, (value) {
+  $ChatbotResponseModelCopyWith<$Res>? get response {
+    if (_value.response == null) {
+      return null;
+    }
+
+    return $ChatbotResponseModelCopyWith<$Res>(_value.response!, (value) {
       return _then(_value.copyWith(response: value));
+    });
+  }
+
+  /// Create a copy of ChatBotState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PlatformChatbotResponseModelCopyWith<$Res>? get platformResponse {
+    if (_value.platformResponse == null) {
+      return null;
+    }
+
+    return $PlatformChatbotResponseModelCopyWith<$Res>(_value.platformResponse!,
+        (value) {
+      return _then(_value.copyWith(platformResponse: value));
     });
   }
 }
@@ -370,14 +415,16 @@ class __$$DoneImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DoneImpl implements _Done {
-  const _$DoneImpl({required this.response});
+  const _$DoneImpl({this.response, this.platformResponse});
 
   @override
-  final ChatbotResponseModel response;
+  final ChatbotResponseModel? response;
+  @override
+  final PlatformChatbotResponseModel? platformResponse;
 
   @override
   String toString() {
-    return 'ChatBotState.done(response: $response)';
+    return 'ChatBotState.done(response: $response, platformResponse: $platformResponse)';
   }
 
   @override
@@ -386,11 +433,13 @@ class _$DoneImpl implements _Done {
         (other.runtimeType == runtimeType &&
             other is _$DoneImpl &&
             (identical(other.response, response) ||
-                other.response == response));
+                other.response == response) &&
+            (identical(other.platformResponse, platformResponse) ||
+                other.platformResponse == platformResponse));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, response);
+  int get hashCode => Object.hash(runtimeType, response, platformResponse);
 
   /// Create a copy of ChatBotState
   /// with the given fields replaced by the non-null parameter values.
@@ -405,10 +454,12 @@ class _$DoneImpl implements _Done {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ChatbotResponseModel response) done,
+    required TResult Function(ChatbotResponseModel? response,
+            PlatformChatbotResponseModel? platformResponse)
+        done,
     required TResult Function(String message) error,
   }) {
-    return done(response);
+    return done(response, platformResponse);
   }
 
   @override
@@ -416,10 +467,12 @@ class _$DoneImpl implements _Done {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ChatbotResponseModel response)? done,
+    TResult? Function(ChatbotResponseModel? response,
+            PlatformChatbotResponseModel? platformResponse)?
+        done,
     TResult? Function(String message)? error,
   }) {
-    return done?.call(response);
+    return done?.call(response, platformResponse);
   }
 
   @override
@@ -427,12 +480,14 @@ class _$DoneImpl implements _Done {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ChatbotResponseModel response)? done,
+    TResult Function(ChatbotResponseModel? response,
+            PlatformChatbotResponseModel? platformResponse)?
+        done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (done != null) {
-      return done(response);
+      return done(response, platformResponse);
     }
     return orElse();
   }
@@ -476,10 +531,12 @@ class _$DoneImpl implements _Done {
 }
 
 abstract class _Done implements ChatBotState {
-  const factory _Done({required final ChatbotResponseModel response}) =
-      _$DoneImpl;
+  const factory _Done(
+      {final ChatbotResponseModel? response,
+      final PlatformChatbotResponseModel? platformResponse}) = _$DoneImpl;
 
-  ChatbotResponseModel get response;
+  ChatbotResponseModel? get response;
+  PlatformChatbotResponseModel? get platformResponse;
 
   /// Create a copy of ChatBotState
   /// with the given fields replaced by the non-null parameter values.
@@ -558,7 +615,9 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ChatbotResponseModel response) done,
+    required TResult Function(ChatbotResponseModel? response,
+            PlatformChatbotResponseModel? platformResponse)
+        done,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -569,7 +628,9 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ChatbotResponseModel response)? done,
+    TResult? Function(ChatbotResponseModel? response,
+            PlatformChatbotResponseModel? platformResponse)?
+        done,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -580,7 +641,9 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ChatbotResponseModel response)? done,
+    TResult Function(ChatbotResponseModel? response,
+            PlatformChatbotResponseModel? platformResponse)?
+        done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -642,44 +705,46 @@ abstract class _Error implements ChatBotState {
 
 /// @nodoc
 mixin _$SendMessageEvent {
-  ChatbotRequestModel get message => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ChatbotRequestModel message) started,
+    required TResult Function(PlatformChatbotRequestModel platformMessage)
+        platformStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(ChatbotRequestModel message)? started,
+    TResult? Function(PlatformChatbotRequestModel platformMessage)?
+        platformStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ChatbotRequestModel message)? started,
+    TResult Function(PlatformChatbotRequestModel platformMessage)?
+        platformStarted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_PlatformStarted value) platformStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_PlatformStarted value)? platformStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_PlatformStarted value)? platformStarted,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of SendMessageEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SendMessageEventCopyWith<SendMessageEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -688,10 +753,6 @@ abstract class $SendMessageEventCopyWith<$Res> {
   factory $SendMessageEventCopyWith(
           SendMessageEvent value, $Res Function(SendMessageEvent) then) =
       _$SendMessageEventCopyWithImpl<$Res, SendMessageEvent>;
-  @useResult
-  $Res call({ChatbotRequestModel message});
-
-  $ChatbotRequestModelCopyWith<$Res> get message;
 }
 
 /// @nodoc
@@ -706,41 +767,16 @@ class _$SendMessageEventCopyWithImpl<$Res, $Val extends SendMessageEvent>
 
   /// Create a copy of SendMessageEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_value.copyWith(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as ChatbotRequestModel,
-    ) as $Val);
-  }
-
-  /// Create a copy of SendMessageEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ChatbotRequestModelCopyWith<$Res> get message {
-    return $ChatbotRequestModelCopyWith<$Res>(_value.message, (value) {
-      return _then(_value.copyWith(message: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$StartedImplCopyWith<$Res>
-    implements $SendMessageEventCopyWith<$Res> {
+abstract class _$$StartedImplCopyWith<$Res> {
   factory _$$StartedImplCopyWith(
           _$StartedImpl value, $Res Function(_$StartedImpl) then) =
       __$$StartedImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({ChatbotRequestModel message});
 
-  @override
   $ChatbotRequestModelCopyWith<$Res> get message;
 }
 
@@ -765,6 +801,16 @@ class __$$StartedImplCopyWithImpl<$Res>
           : message // ignore: cast_nullable_to_non_nullable
               as ChatbotRequestModel,
     ));
+  }
+
+  /// Create a copy of SendMessageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatbotRequestModelCopyWith<$Res> get message {
+    return $ChatbotRequestModelCopyWith<$Res>(_value.message, (value) {
+      return _then(_value.copyWith(message: value));
+    });
   }
 }
 
@@ -804,6 +850,8 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ChatbotRequestModel message) started,
+    required TResult Function(PlatformChatbotRequestModel platformMessage)
+        platformStarted,
   }) {
     return started(message);
   }
@@ -812,6 +860,8 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(ChatbotRequestModel message)? started,
+    TResult? Function(PlatformChatbotRequestModel platformMessage)?
+        platformStarted,
   }) {
     return started?.call(message);
   }
@@ -820,6 +870,8 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ChatbotRequestModel message)? started,
+    TResult Function(PlatformChatbotRequestModel platformMessage)?
+        platformStarted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -832,6 +884,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_PlatformStarted value) platformStarted,
   }) {
     return started(this);
   }
@@ -840,6 +893,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_PlatformStarted value)? platformStarted,
   }) {
     return started?.call(this);
   }
@@ -848,6 +902,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_PlatformStarted value)? platformStarted,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -860,13 +915,171 @@ class _$StartedImpl implements _Started {
 abstract class _Started implements SendMessageEvent {
   const factory _Started(final ChatbotRequestModel message) = _$StartedImpl;
 
-  @override
   ChatbotRequestModel get message;
 
   /// Create a copy of SendMessageEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StartedImplCopyWith<_$StartedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PlatformStartedImplCopyWith<$Res> {
+  factory _$$PlatformStartedImplCopyWith(_$PlatformStartedImpl value,
+          $Res Function(_$PlatformStartedImpl) then) =
+      __$$PlatformStartedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PlatformChatbotRequestModel platformMessage});
+
+  $PlatformChatbotRequestModelCopyWith<$Res> get platformMessage;
+}
+
+/// @nodoc
+class __$$PlatformStartedImplCopyWithImpl<$Res>
+    extends _$SendMessageEventCopyWithImpl<$Res, _$PlatformStartedImpl>
+    implements _$$PlatformStartedImplCopyWith<$Res> {
+  __$$PlatformStartedImplCopyWithImpl(
+      _$PlatformStartedImpl _value, $Res Function(_$PlatformStartedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SendMessageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? platformMessage = null,
+  }) {
+    return _then(_$PlatformStartedImpl(
+      null == platformMessage
+          ? _value.platformMessage
+          : platformMessage // ignore: cast_nullable_to_non_nullable
+              as PlatformChatbotRequestModel,
+    ));
+  }
+
+  /// Create a copy of SendMessageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PlatformChatbotRequestModelCopyWith<$Res> get platformMessage {
+    return $PlatformChatbotRequestModelCopyWith<$Res>(_value.platformMessage,
+        (value) {
+      return _then(_value.copyWith(platformMessage: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$PlatformStartedImpl implements _PlatformStarted {
+  const _$PlatformStartedImpl(this.platformMessage);
+
+  @override
+  final PlatformChatbotRequestModel platformMessage;
+
+  @override
+  String toString() {
+    return 'SendMessageEvent.platformStarted(platformMessage: $platformMessage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PlatformStartedImpl &&
+            (identical(other.platformMessage, platformMessage) ||
+                other.platformMessage == platformMessage));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, platformMessage);
+
+  /// Create a copy of SendMessageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PlatformStartedImplCopyWith<_$PlatformStartedImpl> get copyWith =>
+      __$$PlatformStartedImplCopyWithImpl<_$PlatformStartedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ChatbotRequestModel message) started,
+    required TResult Function(PlatformChatbotRequestModel platformMessage)
+        platformStarted,
+  }) {
+    return platformStarted(platformMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(ChatbotRequestModel message)? started,
+    TResult? Function(PlatformChatbotRequestModel platformMessage)?
+        platformStarted,
+  }) {
+    return platformStarted?.call(platformMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ChatbotRequestModel message)? started,
+    TResult Function(PlatformChatbotRequestModel platformMessage)?
+        platformStarted,
+    required TResult orElse(),
+  }) {
+    if (platformStarted != null) {
+      return platformStarted(platformMessage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_PlatformStarted value) platformStarted,
+  }) {
+    return platformStarted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_PlatformStarted value)? platformStarted,
+  }) {
+    return platformStarted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_PlatformStarted value)? platformStarted,
+    required TResult orElse(),
+  }) {
+    if (platformStarted != null) {
+      return platformStarted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PlatformStarted implements SendMessageEvent {
+  const factory _PlatformStarted(
+          final PlatformChatbotRequestModel platformMessage) =
+      _$PlatformStartedImpl;
+
+  PlatformChatbotRequestModel get platformMessage;
+
+  /// Create a copy of SendMessageEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PlatformStartedImplCopyWith<_$PlatformStartedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

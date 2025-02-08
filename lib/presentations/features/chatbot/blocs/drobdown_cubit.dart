@@ -1,12 +1,11 @@
 import 'package:bloc/bloc.dart';
+import 'package:ebla/presentations/features/chatbot/utility/chatbot_enums.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-enum OptionSelected { qatarRealEstatePlatform, authority }
+class DropdownCubit extends Cubit<ChatTypeEnum> {
+  DropdownCubit() : super(ChatTypeEnum.authority);
 
-class DropdownCubit extends Cubit<OptionSelected> {
-  DropdownCubit() : super(OptionSelected.qatarRealEstatePlatform);
-
-  void selectOption(OptionSelected option) {
+  void selectOption(ChatTypeEnum option) {
     emit(option);
   }
 }
