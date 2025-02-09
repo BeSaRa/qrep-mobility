@@ -24,7 +24,12 @@ class Constant {
   static const String aqaratBaseUrl = 'https://www.aqarat.gov.qa';
   static const String aqaratBaseUrl2 = 'https://ministry-municipality.v2202305135856227727.ultrasrv.de';
   static const String authorityChatBotBaseUrl = 'https://afnqcpcbai01.azurewebsites.net';
-  static String xFunctionsAuthorityChatbotKey =  dotenv.env['X_FUNCTION_AUTHORITY_CHATBOT_KEY'] ?? 'NO_KEY_FOUND';
+
+    //static String xFunctionsAuthorityChatbotKey =  dotenv.env['X_FUNCTION_AUTHORITY_CHATBOT_KEY'] ?? 'NO_KEY_FOUND';
+    //============= NOTE FROM ZAK To FATINA:==============
+    // static String xFunctionsAuthorityChatbotKey =  ;
+    //1- uncomment last line:
+    //2- put the key I send in Teams in last line then run the app
 
 
 

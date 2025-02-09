@@ -53,12 +53,12 @@ class SendButtonWidget extends StatelessWidget {
                             context.read<ChatHistoryCubit>().state;
 
                         //-------------------- authority send button ------------------------
+                        final userMessage =
+                            MessageRequestModel(content: message, role: 'user');
+                        context
+                            .read<ChatHistoryCubit>()
+                            .addMessage(userMessage);
                         if (chatState.activeChat == ChatTypeEnum.authority) {
-                          final userMessage = MessageRequestModel(
-                              content: message, role: 'user');
-                          context
-                              .read<ChatHistoryCubit>()
-                              .addMessage(userMessage);
                           // Send the user's message as a ChatMessage instance
                           // chatBotBloc.add(
                           BlocProvider.of<ChatBotBloc>(context).add(
@@ -68,14 +68,19 @@ class SendButtonWidget extends StatelessWidget {
                                       .read<ChatHistoryCubit>()
                                       .state
                                       .authorityMessages)));
-                          controller.clear();
-                          context.read<VoiceCubit>().clearText();
                         }
                         //-------------------- authority send button ------------------------
 
                         else {
-                          log("${chatState.activeChat}");
+                          BlocProvider.of<ChatBotBloc>(context)
+                              .add(SendMessageEvent.platformStarted(
+                            //ZAK: change the langgg
+                            PlatformChatbotRequestModel(
+                                lang: 1, question: message),
+                          ));
                         }
+                        controller.clear();
+                        context.read<VoiceCubit>().clearText();
                       }
                     },
               child: Container(

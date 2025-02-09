@@ -213,7 +213,7 @@ abstract class AppServiceClient {
       @Body() FavouriteResponse criteria);
 
 //------------- authority chatbot---------------
-   @POST('${Constant.authorityChatBotBaseUrl}/api/v1/chatbot/chat/website')
+  @POST('${Constant.authorityChatBotBaseUrl}/api/v1/chatbot/chat/website')
   Future<HttpResponse<ChatbotResponseModel>> sendMessageToChatbot(
       @Body() ChatbotRequestModel request);
 
@@ -231,10 +231,12 @@ abstract class AppServiceClient {
   @DELETE("${Constant.authorityChatBotBaseUrl}/api/v1/avatar/close-stream/{id}")
   Future<HttpResponse<SendAnswerResponseModel>> closeStream(
       @Path("id") String id);
-  /// ****************** platform chatbot ************************   
-    @POST('${Constant.baseUrl}/openai/chat/completion')
-      Future<HttpResponse<PlatformChatbotResponseModel>> sendMessageToPlatformChatbot(
-      @Body() PlatformChatbotRequestModel request);
+
+  /// ****************** platform chatbot ************************
+  @POST(EndPoints.sendMessageToPlatformChatbot)
+  // @POST('${Constant.baseUrl}/openai/chat/completion')
+  Future<HttpResponse<PlatformChatbotResponseModel>>
+      sendMessageToPlatformChatbot(@Body() PlatformChatbotRequestModel request);
 }
 
 //---------------------------------DirectUs-----------------------------------------

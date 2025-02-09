@@ -19,9 +19,10 @@ import 'app/depndency_injection.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-  //zak
-   await dotenv.load();  // Load .env file
+
   WidgetsFlutterBinding.ensureInitialized();
+    //NOTE from (ZAK): here we load the .env file which has the chat key 
+   await dotenv.load(fileName: '.env');  // Load .env file
   await ScreenUtil.ensureScreenSize();
 
   await EasyLocalization.ensureInitialized();

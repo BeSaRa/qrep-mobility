@@ -10,7 +10,7 @@ environment:
 
 dependencies:
   animated_theme_switcher: ^2.0.8
-  biometric_storage: 5.0.0+1
+  biometric_storage: ^5.0.1
   bloc: ^8.1.2
   bloc_concurrency: ^0.2.2
   cached_network_image: ^3.3.0
@@ -86,6 +86,7 @@ flutter:
     - assets/webviews/about_the_authority/
     - assets/webviews/contact/
     - assets/webviews/media_center/
+    - .env
   fonts:
     - family: Lusail
       fonts:

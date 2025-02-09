@@ -240,4 +240,7 @@ class AppStrings {
   String writeUourMessage = "write_your_message".tr();
   String chartNote = "chart_note".tr();
   String note = "note".tr();
+  String articleNumber = "article_number".tr();
+  String chatOtherResponseMessage = "chat_other_response_message".tr();
+  String avgNote = "avg_note".tr();
 }

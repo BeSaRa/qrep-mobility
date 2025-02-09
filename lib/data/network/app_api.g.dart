@@ -1518,7 +1518,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'Https://qrepbe.aqarat.gov.qa/mme-services/openai/chat/completion',
+              '/openai/chat/completion',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1661,7 +1661,6 @@ class _CmsServiceClient implements CmsServiceClient {
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
-
   @override
   Future<HttpResponse<UserResponse>> getUserInfo() async {
     const _extra = <String, dynamic>{};

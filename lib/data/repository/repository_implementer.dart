@@ -1522,7 +1522,7 @@ class RepositoryImplementer extends Repository {
         }
       } on DioException catch (e) {
         log("DioException occurred: ${e.message}");
-        log("DioException response: ${e.response?.data}");
+        log("DioException response: ${e.response?.data.toString()}");
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
         log("Unexpected error: $e");

@@ -10,11 +10,10 @@ import 'package:ebla/presentations/features/chatbot/blocs/start_stream_bloc/star
 import 'package:ebla/presentations/features/chatbot/utility/chatbot_enums.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/appbar_clipper.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/avatar_stream_widget.dart';
+import 'package:ebla/presentations/features/chatbot/widgets/chat_messages_list_widget.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/check_box_widget.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/rera_text_faild.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/send_button_widget.dart';
-import 'package:ebla/presentations/features/chatbot/widgets/shown_loading_indecator.dart';
-import 'package:ebla/presentations/features/chatbot/widgets/shown_message_widget.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/strings_manager.dart';
@@ -72,7 +71,7 @@ class _ChatViewState extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: costumeChatAppBar(context),
+      appBar: costumeChatAppBar(context, _scrollController),
       body: Stack(
         children: [
 // Background Image
@@ -136,15 +135,24 @@ class _ChatViewState extends State<ChatView> {
                                 isSending = true;
                               },
                               done: (val) {
-   //----- if i'm in authority-----
-                        if (val.response!=null){
- context.read<ChatHistoryCubit>().addMessage(MessageRequestModel(  role: 'assistant',  content: val.response!.message.content,));
-                        } 
-   //----- if i'm in platform-----
-                        else {
- context.read<ChatHistoryCubit>().addMessage(MessageRequestModel(  role: 'assistant',  content: val.platformResponse,));
-
-                        }
+                                //----- if i'm in authority-----
+                                if (val.response != null) {
+                                  context
+                                      .read<ChatHistoryCubit>()
+                                      .addMessage(MessageRequestModel(
+                                        role: 'assistant',
+                                        content: val.response!.message.content,
+                                      ));
+                                }
+                                //----- if i'm in platform-----
+                                else {
+                                  context
+                                      .read<ChatHistoryCubit>()
+                                      .addMessage(MessageRequestModel(
+                                        role: 'assistant',
+                                        content: val.platformResponse,
+                                      ));
+                                }
                                 isSending = false;
                               },
                               error: (val) {
@@ -154,7 +162,6 @@ class _ChatViewState extends State<ChatView> {
                                 }
                                 isSending = false;
                               });
-                              
                         },
                         bloc: chatBotBloc,
                         builder: (context, sendState) {
@@ -227,9 +234,11 @@ class _ChatViewState extends State<ChatView> {
                                                           return closeState
                                                               .maybeMap(
                                                                   loading: (_) => SizedBox(
-                                                                      width: AppSizeW.s40,
+                                                                      width: AppSizeW
+                                                                          .s40,
                                                                       height:
-                                                                          AppSizeH.s40,
+                                                                          AppSizeH
+                                                                              .s40,
                                                                       child:
                                                                           const CircularProgressIndicator()),
                                                                   orElse: () =>
@@ -411,62 +420,8 @@ class _ChatViewState extends State<ChatView> {
   Size get preferredSize => Size.fromHeight(AppSizeH.s30);
 }
 
-class ChatMessagesListWidget extends StatelessWidget {
-  const ChatMessagesListWidget({
-    super.key,
-    required this.isSending,
-    required this.isAvatarPressed,
-    required this.scrollController,
-  });
-
-  final ScrollController scrollController;
-  final bool isSending;
-  final bool isAvatarPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(AppSizeW.s8),
-      child: BlocConsumer<ChatHistoryCubit, ChatHistoryState>(
-        listener: (context, state) {},
-        builder: (context, messageHistory) {
-          //zak
-          //-----------------------------------------
-          // ✅ Get messages for the active chat
-          final chatState = context.read<ChatHistoryCubit>().state;
-          final messages = chatState.activeChat == ChatTypeEnum.authority
-              ? chatState.authorityMessages
-              : chatState.platformMessages;
-          log("zak $messages");
-          //-----------------------------------------
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppSizeW.s10),
-            child: ListView.builder(
-              controller: scrollController,
-              // itemCount: messageHistory.messages.length + (isSending ? 1 : 0),
-              itemCount: messages.length + (isSending ? 1 : 0),
-              itemBuilder: (context, index) {
-                //-----------------Loading container-------------
-                // if (isSending && index == messageHistory.messages.length) {
-                if (isSending && index == messages.length) {
-                  return const ShownLoadingIndecetorWidget();
-                } else {
-                  //-----------------main message-------------
-                  final message = messages[index];
-                  // final message = messageHistory.messages[index];
-                  return ShownMessageWidget(
-                      isAvatarShow: isAvatarPressed, message: message);
-                }
-              },
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-AppBar costumeChatAppBar(BuildContext context) {
+AppBar costumeChatAppBar(
+    BuildContext context, ScrollController scrollController) {
   return AppBar(
     automaticallyImplyLeading: false,
     backgroundColor: Colors.transparent,
@@ -553,12 +508,14 @@ AppBar costumeChatAppBar(BuildContext context) {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         CheckBoxWidget(
+                          scrollController: scrollController,
                           text: AppStrings().moreTitle,
                           value: ChatTypeEnum.qatarRealEstatePlatform,
                           isChecked: selectedOption ==
                               ChatTypeEnum.qatarRealEstatePlatform,
                         ),
                         CheckBoxWidget(
+                          scrollController: scrollController,
                           text: AppStrings().realEstateRegulatoryAuthority,
                           value: ChatTypeEnum.authority,
                           isChecked: selectedOption == ChatTypeEnum.authority,
