@@ -243,4 +243,5 @@ class AppStrings {
   String articleNumber = "article_number".tr();
   String chatOtherResponseMessage = "chat_other_response_message".tr();
   String avgNote = "avg_note".tr();
+  String largeDigitsNumbersNote = "large_digits_numbers_note".tr();
 }

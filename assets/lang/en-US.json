@@ -211,6 +211,7 @@
   "note":"Note",
   "article_number":"Article Number",
   "avg_note":"To get accurate average results, please select municipality, region, property type and property use.",
-  "chat_other_response_message":"It seems that the question is not clear or there is a problem. Please try again."
+  "chat_other_response_message":"It seems that the question is not clear or there is a problem. Please try again.",
+  "large_digits_numbers_note":"The chart data is displayed in a table because there are values ​​with large numerical digits."
   
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/record_cubit/voice_cubit.dart';
@@ -70,7 +68,6 @@ class SendButtonWidget extends StatelessWidget {
                                       .authorityMessages)));
                         }
                         //-------------------- authority send button ------------------------
-
                         else {
                           BlocProvider.of<ChatBotBloc>(context)
                               .add(SendMessageEvent.platformStarted(
