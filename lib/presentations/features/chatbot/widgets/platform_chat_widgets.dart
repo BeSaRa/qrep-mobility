@@ -1,14 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
+import 'package:ebla/presentations/features/chatbot/utility/pdf_service.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
+import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 //=====================================================================
@@ -116,11 +117,13 @@ class PlatformTableResponse extends StatefulWidget {
     required this.response,
     required this.isHasNote,
     required this.note,
+    required this.pdfTitle,
   });
 
   final PlatformChatbotResponseModel response;
   final bool isHasNote;
   final String note;
+  final String pdfTitle;
 
   @override
   State<PlatformTableResponse> createState() => _PlatformTableResponseState();
@@ -128,10 +131,12 @@ class PlatformTableResponse extends StatefulWidget {
 
 class _PlatformTableResponseState extends State<PlatformTableResponse> {
   final ScrollController _horizontalController = ScrollController();
+  final ValueNotifier<bool> isPDFDownloding = ValueNotifier(false);
 
   @override
   void dispose() {
     _horizontalController.dispose();
+    isPDFDownloding.dispose();
     super.dispose();
   }
 
@@ -140,34 +145,81 @@ class _PlatformTableResponseState extends State<PlatformTableResponse> {
     final List<String> headers = widget.response.response.first.keys.toList();
     return Column(
       children: [
-        //-------------------Note---------------------------
-        if (widget.isHasNote) ChatbotNoteWidget(note: widget.note),
-        //----------------------------------------------
-        //if (widget.isAvgTable) ChatbotNoteWidget(note: AppStrings().avgNote),
-        Scrollbar(
-          controller: _horizontalController,
-          // scrollbarOrientation: ScrollbarOrientation.top,
-          thumbVisibility: true,
-          child: Container(
-            alignment: Alignment.center,
-            width: MediaQuery.sizeOf(context).width,
-            constraints: BoxConstraints(
-              minWidth: MediaQuery.of(context).size.width,
+        Row(
+          spacing: AppSizeH.s5,
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: ValueListenableBuilder<bool>(
+                  valueListenable: isPDFDownloding,
+                  builder: (context, downloading, child) {
+                    return downloading
+                        ? const CircularProgressIndicator()
+                        : GestureDetector(
+                            onTap: () async {
+                              isPDFDownloding.value = true;
+
+                              try {
+                                String filePath = await PdfDownloadService(
+                                  pdfTitle: widget.pdfTitle,
+                                  response: widget.response,
+                                ).downloadPDF();
+                                if (mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content:
+                                            Text('PDF saved to $filePath')),
+                                  );
+                                }
+                              } catch (e) {
+                                if (mounted) {
+                                  errorToast(
+                                      AppStrings().defaultError, context);
+                                }
+                              } finally {
+                                isPDFDownloding.value = false;
+                              }
+                            },
+                            child: Icon(Icons.download, size: AppSizeW.s30));
+                  }),
             ),
-            child: PaginatedDataTable(
-              controller: _horizontalController,
-              columns: headers
-                  .map((header) => DataColumn(
-                        label: Center(child: Text(header)),
-                      ))
-                  .toList(),
-              source: _TableDataSource(widget.response.response, headers),
-              rowsPerPage: widget.response.response.length < 10
-                  ? widget.response.response.length
-                  : 10, // Pagination: 10 rows per page
-              showCheckboxColumn: false, // Hide unnecessary checkbox column
-            ),
-          ),
+            Expanded(
+                child: Column(
+              children: [
+                //-------------------Note---------------------------
+                if (widget.isHasNote) ChatbotNoteWidget(note: widget.note),
+                //----------------------------------------------
+                //if (widget.isAvgTable) ChatbotNoteWidget(note: AppStrings().avgNote),
+                Scrollbar(
+                  controller: _horizontalController,
+                  // scrollbarOrientation: ScrollbarOrientation.top,
+                  thumbVisibility: true,
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: MediaQuery.sizeOf(context).width,
+                    constraints: BoxConstraints(
+                      minWidth: MediaQuery.of(context).size.width,
+                    ),
+                    child: PaginatedDataTable(
+                      controller: _horizontalController,
+                      columns: headers
+                          .map((header) => DataColumn(
+                                label: Center(child: Text(header)),
+                              ))
+                          .toList(),
+                      source:
+                          _TableDataSource(widget.response.response, headers),
+                      rowsPerPage: widget.response.response.length < 10
+                          ? widget.response.response.length
+                          : 10, // Pagination: 10 rows per page
+                      showCheckboxColumn:
+                          false, // Hide unnecessary checkbox column
+                    ),
+                  ),
+                ),
+              ],
+            )),
+          ],
         ),
       ],
     );
@@ -239,10 +291,13 @@ class ChatbotNoteWidget extends StatelessWidget {
 class PlatformChartResponse extends StatefulWidget {
   final PlatformChatbotResponseModel responseData;
   final int currentMessageIndex;
-  const PlatformChartResponse(
-      {super.key,
-      required this.responseData,
-      required this.currentMessageIndex});
+  final String pdfTitle;
+  const PlatformChartResponse({
+    super.key,
+    required this.responseData,
+    required this.currentMessageIndex,
+    required this.pdfTitle,
+  });
 
   @override
   State<PlatformChartResponse> createState() => _PlatformChartResponseState();
@@ -257,6 +312,7 @@ class _PlatformChartResponseState extends State<PlatformChartResponse> {
     super.dispose();
   }
 
+  final ValueNotifier<bool> isPDFDownloding = ValueNotifier(false);
   @override
   Widget build(BuildContext context) {
     // Extract keys dynamically
@@ -280,149 +336,204 @@ class _PlatformChartResponseState extends State<PlatformChartResponse> {
 
     return Column(
       children: [
-        //--------------------------- Title ------------------------
+        Row(
+          spacing: AppSizeW.s5,
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: ValueListenableBuilder<bool>(
+                  valueListenable: isPDFDownloding,
+                  builder: (context, downloading, child) {
+                    return downloading
+                        ? const CircularProgressIndicator()
+                        : GestureDetector(
+                            onTap: () async {
+                              isPDFDownloding.value = true;
 
-        if (widget.currentMessageIndex != 0 &&
-            context
-                .read<ChatHistoryCubit>()
-                .state
-                .platformMessages[widget.currentMessageIndex - 1]
-                .content is String)
-          Container(
-            padding: EdgeInsets.all(AppSizeW.s12),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: ColorManager.primary,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(AppSizeR.s12),
-                  topRight: Radius.circular(AppSizeR.s12)),
+                              try {
+                                String filePath = await PdfDownloadService(
+                                  pdfTitle: widget.pdfTitle,
+                                  response: widget.responseData,
+                                ).downloadPDF();
+                                if (mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content:
+                                            Text('PDF saved to $filePath')),
+                                  );
+                                }
+                              } catch (e) {
+                                if (mounted) {
+                                  errorToast(
+                                      AppStrings().defaultError, context);
+                                }
+                              } finally {
+                                isPDFDownloding.value = false;
+                              }
+                            },
+                            child: Icon(Icons.download, size: AppSizeW.s30));
+                  }),
             ),
-            child: Text(
-              //the last message from the user
-              context
-                  .read<ChatHistoryCubit>()
-                  .state
-                  .platformMessages[widget.currentMessageIndex - 1]
-                  .content,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: AppSizeW.s16,
-                fontWeight: FontWeight.bold,
-                color: ColorManager.white,
-              ),
-            ),
-          ),
-        //--------------------------- CHART ------------------------
-        SizedBox(
-          height: chartHeight,
-          child: Scrollbar(
-            controller: _horizontalController,
-            thumbVisibility: true,
-            child: SingleChildScrollView(
-              controller: _horizontalController,
-              scrollDirection: Axis.horizontal,
-              child: Container(
-                decoration: BoxDecoration(color: Theme.of(context).focusColor),
-                constraints: BoxConstraints(
-                  minWidth: MediaQuery.of(context).size.width,
-                ),
-                width: widget.responseData.response.length * AppSizeW.s60,
-                padding: EdgeInsets.only(top: AppSizeW.s50),
-                child: BarChart(
-                  BarChartData(
-                    alignment: BarChartAlignment.spaceAround,
-                    maxY: widget.responseData.response
-                        .map((e) => (e[valueKey] as num).toDouble())
-                        .reduce((a, b) => a > b ? a : b),
-                    barGroups: widget.responseData.response.map((data) {
-                      final value = (data[valueKey] as num).toDouble();
-                      return BarChartGroupData(
-                        x: data[monthKey],
-                        barRods: [
-                          BarChartRodData(
-                            toY: value,
-                            color: ColorManager.primary,
-                            width: AppSizeW.s20,
-                            borderRadius: BorderRadius.circular(AppSizeR.s6),
-                          ),
-                        ],
-                      );
-                    }).toList(),
-                    titlesData: FlTitlesData(
-                      leftTitles: AxisTitles(
-                        sideTitles: SideTitles(
-                          showTitles: true,
-                          interval: 100, // Adjust spacing
-                          reservedSize: AppSizeW.s50,
+            Expanded(
+              child: Column(
+                children: [
+                  //--------------------------- Title ------------------------
+
+                  if (widget.currentMessageIndex != 0 &&
+                      context
+                          .read<ChatHistoryCubit>()
+                          .state
+                          .platformMessages[widget.currentMessageIndex - 1]
+                          .content is String)
+                    Container(
+                      padding: EdgeInsets.all(AppSizeW.s12),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: ColorManager.primary,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(AppSizeR.s12),
+                            topRight: Radius.circular(AppSizeR.s12)),
+                      ),
+                      child: Text(
+                        //the last message from the user
+                        context
+                            .read<ChatHistoryCubit>()
+                            .state
+                            .platformMessages[widget.currentMessageIndex - 1]
+                            .content,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: AppSizeW.s16,
+                          fontWeight: FontWeight.bold,
+                          color: ColorManager.white,
                         ),
-                      ),
-                      bottomTitles: AxisTitles(
-                        sideTitles: SideTitles(
-                          showTitles: true,
-                          getTitlesWidget: (value, meta) {
-                            final monthLabel = widget.responseData.response
-                                .firstWhere((e) => e[monthKey] == value,
-                                    orElse: () => {})[monthKey]
-                                .toString();
-                            return Text(
-                              monthLabel,
-                              style: TextStyle(
-                                  fontSize: AppSizeW.s12,
-                                  fontWeight: FontWeight.bold),
-                            );
-                          },
-                        ),
-                      ),
-                      rightTitles: const AxisTitles(
-                        sideTitles:
-                            SideTitles(showTitles: false), // Hide right axis
-                      ),
-                      topTitles: const AxisTitles(
-                        sideTitles:
-                            SideTitles(showTitles: false), // Hide top axis
                       ),
                     ),
-                    gridData: const FlGridData(show: false),
-                    borderData: FlBorderData(show: false),
-                    barTouchData: BarTouchData(
-                      enabled: true,
-                      touchTooltipData: BarTouchTooltipData(
-                        getTooltipColor: (group) => Colors.transparent,
-                        getTooltipItem: (group, groupIndex, rod, rodIndex) {
-                          // Get the value for the current bar
-                          final value = rod.toY.toString();
-                          return BarTooltipItem(
-                            value,
-                            TextStyle(
-                              color: ColorManager.primary,
-                              fontSize: AppSizeW.s14,
-                              fontWeight: FontWeight.w900,
+                  //--------------------------- CHART ------------------------
+                  SizedBox(
+                    height: chartHeight,
+                    child: Scrollbar(
+                      controller: _horizontalController,
+                      thumbVisibility: true,
+                      child: SingleChildScrollView(
+                        controller: _horizontalController,
+                        scrollDirection: Axis.horizontal,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).focusColor),
+                          constraints: BoxConstraints(
+                            minWidth: MediaQuery.of(context).size.width,
+                          ),
+                          width: widget.responseData.response.length *
+                              AppSizeW.s60,
+                          padding: EdgeInsets.only(top: AppSizeW.s50),
+                          child: BarChart(
+                            BarChartData(
+                              alignment: BarChartAlignment.spaceAround,
+                              maxY: widget.responseData.response
+                                  .map((e) => (e[valueKey] as num).toDouble())
+                                  .reduce((a, b) => a > b ? a : b),
+                              barGroups:
+                                  widget.responseData.response.map((data) {
+                                final value =
+                                    (data[valueKey] as num).toDouble();
+                                return BarChartGroupData(
+                                  x: data[monthKey],
+                                  barRods: [
+                                    BarChartRodData(
+                                      toY: value,
+                                      color: ColorManager.primary,
+                                      width: AppSizeW.s20,
+                                      borderRadius:
+                                          BorderRadius.circular(AppSizeR.s6),
+                                    ),
+                                  ],
+                                );
+                              }).toList(),
+                              titlesData: FlTitlesData(
+                                leftTitles: AxisTitles(
+                                  sideTitles: SideTitles(
+                                    showTitles: true,
+                                    interval: 100, // Adjust spacing
+                                    reservedSize: AppSizeW.s50,
+                                  ),
+                                ),
+                                bottomTitles: AxisTitles(
+                                  sideTitles: SideTitles(
+                                    showTitles: true,
+                                    getTitlesWidget: (value, meta) {
+                                      final monthLabel = widget
+                                          .responseData.response
+                                          .firstWhere(
+                                              (e) => e[monthKey] == value,
+                                              orElse: () => {})[monthKey]
+                                          .toString();
+                                      return Text(
+                                        monthLabel,
+                                        style: TextStyle(
+                                            fontSize: AppSizeW.s12,
+                                            fontWeight: FontWeight.bold),
+                                      );
+                                    },
+                                  ),
+                                ),
+                                rightTitles: const AxisTitles(
+                                  sideTitles: SideTitles(
+                                      showTitles: false), // Hide right axis
+                                ),
+                                topTitles: const AxisTitles(
+                                  sideTitles: SideTitles(
+                                      showTitles: false), // Hide top axis
+                                ),
+                              ),
+                              gridData: const FlGridData(show: false),
+                              borderData: FlBorderData(show: false),
+                              barTouchData: BarTouchData(
+                                enabled: true,
+                                touchTooltipData: BarTouchTooltipData(
+                                  getTooltipColor: (group) =>
+                                      Colors.transparent,
+                                  getTooltipItem:
+                                      (group, groupIndex, rod, rodIndex) {
+                                    // Get the value for the current bar
+                                    final value = rod.toY.toString();
+                                    return BarTooltipItem(
+                                      value,
+                                      TextStyle(
+                                        color: ColorManager.primary,
+                                        fontSize: AppSizeW.s14,
+                                        fontWeight: FontWeight.w900,
+                                      ),
+                                    );
+                                  },
+                                  // Adjust the tooltip position based on the touch location
+                                  tooltipPadding: EdgeInsets.symmetric(
+                                      horizontal: AppSizeW.s5),
+                                ),
+                                // touchResponse: TouchResponse(
+                                //   touchTooltipData: BarTouchTooltipData(
+                                //     tooltipBgColor: Colors.black.withOpacity(0.8),
+                                //   ),
+                                // ),
+                              ),
                             ),
-                          );
-                        },
-                        // Adjust the tooltip position based on the touch location
-                        tooltipPadding:
-                            EdgeInsets.symmetric(horizontal: AppSizeW.s5),
+                          ),
+                        ),
                       ),
-                      // touchResponse: TouchResponse(
-                      //   touchTooltipData: BarTouchTooltipData(
-                      //     tooltipBgColor: Colors.black.withOpacity(0.8),
-                      //   ),
-                      // ),
                     ),
                   ),
-                ),
+                  //--------------------- month -------------
+                  Padding(
+                    padding: EdgeInsets.only(top: AppSizeW.s5),
+                    child: Text(
+                      monthKey,
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-        ),
-        //--------------------- month -------------
-        Padding(
-          padding: EdgeInsets.only(top: AppSizeW.s5),
-          child: Text(
-            monthKey,
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
+          ],
         ),
       ],
     );
@@ -444,13 +555,9 @@ class PlatformLawResponse extends StatelessWidget {
         final item = responseData.response[index];
         return PlatformLawResponseBubble(
           title: item['title'] ?? "بدون عنوان",
-          articleNumber: item['article_number'],
+          articleNumber: item['article_number'] ?? 0.0,
           article: item['article'] ?? "",
           content: item['Content'] ?? "",
-          //title: item.title ??"zak",
-          // articleNumber: item.article_number.toString(),
-          // article: item.article??"zak1",
-          // content: item.content??"zak2",
         );
       },
       separatorBuilder: (context, index) => SizedBox(height: AppSizeH.s10),

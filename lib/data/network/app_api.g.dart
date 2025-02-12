@@ -1935,7 +1935,7 @@ class _CmsServiceClient implements CmsServiceClient {
     )
             .compose(
               _dio.options,
-              'https://ministry-municipality.v2202305135856227727.ultrasrv.de/wp-json/legislation/v1/all',
+              'https://www.aqarat.gov.qa/wp-json/legislation/v1/all',
               queryParameters: queryParameters,
               data: _data,
             )

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/utility/chatbot_enums.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/shown_loading_indecator.dart';
@@ -26,14 +25,12 @@ class ChatMessagesListWidget extends StatelessWidget {
       child: BlocConsumer<ChatHistoryCubit, ChatHistoryState>(
         listener: (context, state) {},
         builder: (context, messageHistory) {
-          //zak
           //-----------------------------------------
           // ✅ Get messages for the active chat
           final chatState = context.read<ChatHistoryCubit>().state;
           final messages = chatState.activeChat == ChatTypeEnum.authority
               ? chatState.authorityMessages
               : chatState.platformMessages;
-          log("zak $messages");
           //-----------------------------------------
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: AppSizeW.s10),

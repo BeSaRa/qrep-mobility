@@ -291,6 +291,6 @@ abstract class CmsServiceClient {
   @GET("${Constant.aqaratBaseUrl}/wp-json/wp/v2/posts")
   Future<HttpResponse<List<NewsModel>>> getNews();
   //get laws
-  @GET("${Constant.aqaratBaseUrl2}/wp-json/legislation/v1/all")
+  @GET("${Constant.aqaratBaseUrl}/wp-json/legislation/v1/all")
   Future<HttpResponse<List<LawsModel>>> getLaws();
 }

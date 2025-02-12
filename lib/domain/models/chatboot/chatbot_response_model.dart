@@ -164,17 +164,3 @@ abstract class PlatformChatbotResponseModel with _$PlatformChatbotResponseModel 
   factory PlatformChatbotResponseModel.fromJson(Map<String, dynamic> json) =>
       _$PlatformChatbotResponseModelFromJson(json);
 }
-// @freezed
-// abstract class PlatformChatbotResponseDataModel with _$PlatformChatbotResponseDataModel {
-//   const factory PlatformChatbotResponseDataModel({
-//     @Default(null) @JsonKey(name: "الشهر") int? month,
-//     @Default(null) @JsonKey(name: "النوع") String? type,
-//     @Default(null) @JsonKey(name: "متوسط_سعر_البيع") int? average,
-//     //zak
-//     //هون بدي حط كلشي ريسبونس ممكن يجيني بقلب ال ريسبونس كي
-
-//   }) = _PlatformChatbotResponseDataModel;
-
-//   factory PlatformChatbotResponseDataModel.fromJson(Map<String, dynamic> json) =>
-//       _$PlatformChatbotResponseDataModelFromJson(json);
-// }

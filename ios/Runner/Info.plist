@@ -40,12 +40,21 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSFaceIDUsageDescription</key>
-	<!--  -->
+	<!-- for recording voice -->
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<!--  -->
-	<!-- delete me zak -->
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>QREP needs Bluetooth access to connect with external audio devices.</string>
+
+	<!-- for pdf -->
+	<key>NSDocumentsDirectoryUsageDescription</key>
+	<string>App needs access to save files.</string>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
+	<key>UIFileSharingEnabled</key>
+	<true/>
+	<!-- web RTC -->
 	<key>NSCameraUsageDescription</key>
-	<string>Your message to request camera access</string>
+	<string>QREP needs access to the camera in order to interact with the avatar</string>
 
 	<key>NSMicrophoneUsageDescription</key>
 	<string>QREP wants to save your password and reach it from face id</string>

@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/app/constants.dart';
 import 'package:ebla/presentations/features/investor_journey/blocs/investor_journey_bloc.dart';
 import 'package:ebla/presentations/features/investor_journey/blocs/investor_journey_state.dart';
 import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
@@ -18,20 +19,20 @@ class InvestorJourneyView extends StatelessWidget {
     switch (stepNumber) {
       case "0":
         return context.locale == ENGLISH_LOCAL
-            ? 'https://www.aqarat.gov.qa/en/investors-journey/'
-            : 'https://www.aqarat.gov.qa/%D8%B1%D8%AD%D9%84%D8%A9-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AB%D9%85%D8%B1/';
+            ? '${Constant.aqaratBaseUrl}/en/investors-journey/'
+            : '${Constant.aqaratBaseUrl}/%D8%B1%D8%AD%D9%84%D8%A9-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AB%D9%85%D8%B1/';
       case "1":
         return context.locale == ENGLISH_LOCAL
-            ? "https://www.aqarat.gov.qa/en/real-estate-developers/?lang=en"
-            : 'https://www.aqarat.gov.qa/%d8%a7%d9%84%d9%85%d8%b7%d9%88%d8%b1%d9%8a%d9%86-%d8%a7%d9%84%d8%b9%d9%82%d8%a7%d8%b1%d9%8a%d9%8a%d9%86/';
+            ? "${Constant.aqaratBaseUrl}/en/real-estate-developers/?lang=en"
+            : '${Constant.aqaratBaseUrl}/%d8%a7%d9%84%d9%85%d8%b7%d9%88%d8%b1%d9%8a%d9%86-%d8%a7%d9%84%d8%b9%d9%82%d8%a7%d8%b1%d9%8a%d9%8a%d9%86/';
       case "2":
         return context.locale == ENGLISH_LOCAL
-            ? "https://www.aqarat.gov.qa/en/professionals/?lang=en"
-            : 'https://www.aqarat.gov.qa/%d9%85%d8%b2%d8%a7%d9%88%d9%84%d9%8a-%d8%a7%d9%84%d9%85%d9%87%d9%86%d8%a9-3/';
+            ? "${Constant.aqaratBaseUrl}/en/professionals/?lang=en"
+            : '${Constant.aqaratBaseUrl}/%d9%85%d8%b2%d8%a7%d9%88%d9%84%d9%8a-%d8%a7%d9%84%d9%85%d9%87%d9%86%d8%a9-3/';
       default:
         return context.locale == ENGLISH_LOCAL
-            ? 'https://www.aqarat.gov.qa/en/investors-journey/'
-            : 'https://www.aqarat.gov.qa/%D8%B1%D8%AD%D9%84%D8%A9-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AB%D9%85%D8%B1/';
+            ? '${Constant.aqaratBaseUrl}/en/investors-journey/'
+            : '${Constant.aqaratBaseUrl}/%D8%B1%D8%AD%D9%84%D8%A9-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AB%D9%85%D8%B1/';
     }
   }
 

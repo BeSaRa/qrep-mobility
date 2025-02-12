@@ -57,7 +57,10 @@ class VoiceCubit extends Cubit<VoiceState> {
           errorMessage: "Speech recognition not available"));
       return;
     }
-
+    //to clear the text every time i record
+    emit(VoiceState(
+      text: '',
+    ));
     _speech.listen(
       onResult: (val) async {
         if (RegExp(r'[\u0600-\u06FF]').hasMatch(val.recognizedWords)) {
@@ -65,7 +68,6 @@ class VoiceCubit extends Cubit<VoiceState> {
         } else {
           selectedLocale = "en_US";
         }
-        print("Detected language: $selectedLocale");
         // if (isClosed) return; // Check if the Cubit is closed
         emit(VoiceState(
           isListening: !val.finalResult,

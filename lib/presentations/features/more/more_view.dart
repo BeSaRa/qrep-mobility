@@ -578,7 +578,7 @@ class MainMoreButtonsList extends StatelessWidget {
         ),
         //=====================نبذة عن الهيئة===================
         MoreWidgetButton(
-            icon: Icons.details,
+            icon: null,
             title: AppStrings().aboutTheAuthority,
             isButton: true,
             onPressed: () {
@@ -588,7 +588,7 @@ class MainMoreButtonsList extends StatelessWidget {
             widget: const Icon(Icons.arrow_forward_ios)),
         //===================== رؤية مستقبلية ===================
         MoreWidgetButton(
-          icon: Icons.color_lens_outlined,
+          icon: null,
           title: AppStrings().visionAndMission,
           isButton: true,
           onPressed: () {
@@ -598,7 +598,7 @@ class MainMoreButtonsList extends StatelessWidget {
         ),
         //===================== مهام ومسؤوليات ===================
         MoreWidgetButton(
-          icon: Icons.color_lens_outlined,
+          icon: null,
           title: AppStrings().tasksAndResponsibilitiesOftheAuthority,
           isButton: true,
           onPressed: () {
@@ -609,16 +609,16 @@ class MainMoreButtonsList extends StatelessWidget {
         ),
         //===================== موقع الهيئة ===================
         MoreWidgetButton(
-          icon: Icons.color_lens_outlined,
+          icon: null,
           title: AppStrings().authorityLocation,
           isButton: true,
           onPressed: () {
-             context.pushNamed(RoutesNames.authorityMap);
+            context.pushNamed(RoutesNames.authorityMap);
           },
         ),
         //===================== تواصل معنا ===================
         MoreWidgetButton(
-          icon: Icons.color_lens_outlined,
+          icon: null,
           title: AppStrings().contactUs,
           isButton: true,
           onPressed: () {
@@ -628,7 +628,7 @@ class MainMoreButtonsList extends StatelessWidget {
         ),
         //===================== اخبار الهيئة ===================
         // MoreWidgetButton(
-        //   icon: Icons.color_lens_outlined,
+        //   icon:null,
         //   title: AppStrings().authorityNews,
         //   isButton: true,
         //   onPressed: () {
@@ -638,7 +638,7 @@ class MainMoreButtonsList extends StatelessWidget {
         // ),
         //===================== services ===================
         MoreWidgetButton(
-          icon: Icons.color_lens_outlined,
+          icon: null,
           title: AppStrings().services,
           isButton: true,
           onPressed: () {
@@ -649,7 +649,6 @@ class MainMoreButtonsList extends StatelessWidget {
       ],
     );
   }
-
 }
 
 class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -760,7 +759,7 @@ class MoreWidgetButton extends StatelessWidget {
     this.onPressed,
   });
 
-  final IconData icon;
+  final IconData? icon;
 
   final String title;
   final bool isButton;
@@ -802,10 +801,11 @@ class MoreWidgetButton extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(
-              icon,
-              color: Theme.of(context).colorScheme.onSecondary,
-            ),
+            if (icon != null)
+              Icon(
+                icon,
+                color: Theme.of(context).colorScheme.onSecondary,
+              ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: AppSizeH.s6),
               child: Text(title,

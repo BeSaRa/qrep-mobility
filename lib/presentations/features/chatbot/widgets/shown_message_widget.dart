@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/platform_chat_widgets.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
@@ -9,6 +10,8 @@ import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ShownMessageWidget extends StatelessWidget {
   const ShownMessageWidget({
@@ -264,7 +267,20 @@ class FormattedDataWidget extends StatelessWidget {
           {
             if (platformResponse.response.isNotEmpty) {
               return PlatformTableResponse(
-                  note: "", response: platformResponse, isHasNote: false);
+                  pdfTitle: context
+                          .read<ChatHistoryCubit>()
+                          .state
+                          .platformMessages[currentMessageIndex - 1]
+                          .content is String
+                      ? context
+                          .read<ChatHistoryCubit>()
+                          .state
+                          .platformMessages[currentMessageIndex - 1]
+                          .content
+                      : "data",
+                  note: "",
+                  response: platformResponse,
+                  isHasNote: false);
             } else {
               return const InvalidQuestionWidget();
             }
@@ -272,51 +288,120 @@ class FormattedDataWidget extends StatelessWidget {
         //-----------------------------------------------------------------------------
         case "CHART":
           {
-            final int elementKeysNumber =
-                platformResponse.response.first.keys.toList().length;
-            if (elementKeysNumber > 2) {
-              return PlatformTableResponse(
-                  note: AppStrings().chartNote,
-                  response: platformResponse,
-                  isHasNote: true);
-            } else {
-              // if all data values are huge:
-              if (!allValuesHaveLessThanFiveDigitsBeforePoint(
-                  platformResponse.response)) {
+            if (platformResponse.response.isNotEmpty) {
+              final int elementKeysNumber =
+                  platformResponse.response.first.keys.toList().length;
+              if (elementKeysNumber > 2) {
                 return PlatformTableResponse(
-                    note: AppStrings().largeDigitsNumbersNote,
+                    pdfTitle: context
+                            .read<ChatHistoryCubit>()
+                            .state
+                            .platformMessages[currentMessageIndex - 1]
+                            .content is String
+                        ? context
+                            .read<ChatHistoryCubit>()
+                            .state
+                            .platformMessages[currentMessageIndex - 1]
+                            .content
+                        : "data",
+                    note: AppStrings().chartNote,
                     response: platformResponse,
                     isHasNote: true);
+              } else {
+                // if all data values are huge:
+                if (!allValuesHaveLessThanFiveDigitsBeforePoint(
+                    platformResponse.response)) {
+                  return PlatformTableResponse(
+                      pdfTitle: context
+                              .read<ChatHistoryCubit>()
+                              .state
+                              .platformMessages[currentMessageIndex - 1]
+                              .content is String
+                          ? context
+                              .read<ChatHistoryCubit>()
+                              .state
+                              .platformMessages[currentMessageIndex - 1]
+                              .content
+                          : "data",
+                      note: AppStrings().largeDigitsNumbersNote,
+                      response: platformResponse,
+                      isHasNote: true);
+                }
+                return PlatformChartResponse(
+                    pdfTitle: context
+                            .read<ChatHistoryCubit>()
+                            .state
+                            .platformMessages[currentMessageIndex - 1]
+                            .content is String
+                        ? context
+                            .read<ChatHistoryCubit>()
+                            .state
+                            .platformMessages[currentMessageIndex - 1]
+                            .content
+                        : "data",
+                    responseData: platformResponse,
+                    currentMessageIndex: currentMessageIndex);
               }
-              return PlatformChartResponse(
-                  responseData: platformResponse,
-                  currentMessageIndex: currentMessageIndex);
+            } else {
+              return const InvalidQuestionWidget();
             }
           }
         //-----------------------------------------------------------------------------
         case "LAW":
-          return PlatformLawResponse(
-            responseData: platformResponse,
-          );
+          {
+            if (platformResponse.response.isNotEmpty) {
+              return PlatformLawResponse(
+                responseData: platformResponse,
+              );
+            } else {
+              return const InvalidQuestionWidget();
+            }
+          }
         //-----------------------------------------------------------------------------
         case "AVG":
           {
-            final int elementKeysNumber =
-                platformResponse.response.first.keys.toList().length;
-            if (elementKeysNumber == 1) {
-              return PlatformAvgResponse(
-                responseData: platformResponse,
-                isMessageInArabic: isMessageInArabic,
-              );
-            } else if (elementKeysNumber == 2) {
-              return PlatformChartResponse(
-                  currentMessageIndex: currentMessageIndex,
-                  responseData: platformResponse);
+            if (platformResponse.response.isNotEmpty) {
+              final int elementKeysNumber =
+                  platformResponse.response.first.keys.toList().length;
+              if (elementKeysNumber == 1) {
+                return PlatformAvgResponse(
+                  responseData: platformResponse,
+                  isMessageInArabic: isMessageInArabic,
+                );
+              } else if (elementKeysNumber == 2) {
+                return PlatformChartResponse(
+                    pdfTitle: context
+                            .read<ChatHistoryCubit>()
+                            .state
+                            .platformMessages[currentMessageIndex - 1]
+                            .content is String
+                        ? context
+                            .read<ChatHistoryCubit>()
+                            .state
+                            .platformMessages[currentMessageIndex - 1]
+                            .content
+                        : "data",
+                    currentMessageIndex: currentMessageIndex,
+                    responseData: platformResponse);
+              } else {
+                return PlatformTableResponse(
+                    pdfTitle: context
+                            .read<ChatHistoryCubit>()
+                            .state
+                            .platformMessages[currentMessageIndex - 1]
+                            .content is String
+                        ? context
+                            .read<ChatHistoryCubit>()
+                            .state
+                            .platformMessages[currentMessageIndex - 1]
+                            .content
+                        : "data",
+                    note: AppStrings().avgNote,
+                    response: platformResponse,
+                    isHasNote: true);
+              }
             } else {
-              return PlatformTableResponse(
-                  note: AppStrings().avgNote,
-                  response: platformResponse,
-                  isHasNote: true);
+              return const InvalidQuestionWidget();
             }
           }
         //-----------------------------------------------------------------------------

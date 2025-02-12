@@ -174,13 +174,33 @@ class _ChatViewState extends State<ChatView> {
                           return Column(
                             children: <Widget>[
                               if (isAvatarPressed)
-                                SizedBox(
-                                  height: AppSizeH.s310,
-                                  child: ChatMessagesListWidget(
-                                    scrollController: _scrollController,
-                                    isSending: isSending,
-                                    isAvatarPressed: isAvatarPressed,
-                                  ),
+                                Stack(
+                                  children: [
+                                    SizedBox(
+                                      height: AppSizeH.s310,
+                                      child: ChatMessagesListWidget(
+                                        scrollController: _scrollController,
+                                        isSending: isSending,
+                                        isAvatarPressed: isAvatarPressed,
+                                      ),
+                                    ),
+                                    Container(
+                                      height: AppSizeH.s20,
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          begin: Alignment.bottomCenter,
+                                          end: Alignment.topCenter,
+                                          colors: [
+                                            Colors
+                                                .transparent, // Bottom: Fully transparent
+                                            Colors.black.withOpacity(
+                                              0.1,
+                                            ), // Top: Black with opacity
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               if (!isAvatarPressed)
                                 Expanded(
@@ -196,133 +216,12 @@ class _ChatViewState extends State<ChatView> {
                                   children: <Widget>[
                                     /*========================For Ai Avatar========================= */
 
-                                    // BlocBuilder<DropdownCubit, ChatTypeEnum>(
-                                    //     bloc: BlocProvider.of<DropdownCubit>(
-                                    //         context),
-                                    //     builder: (context, selectedOption) {
-                                    //       if (context
-                                    //               .read<DropdownCubit>()
-                                    //               .state ==
-                                    //           ChatTypeEnum.authority) {
-                                    //         return ValueListenableBuilder<bool>(
-                                    //             valueListenable:
-                                    //                 isAvatarExpanded,
-                                    //             builder:
-                                    //                 (context, expanded, child) {
-                                    //               return BlocConsumer<
-                                    //                       StartStreamBloc,
-                                    //                       StartStreamState>(
-                                    //                   bloc: startStreamBloc,
-                                    //                   listener: (context,
-                                    //                       avatarState) {},
-                                    //                   builder: (context,
-                                    //                       avatarState) {
-                                    //                     return BlocConsumer<
-                                    //                             CloseStreamBloc,
-                                    //                             CloseStreamState>(
-                                    //                         listener: (context,
-                                    //                             closestate) {
-                                    //                       closestate.mapOrNull(
-                                    //                         error: (value) {
-                                    //                           errorToast(
-                                    //                               value.message,
-                                    //                               context);
-                                    //                         },
-                                    //                         done: (value) {
-                                    //                           isAvatarExpanded
-                                    //                                   .value =
-                                    //                               !isAvatarExpanded
-                                    //                                   .value;
-                                    //                         },
-                                    //                       );
-                                    //                     }, builder: (context,
-                                    //                             closeState) {
-                                    //                       return closeState
-                                    //                           .maybeMap(
-                                    //                               loading: (_) => SizedBox(
-                                    //                                   width: AppSizeW
-                                    //                                       .s40,
-                                    //                                   height:
-                                    //                                       AppSizeH
-                                    //                                           .s40,
-                                    //                                   child:
-                                    //                                       const CircularProgressIndicator()),
-                                    //                               orElse: () =>
-                                    //                                   GestureDetector(
-                                    //                                     onTap:
-                                    //                                         () async {
-                                    //                                       //here i start the stream
-                                    //                                       // context.read<>().add(StartStream());
-                                    //                                       // startStreamBloc.add( const StartStreamEvent.started());
-                                    //                                       // Navigator.push(
-                                    //                                       //   context,
-                                    //                                       //   MaterialPageRoute(
-                                    //                                       //       builder: (context) =>
-                                    //                                       //           const StreamPage()),
-                                    //                                       // );
-                                    //                                       if (expanded) {
-                                    //                                         // If the close icon is shown, perform logic for closing the AI assistant
-                                    //                                         log("Close icon pressed - Perform close logic");
-                                    //                                         if (context.read<StartStreamBloc>().state.startStreamResponse.data !=
-                                    //                                             null) {
-                                    //                                           context.read<CloseStreamBloc>().add(CloseStreamEvent.closeStream(
-                                    //                                               //here i pass the streamID
-                                    //                                               context.read<StartStreamBloc>().state.startStreamResponse.data!.id));
-                                    //                                         }
-
-                                    //                                         // startStreamBloc.add(const StopStreamEvent());
-                                    //                                       } else {
-                                    //                                         // If the avatar icon is shown, perform logic for opening the AI assistant
-                                    //                                         log("Avatar icon pressed - Perform open logic");
-                                    //                                         context.read<StartStreamBloc>().add(const StartStreamEvent.started());
-                                    //                                         isAvatarExpanded.value =
-                                    //                                             !isAvatarExpanded.value;
-                                    //                                         // startStreamBloc.add(const StartStreamEvent.started());
-                                    //                                       }
-                                    //                                     },
-                                    //                                     child:
-                                    //                                         AnimatedRotation(
-                                    //                                       turns: expanded
-                                    //                                           ? 0.5
-                                    //                                           : 0.0, // Rotate 180° when expanded, back when closed
-                                    //                                       duration:
-                                    //                                           const Duration(milliseconds: 300),
-                                    //                                       child:
-                                    //                                           Container(
-                                    //                                         width:
-                                    //                                             AppSizeW.s40,
-                                    //                                         height:
-                                    //                                             AppSizeH.s40,
-                                    //                                         padding:
-                                    //                                             EdgeInsets.symmetric(horizontal: AppSizeW.s5),
-                                    //                                         decoration:
-                                    //                                             BoxDecoration(
-                                    //                                           border: Border(
-                                    //                                             right: BorderSide(width: 1, color: Theme.of(context).hoverColor),
-                                    //                                           ),
-                                    //                                         ),
-                                    //                                         child:
-                                    //                                             AnimatedSwitcher(
-                                    //                                           duration: Duration(milliseconds: 300),
-                                    //                                           transitionBuilder: (child, animation) => ScaleTransition(
-                                    //                                             scale: animation,
-                                    //                                             child: child,
-                                    //                                           ),
-                                    //                                           child: expanded ? Icon(Icons.close, key: ValueKey("closeIcon")) : Image.asset(ImageAssets.chatBot, key: ValueKey("avatarIcon")),
-                                    //                                         ),
-                                    //                                       ),
-                                    //                                     ),
-                                    //                                   ));
-                                    //                     });
-                                    //                   });
-                                    //             });
-                                    //       } else {
-                                    //         return const SizedBox.shrink();
-                                    //       }
-                                    //     }),
-                                    // SizedBox(
-                                    //   width: AppSizeW.s5,
-                                    // ),
+                                    AiAvatarIconWidget(
+                                        isAvatarExpanded: isAvatarExpanded,
+                                        startStreamBloc: startStreamBloc),
+                                    SizedBox(
+                                      width: AppSizeW.s5,
+                                    ),
                                     /*========================For record========================= */
                                     BlocBuilder<VoiceCubit, VoiceState>(
                                         bloc: BlocProvider.of<VoiceCubit>(
@@ -330,7 +229,6 @@ class _ChatViewState extends State<ChatView> {
                                         builder: (context, voiceState) {
                                           return GestureDetector(
                                             onTap: () {
-                                              log("${voiceState.isListening}");
                                               if (voiceState.isListening) {
                                                 context
                                                     .read<VoiceCubit>()
@@ -426,6 +324,133 @@ class _ChatViewState extends State<ChatView> {
   }
 
   Size get preferredSize => Size.fromHeight(AppSizeH.s30);
+}
+
+class AiAvatarIconWidget extends StatelessWidget {
+  const AiAvatarIconWidget({
+    super.key,
+    required this.isAvatarExpanded,
+    required this.startStreamBloc,
+  });
+
+  final ValueNotifier<bool> isAvatarExpanded;
+  final StartStreamBloc startStreamBloc;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<DropdownCubit, ChatTypeEnum>(
+        bloc: BlocProvider.of<DropdownCubit>(context),
+        builder: (context, selectedOption) {
+          if (context.read<DropdownCubit>().state == ChatTypeEnum.authority) {
+            return ValueListenableBuilder<bool>(
+                valueListenable: isAvatarExpanded,
+                builder: (context, expanded, child) {
+                  return BlocConsumer<StartStreamBloc, StartStreamState>(
+                      bloc: startStreamBloc,
+                      listener: (context, avatarState) {},
+                      builder: (context, avatarState) {
+                        return BlocConsumer<CloseStreamBloc, CloseStreamState>(
+                            listener: (context, closestate) {
+                          closestate.mapOrNull(
+                            error: (value) {
+                              errorToast(value.message, context);
+                            },
+                            done: (value) {
+                              isAvatarExpanded.value = !isAvatarExpanded.value;
+                            },
+                          );
+                        }, builder: (context, closeState) {
+                          return closeState.maybeMap(
+                              loading: (_) => SizedBox(
+                                  width: AppSizeW.s40,
+                                  height: AppSizeH.s40,
+                                  child: const CircularProgressIndicator()),
+                              orElse: () => GestureDetector(
+                                    onTap: () async {
+                                      //here i start the stream
+                                      // context.read<>().add(StartStream());
+                                      // startStreamBloc.add( const StartStreamEvent.started());
+                                      // Navigator.push(
+                                      //   context,
+                                      //   MaterialPageRoute(
+                                      //       builder: (context) =>
+                                      //           const StreamPage()),
+                                      // );
+                                      if (expanded) {
+                                        // If the close icon is shown, perform logic for closing the AI assistant
+                                        log("Close icon pressed - Perform close logic");
+                                        if (context
+                                                .read<StartStreamBloc>()
+                                                .state
+                                                .startStreamResponse
+                                                .data !=
+                                            null) {
+                                          context.read<CloseStreamBloc>().add(
+                                              CloseStreamEvent.closeStream(
+                                                  //here i pass the streamID
+                                                  context
+                                                      .read<StartStreamBloc>()
+                                                      .state
+                                                      .startStreamResponse
+                                                      .data!
+                                                      .id));
+                                        }
+
+                                        // startStreamBloc.add(const StopStreamEvent());
+                                      } else {
+                                        // If the avatar icon is shown, perform logic for opening the AI assistant
+                                        log("Avatar icon pressed - Perform open logic");
+                                        context.read<StartStreamBloc>().add(
+                                            const StartStreamEvent.started());
+                                        isAvatarExpanded.value =
+                                            !isAvatarExpanded.value;
+                                        // startStreamBloc.add(const StartStreamEvent.started());
+                                      }
+                                    },
+                                    child: AnimatedRotation(
+                                      turns: expanded
+                                          ? 0.5
+                                          : 0.0, // Rotate 180° when expanded, back when closed
+                                      duration:
+                                          const Duration(milliseconds: 300),
+                                      child: Container(
+                                        width: AppSizeW.s40,
+                                        height: AppSizeH.s40,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: AppSizeW.s5),
+                                        decoration: BoxDecoration(
+                                          border: Border(
+                                            right: BorderSide(
+                                                width: 1,
+                                                color: Theme.of(context)
+                                                    .hoverColor),
+                                          ),
+                                        ),
+                                        child: AnimatedSwitcher(
+                                          duration: Duration(milliseconds: 300),
+                                          transitionBuilder:
+                                              (child, animation) =>
+                                                  ScaleTransition(
+                                            scale: animation,
+                                            child: child,
+                                          ),
+                                          child: expanded
+                                              ? Icon(Icons.close,
+                                                  key: ValueKey("closeIcon"))
+                                              : Image.asset(ImageAssets.chatBot,
+                                                  key: ValueKey("avatarIcon")),
+                                        ),
+                                      ),
+                                    ),
+                                  ));
+                        });
+                      });
+                });
+          } else {
+            return const SizedBox.shrink();
+          }
+        });
+  }
 }
 
 AppBar costumeChatAppBar(
