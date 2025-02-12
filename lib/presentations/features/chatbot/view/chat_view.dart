@@ -216,9 +216,9 @@ class _ChatViewState extends State<ChatView> {
                                   children: <Widget>[
                                     /*========================For Ai Avatar========================= */
 
-                                    AiAvatarIconWidget(
-                                        isAvatarExpanded: isAvatarExpanded,
-                                        startStreamBloc: startStreamBloc),
+                                    // AiAvatarIconWidget(
+                                    //     isAvatarExpanded: isAvatarExpanded,
+                                    //     startStreamBloc: startStreamBloc),
                                     SizedBox(
                                       width: AppSizeW.s5,
                                     ),
