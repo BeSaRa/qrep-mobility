@@ -1,8 +1,10 @@
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
+import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/close_stream_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/send_answer_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/send_candidate_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/start_stream_usecase.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -15,6 +17,7 @@ class StartStreamBloc extends Bloc<StartStreamEvent, StartStreamState> {
   final SendAnswerUsecase sendAnswerUsecase;
   final SendCandidateUsecase sendCandidateUsecase;
   final CloseStreamUsecase closeStreamUsecase;
+  //  final WebRTCCubit webRTCCubit;
   // final ChatHistoryCubit chatHistoryCubit;
 
   StartStreamBloc(
@@ -22,6 +25,9 @@ class StartStreamBloc extends Bloc<StartStreamEvent, StartStreamState> {
     this.sendAnswerUsecase,
     this.sendCandidateUsecase,
     this.closeStreamUsecase,
+    //zak
+    // this.webRTCCubit,
+    
     //  this.chatHistoryCubit
   ) : super(const StartStreamState.initial()) {
     on<StartStreamEvent>((StartStreamEvent event, emit) async {
@@ -29,10 +35,10 @@ class StartStreamBloc extends Bloc<StartStreamEvent, StartStreamState> {
         started: (value) async {
           emit(state.copyWith(
             isLoading: true,
-            hasError: false,
-            sendAnswerResponse: const SendAnswerResponseModel(),
-            sendCandidateResponse: const SendAnswerResponseModel(),
-            startStreamResponse: const StartStreamModel(),
+            // hasError: false,
+            // sendAnswerResponse: const SendAnswerResponseModel(),
+            // sendCandidateResponse: const SendAnswerResponseModel(),
+            // startStreamResponse: const StartStreamModel(),
           ));
           // // Simulate network request or logic to start stream
           // await Future.delayed(const Duration(seconds: 2)); 
@@ -77,9 +83,18 @@ class StartStreamBloc extends Bloc<StartStreamEvent, StartStreamState> {
 
             );
             //========================================Here i send the answer and candidate==================================
+                    // Initialize WebRTC with the offer and ICE servers
+            // final offer = success.data!.webrtcData!.offer;
+            // final iceServers = success.data!.webrtcData!.iceServers;
+            // await webRTCCubit.initWebRTC(offer, iceServers);
+        
             // final MainSendAnswerRequestModelById  sendAnswerRequest = MainSendAnswerRequestModelById (request: MainSendAnswerRequestModel() ,id: success.data!.id);
-            //   add( const StartStreamEvent.sendAnswer());
-            //   add( const StartStreamEvent.sendCandidate());
+            // final MainSendCandidateRequestModelById   sendCandidateRequest = MainSendCandidateRequestModelById  (request: MainSendCandidateRequestModel(candidate: SendCandidateRequestModel(
+
+
+            // ) ) ,id: success.data!.id);
+            //   add( StartStreamEvent.sendAnswer(sendAnswerRequest));
+            //   add( StartStreamEvent.sendCandidate(sendCandidateRequest));
             }, (error) {
               print('Error: ${error.message}');
               // emit(StartStreamState.error(error.message));

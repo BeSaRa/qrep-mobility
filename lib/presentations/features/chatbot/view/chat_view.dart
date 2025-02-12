@@ -193,7 +193,7 @@ class _ChatViewState extends State<ChatView> {
                                           colors: [
                                             Colors
                                                 .transparent, // Bottom: Fully transparent
-                                            Colors.black.withOpacity(
+                                            Colors.black.withValues(alpha: 
                                               0.1,
                                             ), // Top: Black with opacity
                                           ],
