@@ -6,7 +6,6 @@ import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:ebla/app/constants.dart';
 import 'package:ebla/presentations/features/auth/blocs/cubits/logged_in_user_cubit.dart';
 import 'package:ebla/presentations/features/auth/views/login_view.dart';
@@ -579,7 +578,7 @@ class MainMoreButtonsList extends StatelessWidget {
         ),
         //=====================نبذة عن الهيئة===================
         MoreWidgetButton(
-            icon: Icons.details,
+            icon: null,
             title: AppStrings().aboutTheAuthority,
             isButton: true,
             onPressed: () {
@@ -589,7 +588,7 @@ class MainMoreButtonsList extends StatelessWidget {
             widget: const Icon(Icons.arrow_forward_ios)),
         //===================== رؤية مستقبلية ===================
         MoreWidgetButton(
-          icon: Icons.color_lens_outlined,
+          icon: null,
           title: AppStrings().visionAndMission,
           isButton: true,
           onPressed: () {
@@ -599,7 +598,7 @@ class MainMoreButtonsList extends StatelessWidget {
         ),
         //===================== مهام ومسؤوليات ===================
         MoreWidgetButton(
-          icon: Icons.color_lens_outlined,
+          icon: null,
           title: AppStrings().tasksAndResponsibilitiesOftheAuthority,
           isButton: true,
           onPressed: () {
@@ -610,16 +609,16 @@ class MainMoreButtonsList extends StatelessWidget {
         ),
         //===================== موقع الهيئة ===================
         MoreWidgetButton(
-          icon: Icons.color_lens_outlined,
+          icon: null,
           title: AppStrings().authorityLocation,
           isButton: true,
           onPressed: () {
-            openMap();
+            context.pushNamed(RoutesNames.authorityMap);
           },
         ),
         //===================== تواصل معنا ===================
         MoreWidgetButton(
-          icon: Icons.color_lens_outlined,
+          icon: null,
           title: AppStrings().contactUs,
           isButton: true,
           onPressed: () {
@@ -629,7 +628,7 @@ class MainMoreButtonsList extends StatelessWidget {
         ),
         //===================== اخبار الهيئة ===================
         // MoreWidgetButton(
-        //   icon: Icons.color_lens_outlined,
+        //   icon:null,
         //   title: AppStrings().authorityNews,
         //   isButton: true,
         //   onPressed: () {
@@ -639,7 +638,7 @@ class MainMoreButtonsList extends StatelessWidget {
         // ),
         //===================== services ===================
         MoreWidgetButton(
-          icon: Icons.color_lens_outlined,
+          icon: null,
           title: AppStrings().services,
           isButton: true,
           onPressed: () {
@@ -649,14 +648,6 @@ class MainMoreButtonsList extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  openMap() async {
-    final url = Uri.parse(
-        "https://www.google.com/maps/place/25%C2%B022'13.8%22N+51%C2%B033'10.6%22E/@25.370494,51.552943,17z/data=!3m1!4b1!4m4!3m3!8m2!3d25.370494!4d51.552943?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D");
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch ');
-    }
   }
 }
 
@@ -768,7 +759,7 @@ class MoreWidgetButton extends StatelessWidget {
     this.onPressed,
   });
 
-  final IconData icon;
+  final IconData? icon;
 
   final String title;
   final bool isButton;
@@ -810,10 +801,11 @@ class MoreWidgetButton extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(
-              icon,
-              color: Theme.of(context).colorScheme.onSecondary,
-            ),
+            if (icon != null)
+              Icon(
+                icon,
+                color: Theme.of(context).colorScheme.onSecondary,
+              ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: AppSizeH.s6),
               child: Text(title,

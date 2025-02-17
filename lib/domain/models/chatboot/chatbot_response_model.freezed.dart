@@ -1192,3 +1192,1637 @@ abstract class _Citation implements Citation {
   _$$CitationImplCopyWith<_$CitationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+StartStreamModel _$StartStreamModelFromJson(Map<String, dynamic> json) {
+  return _StartStreamModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$StartStreamModel {
+  int get statusCode => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
+  WebRTCDataModel? get data => throw _privateConstructorUsedError;
+
+  /// Serializes this StartStreamModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of StartStreamModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $StartStreamModelCopyWith<StartStreamModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StartStreamModelCopyWith<$Res> {
+  factory $StartStreamModelCopyWith(
+          StartStreamModel value, $Res Function(StartStreamModel) then) =
+      _$StartStreamModelCopyWithImpl<$Res, StartStreamModel>;
+  @useResult
+  $Res call(
+      {int statusCode, String status, String message, WebRTCDataModel? data});
+
+  $WebRTCDataModelCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class _$StartStreamModelCopyWithImpl<$Res, $Val extends StartStreamModel>
+    implements $StartStreamModelCopyWith<$Res> {
+  _$StartStreamModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of StartStreamModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? statusCode = null,
+    Object? status = null,
+    Object? message = null,
+    Object? data = freezed,
+  }) {
+    return _then(_value.copyWith(
+      statusCode: null == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as WebRTCDataModel?,
+    ) as $Val);
+  }
+
+  /// Create a copy of StartStreamModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $WebRTCDataModelCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $WebRTCDataModelCopyWith<$Res>(_value.data!, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$StartStreamModelImplCopyWith<$Res>
+    implements $StartStreamModelCopyWith<$Res> {
+  factory _$$StartStreamModelImplCopyWith(_$StartStreamModelImpl value,
+          $Res Function(_$StartStreamModelImpl) then) =
+      __$$StartStreamModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int statusCode, String status, String message, WebRTCDataModel? data});
+
+  @override
+  $WebRTCDataModelCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class __$$StartStreamModelImplCopyWithImpl<$Res>
+    extends _$StartStreamModelCopyWithImpl<$Res, _$StartStreamModelImpl>
+    implements _$$StartStreamModelImplCopyWith<$Res> {
+  __$$StartStreamModelImplCopyWithImpl(_$StartStreamModelImpl _value,
+      $Res Function(_$StartStreamModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of StartStreamModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? statusCode = null,
+    Object? status = null,
+    Object? message = null,
+    Object? data = freezed,
+  }) {
+    return _then(_$StartStreamModelImpl(
+      statusCode: null == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as WebRTCDataModel?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$StartStreamModelImpl implements _StartStreamModel {
+  const _$StartStreamModelImpl(
+      {this.statusCode = 200, this.status = '', this.message = '', this.data});
+
+  factory _$StartStreamModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StartStreamModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int statusCode;
+  @override
+  @JsonKey()
+  final String status;
+  @override
+  @JsonKey()
+  final String message;
+  @override
+  final WebRTCDataModel? data;
+
+  @override
+  String toString() {
+    return 'StartStreamModel(statusCode: $statusCode, status: $status, message: $message, data: $data)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StartStreamModelImpl &&
+            (identical(other.statusCode, statusCode) ||
+                other.statusCode == statusCode) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, statusCode, status, message, data);
+
+  /// Create a copy of StartStreamModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StartStreamModelImplCopyWith<_$StartStreamModelImpl> get copyWith =>
+      __$$StartStreamModelImplCopyWithImpl<_$StartStreamModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$StartStreamModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _StartStreamModel implements StartStreamModel {
+  const factory _StartStreamModel(
+      {final int statusCode,
+      final String status,
+      final String message,
+      final WebRTCDataModel? data}) = _$StartStreamModelImpl;
+
+  factory _StartStreamModel.fromJson(Map<String, dynamic> json) =
+      _$StartStreamModelImpl.fromJson;
+
+  @override
+  int get statusCode;
+  @override
+  String get status;
+  @override
+  String get message;
+  @override
+  WebRTCDataModel? get data;
+
+  /// Create a copy of StartStreamModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$StartStreamModelImplCopyWith<_$StartStreamModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+WebRTCDataModel _$WebRTCDataModelFromJson(Map<String, dynamic> json) {
+  return _WebRTCDataModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WebRTCDataModel {
+  String get id => throw _privateConstructorUsedError;
+  WebRTCDetailsModel? get webrtcData => throw _privateConstructorUsedError;
+
+  /// Serializes this WebRTCDataModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of WebRTCDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $WebRTCDataModelCopyWith<WebRTCDataModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WebRTCDataModelCopyWith<$Res> {
+  factory $WebRTCDataModelCopyWith(
+          WebRTCDataModel value, $Res Function(WebRTCDataModel) then) =
+      _$WebRTCDataModelCopyWithImpl<$Res, WebRTCDataModel>;
+  @useResult
+  $Res call({String id, WebRTCDetailsModel? webrtcData});
+
+  $WebRTCDetailsModelCopyWith<$Res>? get webrtcData;
+}
+
+/// @nodoc
+class _$WebRTCDataModelCopyWithImpl<$Res, $Val extends WebRTCDataModel>
+    implements $WebRTCDataModelCopyWith<$Res> {
+  _$WebRTCDataModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of WebRTCDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? webrtcData = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      webrtcData: freezed == webrtcData
+          ? _value.webrtcData
+          : webrtcData // ignore: cast_nullable_to_non_nullable
+              as WebRTCDetailsModel?,
+    ) as $Val);
+  }
+
+  /// Create a copy of WebRTCDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $WebRTCDetailsModelCopyWith<$Res>? get webrtcData {
+    if (_value.webrtcData == null) {
+      return null;
+    }
+
+    return $WebRTCDetailsModelCopyWith<$Res>(_value.webrtcData!, (value) {
+      return _then(_value.copyWith(webrtcData: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$WebRTCDataModelImplCopyWith<$Res>
+    implements $WebRTCDataModelCopyWith<$Res> {
+  factory _$$WebRTCDataModelImplCopyWith(_$WebRTCDataModelImpl value,
+          $Res Function(_$WebRTCDataModelImpl) then) =
+      __$$WebRTCDataModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String id, WebRTCDetailsModel? webrtcData});
+
+  @override
+  $WebRTCDetailsModelCopyWith<$Res>? get webrtcData;
+}
+
+/// @nodoc
+class __$$WebRTCDataModelImplCopyWithImpl<$Res>
+    extends _$WebRTCDataModelCopyWithImpl<$Res, _$WebRTCDataModelImpl>
+    implements _$$WebRTCDataModelImplCopyWith<$Res> {
+  __$$WebRTCDataModelImplCopyWithImpl(
+      _$WebRTCDataModelImpl _value, $Res Function(_$WebRTCDataModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of WebRTCDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? webrtcData = freezed,
+  }) {
+    return _then(_$WebRTCDataModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      webrtcData: freezed == webrtcData
+          ? _value.webrtcData
+          : webrtcData // ignore: cast_nullable_to_non_nullable
+              as WebRTCDetailsModel?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WebRTCDataModelImpl implements _WebRTCDataModel {
+  const _$WebRTCDataModelImpl({this.id = '', this.webrtcData});
+
+  factory _$WebRTCDataModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WebRTCDataModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String id;
+  @override
+  final WebRTCDetailsModel? webrtcData;
+
+  @override
+  String toString() {
+    return 'WebRTCDataModel(id: $id, webrtcData: $webrtcData)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WebRTCDataModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.webrtcData, webrtcData) ||
+                other.webrtcData == webrtcData));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, webrtcData);
+
+  /// Create a copy of WebRTCDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WebRTCDataModelImplCopyWith<_$WebRTCDataModelImpl> get copyWith =>
+      __$$WebRTCDataModelImplCopyWithImpl<_$WebRTCDataModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WebRTCDataModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WebRTCDataModel implements WebRTCDataModel {
+  const factory _WebRTCDataModel(
+      {final String id,
+      final WebRTCDetailsModel? webrtcData}) = _$WebRTCDataModelImpl;
+
+  factory _WebRTCDataModel.fromJson(Map<String, dynamic> json) =
+      _$WebRTCDataModelImpl.fromJson;
+
+  @override
+  String get id;
+  @override
+  WebRTCDetailsModel? get webrtcData;
+
+  /// Create a copy of WebRTCDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$WebRTCDataModelImplCopyWith<_$WebRTCDataModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+WebRTCDetailsModel _$WebRTCDetailsModelFromJson(Map<String, dynamic> json) {
+  return _WebRTCDetailsModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WebRTCDetailsModel {
+  OfferModel? get offer => throw _privateConstructorUsedError;
+  List<ICEServerModel> get iceServers => throw _privateConstructorUsedError;
+
+  /// Serializes this WebRTCDetailsModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of WebRTCDetailsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $WebRTCDetailsModelCopyWith<WebRTCDetailsModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WebRTCDetailsModelCopyWith<$Res> {
+  factory $WebRTCDetailsModelCopyWith(
+          WebRTCDetailsModel value, $Res Function(WebRTCDetailsModel) then) =
+      _$WebRTCDetailsModelCopyWithImpl<$Res, WebRTCDetailsModel>;
+  @useResult
+  $Res call({OfferModel? offer, List<ICEServerModel> iceServers});
+
+  $OfferModelCopyWith<$Res>? get offer;
+}
+
+/// @nodoc
+class _$WebRTCDetailsModelCopyWithImpl<$Res, $Val extends WebRTCDetailsModel>
+    implements $WebRTCDetailsModelCopyWith<$Res> {
+  _$WebRTCDetailsModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of WebRTCDetailsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? offer = freezed,
+    Object? iceServers = null,
+  }) {
+    return _then(_value.copyWith(
+      offer: freezed == offer
+          ? _value.offer
+          : offer // ignore: cast_nullable_to_non_nullable
+              as OfferModel?,
+      iceServers: null == iceServers
+          ? _value.iceServers
+          : iceServers // ignore: cast_nullable_to_non_nullable
+              as List<ICEServerModel>,
+    ) as $Val);
+  }
+
+  /// Create a copy of WebRTCDetailsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $OfferModelCopyWith<$Res>? get offer {
+    if (_value.offer == null) {
+      return null;
+    }
+
+    return $OfferModelCopyWith<$Res>(_value.offer!, (value) {
+      return _then(_value.copyWith(offer: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$WebRTCDetailsModelImplCopyWith<$Res>
+    implements $WebRTCDetailsModelCopyWith<$Res> {
+  factory _$$WebRTCDetailsModelImplCopyWith(_$WebRTCDetailsModelImpl value,
+          $Res Function(_$WebRTCDetailsModelImpl) then) =
+      __$$WebRTCDetailsModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({OfferModel? offer, List<ICEServerModel> iceServers});
+
+  @override
+  $OfferModelCopyWith<$Res>? get offer;
+}
+
+/// @nodoc
+class __$$WebRTCDetailsModelImplCopyWithImpl<$Res>
+    extends _$WebRTCDetailsModelCopyWithImpl<$Res, _$WebRTCDetailsModelImpl>
+    implements _$$WebRTCDetailsModelImplCopyWith<$Res> {
+  __$$WebRTCDetailsModelImplCopyWithImpl(_$WebRTCDetailsModelImpl _value,
+      $Res Function(_$WebRTCDetailsModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of WebRTCDetailsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? offer = freezed,
+    Object? iceServers = null,
+  }) {
+    return _then(_$WebRTCDetailsModelImpl(
+      offer: freezed == offer
+          ? _value.offer
+          : offer // ignore: cast_nullable_to_non_nullable
+              as OfferModel?,
+      iceServers: null == iceServers
+          ? _value._iceServers
+          : iceServers // ignore: cast_nullable_to_non_nullable
+              as List<ICEServerModel>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WebRTCDetailsModelImpl implements _WebRTCDetailsModel {
+  const _$WebRTCDetailsModelImpl(
+      {this.offer, final List<ICEServerModel> iceServers = const []})
+      : _iceServers = iceServers;
+
+  factory _$WebRTCDetailsModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WebRTCDetailsModelImplFromJson(json);
+
+  @override
+  final OfferModel? offer;
+  final List<ICEServerModel> _iceServers;
+  @override
+  @JsonKey()
+  List<ICEServerModel> get iceServers {
+    if (_iceServers is EqualUnmodifiableListView) return _iceServers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_iceServers);
+  }
+
+  @override
+  String toString() {
+    return 'WebRTCDetailsModel(offer: $offer, iceServers: $iceServers)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WebRTCDetailsModelImpl &&
+            (identical(other.offer, offer) || other.offer == offer) &&
+            const DeepCollectionEquality()
+                .equals(other._iceServers, _iceServers));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, offer, const DeepCollectionEquality().hash(_iceServers));
+
+  /// Create a copy of WebRTCDetailsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WebRTCDetailsModelImplCopyWith<_$WebRTCDetailsModelImpl> get copyWith =>
+      __$$WebRTCDetailsModelImplCopyWithImpl<_$WebRTCDetailsModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WebRTCDetailsModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WebRTCDetailsModel implements WebRTCDetailsModel {
+  const factory _WebRTCDetailsModel(
+      {final OfferModel? offer,
+      final List<ICEServerModel> iceServers}) = _$WebRTCDetailsModelImpl;
+
+  factory _WebRTCDetailsModel.fromJson(Map<String, dynamic> json) =
+      _$WebRTCDetailsModelImpl.fromJson;
+
+  @override
+  OfferModel? get offer;
+  @override
+  List<ICEServerModel> get iceServers;
+
+  /// Create a copy of WebRTCDetailsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$WebRTCDetailsModelImplCopyWith<_$WebRTCDetailsModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+OfferModel _$OfferModelFromJson(Map<String, dynamic> json) {
+  return _OfferModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OfferModel {
+  String get type => throw _privateConstructorUsedError;
+  String get sdp => throw _privateConstructorUsedError;
+
+  /// Serializes this OfferModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of OfferModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $OfferModelCopyWith<OfferModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OfferModelCopyWith<$Res> {
+  factory $OfferModelCopyWith(
+          OfferModel value, $Res Function(OfferModel) then) =
+      _$OfferModelCopyWithImpl<$Res, OfferModel>;
+  @useResult
+  $Res call({String type, String sdp});
+}
+
+/// @nodoc
+class _$OfferModelCopyWithImpl<$Res, $Val extends OfferModel>
+    implements $OfferModelCopyWith<$Res> {
+  _$OfferModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of OfferModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+    Object? sdp = null,
+  }) {
+    return _then(_value.copyWith(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      sdp: null == sdp
+          ? _value.sdp
+          : sdp // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$OfferModelImplCopyWith<$Res>
+    implements $OfferModelCopyWith<$Res> {
+  factory _$$OfferModelImplCopyWith(
+          _$OfferModelImpl value, $Res Function(_$OfferModelImpl) then) =
+      __$$OfferModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String type, String sdp});
+}
+
+/// @nodoc
+class __$$OfferModelImplCopyWithImpl<$Res>
+    extends _$OfferModelCopyWithImpl<$Res, _$OfferModelImpl>
+    implements _$$OfferModelImplCopyWith<$Res> {
+  __$$OfferModelImplCopyWithImpl(
+      _$OfferModelImpl _value, $Res Function(_$OfferModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OfferModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+    Object? sdp = null,
+  }) {
+    return _then(_$OfferModelImpl(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      sdp: null == sdp
+          ? _value.sdp
+          : sdp // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$OfferModelImpl implements _OfferModel {
+  const _$OfferModelImpl({this.type = '', this.sdp = ''});
+
+  factory _$OfferModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OfferModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String type;
+  @override
+  @JsonKey()
+  final String sdp;
+
+  @override
+  String toString() {
+    return 'OfferModel(type: $type, sdp: $sdp)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OfferModelImpl &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.sdp, sdp) || other.sdp == sdp));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, type, sdp);
+
+  /// Create a copy of OfferModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OfferModelImplCopyWith<_$OfferModelImpl> get copyWith =>
+      __$$OfferModelImplCopyWithImpl<_$OfferModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$OfferModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OfferModel implements OfferModel {
+  const factory _OfferModel({final String type, final String sdp}) =
+      _$OfferModelImpl;
+
+  factory _OfferModel.fromJson(Map<String, dynamic> json) =
+      _$OfferModelImpl.fromJson;
+
+  @override
+  String get type;
+  @override
+  String get sdp;
+
+  /// Create a copy of OfferModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OfferModelImplCopyWith<_$OfferModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ICEServerModel _$ICEServerModelFromJson(Map<String, dynamic> json) {
+  return _ICEServerModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ICEServerModel {
+  String get urls => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
+  String get credential => throw _privateConstructorUsedError;
+
+  /// Serializes this ICEServerModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ICEServerModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ICEServerModelCopyWith<ICEServerModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ICEServerModelCopyWith<$Res> {
+  factory $ICEServerModelCopyWith(
+          ICEServerModel value, $Res Function(ICEServerModel) then) =
+      _$ICEServerModelCopyWithImpl<$Res, ICEServerModel>;
+  @useResult
+  $Res call({String urls, String username, String credential});
+}
+
+/// @nodoc
+class _$ICEServerModelCopyWithImpl<$Res, $Val extends ICEServerModel>
+    implements $ICEServerModelCopyWith<$Res> {
+  _$ICEServerModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ICEServerModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? urls = null,
+    Object? username = null,
+    Object? credential = null,
+  }) {
+    return _then(_value.copyWith(
+      urls: null == urls
+          ? _value.urls
+          : urls // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      credential: null == credential
+          ? _value.credential
+          : credential // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ICEServerModelImplCopyWith<$Res>
+    implements $ICEServerModelCopyWith<$Res> {
+  factory _$$ICEServerModelImplCopyWith(_$ICEServerModelImpl value,
+          $Res Function(_$ICEServerModelImpl) then) =
+      __$$ICEServerModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String urls, String username, String credential});
+}
+
+/// @nodoc
+class __$$ICEServerModelImplCopyWithImpl<$Res>
+    extends _$ICEServerModelCopyWithImpl<$Res, _$ICEServerModelImpl>
+    implements _$$ICEServerModelImplCopyWith<$Res> {
+  __$$ICEServerModelImplCopyWithImpl(
+      _$ICEServerModelImpl _value, $Res Function(_$ICEServerModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ICEServerModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? urls = null,
+    Object? username = null,
+    Object? credential = null,
+  }) {
+    return _then(_$ICEServerModelImpl(
+      urls: null == urls
+          ? _value.urls
+          : urls // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      credential: null == credential
+          ? _value.credential
+          : credential // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ICEServerModelImpl implements _ICEServerModel {
+  const _$ICEServerModelImpl(
+      {this.urls = '', this.username = '', this.credential = ''});
+
+  factory _$ICEServerModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ICEServerModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String urls;
+  @override
+  @JsonKey()
+  final String username;
+  @override
+  @JsonKey()
+  final String credential;
+
+  @override
+  String toString() {
+    return 'ICEServerModel(urls: $urls, username: $username, credential: $credential)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ICEServerModelImpl &&
+            (identical(other.urls, urls) || other.urls == urls) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.credential, credential) ||
+                other.credential == credential));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, urls, username, credential);
+
+  /// Create a copy of ICEServerModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ICEServerModelImplCopyWith<_$ICEServerModelImpl> get copyWith =>
+      __$$ICEServerModelImplCopyWithImpl<_$ICEServerModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ICEServerModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ICEServerModel implements ICEServerModel {
+  const factory _ICEServerModel(
+      {final String urls,
+      final String username,
+      final String credential}) = _$ICEServerModelImpl;
+
+  factory _ICEServerModel.fromJson(Map<String, dynamic> json) =
+      _$ICEServerModelImpl.fromJson;
+
+  @override
+  String get urls;
+  @override
+  String get username;
+  @override
+  String get credential;
+
+  /// Create a copy of ICEServerModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ICEServerModelImplCopyWith<_$ICEServerModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+SendAnswerResponseModel _$SendAnswerResponseModelFromJson(
+    Map<String, dynamic> json) {
+  return _SendAnswerResponseModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SendAnswerResponseModel {
+  @JsonKey(name: "status_code")
+  int get statusCode => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
+
+  /// Serializes this SendAnswerResponseModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of SendAnswerResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $SendAnswerResponseModelCopyWith<SendAnswerResponseModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SendAnswerResponseModelCopyWith<$Res> {
+  factory $SendAnswerResponseModelCopyWith(SendAnswerResponseModel value,
+          $Res Function(SendAnswerResponseModel) then) =
+      _$SendAnswerResponseModelCopyWithImpl<$Res, SendAnswerResponseModel>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: "status_code") int statusCode,
+      String status,
+      String message});
+}
+
+/// @nodoc
+class _$SendAnswerResponseModelCopyWithImpl<$Res,
+        $Val extends SendAnswerResponseModel>
+    implements $SendAnswerResponseModelCopyWith<$Res> {
+  _$SendAnswerResponseModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of SendAnswerResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? statusCode = null,
+    Object? status = null,
+    Object? message = null,
+  }) {
+    return _then(_value.copyWith(
+      statusCode: null == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SendAnswerResponseModelImplCopyWith<$Res>
+    implements $SendAnswerResponseModelCopyWith<$Res> {
+  factory _$$SendAnswerResponseModelImplCopyWith(
+          _$SendAnswerResponseModelImpl value,
+          $Res Function(_$SendAnswerResponseModelImpl) then) =
+      __$$SendAnswerResponseModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: "status_code") int statusCode,
+      String status,
+      String message});
+}
+
+/// @nodoc
+class __$$SendAnswerResponseModelImplCopyWithImpl<$Res>
+    extends _$SendAnswerResponseModelCopyWithImpl<$Res,
+        _$SendAnswerResponseModelImpl>
+    implements _$$SendAnswerResponseModelImplCopyWith<$Res> {
+  __$$SendAnswerResponseModelImplCopyWithImpl(
+      _$SendAnswerResponseModelImpl _value,
+      $Res Function(_$SendAnswerResponseModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SendAnswerResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? statusCode = null,
+    Object? status = null,
+    Object? message = null,
+  }) {
+    return _then(_$SendAnswerResponseModelImpl(
+      statusCode: null == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SendAnswerResponseModelImpl implements _SendAnswerResponseModel {
+  const _$SendAnswerResponseModelImpl(
+      {@JsonKey(name: "status_code") this.statusCode = 0,
+      this.status = '',
+      this.message = ''});
+
+  factory _$SendAnswerResponseModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SendAnswerResponseModelImplFromJson(json);
+
+  @override
+  @JsonKey(name: "status_code")
+  final int statusCode;
+  @override
+  @JsonKey()
+  final String status;
+  @override
+  @JsonKey()
+  final String message;
+
+  @override
+  String toString() {
+    return 'SendAnswerResponseModel(statusCode: $statusCode, status: $status, message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SendAnswerResponseModelImpl &&
+            (identical(other.statusCode, statusCode) ||
+                other.statusCode == statusCode) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, statusCode, status, message);
+
+  /// Create a copy of SendAnswerResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SendAnswerResponseModelImplCopyWith<_$SendAnswerResponseModelImpl>
+      get copyWith => __$$SendAnswerResponseModelImplCopyWithImpl<
+          _$SendAnswerResponseModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SendAnswerResponseModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SendAnswerResponseModel implements SendAnswerResponseModel {
+  const factory _SendAnswerResponseModel(
+      {@JsonKey(name: "status_code") final int statusCode,
+      final String status,
+      final String message}) = _$SendAnswerResponseModelImpl;
+
+  factory _SendAnswerResponseModel.fromJson(Map<String, dynamic> json) =
+      _$SendAnswerResponseModelImpl.fromJson;
+
+  @override
+  @JsonKey(name: "status_code")
+  int get statusCode;
+  @override
+  String get status;
+  @override
+  String get message;
+
+  /// Create a copy of SendAnswerResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SendAnswerResponseModelImplCopyWith<_$SendAnswerResponseModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+FailureCloseStreamModel _$FailureCloseStreamModelFromJson(
+    Map<String, dynamic> json) {
+  return _FailureCloseStreamModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$FailureCloseStreamModel {
+  List<String>? get errorDescription => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
+  String? get detail => throw _privateConstructorUsedError;
+  int? get statusCode => throw _privateConstructorUsedError;
+
+  /// Serializes this FailureCloseStreamModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of FailureCloseStreamModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $FailureCloseStreamModelCopyWith<FailureCloseStreamModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FailureCloseStreamModelCopyWith<$Res> {
+  factory $FailureCloseStreamModelCopyWith(FailureCloseStreamModel value,
+          $Res Function(FailureCloseStreamModel) then) =
+      _$FailureCloseStreamModelCopyWithImpl<$Res, FailureCloseStreamModel>;
+  @useResult
+  $Res call(
+      {List<String>? errorDescription,
+      String? message,
+      String? detail,
+      int? statusCode});
+}
+
+/// @nodoc
+class _$FailureCloseStreamModelCopyWithImpl<$Res,
+        $Val extends FailureCloseStreamModel>
+    implements $FailureCloseStreamModelCopyWith<$Res> {
+  _$FailureCloseStreamModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of FailureCloseStreamModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? errorDescription = freezed,
+    Object? message = freezed,
+    Object? detail = freezed,
+    Object? statusCode = freezed,
+  }) {
+    return _then(_value.copyWith(
+      errorDescription: freezed == errorDescription
+          ? _value.errorDescription
+          : errorDescription // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detail: freezed == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusCode: freezed == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$FailureCloseStreamModelImplCopyWith<$Res>
+    implements $FailureCloseStreamModelCopyWith<$Res> {
+  factory _$$FailureCloseStreamModelImplCopyWith(
+          _$FailureCloseStreamModelImpl value,
+          $Res Function(_$FailureCloseStreamModelImpl) then) =
+      __$$FailureCloseStreamModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {List<String>? errorDescription,
+      String? message,
+      String? detail,
+      int? statusCode});
+}
+
+/// @nodoc
+class __$$FailureCloseStreamModelImplCopyWithImpl<$Res>
+    extends _$FailureCloseStreamModelCopyWithImpl<$Res,
+        _$FailureCloseStreamModelImpl>
+    implements _$$FailureCloseStreamModelImplCopyWith<$Res> {
+  __$$FailureCloseStreamModelImplCopyWithImpl(
+      _$FailureCloseStreamModelImpl _value,
+      $Res Function(_$FailureCloseStreamModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of FailureCloseStreamModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? errorDescription = freezed,
+    Object? message = freezed,
+    Object? detail = freezed,
+    Object? statusCode = freezed,
+  }) {
+    return _then(_$FailureCloseStreamModelImpl(
+      errorDescription: freezed == errorDescription
+          ? _value._errorDescription
+          : errorDescription // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      detail: freezed == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusCode: freezed == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$FailureCloseStreamModelImpl implements _FailureCloseStreamModel {
+  const _$FailureCloseStreamModelImpl(
+      {final List<String>? errorDescription = const [],
+      this.message = null,
+      this.detail = null,
+      this.statusCode = 0})
+      : _errorDescription = errorDescription;
+
+  factory _$FailureCloseStreamModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FailureCloseStreamModelImplFromJson(json);
+
+  final List<String>? _errorDescription;
+  @override
+  @JsonKey()
+  List<String>? get errorDescription {
+    final value = _errorDescription;
+    if (value == null) return null;
+    if (_errorDescription is EqualUnmodifiableListView)
+      return _errorDescription;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey()
+  final String? message;
+  @override
+  @JsonKey()
+  final String? detail;
+  @override
+  @JsonKey()
+  final int? statusCode;
+
+  @override
+  String toString() {
+    return 'FailureCloseStreamModel(errorDescription: $errorDescription, message: $message, detail: $detail, statusCode: $statusCode)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FailureCloseStreamModelImpl &&
+            const DeepCollectionEquality()
+                .equals(other._errorDescription, _errorDescription) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.detail, detail) || other.detail == detail) &&
+            (identical(other.statusCode, statusCode) ||
+                other.statusCode == statusCode));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_errorDescription),
+      message,
+      detail,
+      statusCode);
+
+  /// Create a copy of FailureCloseStreamModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FailureCloseStreamModelImplCopyWith<_$FailureCloseStreamModelImpl>
+      get copyWith => __$$FailureCloseStreamModelImplCopyWithImpl<
+          _$FailureCloseStreamModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$FailureCloseStreamModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _FailureCloseStreamModel implements FailureCloseStreamModel {
+  const factory _FailureCloseStreamModel(
+      {final List<String>? errorDescription,
+      final String? message,
+      final String? detail,
+      final int? statusCode}) = _$FailureCloseStreamModelImpl;
+
+  factory _FailureCloseStreamModel.fromJson(Map<String, dynamic> json) =
+      _$FailureCloseStreamModelImpl.fromJson;
+
+  @override
+  List<String>? get errorDescription;
+  @override
+  String? get message;
+  @override
+  String? get detail;
+  @override
+  int? get statusCode;
+
+  /// Create a copy of FailureCloseStreamModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$FailureCloseStreamModelImplCopyWith<_$FailureCloseStreamModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+PlatformChatbotResponseModel _$PlatformChatbotResponseModelFromJson(
+    Map<String, dynamic> json) {
+  return _PlatformChatbotResponseModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PlatformChatbotResponseModel {
+  String? get conversationId => throw _privateConstructorUsedError;
+  List<dynamic> get response => throw _privateConstructorUsedError;
+  String? get responseFormat => throw _privateConstructorUsedError;
+
+  /// Serializes this PlatformChatbotResponseModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of PlatformChatbotResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $PlatformChatbotResponseModelCopyWith<PlatformChatbotResponseModel>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PlatformChatbotResponseModelCopyWith<$Res> {
+  factory $PlatformChatbotResponseModelCopyWith(
+          PlatformChatbotResponseModel value,
+          $Res Function(PlatformChatbotResponseModel) then) =
+      _$PlatformChatbotResponseModelCopyWithImpl<$Res,
+          PlatformChatbotResponseModel>;
+  @useResult
+  $Res call(
+      {String? conversationId, List<dynamic> response, String? responseFormat});
+}
+
+/// @nodoc
+class _$PlatformChatbotResponseModelCopyWithImpl<$Res,
+        $Val extends PlatformChatbotResponseModel>
+    implements $PlatformChatbotResponseModelCopyWith<$Res> {
+  _$PlatformChatbotResponseModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of PlatformChatbotResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? conversationId = freezed,
+    Object? response = null,
+    Object? responseFormat = freezed,
+  }) {
+    return _then(_value.copyWith(
+      conversationId: freezed == conversationId
+          ? _value.conversationId
+          : conversationId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      response: null == response
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      responseFormat: freezed == responseFormat
+          ? _value.responseFormat
+          : responseFormat // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PlatformChatbotResponseModelImplCopyWith<$Res>
+    implements $PlatformChatbotResponseModelCopyWith<$Res> {
+  factory _$$PlatformChatbotResponseModelImplCopyWith(
+          _$PlatformChatbotResponseModelImpl value,
+          $Res Function(_$PlatformChatbotResponseModelImpl) then) =
+      __$$PlatformChatbotResponseModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String? conversationId, List<dynamic> response, String? responseFormat});
+}
+
+/// @nodoc
+class __$$PlatformChatbotResponseModelImplCopyWithImpl<$Res>
+    extends _$PlatformChatbotResponseModelCopyWithImpl<$Res,
+        _$PlatformChatbotResponseModelImpl>
+    implements _$$PlatformChatbotResponseModelImplCopyWith<$Res> {
+  __$$PlatformChatbotResponseModelImplCopyWithImpl(
+      _$PlatformChatbotResponseModelImpl _value,
+      $Res Function(_$PlatformChatbotResponseModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PlatformChatbotResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? conversationId = freezed,
+    Object? response = null,
+    Object? responseFormat = freezed,
+  }) {
+    return _then(_$PlatformChatbotResponseModelImpl(
+      conversationId: freezed == conversationId
+          ? _value.conversationId
+          : conversationId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      response: null == response
+          ? _value._response
+          : response // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+      responseFormat: freezed == responseFormat
+          ? _value.responseFormat
+          : responseFormat // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PlatformChatbotResponseModelImpl
+    implements _PlatformChatbotResponseModel {
+  const _$PlatformChatbotResponseModelImpl(
+      {this.conversationId = null,
+      final List<dynamic> response = const [],
+      this.responseFormat = ""})
+      : _response = response;
+
+  factory _$PlatformChatbotResponseModelImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$PlatformChatbotResponseModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String? conversationId;
+  final List<dynamic> _response;
+  @override
+  @JsonKey()
+  List<dynamic> get response {
+    if (_response is EqualUnmodifiableListView) return _response;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_response);
+  }
+
+  @override
+  @JsonKey()
+  final String? responseFormat;
+
+  @override
+  String toString() {
+    return 'PlatformChatbotResponseModel(conversationId: $conversationId, response: $response, responseFormat: $responseFormat)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PlatformChatbotResponseModelImpl &&
+            (identical(other.conversationId, conversationId) ||
+                other.conversationId == conversationId) &&
+            const DeepCollectionEquality().equals(other._response, _response) &&
+            (identical(other.responseFormat, responseFormat) ||
+                other.responseFormat == responseFormat));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, conversationId,
+      const DeepCollectionEquality().hash(_response), responseFormat);
+
+  /// Create a copy of PlatformChatbotResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PlatformChatbotResponseModelImplCopyWith<
+          _$PlatformChatbotResponseModelImpl>
+      get copyWith => __$$PlatformChatbotResponseModelImplCopyWithImpl<
+          _$PlatformChatbotResponseModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PlatformChatbotResponseModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PlatformChatbotResponseModel
+    implements PlatformChatbotResponseModel {
+  const factory _PlatformChatbotResponseModel(
+      {final String? conversationId,
+      final List<dynamic> response,
+      final String? responseFormat}) = _$PlatformChatbotResponseModelImpl;
+
+  factory _PlatformChatbotResponseModel.fromJson(Map<String, dynamic> json) =
+      _$PlatformChatbotResponseModelImpl.fromJson;
+
+  @override
+  String? get conversationId;
+  @override
+  List<dynamic> get response;
+  @override
+  String? get responseFormat;
+
+  /// Create a copy of PlatformChatbotResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PlatformChatbotResponseModelImplCopyWith<
+          _$PlatformChatbotResponseModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

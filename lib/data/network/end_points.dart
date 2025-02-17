@@ -130,6 +130,7 @@ class EndPoints {
   static const String getUserWishList = "/user-wish-list";
   static const String getUserWishListById = "/user-wish-list/user-id/";
 
-  //laws
-    // static const String newLaws = '';
+  //platform chatbot
+  static const String sendMessageToPlatformChatbot= '/openai/chat/completion';
+   
 }

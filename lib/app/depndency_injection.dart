@@ -1,12 +1,19 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/chatbot_usecase.dart';
+import 'package:ebla/domain/usecases/chatbot_usecase/close_stream_usecase.dart';
+import 'package:ebla/domain/usecases/chatbot_usecase/platform_chatbot_usecases.dart';
+import 'package:ebla/domain/usecases/chatbot_usecase/send_answer_usecase.dart';
+import 'package:ebla/domain/usecases/chatbot_usecase/send_candidate_usecase.dart';
+import 'package:ebla/domain/usecases/chatbot_usecase/start_stream_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/create_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/update_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/user_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/laws_usecases/laws_usecases.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/close_stream/close_stream_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_message_bloc/chat_bloc.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/start_stream_bloc/start_stream_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/UpdateFav/update_favourite_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/create_favourite_bloc/create_favourite_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/get_favourite_bloc/get_favourite_bloc.dart';
@@ -21,7 +28,6 @@ import '../data/network/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecases/favourite_usecases/delete_favourite_usecase.dart';
-// import '../domain/usecases/usecases.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/auth/authes.dart';
 import '../presentations/features/info/infos.dart';
@@ -198,16 +204,11 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<NewsUsecase>()) {
     instance.registerFactory<NewsUsecase>(() => NewsUsecase(instance()));
   }
-  // if (!GetIt.I.isRegistered<NewsByIdUsecase>()) {
-  //   instance
-  //       .registerFactory<NewsByIdUsecase>(() => NewsByIdUsecase(instance()));
-  // }
+
   if (!GetIt.I.isRegistered<LawsUsecase>()) {
     instance.registerFactory<LawsUsecase>(() => LawsUsecase(repository:instance()));
   }
-  if (!GetIt.I.isRegistered<LawByIdUsecase>()) {
-    instance.registerFactory<LawByIdUsecase>(() => LawByIdUsecase(instance()));
-  }
+
   if (!GetIt.I.isRegistered<FaqUsecase>()) {
     instance.registerFactory<FaqUsecase>(() => FaqUsecase(instance()));
   }
@@ -222,7 +223,7 @@ Future<void> initHomeModule() async {
 
   if (!GetIt.I.isRegistered<LawsBloc>()) {
     instance.registerFactory(
-        () => LawsBloc(lawsUsecase: instance(), lawByIdUsecase: instance()));
+        () => LawsBloc(lawsUsecase: instance()));
   }
   if (!GetIt.I.isRegistered<FaqBloc>()) {
     instance.registerFactory(() => FaqBloc(
@@ -235,12 +236,40 @@ Future<void> initHomeModule() async {
     instance.registerFactory<ChatbotUsecase>(
         () => ChatbotUsecase(instance()));
   }
+  if (!GetIt.I.isRegistered<StartStreamUsecase>()) {
+    instance.registerFactory<StartStreamUsecase>(
+        () => StartStreamUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<SendAnswerUsecase>()) {
+    instance.registerFactory<SendAnswerUsecase>(
+        () => SendAnswerUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<SendCandidateUsecase>()) {
+    instance.registerFactory<SendCandidateUsecase>(
+        () => SendCandidateUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<CloseStreamUsecase>()) {
+    instance.registerFactory<CloseStreamUsecase>(
+        () => CloseStreamUsecase(instance()));
+  }
+  //------ platform chatbot ------
+  if (!GetIt.I.isRegistered<PlatformChatbotUsecases>()) {
+    instance.registerFactory<PlatformChatbotUsecases>(
+        () => PlatformChatbotUsecases(instance()));
+  }
    //bloc
+  if (!GetIt.I.isRegistered<CloseStreamBloc>()) {
+    instance.registerFactory<CloseStreamBloc>(
+        () => CloseStreamBloc(instance()));
+  }
   if (!GetIt.I.isRegistered<ChatBotBloc>()) {
-    instance.registerFactory(() => ChatBotBloc(instance()));
+    instance.registerFactory(() => ChatBotBloc(instance(),instance()));
   }
   if (!GetIt.I.isRegistered<ChatHistoryCubit>()) {
     instance.registerFactory(() => ChatHistoryCubit());
+  }
+  if (!GetIt.I.isRegistered<StartStreamBloc>()) {
+    instance.registerFactory(() => StartStreamBloc(instance(),instance(),instance(),instance()));
   }
 
 }

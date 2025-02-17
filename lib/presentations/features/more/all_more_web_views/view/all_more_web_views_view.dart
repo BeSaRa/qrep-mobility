@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/app/constants.dart';
 import 'package:ebla/presentations/features/more/all_more_web_views/blocs/all_more_web_views_bloc.dart';
 import 'package:ebla/presentations/features/more/all_more_web_views/blocs/all_more_web_views_event.dart';
 import 'package:ebla/presentations/features/more/all_more_web_views/blocs/all_more_web_views_state.dart';
+import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
 import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/material.dart';
@@ -17,32 +19,32 @@ class AllMoreWebViews extends StatelessWidget {
     switch (pageName) {
       case "aboutTheAuthority":
         return context.locale == ENGLISH_LOCAL
-            ? 'https://www.aqarat.gov.qa/en/about-the-authority/'
-            : 'https://www.aqarat.gov.qa/%d9%86%d8%a8%d8%b0%d8%a9-%d8%b9%d9%86-%d8%a7%d9%84%d9%87%d9%8a%d8%a6%d8%a9/';
+            ? '${Constant.aqaratBaseUrl}/en/about-the-authority/'
+            : '${Constant.aqaratBaseUrl}/%d9%86%d8%a8%d8%b0%d8%a9-%d8%b9%d9%86-%d8%a7%d9%84%d9%87%d9%8a%d8%a6%d8%a9/';
       case "visionAndMission":
         return context.locale == ENGLISH_LOCAL
-            ? "https://www.aqarat.gov.qa/en/vision-and-mission/"
-            : 'https://www.aqarat.gov.qa/%d8%a7%d9%84%d8%b1%d8%a4%d9%8a%d8%a9-%d9%88%d8%a7%d9%84%d8%b1%d8%b3%d8%a7%d9%84%d8%a9/';
+            ? "${Constant.aqaratBaseUrl}/en/vision-and-mission/"
+            : '${Constant.aqaratBaseUrl}/%d8%a7%d9%84%d8%b1%d8%a4%d9%8a%d8%a9-%d9%88%d8%a7%d9%84%d8%b1%d8%b3%d8%a7%d9%84%d8%a9/';
       case "tasksAndResponsibilitiesOftheAuthority":
         return context.locale == ENGLISH_LOCAL
-            ? "https://www.aqarat.gov.qa/en/tasks-and-responsibilities-of-the-authority/"
-            : 'https://www.aqarat.gov.qa/%d9%85%d9%87%d8%a7%d9%85-%d9%88%d8%a7%d8%ae%d8%aa%d8%b5%d8%a7%d8%b5%d8%a7%d8%aa-%d8%a7%d9%84%d9%87%d9%8a%d8%a6%d8%a9/';
+            ? "${Constant.aqaratBaseUrl}/en/tasks-and-responsibilities-of-the-authority/"
+            : '${Constant.aqaratBaseUrl}/%d9%85%d9%87%d8%a7%d9%85-%d9%88%d8%a7%d8%ae%d8%aa%d8%b5%d8%a7%d8%b5%d8%a7%d8%aa-%d8%a7%d9%84%d9%87%d9%8a%d8%a6%d8%a9/';
       case "contactUs":
         return context.locale == ENGLISH_LOCAL
-            ? "https://www.aqarat.gov.qa/en/contact-us/"
-            : 'https://www.aqarat.gov.qa/%d8%aa%d9%88%d8%a7%d8%b5%d9%84-%d9%85%d8%b9%d9%86%d8%a7/';
+            ? "${Constant.aqaratBaseUrl}/en/contact-us/"
+            : '${Constant.aqaratBaseUrl}/%d8%aa%d9%88%d8%a7%d8%b5%d9%84-%d9%85%d8%b9%d9%86%d8%a7/';
       case "authorityNews":
         return context.locale == ENGLISH_LOCAL
-            ? "https://www.aqarat.gov.qa/en/authority-news/"
-            : 'https://www.aqarat.gov.qa/%d8%a3%d8%ae%d8%a8%d8%a7%d8%b1-%d8%a7%d9%84%d9%87%d9%8a%d8%a6%d8%a9/';
+            ? "${Constant.aqaratBaseUrl}/en/authority-news/"
+            : '${Constant.aqaratBaseUrl}/%d8%a3%d8%ae%d8%a8%d8%a7%d8%b1-%d8%a7%d9%84%d9%87%d9%8a%d8%a6%d8%a9/';
       case "services":
         return context.locale == ENGLISH_LOCAL
-            ? "https://www.aqarat.gov.qa/en/services/"
-            : 'https://www.aqarat.gov.qa/%d8%a7%d9%84%d8%ae%d8%af%d9%85%d8%a7%d8%aa/';
+            ? "${Constant.aqaratBaseUrl}/en/services/"
+            : '${Constant.aqaratBaseUrl}/%d8%a7%d9%84%d8%ae%d8%af%d9%85%d8%a7%d8%aa/';
       default:
         return context.locale == ENGLISH_LOCAL
-            ? 'https://www.aqarat.gov.qa/en/about-the-authority/'
-            : 'https://www.aqarat.gov.qa/%d9%86%d8%a8%d8%b0%d8%a9-%d8%b9%d9%86-%d8%a7%d9%84%d9%87%d9%8a%d8%a6%d8%a9/';
+            ? '${Constant.aqaratBaseUrl}/en/about-the-authority/'
+            : '${Constant.aqaratBaseUrl}/%d9%86%d8%a8%d8%b0%d8%a9-%d8%b9%d9%86-%d8%a7%d9%84%d9%87%d9%8a%d8%a6%d8%a9/';
     }
   }
 
@@ -55,39 +57,25 @@ class AllMoreWebViews extends StatelessWidget {
       child: BlocBuilder<AboutTheAuthorityBloc, AboutTheAuthorityState>(
         builder: (context, state) {
           final bloc = context.read<AboutTheAuthorityBloc>();
-          if (state is AboutTheAuthorityLoaded) {
+          if (state is AboutTheAuthorityLoading) {
+            return const AnimatedPulesLogo();
+          } else if (state is AboutTheAuthorityError) {
+            return ErrorGlobalWidget(
+              message: state.message,
+              onPressed: () {
+                bloc.add(
+                    InitializeAboutAuthWebView(_getInitUrl(context, pageName)));
+              },
+            );
+          } else {
             final isDarkMode = Theme.of(context).brightness == Brightness.dark;
             bloc.add(RunJavaScript(pageName, isDarkMode, context.locale));
+
+            return Scaffold(
+              appBar: _costumeAppBar(context),
+              body: WebViewWidget(controller: bloc.controller),
+            );
           }
-          return Scaffold(
-            appBar: _costumeAppBar(context),
-            body: Stack(
-              children: [
-                if (state is AboutTheAuthorityLoading)
-                  Center(
-                    child: Container(
-                      width: double.infinity,
-                      height: MediaQuery.sizeOf(context).height,
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? Theme.of(context).scaffoldBackgroundColor
-                          : ColorManager.white,
-                    ),
-                  ),
-                if (state is AboutTheAuthorityLoading)
-                  const Center(child: CircularProgressIndicator()),
-                if (state is AboutTheAuthorityLoaded)
-                  WebViewWidget(controller: bloc.controller),
-                if (state is AboutTheAuthorityError)
-                  ErrorGlobalWidget(
-                    message: state.message,
-                    onPressed: () {
-                      bloc.add(InitializeAboutAuthWebView(
-                          _getInitUrl(context, pageName)));
-                    },
-                  ),
-              ],
-            ),
-          );
         },
       ),
     );

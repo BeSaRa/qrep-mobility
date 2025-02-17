@@ -72,6 +72,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           builder: (context, child) => ThemeProvider(
             initTheme: instance<AppPreferences>().getTheme(),
             builder: (p0, theme) => MaterialApp.router(
+              
               debugShowCheckedModeBanner: false,
               localizationsDelegates: context.localizationDelegates,
               supportedLocales: context.supportedLocales,

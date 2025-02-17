@@ -54,15 +54,7 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                         fit: BoxFit.fill,
                       ),
                     ),
-                    // Container(
-                    //   height: AppSizeH.s50,
-                    //   decoration: const BoxDecoration(
-                    //     image: DecorationImage(
-                    //       image: AssetImage(ImageAssets.appbarBg),
-                    //       fit: BoxFit.cover,
-                    //     ),
-                    //   ),
-                    // ),
+
                     leading: IconButton(
                         onPressed: () {
                           Navigator.maybePop(context);
@@ -223,7 +215,7 @@ class _LawWidgetState extends State<LawWidget> {
                         Flexible(
                           child: Text(
                             widget.law.title,
-                            maxLines: 3,
+                            maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: Theme.of(context).textTheme.titleMedium,
                           ),

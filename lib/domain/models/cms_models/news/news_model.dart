@@ -23,12 +23,13 @@ abstract class NewsByIdResponse with _$NewsByIdResponse {
 abstract class NewsModel with _$NewsModel {
   const factory NewsModel({
     @Default(0) int id,
+    @Default("") String link,
     @Default("") String date, //==
     @Default("") String modified, //==
     @Default('') String status,
     @Default(TitleModel()) TitleModel title,
     @Default(ContentModel()) ContentModel content,
-    @Default([]) @JsonKey(name: 'og_image')List<OgImageModel> ogImage,
+    @Default(YoastHeadJsonModel()) @JsonKey(name: 'yoast_head_json') YoastHeadJsonModel yoastHeadJsonModel,
     @Default('') @JsonKey(name: 'user_created') String? userCreated,
     @Default('') @JsonKey(name: 'date_created') String? dateCreated,
     @Default('') @JsonKey(name: 'user_updated') String? userUpdated,
@@ -64,7 +65,18 @@ abstract class OgImageModel with _$OgImageModel {
     @Default(0) int width,
   }) = _OgImageModel;
   factory OgImageModel.fromJson(Map<String, dynamic> json) =>
-      _$OgImageModelFromJson(json);
+     _$OgImageModelFromJson(json);
+  
+}
+@freezed 
+abstract class YoastHeadJsonModel with _$YoastHeadJsonModel{
+  const factory YoastHeadJsonModel({
+    @Default([]) @JsonKey(name: 'og_image') List<OgImageModel> ogImage,
+  }) = _YoastHeadJsonModel;
+  factory YoastHeadJsonModel.fromJson(Map<String, dynamic> json) =>
+
+     _$YoastHeadJsonModelFromJson(json);
+  
 }
 // // ignore_for_file: invalid_annotation_target
 // import 'package:freezed_annotation/freezed_annotation.dart';

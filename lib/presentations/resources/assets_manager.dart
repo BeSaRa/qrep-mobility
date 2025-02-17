@@ -33,7 +33,9 @@ class ImageAssets {
   static const String logoPng = '${IMAGE_PATH}splash_logo_trimmed.png';
   static const String homeBg = '${IMAGE_PATH}home_bg.png';
   static const String chatBot = '${IMAGE_PATH}chatgpt.png';
-  static const String chatBotIndecetor = '${IMAGE_PATH}chat_bot_loading_indecetor.json';
+  static const String chatBotIndecetor =
+      '${IMAGE_PATH}chat_bot_loading_indecetor.json';
+  static const String chatBotRecordingIndecetor = '${IMAGE_PATH}recording.json';
 
   static const String appbarBg = "${IMAGE_PATH}bg_appbar.png";
   static const String dbNote = "${IMAGE_PATH}db_note.png";
@@ -74,7 +76,8 @@ class IconAssets {
   static const String lawItem = "${ICON_PATH}law_item.svg";
   static const String cloudDownload = "${ICON_PATH}cloud_download.svg";
   static const String investorJourney = "${ICON_PATH}investor_journey.svg";
-  static const String professionPracticers ="${ICON_PATH}profession_practicers.svg";
+  static const String professionPracticers =
+      "${ICON_PATH}profession_practicers.svg";
   static const String propertyDeveloper = "${ICON_PATH}property_developer.svg";
 
   // sell

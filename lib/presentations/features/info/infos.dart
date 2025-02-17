@@ -8,4 +8,3 @@ export 'views/news/news_view.dart';
 export 'views/about_us_view.dart';
 export 'views/faq_view.dart';
 export 'views/laws_decisions_view.dart';
-export 'views/laws_details_view.dart';

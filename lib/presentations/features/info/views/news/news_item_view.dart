@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/utils/global_functions.dart';
@@ -8,8 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
-
-import '../../../../../app/constants.dart';
 import '../../../../../domain/models/cms_models/news/news_model.dart';
 import '../../../../resources/resources.dart';
 import '../../../../widgets/shimmer_placeholder.dart';
@@ -66,12 +62,7 @@ class _NewsItemViewState extends State<NewsItemView> {
             fit: BoxFit.fill,
           ),
         ),
-        // Container(
-        //   height: AppSizeH.s50,
-        //   decoration: const BoxDecoration(
-        //       image: DecorationImage(
-        //           image: AssetImage(ImageAssets.appbarBg), fit: BoxFit.fill)),
-        // ),
+
         leading: IconButton(
             onPressed: () {
               Navigator.maybePop(context);
@@ -80,9 +71,7 @@ class _NewsItemViewState extends State<NewsItemView> {
               Icons.arrow_back,
               color: ColorManager.golden,
             )),
-        // BackButton(
-        //   color: ColorManager.golden,
-        // ),
+
         title: Text(
           AppStrings().newsDetails,
           style: Theme.of(context).textTheme.headlineLarge,
@@ -91,7 +80,7 @@ class _NewsItemViewState extends State<NewsItemView> {
         actions: [
           IconButton(
             onPressed: () {
-              Share.share('${Constant.webUrl}news/${widget.id}');
+              Share.share(model.link);
             },
             icon: Icon(Icons.share_outlined, color: ColorManager.golden),
           ),
@@ -116,10 +105,10 @@ class _NewsItemViewState extends State<NewsItemView> {
                     ),
                   );
                 },
-                imageUrl: model.ogImage[0].url,
-                // imageUrl:
-                //     'https://www.aqarat.gov.qa/wp-content/uploads/2024/10/1.webp',
-                // imageUrl: '${Constant.cmsBaseUrl}/assets/${model.image}',
+                imageUrl: model.yoastHeadJsonModel.ogImage.isNotEmpty
+                    ? model.yoastHeadJsonModel.ogImage[0].url
+                    : ImageAssets.test,
+          
                 imageBuilder: (context, imageProvider) {
                   return Container(
                     height: AppSizeH.s260,
@@ -152,33 +141,17 @@ class _NewsItemViewState extends State<NewsItemView> {
                     fontSize: FontSize(AppSizeSp.s16),
                     fontWeight: FontWeight.w700),
               }),
-
-              SizedBox(height: AppSizeH.s8),
-              // Row(
-              //   children: [
-              //     Icon(
-              //       Icons.access_time_outlined,
-              //       size: AppSizeSp.s14,
-              //       color: ColorManager.cloudyGrey,
-              //     ),
-              //     SizedBox(width: AppSizeW.s5),
-              //     Text(
-              //       DateTime.parse(model.dateCreated)
-              //           .toShowDateTime(local: context.locale.languageCode),
-              //       style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-              //           fontSize: AppSizeSp.s14, fontWeight: FontWeight.w400),
-              //     )
-              //   ],
-              // ),
               SizedBox(height: AppSizeH.s6),
               Divider(
                 color: ColorManager.grey,
                 height: AppSizeH.s1,
               ),
               SizedBox(height: AppSizeH.s14),
-              Html(
-                data: model.content.rendered,
-              ),
+              Html(data: model.content.rendered, style: {
+                //it's important to add this to hide all images in the content response
+                "img": Style(display: Display.none),
+                "figure": Style(display: Display.none),
+              }),
               SizedBox(height: AppSizeH.s14),
               Divider(
                 color: ColorManager.grey,
@@ -220,7 +193,9 @@ class _NewsItemViewState extends State<NewsItemView> {
                         child: SizedBox(
                           height: AppSizeH.s100,
                           child: NewsItemWidget(
-                              image: e.ogImage[0].url,
+                              image: e.yoastHeadJsonModel.ogImage.isNotEmpty
+                                  ? e.yoastHeadJsonModel.ogImage[0].url
+                                  : ImageAssets.test,
                               date: e.date,
                               label: e.title.rendered),
                         ),

@@ -2,8 +2,28 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <!-- for record -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+    <!-- <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> -->
+    <!-- for pdf -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <!-- web RTC-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" /> -->
+
+
     <!-- Provide required visibility configuration for API level 30 and above -->
     <queries>
+<!--  -->
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+
         <!-- If your app checks for call support -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
@@ -30,8 +50,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="عقارات"
         android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
         >
-
+ <!-- <service
+            android:name="com.csdcorp.speech_to_text.SpeechToTextService" 
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"/> -->
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

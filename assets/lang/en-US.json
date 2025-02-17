@@ -10,7 +10,7 @@
   "confirm": "Confirm",
   "dark": "Dark",
   "data_is_being_collected_and_audited": "Data is being collected and audited",
-  "defaultError": "Default error",
+  "defaultError": "Something went wrong, please try again later.",
   "forget_password": "Did you forget your password?",
   "home": "main",
   "identifier": "User name",
@@ -27,6 +27,7 @@
   "password": "Password",
   "validator_password_empty": "Password is required",
   "qatar_real_estate_platform": "Qatar Real Estate Platform",
+  "real_estate_regulatory_authority":"Real Estate Regulatory Authority",
   "rent": "rent",
   "sell": "sell",
   "support": "support",
@@ -203,7 +204,14 @@
   "authority_news":"Authority News",
   "services":"Services",
   "-----------chatbot----------": "--------------------------",
-  "defult_bot_message": "This is the smart assistant of the Real Estate Regulatory Authority-Aqarat, how can I help you?",
-  "write_your_message": "Write your message..."
+  "defult_bot_message": "This is the smart assistant of the Real Estate Regulatory Authority-Aqarat, how can I assist you?",
+  "defult_platform_bot_message": "This is the smart assistant for the Qatar Real Estate platform. How can I assist you?",
+  "write_your_message": "Write your message...",
+  "chart_note":"A table was used to display the chart data because the number of columns is more than 2.",
+  "note":"Note",
+  "article_number":"Article Number",
+  "avg_note":"To get accurate average results, please select municipality, region, property type and property use.",
+  "chat_other_response_message":"It seems that the question is not clear or there is a problem. Please try again.",
+  "large_digits_numbers_note":"The chart data is displayed in a table because there are values ​​with large numerical digits.",
   
 }

@@ -1,3 +1,4 @@
+import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 import '../../../data/network/failure_model/failure.dart';
@@ -16,4 +17,12 @@ abstract class BaseUseCaseEmptyInputFailureResponse<Out> {
 
 abstract class BaseUseCaseFailureResponse<In, Out> {
   Future<Result<Out, FailureResponse>> execute(In input);
+}
+//----------------------------------- Close stream ------------------------
+abstract class BaseUseCaseEmptyInputCloseStreamFailureResponse<Out> {
+  Future<Result<Out, FailureCloseStreamModel>> execute();
+}
+
+abstract class BaseUseCaseCloseStreamFailureResponse<In, Out> {
+  Future<Result<Out, FailureCloseStreamModel>> execute(In input);
 }

@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/app/constants.dart';
 import 'package:ebla/presentations/features/investor_journey/blocs/investor_journey_bloc.dart';
 import 'package:ebla/presentations/features/investor_journey/blocs/investor_journey_state.dart';
+import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
 import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/material.dart';
@@ -17,20 +19,20 @@ class InvestorJourneyView extends StatelessWidget {
     switch (stepNumber) {
       case "0":
         return context.locale == ENGLISH_LOCAL
-            ? 'https://www.aqarat.gov.qa/en/investors-journey/'
-            : 'https://www.aqarat.gov.qa/%D8%B1%D8%AD%D9%84%D8%A9-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AB%D9%85%D8%B1/';
+            ? '${Constant.aqaratBaseUrl}/en/investors-journey/'
+            : '${Constant.aqaratBaseUrl}/%D8%B1%D8%AD%D9%84%D8%A9-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AB%D9%85%D8%B1/';
       case "1":
         return context.locale == ENGLISH_LOCAL
-            ? "https://www.aqarat.gov.qa/en/real-estate-developers/?lang=en"
-            : 'https://www.aqarat.gov.qa/%d8%a7%d9%84%d9%85%d8%b7%d9%88%d8%b1%d9%8a%d9%86-%d8%a7%d9%84%d8%b9%d9%82%d8%a7%d8%b1%d9%8a%d9%8a%d9%86/';
+            ? "${Constant.aqaratBaseUrl}/en/real-estate-developers/?lang=en"
+            : '${Constant.aqaratBaseUrl}/%d8%a7%d9%84%d9%85%d8%b7%d9%88%d8%b1%d9%8a%d9%86-%d8%a7%d9%84%d8%b9%d9%82%d8%a7%d8%b1%d9%8a%d9%8a%d9%86/';
       case "2":
         return context.locale == ENGLISH_LOCAL
-            ? "https://www.aqarat.gov.qa/en/professionals/?lang=en"
-            : 'https://www.aqarat.gov.qa/%d9%85%d8%b2%d8%a7%d9%88%d9%84%d9%8a-%d8%a7%d9%84%d9%85%d9%87%d9%86%d8%a9-3/';
+            ? "${Constant.aqaratBaseUrl}/en/professionals/?lang=en"
+            : '${Constant.aqaratBaseUrl}/%d9%85%d8%b2%d8%a7%d9%88%d9%84%d9%8a-%d8%a7%d9%84%d9%85%d9%87%d9%86%d8%a9-3/';
       default:
         return context.locale == ENGLISH_LOCAL
-            ? 'https://www.aqarat.gov.qa/en/investors-journey/'
-            : 'https://www.aqarat.gov.qa/%D8%B1%D8%AD%D9%84%D8%A9-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AB%D9%85%D8%B1/';
+            ? '${Constant.aqaratBaseUrl}/en/investors-journey/'
+            : '${Constant.aqaratBaseUrl}/%D8%B1%D8%AD%D9%84%D8%A9-%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AB%D9%85%D8%B1/';
     }
   }
 
@@ -47,35 +49,21 @@ class InvestorJourneyView extends StatelessWidget {
             final isDarkMode = Theme.of(context).brightness == Brightness.dark;
             bloc.add(RunJavaScript(stepNumber, isDarkMode, context.locale));
           }
-          return Scaffold(
-            appBar: _costumeAppBar(context),
-            body: Stack(
-              children: [
-                if (state is InvestorJourneyLoading)
-                  Center(
-                    child: Container(
-                      width: double.infinity,
-                      height: MediaQuery.sizeOf(context).height,
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? Theme.of(context).scaffoldBackgroundColor
-                          : ColorManager.white,
-                    ),
-                  ),
-                if (state is InvestorJourneyLoading)
-                  const Center(child: CircularProgressIndicator()),
-                if (state is InvestorJourneyLoaded)
-                  WebViewWidget(controller: bloc.controller),
-                if (state is InvestorJourneyError)
-                  ErrorGlobalWidget(
-                    message: state.message,
-                    onPressed: () {
-                      bloc.add(
-                          InitializeWebView(_getInitUrl(context, stepNumber)));
-                    },
-                  ),
-              ],
-            ),
-          );
+          if (state is InvestorJourneyLoading) {
+            return const AnimatedPulesLogo();
+          } else if (state is InvestorJourneyError) {
+            return ErrorGlobalWidget(
+              message: state.message,
+              onPressed: () {
+                bloc.add(InitializeWebView(_getInitUrl(context, stepNumber)));
+              },
+            );
+          } else {
+            return Scaffold(
+              appBar: _costumeAppBar(context),
+              body: WebViewWidget(controller: bloc.controller),
+            );
+          }
         },
       ),
     );

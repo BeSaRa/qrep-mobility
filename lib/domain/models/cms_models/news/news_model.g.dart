@@ -36,6 +36,7 @@ Map<String, dynamic> _$$NewsByIdResponseImplToJson(
 _$NewsModelImpl _$$NewsModelImplFromJson(Map<String, dynamic> json) =>
     _$NewsModelImpl(
       id: (json['id'] as num?)?.toInt() ?? 0,
+      link: json['link'] as String? ?? "",
       date: json['date'] as String? ?? "",
       modified: json['modified'] as String? ?? "",
       status: json['status'] as String? ?? '',
@@ -45,10 +46,10 @@ _$NewsModelImpl _$$NewsModelImplFromJson(Map<String, dynamic> json) =>
       content: json['content'] == null
           ? const ContentModel()
           : ContentModel.fromJson(json['content'] as Map<String, dynamic>),
-      ogImage: (json['og_image'] as List<OgImageModel>?)
-              ?.map((e) => OgImageModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      yoastHeadJsonModel: json['yoast_head_json'] == null
+          ? const YoastHeadJsonModel()
+          : YoastHeadJsonModel.fromJson(
+              json['yoast_head_json'] as Map<String, dynamic>),
       userCreated: json['user_created'] as String? ?? '',
       dateCreated: json['date_created'] as String? ?? '',
       userUpdated: json['user_updated'] as String? ?? '',
@@ -58,12 +59,13 @@ _$NewsModelImpl _$$NewsModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$NewsModelImplToJson(_$NewsModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'link': instance.link,
       'date': instance.date,
       'modified': instance.modified,
       'status': instance.status,
       'title': instance.title,
       'content': instance.content,
-      'og_image': instance.ogImage,
+      'yoast_head_json': instance.yoastHeadJsonModel,
       'user_created': instance.userCreated,
       'date_created': instance.dateCreated,
       'user_updated': instance.userUpdated,
@@ -100,4 +102,19 @@ Map<String, dynamic> _$$OgImageModelImplToJson(_$OgImageModelImpl instance) =>
     <String, dynamic>{
       'url': instance.url,
       'width': instance.width,
+    };
+
+_$YoastHeadJsonModelImpl _$$YoastHeadJsonModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$YoastHeadJsonModelImpl(
+      ogImage: (json['og_image'] as List<dynamic>?)
+              ?.map((e) => OgImageModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$$YoastHeadJsonModelImplToJson(
+        _$YoastHeadJsonModelImpl instance) =>
+    <String, dynamic>{
+      'og_image': instance.ogImage,
     };

@@ -8,16 +8,12 @@ class NetworkInfoImplementer implements NetworkInfo {
   final Connectivity _connectivity;
   NetworkInfoImplementer(this._connectivity);
   @override
-  Future<bool> get isConnected =>
-      _connectivity.checkConnectivity().then((value) {
-        return true;
-        //Note ZAK: there is a problem with this package i guess
-        // cause the data loaded after i commad the next 5 lines
+  Future<bool> get isConnected async {
+    final List<ConnectivityResult> connectivityResults =
+        await _connectivity.checkConnectivity();
 
-        // if (value == ConnectivityResult.wifi ||
-        //     value == ConnectivityResult.mobile) {
-        // } else {
-        //   return false;
-        // }
-      });
+    // Check if any of the results contain WiFi or mobile
+    return connectivityResults.contains(ConnectivityResult.wifi) ||
+        connectivityResults.contains(ConnectivityResult.mobile);
+  }
 }

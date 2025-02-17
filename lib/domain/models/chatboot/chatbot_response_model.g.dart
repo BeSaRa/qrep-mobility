@@ -99,3 +99,139 @@ Map<String, dynamic> _$$CitationImplToJson(_$CitationImpl instance) =>
       'filepath': instance.filepath,
       'chunkId': instance.chunkId,
     };
+
+_$StartStreamModelImpl _$$StartStreamModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$StartStreamModelImpl(
+      statusCode: (json['statusCode'] as num?)?.toInt() ?? 200,
+      status: json['status'] as String? ?? '',
+      message: json['message'] as String? ?? '',
+      data: json['data'] == null
+          ? null
+          : WebRTCDataModel.fromJson(json['data'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$StartStreamModelImplToJson(
+        _$StartStreamModelImpl instance) =>
+    <String, dynamic>{
+      'statusCode': instance.statusCode,
+      'status': instance.status,
+      'message': instance.message,
+      'data': instance.data,
+    };
+
+_$WebRTCDataModelImpl _$$WebRTCDataModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WebRTCDataModelImpl(
+      id: json['id'] as String? ?? '',
+      webrtcData: json['webrtcData'] == null
+          ? null
+          : WebRTCDetailsModel.fromJson(
+              json['webrtcData'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$WebRTCDataModelImplToJson(
+        _$WebRTCDataModelImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'webrtcData': instance.webrtcData,
+    };
+
+_$WebRTCDetailsModelImpl _$$WebRTCDetailsModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WebRTCDetailsModelImpl(
+      offer: json['offer'] == null
+          ? null
+          : OfferModel.fromJson(json['offer'] as Map<String, dynamic>),
+      iceServers: (json['iceServers'] as List<dynamic>?)
+              ?.map((e) => ICEServerModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
+
+Map<String, dynamic> _$$WebRTCDetailsModelImplToJson(
+        _$WebRTCDetailsModelImpl instance) =>
+    <String, dynamic>{
+      'offer': instance.offer,
+      'iceServers': instance.iceServers,
+    };
+
+_$OfferModelImpl _$$OfferModelImplFromJson(Map<String, dynamic> json) =>
+    _$OfferModelImpl(
+      type: json['type'] as String? ?? '',
+      sdp: json['sdp'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$OfferModelImplToJson(_$OfferModelImpl instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+      'sdp': instance.sdp,
+    };
+
+_$ICEServerModelImpl _$$ICEServerModelImplFromJson(Map<String, dynamic> json) =>
+    _$ICEServerModelImpl(
+      urls: json['urls'] as String? ?? '',
+      username: json['username'] as String? ?? '',
+      credential: json['credential'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$ICEServerModelImplToJson(
+        _$ICEServerModelImpl instance) =>
+    <String, dynamic>{
+      'urls': instance.urls,
+      'username': instance.username,
+      'credential': instance.credential,
+    };
+
+_$SendAnswerResponseModelImpl _$$SendAnswerResponseModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SendAnswerResponseModelImpl(
+      statusCode: (json['status_code'] as num?)?.toInt() ?? 0,
+      status: json['status'] as String? ?? '',
+      message: json['message'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$SendAnswerResponseModelImplToJson(
+        _$SendAnswerResponseModelImpl instance) =>
+    <String, dynamic>{
+      'status_code': instance.statusCode,
+      'status': instance.status,
+      'message': instance.message,
+    };
+
+_$FailureCloseStreamModelImpl _$$FailureCloseStreamModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$FailureCloseStreamModelImpl(
+      errorDescription: (json['errorDescription'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      message: json['message'] as String? ?? null,
+      detail: json['detail'] as String? ?? null,
+      statusCode: (json['statusCode'] as num?)?.toInt() ?? 0,
+    );
+
+Map<String, dynamic> _$$FailureCloseStreamModelImplToJson(
+        _$FailureCloseStreamModelImpl instance) =>
+    <String, dynamic>{
+      'errorDescription': instance.errorDescription,
+      'message': instance.message,
+      'detail': instance.detail,
+      'statusCode': instance.statusCode,
+    };
+
+_$PlatformChatbotResponseModelImpl _$$PlatformChatbotResponseModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PlatformChatbotResponseModelImpl(
+      conversationId: json['conversationId'] as String? ?? null,
+      response: json['response'] as List<dynamic>? ?? const [],
+      responseFormat: json['responseFormat'] as String? ?? "",
+    );
+
+Map<String, dynamic> _$$PlatformChatbotResponseModelImplToJson(
+        _$PlatformChatbotResponseModelImpl instance) =>
+    <String, dynamic>{
+      'conversationId': instance.conversationId,
+      'response': instance.response,
+      'responseFormat': instance.responseFormat,
+    };

@@ -27,40 +27,6 @@ class NewsUsecase implements BaseUseCaseEmptyInput<List<NewsModel>> {
   }
 }
 
-class NewsByIdUsecase implements BaseUseCase<({int id}), NewsByIdResponse> {
-  final Repository repository;
-
-  NewsByIdUsecase(this.repository);
-
-  @override
-  Future<Result<NewsByIdResponse, FailureModel>> execute(
-      ({int id}) input) async {
-    return await repository.getNewsById(id: input.id);
-  }
-}
-
-// class LawsUsecase implements BaseUseCase<int, LawsResponse> {
-//   final Repository repository;
-
-//   LawsUsecase(this.repository);
-
-//   @override
-//   Future<Result<LawsResponse, FailureModel>> execute(int limit) async {
-//     return await repository.getLaws(limit: limit);
-//   }
-// }
-
-class LawByIdUsecase implements BaseUseCase<int, LawByIdResponse> {
-  final Repository repository;
-
-  LawByIdUsecase(this.repository);
-
-  @override
-  Future<Result<LawByIdResponse, FailureModel>> execute(int id) async {
-    return await repository.getLawById(id);
-  }
-}
-
 class FaqUsecase implements BaseUseCase<int, FaqResponse> {
   final Repository repository;
 
