@@ -429,6 +429,8 @@ class _MortagageViewState extends State<MortgageView> {
                               providers: [
                                 BlocProvider.value(value: mortgageGridKPIsBloc),
                                 BlocProvider.value(value: changeStatusCubit),
+                                BlocProvider.value(
+                                    value: context.read<MortgageBloc>()),
                               ],
                               child: Padding(
                                   padding: EdgeInsets.symmetric(

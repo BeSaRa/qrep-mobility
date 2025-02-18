@@ -458,6 +458,8 @@ class _SalesViewState extends State<SalesView> {
                                     BlocProvider.value(value: sellGridKPIsBloc),
                                     BlocProvider.value(
                                         value: changeStatusCubit),
+                                    BlocProvider.value(
+                                        value: context.read<SellBloc>()),
                                   ],
                                   child: GridItemWidget(
                                     gridItemType: GridItemType.sell,

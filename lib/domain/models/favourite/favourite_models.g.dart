@@ -21,25 +21,18 @@ _$FavouriteResponseImpl _$$FavouriteResponseImplFromJson(
     );
 
 Map<String, dynamic> _$$FavouriteResponseImplToJson(
-    _$FavouriteResponseImpl instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('creationTime', instance.creationTime);
-  writeNotNull('criteria', instance.criteria);
-  writeNotNull('id', instance.id);
-  writeNotNull('lastModifiedTime', instance.lastModifiedTime);
-  writeNotNull('name', instance.name);
-  writeNotNull('pageDescription', instance.pageDescription);
-  val['pageName'] = _$IndicatorsEnumMap[instance.pageName]!;
-  writeNotNull('userId', instance.userId);
-  return val;
-}
+        _$FavouriteResponseImpl instance) =>
+    <String, dynamic>{
+      if (instance.creationTime case final value?) 'creationTime': value,
+      if (instance.criteria case final value?) 'criteria': value,
+      if (instance.id case final value?) 'id': value,
+      if (instance.lastModifiedTime case final value?)
+        'lastModifiedTime': value,
+      if (instance.name case final value?) 'name': value,
+      if (instance.pageDescription case final value?) 'pageDescription': value,
+      'pageName': _$IndicatorsEnumMap[instance.pageName]!,
+      if (instance.userId case final value?) 'userId': value,
+    };
 
 const _$IndicatorsEnumMap = {
   Indicators.broker: '/broker-indicators',
@@ -100,48 +93,50 @@ _$CriteriaObjectImpl _$$CriteriaObjectImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$CriteriaObjectImplToJson(
-    _$CriteriaObjectImpl instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('municipalityId', instance.municipalityId);
-  writeNotNull('areaCode', instance.areaCode);
-  writeNotNull('propertyTypeList', instance.propertyTypeList);
-  writeNotNull('purposeList', instance.purposeList);
-  writeNotNull('issueDateQuarterList', instance.issueDateQuarterList);
-  writeNotNull('premiseCategoryList', instance.premiseCategoryList);
-  writeNotNull('bedRoomsCount', instance.bedRoomsCount);
-  writeNotNull('furnitureStatus', instance.furnitureStatus);
-  writeNotNull('issueDateYear', instance.issueDateYear);
-  writeNotNull('issueDateMonth', instance.issueDateMonth);
-  writeNotNull('issueDateStartMonth', instance.issueDateStartMonth);
-  writeNotNull('issueDateEndMonth', instance.issueDateEndMonth);
-  writeNotNull(
-      'rentPaymentMonthlyPerUnitFrom', instance.rentPaymentMonthlyPerUnitFrom);
-  writeNotNull(
-      'rentPaymentMonthlyPerUnitTo', instance.rentPaymentMonthlyPerUnitTo);
-  writeNotNull('zoneId', instance.zoneId);
-  writeNotNull('durationType', instance.durationType);
-  writeNotNull('realEstateValueFrom', instance.realEstateValueFrom);
-  writeNotNull('realEstateValueTo', instance.realEstateValueTo);
-  writeNotNull('halfYearDuration', instance.halfYearDuration);
-  writeNotNull('areaFrom', instance.areaFrom);
-  writeNotNull('areaTo', instance.areaTo);
-  writeNotNull('occupancyStatus', instance.occupancyStatus);
-  writeNotNull('unit', instance.unit);
-  writeNotNull('periodId', instance.periodId);
-  writeNotNull('issueDateFrom', instance.issueDateFrom);
-  writeNotNull('issueDateTo', instance.issueDateTo);
-  writeNotNull('premiseTypeList', instance.premiseTypeList);
-  writeNotNull('ownerCategoryCode', instance.ownerCategoryCode);
-  writeNotNull('brokerName', instance.brokerName);
-  writeNotNull('serviceType', instance.serviceType);
-  writeNotNull('brokerCategoryId', instance.brokerCategoryId);
-  writeNotNull('nationalityCode', instance.nationalityCode);
-  return val;
-}
+        _$CriteriaObjectImpl instance) =>
+    <String, dynamic>{
+      if (instance.municipalityId case final value?) 'municipalityId': value,
+      if (instance.areaCode case final value?) 'areaCode': value,
+      if (instance.propertyTypeList case final value?)
+        'propertyTypeList': value,
+      if (instance.purposeList case final value?) 'purposeList': value,
+      if (instance.issueDateQuarterList case final value?)
+        'issueDateQuarterList': value,
+      if (instance.premiseCategoryList case final value?)
+        'premiseCategoryList': value,
+      if (instance.bedRoomsCount case final value?) 'bedRoomsCount': value,
+      if (instance.furnitureStatus case final value?) 'furnitureStatus': value,
+      if (instance.issueDateYear case final value?) 'issueDateYear': value,
+      if (instance.issueDateMonth case final value?) 'issueDateMonth': value,
+      if (instance.issueDateStartMonth case final value?)
+        'issueDateStartMonth': value,
+      if (instance.issueDateEndMonth case final value?)
+        'issueDateEndMonth': value,
+      if (instance.rentPaymentMonthlyPerUnitFrom case final value?)
+        'rentPaymentMonthlyPerUnitFrom': value,
+      if (instance.rentPaymentMonthlyPerUnitTo case final value?)
+        'rentPaymentMonthlyPerUnitTo': value,
+      if (instance.zoneId case final value?) 'zoneId': value,
+      if (instance.durationType case final value?) 'durationType': value,
+      if (instance.realEstateValueFrom case final value?)
+        'realEstateValueFrom': value,
+      if (instance.realEstateValueTo case final value?)
+        'realEstateValueTo': value,
+      if (instance.halfYearDuration case final value?)
+        'halfYearDuration': value,
+      if (instance.areaFrom case final value?) 'areaFrom': value,
+      if (instance.areaTo case final value?) 'areaTo': value,
+      if (instance.occupancyStatus case final value?) 'occupancyStatus': value,
+      if (instance.unit case final value?) 'unit': value,
+      if (instance.periodId case final value?) 'periodId': value,
+      if (instance.issueDateFrom case final value?) 'issueDateFrom': value,
+      if (instance.issueDateTo case final value?) 'issueDateTo': value,
+      if (instance.premiseTypeList case final value?) 'premiseTypeList': value,
+      if (instance.ownerCategoryCode case final value?)
+        'ownerCategoryCode': value,
+      if (instance.brokerName case final value?) 'brokerName': value,
+      if (instance.serviceType case final value?) 'serviceType': value,
+      if (instance.brokerCategoryId case final value?)
+        'brokerCategoryId': value,
+      if (instance.nationalityCode case final value?) 'nationalityCode': value,
+    };

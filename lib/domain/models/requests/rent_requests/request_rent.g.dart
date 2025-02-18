@@ -40,39 +40,36 @@ _$RentRequestImpl _$$RentRequestImplFromJson(Map<String, dynamic> json) =>
       periodId: (json['periodId'] as num?)?.toInt() ?? 1,
     );
 
-Map<String, dynamic> _$$RentRequestImplToJson(_$RentRequestImpl instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('areaFrom', instance.areaFrom);
-  writeNotNull('areaTo', instance.areaTo);
-  writeNotNull('bedRoomsCount', instance.bedRoomsCount);
-  writeNotNull('furnitureStatus', instance.furnitureStatus);
-  writeNotNull('issueDateEndMonth', instance.issueDateEndMonth);
-  writeNotNull('issueDateFrom', instance.issueDateFrom);
-  writeNotNull('issueDateQuarterList', instance.issueDateQuarterList);
-  writeNotNull('issueDateStartMonth', instance.issueDateStartMonth);
-  writeNotNull('halfYearDuration', instance.halfYearDuration);
-  writeNotNull('issueDateTo', instance.issueDateTo);
-  writeNotNull('issueDateYear', instance.issueDateYear);
-  writeNotNull('limit', instance.limit);
-  writeNotNull('municipalityId', instance.municipalityId);
-  writeNotNull('offset', instance.offset);
-  writeNotNull('nationalityCode', instance.nationalityCode);
-  writeNotNull('serviceType', instance.serviceType);
-  writeNotNull('propertyTypeList', instance.propertyTypeList);
-  writeNotNull('purposeList', instance.purposeList);
-  writeNotNull(
-      'rentPaymentMonthlyPerUnitFrom', instance.rentPaymentMonthlyPerUnitFrom);
-  writeNotNull(
-      'rentPaymentMonthlyPerUnitTo', instance.rentPaymentMonthlyPerUnitTo);
-  writeNotNull('zoneId', instance.zoneId);
-  val['unit'] = instance.unit;
-  val['periodId'] = instance.periodId;
-  return val;
-}
+Map<String, dynamic> _$$RentRequestImplToJson(_$RentRequestImpl instance) =>
+    <String, dynamic>{
+      if (instance.areaFrom case final value?) 'areaFrom': value,
+      if (instance.areaTo case final value?) 'areaTo': value,
+      if (instance.bedRoomsCount case final value?) 'bedRoomsCount': value,
+      if (instance.furnitureStatus case final value?) 'furnitureStatus': value,
+      if (instance.issueDateEndMonth case final value?)
+        'issueDateEndMonth': value,
+      if (instance.issueDateFrom case final value?) 'issueDateFrom': value,
+      if (instance.issueDateQuarterList case final value?)
+        'issueDateQuarterList': value,
+      if (instance.issueDateStartMonth case final value?)
+        'issueDateStartMonth': value,
+      if (instance.halfYearDuration case final value?)
+        'halfYearDuration': value,
+      if (instance.issueDateTo case final value?) 'issueDateTo': value,
+      if (instance.issueDateYear case final value?) 'issueDateYear': value,
+      if (instance.limit case final value?) 'limit': value,
+      if (instance.municipalityId case final value?) 'municipalityId': value,
+      if (instance.offset case final value?) 'offset': value,
+      if (instance.nationalityCode case final value?) 'nationalityCode': value,
+      if (instance.serviceType case final value?) 'serviceType': value,
+      if (instance.propertyTypeList case final value?)
+        'propertyTypeList': value,
+      if (instance.purposeList case final value?) 'purposeList': value,
+      if (instance.rentPaymentMonthlyPerUnitFrom case final value?)
+        'rentPaymentMonthlyPerUnitFrom': value,
+      if (instance.rentPaymentMonthlyPerUnitTo case final value?)
+        'rentPaymentMonthlyPerUnitTo': value,
+      if (instance.zoneId case final value?) 'zoneId': value,
+      'unit': instance.unit,
+      'periodId': instance.periodId,
+    };

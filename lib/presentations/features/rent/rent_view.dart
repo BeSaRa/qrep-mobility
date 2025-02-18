@@ -470,6 +470,8 @@ class _RentViewState extends State<RentView> {
                                           value: rentGridKPIsBloc),
                                       BlocProvider.value(
                                           value: changeStatusCubit),
+                                      BlocProvider.value(
+                                          value: context.read<RentBloc>()),
                                     ],
                                     child: GridItemWidget(
                                       gridItemType: GridItemType.rent,

@@ -87,6 +87,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
         imagePath: ImageAssets.totalRentedSpaces,
         valueUnit: "qr"),
   ];
+
   List<SellGridItemData> sellGridItemsData = const [
     SellGridItemData(
       kpi: SellGridKPIs.totalContracts,
@@ -125,6 +126,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
       valueUnit: "qr",
     ),
   ];
+
   List<MortgageGridItemData> mortgageGridItemsData = [
     // عدد معاملات الرهن
     const MortgageGridItemData(
@@ -591,7 +593,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                                                       Text(
                                                         textDirection: ui
                                                             .TextDirection.ltr,
-                                                        '${value.toStringAsFixed(2)} % YoY',
+                                                        '${value.toStringAsFixed(2)} % ${getLabel(context)}',
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .titleSmall!
@@ -631,6 +633,157 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                       ],
                     );
             }));
+  }
+
+  String getLabel(BuildContext context) {
+    switch (widget.gridItemType) {
+      case GridItemType.rent:
+        return getLabelForRent(context);
+
+      case GridItemType.sell:
+        return getLabelForSell(context);
+
+      case GridItemType.mortgage:
+        return getLabelForMortgage(context);
+      default:
+        return '';
+    }
+  }
+
+  String getLabelForRent(BuildContext context) {
+    if (context.read<RentBloc>().requestMeanValue.issueDateYear ==
+        DateTime.now().year) {
+      if ((context.read<RentBloc>().requestMeanValue.issueDateStartMonth ==
+              context.read<RentBloc>().requestMeanValue.issueDateEndMonth) &&
+          context.read<RentBloc>().requestMeanValue.periodId == 4) {
+        return "MtD";
+      } else if (context
+              .read<RentBloc>()
+              .requestMeanValue
+              .issueDateQuarterList!
+              .length <
+          4) {
+        if (context.read<RentBloc>().requestMeanValue.halfYearDuration !=
+            null) {
+          return "HtD";
+        } else {
+          return "QtD";
+        }
+      } else {
+        return "YtD";
+      }
+    } else {
+      if (context.read<RentBloc>().requestMeanValue.issueDateStartMonth ==
+              context.read<RentBloc>().requestMeanValue.issueDateEndMonth &&
+          context.read<RentBloc>().requestMeanValue.periodId == 4) {
+        return "MoM";
+      } else if (context
+              .read<RentBloc>()
+              .requestMeanValue
+              .issueDateQuarterList!
+              .length <
+          4) {
+        if (context.read<RentBloc>().requestMeanValue.halfYearDuration !=
+            null) {
+          return "HoH";
+        } else {
+          return "QoQ";
+        }
+      } else {
+        return "YoY";
+      }
+    }
+  }
+
+  String getLabelForSell(BuildContext context) {
+    if (context.read<SellBloc>().requestSell.issueDateYear ==
+        DateTime.now().year) {
+      if ((context.read<SellBloc>().requestSell.issueDateStartMonth ==
+              context.read<SellBloc>().requestSell.issueDateEndMonth) &&
+          context.read<SellBloc>().requestSell.periodId == 4) {
+        return "MtD";
+      } else if (context
+              .read<SellBloc>()
+              .requestSell
+              .issueDateQuarterList!
+              .length <
+          4) {
+        if (context.read<SellBloc>().requestSell.halfYearDuration != null) {
+          return "HtD";
+        } else {
+          return "QtD";
+        }
+      } else {
+        return "YtD";
+      }
+    } else {
+      if (context.read<SellBloc>().requestSell.issueDateStartMonth ==
+              context.read<SellBloc>().requestSell.issueDateEndMonth &&
+          context.read<SellBloc>().requestSell.periodId == 4) {
+        return "MoM";
+      } else if (context
+              .read<SellBloc>()
+              .requestSell
+              .issueDateQuarterList!
+              .length <
+          4) {
+        if (context.read<SellBloc>().requestSell.halfYearDuration != null) {
+          return "HoH";
+        } else {
+          return "QoQ";
+        }
+      } else {
+        return "YoY";
+      }
+    }
+  }
+
+  String getLabelForMortgage(BuildContext context) {
+    if (context.read<MortgageBloc>().requestMeanValue.issueDateYear ==
+        DateTime.now().year) {
+      if ((context.read<MortgageBloc>().requestMeanValue.issueDateStartMonth ==
+              context
+                  .read<MortgageBloc>()
+                  .requestMeanValue
+                  .issueDateEndMonth) &&
+          context.read<MortgageBloc>().requestMeanValue.periodId == 4) {
+        return "MtD";
+      } else if (context
+              .read<MortgageBloc>()
+              .requestMeanValue
+              .issueDateQuarterList!
+              .length <
+          4) {
+        if (context.read<MortgageBloc>().requestMeanValue.halfYearDuration !=
+            null) {
+          return "HtD";
+        } else {
+          return "QtD";
+        }
+      } else {
+        return "YtD";
+      }
+    } else {
+      if (context.read<MortgageBloc>().requestMeanValue.issueDateStartMonth ==
+              context.read<MortgageBloc>().requestMeanValue.issueDateEndMonth &&
+          context.read<MortgageBloc>().requestMeanValue.periodId == 4) {
+        return "MoM";
+      } else if (context
+              .read<MortgageBloc>()
+              .requestMeanValue
+              .issueDateQuarterList!
+              .length <
+          4) {
+        if (context.read<MortgageBloc>().requestMeanValue.halfYearDuration !=
+            null) {
+          return "HoH";
+        } else {
+          return "QoQ";
+        }
+      } else {
+        return "YoY";
+      }
+    }
   }
 }
 
