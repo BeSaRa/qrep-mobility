@@ -9,7 +9,7 @@ part of 'chatbot_request_model.dart';
 _$ChatbotRequestModelImpl _$$ChatbotRequestModelImplFromJson(
         Map<String, dynamic> json) =>
     _$ChatbotRequestModelImpl(
-      streamId: json['streamId'] as String? ?? '',
+      streamId: json['stream_id'] as String? ?? '',
       messages: (json['messages'] as List<dynamic>?)
               ?.map((e) =>
                   MessageRequestModel.fromJson(e as Map<String, dynamic>))
@@ -20,7 +20,7 @@ _$ChatbotRequestModelImpl _$$ChatbotRequestModelImplFromJson(
 Map<String, dynamic> _$$ChatbotRequestModelImplToJson(
         _$ChatbotRequestModelImpl instance) =>
     <String, dynamic>{
-      'streamId': instance.streamId,
+      'stream_id': instance.streamId,
       'messages': instance.messages,
     };
 
@@ -70,7 +70,10 @@ Map<String, dynamic> _$$SendAnswerRequestModelImplToJson(
 _$MainSendCandidateRequestModelImpl
     _$$MainSendCandidateRequestModelImplFromJson(Map<String, dynamic> json) =>
         _$MainSendCandidateRequestModelImpl(
-          candidate: json['candidate'] ?? const SendCandidateRequestModel(),
+          candidate: json['candidate'] == null
+              ? const SendCandidateRequestModel()
+              : SendCandidateRequestModel.fromJson(
+                  json['candidate'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic> _$$MainSendCandidateRequestModelImplToJson(

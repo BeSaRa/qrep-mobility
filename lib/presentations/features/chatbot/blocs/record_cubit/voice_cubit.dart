@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 part 'voice_state.dart';
@@ -46,8 +47,31 @@ class VoiceCubit extends Cubit<VoiceState> {
   //     ));
   //   }
   // }
+  Future<void> checkAndRequestPermissionToStart() async {
+    PermissionStatus status = await Permission.microphone.status;
 
+    if (status.isDenied || status.isPermanentlyDenied) {
+      // If permission is denied, request it
+      bool isGranted = await Permission.microphone.request().isGranted;
+
+      if (isGranted) {
+        initializeSpeech();
+        startListening();
+      } else {
+        // Handle case when permission is permanently denied or not granted
+        emit(VoiceState(
+            isListening: false,
+            text: '',
+            errorMessage:
+                "Microphone permission denied. Please enable it in settings."));
+      }
+    } else {
+      // If permission is already granted
+      startListening();
+    }
+  }
 //-----------------------------START---------------------------------
+
   void startListening() {
     if (!_speech.isAvailable) {
       // if (isClosed) return; // Check if the Cubit is closed
@@ -79,7 +103,7 @@ class VoiceCubit extends Cubit<VoiceState> {
       },
       localeId: "ar_DZ",
       // localeId: selectedLocale,
-      listenMode: stt.ListenMode.dictation,
+       listenMode: stt.ListenMode.dictation,
     );
     // if (isClosed) return; // Check if the Cubit is closed
     emit(VoiceState(

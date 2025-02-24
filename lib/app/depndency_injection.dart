@@ -12,8 +12,10 @@ import 'package:ebla/domain/usecases/favourite_usecases/user_favourite_usecase.d
 import 'package:ebla/domain/usecases/laws_usecases/laws_usecases.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/close_stream/close_stream_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/send_answer_and_candidate_bloc/send_answer_and_candidate_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_message_bloc/chat_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/start_stream_bloc/start_stream_bloc.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_cubit.dart';
 import 'package:ebla/presentations/features/favourite/bloc/UpdateFav/update_favourite_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/create_favourite_bloc/create_favourite_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/get_favourite_bloc/get_favourite_bloc.dart';
@@ -30,6 +32,7 @@ import '../domain/repository/repository.dart';
 import '../domain/usecases/favourite_usecases/delete_favourite_usecase.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/auth/authes.dart';
+import '../presentations/features/chatbot/blocs/stream_id_cubit.dart/stream_id_cubit.dart';
 import '../presentations/features/info/infos.dart';
 import '../presentations/features/main/mains.dart';
 import '../presentations/features/more/mores.dart';
@@ -206,7 +209,8 @@ Future<void> initHomeModule() async {
   }
 
   if (!GetIt.I.isRegistered<LawsUsecase>()) {
-    instance.registerFactory<LawsUsecase>(() => LawsUsecase(repository:instance()));
+    instance.registerFactory<LawsUsecase>(
+        () => LawsUsecase(repository: instance()));
   }
 
   if (!GetIt.I.isRegistered<FaqUsecase>()) {
@@ -222,8 +226,7 @@ Future<void> initHomeModule() async {
   }
 
   if (!GetIt.I.isRegistered<LawsBloc>()) {
-    instance.registerFactory(
-        () => LawsBloc(lawsUsecase: instance()));
+    instance.registerFactory(() => LawsBloc(lawsUsecase: instance()));
   }
   if (!GetIt.I.isRegistered<FaqBloc>()) {
     instance.registerFactory(() => FaqBloc(
@@ -231,10 +234,9 @@ Future<void> initHomeModule() async {
         ));
   }
   //--------- chatbot --------------
-   //Usecases
+  //Usecases
   if (!GetIt.I.isRegistered<ChatbotUsecase>()) {
-    instance.registerFactory<ChatbotUsecase>(
-        () => ChatbotUsecase(instance()));
+    instance.registerFactory<ChatbotUsecase>(() => ChatbotUsecase(instance()));
   }
   if (!GetIt.I.isRegistered<StartStreamUsecase>()) {
     instance.registerFactory<StartStreamUsecase>(
@@ -257,21 +259,31 @@ Future<void> initHomeModule() async {
     instance.registerFactory<PlatformChatbotUsecases>(
         () => PlatformChatbotUsecases(instance()));
   }
-   //bloc
+  //bloc
   if (!GetIt.I.isRegistered<CloseStreamBloc>()) {
-    instance.registerFactory<CloseStreamBloc>(
-        () => CloseStreamBloc(instance()));
+    instance
+        .registerFactory<CloseStreamBloc>(() => CloseStreamBloc(instance()));
   }
   if (!GetIt.I.isRegistered<ChatBotBloc>()) {
-    instance.registerFactory(() => ChatBotBloc(instance(),instance()));
+    instance.registerFactory(() => ChatBotBloc(instance(), instance()));
   }
   if (!GetIt.I.isRegistered<ChatHistoryCubit>()) {
     instance.registerFactory(() => ChatHistoryCubit());
   }
-  if (!GetIt.I.isRegistered<StartStreamBloc>()) {
-    instance.registerFactory(() => StartStreamBloc(instance(),instance(),instance(),instance()));
+  if (!GetIt.I.isRegistered<WebRTCCubit>()) {
+    instance.registerFactory(() => WebRTCCubit());
   }
-
+  if (!GetIt.I.isRegistered<StreamIdCubit>()) {
+    instance.registerFactory(() => StreamIdCubit());
+  }
+  if (!GetIt.I.isRegistered<StartStreamBloc>()) {
+    instance.registerFactory(() => StartStreamBloc(
+        instance()));
+  }
+  if (!GetIt.I.isRegistered<SendAnswerAndCandidateBloc>()) {
+    instance.registerFactory(() => SendAnswerAndCandidateBloc(
+        instance(),instance()));
+  }
 }
 
 Future<void> initSellModule() async {
