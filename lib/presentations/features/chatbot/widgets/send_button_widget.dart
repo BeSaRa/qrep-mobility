@@ -2,6 +2,7 @@ import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_mod
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/record_cubit/voice_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_message_bloc/chat_bloc.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/stream_id_cubit.dart/stream_id_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/utility/chatbot_enums.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
@@ -11,13 +12,16 @@ import 'dart:ui' as ui;
 
 class SendButtonWidget extends StatelessWidget {
   final bool enabled;
+  final bool isAvatarShown;
+  final VoidCallback startAvatarTimer;
   final TextEditingController controller;
   final ScrollController scrollController;
   const SendButtonWidget({
     super.key,
     required this.enabled,
     required this.controller,
-    required this.scrollController,
+    required this.startAvatarTimer,
+    required this.scrollController, required this.isAvatarShown,
   });
 
   @override
@@ -47,8 +51,7 @@ class SendButtonWidget extends StatelessWidget {
                         });
 
                         //--------------
-                        final chatState =
-                            context.read<ChatHistoryCubit>().state;
+                        final chatState = context.read<ChatHistoryCubit>().state;
 
                         //-------------------- authority send button ------------------------
                         final userMessage =
@@ -61,23 +64,32 @@ class SendButtonWidget extends StatelessWidget {
                           // chatBotBloc.add(
                           BlocProvider.of<ChatBotBloc>(context).add(
                               SendMessageEvent.started(ChatbotRequestModel(
-                                  streamId: null,
+                                  streamId:
+                                      BlocProvider.of<StreamIdCubit>(context)
+                                          .state
+                                          .streamId,
                                   messages: context
                                       .read<ChatHistoryCubit>()
                                       .state
                                       .authorityMessages)));
+
+                                      
                         }
-                        //-------------------- authority send button ------------------------
+                        //-------------------- Platform send button ------------------------
                         else {
                           BlocProvider.of<ChatBotBloc>(context)
                               .add(SendMessageEvent.platformStarted(
-                            //ZAK: change the langgg
                             PlatformChatbotRequestModel(
-                                lang: 1, question: message),
+                          //check the message if it wrote in arabic
+                                lang: RegExp(r'[\u0600-\u06FF]')
+                                  .hasMatch(message)?1:2, question: message),
                           ));
                         }
                         controller.clear();
                         context.read<VoiceCubit>().clearText();
+                      }
+                      if(isAvatarShown){
+                        startAvatarTimer();
                       }
                     },
               child: Container(
@@ -87,7 +99,7 @@ class SendButtonWidget extends StatelessWidget {
                       gradient: LinearGradient(
                         colors: [
                           ColorManager.primary,
-                          ColorManager.primary.withOpacity(.7),
+                          ColorManager.primary.withValues(alpha: .7),
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,

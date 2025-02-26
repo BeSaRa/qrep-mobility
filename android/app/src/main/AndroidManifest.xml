@@ -14,8 +14,6 @@
 
     <!-- web RTC-->
     <uses-permission android:name="android.permission.CAMERA" />
-    <!-- <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" /> -->
-
 
     <!-- Provide required visibility configuration for API level 30 and above -->
     <queries>

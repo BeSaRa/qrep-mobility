@@ -42,6 +42,7 @@
 	<key>NSFaceIDUsageDescription</key>
 	<!-- for recording voice -->
 	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>QREP requires speech recognition access to transcribe voice inputs.</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>QREP needs Bluetooth access to connect with external audio devices.</string>
 

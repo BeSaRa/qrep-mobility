@@ -1455,7 +1455,7 @@ class _AppServiceClient implements AppServiceClient {
     final _data = body;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<SendAnswerResponseModel>>(Options(
-      method: 'PUT',
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )
@@ -1661,6 +1661,8 @@ class _CmsServiceClient implements CmsServiceClient {
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
+
+
   @override
   Future<HttpResponse<UserResponse>> getUserInfo() async {
     const _extra = <String, dynamic>{};
