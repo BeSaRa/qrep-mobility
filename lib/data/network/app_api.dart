@@ -223,7 +223,7 @@ abstract class AppServiceClient {
   @PUT('${Constant.authorityChatBotBaseUrl}/api/v1/avatar/send-answer/{id}')
   Future<HttpResponse<SendAnswerResponseModel>> sendAnswer(
       @Path("id") String id, @Body() MainSendAnswerRequestModel body);
-  @PUT('${Constant.authorityChatBotBaseUrl}/api/v1/avatar/send-candidate/{id}')
+  @POST('${Constant.authorityChatBotBaseUrl}/api/v1/avatar/send-candidate/{id}')
   Future<HttpResponse<SendAnswerResponseModel>> sendCandidate(
       @Path("id") String id, @Body() MainSendCandidateRequestModel body);
 

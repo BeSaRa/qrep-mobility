@@ -67,6 +67,10 @@ android {
         }
     }
     buildTypes {
+        debug {
+            minifyEnabled false  
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
             signingConfig signingConfigs.release
             // Enables code shrinking, obfuscation, and optimization for only

@@ -20,6 +20,7 @@ ChatbotRequestModel _$ChatbotRequestModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ChatbotRequestModel {
+  @JsonKey(name: "stream_id")
   String? get streamId => throw _privateConstructorUsedError;
   List<MessageRequestModel> get messages => throw _privateConstructorUsedError;
 
@@ -39,7 +40,9 @@ abstract class $ChatbotRequestModelCopyWith<$Res> {
           ChatbotRequestModel value, $Res Function(ChatbotRequestModel) then) =
       _$ChatbotRequestModelCopyWithImpl<$Res, ChatbotRequestModel>;
   @useResult
-  $Res call({String? streamId, List<MessageRequestModel> messages});
+  $Res call(
+      {@JsonKey(name: "stream_id") String? streamId,
+      List<MessageRequestModel> messages});
 }
 
 /// @nodoc
@@ -81,7 +84,9 @@ abstract class _$$ChatbotRequestModelImplCopyWith<$Res>
       __$$ChatbotRequestModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? streamId, List<MessageRequestModel> messages});
+  $Res call(
+      {@JsonKey(name: "stream_id") String? streamId,
+      List<MessageRequestModel> messages});
 }
 
 /// @nodoc
@@ -117,14 +122,15 @@ class __$$ChatbotRequestModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatbotRequestModelImpl implements _ChatbotRequestModel {
   const _$ChatbotRequestModelImpl(
-      {this.streamId = '', final List<MessageRequestModel> messages = const []})
+      {@JsonKey(name: "stream_id") this.streamId = '',
+      final List<MessageRequestModel> messages = const []})
       : _messages = messages;
 
   factory _$ChatbotRequestModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatbotRequestModelImplFromJson(json);
 
   @override
-  @JsonKey()
+  @JsonKey(name: "stream_id")
   final String? streamId;
   final List<MessageRequestModel> _messages;
   @override
@@ -174,13 +180,14 @@ class _$ChatbotRequestModelImpl implements _ChatbotRequestModel {
 
 abstract class _ChatbotRequestModel implements ChatbotRequestModel {
   const factory _ChatbotRequestModel(
-      {final String? streamId,
+      {@JsonKey(name: "stream_id") final String? streamId,
       final List<MessageRequestModel> messages}) = _$ChatbotRequestModelImpl;
 
   factory _ChatbotRequestModel.fromJson(Map<String, dynamic> json) =
       _$ChatbotRequestModelImpl.fromJson;
 
   @override
+  @JsonKey(name: "stream_id")
   String? get streamId;
   @override
   List<MessageRequestModel> get messages;
@@ -722,7 +729,7 @@ MainSendCandidateRequestModel _$MainSendCandidateRequestModelFromJson(
 
 /// @nodoc
 mixin _$MainSendCandidateRequestModel {
-  dynamic get candidate => throw _privateConstructorUsedError;
+  SendCandidateRequestModel get candidate => throw _privateConstructorUsedError;
 
   /// Serializes this MainSendCandidateRequestModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -742,7 +749,9 @@ abstract class $MainSendCandidateRequestModelCopyWith<$Res> {
       _$MainSendCandidateRequestModelCopyWithImpl<$Res,
           MainSendCandidateRequestModel>;
   @useResult
-  $Res call({dynamic candidate});
+  $Res call({SendCandidateRequestModel candidate});
+
+  $SendCandidateRequestModelCopyWith<$Res> get candidate;
 }
 
 /// @nodoc
@@ -761,14 +770,24 @@ class _$MainSendCandidateRequestModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? candidate = freezed,
+    Object? candidate = null,
   }) {
     return _then(_value.copyWith(
-      candidate: freezed == candidate
+      candidate: null == candidate
           ? _value.candidate
           : candidate // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as SendCandidateRequestModel,
     ) as $Val);
+  }
+
+  /// Create a copy of MainSendCandidateRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SendCandidateRequestModelCopyWith<$Res> get candidate {
+    return $SendCandidateRequestModelCopyWith<$Res>(_value.candidate, (value) {
+      return _then(_value.copyWith(candidate: value) as $Val);
+    });
   }
 }
 
@@ -781,7 +800,10 @@ abstract class _$$MainSendCandidateRequestModelImplCopyWith<$Res>
       __$$MainSendCandidateRequestModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({dynamic candidate});
+  $Res call({SendCandidateRequestModel candidate});
+
+  @override
+  $SendCandidateRequestModelCopyWith<$Res> get candidate;
 }
 
 /// @nodoc
@@ -799,10 +821,13 @@ class __$$MainSendCandidateRequestModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? candidate = freezed,
+    Object? candidate = null,
   }) {
     return _then(_$MainSendCandidateRequestModelImpl(
-      candidate: freezed == candidate ? _value.candidate! : candidate,
+      candidate: null == candidate
+          ? _value.candidate
+          : candidate // ignore: cast_nullable_to_non_nullable
+              as SendCandidateRequestModel,
     ));
   }
 }
@@ -820,7 +845,7 @@ class _$MainSendCandidateRequestModelImpl
 
   @override
   @JsonKey()
-  final dynamic candidate;
+  final SendCandidateRequestModel candidate;
 
   @override
   String toString() {
@@ -832,13 +857,13 @@ class _$MainSendCandidateRequestModelImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MainSendCandidateRequestModelImpl &&
-            const DeepCollectionEquality().equals(other.candidate, candidate));
+            (identical(other.candidate, candidate) ||
+                other.candidate == candidate));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(candidate));
+  int get hashCode => Object.hash(runtimeType, candidate);
 
   /// Create a copy of MainSendCandidateRequestModel
   /// with the given fields replaced by the non-null parameter values.
@@ -860,14 +885,15 @@ class _$MainSendCandidateRequestModelImpl
 
 abstract class _MainSendCandidateRequestModel
     implements MainSendCandidateRequestModel {
-  const factory _MainSendCandidateRequestModel({final dynamic candidate}) =
+  const factory _MainSendCandidateRequestModel(
+          {final SendCandidateRequestModel candidate}) =
       _$MainSendCandidateRequestModelImpl;
 
   factory _MainSendCandidateRequestModel.fromJson(Map<String, dynamic> json) =
       _$MainSendCandidateRequestModelImpl.fromJson;
 
   @override
-  dynamic get candidate;
+  SendCandidateRequestModel get candidate;
 
   /// Create a copy of MainSendCandidateRequestModel
   /// with the given fields replaced by the non-null parameter values.

@@ -1322,7 +1322,6 @@ class RepositoryImplementer extends Repository {
 //   @override
 // Future<Result<ChatbotResponseModel, FailureModel>> sendMessageToChatbot(
 //     ChatbotRequestModel request) async {
-//   log(" zak Checking network connection...");
 //   if (await networkInfo.isConnected) {
 //     log("Network connected. Sending request...");
 //     try {
@@ -1353,7 +1352,6 @@ class RepositoryImplementer extends Repository {
   @override
   Future<Result<ChatbotResponseModel, FailureModel>> sendMessageToChatbot(
       ChatbotRequestModel request) async {
-
     if (await networkInfo.isConnected) {
       log("Network connected. Sending request...");
 
@@ -1361,7 +1359,7 @@ class RepositoryImplementer extends Repository {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
 
-        // 🔹 backend API URL (Replace with your actual endpoint)
+        // 🔹 backend API URL
         const String apiUrl =
             '${Constant.authorityChatBotBaseUrl}/api/v1/chatbot/chat/website';
 
@@ -1378,7 +1376,9 @@ class RepositoryImplementer extends Repository {
         // 🔹 make a POST request
         final response = await dio.post(
           apiUrl,
-          data: request.toJson(),
+          // data: jsonEncode(request), // Ensure JSON-encoded body
+          data: request,
+          // data: request.toJson(),
           options: Options(
             headers: headers,
             validateStatus: (status) =>
@@ -1421,87 +1421,6 @@ class RepositoryImplementer extends Repository {
     }
   }
 
-  // @override
-
-  // /// Send a message to the chatbot API
-  // Future<Result<ChatbotResponseModel, FailureModel>> sendMessageToChatbot(
-  //     ChatbotRequestModel request) async {
-  //   log("📢 Checking network connection...");
-
-  //   if (!await networkInfo.isConnected) {
-  //     log("❌ No internet connection.");
-  //     return Error(FailureModel(message: AppStrings().noInternetError));
-  //   }
-
-  //   log("✅ Network connected. Preparing request...");
-
-  //   try {
-  //     final AppPreferences appPreferences = AppPreferences(instance());
-  //     final dio = Dio();
-
-  //     // 🔹 Backend API URL
-  //     const String apiUrl =
-  //         '${Constant.authorityChatBotBaseUrl}/api/v1/chatbot/chat/website';
-
-  //     // 🔹 Fetch app language preference
-  //     String language = await appPreferences.getAppLanguage();
-
-  //     // 🔹 Headers
-  //     Map<String, String> headers = {
-  //       // "Accept": "*/*",
-  //       // "Accept-Encoding": "gzip, deflate, br, zstd",
-  //       // "Accept-Language": "en-US,en;q=0.9,ar;q=0.8",
-  //       // "Cache-Control": "no-cache",
-  //       // "Connection": "keep-alive",
-  //       "Content-Type": "application/json",
-  //       // "Host": "afnqcpcbai01.azurewebsites.net",
-  //       // "Origin": "https://www.aqarat.gov.qa",
-  //       // "Pragma": "no-cache",
-  //       // "Sec-Fetch-Dest": "empty",
-  //       // "Sec-Fetch-Mode": "cors",
-  //       // "Sec-Fetch-Site": "cross-site",
-  //       // "User-Agent":
-  //       //     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
-  //       // "sec-ch-ua":
-  //       //     "\"Not A(Brand\";v=\"8\", \"Chromium\";v=\"132\", \"Google Chrome\";v=\"132\"",
-  //       // "sec-ch-ua-mobile": "?0",
-  //       // "sec-ch-ua-platform": "\"Windows\"",
-  //       "x-functions-key":"......",
-  //       DEFAULT_LANGUAGE: language,
-  //     };
-
-  //     // 🔹 Log request details
-  //     log("📢 Sending request to: $apiUrl");
-  //     log("📢 Request Headers: $headers");
-  //     log("📢 Request Data: ${request.toJson()}");
-
-  //     // 🔹 Send POST request
-  //     final response = await dio.post(
-  //       apiUrl,
-  //       data: request.toJson(),
-  //       options: Options(headers: headers),
-  //     );
-
-  //     // 🔹 Log response details
-  //     log("📢 API Response Status: ${response.statusCode}");
-  //     log("📢 Response Data: ${response.data}");
-
-  //     // 🔹 Handle response
-  //     if (response.statusCode == 200) {
-  //       return Success(ChatbotResponseModel.fromJson(response.data));
-  //     } else {
-  //       return Error(FailureModel.fromJson(response.data));
-  //     }
-  //   } on DioException catch (e) {
-  //     log("❌ DioException occurred: ${e.message}");
-  //     log("❌ DioException response: ${e.response?.data}");
-  //     return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
-  //   } catch (e) {
-  //     log("❌ Unexpected error: $e");
-  //     return Error(FailureModel(message: AppStrings().defaultError));
-  //   }
-  // }
-
 //----platform chatbot-----
   @override
   Future<Result<PlatformChatbotResponseModel, FailureModel>>
@@ -1534,106 +1453,387 @@ class RepositoryImplementer extends Repository {
     }
   }
 
+  // @override
+  // Future<Result<StartStreamModel, FailureModel>> startStream() async {
+  //   if (await networkInfo.isConnected) {
+  //     try {
+  //       final response = await appServiceClient.startStream();
+  //       if (response.response.statusCode == 200) {
+  //         return Success(response.data);
+  //       } else {
+  //         return Error(FailureModel.fromJson(response.response.data));
+  //       }
+  //     } on DioException catch (e) {
+  //       return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+  //     } catch (e) {
+  //       return Error(FailureModel(message: AppStrings().defaultError));
+  //     }
+  //   } else {
+  //     return Error(FailureModel(message: AppStrings().noInternetError));
+  //   }
+  // }
+//==================================================================== 
   @override
   Future<Result<StartStreamModel, FailureModel>> startStream() async {
     if (await networkInfo.isConnected) {
+      log("Network connected. Sending request...");
+
       try {
-        final response = await appServiceClient.startStream();
-        if (response.response.statusCode == 200) {
-          return Success(response.data);
+        final AppPreferences appPreferences = AppPreferences(instance());
+        final dio = Dio();
+
+        // 🔹 backend API URL
+        const String apiUrl =
+            '${Constant.authorityChatBotBaseUrl}/api/v1/avatar/start-stream';
+
+        // 🔹 get stored language
+        String language = await appPreferences.getAppLanguage();
+
+        Map<String, String> headers = {
+          CONTENT_TYPE: APPLICATION_JSON,
+          ACCEPT: APPLICATION_JSON,
+          DEFAULT_LANGUAGE: language,
+          //NOTE: We must add this key to make the chat work
+          "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
+        };
+        // 🔹 make a POST request
+        log("headers request start stream: $headers}");
+        final response = await dio.post(
+          apiUrl,
+          options: Options(
+            headers: headers,
+            validateStatus: (status) =>
+                status! < 500, // Prevents Dio from throwing for 401
+          ),
+        );
+
+        log("API Response received. Status code: ${response.statusCode}");
+        log("Response data: ${response.data}");
+
+        if (response.statusCode == 200) {
+          log("Success response: ${response.data}");
+          return Success(StartStreamModel.fromJson(response.data));
+        } else if (response.statusCode == 401) {
+          log("⚠️ Unauthorized: Token might be invalid or expired.");
+          return const Error(FailureModel(
+              message: "Unauthorized: Please check your credentials."));
         } else {
-          return Error(FailureModel.fromJson(response.response.data));
+          log("Non-200 status code. Parsing error...");
+          return Error(FailureModel.fromJson(response.data));
         }
       } on DioException catch (e) {
+        log("DioException occurred: ${e.message}");
+        log("DioException response: ${e.response?.data}");
+
+        // Handle non-JSON responses
+        if (e.response != null && e.response?.data is! Map<String, dynamic>) {
+          return const Error(
+              FailureModel(message: "Unexpected server response"));
+        }
+
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
+        log("Unexpected error: $e");
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {
+      log("No internet connection.");
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+//==================================================================== 
+
+  // @override
+  // Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendAnswer(
+  //     MainSendAnswerRequestModel request, String id) async {
+  //   if (await networkInfo.isConnected) {
+  //     try {
+  //       final response = await appServiceClient.sendAnswer(id, request);
+  //       if (response.response.statusCode == 200) {
+  //         return Success(response.data);
+  //       } else {
+  //         return Error(
+  //             FailureCloseStreamModel.fromJson(response.response.data));
+  //       }
+  //     } on DioException catch (e) {
+  //       return Error(
+  //           FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
+  //     } catch (e) {
+  //       return Error(
+  //           FailureCloseStreamModel(message: AppStrings().defaultError));
+  //     }
+  //   } else {
+  //     return Error(
+  //         FailureCloseStreamModel(message: AppStrings().noInternetError));
+  //   }
+  // }
+//=========================================================================
 
   @override
   Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendAnswer(
       MainSendAnswerRequestModel request, String id) async {
     if (await networkInfo.isConnected) {
+      log("Network connected. Sending request...");
+
       try {
-        final response = await appServiceClient.sendAnswer(id, request);
-        if (response.response.statusCode == 200) {
-          return Success(response.data);
+        final AppPreferences appPreferences = AppPreferences(instance());
+        final dio = Dio();
+
+        // 🔹 backend API URL
+         String apiUrl =
+            '${Constant.authorityChatBotBaseUrl}/api/v1/avatar/send-answer/$id';
+
+        // 🔹 get stored language
+        String language = await appPreferences.getAppLanguage();
+
+        Map<String, String> headers = {
+          CONTENT_TYPE: APPLICATION_JSON,
+          ACCEPT: APPLICATION_JSON,
+          DEFAULT_LANGUAGE: language,
+          //NOTE: We must add this key to make the chat work
+          "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
+        };
+        // 🔹 make a POST request
+        final response = await dio.put(
+          apiUrl,
+          // data: jsonEncode(request), // Ensure JSON-encoded body
+          data: request,
+          // data: request.toJson(),
+          options: Options(
+            headers: headers,
+            validateStatus: (status) =>
+                status! < 500, // Prevents Dio from throwing for 401
+          ),
+        );
+
+        log("API Response received. Status code: ${response.statusCode}");
+        log("Response data: ${response.data}");
+
+        if (response.statusCode == 200) {
+          log("Success response: ${response.data}");
+          return Success(SendAnswerResponseModel.fromJson(response.data));
+        } else if (response.statusCode == 401) {
+          log("⚠️ Unauthorized: Token might be invalid or expired.");
+          return const Error(FailureCloseStreamModel(
+              message: "Unauthorized: Please check your credentials."));
         } else {
-          return Error(
-              FailureCloseStreamModel.fromJson(response.response.data));
+          log("Non-200 status code. Parsing error...");
+          return Error(FailureCloseStreamModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-        return Error(
-            FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
+        log("DioException occurred: ${e.message}");
+        log("DioException response: ${e.response?.data}");
+
+        // Handle non-JSON responses
+        if (e.response != null && e.response?.data is! Map<String, dynamic>) {
+          return const Error(
+              FailureCloseStreamModel(message: "Unexpected server response"));
+        }
+
+        return Error(FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        return Error(
-            FailureCloseStreamModel(message: AppStrings().defaultError));
+        log("Unexpected error: $e");
+        return Error(FailureCloseStreamModel(message: AppStrings().defaultError));
       }
     } else {
-      return Error(
-          FailureCloseStreamModel(message: AppStrings().noInternetError));
+      log("No internet connection.");
+      return Error(FailureCloseStreamModel(message: AppStrings().noInternetError));
     }
   }
+//=========================================================================
+  // @override
+  // Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>>
+  //     sendCandidate(MainSendCandidateRequestModel request, String id) async {
+  //   if (await networkInfo.isConnected) {
+  //     try {
+  //       final response = await appServiceClient.sendCandidate(id, request);
+  //       if (response.response.statusCode == 200) {
+  //         return Success(response.data);
+  //       } else {
+  //         return Error(
+  //             FailureCloseStreamModel.fromJson(response.response.data));
+  //       }
+  //     } on DioException catch (e) {
+  //       return Error(
+  //           FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
+  //     } catch (e) {
+  //       return Error(
+  //           FailureCloseStreamModel(message: AppStrings().defaultError));
+  //     }
+  //   } else {
+  //     return Error(
+  //         FailureCloseStreamModel(message: AppStrings().noInternetError));
+  //   }
+  // }
 
   @override
-  Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>>
-      sendCandidate(MainSendCandidateRequestModel request, String id) async {
+  Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendCandidate(
+      MainSendCandidateRequestModel request, String id) async {
     if (await networkInfo.isConnected) {
+      log("Network connected. Sending request...");
+
       try {
-        final response = await appServiceClient.sendCandidate(id, request);
-        if (response.response.statusCode == 200) {
-          return Success(response.data);
+        final AppPreferences appPreferences = AppPreferences(instance());
+        final dio = Dio();
+
+        // 🔹 backend API URL
+         String apiUrl =
+            '${Constant.authorityChatBotBaseUrl}/api/v1/avatar/send-candidate/$id';
+
+        // 🔹 get stored language
+        String language = await appPreferences.getAppLanguage();
+
+        Map<String, String> headers = {
+          CONTENT_TYPE: APPLICATION_JSON,
+          ACCEPT: APPLICATION_JSON,
+          DEFAULT_LANGUAGE: language,
+          //NOTE: We must add this key to make the chat work
+          "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
+        };
+        // 🔹 make a POST request
+        final response = await dio.post(
+          apiUrl,
+          // data: jsonEncode(request), // Ensure JSON-encoded body
+          data: request,
+          // data: request.toJson(),
+          options: Options(
+            headers: headers,
+            validateStatus: (status) =>
+                status! < 500, // Prevents Dio from throwing for 401
+          ),
+        );
+
+        log("API Response received. Status code: ${response.statusCode}");
+        log("Response data: ${response.data}");
+
+        if (response.statusCode == 200) {
+          log("Success response: ${response.data}");
+          return Success(SendAnswerResponseModel.fromJson(response.data));
+        } else if (response.statusCode == 401) {
+          log("⚠️ Unauthorized: Token might be invalid or expired.");
+          return const Error(FailureCloseStreamModel(
+              message: "Unauthorized: Please check your credentials."));
         } else {
-          return Error(
-              FailureCloseStreamModel.fromJson(response.response.data));
+          log("Non-200 status code. Parsing error...");
+          return Error(FailureCloseStreamModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-        return Error(
-            FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
+        log("DioException occurred: ${e.message}");
+        log("DioException response: ${e.response?.data}");
+
+        // Handle non-JSON responses
+        if (e.response != null && e.response?.data is! Map<String, dynamic>) {
+          return const Error(
+              FailureCloseStreamModel(message: "Unexpected server response"));
+        }
+
+        return Error(FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        return Error(
-            FailureCloseStreamModel(message: AppStrings().defaultError));
+        log("Unexpected error: $e");
+        return Error(FailureCloseStreamModel(message: AppStrings().defaultError));
       }
     } else {
-      return Error(
-          FailureCloseStreamModel(message: AppStrings().noInternetError));
+      log("No internet connection.");
+      return Error(FailureCloseStreamModel(message: AppStrings().noInternetError));
     }
   }
-
-  @override
+  
+  // @override
+  // Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> closeStream(
+  //     String id) async {
+  //   if (await networkInfo.isConnected) {
+  //     try {
+  //       final response = await appServiceClient.closeStream(id);
+  //       if (response.response.statusCode == 200) {
+  //         return Success(response.data);
+  //       } else {
+  //         return Error(
+  //             FailureCloseStreamModel.fromJson(response.response.data));
+  //       }
+  //     } on DioException catch (e) {
+  //       return Error(
+  //           FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
+  //     } catch (e) {
+  //       return Error(
+  //           FailureCloseStreamModel(message: AppStrings().defaultError));
+  //     }
+  //   } else {
+  //     return Error(
+  //         FailureCloseStreamModel(message: AppStrings().noInternetError));
+  //   }
+  // }
+///=======================================================================
+@override
   Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> closeStream(
-      String id) async {
+       String id) async {
     if (await networkInfo.isConnected) {
+      log("Network connected. Sending request...");
+
       try {
-        final response = await appServiceClient.closeStream(id);
-        log("Zak1 $response");
-        if (response.response.statusCode == 200) {
-          log("Zak2 $response");
-          return Success(response.data);
+        final AppPreferences appPreferences = AppPreferences(instance());
+        final dio = Dio();
+
+        // 🔹 backend API URL
+         String apiUrl =
+            '${Constant.authorityChatBotBaseUrl}/api/v1/avatar/close-stream/$id';
+
+        // 🔹 get stored language
+        String language = await appPreferences.getAppLanguage();
+
+        Map<String, String> headers = {
+          CONTENT_TYPE: APPLICATION_JSON,
+          ACCEPT: APPLICATION_JSON,
+          DEFAULT_LANGUAGE: language,
+          //NOTE: We must add this key to make the chat work
+          "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
+        };
+        // 🔹 make a POST request
+        final response = await dio.delete(
+          apiUrl,
+          // data: jsonEncode(request), // Ensure JSON-encoded body
+          // data: request.toJson(),
+          options: Options(
+            headers: headers,
+            validateStatus: (status) =>
+                status! < 500, // Prevents Dio from throwing for 401
+          ),
+        );
+
+        log("API Response received. Status code: ${response.statusCode}");
+        log("Response data: ${response.data}");
+
+        if (response.statusCode == 200) {
+          log("Success response: ${response.data}");
+          return Success(SendAnswerResponseModel.fromJson(response.data));
+        } else if (response.statusCode == 401) {
+          log("⚠️ Unauthorized: Token might be invalid or expired.");
+          return const Error(FailureCloseStreamModel(
+              message: "Unauthorized: Please check your credentials."));
         } else {
-          log("Zak3 $response");
-          return Error(
-              FailureCloseStreamModel.fromJson(response.response.data));
+          log("Non-200 status code. Parsing error...");
+          return Error(FailureCloseStreamModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-        log("Zak4 ${e.message}");
-        return Error(
-            FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
+        log("DioException occurred: ${e.message}");
+        log("DioException response: ${e.response?.data}");
+
+        // Handle non-JSON responses
+        if (e.response != null && e.response?.data is! Map<String, dynamic>) {
+          return const Error(
+              FailureCloseStreamModel(message: "Unexpected server response"));
+        }
+
+        return Error(FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        log("Zak5 ${e.toString()}");
-        return Error(
-            FailureCloseStreamModel(message: AppStrings().defaultError));
+        log("Unexpected error: $e");
+        return Error(FailureCloseStreamModel(message: AppStrings().defaultError));
       }
     } else {
-      return Error(
-          FailureCloseStreamModel(message: AppStrings().noInternetError));
+      log("No internet connection.");
+      return Error(FailureCloseStreamModel(message: AppStrings().noInternetError));
     }
   }
-
+///=======================================================================
   //---------------------get laws-------------------------------
   @override
   Future<Result<List<LawsModel>, FailureModel>> getLaws() async {

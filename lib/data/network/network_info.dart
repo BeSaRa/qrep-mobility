@@ -12,8 +12,9 @@ class NetworkInfoImplementer implements NetworkInfo {
     final List<ConnectivityResult> connectivityResults =
         await _connectivity.checkConnectivity();
 
-    // Check if any of the results contain WiFi or mobile
-    return connectivityResults.contains(ConnectivityResult.wifi) ||
-        connectivityResults.contains(ConnectivityResult.mobile);
+    return
+        // !connectivityResults.contains(ConnectivityResult.other) ||
+        !connectivityResults.contains(ConnectivityResult.bluetooth) ||
+            !connectivityResults.contains(ConnectivityResult.none);
   }
 }

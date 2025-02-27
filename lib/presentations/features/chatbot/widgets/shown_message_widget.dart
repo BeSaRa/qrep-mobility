@@ -62,11 +62,21 @@ class ShownMessageWidget extends StatelessWidget {
                       horizontal: AppSizeW.s15, vertical: AppSizeH.s10),
                   margin: EdgeInsets.symmetric(vertical: AppSizeH.s15),
                   decoration: BoxDecoration(
+                      gradient: message.role == 'user' && isAvatarShow
+                          ? LinearGradient(
+                              colors: [
+                                ColorManager.primary,
+                                ColorManager.primary.withValues(alpha: .7),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            )
+                          : null,
                       color: message.role == 'user'
                           ? isAvatarShow
                               ? Theme.of(context)
                                   .primaryColor
-                                  .withValues(alpha: .5)
+                                  .withValues(alpha: .9)
                               : Theme.of(context).primaryColor
                           : isAvatarShow
                               ? Theme.of(context)
@@ -103,11 +113,12 @@ class ShownMessageWidget extends StatelessWidget {
             ),
           ],
         ),
-        if (message.role != 'user')
-          const Divider(
+        if (message.role != 'user' &&
+            message.content is PlatformChatbotResponseModel)
+          Divider(
             thickness: 2,
-            endIndent: 20,
-            indent: 20,
+            endIndent: AppSizeW.s20,
+            indent: AppSizeW.s20,
           ),
       ],
     );

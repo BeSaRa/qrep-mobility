@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
@@ -5,9 +6,13 @@ import 'package:ebla/presentations/features/chatbot/blocs/close_stream/close_str
 import 'package:ebla/presentations/features/chatbot/blocs/drobdown_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/record_cubit/voice_cubit.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/send_answer_and_candidate_bloc/send_answer_and_candidate_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_message_bloc/chat_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/start_stream_bloc/start_stream_bloc.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/stream_id_cubit.dart/stream_id_cubit.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/utility/chatbot_enums.dart';
+import 'package:ebla/presentations/features/chatbot/widgets/ai_avatar_icon_widget.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/appbar_clipper.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/avatar_stream_widget.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/chat_messages_list_widget.dart';
@@ -36,17 +41,24 @@ class _ChatViewState extends State<ChatView> {
   late ChatBotBloc chatBotBloc;
   late StartStreamBloc startStreamBloc;
   late CloseStreamBloc closeStreamBloc;
+  late StreamIdCubit streamIdCubit;
+  late SendAnswerAndCandidateBloc sendAnswerAndCandidateBloc;
   final ValueNotifier<bool> isSendEnabled = ValueNotifier<bool>(false);
   final ValueNotifier<bool> isAvatarExpanded = ValueNotifier(false);
-  bool isSending = false;
+  bool isMessageSending = false;
   final ScrollController _scrollController = ScrollController();
-
+/*================ timer for close stream after 2 minutes of no action ================*/
+  Timer? inactivityTimer;
+  final Duration inactivityDuration = const Duration(minutes: 2, seconds: 30);
+  WebRTCCubit? webRTCCubit;
   @override
   void initState() {
     super.initState();
     chatBotBloc = instance<ChatBotBloc>();
     startStreamBloc = instance<StartStreamBloc>();
     closeStreamBloc = instance<CloseStreamBloc>();
+    streamIdCubit = instance<StreamIdCubit>();
+    sendAnswerAndCandidateBloc = instance<SendAnswerAndCandidateBloc>();
     _controller.addListener(() {
       isSendEnabled.value = _controller.text.trim().isNotEmpty;
     });
@@ -54,16 +66,13 @@ class _ChatViewState extends State<ChatView> {
       Future.microtask(() {
         if (mounted) {
           context.read<VoiceCubit>().initializeSpeech();
-          //to make the data shown dirctly when message send
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (_scrollController.hasClients) {
-              _scrollController.animateTo(
-                _scrollController.position.maxScrollExtent,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeOut,
-              );
-            }
-          });
+          if (_scrollController.hasClients) {
+            _scrollController.animateTo(
+              _scrollController.position.maxScrollExtent,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeOut,
+            );
+          }
         }
       });
     });
@@ -71,11 +80,32 @@ class _ChatViewState extends State<ChatView> {
 
   @override
   void dispose() {
+    //when user pressed the back button to homepage
+    closeStreamAfterTimerOrBack();
     _controller.dispose();
     isSendEnabled.dispose();
     isAvatarExpanded.dispose();
     _scrollController.dispose();
+    inactivityTimer?.cancel();
+    streamIdCubit.close();
+    if (webRTCCubit != null) {
+      webRTCCubit!.closeStreamCubit();
+      webRTCCubit!.close();
+    }
     super.dispose();
+  }
+
+  void startOrResetAvatarTimer() {
+    inactivityTimer?.cancel();
+    inactivityTimer = Timer(inactivityDuration, closeStreamAfterTimerOrBack);
+  }
+
+  void closeStreamAfterTimerOrBack() {
+    final String? streamId = streamIdCubit.state.streamId;
+    if (streamId != null) {
+      closeStreamBloc.add(CloseStreamEvent.closeStream(streamId));
+      log("Inactivity detected. Stream closed.");
+    }
   }
 
   @override
@@ -84,7 +114,7 @@ class _ChatViewState extends State<ChatView> {
       appBar: costumeChatAppBar(context, _scrollController),
       body: Stack(
         children: [
-// Background Image
+          // Background Image
           Opacity(
             opacity: 0.1,
             child: Container(
@@ -95,7 +125,7 @@ class _ChatViewState extends State<ChatView> {
               ),
             ),
           ),
-//-------------------------------AvatarAi-----------------------
+          //-------------------------------AvatarAi-----------------------
           ValueListenableBuilder<bool>(
               valueListenable: isAvatarExpanded,
               builder: (context, expanded, child) {
@@ -109,9 +139,19 @@ class _ChatViewState extends State<ChatView> {
                           ),
                         ),
                     child: expanded
-                        ? BlocProvider.value(
-                            value: startStreamBloc,
-                            child: const AvatarStreamWidget())
+                        ? MultiBlocProvider(providers: [
+                            BlocProvider.value(
+                              value: startStreamBloc,
+                            ),
+                            if (webRTCCubit != null)
+                              BlocProvider.value(value: webRTCCubit!),
+                            BlocProvider.value(
+                              value: chatBotBloc,
+                            ),
+                            BlocProvider.value(
+                              value: sendAnswerAndCandidateBloc,
+                            ),
+                          ], child: const AvatarStreamWidget())
                         : const SizedBox.shrink());
               }),
           ValueListenableBuilder<bool>(
@@ -132,13 +172,16 @@ class _ChatViewState extends State<ChatView> {
                           value: BlocProvider.of<VoiceCubit>(context)),
                       BlocProvider.value(
                           value: BlocProvider.of<DropdownCubit>(context)),
+                      BlocProvider.value(value: streamIdCubit),
+                      BlocProvider.value(value: sendAnswerAndCandidateBloc),
+                      // BlocProvider.value(value: webRTCCubit),
                     ],
                     child: BlocConsumer<ChatBotBloc, ChatBotState>(
                         listener: (context, sendState) {
                           sendState.map(
                               initial: (val) {},
                               loading: (val) {
-                                isSending = true;
+                                isMessageSending = true;
                               },
                               done: (val) {
                                 //----- if i'm in authority-----
@@ -159,14 +202,14 @@ class _ChatViewState extends State<ChatView> {
                                         content: val.platformResponse,
                                       ));
                                 }
-                                isSending = false;
+                                isMessageSending = false;
                               },
                               error: (val) {
                                 if (mounted) {
                                   errorToast(
                                       AppStrings().defaultError, context);
                                 }
-                                isSending = false;
+                                isMessageSending = false;
                               });
                         },
                         bloc: chatBotBloc,
@@ -180,13 +223,18 @@ class _ChatViewState extends State<ChatView> {
                                       height: AppSizeH.s310,
                                       child: ChatMessagesListWidget(
                                         scrollController: _scrollController,
-                                        isSending: isSending,
+                                        isSending: isMessageSending,
                                         isAvatarPressed: isAvatarPressed,
                                       ),
                                     ),
                                     Container(
                                       height: AppSizeH.s20,
                                       decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft:
+                                                Radius.circular(AppSizeR.s50),
+                                            topRight:
+                                                Radius.circular(AppSizeR.s50)),
                                         gradient: LinearGradient(
                                           begin: Alignment.bottomCenter,
                                           end: Alignment.topCenter,
@@ -206,19 +254,37 @@ class _ChatViewState extends State<ChatView> {
                                 Expanded(
                                     child: ChatMessagesListWidget(
                                   scrollController: _scrollController,
-                                  isSending: isSending,
+                                  isSending: isMessageSending,
                                   isAvatarPressed: isAvatarPressed,
                                 )),
                               Padding(
-                                padding: EdgeInsets.all(AppSizeW.s8),
+                                padding: EdgeInsets.only(
+                                    bottom: AppSizeW.s20,
+                                    top: AppSizeW.s8,
+                                    left: AppSizeW.s8,
+                                    right: AppSizeW.s8),
                                 child: Row(
                                   textDirection: ui.TextDirection.ltr,
                                   children: <Widget>[
                                     /*========================For Ai Avatar========================= */
 
-                                    // AiAvatarIconWidget(
-                                    //     isAvatarExpanded: isAvatarExpanded,
-                                    //     startStreamBloc: startStreamBloc),
+                                    AiAvatarIconWidget(
+                                      startAvatarTimer: startOrResetAvatarTimer,
+                                      onWebRTCCubitCreated:
+                                          (WebRTCCubit? newCubit) async {
+                                        //I close the avatar and dispose the camera renderer
+                                        if (newCubit == null &&
+                                            webRTCCubit != null) {
+                                          await webRTCCubit!.closeStreamCubit();
+                                          await webRTCCubit!.close();
+                                          webRTCCubit == null;
+                                        } else {
+                                          //I Start the avatar
+                                          webRTCCubit = newCubit;
+                                        }
+                                      },
+                                      isAvatarExpanded: isAvatarExpanded,
+                                    ),
                                     SizedBox(
                                       width: AppSizeW.s5,
                                     ),
@@ -236,7 +302,8 @@ class _ChatViewState extends State<ChatView> {
                                               } else {
                                                 context
                                                     .read<VoiceCubit>()
-                                                    .startListening();
+                                                    .checkAndRequestPermissionToStart();
+                                                // .startListening();
                                               }
                                             },
                                             child: voiceState.isListening
@@ -258,8 +325,6 @@ class _ChatViewState extends State<ChatView> {
                                               bloc: BlocProvider.of<VoiceCubit>(
                                                   context),
                                               builder: (context, voiceState) {
-                                                // Schedule the update to the text field after the build phase
-                                                // if (isSendEnabled.value) {
                                                 WidgetsBinding.instance
                                                     .addPostFrameCallback((_) {
                                                   if (_controller.text !=
@@ -268,10 +333,9 @@ class _ChatViewState extends State<ChatView> {
                                                         voiceState.text;
                                                   }
                                                 });
-                                                // }
+
                                                 return ReraTextFaild(
                                                   onChange: (p0) {
-                                                    // _controller.text = p0;
                                                   },
                                                   controller: _controller,
                                                   readOnly: false,
@@ -287,6 +351,9 @@ class _ChatViewState extends State<ChatView> {
                                         valueListenable: isSendEnabled,
                                         builder: (context, enabled, child) {
                                           return SendButtonWidget(
+                                            startAvatarTimer:
+                                                startOrResetAvatarTimer,
+                                            isAvatarShown: isAvatarPressed,
                                             scrollController: _scrollController,
                                             enabled: enabled,
                                             controller: _controller,
@@ -304,7 +371,7 @@ class _ChatViewState extends State<ChatView> {
                   ),
                 );
               }),
-//the clip of appbar
+          //the clip of appbar
           ClipPath(
             clipper: AppBarClipper(),
             child: Container(
@@ -329,132 +396,6 @@ class _ChatViewState extends State<ChatView> {
   Size get preferredSize => Size.fromHeight(AppSizeH.s30);
 }
 
-class AiAvatarIconWidget extends StatelessWidget {
-  const AiAvatarIconWidget({
-    super.key,
-    required this.isAvatarExpanded,
-    required this.startStreamBloc,
-  });
-
-  final ValueNotifier<bool> isAvatarExpanded;
-  final StartStreamBloc startStreamBloc;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<DropdownCubit, ChatTypeEnum>(
-        bloc: BlocProvider.of<DropdownCubit>(context),
-        builder: (context, selectedOption) {
-          if (context.read<DropdownCubit>().state == ChatTypeEnum.authority) {
-            return ValueListenableBuilder<bool>(
-                valueListenable: isAvatarExpanded,
-                builder: (context, expanded, child) {
-                  return BlocConsumer<StartStreamBloc, StartStreamState>(
-                      bloc: startStreamBloc,
-                      listener: (context, avatarState) {},
-                      builder: (context, avatarState) {
-                        return BlocConsumer<CloseStreamBloc, CloseStreamState>(
-                            listener: (context, closestate) {
-                          closestate.mapOrNull(
-                            error: (value) {
-                              errorToast(value.message, context);
-                            },
-                            done: (value) {
-                              isAvatarExpanded.value = !isAvatarExpanded.value;
-                            },
-                          );
-                        }, builder: (context, closeState) {
-                          return closeState.maybeMap(
-                              loading: (_) => SizedBox(
-                                  width: AppSizeW.s40,
-                                  height: AppSizeH.s40,
-                                  child: const CircularProgressIndicator()),
-                              orElse: () => GestureDetector(
-                                    onTap: () async {
-                                      //here i start the stream
-                                      // context.read<>().add(StartStream());
-                                      // startStreamBloc.add( const StartStreamEvent.started());
-                                      // Navigator.push(
-                                      //   context,
-                                      //   MaterialPageRoute(
-                                      //       builder: (context) =>
-                                      //           const StreamPage()),
-                                      // );
-                                      if (expanded) {
-                                        // If the close icon is shown, perform logic for closing the AI assistant
-                                        log("Close icon pressed - Perform close logic");
-                                        if (context
-                                                .read<StartStreamBloc>()
-                                                .state
-                                                .startStreamResponse
-                                                .data !=
-                                            null) {
-                                          context.read<CloseStreamBloc>().add(
-                                              CloseStreamEvent.closeStream(
-                                                  //here i pass the streamID
-                                                  context
-                                                      .read<StartStreamBloc>()
-                                                      .state
-                                                      .startStreamResponse
-                                                      .data!
-                                                      .id));
-                                        }
-
-                                        // startStreamBloc.add(const StopStreamEvent());
-                                      } else {
-                                        // If the avatar icon is shown, perform logic for opening the AI assistant
-                                        log("Avatar icon pressed - Perform open logic");
-                                        context.read<StartStreamBloc>().add(
-                                            const StartStreamEvent.started());
-                                        isAvatarExpanded.value =
-                                            !isAvatarExpanded.value;
-                                        // startStreamBloc.add(const StartStreamEvent.started());
-                                      }
-                                    },
-                                    child: AnimatedRotation(
-                                      turns: expanded
-                                          ? 0.5
-                                          : 0.0, // Rotate 180° when expanded, back when closed
-                                      duration:
-                                          const Duration(milliseconds: 300),
-                                      child: Container(
-                                        width: AppSizeW.s40,
-                                        height: AppSizeH.s40,
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: AppSizeW.s5),
-                                        decoration: BoxDecoration(
-                                          border: Border(
-                                            right: BorderSide(
-                                                width: 1,
-                                                color: Theme.of(context)
-                                                    .hoverColor),
-                                          ),
-                                        ),
-                                        child: AnimatedSwitcher(
-                                          duration: Duration(milliseconds: 300),
-                                          transitionBuilder:
-                                              (child, animation) =>
-                                                  ScaleTransition(
-                                            scale: animation,
-                                            child: child,
-                                          ),
-                                          child: expanded
-                                              ? Icon(Icons.close,
-                                                  key: ValueKey("closeIcon"))
-                                              : Image.asset(ImageAssets.chatBot,
-                                                  key: ValueKey("avatarIcon")),
-                                        ),
-                                      ),
-                                    ),
-                                  ));
-                        });
-                      });
-                });
-          } else {
-            return const SizedBox.shrink();
-          }
-        });
-  }
-}
 
 AppBar costumeChatAppBar(
     BuildContext context, ScrollController scrollController) {
@@ -537,7 +478,6 @@ AppBar costumeChatAppBar(
                     value: BlocProvider.of<ChatHistoryCubit>(context),
                   )
                 ],
-                // value: BlocProvider.of<DropdownCubit>(context),
                 child: BlocBuilder<DropdownCubit, ChatTypeEnum>(
                   builder: (context, selectedOption) {
                     return Column(

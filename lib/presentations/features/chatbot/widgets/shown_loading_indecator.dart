@@ -1,10 +1,10 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+
 class ShownLoadingIndecetorWidget extends StatelessWidget {
   const ShownLoadingIndecetorWidget({super.key});
 
@@ -29,7 +29,8 @@ class ShownLoadingIndecetorWidget extends StatelessWidget {
                 horizontal: AppSizeW.s15, vertical: AppSizeH.s10),
             margin: EdgeInsets.symmetric(vertical: AppSizeH.s15),
             decoration: BoxDecoration(
-                color: Theme.of(context).dividerColor,
+                // color: Theme.of(context).dividerColor,
+                color: Theme.of(context).canvasColor,
                 borderRadius: context.locale == ARABIC_LOCAL
                     ? BorderRadius.only(
                         topLeft: Radius.circular(AppSizeR.s15),

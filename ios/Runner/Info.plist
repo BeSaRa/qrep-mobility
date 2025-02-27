@@ -33,6 +33,7 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>tel</string>
+    	<string>https</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
