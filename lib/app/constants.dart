@@ -24,9 +24,9 @@ class Constant {
   static const String aqaratBaseUrl = 'https://www.aqarat.gov.qa';
   static const String authorityChatBotBaseUrl =
       'https://afnqcpcbai01.azurewebsites.net';
+
   static String xFunctionsAuthorityChatbotKey =
-      "3Q84i4HgnkCtMvq3HhCulIbqMbf73QNGDn5MXKQnK_xtAzFu2CXK-w==";
-  // static String xFunctionsAuthorityChatbotKey =  dotenv.env['X_FUNCTION_AUTHORITY_CHATBOT_KEY'] ?? 'NO_KEY_FOUND';
+      dotenv.env['X_FUNCTION_AUTHORITY_CHATBOT_KEY'] ?? 'NO_KEY_FOUND';
   //============= NOTE FROM ZAK To FATINA:==============
   // static String xFunctionsAuthorityChatbotKey =  ;
   //1- uncomment last line:
