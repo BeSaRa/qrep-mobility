@@ -22,14 +22,15 @@ class Constant {
   static const String cmsBaseUrl = 'https://qrepcms.aqarat.gov.qa';
   /*--- */
   static const String aqaratBaseUrl = 'https://www.aqarat.gov.qa';
-  static const String authorityChatBotBaseUrl = 'https://afnqcpcbai01.azurewebsites.net';
-  static String xFunctionsAuthorityChatbotKey =  dotenv.env['X_FUNCTION_AUTHORITY_CHATBOT_KEY'] ?? 'NO_KEY_FOUND';
-    //============= NOTE FROM ZAK To FATINA:==============
-    // static String xFunctionsAuthorityChatbotKey =  ;
-    //1- uncomment last line:
-    //2- put the key I send in Teams in last line then run the app
-
-
+  static const String authorityChatBotBaseUrl =
+      'https://afnqcpcbai01.azurewebsites.net';
+  static String xFunctionsAuthorityChatbotKey =
+      "3Q84i4HgnkCtMvq3HhCulIbqMbf73QNGDn5MXKQnK_xtAzFu2CXK-w==";
+  // static String xFunctionsAuthorityChatbotKey =  dotenv.env['X_FUNCTION_AUTHORITY_CHATBOT_KEY'] ?? 'NO_KEY_FOUND';
+  //============= NOTE FROM ZAK To FATINA:==============
+  // static String xFunctionsAuthorityChatbotKey =  ;
+  //1- uncomment last line:
+  //2- put the key I send in Teams in last line then run the app
 
   // static const String baseUrl = 'http://192.168.52.4:9080/mme-services';
   // static const String webUrl = 'http://192.168.52.5:3000/';
@@ -38,9 +39,10 @@ class Constant {
   // static const String chatBotBaseUrl = 'https://afnqcpcbai01.azurewebsites.net';
 
   static const String guestToken = "lyHWSTHj1SBm9IRECnLAHviNHnXGaS27";
-  /*Authority Map Points*/  
+  /*Authority Map Points*/
 
   static const double latitude = 25.370494;
   static const double longitude = 51.552943;
-  static const String mapUrlTemplate ='https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+  static const String mapUrlTemplate =
+      'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 }

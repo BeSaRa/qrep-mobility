@@ -193,8 +193,8 @@ class _ChatViewState extends State<ChatView> {
                                           colors: [
                                             Colors
                                                 .transparent, // Bottom: Fully transparent
-                                            Colors.black.withValues(alpha: 
-                                              0.1,
+                                            Colors.black.withValues(
+                                              alpha: 0.1,
                                             ), // Top: Black with opacity
                                           ],
                                         ),
@@ -295,6 +295,9 @@ class _ChatViewState extends State<ChatView> {
                                   ],
                                 ),
                               ),
+                              SizedBox(
+                                height: AppSizeH.s25,
+                              )
                             ],
                           );
                         }),
