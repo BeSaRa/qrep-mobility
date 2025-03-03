@@ -3,8 +3,11 @@ import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/drobdown_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/record_cubit/voice_cubit.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/send_feedback_bloc/send_feedback_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/routes_extras.dart';
 import 'package:ebla/presentations/features/chatbot/view/chat_view.dart';
+import 'package:ebla/presentations/features/more/ai_search_view/blocs/ai_search_bloc.dart';
+import 'package:ebla/presentations/features/more/ai_search_view/views/ai_search_view.dart';
 import 'package:ebla/presentations/features/more/all_more_web_views/view/all_more_web_views_view.dart';
 import 'package:ebla/presentations/features/favourite/fav_view.dart';
 import 'package:ebla/presentations/features/home/home_view.dart';
@@ -59,6 +62,7 @@ class RoutesNames {
   static const String aboutTheAuthority = "about the authority";
   static const String chatbot = "chatbot";
   static const String authorityMap = "authority map";
+  static const String aiSearch = "ai Search";
 }
 
 class RoutesPaths {
@@ -82,6 +86,7 @@ class RoutesPaths {
   static const String aboutTheAuthority = '/abouttheauthority';
   static const String chatbot = '/chatbot';
   static const String authorityMap = '/authoritymap';
+  static const String aiSearch = '/aisearch';
 }
 
 class NavigationKeys {
@@ -481,8 +486,18 @@ class AppRouter {
           path: '${RoutesPaths.aboutTheAuthority}:pageName',
           builder: (context, state) {
             final pageName = state.pathParameters['pageName'] ?? '0';
-            return AllMoreWebViews(pageName: pageName);
+            final aiSearchUrl = state.uri.queryParameters['aiSearchUrl'];
+            return AllMoreWebViews(
+                pageName: pageName, aiSearchUrl: aiSearchUrl);
           },
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.aiSearch,
+          path: RoutesPaths.aiSearch,
+          builder: (context, state) => BlocProvider<AiSearchBloc>(
+              create: (context) => instance<AiSearchBloc>(),
+              child: const AiSearchView()),
         ),
         //-------------- Chatbot ----------------
 
@@ -504,6 +519,9 @@ class AppRouter {
                   ),
                   BlocProvider<DropdownCubit>.value(
                     value: (state.extra as RouteExtras).dropdownCubit,
+                  ),
+                  BlocProvider<SendFeedbackBloc>.value(
+                    value: (state.extra as RouteExtras).sendFeedbackBloc,
                   ),
                 ],
                 child: const ChatView(),

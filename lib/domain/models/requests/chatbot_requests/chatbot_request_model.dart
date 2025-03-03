@@ -17,6 +17,7 @@ abstract class ChatbotRequestModel with _$ChatbotRequestModel {
 abstract class MessageRequestModel with _$MessageRequestModel {
   const factory MessageRequestModel({
     @Default('') String role,
+    @Default(null) String? authorityConvId,
     //it' dynamic for the platform chat
     @Default('') dynamic content,
   }) = _MessageRequestModel;

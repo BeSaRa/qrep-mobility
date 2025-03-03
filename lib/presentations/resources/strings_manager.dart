@@ -244,4 +244,16 @@ class AppStrings {
   String chatOtherResponseMessage = "chat_other_response_message".tr();
   String avgNote = "avg_note".tr();
   String largeDigitsNumbersNote = "large_digits_numbers_note".tr();
+  String rateTheCOnversation = "rate_the_conversation".tr();
+  String dislike = "dislike".tr();
+  String like = "like".tr();
+  String aiNote = "ai_note".tr();
+  //--------------ai_search---------------
+  String aiSearch = "ai_search".tr();
+  String searchHere = "search_here".tr();
+  String searchfor = "search_for".tr();
+  String numberOfResults = "number_of_results".tr();
+  String empowerIdeasAndUnleashIntelligence = "Empower_ideas_and_unleash_intelligence".tr();
+  String startSearching = "start_searching".tr();
+  
 }

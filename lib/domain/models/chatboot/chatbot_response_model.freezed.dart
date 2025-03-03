@@ -269,6 +269,7 @@ MessageResponseModel _$MessageResponseModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MessageResponseModel {
   String get content => throw _privateConstructorUsedError;
+  @JsonKey(name: "conversation_id")
   String get conversationId => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
   bool get endTurn => throw _privateConstructorUsedError;
@@ -292,7 +293,7 @@ abstract class $MessageResponseModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String content,
-      String conversationId,
+      @JsonKey(name: "conversation_id") String conversationId,
       String role,
       bool endTurn,
       ContextModel? contextModel});
@@ -371,7 +372,7 @@ abstract class _$$MessageResponseModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String content,
-      String conversationId,
+      @JsonKey(name: "conversation_id") String conversationId,
       String role,
       bool endTurn,
       ContextModel? contextModel});
@@ -429,7 +430,7 @@ class __$$MessageResponseModelImplCopyWithImpl<$Res>
 class _$MessageResponseModelImpl implements _MessageResponseModel {
   const _$MessageResponseModelImpl(
       {this.content = '',
-      this.conversationId = '',
+      @JsonKey(name: "conversation_id") this.conversationId = '',
       this.role = '',
       this.endTurn = false,
       this.contextModel = null});
@@ -441,7 +442,7 @@ class _$MessageResponseModelImpl implements _MessageResponseModel {
   @JsonKey()
   final String content;
   @override
-  @JsonKey()
+  @JsonKey(name: "conversation_id")
   final String conversationId;
   @override
   @JsonKey()
@@ -498,7 +499,7 @@ class _$MessageResponseModelImpl implements _MessageResponseModel {
 abstract class _MessageResponseModel implements MessageResponseModel {
   const factory _MessageResponseModel(
       {final String content,
-      final String conversationId,
+      @JsonKey(name: "conversation_id") final String conversationId,
       final String role,
       final bool endTurn,
       final ContextModel? contextModel}) = _$MessageResponseModelImpl;
@@ -509,6 +510,7 @@ abstract class _MessageResponseModel implements MessageResponseModel {
   @override
   String get content;
   @override
+  @JsonKey(name: "conversation_id")
   String get conversationId;
   @override
   String get role;

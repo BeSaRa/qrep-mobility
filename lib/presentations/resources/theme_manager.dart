@@ -311,6 +311,11 @@ ThemeData darkTheme() {
             color: ColorManager.white,
             fontSize: AppSizeSp.s16,
             fontWeight: FontWeight.w400),
+        headlineLarge: TextStyle(
+            fontFamily: FontConstants.fontFamily,
+            color: ColorManager.primary,
+            fontSize: AppSizeSp.s18,
+            fontWeight: FontWeight.w700),
       ),
       dividerTheme:
           DividerThemeData(color: ColorManager.textBlack.withOpacity(0.6)),

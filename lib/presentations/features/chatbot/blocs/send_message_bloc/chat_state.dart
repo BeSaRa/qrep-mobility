@@ -7,4 +7,5 @@ class ChatBotState with _$ChatBotState {
   const factory ChatBotState.done({ ChatbotResponseModel? response,PlatformChatbotResponseModel? platformResponse
   }) = _Done;
   const factory ChatBotState.error(String message) = _Error;
+  
 }

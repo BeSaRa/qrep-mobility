@@ -11,9 +11,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class AllMoreWebViews extends StatelessWidget {
-  const AllMoreWebViews({super.key, required this.pageName});
+  const AllMoreWebViews({super.key, required this.pageName, this.aiSearchUrl});
 
   final String pageName;
+  final String? aiSearchUrl;
 
   String _getInitUrl(BuildContext context, String pageName) {
     switch (pageName) {
@@ -41,6 +42,9 @@ class AllMoreWebViews extends StatelessWidget {
         return context.locale == ENGLISH_LOCAL
             ? "${Constant.aqaratBaseUrl}/en/services/"
             : '${Constant.aqaratBaseUrl}/%d8%a7%d9%84%d8%ae%d8%af%d9%85%d8%a7%d8%aa/';
+      //this come from AI Search Page
+      case "aiSearchUrl":
+        return aiSearchUrl ?? "https://www.aqarat.gov.qa/";
       default:
         return context.locale == ENGLISH_LOCAL
             ? '${Constant.aqaratBaseUrl}/en/about-the-authority/'
@@ -116,7 +120,7 @@ class AllMoreWebViews extends StatelessWidget {
                 ),
                 SizedBox(width: AppSizeW.s5),
                 Text(
-                  AppStrings().main,
+                  aiSearchUrl != null ? AppStrings().back : AppStrings().main,
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ],
@@ -146,6 +150,8 @@ class AllMoreWebViews extends StatelessWidget {
         return AppStrings().authorityNews;
       case "services":
         return AppStrings().services;
+      case "aiSearchUrl":
+        return AppStrings().aiSearch;
       default:
         return AppStrings().aboutTheAuthority;
     }

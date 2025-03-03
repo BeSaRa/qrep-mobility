@@ -29,7 +29,7 @@ _$MessageResponseModelImpl _$$MessageResponseModelImplFromJson(
         Map<String, dynamic> json) =>
     _$MessageResponseModelImpl(
       content: json['content'] as String? ?? '',
-      conversationId: json['conversationId'] as String? ?? '',
+      conversationId: json['conversation_id'] as String? ?? '',
       role: json['role'] as String? ?? '',
       endTurn: json['endTurn'] as bool? ?? false,
       contextModel: json['contextModel'] == null
@@ -41,7 +41,7 @@ Map<String, dynamic> _$$MessageResponseModelImplToJson(
         _$MessageResponseModelImpl instance) =>
     <String, dynamic>{
       'content': instance.content,
-      'conversationId': instance.conversationId,
+      'conversation_id': instance.conversationId,
       'role': instance.role,
       'endTurn': instance.endTurn,
       'contextModel': instance.contextModel,
