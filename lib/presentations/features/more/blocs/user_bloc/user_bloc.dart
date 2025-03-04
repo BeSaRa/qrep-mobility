@@ -38,7 +38,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         }, (error) {
           emit(UserState.error(message: error.message));
         });
-      }, updateUserInfo: (value) async {
+      },
+      
+       updateUserInfo: (value) async {
 
         emit(const UserState.loading());
         final failureOrUser = await updateInfoUsecase.execute(

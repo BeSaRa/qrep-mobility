@@ -7,6 +7,7 @@ class ReraTextFaild extends StatelessWidget {
   final String hint;
   final String? errorMsg;
   final Widget? prefixIcon;
+  final Widget? suffixIcon;
   final bool enabled;
   final bool readOnly;
   final TextEditingController? controller;
@@ -20,6 +21,7 @@ class ReraTextFaild extends StatelessWidget {
     super.key,
     required this.hint,
     this.prefixIcon,
+    this.suffixIcon,
     this.enabled = true,
     this.readOnly = false,
     this.controller,
@@ -66,13 +68,16 @@ class ReraTextFaild extends StatelessWidget {
               ? Theme.of(context).cardColor
               : Theme.of(context).primaryColor,
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+        contentPadding: EdgeInsets.symmetric(
+            horizontal: AppSizeW.s15, vertical: AppSizeH.s8),
         //  enabled
         //     ? Theme.of(context).inputDecorationTheme.hintStyle
         //     : Theme.of(context).textTheme.titleSmall,
         filled: true,
         fillColor: ColorManager.whiteSmoke,
         errorText: errorMsg,
+        suffixIcon:
+            Padding(padding: EdgeInsets.all(AppSizeW.s5), child: suffixIcon),
         // prefixIcon:
         //     Padding(padding: EdgeInsets.all(AppSizeW.s5), child: prefixIcon),
         border: OutlineInputBorder(

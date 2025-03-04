@@ -216,7 +216,8 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                                                     child: child,
                                                   ),
                                                   child: expanded
-                                                      ? const Icon(Icons.close,
+                                                      ? 
+                                                      const Icon(Icons.close,
                                                           key: ValueKey(
                                                               "closeIcon"))
                                                       : Image.asset(

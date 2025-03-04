@@ -132,5 +132,8 @@ class EndPoints {
 
   //platform chatbot
   static const String sendMessageToPlatformChatbot= '/openai/chat/completion';
-   
+  
+  //send-feedback
+  static const String sendFeedback= '/chat-history/add-feedback';
+
 }

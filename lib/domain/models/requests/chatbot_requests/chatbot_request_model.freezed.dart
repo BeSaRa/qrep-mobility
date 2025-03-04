@@ -206,7 +206,8 @@ MessageRequestModel _$MessageRequestModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MessageRequestModel {
-  String get role =>
+  String get role => throw _privateConstructorUsedError;
+  String? get authorityConvId =>
       throw _privateConstructorUsedError; //it' dynamic for the platform chat
   dynamic get content => throw _privateConstructorUsedError;
 
@@ -226,7 +227,7 @@ abstract class $MessageRequestModelCopyWith<$Res> {
           MessageRequestModel value, $Res Function(MessageRequestModel) then) =
       _$MessageRequestModelCopyWithImpl<$Res, MessageRequestModel>;
   @useResult
-  $Res call({String role, dynamic content});
+  $Res call({String role, String? authorityConvId, dynamic content});
 }
 
 /// @nodoc
@@ -245,6 +246,7 @@ class _$MessageRequestModelCopyWithImpl<$Res, $Val extends MessageRequestModel>
   @override
   $Res call({
     Object? role = null,
+    Object? authorityConvId = freezed,
     Object? content = freezed,
   }) {
     return _then(_value.copyWith(
@@ -252,6 +254,10 @@ class _$MessageRequestModelCopyWithImpl<$Res, $Val extends MessageRequestModel>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
+      authorityConvId: freezed == authorityConvId
+          ? _value.authorityConvId
+          : authorityConvId // ignore: cast_nullable_to_non_nullable
+              as String?,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -268,7 +274,7 @@ abstract class _$$MessageRequestModelImplCopyWith<$Res>
       __$$MessageRequestModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String role, dynamic content});
+  $Res call({String role, String? authorityConvId, dynamic content});
 }
 
 /// @nodoc
@@ -285,6 +291,7 @@ class __$$MessageRequestModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? role = null,
+    Object? authorityConvId = freezed,
     Object? content = freezed,
   }) {
     return _then(_$MessageRequestModelImpl(
@@ -292,6 +299,10 @@ class __$$MessageRequestModelImplCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
+      authorityConvId: freezed == authorityConvId
+          ? _value.authorityConvId
+          : authorityConvId // ignore: cast_nullable_to_non_nullable
+              as String?,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -303,7 +314,8 @@ class __$$MessageRequestModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MessageRequestModelImpl implements _MessageRequestModel {
-  const _$MessageRequestModelImpl({this.role = '', this.content = ''});
+  const _$MessageRequestModelImpl(
+      {this.role = '', this.authorityConvId = null, this.content = ''});
 
   factory _$MessageRequestModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MessageRequestModelImplFromJson(json);
@@ -311,6 +323,9 @@ class _$MessageRequestModelImpl implements _MessageRequestModel {
   @override
   @JsonKey()
   final String role;
+  @override
+  @JsonKey()
+  final String? authorityConvId;
 //it' dynamic for the platform chat
   @override
   @JsonKey()
@@ -318,7 +333,7 @@ class _$MessageRequestModelImpl implements _MessageRequestModel {
 
   @override
   String toString() {
-    return 'MessageRequestModel(role: $role, content: $content)';
+    return 'MessageRequestModel(role: $role, authorityConvId: $authorityConvId, content: $content)';
   }
 
   @override
@@ -327,13 +342,15 @@ class _$MessageRequestModelImpl implements _MessageRequestModel {
         (other.runtimeType == runtimeType &&
             other is _$MessageRequestModelImpl &&
             (identical(other.role, role) || other.role == role) &&
+            (identical(other.authorityConvId, authorityConvId) ||
+                other.authorityConvId == authorityConvId) &&
             const DeepCollectionEquality().equals(other.content, content));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, role, const DeepCollectionEquality().hash(content));
+  int get hashCode => Object.hash(runtimeType, role, authorityConvId,
+      const DeepCollectionEquality().hash(content));
 
   /// Create a copy of MessageRequestModel
   /// with the given fields replaced by the non-null parameter values.
@@ -354,13 +371,17 @@ class _$MessageRequestModelImpl implements _MessageRequestModel {
 
 abstract class _MessageRequestModel implements MessageRequestModel {
   const factory _MessageRequestModel(
-      {final String role, final dynamic content}) = _$MessageRequestModelImpl;
+      {final String role,
+      final String? authorityConvId,
+      final dynamic content}) = _$MessageRequestModelImpl;
 
   factory _MessageRequestModel.fromJson(Map<String, dynamic> json) =
       _$MessageRequestModelImpl.fromJson;
 
   @override
-  String get role; //it' dynamic for the platform chat
+  String get role;
+  @override
+  String? get authorityConvId; //it' dynamic for the platform chat
   @override
   dynamic get content;
 

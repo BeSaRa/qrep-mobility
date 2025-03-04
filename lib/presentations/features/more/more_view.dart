@@ -639,13 +639,13 @@ class MainMoreButtonsList extends StatelessWidget {
         //===================== services ===================
         MoreWidgetButton(
           icon: null,
-          title: AppStrings().services,
+          title: AppStrings().aiSearch,
           isButton: true,
-          onPressed: () {
-            context.pushNamed(RoutesNames.aboutTheAuthority,
-                pathParameters: {"pageName": "services"});
+          onPressed: () { 
+            context.pushNamed(RoutesNames.aiSearch);
           },
         ),
+        //===================== services ===================
       ],
     );
   }

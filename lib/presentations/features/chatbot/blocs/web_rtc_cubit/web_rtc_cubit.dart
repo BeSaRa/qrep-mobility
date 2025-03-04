@@ -16,7 +16,7 @@ class WebRTCCubit extends Cubit<WebRTCState> {
 
   Future<void> closeStreamCubit() async {
     for (RTCPeerConnection element in state.peerConnections.values) {
-      element.close();
+      await element.close();
     }
 
     state.peerConnections.clear();
@@ -27,9 +27,9 @@ class WebRTCCubit extends Cubit<WebRTCState> {
     state.remoteRenderer.srcObject?.getTracks().forEach((track) {
       track.stop();
     });
-    state.localRenderer.dispose();
+    await state.localRenderer.dispose();
     state.localRenderer = RTCVideoRenderer();
-    state.remoteRenderer.dispose();
+    await state.remoteRenderer.dispose();
     state.remoteRenderer = RTCVideoRenderer();
   }
 

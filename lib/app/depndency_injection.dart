@@ -1,10 +1,12 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:ebla/domain/usecases/ai_search/ai_search_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/chatbot_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/close_stream_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/platform_chatbot_usecases.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/send_answer_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/send_candidate_usecase.dart';
+import 'package:ebla/domain/usecases/chatbot_usecase/send_feedback_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/start_stream_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/create_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/update_favourite_usecase.dart';
@@ -13,12 +15,14 @@ import 'package:ebla/domain/usecases/laws_usecases/laws_usecases.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/close_stream/close_stream_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_answer_and_candidate_bloc/send_answer_and_candidate_bloc.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/send_feedback_bloc/send_feedback_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_message_bloc/chat_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/start_stream_bloc/start_stream_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_cubit.dart';
 import 'package:ebla/presentations/features/favourite/bloc/UpdateFav/update_favourite_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/create_favourite_bloc/create_favourite_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/get_favourite_bloc/get_favourite_bloc.dart';
+import 'package:ebla/presentations/features/more/ai_search_view/blocs/ai_search_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -254,6 +258,14 @@ Future<void> initHomeModule() async {
     instance.registerFactory<CloseStreamUsecase>(
         () => CloseStreamUsecase(instance()));
   }
+  if (!GetIt.I.isRegistered<SendFeedbackUsecase>()) {
+    instance.registerFactory<SendFeedbackUsecase>(
+        () => SendFeedbackUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<AiSearchUsecase>()) {
+    instance.registerFactory<AiSearchUsecase>(
+        () => AiSearchUsecase(instance()));
+  }
   //------ platform chatbot ------
   if (!GetIt.I.isRegistered<PlatformChatbotUsecases>()) {
     instance.registerFactory<PlatformChatbotUsecases>(
@@ -263,6 +275,14 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<CloseStreamBloc>()) {
     instance
         .registerFactory<CloseStreamBloc>(() => CloseStreamBloc(instance()));
+  }
+  if (!GetIt.I.isRegistered<SendFeedbackBloc>()) {
+    instance
+        .registerFactory<SendFeedbackBloc>(() => SendFeedbackBloc(instance()));
+  }
+  if (!GetIt.I.isRegistered<AiSearchBloc>()) {
+    instance
+        .registerFactory<AiSearchBloc>(() => AiSearchBloc(instance()));
   }
   if (!GetIt.I.isRegistered<ChatBotBloc>()) {
     instance.registerFactory(() => ChatBotBloc(instance(), instance()));

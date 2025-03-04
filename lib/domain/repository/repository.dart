@@ -1,7 +1,9 @@
 import 'package:ebla/domain/models/Auth/auth_models.dart';
 import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
+import 'package:ebla/domain/models/ai_search_models/ai_search_model.dart';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/domain/models/cms_models/user/user_model.dart';
+import 'package:ebla/domain/models/requests/ai_search_models/ai_search_model.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
 import 'package:multiple_result/multiple_result.dart';
 
@@ -192,6 +194,10 @@ abstract class Repository {
       //-------chatbot---------
   Future<Result<ChatbotResponseModel, FailureModel>> sendMessageToChatbot(
       ChatbotRequestModel request);
+      
+  Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendFeedback(
+      int feedback,String convId);
+
       //---- platform chatbot -----
   Future<Result<PlatformChatbotResponseModel, FailureModel>> sendMessageToPlatformChatbot(
       PlatformChatbotRequestModel request);
@@ -205,6 +211,9 @@ abstract class Repository {
       MainSendCandidateRequestModel request,String id);
 
   Future<Result<SendAnswerResponseModel , FailureCloseStreamModel>> closeStream(String id);
+  //------- Ai Search -------
+   Future<Result<AiSearchResponseModel, FailureModel>> aiSearchFun(
+      AiSearchRequestModel request);
       //-----new laws----
     Future<Result<List<LawsModel>, FailureModel>> getLaws();
 }
