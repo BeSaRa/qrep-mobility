@@ -267,6 +267,7 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<ChatBotBloc>()) {
     instance.registerFactory(() => ChatBotBloc(instance(), instance()));
   }
+
   if (!GetIt.I.isRegistered<ChatHistoryCubit>()) {
     instance.registerFactory(() => ChatHistoryCubit());
   }
@@ -277,12 +278,11 @@ Future<void> initHomeModule() async {
     instance.registerFactory(() => StreamIdCubit());
   }
   if (!GetIt.I.isRegistered<StartStreamBloc>()) {
-    instance.registerFactory(() => StartStreamBloc(
-        instance()));
+    instance.registerFactory(() => StartStreamBloc(instance()));
   }
   if (!GetIt.I.isRegistered<SendAnswerAndCandidateBloc>()) {
-    instance.registerFactory(() => SendAnswerAndCandidateBloc(
-        instance(),instance()));
+    instance.registerFactory(
+        () => SendAnswerAndCandidateBloc(instance(), instance()));
   }
 }
 

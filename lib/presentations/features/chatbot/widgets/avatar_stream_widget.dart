@@ -10,6 +10,7 @@ class AvatarStreamWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("hello i am here");
     return BlocBuilder<SendAnswerAndCandidateBloc, SendAnswerAndCandidateState>(
       bloc: BlocProvider.of<SendAnswerAndCandidateBloc>(context),
       builder: (context, state) {
@@ -37,8 +38,7 @@ class AvatarStreamWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
-                child: VideoPlayerWidget(
-                    ),
+                child: VideoPlayerWidget(),
               ),
             ],
           );

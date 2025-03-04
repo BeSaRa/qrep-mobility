@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -43,7 +44,13 @@ class _MainScaffoldState extends State<MainScaffold>
       bloc: context.read<BottomNavCubit>(),
       builder: (context, state) {
         return Scaffold(
-          body: widget.child,
+          // backgroundColor: Theme.of(context).primaryColor,
+          body: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(AppSizeR.s20),
+                      topLeft: Radius.circular(AppSizeR.s20))),
+              child: widget.child),
           bottomNavigationBar: EblaNavigationBar(
             onTap: (index) async {
               switch (index) {
