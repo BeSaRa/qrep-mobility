@@ -28,6 +28,7 @@ _$MessageRequestModelImpl _$$MessageRequestModelImplFromJson(
         Map<String, dynamic> json) =>
     _$MessageRequestModelImpl(
       role: json['role'] as String? ?? '',
+      authorityConvId: json['authorityConvId'] as String? ?? null,
       content: json['content'] ?? '',
     );
 
@@ -35,6 +36,7 @@ Map<String, dynamic> _$$MessageRequestModelImplToJson(
         _$MessageRequestModelImpl instance) =>
     <String, dynamic>{
       'role': instance.role,
+      'authorityConvId': instance.authorityConvId,
       'content': instance.content,
     };
 

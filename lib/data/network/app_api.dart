@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/network/end_points.dart';
+import 'package:ebla/domain/models/ai_search_models/ai_search_model.dart';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 import 'package:ebla/domain/models/favourite/favourite_models.dart';
+import 'package:ebla/domain/models/requests/ai_search_models/ai_search_model.dart';
 import 'package:ebla/domain/models/requests/broker_requests/request_broker_values.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
 import 'package:retrofit/retrofit.dart';
@@ -226,6 +228,10 @@ abstract class AppServiceClient {
   @POST('${Constant.authorityChatBotBaseUrl}/api/v1/avatar/send-candidate/{id}')
   Future<HttpResponse<SendAnswerResponseModel>> sendCandidate(
       @Path("id") String id, @Body() MainSendCandidateRequestModel body);
+  @POST(
+      'https://ebla-ai-demo-002.azurewebsites.net/api/v1/chat-history/add-conversation-feedback')
+  Future<HttpResponse<SendAnswerResponseModel>> sendFeedback(
+      @Query("conv_id") String convId, @Query("feedback") int feedback);
 
   /// ******* close stream *******
   @DELETE("${Constant.authorityChatBotBaseUrl}/api/v1/avatar/close-stream/{id}")
@@ -237,6 +243,12 @@ abstract class AppServiceClient {
   // @POST('${Constant.baseUrl}/openai/chat/completion')
   Future<HttpResponse<PlatformChatbotResponseModel>>
       sendMessageToPlatformChatbot(@Body() PlatformChatbotRequestModel request);
+
+  /// ****************** AI search ************************
+  @POST("https://afnqcpcbai01.azurewebsites.net/api/v1/search/search/website")
+  Future<HttpResponse<AiSearchResponseModel>>
+      aiSearchFun(@Body() AiSearchRequestModel request);
+
 }
 
 //---------------------------------DirectUs-----------------------------------------

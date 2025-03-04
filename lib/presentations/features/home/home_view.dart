@@ -7,6 +7,7 @@ import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/drobdown_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/send_feedback_bloc/send_feedback_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/routes_extras.dart';
 import 'package:ebla/presentations/features/home/widgets/investors_cards_widget.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -36,12 +37,14 @@ class _HomeViewState extends State<HomeView> {
   // final int _indexCubit = 0;
   late ChatHistoryCubit chatHistoryCubit;
   late DropdownCubit dropdownCubit;
+  late SendFeedbackBloc sendFeedbackBloc;
 
   @override
   void initState() {
     FirebaseAnalytics.instance.logEvent(name: 'open_home_view');
     chatHistoryCubit = ChatHistoryCubit();
     dropdownCubit = DropdownCubit();
+    sendFeedbackBloc = instance<SendFeedbackBloc>();
     super.initState();
   }
 
@@ -85,6 +88,7 @@ class _HomeViewState extends State<HomeView> {
                 extra: RouteExtras(
                   chatHistoryCubit: chatHistoryCubit,
                   dropdownCubit: dropdownCubit,
+                  sendFeedbackBloc:sendFeedbackBloc
                 ),
               );
             },

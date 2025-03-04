@@ -7,6 +7,7 @@ import 'package:ebla/presentations/features/chatbot/blocs/drobdown_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/record_cubit/voice_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_answer_and_candidate_bloc/send_answer_and_candidate_bloc.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/send_feedback_bloc/send_feedback_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_message_bloc/chat_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/start_stream_bloc/start_stream_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/stream_id_cubit.dart/stream_id_cubit.dart';
@@ -174,6 +175,8 @@ class _ChatViewState extends State<ChatView> {
                           value: BlocProvider.of<DropdownCubit>(context)),
                       BlocProvider.value(value: streamIdCubit),
                       BlocProvider.value(value: sendAnswerAndCandidateBloc),
+                      BlocProvider<SendFeedbackBloc>.value(
+                          value: BlocProvider.of<SendFeedbackBloc>(context)),
                       // BlocProvider.value(value: webRTCCubit),
                     ],
                     child: BlocConsumer<ChatBotBloc, ChatBotState>(
@@ -186,12 +189,14 @@ class _ChatViewState extends State<ChatView> {
                               done: (val) {
                                 //----- if i'm in authority-----
                                 if (val.response != null) {
-                                  context
-                                      .read<ChatHistoryCubit>()
-                                      .addMessage(MessageRequestModel(
-                                        role: 'assistant',
-                                        content: val.response!.message.content,
-                                      ));
+                                  context.read<ChatHistoryCubit>().addMessage(
+                                      MessageRequestModel(
+                                          role: 'assistant',
+                                          content:
+                                              val.response!.message.content,
+                                          //i will add the conv id for thefeedback
+                                          authorityConvId: val.response!.message
+                                              .conversationId));
                                 }
                                 //----- if i'm in platform-----
                                 else {
@@ -257,12 +262,17 @@ class _ChatViewState extends State<ChatView> {
                                   isSending: isMessageSending,
                                   isAvatarPressed: isAvatarPressed,
                                 )),
+                              // Container(
+                              //   padding: EdgeInsets.all(AppSizeW.s8),
+                              //   decoration: BoxDecoration(
+                              //     color: ColorManager.whiteSmoke,
+                              //     borderRadius:
+                              //         BorderRadius.circular(AppSizeR.s15),
+                              //   ),
+                              //   child:
+                              // ),
                               Padding(
-                                padding: EdgeInsets.only(
-                                    bottom: AppSizeW.s20,
-                                    top: AppSizeW.s8,
-                                    left: AppSizeW.s8,
-                                    right: AppSizeW.s8),
+                                padding: EdgeInsets.all(AppSizeW.s8),
                                 child: Row(
                                   textDirection: ui.TextDirection.ltr,
                                   children: <Widget>[
@@ -320,31 +330,73 @@ class _ChatViewState extends State<ChatView> {
                                     ),
                                     /*========================TextFaild========================= */
                                     Expanded(
-                                      child:
-                                          BlocBuilder<VoiceCubit, VoiceState>(
-                                              bloc: BlocProvider.of<VoiceCubit>(
-                                                  context),
-                                              builder: (context, voiceState) {
-                                                WidgetsBinding.instance
-                                                    .addPostFrameCallback((_) {
-                                                  if (_controller.text !=
-                                                      voiceState.text) {
-                                                    _controller.text =
-                                                        voiceState.text;
-                                                  }
-                                                });
+                                      child: BlocBuilder<VoiceCubit,
+                                              VoiceState>(
+                                          bloc: BlocProvider.of<VoiceCubit>(
+                                              context),
+                                          builder: (context, voiceState) {
+                                            WidgetsBinding.instance
+                                                .addPostFrameCallback((_) {
+                                              if (_controller.text !=
+                                                  voiceState.text) {
+                                                _controller.text =
+                                                    voiceState.text;
+                                              }
+                                            });
 
-                                                return ReraTextFaild(
-                                                  onChange: (p0) {
+                                            return ReraTextFaild(
+                                              onChange: (p0) {},
+                                              controller: _controller,
+                                              readOnly: false,
+                                              enabled: true,
+                                              suffixIcon: GestureDetector(
+                                                  onTap: () {
+                                                    //--------------
+                                                    final chatState = context
+                                                        .read<
+                                                            ChatHistoryCubit>()
+                                                        .state;
+                                                    //-------------------- authority send button ------------------------
+                                                    if (chatState.activeChat ==
+                                                        ChatTypeEnum
+                                                            .authority) {
+                                                      chatState
+                                                          .authorityMessages
+                                                          .clear();
+                                                      context
+                                                          .read<
+                                                              ChatHistoryCubit>()
+                                                          .addMessage(
+                                                              MessageRequestModel(
+                                                            role: 'assistant',
+                                                            content: AppStrings()
+                                                                .defaultAuthorityBotMessage,
+                                                          ));
+                                                    }
+                                                    //-------------------- Platform send button ------------------------
+                                                    else {
+                                                      chatState.platformMessages
+                                                          .clear();
+                                                      context
+                                                          .read<
+                                                              ChatHistoryCubit>()
+                                                          .addMessage(
+                                                              MessageRequestModel(
+                                                            role: 'assistant',
+                                                            content: AppStrings()
+                                                                .defaultPlatformBotMessage,
+                                                          ));
+                                                    }
                                                   },
-                                                  controller: _controller,
-                                                  readOnly: false,
-                                                  enabled: true,
-                                                  prefixIcon: null,
-                                                  hint: AppStrings()
-                                                      .writeUourMessage,
-                                                );
-                                              }),
+                                                  child: Icon(
+                                                    Icons.refresh_rounded,
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                  )),
+                                              hint:
+                                                  AppStrings().writeUourMessage,
+                                            );
+                                          }),
                                     ),
                                     /*======================== Send button ========================= */
                                     ValueListenableBuilder<bool>(
@@ -362,8 +414,26 @@ class _ChatViewState extends State<ChatView> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
-                                height: AppSizeH.s25,
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  bottom: AppSizeW.s20,
+                                  right: AppSizeW.s15,
+                                  left: AppSizeW.s15,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Text("${AppStrings().note}: ",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall),
+                                    Flexible(
+                                      child: Text(AppStrings().aiNote,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headlineMedium),
+                                    ),
+                                  ],
+                                ),
                               )
                             ],
                           );
@@ -395,7 +465,6 @@ class _ChatViewState extends State<ChatView> {
 
   Size get preferredSize => Size.fromHeight(AppSizeH.s30);
 }
-
 
 AppBar costumeChatAppBar(
     BuildContext context, ScrollController scrollController) {

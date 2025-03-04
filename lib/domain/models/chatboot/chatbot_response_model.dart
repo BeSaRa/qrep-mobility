@@ -20,7 +20,7 @@ abstract class ChatbotResponseModel with _$ChatbotResponseModel {
 abstract class MessageResponseModel with _$MessageResponseModel {
   const factory MessageResponseModel({
     @Default('') String content,
-    @Default('') String conversationId,
+    @Default('') @JsonKey(name: "conversation_id") String conversationId,
     @Default('') String role,
     @Default(false) bool endTurn,
     @Default(null) ContextModel? contextModel,
@@ -50,7 +50,8 @@ abstract class ContextModel with _$ContextModel {
     @Default([]) List<String> intent,
   }) = _ContextModel;
 
-  factory ContextModel.fromJson(Map<String, dynamic> json) => _$ContextModelFromJson(json);
+  factory ContextModel.fromJson(Map<String, dynamic> json) =>
+      _$ContextModelFromJson(json);
 }
 
 @freezed
@@ -66,6 +67,7 @@ abstract class Citation with _$Citation {
   factory Citation.fromJson(Map<String, dynamic> json) =>
       _$CitationFromJson(json);
 }
+
 /*================================Start Stream Response============================ */
 @freezed
 abstract class StartStreamModel with _$StartStreamModel {
@@ -129,7 +131,7 @@ abstract class ICEServerModel with _$ICEServerModel {
 @freezed
 abstract class SendAnswerResponseModel with _$SendAnswerResponseModel {
   const factory SendAnswerResponseModel({
-    @Default(0) @JsonKey(name: "status_code") int  statusCode,
+    @Default(0) @JsonKey(name: "status_code") int statusCode,
     @Default('') String status,
     @Default('') String message,
 
@@ -152,9 +154,11 @@ abstract class FailureCloseStreamModel with _$FailureCloseStreamModel {
   factory FailureCloseStreamModel.fromJson(Map<String, dynamic> json) =>
       _$FailureCloseStreamModelFromJson(json);
 }
+
 //--------------------------- platform chatbot models----------------------
 @freezed
-abstract class PlatformChatbotResponseModel with _$PlatformChatbotResponseModel {
+abstract class PlatformChatbotResponseModel
+    with _$PlatformChatbotResponseModel {
   const factory PlatformChatbotResponseModel({
     @Default(null) String? conversationId,
     @Default([]) List<dynamic> response,

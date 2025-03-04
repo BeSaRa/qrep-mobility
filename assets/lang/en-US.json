@@ -212,5 +212,17 @@
   "article_number":"Article Number",
   "avg_note":"To get accurate average results, please select municipality, region, property type and property use.",
   "chat_other_response_message":"It seems that the question is not clear or there is a problem. Please try again.",
-  "large_digits_numbers_note":"The chart data is displayed in a table because there are values ​​with large numerical digits."
+  "large_digits_numbers_note":"The chart data is displayed in a table because there are values ​​with large numerical digits.",
+  "rate_the_conversation":"Rate the conversation",
+  "like":"Like",
+  "dislike":"Dislike",
+  "ai_note":"Answers are based on AI technology and may be subject to error.",
+
+    "-----------AI SEARCH----------": "--------------------------",
+    "ai_search":"AI Search",
+    "search_here":"Search Here...",
+    "search_for":"Search for",
+    "number_of_results":"Number of results",
+    "start_searching":"Start searching...",
+    "Empower_ideas_and_unleash_intelligence":"Empower ideas and unleash intelligence!"
 }
