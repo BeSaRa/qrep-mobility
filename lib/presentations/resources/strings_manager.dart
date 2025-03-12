@@ -255,5 +255,6 @@ class AppStrings {
   String numberOfResults = "number_of_results".tr();
   String empowerIdeasAndUnleashIntelligence = "Empower_ideas_and_unleash_intelligence".tr();
   String startSearching = "start_searching".tr();
+  String seeOnGoogleMap = "see_on_google_map".tr();
   
 }
