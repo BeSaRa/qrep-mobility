@@ -12,12 +12,14 @@ import 'package:ebla/presentations/features/chatbot/blocs/send_message_bloc/chat
 import 'package:ebla/presentations/features/chatbot/blocs/start_stream_bloc/start_stream_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/stream_id_cubit.dart/stream_id_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_cubit.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_state.dart';
 import 'package:ebla/presentations/features/chatbot/utility/chatbot_enums.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/ai_avatar_icon_widget.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/appbar_clipper.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/avatar_stream_widget.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/chat_messages_list_widget.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/check_box_widget.dart';
+import 'package:ebla/presentations/features/chatbot/widgets/mini_video_player_widget.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/rera_text_faild.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/send_button_widget.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
@@ -50,8 +52,9 @@ class _ChatViewState extends State<ChatView> {
   final ScrollController _scrollController = ScrollController();
 /*================ timer for close stream after 2 minutes of no action ================*/
   Timer? inactivityTimer;
-  final Duration inactivityDuration = const Duration(minutes: 2, seconds: 30);
+  final Duration inactivityDuration = const Duration(minutes: 1, seconds: 55);
   WebRTCCubit? webRTCCubit;
+  // Offset miniScreenPosition = Offset(AppSizeW.s250, AppSizeH.s50);
   @override
   void initState() {
     super.initState();
@@ -112,7 +115,24 @@ class _ChatViewState extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: costumeChatAppBar(context, _scrollController),
+      appBar: costumeChatAppBar(context, _scrollController, () async {
+        //close stream if it's working:
+
+        final String? streamId = streamIdCubit.state.streamId;
+        isAvatarExpanded.value = false;
+        if (streamId != null) {
+          closeStreamBloc.add(CloseStreamEvent.closeStream(
+              //here i pass the streamID
+              streamIdCubit.state.streamId!));
+          streamIdCubit.clearStreamId();
+        }
+        if (webRTCCubit != null) {
+          //clear the webrt Cubit
+          await webRTCCubit!.closeStreamCubit();
+          await webRTCCubit!.close();
+          webRTCCubit == null;
+        }
+      }),
       body: Stack(
         children: [
           // Background Image
@@ -140,6 +160,11 @@ class _ChatViewState extends State<ChatView> {
                           ),
                         ),
                     child: expanded
+                        // &&
+                        //         BlocProvider.of<ChatHistoryCubit>(context)
+                        //                 .state
+                        //                 .activeChat ==
+                        //             ChatTypeEnum.authority
                         ? MultiBlocProvider(providers: [
                             BlocProvider.value(
                               value: startStreamBloc,
@@ -221,56 +246,58 @@ class _ChatViewState extends State<ChatView> {
                         builder: (context, sendState) {
                           return Column(
                             children: <Widget>[
-                              if (isAvatarPressed)
-                                Stack(
-                                  children: [
-                                    SizedBox(
-                                      height: AppSizeH.s310,
-                                      child: ChatMessagesListWidget(
-                                        scrollController: _scrollController,
-                                        isSending: isMessageSending,
-                                        isAvatarPressed: isAvatarPressed,
-                                      ),
-                                    ),
-                                    Container(
-                                      height: AppSizeH.s20,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                            topLeft:
-                                                Radius.circular(AppSizeR.s50),
-                                            topRight:
-                                                Radius.circular(AppSizeR.s50)),
-                                        gradient: LinearGradient(
-                                          begin: Alignment.bottomCenter,
-                                          end: Alignment.topCenter,
-                                          colors: [
-                                            Colors
-                                                .transparent, // Bottom: Fully transparent
-                                            Colors.black.withValues(
-                                              alpha: 0.1,
-                                            ), // Top: Black with opacity
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
                               if (!isAvatarPressed)
-                                Expanded(
+                                Flexible(
                                     child: ChatMessagesListWidget(
                                   scrollController: _scrollController,
                                   isSending: isMessageSending,
                                   isAvatarPressed: isAvatarPressed,
                                 )),
-                              // Container(
-                              //   padding: EdgeInsets.all(AppSizeW.s8),
-                              //   decoration: BoxDecoration(
-                              //     color: ColorManager.whiteSmoke,
-                              //     borderRadius:
-                              //         BorderRadius.circular(AppSizeR.s15),
-                              //   ),
-                              //   child:
-                              // ),
+                              if (isAvatarPressed)
+                                BlocBuilder<WebRTCCubit, WebRTCState>(
+                                    bloc: webRTCCubit,
+                                    builder: (context, state) {
+                                      return SizedBox(
+                                        height: state.isMiniScreen == false
+                                            ? MediaQuery.sizeOf(context)
+                                                    .height /
+                                                2.5
+                                            : MediaQuery.sizeOf(context)
+                                                    .height /
+                                                1.3,
+                                        child: ChatMessagesListWidget(
+                                          scrollController: _scrollController,
+                                          isSending: isMessageSending,
+                                          isAvatarPressed: isAvatarPressed,
+                                        ),
+                                      );
+                                      //  Stack(
+                                      //   children: [
+
+                                      //     Container(
+                                      //       height: AppSizeH.s20,
+                                      //       decoration: BoxDecoration(
+                                      //         borderRadius: BorderRadius.only(
+                                      //             topLeft: Radius.circular(
+                                      //                 AppSizeR.s50),
+                                      //             topRight: Radius.circular(
+                                      //                 AppSizeR.s50)),
+                                      //         gradient: LinearGradient(
+                                      //           begin: Alignment.bottomCenter,
+                                      //           end: Alignment.topCenter,
+                                      //           colors: [
+                                      //             Colors
+                                      //                 .transparent, // Bottom: Fully transparent
+                                      //             Colors.black.withValues(
+                                      //               alpha: 0.1,
+                                      //             ), // Top: Black with opacity
+                                      //           ],
+                                      //         ),
+                                      //       ),
+                                      //     ),
+                                      //   ],
+                                      // );
+                                    }),
                               Padding(
                                 padding: EdgeInsets.all(AppSizeW.s8),
                                 child: Row(
@@ -399,18 +426,22 @@ class _ChatViewState extends State<ChatView> {
                                           }),
                                     ),
                                     /*======================== Send button ========================= */
-                                    ValueListenableBuilder<bool>(
-                                        valueListenable: isSendEnabled,
-                                        builder: (context, enabled, child) {
-                                          return SendButtonWidget(
-                                            startAvatarTimer:
-                                                startOrResetAvatarTimer,
-                                            isAvatarShown: isAvatarPressed,
-                                            scrollController: _scrollController,
-                                            enabled: enabled,
-                                            controller: _controller,
-                                          );
-                                        }),
+                                    BlocProvider<WebRTCCubit>.value(
+                                      value: webRTCCubit ?? WebRTCCubit(),
+                                      child: ValueListenableBuilder<bool>(
+                                          valueListenable: isSendEnabled,
+                                          builder: (context, enabled, child) {
+                                            return SendButtonWidget(
+                                              startAvatarTimer:
+                                                  startOrResetAvatarTimer,
+                                              isAvatarShown: isAvatarPressed,
+                                              scrollController:
+                                                  _scrollController,
+                                              enabled: enabled,
+                                              controller: _controller,
+                                            );
+                                          }),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -434,7 +465,129 @@ class _ChatViewState extends State<ChatView> {
                                     ),
                                   ],
                                 ),
-                              )
+                              ),
+                              if (webRTCCubit != null && isAvatarPressed)
+                                BlocBuilder<WebRTCCubit, WebRTCState>(
+                                    bloc: webRTCCubit,
+                                    builder: (context, state) {
+                                      return state.isMiniScreen
+                                          ? const SizedBox.shrink()
+                                          : Container(
+                                              padding: EdgeInsets.only(
+                                                bottom: AppSizeW.s20,
+                                                right: AppSizeW.s15,
+                                                left: AppSizeW.s15,
+                                              ),
+                                              decoration:
+                                                  BoxDecoration(boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.black
+                                                      .withValues(alpha: 0.1),
+                                                  spreadRadius: 0,
+                                                  blurRadius: 20,
+                                                  offset: const Offset(0, 20),
+                                                ),
+                                                BoxShadow(
+                                                  color: Colors.black
+                                                      .withValues(alpha: 0.4),
+                                                  spreadRadius: 0,
+                                                  blurRadius: 20,
+                                                  offset: const Offset(0, 10),
+                                                ),
+                                                BoxShadow(
+                                                  color: Colors.black
+                                                      .withValues(alpha: 0.7),
+                                                  spreadRadius: 20,
+                                                  blurRadius: 20,
+                                                  offset: const Offset(0, 0),
+                                                ),
+                                              ]),
+                                              child: Row(
+                                                children: [
+                                                  //-------------------Pause- ---------
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    AppSizeR
+                                                                        .s130),
+                                                        color: ColorManager
+                                                            .textBlack
+                                                            .withValues(
+                                                                alpha: .3)),
+                                                    child: IconButton(
+                                                      icon: Icon(
+                                                        color:
+                                                            ColorManager.white,
+                                                        state.isPlaying
+                                                            ? Icons.pause
+                                                            : Icons.play_arrow,
+                                                        size: AppSizeW.s25,
+                                                      ),
+                                                      onPressed: webRTCCubit!
+                                                          .togglePlayPause,
+                                                    ),
+                                                  ),
+                                                  //-------------------timer ----------
+                                                  Container(
+                                                    padding: EdgeInsets.all(
+                                                        AppSizeW.s8),
+                                                    child: BlocBuilder<
+                                                            WebRTCCubit,
+                                                            WebRTCState>(
+                                                        bloc: webRTCCubit,
+                                                        builder:
+                                                            (context, state) {
+                                                          // Convert elapsedTime into mm:ss format
+                                                          String formattedTime =
+                                                              _formatTime(state
+                                                                  .elapsedTime);
+
+                                                          return Text(
+                                                              formattedTime,
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .displaySmall);
+                                                        }),
+                                                  ),
+                                                  //-------------------Sound ----------
+                                                  const Spacer(),
+                                                  IconButton(
+                                                    icon: Icon(
+                                                      state.isMuted
+                                                          ? Icons.volume_off
+                                                          : Icons.volume_up,
+                                                      color: ColorManager.white,
+                                                      size: AppSizeW.s25,
+                                                    ),
+                                                    onPressed: () {
+                                                      webRTCCubit!.toggleMute();
+                                                    },
+                                                  ),
+                                                  //------------------- Mini screen ----------
+
+                                                  IconButton(
+                                                      icon: Icon(
+                                                        state.isMiniScreen
+                                                            ? Icons.fullscreen
+                                                            : Icons
+                                                                .fit_screen_sharp,
+                                                        color:
+                                                            ColorManager.white,
+                                                        size: AppSizeW.s25,
+                                                      ),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          webRTCCubit!
+                                                              .toggleMiniScreen();
+                                                        });
+                                                      }),
+                                                ],
+                                              ),
+                                            );
+                                    }),
                             ],
                           );
                         }),
@@ -458,16 +611,139 @@ class _ChatViewState extends State<ChatView> {
               ),
             ),
           ),
+
+          // Mini-Screen Mode (Draggable Video)
+
+          if (webRTCCubit != null)
+            ValueListenableBuilder<bool>(
+                valueListenable: isAvatarExpanded,
+                builder: (context, expanded, child) {
+                  return BlocBuilder<WebRTCCubit, WebRTCState>(
+                      bloc: webRTCCubit,
+                      builder: (context, state) {
+                        if (state.isMiniScreen && expanded
+                            // // NOTE: expanded is for hide the mini screen if user close stream and it's true.
+                            ) {
+                          return AnimatedPositioned(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
+                            left: state.isMiniScreen
+                                ? state.miniScreenPosition.dx
+                                : AppSizeW.s0,
+                            top: state.isMiniScreen
+                                ? state.miniScreenPosition.dy
+                                : AppSizeH.s0,
+                            // left: state.isMiniScreen ? miniScreenPosition.dx : 0,
+                            // top: state.isMiniScreen ? miniScreenPosition.dy : 0,
+                            width: state.isMiniScreen
+                                ? AppSizeW.s150
+                                : MediaQuery.of(context).size.width,
+                            height: state.isMiniScreen
+                                ? AppSizeH.s200
+                                : MediaQuery.of(context).size.height,
+                            child: AnimatedOpacity(
+                              duration: const Duration(milliseconds: 300),
+                              opacity:
+                                  state.isMiniScreen ? 1 : 0, // Fade effect
+                              child: Stack(
+                                children: [
+                                  Draggable(
+                                    feedback:
+                                        MiniVideoPlayerWidget(state: state),
+                                    childWhenDragging:
+                                        Container(), // Hide original while dragging
+                                    onDragEnd: (details) {
+                                      final screenSize =
+                                          MediaQuery.of(context).size;
+                                      final dx = details.offset.dx;
+                                      final dy = details.offset.dy;
+
+                                      // Calculate closest corner
+                                      final topLeft =
+                                          Offset(AppSizeW.s0, AppSizeH.s0);
+                                      final topRight = Offset(
+                                          screenSize.width - AppSizeW.s150,
+                                          AppSizeH.s0);
+                                      final bottomLeft = Offset(
+                                          AppSizeW.s0,
+                                          screenSize.height -
+                                              screenSize.height * 0.4);
+                                      final bottomRight = Offset(
+                                          screenSize.width - AppSizeW.s150,
+                                          screenSize.height -
+                                              screenSize.height * 0.4);
+
+                                      List<Offset> corners = [
+                                        topLeft,
+                                        topRight,
+                                        bottomLeft,
+                                        bottomRight
+                                      ];
+
+                                      // Find the closest corner
+                                      Offset nearestCorner = corners.reduce(
+                                          (a, b) => (dx - a.dx).abs() +
+                                                      (dy - a.dy).abs() <
+                                                  (dx - b.dx).abs() +
+                                                      (dy - b.dy).abs()
+                                              ? a
+                                              : b);
+
+                                      // Animate position update
+                                      webRTCCubit!.updateMiniScreenPosition(
+                                          nearestCorner);
+                                      // miniScreenPosition = nearestCorner;
+                                    },
+
+                                    child: MiniVideoPlayerWidget(state: state),
+                                  ),
+                                  Positioned(
+                                    bottom: 0,
+                                    top: 0,
+                                    right: 0,
+                                    left: 0,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        if (webRTCCubit != null) {
+                                          webRTCCubit!.toggleMiniScreen();
+                                        }
+                                      },
+                                      child: Icon(
+                                        state.isMiniScreen
+                                            ? Icons.fullscreen
+                                            : Icons.fit_screen_sharp,
+                                        color: Colors.white,
+                                        size: AppSizeW.s35,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        } else {
+                          return const SizedBox.shrink();
+                        }
+                      });
+                }),
         ],
       ),
     );
+  }
+
+  String _formatTime(int seconds) {
+    final minutes = (seconds ~/ 60).toString().padLeft(2, '0');
+    final secs = (seconds % 60).toString().padLeft(2, '0');
+    return "$minutes:$secs";
   }
 
   Size get preferredSize => Size.fromHeight(AppSizeH.s30);
 }
 
 AppBar costumeChatAppBar(
-    BuildContext context, ScrollController scrollController) {
+    BuildContext context,
+    ScrollController scrollController,
+    void Function()? onPlatformTapAndAvatarIsOpen) {
   return AppBar(
     automaticallyImplyLeading: false,
     backgroundColor: Colors.transparent,
@@ -545,7 +821,7 @@ AppBar costumeChatAppBar(
                   ),
                   BlocProvider.value(
                     value: BlocProvider.of<ChatHistoryCubit>(context),
-                  )
+                  ),
                 ],
                 child: BlocBuilder<DropdownCubit, ChatTypeEnum>(
                   builder: (context, selectedOption) {
@@ -553,6 +829,8 @@ AppBar costumeChatAppBar(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         CheckBoxWidget(
+                          onPlatformTapAndAvatarIsOpen:
+                              onPlatformTapAndAvatarIsOpen,
                           scrollController: scrollController,
                           text: AppStrings().moreTitle,
                           value: ChatTypeEnum.qatarRealEstatePlatform,
@@ -560,6 +838,7 @@ AppBar costumeChatAppBar(
                               ChatTypeEnum.qatarRealEstatePlatform,
                         ),
                         CheckBoxWidget(
+                          onPlatformTapAndAvatarIsOpen: null,
                           scrollController: scrollController,
                           text: AppStrings().realEstateRegulatoryAuthority,
                           value: ChatTypeEnum.authority,

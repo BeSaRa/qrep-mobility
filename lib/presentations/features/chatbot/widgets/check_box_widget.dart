@@ -9,6 +9,7 @@ class CheckBoxWidget extends StatelessWidget {
   const CheckBoxWidget(
       {super.key,
       required this.text,
+      required this.onPlatformTapAndAvatarIsOpen,
       required this.value,
       required this.isChecked,
       required this.scrollController});
@@ -16,6 +17,7 @@ class CheckBoxWidget extends StatelessWidget {
   final ChatTypeEnum value;
   final bool isChecked;
   final ScrollController scrollController;
+  final void Function()? onPlatformTapAndAvatarIsOpen;
 
   void scrollPageWhenCheck() {
     //--------------
@@ -40,6 +42,12 @@ class CheckBoxWidget extends StatelessWidget {
         context.read<DropdownCubit>().selectOption(value);
         //----- switch the chat ----
         context.read<ChatHistoryCubit>().switchChat(value);
+     
+     //---- close stream ----
+     if(onPlatformTapAndAvatarIsOpen !=null){
+     onPlatformTapAndAvatarIsOpen!();
+
+     }
         Navigator.pop(context);
       },
       child: Row(

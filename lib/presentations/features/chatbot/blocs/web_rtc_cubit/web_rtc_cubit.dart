@@ -1,36 +1,196 @@
 // ignore_for_file: unnecessary_null_comparison
-
+import 'dart:async';
 import 'dart:developer';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_state.dart';
+import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
+import 'dart:ui' as ui;
 
 class WebRTCCubit extends Cubit<WebRTCState> {
+  Timer? _internalVideoTimer;
+  final GlobalKey videoKey = GlobalKey(); // Key for capturing frame
   WebRTCCubit()
       : super(WebRTCState(
-            localRenderer: RTCVideoRenderer(),
-            peerConnections: {},
-            remoteRenderer: RTCVideoRenderer()));
+          // localRenderer: RTCVideoRenderer(),
+          peerConnections: {},
+          remoteRenderer: RTCVideoRenderer(),
+          isMuted: false,
+          isMiniScreen: false,
+          miniScreenPosition: Offset(AppSizeW.s250, AppSizeH.s50),
+        ));
+//------------------- Audio Actions in video ------------------
+  void toggleMute() {
+    bool newMuteState = !state.isMuted;
 
+    // Mute/unmute all audio tracks
+    state.remoteRenderer.srcObject?.getAudioTracks().forEach((track) {
+      track.enabled = !newMuteState;
+    });
+
+    emit(state.copyWith(isMuted: newMuteState));
+  }
+
+//------------------- miniscreen Actions in video ------------------
+  void toggleMiniScreen() {
+    emit(state.copyWith(
+      isMiniScreen: !state.isMiniScreen,
+    ));
+  }
+
+  void updateMiniScreenPosition(Offset newPosition) {
+    emit(state.copyWith(miniScreenPosition: newPosition));
+  }
+
+//------------------- Pause Action in video ------------------
+  void togglePlayPause() async {
+    emit(state.copyWith(isPlaying: !state.isPlaying));
+    Uint8List? lastFrame;
+    if (!state.isPlaying) {
+      // Capture last frame before pausing
+      lastFrame = await _captureLastFrame();
+
+      emit(state.copyWith(lastFrame: lastFrame));
+      log("last frame 1}: ${state.lastFrame}");
+    } else {
+      state.lastFrame = null;
+      emit(state.copyWith(lastFrame: state.lastFrame));
+      log("last frame 2}: ${state.lastFrame}");
+    }
+
+    // for (var track in state.remoteRenderer.srcObject!.getVideoTracks()) {
+    //   track.enabled = state.isPlaying; // Prevent black screen
+    // }
+    // Mute/unmute all audio tracks when i pressed pause
+    state.remoteRenderer.srcObject?.getAudioTracks().forEach((track) {
+      track.enabled = state.isPlaying;
+    });
+    if (state.isPlaying) {
+    } else {
+      _stopTimer();
+    }
+  }
+
+  Future<Uint8List?> _captureLastFrame() async {
+    try {
+      RenderRepaintBoundary? boundary =
+          videoKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+      if (boundary == null) return null;
+
+      ui.Image image = await boundary.toImage();
+      ByteData? byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
+      return byteData?.buffer.asUint8List();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  void startTimer() {
+    _internalVideoTimer?.cancel();
+    _internalVideoTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (state.elapsedTime >= 150) {
+        // Assume video is 2.5 minutes long
+        _stopTimer();
+        emit(state.copyWith(isComplete: true));
+      } else {
+        log(state.elapsedTime.toString());
+        emit(state.copyWith(elapsedTime: state.elapsedTime + 1));
+      }
+    });
+  }
+
+  void _stopTimer() {
+    _internalVideoTimer?.cancel();
+  }
+
+  @override
+  Future<void> close() {
+    _internalVideoTimer?.cancel();
+    return super.close();
+  }
+
+//------------------- End Actions in video ------------------
   Future<void> closeStreamCubit() async {
+    // emit(WebRTCState(
+    //   peerConnections: {},
+    //   remoteRenderer: RTCVideoRenderer(),
+    //   isMuted: false,
+    //   isPlaying: false,
+    //   isMiniScreen: false,
+    //   lastFrame: null,
+    //   videoKey: null,
+    //   answer: null,
+    //   errorMessage: null,
+    //   isComplete2Minutes: false,
+    //   candidates: [],
+    //   elapsedTime: 0,
+    // ));
     for (RTCPeerConnection element in state.peerConnections.values) {
-      await element.close();
+      // // Remove all event listeners
+      // element.onTrack = null;
+      // element.onRemoveStream = null;
+      // element.onIceCandidate = null;
+      // element.onIceConnectionState = null;
+      // element.onSignalingState = null;
+
+      // Close the connection
+      element.close();
+      // await element.close();
     }
 
     state.peerConnections.clear();
     // Remove any stream listeners
-    state.localRenderer.srcObject?.getTracks().forEach((track) {
+    // state.localRenderer.srcObject?.getTracks().forEach((track) {
+    //   track.stop();
+    // });
+    state.remoteRenderer.srcObject?.getTracks().forEach((track) async {
+      // if (track.kind == "audio") {
+      //   await Helper.setMicrophoneMute(true, track);
+      // }
       track.stop();
+      track.enabled = false;
     });
-    state.remoteRenderer.srcObject?.getTracks().forEach((track) {
-      track.stop();
-    });
-    await state.localRenderer.dispose();
-    state.localRenderer = RTCVideoRenderer();
+
+    // await state.localRenderer.dispose();
+    // state.localRenderer = RTCVideoRenderer();
     await state.remoteRenderer.dispose();
     state.remoteRenderer = RTCVideoRenderer();
+    //     // Reset Audio Mode to Normal
+    // final AudioManager audioManager = AudioManager();
+    // audioManager.mode = Mode.normal;
+    // audioManager.abandonAudioFocus();
+
+    // Emit the new state to indicate the call has ended
+//========================== Zak ===================================
+    await resetAudioMode();
+//=============================================================
+
+    log("zak closed fro webRtc CUbit");
+  }
+
+  static const platform = MethodChannel('com.eblacorp.qrep/audio');
+
+  // Call native code to reset the audio mode
+  Future<void> resetAudioMode() async {
+    try {
+      await platform.invokeMethod('resetAudioMode');
+    } on PlatformException catch (e) {
+     
+      log("Failed to reset audio mode: '${e.message}'.");
+    } on MissingPluginException catch (e) {
+      log("Error: MissingPluginException. $e");
+    }
+  }
+
+  Future<void> initializeRenderers() async {
+    // Initialize the remote renderer
+    await state.remoteRenderer.initialize();
+    log("RTCVideoRenderer initialized successfully.");
   }
 
   Future<void> initWebRTC(
@@ -38,9 +198,8 @@ class WebRTCCubit extends Cubit<WebRTCState> {
     try {
       // Ensure initialization runs on UI thread
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-        await state.localRenderer.initialize();
-        await state.remoteRenderer.initialize();
-        log("RTCVideoRenderer initialized successfully.");
+        // await state.localRenderer.initialize();
+        await initializeRenderers();
       });
 
       if (offer == null || offer.sdp.isEmpty) {
@@ -59,6 +218,7 @@ class WebRTCCubit extends Cubit<WebRTCState> {
       //   'video': true,
       //   'audio': true,
       // });
+
       // log("Local stream initialized: ${localStream.getVideoTracks().length} video tracks");
 
 //======================== 2- Create a new PeerConnection ========================

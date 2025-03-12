@@ -18,9 +18,9 @@
     <!-- Provide required visibility configuration for API level 30 and above -->
     <queries>
 <!--  -->
-        <intent>
+        <!-- <intent>
             <action android:name="android.speech.RecognitionService" />
-        </intent>
+        </intent> -->
 
         <!-- If your app checks for call support -->
         <intent>

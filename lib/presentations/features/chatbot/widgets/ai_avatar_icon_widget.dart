@@ -33,8 +33,10 @@ class AiAvatarIconWidget extends StatefulWidget {
 }
 
 class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
+  
   @override
   Widget build(BuildContext context) {
+    
     return BlocBuilder<DropdownCubit, ChatTypeEnum>(
         bloc: BlocProvider.of<DropdownCubit>(context),
         builder: (context, selectedOption) {
@@ -50,7 +52,6 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                       listener: (context, avatarState) {
                         final sendAnswerAndCandidateBloc =
                             context.read<SendAnswerAndCandidateBloc>();
-
                         avatarState.mapOrNull(
                           done: (value) async {
                             //1- save the ID in cubit to use it when i close the stream
@@ -122,6 +123,8 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                                   !widget.isAvatarExpanded.value;
                               //=========== 6- Start the timer of closing avatar =============
                               widget.startAvatarTimer();
+                              //=========== 7- Start the timer under video =============
+                              webRTCCubit.startTimer();
                             }
                           },
                         );
@@ -215,9 +218,12 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                                                     scale: animation,
                                                     child: child,
                                                   ),
-                                                  child: expanded
-                                                      ? 
-                                                      const Icon(Icons.close,
+                                                  child: expanded ||
+                                                          (!expanded &&
+                                                              webRTCCubit.state
+                                                                      .isMiniScreen ==
+                                                                  true)
+                                                      ? const Icon(Icons.close,
                                                           key: ValueKey(
                                                               "closeIcon"))
                                                       : Image.asset(
