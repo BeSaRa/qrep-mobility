@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ebla/app/constants.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
@@ -6,6 +8,7 @@ import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AuthorityMapView extends StatelessWidget {
   const AuthorityMapView({super.key});
@@ -13,6 +16,25 @@ class AuthorityMapView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+          String googleMapsUrl = Constant.googleMapUrlTemplate;
+          if (await canLaunchUrl(Uri.parse(googleMapsUrl))) {
+            await launchUrl(Uri.parse(googleMapsUrl),
+                mode: LaunchMode.externalApplication);
+          } else {
+            log('Could not open Google Maps');
+          }
+        },
+        label: Text(
+          AppStrings().seeOnGoogleMap,
+          style: TextStyle(color: ColorManager.white),
+        ),
+        icon: Icon(Icons.map_rounded,
+            color: ColorManager
+                .white),
+        backgroundColor: ColorManager.primary,
+      ),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,

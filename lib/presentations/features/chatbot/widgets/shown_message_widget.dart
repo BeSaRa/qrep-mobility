@@ -19,8 +19,6 @@ class ShownMessageWidget extends StatelessWidget {
     required this.message,
     required this.isAvatarShow,
     required this.currentMessageIndex,
-
-    //  required this.animation
   });
   final MessageRequestModel message;
   final bool isAvatarShow;
