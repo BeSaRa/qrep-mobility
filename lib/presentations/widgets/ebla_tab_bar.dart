@@ -15,8 +15,8 @@ class EblaTabBarWidget extends StatefulWidget {
 
   final Function onPressed;
   final int initialIndex;
-  final String firstTab;
-  final String secondTab;
+  final Widget firstTab;
+  final Widget secondTab;
 
   @override
   State<EblaTabBarWidget> createState() => _EblaTabBarWidgetState();
@@ -29,7 +29,7 @@ class _EblaTabBarWidgetState extends State<EblaTabBarWidget> {
       length: 2,
       initialIndex: widget.initialIndex,
       child: Container(
-        height: AppSizeH.s40,
+        height: AppSizeH.s50,
         width: isTablet ? AppSizeW.s226 : AppSizeW.s160,
         padding: EdgeInsets.symmetric(
             vertical: AppSizeH.s5, horizontal: AppSizeW.s8),
@@ -49,26 +49,25 @@ class _EblaTabBarWidgetState extends State<EblaTabBarWidget> {
           ),
           indicatorSize: TabBarIndicatorSize.tab,
           labelColor: ColorManager.white,
-          unselectedLabelColor: Theme.of(context).colorScheme.primary,
+          unselectedLabelColor: Theme.of(context).colorScheme.onSurface,
           unselectedLabelStyle: Theme.of(context)
               .textTheme
               .titleLarge!
               .copyWith(
                   color: ColorManager.white,
                   fontSize:
-                      MediaQuery.of(context).size.width > 620 ? 8.sp : 10.sp),
+                      MediaQuery.of(context).size.width > 620 ? 11.sp : 12.sp),
           //text theme
-          labelStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
-              fontSize: MediaQuery.of(context).size.width > 620 ? 8.sp : 9.sp),
+          labelStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
+              fontSize:
+                  MediaQuery.of(context).size.width > 620 ? 11.sp : 12.sp),
           onTap: (index) {
             widget.onPressed(index);
           },
           isScrollable: false,
           tabs: [
-            Tab(
-              text: widget.firstTab,
-            ),
-            Tab(text: widget.secondTab),
+            widget.firstTab,
+            widget.secondTab,
           ],
         ),
       ),

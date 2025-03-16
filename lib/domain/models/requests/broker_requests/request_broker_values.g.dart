@@ -17,19 +17,12 @@ _$RequestBrokerValuesImpl _$$RequestBrokerValuesImplFromJson(
     );
 
 Map<String, dynamic> _$$RequestBrokerValuesImplToJson(
-    _$RequestBrokerValuesImpl instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('brokerCategoryId', instance.brokerCategoryId);
-  writeNotNull('limit', instance.limit);
-  writeNotNull('municipalityId', instance.municipalityId);
-  writeNotNull('offset', instance.offset);
-  writeNotNull('brokerName', instance.brokerName);
-  return val;
-}
+        _$RequestBrokerValuesImpl instance) =>
+    <String, dynamic>{
+      if (instance.brokerCategoryId case final value?)
+        'brokerCategoryId': value,
+      if (instance.limit case final value?) 'limit': value,
+      if (instance.municipalityId case final value?) 'municipalityId': value,
+      if (instance.offset case final value?) 'offset': value,
+      if (instance.brokerName case final value?) 'brokerName': value,
+    };

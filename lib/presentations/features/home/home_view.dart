@@ -8,7 +8,7 @@ import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_mod
 import 'package:ebla/presentations/features/chatbot/blocs/drobdown_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_feedback_bloc/send_feedback_bloc.dart';
-import 'package:ebla/presentations/features/chatbot/routes_extras.dart';
+
 import 'package:ebla/presentations/features/home/widgets/investors_cards_widget.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +20,7 @@ import '../../../app/app_preferences.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../info/blocs/news_bloc/news_bloc.dart';
-import '../main/cubit/bottom_nav_cubit.dart';
-import '../main/mains.dart';
-import '../more/more_view.dart';
+
 import 'widgets/news_widget.dart';
 
 class HomeView extends StatefulWidget {
@@ -72,221 +70,318 @@ class _HomeViewState extends State<HomeView> {
         // ));
       }
     });
-    return Scaffold(
-      floatingActionButton: ClipRRect(
-        borderRadius: BorderRadius.circular(AppSizeR.s100),
-        child: BlocProvider<ChatHistoryCubit>.value(
-          value: chatHistoryCubit,
-          // ..addMessage(MessageRequestModel(
-          //   role: 'assistant',
-          //   content: AppStrings().defaultAuthorityBotMessage,
-          // )),
-          child: FloatingActionButton(
-            onPressed: () {
-              context.pushNamed(
-                RoutesNames.chatbot,
-                extra: RouteExtras(
-                  chatHistoryCubit: chatHistoryCubit,
-                  dropdownCubit: dropdownCubit,
-                  sendFeedbackBloc:sendFeedbackBloc
+    return ListView(
+      children: [
+        SizedBox(
+          height: AppSizeH.s20,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: AppSizeW.s40,
+          children: [
+            Column(
+              spacing: AppSizeH.s8,
+              children: [
+                HomeIcons(
+                  icon: IconAssets.lawsNew,
+                  title: AppStrings().laws,
+                  onTap: () {
+                    context.pushNamed(RoutesNames.laws);
+                  },
                 ),
-              );
-            },
-            backgroundColor: Theme.of(context).primaryColor,
-            child: Image(
-              image: const AssetImage(ImageAssets.chatBot),
-              width: AppSizeW.s40,
-              height: AppSizeH.s40,
+                HomeIcons(
+                  icon: IconAssets.calendar,
+                  title: AppStrings().calendar,
+                  onTap: () {},
+                ),
+              ],
+            ),
+            Column(
+              spacing: AppSizeH.s8,
+              children: [
+                HomeIcons(
+                  icon: IconAssets.about,
+                  title: AppStrings().aboutAuthority,
+                  onTap: () {
+                    context.pushNamed(RoutesNames.about);
+                  },
+                ),
+                HomeIcons(
+                  icon: IconAssets.video,
+                  title: AppStrings().video,
+                  onTap: () {},
+                ),
+              ],
+            ),
+            Column(
+              spacing: AppSizeH.s8,
+              children: [
+                HomeIcons(
+                  icon: IconAssets.aqaratNews,
+                  title: AppStrings().news,
+                  onTap: () {},
+                ),
+                HomeIcons(
+                  icon: IconAssets.locationIndicator,
+                  title: AppStrings().authorityLocation,
+                  onTap: () {},
+                ),
+              ],
+            )
+          ],
+        ),
+
+        //===========================================================
+        SizedBox(
+          height: AppSizeH.s14,
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: AppSizeH.s20, vertical: AppSizeH.s10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                AppStrings().indicatorsAndNumbers,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              Spacer(),
+              Text(
+                AppStrings().showAll,
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              Icon(
+                Icons.arrow_forward,
+                color: ColorManager.golden,
+              )
+            ],
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: AppSizeW.s20, vertical: AppSizeH.s12),
+          child: Container(
+            padding: EdgeInsets.symmetric(
+                vertical: AppSizeH.s12, horizontal: AppSizeW.s12),
+            decoration: BoxDecoration(
+                color: Theme.of(context).cardTheme.color,
+                borderRadius: BorderRadius.circular(AppSizeR.s14),
+                boxShadow: [
+                  BoxShadow(
+                      color: Theme.of(context).shadowColor,
+                      offset: const Offset(1, 1),
+                      blurRadius: AppSizeW.s2,
+                      spreadRadius: AppSizeW.s1),
+                  BoxShadow(
+                      color: Theme.of(context).shadowColor,
+                      offset: const Offset(-1, -1),
+                      blurRadius: AppSizeW.s2,
+                      spreadRadius: AppSizeW.s1),
+                ]),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("3,317",
+                        style: Theme.of(context).textTheme.titleLarge),
+                    Text(
+                      AppStrings().sellTotalTransactions,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: ColorManager.primaryBlue),
+                    ),
+                    Text(
+                      AppStrings().forFirstThreeQuarters,
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                    SizedBox(
+                      height: AppSizeH.s25,
+                    ),
+                    Text("64,955",
+                        style: Theme.of(context).textTheme.titleLarge),
+                    Text(
+                      AppStrings().totalNumberForRent,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: ColorManager.primaryBlue),
+                    ),
+                    Text(
+                      AppStrings().forFirstThreeQuarters,
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text("1,081 ",
+                            style: Theme.of(context).textTheme.titleLarge),
+                        Text(
+                            "${Localizations.localeOf(context) == ARABIC_LOCAL ? "مليار" : "Billion"} ${AppStrings().currency} ",
+                            style: Theme.of(context).textTheme.titleSmall),
+                      ],
+                    ),
+                    Text(
+                      AppStrings().totalValuesForSell,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: ColorManager.primaryBlue),
+                    ),
+                    Text(
+                      AppStrings().forFirstThreeQuarters,
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                    SizedBox(
+                      height: AppSizeH.s25,
+                    ),
+                    Row(
+                      children: [
+                        Text("485,6 ",
+                            style: Theme.of(context).textTheme.titleLarge),
+                        Text(
+                            "${Localizations.localeOf(context) == ARABIC_LOCAL ? "مليون" : "Million"} ${AppStrings().currency} ",
+                            style: Theme.of(context).textTheme.titleSmall),
+                      ],
+                    ),
+                    Text(
+                      AppStrings().totalValuesForRent,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: ColorManager.primaryBlue),
+                    ),
+                    Text(
+                      AppStrings().forFirstThreeQuarters,
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
+                  ],
+                )
+              ],
             ),
           ),
         ),
-      ),
-      appBar: const TitleAppBar(),
-      // backgroundColor: Colors.transparent,
-      body: Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(ImageAssets.homeBg), fit: BoxFit.fill)),
-        child: ListView(
-          children: [
-            Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height / 2.5,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () async {
-                                await initSellModule();
-                                context.read<BottomNavCubit>().changePage(2);
-                                context.goNamed(
-                                    context.read<BottomNavCubit>().paths[
-                                        context.read<BottomNavCubit>().state]);
-                              },
-                              child: HomeContainer(
-                                isBig: false,
-                                title: AppStrings().sellIndicators,
-                                color:
-                                    Theme.of(context).scaffoldBackgroundColor,
-                                image: IconAssets.sellHome,
-                                isShadow: instance<AppPreferences>()
-                                            .getTheme()
-                                            .brightness ==
-                                        Brightness.light
-                                    ? true
-                                    : false,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () async {
-                                await initMortgageModule();
-                                // context.goNamed(RoutesNames.mortgage);
-                                context.read<BottomNavCubit>().changePage(3);
-                                context.goNamed(
-                                    context.read<BottomNavCubit>().paths[
-                                        context.read<BottomNavCubit>().state]);
-                              },
-                              child: HomeContainer(
-                                isBig: false,
-                                title: AppStrings().mortgageIndicators,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onTertiaryContainer,
-                                image: IconAssets.mortagageHome,
-                                iconColor: ColorManager.white,
-                                isShadow: true,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GestureDetector(
-                              onTap: () async {
-                                await initRentModule();
-                                // context.goNamed(RoutesNames.rent);
-                                context.read<BottomNavCubit>().changePage(1);
-                                context.goNamed(
-                                    context.read<BottomNavCubit>().paths[
-                                        context.read<BottomNavCubit>().state]);
-                              },
-                              child: HomeContainer(
-                                isBig: true,
-                                title: AppStrings().rentIndicators,
-                                color: Theme.of(context).cardColor,
-                                image: IconAssets.rentHome,
-                                imageColor: ColorManager.white,
-                                textColor: ColorManager.white,
-                                iconColor: ColorManager.silver,
-                                isShadow: true,
-                              ),
-                            ),
-                            // GestureDetector(
-                            //   onTap: () {
-                            //     context
-                            //         .pushNamed(RoutesNames.realEstateBrokers);
-                            //   },
-                            //   child: HomeContainer(
-                            //     isBig: true,
-                            //     title: AppStrings().realEstateBrokers,
-                            //     color:
-                            //         Theme.of(context).scaffoldBackgroundColor,
-                            //     image: IconAssets.inMiddleHome,
-                            //     isShadow: instance<AppPreferences>()
-                            //                 .getTheme()
-                            //                 .brightness ==
-                            //             Brightness.light
-                            //         ? true
-                            //         : false,
-                            //   ),
-                            // ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                )),
-            //=============================================================
-            const InvestorsCardsWidget(),
-            SizedBox(
-              height: AppSizeH.s20,
-            ),
-            //=============================================================
-            BlocProvider(
-              create: (context) =>
-                  instance<NewsBloc>()..add(const NewsEvent.getNewsEvent()),
-              child: const NewsWidget(),
-            ),
-            SizedBox(
-              height: AppSizeH.s20,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      context.pushNamed(RoutesNames.about);
-                    },
-                    child: StaticPagesContainer(
-                      icon: IconAssets.aboutHome,
-                      title: Text(
-                        AppStrings().aboutUs,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        softWrap: true,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      context.pushNamed(RoutesNames.laws);
-                    },
-                    child: StaticPagesContainer(
-                      icon: IconAssets.lawsHome,
-                      title: Text(
-                        AppStrings().lawsAndDecisions,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        softWrap: true,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      context.pushNamed(RoutesNames.faq);
-                    },
-                    child: StaticPagesContainer(
-                      icon: IconAssets.faqHome,
-                      title: Text(
-                        AppStrings().faqs,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        softWrap: true,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: AppSizeH.s24,
-            ),
-          ],
+        //=============================================================
+        const InvestorsCardsWidget(),
+        SizedBox(
+          height: AppSizeH.s20,
         ),
+        //=============================================================
+        BlocProvider(
+          create: (context) =>
+              instance<NewsBloc>()..add(const NewsEvent.getNewsEvent()),
+          child: const NewsWidget(),
+        ),
+        SizedBox(
+          height: AppSizeH.s20,
+        ),
+        // Padding(
+        //   padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //     children: [
+        //       InkWell(
+        //         onTap: () {
+        //           context.pushNamed(RoutesNames.about);
+        //         },
+        //         child: StaticPagesContainer(
+        //           icon: IconAssets.aboutHome,
+        //           title: Text(
+        //             AppStrings().aboutUs,
+        //             style: Theme.of(context).textTheme.bodyMedium,
+        //             overflow: TextOverflow.ellipsis,
+        //             maxLines: 2,
+        //             softWrap: true,
+        //             textAlign: TextAlign.center,
+        //           ),
+        //         ),
+        //       ),
+        //       InkWell(
+        //         onTap: () {},
+        //         child: StaticPagesContainer(
+        //           icon: IconAssets.lawsHome,
+        //           title: Text(
+        //             AppStrings().lawsAndDecisions,
+        //             style: Theme.of(context).textTheme.bodyMedium,
+        //             overflow: TextOverflow.ellipsis,
+        //             maxLines: 2,
+        //             softWrap: true,
+        //             textAlign: TextAlign.center,
+        //           ),
+        //         ),
+        //       ),
+        //       InkWell(
+        //         onTap: () {
+        //           context.pushNamed(RoutesNames.faq);
+        //         },
+        //         child: StaticPagesContainer(
+        //           icon: IconAssets.faqHome,
+        //           title: Text(
+        //             AppStrings().faqs,
+        //             style: Theme.of(context).textTheme.bodyMedium,
+        //             overflow: TextOverflow.ellipsis,
+        //             maxLines: 2,
+        //             softWrap: true,
+        //             textAlign: TextAlign.center,
+        //           ),
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        // SizedBox(
+        //   height: AppSizeH.s24,
+        // ),
+      ],
+    );
+  }
+}
+
+class HomeIcons extends StatelessWidget {
+  final String icon;
+  final String title;
+  final Function onTap;
+  const HomeIcons({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        onTap();
+      },
+      child: Column(
+        spacing: AppSizeH.s8,
+        children: [
+          Container(
+            padding: EdgeInsets.all(AppSizeR.s12),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Theme.of(context).colorScheme.tertiary),
+            child: ImageIcon(
+              AssetImage(icon),
+              color: ColorManager.white,
+              size: AppSizeR.s20,
+            ),
+          ),
+          Text(
+            title,
+            style: Theme.of(context)
+                .textTheme
+                .headlineMedium
+                ?.copyWith(fontSize: AppSizeSp.s12),
+          )
+        ],
       ),
     );
   }

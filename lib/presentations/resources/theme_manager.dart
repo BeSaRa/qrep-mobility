@@ -40,16 +40,16 @@ ThemeData lightTheme() {
         ),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: ColorManager.white,
-          selectedIconTheme: IconThemeData(color: ColorManager.primary),
-          unselectedIconTheme: IconThemeData(color: ColorManager.lightSilver),
+          backgroundColor: ColorManager.golden,
+          selectedIconTheme: IconThemeData(color: ColorManager.white),
+          unselectedIconTheme: IconThemeData(color: ColorManager.white),
           selectedLabelStyle: TextStyle(
-              color: ColorManager.textBlack,
+              color: ColorManager.white,
               fontSize: AppSizeSp.s10,
               fontFamily: FontConstants.fontFamily),
           unselectedLabelStyle: TextStyle(
               fontSize: AppSizeSp.s10,
-              color: ColorManager.textBlack,
+              color: ColorManager.white,
               fontFamily: FontConstants.fontFamily)),
       brightness: Brightness.light,
       useMaterial3: true,
@@ -222,8 +222,8 @@ ThemeData darkTheme() {
       dividerColor: Colors.transparent,
       brightness: Brightness.dark,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: ColorManager.primary,
-          selectedIconTheme: IconThemeData(color: ColorManager.golden),
+          backgroundColor: ColorManager.golden,
+          selectedIconTheme: IconThemeData(color: ColorManager.white),
           unselectedIconTheme: IconThemeData(color: ColorManager.white),
           selectedLabelStyle: TextStyle(
               color: ColorManager.white,

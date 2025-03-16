@@ -22,6 +22,7 @@ import 'package:ebla/presentations/features/more/all_more_web_views/view/authori
 import 'package:ebla/presentations/features/more/more_view.dart';
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
+import 'package:ebla/presentations/features/navigation_pages/indicators_view.dart';
 import 'package:ebla/presentations/features/real_estate_brokers/real_estate_brokers_view.dart';
 import 'package:ebla/presentations/features/rent/rent_view.dart';
 import 'package:ebla/presentations/features/sell/sell_view.dart';
@@ -37,6 +38,7 @@ import '../features/info/views/news/news_item_view.dart';
 import '../features/info/views/news/news_view.dart';
 import '../features/main/cubit/bottom_nav_cubit.dart';
 import '../features/more/update_info_view.dart';
+import '../features/navigation_pages/coming_soon.dart';
 import '../features/real_estate_brokers/blocs/lookup_bloc/look_up_broker_bloc.dart';
 import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
 import '../features/sell/blocs/sell_bloc/sell_bloc.dart';
@@ -63,6 +65,9 @@ class RoutesNames {
   static const String chatbot = "chatbot";
   static const String authorityMap = "authority map";
   static const String aiSearch = "ai Search";
+  static const String indicators = "indicators";
+  static const String services = "home services";
+  static const String map = "map";
 }
 
 class RoutesPaths {
@@ -87,6 +92,9 @@ class RoutesPaths {
   static const String chatbot = '/chatbot';
   static const String authorityMap = '/authoritymap';
   static const String aiSearch = '/aisearch';
+  static const String indicators = '/indicators';
+  static const String services = '/homeServices';
+  static const String map = '/map';
 }
 
 class NavigationKeys {
@@ -160,15 +168,46 @@ class AppRouter {
                   );
                 }),
             GoRoute(
-              name: RoutesNames.rent,
-              path: RoutesPaths.rent,
+              name: RoutesNames.services,
+              path: RoutesPaths.services,
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
                   key: state.pageKey,
-                  child: BlocProvider(
-                    create: (context) => instance<RentBloc>()
-                      ..add(const RentEvent.getRentLookupEvent()),
-                    child: const RentView(),
+                  child: const ComingSoonView(),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(
+                      opacity: CurveTween(curve: Curves.easeInOutCirc)
+                          .animate(animation),
+                      child: child,
+                    );
+                  },
+                );
+              },
+            ),
+            GoRoute(
+              name: RoutesNames.chatbot,
+              path: RoutesPaths.chatbot,
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                  key: state.pageKey,
+                  child: MultiBlocProvider(
+                    providers: [
+                      //it's main value come from homepage
+                      BlocProvider<ChatHistoryCubit>.value(
+                        value: (state.extra as RouteExtras).chatHistoryCubit,
+                      ),
+                      BlocProvider(
+                        create: (context) => VoiceCubit(),
+                      ),
+                      BlocProvider<DropdownCubit>.value(
+                        value: (state.extra as RouteExtras).dropdownCubit,
+                      ),
+                      BlocProvider<SendFeedbackBloc>.value(
+                        value: (state.extra as RouteExtras).sendFeedbackBloc,
+                      ),
+                    ],
+                    child: const ChatView(),
                   ),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
@@ -182,16 +221,12 @@ class AppRouter {
               },
             ),
             GoRoute(
-              name: RoutesNames.sales,
-              path: RoutesPaths.sales,
+              name: RoutesNames.map,
+              path: RoutesPaths.map,
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
                   key: state.pageKey,
-                  child: BlocProvider(
-                    create: (context) => instance<SellBloc>()
-                      ..add(const SellEvent.getSellLookupEvent()),
-                    child: const SalesView(),
-                  ),
+                  child: const ComingSoonView(),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     return FadeTransition(
@@ -203,35 +238,53 @@ class AppRouter {
                 );
               },
             ),
+            // GoRoute(
+            //   name: RoutesNames.mortgage,
+            //   path: RoutesPaths.mortgage,
+            //   pageBuilder: (context, state) {
+            //     return CustomTransitionPage(
+            //       key: state.pageKey,
+            //       child: BlocProvider(
+            //         create: (context) => instance<MortgageBloc>()
+            //           ..add(const MortgageEvent.started()),
+            //         child: const MortgageView(),
+            //       ),
+            //       transitionsBuilder:
+            //           (context, animation, secondaryAnimation, child) {
+            //         return FadeTransition(
+            //           opacity: CurveTween(curve: Curves.easeInOutCirc)
+            //               .animate(animation),
+            //           child: child,
+            //         );
+            //       },
+            //     );
+            //   },
+            // ),
+            // GoRoute(
+            //   name: RoutesNames.more,
+            //   path: RoutesPaths.more,
+            //   pageBuilder: (context, state) {
+            //     return CustomTransitionPage(
+            //       key: state.pageKey,
+            //       child: const MoreView(),
+            //       transitionsBuilder:
+            //           (context, animation, secondaryAnimation, child) {
+            //         return FadeTransition(
+            //           opacity: CurveTween(curve: Curves.easeInOutCirc)
+            //               .animate(animation),
+            //           child: child,
+            //         );
+            //       },
+            //     );
+            //   },
+            // ),
             GoRoute(
-              name: RoutesNames.mortgage,
-              path: RoutesPaths.mortgage,
+              name: RoutesNames.indicators,
+              path: RoutesPaths.indicators,
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
                   key: state.pageKey,
-                  child: BlocProvider(
-                    create: (context) => instance<MortgageBloc>()
-                      ..add(const MortgageEvent.started()),
-                    child: const MortgageView(),
-                  ),
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(
-                      opacity: CurveTween(curve: Curves.easeInOutCirc)
-                          .animate(animation),
-                      child: child,
-                    );
-                  },
-                );
-              },
-            ),
-            GoRoute(
-              name: RoutesNames.more,
-              path: RoutesPaths.more,
-              pageBuilder: (context, state) {
-                return CustomTransitionPage(
-                  key: state.pageKey,
-                  child: const MoreView(),
+                  child: const IndicatorsView(),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     return FadeTransition(
@@ -359,6 +412,36 @@ class AppRouter {
             create: (context) =>
                 instance<AboutBloc>()..add(const AboutEvent.getAbout()),
             child: const AboutUsView(),
+          ),
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.rent,
+          path: RoutesPaths.rent,
+          builder: (context, state) => BlocProvider(
+            create: (context) =>
+                instance<RentBloc>()..add(const RentEvent.getRentLookupEvent()),
+            child: const RentView(),
+          ),
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.mortgage,
+          path: RoutesPaths.mortgage,
+          builder: (context, state) => BlocProvider(
+            create: (context) =>
+                instance<MortgageBloc>()..add(const MortgageEvent.started()),
+            child: const MortgageView(),
+          ),
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.sales,
+          path: RoutesPaths.sales,
+          builder: (context, state) => BlocProvider(
+            create: (context) =>
+                instance<SellBloc>()..add(const SellEvent.getSellLookupEvent()),
+            child: const SalesView(),
           ),
         ),
         GoRoute(
@@ -501,49 +584,49 @@ class AppRouter {
         ),
         //-------------- Chatbot ----------------
 
-        GoRoute(
-          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
-          name: RoutesNames.chatbot,
-          path: RoutesPaths.chatbot,
-          pageBuilder: (context, state) {
-            return CustomTransitionPage(
-              key: state.pageKey,
-              child: MultiBlocProvider(
-                providers: [
-                  //it's main value come from homepage
-                  BlocProvider<ChatHistoryCubit>.value(
-                    value: (state.extra as RouteExtras).chatHistoryCubit,
-                  ),
-                  BlocProvider(
-                    create: (context) => VoiceCubit(),
-                  ),
-                  BlocProvider<DropdownCubit>.value(
-                    value: (state.extra as RouteExtras).dropdownCubit,
-                  ),
-                  BlocProvider<SendFeedbackBloc>.value(
-                    value: (state.extra as RouteExtras).sendFeedbackBloc,
-                  ),
-                ],
-                child: const ChatView(),
-              ),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                const begin = Offset(1.0, 0.0);
-                const end = Offset.zero;
-                const curve = Curves.easeInOut;
-
-                var tween = Tween(begin: begin, end: end)
-                    .chain(CurveTween(curve: curve));
-                var offsetAnimation = animation.drive(tween);
-
-                return SlideTransition(
-                  position: offsetAnimation,
-                  child: child,
-                );
-              },
-            );
-          },
-        ),
+        // GoRoute(
+        //   parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+        //   name: RoutesNames.chatbot,
+        //   path: RoutesPaths.chatbot,
+        //   pageBuilder: (context, state) {
+        //     return CustomTransitionPage(
+        //       key: state.pageKey,
+        //       child: MultiBlocProvider(
+        //         providers: [
+        //           //it's main value come from homepage
+        //           BlocProvider<ChatHistoryCubit>.value(
+        //             value: (state.extra as RouteExtras).chatHistoryCubit,
+        //           ),
+        //           BlocProvider(
+        //             create: (context) => VoiceCubit(),
+        //           ),
+        //           BlocProvider<DropdownCubit>.value(
+        //             value: (state.extra as RouteExtras).dropdownCubit,
+        //           ),
+        //           BlocProvider<SendFeedbackBloc>.value(
+        //             value: (state.extra as RouteExtras).sendFeedbackBloc,
+        //           ),
+        //         ],
+        //         child: const ChatView(),
+        //       ),
+        //       transitionsBuilder:
+        //           (context, animation, secondaryAnimation, child) {
+        //         const begin = Offset(1.0, 0.0);
+        //         const end = Offset.zero;
+        //         const curve = Curves.easeInOut;
+        //
+        //         var tween = Tween(begin: begin, end: end)
+        //             .chain(CurveTween(curve: curve));
+        //         var offsetAnimation = animation.drive(tween);
+        //
+        //         return SlideTransition(
+        //           position: offsetAnimation,
+        //           child: child,
+        //         );
+        //       },
+        //     );
+        //   },
+        // ),
 
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,

@@ -4,14 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../app/app_preferences.dart';
 import '../../../../app/depndency_injection.dart';
-import '../../../../domain/models/favourite/favourite_models.dart';
+
 import '../../../../domain/models/models.dart';
 import '../../../../utils/global_functions.dart';
 import '../../../resources/resources.dart';
-import '../../../widgets/taost_widget.dart';
+
 import '../../../widgets/widgets.dart';
-import '../../auth/blocs/cubits/logged_in_user_cubit.dart';
-import '../../favourite/fav_widgets.dart';
+
 import '../../rent/blocs/cubits/values_filters_cubit.dart';
 
 class BottomSheetFilterBrokerWidget extends StatefulWidget {

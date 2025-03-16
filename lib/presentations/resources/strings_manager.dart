@@ -16,7 +16,14 @@ class AppStrings {
   String more = "more".tr();
 
   String rental = "rental".tr();
-
+  String map = "map".tr();
+  String indicators = "indicators".tr();
+  String indicatorsAndNumbers = "indicators_numbers".tr();
+  String laws = "laws".tr();
+  String calendar = "calendar".tr();
+  String video = "video".tr();
+  String aboutAuthority = "about_authority".tr();
+  String showAll = "show_all".tr();
   //rent
   static String currentPerformanceSummary = "current_performance_summary";
   String unitType = "unit_type".tr();
@@ -125,6 +132,12 @@ class AppStrings {
   String chooseYourProject = "choose_your_project".tr();
   String ownRealEstate = "own_real_estate".tr();
   String manageYourProperty = "manage_your_property".tr();
+  String sellTotalTransactions = "sell_total_transactions".tr();
+  String forFirstThreeQuarters = "for_first_three_quarters".tr();
+  String totalValuesForSell = "total_values_for_sell".tr();
+  String totalNumberForRent = "total_numbers_for_rent".tr();
+  String totalValuesForRent = "total_values_for_rent".tr();
+
   //InvestorJourny
   String back = "back".tr();
   String next = "next".tr();
@@ -253,7 +266,12 @@ class AppStrings {
   String searchHere = "search_here".tr();
   String searchfor = "search_for".tr();
   String numberOfResults = "number_of_results".tr();
-  String empowerIdeasAndUnleashIntelligence = "Empower_ideas_and_unleash_intelligence".tr();
+  String empowerIdeasAndUnleashIntelligence =
+      "Empower_ideas_and_unleash_intelligence".tr();
   String startSearching = "start_searching".tr();
-  
+
+  //------------ drawer --------
+  String manageUser = "manage_user".tr();
+  String manageAccount = "manage_account".tr();
+  String privacyPolicy = "privacy_policy".tr();
 }

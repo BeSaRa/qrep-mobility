@@ -531,8 +531,12 @@ class MainMoreButtonsList extends StatelessWidget {
                                 Brightness.light
                             ? 0
                             : 1,
-                    firstTab: AppStrings().light,
-                    secondTab: AppStrings().dark,
+                    firstTab: Tab(
+                      text: AppStrings().light,
+                    ),
+                    secondTab: Tab(
+                      text: AppStrings().dark,
+                    ),
                     onPressed: (index) {
                       if (theme.brightness == Brightness.light && index == 1) {
                         ThemeData newTheme =
@@ -561,8 +565,12 @@ class MainMoreButtonsList extends StatelessWidget {
           isButton: false,
           widget: EblaTabBarWidget(
             initialIndex: context.locale == ARABIC_LOCAL ? 0 : 1,
-            firstTab: 'عربي',
-            secondTab: 'English',
+            firstTab: Tab(
+              text: 'عربي',
+            ),
+            secondTab: Tab(
+              text: 'English',
+            ),
             onPressed: (index) {
               context.read<ChangeLanguageCubit>().save(index);
               if (context.read<ChangeLanguageCubit>().state == 0) {
@@ -641,7 +649,7 @@ class MainMoreButtonsList extends StatelessWidget {
           icon: null,
           title: AppStrings().aiSearch,
           isButton: true,
-          onPressed: () { 
+          onPressed: () {
             context.pushNamed(RoutesNames.aiSearch);
           },
         ),

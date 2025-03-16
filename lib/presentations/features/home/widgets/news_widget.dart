@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
 import 'package:flutter/material.dart';
@@ -39,18 +38,9 @@ class _NewsWidgetState extends State<NewsWidget> {
                 children: [
                   Text(
                     AppStrings().news,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(fontWeight: FontWeight.w800),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: AppSizeW.s10),
-                    height: AppSizeH.s5,
-                    width: AppSizeW.s40,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(AppSizeR.s5),
-                        color: ColorManager.lightSilver),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w800,
+                        color: ColorManager.textBlack),
                   ),
                 ],
               ),
@@ -74,13 +64,6 @@ class _NewsWidgetState extends State<NewsWidget> {
                         child: Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: AppSizeW.s10, vertical: AppSizeH.s2),
-                          decoration: BoxDecoration(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .tertiaryContainer,
-                              border: Border.all(color: ColorManager.golden),
-                              borderRadius:
-                                  BorderRadius.circular(AppSizeR.s20)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -92,7 +75,7 @@ class _NewsWidgetState extends State<NewsWidget> {
                                 width: AppSizeW.s8,
                               ),
                               Icon(
-                                Icons.arrow_forward_ios,
+                                Icons.arrow_forward,
                                 color: ColorManager.golden,
                                 size: AppSizeH.s10,
                               )

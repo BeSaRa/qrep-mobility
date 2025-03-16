@@ -70,105 +70,101 @@ class _RentViewState extends State<RentView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocConsumer(
-        listener: (context, LookupState state) {
-          state.mapOrNull(
-            loadedLookup: (value) {
-              if (GoRouterState.of(context).extra != null) {
-                getCriteria();
-                context.read<RentBloc>().setRequestCriteria(criteriaObject);
-              }
-              // rentDefaultBloc.add(RentDefaultEvent.started(
-              //     request: context.read<RentBloc>().requestMeanValue));
-              rentGridKPIsBloc.add(RentGridKPIsEvent.getData(
-                  request: context.read<RentBloc>().requestMeanValue));
-              rentSummeryBloc.add(RentSummeryEvent.getRentSummary(
-                  request: context.read<RentBloc>().requestMeanValue));
-              certificateContractBloc.add(
-                  CertificateContractEvent.certificateCountEvent(
-                      request: context.read<RentBloc>().requestMeanValue));
-              List<LookupModel> listMunicipalityWithAll = [];
-              listMunicipalityWithAll.addAll(
-                  context.read<LookupBloc>().lookUpRent?.municipalityList ??
-                      []);
-              if (!listMunicipalityWithAll.contains(const LookupModel(
-                  isActive: true,
-                  lookupKey: -1,
-                  arName: "الكل",
-                  enName: "All",
-                  id: -1,
-                  value: 0,
-                  selected: false,
-                  yoy: 0,
-                  hasPrice: false,
-                  municipalityId: 0))) {
-                listMunicipalityWithAll.insert(
-                    0,
-                    const LookupModel(
-                        isActive: true,
-                        lookupKey: -1,
-                        arName: "الكل",
-                        enName: "All",
-                        id: -1,
-                        value: 0,
-                        selected: false,
-                        yoy: 0,
-                        hasPrice: false,
-                        municipalityId: 0));
-              }
-              context.read<LookupBloc>().lookUpRent = context
-                  .read<LookupBloc>()
-                  .lookUpRent
-                  ?.copyWith(municipalityList: listMunicipalityWithAll);
-            },
-          );
+    return BlocConsumer(
+      listener: (context, LookupState state) {
+        state.mapOrNull(
+          loadedLookup: (value) {
+            if (GoRouterState.of(context).extra != null) {
+              getCriteria();
+              context.read<RentBloc>().setRequestCriteria(criteriaObject);
+            }
+            // rentDefaultBloc.add(RentDefaultEvent.started(
+            //     request: context.read<RentBloc>().requestMeanValue));
+            rentGridKPIsBloc.add(RentGridKPIsEvent.getData(
+                request: context.read<RentBloc>().requestMeanValue));
+            rentSummeryBloc.add(RentSummeryEvent.getRentSummary(
+                request: context.read<RentBloc>().requestMeanValue));
+            certificateContractBloc.add(
+                CertificateContractEvent.certificateCountEvent(
+                    request: context.read<RentBloc>().requestMeanValue));
+            List<LookupModel> listMunicipalityWithAll = [];
+            listMunicipalityWithAll.addAll(
+                context.read<LookupBloc>().lookUpRent?.municipalityList ?? []);
+            if (!listMunicipalityWithAll.contains(const LookupModel(
+                isActive: true,
+                lookupKey: -1,
+                arName: "الكل",
+                enName: "All",
+                id: -1,
+                value: 0,
+                selected: false,
+                yoy: 0,
+                hasPrice: false,
+                municipalityId: 0))) {
+              listMunicipalityWithAll.insert(
+                  0,
+                  const LookupModel(
+                      isActive: true,
+                      lookupKey: -1,
+                      arName: "الكل",
+                      enName: "All",
+                      id: -1,
+                      value: 0,
+                      selected: false,
+                      yoy: 0,
+                      hasPrice: false,
+                      municipalityId: 0));
+            }
+            context.read<LookupBloc>().lookUpRent = context
+                .read<LookupBloc>()
+                .lookUpRent
+                ?.copyWith(municipalityList: listMunicipalityWithAll);
+          },
+        );
 
-          // if (state.rentLookup != const RentLookupResponse()) {
-          //   // rentDefaultBloc.add(RentDefaultEvent.started(
-          //   //     request: context.read<RentBloc>().requestMeanValue));
-          //   rentGridKPIsBloc.add(RentGridKPIsEvent.getData(
-          //       request: context.read<RentBloc>().requestMeanValue));
-          //   rentSummeryBloc.add(RentSummeryEvent.getRentSummary(
-          //       request: context.read<RentBloc>().requestMeanValue));
-          //   certificateContractBloc.add(
-          //       CertificateContractEvent.certificateCountEvent(
-          //           request: context.read<RentBloc>().requestMeanValue));
-          // }
-        },
-        bloc: context.read<LookupBloc>(),
-        builder: (context, LookupState state) {
-          return state.map(
-            loadingLookup: (value) => const AnimatedPulesLogo(),
-            loadedLookup: (value) {
-              return Column(
-                children: [
-                  ShaderMask(
-                    shaderCallback: (rect) {
-                      return const LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Colors.black, Colors.transparent],
-                      ).createShader(
-                          Rect.fromLTRB(0, 0, rect.width, rect.height));
-                    },
-                    blendMode: BlendMode.dstIn,
-                    child: Image.asset(
-                      ImageAssets.appbarBg,
-                      height: AppSizeH.s50,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
+        // if (state.rentLookup != const RentLookupResponse()) {
+        //   // rentDefaultBloc.add(RentDefaultEvent.started(
+        //   //     request: context.read<RentBloc>().requestMeanValue));
+        //   rentGridKPIsBloc.add(RentGridKPIsEvent.getData(
+        //       request: context.read<RentBloc>().requestMeanValue));
+        //   rentSummeryBloc.add(RentSummeryEvent.getRentSummary(
+        //       request: context.read<RentBloc>().requestMeanValue));
+        //   certificateContractBloc.add(
+        //       CertificateContractEvent.certificateCountEvent(
+        //           request: context.read<RentBloc>().requestMeanValue));
+        // }
+      },
+      bloc: context.read<LookupBloc>(),
+      builder: (context, LookupState state) {
+        return state.map(
+          loadingLookup: (value) => const AnimatedPulesLogo(),
+          loadedLookup: (value) {
+            return Scaffold(
+              appBar: AppBar(
+                surfaceTintColor: Colors.transparent,
+                toolbarHeight: AppSizeH.s50,
+                // Set this height
+                flexibleSpace: ShaderMask(
+                  shaderCallback: (rect) {
+                    return const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Colors.black, Colors.transparent],
+                    ).createShader(
+                        Rect.fromLTRB(0, 0, rect.width, rect.height));
+                  },
+                  blendMode: BlendMode.dstIn,
+                  child: Image.asset(
+                    ImageAssets.appbarBg,
+                    // height: 400,
+                    fit: BoxFit.fill,
                   ),
-                  // Container(
-                  //   height: AppSizeH.s50,
-                  //   decoration: const BoxDecoration(
-                  //     image: DecorationImage(
-                  //       image: AssetImage(ImageAssets.appbarBg),
-                  //       fit: BoxFit.cover,
-                  //     ),
-                  //   ),
-                  // ),
+                ),
+
+                backgroundColor: Colors.transparent,
+              ),
+              body: Column(
+                children: [
                   Expanded(
                     child: RefreshIndicator(
                       onRefresh: () {
@@ -1060,19 +1056,19 @@ class _RentViewState extends State<RentView> {
                     ),
                   ),
                 ],
-              );
+              ),
+            );
+          },
+          errorLookUp: (value) => ErrorGlobalWidget(
+            message: value.message,
+            onPressed: () {
+              context
+                  .read<LookupBloc>()
+                  .add(const LookupEvent.getRentLookupEvent());
             },
-            errorLookUp: (value) => ErrorGlobalWidget(
-              message: value.message,
-              onPressed: () {
-                context
-                    .read<LookupBloc>()
-                    .add(const LookupEvent.getRentLookupEvent());
-              },
-            ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 

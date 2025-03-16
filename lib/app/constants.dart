@@ -1,5 +1,5 @@
 //* after changing the urls you should run this command in terminal
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 ///flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
 
