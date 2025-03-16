@@ -1499,7 +1499,6 @@ class RepositoryImplementer extends Repository {
           "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
         };
         // 🔹 make a POST request
-        log("headers request start stream: $headers}");
         final response = await dio.post(
           apiUrl,
           options: Options(

@@ -269,6 +269,8 @@ class AppStrings {
   String empowerIdeasAndUnleashIntelligence =
       "Empower_ideas_and_unleash_intelligence".tr();
   String startSearching = "start_searching".tr();
+  String seeOnGoogleMap = "see_on_google_map".tr();
+
 
   //------------ drawer --------
   String manageUser = "manage_user".tr();
