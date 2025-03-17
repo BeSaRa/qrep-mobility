@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/app/extensions.dart';
-import 'package:ebla/domain/models/favourite/favourite_models.dart';
-import 'package:ebla/presentations/features/auth/authes.dart';
+
 import 'package:ebla/presentations/features/favourite/bloc/create_favourite_bloc/create_favourite_bloc.dart';
-import 'package:ebla/presentations/features/favourite/fav_widgets.dart';
+
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
-import 'package:ebla/presentations/widgets/taost_widget.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

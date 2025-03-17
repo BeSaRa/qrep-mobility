@@ -11,12 +11,11 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../../app/app_preferences.dart';
 import '../../../../app/depndency_injection.dart';
-import '../../../../domain/models/favourite/favourite_models.dart';
+
 import '../../../../domain/models/rent_models/rent_models.dart';
-import '../../../widgets/taost_widget.dart';
+
 import '../../../widgets/widgets.dart';
-import '../../auth/blocs/cubits/logged_in_user_cubit.dart';
-import '../../favourite/fav_widgets.dart';
+
 import '../../main/blocs/lookup_bloc/lookup_bloc.dart';
 import '../blocs/cubits/values_filters_cubit.dart';
 import '../blocs/rent_bloc/rent_bloc.dart';

@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:ebla/app/constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../../../app/app_preferences.dart';
 import '../../../../../app/depndency_injection.dart';
@@ -33,9 +32,9 @@ class GuestTokenBloc extends Bloc<GuestTokenEvent, GuestTokenState> {
 
           emit(const GuestTokenState.loading());
           bool token = appPreferences.getUserLoggedIn();
-          PackageInfo packageInfo = await PackageInfo.fromPlatform();
-          bool update = false;
-          bool canUpdate = false;
+          // PackageInfo packageInfo = await PackageInfo.fromPlatform();
+          // bool update = false;
+          // bool canUpdate = false;
           if (!token) {
             final getTokenSuccess = await getCmsTokenUsecase.execute();
             getTokenSuccess.when((success) {

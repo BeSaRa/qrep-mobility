@@ -93,4 +93,29 @@ class IconAssets {
       "${ICON_PATH}total_mortgage_transactions_value.svg";
   static const String totalMortgageUnitsNum =
       "${ICON_PATH}total_mortgage_units_num.svg";
+
+  static const String aqaratNews = "${ICON_PATH}aqarat_news.png";
+  static const String calendar = "${ICON_PATH}calendar.png";
+  static const String chat = "${ICON_PATH}chat.png";
+  static const String facebook = "${ICON_PATH}facebook.png";
+  static const String instagram = "${ICON_PATH}instagram.png";
+  static const String investorJourneyPng = "${ICON_PATH}investor_journey.png";
+  static const String lawsNew = "${ICON_PATH}laws_new.png";
+  static const String linkedIN = "${ICON_PATH}linkedin.png";
+  static const String locationIndicator = "${ICON_PATH}location_indicator.png";
+  static const String manage = "${ICON_PATH}manage.png";
+  static const String map = "${ICON_PATH}map.png";
+  static const String mapScroll = "${ICON_PATH}map_scroll.png";
+  static const String menu = "${ICON_PATH}menu.png";
+  static const String metric = "${ICON_PATH}metrics.png";
+  static const String phoneCall = "${ICON_PATH}phone_call.png";
+  static const String services = "${ICON_PATH}services.png";
+  static const String stats = "${ICON_PATH}stats.png";
+  static const String training = "${ICON_PATH}training.png";
+  static const String twitter = "${ICON_PATH}twitter.png";
+  static const String user = "${ICON_PATH}user.png";
+  static const String video = "${ICON_PATH}video.png";
+  static const String home = "${ICON_PATH}home.png";
+  static const String privacyPolicy = "${ICON_PATH}privacy_policy.png";
+  static const String about = "${ICON_PATH}about.png";
 }

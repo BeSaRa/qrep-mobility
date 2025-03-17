@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key></key>
-	<string></string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -40,27 +38,15 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSFaceIDUsageDescription</key>
-	<!-- for recording voice -->
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>QREP requires speech recognition access to transcribe voice inputs.</string>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>QREP needs Bluetooth access to connect with external audio devices.</string>
-
-	<!-- for pdf -->
-	<key>NSDocumentsDirectoryUsageDescription</key>
-	<string>App needs access to save files.</string>
-	<key>LSSupportsOpeningDocumentsInPlace</key>
-	<true/>
-	<key>UIFileSharingEnabled</key>
-	<true/>
-	<!-- web RTC -->
-	<key>NSCameraUsageDescription</key>
-	<string>QREP needs access to the camera in order to interact with the avatar</string>
-
-	<key>NSMicrophoneUsageDescription</key>
-	<string>QREP wants to save your password and reach it from face id</string>
+	<string>AQARAT wants to save your password and reach it from face id</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+    <array>
+        <string>audio</string>
+    	<string>fetch</string>
+    	<string>voip</string>
+    </array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -76,10 +62,32 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>NSAppTransportSecurity</key>
-		<dict>
-			<key>NSAllowsArbitraryLoads</key>
-			<true/>
-		</dict>
+	<key>NSCameraUsageDescription</key>
+    <string>AQARAT needs Camera Usage for talking with avatar</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>AQARAT needs Microphone Usage for using AI chat</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>AQARAT needs Microphone Usage for using AI chat</string>
+    <key>NSDocumentsDirectoryUsageDescription</key>
+	<string>App needs access to save files.</string>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
+	<key>UIFileSharingEnabled</key>
+	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+    <string>AQARAT needs Bluetooth access to connect with external audio devices.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>AQARAT needs library access </string>
+    <key>NSPrivacyAccessedAPITypes</key>
+        <array>
+            <dict>
+                <key>NSPrivacyAccessedAPIType</key>
+                <string>NSUserDefaults</string>
+            </dict>
+            <dict>
+                <key>NSPrivacyAccessedAPIType</key>
+                <string>Pasteboard</string>
+            </dict>
+        </array>
 </dict>
 </plist>

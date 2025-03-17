@@ -115,24 +115,24 @@ class _ChatViewState extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: costumeChatAppBar(context, _scrollController, () async {
-        //close stream if it's working:
-
-        final String? streamId = streamIdCubit.state.streamId;
-        isAvatarExpanded.value = false;
-        if (streamId != null) {
-          closeStreamBloc.add(CloseStreamEvent.closeStream(
-              //here i pass the streamID
-              streamIdCubit.state.streamId!));
-          streamIdCubit.clearStreamId();
-        }
-        if (webRTCCubit != null) {
-          //clear the webrt Cubit
-          await webRTCCubit!.closeStreamCubit();
-          await webRTCCubit!.close();
-          webRTCCubit == null;
-        }
-      }),
+      // appBar: costumeChatAppBar(context, _scrollController, () async {
+      //   //close stream if it's working:
+      //
+      //   final String? streamId = streamIdCubit.state.streamId;
+      //   isAvatarExpanded.value = false;
+      //   if (streamId != null) {
+      //     closeStreamBloc.add(CloseStreamEvent.closeStream(
+      //         //here i pass the streamID
+      //         streamIdCubit.state.streamId!));
+      //     streamIdCubit.clearStreamId();
+      //   }
+      //   if (webRTCCubit != null) {
+      //     //clear the webrt Cubit
+      //     await webRTCCubit!.closeStreamCubit();
+      //     await webRTCCubit!.close();
+      //     webRTCCubit == null;
+      //   }
+      // }),
       body: Stack(
         children: [
           // Background Image
@@ -594,24 +594,82 @@ class _ChatViewState extends State<ChatView> {
                   ),
                 );
               }),
-          //the clip of appbar
-          ClipPath(
-            clipper: AppBarClipper(),
-            child: Container(
-              height: preferredSize.height,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    ColorManager.primary,
-                    const Color.fromARGB(255, 194, 86, 118),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+          Align(
+            alignment: Alignment.topLeft,
+            child: Builder(builder: (context) {
+              return PopupMenuButton<int>(
+                icon: Icon(
+                  Icons.more_vert,
+                  color: ColorManager.primary,
                 ),
-              ),
-            ),
-          ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppSizeR.s10),
+                ),
+                color: Theme.of(context).cardTheme.color,
+                shadowColor: ColorManager.primary,
+                itemBuilder: (context) => [
+                  PopupMenuItem<int>(
+                    value: 0,
+                    child: MultiBlocProvider(
+                      providers: [
+                        BlocProvider.value(
+                          value: BlocProvider.of<DropdownCubit>(context),
+                        ),
+                        BlocProvider.value(
+                          value: BlocProvider.of<ChatHistoryCubit>(context),
+                        ),
+                      ],
+                      child: BlocBuilder<DropdownCubit, ChatTypeEnum>(
+                        builder: (context, selectedOption) {
+                          return Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CheckBoxWidget(
+                                onPlatformTapAndAvatarIsOpen: () async {
+                                  //close stream if it's working:
 
+                                  final String? streamId =
+                                      streamIdCubit.state.streamId;
+                                  isAvatarExpanded.value = false;
+                                  if (streamId != null) {
+                                    closeStreamBloc
+                                        .add(CloseStreamEvent.closeStream(
+                                            //here i pass the streamID
+                                            streamIdCubit.state.streamId!));
+                                    streamIdCubit.clearStreamId();
+                                  }
+                                  if (webRTCCubit != null) {
+                                    //clear the webrt Cubit
+                                    await webRTCCubit!.closeStreamCubit();
+                                    await webRTCCubit!.close();
+                                    webRTCCubit == null;
+                                  }
+                                },
+                                scrollController: _scrollController,
+                                text: AppStrings().moreTitle,
+                                value: ChatTypeEnum.qatarRealEstatePlatform,
+                                isChecked: selectedOption ==
+                                    ChatTypeEnum.qatarRealEstatePlatform,
+                              ),
+                              CheckBoxWidget(
+                                onPlatformTapAndAvatarIsOpen: null,
+                                scrollController: _scrollController,
+                                text:
+                                    AppStrings().realEstateRegulatoryAuthority,
+                                value: ChatTypeEnum.authority,
+                                isChecked:
+                                    selectedOption == ChatTypeEnum.authority,
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            }),
+          ),
           // Mini-Screen Mode (Draggable Video)
 
           if (webRTCCubit != null)
@@ -748,18 +806,6 @@ AppBar costumeChatAppBar(
     automaticallyImplyLeading: false,
     backgroundColor: Colors.transparent,
     surfaceTintColor: Colors.transparent,
-    flexibleSpace: Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            ColorManager.primary,
-            const Color.fromARGB(255, 194, 86, 118),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
-    ),
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

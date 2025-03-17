@@ -1,5 +1,5 @@
 //* after changing the urls you should run this command in terminal
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 ///flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
 
@@ -22,14 +22,15 @@ class Constant {
   static const String cmsBaseUrl = 'https://qrepcms.aqarat.gov.qa';
   /*--- */
   static const String aqaratBaseUrl = 'https://www.aqarat.gov.qa';
-  static const String authorityChatBotBaseUrl = 'https://afnqcpcbai01.azurewebsites.net';
-  static String xFunctionsAuthorityChatbotKey =  dotenv.env['X_FUNCTION_AUTHORITY_CHATBOT_KEY'] ?? 'NO_KEY_FOUND';
-    //============= NOTE FROM ZAK To FATINA:==============
-    // static String xFunctionsAuthorityChatbotKey =  ;
-    //1- uncomment last line:
-    //2- put the key I send in Teams in last line then run the app
-
-
+  static const String authorityChatBotBaseUrl =
+      'https://afnqcpcbai01.azurewebsites.net';
+  static String xFunctionsAuthorityChatbotKey =
+      "3Q84i4HgnkCtMvq3HhCulIbqMbf73QNGDn5MXKQnK_xtAzFu2CXK-w==";
+  // static String xFunctionsAuthorityChatbotKey =  dotenv.env['X_FUNCTION_AUTHORITY_CHATBOT_KEY'] ?? 'NO_KEY_FOUND';
+  //============= NOTE FROM ZAK To FATINA:==============
+  // static String xFunctionsAuthorityChatbotKey =  ;
+  //1- uncomment last line:
+  //2- put the key I send in Teams in last line then run the app
 
   // static const String baseUrl = 'http://192.168.52.4:9080/mme-services';
   // static const String webUrl = 'http://192.168.52.5:3000/';
@@ -38,10 +39,12 @@ class Constant {
   // static const String chatBotBaseUrl = 'https://afnqcpcbai01.azurewebsites.net';
 
   static const String guestToken = "lyHWSTHj1SBm9IRECnLAHviNHnXGaS27";
-  /*Authority Map Points*/  
+  /*Authority Map Points*/
 
   static const double latitude = 25.370494;
   static const double longitude = 51.552943;
-  static const String mapUrlTemplate ='https://tile.openstreetmap.org/{z}/{x}/{y}.png';
-  static const String googleMapUrlTemplate = "https://www.google.com/maps/place/%D8%A7%D9%84%D9%87%D9%8A%D8%A6%D8%A9+%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9+%D9%84%D8%AA%D9%86%D8%B8%D9%8A%D9%85+%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9+%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A+-+%D8%B9%D9%82%D8%A7%D8%B1%D8%A7%D8%AA%E2%80%AD/@25.370463,51.552953,777m/data=!3m1!1e3!4m6!3m5!1s0x3e45c30011f86e83:0x4dc04497efcca14c!8m2!3d25.3704625!4d51.5529531!16s%2Fg%2F11whwkhg57?hl=en&entry=ttu&g_ep=EgoyMDI1MDMxMC4wIKXMDSoASAFQAw%3D%3D";
+  static const String mapUrlTemplate =
+      'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+  static const String googleMapUrlTemplate =
+      "https://www.google.com/maps/place/%D8%A7%D9%84%D9%87%D9%8A%D8%A6%D8%A9+%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9+%D9%84%D8%AA%D9%86%D8%B8%D9%8A%D9%85+%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9+%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A+-+%D8%B9%D9%82%D8%A7%D8%B1%D8%A7%D8%AA%E2%80%AD/@25.370463,51.552953,777m/data=!3m1!1e3!4m6!3m5!1s0x3e45c30011f86e83:0x4dc04497efcca14c!8m2!3d25.3704625!4d51.5529531!16s%2Fg%2F11whwkhg57?hl=en&entry=ttu&g_ep=EgoyMDI1MDMxMC4wIKXMDSoASAFQAw%3D%3D";
 }

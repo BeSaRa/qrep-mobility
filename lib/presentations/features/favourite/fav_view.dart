@@ -8,14 +8,13 @@ import 'package:ebla/presentations/features/more/blocs/user_bloc/user_bloc.dart'
 import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../app/depndency_injection.dart';
 import '../../../domain/models/favourite/favourite_models.dart';
 import '../../resources/resources.dart';
 import '../../widgets/widgets.dart';
 import '../main/blocs/lookup_bloc/lookup_bloc.dart';
-import '../main/cubit/bottom_nav_cubit.dart';
+
 import 'fav_sheet_view.dart';
 import 'fav_widgets.dart';
 
@@ -63,15 +62,13 @@ class _FavViewState extends State<FavView> {
   Widget build(BuildContext context) {
     return BlocBuilder<LookupBloc, LookupState>(
       builder: (context, state) {
-        return state.map(
-          loadingLookup: (val) {
+        return state.map(loadingLookup: (val) {
           return const AnimatedPulesLogo();
         }, loadedLookup: (val) {
           return BlocBuilder<GetFavouriteBloc, GetFavouriteState>(
             bloc: favouriteBloc,
             builder: (context, state) {
-              return state.map(
-                initial: (val) {
+              return state.map(initial: (val) {
                 return Container();
               }, loading: (val) {
                 return const AnimatedPulesLogo();

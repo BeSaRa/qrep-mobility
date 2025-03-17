@@ -7,10 +7,10 @@ class BottomNavCubit extends Cubit<int> {
   int currentPage = 0;
   List<String> paths = [
     RoutesNames.home,
-    RoutesNames.rent,
-    RoutesNames.sales,
-    RoutesNames.mortgage,
-    RoutesNames.more,
+    RoutesNames.services,
+    RoutesNames.chatbot,
+    RoutesNames.map,
+    RoutesNames.indicators,
   ];
 
   // List<Future<void>> diMethod = [

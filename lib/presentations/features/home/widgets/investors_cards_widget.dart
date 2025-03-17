@@ -17,10 +17,11 @@ class InvestorsCardsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: AppSizeH.s120,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
         children: [
           InkWell(
             onTap: () {
@@ -28,24 +29,14 @@ class InvestorsCardsWidget extends StatelessWidget {
                   pathParameters: {"stepNumber": "0"});
             },
             child: InvestorsCard(
-              color: Theme.of(context).primaryColor,
-              icon: IconAssets.investorJourney,
-              title: SizedBox(
-                width: AppSizeW.s90,
-                child: Text(
-                  AppStrings().investorJourney,
-                  style: TextStyle(
-                      fontFamily: FontConstants.fontFamily,
-                      color: ColorManager.white,
-                      fontSize: AppSizeSp.s15,
-                      fontWeight: FontWeight.w700),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  softWrap: true,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
+                color: Theme.of(context).primaryColor,
+                icon: IconAssets.investorJourney,
+                title: AppStrings().investorJourney),
+          ),
+          VerticalDivider(
+            endIndent: AppSizeH.s15,
+            color: ColorManager.golden.withAlpha(50),
+            indent: AppSizeH.s15,
           ),
           InkWell(
             onTap: () {
@@ -53,24 +44,14 @@ class InvestorsCardsWidget extends StatelessWidget {
                   pathParameters: {"stepNumber": "1"});
             },
             child: InvestorsCard(
-              color: ColorManager.primaryBlue,
-              icon: IconAssets.propertyDeveloper,
-              title: SizedBox(
-                width: AppSizeW.s90,
-                child: Text(
-                  AppStrings().propertyDevelopers,
-                  style: TextStyle(
-                      fontFamily: FontConstants.fontFamily,
-                      color: ColorManager.white,
-                      fontSize: AppSizeSp.s15,
-                      fontWeight: FontWeight.w700),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  softWrap: true,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
+                color: ColorManager.primaryBlue,
+                icon: IconAssets.propertyDeveloper,
+                title: AppStrings().propertyDevelopers),
+          ),
+          VerticalDivider(
+            endIndent: AppSizeH.s15,
+            color: ColorManager.golden.withAlpha(50),
+            indent: AppSizeH.s15,
           ),
           InkWell(
             onTap: () {
@@ -78,24 +59,24 @@ class InvestorsCardsWidget extends StatelessWidget {
                   pathParameters: {"stepNumber": "2"});
             },
             child: InvestorsCard(
-              color: ColorManager.golden,
-              icon: IconAssets.totalSellTransactionsValue,
-              title: SizedBox(
-                width: AppSizeW.s80,
-                child: Text(
-                  AppStrings().professionPracticers,
-                  style: TextStyle(
-                      fontFamily: FontConstants.fontFamily,
-                      color: ColorManager.white,
-                      fontSize: AppSizeSp.s15,
-                      fontWeight: FontWeight.w700),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  softWrap: true,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
+                color: ColorManager.golden,
+                icon: IconAssets.totalSellTransactionsValue,
+                title: AppStrings().professionPracticers),
+          ),
+          VerticalDivider(
+            endIndent: AppSizeH.s15,
+            color: ColorManager.golden.withAlpha(50),
+            indent: AppSizeH.s15,
+          ),
+          InkWell(
+            onTap: () {
+              // context.pushNamed(RoutesNames.investorJourney,
+              //     pathParameters: {"stepNumber": "2"});
+            },
+            child: InvestorsCard(
+                color: ColorManager.golden,
+                icon: IconAssets.mapScroll,
+                title: AppStrings().map),
           ),
         ],
       ),
@@ -105,7 +86,7 @@ class InvestorsCardsWidget extends StatelessWidget {
 
 class InvestorsCard extends StatelessWidget {
   final String icon;
-  final Widget title;
+  final String title;
   final Color color;
 
   const InvestorsCard(
@@ -123,48 +104,63 @@ class InvestorsCard extends StatelessWidget {
           width: isTablet ? AppSizeW.s226 : AppSizeW.s115,
           padding: EdgeInsets.symmetric(
               horizontal: AppSizeH.s6, vertical: AppSizeH.s10),
-          decoration: BoxDecoration(
-              color: color,
-              // color: Theme.of(context).cardTheme.color,
-              borderRadius: BorderRadius.circular(AppSizeW.s14),
-              border: Border.all(
-                  color: Theme.of(context).dividerColor, width: AppSizeH.s1)),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: AppSizeH.s15,
               children: [
-                SvgPicture.asset(
-                  icon,
-                  height: AppSizeH.s36,
-                  width: AppSizeW.s32,
-                  color: ColorManager.white,
+                if (icon.toLowerCase().endsWith("svg"))
+                  SvgPicture.asset(
+                    icon,
+                    height: AppSizeH.s36,
+                    width: AppSizeW.s32,
+                    color: ColorManager.golden,
+                  ),
+                if (!icon.toLowerCase().endsWith("svg"))
+                  ImageIcon(
+                    AssetImage(icon),
+                    color: ColorManager.golden,
+                  ),
+                Flexible(
+                  child: SizedBox(
+                    width: AppSizeW.s65,
+                    child: Text(
+                      title,
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          color: ColorManager.primaryBlue,
+                          fontWeight: FontWeight.w600),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      softWrap: true,
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
                 ),
-                SizedBox(height: AppSizeH.s20),
-                Flexible(child: title),
               ],
             ),
           ),
         ),
-        Positioned(
-          left: context.locale == ARABIC_LOCAL ? 0 : null,
-          right: context.locale != ARABIC_LOCAL ? 0 : null,
-          child: Container(
-            padding: EdgeInsets.all(AppSizeH.s3),
-            margin: EdgeInsets.all(AppSizeH.s8),
-            decoration: BoxDecoration(
-              color: ColorManager.platinum.withOpacity(.3),
-              borderRadius: BorderRadius.circular(AppSizeR.s20),
-            ),
-            child: Transform.rotate(
-                angle:
-                    context.locale == ARABIC_LOCAL ? -45 : 45 * math.pi / 180,
-                child: Icon(
-                  size: AppSizeH.s12,
-                  Icons.arrow_upward_rounded,
-                  color: ColorManager.white,
-                )),
-          ),
-        ),
+        // Positioned(
+        //   left: context.locale == ARABIC_LOCAL ? 0 : null,
+        //   right: context.locale != ARABIC_LOCAL ? 0 : null,
+        //   child: Container(
+        //     padding: EdgeInsets.all(AppSizeH.s3),
+        //     margin: EdgeInsets.all(AppSizeH.s8),
+        //     decoration: BoxDecoration(
+        //       color: ColorManager.platinum.withOpacity(.3),
+        //       borderRadius: BorderRadius.circular(AppSizeR.s20),
+        //     ),
+        //     child: Transform.rotate(
+        //         angle:
+        //             context.locale == ARABIC_LOCAL ? -45 : 45 * math.pi / 180,
+        //         child: Icon(
+        //           size: AppSizeH.s12,
+        //           Icons.arrow_upward_rounded,
+        //           color: ColorManager.white,
+        //         )),
+        //   ),
+        // ),
       ],
     );
   }

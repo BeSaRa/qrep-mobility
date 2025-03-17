@@ -39,36 +39,34 @@ _$RequestMortgageValuesImpl _$$RequestMortgageValuesImplFromJson(
     );
 
 Map<String, dynamic> _$$RequestMortgageValuesImplToJson(
-    _$RequestMortgageValuesImpl instance) {
-  final val = <String, dynamic>{
-    'areaCode': instance.areaCode,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('areaFrom', instance.areaFrom);
-  writeNotNull('areaTo', instance.areaTo);
-  writeNotNull('issueDateEndMonth', instance.issueDateEndMonth);
-  writeNotNull('issueDateFrom', instance.issueDateFrom);
-  writeNotNull('issueDateQuarterList', instance.issueDateQuarterList);
-  writeNotNull('issueDateStartMonth', instance.issueDateStartMonth);
-  writeNotNull('issueDateMonth', instance.issueDateMonth);
-  writeNotNull('issueDateTo', instance.issueDateTo);
-  writeNotNull('issueDateYear', instance.issueDateYear);
-  writeNotNull('halfYearDuration', instance.halfYearDuration);
-  writeNotNull('limit', instance.limit);
-  writeNotNull('municipalityId', instance.municipalityId);
-  writeNotNull('offset', instance.offset);
-  writeNotNull('propertyTypeList', instance.propertyTypeList);
-  writeNotNull('purposeList', instance.purposeList);
-  writeNotNull('realEstateValueFrom', instance.realEstateValueFrom);
-  writeNotNull('realEstateValueTo', instance.realEstateValueTo);
-  writeNotNull('zoneId', instance.zoneId);
-  val['unit'] = instance.unit;
-  val['periodId'] = instance.periodId;
-  return val;
-}
+        _$RequestMortgageValuesImpl instance) =>
+    <String, dynamic>{
+      'areaCode': instance.areaCode,
+      if (instance.areaFrom case final value?) 'areaFrom': value,
+      if (instance.areaTo case final value?) 'areaTo': value,
+      if (instance.issueDateEndMonth case final value?)
+        'issueDateEndMonth': value,
+      if (instance.issueDateFrom case final value?) 'issueDateFrom': value,
+      if (instance.issueDateQuarterList case final value?)
+        'issueDateQuarterList': value,
+      if (instance.issueDateStartMonth case final value?)
+        'issueDateStartMonth': value,
+      if (instance.issueDateMonth case final value?) 'issueDateMonth': value,
+      if (instance.issueDateTo case final value?) 'issueDateTo': value,
+      if (instance.issueDateYear case final value?) 'issueDateYear': value,
+      if (instance.halfYearDuration case final value?)
+        'halfYearDuration': value,
+      if (instance.limit case final value?) 'limit': value,
+      if (instance.municipalityId case final value?) 'municipalityId': value,
+      if (instance.offset case final value?) 'offset': value,
+      if (instance.propertyTypeList case final value?)
+        'propertyTypeList': value,
+      if (instance.purposeList case final value?) 'purposeList': value,
+      if (instance.realEstateValueFrom case final value?)
+        'realEstateValueFrom': value,
+      if (instance.realEstateValueTo case final value?)
+        'realEstateValueTo': value,
+      if (instance.zoneId case final value?) 'zoneId': value,
+      'unit': instance.unit,
+      'periodId': instance.periodId,
+    };

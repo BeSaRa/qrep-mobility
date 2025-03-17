@@ -166,8 +166,6 @@ class _GridItemWidgetState extends State<GridItemWidget> {
           return (mortgageGridItemsData.singleWhere(
             (element) => element.kpi == widget.mortgageKPI,
           )).imagePath;
-        default:
-          return '';
       }
     } catch (e) {
       return '';
@@ -201,8 +199,6 @@ class _GridItemWidgetState extends State<GridItemWidget> {
           return (mortgageGridItemsData.singleWhere(
             (element) => element.kpi == widget.mortgageKPI,
           )).title.tr();
-        default:
-          return '';
       }
     } catch (e) {
       return '';
@@ -220,7 +216,6 @@ class _GridItemWidgetState extends State<GridItemWidget> {
       case GridItemType.mortgage:
         // no default values for mortgage
         return 0;
-      default:
     }
     return 0;
   }

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ebla/app/constants.dart';
+
 import 'package:ebla/app/extensions.dart';
 import 'package:ebla/presentations/resources/theme_manager.dart';
 import 'package:ebla/presentations/widgets/shimmer_placeholder.dart';
@@ -187,7 +187,10 @@ class NewsItemWidget extends StatelessWidget {
                             "body": Style(
                                 margin: Margins.all(0),
                                 fontFamily: FontConstants.fontFamily,
-                                color:Theme.of(context).textTheme.bodySmall?.color,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.color,
                                 fontSize: FontSize(AppSizeSp.s14),
                                 textOverflow: TextOverflow.ellipsis,
                                 maxLines: 2,
