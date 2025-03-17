@@ -9,6 +9,7 @@ class ComingSoonView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Center(
           child: Lottie.asset(ImageAssets.comingSoon),

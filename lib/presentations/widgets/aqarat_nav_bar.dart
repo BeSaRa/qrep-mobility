@@ -254,37 +254,43 @@ class _AqaratNavigationBarState extends State<AqaratNavigationBar> {
           ),
         ),
         Positioned(
-          bottom: AppSizeH.s12, // Adjust to move it up
-          child: BlocProvider<ChatHistoryCubit>.value(
-            value: chatHistoryCubit,
-            child: Column(
-              children: [
-                Container(
-                  height: AppSizeH.s60,
-                  width: AppSizeH.s60,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).primaryColor,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 10,
-                        spreadRadius: 3,
-                      )
-                    ],
+          bottom: AppSizeH.s12,
+          child: GestureDetector(
+            onTap: () {
+              widget._controller.animateTo(2);
+              widget.onTap(2);
+            },
+            child: BlocProvider<ChatHistoryCubit>.value(
+              value: chatHistoryCubit,
+              child: Column(
+                children: [
+                  Container(
+                    height: AppSizeH.s60,
+                    width: AppSizeH.s60,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).primaryColor,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 10,
+                          spreadRadius: 3,
+                        )
+                      ],
+                    ),
+                    padding: EdgeInsets.all(AppSizeR.s6),
+                    child: Image(
+                      image: AssetImage(ImageAssets.chatBot),
+                      width: AppSizeW.s54,
+                      height: AppSizeH.s54,
+                    ),
                   ),
-                  padding: EdgeInsets.all(AppSizeR.s6),
-                  child: Image(
-                    image: AssetImage(ImageAssets.chatBot),
-                    width: AppSizeW.s54,
-                    height: AppSizeH.s54,
-                  ),
-                ),
-                Text("عقاري",
-                    style: Theme.of(context)
-                        .bottomNavigationBarTheme
-                        .unselectedLabelStyle)
-              ],
+                  Text("عقاري",
+                      style: Theme.of(context)
+                          .bottomNavigationBarTheme
+                          .unselectedLabelStyle)
+                ],
+              ),
             ),
           ),
         ),

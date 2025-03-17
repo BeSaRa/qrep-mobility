@@ -33,43 +33,17 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   // final PageController _pageController = PageController();
   // final int _indexCubit = 0;
-  late ChatHistoryCubit chatHistoryCubit;
-  late DropdownCubit dropdownCubit;
-  late SendFeedbackBloc sendFeedbackBloc;
 
   @override
   void initState() {
     FirebaseAnalytics.instance.logEvent(name: 'open_home_view');
-    chatHistoryCubit = ChatHistoryCubit();
-    dropdownCubit = DropdownCubit();
-    sendFeedbackBloc = instance<SendFeedbackBloc>();
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     getFromAprilMonths(context);
-
-    // Add default message based on the active chat type
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      // Check if it's the first time or if there are no messages yet
-      if (chatHistoryCubit.state.authorityMessages.isEmpty &&
-          chatHistoryCubit.state.platformMessages.isEmpty) {
-        // Add default message based on active chat
-        chatHistoryCubit.addMessage(MessageRequestModel(
-          role: 'assistant',
-          content: AppStrings().defaultAuthorityBotMessage,
-        ));
-        chatHistoryCubit.state.platformMessages.add(MessageRequestModel(
-          role: 'assistant',
-          content: AppStrings().defaultPlatformBotMessage,
-        ));
-        // chatHistoryCubit.addMessage(MessageRequestModel(
-        //   role: 'assistant',
-        //   content: AppStrings().defaultPlatformBotMessage,
-        // ));
-      }
-    });
     return ListView(
       children: [
         SizedBox(
@@ -124,7 +98,9 @@ class _HomeViewState extends State<HomeView> {
                 HomeIcons(
                   icon: IconAssets.locationIndicator,
                   title: AppStrings().authorityLocation,
-                  onTap: () {},
+                  onTap: () {
+                    context.pushNamed(RoutesNames.authorityMap);
+                  },
                 ),
               ],
             )
@@ -270,7 +246,7 @@ class _HomeViewState extends State<HomeView> {
         //=============================================================
         const InvestorsCardsWidget(),
         SizedBox(
-          height: AppSizeH.s20,
+          height: AppSizeH.s10,
         ),
         //=============================================================
         BlocProvider(

@@ -78,5 +78,16 @@
     <string>AQARAT needs Bluetooth access to connect with external audio devices.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>AQARAT needs library access </string>
+    <key>NSPrivacyAccessedAPITypes</key>
+        <array>
+            <dict>
+                <key>NSPrivacyAccessedAPIType</key>
+                <string>NSUserDefaults</string>
+            </dict>
+            <dict>
+                <key>NSPrivacyAccessedAPIType</key>
+                <string>Pasteboard</string>
+            </dict>
+        </array>
 </dict>
 </plist>

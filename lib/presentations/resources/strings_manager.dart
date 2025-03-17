@@ -271,7 +271,6 @@ class AppStrings {
   String startSearching = "start_searching".tr();
   String seeOnGoogleMap = "see_on_google_map".tr();
 
-
   //------------ drawer --------
   String manageUser = "manage_user".tr();
   String manageAccount = "manage_account".tr();
