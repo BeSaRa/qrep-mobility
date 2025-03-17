@@ -193,13 +193,15 @@ class AppRouter {
                   key: state.pageKey,
                   child: MultiBlocProvider(
                     providers: [
-                      //it's main value come from homepage
+                      //it's main value come from mainScaffold
                       BlocProvider<ChatHistoryCubit>.value(
                         value: (state.extra as RouteExtras).chatHistoryCubit,
                       ),
-                      BlocProvider(
-                        create: (context) => VoiceCubit(),
+                      BlocProvider.value(
+                        value: (state.extra as RouteExtras).voiceCubit,
                       ),
+                        // create: (context) => VoiceCubit(),
+                      // ),
                       BlocProvider<DropdownCubit>.value(
                         value: (state.extra as RouteExtras).dropdownCubit,
                       ),

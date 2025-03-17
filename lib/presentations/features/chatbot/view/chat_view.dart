@@ -15,7 +15,6 @@ import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_
 import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_state.dart';
 import 'package:ebla/presentations/features/chatbot/utility/chatbot_enums.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/ai_avatar_icon_widget.dart';
-import 'package:ebla/presentations/features/chatbot/widgets/appbar_clipper.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/avatar_stream_widget.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/chat_messages_list_widget.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/check_box_widget.dart';
@@ -261,10 +260,10 @@ class _ChatViewState extends State<ChatView> {
                                         height: state.isMiniScreen == false
                                             ? MediaQuery.sizeOf(context)
                                                     .height /
-                                                2.5
+                                                3.5
                                             : MediaQuery.sizeOf(context)
                                                     .height /
-                                                1.3,
+                                                1.6,
                                         child: ChatMessagesListWidget(
                                           scrollController: _scrollController,
                                           isSending: isMessageSending,

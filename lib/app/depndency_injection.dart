@@ -204,40 +204,12 @@ Future<void> initTranslationsModule() async {
   }
 }
 
-Future<void> initHomeModule() async {
-  if (!GetIt.I.isRegistered<AboutUsecase>()) {
-    instance.registerFactory<AboutUsecase>(() => AboutUsecase(instance()));
-  }
-  if (!GetIt.I.isRegistered<NewsUsecase>()) {
-    instance.registerFactory<NewsUsecase>(() => NewsUsecase(instance()));
-  }
-
-  if (!GetIt.I.isRegistered<LawsUsecase>()) {
-    instance.registerFactory<LawsUsecase>(
-        () => LawsUsecase(repository: instance()));
-  }
-
-  if (!GetIt.I.isRegistered<FaqUsecase>()) {
-    instance.registerFactory<FaqUsecase>(() => FaqUsecase(instance()));
-  }
-
-  //Bloc's
-  if (!GetIt.I.isRegistered<AboutBloc>()) {
-    instance.registerFactory(() => AboutBloc(aboutUsecase: instance()));
-  }
-  if (!GetIt.I.isRegistered<NewsBloc>()) {
-    instance.registerFactory(() => NewsBloc(newsUsecase: instance()));
-  }
-
-  if (!GetIt.I.isRegistered<LawsBloc>()) {
-    instance.registerFactory(() => LawsBloc(lawsUsecase: instance()));
-  }
-  if (!GetIt.I.isRegistered<FaqBloc>()) {
-    instance.registerFactory(() => FaqBloc(
-          faqUsecase: instance(),
-        ));
-  }
+Future<void> initChatbotModule() async {
   //--------- chatbot --------------
+
+  if (!GetIt.I.isRegistered<ChatHistoryCubit>()) {
+    instance.registerFactory(() => ChatHistoryCubit());
+  }
   //Usecases
   if (!GetIt.I.isRegistered<ChatbotUsecase>()) {
     instance.registerFactory<ChatbotUsecase>(() => ChatbotUsecase(instance()));
@@ -258,14 +230,7 @@ Future<void> initHomeModule() async {
     instance.registerFactory<CloseStreamUsecase>(
         () => CloseStreamUsecase(instance()));
   }
-  if (!GetIt.I.isRegistered<SendFeedbackUsecase>()) {
-    instance.registerFactory<SendFeedbackUsecase>(
-        () => SendFeedbackUsecase(instance()));
-  }
-  if (!GetIt.I.isRegistered<AiSearchUsecase>()) {
-    instance.registerFactory<AiSearchUsecase>(
-        () => AiSearchUsecase(instance()));
-  }
+
   //------ platform chatbot ------
   if (!GetIt.I.isRegistered<PlatformChatbotUsecases>()) {
     instance.registerFactory<PlatformChatbotUsecases>(
@@ -276,20 +241,8 @@ Future<void> initHomeModule() async {
     instance
         .registerFactory<CloseStreamBloc>(() => CloseStreamBloc(instance()));
   }
-  if (!GetIt.I.isRegistered<SendFeedbackBloc>()) {
-    instance
-        .registerFactory<SendFeedbackBloc>(() => SendFeedbackBloc(instance()));
-  }
-  if (!GetIt.I.isRegistered<AiSearchBloc>()) {
-    instance
-        .registerFactory<AiSearchBloc>(() => AiSearchBloc(instance()));
-  }
   if (!GetIt.I.isRegistered<ChatBotBloc>()) {
     instance.registerFactory(() => ChatBotBloc(instance(), instance()));
-  }
-
-  if (!GetIt.I.isRegistered<ChatHistoryCubit>()) {
-    instance.registerFactory(() => ChatHistoryCubit());
   }
   if (!GetIt.I.isRegistered<WebRTCCubit>()) {
     instance.registerFactory(() => WebRTCCubit());
@@ -303,6 +256,55 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<SendAnswerAndCandidateBloc>()) {
     instance.registerFactory(
         () => SendAnswerAndCandidateBloc(instance(), instance()));
+  }
+}
+
+Future<void> initHomeModule() async {
+  if (!GetIt.I.isRegistered<AboutUsecase>()) {
+    instance.registerFactory<AboutUsecase>(() => AboutUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<NewsUsecase>()) {
+    instance.registerFactory<NewsUsecase>(() => NewsUsecase(instance()));
+  }
+
+  if (!GetIt.I.isRegistered<LawsUsecase>()) {
+    instance.registerFactory<LawsUsecase>(
+        () => LawsUsecase(repository: instance()));
+  }
+
+  if (!GetIt.I.isRegistered<FaqUsecase>()) {
+    instance.registerFactory<FaqUsecase>(() => FaqUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<AiSearchUsecase>()) {
+    instance
+        .registerFactory<AiSearchUsecase>(() => AiSearchUsecase(instance()));
+  }
+  //Bloc's
+  if (!GetIt.I.isRegistered<AboutBloc>()) {
+    instance.registerFactory(() => AboutBloc(aboutUsecase: instance()));
+  }
+  if (!GetIt.I.isRegistered<NewsBloc>()) {
+    instance.registerFactory(() => NewsBloc(newsUsecase: instance()));
+  }
+
+  if (!GetIt.I.isRegistered<LawsBloc>()) {
+    instance.registerFactory(() => LawsBloc(lawsUsecase: instance()));
+  }
+  if (!GetIt.I.isRegistered<FaqBloc>()) {
+    instance.registerFactory(() => FaqBloc(
+          faqUsecase: instance(),
+        ));
+  }
+  if (!GetIt.I.isRegistered<AiSearchBloc>()) {
+    instance.registerFactory<AiSearchBloc>(() => AiSearchBloc(instance()));
+  }
+  if (!GetIt.I.isRegistered<SendFeedbackUsecase>()) {
+    instance.registerFactory<SendFeedbackUsecase>(
+        () => SendFeedbackUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<SendFeedbackBloc>()) {
+    instance
+        .registerFactory<SendFeedbackBloc>(() => SendFeedbackBloc(instance()));
   }
 }
 

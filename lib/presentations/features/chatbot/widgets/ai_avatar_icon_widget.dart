@@ -33,10 +33,8 @@ class AiAvatarIconWidget extends StatefulWidget {
 }
 
 class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
-  
   @override
   Widget build(BuildContext context) {
-    
     return BlocBuilder<DropdownCubit, ChatTypeEnum>(
         bloc: BlocProvider.of<DropdownCubit>(context),
         builder: (context, selectedOption) {
@@ -181,6 +179,12 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                                                                       StreamIdCubit>()
                                                                   .state
                                                                   .streamId!));
+                                                //here i clear the state of startstream to make sure that i don't use the old sdp and data
+                                                  context
+                                                      .read<StartStreamBloc>()
+                                                      .add(
+                                                          const StartStreamEvent
+                                                              .clearState());
                                                 }
                                               } else {
                                                 // If the avatar icon is shown, I perform logic for opening the AI Avatar Here
