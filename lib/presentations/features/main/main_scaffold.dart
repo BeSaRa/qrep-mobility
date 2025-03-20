@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:ebla/presentations/features/chatbot/blocs/record_cubit/voice_cubit.dart';
 import 'package:ebla/presentations/widgets/aqarat_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,6 +35,7 @@ class _MainScaffoldState extends State<MainScaffold>
   late ChatHistoryCubit chatHistoryCubit;
   late DropdownCubit dropdownCubit;
   late SendFeedbackBloc sendFeedbackBloc;
+  final voiceCubit=VoiceCubit();
 
   @override
   void initState() {
@@ -132,6 +134,7 @@ class _MainScaffoldState extends State<MainScaffold>
                   case 1:
                     break;
                   case 2:
+                                      await initChatbotModule();
                     break;
                   case 3:
                     break;
@@ -140,6 +143,7 @@ class _MainScaffoldState extends State<MainScaffold>
                     await initSellModule();
                     await initRentModule();
                     await initHomeModule();
+                    // await initChatbotModule();
                   // initLoginModule();
 
                   default:
@@ -151,12 +155,14 @@ class _MainScaffoldState extends State<MainScaffold>
                   context.goNamed(
                     context.read<BottomNavCubit>().paths[index],
                     extra: RouteExtras(
+                      voiceCubit: voiceCubit,
                         chatHistoryCubit: chatHistoryCubit,
                         dropdownCubit: dropdownCubit,
                         sendFeedbackBloc: sendFeedbackBloc),
                   );
-                } else
+                } else {
                   context.goNamed(context.read<BottomNavCubit>().paths[index]);
+                }
               },
               body: Container(
                 color: Colors.transparent,
