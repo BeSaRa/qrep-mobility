@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
@@ -16,7 +15,6 @@ class StartStreamBloc extends Bloc<StartStreamEvent, StartStreamState> {
   StartStreamBloc(
     this.startStreamUsecase,
 
-
     //  this.chatHistoryCubit
   ) : super(const StartStreamState.initial()) {
     on<StartStreamEvent>((StartStreamEvent event, emit) async {
@@ -31,6 +29,9 @@ class StartStreamBloc extends Bloc<StartStreamEvent, StartStreamState> {
           }, (error) {
             emit(StartStreamState.error(error.message));
           });
+        },
+        clearState: (value) {
+          emit(const StartStreamState.initial());
         },
       );
     });

@@ -47,6 +47,8 @@
 
 //------------the second header of the page---------
 hideElement("div.elementor-element-8133992");
+//hide the map
+hideElement(".elementor-element-ebf243a");
 
 //------------hide the View in Map button above the showing map---------
 // hideElement("");
