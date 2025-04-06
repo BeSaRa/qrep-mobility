@@ -116,6 +116,9 @@ class WebRTCCubit extends Cubit<WebRTCState> {
 
 //------------------- End Actions in video ------------------
   Future<void> closeStreamCubit() async {
+    // final emptyCandidate = state.candidates;
+    // emptyCandidate.clear();
+    // emit(state.copyWith(candidates: emptyCandidate, answer: null));
     // emit(WebRTCState(
     //   peerConnections: {},
     //   remoteRenderer: RTCVideoRenderer(),
@@ -160,6 +163,7 @@ class WebRTCCubit extends Cubit<WebRTCState> {
     // state.localRenderer = RTCVideoRenderer();
     await state.remoteRenderer.dispose();
     state.remoteRenderer = RTCVideoRenderer();
+
     //     // Reset Audio Mode to Normal
     // final AudioManager audioManager = AudioManager();
     // audioManager.mode = Mode.normal;
@@ -170,7 +174,7 @@ class WebRTCCubit extends Cubit<WebRTCState> {
     await resetAudioMode();
 //=============================================================
 
-    log("zak closed fro webRtc CUbit");
+    log("closed from webRtc Cubit");
   }
 
   static const platform = MethodChannel('com.eblacorp.qrep/audio');
@@ -180,7 +184,6 @@ class WebRTCCubit extends Cubit<WebRTCState> {
     try {
       await platform.invokeMethod('resetAudioMode');
     } on PlatformException catch (e) {
-     
       log("Failed to reset audio mode: '${e.message}'.");
     } on MissingPluginException catch (e) {
       log("Error: MissingPluginException. $e");
@@ -196,6 +199,8 @@ class WebRTCCubit extends Cubit<WebRTCState> {
   Future<void> initWebRTC(
       OfferModel? offer, List<ICEServerModel> iceServers) async {
     try {
+      emit(state.copyWith(isConnectionReady: false));
+
       // Ensure initialization runs on UI thread
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         // await state.localRenderer.initialize();
@@ -266,13 +271,26 @@ class WebRTCCubit extends Cubit<WebRTCState> {
       await peerConnection.setRemoteDescription(
         RTCSessionDescription(offer.sdp, offer.type),
       );
+//NOTE: I did this completer to make sure that the candidates initilize succesfully
+      // peerConnection.onIceCandidate = (RTCIceCandidate candidate) async {
+      //   emit(state.copyWith(
+      //     candidates: List.from(state.candidates)..add(candidate),
+      //   ));
+      // };
+      final completer = Completer<void>();
+      int candidateCount = 0;
 
       peerConnection.onIceCandidate = (RTCIceCandidate candidate) async {
         emit(state.copyWith(
           candidates: List.from(state.candidates)..add(candidate),
         ));
-      };
 
+        candidateCount++;
+        // Consider connection ready after receiving at least X candidates
+        if (candidateCount >= 2 && !completer.isCompleted) {
+          completer.complete();
+        }
+      };
       //============================== Answer ===========================
 
       RTCSessionDescription finalAnswer = await peerConnection.createAnswer({
@@ -291,10 +309,14 @@ class WebRTCCubit extends Cubit<WebRTCState> {
           Map<String, RTCPeerConnection>.from(state.peerConnections);
       newPeerConnections[offer.sdp.hashCode.toString()] = peerConnection;
       log("newPeerConnections State: ${newPeerConnections.entries}");
+      // After creating answer
+      await completer.future;
+      emit(state.copyWith(isConnectionReady: true));
       emit(state.copyWith(peerConnections: newPeerConnections));
     } catch (e) {
       log("WebRTC Error: $e");
-      emit(state.copyWith(errorMessage: e.toString()));
+      emit(
+          state.copyWith(errorMessage: e.toString(), isConnectionReady: false));
     }
   }
 }

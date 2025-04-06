@@ -20,7 +20,10 @@ class AvatarStreamWidget extends StatelessWidget {
           return SizedBox(
             width: MediaQuery.sizeOf(context).width,
             height: MediaQuery.sizeOf(context).width,
-            child: const Center(child: CircularProgressIndicator()),
+            child: const Center(
+                child:
+                     CircularProgressIndicator()
+                    ),
           );
         }, error: (value) {
           return SizedBox(
