@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:developer';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/send_candidate_usecase.dart';
@@ -66,53 +65,56 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                               widget.onWebRTCCubitCreated(webRTCCubit);
                             }
                             //-------- to make sure that the candidates have came before I send the candidateto back-end ------
-                            int attempts = 0;
-                            while (webRTCCubit.state.candidates.isEmpty &&
-                                attempts < 50) {
-                              log("⏳ Waiting for ICE candidate...");
-                              await Future.delayed(
-                                  const Duration(milliseconds: 200));
-                              attempts++;
-                            }
+                            // int attempts = 0;
+                            // while (webRTCCubit.state.candidates.isEmpty &&
+                            //     attempts < 50) {
+                            //   log("⏳ Waiting for ICE candidate...");
+                            //   await Future.delayed(
+                            //       const Duration(milliseconds: 200));
+                            //   attempts++;
+                            // }
                             //4- make the requests body of SENDANSWER & SENDCANDIDATE
-                            final MainSendAnswerRequestModelById
-                                sendAnswerRequest =
-                                MainSendAnswerRequestModelById(
-                                    request: MainSendAnswerRequestModel(
-                                        answer: SendAnswerRequestModel(
-                                            sdp:
-                                                webRTCCubit.state.answer?.sdp ??
-                                                    "",
-                                            type: webRTCCubit
-                                                    .state.answer?.type ??
-                                                "")),
-                                    id: value.startStreamResponse.data!.id);
-                            if (mounted) {
-                              sendAnswerAndCandidateBloc.add(
-                                  SendAnswerAndCandidateEvent.sendAnswer(
-                                      sendAnswerRequest));
-                            }
-                            //------------------ candidate --------------------
-                            for (var candidate
-                                in webRTCCubit.state.candidates) {
-                              final sendCandidateRequest =
-                                  MainSendCandidateRequestModelById(
-                                request: MainSendCandidateRequestModel(
-                                  candidate: SendCandidateRequestModel(
-                                    candidate: candidate.candidate ?? "",
-                                    sdpMid: candidate.sdpMid ?? "",
-                                    sdpMLineIndex: candidate.sdpMLineIndex ?? 0,
-                                  ),
-                                ),
-                                id: value.startStreamResponse.data!.id,
-                              );
-
-                              log('Sending ICE candidate: ${candidate.candidate}');
+                            if (webRTCCubit.state.isConnectionReady) {
+                              final MainSendAnswerRequestModelById
+                                  sendAnswerRequest =
+                                  MainSendAnswerRequestModelById(
+                                      request: MainSendAnswerRequestModel(
+                                          answer: SendAnswerRequestModel(
+                                              sdp: webRTCCubit
+                                                      .state.answer?.sdp ??
+                                                  "",
+                                              type: webRTCCubit
+                                                      .state.answer?.type ??
+                                                  "")),
+                                      id: value.startStreamResponse.data!.id);
                               if (mounted) {
                                 sendAnswerAndCandidateBloc.add(
-                                  SendAnswerAndCandidateEvent.sendCandidate(
-                                      sendCandidateRequest),
+                                    SendAnswerAndCandidateEvent.sendAnswer(
+                                        sendAnswerRequest));
+                              }
+                              //------------------ candidate --------------------
+                              for (var candidate
+                                  in webRTCCubit.state.candidates) {
+                                final sendCandidateRequest =
+                                    MainSendCandidateRequestModelById(
+                                  request: MainSendCandidateRequestModel(
+                                    candidate: SendCandidateRequestModel(
+                                      candidate: candidate.candidate ?? "",
+                                      sdpMid: candidate.sdpMid ?? "",
+                                      sdpMLineIndex:
+                                          candidate.sdpMLineIndex ?? 0,
+                                    ),
+                                  ),
+                                  id: value.startStreamResponse.data!.id,
                                 );
+
+                                log('Sending ICE candidate: ${candidate.candidate}');
+                                if (mounted) {
+                                  sendAnswerAndCandidateBloc.add(
+                                    SendAnswerAndCandidateEvent.sendCandidate(
+                                        sendCandidateRequest),
+                                  );
+                                }
                               }
                             }
                             if (mounted) {
@@ -179,7 +181,7 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                                                                       StreamIdCubit>()
                                                                   .state
                                                                   .streamId!));
-                                                //here i clear the state of startstream to make sure that i don't use the old sdp and data
+                                                  //here i clear the state of startstream to make sure that i don't use the old sdp and data
                                                   context
                                                       .read<StartStreamBloc>()
                                                       .add(
