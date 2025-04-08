@@ -30,35 +30,34 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       builder: (context, state) {
         return Stack(
           children: [
-        
-            RepaintBoundary(
-              key: _videoKey,
-              child: state.isPlaying || state.lastFrame == null
-                  ?
-                
-                  // Video container with fade transition
-                  AnimatedOpacity(
-                      duration: const Duration(milliseconds: 300),
-                      opacity: state.isMiniScreen ? 0 : 1, // Fade effect
-                      child: RTCVideoView(
-                        state.remoteRenderer,
-                        objectFit:
-                            RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
-                        mirror: true,
+            if (state.isConnectionReady)
+              RepaintBoundary(
+                key: _videoKey,
+                child: state.isPlaying || state.lastFrame == null
+                    ?
+                    // Video container with fade transition
+                    AnimatedOpacity(
+                        duration: const Duration(milliseconds: 300),
+                        opacity: state.isMiniScreen ? 0 : 1, // Fade effect
+                        child: RTCVideoView(
+                          state.remoteRenderer,
+                          objectFit:
+                              RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
+                          mirror: true,
+                        ),
+                      )
+                    : Image.memory(
+                        Uint8List.fromList(state.lastFrame!),
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Text("Failed to load frame");
+                        },
                       ),
-                    )
-                  : Image.memory(
-                      Uint8List.fromList(
-                          state.lastFrame!), 
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: double.infinity,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Text("Failed to load frame");
-                      },
-                    ),
-            ),
-
+              )
+            else
+              const Center(child: CircularProgressIndicator()),
             if (state.errorMessage != null)
               Text(
                 "Error: ${state.errorMessage}",

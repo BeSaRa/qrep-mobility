@@ -1319,7 +1319,7 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
-
+//// NOTE: The Public token is for azure and All AI endpoints
 //---------------- chatbot ------------------
 //   @override
 // Future<Result<ChatbotResponseModel, FailureModel>> sendMessageToChatbot(
@@ -1372,6 +1372,7 @@ class RepositoryImplementer extends Repository {
           CONTENT_TYPE: APPLICATION_JSON,
           ACCEPT: APPLICATION_JSON,
           DEFAULT_LANGUAGE: language,
+          AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
           //NOTE: We must add this key to make the chat work
           "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
         };
@@ -1495,6 +1496,7 @@ class RepositoryImplementer extends Repository {
           CONTENT_TYPE: APPLICATION_JSON,
           ACCEPT: APPLICATION_JSON,
           DEFAULT_LANGUAGE: language,
+          AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
           //NOTE: We must add this key to make the chat work
           "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
         };
@@ -1591,6 +1593,7 @@ class RepositoryImplementer extends Repository {
           CONTENT_TYPE: APPLICATION_JSON,
           ACCEPT: APPLICATION_JSON,
           DEFAULT_LANGUAGE: language,
+          AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
           //NOTE: We must add this key to make the chat work
           "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
         };
@@ -1691,6 +1694,7 @@ class RepositoryImplementer extends Repository {
           CONTENT_TYPE: APPLICATION_JSON,
           ACCEPT: APPLICATION_JSON,
           DEFAULT_LANGUAGE: language,
+          AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
           //NOTE: We must add this key to make the chat work
           "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
         };
@@ -1791,6 +1795,7 @@ class RepositoryImplementer extends Repository {
           CONTENT_TYPE: APPLICATION_JSON,
           ACCEPT: APPLICATION_JSON,
           DEFAULT_LANGUAGE: language,
+          AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
           //NOTE: We must add this key to make the chat work
           "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
         };
@@ -1892,6 +1897,7 @@ class RepositoryImplementer extends Repository {
           CONTENT_TYPE: APPLICATION_JSON,
           ACCEPT: APPLICATION_JSON,
           DEFAULT_LANGUAGE: language,
+          AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
           //NOTE: We must add this key to make the chat work
           "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
         };

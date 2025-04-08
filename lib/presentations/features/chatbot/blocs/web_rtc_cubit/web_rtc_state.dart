@@ -17,6 +17,7 @@ class WebRTCState {
   final GlobalKey? videoKey;
     final bool isMuted;
     final Offset miniScreenPosition;
+     final bool isConnectionReady; 
 
   WebRTCState({
     // required this.localRenderer,
@@ -32,7 +33,8 @@ class WebRTCState {
     this.lastFrame,
     this.videoKey,
     required this.isMuted,
-    this.miniScreenPosition = Offset.zero
+    this.miniScreenPosition = Offset.zero,
+    this.isConnectionReady = false,
 
   });
 
@@ -50,7 +52,8 @@ class WebRTCState {
     Uint8List? lastFrame,
    GlobalKey? videoKey,
        bool? isMuted,
-       Offset? miniScreenPosition
+       Offset? miniScreenPosition,
+         bool? isConnectionReady,
   }) {
     return WebRTCState(
       // localRenderer: localRenderer ?? this.localRenderer,
@@ -68,6 +71,7 @@ class WebRTCState {
         videoKey: videoKey ?? this.videoKey,
          isMuted: isMuted ?? this.isMuted,
           miniScreenPosition: miniScreenPosition ?? this.miniScreenPosition,
+          isConnectionReady: isConnectionReady ?? this.isConnectionReady,
     );
   }
 }
