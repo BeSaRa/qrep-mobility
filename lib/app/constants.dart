@@ -17,6 +17,7 @@ class Constant {
   // static const String aqaratBaseUrl = 'https://ministry-municipality.v2202305135856227727.ultrasrv.de';
   //
   static const String baseUrl = 'Https://qrepbe.aqarat.gov.qa/mme-services';
+  static const String platformStgBaseUrl = 'https://stgqrepbe.aqarat.gov.qa/mme-services';
   // static const String webUrl = 'http://qrep1-eblacorp.edge.eu.ztna.trendmicro.com/';
   static const String webUrl = 'Https://qrepbe.aqarat.gov.qa/';
   static const String cmsBaseUrl = 'https://qrepcms.aqarat.gov.qa';

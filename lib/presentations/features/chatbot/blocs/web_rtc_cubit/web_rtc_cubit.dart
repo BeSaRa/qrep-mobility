@@ -170,7 +170,7 @@ class WebRTCCubit extends Cubit<WebRTCState> {
     // audioManager.abandonAudioFocus();
 
     // Emit the new state to indicate the call has ended
-//========================== Zak ===================================
+//=============================================================
     await resetAudioMode();
 //=============================================================
 

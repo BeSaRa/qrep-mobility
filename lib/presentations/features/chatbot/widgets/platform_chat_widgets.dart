@@ -82,29 +82,59 @@ class InvalidQuestionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       spacing: AppSizeH.s5,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      // crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          // padding: EdgeInsets.all(AppSizeW.s3),
-          decoration: BoxDecoration(
-              border: Border.all(color: ColorManager.red, width: 1),
-              borderRadius: BorderRadius.circular(AppSizeR.s100)),
-          child: Icon(
-            Icons.error_outline_outlined,
-            color: ColorManager.red,
-          ),
-        ),
+        // Container(
+        //   // padding: EdgeInsets.all(AppSizeW.s3),
+        //   decoration: BoxDecoration(
+        //       border: Border.all(color: ColorManager.red, width: 1),
+        //       borderRadius: BorderRadius.circular(AppSizeR.s100)),
+        //   child: Icon(
+        //     Icons.error_outline_outlined,
+        //     color: ColorManager.red,
+        //   ),
+        // ),
         Flexible(
           child: Text(
             AppStrings().chatOtherResponseMessage,
-            textAlign: TextAlign.center,
+            // textAlign: TextAlign.center,
             style: TextStyle(
-                color: ColorManager.red,
-                fontSize: AppSizeSp.s14,
-                fontWeight: FontWeight.w700),
+              color: ColorManager.red,
+              fontSize: AppSizeSp.s14,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            // Text(
+            //   '${AppStrings().note}: ',
+            //   // textAlign: TextAlign.center,
+            //   style: TextStyle(
+            //       color: ColorManager.red,
+            //       fontSize: AppSizeSp.s14,
+            //       fontWeight: FontWeight.w700),
+            // ),
+            Flexible(
+              child: Text(
+                '${AppStrings().note}: ${AppStrings().chatOtherResponseMessageNote}',
+                // textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: ColorManager.red,
+                    fontSize: AppSizeSp.s14,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+          ],
+        ),
+        // Column(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   children: [
+
+        //   ],
+        // ),
       ],
     );
   }
@@ -132,6 +162,10 @@ class PlatformTableResponse extends StatefulWidget {
 class _PlatformTableResponseState extends State<PlatformTableResponse> {
   final ScrollController _horizontalController = ScrollController();
   final ValueNotifier<bool> isPDFDownloding = ValueNotifier(false);
+  bool _isLargeDataset(PlatformChatbotResponseModel response) {
+    //more than 50 rows
+    return response.response.length > 50;
+  }
 
   @override
   void dispose() {
@@ -143,6 +177,7 @@ class _PlatformTableResponseState extends State<PlatformTableResponse> {
   @override
   Widget build(BuildContext context) {
     final List<String> headers = widget.response.response.first.keys.toList();
+    final isLargeData = _isLargeDataset(widget.response);
     return Column(
       children: [
         Row(
@@ -154,22 +189,35 @@ class _PlatformTableResponseState extends State<PlatformTableResponse> {
                   valueListenable: isPDFDownloding,
                   builder: (context, downloading, child) {
                     return downloading
-                        ? const CircularProgressIndicator()
+                        ? SizedBox(
+                            width: AppSizeW.s20,
+                            height: AppSizeH.s20,
+                            child: const CircularProgressIndicator())
                         : GestureDetector(
                             onTap: () async {
                               isPDFDownloding.value = true;
 
                               try {
-                                String filePath = await PdfDownloadService(
-                                  pdfTitle: widget.pdfTitle,
-                                  response: widget.response,
-                                ).downloadPDF();
-                                if (mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content:
-                                            Text('PDF saved to $filePath')),
-                                  );
+                                if (isLargeData) {
+                                  // For large data - generate and open Excel
+                                  await PdfDownloadService(
+                                    pdfTitle: widget.pdfTitle,
+                                    response: widget.response,
+                                  ).generateAndOpenExcel(context: context);
+                                } else {
+                                  String filePath = await PdfDownloadService(
+                                    pdfTitle: widget.pdfTitle,
+                                    response: widget.response,
+                                  ).downloadPDF();
+                                  if (mounted) {
+                                    successToast(
+                                        'PDF saved to $filePath', context);
+                                    // ScaffoldMessenger.of(context).showSnackBar(
+                                    //   SnackBar(
+                                    //       content:
+                                    //           Text('PDF saved to $filePath')),
+                                    // );
+                                  }
                                 }
                               } catch (e) {
                                 if (mounted) {
@@ -180,7 +228,11 @@ class _PlatformTableResponseState extends State<PlatformTableResponse> {
                                 isPDFDownloding.value = false;
                               }
                             },
-                            child: Icon(Icons.download, size: AppSizeW.s30));
+                            child: Icon(
+                                isLargeData
+                                    ? Icons.picture_as_pdf
+                                    : Icons.download,
+                                size: AppSizeW.s30));
                   }),
             ),
             Expanded(
@@ -355,15 +407,17 @@ class _PlatformChartResponseState extends State<PlatformChartResponse> {
                                   pdfTitle: widget.pdfTitle,
                                   response: widget.responseData,
                                 ).downloadPDF();
-                                if (mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content:
-                                            Text('PDF saved to $filePath')),
-                                  );
+                                if (context.mounted) {
+                                  successToast(
+                                      'PDF saved to $filePath', context);
+                                  // ScaffoldMessenger.of(context).showSnackBar(
+                                  //   SnackBar(
+                                  //       content:
+                                  //           Text('PDF saved to $filePath')),
+                                  // );
                                 }
                               } catch (e) {
-                                if (mounted) {
+                                if (context.mounted) {
                                   errorToast(
                                       AppStrings().defaultError, context);
                                 }

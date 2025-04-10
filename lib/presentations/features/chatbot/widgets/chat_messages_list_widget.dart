@@ -36,79 +36,96 @@ class ChatMessagesListWidget extends StatelessWidget {
               ? chatState.authorityMessages
               : chatState.platformMessages;
           //-----------------------------------------
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppSizeW.s10),
-            child: ListView.builder(
-              controller: scrollController,
-              // itemCount: messageHistory.messages.length + (isSending ? 1 : 0),
-              itemCount: messages.length + (isSending ? 1 : 0),
-              itemBuilder: (context, index) {
-                //-----------------Loading container-------------
-                // if (isSending && index == messageHistory.messages.length) {
-                if (isSending && index == messages.length) {
-                  return const ShownLoadingIndecetorWidget();
-                } else {
-                  //-----------------main message-------------
-                  final message = messages[index];
-                  final isHadBeenRated =
-                      context.read<SendFeedbackBloc>().state.maybeMap(
-                            done: (state) => state.isRated,
-                            orElse: () => false,
-                          );
-                  // final message = messageHistory.messages[index];
-                  return Column(
-                    crossAxisAlignment: message.role == 'user'
-                        ? CrossAxisAlignment.end
-                        : CrossAxisAlignment.start,
-                    children: [
-                      ShownMessageWidget(
-                          currentMessageIndex: index,
-                          isAvatarShow: isAvatarPressed,
-                          message: message),
-                      if (message.role != "user" &&
-                          index == messages.length - 1 &&
-                          !isSending &&
-                          chatState.activeChat == ChatTypeEnum.authority &&
-                          //here i will not show the feedback if there is just the welcome message in the lest
-                          chatState.authorityMessages.length != 1 &&
-                          //here i will not show the feedback if it had beed rated before
-                          !isHadBeenRated)
-                        _RateConversationWidget(
-                          isVisible:
-                              true, // Show animation when condition is met
-                          onLike: () {
-                            final convId = message.authorityConvId ?? "";
-                            if (convId != "") {
-                              context.read<SendFeedbackBloc>().add(
-                                    SendFeedbackEvent.sendFeedBack(
-                                      MainSendFeedbackRequestModel(
-                                        convId: convId,
-                                        feedback: 1,
-                                      ),
-                                    ),
-                                  );
-                            }
-                          },
-                          onDislike: () {
-                            final convId = message.authorityConvId ?? "";
-                            if (convId != "") {
-                              context.read<SendFeedbackBloc>().add(
-                                    SendFeedbackEvent.sendFeedBack(
-                                      MainSendFeedbackRequestModel(
-                                        convId: convId,
-                                        feedback: 0,
-                                      ),
-                                    ),
-                                  );
-                            }
-                          },
-                        ),
-                    ],
-                  );
-                }
+          bool isHadBeenRated = false;
+          return BlocConsumer<SendFeedbackBloc, SendFeedbackState>(
+              listener: (context, feedBackState) {
+            isHadBeenRated = feedBackState.maybeMap(
+              done: (state) {
+                successToast(
+                    AppStrings().evaluationCompletedSuccessfully, context);
+                return state.isRated;
               },
-            ),
-          );
+              error: (value) {
+                errorToast(value.message, context);
+                return false;
+              },
+              orElse: () => false,
+            );
+          }, builder: (context, feedBackState) {
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppSizeW.s10),
+              child: ListView.builder(
+                controller: scrollController,
+                // itemCount: messageHistory.messages.length + (isSending ? 1 : 0),
+                itemCount: messages.length + (isSending ? 1 : 0),
+                itemBuilder: (context, index) {
+                  //-----------------Loading container-------------
+                  // if (isSending && index == messageHistory.messages.length) {
+                  if (isSending && index == messages.length) {
+                    return const ShownLoadingIndecetorWidget();
+                  } else {
+                    //-----------------main message-------------
+                    final message = messages[index];
+                    // isHadBeenRated =
+                    //   context.read<SendFeedbackBloc>().state.maybeMap(
+                    //         done: (state) => state.isRated,
+                    //         orElse: () => false,
+                    //       );
+                    // final message = messageHistory.messages[index];
+                    return Column(
+                      crossAxisAlignment: message.role == 'user'
+                          ? CrossAxisAlignment.end
+                          : CrossAxisAlignment.start,
+                      children: [
+                        ShownMessageWidget(
+                            currentMessageIndex: index,
+                            isAvatarShow: isAvatarPressed,
+                            message: message),
+                        if (message.role != "user" &&
+                            index == messages.length - 1 &&
+                            !isSending &&
+                            chatState.activeChat == ChatTypeEnum.authority &&
+                            //here i will not show the feedback if there is just the welcome message in the lest
+                            chatState.authorityMessages.length != 1 &&
+                            //here i will not show the feedback if it had beed rated before
+                            !isHadBeenRated)
+                          _RateConversationWidget(
+                            isVisible:
+                                true, // Show animation when condition is met
+                            onLike: () {
+                              final convId = message.authorityConvId ?? "";
+                              if (convId != "") {
+                                context.read<SendFeedbackBloc>().add(
+                                      SendFeedbackEvent.sendFeedBack(
+                                        MainSendFeedbackRequestModel(
+                                          convId: convId,
+                                          feedback: 1,
+                                        ),
+                                      ),
+                                    );
+                              }
+                            },
+                            onDislike: () {
+                              final convId = message.authorityConvId ?? "";
+                              if (convId != "") {
+                                context.read<SendFeedbackBloc>().add(
+                                      SendFeedbackEvent.sendFeedBack(
+                                        MainSendFeedbackRequestModel(
+                                          convId: convId,
+                                          feedback: 0,
+                                        ),
+                                      ),
+                                    );
+                              }
+                            },
+                          ),
+                      ],
+                    );
+                  }
+                },
+              ),
+            );
+          });
         },
       ),
     );

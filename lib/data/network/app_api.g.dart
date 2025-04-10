@@ -1495,7 +1495,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'https://ebla-ai-demo-002.azurewebsites.net/api/v1/chat-history/add-conversation-feedback',
+              'https://afnqcpcbai01.azurewebsites.net/api/v1/chat-history/add-conversation-feedback',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1552,7 +1552,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/openai/chat/completion',
+              'https://stgqrepbe.aqarat.gov.qa/mme-services/openai/chat/completion',
               queryParameters: queryParameters,
               data: _data,
             )
