@@ -48,11 +48,13 @@ class _ChatViewState extends State<ChatView> {
   final ValueNotifier<bool> isSendEnabled = ValueNotifier<bool>(false);
   final ValueNotifier<bool> isAvatarExpanded = ValueNotifier(false);
   bool isMessageSending = false;
-  final ScrollController _scrollController = ScrollController();
+  final ScrollController scrollController = ScrollController();
 /*================ timer for close stream after 2 minutes of no action ================*/
   Timer? inactivityTimer;
   final Duration inactivityDuration = const Duration(minutes: 1, seconds: 55);
   WebRTCCubit? webRTCCubit;
+  final ValueNotifier<bool> showScrollDownButton = ValueNotifier(false);
+
   // Offset miniScreenPosition = Offset(AppSizeW.s250, AppSizeH.s50);
   @override
   void initState() {
@@ -69,9 +71,9 @@ class _ChatViewState extends State<ChatView> {
       Future.microtask(() {
         if (mounted) {
           context.read<VoiceCubit>().initializeSpeech();
-          if (_scrollController.hasClients) {
-            _scrollController.animateTo(
-              _scrollController.position.maxScrollExtent,
+          if (scrollController.hasClients) {
+            scrollController.animateTo(
+              scrollController.position.maxScrollExtent,
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeOut,
             );
@@ -79,16 +81,28 @@ class _ChatViewState extends State<ChatView> {
         }
       });
     });
+    scrollController.addListener(() {
+      final maxScroll = scrollController.position.maxScrollExtent;
+      final currentScroll = scrollController.offset;
+      final isAtBottom = currentScroll >= maxScroll - AppSizeH.s10;
+
+      // Only update if state actually changes
+      if (showScrollDownButton.value != !isAtBottom) {
+        showScrollDownButton.value = !isAtBottom;
+      }
+    });
   }
 
   @override
   void dispose() {
     //when user pressed the back button to homepage
     closeStreamAfterTimerOrBack();
+
+    showScrollDownButton.dispose();
     _controller.dispose();
     isSendEnabled.dispose();
     isAvatarExpanded.dispose();
-    _scrollController.dispose();
+    scrollController.dispose();
     inactivityTimer?.cancel();
     streamIdCubit.close();
     if (webRTCCubit != null) {
@@ -247,10 +261,78 @@ class _ChatViewState extends State<ChatView> {
                             children: <Widget>[
                               if (!isAvatarPressed)
                                 Flexible(
-                                    child: ChatMessagesListWidget(
-                                  scrollController: _scrollController,
-                                  isSending: isMessageSending,
-                                  isAvatarPressed: isAvatarPressed,
+                                    child: Stack(
+                                  children: [
+                                    ChatMessagesListWidget(
+                                      scrollController: scrollController,
+                                      isSending: isMessageSending,
+                                      isAvatarPressed: isAvatarPressed,
+                                    ),
+                                    Positioned(
+                                      bottom: AppSizeH.s0,
+                                      right: AppSizeW.s15,
+                                      child: ValueListenableBuilder<bool>(
+                                        valueListenable: showScrollDownButton,
+                                        builder: (context, visible, _) {
+                                          return AnimatedSwitcher(
+                                            duration: const Duration(
+                                                milliseconds: 300),
+                                            transitionBuilder:
+                                                (child, animation) {
+                                              return FadeTransition(
+                                                  opacity: animation,
+                                                  child: child);
+                                            },
+                                            child: visible
+                                                ? GestureDetector(
+                                                    key: const ValueKey(
+                                                        'visible'),
+                                                    onTap: () {
+                                                      if (scrollController
+                                                          .hasClients) {
+                                                        // setState(() {
+                                                        scrollController
+                                                            .animateTo(
+                                                          scrollController
+                                                                  .position
+                                                                  .maxScrollExtent +
+                                                              AppSizeH.s30,
+                                                          duration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      300),
+                                                          curve: Curves.easeOut,
+                                                        );
+                                                        // });
+                                                      }
+                                                    },
+                                                    child: Container(
+                                                      padding: EdgeInsets.all(
+                                                          AppSizeW.s5),
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    AppSizeR
+                                                                        .s100),
+                                                        color: ColorManager
+                                                            .greyCloud,
+                                                      ),
+                                                      child: Icon(
+                                                        Icons
+                                                            .arrow_downward_outlined,
+                                                        color:
+                                                            ColorManager.white,
+                                                      ),
+                                                    ),
+                                                  )
+                                                : const SizedBox.shrink(
+                                                    key: ValueKey('hidden')),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ],
                                 )),
                               if (isAvatarPressed)
                                 BlocBuilder<WebRTCCubit, WebRTCState>(
@@ -265,7 +347,7 @@ class _ChatViewState extends State<ChatView> {
                                                     .height /
                                                 1.6,
                                         child: ChatMessagesListWidget(
-                                          scrollController: _scrollController,
+                                          scrollController: scrollController,
                                           isSending: isMessageSending,
                                           isAvatarPressed: isAvatarPressed,
                                         ),
@@ -435,7 +517,7 @@ class _ChatViewState extends State<ChatView> {
                                                   startOrResetAvatarTimer,
                                               isAvatarShown: isAvatarPressed,
                                               scrollController:
-                                                  _scrollController,
+                                                  scrollController,
                                               enabled: enabled,
                                               controller: _controller,
                                             );
@@ -644,7 +726,7 @@ class _ChatViewState extends State<ChatView> {
                                     webRTCCubit == null;
                                   }
                                 },
-                                scrollController: _scrollController,
+                                scrollController: scrollController,
                                 text: AppStrings().moreTitle,
                                 value: ChatTypeEnum.qatarRealEstatePlatform,
                                 isChecked: selectedOption ==
@@ -652,7 +734,7 @@ class _ChatViewState extends State<ChatView> {
                               ),
                               CheckBoxWidget(
                                 onPlatformTapAndAvatarIsOpen: null,
-                                scrollController: _scrollController,
+                                scrollController: scrollController,
                                 text:
                                     AppStrings().realEstateRegulatoryAuthority,
                                 value: ChatTypeEnum.authority,

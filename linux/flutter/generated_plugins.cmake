@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   biometric_storage
   flutter_webrtc
+  open_file_linux
   url_launcher_linux
 )
 

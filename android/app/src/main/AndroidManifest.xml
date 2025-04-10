@@ -48,7 +48,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="عقارات"
         android:usesCleartextTraffic="true"
-        android:requestLegacyExternalStorage="true"
+        android:requestLegacyExternalStorage="true"        
         >
  <!-- <service
             android:name="com.csdcorp.speech_to_text.SpeechToTextService" 

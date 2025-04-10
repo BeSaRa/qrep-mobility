@@ -255,12 +255,14 @@ class AppStrings {
   String note = "note".tr();
   String articleNumber = "article_number".tr();
   String chatOtherResponseMessage = "chat_other_response_message".tr();
+  String chatOtherResponseMessageNote = "chat_other_response_message_note".tr();
   String avgNote = "avg_note".tr();
   String largeDigitsNumbersNote = "large_digits_numbers_note".tr();
   String rateTheCOnversation = "rate_the_conversation".tr();
   String dislike = "dislike".tr();
   String like = "like".tr();
   String aiNote = "ai_note".tr();
+  String evaluationCompletedSuccessfully = "Evaluation_completed_successfully".tr();
   //--------------ai_search---------------
   String aiSearch = "ai_search".tr();
   String searchHere = "search_here".tr();
