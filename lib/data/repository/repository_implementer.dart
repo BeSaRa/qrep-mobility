@@ -1364,7 +1364,6 @@ class RepositoryImplementer extends Repository {
         // 🔹 backend API URL
         const String apiUrl =
             '${Constant.authorityChatBotBaseUrl}/api/v1/chatbot/chat/website';
-
         // 🔹 get stored language
         String language = await appPreferences.getAppLanguage();
 

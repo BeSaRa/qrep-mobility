@@ -229,13 +229,12 @@ abstract class AppServiceClient {
   Future<HttpResponse<SendAnswerResponseModel>> sendCandidate(
       @Path("id") String id, @Body() MainSendCandidateRequestModel body);
   @POST(
-      'https://afnqcpcbai01.azurewebsites.net/api/v1/chat-history/add-conversation-feedback')
+      '${Constant.authorityChatBotBaseUrl}/api/v1/chat-history/add-conversation-feedback')
   Future<HttpResponse<SendAnswerResponseModel>> sendFeedback(
       @Query("conv_id") String convId, @Query("feedback") int feedback);
 
   /// ******* close stream *******
   @DELETE("${Constant.authorityChatBotBaseUrl}/api/v1/avatar/close-stream/{id}")
-
   Future<HttpResponse<SendAnswerResponseModel>> closeStream(
       @Path("id") String id);
 
@@ -246,10 +245,9 @@ abstract class AppServiceClient {
       sendMessageToPlatformChatbot(@Body() PlatformChatbotRequestModel request);
 
   /// ****************** AI search ************************
-  @POST("https://afnqcpcbai01.azurewebsites.net/api/v1/search/search/website")
-
-  Future<HttpResponse<AiSearchResponseModel>>
-      aiSearchFun(@Body() AiSearchRequestModel request);
+  @POST("${Constant.authorityChatBotBaseUrl}/api/v1/search/search/website")
+  Future<HttpResponse<AiSearchResponseModel>> aiSearchFun(
+      @Body() AiSearchRequestModel request);
 }
 
 //---------------------------------DirectUs-----------------------------------------
