@@ -66,7 +66,10 @@ class _HomeViewState extends State<HomeView> {
                 HomeIcons(
                   icon: IconAssets.calendar,
                   title: AppStrings().calendar,
-                  onTap: () {},
+                  onTap: () {
+                    context.pushNamed(RoutesNames.aboutTheAuthority,
+                        pathParameters: {"pageName": "realEstateCalendar"});
+                  },
                 ),
               ],
             ),
@@ -83,7 +86,10 @@ class _HomeViewState extends State<HomeView> {
                 HomeIcons(
                   icon: IconAssets.video,
                   title: AppStrings().video,
-                  onTap: () {},
+                  onTap: () {
+                    // context.pushNamed(RoutesNames.aboutTheAuthority,
+                    //     pathParameters: {"pageName": "videoLibrary"});
+                  },
                 ),
               ],
             ),

@@ -74,7 +74,9 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
             icon: IconAssets.chat,
             title: AppStrings().faqs,
             onTap: () {
-              context.pushNamed(RoutesNames.faq);
+              context.pushNamed(RoutesNames.aboutTheAuthority,
+                  pathParameters: {"pageName": "faqs"});
+              // context.pushNamed(RoutesNames.faq);
             },
           ),
           DrawerWidget(
@@ -90,7 +92,10 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
             color: ColorManager.cloudyGrey,
             icon: IconAssets.privacyPolicy,
             title: AppStrings().privacyPolicy,
-            onTap: () {},
+            onTap: () {
+                context.pushNamed(RoutesNames.aboutTheAuthority,
+                  pathParameters: {"pageName": "privacyPolicy"});
+            },
           ),
           const Spacer(),
           Padding(
