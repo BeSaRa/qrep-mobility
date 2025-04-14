@@ -92,6 +92,20 @@ class AboutTheAuthorityBloc
               await rootBundle.loadString('$baseUrl/services.js');
           await controller.runJavaScript(jsCode);
         }
+        //--------------FAQ & privacyPolicy ref_url ---------------------------
+        else if (event.pageName == "faqs" ||
+            event.pageName == "privacyPolicy") {
+          final String jsCode =
+              await rootBundle.loadString('$baseUrl/drawer.js');
+          await controller.runJavaScript(jsCode);
+        }
+        //-------------- Real Estate Calendar && videoLibrary  ref_url ---------------------------
+        else if (event.pageName == "realEstateCalendar" ||
+            event.pageName == "videoLibrary") {
+          final String jsCode =
+              await rootBundle.loadString('$baseUrl/realEstateCalendar.js');
+          await controller.runJavaScript(jsCode);
+        }
       } catch (e) {
         emit(AboutTheAuthorityError(
             "Failed to run JavaScript: ${e.toString()}"));

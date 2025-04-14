@@ -23,14 +23,14 @@ class Constant {
   static const String cmsBaseUrl = 'https://qrepcms.aqarat.gov.qa';
   static const String aqaratBaseUrl = 'https://www.aqarat.gov.qa';
   //STG
-  static const String authorityChatBotBaseUrl ='https://afnqcscbai01.azurewebsites.net';
+  // static const String authorityChatBotBaseUrl ='https://afnqcscbai01.azurewebsites.net';
   //PRD
-  // static const String authorityChatBotBaseUrl ='https://afnqcpcbai01.azurewebsites.net';
+  static const String authorityChatBotBaseUrl ='https://afnqcpcbai01.azurewebsites.net';
  /*============= NOTE FROM ZAK To FATINA:==============
  ** u can find the xFunctions key from our chat in Teams
  */
  
-  static String xFunctionsAuthorityChatbotKey ="";
+  static String xFunctionsAuthorityChatbotKey="";
   // static String xFunctionsAuthorityChatbotKey =  dotenv.env['X_FUNCTION_AUTHORITY_CHATBOT_KEY'] ?? 'NO_KEY_FOUND';
   //============= NOTE FROM ZAK To FATINA:==============
   // static String xFunctionsAuthorityChatbotKey =  ;

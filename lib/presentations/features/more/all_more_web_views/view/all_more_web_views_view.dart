@@ -42,6 +42,22 @@ class AllMoreWebViews extends StatelessWidget {
         return context.locale == ENGLISH_LOCAL
             ? "${Constant.aqaratBaseUrl}/en/services/"
             : '${Constant.aqaratBaseUrl}/%d8%a7%d9%84%d8%ae%d8%af%d9%85%d8%a7%d8%aa/';
+      case "faqs":
+        return context.locale == ENGLISH_LOCAL
+            ? "${Constant.aqaratBaseUrl}/en/faqs/"
+            : '${Constant.aqaratBaseUrl}/الأسئلة-الشائعة/';
+      case "privacyPolicy":
+        return context.locale == ENGLISH_LOCAL
+            ? "${Constant.aqaratBaseUrl}/en/privacy-policy/"
+            : '${Constant.aqaratBaseUrl}/privacy-policy-ar/';
+      case "realEstateCalendar":
+        return context.locale == ENGLISH_LOCAL
+            ? "${Constant.aqaratBaseUrl}/en/real-estate-calendar/"
+            : '${Constant.aqaratBaseUrl}/الأحداث/';
+      case "videoLibrary":
+        return context.locale == ENGLISH_LOCAL
+            ? "${Constant.aqaratBaseUrl}/en/video-library/"
+            : '${Constant.aqaratBaseUrl}/مكتبة-الفيديو/';
       //this come from AI Search Page
       case "aiSearchUrl":
         return aiSearchUrl ?? "https://www.aqarat.gov.qa/";
@@ -152,6 +168,14 @@ class AllMoreWebViews extends StatelessWidget {
         return AppStrings().services;
       case "aiSearchUrl":
         return AppStrings().aiSearch;
+      case "faqs":
+        return AppStrings().faqs;
+      case "privacyPolicy":
+        return AppStrings().privacyPolicy;
+      case "realEstateCalendar":
+        return AppStrings().calendar;
+      case "videoLibrary":
+        return AppStrings().video;
       default:
         return AppStrings().aboutTheAuthority;
     }

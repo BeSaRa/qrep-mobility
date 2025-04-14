@@ -269,6 +269,13 @@ border-color: ${borderColor}
 #all{
 background: ${secondaryBg} !important;
 }
+/*============================== الروزنامة العقارية  Calender ===================*/
+#ectbe-wrapper-b437ca4{
+	background: ${primaryBg} !important;
+}
+#ectbe-wrapper-b437ca4 .ectbe-inner-wrapper {
+  background-image: linear-gradient(to top, ${secondaryBg}, ${secondaryBg} 45%) !important;
+}
 `;
   document.head.appendChild(style);
 })();

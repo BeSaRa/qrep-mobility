@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 
 class MiniVideoPlayerWidget extends StatelessWidget {
-  const MiniVideoPlayerWidget({super.key, required this.state});
+const MiniVideoPlayerWidget({super.key, required this.state});
   final WebRTCState state;
   @override
   Widget build(BuildContext context) {
