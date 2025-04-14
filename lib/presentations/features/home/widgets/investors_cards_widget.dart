@@ -70,13 +70,14 @@ class InvestorsCardsWidget extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              // context.pushNamed(RoutesNames.investorJourney,
-              //     pathParameters: {"stepNumber": "2"});
+              context.pushNamed(RoutesNames.aboutTheAuthority, pathParameters: {
+                "pageName": "tasksAndResponsibilitiesOftheAuthority"
+              });
             },
             child: InvestorsCard(
                 color: ColorManager.golden,
-                icon: IconAssets.mapScroll,
-                title: AppStrings().map),
+                icon: IconAssets.aboutHome,
+                title: AppStrings().tasksAndResponsibilitiesOftheAuthority),
           ),
         ],
       ),
@@ -101,7 +102,7 @@ class InvestorsCard extends StatelessWidget {
       children: [
         Container(
           height: AppSizeH.s150,
-          width: isTablet ? AppSizeW.s226 : AppSizeW.s115,
+          width: isTablet ? AppSizeW.s226 : AppSizeW.s130,
           padding: EdgeInsets.symmetric(
               horizontal: AppSizeH.s6, vertical: AppSizeH.s10),
           child: Center(
@@ -113,8 +114,8 @@ class InvestorsCard extends StatelessWidget {
                 if (icon.toLowerCase().endsWith("svg"))
                   SvgPicture.asset(
                     icon,
-                    height: AppSizeH.s36,
-                    width: AppSizeW.s32,
+                    height: AppSizeH.s42,
+                    width: AppSizeW.s42,
                     color: ColorManager.golden,
                   ),
                 if (!icon.toLowerCase().endsWith("svg"))
@@ -124,14 +125,14 @@ class InvestorsCard extends StatelessWidget {
                   ),
                 Flexible(
                   child: SizedBox(
-                    width: AppSizeW.s65,
+                    width: AppSizeW.s90,
                     child: Text(
                       title,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: ColorManager.primaryBlue,
                           fontWeight: FontWeight.w600),
                       overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
+                      maxLines: 3,
                       softWrap: true,
                       textAlign: TextAlign.start,
                     ),

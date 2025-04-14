@@ -21,6 +21,7 @@ import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../info/blocs/news_bloc/news_bloc.dart';
 
+import '../main/cubit/bottom_nav_cubit.dart';
 import 'widgets/news_widget.dart';
 
 class HomeView extends StatefulWidget {
@@ -53,62 +54,79 @@ class _HomeViewState extends State<HomeView> {
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: AppSizeW.s40,
           children: [
-            Column(
-              spacing: AppSizeH.s8,
-              children: [
-                HomeIcons(
-                  icon: IconAssets.lawsNew,
-                  title: AppStrings().laws,
-                  onTap: () {
-                    context.pushNamed(RoutesNames.laws);
-                  },
-                ),
-                HomeIcons(
-                  icon: IconAssets.calendar,
-                  title: AppStrings().calendar,
-                  onTap: () {
-                    context.pushNamed(RoutesNames.aboutTheAuthority,
-                        pathParameters: {"pageName": "realEstateCalendar"});
-                  },
-                ),
-              ],
+            SizedBox(
+              width: AppSizeW.s90,
+              child: Column(
+                spacing: AppSizeH.s8,
+                children: [
+                  HomeIcons(
+                    icon: IconAssets.lawsNew,
+                    title: AppStrings().laws,
+                    onTap: () {
+                      context.pushNamed(RoutesNames.laws);
+                    },
+                  ),
+                  HomeIcons(
+                    icon: IconAssets.calendar,
+                    title: AppStrings().calendar,
+                    onTap: () {},
+                  ),
+                ],
+              ),
             ),
-            Column(
-              spacing: AppSizeH.s8,
-              children: [
-                HomeIcons(
-                  icon: IconAssets.about,
-                  title: AppStrings().aboutAuthority,
-                  onTap: () {
-                    context.pushNamed(RoutesNames.about);
-                  },
-                ),
-                HomeIcons(
-                  icon: IconAssets.video,
-                  title: AppStrings().video,
-                  onTap: () {
-                    // context.pushNamed(RoutesNames.aboutTheAuthority,
-                    //     pathParameters: {"pageName": "videoLibrary"});
-                  },
-                ),
-              ],
+            SizedBox(
+              width: AppSizeW.s90,
+              child: Column(
+                spacing: AppSizeH.s8,
+                children: [
+                  HomeIcons(
+                    icon: IconAssets.about,
+                    title: AppStrings().aboutAuthority,
+                    onTap: () {
+                      context.pushNamed(RoutesNames.aboutTheAuthority,
+                          pathParameters: {"pageName": "aboutTheAuthority"});
+                    },
+                  ),
+                  HomeIcons(
+                    icon: IconAssets.video,
+                    title: AppStrings().video,
+                    onTap: () {},
+                  ),
+                  // HomeIcons(
+                  //   icon: IconAssets.training,
+                  //   title: AppStrings().tasksAndResponsibilitiesOftheAuthority,
+                  //   onTap: () {
+                  //     context.pushNamed(RoutesNames.aboutTheAuthority,
+                  //         pathParameters: {
+                  //           "pageName": "tasksAndResponsibilitiesOftheAuthority"
+                  //         });
+                  //   },
+                  // ),
+                ],
+              ),
             ),
-            Column(
-              spacing: AppSizeH.s8,
-              children: [
-                HomeIcons(
-                  icon: IconAssets.aqaratNews,
-                  title: AppStrings().news,
-                  onTap: () {},
-                ),
-                HomeIcons(
-                  icon: IconAssets.locationIndicator,
-                  title: AppStrings().authorityLocation,
-                  onTap: () {
-                    context.pushNamed(RoutesNames.authorityMap);
-                  },
-                ),
-              ],
+            SizedBox(
+              width: AppSizeW.s90,
+              child: Column(
+                spacing: AppSizeH.s8,
+                children: [
+                  HomeIcons(
+                    icon: IconAssets.aqaratNews,
+                    title: AppStrings().visionAndMission,
+                    onTap: () {
+                      context.pushNamed(RoutesNames.aboutTheAuthority,
+                          pathParameters: {"pageName": "visionAndMission"});
+                    },
+                  ),
+                  HomeIcons(
+                    icon: IconAssets.locationIndicator,
+                    title: AppStrings().authorityLocation,
+                    onTap: () {
+                      context.pushNamed(RoutesNames.authorityMap);
+                    },
+                  ),
+                ],
+              ),
             )
           ],
         ),
@@ -121,21 +139,32 @@ class _HomeViewState extends State<HomeView> {
           padding: EdgeInsets.symmetric(
               horizontal: AppSizeH.s20, vertical: AppSizeH.s10),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 AppStrings().indicatorsAndNumbers,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
-              Spacer(),
-              Text(
-                AppStrings().showAll,
-                style: Theme.of(context).textTheme.titleSmall,
+              GestureDetector(
+                onTap: () {
+                  context.read<BottomNavCubit>().changePage(4);
+                  context.goNamed(context
+                      .read<BottomNavCubit>()
+                      .paths[context.read<BottomNavCubit>().state]);
+                },
+                child: Row(
+                  children: [
+                    Text(
+                      AppStrings().showAll,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    Icon(
+                      Icons.arrow_forward,
+                      color: ColorManager.golden,
+                    )
+                  ],
+                ),
               ),
-              Icon(
-                Icons.arrow_forward,
-                color: ColorManager.golden,
-              )
             ],
           ),
         ),
@@ -353,7 +382,7 @@ class HomeIcons extends StatelessWidget {
             child: ImageIcon(
               AssetImage(icon),
               color: ColorManager.white,
-              size: AppSizeR.s20,
+              size: AppSizeR.s22,
             ),
           ),
           Text(
