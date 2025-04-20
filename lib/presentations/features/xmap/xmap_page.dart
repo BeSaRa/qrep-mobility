@@ -1,0 +1,77 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:webview_flutter_plus/webview_flutter_plus.dart';
+import 'package:webview_flutter/webview_flutter.dart' as base_webview;
+
+LocalhostServer localhostServer = LocalhostServer();
+
+class XMapView extends StatefulWidget {
+  @override
+  _XMapViewState createState() => _XMapViewState();
+}
+
+class _XMapViewState extends State<XMapView> {
+  WebViewControllerPlus? _controller;
+  double _height = 0.001;
+  bool _isWebViewReady = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _initWebView();
+  }
+
+  Future<void> _initWebView() async {
+    await localhostServer.start();
+    final port = localhostServer.port;
+
+    if (port == null) {
+      debugPrint("❌ Failed to start localhost server.");
+      return;
+    }
+
+    // Set cookie BEFORE loading the page
+    final cookieManager = WebViewCookieManager();
+    await cookieManager.setCookie(
+      const base_webview.WebViewCookie(
+        name: 'pll_language',
+        value: 'en', // or 'ar' or anything you want
+        domain: 'localhost',
+        path: '/',
+      ),
+    );
+
+    final controller = WebViewControllerPlus()
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onPageFinished: (url) async {
+            final h = await _controller?.webViewHeight;
+            var height = double.tryParse(h.toString()) ?? 0.0;
+            if (height != _height) {
+              setState(() {
+                _height = height;
+              });
+            }
+          },
+        ),
+      )
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(const Color(0x00000000))
+      ..loadFlutterAssetWithServer('assets/xmap/index.html', port);
+
+    setState(() {
+      _controller = controller;
+      _isWebViewReady = true;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _isWebViewReady
+        ? SizedBox(
+            height: _height,
+            child: WebViewWidget(controller: _controller!),
+          )
+        : const Center(child: CircularProgressIndicator());
+  }
+}

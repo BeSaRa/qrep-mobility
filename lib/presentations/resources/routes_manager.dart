@@ -2,7 +2,6 @@ import 'package:ebla/app/routing_observer.dart';
 import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/drobdown_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
-import 'package:ebla/presentations/features/chatbot/blocs/record_cubit/voice_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_feedback_bloc/send_feedback_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/routes_extras.dart';
 import 'package:ebla/presentations/features/chatbot/view/chat_view.dart';
@@ -27,6 +26,7 @@ import 'package:ebla/presentations/features/real_estate_brokers/real_estate_brok
 import 'package:ebla/presentations/features/rent/rent_view.dart';
 import 'package:ebla/presentations/features/sell/sell_view.dart';
 import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
+import 'package:ebla/presentations/features/xmap/xmap_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -200,7 +200,7 @@ class AppRouter {
                       BlocProvider.value(
                         value: (state.extra as RouteExtras).voiceCubit,
                       ),
-                        // create: (context) => VoiceCubit(),
+                      // create: (context) => VoiceCubit(),
                       // ),
                       BlocProvider<DropdownCubit>.value(
                         value: (state.extra as RouteExtras).dropdownCubit,
@@ -228,7 +228,7 @@ class AppRouter {
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
                   key: state.pageKey,
-                  child: const ComingSoonView(),
+                  child: XMapView(),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     return FadeTransition(
