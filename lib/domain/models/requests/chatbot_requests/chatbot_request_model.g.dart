@@ -29,6 +29,9 @@ _$MessageRequestModelImpl _$$MessageRequestModelImplFromJson(
     _$MessageRequestModelImpl(
       role: json['role'] as String? ?? '',
       authorityConvId: json['authorityConvId'] as String? ?? null,
+      contextData: json['context'] == null
+          ? null
+          : ContextModel.fromJson(json['context'] as Map<String, dynamic>),
       content: json['content'] ?? '',
     );
 
@@ -37,6 +40,7 @@ Map<String, dynamic> _$$MessageRequestModelImplToJson(
     <String, dynamic>{
       'role': instance.role,
       'authorityConvId': instance.authorityConvId,
+      'context': instance.contextData,
       'content': instance.content,
     };
 

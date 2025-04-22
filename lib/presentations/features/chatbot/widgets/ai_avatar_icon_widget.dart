@@ -9,20 +9,22 @@ import 'package:ebla/presentations/features/chatbot/blocs/stream_id_cubit.dart/s
 import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/utility/chatbot_enums.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
+import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../domain/usecases/chatbot_usecase/send_answer_usecase.dart';
 
 class AiAvatarIconWidget extends StatefulWidget {
   const AiAvatarIconWidget(
       {super.key,
       required this.isAvatarExpanded,
+      required this.isRecordModeActive,
       required this.onWebRTCCubitCreated,
       required this.startAvatarTimer});
 
+  final ValueNotifier<bool> isRecordModeActive;
   final ValueNotifier<bool> isAvatarExpanded;
   final Function(WebRTCCubit?) onWebRTCCubitCreated;
   final VoidCallback startAvatarTimer;
@@ -50,6 +52,9 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                         final sendAnswerAndCandidateBloc =
                             context.read<SendAnswerAndCandidateBloc>();
                         avatarState.mapOrNull(
+                          error: (value) {
+                            errorToast(value.message, context);
+                          },
                           done: (value) async {
                             //1- save the ID in cubit to use it when i close the stream
                             BlocProvider.of<StreamIdCubit>(context).setStreamId(
@@ -60,6 +65,7 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                                     .offer,
                                 value.startStreamResponse.data!.webrtcData!
                                     .iceServers);
+
                             //3- Pass cubit to parent via callback  to open the video widget
                             if (mounted) {
                               widget.onWebRTCCubitCreated(webRTCCubit);
@@ -117,130 +123,177 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                                 }
                               }
                             }
-                            if (mounted) {
-                              //=========== 5- to show tha avatar in the UI =============
-                              widget.isAvatarExpanded.value =
-                                  !widget.isAvatarExpanded.value;
-                              //=========== 6- Start the timer of closing avatar =============
-                              widget.startAvatarTimer();
-                              //=========== 7- Start the timer under video =============
-                              webRTCCubit.startTimer();
-                            }
+                            // if (mounted) {
+                            //   //=========== 5- to show tha avatar in the UI =============
+                            //   widget.isAvatarExpanded.value =
+                            //       !widget.isAvatarExpanded.value;
+                            //   //=========== 6- Start the timer of closing avatar =============
+                            //   widget.startAvatarTimer();
+                            //   //=========== 7- Start the timer under video =============
+                            //   webRTCCubit.startTimer();
+                            // }
                           },
                         );
                       },
                       builder: (context, avatarState) {
-                        return avatarState.maybeMap(
-                            loading: (_) => Container(
-                                padding: EdgeInsets.all(AppSizeW.s5),
-                                width: AppSizeW.s40,
-                                height: AppSizeH.s40,
-                                child: const CircularProgressIndicator()),
-                            orElse: () =>
-                                BlocConsumer<CloseStreamBloc, CloseStreamState>(
-                                    listener: (context, closestate) {
-                                  closestate.mapOrNull(
-                                    error: (value) {
-                                      errorToast(value.message, context);
-                                    },
-                                    done: (value) async {
-                                      //when close is done
-                                      BlocProvider.of<StreamIdCubit>(context)
-                                          .clearStreamId();
-                                      widget.isAvatarExpanded.value =
-                                          !widget.isAvatarExpanded.value;
-                                      //here i close the webRTCCubit after closing done success to avoid leak in memory
-                                      widget.onWebRTCCubitCreated(null);
-                                    },
-                                  );
-                                }, builder: (context, closeState) {
-                                  return closeState.maybeMap(
-                                      loading: (_) => Container(
-                                          padding: EdgeInsets.all(AppSizeW.s5),
-                                          width: AppSizeW.s40,
-                                          height: AppSizeH.s40,
-                                          child:
-                                              const CircularProgressIndicator()),
-                                      orElse: () => GestureDetector(
-                                            onTap: () async {
-                                              if (expanded) {
-                                                // If the close icon is shown, I perform logic for closing the AI Avatar Here
+                        return BlocConsumer<SendAnswerAndCandidateBloc,
+                                SendAnswerAndCandidateState>(
+                            listener: (context, state) {
+                          state.mapOrNull(
+                            done: (value) {
+                              if (mounted) {
+                                //=========== 5- to show tha avatar in the UI with Record Mode =============
+                                widget.isAvatarExpanded.value =
+                                    !widget.isAvatarExpanded.value;
+                                // widget.isRecordModeActive.value =
+                                //     true;
 
-                                                final String? streamId = context
-                                                    .read<StreamIdCubit>()
-                                                    .state
-                                                    .streamId;
-                                                if (streamId != null) {
-                                                  context
-                                                      .read<CloseStreamBloc>()
-                                                      .add(CloseStreamEvent
-                                                          .closeStream(
-                                                              //here i pass the streamID
-                                                              context
-                                                                  .read<
-                                                                      StreamIdCubit>()
-                                                                  .state
-                                                                  .streamId!));
-                                                  //here i clear the state of startstream to make sure that i don't use the old sdp and data
-                                                  context
-                                                      .read<StartStreamBloc>()
-                                                      .add(
-                                                          const StartStreamEvent
+                                //=========== 6- Start the timer of closing avatar =============
+                                widget.startAvatarTimer();
+                                //=========== 7- Start the timer under video =============
+                                webRTCCubit.startTimer();
+                              }
+                            },
+                          );
+                        }, builder: (context, sendAnswerAndCandidateState) {
+                          return avatarState.maybeMap(
+                              loading: (_) => Container(
+                                  padding: EdgeInsets.all(AppSizeW.s5),
+                                  width: AppSizeW.s40,
+                                  height: AppSizeH.s40,
+                                  child: const CircularProgressIndicator()),
+                              orElse: () =>
+
+                                  //for sendCandidate and aswers success
+                                  sendAnswerAndCandidateState.maybeMap(
+                                    loading: (_) => Container(
+                                        padding: EdgeInsets.all(AppSizeW.s5),
+                                        width: AppSizeW.s40,
+                                        height: AppSizeH.s40,
+                                        child: CircularProgressIndicator(
+                                          color: ColorManager.primary,
+                                        )),
+                                    orElse: () => BlocConsumer<CloseStreamBloc,
+                                            CloseStreamState>(
+                                        listener: (context, closestate) {
+                                      closestate.mapOrNull(
+                                        error: (value) {
+                                          errorToast(value.message, context);
+                                        },
+                                        done: (value) async {
+                                          //when close is done
+                                          BlocProvider.of<StreamIdCubit>(
+                                                  context)
+                                              .clearStreamId();
+                                          widget.isAvatarExpanded.value =
+                                              !widget.isAvatarExpanded.value;
+                                          widget.isRecordModeActive.value =
+                                              true;
+                                          //here i close the webRTCCubit after closing done success to avoid leak in memory
+                                          widget.onWebRTCCubitCreated(null);
+                                        },
+                                      );
+                                    }, builder: (context, closeState) {
+                                      return closeState.maybeMap(
+                                          loading: (_) => Container(
+                                              padding:
+                                                  EdgeInsets.all(AppSizeW.s5),
+                                              width: AppSizeW.s40,
+                                              height: AppSizeH.s40,
+                                              child:
+                                                  const CircularProgressIndicator()),
+                                          orElse: () => GestureDetector(
+                                                onTap: () async {
+                                                  if (expanded) {
+                                                    // If the close icon is shown, I perform logic for closing the AI Avatar Here
+
+                                                    final String? streamId =
+                                                        context
+                                                            .read<
+                                                                StreamIdCubit>()
+                                                            .state
+                                                            .streamId;
+                                                    if (streamId != null) {
+                                                      context
+                                                          .read<
+                                                              CloseStreamBloc>()
+                                                          .add(CloseStreamEvent
+                                                              .closeStream(
+                                                                  //here i pass the streamID
+                                                                  context
+                                                                      .read<
+                                                                          StreamIdCubit>()
+                                                                      .state
+                                                                      .streamId!));
+                                                      //here i clear the state of startstream to make sure that i don't use the old sdp and data
+                                                      context
+                                                          .read<
+                                                              StartStreamBloc>()
+                                                          .add(const StartStreamEvent
                                                               .clearState());
-                                                }
-                                              } else {
-                                                // If the avatar icon is shown, I perform logic for opening the AI Avatar Here
-                                                context
-                                                    .read<StartStreamBloc>()
-                                                    .add(const StartStreamEvent
-                                                        .started());
-                                              }
-                                            },
-                                            child: AnimatedRotation(
-                                              turns: expanded
-                                                  ? 0.5
-                                                  : 0.0, // Rotate 180° when expanded, back when closed
-                                              duration: const Duration(
-                                                  milliseconds: 300),
-                                              child: Container(
-                                                width: AppSizeW.s40,
-                                                height: AppSizeH.s40,
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: AppSizeW.s5),
-                                                decoration: BoxDecoration(
-                                                  border: Border(
-                                                    right: BorderSide(
-                                                        width: 1,
-                                                        color: Theme.of(context)
-                                                            .hoverColor),
-                                                  ),
-                                                ),
-                                                child: AnimatedSwitcher(
+                                                    }
+                                                  } else {
+                                                    // If the avatar icon is shown, I perform logic for opening the AI Avatar Here
+                                                    context
+                                                        .read<StartStreamBloc>()
+                                                        .add(
+                                                            const StartStreamEvent
+                                                                .started());
+                                                  }
+                                                },
+                                                child: AnimatedRotation(
+                                                  turns: expanded
+                                                      ? 0.5
+                                                      : 0.0, // Rotate 180° when expanded, back when closed
                                                   duration: const Duration(
                                                       milliseconds: 300),
-                                                  transitionBuilder:
-                                                      (child, animation) =>
-                                                          ScaleTransition(
-                                                    scale: animation,
-                                                    child: child,
+                                                  child: Container(
+                                                    width: AppSizeW.s40,
+                                                    height: AppSizeH.s40,
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal:
+                                                                AppSizeW.s5),
+                                                    decoration: BoxDecoration(
+                                                      border: Border(
+                                                        right: BorderSide(
+                                                            width: 1,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .hoverColor),
+                                                      ),
+                                                    ),
+                                                    child: AnimatedSwitcher(
+                                                      duration: const Duration(
+                                                          milliseconds: 300),
+                                                      transitionBuilder:
+                                                          (child, animation) =>
+                                                              ScaleTransition(
+                                                        scale: animation,
+                                                        child: child,
+                                                      ),
+                                                      child: expanded ||
+                                                              (!expanded &&
+                                                                  webRTCCubit
+                                                                          .state
+                                                                          .isMiniScreen ==
+                                                                      true)
+                                                          ? const Icon(
+                                                              Icons.close,
+                                                              key: ValueKey(
+                                                                  "closeIcon"))
+                                                          : Image.asset(
+                                                              ImageAssets
+                                                                  .chatBot,
+                                                              key: const ValueKey(
+                                                                  "avatarIcon")),
+                                                    ),
                                                   ),
-                                                  child: expanded ||
-                                                          (!expanded &&
-                                                              webRTCCubit.state
-                                                                      .isMiniScreen ==
-                                                                  true)
-                                                      ? const Icon(Icons.close,
-                                                          key: ValueKey(
-                                                              "closeIcon"))
-                                                      : Image.asset(
-                                                          ImageAssets.chatBot,
-                                                          key: const ValueKey(
-                                                              "avatarIcon")),
                                                 ),
-                                              ),
-                                            ),
-                                          ));
-                                }));
+                                              ));
+                                    }),
+                                  ));
+                        });
                       });
                 });
           } else {

@@ -10,10 +10,12 @@ import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// ignore: must_be_immutable
 class ChatMessagesListWidget extends StatelessWidget {
-  const ChatMessagesListWidget({
+  ChatMessagesListWidget({
     super.key,
     required this.isSending,
+    // required this.isHadBeenRated,
     required this.isAvatarPressed,
     required this.scrollController,
   });
@@ -21,6 +23,7 @@ class ChatMessagesListWidget extends StatelessWidget {
   final ScrollController scrollController;
   final bool isSending;
   final bool isAvatarPressed;
+  // bool isHadBeenRated = false;
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +39,10 @@ class ChatMessagesListWidget extends StatelessWidget {
               ? chatState.authorityMessages
               : chatState.platformMessages;
           //-----------------------------------------
-          bool isHadBeenRated = false;
+
           return BlocConsumer<SendFeedbackBloc, SendFeedbackState>(
               listener: (context, feedBackState) {
-            isHadBeenRated = feedBackState.maybeMap(
+            feedBackState.maybeMap(
               done: (state) {
                 successToast(
                     AppStrings().evaluationCompletedSuccessfully, context);
@@ -56,22 +59,14 @@ class ChatMessagesListWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: AppSizeW.s10),
               child: ListView.builder(
                 controller: scrollController,
-                // itemCount: messageHistory.messages.length + (isSending ? 1 : 0),
                 itemCount: messages.length + (isSending ? 1 : 0),
                 itemBuilder: (context, index) {
                   //-----------------Loading container-------------
-                  // if (isSending && index == messageHistory.messages.length) {
                   if (isSending && index == messages.length) {
                     return const ShownLoadingIndecetorWidget();
                   } else {
                     //-----------------main message-------------
                     final message = messages[index];
-                    // isHadBeenRated =
-                    //   context.read<SendFeedbackBloc>().state.maybeMap(
-                    //         done: (state) => state.isRated,
-                    //         orElse: () => false,
-                    //       );
-                    // final message = messageHistory.messages[index];
                     return Column(
                       crossAxisAlignment: message.role == 'user'
                           ? CrossAxisAlignment.end
@@ -85,10 +80,13 @@ class ChatMessagesListWidget extends StatelessWidget {
                             index == messages.length - 1 &&
                             !isSending &&
                             chatState.activeChat == ChatTypeEnum.authority &&
-                            //here i will not show the feedback if there is just the welcome message in the lest
+                            //here i will not show the feedback if there is just the welcome message in the list
                             chatState.authorityMessages.length != 1 &&
-                            //here i will not show the feedback if it had beed rated before
-                            !isHadBeenRated)
+                            //here i will not show the feedback if it had been rated before
+                            !feedBackState.maybeMap(
+                              done: (state) => state.isRated,
+                              orElse: () => false,
+                            ))
                           _RateConversationWidget(
                             isVisible:
                                 true, // Show animation when condition is met
@@ -152,6 +150,8 @@ class _RateConversationWidgetState extends State<_RateConversationWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Offset> _animation;
+  final ValueNotifier<bool> isDislikeActive = ValueNotifier(false);
+  final ValueNotifier<bool> isLikeActive = ValueNotifier(false);
 
   @override
   void initState() {
@@ -184,6 +184,8 @@ class _RateConversationWidgetState extends State<_RateConversationWidget>
   @override
   void dispose() {
     _controller.dispose();
+    isDislikeActive.dispose();
+    isLikeActive.dispose();
     super.dispose();
   }
 
@@ -209,39 +211,59 @@ class _RateConversationWidgetState extends State<_RateConversationWidget>
                 AppStrings().rateTheCOnversation,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
-              GestureDetector(
-                onTap: widget.onLike,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.thumb_up_alt_outlined,
-                      color: Theme.of(context).textTheme.labelSmall!.color,
-                      size: AppSizeW.s18,
+              ValueListenableBuilder<bool>(
+                valueListenable: isLikeActive,
+                builder: (context, value, _) {
+                  return GestureDetector(
+                    onTap: () {
+                      widget.onLike();
+                      isLikeActive.value = true;
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.thumb_up_alt_outlined,
+                          color: value
+                              ? Theme.of(context).primaryColor
+                              : Theme.of(context).textTheme.labelSmall!.color,
+                          size: AppSizeW.s18,
+                        ),
+                        Text(
+                          AppStrings().like,
+                          style: Theme.of(context).textTheme.labelSmall,
+                        )
+                      ],
                     ),
-                    Text(
-                      AppStrings().like,
-                      style: Theme.of(context).textTheme.labelSmall,
-                    )
-                  ],
-                ),
+                  );
+                },
               ),
-              GestureDetector(
-                onTap: widget.onDislike,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.thumb_down_alt_outlined,
-                      color: Theme.of(context).textTheme.labelSmall!.color,
-                      size: AppSizeW.s18,
+              ValueListenableBuilder<bool>(
+                valueListenable: isDislikeActive,
+                builder: (context, value, _) {
+                  return GestureDetector(
+                    onTap: () {
+                      widget.onDislike();
+                      isDislikeActive.value = true;
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.thumb_down_alt_outlined,
+                          color: value
+                              ? Theme.of(context).primaryColor
+                              : Theme.of(context).textTheme.labelSmall!.color,
+                          size: AppSizeW.s18,
+                        ),
+                        Text(
+                          AppStrings().dislike,
+                          style: Theme.of(context).textTheme.labelSmall,
+                        )
+                      ],
                     ),
-                    Text(
-                      AppStrings().dislike,
-                      style: Theme.of(context).textTheme.labelSmall,
-                    )
-                  ],
-                ),
+                  );
+                },
               ),
             ],
           ),

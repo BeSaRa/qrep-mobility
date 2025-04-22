@@ -273,6 +273,7 @@ mixin _$MessageResponseModel {
   String get conversationId => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
   bool get endTurn => throw _privateConstructorUsedError;
+  @JsonKey(name: "context")
   ContextModel? get contextModel => throw _privateConstructorUsedError;
 
   /// Serializes this MessageResponseModel to a JSON map.
@@ -296,7 +297,7 @@ abstract class $MessageResponseModelCopyWith<$Res> {
       @JsonKey(name: "conversation_id") String conversationId,
       String role,
       bool endTurn,
-      ContextModel? contextModel});
+      @JsonKey(name: "context") ContextModel? contextModel});
 
   $ContextModelCopyWith<$Res>? get contextModel;
 }
@@ -375,7 +376,7 @@ abstract class _$$MessageResponseModelImplCopyWith<$Res>
       @JsonKey(name: "conversation_id") String conversationId,
       String role,
       bool endTurn,
-      ContextModel? contextModel});
+      @JsonKey(name: "context") ContextModel? contextModel});
 
   @override
   $ContextModelCopyWith<$Res>? get contextModel;
@@ -433,7 +434,7 @@ class _$MessageResponseModelImpl implements _MessageResponseModel {
       @JsonKey(name: "conversation_id") this.conversationId = '',
       this.role = '',
       this.endTurn = false,
-      this.contextModel = null});
+      @JsonKey(name: "context") this.contextModel = null});
 
   factory _$MessageResponseModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MessageResponseModelImplFromJson(json);
@@ -451,7 +452,7 @@ class _$MessageResponseModelImpl implements _MessageResponseModel {
   @JsonKey()
   final bool endTurn;
   @override
-  @JsonKey()
+  @JsonKey(name: "context")
   final ContextModel? contextModel;
 
   @override
@@ -498,11 +499,12 @@ class _$MessageResponseModelImpl implements _MessageResponseModel {
 
 abstract class _MessageResponseModel implements MessageResponseModel {
   const factory _MessageResponseModel(
-      {final String content,
-      @JsonKey(name: "conversation_id") final String conversationId,
-      final String role,
-      final bool endTurn,
-      final ContextModel? contextModel}) = _$MessageResponseModelImpl;
+          {final String content,
+          @JsonKey(name: "conversation_id") final String conversationId,
+          final String role,
+          final bool endTurn,
+          @JsonKey(name: "context") final ContextModel? contextModel}) =
+      _$MessageResponseModelImpl;
 
   factory _MessageResponseModel.fromJson(Map<String, dynamic> json) =
       _$MessageResponseModelImpl.fromJson;
@@ -517,6 +519,7 @@ abstract class _MessageResponseModel implements MessageResponseModel {
   @override
   bool get endTurn;
   @override
+  @JsonKey(name: "context")
   ContextModel? get contextModel;
 
   /// Create a copy of MessageResponseModel
@@ -966,6 +969,7 @@ mixin _$Citation {
   String get title => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   String? get filepath => throw _privateConstructorUsedError;
+  @JsonKey(name: "chunk_id")
   String get chunkId => throw _privateConstructorUsedError;
 
   /// Serializes this Citation to a JSON map.
@@ -988,7 +992,7 @@ abstract class $CitationCopyWith<$Res> {
       String title,
       String url,
       String? filepath,
-      String chunkId});
+      @JsonKey(name: "chunk_id") String chunkId});
 }
 
 /// @nodoc
@@ -1050,7 +1054,7 @@ abstract class _$$CitationImplCopyWith<$Res>
       String title,
       String url,
       String? filepath,
-      String chunkId});
+      @JsonKey(name: "chunk_id") String chunkId});
 }
 
 /// @nodoc
@@ -1105,7 +1109,7 @@ class _$CitationImpl implements _Citation {
       this.title = '',
       this.url = '',
       this.filepath = '',
-      this.chunkId = ''});
+      @JsonKey(name: "chunk_id") this.chunkId = ''});
 
   factory _$CitationImpl.fromJson(Map<String, dynamic> json) =>
       _$$CitationImplFromJson(json);
@@ -1123,7 +1127,7 @@ class _$CitationImpl implements _Citation {
   @JsonKey()
   final String? filepath;
   @override
-  @JsonKey()
+  @JsonKey(name: "chunk_id")
   final String chunkId;
 
   @override
@@ -1171,7 +1175,7 @@ abstract class _Citation implements Citation {
       final String title,
       final String url,
       final String? filepath,
-      final String chunkId}) = _$CitationImpl;
+      @JsonKey(name: "chunk_id") final String chunkId}) = _$CitationImpl;
 
   factory _Citation.fromJson(Map<String, dynamic> json) =
       _$CitationImpl.fromJson;
@@ -1185,6 +1189,7 @@ abstract class _Citation implements Citation {
   @override
   String? get filepath;
   @override
+  @JsonKey(name: "chunk_id")
   String get chunkId;
 
   /// Create a copy of Citation

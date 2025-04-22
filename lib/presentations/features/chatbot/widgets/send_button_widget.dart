@@ -57,8 +57,7 @@ class SendButtonWidget extends StatelessWidget {
                             context.read<ChatHistoryCubit>().state;
 
                         //-------------------- authority send button ------------------------
-                        final userMessage =
-                            MessageRequestModel(content: message, role: 'user');
+                        final userMessage = MessageRequestModel(content: message, role: 'user');
                         context
                             .read<ChatHistoryCubit>()
                             .addMessage(userMessage);
