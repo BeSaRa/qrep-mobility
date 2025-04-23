@@ -32,7 +32,8 @@ class Constant {
  ** u can find the xFunctions key from our chat in Teams
  */
 
-  static String xFunctionsAuthorityChatbotKey = "";
+  static String xFunctionsAuthorityChatbotKey =
+      "";
   // static String xFunctionsAuthorityChatbotKey =  dotenv.env['X_FUNCTION_AUTHORITY_CHATBOT_KEY'] ?? 'NO_KEY_FOUND';
   //============= NOTE FROM ZAK To FATINA:==============
   // static String xFunctionsAuthorityChatbotKey =  ;

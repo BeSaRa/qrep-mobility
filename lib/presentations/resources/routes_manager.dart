@@ -200,7 +200,7 @@ class AppRouter {
                       BlocProvider.value(
                         value: (state.extra as RouteExtras).voiceCubit,
                       ),
-                        // create: (context) => VoiceCubit(),
+                      // create: (context) => VoiceCubit(),
                       // ),
                       BlocProvider<DropdownCubit>.value(
                         value: (state.extra as RouteExtras).dropdownCubit,

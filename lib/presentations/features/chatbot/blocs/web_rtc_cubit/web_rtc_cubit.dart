@@ -110,11 +110,8 @@ class WebRTCCubit extends Cubit<WebRTCState> {
           RTCPeerConnectionState.RTCPeerConnectionStateFailed) {
         _stopTimer();
         emit(state.copyWith(isComplete: true));
-
-      } else if (state.elapsedTime >= 180) {
-        // Assume video is 3 minutes long
+      } else if (state.elapsedTime >= 0) {
         ///NOTE:
-        ///In the chat view: the timer is for close stream after 1:45 and reset it if any actions happend
         ///here: it's the timer in the UI
         _stopTimer();
         emit(state.copyWith(isComplete: true));
@@ -124,7 +121,6 @@ class WebRTCCubit extends Cubit<WebRTCState> {
       }
     });
   }
-
 
   void _stopTimer() {
     _internalVideoTimer?.cancel();
@@ -150,7 +146,12 @@ class WebRTCCubit extends Cubit<WebRTCState> {
       track.enabled = false;
     });
     try {
+      // state.remoteRenderer.srcObject = null;
       await state.remoteRenderer.dispose();
+      //Important Note: the next line is for hide miniscreen if user closed avatar and the screen is mini
+      if (state.isMiniScreen == true) {
+        toggleMiniScreen();
+      }
     } catch (e) {
       log("Error disposing renderer: $e");
     }
