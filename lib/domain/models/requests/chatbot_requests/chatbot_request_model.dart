@@ -1,3 +1,4 @@
+import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'chatbot_request_model.g.dart';
 part 'chatbot_request_model.freezed.dart';
@@ -18,6 +19,7 @@ abstract class MessageRequestModel with _$MessageRequestModel {
   const factory MessageRequestModel({
     @Default('') String role,
     @Default(null) String? authorityConvId,
+    @Default(null) @JsonKey(name: "context") ContextModel? contextData,
     //it' dynamic for the platform chat
     @Default('') dynamic content,
   }) = _MessageRequestModel;

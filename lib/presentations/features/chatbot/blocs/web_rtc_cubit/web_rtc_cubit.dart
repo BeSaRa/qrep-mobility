@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_state.dart';
+import 'package:ebla/presentations/resources/resources.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -23,6 +24,18 @@ class WebRTCCubit extends Cubit<WebRTCState> {
           isMiniScreen: false,
           miniScreenPosition: Offset(AppSizeW.s250, AppSizeH.s50),
         ));
+
+  Future<void> _initializeRenderer() async {
+    try {
+      await state.remoteRenderer.initialize();
+      emit(state.copyWith(isRendererReady: true));
+      log("RTCVideoRenderer initialized successfully.");
+    } catch (e) {
+      log("Renderer initialization error: $e");
+      emit(state.copyWith(errorMessage: "Renderer initialization failed"));
+    }
+  }
+
 //------------------- Audio Actions in video ------------------
   void toggleMute() {
     bool newMuteState = !state.isMuted;
@@ -93,8 +106,13 @@ class WebRTCCubit extends Cubit<WebRTCState> {
   void startTimer() {
     _internalVideoTimer?.cancel();
     _internalVideoTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (state.elapsedTime >= 150) {
-        // Assume video is 2.5 minutes long
+      if (state.rTCPeerConnectionState ==
+          RTCPeerConnectionState.RTCPeerConnectionStateFailed) {
+        _stopTimer();
+        emit(state.copyWith(isComplete: true));
+      } else if (state.elapsedTime >= 0) {
+        ///NOTE:
+        ///here: it's the timer in the UI
         _stopTimer();
         emit(state.copyWith(isComplete: true));
       } else {
@@ -115,65 +133,32 @@ class WebRTCCubit extends Cubit<WebRTCState> {
   }
 
 //------------------- End Actions in video ------------------
-  Future<void> closeStreamCubit() async {
-    // final emptyCandidate = state.candidates;
-    // emptyCandidate.clear();
-    // emit(state.copyWith(candidates: emptyCandidate, answer: null));
-    // emit(WebRTCState(
-    //   peerConnections: {},
-    //   remoteRenderer: RTCVideoRenderer(),
-    //   isMuted: false,
-    //   isPlaying: false,
-    //   isMiniScreen: false,
-    //   lastFrame: null,
-    //   videoKey: null,
-    //   answer: null,
-    //   errorMessage: null,
-    //   isComplete2Minutes: false,
-    //   candidates: [],
-    //   elapsedTime: 0,
-    // ));
-    for (RTCPeerConnection element in state.peerConnections.values) {
-      // // Remove all event listeners
-      // element.onTrack = null;
-      // element.onRemoveStream = null;
-      // element.onIceCandidate = null;
-      // element.onIceConnectionState = null;
-      // element.onSignalingState = null;
 
+  Future<void> closeStreamCubit() async {
+    for (RTCPeerConnection element in state.peerConnections.values) {
       // Close the connection
       element.close();
-      // await element.close();
     }
 
     state.peerConnections.clear();
-    // Remove any stream listeners
-    // state.localRenderer.srcObject?.getTracks().forEach((track) {
-    //   track.stop();
-    // });
     state.remoteRenderer.srcObject?.getTracks().forEach((track) async {
-      // if (track.kind == "audio") {
-      //   await Helper.setMicrophoneMute(true, track);
-      // }
       track.stop();
       track.enabled = false;
     });
-
-    // await state.localRenderer.dispose();
-    // state.localRenderer = RTCVideoRenderer();
-    await state.remoteRenderer.dispose();
-    state.remoteRenderer = RTCVideoRenderer();
-
-    //     // Reset Audio Mode to Normal
-    // final AudioManager audioManager = AudioManager();
-    // audioManager.mode = Mode.normal;
-    // audioManager.abandonAudioFocus();
-
-    // Emit the new state to indicate the call has ended
+    try {
+      // state.remoteRenderer.srcObject = null;
+      await state.remoteRenderer.dispose();
+      //Important Note: the next line is for hide miniscreen if user closed avatar and the screen is mini
+      if (state.isMiniScreen == true) {
+        toggleMiniScreen();
+      }
+    } catch (e) {
+      log("Error disposing renderer: $e");
+    }
+    state.isRendererReady = false;
 //=============================================================
     await resetAudioMode();
 //=============================================================
-
     log("closed from webRtc Cubit");
   }
 
@@ -190,22 +175,16 @@ class WebRTCCubit extends Cubit<WebRTCState> {
     }
   }
 
-  Future<void> initializeRenderers() async {
-    // Initialize the remote renderer
-    await state.remoteRenderer.initialize();
-    log("RTCVideoRenderer initialized successfully.");
-  }
-
   Future<void> initWebRTC(
       OfferModel? offer, List<ICEServerModel> iceServers) async {
     try {
       emit(state.copyWith(isConnectionReady: false));
 
+      if (!state.isRendererReady) {
+        await _initializeRenderer();
+      }
       // Ensure initialization runs on UI thread
-      WidgetsBinding.instance.addPostFrameCallback((_) async {
-        // await state.localRenderer.initialize();
-        await initializeRenderers();
-      });
+      WidgetsBinding.instance.addPostFrameCallback((_) async {});
 
       if (offer == null || offer.sdp.isEmpty) {
         throw "Offer is null or empty, cannot set remote description.";
@@ -248,8 +227,12 @@ class WebRTCCubit extends Cubit<WebRTCState> {
         },
       );
       //-------------  just for debug ----------------
-      peerConnection.onConnectionState = (RTCPeerConnectionState state) {
-        log("PeerConnection State: $state");
+      peerConnection.onConnectionState = (RTCPeerConnectionState state1) {
+        if (state1 != RTCPeerConnectionState.RTCPeerConnectionStateClosed) {
+          emit(state.copyWith(rTCPeerConnectionState: state1));
+        }
+
+        log("PeerConnection State: $state1");
       };
 
       peerConnection.onSignalingState = (RTCSignalingState state) {
@@ -258,15 +241,18 @@ class WebRTCCubit extends Cubit<WebRTCState> {
       peerConnection.onIceGatheringState = (RTCIceGatheringState state) {
         log("ICE Gathering State: $state");
       };
-      //------------- just for debug ----------------
 //=====================================================================================
-
       peerConnection.onTrack = (event) async {
-        state.remoteRenderer.srcObject = event.streams[0];
+        if (!state.isRendererReady) {
+          log("Renderer not ready - initializing...");
+          await _initializeRenderer();
+        }
 
-        emit(state.copyWith(remoteRenderer: state.remoteRenderer));
+        if (state.remoteRenderer.srcObject != event.streams[0]) {
+          state.remoteRenderer.srcObject = event.streams[0];
+          emit(state.copyWith(remoteRenderer: state.remoteRenderer));
+        }
       };
-
       //============================== Candidate ===========================
       await peerConnection.setRemoteDescription(
         RTCSessionDescription(offer.sdp, offer.type),
@@ -292,7 +278,6 @@ class WebRTCCubit extends Cubit<WebRTCState> {
         }
       };
       //============================== Answer ===========================
-
       RTCSessionDescription finalAnswer = await peerConnection.createAnswer({
         'offerToReceiveAudio': true,
         'offerToReceiveVideo': true,

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 // import 'package:android_intent_plus/android_intent.dart';
@@ -61,7 +62,7 @@ class PdfDownloadService {
                 textAlign: pw.TextAlign.center,
                 style: pw.TextStyle(
                     font: ttf,
-                    fontSize: AppSizeW.s18,
+                    fontSize: AppSizeSp.s18,
                     fontWeight: pw.FontWeight.bold),
                 textDirection: pw.TextDirection.rtl,
               ),
@@ -77,7 +78,7 @@ class PdfDownloadService {
                       textAlign: pw.TextAlign.center,
                       style: pw.TextStyle(
                           font: ttf,
-                          fontSize: AppSizeW.s14,
+                          fontSize: AppSizeSp.s14,
                           fontWeight: pw.FontWeight.bold),
                     ),
                   );
@@ -95,7 +96,7 @@ class PdfDownloadService {
                           cell,
                           textAlign: pw.TextAlign.center,
                           style:
-                              pw.TextStyle(font: ttf, fontSize: AppSizeW.s12),
+                              pw.TextStyle(font: ttf, fontSize: AppSizeSp.s12),
                         ),
                       ),
                     );
@@ -106,7 +107,7 @@ class PdfDownloadService {
                     font: ttf,
                     fontSize: AppSizeW.s14,
                     fontWeight: pw.FontWeight.bold),
-                cellStyle: pw.TextStyle(font: ttf, fontSize: AppSizeW.s12),
+                cellStyle: pw.TextStyle(font: ttf, fontSize: AppSizeSp.s12),
               ),
             ],
           );
@@ -145,6 +146,7 @@ class PdfDownloadService {
       // Prepare CSV data
       final headers = response.response.first.keys.toList();
       final csvData = StringBuffer();
+      csvData.write('\uFEFF');
       csvData.writeln(headers.join(','));
 
       for (final row in response.response) {
@@ -158,7 +160,7 @@ class PdfDownloadService {
       // Save to temporary file
       final tempDir = await getTemporaryDirectory();
       final tempFile = File('${tempDir.path}/$pdfTitle.csv');
-      await tempFile.writeAsString(csvData.toString());
+      await tempFile.writeAsString(csvData.toString(), encoding: utf8);
 
       // Open the file using default app
       final result = await OpenFile.open(tempFile.path);
