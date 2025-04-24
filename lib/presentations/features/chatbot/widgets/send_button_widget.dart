@@ -14,14 +14,14 @@ import 'dart:ui' as ui;
 class SendButtonWidget extends StatelessWidget {
   final bool enabled;
   final bool isAvatarShown;
-  final VoidCallback startAvatarTimer;
+  // final VoidCallback startAvatarTimer;
   final TextEditingController controller;
   final ScrollController scrollController;
   const SendButtonWidget({
     super.key,
     required this.enabled,
     required this.controller,
-    required this.startAvatarTimer,
+    // required this.startAvatarTimer,
     required this.scrollController,
     required this.isAvatarShown,
   });
@@ -57,8 +57,7 @@ class SendButtonWidget extends StatelessWidget {
                             context.read<ChatHistoryCubit>().state;
 
                         //-------------------- authority send button ------------------------
-                        final userMessage =
-                            MessageRequestModel(content: message, role: 'user');
+                        final userMessage = MessageRequestModel(content: message, role: 'user');
                         context
                             .read<ChatHistoryCubit>()
                             .addMessage(userMessage);
@@ -98,9 +97,9 @@ class SendButtonWidget extends StatelessWidget {
                         controller.clear();
                         context.read<VoiceCubit>().clearText();
                       }
-                      if (isAvatarShown) {
-                        startAvatarTimer();
-                      }
+                      // if (isAvatarShown) {
+                      //   startAvatarTimer();
+                      // }
                     },
               child: Container(
                   padding: EdgeInsets.all(AppSizeW.s10),

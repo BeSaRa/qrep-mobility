@@ -8,10 +8,11 @@ import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
-
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ShownMessageWidget extends StatelessWidget {
   const ShownMessageWidget({
@@ -121,96 +122,6 @@ class ShownMessageWidget extends StatelessWidget {
       ],
     );
   }
-
-//   Widget _formatedDataFun(bool isMessageInArabic, BuildContext context) {
-//     //this case will happen just when user sent a message from authority or the shown message role is user
-//     if (message.content is String) {
-//       return Text(
-//           textDirection:
-//               isMessageInArabic ? ui.TextDirection.rtl : ui.TextDirection.ltr,
-//           message.content.toString(),
-//           textAlign: message.role == 'user' ? TextAlign.center : null,
-//           style: TextStyle(
-//               color: message.role == 'user'
-//                   ? ColorManager.white
-//                   : Theme.of(context).textTheme.bodySmall!.color));
-//     } else if (message.content is PlatformChatbotResponseModel) {
-//       final platformResponse = message.content as PlatformChatbotResponseModel;
-//       switch (platformResponse.responseFormat) {
-//         //-----------------------------------------------------------------------------
-//         case "OTHER":
-//           {
-//             if (platformResponse.response.isNotEmpty) {
-//               return PlatformTableResponse(
-// note: "",
-//                   response: platformResponse,
-//                   isHasNote: false);
-//             } else {
-//               return const InvalidQuestionWidget();
-//             }
-//           }
-//         //-----------------------------------------------------------------------------
-//         case "CHART":
-//           {
-//             final int elementKeysNumber =
-//                 platformResponse.response.first.keys.toList().length;
-//             if (elementKeysNumber > 2) {
-//               return PlatformTableResponse(
-//                 note: AppStrings().chartNote,
-//                   response: platformResponse,
-//                   isHasNote: true);
-//             } else {
-//               if(allValuesHaveLessThanFiveDigitsBeforePoint(platformResponse.response as List<Map<String,dynamic>>)){
-//  return PlatformTableResponse(
-// note: AppStrings().largeDigitsNumbersNote,
-//                   response: platformResponse,
-//                   isHasNote: true
-
-//                   );
-//               }
-//               return PlatformChartResponse(
-//                   responseData: platformResponse,
-//                   currentMessageIndex: currentMessageIndex);
-//             }
-//           }
-//         //-----------------------------------------------------------------------------
-//         case "LAW":
-//           return PlatformLawResponse(
-//             responseData: platformResponse,
-//           );
-//         //-----------------------------------------------------------------------------
-//         case "AVG":
-//           {
-//             final int elementKeysNumber =
-//                 platformResponse.response.first.keys.toList().length;
-//             if (elementKeysNumber == 1) {
-//               return PlatformAvgResponse(
-//                 responseData: platformResponse,
-//                 isMessageInArabic: isMessageInArabic,
-//               );
-//             } else if (elementKeysNumber == 2) {
-//               return PlatformChartResponse(
-//                   currentMessageIndex: currentMessageIndex,
-//                   responseData: platformResponse);
-//             } else {
-//               return PlatformTableResponse(
-//                 note: AppStrings().avgNote,
-//                   response: platformResponse,
-//                   isHasNote: true);
-//             }
-//           }
-//         //-----------------------------------------------------------------------------
-//         default:
-//           return const InvalidQuestionWidget();
-//       }
-//     } else {
-//       return Text(
-//         AppStrings().defaultError,
-//         // "Unsupported format",
-//         style: const TextStyle(color: Colors.red),
-//       );
-//     }
-//   }
 }
 
 class FormattedDataWidget extends StatelessWidget {
@@ -256,18 +167,85 @@ class FormattedDataWidget extends StatelessWidget {
     return integerPart.length <= 5;
   }
 
+  List<TextSpan> _buildStringContentWithLinks(
+      MessageRequestModel message, BuildContext context) {
+    final citations = message.contextData?.citations ?? [];
+    final RegExp regex = RegExp(r'\[doc(\d+)\]');
+    final content = message.content.toString();
+
+    final List<TextSpan> spans = [];
+    int start = 0;
+
+    // Get the default text style from theme
+    final defaultStyle = Theme.of(context).textTheme.bodyMedium!.copyWith(
+          color: message.role == 'user'
+              ? ColorManager.white
+              : Theme.of(context).textTheme.bodyMedium!.color,
+        );
+
+    for (final match in regex.allMatches(content)) {
+      final matchStart = match.start;
+      final matchEnd = match.end;
+      final matchText = match.group(0)!;
+      final docIndex = int.parse(match.group(1)!);
+
+      // Add the text before the match
+      if (start < matchStart) {
+        spans.add(TextSpan(
+          text: content.substring(start, matchStart),
+          style: defaultStyle,
+        ));
+      }
+
+      // Add the clickable 📎 icon
+      if (docIndex - 1 < citations.length) {
+        final url = citations[docIndex - 1].url;
+        spans.add(TextSpan(
+          text: '📎',
+          style: defaultStyle.copyWith(
+            decoration: TextDecoration.underline,
+          ),
+          recognizer: TapGestureRecognizer()
+            ..onTap = () async {
+              if (await canLaunchUrl(Uri.parse(url))) {
+                await launchUrl(Uri.parse(url),
+                    mode: LaunchMode.externalApplication);
+              }
+            },
+        ));
+      } else {
+        // fallback if citation not found
+        spans.add(TextSpan(
+          text: matchText,
+          style: defaultStyle,
+        ));
+      }
+
+      start = matchEnd;
+    }
+
+    // Add the remaining text after the last match
+    if (start < content.length) {
+      spans.add(TextSpan(
+        text: content.substring(start),
+        style: defaultStyle,
+      ));
+    }
+
+    return spans;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (message.content is String) {
-      return Text(
-          textDirection:
-              isMessageInArabic ? ui.TextDirection.rtl : ui.TextDirection.ltr,
-          message.content.toString(),
-          textAlign: message.role == 'user' ? TextAlign.center : null,
-          style: TextStyle(
-              color: message.role == 'user'
-                  ? ColorManager.white
-                  : Theme.of(context).textTheme.bodySmall!.color));
+      return Text.rich(
+        TextSpan(
+          children: _buildStringContentWithLinks(message, context),
+        ),
+        textDirection:
+            isMessageInArabic ? ui.TextDirection.rtl : ui.TextDirection.ltr,
+        textAlign: message.role == 'user' ? TextAlign.center : null,
+      );
     } else if (message.content is PlatformChatbotResponseModel) {
       final platformResponse = message.content as PlatformChatbotResponseModel;
       switch (platformResponse.responseFormat) {

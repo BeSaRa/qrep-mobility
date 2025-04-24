@@ -63,7 +63,10 @@ class _HomeViewState extends State<HomeView> {
                   HomeIcons(
                     icon: IconAssets.calendar,
                     title: AppStrings().calendar,
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(RoutesNames.aboutTheAuthority,
+                          pathParameters: {"pageName": "realEstateCalendar"});
+                    },
                   ),
                 ],
               ),

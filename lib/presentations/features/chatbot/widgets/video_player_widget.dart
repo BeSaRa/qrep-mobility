@@ -1,5 +1,8 @@
 import 'dart:typed_data';
 
+import 'package:ebla/presentations/features/chatbot/blocs/close_stream/close_stream_bloc.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/start_stream_bloc/start_stream_bloc.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/stream_id_cubit.dart/stream_id_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_state.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +25,9 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   Widget build(BuildContext context) {
     WebRTCCubit webRTCCubit = BlocProvider.of<WebRTCCubit>(context);
     _videoKey = webRTCCubit.videoKey;
-    return BlocBuilder<WebRTCCubit, WebRTCState>(
+    return BlocConsumer<WebRTCCubit, WebRTCState>(
       bloc: webRTCCubit,
+      listener: (context, state) {},
       // buildWhen: (previous, current) =>
       //     // previous.localRenderer != current.localRenderer ||
       //     previous.remoteRenderer != current.remoteRenderer,

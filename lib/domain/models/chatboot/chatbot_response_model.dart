@@ -23,7 +23,7 @@ abstract class MessageResponseModel with _$MessageResponseModel {
     @Default('') @JsonKey(name: "conversation_id") String conversationId,
     @Default('') String role,
     @Default(false) bool endTurn,
-    @Default(null) ContextModel? contextModel,
+    @Default(null) @JsonKey(name: "context") ContextModel? contextModel,
   }) = _MessageResponseModel;
 
   factory MessageResponseModel.fromJson(Map<String, dynamic> json) =>
@@ -61,7 +61,7 @@ abstract class Citation with _$Citation {
     @Default('') String title,
     @Default('') String url,
     @Default('') String? filepath,
-    @Default('') String chunkId,
+    @Default('') @JsonKey(name: "chunk_id") String chunkId,
   }) = _Citation;
 
   factory Citation.fromJson(Map<String, dynamic> json) =>

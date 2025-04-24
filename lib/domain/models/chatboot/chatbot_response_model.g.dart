@@ -32,9 +32,9 @@ _$MessageResponseModelImpl _$$MessageResponseModelImplFromJson(
       conversationId: json['conversation_id'] as String? ?? '',
       role: json['role'] as String? ?? '',
       endTurn: json['endTurn'] as bool? ?? false,
-      contextModel: json['contextModel'] == null
+      contextModel: json['context'] == null
           ? null
-          : ContextModel.fromJson(json['contextModel'] as Map<String, dynamic>),
+          : ContextModel.fromJson(json['context'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$MessageResponseModelImplToJson(
@@ -44,7 +44,7 @@ Map<String, dynamic> _$$MessageResponseModelImplToJson(
       'conversation_id': instance.conversationId,
       'role': instance.role,
       'endTurn': instance.endTurn,
-      'contextModel': instance.contextModel,
+      'context': instance.contextModel,
     };
 
 _$UsageImpl _$$UsageImplFromJson(Map<String, dynamic> json) => _$UsageImpl(
@@ -88,7 +88,7 @@ _$CitationImpl _$$CitationImplFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String? ?? '',
       url: json['url'] as String? ?? '',
       filepath: json['filepath'] as String? ?? '',
-      chunkId: json['chunkId'] as String? ?? '',
+      chunkId: json['chunk_id'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$CitationImplToJson(_$CitationImpl instance) =>
@@ -97,7 +97,7 @@ Map<String, dynamic> _$$CitationImplToJson(_$CitationImpl instance) =>
       'title': instance.title,
       'url': instance.url,
       'filepath': instance.filepath,
-      'chunkId': instance.chunkId,
+      'chunk_id': instance.chunkId,
     };
 
 _$StartStreamModelImpl _$$StartStreamModelImplFromJson(

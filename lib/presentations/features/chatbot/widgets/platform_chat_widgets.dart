@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
@@ -41,7 +43,7 @@ class PlatformAvgResponse extends StatelessWidget {
               : "AVG",
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: AppSizeW.s16,
+            fontSize: AppSizeSp.s16,
             fontWeight: FontWeight.bold,
             color: ColorManager.white,
           ),
@@ -63,7 +65,7 @@ class PlatformAvgResponse extends StatelessWidget {
                     .response.first[responseData.response.first.keys.first]
                     .toString(),
                 style: TextStyle(
-                    fontSize: AppSizeW.s25,
+                    fontSize: AppSizeSp.s25,
                     color: Theme.of(context).textTheme.bodySmall!.color)),
           ],
         ),
@@ -82,23 +84,11 @@ class InvalidQuestionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       spacing: AppSizeH.s5,
-      // crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Container(
-        //   // padding: EdgeInsets.all(AppSizeW.s3),
-        //   decoration: BoxDecoration(
-        //       border: Border.all(color: ColorManager.red, width: 1),
-        //       borderRadius: BorderRadius.circular(AppSizeR.s100)),
-        //   child: Icon(
-        //     Icons.error_outline_outlined,
-        //     color: ColorManager.red,
-        //   ),
-        // ),
         Flexible(
           child: Text(
             AppStrings().chatOtherResponseMessage,
-            // textAlign: TextAlign.center,
             style: TextStyle(
               color: ColorManager.red,
               fontSize: AppSizeSp.s14,
@@ -109,18 +99,9 @@ class InvalidQuestionWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            // Text(
-            //   '${AppStrings().note}: ',
-            //   // textAlign: TextAlign.center,
-            //   style: TextStyle(
-            //       color: ColorManager.red,
-            //       fontSize: AppSizeSp.s14,
-            //       fontWeight: FontWeight.w700),
-            // ),
             Flexible(
               child: Text(
                 '${AppStrings().note}: ${AppStrings().chatOtherResponseMessageNote}',
-                // textAlign: TextAlign.center,
                 style: TextStyle(
                     color: ColorManager.red,
                     fontSize: AppSizeSp.s14,
@@ -129,18 +110,273 @@ class InvalidQuestionWidget extends StatelessWidget {
             ),
           ],
         ),
-        // Column(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   children: [
-
-        //   ],
-        // ),
       ],
     );
   }
 }
 
 //=====================================================================
+class CustomeTableDialog extends StatefulWidget {
+  final dynamic response;
+  final ScrollController horizontalController;
+
+  const CustomeTableDialog({
+    super.key,
+    required this.horizontalController,
+    required this.response,
+  });
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _CustomeTableDialogState createState() => _CustomeTableDialogState();
+}
+
+class _CustomeTableDialogState extends State<CustomeTableDialog> {
+  final ValueNotifier<int> _currentPageNotifier = ValueNotifier<int>(0);
+  final int _rowsPerPage = 10;
+
+  @override
+  Widget build(BuildContext context) {
+    final List<String> headers = widget.response.first.keys.toList();
+    final int totalPages = (widget.response.length / _rowsPerPage).ceil();
+
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      child: Stack(
+        children: [
+          BackdropFilter(
+            filter: ui.ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: Container(
+              decoration: BoxDecoration(
+                color: ColorManager.whiteSmoke,
+                borderRadius: BorderRadius.circular(AppSizeR.s12),
+              ),
+              padding: EdgeInsets.all(AppSizeW.s16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: IconButton(
+                      icon: Icon(Icons.close, size: AppSizeW.s30),
+                      onPressed: () => Navigator.pop(context),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    width: MediaQuery.of(context).size.width,
+                    constraints: BoxConstraints(
+                      minWidth: MediaQuery.of(context).size.width,
+                    ),
+                    child: Column(
+                      children: [
+                        Scrollbar(
+                          controller: widget.horizontalController,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: CustomePaginatedTable(
+                              headers: headers,
+                              response: widget.response,
+                              rowsPerPage: _rowsPerPage,
+                              currentPageNotifier: _currentPageNotifier,
+                            ),
+                          ),
+                        ),
+                        RowPaginationWidget(
+                          totalPages: totalPages,
+                          currentPageNotifier: _currentPageNotifier,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CustomePaginatedTable extends StatelessWidget {
+  final List<String> headers;
+  final List<dynamic> response;
+  final int rowsPerPage;
+  final ValueNotifier<int> currentPageNotifier;
+
+  const CustomePaginatedTable({
+    super.key,
+    required this.headers,
+    required this.response,
+    required this.rowsPerPage,
+    required this.currentPageNotifier,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<int>(
+      valueListenable: currentPageNotifier,
+      builder: (context, currentPage, _) {
+        final startIndex = currentPage * rowsPerPage;
+        final endIndex = (currentPage + 1) * rowsPerPage > response.length
+            ? response.length
+            : (currentPage + 1) * rowsPerPage;
+        final currentRows = response.sublist(startIndex, endIndex);
+
+        return DataTable(
+          columns: headers
+              .map((header) => DataColumn(
+                    label: Center(child: Text(header)),
+                  ))
+              .toList(),
+          rows: currentRows
+              .map<DataRow>((row) => DataRow(
+                    cells: headers
+                        .map((key) => DataCell(
+                              Center(child: Text(row[key].toString())),
+                            ))
+                        .toList(),
+                  ))
+              .toList(),
+        );
+      },
+    );
+  }
+}
+
+class RowPaginationWidget extends StatelessWidget {
+  final int totalPages;
+  final ValueNotifier<int> currentPageNotifier;
+
+  const RowPaginationWidget({
+    super.key,
+    required this.totalPages,
+    required this.currentPageNotifier,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<int>(
+      valueListenable: currentPageNotifier,
+      builder: (context, currentPage, _) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              icon: Icon(Icons.arrow_back_ios_rounded, size: AppSizeW.s16),
+              onPressed:
+                  currentPage > 0 ? () => currentPageNotifier.value-- : null,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppSizeW.s8),
+              child: Text(
+                '${AppStrings().page} ${currentPage + 1} ${AppStrings().of} $totalPages',
+                style: TextStyle(fontSize: AppSizeSp.s13),
+              ),
+            ),
+            IconButton(
+              icon: Icon(Icons.arrow_forward_ios_rounded, size: AppSizeW.s16),
+              onPressed: currentPage < totalPages - 1
+                  ? () => currentPageNotifier.value++
+                  : null,
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class TableCardsListWidget extends StatefulWidget {
+  final bool isLargeData;
+  final PlatformChatbotResponseModel response;
+
+  const TableCardsListWidget({
+    super.key,
+    required this.isLargeData,
+    required this.response,
+  });
+
+  @override
+  State<TableCardsListWidget> createState() => _TableCardsListWidgetState();
+}
+
+class _TableCardsListWidgetState extends State<TableCardsListWidget> {
+  @override
+  Widget build(BuildContext context) {
+    // Take only the first 10 elements if it's large data
+    final dataToDisplay = widget.isLargeData
+        ? widget.response.response.take(10).toList()
+        : widget.response.response;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (widget.isLargeData)
+          ChatbotNoteWidget(note: AppStrings().largeDataNote),
+        Wrap(
+          spacing: AppSizeW.s8,
+          runSpacing: AppSizeH.s8,
+          children: dataToDisplay.map<Widget>((data) {
+            final item = data as Map<String, dynamic>;
+
+            return ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width - AppSizeW.s276,
+              ),
+              child: Card(
+                elevation: 3,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppSizeR.s12),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(AppSizeW.s12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: item.entries.map((entry) {
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: AppSizeH.s8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              entry.key,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: AppSizeSp.s12,
+                                fontWeight: FontWeight.w600,
+                                color: ColorManager.primary,
+                              ),
+                            ),
+                            SizedBox(height: AppSizeH.s4),
+                            Text(
+                              textAlign: TextAlign.center,
+                              '${entry.value}',
+                              style: TextStyle(
+                                fontSize: AppSizeSp.s12,
+                                color: Colors.black87,
+                              ),
+                            ),
+                            const Divider(
+                              indent: 5,
+                              endIndent: 5,
+                              thickness: 0.5,
+                            ),
+                          ],
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
+            );
+          }).toList(),
+        ),
+      ],
+    );
+  }
+}
+
 class PlatformTableResponse extends StatefulWidget {
   const PlatformTableResponse({
     super.key,
@@ -162,8 +398,9 @@ class PlatformTableResponse extends StatefulWidget {
 class _PlatformTableResponseState extends State<PlatformTableResponse> {
   final ScrollController _horizontalController = ScrollController();
   final ValueNotifier<bool> isPDFDownloding = ValueNotifier(false);
+  // final ValueNotifier<bool> showTableView = ValueNotifier(false);
+
   bool _isLargeDataset(PlatformChatbotResponseModel response) {
-    //more than 50 rows
     return response.response.length > 50;
   }
 
@@ -176,136 +413,101 @@ class _PlatformTableResponseState extends State<PlatformTableResponse> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> headers = widget.response.response.first.keys.toList();
     final isLargeData = _isLargeDataset(widget.response);
-    return Column(
-      children: [
-        Row(
-          spacing: AppSizeH.s5,
-          children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: ValueListenableBuilder<bool>(
-                  valueListenable: isPDFDownloding,
-                  builder: (context, downloading, child) {
-                    return downloading
-                        ? SizedBox(
-                            width: AppSizeW.s20,
-                            height: AppSizeH.s20,
-                            child: const CircularProgressIndicator())
-                        : GestureDetector(
-                            onTap: () async {
-                              isPDFDownloding.value = true;
 
-                              try {
-                                if (isLargeData) {
-                                  // For large data - generate and open Excel
-                                  await PdfDownloadService(
-                                    pdfTitle: widget.pdfTitle,
-                                    response: widget.response,
-                                  ).generateAndOpenExcel(context: context);
-                                } else {
-                                  String filePath = await PdfDownloadService(
-                                    pdfTitle: widget.pdfTitle,
-                                    response: widget.response,
-                                  ).downloadPDF();
-                                  if (mounted) {
-                                    successToast(
-                                        'PDF saved to $filePath', context);
-                                    // ScaffoldMessenger.of(context).showSnackBar(
-                                    //   SnackBar(
-                                    //       content:
-                                    //           Text('PDF saved to $filePath')),
-                                    // );
-                                  }
-                                }
-                              } catch (e) {
-                                if (mounted) {
-                                  errorToast(
-                                      AppStrings().defaultError, context);
-                                }
-                              } finally {
-                                isPDFDownloding.value = false;
-                              }
-                            },
-                            child: Icon(
-                                isLargeData
-                                    ? Icons.picture_as_pdf
-                                    : Icons.download,
-                                size: AppSizeW.s30));
-                  }),
-            ),
-            Expanded(
-                child: Column(
+    return Stack(
+      children: [
+        Column(
+          children: [
+            if (widget.isHasNote) ChatbotNoteWidget(note: widget.note),
+
+            // Download button row
+            Row(
+              spacing: AppSizeH.s5,
               children: [
-                //-------------------Note---------------------------
-                if (widget.isHasNote) ChatbotNoteWidget(note: widget.note),
-                //----------------------------------------------
-                //if (widget.isAvgTable) ChatbotNoteWidget(note: AppStrings().avgNote),
-                Scrollbar(
-                  controller: _horizontalController,
-                  // scrollbarOrientation: ScrollbarOrientation.top,
-                  thumbVisibility: true,
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: MediaQuery.sizeOf(context).width,
-                    constraints: BoxConstraints(
-                      minWidth: MediaQuery.of(context).size.width,
-                    ),
-                    child: PaginatedDataTable(
-                      controller: _horizontalController,
-                      columns: headers
-                          .map((header) => DataColumn(
-                                label: Center(child: Text(header)),
-                              ))
-                          .toList(),
-                      source:
-                          _TableDataSource(widget.response.response, headers),
-                      rowsPerPage: widget.response.response.length < 10
-                          ? widget.response.response.length
-                          : 10, // Pagination: 10 rows per page
-                      showCheckboxColumn:
-                          false, // Hide unnecessary checkbox column
-                    ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: ValueListenableBuilder<bool>(
+                    valueListenable: isPDFDownloding,
+                    builder: (context, downloading, child) {
+                      return downloading
+                          ? SizedBox(
+                              width: AppSizeW.s20,
+                              height: AppSizeH.s20,
+                              child: const CircularProgressIndicator())
+                          : GestureDetector(
+                              onTap: () async {
+                                isPDFDownloding.value = true;
+                                try {
+                                  if (isLargeData) {
+                                    await PdfDownloadService(
+                                      pdfTitle: widget.pdfTitle,
+                                      response: widget.response,
+                                    ).generateAndOpenExcel(context: context);
+                                  } else {
+                                    String filePath = await PdfDownloadService(
+                                      pdfTitle: widget.pdfTitle,
+                                      response: widget.response,
+                                    ).downloadPDF();
+                                    if (context.mounted) {
+                                      successToast(
+                                          'PDF saved to $filePath', context);
+                                    }
+                                  }
+                                } catch (e) {
+                                  if (context.mounted) {
+                                    errorToast(
+                                        AppStrings().defaultError, context);
+                                  }
+                                } finally {
+                                  isPDFDownloding.value = false;
+                                }
+                              },
+                              child: Icon(
+                                  isLargeData
+                                      ? Icons.list_alt_outlined
+                                      : Icons.download,
+                                  size: AppSizeW.s30));
+                    },
                   ),
                 ),
+                Expanded(
+                    child: TableCardsListWidget(
+                        //here widget.response.response.length >12 to disply just 12 element
+                        //And I didn't make pass above isLargeData instead current condition because it's just for the PDF and Excil button
+                        isLargeData: widget.response.response.length > 12,
+                        response: widget.response)),
+                // Expanded(child: _buildCardView(isLargeData)),
               ],
-            )),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: AppSizeH.s16),
+              child: ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (context) => CustomeTableDialog(
+                      horizontalController: _horizontalController,
+                      response: widget.response.response,
+                    ),
+                  );
+                },
+                child: Text(AppStrings().viewAsTable),
+              ),
+            ),
           ],
         ),
+        // Table dialog
+        // ValueListenableBuilder<bool>(
+        //   valueListenable: showTableView,
+        //   builder: (context, showTable, child) {
+        //     return showTable ? _buildTableDialog() : const SizedBox.shrink();
+        //   },
+        // ),
       ],
     );
   }
-}
-
-class _TableDataSource extends DataTableSource {
-  final List<dynamic> data;
-  final List<String> headers;
-
-  _TableDataSource(this.data, this.headers);
-
-  @override
-  DataRow getRow(int index) {
-    if (index >= data.length) return const DataRow(cells: []);
-    final row = data[index];
-
-    return DataRow(
-      cells: headers.map((key) {
-        return DataCell(
-          Center(
-              child: Text(row[key].toString(),
-                  overflow: TextOverflow.ellipsis)), // Centering Data
-        );
-      }).toList(),
-    );
-  }
-
-  @override
-  bool get isRowCountApproximate => false;
-  @override
-  int get rowCount => data.length;
-  @override
-  int get selectedRowCount => 0;
 }
 
 //======================================================================
@@ -357,6 +559,18 @@ class PlatformChartResponse extends StatefulWidget {
 
 class _PlatformChartResponseState extends State<PlatformChartResponse> {
   final ScrollController _horizontalController = ScrollController();
+  double getDynamicInterval(double maxY) {
+    if (maxY <= 0) return 100;
+
+    int magnitude = maxY.floor().toString().length - 1;
+
+    // Limit to max 7 zeros (10^9)
+    if (magnitude >= 1 && magnitude <= 9) {
+      return pow(10, magnitude).toDouble();
+    }
+
+    return 100000;
+  }
 
   @override
   void dispose() {
@@ -373,18 +587,15 @@ class _PlatformChartResponseState extends State<PlatformChartResponse> {
     final String valueKey =
         widget.responseData.response.first.keys.last; // "العدد"
 
-    // Get the maximum value from the API response
-    final double maxValue = widget.responseData.response
-        .map((e) => (e[valueKey] as num?)?.toDouble() ?? 0.0)
-        .reduce((a, b) => a > b ? a : b);
-
-    // Dynamic height based on maxValue (with constraints)
-    double chartHeight =
-        (maxValue * 10).clamp(AppSizeH.s200, 800.0); // min 200 and max 600
-
     if (widget.responseData.response.isEmpty) {
       return const Center(child: Text("No data available"));
     }
+    double maxY = widget.responseData.response
+        .map((e) => (e[valueKey] as num).toDouble())
+        .reduce((a, b) => a > b ? a : b);
+
+    double interval = getDynamicInterval(maxY);
+    // double interval = maxY >= 3000 ? 10000 : 200;
 
     return Column(
       children: [
@@ -457,7 +668,7 @@ class _PlatformChartResponseState extends State<PlatformChartResponse> {
                             .content,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: AppSizeW.s16,
+                          fontSize: AppSizeSp.s16,
                           fontWeight: FontWeight.bold,
                           color: ColorManager.white,
                         ),
@@ -465,7 +676,7 @@ class _PlatformChartResponseState extends State<PlatformChartResponse> {
                     ),
                   //--------------------------- CHART ------------------------
                   SizedBox(
-                    height: chartHeight,
+                    height: AppSizeH.s304,
                     child: Scrollbar(
                       controller: _horizontalController,
                       thumbVisibility: true,
@@ -484,9 +695,10 @@ class _PlatformChartResponseState extends State<PlatformChartResponse> {
                           child: BarChart(
                             BarChartData(
                               alignment: BarChartAlignment.spaceAround,
-                              maxY: widget.responseData.response
-                                  .map((e) => (e[valueKey] as num).toDouble())
-                                  .reduce((a, b) => a > b ? a : b),
+                              // maxY: widget.responseData.response
+                              //     .map((e) => (e[valueKey] as num).toDouble())
+                              //     .reduce((a, b) => a > b ? a : b),
+                              maxY: maxY,
                               barGroups:
                                   widget.responseData.response.map((data) {
                                 final value =
@@ -507,10 +719,28 @@ class _PlatformChartResponseState extends State<PlatformChartResponse> {
                               titlesData: FlTitlesData(
                                 leftTitles: AxisTitles(
                                   sideTitles: SideTitles(
-                                    showTitles: true,
-                                    interval: 100, // Adjust spacing
-                                    reservedSize: AppSizeW.s50,
-                                  ),
+                                      showTitles: true,
+                                      interval: interval,
+                                      reservedSize: AppSizeW.s50,
+                                      getTitlesWidget: (value, meta) {
+                                        if (value == maxY) {
+                                          return const SizedBox
+                                              .shrink(); // Hide maxY label
+                                        }
+
+                                        String formattedValue;
+                                        if (value >= 1000) {
+                                          formattedValue =
+                                              '${(value / 1000).toStringAsFixed(value % 1000 == 0 ? 0 : 1)}k';
+                                        } else {
+                                          formattedValue =
+                                              value.toInt().toString();
+                                        }
+
+                                        return Text(
+                                          formattedValue,
+                                        );
+                                      }),
                                 ),
                                 bottomTitles: AxisTitles(
                                   sideTitles: SideTitles(
@@ -525,7 +755,7 @@ class _PlatformChartResponseState extends State<PlatformChartResponse> {
                                       return Text(
                                         monthLabel,
                                         style: TextStyle(
-                                            fontSize: AppSizeW.s12,
+                                            fontSize: AppSizeSp.s12,
                                             fontWeight: FontWeight.bold),
                                       );
                                     },
@@ -555,7 +785,7 @@ class _PlatformChartResponseState extends State<PlatformChartResponse> {
                                       value,
                                       TextStyle(
                                         color: ColorManager.primary,
-                                        fontSize: AppSizeW.s14,
+                                        fontSize: AppSizeSp.s14,
                                         fontWeight: FontWeight.w900,
                                       ),
                                     );
@@ -655,7 +885,7 @@ class PlatformLawResponseBubble extends StatelessWidget {
               title,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: AppSizeW.s16,
+                fontSize: AppSizeSp.s16,
                 fontWeight: FontWeight.bold,
                 color: ColorManager.white,
               ),
@@ -671,7 +901,7 @@ class PlatformLawResponseBubble extends StatelessWidget {
               children: [
                 Text(
                   content,
-                  style: TextStyle(fontSize: AppSizeW.s14),
+                  style: TextStyle(fontSize: AppSizeSp.s14),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

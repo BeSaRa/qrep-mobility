@@ -103,7 +103,7 @@ class VoiceCubit extends Cubit<VoiceState> {
       },
       localeId: "ar_DZ",
       // localeId: selectedLocale,
-       listenMode: stt.ListenMode.dictation,
+      listenMode: stt.ListenMode.dictation,
     );
     // if (isClosed) return; // Check if the Cubit is closed
     emit(VoiceState(

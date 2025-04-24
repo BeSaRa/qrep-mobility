@@ -1725,6 +1725,7 @@ class _CmsServiceClient implements CmsServiceClient {
     return httpResponse;
   }
 
+
   @override
   Future<HttpResponse<UserResponse>> getUserInfo() async {
     const _extra = <String, dynamic>{};
