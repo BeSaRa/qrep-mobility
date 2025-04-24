@@ -1,3 +1,4 @@
+import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter_plus/webview_flutter_plus.dart';
@@ -14,15 +15,24 @@ class _XMapViewState extends State<XMapView> {
   WebViewControllerPlus? _controller;
   double _height = 0.001;
   bool _isWebViewReady = false;
-
+  String local = 'ar';
   @override
   void initState() {
     super.initState();
-    _initWebView();
+
+    _initWebView(local);
   }
 
-  Future<void> _initWebView() async {
-    await localhostServer.start();
+  @override
+  void didChangeDependencies() {
+    local = Localizations.localeOf(context) == ARABIC_LOCAL ? "ar" : "en";
+    super.didChangeDependencies();
+  }
+
+  Future<void> _initWebView(String local) async {
+    if (!localhostServer.isRunning()) {
+      await localhostServer.start();
+    }
     final port = localhostServer.port;
 
     if (port == null) {
@@ -33,9 +43,9 @@ class _XMapViewState extends State<XMapView> {
     // Set cookie BEFORE loading the page
     final cookieManager = WebViewCookieManager();
     await cookieManager.setCookie(
-      const base_webview.WebViewCookie(
+      base_webview.WebViewCookie(
         name: 'pll_language',
-        value: 'en', // or 'ar' or anything you want
+        value: local, // or 'ar' or anything you want
         domain: 'localhost',
         path: '/',
       ),
