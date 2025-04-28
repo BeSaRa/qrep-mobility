@@ -55,6 +55,7 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                         avatarState.mapOrNull(
                           error: (value) {
                             errorToast(value.message, context);
+                            isStillLoading.value = false;
                           },
                           done: (value) async {
                             //1- save the ID in cubit to use it when i close the stream
@@ -148,6 +149,10 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                                 SendAnswerAndCandidateState>(
                             listener: (context, state) {
                           state.mapOrNull(
+                            error: (value) {
+                              isStillLoading.value = false;
+                              errorToast(value.message, context);
+                            },
                             done: (value) {
                               if (mounted) {
                                 //=========== 5- to show tha avatar in the UI with Record Mode =============
