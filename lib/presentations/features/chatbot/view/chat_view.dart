@@ -544,6 +544,8 @@ class _ChatViewState extends State<ChatView>
                                               bloc: BlocProvider.of<VoiceCubit>(
                                                   context),
                                               builder: (context, voiceState) {
+                                                print(
+                                                    "this is voice state $voiceState");
                                                 return GestureDetector(
                                                   onTap: () {
                                                     if (voiceState
