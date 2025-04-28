@@ -19,14 +19,15 @@ class _XMapViewState extends State<XMapView> {
   @override
   void initState() {
     super.initState();
-
-    _initWebView(local);
   }
 
   @override
   void didChangeDependencies() {
-    local = Localizations.localeOf(context) == ARABIC_LOCAL ? "ar" : "en";
     super.didChangeDependencies();
+    local = Localizations.localeOf(context) == ARABIC_LOCAL ? "ar" : "en";
+    print('Current locale: $local');
+
+    _initWebView(local);
   }
 
   Future<void> _initWebView(String local) async {
@@ -40,17 +41,17 @@ class _XMapViewState extends State<XMapView> {
       return;
     }
 
-    // Set cookie BEFORE loading the page
     final cookieManager = WebViewCookieManager();
     await cookieManager.setCookie(
       base_webview.WebViewCookie(
         name: 'pll_language',
-        value: local, // or 'ar' or anything you want
+        value: local,
         domain: 'localhost',
         path: '/',
       ),
     );
 
+    // Very important: create the controller AFTER setting the cookie
     final controller = WebViewControllerPlus()
       ..setNavigationDelegate(
         NavigationDelegate(
@@ -67,7 +68,7 @@ class _XMapViewState extends State<XMapView> {
       )
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
-      ..loadFlutterAssetWithServer('assets/xmap/index.html', port);
+      ..loadFlutterAssetWithServer('assets/xmap/index.html', port); // reload
 
     setState(() {
       _controller = controller;

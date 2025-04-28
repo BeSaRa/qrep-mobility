@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.3+35
+version: 1.0.3+36
 
 environment:
   sdk: ">=3.1.2 <4.0.0"
@@ -75,6 +75,7 @@ dev_dependencies:
   retrofit_generator: ^7.0.8
 dependency_overrides:
   intl: ^0.19.0
+  webview_flutter_android: 4.3.3
 flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
