@@ -239,6 +239,8 @@
   "Evaluation_completed_successfully": "تم التقييم بنجاح",
   "large_data_note": "لرؤية كافة المعلومات، اضغط على زر \"عرض كجدول\"",
   "view_as_table": "عرض كجدول",
+  "avatar_session_expired": "لقد انتهت صلاحية الجلسة",
+
   "-----------AI SEARCH----------": "--------------------------",
   "ai_search": "البحث الذكي",
   "search_here": "ابحث هنا...",

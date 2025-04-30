@@ -110,7 +110,7 @@ class WebRTCCubit extends Cubit<WebRTCState> {
           RTCPeerConnectionState.RTCPeerConnectionStateFailed) {
         _stopTimer();
         emit(state.copyWith(isComplete: true));
-      } else if (state.elapsedTime >= 0) {
+      } else if (state.elapsedTime < 0) {
         ///NOTE:
         ///here: it's the timer in the UI
         _stopTimer();
