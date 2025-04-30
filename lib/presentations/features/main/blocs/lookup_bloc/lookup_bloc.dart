@@ -20,9 +20,9 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
   BrokerLookUpUseCase lookupBrokerUsecase;
   BrokerLookOVUpUseCase lookOVUpUseCase;
 
-  LookupResponse? lookUpRent = LookupResponse();
-  LookupResponse? lookUpSell = LookupResponse();
-  LookupResponse? lookUpMortgage = LookupResponse();
+  LookupResponse? lookUpRent = const LookupResponse();
+  LookupResponse? lookUpSell = const LookupResponse();
+  LookupResponse? lookUpMortgage = const LookupResponse();
   RealEstateBrokerLookUp? lookupBroker = RealEstateBrokerLookUp();
   RealEstateBrokerLookUp? lookupBrokerOv = RealEstateBrokerLookUp();
 
@@ -36,8 +36,7 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
     on<LookupEvent>((event, emit) async {
       await event.map(
         getRentLookupEvent: (value) async {
-          print("get getRentLookupEvent ");
-          if (lookUpRent == LookupResponse()) {
+          if (lookUpRent == const LookupResponse()) {
             if (kDebugMode) {
               print("this event is been called");
             }
@@ -54,8 +53,7 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
           }
         },
         getMortgageLookupEvent: (value) async {
-          print("get getRentLookupEvent ");
-          if (lookUpMortgage == LookupResponse()) {
+          if (lookUpMortgage == const LookupResponse()) {
             emit(const LookupState.loadingLookup());
             final failureOrSuccess = await lookUpMortgageUseCase.execute();
             failureOrSuccess.when((mortgageLookup) {
@@ -69,8 +67,7 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
           }
         },
         getSellLookupEvent: (value) async {
-          print("get getRentLookupEvent ");
-          if (lookUpSell == LookupResponse()) {
+          if (lookUpSell == const LookupResponse()) {
             emit(const LookupState.loadingLookup());
             final failureOrSuccess = await getSellLookupUseCase.execute();
             failureOrSuccess.when((sellLookup) {
@@ -91,22 +88,21 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
           lookOVUpUseCase = instance<BrokerLookOVUpUseCase>();
         },
         getBrokerLookupEvent: (_GetBrokerLookupEvent value) async {
-          print("get getRentLookupEvent ");
           emit(const LookupState.loadingLookup());
-          if (lookUpRent == LookupResponse()) {
+          if (lookUpRent == const LookupResponse()) {
             final failureOrSuccessRent = await getRentLookupUseCase.execute();
             failureOrSuccessRent.when((rentLookup) {
               lookUpRent = rentLookup;
             }, (error) {});
           }
-          if (lookUpMortgage == LookupResponse()) {
+          if (lookUpMortgage == const LookupResponse()) {
             final failureOrSuccessMortgage =
                 await lookUpMortgageUseCase.execute();
             failureOrSuccessMortgage.when((mortgageLookup) {
               lookUpMortgage = mortgageLookup;
             }, (error) {});
           }
-          if (lookUpSell == LookupResponse()) {
+          if (lookUpSell == const LookupResponse()) {
             final failureOrSuccessSell = await getSellLookupUseCase.execute();
             failureOrSuccessSell.when((sellLookup) {
               lookUpSell = sellLookup;
@@ -135,9 +131,9 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
               }
             });
           }
-          if (lookUpSell != LookupResponse() &&
-              lookupBroker != LookupResponse() &&
-              lookupBrokerOv != LookupResponse() &&
+          if (lookUpSell != const LookupResponse() &&
+              lookupBroker != const LookupResponse() &&
+              lookupBrokerOv != const LookupResponse() &&
               lookUpMortgage != RealEstateBrokerLookUp() &&
               lookUpRent != RealEstateBrokerLookUp()) {
             emit(LookupState.loadedLookup(lookup: lookUpRent!));

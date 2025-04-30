@@ -70,7 +70,6 @@ class _AiSearchViewState extends State<AiSearchView> {
   }
 
   Future<void> _fetchSearchResults(String query, int page) async {
-    print("Fetching page: $page");
     final AiSearchRequestModel request = AiSearchRequestModel(
       facet: "",
       pageNumber: page,

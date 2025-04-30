@@ -65,7 +65,7 @@ class IndicatorWidget extends StatelessWidget {
         height: AppSizeH.s100,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppSizeR.s20),
-            color: Theme.of(context).scaffoldBackgroundColor,
+            color: Theme.of(context).cardTheme.color,
             boxShadow: [
               BoxShadow(
                   color: Theme.of(context).shadowColor,

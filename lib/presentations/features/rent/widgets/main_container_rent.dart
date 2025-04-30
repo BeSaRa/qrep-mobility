@@ -132,7 +132,7 @@ class MainRentDataContainer extends StatelessWidget {
                 if (hasRooms)
                   Container(
                     decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.onBackground,
+                        // color: Theme.of(context).colorScheme.,
                         borderRadius: BorderRadiusDirectional.only(
                             topStart: Radius.circular(AppSizeR.s5),
                             bottomStart: Radius.circular(AppSizeR.s5))),
