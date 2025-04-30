@@ -131,9 +131,8 @@ class EndPoints {
   static const String getUserWishListById = "/user-wish-list/user-id/";
 
   //platform chatbot
-  static const String sendMessageToPlatformChatbot= '/openai/chat/completion';
-  
-  //send-feedback
-  static const String sendFeedback= '/chat-history/add-feedback';
+  static const String sendMessageToPlatformChatbot = '/openai/chat/completion';
 
+  //send-feedback
+  static const String sendFeedback = '/chat-history/add-feedback';
 }

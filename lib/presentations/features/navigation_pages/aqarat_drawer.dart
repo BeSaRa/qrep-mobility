@@ -1,21 +1,19 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart' as local;
-import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_html/flutter_html.dart';
+
 import 'package:go_router/go_router.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
 import '../../resources/resources.dart';
 import '../../widgets/widgets.dart';
-import '../auth/blocs/login_bloc/login_bloc.dart';
+
 import '../main/cubit/bottom_nav_cubit.dart';
 import '../more/blocs/cubits/change_language_cubit.dart';
-// import '../more/more_view.dart';
 
 class AqaratDrawer extends StatefulWidget {
   const AqaratDrawer({super.key});
@@ -27,12 +25,11 @@ class AqaratDrawer extends StatefulWidget {
 class _AqaratDrawerState extends State<AqaratDrawer> {
   final AppPreferences appPreferences = instance<AppPreferences>();
   late ChangeLanguageCubit changeLanguageCubit;
-  late LoginBloc loginBloc;
+
   String guestId = "1FE57C12-22F3-4AF9-9DBE-C7EB9D5063D1";
 
   @override
   void initState() {
-    loginBloc = instance<LoginBloc>();
     changeLanguageCubit = ChangeLanguageCubit(0);
     super.initState();
   }
@@ -93,7 +90,7 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
             icon: IconAssets.privacyPolicy,
             title: AppStrings().privacyPolicy,
             onTap: () {
-                context.pushNamed(RoutesNames.aboutTheAuthority,
+              context.pushNamed(RoutesNames.aboutTheAuthority,
                   pathParameters: {"pageName": "privacyPolicy"});
             },
           ),
@@ -116,10 +113,10 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
           ),
           EblaTabBarWidget(
             initialIndex: context.locale == ARABIC_LOCAL ? 0 : 1,
-            firstTab: Tab(
+            firstTab: const Tab(
               text: 'عربي',
             ),
-            secondTab: Tab(
+            secondTab: const Tab(
               text: 'English',
             ),
             onPressed: (index) {
@@ -140,12 +137,12 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
                       Brightness.light
                   ? 0
                   : 1,
-              firstTab: Tab(
+              firstTab: const Tab(
                 // text: '',
                 // AppStrings().light,
                 icon: Icon(CupertinoIcons.brightness),
               ),
-              secondTab: Tab(
+              secondTab: const Tab(
                 // text: "",
                 // AppStrings().dark,
                 icon: Icon(CupertinoIcons.moon),
@@ -174,27 +171,27 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
             spacing: AppSizeW.s12,
             children: [
               ImageIcon(
-                AssetImage(IconAssets.twitter),
+                const AssetImage(IconAssets.twitter),
                 color: ColorManager.primary,
                 size: AppSizeW.s18,
               ),
               ImageIcon(
-                AssetImage(IconAssets.video),
+                const AssetImage(IconAssets.video),
                 color: ColorManager.primary,
                 size: AppSizeW.s18,
               ),
               ImageIcon(
-                AssetImage(IconAssets.linkedIN),
+                const AssetImage(IconAssets.linkedIN),
                 color: ColorManager.primary,
                 size: AppSizeW.s18,
               ),
               ImageIcon(
-                AssetImage(IconAssets.instagram),
+                const AssetImage(IconAssets.instagram),
                 color: ColorManager.primary,
                 size: AppSizeW.s18,
               ),
               ImageIcon(
-                AssetImage(IconAssets.facebook),
+                const AssetImage(IconAssets.facebook),
                 color: ColorManager.primary,
                 size: AppSizeW.s18,
               ),

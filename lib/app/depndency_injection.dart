@@ -160,17 +160,7 @@ Future<void> initAppModule() async {
         () => MainMenuUsecase(repository: instance()));
   }
   //Blocs
-  if (!GetIt.I.isRegistered<LoginBloc>()) {
-    instance.registerFactory<LoginBloc>(() => LoginBloc(
-        loginUsecases: instance<LoginUsecases>(),
-        appPreferences: instance<AppPreferences>()));
-  }
 
-  if (!GetIt.I.isRegistered<ForgetPasswordBloc>()) {
-    instance.registerFactory<ForgetPasswordBloc>(() => ForgetPasswordBloc(
-          instance<ForgetPasswordUseCase>(),
-        ));
-  }
   if (!GetIt.I.isRegistered<UserBloc>()) {
     instance.registerFactory<UserBloc>(() => UserBloc(
         userUsecase: instance<UserUsecase>(),

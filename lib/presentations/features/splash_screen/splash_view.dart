@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:ebla/app/depndency_injection.dart';
-import 'package:ebla/presentations/features/auth/blocs/cubits/logged_in_user_cubit.dart';
+import 'package:ebla/presentations/features/auth/logged_in_user_cubit.dart';
 import 'package:ebla/presentations/features/more/blocs/user_bloc/user_bloc.dart';
 import 'package:ebla/presentations/features/splash_screen/widgets/animated_transparent_container.dart';
 import 'package:flutter/material.dart';

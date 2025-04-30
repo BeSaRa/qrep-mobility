@@ -1,6 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ebla/presentations/features/auth/blocs/cubits/logged_in_user_cubit.dart';
+import 'package:ebla/presentations/features/auth/logged_in_user_cubit.dart';
 import 'package:ebla/presentations/features/main/blocs/main_menu_bloc/main_menu_bloc.dart';
 import 'package:ebla/presentations/features/main/cubit/bottom_nav_cubit.dart';
 import 'package:ebla/presentations/resources/resources.dart';
@@ -72,7 +72,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           builder: (context, child) => ThemeProvider(
             initTheme: instance<AppPreferences>().getTheme(),
             builder: (p0, theme) => MaterialApp.router(
-              
               debugShowCheckedModeBanner: false,
               localizationsDelegates: context.localizationDelegates,
               supportedLocales: context.supportedLocales,

@@ -18,7 +18,7 @@ import 'package:ebla/presentations/features/info/views/faq_view.dart';
 import 'package:ebla/presentations/features/investor_journey/view/investor_journey_view.dart';
 import 'package:ebla/presentations/features/main/main_scaffold.dart';
 import 'package:ebla/presentations/features/more/all_more_web_views/view/authority_map_view.dart';
-import 'package:ebla/presentations/features/more/more_view.dart';
+
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
 import 'package:ebla/presentations/features/navigation_pages/indicators_view.dart';

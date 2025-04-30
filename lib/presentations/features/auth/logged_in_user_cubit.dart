@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 
-import '../../../../../app/app_preferences.dart';
+import '../../../app/app_preferences.dart';
 
 class LoggedInUserCubit extends Cubit<bool> {
   final AppPreferences appPreferences;
