@@ -9,6 +9,7 @@ import 'package:ebla/presentations/features/chatbot/blocs/stream_id_cubit.dart/s
 import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/utility/chatbot_enums.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
+import 'package:ebla/presentations/resources/resources.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:flutter/material.dart';
@@ -61,19 +62,16 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                             //1- save the ID in cubit to use it when i close the stream
                             BlocProvider.of<StreamIdCubit>(context).setStreamId(
                                 value.startStreamResponse.data!.id);
-                            log("zak1");
                             //2- make the request body for the send answer and candidate
                             await webRTCCubit.initWebRTC(
                                 value.startStreamResponse.data!.webrtcData!
                                     .offer,
                                 value.startStreamResponse.data!.webrtcData!
                                     .iceServers);
-                            log("zak2");
                             //3- Pass cubit to parent via callback  to open the video widget
                             if (mounted) {
                               widget.onWebRTCCubitCreated(webRTCCubit);
                             }
-                            log("zak3");
 
                             //-------- to make sure that the candidates have came before I send the candidateto back-end ------
                             // int attempts = 0;
@@ -85,9 +83,7 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                             //   attempts++;
                             // }
                             //4- make the requests body of SENDANSWER & SENDCANDIDATE
-                            log("zak4");
                             if (webRTCCubit.state.isConnectionReady) {
-                              log("zak5");
                               final MainSendAnswerRequestModelById
                                   sendAnswerRequest =
                                   MainSendAnswerRequestModelById(
@@ -106,7 +102,6 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                                         sendAnswerRequest));
                               }
                               //------------------ candidate --------------------
-                              log("zak4.2");
 
                               for (var candidate
                                   in webRTCCubit.state.candidates) {
@@ -156,8 +151,7 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                             done: (value) {
                               if (mounted) {
                                 //=========== 5- to show tha avatar in the UI with Record Mode =============
-                                widget.isAvatarExpanded.value =
-                                    !widget.isAvatarExpanded.value;
+                                widget.isAvatarExpanded.value = true;
                                 // widget.isRecordModeActive.value =
                                 //     true;
 
@@ -186,8 +180,6 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                                         child:
                                             const CircularProgressIndicator())
                                     : avatarState.maybeMap(
-
-                                        //zak important
                                         // loading: (_) => Container(
                                         //     padding: EdgeInsets.all(AppSizeW.s5),
                                         //     width: AppSizeW.s40,
@@ -198,7 +190,6 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                                             //for sendCandidate and aswers success
                                             sendAnswerAndCandidateState
                                                 .maybeMap(
-                                              //zak important
                                               // loading: (_) => Container(
                                               //     padding: EdgeInsets.all(AppSizeW.s5),
                                               //     width: AppSizeW.s40,
@@ -213,17 +204,15 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                                                       (context, closestate) {
                                                 closestate.mapOrNull(
                                                   error: (value) {
-                                                    errorToast(
-                                                        value.message, context);
                                                     //NOTE: here i make the user back to defult state of chat UI when faild to close stream
                                                     //because it will faild when back-end stop the stream
                                                     if (value.message ==
                                                         "Failed to close stream") {
                                                       widget.isAvatarExpanded
-                                                              .value =
-                                                          !widget
-                                                              .isAvatarExpanded
-                                                              .value;
+                                                          .value = false;
+                                                    } else {
+                                                      errorToast(value.message,
+                                                          context);
                                                     }
                                                   },
                                                   done: (value) async {
