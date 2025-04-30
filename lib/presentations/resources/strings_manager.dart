@@ -265,6 +265,7 @@ class AppStrings {
   String evaluationCompletedSuccessfully = "Evaluation_completed_successfully".tr();
   String largeDataNote = "large_data_note".tr();
   String viewAsTable = "view_as_table".tr();
+  String avatarSessionExpired = "avatar_session_expired".tr();
   //--------------ai_search---------------
   String aiSearch = "ai_search".tr();
   String searchHere = "search_here".tr();

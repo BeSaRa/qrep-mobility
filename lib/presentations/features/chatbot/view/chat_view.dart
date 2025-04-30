@@ -57,7 +57,7 @@ class _ChatViewState extends State<ChatView>
   // final Duration inactivityDuration = const Duration(minutes: 1, seconds: 45);
   WebRTCCubit? webRTCCubit;
   final ValueNotifier<bool> showScrollDownButton = ValueNotifier(false);
-  //zak
+  
   late final AnimationController _circularMenuController;
   final ValueNotifier<bool> isOpen = ValueNotifier(false);
 
@@ -72,7 +72,7 @@ class _ChatViewState extends State<ChatView>
     _controller.addListener(() {
       isSendEnabled.value = _controller.text.trim().isNotEmpty;
     });
-    //zak
+    
     _circularMenuController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
@@ -139,24 +139,6 @@ class _ChatViewState extends State<ChatView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: costumeChatAppBar(context, _scrollController, () async {
-      //   //close stream if it's working:
-      //
-      //   final String? streamId = streamIdCubit.state.streamId;
-      //   isAvatarExpanded.value = false;
-      //   if (streamId != null) {
-      //     closeStreamBloc.add(CloseStreamEvent.closeStream(
-      //         //here i pass the streamID
-      //         streamIdCubit.state.streamId!));
-      //     streamIdCubit.clearStreamId();
-      //   }
-      //   if (webRTCCubit != null) {
-      //     //clear the webrt Cubit
-      //     await webRTCCubit!.closeStreamCubit();
-      //     await webRTCCubit!.close();
-      //     webRTCCubit == null;
-      //   }
-      // }),
       body: Stack(
         children: [
           // Background Image
@@ -362,14 +344,20 @@ class _ChatViewState extends State<ChatView>
                                         //============================ Fix White Screen =============================
                                         // ----------------------------------- Close Stream From Front-end --------------------------
 
-                                        BlocProvider.of<StreamIdCubit>(context)
-                                            .clearStreamId();
                                         isAvatarExpanded.value = false;
                                         //here i close the webRTCCubit after closing done success to avoid leak in memory
-
-                                        errorToast(
-                                            AppStrings().somethingWentWrong,
-                                            context);
+                                        //I add this because:
+                                        //1-  when timer is done from back-end so this i hundle in IF
+                                        //2- when i open the stream but i have a faild peer connection, so this i hundle in ELSE
+                                        if (webRtcState.elapsedTime > 60) {
+                                          errorToast(
+                                              AppStrings().avatarSessionExpired,
+                                              context);
+                                        } else {
+                                          errorToast(
+                                              AppStrings().somethingWentWrong,
+                                              context);
+                                        }
                                         // ----------------------------------- Close Stream From Back-end --------------------------
                                         final String? streamId =
                                             BlocProvider.of<StreamIdCubit>(
@@ -384,7 +372,7 @@ class _ChatViewState extends State<ChatView>
                                                   streamIdCubit
                                                       .state.streamId!));
                                           //here i clear the state of startstream to make sure that i don't use the old sdp and data
-                                          startStreamBloc.add(
+                                          context.read<StartStreamBloc>().add(
                                               const StartStreamEvent
                                                   .clearState());
                                           //I close the avatar and dispose the camera renderer
@@ -393,6 +381,9 @@ class _ChatViewState extends State<ChatView>
                                             webRTCCubit!.close();
                                             webRTCCubit == null;
                                           }
+                                          BlocProvider.of<StreamIdCubit>(
+                                                  context)
+                                              .clearStreamId();
                                         }
                                         //=========================================================
                                       }
@@ -650,80 +641,6 @@ class _ChatViewState extends State<ChatView>
                                                 ? AppSizeW.s0
                                                 : AppSizeW.s5,
                                           ),
-                                          // Container(
-                                          //   margin: EdgeInsets.symmetric(
-                                          //       horizontal: AppSizeW.s150),
-                                          //   height: AppSizeH.s60,
-                                          //   width: AppSizeW.s60,
-                                          //   child: CircularMenu(
-                                          //     toggleButtonSize: AppSizeW.s20,
-                                          //     alignment: Alignment.center,
-                                          //     toggleButtonColor: ColorManager.primary,
-                                          //     toggleButtonMargin: 0,
-                                          //     toggleButtonIconColor: Colors.white,
-                                          //     startingAngleInRadian:
-                                          //         3.14, // From 180°
-                                          //     endingAngleInRadian:
-                                          //         // 6.28, // To 360° (full circle in clockwise)
-                                          //         4.71, // To 270° (full circle in clockwise)
-                                          //     // 5.10, // To 270° (full circle in clockwise)
-                                          //     radius: 100,
-                                          //     items: [
-                                          //       CircularMenuItem(
-                                          //         enableBadge: true,
-                                          //         badgeColor: Colors.amber,
-                                          //         badgeLabel: '3:00',
-                                          //         badgeRadius: 15,
-                                          //         badgeTextColor: Colors.white,
-                                          //         badgeRightOffet: 0,
-                                          //         badgeTopOffet: 0,
-                                          //         onTap: () {
-                                          //           print(
-                                          //               'badge on circular menu item');
-                                          //         },
-                                          //         icon: Icons.home,
-                                          //         color: Colors.teal,
-                                          //       ),
-                                          //       // CircularMenuItem(
-                                          //       //     iconSize: AppSizeW.s20,
-                                          //       //     icon: Icons.keyboard,
-                                          //       //     color: ColorManager.lightSilver,
-                                          //       //     onTap: () {}),
-                                          //       CircularMenuItem(
-                                          //           iconSize: AppSizeW.s20,
-                                          //           icon: Icons.fit_screen_sharp,
-                                          //           color: ColorManager.lightSilver,
-                                          //           onTap: () {
-                                          //             log(" miniscreen");
-                                          //             // setState(() {
-                                          //             //   webRTCCubit!
-                                          //             //       .toggleMiniScreen();
-                                          //             // });
-                                          //           }),
-                                          //       CircularMenuItem(
-                                          //           iconSize: AppSizeW.s20,
-                                          //           icon: Icons.volume_up,
-                                          //           color: ColorManager.lightSilver,
-                                          //           onTap: () {
-                                          //             log(" mute");
-
-                                          //             // webRTCCubit!
-                                          //             //     .toggleMute();
-                                          //           }),
-                                          //       CircularMenuItem(
-                                          //           iconSize: AppSizeW.s20,
-                                          //           icon: Icons.play_arrow,
-                                          //           color: ColorManager.lightSilver,
-                                          //           onTap: () {
-                                          //             log(" pause");
-                                          //             // webRTCCubit!
-                                          //             //     .togglePlayPause();
-                                          //           }),
-                                          //     ],
-                                          //   ),
-                                          // ),
-                                          // if (!isAvatarPressed)
-                                          //
                                           if (isAvatarPressed)
                                             GestureDetector(
                                               onTap: () {
@@ -797,7 +714,7 @@ class _ChatViewState extends State<ChatView>
                                                                         .read<
                                                                             ChatHistoryCubit>()
                                                                         .state;
-                                                                //-------------------- authority send button ------------------------
+                                                                //-------------------- authority clear button ------------------------
                                                                 if (chatState
                                                                         .activeChat ==
                                                                     ChatTypeEnum
@@ -816,7 +733,7 @@ class _ChatViewState extends State<ChatView>
                                                                             AppStrings().defaultAuthorityBotMessage,
                                                                       ));
                                                                 }
-                                                                //-------------------- Platform send button ------------------------
+                                                                //-------------------- Platform clear button ------------------------
                                                                 else {
                                                                   chatState
                                                                       .platformMessages
@@ -906,130 +823,6 @@ class _ChatViewState extends State<ChatView>
                                   ],
                                 ),
                               ),
-                              // here  make widget
-                              // if (webRTCCubit != null && isAvatarPressed)
-                              //   BlocBuilder<WebRTCCubit, WebRTCState>(
-                              //       bloc: webRTCCubit,
-                              //       builder: (context, state) {
-                              //         return state.isMiniScreen
-                              //             ? const SizedBox.shrink()
-                              //             :
-                              //             Container(
-                              //                 padding: EdgeInsets.only(
-                              //                   bottom: AppSizeW.s20,
-                              //                   right: AppSizeW.s15,
-                              //                   left: AppSizeW.s15,
-                              //                 ),
-                              //                 decoration:
-                              //                     BoxDecoration(boxShadow: [
-                              //                   BoxShadow(
-                              //                     color: Colors.black
-                              //                         .withValues(alpha: 0.1),
-                              //                     spreadRadius: 0,
-                              //                     blurRadius: 20,
-                              //                     offset: const Offset(0, 20),
-                              //                   ),
-                              //                   BoxShadow(
-                              //                     color: Colors.black
-                              //                         .withValues(alpha: 0.4),
-                              //                     spreadRadius: 0,
-                              //                     blurRadius: 20,
-                              //                     offset: const Offset(0, 10),
-                              //                   ),
-                              //                   BoxShadow(
-                              //                     color: Colors.black
-                              //                         .withValues(alpha: 0.7),
-                              //                     spreadRadius: 20,
-                              //                     blurRadius: 20,
-                              //                     offset: const Offset(0, 0),
-                              //                   ),
-                              //                 ]),
-                              //                 child: Row(
-                              //                   children: [
-                              //                     //-------------------Pause- ---------
-                              //                     Container(
-                              //                       decoration: BoxDecoration(
-                              //                           borderRadius:
-                              //                               BorderRadius
-                              //                                   .circular(
-                              //                                       AppSizeR
-                              //                                           .s130),
-                              //                           color: ColorManager
-                              //                               .textBlack
-                              //                               .withValues(
-                              //                                   alpha: .3)),
-                              //                       child: IconButton(
-                              //                         icon: Icon(
-                              //                           color:
-                              //                               ColorManager.white,
-                              //                           state.isPlaying
-                              //                               ? Icons.pause
-                              //                               : Icons.play_arrow,
-                              //                           size: AppSizeW.s25,
-                              //                         ),
-                              //                         onPressed: webRTCCubit!
-                              //                             .togglePlayPause,
-                              //                       ),
-                              //                     ),
-                              //                     //-------------------timer ----------
-                              //                     Container(
-                              //                       padding: EdgeInsets.all(
-                              //                           AppSizeW.s8),
-                              //                       child: BlocBuilder<
-                              //                               WebRTCCubit,
-                              //                               WebRTCState>(
-                              //                           bloc: webRTCCubit,
-                              //                           builder:
-                              //                               (context, state) {
-                              //                             // Convert elapsedTime into mm:ss format
-                              //                             String formattedTime =
-                              //                                 _formatTime(state
-                              //                                     .elapsedTime);
-
-                              //                             return Text(
-                              //                                 formattedTime,
-                              //                                 style: Theme.of(
-                              //                                         context)
-                              //                                     .textTheme
-                              //                                     .displaySmall);
-                              //                           }),
-                              //                     ),
-                              //                     //-------------------Sound ----------
-                              //                     const Spacer(),
-                              //                     IconButton(
-                              //                       icon: Icon(
-                              //                         state.isMuted
-                              //                             ? Icons.volume_off
-                              //                             : Icons.volume_up,
-                              //                         color: ColorManager.white,
-                              //                         size: AppSizeW.s25,
-                              //                       ),
-                              //                       onPressed: () {
-                              //                         webRTCCubit!.toggleMute();
-                              //                       },
-                              //                     ),
-                              //                     //------------------- Mini screen ----------
-
-                              //                     IconButton(
-                              //                         icon: Icon(
-                              //                           state.isMiniScreen
-                              //                               ? Icons.fullscreen
-                              //                               : Icons
-                              //                                   .fit_screen_sharp,
-                              //                           color:
-                              //                               ColorManager.white,
-                              //                           size: AppSizeW.s25,
-                              //                         ),
-                              //                         onPressed: () {
-                              //                           setState(() {
-                              //                             webRTCCubit!
-                              //                                 .toggleMiniScreen();
-                              //                           });
-                              //                         }),
-                              //                   ],
-                              //                 ),
-                              //               );
-                              //       }),
                             ],
                           );
                         }),
@@ -1037,10 +830,10 @@ class _ChatViewState extends State<ChatView>
                 );
               }),
 //========================== Start Menu Button  ============================================
-          ChatsMenuButtonWidget(
-            isAvatarExpanded: isAvatarExpanded,
-            scrollController: scrollController,
-          ),
+          // ChatsMenuButtonWidget(
+          //   isAvatarExpanded: isAvatarExpanded,
+          //   scrollController: scrollController,
+          // ),
 //========================== End Menu Button  ==============================================
 // =========================== Start Mini-Screen Mode (Draggable Video)===========================
           if (webRTCCubit != null)
@@ -1052,169 +845,144 @@ class _ChatViewState extends State<ChatView>
             ),
 // =========================== End Mini-Screen Mode (Draggable Video)===========================
 //============================ Start circular_menu =====================================
-
-          // Positioned(
-          //   top: 0,
-          //   bottom: AppSizeH.s50,
-          //   right: AppSizeW.s15,
-          //   left: 0,
-          //   child: ValueListenableBuilder<bool>(
-          //       valueListenable: isAvatarExpanded,
-          //       builder: (context, expanded, child) {
-          //         if (webRTCCubit != null && expanded) {
-          //           return BlocBuilder<WebRTCCubit, WebRTCState>(
-          //               bloc: webRTCCubit,
-          //               builder: (webContext, state) {
-          //                 return state.isMiniScreen
-          //                     ? const SizedBox.shrink()
-          //                     : Align(
-          //                         alignment: Alignment.centerRight,
-          //                         child: CircularMenu(
-          //                           toggleButtonSize: AppSizeW.s20,
-          //                           alignment: Alignment.centerRight,
-          //                           toggleButtonColor: ColorManager.primary,
-          //                           toggleButtonMargin: 0,
-          //                           toggleButtonIconColor: Colors.white,
-          //                           startingAngleInRadian: 3.14, // From 180°
-          //                           endingAngleInRadian:
-          //                               // 6.28, // To 360° (full circle in clockwise)
-          //                               4.71, // To 270° (full circle in clockwise)
-          //                           // 5.10, // To 270° (full circle in clockwise)
-          //                           radius: 100,
-          //                           items: [
-          //                             CircularMenuItem(
-          //                                 iconSize: AppSizeW.s20,
-          //                                 icon: state.isMiniScreen
-          //                                     ? Icons.fullscreen
-          //                                     : Icons.fit_screen_sharp,
-          //                                 color: ColorManager.primary
-          //                                     .withValues(alpha: .6),
-          //                                 onTap: () {
-          //                                   log(" miniscreen");
-          //                                   setState(() {
-          //                                     webRTCCubit!.toggleMiniScreen();
-          //                                   });
-          //                                 }),
-          //                             CircularMenuItem(
-          //                                 iconSize: AppSizeW.s20,
-          //                                 icon: state.isMuted
-          //                                     ? Icons.volume_off
-          //                                     : Icons.volume_up,
-          //                                 color: ColorManager.primary
-          //                                     .withValues(alpha: .6),
-          //                                 onTap: () {
-          //                                   log(" mute");
-
-          //                                   webRTCCubit!.toggleMute();
-          //                                 }),
-          //                             CircularMenuItem(
-          //                                 iconSize: AppSizeW.s20,
-          //                                 icon: state.isPlaying
-          //                                     ? Icons.pause
-          //                                     : Icons.play_arrow,
-          //                                 color: ColorManager.primary
-          //                                     .withValues(alpha: .6),
-          //                                 onTap: () {
-          //                                   log(" pause");
-          //                                   webRTCCubit!.togglePlayPause();
-          //                                 }),
-          //                           ],
-          //                         ),
-          //                       );
-          //               });
-          //         } else {
-          //           return const SizedBox.shrink();
-          //         }
-          //       }),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: AppSizeW.s5),
+          //   child: Align(
+          //     alignment: Alignment.centerRight,
+          //     child: ValueListenableBuilder<bool>(
+          //         valueListenable: isAvatarExpanded,
+          //         builder: (context, expanded, child) {
+          //           if (webRTCCubit != null && expanded) {
+          //             return ValueListenableBuilder<bool>(
+          //                 valueListenable: isOpen,
+          //                 builder: (context, open, _) {
+          //                   return FloatingActionButton.small(
+          //                     heroTag: "toggleMenu",
+          //                     backgroundColor: ColorManager.primary,
+          //                     child: Icon(
+          //                       open ? Icons.close : Icons.menu,
+          //                       color: Colors.white,
+          //                     ),
+          //                     onPressed: () => isOpen.value = !isOpen.value,
+          //                   );
+          //                 });
+          //           } else {
+          //             return const SizedBox.shrink();
+          //           }
+          //         }),
+          //   ),
           // ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppSizeW.s5),
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: ValueListenableBuilder<bool>(
-                  valueListenable: isAvatarExpanded,
-                  builder: (context, expanded, child) {
-                    if (webRTCCubit != null && expanded) {
-                      return BlocBuilder<WebRTCCubit, WebRTCState>(
-                          bloc: webRTCCubit,
-                          builder: (context, state) {
-                            if (state.isMiniScreen) {
-                              return const SizedBox.shrink();
-                            } else {
-                              return ValueListenableBuilder<bool>(
-                                valueListenable: isOpen,
-                                builder: (context, open, _) {
-                                  if (open &&
-                                      !_circularMenuController.isAnimating) {
-                                    _circularMenuController.forward();
-                                  } else if (!open &&
-                                      !_circularMenuController.isAnimating) {
-                                    _circularMenuController.reverse();
-                                  }
+          Positioned(
+            // top: MediaQuery.sizeOf(context).height * .25 - 23,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppSizeW.s5),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: ValueListenableBuilder<bool>(
+                    valueListenable: isAvatarExpanded,
+                    builder: (context, expanded, child) {
+                      if (webRTCCubit != null && expanded) {
+                        return BlocBuilder<WebRTCCubit, WebRTCState>(
+                            bloc: webRTCCubit,
+                            builder: (context, state) {
+                              if (state.isMiniScreen) {
+                                return const SizedBox.shrink();
+                              } else {
+                                return ValueListenableBuilder<bool>(
+                                  valueListenable: isOpen,
+                                  builder: (context, open, _) {
+                                    if (open &&
+                                        !_circularMenuController.isAnimating) {
+                                      _circularMenuController.forward();
+                                    } else if (!open &&
+                                        !_circularMenuController.isAnimating) {
+                                      _circularMenuController.reverse();
+                                    }
 
-                                  return Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      _buildAnimatedItem(
-                                        delay: 0,
-                                        child: open
-                                            ? _buildActionButton(
-                                                icon: state.isMiniScreen
-                                                    ? Icons.fullscreen
-                                                    : Icons.fit_screen_sharp,
-                                                onTap: () {
-                                                  setState(() {
-                                                    webRTCCubit!
-                                                        .toggleMiniScreen();
-                                                  });
-                                                })
-                                            : const SizedBox.shrink(),
-                                      ),
-                                      _buildAnimatedItem(
-                                        delay: 100,
-                                        child: open
-                                            ? _buildActionButton(
-                                                icon: state.isMuted
-                                                    ? Icons.volume_off
-                                                    : Icons.volume_up,
-                                                onTap: () =>
-                                                    webRTCCubit!.toggleMute(),
-                                              )
-                                            : const SizedBox.shrink(),
-                                      ),
-                                      _buildAnimatedItem(
-                                        delay: 200,
-                                        child: open
-                                            ? _buildActionButton(
-                                                icon: state.isPlaying
-                                                    ? Icons.pause
-                                                    : Icons.play_arrow,
-                                                onTap: () => webRTCCubit!
-                                                    .togglePlayPause(),
-                                              )
-                                            : const SizedBox.shrink(),
-                                      ),
-                                      FloatingActionButton.small(
-                                        heroTag: "toggleMenu",
-                                        backgroundColor: ColorManager.primary,
-                                        child: Icon(
-                                          open ? Icons.close : Icons.menu,
-                                          color: Colors.white,
+                                    return Column(
+                                      // mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Opacity(
+                                          opacity: open ? 1 : 0,
+                                          child: _buildAnimatedItem(
+                                              delay: 0,
+                                              child:
+                                                  //  open
+                                                  //     ?
+                                                  _buildActionButton(
+                                                      icon: state.isMiniScreen
+                                                          ? Icons.fullscreen
+                                                          : Icons
+                                                              .fit_screen_sharp,
+                                                      onTap: () {
+                                                        if (open) {
+                                                          setState(() {
+                                                            webRTCCubit!
+                                                                .toggleMiniScreen();
+                                                          });
+                                                        }
+                                                      })
+                                              // : const SizedBox.shrink(),
+                                              ),
                                         ),
-                                        onPressed: () =>
-                                            isOpen.value = !isOpen.value,
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            }
-                          });
-                    } else {
-                      return const SizedBox.shrink();
-                    }
-                  }),
+                                        Opacity(
+                                          opacity: open ? 1 : 0,
+                                          child: _buildAnimatedItem(
+                                              delay: 100,
+                                              child:
+                                                  // open
+                                                  //     ?
+                                                  _buildActionButton(
+                                                      icon: state.isMuted
+                                                          ? Icons.volume_off
+                                                          : Icons.volume_up,
+                                                      onTap: () {
+                                                        if (open) {
+                                                          webRTCCubit!
+                                                              .toggleMute();
+                                                        }
+                                                      })
+                                              // : const SizedBox.shrink(),
+                                              ),
+                                        ),
+                                        // _buildAnimatedItem(
+                                        //   delay: 200,
+                                        //   child: open
+                                        //       ? _buildActionButton(
+                                        //           icon: state.isPlaying
+                                        //               ? Icons.pause
+                                        //               : Icons.play_arrow,
+                                        //           onTap: () => webRTCCubit!
+                                        //               .togglePlayPause(),
+                                        //         )
+                                        //       : const SizedBox.shrink(),
+                                        // ),
+                                        FloatingActionButton.small(
+                                          heroTag: "toggleMenu",
+                                          backgroundColor: ColorManager.primary,
+                                          child: Icon(
+                                            open ? Icons.close : Icons.menu,
+                                            color: Colors.white,
+                                          ),
+                                          onPressed: () =>
+                                              isOpen.value = !isOpen.value,
+                                        ),
+                                        SizedBox(
+                                          height: AppSizeH.s120,
+                                        )
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
+                            });
+                      } else {
+                        return const SizedBox.shrink();
+                      }
+                    }),
+              ),
             ),
           ),
 
@@ -1300,145 +1068,6 @@ class _ChatViewState extends State<ChatView>
   Size get preferredSize => Size.fromHeight(AppSizeH.s30);
 }
 
-class VerticalActionMenu extends StatefulWidget {
-  const VerticalActionMenu({super.key});
-
-  @override
-  State<VerticalActionMenu> createState() => _VerticalActionMenuState();
-}
-
-class _VerticalActionMenuState extends State<VerticalActionMenu>
-    with SingleTickerProviderStateMixin {
-  final ValueNotifier<bool> isOpen = ValueNotifier(false);
-  late final AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 300),
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    isOpen.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final webRTCCubit = BlocProvider.of<WebRTCCubit>(context);
-
-    return BlocBuilder<WebRTCCubit, WebRTCState>(
-      builder: (context, state) {
-        return state.isMiniScreen
-            ? const SizedBox.shrink()
-            : ValueListenableBuilder<bool>(
-                valueListenable: isOpen,
-                builder: (context, open, _) {
-                  if (open && !_controller.isAnimating) {
-                    _controller.forward();
-                  } else if (!open && !_controller.isAnimating) {
-                    _controller.reverse();
-                  }
-
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      _buildAnimatedItem(
-                        delay: 0,
-                        child: open
-                            ? _buildActionButton(
-                                icon: state.isMiniScreen
-                                    ? Icons.fullscreen
-                                    : Icons.fit_screen_sharp,
-                                onTap: () {
-                                  setState(() {
-                                    webRTCCubit.toggleMiniScreen();
-                                  });
-                                })
-                            : const SizedBox.shrink(),
-                      ),
-                      _buildAnimatedItem(
-                        delay: 100,
-                        child: open
-                            ? _buildActionButton(
-                                icon: state.isMuted
-                                    ? Icons.volume_off
-                                    : Icons.volume_up,
-                                onTap: () => webRTCCubit.toggleMute(),
-                              )
-                            : const SizedBox.shrink(),
-                      ),
-                      _buildAnimatedItem(
-                        delay: 200,
-                        child: open
-                            ? _buildActionButton(
-                                icon: state.isPlaying
-                                    ? Icons.pause
-                                    : Icons.play_arrow,
-                                onTap: () => webRTCCubit.togglePlayPause(),
-                              )
-                            : const SizedBox.shrink(),
-                      ),
-                      FloatingActionButton.small(
-                        heroTag: "toggleMenu",
-                        backgroundColor: ColorManager.primary,
-                        child: Icon(
-                          open ? Icons.close : Icons.menu,
-                          color: Colors.white,
-                        ),
-                        onPressed: () => isOpen.value = !isOpen.value,
-                      ),
-                    ],
-                  );
-                },
-              );
-      },
-    );
-  }
-
-  Widget _buildAnimatedItem({
-    required int delay,
-    required Widget child,
-  }) {
-    final animation = CurvedAnimation(
-      parent: _controller,
-      curve: Interval(delay / 300, 1, curve: Curves.easeInOut),
-    );
-
-    return FadeTransition(
-      opacity: Tween<double>(begin: 0, end: 1).animate(animation),
-      child: SlideTransition(
-        position: Tween<Offset>(
-          begin: const Offset(0, 0.3),
-          end: Offset.zero,
-        ).animate(animation),
-        child: child,
-      ),
-    );
-  }
-
-  Widget _buildActionButton({
-    required IconData icon,
-    required VoidCallback onTap,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
-      child: FloatingActionButton.small(
-        heroTag: icon.toString(),
-        backgroundColor: ColorManager.primary.withOpacity(0.6),
-        onPressed: onTap,
-        child: Icon(icon, color: Colors.white),
-      ),
-    );
-  }
-}
-
 class MiniScreenWidget extends StatelessWidget {
   const MiniScreenWidget({
     super.key,
@@ -1458,7 +1087,7 @@ class MiniScreenWidget extends StatelessWidget {
               builder: (context, state) {
                 if (state.isMiniScreen && expanded
                     // &&
-                    //zak
+                    
                     // state.remoteRenderer.srcObject != null
                     // // NOTE: expanded is for hide the mini screen if user close stream and it's true.
                     ) {
@@ -1612,7 +1241,7 @@ class ChatsMenuButtonWidget extends StatelessWidget {
                                   children: [
                                     CheckBoxWidget(
                                       onPlatformTapAndAvatarIsOpen: () async {
-                                        //zak
+                                        
                                         // //close stream if it's working:
 
                                         // final String? streamId =
