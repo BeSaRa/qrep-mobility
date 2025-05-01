@@ -266,6 +266,7 @@ class AppStrings {
   String largeDataNote = "large_data_note".tr();
   String viewAsTable = "view_as_table".tr();
   String avatarSessionExpired = "avatar_session_expired".tr();
+  String holdRecordMessage = "hold_record_message".tr();
   //--------------ai_search---------------
   String aiSearch = "ai_search".tr();
   String searchHere = "search_here".tr();

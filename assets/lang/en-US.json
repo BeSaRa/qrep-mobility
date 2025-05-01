@@ -240,6 +240,7 @@
   "large_data_note":"To see all the information, click on \"View as Table\"",
   "view_as_table":"View as Table",
   "avatar_session_expired":"The session has expired.",
+  "hold_record_message": "Hold to speak, release to send",
 
   
     "-----------AI SEARCH----------": "--------------------------",
