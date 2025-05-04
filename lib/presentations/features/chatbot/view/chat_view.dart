@@ -610,6 +610,36 @@ class _ChatViewState extends State<ChatView>
                                                     builder:
                                                         (context, voiceState) {
                                                       return GestureDetector(
+                                                        onLongPressStart:
+                                                            isAvatarPressed
+                                                                ? (_) {
+                                                                    // _wasLongPressed =
+                                                                    //     true;
+                                                                    // Start recording when pressed
+                                                                    context
+                                                                        .read<
+                                                                            VoiceCubit>()
+                                                                        .checkAndRequestPermissionToStart();
+                                                                  }
+                                                                : null,
+                                                        onLongPressEnd:
+                                                            isAvatarPressed
+                                                                ? (_) {
+                                                                    // Add a tiny delay to ensure UI updates before stopping
+                                                                    // await Future
+                                                                    //     .delayed(
+                                                                    //         Duration
+                                                                    //             .zero);
+                                                                    // Stop recording and send when released
+                                                                    context
+                                                                        .read<
+                                                                            VoiceCubit>()
+                                                                        .stopListening();
+                                                                    showHoldMessage
+                                                                            .value =
+                                                                        false;
+                                                                  }
+                                                                : null,
                                                         onTap: isAvatarPressed
                                                             ? () {
                                                                 showHoldHint();
@@ -629,35 +659,54 @@ class _ChatViewState extends State<ChatView>
                                                                   // .startListening();
                                                                 }
                                                               },
-                                                        onTapDown:
-                                                            isAvatarPressed
-                                                                ? (_) {
-                                                                    // _wasLongPressed =
-                                                                    //     true;
-                                                                    // Start recording when pressed
-                                                                    context
-                                                                        .read<
-                                                                            VoiceCubit>()
-                                                                        .checkAndRequestPermissionToStart();
-                                                                  }
-                                                                : null,
-                                                        onTapUp: isAvatarPressed
-                                                            ? (_) {
-                                                                showHoldMessage
-                                                                        .value =
-                                                                    false;
-                                                                // Add a tiny delay to ensure UI updates before stopping
-                                                                // await Future
-                                                                //     .delayed(
-                                                                //         Duration
-                                                                //             .zero);
-                                                                // Stop recording and send when released
-                                                                context
-                                                                    .read<
-                                                                        VoiceCubit>()
-                                                                    .stopListening();
-                                                              }
-                                                            : null,
+                                                        // onTap: isAvatarPressed
+                                                        //     ? () {
+                                                        //         showHoldHint();
+                                                        //       }
+                                                        //     : () {
+                                                        //         if (voiceState
+                                                        //             .isListening) {
+                                                        //           context
+                                                        //               .read<
+                                                        //                   VoiceCubit>()
+                                                        //               .stopListening();
+                                                        //         } else {
+                                                        //           context
+                                                        //               .read<
+                                                        //                   VoiceCubit>()
+                                                        //               .checkAndRequestPermissionToStart();
+                                                        //           // .startListening();
+                                                        //         }
+                                                        //       },
+                                                        // onTapDown:
+                                                        //     isAvatarPressed
+                                                        //         ? (_) {
+                                                        //             // _wasLongPressed =
+                                                        //             //     true;
+                                                        //             // Start recording when pressed
+                                                        //             context
+                                                        //                 .read<
+                                                        //                     VoiceCubit>()
+                                                        //                 .checkAndRequestPermissionToStart();
+                                                        //           }
+                                                        //         : null,
+                                                        // onTapUp: isAvatarPressed
+                                                        //     ? (_) {
+                                                        //         showHoldMessage
+                                                        //                 .value =
+                                                        //             false;
+                                                        //         // Add a tiny delay to ensure UI updates before stopping
+                                                        //         // await Future
+                                                        //         //     .delayed(
+                                                        //         //         Duration
+                                                        //         //             .zero);
+                                                        //         // Stop recording and send when released
+                                                        //         context
+                                                        //             .read<
+                                                        //                 VoiceCubit>()
+                                                        //             .stopListening();
+                                                        //       }
+                                                        //     : null,
                                                         child: isAvatarPressed
                                                             ? isRecordModeEnabled
                                                                 ? AnimatedContainer(
