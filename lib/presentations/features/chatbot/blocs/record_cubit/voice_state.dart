@@ -7,6 +7,7 @@ class VoiceState {
   final String errorMessage;
   final String selectedLocale;
   final List<stt.LocaleName>? availableLocales;
+    final bool hasFinalResult;
 
   VoiceState({
     this.isListening = false,
@@ -15,5 +16,6 @@ class VoiceState {
     this.errorMessage = '',
     this.selectedLocale = '',
     this.availableLocales,
+       this.hasFinalResult = false,
   });
 }
