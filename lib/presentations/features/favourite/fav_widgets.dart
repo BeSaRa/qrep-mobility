@@ -99,7 +99,7 @@ class FavouriteItemWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        DateTime.parse(date ?? '').toFormattedString(),
+                        DateTime.parse(date).toFormattedString(),
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall

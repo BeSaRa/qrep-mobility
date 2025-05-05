@@ -2,7 +2,6 @@ import 'package:ebla/app/routing_observer.dart';
 import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/drobdown_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
-import 'package:ebla/presentations/features/chatbot/blocs/record_cubit/voice_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_feedback_bloc/send_feedback_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/routes_extras.dart';
 import 'package:ebla/presentations/features/chatbot/view/chat_view.dart';
@@ -19,7 +18,7 @@ import 'package:ebla/presentations/features/info/views/faq_view.dart';
 import 'package:ebla/presentations/features/investor_journey/view/investor_journey_view.dart';
 import 'package:ebla/presentations/features/main/main_scaffold.dart';
 import 'package:ebla/presentations/features/more/all_more_web_views/view/authority_map_view.dart';
-import 'package:ebla/presentations/features/more/more_view.dart';
+
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
 import 'package:ebla/presentations/features/navigation_pages/indicators_view.dart';
@@ -27,6 +26,7 @@ import 'package:ebla/presentations/features/real_estate_brokers/real_estate_brok
 import 'package:ebla/presentations/features/rent/rent_view.dart';
 import 'package:ebla/presentations/features/sell/sell_view.dart';
 import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
+import 'package:ebla/presentations/features/xmap/xmap_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -68,6 +68,7 @@ class RoutesNames {
   static const String indicators = "indicators";
   static const String services = "home services";
   static const String map = "map";
+  static const String comingSoon = "coming soon";
 }
 
 class RoutesPaths {
@@ -95,6 +96,7 @@ class RoutesPaths {
   static const String indicators = '/indicators';
   static const String services = '/homeServices';
   static const String map = '/map';
+  static const String comingSoon = '/comingSoon';
 }
 
 class NavigationKeys {
@@ -228,7 +230,7 @@ class AppRouter {
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
                   key: state.pageKey,
-                  child: const ComingSoonView(),
+                  child: XMapView(),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     return FadeTransition(
@@ -514,7 +516,7 @@ class AppRouter {
             return BlocProvider(
               create: (context) => instance<LookUpBrokerBloc>()
                 ..add(const LookUpBrokerEvent.getBrokerLookup()),
-              child: RealEstateBrokersView(),
+              child: const RealEstateBrokersView(),
             );
           },
         ),
@@ -636,6 +638,15 @@ class AppRouter {
           path: RoutesPaths.authorityMap,
           builder: (context, state) {
             return const AuthorityMapView();
+          },
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.comingSoon,
+          path: RoutesPaths.comingSoon,
+          builder: (context, state) {
+            return Scaffold(
+                appBar: AppBar(), body: const Center(child: ComingSoonView()));
           },
         ),
       ]);

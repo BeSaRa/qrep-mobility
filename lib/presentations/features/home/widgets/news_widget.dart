@@ -39,8 +39,8 @@ class _NewsWidgetState extends State<NewsWidget> {
                   Text(
                     AppStrings().news,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w800,
-                        color: ColorManager.textBlack),
+                          fontWeight: FontWeight.w800,
+                        ),
                   ),
                 ],
               ),
