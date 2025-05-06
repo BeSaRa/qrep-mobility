@@ -1,8 +1,10 @@
+import 'package:ebla/app/app_preferences.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter_plus/webview_flutter_plus.dart';
 import 'package:webview_flutter/webview_flutter.dart' as base_webview;
+
+import '../../../app/depndency_injection.dart';
 
 LocalhostServer localhostServer = LocalhostServer();
 
@@ -41,15 +43,21 @@ class _XMapViewState extends State<XMapView> {
       return;
     }
 
-    final cookieManager = WebViewCookieManager();
-    await cookieManager.setCookie(
-      base_webview.WebViewCookie(
-        name: 'pll_language',
-        value: local,
-        domain: 'localhost',
-        path: '/',
-      ),
-    );
+    AppPreferences prefs = instance<AppPreferences>();
+    String previousLocale = prefs.getXmapLocale();
+    if (!prefs.getXmapCookie() || previousLocale != local) {
+      final cookieManager = WebViewCookieManager();
+      await cookieManager.setCookie(
+        base_webview.WebViewCookie(
+          name: 'pll_language',
+          value: local,
+          domain: 'localhost',
+          path: '/',
+        ),
+      );
+      prefs.setXmapCookie(true);
+      prefs.setXmapLocale(local);
+    }
 
     // Very important: create the controller AFTER setting the cookie
     final controller = WebViewControllerPlus()

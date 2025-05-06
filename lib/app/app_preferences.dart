@@ -21,6 +21,8 @@ class AppPreferences {
   String PREFS_KEY_IS_LOGGED_IN = 'PREFS_KEY_IS_LOGGED_IN';
   String PREFS_KEY_LOCALIZATIONS_LAST_UPDATE =
       'PREFS_KEY_LOCALIZATIONS_LAST_UPDATE';
+  String PREFS_KEY_MAP_COOKIE = 'PREFS_KEY_MAP_COOKIE';
+  String PREF_KEY_XMAP_LOCALE = 'PREF_KEY_XMAP_LOCALE';
 
   Future<String> getAppLanguage() async {
     String? language = _sharedPreferences.getString(PREFS_KEY_LANG) ?? '';
@@ -101,6 +103,20 @@ class AppPreferences {
   bool getUserLoggedIn() {
     return _sharedPreferences.getBool(PREFS_KEY_IS_LOGGED_IN) ?? false;
   }
+
+  Future<void> setXmapCookie(bool val) async {
+    _sharedPreferences.setBool(PREFS_KEY_MAP_COOKIE, val);
+  }
+
+  bool getXmapCookie() {
+    return _sharedPreferences.getBool(PREFS_KEY_MAP_COOKIE) ?? false;
+  }
+
+  void setXmapLocale(String locale) =>
+      _sharedPreferences.setString(PREF_KEY_XMAP_LOCALE, locale);
+
+  String getXmapLocale() =>
+      _sharedPreferences.getString(PREF_KEY_XMAP_LOCALE) ?? 'ar';
 
   ThemeData getTheme() {
     String? theme = _sharedPreferences.getString(PREFS_KEY_THEME);
