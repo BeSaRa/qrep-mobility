@@ -18,6 +18,11 @@ class ColorManager {
   static Color textBlack = Hex16Color.fromHex("#000000");
   static Color red = Hex16Color.fromHex("#FF0000");
   static Color primaryBlue = Hex16Color.fromHex("#0D4261");
+  static Color cardGrey = Hex16Color.fromHex("#2F2F2F");
+  static Color blackBG = Hex16Color.fromHex("#222222");
+  static Color dune = Hex16Color.fromHex("#B09885");
+  static Color duneLighter = Hex16Color.fromHex("#CBBEAC");
+  static Color greyBg = Hex16Color.fromHex("#343434");
 }
 
 extension Hex16Color on Color {

@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../app/app_preferences.dart';
 import '../../../../app/depndency_injection.dart';
@@ -829,8 +828,6 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
           return name;
         case Indicators.rental:
           context.read<LookupBloc>().lookUpRent?.halfYearList.map((e) {
-            print(e);
-            print(id);
             if ((e.value.first == 1 || e.value.last == 2) && id == 1) {
               name = context.locale == ARABIC_LOCAL ? e.name : e.enName;
             } else if ((e.value.first == 3 || e.value.last == 4) && id == 2) {
@@ -961,7 +958,6 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
   }
 
   String? getIssueMonthName(int id) {
-    print(id);
     String name = "";
     if (id == -1) {
       return context.locale == ARABIC_LOCAL ? "الكل" : "All";
@@ -970,9 +966,7 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
       PeriodTimeDetails month = const PeriodTimeDetails();
       months = getAllMonthsInYear(context);
       months.map((e) {
-        print(e.value.first);
         if (e.value.first == id) {
-          print("in true");
           name = context.locale == ARABIC_LOCAL ? e.name : e.enName;
         }
       }).toList();

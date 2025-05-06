@@ -63,7 +63,9 @@ class _AqaratNavigationBarState extends State<AqaratNavigationBar> {
                   controller: widget._controller,
                   indicator: UnderlineTabIndicator(
                     borderSide: BorderSide(
-                      color: ColorManager.golden,
+                      color: Theme.of(context)
+                          .bottomNavigationBarTheme
+                          .backgroundColor!,
                       width: AppSizeW.s6,
                     ),
                     borderRadius:
@@ -198,7 +200,7 @@ class _AqaratNavigationBarState extends State<AqaratNavigationBar> {
                                     ? Theme.of(context).primaryColor
                                     : null),
                             padding: EdgeInsets.all(AppSizeR.s5),
-                            child: ImageIcon(AssetImage(IconAssets.map),
+                            child: ImageIcon(const AssetImage(IconAssets.map),
                                 // ignore: deprecated_member_use
                                 color: Theme.of(context)
                                     .bottomNavigationBarTheme
@@ -230,7 +232,7 @@ class _AqaratNavigationBarState extends State<AqaratNavigationBar> {
                                     ? Theme.of(context).primaryColor
                                     : null),
                             padding: EdgeInsets.all(AppSizeR.s5),
-                            child: ImageIcon(AssetImage(IconAssets.stats),
+                            child: ImageIcon(const AssetImage(IconAssets.stats),
                                 // ignore: deprecated_member_use
                                 color: Theme.of(context)
                                     .bottomNavigationBarTheme
@@ -271,7 +273,7 @@ class _AqaratNavigationBarState extends State<AqaratNavigationBar> {
                       shape: BoxShape.circle,
                       color: Theme.of(context).primaryColor,
                       boxShadow: [
-                        BoxShadow(
+                        const BoxShadow(
                           color: Colors.black26,
                           blurRadius: 10,
                           spreadRadius: 3,
@@ -280,7 +282,7 @@ class _AqaratNavigationBarState extends State<AqaratNavigationBar> {
                     ),
                     padding: EdgeInsets.all(AppSizeR.s6),
                     child: Image(
-                      image: AssetImage(ImageAssets.chatBot),
+                      image: const AssetImage(ImageAssets.chatBot),
                       width: AppSizeW.s54,
                       height: AppSizeH.s54,
                     ),

@@ -68,6 +68,7 @@ class RoutesNames {
   static const String indicators = "indicators";
   static const String services = "home services";
   static const String map = "map";
+  static const String comingSoon = "coming soon";
 }
 
 class RoutesPaths {
@@ -95,6 +96,7 @@ class RoutesPaths {
   static const String indicators = '/indicators';
   static const String services = '/homeServices';
   static const String map = '/map';
+  static const String comingSoon = '/comingSoon';
 }
 
 class NavigationKeys {
@@ -514,7 +516,7 @@ class AppRouter {
             return BlocProvider(
               create: (context) => instance<LookUpBrokerBloc>()
                 ..add(const LookUpBrokerEvent.getBrokerLookup()),
-              child: RealEstateBrokersView(),
+              child: const RealEstateBrokersView(),
             );
           },
         ),
@@ -636,6 +638,15 @@ class AppRouter {
           path: RoutesPaths.authorityMap,
           builder: (context, state) {
             return const AuthorityMapView();
+          },
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.comingSoon,
+          path: RoutesPaths.comingSoon,
+          builder: (context, state) {
+            return Scaffold(
+                appBar: AppBar(), body: const Center(child: ComingSoonView()));
           },
         ),
       ]);
