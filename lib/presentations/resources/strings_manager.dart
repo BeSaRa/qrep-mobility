@@ -267,6 +267,8 @@ class AppStrings {
   String viewAsTable = "view_as_table".tr();
   String avatarSessionExpired = "avatar_session_expired".tr();
   String holdRecordMessage = "hold_record_message".tr();
+  String noResultFounded = "no_result_founded".tr();
+  String allCategories = "All_Categories".tr();
   //--------------ai_search---------------
   String aiSearch = "ai_search".tr();
   String searchHere = "search_here".tr();

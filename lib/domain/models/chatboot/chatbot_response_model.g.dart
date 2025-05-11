@@ -235,3 +235,25 @@ Map<String, dynamic> _$$PlatformChatbotResponseModelImplToJson(
       'response': instance.response,
       'responseFormat': instance.responseFormat,
     };
+
+_$ChatbotFAQResponseModelImpl _$$ChatbotFAQResponseModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatbotFAQResponseModelImpl(
+      partitionKey: json['PartitionKey'] as String,
+      rowKey: json['RowKey'] as String,
+      actualQuestion: json['ActualQuestion'] as String,
+      similarQuestions: json['SimilarQuestions'] as String,
+      totalCount: (json['TotalCount'] as num).toInt(),
+      botname: json['botname'] as String,
+    );
+
+Map<String, dynamic> _$$ChatbotFAQResponseModelImplToJson(
+        _$ChatbotFAQResponseModelImpl instance) =>
+    <String, dynamic>{
+      'PartitionKey': instance.partitionKey,
+      'RowKey': instance.rowKey,
+      'ActualQuestion': instance.actualQuestion,
+      'SimilarQuestions': instance.similarQuestions,
+      'TotalCount': instance.totalCount,
+      'botname': instance.botname,
+    };

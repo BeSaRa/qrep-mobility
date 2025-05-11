@@ -238,6 +238,11 @@ abstract class AppServiceClient {
   @DELETE("${Constant.authorityChatBotBaseUrl}/api/v1/avatar/close-stream/{id}")
   Future<HttpResponse<SendAnswerResponseModel>> closeStream(
       @Path("id") String id);
+  /// ******* chat FAQ *******
+  
+  @GET("${Constant.authorityChatBotBaseUrl}/api/v1//FAQ/faqs/{bot_name}")
+  Future<HttpResponse<List<ChatbotFAQResponseModel>>> getChatFAQ(
+      @Path("bot_name") String botName);    
 
   /// ****************** platform chatbot ************************
   // @POST(EndPoints.sendMessageToPlatformChatbot)

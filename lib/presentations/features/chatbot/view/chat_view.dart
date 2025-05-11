@@ -29,10 +29,12 @@ import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
+import 'package:haptic_feedback/haptic_feedback.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:ui' as ui;
 
 import '../../../resources/language_manager.dart';
+import '../widgets/faq_list_widget.dart';
 import '../widgets/hold_message_widget.dart';
 import '../widgets/mini_screen_widget.dart';
 
@@ -428,7 +430,13 @@ class _ChatViewState extends State<ChatView>
                                               ),
                                             );
                                     }),
-                              //TODO: and here  make widget
+                              sendState.maybeMap(
+                                loading: (value) => const SizedBox.shrink(),
+                                orElse: () {
+                                  return FAQListWidget(
+                                      scrollController: scrollController);
+                                },
+                              ),
                               BlocBuilder<VoiceCubit, VoiceState>(
                                   builder: (context, voiceState) {
                                 return ValueListenableBuilder<bool>(
@@ -612,7 +620,15 @@ class _ChatViewState extends State<ChatView>
                                                       return GestureDetector(
                                                         onLongPressStart:
                                                             isAvatarPressed
-                                                                ? (_) {
+                                                                ? (_) async {
+                                                                    final can =
+                                                                        await Haptics
+                                                                            .canVibrate();
+                                                                    if (!can)
+                                                                      return;
+                                                                    await Haptics.vibrate(
+                                                                        HapticsType
+                                                                            .heavy);
                                                                     // _wasLongPressed =
                                                                     //     true;
                                                                     // Start recording when pressed
@@ -625,11 +641,6 @@ class _ChatViewState extends State<ChatView>
                                                         onLongPressEnd:
                                                             isAvatarPressed
                                                                 ? (_) {
-                                                                    // Add a tiny delay to ensure UI updates before stopping
-                                                                    // await Future
-                                                                    //     .delayed(
-                                                                    //         Duration
-                                                                    //             .zero);
                                                                     // Stop recording and send when released
                                                                     context
                                                                         .read<
@@ -644,7 +655,15 @@ class _ChatViewState extends State<ChatView>
                                                             ? () {
                                                                 showHoldHint();
                                                               }
-                                                            : () {
+                                                            : () async {
+                                                                final can =
+                                                                    await Haptics
+                                                                        .canVibrate();
+                                                                if (!can)
+                                                                  return;
+                                                                await Haptics.vibrate(
+                                                                    HapticsType
+                                                                        .heavy);
                                                                 if (voiceState
                                                                     .isListening) {
                                                                   context
@@ -659,54 +678,6 @@ class _ChatViewState extends State<ChatView>
                                                                   // .startListening();
                                                                 }
                                                               },
-                                                        // onTap: isAvatarPressed
-                                                        //     ? () {
-                                                        //         showHoldHint();
-                                                        //       }
-                                                        //     : () {
-                                                        //         if (voiceState
-                                                        //             .isListening) {
-                                                        //           context
-                                                        //               .read<
-                                                        //                   VoiceCubit>()
-                                                        //               .stopListening();
-                                                        //         } else {
-                                                        //           context
-                                                        //               .read<
-                                                        //                   VoiceCubit>()
-                                                        //               .checkAndRequestPermissionToStart();
-                                                        //           // .startListening();
-                                                        //         }
-                                                        //       },
-                                                        // onTapDown:
-                                                        //     isAvatarPressed
-                                                        //         ? (_) {
-                                                        //             // _wasLongPressed =
-                                                        //             //     true;
-                                                        //             // Start recording when pressed
-                                                        //             context
-                                                        //                 .read<
-                                                        //                     VoiceCubit>()
-                                                        //                 .checkAndRequestPermissionToStart();
-                                                        //           }
-                                                        //         : null,
-                                                        // onTapUp: isAvatarPressed
-                                                        //     ? (_) {
-                                                        //         showHoldMessage
-                                                        //                 .value =
-                                                        //             false;
-                                                        //         // Add a tiny delay to ensure UI updates before stopping
-                                                        //         // await Future
-                                                        //         //     .delayed(
-                                                        //         //         Duration
-                                                        //         //             .zero);
-                                                        //         // Stop recording and send when released
-                                                        //         context
-                                                        //             .read<
-                                                        //                 VoiceCubit>()
-                                                        //             .stopListening();
-                                                        //       }
-                                                        //     : null,
                                                         child: isAvatarPressed
                                                             ? isRecordModeEnabled
                                                                 ? AnimatedContainer(
@@ -749,29 +720,7 @@ class _ChatViewState extends State<ChatView>
                                                                             .s60,
                                                                     width: AppSizeH
                                                                         .s120,
-                                                                    child:
-                                                                        //  voiceState
-                                                                        //         .isListening
-                                                                        //     ? Lottie
-                                                                        //         .asset(
-                                                                        //         ImageAssets
-                                                                        //             .chatBotRecordingIndecetor,
-                                                                        //         delegates:
-                                                                        //             LottieDelegates(
-                                                                        //           values: [
-                                                                        //             ValueDelegate
-                                                                        //                 .color(
-                                                                        //               const [
-                                                                        //                 '**'
-                                                                        //               ],
-                                                                        //               value:
-                                                                        //                   ColorManager.white,
-                                                                        //             ),
-                                                                        //           ],
-                                                                        //         ),
-                                                                        //       )
-                                                                        // :
-                                                                        Icon(
+                                                                    child: Icon(
                                                                       Icons
                                                                           .mic_none,
                                                                       color: ColorManager
@@ -789,7 +738,8 @@ class _ChatViewState extends State<ChatView>
                                                                             .s40,
                                                                     width: AppSizeH
                                                                         .s40,
-                                                                    child: Lottie.asset(ImageAssets.chatBotRecordingIndecetor))
+                                                                    child: Lottie.asset(
+                                                                        ImageAssets.chatBotRecordingIndecetor))
                                                                 : const Icon(Icons.mic_none),
                                                       );
                                                     }),

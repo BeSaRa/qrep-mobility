@@ -168,3 +168,18 @@ abstract class PlatformChatbotResponseModel
   factory PlatformChatbotResponseModel.fromJson(Map<String, dynamic> json) =>
       _$PlatformChatbotResponseModelFromJson(json);
 }
+
+@freezed
+class ChatbotFAQResponseModel with _$ChatbotFAQResponseModel {
+  const factory ChatbotFAQResponseModel({
+    @JsonKey(name: 'PartitionKey') required String partitionKey,
+    @JsonKey(name: 'RowKey') required String rowKey,
+    @JsonKey(name: 'ActualQuestion') required String actualQuestion,
+    @JsonKey(name: 'SimilarQuestions') required String similarQuestions,
+    @JsonKey(name: 'TotalCount') required int totalCount,
+    required String botname,
+  }) = _ChatbotFAQResponseModel;
+
+  factory ChatbotFAQResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$ChatbotFAQResponseModelFromJson(json);
+}

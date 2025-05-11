@@ -2833,3 +2833,282 @@ abstract class _PlatformChatbotResponseModel
           _$PlatformChatbotResponseModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+ChatbotFAQResponseModel _$ChatbotFAQResponseModelFromJson(
+    Map<String, dynamic> json) {
+  return _ChatbotFAQResponseModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ChatbotFAQResponseModel {
+  @JsonKey(name: 'PartitionKey')
+  String get partitionKey => throw _privateConstructorUsedError;
+  @JsonKey(name: 'RowKey')
+  String get rowKey => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ActualQuestion')
+  String get actualQuestion => throw _privateConstructorUsedError;
+  @JsonKey(name: 'SimilarQuestions')
+  String get similarQuestions => throw _privateConstructorUsedError;
+  @JsonKey(name: 'TotalCount')
+  int get totalCount => throw _privateConstructorUsedError;
+  String get botname => throw _privateConstructorUsedError;
+
+  /// Serializes this ChatbotFAQResponseModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ChatbotFAQResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ChatbotFAQResponseModelCopyWith<ChatbotFAQResponseModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ChatbotFAQResponseModelCopyWith<$Res> {
+  factory $ChatbotFAQResponseModelCopyWith(ChatbotFAQResponseModel value,
+          $Res Function(ChatbotFAQResponseModel) then) =
+      _$ChatbotFAQResponseModelCopyWithImpl<$Res, ChatbotFAQResponseModel>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'PartitionKey') String partitionKey,
+      @JsonKey(name: 'RowKey') String rowKey,
+      @JsonKey(name: 'ActualQuestion') String actualQuestion,
+      @JsonKey(name: 'SimilarQuestions') String similarQuestions,
+      @JsonKey(name: 'TotalCount') int totalCount,
+      String botname});
+}
+
+/// @nodoc
+class _$ChatbotFAQResponseModelCopyWithImpl<$Res,
+        $Val extends ChatbotFAQResponseModel>
+    implements $ChatbotFAQResponseModelCopyWith<$Res> {
+  _$ChatbotFAQResponseModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ChatbotFAQResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? partitionKey = null,
+    Object? rowKey = null,
+    Object? actualQuestion = null,
+    Object? similarQuestions = null,
+    Object? totalCount = null,
+    Object? botname = null,
+  }) {
+    return _then(_value.copyWith(
+      partitionKey: null == partitionKey
+          ? _value.partitionKey
+          : partitionKey // ignore: cast_nullable_to_non_nullable
+              as String,
+      rowKey: null == rowKey
+          ? _value.rowKey
+          : rowKey // ignore: cast_nullable_to_non_nullable
+              as String,
+      actualQuestion: null == actualQuestion
+          ? _value.actualQuestion
+          : actualQuestion // ignore: cast_nullable_to_non_nullable
+              as String,
+      similarQuestions: null == similarQuestions
+          ? _value.similarQuestions
+          : similarQuestions // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      botname: null == botname
+          ? _value.botname
+          : botname // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ChatbotFAQResponseModelImplCopyWith<$Res>
+    implements $ChatbotFAQResponseModelCopyWith<$Res> {
+  factory _$$ChatbotFAQResponseModelImplCopyWith(
+          _$ChatbotFAQResponseModelImpl value,
+          $Res Function(_$ChatbotFAQResponseModelImpl) then) =
+      __$$ChatbotFAQResponseModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'PartitionKey') String partitionKey,
+      @JsonKey(name: 'RowKey') String rowKey,
+      @JsonKey(name: 'ActualQuestion') String actualQuestion,
+      @JsonKey(name: 'SimilarQuestions') String similarQuestions,
+      @JsonKey(name: 'TotalCount') int totalCount,
+      String botname});
+}
+
+/// @nodoc
+class __$$ChatbotFAQResponseModelImplCopyWithImpl<$Res>
+    extends _$ChatbotFAQResponseModelCopyWithImpl<$Res,
+        _$ChatbotFAQResponseModelImpl>
+    implements _$$ChatbotFAQResponseModelImplCopyWith<$Res> {
+  __$$ChatbotFAQResponseModelImplCopyWithImpl(
+      _$ChatbotFAQResponseModelImpl _value,
+      $Res Function(_$ChatbotFAQResponseModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ChatbotFAQResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? partitionKey = null,
+    Object? rowKey = null,
+    Object? actualQuestion = null,
+    Object? similarQuestions = null,
+    Object? totalCount = null,
+    Object? botname = null,
+  }) {
+    return _then(_$ChatbotFAQResponseModelImpl(
+      partitionKey: null == partitionKey
+          ? _value.partitionKey
+          : partitionKey // ignore: cast_nullable_to_non_nullable
+              as String,
+      rowKey: null == rowKey
+          ? _value.rowKey
+          : rowKey // ignore: cast_nullable_to_non_nullable
+              as String,
+      actualQuestion: null == actualQuestion
+          ? _value.actualQuestion
+          : actualQuestion // ignore: cast_nullable_to_non_nullable
+              as String,
+      similarQuestions: null == similarQuestions
+          ? _value.similarQuestions
+          : similarQuestions // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      botname: null == botname
+          ? _value.botname
+          : botname // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ChatbotFAQResponseModelImpl implements _ChatbotFAQResponseModel {
+  const _$ChatbotFAQResponseModelImpl(
+      {@JsonKey(name: 'PartitionKey') required this.partitionKey,
+      @JsonKey(name: 'RowKey') required this.rowKey,
+      @JsonKey(name: 'ActualQuestion') required this.actualQuestion,
+      @JsonKey(name: 'SimilarQuestions') required this.similarQuestions,
+      @JsonKey(name: 'TotalCount') required this.totalCount,
+      required this.botname});
+
+  factory _$ChatbotFAQResponseModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChatbotFAQResponseModelImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'PartitionKey')
+  final String partitionKey;
+  @override
+  @JsonKey(name: 'RowKey')
+  final String rowKey;
+  @override
+  @JsonKey(name: 'ActualQuestion')
+  final String actualQuestion;
+  @override
+  @JsonKey(name: 'SimilarQuestions')
+  final String similarQuestions;
+  @override
+  @JsonKey(name: 'TotalCount')
+  final int totalCount;
+  @override
+  final String botname;
+
+  @override
+  String toString() {
+    return 'ChatbotFAQResponseModel(partitionKey: $partitionKey, rowKey: $rowKey, actualQuestion: $actualQuestion, similarQuestions: $similarQuestions, totalCount: $totalCount, botname: $botname)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChatbotFAQResponseModelImpl &&
+            (identical(other.partitionKey, partitionKey) ||
+                other.partitionKey == partitionKey) &&
+            (identical(other.rowKey, rowKey) || other.rowKey == rowKey) &&
+            (identical(other.actualQuestion, actualQuestion) ||
+                other.actualQuestion == actualQuestion) &&
+            (identical(other.similarQuestions, similarQuestions) ||
+                other.similarQuestions == similarQuestions) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.botname, botname) || other.botname == botname));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, partitionKey, rowKey,
+      actualQuestion, similarQuestions, totalCount, botname);
+
+  /// Create a copy of ChatbotFAQResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChatbotFAQResponseModelImplCopyWith<_$ChatbotFAQResponseModelImpl>
+      get copyWith => __$$ChatbotFAQResponseModelImplCopyWithImpl<
+          _$ChatbotFAQResponseModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ChatbotFAQResponseModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ChatbotFAQResponseModel implements ChatbotFAQResponseModel {
+  const factory _ChatbotFAQResponseModel(
+      {@JsonKey(name: 'PartitionKey') required final String partitionKey,
+      @JsonKey(name: 'RowKey') required final String rowKey,
+      @JsonKey(name: 'ActualQuestion') required final String actualQuestion,
+      @JsonKey(name: 'SimilarQuestions') required final String similarQuestions,
+      @JsonKey(name: 'TotalCount') required final int totalCount,
+      required final String botname}) = _$ChatbotFAQResponseModelImpl;
+
+  factory _ChatbotFAQResponseModel.fromJson(Map<String, dynamic> json) =
+      _$ChatbotFAQResponseModelImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'PartitionKey')
+  String get partitionKey;
+  @override
+  @JsonKey(name: 'RowKey')
+  String get rowKey;
+  @override
+  @JsonKey(name: 'ActualQuestion')
+  String get actualQuestion;
+  @override
+  @JsonKey(name: 'SimilarQuestions')
+  String get similarQuestions;
+  @override
+  @JsonKey(name: 'TotalCount')
+  int get totalCount;
+  @override
+  String get botname;
+
+  /// Create a copy of ChatbotFAQResponseModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChatbotFAQResponseModelImplCopyWith<_$ChatbotFAQResponseModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

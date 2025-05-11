@@ -19,32 +19,40 @@ mixin _$LawsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getLaws,
+    required TResult Function(List<String> categories) updateSelectedCategories,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getLaws,
+    TResult? Function(List<String> categories)? updateSelectedCategories,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLaws,
+    TResult Function(List<String> categories)? updateSelectedCategories,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLaws value) getLaws,
+    required TResult Function(_UpdateSelectedCategories value)
+        updateSelectedCategories,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetLaws value)? getLaws,
+    TResult? Function(_UpdateSelectedCategories value)?
+        updateSelectedCategories,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLaws value)? getLaws,
+    TResult Function(_UpdateSelectedCategories value)? updateSelectedCategories,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,6 +120,7 @@ class _$GetLawsImpl implements _GetLaws {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getLaws,
+    required TResult Function(List<String> categories) updateSelectedCategories,
   }) {
     return getLaws();
   }
@@ -120,6 +129,7 @@ class _$GetLawsImpl implements _GetLaws {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getLaws,
+    TResult? Function(List<String> categories)? updateSelectedCategories,
   }) {
     return getLaws?.call();
   }
@@ -128,6 +138,7 @@ class _$GetLawsImpl implements _GetLaws {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLaws,
+    TResult Function(List<String> categories)? updateSelectedCategories,
     required TResult orElse(),
   }) {
     if (getLaws != null) {
@@ -140,6 +151,8 @@ class _$GetLawsImpl implements _GetLaws {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLaws value) getLaws,
+    required TResult Function(_UpdateSelectedCategories value)
+        updateSelectedCategories,
   }) {
     return getLaws(this);
   }
@@ -148,6 +161,8 @@ class _$GetLawsImpl implements _GetLaws {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetLaws value)? getLaws,
+    TResult? Function(_UpdateSelectedCategories value)?
+        updateSelectedCategories,
   }) {
     return getLaws?.call(this);
   }
@@ -156,6 +171,7 @@ class _$GetLawsImpl implements _GetLaws {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLaws value)? getLaws,
+    TResult Function(_UpdateSelectedCategories value)? updateSelectedCategories,
     required TResult orElse(),
   }) {
     if (getLaws != null) {
@@ -170,29 +186,188 @@ abstract class _GetLaws implements LawsEvent {
 }
 
 /// @nodoc
+abstract class _$$UpdateSelectedCategoriesImplCopyWith<$Res> {
+  factory _$$UpdateSelectedCategoriesImplCopyWith(
+          _$UpdateSelectedCategoriesImpl value,
+          $Res Function(_$UpdateSelectedCategoriesImpl) then) =
+      __$$UpdateSelectedCategoriesImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<String> categories});
+}
+
+/// @nodoc
+class __$$UpdateSelectedCategoriesImplCopyWithImpl<$Res>
+    extends _$LawsEventCopyWithImpl<$Res, _$UpdateSelectedCategoriesImpl>
+    implements _$$UpdateSelectedCategoriesImplCopyWith<$Res> {
+  __$$UpdateSelectedCategoriesImplCopyWithImpl(
+      _$UpdateSelectedCategoriesImpl _value,
+      $Res Function(_$UpdateSelectedCategoriesImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of LawsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? categories = null,
+  }) {
+    return _then(_$UpdateSelectedCategoriesImpl(
+      null == categories
+          ? _value._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateSelectedCategoriesImpl implements _UpdateSelectedCategories {
+  const _$UpdateSelectedCategoriesImpl(final List<String> categories)
+      : _categories = categories;
+
+  final List<String> _categories;
+  @override
+  List<String> get categories {
+    if (_categories is EqualUnmodifiableListView) return _categories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categories);
+  }
+
+  @override
+  String toString() {
+    return 'LawsEvent.updateSelectedCategories(categories: $categories)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateSelectedCategoriesImpl &&
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_categories));
+
+  /// Create a copy of LawsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateSelectedCategoriesImplCopyWith<_$UpdateSelectedCategoriesImpl>
+      get copyWith => __$$UpdateSelectedCategoriesImplCopyWithImpl<
+          _$UpdateSelectedCategoriesImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getLaws,
+    required TResult Function(List<String> categories) updateSelectedCategories,
+  }) {
+    return updateSelectedCategories(categories);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getLaws,
+    TResult? Function(List<String> categories)? updateSelectedCategories,
+  }) {
+    return updateSelectedCategories?.call(categories);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getLaws,
+    TResult Function(List<String> categories)? updateSelectedCategories,
+    required TResult orElse(),
+  }) {
+    if (updateSelectedCategories != null) {
+      return updateSelectedCategories(categories);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetLaws value) getLaws,
+    required TResult Function(_UpdateSelectedCategories value)
+        updateSelectedCategories,
+  }) {
+    return updateSelectedCategories(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetLaws value)? getLaws,
+    TResult? Function(_UpdateSelectedCategories value)?
+        updateSelectedCategories,
+  }) {
+    return updateSelectedCategories?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetLaws value)? getLaws,
+    TResult Function(_UpdateSelectedCategories value)? updateSelectedCategories,
+    required TResult orElse(),
+  }) {
+    if (updateSelectedCategories != null) {
+      return updateSelectedCategories(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateSelectedCategories implements LawsEvent {
+  const factory _UpdateSelectedCategories(final List<String> categories) =
+      _$UpdateSelectedCategoriesImpl;
+
+  List<String> get categories;
+
+  /// Create a copy of LawsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateSelectedCategoriesImplCopyWith<_$UpdateSelectedCategoriesImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$LawsState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get hasError => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   List<LawsModel> get lawsResponse => throw _privateConstructorUsedError;
+  List<String> get selectedCategories => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading, bool hasError,
-            String errorMessage, List<LawsModel> lawsResponse)
+    required TResult Function(
+            bool isLoading,
+            bool hasError,
+            String errorMessage,
+            List<LawsModel> lawsResponse,
+            List<String> selectedCategories)
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isLoading, bool hasError, String errorMessage,
-            List<LawsModel> lawsResponse)?
+            List<LawsModel> lawsResponse, List<String> selectedCategories)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoading, bool hasError, String errorMessage,
-            List<LawsModel> lawsResponse)?
+            List<LawsModel> lawsResponse, List<String> selectedCategories)?
         initial,
     required TResult orElse(),
   }) =>
@@ -230,7 +405,8 @@ abstract class $LawsStateCopyWith<$Res> {
       {bool isLoading,
       bool hasError,
       String errorMessage,
-      List<LawsModel> lawsResponse});
+      List<LawsModel> lawsResponse,
+      List<String> selectedCategories});
 }
 
 /// @nodoc
@@ -252,6 +428,7 @@ class _$LawsStateCopyWithImpl<$Res, $Val extends LawsState>
     Object? hasError = null,
     Object? errorMessage = null,
     Object? lawsResponse = null,
+    Object? selectedCategories = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -270,6 +447,10 @@ class _$LawsStateCopyWithImpl<$Res, $Val extends LawsState>
           ? _value.lawsResponse
           : lawsResponse // ignore: cast_nullable_to_non_nullable
               as List<LawsModel>,
+      selectedCategories: null == selectedCategories
+          ? _value.selectedCategories
+          : selectedCategories // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -286,7 +467,8 @@ abstract class _$$InitialImplCopyWith<$Res>
       {bool isLoading,
       bool hasError,
       String errorMessage,
-      List<LawsModel> lawsResponse});
+      List<LawsModel> lawsResponse,
+      List<String> selectedCategories});
 }
 
 /// @nodoc
@@ -306,6 +488,7 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? hasError = null,
     Object? errorMessage = null,
     Object? lawsResponse = null,
+    Object? selectedCategories = null,
   }) {
     return _then(_$InitialImpl(
       isLoading: null == isLoading
@@ -324,6 +507,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value._lawsResponse
           : lawsResponse // ignore: cast_nullable_to_non_nullable
               as List<LawsModel>,
+      selectedCategories: null == selectedCategories
+          ? _value._selectedCategories
+          : selectedCategories // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -335,8 +522,10 @@ class _$InitialImpl implements _Initial {
       {this.isLoading = false,
       this.hasError = false,
       this.errorMessage = '',
-      final List<LawsModel> lawsResponse = const []})
-      : _lawsResponse = lawsResponse;
+      final List<LawsModel> lawsResponse = const [],
+      final List<String> selectedCategories = const []})
+      : _lawsResponse = lawsResponse,
+        _selectedCategories = selectedCategories;
 
   @override
   @JsonKey()
@@ -356,9 +545,19 @@ class _$InitialImpl implements _Initial {
     return EqualUnmodifiableListView(_lawsResponse);
   }
 
+  final List<String> _selectedCategories;
+  @override
+  @JsonKey()
+  List<String> get selectedCategories {
+    if (_selectedCategories is EqualUnmodifiableListView)
+      return _selectedCategories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_selectedCategories);
+  }
+
   @override
   String toString() {
-    return 'LawsState.initial(isLoading: $isLoading, hasError: $hasError, errorMessage: $errorMessage, lawsResponse: $lawsResponse)';
+    return 'LawsState.initial(isLoading: $isLoading, hasError: $hasError, errorMessage: $errorMessage, lawsResponse: $lawsResponse, selectedCategories: $selectedCategories)';
   }
 
   @override
@@ -373,12 +572,19 @@ class _$InitialImpl implements _Initial {
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
             const DeepCollectionEquality()
-                .equals(other._lawsResponse, _lawsResponse));
+                .equals(other._lawsResponse, _lawsResponse) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedCategories, _selectedCategories));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, hasError,
-      errorMessage, const DeepCollectionEquality().hash(_lawsResponse));
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoading,
+      hasError,
+      errorMessage,
+      const DeepCollectionEquality().hash(_lawsResponse),
+      const DeepCollectionEquality().hash(_selectedCategories));
 
   /// Create a copy of LawsState
   /// with the given fields replaced by the non-null parameter values.
@@ -391,33 +597,40 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading, bool hasError,
-            String errorMessage, List<LawsModel> lawsResponse)
+    required TResult Function(
+            bool isLoading,
+            bool hasError,
+            String errorMessage,
+            List<LawsModel> lawsResponse,
+            List<String> selectedCategories)
         initial,
   }) {
-    return initial(isLoading, hasError, errorMessage, lawsResponse);
+    return initial(
+        isLoading, hasError, errorMessage, lawsResponse, selectedCategories);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isLoading, bool hasError, String errorMessage,
-            List<LawsModel> lawsResponse)?
+            List<LawsModel> lawsResponse, List<String> selectedCategories)?
         initial,
   }) {
-    return initial?.call(isLoading, hasError, errorMessage, lawsResponse);
+    return initial?.call(
+        isLoading, hasError, errorMessage, lawsResponse, selectedCategories);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isLoading, bool hasError, String errorMessage,
-            List<LawsModel> lawsResponse)?
+            List<LawsModel> lawsResponse, List<String> selectedCategories)?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(isLoading, hasError, errorMessage, lawsResponse);
+      return initial(
+          isLoading, hasError, errorMessage, lawsResponse, selectedCategories);
     }
     return orElse();
   }
@@ -456,7 +669,8 @@ abstract class _Initial implements LawsState {
       {final bool isLoading,
       final bool hasError,
       final String errorMessage,
-      final List<LawsModel> lawsResponse}) = _$InitialImpl;
+      final List<LawsModel> lawsResponse,
+      final List<String> selectedCategories}) = _$InitialImpl;
 
   @override
   bool get isLoading;
@@ -466,6 +680,8 @@ abstract class _Initial implements LawsState {
   String get errorMessage;
   @override
   List<LawsModel> get lawsResponse;
+  @override
+  List<String> get selectedCategories;
 
   /// Create a copy of LawsState
   /// with the given fields replaced by the non-null parameter values.
