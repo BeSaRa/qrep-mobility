@@ -197,6 +197,7 @@ abstract class Repository {
       
   Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendFeedback(
       int feedback,String convId);
+  Future<Result<List<ChatbotFAQResponseModel>, FailureModel>> getChatFAQ(String botName);
 
       //---- platform chatbot -----
   Future<Result<PlatformChatbotResponseModel, FailureModel>> sendMessageToPlatformChatbot(

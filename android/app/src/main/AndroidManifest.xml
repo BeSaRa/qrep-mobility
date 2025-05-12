@@ -14,7 +14,8 @@
 
     <!-- web RTC-->
     <uses-permission android:name="android.permission.CAMERA" />
-
+    <!-- VIBRATE -->
+    <uses-permission android:name="android.permission.VIBRATE" />
     <!-- Provide required visibility configuration for API level 30 and above -->
     <queries>
 <!--  -->

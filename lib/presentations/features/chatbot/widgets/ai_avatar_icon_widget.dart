@@ -74,14 +74,14 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                             }
 
                             //-------- to make sure that the candidates have came before I send the candidateto back-end ------
-                            // int attempts = 0;
-                            // while (webRTCCubit.state.candidates.isEmpty &&
-                            //     attempts < 50) {
-                            //   log("⏳ Waiting for ICE candidate...");
-                            //   await Future.delayed(
-                            //       const Duration(milliseconds: 200));
-                            //   attempts++;
-                            // }
+                            int attempts = 0;
+                            while (webRTCCubit.state.candidates.isEmpty &&
+                                attempts < 50) {
+                              log("⏳ Waiting for ICE candidate...");
+                              await Future.delayed(
+                                  const Duration(milliseconds: 200));
+                              attempts++;
+                            }
                             //4- make the requests body of SENDANSWER & SENDCANDIDATE
                             if (webRTCCubit.state.isConnectionReady) {
                               final MainSendAnswerRequestModelById

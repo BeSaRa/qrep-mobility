@@ -1,5 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
+import 'package:ebla/presentations/features/chatbot/widgets/check_box_widget.dart';
+import 'package:ebla/presentations/features/chatbot/widgets/dropdown_menu_button_widget.dart';
+import 'package:ebla/presentations/features/chatbot/widgets/rera_text_faild.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
 import 'package:ebla/presentations/widgets/error_widget.dart';
@@ -10,6 +13,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../resources/resources.dart';
 import '../../home/home_view.dart';
+import 'dart:ui' as ui;
 
 class LawsDecisionsView extends StatefulWidget {
   const LawsDecisionsView({super.key});
@@ -19,121 +23,291 @@ class LawsDecisionsView extends StatefulWidget {
 }
 
 class _LawsDecisionsViewState extends State<LawsDecisionsView> {
+  final ValueNotifier<List<String>> selectedCategoriesNotifier =
+      ValueNotifier<List<String>>([]);
+  List<String> menuItems = [
+    "الأدلة",
+    "الاتفاقيات",
+    "القرارات واللوائح",
+    "القوانين",
+    "تعاميم",
+    "Agreements",
+    "Circulars",
+    "Decisions and Regulations",
+    "Evidence",
+    "Laws"
+  ];
+  final TextEditingController searchController = TextEditingController();
+  final ValueNotifier<String> searchTermNotifier = ValueNotifier('');
+
+  @override
+  void initState() {
+    super.initState();
+    // Set all items as selected by default
+    selectedCategoriesNotifier.value = List.from(menuItems);
+  }
+
+  void _toggleCategory(String category) {
+    final newCategories = List<String>.from(selectedCategoriesNotifier.value);
+    if (newCategories.contains(category)) {
+      newCategories.remove(category);
+    } else {
+      newCategories.add(category);
+    }
+    selectedCategoriesNotifier.value = newCategories;
+  }
+
+  @override
+  void dispose() {
+    selectedCategoriesNotifier.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: BlocBuilder<LawsBloc, LawsState>(
-            bloc: context.read<LawsBloc>(),
-            builder: (context, state) {
-              if (state.isLoading) {
-                return const AnimatedPulesLogo();
-              } else if (state.hasError) {
-                return ErrorGlobalWidget(
-                  onPressed: () {
-                    context.read<LawsBloc>().add(const LawsEvent.getLaws());
+      body: BlocBuilder<LawsBloc, LawsState>(
+        bloc: context.read<LawsBloc>(),
+        builder: (context, state) {
+          if (state.isLoading) {
+            return const AnimatedPulesLogo();
+          } else if (state.hasError) {
+            return ErrorGlobalWidget(
+              onPressed: () {
+                context.read<LawsBloc>().add(const LawsEvent.getLaws());
+              },
+            );
+          } else if (state.lawsResponse.isNotEmpty) {
+            return Scaffold(
+              appBar: AppBar(
+                automaticallyImplyLeading: false,
+                backgroundColor: Colors.transparent,
+                surfaceTintColor: Colors.transparent,
+                flexibleSpace: ShaderMask(
+                  shaderCallback: (rect) {
+                    return const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Colors.black, Colors.transparent],
+                    ).createShader(
+                        Rect.fromLTRB(0, 0, rect.width, rect.height));
                   },
-                );
-              } else if (state.lawsResponse.isNotEmpty) {
-                // } else if (state.lawsResponse.data.isNotEmpty) {
-                return Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.transparent,
-                    surfaceTintColor: Colors.transparent,
-                    flexibleSpace: ShaderMask(
-                      shaderCallback: (rect) {
-                        return const LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [Colors.black, Colors.transparent],
-                        ).createShader(
-                            Rect.fromLTRB(0, 0, rect.width, rect.height));
+                  blendMode: BlendMode.dstIn,
+                  child: Image.asset(
+                    ImageAssets.appbarBg,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                title: Row(
+                  textDirection: ui.TextDirection.ltr,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTapDown: (details) async {
+                        final selected = await showMenu(
+                          context: context,
+                          position: RelativeRect.fromLTRB(0, AppSizeH.s70,
+                              AppSizeW.s20, 0), // Top-left offset
+                          color: Colors.transparent,
+                          elevation: 0,
+                          items: [
+                            PopupMenuItem(
+                              enabled: false,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      blurRadius: 8,
+                                      offset: Offset(0, 0),
+                                    ),
+                                  ],
+                                ),
+                                child: StatefulBuilder(
+                                  builder: (context, setState) {
+                                    return Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          SizedBox(height: AppSizeH.s10),
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              AppStrings().allCategories,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium,
+                                            ),
+                                          ),
+                                          Divider(
+                                            endIndent: AppSizeW.s20,
+                                            indent: AppSizeW.s20,
+                                          ),
+                                          ...menuItems.map((category) {
+                                            final isArabic =
+                                                context.locale == ARABIC_LOCAL;
+                                            final isLawInArabic =
+                                                RegExp(r'[\u0600-\u06FF]')
+                                                    .hasMatch(category);
+
+                                            final show = (isArabic &&
+                                                    isLawInArabic) ||
+                                                (!isArabic && !isLawInArabic);
+
+                                            if (!show)
+                                              return const SizedBox.shrink();
+
+                                            return InkWell(
+                                              onTap: () {
+                                                _toggleCategory(category);
+                                                setState(
+                                                    () {}); // Rebuild just the popup content
+                                              },
+                                              child: Row(
+                                                children: [
+                                                  Checkbox(
+                                                    value:
+                                                        selectedCategoriesNotifier
+                                                            .value
+                                                            .contains(category),
+                                                    onChanged: (_) {
+                                                      _toggleCategory(category);
+                                                      setState(() {});
+                                                    },
+                                                  ),
+                                                  Flexible(
+                                                    child: Text(
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .labelSmall,
+                                                      category,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 1,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          }).toList(),
+                                        ]);
+                                  },
+                                ),
+                              ),
+                            )
+                          ],
+                        );
                       },
-                      blendMode: BlendMode.dstIn,
-                      child: Image.asset(
-                        ImageAssets.appbarBg,
-                        fit: BoxFit.fill,
+                      child: Icon(
+                        Icons.more_vert,
+                        color: ColorManager.primary,
                       ),
                     ),
-
-                    leading: IconButton(
-                        onPressed: () {
-                          Navigator.maybePop(context);
-                        },
-                        icon: Icon(
-                          Icons.arrow_back,
-                          color: ColorManager.golden,
-                        )),
-                    // BackButton(
-                    //   color: ColorManager.golden,
-                    // ),
-                    title: Text(
+                    Text(
                       AppStrings().lawsAndDecisions,
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
-                    centerTitle: true,
-                  ),
-                  body: RefreshIndicator(
-                    onRefresh: () async {
-                      context.read<LawsBloc>().add(const LawsEvent.getLaws());
-                    },
-                    child: ListView(
-                      children: [
-                        SizedBox(
-                          height: AppSizeH.s10,
-                        ),
-                        Hero(
-                          tag: "thelaw",
-                          child: Center(
-                            child: SizedBox(
-                              width: AppSizeW.s112,
-                              height: AppSizeH.s90,
-                              child: StaticPagesContainer(
-                                icon: IconAssets.lawsHome,
-                                title: Container(),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: AppSizeH.s40,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: AppSizeW.s15, vertical: AppSizeH.s10),
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: state.lawsResponse.length,
-                            // itemCount: state.lawsResponse.data.length,
-                            itemBuilder: (context, index) {
-                              final law = state.lawsResponse[index];
-
-                              // Check if the current law matches the app language
-                              final isArabic = context.locale ==
-                                  ARABIC_LOCAL; // Example: Using localization
-                              final isLawInArabic = RegExp(r'[\u0600-\u06FF]')
-                                  .hasMatch(law.title);
-                              // Show the item only if it matches the app's language
-                              if ((isArabic && isLawInArabic) ||
-                                  (!isArabic && !isLawInArabic)) {
-                                return LawWidget(
-                                  law: law,
-                                );
-                              }
-
-                              // Return an empty container for items that don't match the condition
-                              return const SizedBox.shrink();
-                            },
-                          ),
-                        ),
-                      ],
+                    IconButton(
+                      onPressed: () {
+                        Navigator.maybePop(context);
+                      },
+                      icon: Icon(
+                        context.locale == ARABIC_LOCAL
+                            ? Icons.arrow_back
+                            : Icons.arrow_forward,
+                        color: ColorManager.golden,
+                      ),
                     ),
-                  ),
-                );
-              } else if (state.lawsResponse.isEmpty) {}
-              // } else if (state.lawsResponse.data.isEmpty) {}
-              return Container();
-            }));
+                  ],
+                ),
+                centerTitle: true,
+              ),
+              body: RefreshIndicator(
+                onRefresh: () async {
+                  context.read<LawsBloc>().add(const LawsEvent.getLaws());
+                },
+                child: ListView(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: AppSizeW.s20),
+                      child: ReraTextFaild(
+                        hint: "${AppStrings().search}...",
+                        controller: searchController,
+                        onChange: (value) {
+                          searchTermNotifier.value = value.trim().toLowerCase();
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: AppSizeW.s15, vertical: AppSizeH.s10),
+                      child: ValueListenableBuilder<String>(
+                          valueListenable: searchTermNotifier,
+                          builder: (context, searchTerm, _) {
+                            return ValueListenableBuilder<List<String>>(
+                              valueListenable: selectedCategoriesNotifier,
+                              builder: (context, selectedCategories, _) {
+                                final isArabic = context.locale == ARABIC_LOCAL;
+
+                                // Filter laws based on language and selected categories
+                                final filteredLaws =
+                                    state.lawsResponse.where((law) {
+                                  final isLawInArabic =
+                                      RegExp(r'[\u0600-\u06FF]')
+                                          .hasMatch(law.title);
+
+                                  final languageMatch =
+                                      (isArabic && isLawInArabic) ||
+                                          (!isArabic && !isLawInArabic);
+
+                                  final categoryMatch =
+                                      selectedCategories.isEmpty ||
+                                          law.categories.any((cat) =>
+                                              selectedCategories.contains(cat));
+
+                                  final titleMatch = law.title
+                                      .toLowerCase()
+                                      .contains(searchTerm);
+                                  return languageMatch &&
+                                      categoryMatch &&
+                                      titleMatch;
+                                }).toList();
+
+                                if (filteredLaws.isEmpty) {
+                                  return Center(
+                                    child: Text(
+                                      AppStrings().noResultFounded,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
+                                  );
+                                }
+
+                                return ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: filteredLaws.length,
+                                  itemBuilder: (context, index) {
+                                    return LawWidget(law: filteredLaws[index]);
+                                  },
+                                );
+                              },
+                            );
+                          }),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          } else if (state.lawsResponse.isEmpty) {
+            return Container();
+          }
+          return Container();
+        },
+      ),
+    );
   }
 }
 
@@ -158,10 +332,6 @@ class _LawWidgetState extends State<LawWidget> {
       return false;
     }
   }
-
-  // String getFileUrl(String assetId) {
-  //   return "${Constant.cmsBaseUrl}/assets/$assetId";
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -232,7 +402,6 @@ class _LawWidgetState extends State<LawWidget> {
                                 widget.law.categories[0],
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                // '${AppStrings().issueDate}${DateTime.tryParse(widget.law.issueDate)?.year}',
                                 style: Theme.of(context).textTheme.labelSmall,
                               ),
                             ),
@@ -245,7 +414,6 @@ class _LawWidgetState extends State<LawWidget> {
                             ),
                             Text(
                               widget.law.date,
-                              // '${DateFormat('MMM d, y').format(DateTime.parse('${widget.law.date}'))}',
                               style: Theme.of(context).textTheme.labelSmall,
                             )
                           ],
@@ -262,7 +430,6 @@ class _LawWidgetState extends State<LawWidget> {
                     child: GestureDetector(
                       onTap: () {
                         String fileUrl = widget.law.pdf;
-                        // String fileUrl = getFileUrl(widget.law.pdf);
                         if (isValidUrl(fileUrl)) {
                           launchUrl(Uri.parse(fileUrl));
                         }
@@ -278,7 +445,6 @@ class _LawWidgetState extends State<LawWidget> {
                                   BorderRadius.circular(AppSizeH.s10)),
                           child: SvgPicture.asset(
                             IconAssets.cloudDownload,
-                            // todo: change this with the correct theme color
                             color: ColorManager.white,
                           )),
                     ),

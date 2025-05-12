@@ -7,7 +7,7 @@ part 'voice_state.dart';
 class VoiceCubit extends Cubit<VoiceState> {
   final stt.SpeechToText _speech = stt.SpeechToText();
   List<stt.LocaleName> _availableLocales = [];
-  String selectedLocale = 'en_US'; // Default locale
+  String selectedLocale = "ar_DZ"; // Default locale
 
   VoiceCubit() : super(VoiceState());
 
@@ -81,12 +81,23 @@ class VoiceCubit extends Cubit<VoiceState> {
           errorMessage: "Speech recognition not available"));
       return;
     }
-    //to clear the text every time i record
+    // Clear text only when starting new recording
     emit(VoiceState(
-      text: '',
-    ));
+        isListening: true,
+        text: '', // Reset text when starting new recording
+        availableLocales: _availableLocales,
+        selectedLocale: selectedLocale));
+
     _speech.listen(
       onResult: (val) async {
+        // For partial results, append to existing text
+        // For final results, use the complete recognized words
+        final newText = val.finalResult
+            ? val.recognizedWords
+            : state.text +
+                (state.text.isNotEmpty ? ' ' : '') +
+                val.recognizedWords;
+
         if (RegExp(r'[\u0600-\u06FF]').hasMatch(val.recognizedWords)) {
           selectedLocale = "ar_DZ";
         } else {
@@ -94,21 +105,23 @@ class VoiceCubit extends Cubit<VoiceState> {
         }
         // if (isClosed) return; // Check if the Cubit is closed
         emit(VoiceState(
-          isListening: !val.finalResult,
-          text: val.recognizedWords,
-          confidence: val.confidence,
-          availableLocales: _availableLocales,
-          selectedLocale: selectedLocale,
-        ));
+            isListening: !val.finalResult,
+            text: newText,
+            confidence: val.confidence,
+            availableLocales: _availableLocales,
+            selectedLocale: selectedLocale,
+            hasFinalResult: val.finalResult));
       },
       localeId: "ar_DZ",
       // localeId: selectedLocale,
+      // localeId: selectedLocale,
       listenMode: stt.ListenMode.dictation,
+      partialResults: true,
     );
     // if (isClosed) return; // Check if the Cubit is closed
     emit(VoiceState(
         isListening: true,
-        text: state.text,
+        // text: state.text,
         confidence: state.confidence,
         availableLocales: _availableLocales,
         selectedLocale: selectedLocale));
@@ -121,7 +134,7 @@ class VoiceCubit extends Cubit<VoiceState> {
 
     emit(VoiceState(
         isListening: false,
-        text: state.text,
+        // text: state.text,
         confidence: state.confidence,
         availableLocales: _availableLocales,
         selectedLocale: selectedLocale));
