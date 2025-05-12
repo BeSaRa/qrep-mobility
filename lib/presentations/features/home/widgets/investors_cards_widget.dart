@@ -1,10 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
-import 'package:ebla/presentations/resources/language_manager.dart';
+
 import 'package:ebla/presentations/resources/routes_manager.dart';
 import 'package:ebla/presentations/resources/strings_manager.dart';
-import 'package:ebla/presentations/resources/theme_manager.dart';
+
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:ebla/utils/global_functions.dart';
 import 'package:flutter/material.dart';
@@ -116,12 +115,12 @@ class InvestorsCard extends StatelessWidget {
                     icon,
                     height: AppSizeH.s42,
                     width: AppSizeW.s42,
-                    color: ColorManager.golden,
+                    color: Theme.of(context).colorScheme.surfaceBright,
                   ),
                 if (!icon.toLowerCase().endsWith("svg"))
                   ImageIcon(
                     AssetImage(icon),
-                    color: ColorManager.golden,
+                    color: Theme.of(context).colorScheme.surfaceBright,
                   ),
                 Flexible(
                   child: SizedBox(
@@ -129,7 +128,7 @@ class InvestorsCard extends StatelessWidget {
                     child: Text(
                       title,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: ColorManager.primaryBlue,
+                          color: Theme.of(context).colorScheme.secondaryFixed,
                           fontWeight: FontWeight.w600),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,

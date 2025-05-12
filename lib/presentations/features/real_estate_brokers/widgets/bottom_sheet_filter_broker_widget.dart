@@ -27,10 +27,6 @@ class _BottomSheetFilterBrokerWidgetState
   late ValuesFiltersCubit valuesFiltersCubit;
   @override
   void initState() {
-    print("municipalityId");
-    print(context.read<LookUpBrokerBloc>().requestBroker.municipalityId);
-    print("brokerCategoryId");
-    print(context.read<LookUpBrokerBloc>().requestBroker.brokerCategoryId);
     valuesFiltersCubit = ValuesFiltersCubit(const LookupModel());
 
     List<LookupModel> listMunicipalityWithAll = [];

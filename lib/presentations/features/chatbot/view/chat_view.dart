@@ -29,10 +29,14 @@ import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
+import 'package:haptic_feedback/haptic_feedback.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:ui' as ui;
 
 import '../../../resources/language_manager.dart';
+
+import '../widgets/faq_list_widget.dart';
+
 import '../widgets/hold_message_widget.dart';
 import '../widgets/mini_screen_widget.dart';
 
@@ -428,7 +432,15 @@ class _ChatViewState extends State<ChatView>
                                               ),
                                             );
                                     }),
-                              //TODO: and here  make widget
+
+                              sendState.maybeMap(
+                                loading: (value) => const SizedBox.shrink(),
+                                orElse: () {
+                                  return FAQListWidget(
+                                      scrollController: scrollController);
+                                },
+                              ),
+
                               BlocBuilder<VoiceCubit, VoiceState>(
                                   builder: (context, voiceState) {
                                 return ValueListenableBuilder<bool>(
@@ -610,11 +622,58 @@ class _ChatViewState extends State<ChatView>
                                                     builder:
                                                         (context, voiceState) {
                                                       return GestureDetector(
+
+                                                        onLongPressStart:
+                                                            isAvatarPressed
+                                                                ? (_) async {
+                                                                    final can =
+                                                                        await Haptics
+                                                                            .canVibrate();
+                                                                    if (!can)
+                                                                      return;
+                                                                    await Haptics.vibrate(
+                                                                        HapticsType
+                                                                            .heavy);
+                                                                    // _wasLongPressed =
+                                                                    //     true;
+                                                                    // Start recording when pressed
+                                                                    context
+                                                                        .read<
+                                                                            VoiceCubit>()
+                                                                        .checkAndRequestPermissionToStart();
+                                                                  }
+                                                                : null,
+                                                        onLongPressEnd:
+                                                            isAvatarPressed
+                                                                ? (_) {
+                                                                    // Stop recording and send when released
+                                                                    context
+                                                                        .read<
+                                                                            VoiceCubit>()
+                                                                        .stopListening();
+                                                                    showHoldMessage
+                                                                            .value =
+                                                                        false;
+                                                                  }
+                                                                : null,
+
                                                         onTap: isAvatarPressed
                                                             ? () {
                                                                 showHoldHint();
                                                               }
+
+                                                            : () async {
+                                                                final can =
+                                                                    await Haptics
+                                                                        .canVibrate();
+                                                                if (!can)
+                                                                  return;
+                                                                await Haptics.vibrate(
+                                                                    HapticsType
+                                                                        .heavy);
+
                                                             : () {
+
                                                                 if (voiceState
                                                                     .isListening) {
                                                                   context
@@ -627,6 +686,196 @@ class _ChatViewState extends State<ChatView>
                                                                           VoiceCubit>()
                                                                       .checkAndRequestPermissionToStart();
                                                                   // .startListening();
+
+                                                                }
+                                                              },
+                                                        child: isAvatarPressed
+                                                            ? isRecordModeEnabled
+                                                                ? AnimatedContainer(
+                                                                    duration: const Duration(
+                                                                        milliseconds:
+                                                                            200),
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                            boxShadow: [
+                                                                          BoxShadow(
+                                                                            blurStyle:
+                                                                                BlurStyle.outer,
+                                                                            color:
+                                                                                ColorManager.primary.withValues(alpha: .7),
+                                                                            blurRadius:
+                                                                                30,
+                                                                            spreadRadius:
+                                                                                1,
+                                                                          ),
+                                                                        ],
+                                                                            gradient:
+                                                                                LinearGradient(
+                                                                              colors: [
+                                                                                ColorManager.primary,
+                                                                                ColorManager.primary.withValues(alpha: .7),
+                                                                              ],
+                                                                              begin: Alignment.topLeft,
+                                                                              end: Alignment.bottomRight,
+                                                                            ),
+                                                                            color: voiceState.isListening
+                                                                                ? ColorManager.primary.withValues(
+                                                                                    alpha:
+                                                                                        0.3)
+                                                                                : Theme.of(context)
+                                                                                    .primaryColor,
+                                                                            borderRadius: BorderRadius.circular(AppSizeR
+                                                                                .s100)),
+                                                                    height:
+                                                                        AppSizeH
+                                                                            .s60,
+                                                                    width: AppSizeH
+                                                                        .s120,
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .mic_none,
+                                                                      color: ColorManager
+                                                                          .white,
+                                                                    ))
+                                                                : const SizedBox
+                                                                    .shrink()
+                                                            :
+                                                            //we will see this widget when the avatar is not enabled
+                                                            voiceState
+                                                                    .isListening
+                                                                ? SizedBox(
+                                                                    height:
+                                                                        AppSizeH
+                                                                            .s40,
+                                                                    width: AppSizeH
+                                                                        .s40,
+                                                                    child: Lottie.asset(
+                                                                        ImageAssets.chatBotRecordingIndecetor))
+                                                                : const Icon(Icons.mic_none),
+                                                      );
+                                                    }),
+
+                                                SizedBox(
+                                                  width: isRecordModeEnabled
+                                                      ? AppSizeW.s0
+                                                      : AppSizeW.s5,
+                                                ),
+                                                if (isAvatarPressed)
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      isRecordMode.value =
+                                                          !isRecordMode.value;
+                                                    },
+                                                    child: ValueListenableBuilder<
+                                                            bool>(
+                                                        valueListenable:
+                                                            isRecordMode,
+                                                        builder: (context,
+                                                            isRecordModeEnabled,
+                                                            child) {
+                                                          return Container(
+                                                            width: AppSizeW.s40,
+                                                            height:
+                                                                AppSizeH.s40,
+                                                            decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius.circular(
+                                                                        AppSizeR
+                                                                            .s5),
+                                                                color: ColorManager
+                                                                    .lightSilver
+                                                                    .withValues(
+                                                                        alpha:
+                                                                            .3)),
+                                                            child: isRecordModeEnabled
+                                                                ? const Icon(Icons
+                                                                    .keyboard)
+                                                                : const Icon(Icons
+                                                                    .mic_none),
+                                                          );
+                                                        }),
+                                                  ),
+                                                SizedBox(
+                                                  width: isRecordModeEnabled
+                                                      ? AppSizeW.s0
+                                                      : AppSizeW.s5,
+                                                ),
+                                                /*========================TextFaild========================= */
+                                                if (!isRecordModeEnabled ||
+                                                    !isAvatarPressed)
+                                                  // if (false)
+                                                  Expanded(
+                                                    child:
+                                                        BlocBuilder<VoiceCubit,
+                                                                VoiceState>(
+                                                            bloc: BlocProvider
+                                                                .of<VoiceCubit>(
+                                                                    context),
+                                                            builder: (context,
+                                                                voiceState) {
+                                                              WidgetsBinding
+                                                                  .instance
+                                                                  .addPostFrameCallback(
+                                                                      (_) {
+                                                                if (_controller
+                                                                        .text !=
+                                                                    voiceState
+                                                                        .text) {
+                                                                  _controller
+                                                                          .text =
+                                                                      voiceState
+                                                                          .text;
+                                                                }
+                                                              });
+
+                                                              return ReraTextFaild(
+                                                                onChange:
+                                                                    (p0) {},
+                                                                controller:
+                                                                    _controller,
+                                                                readOnly: false,
+                                                                enabled: true,
+                                                                suffixIcon:
+                                                                    GestureDetector(
+                                                                        onTap:
+                                                                            () {
+                                                                          //--------------
+                                                                          final chatState = context
+                                                                              .read<ChatHistoryCubit>()
+                                                                              .state;
+                                                                          //-------------------- authority clear button ------------------------
+                                                                          if (chatState.activeChat ==
+                                                                              ChatTypeEnum.authority) {
+                                                                            chatState.authorityMessages.clear();
+                                                                            context.read<ChatHistoryCubit>().addMessage(MessageRequestModel(
+                                                                                  role: 'assistant',
+                                                                                  content: AppStrings().defaultAuthorityBotMessage,
+                                                                                ));
+                                                                          }
+                                                                          //-------------------- Platform clear button ------------------------
+                                                                          else {
+                                                                            chatState.platformMessages.clear();
+                                                                            context.read<ChatHistoryCubit>().addMessage(MessageRequestModel(
+                                                                                  role: 'assistant',
+                                                                                  content: AppStrings().defaultPlatformBotMessage,
+                                                                                ));
+                                                                          }
+                                                                        },
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .refresh_rounded,
+                                                                          color:
+                                                                              Theme.of(context).primaryColor,
+                                                                        )),
+                                                                hint: AppStrings()
+                                                                    .writeUourMessage,
+                                                              );
+                                                            }),
+                                                  ),
+                                                /*======================== Send button ========================= */
+
+
                                                                 }
                                                               },
                                                         onTapDown:
@@ -864,6 +1113,7 @@ class _ChatViewState extends State<ChatView>
                                                             }),
                                                   ),
                                                 /*======================== Send button ========================= */
+
 
                                                 /*========================TextFaild button if avatar pressed ========================= */
 

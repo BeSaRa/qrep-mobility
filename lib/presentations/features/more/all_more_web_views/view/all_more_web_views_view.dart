@@ -53,6 +53,9 @@ class AllMoreWebViews extends StatelessWidget {
       case "realEstateCalendar":
         return context.locale == ENGLISH_LOCAL
             ? "${Constant.aqaratBaseUrl}/en/real-estate-calendar/"
+            // : 'https://www.aqarat.gov.qa/event/mipim/';
+            // // : '${Constant.aqaratBaseUrl}/event/mipim/';
+            // : 'https://www.aqarat.gov.qa/الأحداث/';
             : '${Constant.aqaratBaseUrl}/الأحداث/';
       case "videoLibrary":
         return context.locale == ENGLISH_LOCAL
@@ -93,7 +96,9 @@ class AllMoreWebViews extends StatelessWidget {
 
             return Scaffold(
               appBar: _costumeAppBar(context),
-              body: WebViewWidget(controller: bloc.controller),
+              body: WebViewWidget(
+                controller: bloc.controller,
+              ),
             );
           }
         },

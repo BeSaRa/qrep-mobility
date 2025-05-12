@@ -21,7 +21,11 @@ class LawsBloc extends Bloc<LawsEvent, LawsState> {
    })
       : super(const _Initial()) {
     on<LawsEvent>((event, emit) async {
-      await event.map(getLaws: (value) async {
+      await event.map(
+        updateSelectedCategories:(value)async{
+  emit(state.copyWith(selectedCategories: value.categories));
+        },
+        getLaws: (value) async {
         emit(state.copyWith(
           isLoading: true,
           hasError: false,

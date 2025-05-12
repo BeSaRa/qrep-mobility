@@ -1423,6 +1423,78 @@ class RepositoryImplementer extends Repository {
     }
   }
 
+  @override
+  Future<Result<List<ChatbotFAQResponseModel>, FailureModel>> getChatFAQ(
+      String botName) async {
+    if (await networkInfo.isConnected) {
+      log("Network connected. Sending request...");
+
+      try {
+        final AppPreferences appPreferences = AppPreferences(instance());
+        final dio = Dio();
+
+        // 🔹 backend API URL
+        final String apiUrl =
+            '${Constant.authorityChatBotBaseUrl}/api/v1//FAQ/faqs/$botName';
+        // 🔹 get stored language
+        String language = await appPreferences.getAppLanguage();
+
+        Map<String, String> headers = {
+          CONTENT_TYPE: APPLICATION_JSON,
+          ACCEPT: APPLICATION_JSON,
+          DEFAULT_LANGUAGE: language,
+          AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
+          //NOTE: We must add this key to make the chat work
+          "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
+        };
+        // 🔹 make a POST request
+        final response = await dio.get(
+          apiUrl,
+          // data: jsonEncode(request), // Ensure JSON-encoded body
+          // data: request,
+          // data: request.toJson(),
+          options: Options(
+            headers: headers,
+            validateStatus: (status) =>
+                status! < 500, // Prevents Dio from throwing for 401
+          ),
+        );
+
+        log("API Response received. Status code: ${response.statusCode}");
+        log("Response data: ${response.data}");
+
+        if (response.statusCode == 200) {
+          log("Success response: ${response.data}");
+          return Success(response.data);
+        } else if (response.statusCode == 401) {
+          log("⚠️ Unauthorized: Token might be invalid or expired.");
+          return const Error(FailureModel(
+              message: "Unauthorized: Please check your credentials."));
+        } else {
+          log("Non-200 status code. Parsing error...");
+          return Error(FailureModel.fromJson(response.data));
+        }
+      } on DioException catch (e) {
+        log("DioException occurred: ${e.message}");
+        log("DioException response: ${e.response?.data}");
+
+        // Handle non-JSON responses
+        if (e.response != null && e.response?.data is! Map<String, dynamic>) {
+          return const Error(
+              FailureModel(message: "Unexpected server response"));
+        }
+
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        log("Unexpected error: $e");
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      log("No internet connection.");
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
 //----platform chatbot-----
   @override
   Future<Result<PlatformChatbotResponseModel, FailureModel>>

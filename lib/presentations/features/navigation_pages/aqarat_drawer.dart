@@ -1,12 +1,14 @@
+import 'dart:io';
+
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:go_router/go_router.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../app/app_preferences.dart';
 import '../../../app/depndency_injection.dart';
@@ -15,7 +17,6 @@ import '../../widgets/widgets.dart';
 import '../auth/blocs/login_bloc/login_bloc.dart';
 import '../main/cubit/bottom_nav_cubit.dart';
 import '../more/blocs/cubits/change_language_cubit.dart';
-// import '../more/more_view.dart';
 
 class AqaratDrawer extends StatefulWidget {
   const AqaratDrawer({super.key});
@@ -41,13 +42,14 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       width: MediaQuery.of(context).size.width / 2,
+      backgroundColor: Theme.of(context).drawerTheme.backgroundColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         spacing: AppSizeR.s20,
         children: [
           const Spacer(),
           DrawerWidget(
-            color: ColorManager.primary,
+            color: Theme.of(context).colorScheme.primary,
             icon: IconAssets.home,
             title: AppStrings().main,
             onTap: () {
@@ -58,19 +60,19 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
             },
           ),
           DrawerWidget(
-            color: ColorManager.grey,
+            color: Theme.of(context).colorScheme.onTertiary,
             icon: IconAssets.user,
             title: AppStrings().manageUser,
             onTap: () {},
           ),
           DrawerWidget(
-            color: ColorManager.grey,
+            color: Theme.of(context).colorScheme.onTertiary,
             icon: IconAssets.menu,
             title: AppStrings().manageAccount,
             onTap: () {},
           ),
           DrawerWidget(
-            color: ColorManager.cloudyGrey,
+            color: Theme.of(context).colorScheme.secondaryFixedDim,
             icon: IconAssets.chat,
             title: AppStrings().faqs,
             onTap: () {
@@ -80,7 +82,7 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
             },
           ),
           DrawerWidget(
-            color: ColorManager.cloudyGrey,
+            color: Theme.of(context).colorScheme.secondaryFixedDim,
             icon: IconAssets.phoneCall,
             title: AppStrings().contactUs,
             onTap: () {
@@ -89,11 +91,11 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
             },
           ),
           DrawerWidget(
-            color: ColorManager.cloudyGrey,
+            color: Theme.of(context).colorScheme.secondaryFixedDim,
             icon: IconAssets.privacyPolicy,
             title: AppStrings().privacyPolicy,
             onTap: () {
-                context.pushNamed(RoutesNames.aboutTheAuthority,
+              context.pushNamed(RoutesNames.aboutTheAuthority,
                   pathParameters: {"pageName": "privacyPolicy"});
             },
           ),
@@ -110,16 +112,19 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
                       Icons.login,
                       color: ColorManager.white,
                     ),
-                    Text(AppStrings().login),
+                    Text(
+                      AppStrings().login,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                   ],
                 )),
           ),
           EblaTabBarWidget(
             initialIndex: context.locale == ARABIC_LOCAL ? 0 : 1,
-            firstTab: Tab(
+            firstTab: const Tab(
               text: 'عربي',
             ),
-            secondTab: Tab(
+            secondTab: const Tab(
               text: 'English',
             ),
             onPressed: (index) {
@@ -140,12 +145,12 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
                       Brightness.light
                   ? 0
                   : 1,
-              firstTab: Tab(
+              firstTab: const Tab(
                 // text: '',
                 // AppStrings().light,
                 icon: Icon(CupertinoIcons.brightness),
               ),
-              secondTab: Tab(
+              secondTab: const Tab(
                 // text: "",
                 // AppStrings().dark,
                 icon: Icon(CupertinoIcons.moon),
@@ -173,30 +178,56 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: AppSizeW.s12,
             children: [
-              ImageIcon(
-                AssetImage(IconAssets.twitter),
-                color: ColorManager.primary,
-                size: AppSizeW.s18,
+              GestureDetector(
+                onTap: () {
+                  _launchUrl("https://x.com/AqaratQa");
+                },
+                child: ImageIcon(
+                  const AssetImage(IconAssets.twitter),
+                  color: Theme.of(context).colorScheme.primary,
+                  size: AppSizeW.s18,
+                ),
               ),
-              ImageIcon(
-                AssetImage(IconAssets.video),
-                color: ColorManager.primary,
-                size: AppSizeW.s18,
+              GestureDetector(
+                onTap: () {
+                  _launchUrl("https://www.youtube.com/@AqaratQa");
+                },
+                child: ImageIcon(
+                  const AssetImage(IconAssets.video),
+                  color: Theme.of(context).colorScheme.primary,
+                  size: AppSizeW.s18,
+                ),
               ),
-              ImageIcon(
-                AssetImage(IconAssets.linkedIN),
-                color: ColorManager.primary,
-                size: AppSizeW.s18,
+              GestureDetector(
+                onTap: () {
+                  _launchUrl(
+                      "https://www.linkedin.com/company/%D8%A7%D9%84%D9%87%D9%8A%D8%A6%D8%A9-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9-%D9%84%D8%AA%D9%86%D8%B8%D9%8A%D9%85-%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9-%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A-%D8%B9%D9%82%D8%A7%D8%B1%D8%A7%D8%AA/");
+                },
+                child: ImageIcon(
+                  const AssetImage(IconAssets.linkedIN),
+                  color: Theme.of(context).colorScheme.primary,
+                  size: AppSizeW.s18,
+                ),
               ),
-              ImageIcon(
-                AssetImage(IconAssets.instagram),
-                color: ColorManager.primary,
-                size: AppSizeW.s18,
+              GestureDetector(
+                onTap: () {
+                  _launchUrl("https://www.instagram.com/aqaratq/reels/?__d=1");
+                },
+                child: ImageIcon(
+                  const AssetImage(IconAssets.instagram),
+                  color: Theme.of(context).colorScheme.primary,
+                  size: AppSizeW.s18,
+                ),
               ),
-              ImageIcon(
-                AssetImage(IconAssets.facebook),
-                color: ColorManager.primary,
-                size: AppSizeW.s18,
+              GestureDetector(
+                onTap: () {
+                  _launchUrl("https://m.facebook.com/AqaratQa/");
+                },
+                child: ImageIcon(
+                  const AssetImage(IconAssets.facebook),
+                  color: Theme.of(context).colorScheme.primary,
+                  size: AppSizeW.s18,
+                ),
               ),
             ],
           ),
@@ -210,6 +241,13 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
         ],
       ),
     );
+  }
+
+  Future<void> _launchUrl(String url) async {
+    final Uri _url = Uri.parse(url);
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
   }
 }
 

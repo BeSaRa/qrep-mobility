@@ -38,37 +38,43 @@ class _EblaTabBarWidgetState extends State<EblaTabBarWidget> {
           borderRadius: BorderRadius.circular(AppSizeR.s12),
           color: Theme.of(context).canvasColor,
         ),
-        child: TabBar(
-          automaticIndicatorColorAdjustment: false,
-          physics: const NeverScrollableScrollPhysics(),
-          indicatorColor: Colors.transparent,
-          indicator: BoxDecoration(
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(AppSizeR.s8),
-            color: Theme.of(context).primaryColor,
+        child: Material(
+          type: MaterialType.transparency,
+          elevation: 0,
+          child: TabBar(
+            automaticIndicatorColorAdjustment: false,
+            physics: const NeverScrollableScrollPhysics(),
+            indicatorColor: Colors.transparent,
+            overlayColor: MaterialStateProperty.all(Colors.transparent),
+            indicator: BoxDecoration(
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(AppSizeR.s8),
+              color: Theme.of(context).primaryColor,
+            ),
+            indicatorSize: TabBarIndicatorSize.tab,
+            labelColor: ColorManager.white,
+            unselectedLabelColor: Theme.of(context).colorScheme.onSurface,
+            unselectedLabelStyle: Theme.of(context)
+                .textTheme
+                .titleLarge!
+                .copyWith(
+                    color: ColorManager.white,
+                    fontSize: MediaQuery.of(context).size.width > 620
+                        ? 11.sp
+                        : 12.sp),
+            //text theme
+            labelStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontSize:
+                    MediaQuery.of(context).size.width > 620 ? 11.sp : 12.sp),
+            onTap: (index) {
+              widget.onPressed(index);
+            },
+            isScrollable: false,
+            tabs: [
+              widget.firstTab,
+              widget.secondTab,
+            ],
           ),
-          indicatorSize: TabBarIndicatorSize.tab,
-          labelColor: ColorManager.white,
-          unselectedLabelColor: Theme.of(context).colorScheme.onSurface,
-          unselectedLabelStyle: Theme.of(context)
-              .textTheme
-              .titleLarge!
-              .copyWith(
-                  color: ColorManager.white,
-                  fontSize:
-                      MediaQuery.of(context).size.width > 620 ? 11.sp : 12.sp),
-          //text theme
-          labelStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontSize:
-                  MediaQuery.of(context).size.width > 620 ? 11.sp : 12.sp),
-          onTap: (index) {
-            widget.onPressed(index);
-          },
-          isScrollable: false,
-          tabs: [
-            widget.firstTab,
-            widget.secondTab,
-          ],
         ),
       ),
     );

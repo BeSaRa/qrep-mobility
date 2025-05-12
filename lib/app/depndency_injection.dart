@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:ebla/domain/usecases/ai_search/ai_search_usecase.dart';
+import 'package:ebla/domain/usecases/chatbot_usecase/chat_faq_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/chatbot_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/close_stream_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/platform_chatbot_usecases.dart';
@@ -12,6 +13,7 @@ import 'package:ebla/domain/usecases/favourite_usecases/create_favourite_usecase
 import 'package:ebla/domain/usecases/favourite_usecases/update_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/user_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/laws_usecases/laws_usecases.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/chat_faq_bloc/chat_faq_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/close_stream/close_stream_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_answer_and_candidate_bloc/send_answer_and_candidate_bloc.dart';
@@ -229,6 +231,12 @@ Future<void> initChatbotModule() async {
   if (!GetIt.I.isRegistered<CloseStreamUsecase>()) {
     instance.registerFactory<CloseStreamUsecase>(
         () => CloseStreamUsecase(instance()));
+  }
+    if (!GetIt.I.isRegistered<Chatfaqusecase>()) {
+    instance.registerFactory<Chatfaqusecase>(() => Chatfaqusecase(instance()));
+  }
+    if (!GetIt.I.isRegistered<ChatFaqBloc>()) {
+    instance.registerFactory<ChatFaqBloc>(() => ChatFaqBloc(instance()));
   }
 
   //------ platform chatbot ------

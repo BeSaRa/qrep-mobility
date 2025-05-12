@@ -4,11 +4,6 @@ import 'dart:math' as math;
 
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/app/depndency_injection.dart';
-import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
-import 'package:ebla/presentations/features/chatbot/blocs/drobdown_cubit.dart';
-import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
-import 'package:ebla/presentations/features/chatbot/blocs/send_feedback_bloc/send_feedback_bloc.dart';
-
 import 'package:ebla/presentations/features/home/widgets/investors_cards_widget.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +11,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../app/app_preferences.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../info/blocs/news_bloc/news_bloc.dart';
@@ -93,7 +87,9 @@ class _HomeViewState extends State<HomeView> {
                   HomeIcons(
                     icon: IconAssets.video,
                     title: AppStrings().video,
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(RoutesNames.comingSoon);
+                    },
                   ),
                   // HomeIcons(
                   //   icon: IconAssets.training,
@@ -199,33 +195,33 @@ class _HomeViewState extends State<HomeView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("3,317",
-                        style: Theme.of(context).textTheme.titleLarge),
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: Theme.of(context).colorScheme.surfaceTint)),
                     Text(
                       AppStrings().sellTotalTransactions,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(color: ColorManager.primaryBlue),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).colorScheme.scrim),
                     ),
                     Text(
                       AppStrings().forFirstThreeQuarters,
-                      style: Theme.of(context).textTheme.labelSmall,
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.surfaceDim),
                     ),
                     SizedBox(
                       height: AppSizeH.s25,
                     ),
                     Text("64,955",
-                        style: Theme.of(context).textTheme.titleLarge),
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: Theme.of(context).colorScheme.surfaceTint)),
                     Text(
                       AppStrings().totalNumberForRent,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(color: ColorManager.primaryBlue),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).colorScheme.scrim),
                     ),
                     Text(
                       AppStrings().forFirstThreeQuarters,
-                      style: Theme.of(context).textTheme.labelSmall,
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.surfaceDim),
                     ),
                   ],
                 ),
@@ -235,7 +231,13 @@ class _HomeViewState extends State<HomeView> {
                     Row(
                       children: [
                         Text("1,081 ",
-                            style: Theme.of(context).textTheme.titleLarge),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .surfaceTint)),
                         Text(
                             "${Localizations.localeOf(context) == ARABIC_LOCAL ? "مليار" : "Billion"} ${AppStrings().currency} ",
                             style: Theme.of(context).textTheme.titleSmall),
@@ -243,14 +245,13 @@ class _HomeViewState extends State<HomeView> {
                     ),
                     Text(
                       AppStrings().totalValuesForSell,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(color: ColorManager.primaryBlue),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).colorScheme.scrim),
                     ),
                     Text(
                       AppStrings().forFirstThreeQuarters,
-                      style: Theme.of(context).textTheme.labelSmall,
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.surfaceDim),
                     ),
                     SizedBox(
                       height: AppSizeH.s25,
@@ -258,7 +259,13 @@ class _HomeViewState extends State<HomeView> {
                     Row(
                       children: [
                         Text("485,6 ",
-                            style: Theme.of(context).textTheme.titleLarge),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .surfaceTint)),
                         Text(
                             "${Localizations.localeOf(context) == ARABIC_LOCAL ? "مليون" : "Million"} ${AppStrings().currency} ",
                             style: Theme.of(context).textTheme.titleSmall),
@@ -266,14 +273,13 @@ class _HomeViewState extends State<HomeView> {
                     ),
                     Text(
                       AppStrings().totalValuesForRent,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(color: ColorManager.primaryBlue),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).colorScheme.scrim),
                     ),
                     Text(
                       AppStrings().forFirstThreeQuarters,
-                      style: Theme.of(context).textTheme.labelSmall,
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.surfaceDim),
                     ),
                   ],
                 )
@@ -381,7 +387,7 @@ class HomeIcons extends StatelessWidget {
             padding: EdgeInsets.all(AppSizeR.s12),
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Theme.of(context).colorScheme.tertiary),
+                color: Theme.of(context).colorScheme.surface),
             child: ImageIcon(
               AssetImage(icon),
               color: ColorManager.white,
