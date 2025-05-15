@@ -26,6 +26,7 @@ import 'package:ebla/presentations/features/real_estate_brokers/real_estate_brok
 import 'package:ebla/presentations/features/rent/rent_view.dart';
 import 'package:ebla/presentations/features/sell/sell_view.dart';
 import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
+import 'package:ebla/presentations/features/video_library/video_lib_view.dart';
 import 'package:ebla/presentations/features/xmap/xmap_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -70,6 +71,7 @@ class RoutesNames {
   static const String services = "home services";
   static const String map = "map";
   static const String comingSoon = "coming soon";
+  static const String videoLib = "video lib";
 }
 
 class RoutesPaths {
@@ -98,6 +100,7 @@ class RoutesPaths {
   static const String services = '/homeServices';
   static const String map = '/map';
   static const String comingSoon = '/comingSoon';
+  static const String videoLib = '/videoLib';
 }
 
 class NavigationKeys {
@@ -449,37 +452,24 @@ class AppRouter {
             child: const SalesView(),
           ),
         ),
+        //zak
         GoRoute(
-            parentNavigatorKey: NavigationKeys.rootNavigatorKey,
-            name: RoutesNames.laws,
-            path: RoutesPaths.laws,
-            builder: (context, state) => BlocProvider(
-                  create: (context) =>
-                      instance<LawsBloc>()..add(const LawsEvent.getLaws()),
-                  child: const LawsDecisionsView(),
-                ),
-            routes: [
-              // GoRoute(
-              //   parentNavigatorKey: NavigationKeys.rootNavigatorKey,
-              //   name: RoutesNames.lawsDetails,
-              //   path: RoutesPaths.lawsDetails,
-              //   builder: (context, state) {
-              //     // be careful when using state.extra because it might be _Map<String, dynamic> when pressing 'i' to inspect widgets
-              //     // because of issue: https://github.com/flutter/flutter/issues/99099
-              //     // if (state.extra is LawsModel) {
-              //     //   return LawsDetailsView(
-              //     //     law: state.extra as LawsModel,
-              //     //   );
-              //     // }
-              //     return BlocProvider(
-              //       create: (context) => instance<LawsBloc>(),
-              //       child: LawsDetailsView(
-              //           id: int.tryParse(state.pathParameters['id'] ?? '1') ??
-              //               1),
-              //     );
-              //   },
-              // ),
-            ]),
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.videoLib,
+          path: RoutesPaths.videoLib,
+          builder: (context, state) => const VideoLibView(),
+        ),
+
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.laws,
+          path: RoutesPaths.laws,
+          builder: (context, state) => BlocProvider(
+            create: (context) =>
+                instance<LawsBloc>()..add(const LawsEvent.getLaws()),
+            child: const LawsDecisionsView(),
+          ),
+        ),
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.faq,

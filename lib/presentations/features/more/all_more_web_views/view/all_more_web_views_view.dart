@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/constants.dart';
 import 'package:ebla/presentations/features/more/all_more_web_views/blocs/all_more_web_views_bloc.dart';
@@ -10,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+// ignore: must_be_immutable
 class AllMoreWebViews extends StatelessWidget {
   const AllMoreWebViews({super.key, required this.pageName, this.aiSearchUrl});
 
@@ -51,12 +54,14 @@ class AllMoreWebViews extends StatelessWidget {
             ? "${Constant.aqaratBaseUrl}/en/privacy-policy/"
             : '${Constant.aqaratBaseUrl}/privacy-policy-ar/';
       case "realEstateCalendar":
-        return context.locale == ENGLISH_LOCAL
-            ? "${Constant.aqaratBaseUrl}/en/real-estate-calendar/"
-            // : 'https://www.aqarat.gov.qa/event/mipim/';
-            // // : '${Constant.aqaratBaseUrl}/event/mipim/';
-            // : 'https://www.aqarat.gov.qa/الأحداث/';
-            : '${Constant.aqaratBaseUrl}/الأحداث/';
+        {
+          return context.locale == ENGLISH_LOCAL
+              ? "${Constant.aqaratBaseUrl}/en/real-estate-calendar/"
+              // : 'https://www.aqarat.gov.qa/event/mipim/';
+              // // : '${Constant.aqaratBaseUrl}/event/mipim/';
+              // : 'https://www.aqarat.gov.qa/الأحداث/';
+              : '${Constant.aqaratBaseUrl}/الأحداث/';
+        }
       case "videoLibrary":
         return context.locale == ENGLISH_LOCAL
             ? "${Constant.aqaratBaseUrl}/en/video-library/"
@@ -83,12 +88,25 @@ class AllMoreWebViews extends StatelessWidget {
           if (state is AboutTheAuthorityLoading) {
             return const AnimatedPulesLogo();
           } else if (state is AboutTheAuthorityError) {
-            return ErrorGlobalWidget(
-              message: state.message,
-              onPressed: () {
-                bloc.add(
-                    InitializeAboutAuthWebView(_getInitUrl(context, pageName)));
-              },
+            return Scaffold(
+              appBar: _costumeAppBar(context),
+              body: Padding(
+                padding: EdgeInsets.symmetric(horizontal: AppSizeW.s20),
+                child: ErrorGlobalWidget(
+                  message: state.message,
+                  onPressed: () {
+                    if (pageName == "realEstateCalendar" &&
+                        bloc.state.urlHistory.length > 1) {
+                      bloc.add(WebViewNavigationRequested(
+                          bloc.state.urlHistory.last));
+                      log("zak ${bloc.state.urlHistory.last}");
+                    } else {
+                      bloc.add(InitializeAboutAuthWebView(
+                          _getInitUrl(context, pageName)));
+                    }
+                  },
+                ),
+              ),
             );
           } else {
             final isDarkMode = Theme.of(context).brightness == Brightness.dark;
@@ -107,6 +125,7 @@ class AllMoreWebViews extends StatelessWidget {
   }
 
   AppBar _costumeAppBar(BuildContext context) {
+    final bloc = context.read<AboutTheAuthorityBloc>();
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
@@ -129,9 +148,18 @@ class AllMoreWebViews extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
+            //zak
             onTap: () {
-              Navigator.maybePop(context);
+              if (pageName == "realEstateCalendar" &&
+                  bloc.state.urlHistory.length > 1) {
+                bloc.add(PopWebView());
+              } else {
+                Navigator.maybePop(context);
+              }
             },
+            // onTap: () {
+            //   Navigator.maybePop(context);
+            // },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -141,7 +169,11 @@ class AllMoreWebViews extends StatelessWidget {
                 ),
                 SizedBox(width: AppSizeW.s5),
                 Text(
-                  aiSearchUrl != null ? AppStrings().back : AppStrings().main,
+                  pageName == "realEstateCalendar" &&
+                          bloc.state.urlHistory.length > 1
+                      ? AppStrings().back
+                      : AppStrings().main,
+                  // aiSearchUrl != null ? AppStrings().back : AppStrings().main,
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ],

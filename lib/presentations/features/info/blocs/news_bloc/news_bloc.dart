@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
@@ -21,6 +22,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
           failureOrSuccess.when((news) {
             newsList.clear();
             newsList.addAll(news);
+            log("zak news ${news.length}");
+            log("zak newsList ${newsList.length}");
             emit(NewsState.loaded(news: news));
           }, (error) {
             emit(NewsState.error(message: error.message));

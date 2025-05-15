@@ -1392,6 +1392,7 @@ class RepositoryImplementer extends Repository {
         log("Response data: ${response.data}");
 
         if (response.statusCode == 200) {
+          log("zakcontent ${response.data["message"]["content"]}");
           log("Success response: ${response.data}");
           return Success(ChatbotResponseModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
