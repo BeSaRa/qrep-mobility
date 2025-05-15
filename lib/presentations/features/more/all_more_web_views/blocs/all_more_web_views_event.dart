@@ -6,10 +6,29 @@ class InitializeAboutAuthWebView extends AboutTheAuthorityEvent {
   final String url;
   InitializeAboutAuthWebView(this.url);
 }
+// Add these to your event classes
+class WebViewNavigationRequested extends AboutTheAuthorityEvent {
+  final String url;
+   WebViewNavigationRequested(this.url);
+}
 
-class PageLoaded extends AboutTheAuthorityEvent {}
+class PopWebView extends AboutTheAuthorityEvent {
+   PopWebView();
+}
 
-class PageStarted extends AboutTheAuthorityEvent {}
+// Update existing events to include URLs when needed
+class PageStarted extends AboutTheAuthorityEvent {
+  final String? url;
+   PageStarted([this.url]);
+}
+
+class PageLoaded extends AboutTheAuthorityEvent {
+  final String? url;
+   PageLoaded([this.url]);
+}
+// class PageLoaded extends AboutTheAuthorityEvent {}
+
+// class PageStarted extends AboutTheAuthorityEvent {}
 
 class PageDidnNotLoad extends AboutTheAuthorityEvent {
   final int errorCode;

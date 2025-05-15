@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +18,7 @@ class NewsView extends StatefulWidget {
 }
 
 class _NewsViewState extends State<NewsView> {
+
   List<NewsModel> filteredNews = [];
 
   @override
@@ -37,6 +40,7 @@ class _NewsViewState extends State<NewsView> {
 
   @override
   Widget build(BuildContext context) {
+    log("zak filterd news ${filteredNews.length}");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -57,7 +61,7 @@ class _NewsViewState extends State<NewsView> {
             fit: BoxFit.fill,
           ),
         ),
-    
+
         leading: IconButton(
             onPressed: () {
               Navigator.maybePop(context);
@@ -66,7 +70,7 @@ class _NewsViewState extends State<NewsView> {
               Icons.arrow_back,
               color: ColorManager.golden,
             )),
-        
+
         title: Text(
           AppStrings().news,
           style: Theme.of(context).textTheme.headlineLarge,
@@ -94,9 +98,7 @@ class _NewsViewState extends State<NewsView> {
                     onTap: () {
                       context.pushNamed(RoutesNames.newsbyId,
                           pathParameters: {
-                            "id": filteredNews[index]
-                                .id
-                                .toString()
+                            "id": filteredNews[index].id.toString()
                           },
                           extra: context.read<NewsBloc>());
                     },

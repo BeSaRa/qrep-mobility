@@ -226,7 +226,6 @@ abstract class AppServiceClient {
   Future<HttpResponse<SendAnswerResponseModel>> sendAnswer(
       @Path("id") String id, @Body() MainSendAnswerRequestModel body);
   @POST('${Constant.authorityChatBotBaseUrl}/api/v1/avatar/send-candidate/{id}')
-
   Future<HttpResponse<SendAnswerResponseModel>> sendCandidate(
       @Path("id") String id, @Body() MainSendCandidateRequestModel body);
   @POST(
@@ -238,11 +237,12 @@ abstract class AppServiceClient {
   @DELETE("${Constant.authorityChatBotBaseUrl}/api/v1/avatar/close-stream/{id}")
   Future<HttpResponse<SendAnswerResponseModel>> closeStream(
       @Path("id") String id);
+
   /// ******* chat FAQ *******
-  
+
   @GET("${Constant.authorityChatBotBaseUrl}/api/v1//FAQ/faqs/{bot_name}")
   Future<HttpResponse<List<ChatbotFAQResponseModel>>> getChatFAQ(
-      @Path("bot_name") String botName);    
+      @Path("bot_name") String botName);
 
   /// ****************** platform chatbot ************************
   // @POST(EndPoints.sendMessageToPlatformChatbot)
@@ -304,8 +304,8 @@ abstract class CmsServiceClient {
   Future<HttpResponse<AppSettingsResponse>> appSettings();
 
 //get news
-
-  @GET("${Constant.aqaratBaseUrl}/wp-json/wp/v2/posts")
+  @GET("${Constant.aqaratBaseUrl}/wp-json/wp/v2/posts?per_page=50")
+  // @GET("${Constant.aqaratBaseUrl}/wp-json/wp/v2/posts")
   Future<HttpResponse<List<NewsModel>>> getNews();
   //get laws
   @GET("${Constant.aqaratBaseUrl}/wp-json/legislation/v1/all")

@@ -88,7 +88,7 @@ class _HomeViewState extends State<HomeView> {
                     icon: IconAssets.video,
                     title: AppStrings().video,
                     onTap: () {
-                      context.pushNamed(RoutesNames.comingSoon);
+                      context.pushNamed(RoutesNames.videoLib);
                     },
                   ),
                   // HomeIcons(
@@ -191,97 +191,111 @@ class _HomeViewState extends State<HomeView> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("3,317",
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: Theme.of(context).colorScheme.surfaceTint)),
-                    Text(
-                      AppStrings().sellTotalTransactions,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(context).colorScheme.scrim),
-                    ),
-                    Text(
-                      AppStrings().forFirstThreeQuarters,
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: Theme.of(context).colorScheme.surfaceDim),
-                    ),
-                    SizedBox(
-                      height: AppSizeH.s25,
-                    ),
-                    Text("64,955",
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: Theme.of(context).colorScheme.surfaceTint)),
-                    Text(
-                      AppStrings().totalNumberForRent,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(context).colorScheme.scrim),
-                    ),
-                    Text(
-                      AppStrings().forFirstThreeQuarters,
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: Theme.of(context).colorScheme.surfaceDim),
-                    ),
-                  ],
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("3,317",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .surfaceTint)),
+                      Text(
+                        AppStrings().sellTotalTransactions,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Theme.of(context).colorScheme.scrim),
+                      ),
+                      Text(
+                        AppStrings().forFirstThreeQuarters,
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                            color: Theme.of(context).colorScheme.surfaceDim),
+                      ),
+                      SizedBox(
+                        height: AppSizeH.s25,
+                      ),
+                      Text("64,955",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .surfaceTint)),
+                      Text(
+                        AppStrings().totalNumberForRent,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Theme.of(context).colorScheme.scrim),
+                      ),
+                      Text(
+                        AppStrings().forFirstThreeQuarters,
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                            color: Theme.of(context).colorScheme.surfaceDim),
+                      ),
+                    ],
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text("1,081 ",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge
-                                ?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .surfaceTint)),
-                        Text(
-                            "${Localizations.localeOf(context) == ARABIC_LOCAL ? "مليار" : "Billion"} ${AppStrings().currency} ",
-                            style: Theme.of(context).textTheme.titleSmall),
-                      ],
-                    ),
-                    Text(
-                      AppStrings().totalValuesForSell,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(context).colorScheme.scrim),
-                    ),
-                    Text(
-                      AppStrings().forFirstThreeQuarters,
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: Theme.of(context).colorScheme.surfaceDim),
-                    ),
-                    SizedBox(
-                      height: AppSizeH.s25,
-                    ),
-                    Row(
-                      children: [
-                        Text("485,6 ",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge
-                                ?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .surfaceTint)),
-                        Text(
-                            "${Localizations.localeOf(context) == ARABIC_LOCAL ? "مليون" : "Million"} ${AppStrings().currency} ",
-                            style: Theme.of(context).textTheme.titleSmall),
-                      ],
-                    ),
-                    Text(
-                      AppStrings().totalValuesForRent,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(context).colorScheme.scrim),
-                    ),
-                    Text(
-                      AppStrings().forFirstThreeQuarters,
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: Theme.of(context).colorScheme.surfaceDim),
-                    ),
-                  ],
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text("1,081 ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .surfaceTint)),
+                          Text(
+                              "${Localizations.localeOf(context) == ARABIC_LOCAL ? "مليار" : "Billion"} ${AppStrings().currency} ",
+                              style: Theme.of(context).textTheme.titleSmall),
+                        ],
+                      ),
+                      Text(
+                        AppStrings().totalValuesForSell,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Theme.of(context).colorScheme.scrim),
+                      ),
+                      Text(
+                        AppStrings().forFirstThreeQuarters,
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                            color: Theme.of(context).colorScheme.surfaceDim),
+                      ),
+                      SizedBox(
+                        height: AppSizeH.s25,
+                      ),
+                      Row(
+                        children: [
+                          Text("485,6 ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .surfaceTint)),
+                          Text(
+                              "${Localizations.localeOf(context) == ARABIC_LOCAL ? "مليون" : "Million"} ${AppStrings().currency} ",
+                              style: Theme.of(context).textTheme.titleSmall),
+                        ],
+                      ),
+                      Text(
+                        AppStrings().totalValuesForRent,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Theme.of(context).colorScheme.scrim),
+                      ),
+                      Text(
+                        AppStrings().forFirstThreeQuarters,
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                            color: Theme.of(context).colorScheme.surfaceDim),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),

@@ -114,7 +114,8 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
                     ),
                     Text(
                       AppStrings().login,
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          color: ColorManager.white, fontSize: AppSizeSp.s14),
                     ),
                   ],
                 )),
