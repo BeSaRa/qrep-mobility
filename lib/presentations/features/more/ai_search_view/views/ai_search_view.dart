@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:ebla/domain/models/requests/ai_search_models/ai_search_model.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/rera_text_faild.dart';
@@ -8,10 +9,12 @@ import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/routes_manager.dart';
 import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
+import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:ebla/presentations/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AiSearchView extends StatefulWidget {
   const AiSearchView({super.key});
@@ -29,6 +32,15 @@ class _AiSearchViewState extends State<AiSearchView> {
   int currentPage = 1;
   final int pageSize = 10;
   bool _isHasMoreData = true;
+  bool isValidUrl(String url) {
+    try {
+      Uri.tryParse(url);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -224,18 +236,46 @@ class _AiSearchViewState extends State<AiSearchView> {
                                       children: [
                                         // Text("${index + 1}"),
                                         GestureDetector(
-                                          onTap: () => context.pushNamed(
-                                            RoutesNames.aboutTheAuthority,
-                                            pathParameters: {
-                                              "pageName": "aiSearchUrl"
-                                            },
-                                            //Note: here u must put the ref_url which come from back-end
-                                            queryParameters: {
-                                              "aiSearchUrl": value
-                                                  .previousResults[index].refUrl
-                                              // "https://www.aqarat.gov.qa/%d9%83%d9%84%d9%85%d8%a9-%d8%a7%d9%84%d8%b1%d8%a6%d9%8a%d8%b3/"
-                                            },
-                                          ),
+                                          onLongPress: () {
+                                            log("zak ${value.previousResults[index].refUrl}");
+                                          },
+                                          onTap: () async {
+                                            final refUrl = value
+                                                .previousResults[index].refUrl;
+
+                                            if (refUrl
+                                                .toLowerCase()
+                                                .endsWith('.pdf')) {
+                                              if (isValidUrl(refUrl)) {
+                                                launchUrl(Uri.parse(refUrl));
+                                              }
+                                            } else {
+                                              // Use url_launcher to open the web URL
+                                              final uri = Uri.parse(refUrl);
+                                              if (await canLaunchUrl(uri)) {
+                                                await launchUrl(uri,
+                                                    mode: LaunchMode
+                                                        .externalApplication);
+                                              } else {
+                                                if (context.mounted) {
+                                                  errorToast(
+                                                      'Could not launch URL',
+                                                      context);
+                                                }
+                                              }
+                                            }
+                                          },
+                                          // onTap: () => context.pushNamed(
+                                          //   RoutesNames.aboutTheAuthority,
+                                          //   pathParameters: {
+                                          //     "pageName": "aiSearchUrl"
+                                          //   },
+                                          //   //Note: here u must put the ref_url which come from back-end
+                                          //   queryParameters: {
+                                          //     "aiSearchUrl": value.previousResults[index].refUrl
+                                          //     // "https://www.aqarat.gov.qa/%d9%83%d9%84%d9%85%d8%a9-%d8%a7%d9%84%d8%b1%d8%a6%d9%8a%d8%b3/"
+                                          //   },
+                                          // ),
                                           child: Text(
                                             value.previousResults[index].title,
                                             style: Theme.of(context)

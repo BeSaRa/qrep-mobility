@@ -102,12 +102,13 @@ class InvestorJourneyView extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.arrow_back,
-                    color: ColorManager.cloudyGrey,
+                    color: ColorManager.primary,
+                    // color: ColorManager.cloudyGrey,
                   ),
                   SizedBox(width: AppSizeW.s5),
                   Text(
                     AppStrings().main,
-                    style: Theme.of(context).textTheme.headlineMedium,
+                    style: Theme.of(context).textTheme.headlineLarge,
                   ),
                 ],
               ),

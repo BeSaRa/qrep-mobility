@@ -9,7 +9,6 @@ import 'package:ebla/utils/global_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:math' as math;
 
 class InvestorsCardsWidget extends StatelessWidget {
   const InvestorsCardsWidget({super.key});
@@ -19,66 +18,69 @@ class InvestorsCardsWidget extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: AppSizeH.s120,
-      child: ListView(
+      child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        children: [
-          InkWell(
-            onTap: () {
-              context.pushNamed(RoutesNames.investorJourney,
-                  pathParameters: {"stepNumber": "0"});
-            },
-            child: InvestorsCard(
-                color: Theme.of(context).primaryColor,
-                icon: IconAssets.investorJourney,
-                title: AppStrings().investorJourney),
-          ),
-          VerticalDivider(
-            endIndent: AppSizeH.s15,
-            color: ColorManager.golden.withAlpha(50),
-            indent: AppSizeH.s15,
-          ),
-          InkWell(
-            onTap: () {
-              context.pushNamed(RoutesNames.investorJourney,
-                  pathParameters: {"stepNumber": "1"});
-            },
-            child: InvestorsCard(
-                color: ColorManager.primaryBlue,
-                icon: IconAssets.propertyDeveloper,
-                title: AppStrings().propertyDevelopers),
-          ),
-          VerticalDivider(
-            endIndent: AppSizeH.s15,
-            color: ColorManager.golden.withAlpha(50),
-            indent: AppSizeH.s15,
-          ),
-          InkWell(
-            onTap: () {
-              context.pushNamed(RoutesNames.investorJourney,
-                  pathParameters: {"stepNumber": "2"});
-            },
-            child: InvestorsCard(
-                color: ColorManager.golden,
-                icon: IconAssets.totalSellTransactionsValue,
-                title: AppStrings().professionPracticers),
-          ),
-          VerticalDivider(
-            endIndent: AppSizeH.s15,
-            color: ColorManager.golden.withAlpha(50),
-            indent: AppSizeH.s15,
-          ),
-          InkWell(
-            onTap: () {
-              context.pushNamed(RoutesNames.aboutTheAuthority, pathParameters: {
-                "pageName": "tasksAndResponsibilitiesOftheAuthority"
-              });
-            },
-            child: InvestorsCard(
-                color: ColorManager.golden,
-                icon: IconAssets.aboutHome,
-                title: AppStrings().tasksAndResponsibilitiesOftheAuthority),
-          ),
-        ],
+        child: Row(
+          children: [
+            InkWell(
+              onTap: () {
+                context.pushNamed(RoutesNames.investorJourney,
+                    pathParameters: {"stepNumber": "0"});
+              },
+              child: InvestorsCard(
+                  color: Theme.of(context).primaryColor,
+                  icon: IconAssets.investorJourney,
+                  title: AppStrings().investorJourney),
+            ),
+            VerticalDivider(
+              endIndent: AppSizeH.s15,
+              color: ColorManager.golden.withAlpha(50),
+              indent: AppSizeH.s15,
+            ),
+            InkWell(
+              onTap: () {
+                context.pushNamed(RoutesNames.investorJourney,
+                    pathParameters: {"stepNumber": "1"});
+              },
+              child: InvestorsCard(
+                  color: ColorManager.primaryBlue,
+                  icon: IconAssets.propertyDeveloper,
+                  title: AppStrings().propertyDevelopers),
+            ),
+            VerticalDivider(
+              endIndent: AppSizeH.s15,
+              color: ColorManager.golden.withAlpha(50),
+              indent: AppSizeH.s15,
+            ),
+            InkWell(
+              onTap: () {
+                context.pushNamed(RoutesNames.investorJourney,
+                    pathParameters: {"stepNumber": "2"});
+              },
+              child: InvestorsCard(
+                  color: ColorManager.golden,
+                  icon: IconAssets.totalSellTransactionsValue,
+                  title: AppStrings().professionPracticers),
+            ),
+            VerticalDivider(
+              endIndent: AppSizeH.s15,
+              color: ColorManager.golden.withAlpha(50),
+              indent: AppSizeH.s15,
+            ),
+            InkWell(
+              onTap: () {
+                context.pushNamed(RoutesNames.aboutTheAuthority,
+                    pathParameters: {
+                      "pageName": "tasksAndResponsibilitiesOftheAuthority"
+                    });
+              },
+              child: InvestorsCard(
+                  color: ColorManager.golden,
+                  icon: IconAssets.aboutHome,
+                  title: AppStrings().tasksAndResponsibilitiesOftheAuthority),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -101,13 +103,13 @@ class InvestorsCard extends StatelessWidget {
       children: [
         Container(
           height: AppSizeH.s150,
-          width: isTablet ? AppSizeW.s226 : AppSizeW.s130,
+          width: isTablet ? AppSizeW.s226 : AppSizeW.s140,
           padding: EdgeInsets.symmetric(
               horizontal: AppSizeH.s6, vertical: AppSizeH.s10),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              // crossAxisAlignment: CrossAxisAlignment.start,
               spacing: AppSizeH.s15,
               children: [
                 if (icon.toLowerCase().endsWith("svg"))
@@ -124,7 +126,7 @@ class InvestorsCard extends StatelessWidget {
                   ),
                 Flexible(
                   child: SizedBox(
-                    width: AppSizeW.s90,
+                    // width: AppSizeW.s120,
                     child: Text(
                       title,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
@@ -133,7 +135,7 @@ class InvestorsCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
                       softWrap: true,
-                      textAlign: TextAlign.start,
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),

@@ -1757,7 +1757,6 @@ class _CmsServiceClient implements CmsServiceClient {
     return httpResponse;
   }
 
-
   @override
   Future<HttpResponse<UserResponse>> getUserInfo() async {
     const _extra = <String, dynamic>{};
@@ -2002,7 +2001,8 @@ class _CmsServiceClient implements CmsServiceClient {
     )
             .compose(
               _dio.options,
-              'https://www.aqarat.gov.qa/wp-json/wp/v2/posts',
+              'https://www.aqarat.gov.qa/wp-json/wp/v2/posts?per_page=50',
+              // 'https://www.aqarat.gov.qa/wp-json/wp/v2/posts',
               queryParameters: queryParameters,
               data: _data,
             )
