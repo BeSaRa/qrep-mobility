@@ -4,18 +4,15 @@
 ///flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
 
 class Constant {
-  // static const String baseUrl = 'https://qrepbe.mm.gov.qa/mme-services';
-  // // static const String webUrl = 'http://qrep1-eblacorp.edge.eu.ztna.trendmicro.com/';
-  // static const String webUrl = 'https://qrep.mm.gov.qa/';
-  // static const String cmsBaseUrl = 'https://qrepcms.mm.gov.qa';
+  //old server urls
   //---------------------------------------------------------------------------------------------------------------
   // static const String baseUrl = 'https://qrepbe.mm.gov.qa/mme-services';
-  // // static const String webUrl = 'http://qrep1-eblacorp.edge.eu.ztna.trendmicro.com/';
   // static const String webUrl = 'https://qrep.mm.gov.qa/';
   // static const String cmsBaseUrl = 'https://qrepcms.mm.gov.qa';
   // static const String chatBotBaseUrl = 'https://afnqcpcbai01.azurewebsites.net';
   // static const String aqaratBaseUrl = 'https://ministry-municipality.v2202305135856227727.ultrasrv.de';
   //---------------------------------------------------------------------------------------------------------------
+  //prod urls
   static const String baseUrl = 'Https://qrepbe.aqarat.gov.qa/mme-services';
   static const String platformStgBaseUrl =
       'https://stgqrepbe.aqarat.gov.qa/mme-services';
@@ -23,21 +20,24 @@ class Constant {
   static const String webUrl = 'Https://qrepbe.aqarat.gov.qa/';
   static const String cmsBaseUrl = 'https://qrepcms.aqarat.gov.qa';
   static const String aqaratBaseUrl = 'https://www.aqarat.gov.qa';
+  static const String authorityChatBotBaseUrl =
+      'https://afnqcpcbai01.azurewebsites.net';
+  //------------------------------------------------------------------------------------
   //STG
   // static const String authorityChatBotBaseUrl ='https://afnqcscbai01.azurewebsites.net';
-  //PRD
-  static const String authorityChatBotBaseUrl = 'https://afnqcpcbai01.azurewebsites.net';
+
   /*============= NOTE FROM ZAK To FATINA:==============
  ** u can find the xFunctions key from our chat in Teams
  */
-  static String xFunctionsAuthorityChatbotKey = "";
+  static String xFunctionsAuthorityChatbotKey =
+      "3Q84i4HgnkCtMvq3HhCulIbqMbf73QNGDn5MXKQnK_xtAzFu2CXK-w==";
 
   // static String xFunctionsAuthorityChatbotKey =  dotenv.env['X_FUNCTION_AUTHORITY_CHATBOT_KEY'] ?? 'NO_KEY_FOUND';
   //============= NOTE FROM ZAK To FATINA:==============
   // static String xFunctionsAuthorityChatbotKey =  ;
   //1- uncomment last line:
   //2- put the key I send in Teams in last line then run the app
-
+//==========================dev============================
   // static const String baseUrl = 'http://192.168.52.4:9080/mme-services';
   // static const String webUrl = 'http://192.168.52.5:3000/';
   // static const String cmsBaseUrl = 'http://192.168.52.5:8055';

@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "rgb_ministry_of_municipality.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "rgb_ministry_of_municipality 1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "rgb_ministry_of_municipality 2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
