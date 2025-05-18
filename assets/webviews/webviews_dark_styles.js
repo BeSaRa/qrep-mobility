@@ -1,7 +1,8 @@
 (function () {
   let style = document.createElement("style");
-  const primaryBg = "#161616"; /* Main background color */
-  const secondaryBg = "#222222"; /* Secondary background color */
+  const primaryBg = "#121212"; /* Main background color */
+//   const primaryBg = "#161616"; /* Main background color */
+  const secondaryBg = "#1B1A17"; /* Secondary background color */
   const primaryText = "#ffffff"; /* Primary text color */
   const borderColor = "#434343"; /* border color */
 

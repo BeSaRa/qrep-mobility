@@ -6,6 +6,7 @@ import 'package:ebla/presentations/features/chatbot/widgets/rera_text_faild.dart
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
 import 'package:ebla/presentations/widgets/error_widget.dart';
+import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -73,6 +74,7 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
             return const AnimatedPulesLogo();
           } else if (state.hasError) {
             return ErrorGlobalWidget(
+              message: state.errorMessage,
               onPressed: () {
                 context.read<LawsBloc>().add(const LawsEvent.getLaws());
               },
@@ -81,8 +83,6 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
             return Scaffold(
               appBar: AppBar(
                 automaticallyImplyLeading: false,
-                backgroundColor: Colors.transparent,
-                surfaceTintColor: Colors.transparent,
                 flexibleSpace: ShaderMask(
                   shaderCallback: (rect) {
                     return const LinearGradient(
@@ -98,16 +98,43 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                     fit: BoxFit.fill,
                   ),
                 ),
+                backgroundColor: Theme.of(context).brightness == Brightness.dark
+                    ? ColorManager.blackBG
+                    : ColorManager.white,
+                surfaceTintColor: Colors.transparent,
                 title: Row(
-                  textDirection: ui.TextDirection.ltr,
+                  // textDirection: ui.TextDirection.ltr,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.maybePop(context);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Icon(
+                            Icons.arrow_back,
+                            color: ColorManager.cloudyGrey,
+                          ),
+                          // SizedBox(width: AppSizeW.s5),
+                          // Text(
+                          //   AppStrings().main,
+                          //   style: Theme.of(context).textTheme.headlineMedium,
+                          // ),
+                        ],
+                      ),
+                    ),
+                    Text(
+                      AppStrings().lawsAndDecisions,
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
                     GestureDetector(
                       onTapDown: (details) async {
                         final selected = await showMenu(
                           context: context,
-                          position: RelativeRect.fromLTRB(0, AppSizeH.s70,
-                              AppSizeW.s20, 0), // Top-left offset
+                          position: RelativeRect.fromLTRB(
+                              0, AppSizeH.s70, AppSizeW.s20, 0),
                           color: Colors.transparent,
                           elevation: 0,
                           items: [
@@ -115,7 +142,10 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                               enabled: false,
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? ColorManager.greyBg
+                                      : Colors.white,
                                   borderRadius: BorderRadius.circular(20),
                                   boxShadow: [
                                     BoxShadow(
@@ -201,27 +231,11 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                       },
                       child: Icon(
                         Icons.more_vert,
-                        color: ColorManager.primary,
-                      ),
-                    ),
-                    Text(
-                      AppStrings().lawsAndDecisions,
-                      style: Theme.of(context).textTheme.headlineLarge,
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.maybePop(context);
-                      },
-                      icon: Icon(
-                        context.locale == ARABIC_LOCAL
-                            ? Icons.arrow_back
-                            : Icons.arrow_forward,
-                        color: ColorManager.golden,
+                        // color: ColorManager.primary,
                       ),
                     ),
                   ],
                 ),
-                centerTitle: true,
               ),
               body: RefreshIndicator(
                 onRefresh: () async {
@@ -230,7 +244,10 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                 child: ListView(
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: AppSizeW.s20),
+                      padding: EdgeInsets.only(
+                          left: AppSizeW.s20,
+                          right: AppSizeW.s20,
+                          top: AppSizeH.s20),
                       child: ReraTextFaild(
                         hint: "${AppStrings().search}...",
                         controller: searchController,
@@ -341,9 +358,28 @@ class _LawWidgetState extends State<LawWidget> {
         splashFactory: InkSparkle.constantTurbulenceSeedSplashFactory,
         splashColor: ColorManager.primary.withOpacity(0.1),
         borderRadius: BorderRadius.circular(AppSizeR.s20),
+        // onTap: () {
+        //   // context.pushNamed(RoutesNames.lawsDetails,
+        //   //     pathParameters: {'id': widget.law.id.toString()});
+        //   String fileUrl = widget.law.pdf;
+        //   if (isValidUrl(fileUrl)) {
+        //     launchUrl(Uri.parse(fileUrl));
+        //   }
+        // },
         onTap: () {
-          // context.pushNamed(RoutesNames.lawsDetails,
-          //     pathParameters: {'id': widget.law.id.toString()});
+          String fileUrl = widget.law.pdf;
+
+          if (!isValidUrl(fileUrl)) {
+            errorToast("Invalid file URL", context);
+            return;
+          }
+
+          if (!fileUrl.toLowerCase().endsWith('.pdf')) {
+            errorToast("File type not supported", context);
+            return;
+          }
+
+          launchUrl(Uri.parse(fileUrl));
         },
         child: Ink(
           height: widget.law.title.length > 200 ? AppSizeH.s130 : AppSizeH.s110,
@@ -427,27 +463,17 @@ class _LawWidgetState extends State<LawWidget> {
                   flex: 1,
                   child: Tooltip(
                     message: AppStrings().downloadFile,
-                    child: GestureDetector(
-                      onTap: () {
-                        String fileUrl = widget.law.pdf;
-                        if (isValidUrl(fileUrl)) {
-                          launchUrl(Uri.parse(fileUrl));
-                        }
-                      },
-                      child: Container(
-                          height: AppSizeH.s35,
-                          margin: EdgeInsets.symmetric(vertical: AppSizeH.s20),
-                          padding:
-                              EdgeInsets.symmetric(horizontal: AppSizeW.s8),
-                          decoration: BoxDecoration(
-                              color: ColorManager.golden,
-                              borderRadius:
-                                  BorderRadius.circular(AppSizeH.s10)),
-                          child: SvgPicture.asset(
-                            IconAssets.cloudDownload,
-                            color: ColorManager.white,
-                          )),
-                    ),
+                    child: Container(
+                        height: AppSizeH.s35,
+                        margin: EdgeInsets.symmetric(vertical: AppSizeH.s20),
+                        padding: EdgeInsets.symmetric(horizontal: AppSizeW.s8),
+                        decoration: BoxDecoration(
+                            color: ColorManager.golden,
+                            borderRadius: BorderRadius.circular(AppSizeH.s10)),
+                        child: SvgPicture.asset(
+                          IconAssets.cloudDownload,
+                          color: ColorManager.white,
+                        )),
                   ),
                 ),
               ],

@@ -215,9 +215,13 @@ class _AiSearchViewState extends State<AiSearchView> {
                   // return const Text("data");
                   // }
                 },
-                error: (value) => Center(
-                    child:
-                        ErrorGlobalWidget(small: true, message: value.message)),
+                error: (value) => SizedBox(
+                  width: AppSizeW.s200,
+                  height: AppSizeH.s304,
+                  child: Center(
+                      child: ErrorGlobalWidget(
+                          small: false, message: value.message)),
+                ),
                 done: (value) {
                   return Expanded(
                     child: Padding(

@@ -158,6 +158,31 @@ class _ChatViewState extends State<ChatView>
     return Scaffold(
       body: Stack(
         children: [
+          //Avatar edges background color
+          ValueListenableBuilder<bool>(
+              valueListenable: isAvatarExpanded,
+              builder: (context, expanded, child) {
+                return expanded
+                    ? Container(
+                        width: MediaQuery.sizeOf(context).width,
+                        height: MediaQuery.sizeOf(context).height,
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Color(0xffD8DAD9),
+                                Color(0xffD8DAD9),
+                                Color(0xffA8ABB2),
+                                Color(0xffA8ABB2),
+                                Color(0xff7E7E86),
+                              ]),
+                          // color: Color(0xffD8DAD9),
+                        ),
+                      )
+                    : const SizedBox.shrink();
+              }),
+
           // Background Image
           Opacity(
             opacity: 0.1,
