@@ -1373,7 +1373,7 @@ class RepositoryImplementer extends Repository {
           DEFAULT_LANGUAGE: language,
           AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
           //NOTE: We must add this key to make the chat work
-          "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
+          "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
         // 🔹 make a POST request
         final response = await dio.post(
@@ -1446,7 +1446,7 @@ class RepositoryImplementer extends Repository {
           DEFAULT_LANGUAGE: language,
           AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
           //NOTE: We must add this key to make the chat work
-          "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
+          "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
         // 🔹 make a POST request
         final response = await dio.get(
@@ -1570,7 +1570,7 @@ class RepositoryImplementer extends Repository {
           DEFAULT_LANGUAGE: language,
           AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
           //NOTE: We must add this key to make the chat work
-          "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
+          "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
         // 🔹 make a POST request
         final response = await dio.post(
@@ -1667,7 +1667,7 @@ class RepositoryImplementer extends Repository {
           DEFAULT_LANGUAGE: language,
           AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
           //NOTE: We must add this key to make the chat work
-          "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
+          "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
         // 🔹 make a POST request
         final response = await dio.put(
@@ -1768,7 +1768,7 @@ class RepositoryImplementer extends Repository {
           DEFAULT_LANGUAGE: language,
           AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
           //NOTE: We must add this key to make the chat work
-          "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
+          "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
         // 🔹 make a POST request
         final response = await dio.post(
@@ -1869,7 +1869,7 @@ class RepositoryImplementer extends Repository {
           DEFAULT_LANGUAGE: language,
           AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
           //NOTE: We must add this key to make the chat work
-          "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
+          "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
         // 🔹 make a POST request
         final response = await dio.delete(
@@ -1945,7 +1945,7 @@ class RepositoryImplementer extends Repository {
           DEFAULT_LANGUAGE: language,
           AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
           //NOTE: We must add this key to make the chat work
-          "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
+          "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
         // 🔹 make a POST request
         final response = await dio.post(
@@ -2044,7 +2044,7 @@ class RepositoryImplementer extends Repository {
           DEFAULT_LANGUAGE: language,
           AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
           //NOTE: We must add this key to make the chat work
-          "x-functions-key": Constant.xFunctionsAuthorityChatbotKey,
+          "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
         // 🔹 make a POST request
         final response = await dio.post(

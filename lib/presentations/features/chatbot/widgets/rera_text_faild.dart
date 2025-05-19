@@ -45,7 +45,9 @@ class ReraTextFaild extends StatelessWidget {
       keyboardType: textInputType,
       style: TextStyle(
         fontFamily: FontConstants.fontFamily,
-        color: ColorManager.textBlack,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? ColorManager.white
+            : ColorManager.textBlack,
         fontSize: AppSizeSp.s15,
         fontWeight: FontWeight.w500,
       ),
@@ -64,9 +66,15 @@ class ReraTextFaild extends StatelessWidget {
               enabled || !readOnly ? FontWeight.normal : FontWeight.bold,
           fontSize:
               Theme.of(context).textTheme.bodySmall?.fontSize ?? AppSizeW.s14,
-          color: enabled
-              ? Theme.of(context).cardColor
-              : Theme.of(context).primaryColor,
+          color: Theme.of(context).brightness == Brightness.dark
+              ?
+              //  enabled
+              //     ? Theme.of(context).cardColor
+              //     :
+              ColorManager.whiteSmoke
+              : enabled
+                  ? Theme.of(context).cardColor
+                  : Theme.of(context).primaryColor,
         ),
         contentPadding: EdgeInsets.symmetric(
             horizontal: AppSizeW.s15, vertical: AppSizeH.s8),
@@ -74,7 +82,9 @@ class ReraTextFaild extends StatelessWidget {
         //     ? Theme.of(context).inputDecorationTheme.hintStyle
         //     : Theme.of(context).textTheme.titleSmall,
         filled: true,
-        fillColor: ColorManager.whiteSmoke,
+        fillColor: Theme.of(context).brightness == Brightness.dark
+            ? ColorManager.textFieldGrey
+            : ColorManager.whiteSmoke,
         errorText: errorMsg,
         suffixIcon:
             Padding(padding: EdgeInsets.all(AppSizeW.s5), child: suffixIcon),
