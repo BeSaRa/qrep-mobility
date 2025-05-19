@@ -165,11 +165,12 @@ class AppRouter {
                     child: const HomeView(),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
-                      return FadeTransition(
-                        opacity: CurveTween(curve: Curves.easeInOutCirc)
-                            .animate(animation),
-                        child: child,
-                      );
+                      return child;
+                      //   FadeTransition(
+                      //   opacity: CurveTween(curve: Curves.easeInOutCirc)
+                      //       .animate(animation),
+                      //   child: child,
+                      // );
                     },
                   );
                 }),
@@ -182,11 +183,12 @@ class AppRouter {
                   child: const ComingSoonView(),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(
-                      opacity: CurveTween(curve: Curves.easeInOutCirc)
-                          .animate(animation),
-                      child: child,
-                    );
+                    return child;
+                    //   FadeTransition(
+                    //   opacity: CurveTween(curve: Curves.easeInOutCirc)
+                    //       .animate(animation),
+                    //   child: child,
+                    // );
                   },
                 );
               },
@@ -219,11 +221,12 @@ class AppRouter {
                   ),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(
-                      opacity: CurveTween(curve: Curves.easeInOutCirc)
-                          .animate(animation),
-                      child: child,
-                    );
+                    return child;
+                    //   FadeTransition(
+                    //   opacity: CurveTween(curve: Curves.easeInOutCirc)
+                    //       .animate(animation),
+                    //   child: child,
+                    // );
                   },
                 );
               },
@@ -237,11 +240,12 @@ class AppRouter {
                   child: XMapView(),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(
-                      opacity: CurveTween(curve: Curves.easeInOutCirc)
-                          .animate(animation),
-                      child: child,
-                    );
+                    return child;
+                    //   FadeTransition(
+                    //   opacity: CurveTween(curve: Curves.easeInOutCirc)
+                    //       .animate(animation),
+                    //   child: child,
+                    // );
                   },
                 );
               },
@@ -295,11 +299,12 @@ class AppRouter {
                   child: const IndicatorsView(),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(
-                      opacity: CurveTween(curve: Curves.easeInOutCirc)
-                          .animate(animation),
-                      child: child,
-                    );
+                    return child;
+                    //   FadeTransition(
+                    //   opacity: CurveTween(curve: Curves.easeInOutCirc)
+                    //       .animate(animation),
+                    //   child: child,
+                    // );
                   },
                 );
               },

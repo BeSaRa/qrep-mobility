@@ -25,355 +25,434 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends State<HomeView>
+    with SingleTickerProviderStateMixin {
   // final PageController _pageController = PageController();
   // final int _indexCubit = 0;
-
+  late AnimationController _controller;
+  late Animation<double> _opacity;
+  late Animation<Offset> _slide;
   @override
   void initState() {
     FirebaseAnalytics.instance.logEvent(name: 'open_home_view');
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
+    );
 
+    _opacity = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeIn,
+    ));
+
+    _slide = Tween<Offset>(
+      begin: const Offset(0, 0.05), // slight bottom slide
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeOut,
+    ));
+
+    // Start after a delay to give room for page transition
+    Future.delayed(const Duration(milliseconds: 300), () {
+      if (mounted) _controller.forward();
+    });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     getFromAprilMonths(context);
-    return ListView(
-      children: [
-        SizedBox(
-          height: AppSizeH.s20,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: AppSizeW.s40,
-          children: [
-            SizedBox(
-              width: AppSizeW.s90,
-              child: Column(
-                spacing: AppSizeH.s8,
-                children: [
-                  HomeIcons(
-                    icon: IconAssets.lawsNew,
-                    title: AppStrings().laws,
-                    onTap: () {
-                      context.pushNamed(RoutesNames.laws);
-                    },
-                  ),
-                  HomeIcons(
-                    icon: IconAssets.calendar,
-                    title: AppStrings().calendar,
-                    onTap: () {
-                      context.pushNamed(RoutesNames.aboutTheAuthority,
-                          pathParameters: {"pageName": "realEstateCalendar"});
-                    },
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              width: AppSizeW.s90,
-              child: Column(
-                spacing: AppSizeH.s8,
-                children: [
-                  HomeIcons(
-                    icon: IconAssets.about,
-                    title: AppStrings().aboutAuthority,
-                    onTap: () {
-                      context.pushNamed(RoutesNames.aboutTheAuthority,
-                          pathParameters: {"pageName": "aboutTheAuthority"});
-                    },
-                  ),
-                  HomeIcons(
-                    icon: IconAssets.video,
-                    title: AppStrings().video,
-                    onTap: () {
-                      context.pushNamed(RoutesNames.videoLib);
-                    },
-                  ),
-                  // HomeIcons(
-                  //   icon: IconAssets.training,
-                  //   title: AppStrings().tasksAndResponsibilitiesOftheAuthority,
-                  //   onTap: () {
-                  //     context.pushNamed(RoutesNames.aboutTheAuthority,
-                  //         pathParameters: {
-                  //           "pageName": "tasksAndResponsibilitiesOftheAuthority"
-                  //         });
-                  //   },
-                  // ),
-                ],
-              ),
-            ),
-            SizedBox(
-              width: AppSizeW.s90,
-              child: Column(
-                spacing: AppSizeH.s8,
-                children: [
-                  HomeIcons(
-                    icon: IconAssets.aqaratNews,
-                    title: AppStrings().visionAndMission,
-                    onTap: () {
-                      context.pushNamed(RoutesNames.aboutTheAuthority,
-                          pathParameters: {"pageName": "visionAndMission"});
-                    },
-                  ),
-                  HomeIcons(
-                    icon: IconAssets.locationIndicator,
-                    title: AppStrings().authorityLocation,
-                    onTap: () {
-                      context.pushNamed(RoutesNames.authorityMap);
-                    },
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-
-        //===========================================================
-        SizedBox(
-          height: AppSizeH.s14,
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: AppSizeH.s20, vertical: AppSizeH.s10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return FadeTransition(
+        opacity: _opacity,
+        child: SlideTransition(
+          position: _slide,
+          child: ListView(
             children: [
-              Text(
-                AppStrings().indicatorsAndNumbers,
-                style: Theme.of(context).textTheme.bodyMedium,
+              SizedBox(
+                height: AppSizeH.s20,
               ),
-              GestureDetector(
-                onTap: () {
-                  context.read<BottomNavCubit>().changePage(4);
-                  context.goNamed(context
-                      .read<BottomNavCubit>()
-                      .paths[context.read<BottomNavCubit>().state]);
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                spacing: AppSizeW.s40,
+                children: [
+                  SizedBox(
+                    width: AppSizeW.s90,
+                    child: Column(
+                      spacing: AppSizeH.s8,
+                      children: [
+                        HomeIcons(
+                          icon: IconAssets.lawsNew,
+                          title: AppStrings().laws,
+                          onTap: () {
+                            context.pushNamed(RoutesNames.laws);
+                          },
+                        ),
+                        HomeIcons(
+                          icon: IconAssets.calendar,
+                          title: AppStrings().calendar,
+                          onTap: () {
+                            context.pushNamed(RoutesNames.aboutTheAuthority,
+                                pathParameters: {
+                                  "pageName": "realEstateCalendar"
+                                });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: AppSizeW.s90,
+                    child: Column(
+                      spacing: AppSizeH.s8,
+                      children: [
+                        HomeIcons(
+                          icon: IconAssets.about,
+                          title: AppStrings().aboutAuthority,
+                          onTap: () {
+                            context.pushNamed(RoutesNames.aboutTheAuthority,
+                                pathParameters: {
+                                  "pageName": "aboutTheAuthority"
+                                });
+                          },
+                        ),
+                        HomeIcons(
+                          icon: IconAssets.video,
+                          title: AppStrings().video,
+                          onTap: () {
+                            context.pushNamed(RoutesNames.videoLib);
+                          },
+                        ),
+                        // HomeIcons(
+                        //   icon: IconAssets.training,
+                        //   title: AppStrings().tasksAndResponsibilitiesOftheAuthority,
+                        //   onTap: () {
+                        //     context.pushNamed(RoutesNames.aboutTheAuthority,
+                        //         pathParameters: {
+                        //           "pageName": "tasksAndResponsibilitiesOftheAuthority"
+                        //         });
+                        //   },
+                        // ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: AppSizeW.s90,
+                    child: Column(
+                      spacing: AppSizeH.s8,
+                      children: [
+                        HomeIcons(
+                          icon: IconAssets.aqaratNews,
+                          title: AppStrings().visionAndMission,
+                          onTap: () {
+                            context.pushNamed(RoutesNames.aboutTheAuthority,
+                                pathParameters: {
+                                  "pageName": "visionAndMission"
+                                });
+                          },
+                        ),
+                        HomeIcons(
+                          icon: IconAssets.locationIndicator,
+                          title: AppStrings().authorityLocation,
+                          onTap: () {
+                            context.pushNamed(RoutesNames.authorityMap);
+                          },
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+
+              //===========================================================
+              SizedBox(
+                height: AppSizeH.s14,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: AppSizeH.s20, vertical: AppSizeH.s10),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppStrings().showAll,
-                      style: Theme.of(context).textTheme.titleSmall,
+                      AppStrings().indicatorsAndNumbers,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                    Icon(
-                      Icons.arrow_forward,
-                      color: ColorManager.golden,
-                    )
+                    GestureDetector(
+                      onTap: () {
+                        context.read<BottomNavCubit>().changePage(4);
+                        context.goNamed(context
+                            .read<BottomNavCubit>()
+                            .paths[context.read<BottomNavCubit>().state]);
+                      },
+                      child: Row(
+                        children: [
+                          Text(
+                            AppStrings().showAll,
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
+                          Icon(
+                            Icons.arrow_forward,
+                            color: ColorManager.golden,
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: AppSizeW.s20, vertical: AppSizeH.s12),
-          child: Container(
-            padding: EdgeInsets.symmetric(
-                vertical: AppSizeH.s12, horizontal: AppSizeW.s12),
-            decoration: BoxDecoration(
-                color: Theme.of(context).cardTheme.color,
-                borderRadius: BorderRadius.circular(AppSizeR.s14),
-                boxShadow: [
-                  BoxShadow(
-                      color: Theme.of(context).shadowColor,
-                      offset: const Offset(1, 1),
-                      blurRadius: AppSizeW.s2,
-                      spreadRadius: AppSizeW.s1),
-                  BoxShadow(
-                      color: Theme.of(context).shadowColor,
-                      offset: const Offset(-1, -1),
-                      blurRadius: AppSizeW.s2,
-                      spreadRadius: AppSizeW.s1),
-                ]),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: AppSizeW.s20, vertical: AppSizeH.s12),
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                      vertical: AppSizeH.s12, horizontal: AppSizeW.s12),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).cardTheme.color,
+                      borderRadius: BorderRadius.circular(AppSizeR.s14),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Theme.of(context).shadowColor,
+                            offset: const Offset(1, 1),
+                            blurRadius: AppSizeW.s2,
+                            spreadRadius: AppSizeW.s1),
+                        BoxShadow(
+                            color: Theme.of(context).shadowColor,
+                            offset: const Offset(-1, -1),
+                            blurRadius: AppSizeW.s2,
+                            spreadRadius: AppSizeW.s1),
+                      ]),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("3,317",
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge
-                              ?.copyWith(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .surfaceTint)),
-                      Text(
-                        AppStrings().sellTotalTransactions,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Theme.of(context).colorScheme.scrim),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("3,317",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge
+                                    ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .surfaceTint)),
+                            Text(
+                              AppStrings().sellTotalTransactions,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                      color:
+                                          Theme.of(context).colorScheme.scrim),
+                            ),
+                            Text(
+                              AppStrings().forFirstThreeQuarters,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall
+                                  ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .surfaceDim),
+                            ),
+                            SizedBox(
+                              height: AppSizeH.s25,
+                            ),
+                            Text("64,955",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge
+                                    ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .surfaceTint)),
+                            Text(
+                              AppStrings().totalNumberForRent,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                      color:
+                                          Theme.of(context).colorScheme.scrim),
+                            ),
+                            Text(
+                              AppStrings().forFirstThreeQuarters,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall
+                                  ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .surfaceDim),
+                            ),
+                          ],
+                        ),
                       ),
-                      Text(
-                        AppStrings().forFirstThreeQuarters,
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: Theme.of(context).colorScheme.surfaceDim),
-                      ),
-                      SizedBox(
-                        height: AppSizeH.s25,
-                      ),
-                      Text("64,955",
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge
-                              ?.copyWith(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .surfaceTint)),
-                      Text(
-                        AppStrings().totalNumberForRent,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Theme.of(context).colorScheme.scrim),
-                      ),
-                      Text(
-                        AppStrings().forFirstThreeQuarters,
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: Theme.of(context).colorScheme.surfaceDim),
-                      ),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text("1,081 ",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge
+                                        ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .surfaceTint)),
+                                Text(
+                                    "${Localizations.localeOf(context) == ARABIC_LOCAL ? "مليار" : "Billion"} ${AppStrings().currency} ",
+                                    style:
+                                        Theme.of(context).textTheme.titleSmall),
+                              ],
+                            ),
+                            Text(
+                              AppStrings().totalValuesForSell,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                      color:
+                                          Theme.of(context).colorScheme.scrim),
+                            ),
+                            Text(
+                              AppStrings().forFirstThreeQuarters,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall
+                                  ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .surfaceDim),
+                            ),
+                            SizedBox(
+                              height: AppSizeH.s25,
+                            ),
+                            Row(
+                              children: [
+                                Text("485,6 ",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge
+                                        ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .surfaceTint)),
+                                Text(
+                                    "${Localizations.localeOf(context) == ARABIC_LOCAL ? "مليون" : "Million"} ${AppStrings().currency} ",
+                                    style:
+                                        Theme.of(context).textTheme.titleSmall),
+                              ],
+                            ),
+                            Text(
+                              AppStrings().totalValuesForRent,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                      color:
+                                          Theme.of(context).colorScheme.scrim),
+                            ),
+                            Text(
+                              AppStrings().forFirstThreeQuarters,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall
+                                  ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .surfaceDim),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
-                Flexible(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text("1,081 ",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .surfaceTint)),
-                          Text(
-                              "${Localizations.localeOf(context) == ARABIC_LOCAL ? "مليار" : "Billion"} ${AppStrings().currency} ",
-                              style: Theme.of(context).textTheme.titleSmall),
-                        ],
-                      ),
-                      Text(
-                        AppStrings().totalValuesForSell,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Theme.of(context).colorScheme.scrim),
-                      ),
-                      Text(
-                        AppStrings().forFirstThreeQuarters,
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: Theme.of(context).colorScheme.surfaceDim),
-                      ),
-                      SizedBox(
-                        height: AppSizeH.s25,
-                      ),
-                      Row(
-                        children: [
-                          Text("485,6 ",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .surfaceTint)),
-                          Text(
-                              "${Localizations.localeOf(context) == ARABIC_LOCAL ? "مليون" : "Million"} ${AppStrings().currency} ",
-                              style: Theme.of(context).textTheme.titleSmall),
-                        ],
-                      ),
-                      Text(
-                        AppStrings().totalValuesForRent,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Theme.of(context).colorScheme.scrim),
-                      ),
-                      Text(
-                        AppStrings().forFirstThreeQuarters,
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: Theme.of(context).colorScheme.surfaceDim),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
+              ),
+              //=============================================================
+              const InvestorsCardsWidget(),
+              SizedBox(
+                height: AppSizeH.s10,
+              ),
+              //=============================================================
+              BlocProvider(
+                create: (context) =>
+                    instance<NewsBloc>()..add(const NewsEvent.getNewsEvent()),
+                child: const NewsWidget(),
+              ),
+              SizedBox(
+                height: AppSizeH.s20,
+              ),
+              // Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       InkWell(
+              //         onTap: () {
+              //           context.pushNamed(RoutesNames.about);
+              //         },
+              //         child: StaticPagesContainer(
+              //           icon: IconAssets.aboutHome,
+              //           title: Text(
+              //             AppStrings().aboutUs,
+              //             style: Theme.of(context).textTheme.bodyMedium,
+              //             overflow: TextOverflow.ellipsis,
+              //             maxLines: 2,
+              //             softWrap: true,
+              //             textAlign: TextAlign.center,
+              //           ),
+              //         ),
+              //       ),
+              //       InkWell(
+              //         onTap: () {},
+              //         child: StaticPagesContainer(
+              //           icon: IconAssets.lawsHome,
+              //           title: Text(
+              //             AppStrings().lawsAndDecisions,
+              //             style: Theme.of(context).textTheme.bodyMedium,
+              //             overflow: TextOverflow.ellipsis,
+              //             maxLines: 2,
+              //             softWrap: true,
+              //             textAlign: TextAlign.center,
+              //           ),
+              //         ),
+              //       ),
+              //       InkWell(
+              //         onTap: () {
+              //           context.pushNamed(RoutesNames.faq);
+              //         },
+              //         child: StaticPagesContainer(
+              //           icon: IconAssets.faqHome,
+              //           title: Text(
+              //             AppStrings().faqs,
+              //             style: Theme.of(context).textTheme.bodyMedium,
+              //             overflow: TextOverflow.ellipsis,
+              //             maxLines: 2,
+              //             softWrap: true,
+              //             textAlign: TextAlign.center,
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: AppSizeH.s24,
+              // ),
+            ],
           ),
-        ),
-        //=============================================================
-        const InvestorsCardsWidget(),
-        SizedBox(
-          height: AppSizeH.s10,
-        ),
-        //=============================================================
-        BlocProvider(
-          create: (context) =>
-              instance<NewsBloc>()..add(const NewsEvent.getNewsEvent()),
-          child: const NewsWidget(),
-        ),
-        SizedBox(
-          height: AppSizeH.s20,
-        ),
-        // Padding(
-        //   padding: EdgeInsets.symmetric(horizontal: AppSizeH.s20),
-        //   child: Row(
-        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //     children: [
-        //       InkWell(
-        //         onTap: () {
-        //           context.pushNamed(RoutesNames.about);
-        //         },
-        //         child: StaticPagesContainer(
-        //           icon: IconAssets.aboutHome,
-        //           title: Text(
-        //             AppStrings().aboutUs,
-        //             style: Theme.of(context).textTheme.bodyMedium,
-        //             overflow: TextOverflow.ellipsis,
-        //             maxLines: 2,
-        //             softWrap: true,
-        //             textAlign: TextAlign.center,
-        //           ),
-        //         ),
-        //       ),
-        //       InkWell(
-        //         onTap: () {},
-        //         child: StaticPagesContainer(
-        //           icon: IconAssets.lawsHome,
-        //           title: Text(
-        //             AppStrings().lawsAndDecisions,
-        //             style: Theme.of(context).textTheme.bodyMedium,
-        //             overflow: TextOverflow.ellipsis,
-        //             maxLines: 2,
-        //             softWrap: true,
-        //             textAlign: TextAlign.center,
-        //           ),
-        //         ),
-        //       ),
-        //       InkWell(
-        //         onTap: () {
-        //           context.pushNamed(RoutesNames.faq);
-        //         },
-        //         child: StaticPagesContainer(
-        //           icon: IconAssets.faqHome,
-        //           title: Text(
-        //             AppStrings().faqs,
-        //             style: Theme.of(context).textTheme.bodyMedium,
-        //             overflow: TextOverflow.ellipsis,
-        //             maxLines: 2,
-        //             softWrap: true,
-        //             textAlign: TextAlign.center,
-        //           ),
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        // SizedBox(
-        //   height: AppSizeH.s24,
-        // ),
-      ],
-    );
+        ));
   }
 }
 

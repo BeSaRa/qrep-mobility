@@ -6,43 +6,81 @@ import 'package:go_router/go_router.dart';
 import 'dart:math' as math;
 import '../../resources/resources.dart';
 
-class IndicatorsView extends StatelessWidget {
+class IndicatorsView extends StatefulWidget {
   const IndicatorsView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      spacing: AppSizeH.s12,
-      children: [
-        SizedBox(
-          height: AppSizeH.s20,
-        ),
-        IndicatorWidget(
-          title: AppStrings().sellIndicators,
-          image: IconAssets.sellHome,
-          onTap: () async {
-            await initSellModule();
-            context.pushNamed(RoutesNames.sales);
-          },
-        ),
-        IndicatorWidget(
-          title: AppStrings().rentIndicators,
-          image: IconAssets.rentHome,
-          onTap: () async {
-            await initRentModule();
-            context.pushNamed(RoutesNames.rent);
-          },
-        ),
-        IndicatorWidget(
-          title: AppStrings().mortgageIndicators,
-          image: IconAssets.mortagageHome,
-          onTap: () async {
-            await initMortgageModule();
-            context.pushNamed(RoutesNames.mortgage);
-          },
-        ),
-      ],
+  State<IndicatorsView> createState() => _IndicatorsViewState();
+}
+
+class _IndicatorsViewState extends State<IndicatorsView>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _opacity;
+  late Animation<Offset> _slide;
+  @override
+  void initState() {
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
     );
+
+    _opacity = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
+    );
+
+    _slide = Tween<Offset>(
+      begin: const Offset(0, 0.05), // small slide from bottom
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
+    );
+
+    Future.delayed(const Duration(milliseconds: 300), () {
+      if (mounted) _controller.forward();
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+        opacity: _opacity,
+        child: SlideTransition(
+          position: _slide,
+          child: Column(
+            spacing: AppSizeH.s12,
+            children: [
+              SizedBox(
+                height: AppSizeH.s20,
+              ),
+              IndicatorWidget(
+                title: AppStrings().sellIndicators,
+                image: IconAssets.sellHome,
+                onTap: () async {
+                  await initSellModule();
+                  context.pushNamed(RoutesNames.sales);
+                },
+              ),
+              IndicatorWidget(
+                title: AppStrings().rentIndicators,
+                image: IconAssets.rentHome,
+                onTap: () async {
+                  await initRentModule();
+                  context.pushNamed(RoutesNames.rent);
+                },
+              ),
+              IndicatorWidget(
+                title: AppStrings().mortgageIndicators,
+                image: IconAssets.mortagageHome,
+                onTap: () async {
+                  await initMortgageModule();
+                  context.pushNamed(RoutesNames.mortgage);
+                },
+              ),
+            ],
+          ),
+        ));
   }
 }
 
