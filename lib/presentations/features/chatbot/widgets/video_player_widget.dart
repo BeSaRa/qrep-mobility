@@ -42,8 +42,8 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                         opacity: state.isMiniScreen ? 0 : 1, // Fade effect
                         child: RTCVideoView(
                           state.remoteRenderer,
-                          objectFit:
-                              RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
+                          objectFit: RTCVideoViewObjectFit
+                              .RTCVideoViewObjectFitContain,
                           mirror: true,
                         ),
                       )

@@ -2,6 +2,7 @@
 
 import 'package:ebla/app/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../presentations/resources/language_manager.dart';
@@ -102,14 +103,30 @@ class AppPreferences {
     return _sharedPreferences.getBool(PREFS_KEY_IS_LOGGED_IN) ?? false;
   }
 
+//zak
   ThemeData getTheme() {
     String? theme = _sharedPreferences.getString(PREFS_KEY_THEME);
-    if (theme == ThemeDataType.dark.toString()) {
+    if (theme == null) {
+      // No saved theme, follow system brightness
+      final brightness = SchedulerBinding.instance.window.platformBrightness;
+      //     final systemTheme = brightness == Brightness.dark ? ThemeDataType.dark.toString() : ThemeDataType.light.toString();
+      // _sharedPreferences.setString(PREFS_KEY_THEME, systemTheme);
+      return brightness == Brightness.dark ? darkTheme() : lightTheme();
+    } else if (theme == ThemeDataType.dark.toString()) {
       return darkTheme();
     } else {
       return lightTheme();
     }
   }
+
+  // ThemeData getTheme() {
+  //   String? theme = _sharedPreferences.getString(PREFS_KEY_THEME);
+  //   if (theme == ThemeDataType.dark.toString()) {
+  //     return darkTheme();
+  //   } else {
+  //     return lightTheme();
+  //   }
+  // }
 
   setTheme({required ThemeData themeData}) {
     _sharedPreferences.setString(PREFS_KEY_THEME, themeData.getValue());

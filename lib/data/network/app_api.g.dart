@@ -1371,7 +1371,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'https://afnqcpcbai01.azurewebsites.net/api/v1/chatbot/chat/website',
+              'https://apigatewaystg.aqarat.gov.qa/api-afnqcscbai01/api/v1/chatbot/chat/website',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1399,7 +1399,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'https://afnqcpcbai01.azurewebsites.net/api/v1/avatar/start-stream',
+              'https://apigatewaystg.aqarat.gov.qa/api-afnqcscbai01/api/v1/avatar/start-stream',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1430,7 +1430,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'https://afnqcpcbai01.azurewebsites.net/api/v1/avatar/send-answer/${id}',
+              'https://apigatewaystg.aqarat.gov.qa/api-afnqcscbai01/api/v1/avatar/send-answer/${id}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1461,7 +1461,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'https://afnqcpcbai01.azurewebsites.net/api/v1/avatar/send-candidate/${id}',
+              'https://apigatewaystg.aqarat.gov.qa/api-afnqcscbai01/api/v1/avatar/send-candidate/${id}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1495,7 +1495,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'https://afnqcpcbai01.azurewebsites.net/api/v1/chat-history/add-conversation-feedback',
+              'https://apigatewaystg.aqarat.gov.qa/api-afnqcscbai01/api/v1/chat-history/add-conversation-feedback',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1523,7 +1523,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'https://afnqcpcbai01.azurewebsites.net/api/v1/avatar/close-stream/${id}',
+              'https://apigatewaystg.aqarat.gov.qa/api-afnqcscbai01/api/v1/avatar/close-stream/${id}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1552,7 +1552,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'https://afnqcpcbai01.azurewebsites.net/api/v1//FAQ/faqs/${botName}',
+              'https://apigatewaystg.aqarat.gov.qa/api-afnqcscbai01/api/v1//FAQ/faqs/${botName}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -1613,7 +1613,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'https://afnqcpcbai01.azurewebsites.net/api/v1/search/search/website',
+              'https://apigatewaystg.aqarat.gov.qa/api-afnqcscbai01/api/v1/search/search/website',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -2002,7 +2002,6 @@ class _CmsServiceClient implements CmsServiceClient {
             .compose(
               _dio.options,
               'https://www.aqarat.gov.qa/wp-json/wp/v2/posts?per_page=50',
-              // 'https://www.aqarat.gov.qa/wp-json/wp/v2/posts',
               queryParameters: queryParameters,
               data: _data,
             )

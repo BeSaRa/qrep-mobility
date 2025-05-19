@@ -19,44 +19,39 @@ class AvatarStreamWidget extends StatelessWidget {
           return SizedBox(
             width: MediaQuery.sizeOf(context).width,
             height: MediaQuery.sizeOf(context).width,
-            child: const Center(
-                child:
-                    CircularProgressIndicator()
-                    ),
+            child: const Center(child: CircularProgressIndicator()),
           );
         }, error: (value) {
-           return SizedBox(
+          return SizedBox(
             width: MediaQuery.sizeOf(context).width,
             height: MediaQuery.sizeOf(context).width,
-            child:
-            Container(
-      height: AppSizeH.s150, 
-      width:  AppSizeH.s150,
-      color: Theme.of(context).scaffoldBackgroundColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-              height:  AppSizeH.s50,
-              width: AppSizeH.s50,
-              child: Lottie.asset(ImageAssets.animationError)),
-     Column(
-                  children: [
-                    SizedBox(height: AppSizeH.s10),
-                    Text(
-                      value.message == ""
-                  ? AppStrings().somethingWentWrong
-                  : value.message,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    SizedBox(height: AppSizeH.s10),
-                  ],
-                ),
-        ],
-      ),
-    ),
-            
+            child: Container(
+              height: AppSizeH.s150,
+              width: AppSizeH.s150,
+              color: Theme.of(context).scaffoldBackgroundColor,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                      height: AppSizeH.s50,
+                      width: AppSizeH.s50,
+                      child: Lottie.asset(ImageAssets.animationError)),
+                  Column(
+                    children: [
+                      SizedBox(height: AppSizeH.s10),
+                      Text(
+                        value.message == ""
+                            ? AppStrings().somethingWentWrong
+                            : value.message,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      SizedBox(height: AppSizeH.s10),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           );
         }, done: (value) {
           return const Column(
