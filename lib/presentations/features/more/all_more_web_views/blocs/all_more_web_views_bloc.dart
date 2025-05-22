@@ -67,8 +67,9 @@ class AboutTheAuthorityBloc
           ..setNavigationDelegate(NavigationDelegate(
             onPageStarted: (url) => add(PageStarted(url)),
             onPageFinished: (url) => add(PageLoaded(url)),
-            ///zak Here I solve the problem of the event/ usrls 
-          
+
+            ///zak Here I solve the problem of the event/ usrls
+
             // onWebResourceError: (error) =>
             //     add(PageDidnNotLoad(error.errorCode, error.description)),
             onNavigationRequest: (request) {

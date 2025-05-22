@@ -1671,8 +1671,7 @@ class _CmsServiceClient implements CmsServiceClient {
   final Dio _dio;
 
   String? baseUrl;
-
-  @override
+@override
   Future<HttpResponse<AuthResponse>> login(RequestAuth requestAuth) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -1756,7 +1755,7 @@ class _CmsServiceClient implements CmsServiceClient {
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
-
+  
   @override
   Future<HttpResponse<UserResponse>> getUserInfo() async {
     const _extra = <String, dynamic>{};
