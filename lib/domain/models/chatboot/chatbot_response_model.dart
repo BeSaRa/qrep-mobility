@@ -47,7 +47,7 @@ abstract class Usage with _$Usage {
 abstract class ContextModel with _$ContextModel {
   const factory ContextModel({
     @Default([]) List<Citation> citations,
-    @Default([]) List<String> intent,
+    // @Default([]) List<String> intent,
   }) = _ContextModel;
 
   factory ContextModel.fromJson(Map<String, dynamic> json) =>

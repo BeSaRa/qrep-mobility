@@ -70,16 +70,11 @@ _$ContextModelImpl _$$ContextModelImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => Citation.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      intent: (json['intent'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
     );
 
 Map<String, dynamic> _$$ContextModelImplToJson(_$ContextModelImpl instance) =>
     <String, dynamic>{
       'citations': instance.citations,
-      'intent': instance.intent,
     };
 
 _$CitationImpl _$$CitationImplFromJson(Map<String, dynamic> json) =>

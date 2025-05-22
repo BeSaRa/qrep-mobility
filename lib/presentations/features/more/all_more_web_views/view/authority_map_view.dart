@@ -30,9 +30,7 @@ class AuthorityMapView extends StatelessWidget {
           AppStrings().seeOnGoogleMap,
           style: TextStyle(color: ColorManager.white),
         ),
-        icon: Icon(Icons.map_rounded,
-            color: ColorManager
-                .white),
+        icon: Icon(Icons.map_rounded, color: ColorManager.white),
         backgroundColor: ColorManager.primary,
       ),
       appBar: AppBar(
@@ -90,6 +88,9 @@ class AuthorityMapView extends StatelessWidget {
         children: [
           TileLayer(
             urlTemplate: Constant.mapUrlTemplate,
+            tileBuilder: Theme.of(context).brightness == Brightness.dark
+                ? customDarkModeTileBuilder
+                : null,
           ),
           MarkerLayer(
             markers: [
@@ -104,4 +105,20 @@ class AuthorityMapView extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget customDarkModeTileBuilder(
+  BuildContext context,
+  Widget tileWidget,
+  TileImage tile,
+) {
+  return ColorFiltered(
+    colorFilter: const ColorFilter.matrix(<double>[
+      -0.2126, -0.7152, -0.0722, 0, 255, // Red channel
+      -0.2126, -0.7152, -0.0722, 0, 255, // Green channel
+      -0.2126, -0.7152, -0.0722, 0, 255, // Blue channel
+      0, 0, 0, 1, 0, // Alpha channel
+    ]),
+    child: tileWidget,
+  );
 }
