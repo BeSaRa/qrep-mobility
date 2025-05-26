@@ -40,10 +40,8 @@ class Constant {
   static const String googleMapUrlTemplate =
       "https://www.google.com/maps/place/%D8%A7%D9%84%D9%87%D9%8A%D8%A6%D8%A9+%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9+%D9%84%D8%AA%D9%86%D8%B8%D9%8A%D9%85+%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9+%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A+-+%D8%B9%D9%82%D8%A7%D8%B1%D8%A7%D8%AA%E2%80%AD/@25.370463,51.552953,777m/data=!3m1!1e3!4m6!3m5!1s0x3e45c30011f86e83:0x4dc04497efcca14c!8m2!3d25.3704625!4d51.5529531!16s%2Fg%2F11whwkhg57?hl=en&entry=ttu&g_ep=EgoyMDI1MDMxMC4wIKXMDSoASAFQAw%3D%3D";
   static String publicAccessToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJTZXJ2aWNlVXNlciIsInVzZXJuYW1lIjoiU2VydmljZVVzZXIiLCJkZXBhcnRtZW50IjpudWxsLCJtYW5hZ2VyX25hbWUiOm51bGwsImVtcGxveWVlX0lEIjpudWxsLCJyb2xlIjpudWxsLCJwZXJtaXNzaW9uc19pZHMiOlsiMSIsIjQiLCIyMiIsIjIzIiwiMjQiLCIyNSIsIjI3IiwiMjgiLCI0MiJdLCJleHAiOjE4NzQ1Njg3NTQsInRva2VuX3R5cGUiOiJhY2Nlc3MifQ.RQDCf82hHq0QKQTVa5XCO15PRgx6J-joLBa0py7vxJI";
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJTZXJ2aWNlVXNlciIsInVzZXJuYW1lIjoiU2VydmljZVVzZXIiLCJkZXBhcnRtZW50IjpudWxsLCJtYW5hZ2VyX25hbWUiOm51bGwsImVtcGxveWVlX0lEIjpudWxsLCJyb2xlIjpudWxsLCJwZXJtaXNzaW9uc19pZHMiOlsiMSIsIjQiLCI2IiwiNyIsIjIyIiwiMjMiLCIyNCIsIjI1IiwiMjciLCIyOCIsIjMxIiwiMzIiLCIzMyIsIjM0IiwiMzUiLCIzNiIsIjM3IiwiNDIiXSwiZXhwIjoxODc0NTc5MDA5LCJ0b2tlbl90eXBlIjoiYWNjZXNzIn0.yaOVLccqfmD3RCLydGzzJ9wWSkjubGEQi0iSAwemYUA";
   //STG
-  // static const String authorityChatBotBaseUrl ='https://afnqcscbai01.azurewebsites.net';
-  //PRD
   static const String authorityChatBotBaseUrl ='https://apigatewaystg.aqarat.gov.qa/api-afnqcscbai01';
   ///============= NOTE FROM ZAK To FATINA:==============
   ///u can find the ocpApimSubscription Key from our chat in Teams
