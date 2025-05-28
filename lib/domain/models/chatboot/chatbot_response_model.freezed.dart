@@ -778,7 +778,7 @@ ContextModel _$ContextModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ContextModel {
   List<Citation> get citations => throw _privateConstructorUsedError;
-  List<String> get intent => throw _privateConstructorUsedError;
+  String get intent => throw _privateConstructorUsedError;
 
   /// Serializes this ContextModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -796,7 +796,7 @@ abstract class $ContextModelCopyWith<$Res> {
           ContextModel value, $Res Function(ContextModel) then) =
       _$ContextModelCopyWithImpl<$Res, ContextModel>;
   @useResult
-  $Res call({List<Citation> citations, List<String> intent});
+  $Res call({List<Citation> citations, String intent});
 }
 
 /// @nodoc
@@ -825,7 +825,7 @@ class _$ContextModelCopyWithImpl<$Res, $Val extends ContextModel>
       intent: null == intent
           ? _value.intent
           : intent // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as String,
     ) as $Val);
   }
 }
@@ -838,7 +838,7 @@ abstract class _$$ContextModelImplCopyWith<$Res>
       __$$ContextModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Citation> citations, List<String> intent});
+  $Res call({List<Citation> citations, String intent});
 }
 
 /// @nodoc
@@ -863,9 +863,9 @@ class __$$ContextModelImplCopyWithImpl<$Res>
           : citations // ignore: cast_nullable_to_non_nullable
               as List<Citation>,
       intent: null == intent
-          ? _value._intent
+          ? _value.intent
           : intent // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as String,
     ));
   }
 }
@@ -874,10 +874,8 @@ class __$$ContextModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ContextModelImpl implements _ContextModel {
   const _$ContextModelImpl(
-      {final List<Citation> citations = const [],
-      final List<String> intent = const []})
-      : _citations = citations,
-        _intent = intent;
+      {final List<Citation> citations = const [], this.intent = ""})
+      : _citations = citations;
 
   factory _$ContextModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ContextModelImplFromJson(json);
@@ -891,14 +889,9 @@ class _$ContextModelImpl implements _ContextModel {
     return EqualUnmodifiableListView(_citations);
   }
 
-  final List<String> _intent;
   @override
   @JsonKey()
-  List<String> get intent {
-    if (_intent is EqualUnmodifiableListView) return _intent;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_intent);
-  }
+  final String intent;
 
   @override
   String toString() {
@@ -912,15 +905,13 @@ class _$ContextModelImpl implements _ContextModel {
             other is _$ContextModelImpl &&
             const DeepCollectionEquality()
                 .equals(other._citations, _citations) &&
-            const DeepCollectionEquality().equals(other._intent, _intent));
+            (identical(other.intent, intent) || other.intent == intent));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_citations),
-      const DeepCollectionEquality().hash(_intent));
+      runtimeType, const DeepCollectionEquality().hash(_citations), intent);
 
   /// Create a copy of ContextModel
   /// with the given fields replaced by the non-null parameter values.
@@ -941,7 +932,7 @@ class _$ContextModelImpl implements _ContextModel {
 abstract class _ContextModel implements ContextModel {
   const factory _ContextModel(
       {final List<Citation> citations,
-      final List<String> intent}) = _$ContextModelImpl;
+      final String intent}) = _$ContextModelImpl;
 
   factory _ContextModel.fromJson(Map<String, dynamic> json) =
       _$ContextModelImpl.fromJson;
@@ -949,7 +940,7 @@ abstract class _ContextModel implements ContextModel {
   @override
   List<Citation> get citations;
   @override
-  List<String> get intent;
+  String get intent;
 
   /// Create a copy of ContextModel
   /// with the given fields replaced by the non-null parameter values.

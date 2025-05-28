@@ -104,13 +104,24 @@ class VoiceCubit extends Cubit<VoiceState> {
           selectedLocale = "en_US";
         }
         // if (isClosed) return; // Check if the Cubit is closed
-        emit(VoiceState(
-            isListening: !val.finalResult,
-            text: newText,
-            confidence: val.confidence,
-            availableLocales: _availableLocales,
-            selectedLocale: selectedLocale,
-            hasFinalResult: val.finalResult));
+        if (!val.finalResult) {
+          emit(VoiceState(
+              isListening: !val.finalResult,
+              text: newText,
+              confidence: val.confidence,
+              availableLocales: _availableLocales,
+              selectedLocale: selectedLocale,
+              hasFinalResult: val.finalResult));
+        } else {
+          emit(VoiceState(
+              isListening: false,
+              text: newText,
+              confidence: val.confidence,
+              availableLocales: _availableLocales,
+              selectedLocale: selectedLocale,
+              hasFinalResult: val.finalResult));
+          stopListening();
+        }
       },
       localeId: "ar_DZ",
       // localeId: selectedLocale,
@@ -119,18 +130,22 @@ class VoiceCubit extends Cubit<VoiceState> {
       partialResults: true,
     );
     // if (isClosed) return; // Check if the Cubit is closed
-    emit(VoiceState(
-        isListening: true,
-        // text: state.text,
-        confidence: state.confidence,
-        availableLocales: _availableLocales,
-        selectedLocale: selectedLocale));
+    if (_speech.isListening) {
+      emit(VoiceState(
+          isListening: true,
+          // text: state.text,
+          confidence: state.confidence,
+          availableLocales: _availableLocales,
+          selectedLocale: selectedLocale));
+    }
   }
 
 //-----------------------------STOP---------------------------------
-  void stopListening() {
+  Future<void> stopListening() async {
     // if (isClosed) return; // Check if the Cubit is closed
-    _speech.stop();
+    await _speech.stop();
+    print("the speech state");
+    print(_speech.isListening);
 
     emit(VoiceState(
         isListening: false,

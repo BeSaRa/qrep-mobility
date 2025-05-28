@@ -68,6 +68,8 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                                     .offer,
                                 value.startStreamResponse.data!.webrtcData!
                                     .iceServers);
+                            // await webRTCCubit
+                            //     .forceAudioPlaybackAfterGesture(); // Right after setting the stream
                             //3- Pass cubit to parent via callback  to open the video widget
                             if (mounted) {
                               widget.onWebRTCCubitCreated(webRTCCubit);

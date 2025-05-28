@@ -42,6 +42,7 @@ class WebRTCCubit extends Cubit<WebRTCState> {
 
     // Mute/unmute all audio tracks
     state.remoteRenderer.srcObject?.getAudioTracks().forEach((track) {
+      print("Track state: ${track.label}, enabled: ${track.enabled}");
       track.enabled = !newMuteState;
     });
 
@@ -80,6 +81,7 @@ class WebRTCCubit extends Cubit<WebRTCState> {
     // }
     // Mute/unmute all audio tracks when i pressed pause
     state.remoteRenderer.srcObject?.getAudioTracks().forEach((track) {
+      print("Track state: ${track.label}, enabled: ${track.enabled}");
       track.enabled = state.isPlaying;
     });
     if (state.isPlaying) {
@@ -243,20 +245,37 @@ class WebRTCCubit extends Cubit<WebRTCState> {
       };
 //=====================================================================================
       peerConnection.onTrack = (event) async {
+        print('🔈 onTrack kind=${event.track.kind}');
         if (!state.isRendererReady) {
-          log("Renderer not ready - initializing...");
           await _initializeRenderer();
         }
 
-        if (state.remoteRenderer.srcObject != event.streams[0]) {
-          state.remoteRenderer.srcObject = event.streams[0];
-          emit(state.copyWith(remoteRenderer: state.remoteRenderer));
+        // if (state.remoteRenderer.srcObject != event.streams[0]) {
+        //   state.remoteRenderer.srcObject = event.streams[0];
+        //   emit(state.copyWith(remoteRenderer: state.remoteRenderer));
+
+        // <<=== Call the native audio activation
+
+        final result = await platform.invokeMethod('forceAudioPlayback');
+        print("🧨 forceAudioPlayback result: $result");
+        if (state.remoteRenderer.srcObject == null) {
+          state.remoteRenderer.srcObject = event.streams.first;
+          print("🔊 Initial media stream assigned");
+        } else {
+          print("🔄 Adding track to existing stream");
+          state.remoteRenderer.srcObject?.addTrack(event.track);
         }
+
+        emit(state.copyWith(remoteRenderer: state.remoteRenderer));
+
+        // }
       };
       //============================== Candidate ===========================
       await peerConnection.setRemoteDescription(
         RTCSessionDescription(offer.sdp, offer.type),
       );
+      print("📨 Received Offer SDP:\n${offer.sdp}");
+
 //NOTE: I did this completer to make sure that the candidates initilize succesfully
       // peerConnection.onIceCandidate = (RTCIceCandidate candidate) async {
       //   emit(state.copyWith(
@@ -267,9 +286,13 @@ class WebRTCCubit extends Cubit<WebRTCState> {
       int candidateCount = 0;
 
       peerConnection.onIceCandidate = (RTCIceCandidate candidate) async {
+        print('❄️ Local ICE candidate: ${candidate.candidate}');
         emit(state.copyWith(
           candidates: List.from(state.candidates)..add(candidate),
         ));
+        peerConnection.onIceConnectionState = (state) {
+          print('❄️ ICE connection state: $state');
+        };
 
         candidateCount++;
         // Consider connection ready after receiving at least X candidates
@@ -283,10 +306,14 @@ class WebRTCCubit extends Cubit<WebRTCState> {
         'offerToReceiveVideo': true,
       });
       await peerConnection.setLocalDescription(finalAnswer);
+
       // Update state with the final answer
       emit(state.copyWith(answer: finalAnswer));
-      log('answerWebRtcCubit ${finalAnswer.sdp}');
-      log('answerWebRtcCubit.type ${finalAnswer.type}');
+      print('answerWebRtcCubit ${finalAnswer.sdp}');
+      print('answerWebRtcCubit.type ${finalAnswer.type}');
+      print('offerWebRtc: ${offer.sdp}');
+      print('offerWebRtc.type: ${offer.type}');
+
       //================================================
 
       // Store the peer connection
@@ -296,6 +323,13 @@ class WebRTCCubit extends Cubit<WebRTCState> {
       log("newPeerConnections State: ${newPeerConnections.entries}");
       // After creating answer
       await completer.future;
+      state.remoteRenderer.srcObject?.getAudioTracks().forEach((track) {
+        print(" After creating answer");
+        print(
+            "Track state: ${track.label}, enabled: ${track.enabled}, ${state.isPlaying}");
+        track.enabled = state.isPlaying;
+      });
+
       emit(state.copyWith(isConnectionReady: true));
       emit(state.copyWith(peerConnections: newPeerConnections));
     } catch (e) {
@@ -303,5 +337,19 @@ class WebRTCCubit extends Cubit<WebRTCState> {
       emit(
           state.copyWith(errorMessage: e.toString(), isConnectionReady: false));
     }
+  }
+
+  Future<void> forceAudioPlaybackAfterGesture() async {
+    const platform = MethodChannel('com.eblacorp.qrep/audio');
+    try {
+      await platform.invokeMethod('forceAudioPlayback');
+      // await platform.invokeMethod('playSilentAudio');
+      debugPrint('forceAudioPlayback called.');
+    } on PlatformException catch (e) {
+      debugPrint("Failed to force audio playback: '${e.message}'.");
+    }
+    state.remoteRenderer.srcObject
+        ?.getAudioTracks()
+        .forEach((t) => t.enabled = true);
   }
 }

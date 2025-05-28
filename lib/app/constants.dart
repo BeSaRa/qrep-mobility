@@ -31,7 +31,7 @@ class Constant {
   // static const String chatBotBaseUrl = 'https://afnqcpcbai01.azurewebsites.net';
 
   //---------------------------------------------------------------------------------------------------------------
-    static const String guestToken = "lyHWSTHj1SBm9IRECnLAHviNHnXGaS27";
+  static const String guestToken = "lyHWSTHj1SBm9IRECnLAHviNHnXGaS27";
   /*Authority Map Points*/
   static const double latitude = 25.370494;
   static const double longitude = 51.552943;
@@ -44,9 +44,10 @@ class Constant {
   //STG
   // static const String authorityChatBotBaseUrl ='https://afnqcscbai01.azurewebsites.net';
   //PRD
-  static const String authorityChatBotBaseUrl ='https://apigatewaystg.aqarat.gov.qa/api-afnqcscbai01';
+  static const String authorityChatBotBaseUrl =
+      'https://apigatewaystg.aqarat.gov.qa/api-afnqcscbai01';
+
   ///============= NOTE FROM ZAK To FATINA:==============
   ///u can find the ocpApimSubscription Key from our chat in Teams
-  static String ocpApimSubscriptionKey = "";
-
+  static String ocpApimSubscriptionKey = "2685074912d34e97a1a677bdacb8e385";
 }

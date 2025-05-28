@@ -646,6 +646,8 @@ class _ChatViewState extends State<ChatView>
                                                         onLongPressStart:
                                                             isAvatarPressed
                                                                 ? (_) async {
+                                                                    // await webRTCCubit
+                                                                    //     ?.startRecording();
                                                                     final can =
                                                                         await Haptics
                                                                             .canVibrate();
@@ -666,12 +668,30 @@ class _ChatViewState extends State<ChatView>
                                                                 : null,
                                                         onLongPressEnd:
                                                             isAvatarPressed
-                                                                ? (_) {
-                                                                    // Stop recording and send when released
-                                                                    context
-                                                                        .read<
-                                                                            VoiceCubit>()
-                                                                        .stopListening();
+                                                                ? (_) async {
+                                                                    print(
+                                                                        "end pressed called");
+
+                                                                    try {
+                                                                      /// 1️⃣ Await speech recognition stop
+                                                                      await context
+                                                                          .read<
+                                                                              VoiceCubit>()
+                                                                          ?.stopListening();
+
+                                                                      /// 3️⃣ Short delay (optional - can tweak)
+                                                                      await Future.delayed(const Duration(
+                                                                          milliseconds:
+                                                                              300));
+
+                                                                      /// 4️⃣ Force audio to play after recording ends
+                                                                      await webRTCCubit
+                                                                          ?.forceAudioPlaybackAfterGesture();
+                                                                    } catch (e) {
+                                                                      print(
+                                                                          "⚠️ Error during audio release sequence: $e");
+                                                                    }
+
                                                                     showHoldMessage
                                                                             .value =
                                                                         false;
@@ -682,6 +702,8 @@ class _ChatViewState extends State<ChatView>
                                                                 showHoldHint();
                                                               }
                                                             : () async {
+                                                                // await webRTCCubit
+                                                                //     ?.forceAudioPlaybackAfterGesture();
                                                                 final can =
                                                                     await Haptics
                                                                         .canVibrate();

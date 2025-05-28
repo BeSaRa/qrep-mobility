@@ -75,11 +75,12 @@
 	<true/>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>audio</string>
 		<string>fetch</string>
 		<string>voip</string>
-		<string>push-to-talk</string>
 		<string>bluetooth-central</string>
+		<string>processing</string>
+		<string>remote-notification</string>
+		<string>audio</string>
 	</array>
 	<key>UIFileSharingEnabled</key>
 	<true/>

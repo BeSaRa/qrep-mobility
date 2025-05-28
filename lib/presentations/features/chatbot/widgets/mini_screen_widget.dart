@@ -4,6 +4,7 @@ import 'package:ebla/presentations/features/chatbot/widgets/mini_video_player_wi
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 class MiniScreenWidget extends StatelessWidget {
   const MiniScreenWidget({
     super.key,

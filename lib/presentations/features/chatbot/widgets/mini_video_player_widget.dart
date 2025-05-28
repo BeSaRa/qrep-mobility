@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 
 class MiniVideoPlayerWidget extends StatelessWidget {
-const MiniVideoPlayerWidget({super.key, required this.state});
+  const MiniVideoPlayerWidget({super.key, required this.state});
   final WebRTCState state;
   @override
   Widget build(BuildContext context) {
-    return     Container(
+    return Container(
       width: AppSizeW.s150,
       height: AppSizeH.s200,
       decoration: BoxDecoration(
@@ -16,7 +16,7 @@ const MiniVideoPlayerWidget({super.key, required this.state});
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha:0.5),
+            color: Colors.black.withValues(alpha: 0.5),
             blurRadius: 8,
             spreadRadius: 2,
             offset: const Offset(0, 4),
