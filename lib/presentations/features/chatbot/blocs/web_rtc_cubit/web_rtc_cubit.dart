@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_null_comparison
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_state.dart';
 import 'package:ebla/presentations/resources/resources.dart';
@@ -246,29 +247,34 @@ class WebRTCCubit extends Cubit<WebRTCState> {
 //=====================================================================================
       peerConnection.onTrack = (event) async {
         print('🔈 onTrack kind=${event.track.kind}');
-        if (!state.isRendererReady) {
-          await _initializeRenderer();
+        if (Platform.isAndroid) {
+          if (!state.isRendererReady) {
+            await _initializeRenderer();
+          }
+          if (state.remoteRenderer.srcObject != event.streams[0]) {
+            state.remoteRenderer.srcObject = event.streams[0];
+            emit(state.copyWith(remoteRenderer: state.remoteRenderer));
+          }
         }
+        if (Platform.isIOS) {
+          if (!state.isRendererReady) {
+            log("Renderer not ready - initializing...");
+            await _initializeRenderer();
+          }
 
-        // if (state.remoteRenderer.srcObject != event.streams[0]) {
-        //   state.remoteRenderer.srcObject = event.streams[0];
-        //   emit(state.copyWith(remoteRenderer: state.remoteRenderer));
+          // Call the native audio activation
+          final result = await platform.invokeMethod('forceAudioPlayback');
+          print("🧨 forceAudioPlayback result: $result");
 
-        // <<=== Call the native audio activation
-
-        final result = await platform.invokeMethod('forceAudioPlayback');
-        print("🧨 forceAudioPlayback result: $result");
-        if (state.remoteRenderer.srcObject == null) {
-          state.remoteRenderer.srcObject = event.streams.first;
-          print("🔊 Initial media stream assigned");
-        } else {
-          print("🔄 Adding track to existing stream");
-          state.remoteRenderer.srcObject?.addTrack(event.track);
+          if (state.remoteRenderer.srcObject == null) {
+            state.remoteRenderer.srcObject = event.streams.first;
+            print("🔊 Initial media stream assigned");
+          } else {
+            print("🔄 Adding track to existing stream");
+            state.remoteRenderer.srcObject?.addTrack(event.track);
+          }
+          emit(state.copyWith(remoteRenderer: state.remoteRenderer));
         }
-
-        emit(state.copyWith(remoteRenderer: state.remoteRenderer));
-
-        // }
       };
       //============================== Candidate ===========================
       await peerConnection.setRemoteDescription(
