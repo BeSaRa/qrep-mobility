@@ -272,8 +272,8 @@ class _AqaratNavigationBarState extends State<AqaratNavigationBar> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Theme.of(context).primaryColor,
-                      boxShadow: [
-                        const BoxShadow(
+                      boxShadow: const [
+                        BoxShadow(
                           color: Colors.black26,
                           blurRadius: 10,
                           spreadRadius: 3,

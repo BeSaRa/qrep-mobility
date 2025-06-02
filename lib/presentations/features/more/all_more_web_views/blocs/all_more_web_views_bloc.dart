@@ -119,7 +119,7 @@ class AboutTheAuthorityBloc
       emit(AboutTheAuthorityLoaded(urlHistory: state.urlHistory));
     });
 
-    String _getUserFriendlyMessage(int errorCode, String? description) {
+    String getUserFriendlyMessage(int errorCode, String? description) {
       switch (errorCode) {
         case -1: // ERROR_UNKNOWN
           return "Unknown error occurred. Please check your internet connection or try again.";
@@ -161,7 +161,7 @@ class AboutTheAuthorityBloc
       // }
       // Categorize the error
       final userMessage =
-          _getUserFriendlyMessage(event.errorCode, event.description);
+          getUserFriendlyMessage(event.errorCode, event.description);
 
       emit(AboutTheAuthorityError(
         message: userMessage,

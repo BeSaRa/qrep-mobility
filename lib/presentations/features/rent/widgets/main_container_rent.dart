@@ -112,7 +112,7 @@ class MainRentDataContainer extends StatelessWidget {
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     Text(
-                      "${AppStrings().contractType}: ${contract}",
+                      "${AppStrings().contractType}: $contract",
                       textDirection: TextDirection.ltr,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),

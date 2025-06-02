@@ -61,7 +61,7 @@ class WebRTCCubit extends Cubit<WebRTCState> {
   }
 
 //------------------- Pause Action in video ------------------
-  void togglePlayPause() async {
+  Future<void> togglePlayPause() async {
     emit(state.copyWith(isPlaying: !state.isPlaying));
     Uint8List? lastFrame;
     if (!state.isPlaying) {

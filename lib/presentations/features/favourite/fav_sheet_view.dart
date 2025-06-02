@@ -311,8 +311,7 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
                               case Indicators.rental:
                                 initRentModule();
                                 Navigator.pop(context,
-                                    {"class": 1, "object": criteriaObject});
-                                ;
+                                    {"class": 1, "object": criteriaObject}); {}
                               case Indicators.mortgage:
                                 initMortgageModule();
                                 Navigator.pop(context,

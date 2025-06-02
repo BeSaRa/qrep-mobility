@@ -1,9 +1,8 @@
-import 'package:ebla/presentations/resources/color_manager.dart';
-import 'package:ebla/presentations/resources/theme_manager.dart';
-import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
-class ReraTextFaild extends StatelessWidget {
+import '../../../resources/resources.dart';
+
+class ReraTextFaild extends StatefulWidget {
   final String hint;
   final String? errorMsg;
   final Widget? prefixIcon;
@@ -13,7 +12,6 @@ class ReraTextFaild extends StatelessWidget {
   final TextEditingController? controller;
   final dynamic validator;
   final TextInputType? textInputType;
-  // final List<TextInputFormatter>? inputFormatter;
   final bool? isBigFaild;
   final Function(String)? onChange;
 
@@ -29,20 +27,57 @@ class ReraTextFaild extends StatelessWidget {
     this.errorMsg,
     this.onChange,
     this.textInputType,
-    // this.inputFormatter,
     this.isBigFaild,
   });
 
   @override
+  State<ReraTextFaild> createState() => _ReraTextFaildState();
+}
+
+class _ReraTextFaildState extends State<ReraTextFaild> {
+  late TextEditingController _controller;
+  bool _showClearIcon = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = widget.controller ?? TextEditingController();
+    _controller.addListener(_handleTextChange);
+  }
+
+  void _handleTextChange() {
+    setState(() {
+      _showClearIcon = _controller.text.isNotEmpty;
+    });
+  }
+
+  void _clearText() {
+    _controller.clear();
+    if (widget.onChange != null) {
+      widget.onChange!('');
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.removeListener(_handleTextChange);
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: _controller,
+      enabled: widget.enabled,
+      readOnly: widget.readOnly,
+      keyboardType: widget.textInputType,
+      validator: widget.validator,
+      onChanged: widget.onChange,
       cursorColor: ColorManager.grey,
-      //to format the phone number
-      // inputFormatters: [
-      //   if (textInputType == TextInputType.number)
-      //     FilteringTextInputFormatter.digitsOnly,
-      // ],
-      keyboardType: textInputType,
+      autovalidateMode: AutovalidateMode.onUnfocus,
       style: TextStyle(
         fontFamily: FontConstants.fontFamily,
         color: Theme.of(context).brightness == Brightness.dark
@@ -51,64 +86,66 @@ class ReraTextFaild extends StatelessWidget {
         fontSize: AppSizeSp.s15,
         fontWeight: FontWeight.w500,
       ),
-      onChanged: onChange,
-      enabled: enabled,
-      readOnly: readOnly,
-      controller: controller,
-      validator: validator,
-      autovalidateMode: AutovalidateMode.onUnfocus,
-      minLines: isBigFaild != null ? 4 : null,
-      maxLines: isBigFaild != null ? null : 1,
+      minLines: widget.isBigFaild != null ? 4 : null,
+      maxLines: widget.isBigFaild != null ? null : 1,
       decoration: InputDecoration(
-        hintText: hint,
+        hintText: widget.hint,
         hintStyle: TextStyle(
-          fontWeight:
-              enabled || !readOnly ? FontWeight.normal : FontWeight.bold,
+          fontWeight: widget.enabled || !widget.readOnly
+              ? FontWeight.normal
+              : FontWeight.bold,
           fontSize:
               Theme.of(context).textTheme.bodySmall?.fontSize ?? AppSizeW.s14,
           color: Theme.of(context).brightness == Brightness.dark
-              ?
-              //  enabled
-              //     ? Theme.of(context).cardColor
-              //     :
-              ColorManager.whiteSmoke
-              : enabled
+              ? ColorManager.whiteSmoke
+              : widget.enabled
                   ? Theme.of(context).cardColor
                   : Theme.of(context).primaryColor,
         ),
         contentPadding: EdgeInsets.symmetric(
-            horizontal: AppSizeW.s15, vertical: AppSizeH.s8),
-        //  enabled
-        //     ? Theme.of(context).inputDecorationTheme.hintStyle
-        //     : Theme.of(context).textTheme.titleSmall,
+          horizontal: AppSizeW.s15,
+          vertical: AppSizeH.s8,
+        ),
         filled: true,
         fillColor: Theme.of(context).brightness == Brightness.dark
             ? ColorManager.textFieldGrey
             : ColorManager.whiteSmoke,
-        errorText: errorMsg,
-        suffixIcon:
-            Padding(padding: EdgeInsets.all(AppSizeW.s5), child: suffixIcon),
-        // prefixIcon:
-        //     Padding(padding: EdgeInsets.all(AppSizeW.s5), child: prefixIcon),
+        errorText: widget.errorMsg,
+        prefixIcon: widget.prefixIcon != null
+            ? Padding(
+                padding: EdgeInsets.all(AppSizeW.s5),
+                child: widget.prefixIcon,
+              )
+            : null,
+        suffixIcon: Padding(
+          padding: EdgeInsets.all(AppSizeW.s5),
+          child: _showClearIcon
+              ? GestureDetector(
+                  onTap: _clearText,
+                  child: const Icon(Icons.close, size: 20),
+                )
+              : widget.suffixIcon,
+        ),
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppSizeR.s15),
-            borderSide:
-                BorderSide(color: ColorManager.lightSilver, width: 0.5)),
+          borderRadius: BorderRadius.circular(AppSizeR.s15),
+          borderSide: BorderSide(color: ColorManager.lightSilver, width: 0.5),
+        ),
         enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppSizeR.s15),
-            borderSide:
-                BorderSide(color: ColorManager.lightSilver, width: 0.5)),
+          borderRadius: BorderRadius.circular(AppSizeR.s15),
+          borderSide: BorderSide(color: ColorManager.lightSilver, width: 0.5),
+        ),
         disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppSizeR.s15),
-            borderSide:
-                BorderSide(color: ColorManager.lightSilver, width: 0.5)),
+          borderRadius: BorderRadius.circular(AppSizeR.s15),
+          borderSide: BorderSide(color: ColorManager.lightSilver, width: 0.5),
+        ),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppSizeR.s15),
-            borderSide:
-                BorderSide(color: ColorManager.lightSilver, width: 0.5)),
+          borderRadius: BorderRadius.circular(AppSizeR.s15),
+          borderSide: BorderSide(color: ColorManager.lightSilver, width: 0.5),
+        ),
         errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppSizeR.s15),
-            borderSide: BorderSide(color: ColorManager.red, width: 0.5)),
+          borderRadius: BorderRadius.circular(AppSizeR.s15),
+          borderSide: BorderSide(color: ColorManager.red, width: 0.5),
+        ),
       ),
     );
   }

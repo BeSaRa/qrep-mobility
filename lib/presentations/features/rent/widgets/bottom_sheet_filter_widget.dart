@@ -273,7 +273,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
     List<LookupModel> listServiceTypeWithAll = [];
     List<LookupModel> listService =
         context.read<LookupBloc>().lookUpRent?.serviceTypeList ?? [];
-    if (!listService.contains(LookupModel(
+    if (!listService.contains(const LookupModel(
         isActive: true,
         lookupKey: -1,
         arName: "الكل",

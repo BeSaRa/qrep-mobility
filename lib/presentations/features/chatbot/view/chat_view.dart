@@ -651,8 +651,9 @@ class _ChatViewState extends State<ChatView>
                                                                     final can =
                                                                         await Haptics
                                                                             .canVibrate();
-                                                                    if (!can)
+                                                                    if (!can) {
                                                                       return;
+                                                                    }
 
                                                                     await Haptics.vibrate(
                                                                         HapticsType
@@ -660,6 +661,8 @@ class _ChatViewState extends State<ChatView>
                                                                     // _wasLongPressed =
                                                                     //     true;
                                                                     // Start recording when pressed
+                                                                    await webRTCCubit
+                                                                        ?.togglePlayPause();
                                                                     context
                                                                         .read<
                                                                             VoiceCubit>()
@@ -677,7 +680,10 @@ class _ChatViewState extends State<ChatView>
                                                                       await context
                                                                           .read<
                                                                               VoiceCubit>()
-                                                                          ?.stopListening();
+                                                                          .stopListening();
+
+                                                                      await webRTCCubit
+                                                                          ?.togglePlayPause();
 
                                                                       /// 3️⃣ Short delay (optional - can tweak)
                                                                       await Future.delayed(const Duration(
@@ -685,6 +691,7 @@ class _ChatViewState extends State<ChatView>
                                                                               300));
 
                                                                       /// 4️⃣ Force audio to play after recording ends
+                                                                      ///
                                                                       await webRTCCubit
                                                                           ?.forceAudioPlaybackAfterGesture();
                                                                     } catch (e) {
@@ -707,8 +714,9 @@ class _ChatViewState extends State<ChatView>
                                                                 final can =
                                                                     await Haptics
                                                                         .canVibrate();
-                                                                if (!can)
+                                                                if (!can) {
                                                                   return;
+                                                                }
                                                                 await Haptics.vibrate(
                                                                     HapticsType
                                                                         .heavy);

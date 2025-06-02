@@ -654,7 +654,7 @@ class _MortagageViewState extends State<MortgageView> {
                                         onGoToLastPage: (lastPage) {},
                                         backgroundColor: Theme.of(context)
                                             .colorScheme
-                                            .background,
+                                            .surface,
                                         // textStyle: Theme.of(context)
                                         //     .textTheme
                                         //     .labelSmall,
@@ -809,7 +809,7 @@ class _MortagageViewState extends State<MortgageView> {
                                                   backgroundColor:
                                                       Theme.of(context)
                                                           .colorScheme
-                                                          .background,
+                                                          .surface,
                                                   // textStyle: Theme.of(context)
                                                   //     .textTheme
                                                   //     .labelSmall,

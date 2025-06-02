@@ -211,23 +211,30 @@ class SplashScaffold extends StatelessWidget {
                 height: AppSizeH.s30,
               ),
               AnimatedScale(
-                scale: scale,
-                duration: const Duration(milliseconds: 1200),
-                alignment: FractionalOffset.bottomCenter,
-                onEnd: () {},
-                child:
-                    // SizedBox(
-                    //   width: MediaQuery.of(context).size.width,
-                    //   height: MediaQuery.of(context).size.height / 2,
-                    //   child: Lottie.asset(
-                    //     ImageAssets.towers,
-                    //     animate: isVisible,
-                    //   ),
-                    // )
-                    PathDrawingAnimation(
-                  allPaths: allPaths,
-                ),
-              ),
+                  scale: scale,
+                  duration: const Duration(milliseconds: 1200),
+                  alignment: FractionalOffset.bottomCenter,
+                  onEnd: () {
+                    Future.delayed(const Duration(milliseconds: 1000))
+                        .then((value) async {
+                      await initHomeModule();
+                      context.goNamed(RoutesNames.home);
+                    });
+                  },
+                  child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 2,
+                      child: SvgPicture.asset(ImageAssets.quatarTowerCitySplash)
+
+                      // Lottie.asset(
+                      //   ImageAssets.towers,
+                      //   animate: isVisible,
+                      // ),
+                      )
+                  //     PathDrawingAnimation(
+                  //   allPaths: allPaths,
+                  // ),
+                  ),
             ],
           ),
         ],

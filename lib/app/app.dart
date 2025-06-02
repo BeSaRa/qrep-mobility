@@ -71,15 +71,21 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           splitScreenMode: false,
           builder: (context, child) => ThemeProvider(
             initTheme: instance<AppPreferences>().getTheme(),
-            builder: (p0, theme) => MaterialApp.router(
-              debugShowCheckedModeBanner: false,
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: context.locale,
-              title: 'Real State Qatar',
-              themeMode: theme.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
-              theme: theme,
-              routerConfig: AppRouter.router,
+            builder: (p0, theme) => GestureDetector(
+              behavior: HitTestBehavior.opaque, // allows taps on empty space
+              onTap: () {
+                FocusScope.of(context).unfocus(); // dismiss the keyboard
+              },
+              child: MaterialApp.router(
+                debugShowCheckedModeBanner: false,
+                localizationsDelegates: context.localizationDelegates,
+                supportedLocales: context.supportedLocales,
+                locale: context.locale,
+                title: 'Real State Qatar',
+                themeMode: theme.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
+                theme: theme,
+                routerConfig: AppRouter.router,
+              ),
             ),
           ),
         ),

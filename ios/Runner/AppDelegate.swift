@@ -76,6 +76,7 @@ import AVFoundation
 
         case "forceAudioPlayback":
             print("✅ iOS: forceAudioPlayback method received")
+//              configureAudioSession(mode: .videoChat)
             forceAudioPlayback()
             result(nil)
 
@@ -94,7 +95,7 @@ import AVFoundation
        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
            do {
                try self.session.setCategory(.playAndRecord,
-                                            mode: .voiceChat,
+                                            mode: .videoChat,
                                             options: [.defaultToSpeaker, .allowBluetooth])
                try self.session.overrideOutputAudioPort(.speaker)
                try self.session.setActive(true, options: .notifyOthersOnDeactivation)

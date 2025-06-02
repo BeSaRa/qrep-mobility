@@ -78,7 +78,6 @@
 		<string>fetch</string>
 		<string>voip</string>
 		<string>bluetooth-central</string>
-		<string>processing</string>
 		<string>remote-notification</string>
 		<string>audio</string>
 	</array>
@@ -99,5 +98,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+
+
 </dict>
 </plist>

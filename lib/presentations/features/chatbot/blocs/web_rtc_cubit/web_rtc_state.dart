@@ -71,7 +71,7 @@ class WebRTCState {
       errorMessage: errorMessage,
       isPlaying: isPlaying ?? this.isPlaying,
       elapsedTime: elapsedTime ?? this.elapsedTime,
-      isComplete2Minutes: isComplete ?? this.isComplete2Minutes,
+      isComplete2Minutes: isComplete ?? isComplete2Minutes,
       isMiniScreen: isMiniScreen ?? this.isMiniScreen,
         lastFrame: lastFrame ?? this.lastFrame,
         videoKey: videoKey ?? this.videoKey,

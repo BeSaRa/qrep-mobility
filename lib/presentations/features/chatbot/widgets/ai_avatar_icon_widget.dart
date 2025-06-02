@@ -8,9 +8,7 @@ import 'package:ebla/presentations/features/chatbot/blocs/start_stream_bloc/star
 import 'package:ebla/presentations/features/chatbot/blocs/stream_id_cubit.dart/stream_id_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/utility/chatbot_enums.dart';
-import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/resources.dart';
-import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

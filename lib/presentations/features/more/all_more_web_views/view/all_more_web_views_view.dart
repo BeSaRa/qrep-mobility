@@ -96,7 +96,7 @@ class AllMoreWebViews extends StatelessWidget {
                   message: state.message,
                   onPressed: () {
                     if (pageName == "realEstateCalendar" &&
-                        bloc.state.urlHistory.length > 1) {
+                        bloc.state.urlHistory.length == 1) {
                       bloc.add(WebViewNavigationRequested(
                           bloc.state.urlHistory.last));
                       log("zak ${bloc.state.urlHistory.last}");
@@ -151,7 +151,7 @@ class AllMoreWebViews extends StatelessWidget {
             //zak
             onTap: () {
               if (pageName == "realEstateCalendar" &&
-                  bloc.state.urlHistory.length > 1) {
+                  bloc.state.urlHistory.length == 1) {
                 bloc.add(PopWebView());
               } else {
                 Navigator.maybePop(context);
@@ -169,8 +169,8 @@ class AllMoreWebViews extends StatelessWidget {
                 ),
                 SizedBox(width: AppSizeW.s5),
                 Text(
-                  pageName == "realEstateCalendar" &&
-                          bloc.state.urlHistory.length > 1
+                  (pageName == "realEstateCalendar" &&
+                          bloc.state.urlHistory.length == 1)
                       ? AppStrings().back
                       : AppStrings().main,
                   // aiSearchUrl != null ? AppStrings().back : AppStrings().main,

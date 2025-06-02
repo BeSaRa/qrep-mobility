@@ -43,7 +43,6 @@ import '../features/navigation_pages/coming_soon.dart';
 import '../features/real_estate_brokers/blocs/lookup_bloc/look_up_broker_bloc.dart';
 import '../features/rent/blocs/rent_bloc/rent_bloc.dart';
 import '../features/sell/blocs/sell_bloc/sell_bloc.dart';
-import '../features/splash_screen/widgets/towers_path_widget.dart';
 
 class RoutesNames {
   static const String splash = 'splash';
@@ -237,7 +236,7 @@ class AppRouter {
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
                   key: state.pageKey,
-                  child: XMapView(),
+                  child: const XMapView(),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     return child;
@@ -552,9 +551,9 @@ class AppRouter {
           name: RoutesNames.splash,
           path: RoutesPaths.splash,
           builder: (context, state) {
-            List<Path> allPaths = buildAllPaths();
+            // List<Path> allPaths = buildAllPaths();
             return SplashView(
-              allPaths: allPaths,
+              allPaths: [],
             );
           },
         ),

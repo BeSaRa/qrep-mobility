@@ -42,7 +42,7 @@ class GridValueWithUnitWidget extends StatelessWidget {
                   ? SizedBox(
                       width: AppSizeR.s12,
                       height: AppSizeR.s12,
-                      child: CircularProgressIndicator(
+                      child: const CircularProgressIndicator(
                         strokeWidth: 1.0,
                       ))
                   : Countup(

@@ -80,20 +80,20 @@ class _StatisTicsWidgetState extends State<StatisTicsWidget> {
                           children: [
                             _TabContainerShimmer(
                               tabIndex: 1,
-                              name: widget.title,
+                              name: widget.title, isDisabled: true,
                             ),
                             _TabContainerShimmer(
                               tabIndex: 2,
-                              name: AppStrings().countPropertiesUnits,
+                              name: AppStrings().countPropertiesUnits, isDisabled: true,
                             ),
                             _TabContainerShimmer(
                               // isDisabled: isDisabled(),
                               tabIndex: 3,
-                              name: AppStrings().avgPriceEveryMonth,
+                              name: AppStrings().avgPriceEveryMonth, isDisabled: true,
                             ),
                             _TabContainerShimmer(
                               tabIndex: 4,
-                              name: AppStrings().contractsValue,
+                              name: AppStrings().contractsValue, isDisabled: true,
                             ),
                             // _TabContainerShimmer(
                             //   isDisabled: isDisabled(),
@@ -326,8 +326,7 @@ class _TabContainerShimmer extends StatelessWidget {
 
   const _TabContainerShimmer({
     required this.tabIndex,
-    required this.name,
-    this.isDisabled = false,
+    required this.name, required this.isDisabled,
   });
 
   @override

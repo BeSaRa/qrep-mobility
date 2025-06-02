@@ -1,7 +1,5 @@
-import 'dart:ui' as ui;
 
 import 'package:ebla/presentations/resources/color_manager.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 //Add this CustomPaint widget to the Widget Tree

@@ -12,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // ignore: must_be_immutable
 class ChatMessagesListWidget extends StatelessWidget {
-  ChatMessagesListWidget({
+  const ChatMessagesListWidget({
     super.key,
     required this.isSending,
     // required this.isHadBeenRated,

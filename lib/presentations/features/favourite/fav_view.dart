@@ -88,8 +88,9 @@ class _FavViewState extends State<FavView> {
                               controller: searchController,
                               hint: AppStrings().favName,
                               onChange: (val) {
-                                if (_debounce?.isActive ?? false)
+                                if (_debounce?.isActive ?? false) {
                                   _debounce?.cancel();
+                                }
                                 _debounce = Timer(
                                     const Duration(milliseconds: 500), () {
                                   favouriteBloc.add(GetFavouriteEvent.filter(
@@ -300,8 +301,9 @@ class _FavViewState extends State<FavView> {
                               controller: searchController,
                               hint: AppStrings().favName,
                               onChange: (val) {
-                                if (_debounce?.isActive ?? false)
+                                if (_debounce?.isActive ?? false) {
                                   _debounce?.cancel();
+                                }
                                 _debounce = Timer(
                                     const Duration(milliseconds: 500), () {});
                               },

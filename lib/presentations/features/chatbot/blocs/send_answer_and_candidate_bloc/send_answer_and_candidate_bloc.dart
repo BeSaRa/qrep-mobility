@@ -50,7 +50,7 @@ class SendAnswerAndCandidateBloc
             (success) async {
               _completedCandidates++;
               responses.add(success);
-              log("total candidate from bloc: ${_completedCandidates} / ${_totalCandidates} ");
+              log("total candidate from bloc: $_completedCandidates / $_totalCandidates ");
               if (_completedCandidates == _totalCandidates) {
                 _completedCandidates = 0;
                 _totalCandidates = 0;

@@ -130,8 +130,9 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
                                     controller: searchController,
                                     hint: AppStrings().brokerCompanyName,
                                     onChange: (val) {
-                                      if (_debounce?.isActive ?? false)
+                                      if (_debounce?.isActive ?? false) {
                                         _debounce?.cancel();
+                                      }
                                       _debounce = Timer(
                                           const Duration(milliseconds: 500),
                                           () {
@@ -592,8 +593,9 @@ class _RealEstateBrokersViewState extends State<RealEstateBrokersView> {
         0) {
       if (list.length < 5) {
         return 1;
-      } else
+      } else {
         return brokersCountBloc.count.ceil();
+      }
     } else {
       return brokersCountBloc.count.ceil();
     }

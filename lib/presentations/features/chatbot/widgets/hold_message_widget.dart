@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:ebla/presentations/resources/resources.dart';
-import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class HoldMessageWidget extends StatelessWidget {

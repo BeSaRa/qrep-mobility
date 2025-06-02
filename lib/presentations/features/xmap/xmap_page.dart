@@ -9,6 +9,8 @@ import '../../../app/depndency_injection.dart';
 LocalhostServer localhostServer = LocalhostServer();
 
 class XMapView extends StatefulWidget {
+  const XMapView({super.key});
+
   @override
   _XMapViewState createState() => _XMapViewState();
 }

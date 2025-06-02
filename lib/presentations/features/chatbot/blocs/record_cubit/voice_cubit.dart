@@ -67,6 +67,7 @@ class VoiceCubit extends Cubit<VoiceState> {
       }
     } else {
       // If permission is already granted
+
       startListening();
     }
   }

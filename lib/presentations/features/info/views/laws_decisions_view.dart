@@ -1,7 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/cms_models/laws/laws_model.dart';
-import 'package:ebla/presentations/features/chatbot/widgets/check_box_widget.dart';
-import 'package:ebla/presentations/features/chatbot/widgets/dropdown_menu_button_widget.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/rera_text_faild.dart';
 import 'package:ebla/presentations/features/info/blocs/laws_bloc/laws_bloc.dart';
 import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
@@ -13,8 +11,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../resources/resources.dart';
-import '../../home/home_view.dart';
-import 'dart:ui' as ui;
 
 class LawsDecisionsView extends StatefulWidget {
   const LawsDecisionsView({super.key});
@@ -151,7 +147,7 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                                     BoxShadow(
                                       color: Colors.black.withOpacity(0.1),
                                       blurRadius: 8,
-                                      offset: Offset(0, 0),
+                                      offset: const Offset(0, 0),
                                     ),
                                   ],
                                 ),
@@ -185,8 +181,9 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                                                     isLawInArabic) ||
                                                 (!isArabic && !isLawInArabic);
 
-                                            if (!show)
+                                            if (!show) {
                                               return const SizedBox.shrink();
+                                            }
 
                                             return InkWell(
                                               onTap: () {
@@ -229,7 +226,7 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                           ],
                         );
                       },
-                      child: Icon(
+                      child: const Icon(
                         Icons.more_vert,
                         // color: ColorManager.primary,
                       ),

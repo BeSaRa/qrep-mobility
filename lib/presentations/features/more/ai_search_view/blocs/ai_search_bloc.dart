@@ -41,7 +41,7 @@ class AiSearchBloc extends Bloc<StartAiSearchEvent, AiSearchState> {
         clearResults: (value) async {
           final currentState = state;
           AiSearchResponseModel lastResponse = AiSearchResponseModel();
-          emit(AiSearchState.loading(isPagination: false));
+          emit(const AiSearchState.loading(isPagination: false));
           if (currentState is _Done) {
             lastResponse = currentState.response;
             emit(AiSearchState.done(

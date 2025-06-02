@@ -1,4 +1,3 @@
-import 'dart:ui' as ui;
 
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
@@ -99,7 +98,7 @@ class _PathDrawingAnimationState extends State<PathDrawingAnimation>
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: Size(430, 265),
+      size: const Size(430, 265),
       painter: StepByStepPainter(
         paths: widget.allPaths,
         colors: _pathColors,

@@ -36,7 +36,7 @@ class CloseStreamBloc extends Bloc<CloseStreamEvent, CloseStreamState> {
           // ));
           log("close before request ===========================");
           final failureOrSuccess = await closeStreamUsecase.execute(value.id);
-          log('chatHistoryCubit: ${failureOrSuccess}');
+          log('chatHistoryCubit: $failureOrSuccess');
           log("close after after ===========================");
           await failureOrSuccess.when((success) async {
             emit(CloseStreamState.done(response: success));

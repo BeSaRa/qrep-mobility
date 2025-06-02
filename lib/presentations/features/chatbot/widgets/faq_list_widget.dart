@@ -143,7 +143,7 @@ class _FAQListWidgetState extends State<FAQListWidget> {
                 );
               },
               orElse: () {
-                return SizedBox.shrink();
+                return const SizedBox.shrink();
               },
             );
           }),

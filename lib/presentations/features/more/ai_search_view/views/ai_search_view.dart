@@ -6,14 +6,12 @@ import 'package:ebla/presentations/features/chatbot/widgets/rera_text_faild.dart
 import 'package:ebla/presentations/features/more/ai_search_view/blocs/ai_search_bloc.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
-import 'package:ebla/presentations/resources/routes_manager.dart';
 import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:ebla/presentations/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AiSearchView extends StatefulWidget {
@@ -195,12 +193,18 @@ class _AiSearchViewState extends State<AiSearchView> {
               state.maybeMap(
                 loading: (value) => _isHasMoreData = false,
                 done: (value) {
-                  _isHasMoreData = value.response.pageNumber <
-                      (value.response.totalCount / value.response.count).ceil();
-                  currentPage = value.response.pageNumber;
-                  // Update expandedList to match the total count from the response
-                  expandedList.value =
-                      List.generate(value.response.totalCount, (_) => false);
+                  final total = value.response.totalCount;
+                  final count = value.response.count;
+                  final page = value.response.pageNumber;
+
+                  // Avoid division‐by‐zero: if count == 0, treat totalPages as 0
+                  final totalPages = (count == 0) ? 0 : (total / count).ceil();
+
+                  _isHasMoreData = page < totalPages;
+                  currentPage = page;
+
+                  // Update expandedList to match the totalCount
+                  expandedList.value = List.generate(total, (_) => false);
                 },
                 orElse: () {},
               );

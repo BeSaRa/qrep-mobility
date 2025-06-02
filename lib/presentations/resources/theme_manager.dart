@@ -20,7 +20,7 @@ ThemeData lightTheme() {
       colorScheme: ColorScheme.light(
         primary: ColorManager.primary,
         brightness: Brightness.light,
-        surfaceVariant: Colors.transparent,
+        surfaceContainerHighest: Colors.transparent,
         secondary: ColorManager.mercury,
         onSecondary: ColorManager.primary,
         tertiaryContainer: ColorManager.white,
@@ -38,7 +38,6 @@ ThemeData lightTheme() {
         surfaceBright: ColorManager.golden,
         secondaryFixed: ColorManager.primaryBlue,
         secondaryFixedDim: ColorManager.cloudyGrey,
-        onBackground: Hex16Color.fromHex('#FFE5FE'),
       ),
       drawerTheme: DrawerThemeData(backgroundColor: ColorManager.white),
       shadowColor: ColorManager.grey,
@@ -214,7 +213,7 @@ ThemeData darkTheme() {
       colorScheme: ColorScheme.dark(
           primary: ColorManager.white,
           brightness: Brightness.dark,
-          surfaceVariant: Colors.transparent,
+          surfaceContainerHighest: Colors.transparent,
           secondary: ColorManager.golden,
           onSecondary: ColorManager.golden,
           tertiaryContainer: ColorManager.primary,
@@ -224,7 +223,6 @@ ThemeData darkTheme() {
           onTertiary: ColorManager.textFieldGrey,
           secondaryContainer: const Color(0xFF222222),
           onSecondaryContainer: ColorManager.primary,
-          onBackground: ColorManager.primary,
           scrim: ColorManager.dune,
           surfaceDim: ColorManager.duneLighter,
           surfaceTint: ColorManager.dune,

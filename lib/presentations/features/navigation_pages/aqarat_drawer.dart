@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart' as local;
@@ -244,9 +243,9 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
   }
 
   Future<void> _launchUrl(String url) async {
-    final Uri _url = Uri.parse(url);
-    if (!await launchUrl(_url)) {
-      throw Exception('Could not launch $_url');
+    final Uri url0 = Uri.parse(url);
+    if (!await launchUrl(url0)) {
+      throw Exception('Could not launch $url0');
     }
   }
 }

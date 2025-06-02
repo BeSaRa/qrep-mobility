@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';

@@ -45,7 +45,7 @@ class _EblaTabBarWidgetState extends State<EblaTabBarWidget> {
             automaticIndicatorColorAdjustment: false,
             physics: const NeverScrollableScrollPhysics(),
             indicatorColor: Colors.transparent,
-            overlayColor: MaterialStateProperty.all(Colors.transparent),
+            overlayColor: WidgetStateProperty.all(Colors.transparent),
             indicator: BoxDecoration(
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(AppSizeR.s8),
