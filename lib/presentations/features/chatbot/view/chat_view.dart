@@ -3,6 +3,9 @@ import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
+import 'package:ebla/domain/usecases/chatbot_usecase/send_answer_usecase.dart';
+import 'package:ebla/domain/usecases/chatbot_usecase/send_candidate_usecase.dart';
+import 'package:ebla/domain/usecases/chatbot_usecase/start_stream_usecase.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/close_stream/close_stream_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/drobdown_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
@@ -21,6 +24,7 @@ import 'package:ebla/presentations/features/chatbot/widgets/chat_messages_list_w
 import 'package:ebla/presentations/features/chatbot/widgets/check_box_widget.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/rera_text_faild.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/send_button_widget.dart';
+import 'package:ebla/presentations/features/home/stream_page.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/strings_manager.dart';
@@ -209,24 +213,37 @@ class _ChatViewState extends State<ChatView>
                         ),
                     child: expanded
                         ? MultiBlocProvider(providers: [
-                            BlocProvider.value(
-                              value: startStreamBloc,
-                            ),
-                            if (webRTCCubit != null)
-                              BlocProvider.value(value: webRTCCubit!),
-                            BlocProvider.value(
-                              value: chatBotBloc,
-                            ),
-                            BlocProvider.value(
-                              value: sendAnswerAndCandidateBloc,
-                            ),
+                            // BlocProvider.value(
+                            //   value: startStreamBloc,
+                            // ),
+                            // if (webRTCCubit != null)
+                            //   BlocProvider.value(value: webRTCCubit!),
+                            // BlocProvider.value(
+                            //   value: chatBotBloc,
+                            // ),
+                            // BlocProvider.value(
+                            //   value: sendAnswerAndCandidateBloc,
+                            // ),
                             BlocProvider.value(
                               value: streamIdCubit,
                             ),
                             BlocProvider.value(
                               value: closeStreamBloc,
                             ),
-                          ], child: const AvatarStreamWidget())
+                            //zak
+                            BlocProvider(
+                              create: (context) => StreamBloc(
+                                startStreamUsecase:
+                                    instance<StartStreamUsecase>(),
+                                sendAnswerUsecase:
+                                    instance<SendAnswerUsecase>(),
+                                sendCandidateUsecase:
+                                    instance<SendCandidateUsecase>(),
+                              ),
+                            )
+                            //zak
+                          ], child: StreamPage())
+                        // ], child: const AvatarStreamWidget())
                         : const SizedBox.shrink());
               }),
           ValueListenableBuilder<bool>(
@@ -251,6 +268,15 @@ class _ChatViewState extends State<ChatView>
                       BlocProvider.value(value: sendAnswerAndCandidateBloc),
                       BlocProvider<SendFeedbackBloc>.value(
                           value: BlocProvider.of<SendFeedbackBloc>(context)),
+                      //zak
+                      BlocProvider(
+                        create: (context) => StreamBloc(
+                          startStreamUsecase: instance<StartStreamUsecase>(),
+                          sendAnswerUsecase: instance<SendAnswerUsecase>(),
+                          sendCandidateUsecase:
+                              instance<SendCandidateUsecase>(),
+                        ),
+                      )
                       // BlocProvider.value(value: webRTCCubit),
                     ],
                     child: BlocConsumer<ChatBotBloc, ChatBotState>(
@@ -372,89 +398,104 @@ class _ChatViewState extends State<ChatView>
                                     ),
                                   ],
                                 )),
-                              if (isAvatarPressed)
-                                BlocConsumer<WebRTCCubit, WebRTCState>(
-                                    listener: (context, webRtcState) {
-                                      if (webRtcState.rTCPeerConnectionState ==
-                                          RTCPeerConnectionState
-                                              .RTCPeerConnectionStateFailed) {
-                                        //============================ Fix White Screen =============================
-                                        // ----------------------------------- Close Stream From Front-end --------------------------
 
-                                        isAvatarExpanded.value = false;
-                                        //here i close the webRTCCubit after closing done success to avoid leak in memory
-                                        //I add this because:
-                                        //1-  when timer is done from back-end so this i hundle in IF
-                                        //2- when i open the stream but i have a faild peer connection, so this i hundle in ELSE
-                                        if (webRtcState.elapsedTime > 60) {
-                                          errorToast(
-                                              AppStrings().avatarSessionExpired,
-                                              context);
-                                        } else {
-                                          errorToast(
-                                              AppStrings().somethingWentWrong,
-                                              context);
-                                        }
-                                        // ----------------------------------- Close Stream From Back-end --------------------------
-                                        final String? streamId =
-                                            BlocProvider.of<StreamIdCubit>(
-                                                    context)
-                                                .state
-                                                .streamId;
-                                        if (streamId != null) {
-                                          //
-                                          closeStreamBloc.add(
-                                              CloseStreamEvent.closeStream(
-                                                  //here i pass the streamID
-                                                  streamIdCubit
-                                                      .state.streamId!));
-                                          //here i clear the state of startstream to make sure that i don't use the old sdp and data
-                                          context.read<StartStreamBloc>().add(
-                                              const StartStreamEvent
-                                                  .clearState());
-                                          //I close the avatar and dispose the camera renderer
-                                          if (webRTCCubit != null) {
-                                            webRTCCubit!.closeStreamCubit();
-                                            webRTCCubit!.close();
-                                            webRTCCubit == null;
-                                          }
-                                          BlocProvider.of<StreamIdCubit>(
-                                                  context)
-                                              .clearStreamId();
-                                        }
-                                        //=========================================================
-                                      }
-                                    },
-                                    bloc: webRTCCubit,
-                                    builder: (context, state) {
-                                      return state.rTCPeerConnectionState ==
-                                              RTCPeerConnectionState
-                                                  .RTCPeerConnectionStateConnecting
-                                          ? Container(
-                                              padding:
-                                                  EdgeInsets.all(AppSizeW.s5),
-                                              width: AppSizeW.s40,
-                                              height: AppSizeH.s40,
-                                              child:
-                                                  const CircularProgressIndicator())
-                                          : SizedBox(
-                                              height: state.isMiniScreen ==
-                                                      false
-                                                  ? MediaQuery.sizeOf(context)
-                                                          .height /
-                                                      5
-                                                  : MediaQuery.sizeOf(context)
-                                                          .height /
-                                                      1.6,
-                                              child: ChatMessagesListWidget(
-                                                scrollController:
-                                                    scrollController,
-                                                isSending: isMessageSending,
-                                                isAvatarPressed:
-                                                    isAvatarPressed,
-                                              ),
-                                            );
-                                    }),
+                              //zak
+                              //===================================
+                              if (isAvatarPressed)
+                                SizedBox(
+                                  height:
+                                      MediaQuery.sizeOf(context).height * .2,
+                                  child: ChatMessagesListWidget(
+                                    scrollController: scrollController,
+                                    isSending: isMessageSending,
+                                    isAvatarPressed: isAvatarPressed,
+                                  ),
+                                ),
+                              // if (!isAvatarPressed)
+                              //===================================
+                              // if (isAvatarPressed)
+                              //   BlocConsumer<WebRTCCubit, WebRTCState>(
+                              //       listener: (context, webRtcState) {
+                              //         if (webRtcState.rTCPeerConnectionState ==
+                              //             RTCPeerConnectionState
+                              //                 .RTCPeerConnectionStateFailed) {
+                              //           //============================ Fix White Screen =============================
+                              //           // ----------------------------------- Close Stream From Front-end --------------------------
+
+                              //           isAvatarExpanded.value = false;
+                              //           //here i close the webRTCCubit after closing done success to avoid leak in memory
+                              //           //I add this because:
+                              //           //1-  when timer is done from back-end so this i hundle in IF
+                              //           //2- when i open the stream but i have a faild peer connection, so this i hundle in ELSE
+                              //           if (webRtcState.elapsedTime > 60) {
+                              //             errorToast(
+                              //                 AppStrings().avatarSessionExpired,
+                              //                 context);
+                              //           } else {
+                              //             errorToast(
+                              //                 AppStrings().somethingWentWrong,
+                              //                 context);
+                              //           }
+                              //           // ----------------------------------- Close Stream From Back-end --------------------------
+                              //           final String? streamId =
+                              //               BlocProvider.of<StreamIdCubit>(
+                              //                       context)
+                              //                   .state
+                              //                   .streamId;
+                              //           if (streamId != null) {
+                              //             //
+                              //             closeStreamBloc.add(
+                              //                 CloseStreamEvent.closeStream(
+                              //                     //here i pass the streamID
+                              //                     streamIdCubit
+                              //                         .state.streamId!));
+                              //             //here i clear the state of startstream to make sure that i don't use the old sdp and data
+                              //             context.read<StartStreamBloc>().add(
+                              //                 const StartStreamEvent
+                              //                     .clearState());
+                              //             //I close the avatar and dispose the camera renderer
+                              //             if (webRTCCubit != null) {
+                              //               webRTCCubit!.closeStreamCubit();
+                              //               webRTCCubit!.close();
+                              //               webRTCCubit == null;
+                              //             }
+                              //             BlocProvider.of<StreamIdCubit>(
+                              //                     context)
+                              //                 .clearStreamId();
+                              //           }
+                              //           //=========================================================
+                              //         }
+                              //       },
+                              //       bloc: webRTCCubit,
+                              //       builder: (context, state) {
+                              //         return state.rTCPeerConnectionState ==
+                              //                 RTCPeerConnectionState
+                              //                     .RTCPeerConnectionStateConnecting
+                              //             ? Container(
+                              //                 padding:
+                              //                     EdgeInsets.all(AppSizeW.s5),
+                              //                 width: AppSizeW.s40,
+                              //                 height: AppSizeH.s40,
+                              //                 child:
+                              //                     const CircularProgressIndicator())
+                              //             : SizedBox(
+                              //                 height: state.isMiniScreen ==
+                              //                         false
+                              //                     ? MediaQuery.sizeOf(context)
+                              //                             .height /
+                              //                         5
+                              //                     : MediaQuery.sizeOf(context)
+                              //                             .height /
+                              //                         1.6,
+                              //                 child: ChatMessagesListWidget(
+                              //                   scrollController:
+                              //                       scrollController,
+                              //                   isSending: isMessageSending,
+                              //                   isAvatarPressed:
+                              //                       isAvatarPressed,
+                              //                 ),
+                              //               );
+                              //       }),
                               sendState.maybeMap(
                                 loading: (value) => const SizedBox.shrink(),
                                 orElse: () {
@@ -513,32 +554,41 @@ class _ChatViewState extends State<ChatView>
                                                           ),
                                                         ),
                                                       )
-                                                    : AiAvatarIconWidget(
-                                                        isRecordModeActive:
-                                                            isRecordMode,
-                                                        // startAvatarTimer:
-                                                        //     startOrResetAvatarTimer,
-                                                        onWebRTCCubitCreated:
-                                                            (WebRTCCubit?
-                                                                newCubit) async {
-                                                          //I close the avatar and dispose the camera renderer
-                                                          if (newCubit ==
-                                                                  null &&
-                                                              webRTCCubit !=
-                                                                  null) {
-                                                            await webRTCCubit!
-                                                                .closeStreamCubit();
-                                                            await webRTCCubit!
-                                                                .close();
-                                                            webRTCCubit == null;
-                                                          } else {
-                                                            //I Start the avatar
-                                                            webRTCCubit =
-                                                                newCubit;
-                                                          }
-                                                        },
-                                                        isAvatarExpanded:
-                                                            isAvatarExpanded,
+                                                    :
+                                                    //zak
+                                                    BlocProvider.value(
+                                                        value: BlocProvider.of<
+                                                                StreamBloc>(
+                                                            context),
+                                                        child:
+                                                            AiAvatarIconWidget(
+                                                          isRecordModeActive:
+                                                              isRecordMode,
+                                                          // startAvatarTimer:
+                                                          //     startOrResetAvatarTimer,
+                                                          onWebRTCCubitCreated:
+                                                              (WebRTCCubit?
+                                                                  newCubit) async {
+                                                            //I close the avatar and dispose the camera renderer
+                                                            if (newCubit ==
+                                                                    null &&
+                                                                webRTCCubit !=
+                                                                    null) {
+                                                              await webRTCCubit!
+                                                                  .closeStreamCubit();
+                                                              await webRTCCubit!
+                                                                  .close();
+                                                              webRTCCubit ==
+                                                                  null;
+                                                            } else {
+                                                              //I Start the avatar
+                                                              webRTCCubit =
+                                                                  newCubit;
+                                                            }
+                                                          },
+                                                          isAvatarExpanded:
+                                                              isAvatarExpanded,
+                                                        ),
                                                       ),
                                                 SizedBox(
                                                   width: AppSizeW.s5,
@@ -555,7 +605,7 @@ class _ChatViewState extends State<ChatView>
                                                               .isNotEmpty &&
                                                           isAvatarPressed) {
                                                         showHoldMessage.value =
-                                                            false; // Add this line
+                                                            false;
                                                       }
                                                       //------------------- send message via record-------------------\
                                                       final message =

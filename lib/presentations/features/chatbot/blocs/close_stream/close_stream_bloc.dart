@@ -26,45 +26,19 @@ class CloseStreamBloc extends Bloc<CloseStreamEvent, CloseStreamState> {
       log("close loading ===========================");
       await event.map(
         closeStream: (value) async {
-          // emit(state.copyWith(
-          //   isLoading: true,
-          //   hasError: false,
-          //   sendAnswerResponse: const SendAnswerResponseModel(),
-          //   sendCandidateResponse: const SendAnswerResponseModel(),
-          //   startStreamResponse: const StartStreamModel(),
-          //   closeStreamResponse: const SendAnswerResponseModel(),
-          // ));
           log("close before request ===========================");
           final failureOrSuccess = await closeStreamUsecase.execute(value.id);
           log('chatHistoryCubit: $failureOrSuccess');
           log("close after after ===========================");
           await failureOrSuccess.when((success) async {
             emit(CloseStreamState.done(response: success));
-            // emit(
-            //   state.copyWith(
-            //     isLoading: false,
-            //     hasError: false,
-            //     closeStreamResponse: success,
-            //   ),
-            // );
+
           }, (error) {
             print('Error: ${error.message}');
             emit(CloseStreamState.error(
                 (error.message != null && error.message!.isNotEmpty)
                     ? error.message!
                     : (error.detail ?? AppStrings().defaultError)));
-
-            // emit(
-            //   state.copyWith(
-            //     isLoading: false,
-            //     hasError: true,
-            //     errorMessage: error.message,
-            //     sendAnswerResponse: const SendAnswerResponseModel(),
-            //     sendCandidateResponse: const SendAnswerResponseModel(),
-            //     startStreamResponse: const StartStreamModel(),
-            //     closeStreamResponse: const SendAnswerResponseModel(),
-            //   ),
-            // );
           });
         },
       );

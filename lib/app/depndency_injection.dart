@@ -187,6 +187,29 @@ Future<void> initAppModule() async {
           createFavouriteUseCase: instance(),
         ));
   }
+  //zak delete those:
+  //
+  if (!GetIt.I.isRegistered<StartStreamUsecase>()) {
+    instance.registerFactory<StartStreamUsecase>(
+        () => StartStreamUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<SendAnswerUsecase>()) {
+    instance.registerFactory<SendAnswerUsecase>(
+        () => SendAnswerUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<SendCandidateUsecase>()) {
+    instance.registerFactory<SendCandidateUsecase>(
+        () => SendCandidateUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<CloseStreamUsecase>()) {
+    instance.registerFactory<CloseStreamUsecase>(
+        () => CloseStreamUsecase(instance()));
+  }
+    if (!GetIt.I.isRegistered<CloseStreamBloc>()) {
+    instance
+        .registerFactory<CloseStreamBloc>(() => CloseStreamBloc(instance()));
+  }
+  //
 }
 
 Future<void> initTranslationsModule() async {

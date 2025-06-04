@@ -177,7 +177,6 @@ class WebRTCCubit extends Cubit<WebRTCState> {
       log("Error: MissingPluginException. $e");
     }
   }
-
   Future<void> initWebRTC(
       OfferModel? offer, List<ICEServerModel> iceServers) async {
     try {
