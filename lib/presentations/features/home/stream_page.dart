@@ -1,13 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
-
-import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/send_answer_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/send_candidate_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/start_stream_usecase.dart';
-import 'package:ebla/presentations/features/chatbot/blocs/close_stream/close_stream_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
@@ -24,14 +21,12 @@ class StreamPage extends StatefulWidget {
 
 class _StreamPageState extends State<StreamPage> {
   late final WebViewController _controller;
-  late final CloseStreamBloc _closeStreamBloc;
   String _webRtcId = '';
 
   @override
   void initState() {
     super.initState();
     _initializeWebViewController();
-    _closeStreamBloc = instance<CloseStreamBloc>();
     // Auto-start the stream when the page initializes
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<StreamBloc>().add(StartStreamRequested());
@@ -42,6 +37,7 @@ class _StreamPageState extends State<StreamPage> {
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(Colors.black)
+      ..enableZoom(false)
       ..addJavaScriptChannel(
         'WebRTCBridge',
         onMessageReceived: (JavaScriptMessage message) {
@@ -72,39 +68,6 @@ class _StreamPageState extends State<StreamPage> {
     } else if (data['type'] == 'error') {
       bloc.add(StreamFailed(data['message']));
     }
-  }
-
-// Add this method to build the close button
-  Widget _buildCloseButton() {
-    return Positioned(
-      top: 50,
-      right: 20,
-      child: BlocListener<CloseStreamBloc, CloseStreamState>(
-        bloc: _closeStreamBloc,
-        listener: (context, state) {
-          state.whenOrNull(
-            done: (response) {
-              Navigator.of(context).pop();
-            },
-            error: (message) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(message)),
-              );
-            },
-          );
-        },
-        child: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white, size: 30),
-          onPressed: () {
-            if (_webRtcId.isNotEmpty) {
-              _closeStreamBloc.add(CloseStreamEvent.closeStream(_webRtcId));
-            } else {
-              Navigator.of(context).pop();
-            }
-          },
-        ),
-      ),
-    );
   }
 
   @override
@@ -153,18 +116,8 @@ class _StreamPageState extends State<StreamPage> {
               return const Center(child: CircularProgressIndicator());
             },
           ),
-          if (_webRtcId.isNotEmpty) _buildCloseButton(),
         ],
       ),
-    );
-  }
-
-  Widget _buildStartButton() {
-    return ElevatedButton(
-      onPressed: () {
-        context.read<StreamBloc>().add(StartStreamRequested());
-      },
-      child: const Text("Start Stream"),
     );
   }
 
@@ -228,18 +181,11 @@ class _StreamPageState extends State<StreamPage> {
       padding: 5px;
       z-index: 100;
     }
-    #loader {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-    }
   </style>
 </head>
 <body>
   <div id="status">Initializing connection...</div>
-  <div id="loader">Loading video stream...</div>
+  <div id="loader"></div>
   <video id="remoteVideo" autoplay playsinline></video>
 
   <script>
@@ -278,8 +224,12 @@ class _StreamPageState extends State<StreamPage> {
         
         const configuration = {
           iceServers: ${jsonEncode(iceServers)},
-          iceTransportPolicy: 'relay'
-        };
+          iceTransportPolicy: 'relay',
+          //zak
+          bundlePolicy: 'max-bundle', 
+          rtcpMuxPolicy: 'require', 
+        sdpSemantics: 'unified-plan' 
+};
 
         peerConnection = new RTCPeerConnection(configuration);
         updateStatus('PeerConnection created');
@@ -383,7 +333,11 @@ remoteVideo.onloadedmetadata = () => {
         await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
         
         updateStatus('Creating answer');
-        const answer = await peerConnection.createAnswer();
+        //zak3 delete the map in the create answer
+        const answer = await peerConnection.createAnswer({
+        'offerToReceiveAudio': true,
+        'offerToReceiveVideo': true,
+      });
         
         updateStatus('Setting local description');
         await peerConnection.setLocalDescription(answer);

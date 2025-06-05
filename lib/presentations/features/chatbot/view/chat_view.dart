@@ -610,10 +610,12 @@ class _ChatViewState extends State<ChatView>
                                                       //------------------- send message via record-------------------\
                                                       final message =
                                                           voiceState.text;
+                                                      log("zak voice:${voiceState.text}");
                                                       if (!voiceState
                                                               .isListening &&
                                                           message.isNotEmpty &&
                                                           isAvatarPressed) {
+                                                        log("zak voice2:${voiceState.text}");
                                                         //--------------
                                                         //to make the data shown dirctly when message send
                                                         WidgetsBinding.instance
@@ -655,9 +657,12 @@ class _ChatViewState extends State<ChatView>
                                                         if (chatState
                                                                     .activeChat ==
                                                                 ChatTypeEnum
-                                                                    .authority &&
-                                                            webRTCCubit !=
-                                                                null) {
+                                                                    .authority
+                                                            //zakkkk
+                                                            //          &&
+                                                            // webRTCCubit !=
+                                                            //     null
+                                                            ) {
                                                           // Send the user's message as a ChatMessage instance
                                                           // chatBotBloc.add(
 
@@ -665,13 +670,14 @@ class _ChatViewState extends State<ChatView>
                                                               ChatbotRequestModel(
                                                                   streamId:
                                                                       //===== NOTE: Here I send the stream id as null when i make a pause to te webRTC and user send message =======
-                                                                      !webRTCCubit!
-                                                                              .state
-                                                                              .isPlaying
-                                                                          ? null
-                                                                          : streamIdCubit
-                                                                              .state
-                                                                              .streamId,
+                                                                      // !webRTCCubit!
+                                                                      //         .state
+                                                                      //         .isPlaying
+                                                                      //     ? null
+                                                                      //     :
+                                                                      streamIdCubit
+                                                                          .state
+                                                                          .streamId,
                                                                   messages: context
                                                                       .read<
                                                                           ChatHistoryCubit>()
