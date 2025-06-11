@@ -240,30 +240,56 @@ class _StreamPageState extends State<StreamPage> {
           const stream = event.streams[0] || new MediaStream();
           if (event.track) stream.addTrack(event.track);
             // Log the tracks we received
-  console.log('zak Received tracks:', stream.getTracks());
-  stream.getAudioTracks().forEach(track => {
-    console.log('zak Audio track:', track);
-  });
+          console.log('zak Received tracks:', stream.getTracks());
+          stream.getAudioTracks().forEach(track => {
+            console.log('zak Audio track:', track);
+          });
           remoteVideo.srcObject = stream;
-          //zak
-//           remoteVideo.onloadedmetadata = () => {
+//zakios
+// remoteVideo.onloadedmetadata = () => {
 //   updateStatus('Stream playing');
+  
+//   // On iOS, we need to ensure playback starts with muted audio first
+//   remoteVideo.muted = true;
+  
 //   const playPromise = remoteVideo.play();
   
 //   if (playPromise !== undefined) {
 //     playPromise.catch(error => {
 //       if (error.name === 'NotAllowedError') {
-//         // Autoplay was prevented, mute and try again
-//         remoteVideo.muted = true;
-//         remoteVideo.play().catch(handleError);
+//         // Show a button to allow user to start playback
+//         const playButton = document.createElement('button');
+//         playButton.textContent = 'Tap to Start Video';
+//         playButton.style.position = 'absolute';
+//         playButton.style.top = '50%';
+//         playButton.style.left = '50%';
+//         playButton.style.transform = 'translate(-50%, -50%)';
+//         playButton.style.zIndex = '1000';
+//         playButton.style.padding = '10px 20px';
+//         playButton.style.backgroundColor = 'rgba(0,0,0,0.7)';
+//         playButton.style.color = 'white';
+//         playButton.style.border = 'none';
+//         playButton.style.borderRadius = '5px';
+        
+//         playButton.onclick = () => {
+//           playButton.remove();
+//           remoteVideo.play().catch(handleError);
+//         };
+        
+//         document.body.appendChild(playButton);
 //       } else {
 //         handleError(error);
 //       }
 //     });
 //   }
 // };
+//zakios
 remoteVideo.onloadedmetadata = () => {
   updateStatus('Stream playing');
+  // zakIos
+  // // On iOS, we need to ensure playback starts with muted audio first 
+  // remoteVideo.muted = true;
+  // zakIos
   const playPromise = remoteVideo.play();
   
   if (playPromise !== undefined) {
@@ -297,7 +323,7 @@ remoteVideo.onloadedmetadata = () => {
     });
   }
 };
-        };
+      };
 
         // Handle ICE candidates
         peerConnection.onicecandidate = (event) => {
