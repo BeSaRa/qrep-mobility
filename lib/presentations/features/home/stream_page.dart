@@ -14,6 +14,8 @@ import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../chatbot/blocs/stream_id_cubit.dart/stream_id_cubit.dart';
+import 'package:webview_flutter_android/webview_flutter_android.dart';
+import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
 class StreamPage extends StatefulWidget {
   const StreamPage({super.key});
@@ -38,8 +40,33 @@ class _StreamPageState extends State<StreamPage> {
     });
   }
 
+  // void _initializeWebViewController() {
+  //   _controller = WebViewController()
+  //     ..setJavaScriptMode(JavaScriptMode.unrestricted)
+  //     ..setBackgroundColor(Colors.black)
+  //     ..enableZoom(false)
+
+  //       ..addJavaScriptChannel(
+  //       'WebRTCBridge',
+  //       onMessageReceived: (JavaScriptMessage message) {
+  //         _handleWebViewMessage(message);
+  //       },
+  //     );
+  // }
   void _initializeWebViewController() {
-    _controller = WebViewController()
+    // 1. Create platform-specific parameters
+    late final PlatformWebViewControllerCreationParams params;
+    if (WebViewPlatform.instance is WebKitWebViewPlatform) {
+      params = WebKitWebViewControllerCreationParams(
+        allowsInlineMediaPlayback: true,
+        mediaTypesRequiringUserAction: const <PlaybackMediaTypes>{},
+      );
+    } else {
+      params = const PlatformWebViewControllerCreationParams();
+    }
+
+    // 2. Create the controller with platform params
+    _controller = WebViewController.fromPlatformCreationParams(params)
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(Colors.black)
       ..enableZoom(false)
@@ -49,6 +76,12 @@ class _StreamPageState extends State<StreamPage> {
           _handleWebViewMessage(message);
         },
       );
+
+    // 3. Set platform-specific configurations
+    if (_controller.platform is AndroidWebViewController) {
+      (_controller.platform as AndroidWebViewController)
+          .setMediaPlaybackRequiresUserGesture(false);
+    }
   }
 
   void _handleWebViewMessage(JavaScriptMessage message) {

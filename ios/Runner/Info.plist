@@ -55,6 +55,11 @@
 	<!-- zakios -->
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
+	<key>allowsInlineMediaPlayback</key>
+	<true/>
+	<key>mediaPlaybackRequiresUserAction</key>
+	<false/>
+
 	<!-- zakios -->
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>AQARAT needs Bluetooth access to connect with external audio devices.</string>
