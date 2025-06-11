@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'dart:developer';
+
+import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/send_answer_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/send_candidate_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/start_stream_usecase.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/close_stream/close_stream_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
@@ -21,12 +24,14 @@ class StreamPage extends StatefulWidget {
 
 class _StreamPageState extends State<StreamPage> {
   late final WebViewController _controller;
+  late final CloseStreamBloc _closeStreamBloc;
   String _webRtcId = '';
 
   @override
   void initState() {
     super.initState();
     _initializeWebViewController();
+    _closeStreamBloc = instance<CloseStreamBloc>();
     // Auto-start the stream when the page initializes
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<StreamBloc>().add(StartStreamRequested());
@@ -68,6 +73,39 @@ class _StreamPageState extends State<StreamPage> {
     } else if (data['type'] == 'error') {
       bloc.add(StreamFailed(data['message']));
     }
+  }
+
+// Add this method to build the close button
+  Widget _buildCloseButton() {
+    return Positioned(
+      top: 50,
+      right: 20,
+      child: BlocListener<CloseStreamBloc, CloseStreamState>(
+        bloc: _closeStreamBloc,
+        listener: (context, state) {
+          state.whenOrNull(
+            done: (response) {
+              Navigator.of(context).pop();
+            },
+            error: (message) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(message)),
+              );
+            },
+          );
+        },
+        child: IconButton(
+          icon: const Icon(Icons.close, color: Colors.white, size: 30),
+          onPressed: () {
+            if (_webRtcId.isNotEmpty) {
+              _closeStreamBloc.add(CloseStreamEvent.closeStream(_webRtcId));
+            } else {
+              Navigator.of(context).pop();
+            }
+          },
+        ),
+      ),
+    );
   }
 
   @override
@@ -116,8 +154,18 @@ class _StreamPageState extends State<StreamPage> {
               return const Center(child: CircularProgressIndicator());
             },
           ),
+          if (_webRtcId.isNotEmpty) _buildCloseButton(),
         ],
       ),
+    );
+  }
+
+  Widget _buildStartButton() {
+    return ElevatedButton(
+      onPressed: () {
+        context.read<StreamBloc>().add(StartStreamRequested());
+      },
+      child: const Text("Start Stream"),
     );
   }
 
@@ -156,7 +204,7 @@ class _StreamPageState extends State<StreamPage> {
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>WebRTC Stream</title>
   <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
   <style>
@@ -171,6 +219,7 @@ class _StreamPageState extends State<StreamPage> {
       padding: 0;
       background-color: #000;
       overflow: hidden;
+      touch-action: manipulation;
     }
     #status {
       position: absolute;
@@ -180,12 +229,50 @@ class _StreamPageState extends State<StreamPage> {
       background: rgba(0,0,0,0.5);
       padding: 5px;
       z-index: 100;
+      font-size: 14px;
+    }
+    #loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 16px;
+    }
+    #unmuteButton {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      padding: 8px 12px;
+      background-color: rgba(0,0,0,0.7);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    #unmuteButton:active {
+      transform: scale(0.95);
+    }
+    #playButton {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1001;
+      padding: 15px 30px;
+      background-color: rgba(0,0,0,0.7);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
   <div id="status">Initializing connection...</div>
-  <div id="loader"></div>
+  <div id="loader">Loading video stream...</div>
   <video id="remoteVideo" autoplay playsinline></video>
 
   <script>
@@ -194,6 +281,16 @@ class _StreamPageState extends State<StreamPage> {
     const statusDiv = document.getElementById('status');
     const loaderDiv = document.getElementById('loader');
     const bridge = WebRTCBridge;
+    
+    // Global state
+    let isAudioMuted = true;
+    let videoStarted = false;
+    let hasAudioTracks = false;
+
+    function isIOS() {
+      return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+            (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    }
 
     function updateStatus(message) {
       statusDiv.textContent = message;
@@ -217,6 +314,69 @@ class _StreamPageState extends State<StreamPage> {
       bridge.postMessage(JSON.stringify(message));
     }
 
+    function createUnmuteButton() {
+      const existingBtn = document.getElementById('unmuteButton');
+      if (existingBtn) existingBtn.remove();
+      
+      const unmuteButton = document.createElement('button');
+      unmuteButton.id = 'unmuteButton';
+      unmuteButton.textContent = isAudioMuted ? '🔇 Tap to Unmute' : '🔊';
+      
+      unmuteButton.onclick = function() {
+        // This user interaction allows us to unmute
+        isAudioMuted = !isAudioMuted;
+        remoteVideo.muted = isAudioMuted;
+        unmuteButton.textContent = isAudioMuted ? '🔇 Tap to Unmute' : '🔊';
+        
+        // On iOS, we need to play after unmuting
+        if (!isAudioMuted && isIOS()) {
+          remoteVideo.play().catch(e => {
+            console.log('Play after unmute failed:', e);
+          });
+        }
+      };
+      
+      // Only show if we have audio tracks
+      unmuteButton.style.display = hasAudioTracks ? 'block' : 'none';
+      document.body.appendChild(unmuteButton);
+    }
+
+    // function showPlayButton() {
+    //   const existingBtn = document.getElementById('playButton');
+    //   if (existingBtn) existingBtn.remove();
+      
+    //   const playButton = document.createElement('button');
+    //   playButton.id = 'playButton';
+    //   playButton.textContent = '▶ Tap to Start Video';
+      
+    //   playButton.onclick = function() {
+    //     playButton.remove();
+    //     startVideoPlayback();
+    //   };
+      
+    //   document.body.appendChild(playButton);
+    // }
+
+    function startVideoPlayback() {
+      // Start muted to comply with autoplay policies
+      remoteVideo.muted = true;
+      isAudioMuted = true;
+      
+      const playPromise = remoteVideo.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          videoStarted = true;
+          updateStatus('Stream playing');
+          showLoader(false);
+          if (hasAudioTracks) createUnmuteButton();
+        }).catch(error => {
+          console.log('Autoplay failed, showing play button', error);
+          // showPlayButton();
+        });
+      }
+    }
+
     async function initializeWebRTC() {
       try {
         updateStatus('Initializing WebRTC...');
@@ -224,12 +384,8 @@ class _StreamPageState extends State<StreamPage> {
         
         const configuration = {
           iceServers: ${jsonEncode(iceServers)},
-          iceTransportPolicy: 'relay',
-          //zak
-          bundlePolicy: 'max-bundle', 
-          rtcpMuxPolicy: 'require', 
-        sdpSemantics: 'unified-plan' 
-};
+          iceTransportPolicy: 'relay'
+        };
 
         peerConnection = new RTCPeerConnection(configuration);
         updateStatus('PeerConnection created');
@@ -239,91 +395,14 @@ class _StreamPageState extends State<StreamPage> {
           updateStatus('Received media stream');
           const stream = event.streams[0] || new MediaStream();
           if (event.track) stream.addTrack(event.track);
-            // Log the tracks we received
-          console.log('zak Received tracks:', stream.getTracks());
-          stream.getAudioTracks().forEach(track => {
-            console.log('zak Audio track:', track);
-          });
+          
+          // Check for audio tracks
+          hasAudioTracks = stream.getAudioTracks().length > 0;
+          console.log('Stream has audio tracks:', hasAudioTracks);
+          
           remoteVideo.srcObject = stream;
-//zakios
-// remoteVideo.onloadedmetadata = () => {
-//   updateStatus('Stream playing');
-  
-//   // On iOS, we need to ensure playback starts with muted audio first
-//   remoteVideo.muted = true;
-  
-//   const playPromise = remoteVideo.play();
-  
-//   if (playPromise !== undefined) {
-//     playPromise.catch(error => {
-//       if (error.name === 'NotAllowedError') {
-//         // Show a button to allow user to start playback
-//         const playButton = document.createElement('button');
-//         playButton.textContent = 'Tap to Start Video';
-//         playButton.style.position = 'absolute';
-//         playButton.style.top = '50%';
-//         playButton.style.left = '50%';
-//         playButton.style.transform = 'translate(-50%, -50%)';
-//         playButton.style.zIndex = '1000';
-//         playButton.style.padding = '10px 20px';
-//         playButton.style.backgroundColor = 'rgba(0,0,0,0.7)';
-//         playButton.style.color = 'white';
-//         playButton.style.border = 'none';
-//         playButton.style.borderRadius = '5px';
-        
-//         playButton.onclick = () => {
-//           playButton.remove();
-//           remoteVideo.play().catch(handleError);
-//         };
-        
-//         document.body.appendChild(playButton);
-//       } else {
-//         handleError(error);
-//       }
-//     });
-//   }
-// };
-//zakios
-remoteVideo.onloadedmetadata = () => {
-  updateStatus('Stream playing');
-  // zakIos
-  // // On iOS, we need to ensure playback starts with muted audio first 
-  // remoteVideo.muted = true;
-  // zakIos
-  const playPromise = remoteVideo.play();
-  
-  if (playPromise !== undefined) {
-    playPromise.catch(error => {
-      if (error.name === 'NotAllowedError') {
-        // First try with muted audio
-        remoteVideo.muted = true;
-        remoteVideo.play()
-          .then(() => {
-            // After successful play, try unmuting (requires user interaction)
-
-            const unmuteButton = document.createElement('button');
-            unmuteButton.textContent = 'Unmute Audio';
-            unmuteButton.style.position = 'absolute';
-            unmuteButton.style.top = '20px';
-            unmuteButton.style.right = '50px';
-            unmuteButton.style.transform = 'translateX(-50%)';
-            unmuteButton.style.zIndex = '100';
-            unmuteButton.onclick = () => {
-              remoteVideo.muted = false;
-              unmuteButton.remove();
-            };
-            
-            document.body.appendChild(unmuteButton);
-            
-          })
-          .catch(handleError);
-      } else {
-        handleError(error);
-      }
-    });
-  }
-};
-      };
+          startVideoPlayback();
+        };
 
         // Handle ICE candidates
         peerConnection.onicecandidate = (event) => {
@@ -359,11 +438,7 @@ remoteVideo.onloadedmetadata = () => {
         await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
         
         updateStatus('Creating answer');
-        //zak3 delete the map in the create answer
-        const answer = await peerConnection.createAnswer({
-        'offerToReceiveAudio': true,
-        'offerToReceiveVideo': true,
-      });
+        const answer = await peerConnection.createAnswer();
         
         updateStatus('Setting local description');
         await peerConnection.setLocalDescription(answer);
@@ -382,6 +457,15 @@ remoteVideo.onloadedmetadata = () => {
 
     // Initialize when page loads
     document.addEventListener('DOMContentLoaded', initializeWebRTC);
+
+    // Handle visibility changes
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && videoStarted) {
+        remoteVideo.play().catch(e => {
+          console.log('Resume after visibility change failed:', e);
+        });
+      }
+    });
 
     // Cleanup on page unload
     window.addEventListener('beforeunload', () => {
