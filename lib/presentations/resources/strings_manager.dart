@@ -270,6 +270,7 @@ class AppStrings {
 
   String noResultFounded = "no_result_founded".tr();
   String allCategories = "All_Categories".tr();
+  String clickAnywhereMessage = "click_anywhere_message".tr();
 
   //--------------ai_search---------------
   String aiSearch = "ai_search".tr();

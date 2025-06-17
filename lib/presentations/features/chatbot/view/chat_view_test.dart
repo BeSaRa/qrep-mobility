@@ -228,7 +228,7 @@
 //                                 //                   .streamId;
 //                                 //           if (streamId != null) {
 //                                 //             //
-//                                 //             closeStreamBloc.add(
+//                                 //             add(
 //                                 //                 CloseStreamEvent.closeStream(
 //                                 //                     //here i pass the streamID
 //                                 //                     streamIdCubit

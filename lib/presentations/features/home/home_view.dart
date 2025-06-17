@@ -82,17 +82,6 @@ class _HomeViewState extends State<HomeView>
               SizedBox(
                 height: AppSizeH.s20,
               ),
-              //zak
-              ElevatedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context){
-                  return BlocProvider(
-      create: (context) => StreamBloc(
-        startStreamUsecase: instance<StartStreamUsecase>(),
-        sendAnswerUsecase: instance<SendAnswerUsecase>(),
-        sendCandidateUsecase: instance<SendCandidateUsecase>(),
-      ),child: const StreamPage());
-                }));
-              }, child: Text("start stream")),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 spacing: AppSizeW.s40,
