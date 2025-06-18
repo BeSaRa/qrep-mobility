@@ -267,7 +267,7 @@ class _ChatViewState extends State<ChatView>
                                 }
                               },
                               child: StreamPage(
-                                isAvatarExpanded: isAvatarExpanded,
+                                  isAvatarExpanded: isAvatarExpanded,
                                   isStreamFullReady: isStreamFullReady),
                             ))
                         // ], child: const AvatarStreamWidget())
@@ -712,24 +712,22 @@ class _ChatViewState extends State<ChatView>
                                                               if (chatState
                                                                           .activeChat ==
                                                                       ChatTypeEnum
-                                                                          .authority &&
-                                                                  webRTCCubit !=
-                                                                      null) {
+                                                                          .authority
+                                                                  //         &&
+                                                                  // webRTCCubit !=
+                                                                  //     null
+                                                                  ) {
                                                                 // Send the user's message as a ChatMessage instance
                                                                 // chatBotBloc.add(
 
-                                                                chatBotBloc.add(SendMessageEvent.started(
-                                                                    ChatbotRequestModel(
-                                                                        streamId:
-                                                                            //===== NOTE: Here I send the stream id as null when i make a pause to te webRTC and user send message =======
-                                                                            !webRTCCubit!.state.isPlaying
-                                                                                ? null
-                                                                                : streamIdCubit
-                                                                                    .state.streamId,
-                                                                        messages: context
-                                                                            .read<ChatHistoryCubit>()
-                                                                            .state
-                                                                            .authorityMessages)));
+                                                                chatBotBloc.add(SendMessageEvent.started(ChatbotRequestModel(
+                                                                    streamId:
+                                                                        //===== NOTE: Here I send the stream id as null when i make a pause to te webRTC and user send message =======
+                                                                        // !webRTCCubit!.state.isPlaying
+                                                                        //     ? null
+                                                                        //     :
+                                                                        streamIdCubit.state.streamId,
+                                                                    messages: context.read<ChatHistoryCubit>().state.authorityMessages)));
                                                               }
                                                               _controller
                                                                   .clear();

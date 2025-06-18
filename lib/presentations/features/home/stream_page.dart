@@ -48,6 +48,11 @@ class _StreamPageState extends State<StreamPage> {
     });
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   void _initializeWebViewController() {
     // 1. Create platform-specific parameters
     late final PlatformWebViewControllerCreationParams params;
@@ -68,6 +73,7 @@ class _StreamPageState extends State<StreamPage> {
       ..addJavaScriptChannel(
         'FlutterBridge', // Channel name
         onMessageReceived: (JavaScriptMessage message) {
+          if (!mounted) return;
           if (message.message == 'streamReady') {
             widget.isStreamFullReady.value = true;
           }
@@ -76,6 +82,7 @@ class _StreamPageState extends State<StreamPage> {
       ..addJavaScriptChannel(
         'WebRTCBridge',
         onMessageReceived: (JavaScriptMessage message) {
+          if (!mounted) return;
           _handleWebViewMessage(message);
         },
       );
@@ -108,8 +115,7 @@ class _StreamPageState extends State<StreamPage> {
 
       // Notify the StreamBloc about the failure
       bloc.add(StreamFailed(data['message'] ?? 'WebRTC connection failed'));
-    }
-    if (data['type'] == 'answer') {
+    } else if (data['type'] == 'answer') {
       bloc.add(SendAnswerToBackend(
         streamId: _webRtcId,
         sdp: data['sdp'],
@@ -468,7 +474,7 @@ class _StreamPageState extends State<StreamPage> {
     let isMuted = true;
     let isPaused = false;
 
-    // Initialize both buttons as hidden
+    // Initialize both buttons as hiddenf
     unmuteButton.style.display = 'none';
     pauseButton.style.display = 'none';
 
