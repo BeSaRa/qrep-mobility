@@ -59,7 +59,7 @@ class _ChatViewState extends State<ChatView>
   late StreamIdCubit streamIdCubit;
   late SendAnswerAndCandidateBloc sendAnswerAndCandidateBloc;
   final ValueNotifier<bool> isSendEnabled = ValueNotifier<bool>(false);
-  final ValueNotifier<bool> isAvatarExpanded = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> isAvatarExpanded = ValueNotifier<bool>(true);
   //zak
   final ValueNotifier<bool> isStreamFullReady = ValueNotifier<bool>(false);
   final ValueNotifier<bool> isRecordMode = ValueNotifier<bool>(true);
@@ -543,6 +543,7 @@ class _ChatViewState extends State<ChatView>
                                     //                 ),
                                     //               );
                                     //       }),
+//=================================== START FAQ ======================================
                                     sendState.maybeMap(
                                       loading: (value) =>
                                           const SizedBox.shrink(),
@@ -551,6 +552,7 @@ class _ChatViewState extends State<ChatView>
                                             scrollController: scrollController);
                                       },
                                     ),
+//=================================== END FAQ ======================================
 
                                     BlocBuilder<VoiceCubit, VoiceState>(
                                         builder: (context, voiceState) {
@@ -646,7 +648,6 @@ class _ChatViewState extends State<ChatView>
                                                         width: AppSizeW.s5,
                                                       ),
                                                       /*========================For record========================= */
-                                                      // hhere make widget
                                                       BlocConsumer<VoiceCubit,
                                                               VoiceState>(
                                                           listener: (context,
@@ -748,7 +749,8 @@ class _ChatViewState extends State<ChatView>
                                                               voiceState) {
                                                             return GestureDetector(
                                                               onLongPressStart:
-                                                                  isAvatarPressed
+                                                                  isAvatarPressed &&
+                                                                          isStreamFullReadyValue
                                                                       ? (_) async {
                                                                           // await webRTCCubit
                                                                           //     ?.startRecording();
@@ -763,15 +765,16 @@ class _ChatViewState extends State<ChatView>
                                                                           // _wasLongPressed =
                                                                           //     true;
                                                                           // Start recording when pressed
-                                                                          await webRTCCubit
-                                                                              ?.togglePlayPause();
+                                                                          // await webRTCCubit
+                                                                          //     ?.togglePlayPause();
                                                                           context
                                                                               .read<VoiceCubit>()
                                                                               .checkAndRequestPermissionToStart();
                                                                         }
                                                                       : null,
                                                               onLongPressEnd:
-                                                                  isAvatarPressed
+                                                                  isAvatarPressed &&
+                                                                          isStreamFullReadyValue
                                                                       ? (_) async {
                                                                           print(
                                                                               "end pressed called");
@@ -780,14 +783,14 @@ class _ChatViewState extends State<ChatView>
                                                                             /// 1️⃣ Await speech recognition stop
                                                                             await context.read<VoiceCubit>().stopListening();
 
-                                                                            await webRTCCubit?.togglePlayPause();
+                                                                            // await webRTCCubit?.togglePlayPause();
 
-                                                                            /// 3️⃣ Short delay (optional - can tweak)
-                                                                            await Future.delayed(const Duration(milliseconds: 300));
+                                                                            // /// 3️⃣ Short delay (optional - can tweak)
+                                                                            // await Future.delayed(const Duration(milliseconds: 300));
 
-                                                                            /// 4️⃣ Force audio to play after recording ends
-                                                                            ///
-                                                                            await webRTCCubit?.forceAudioPlaybackAfterGesture();
+                                                                            // /// 4️⃣ Force audio to play after recording ends
+                                                                            // ///
+                                                                            // await webRTCCubit?.forceAudioPlaybackAfterGesture();
                                                                           } catch (e) {
                                                                             print("⚠️ Error during audio release sequence: $e");
                                                                           }
@@ -796,29 +799,36 @@ class _ChatViewState extends State<ChatView>
                                                                               false;
                                                                         }
                                                                       : null,
-                                                              onTap:
-                                                                  isAvatarPressed
+                                                              onTap: isAvatarPressed
+                                                                  ? isStreamFullReadyValue
                                                                       ? () {
                                                                           showHoldHint();
                                                                         }
-                                                                      : () async {
-                                                                          // await webRTCCubit
-                                                                          //     ?.forceAudioPlaybackAfterGesture();
-                                                                          final can =
-                                                                              await Haptics.canVibrate();
-                                                                          if (!can) {
-                                                                            return;
-                                                                          }
-                                                                          await Haptics.vibrate(
-                                                                              HapticsType.heavy);
-                                                                          if (voiceState
-                                                                              .isListening) {
-                                                                            context.read<VoiceCubit>().stopListening();
-                                                                          } else {
-                                                                            context.read<VoiceCubit>().checkAndRequestPermissionToStart();
-                                                                            // .startListening();
-                                                                          }
-                                                                        },
+                                                                      : null
+                                                                  : () async {
+                                                                      // await webRTCCubit
+                                                                      //     ?.forceAudioPlaybackAfterGesture();
+                                                                      final can =
+                                                                          await Haptics
+                                                                              .canVibrate();
+                                                                      if (!can) {
+                                                                        return;
+                                                                      }
+                                                                      await Haptics.vibrate(
+                                                                          HapticsType
+                                                                              .heavy);
+                                                                      if (voiceState
+                                                                          .isListening) {
+                                                                        context
+                                                                            .read<VoiceCubit>()
+                                                                            .stopListening();
+                                                                      } else {
+                                                                        context
+                                                                            .read<VoiceCubit>()
+                                                                            .checkAndRequestPermissionToStart();
+                                                                        // .startListening();
+                                                                      }
+                                                                    },
                                                               child: isAvatarPressed
                                                                   ? isRecordModeEnabled
                                                                       ? AnimatedContainer(
@@ -834,8 +844,8 @@ class _ChatViewState extends State<ChatView>
                                                                               ],
                                                                               gradient: LinearGradient(
                                                                                 colors: [
-                                                                                  ColorManager.primary,
-                                                                                  ColorManager.primary.withValues(alpha: .7),
+                                                                                  isStreamFullReadyValue ? ColorManager.primary : ColorManager.primary.withValues(alpha: .5),
+                                                                                  ColorManager.primary.withValues(alpha: isStreamFullReadyValue ? .7 : .2),
                                                                                 ],
                                                                                 begin: Alignment.topLeft,
                                                                                 end: Alignment.bottomRight,
@@ -866,11 +876,15 @@ class _ChatViewState extends State<ChatView>
                                                       ),
                                                       if (isAvatarPressed)
                                                         GestureDetector(
-                                                          onTap: () {
-                                                            isRecordMode.value =
-                                                                !isRecordMode
-                                                                    .value;
-                                                          },
+                                                          onTap:
+                                                              isStreamFullReadyValue
+                                                                  ? () {
+                                                                      isRecordMode
+                                                                              .value =
+                                                                          !isRecordMode
+                                                                              .value;
+                                                                    }
+                                                                  : null,
                                                           child: ValueListenableBuilder<
                                                                   bool>(
                                                               valueListenable:
@@ -921,18 +935,18 @@ class _ChatViewState extends State<ChatView>
                                                                   .of<VoiceCubit>(
                                                                       context),
                                                               builder: (context,
-                                                                  voiceState) {
+                                                                  voiceBuilderState) {
                                                                 WidgetsBinding
                                                                     .instance
                                                                     .addPostFrameCallback(
                                                                         (_) {
                                                                   if (_controller
                                                                           .text !=
-                                                                      voiceState
+                                                                      voiceBuilderState
                                                                           .text) {
                                                                     _controller
                                                                             .text =
-                                                                        voiceState
+                                                                        voiceBuilderState
                                                                             .text;
                                                                   }
                                                                 });
@@ -972,9 +986,12 @@ class _ChatViewState extends State<ChatView>
                                                                           },
                                                                           child:
                                                                               Icon(
-                                                                            Icons.refresh_rounded,
-                                                                            color:
-                                                                                Theme.of(context).primaryColor,
+                                                                            size:
+                                                                                AppSizeW.s23,
+                                                                            Icons.delete_outline_outlined,
+                                                                            color: Theme.of(context).brightness == Brightness.dark
+                                                                                ? ColorManager.white
+                                                                                : Theme.of(context).primaryColor,
                                                                           )),
                                                                   hint: AppStrings()
                                                                       .writeUourMessage,

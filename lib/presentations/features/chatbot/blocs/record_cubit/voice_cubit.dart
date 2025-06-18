@@ -12,6 +12,7 @@ class VoiceCubit extends Cubit<VoiceState> {
   VoiceCubit() : super(VoiceState());
 
 //-----------------------------INIT---------------------------------
+
   void initializeSpeech() async {
     bool available = await _speech.initialize(
       onError: (error) {
@@ -108,7 +109,7 @@ class VoiceCubit extends Cubit<VoiceState> {
         if (!val.finalResult) {
           emit(VoiceState(
               isListening: !val.finalResult,
-              text: newText,
+              // text: newText,
               confidence: val.confidence,
               availableLocales: _availableLocales,
               selectedLocale: selectedLocale,
@@ -149,11 +150,13 @@ class VoiceCubit extends Cubit<VoiceState> {
     print(_speech.isListening);
 
     emit(VoiceState(
-        isListening: false,
-        // text: state.text,
-        confidence: state.confidence,
-        availableLocales: _availableLocales,
-        selectedLocale: selectedLocale));
+      isListening: false,
+      text: state.text,
+      confidence: state.confidence,
+      availableLocales: _availableLocales,
+      selectedLocale: selectedLocale,
+      hasFinalResult: true,
+    ));
   }
 //-----------------------------CLEAR TEXT---------------------------------
 
