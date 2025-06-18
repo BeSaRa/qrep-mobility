@@ -67,6 +67,7 @@ dependencies:
   haptic_feedback: ^0.5.1+1
   youtube_player_flutter: ^9.1.1
 
+
 dev_dependencies:
   build_runner: ^2.4.6
   flutter_lints: ^2.0.0
@@ -96,6 +97,7 @@ flutter:
     - assets/webviews/media_center/
     - assets/xmap/
     - assets/xmap/assets/
+    - assets/silhouette.js
 #    - .env
   fonts:
     - family: Lusail

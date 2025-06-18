@@ -43,6 +43,7 @@ class ImageAssets {
   static const String animationError = "${IMAGE_PATH}animation_error.json";
   static const String upgrade = "${IMAGE_PATH}upgrade.json";
   static const String towers = "${IMAGE_PATH}towers_animation.json";
+  static const String click = "${IMAGE_PATH}click.json";
 }
 
 class IconAssets {
