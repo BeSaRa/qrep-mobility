@@ -1859,10 +1859,10 @@ packages:
     dependency: "direct main"
     description:
       name: webview_flutter_plus
-      sha256: "58285c367f6c590f8ffcf3cc81aeae1c584073f0e866834a9be29aa1e214e3bc"
+      sha256: "23331da0a7bdab893f648d1ef9a3a756fc3c1f0529123f622466d4a174807287"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.18"
+    version: "0.4.19"
   webview_flutter_wkwebview:
     dependency: transitive
     description:

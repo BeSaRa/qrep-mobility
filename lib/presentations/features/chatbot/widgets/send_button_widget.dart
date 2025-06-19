@@ -3,7 +3,6 @@ import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/
 import 'package:ebla/presentations/features/chatbot/blocs/record_cubit/voice_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_message_bloc/chat_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/stream_id_cubit.dart/stream_id_cubit.dart';
-import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/utility/chatbot_enums.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
@@ -67,12 +66,7 @@ class SendButtonWidget extends StatelessWidget {
                           BlocProvider.of<ChatBotBloc>(context).add(
                               SendMessageEvent.started(ChatbotRequestModel(
                                   streamId:
-                                      //===== NOTE: Here I send the stream id as null when i make a pause to te webRTC and user send message =======
-                                      !BlocProvider.of<WebRTCCubit>(context)
-                                              .state
-                                              .isPlaying
-                                          ? null
-                                          : BlocProvider.of<StreamIdCubit>(
+                                          BlocProvider.of<StreamIdCubit>(
                                                   context)
                                               .state
                                               .streamId,
@@ -97,9 +91,6 @@ class SendButtonWidget extends StatelessWidget {
                         controller.clear();
                         context.read<VoiceCubit>().clearText();
                       }
-                      // if (isAvatarShown) {
-                      //   startAvatarTimer();
-                      // }
                     },
               child: Container(
                   padding: EdgeInsets.all(AppSizeW.s10),

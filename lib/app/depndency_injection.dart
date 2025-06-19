@@ -16,11 +16,8 @@ import 'package:ebla/domain/usecases/laws_usecases/laws_usecases.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/chat_faq_bloc/chat_faq_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/close_stream/close_stream_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
-import 'package:ebla/presentations/features/chatbot/blocs/send_answer_and_candidate_bloc/send_answer_and_candidate_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_feedback_bloc/send_feedback_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_message_bloc/chat_bloc.dart';
-import 'package:ebla/presentations/features/chatbot/blocs/start_stream_bloc/start_stream_bloc.dart';
-import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_cubit.dart';
 import 'package:ebla/presentations/features/favourite/bloc/UpdateFav/update_favourite_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/create_favourite_bloc/create_favourite_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/get_favourite_bloc/get_favourite_bloc.dart';
@@ -265,19 +262,16 @@ Future<void> initChatbotModule() async {
   if (!GetIt.I.isRegistered<ChatBotBloc>()) {
     instance.registerFactory(() => ChatBotBloc(instance(), instance()));
   }
-  if (!GetIt.I.isRegistered<WebRTCCubit>()) {
-    instance.registerFactory(() => WebRTCCubit());
-  }
   if (!GetIt.I.isRegistered<StreamIdCubit>()) {
     instance.registerFactory(() => StreamIdCubit());
   }
-  if (!GetIt.I.isRegistered<StartStreamBloc>()) {
-    instance.registerFactory(() => StartStreamBloc(instance()));
-  }
-  if (!GetIt.I.isRegistered<SendAnswerAndCandidateBloc>()) {
-    instance.registerFactory(
-        () => SendAnswerAndCandidateBloc(instance(), instance()));
-  }
+  // if (!GetIt.I.isRegistered<StartStreamBloc>()) {
+  //   instance.registerFactory(() => StartStreamBloc(instance()));
+  // }
+  // if (!GetIt.I.isRegistered<SendAnswerAndCandidateBloc>()) {
+  //   instance.registerFactory(
+  //       () => SendAnswerAndCandidateBloc(instance(), instance()));
+  // }
 }
 
 Future<void> initHomeModule() async {

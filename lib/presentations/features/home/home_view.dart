@@ -4,10 +4,6 @@ import 'dart:math' as math;
 
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/app/depndency_injection.dart';
-import 'package:ebla/domain/usecases/chatbot_usecase/send_answer_usecase.dart';
-import 'package:ebla/domain/usecases/chatbot_usecase/send_candidate_usecase.dart';
-import 'package:ebla/domain/usecases/chatbot_usecase/start_stream_usecase.dart';
-import 'package:ebla/presentations/features/home/stream_page.dart';
 import 'package:ebla/presentations/features/home/widgets/investors_cards_widget.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -82,17 +78,6 @@ class _HomeViewState extends State<HomeView>
               SizedBox(
                 height: AppSizeH.s20,
               ),
-              //zak
-              ElevatedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context){
-                  return BlocProvider(
-      create: (context) => StreamBloc(
-        startStreamUsecase: instance<StartStreamUsecase>(),
-        sendAnswerUsecase: instance<SendAnswerUsecase>(),
-        sendCandidateUsecase: instance<SendCandidateUsecase>(),
-      ),child: const StreamPage());
-                }));
-              }, child: Text("start stream")),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 spacing: AppSizeW.s40,

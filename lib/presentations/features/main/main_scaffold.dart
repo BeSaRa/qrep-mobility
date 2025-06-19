@@ -111,7 +111,7 @@ class _MainScaffoldState extends State<MainScaffold>
                   size: AppSizeR.s30,
                 ),
                 onPressed: () {
-                  context.pushNamed(RoutesNames.aiSearch);
+                  context.pushNamed(RoutesNames.aiSearch, extra: voiceCubit);
                 },
               )
             ],

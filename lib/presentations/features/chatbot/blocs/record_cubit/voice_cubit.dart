@@ -12,6 +12,7 @@ class VoiceCubit extends Cubit<VoiceState> {
   VoiceCubit() : super(VoiceState());
 
 //-----------------------------INIT---------------------------------
+
   void initializeSpeech() async {
     bool available = await _speech.initialize(
       onError: (error) {
@@ -108,7 +109,7 @@ class VoiceCubit extends Cubit<VoiceState> {
         if (!val.finalResult) {
           emit(VoiceState(
               isListening: !val.finalResult,
-              text: newText,
+              // text: newText,
               confidence: val.confidence,
               availableLocales: _availableLocales,
               selectedLocale: selectedLocale,
@@ -149,11 +150,13 @@ class VoiceCubit extends Cubit<VoiceState> {
     print(_speech.isListening);
 
     emit(VoiceState(
-        isListening: false,
-        // text: state.text,
-        confidence: state.confidence,
-        availableLocales: _availableLocales,
-        selectedLocale: selectedLocale));
+      isListening: false,
+      text: state.text,
+      confidence: state.confidence,
+      availableLocales: _availableLocales,
+      selectedLocale: selectedLocale,
+      hasFinalResult: true,
+    ));
   }
 //-----------------------------CLEAR TEXT---------------------------------
 
@@ -167,91 +170,3 @@ class VoiceCubit extends Cubit<VoiceState> {
     ));
   }
 }
-// import 'package:bloc/bloc.dart';
-// import 'package:permission_handler/permission_handler.dart';
-// import 'package:speech_to_text/speech_to_text.dart' as stt;
-// import 'package:record/record.dart';
-// import 'package:path_provider/path_provider.dart';
-
-// part 'voice_state.dart';
-
-// class VoiceCubit extends Cubit<VoiceState> {
-//   final AudioRecorder _audioRecorder = AudioRecorder();
-//   final stt.SpeechToText _speech = stt.SpeechToText();
-//   String? _currentAudioPath;
-
-//   VoiceCubit() : super(const VoiceState());
-
-//   Future<void> startRecording() async {
-//     if (!await _checkPermissions()) return;
-
-//     final tempDir = await getTemporaryDirectory();
-//     _currentAudioPath = '${tempDir.path}/${DateTime.now().millisecondsSinceEpoch}.m4a';
-
-//      await _audioRecorder.start(
-//       const RecordConfig(
-//         encoder: AudioEncoder.aacLc,
-//         bitRate: 128000,
-//         sampleRate: 44100,
-//       ),
-//       path: _currentAudioPath ?? "",
-//     );
-
-//     emit(const VoiceState(
-//       isRecording: true,
-//       recordedText: '',
-//     ));
-//   }
-
-//   Future<String?> stopRecording() async {
-//     await _audioRecorder.stop();
-    
-//     if (!await _speech.initialize()) return null;
-    
-//     String? recognizedText;
-//     bool isFinal = false;
-
-//     await _speech.listen(
-//       onResult: (result) {
-//         recognizedText = result.recognizedWords;
-//         isFinal = result.finalResult;
-//       },
-//       listenFor: Duration(seconds: 30),
-//       localeId: "ar_DZ",
-//     );
-
-//     while (_speech.isListening && !isFinal) {
-//       await Future.delayed(Duration(milliseconds: 100));
-//     }
-
-//     emit(VoiceState(
-//       isRecording: false,
-//       recordedText: recognizedText ?? '',
-//       audioPath: _currentAudioPath,
-//     ));
-
-//     return recognizedText;
-//   }
-
-//   Future<bool> _checkPermissions() async {
-//     final status = await Permission.microphone.status;
-//     if (status.isDenied) {
-//       await Permission.microphone.request();
-//       return false;
-//     }
-//     return true;
-//   }
-
-//   void clearText() {
-//     emit(VoiceState(
-//       isRecording: false,
-//       recordedText: '',
-//     ));
-//   }
-
-//   @override
-//   Future<void> close() {
-//     _audioRecorder.dispose();
-//     return super.close();
-//   }
-// }
