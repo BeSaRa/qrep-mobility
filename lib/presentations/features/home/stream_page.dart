@@ -157,8 +157,7 @@ class _StreamPageState extends State<StreamPage> {
             },
             builder: (context, state) {
               if (state is StreamLoading) {
-                return _buildWebView(null, null,
-                    isLoading: true, isOverlayShown: false);
+                return _buildWebView(null, null, isLoading: true);
               } else if (state is StreamStarted) {
                 _webRtcId = state.webRtcData.data?.id ?? '';
                 BlocProvider.of<StreamIdCubit>(context)
@@ -175,8 +174,7 @@ class _StreamPageState extends State<StreamPage> {
                   );
                 }
 
-                return _buildWebView(rtcOffer, iceServers,
-                    isLoading: false, isOverlayShown: true);
+                return _buildWebView(rtcOffer, iceServers, isLoading: false);
               } else {
                 return const SizedBox.shrink();
               }
@@ -189,7 +187,7 @@ class _StreamPageState extends State<StreamPage> {
 
   Widget _buildWebView(
       RTCSessionDescription? offer, List<ICEServerModel>? iceServers,
-      {required bool isLoading, required bool isOverlayShown}) {
+      {required bool isLoading}) {
     return FutureBuilder<String>(
       future: _loadHtmlLoadingListWithJS(),
       builder: (context, snapshot) {
@@ -204,7 +202,6 @@ class _StreamPageState extends State<StreamPage> {
             iceServers: iceServers,
             silhouetteJs: silhouetteJs,
             isLoading: isLoading,
-            isOverlayShown: isOverlayShown,
           );
 
           _controller.loadHtmlString(htmlContent);
@@ -220,7 +217,6 @@ class _StreamPageState extends State<StreamPage> {
     required List<ICEServerModel>? iceServers,
     required String silhouetteJs,
     required bool isLoading,
-    required bool isOverlayShown,
   }) {
     final escapedSdp =
         offer?.sdp?.replaceAll('\r\n', '\\r\\n').replaceAll('\n', '\\n') ?? '';
@@ -232,10 +228,7 @@ class _StreamPageState extends State<StreamPage> {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>WebRTC Stream</title>
-<script
-  src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
-  type="module"
-></script>
+  <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"type="module"></script>
   <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
   <style>
         @font-face {
@@ -332,7 +325,7 @@ class _StreamPageState extends State<StreamPage> {
       justify-content: center;
       align-items: center;
       color: white;
-      font-size: 18px;
+      font-size: ${(AppSizeSp.s18).toString()}px;
       text-align: center;
       cursor: pointer;
     }
@@ -340,7 +333,7 @@ class _StreamPageState extends State<StreamPage> {
       display: none;
     }
     #overlayContent {
-      padding: 20px;
+      padding: ${(AppSizeW.s20).toString()}px;
       max-width: 80%;
     }
 
@@ -349,8 +342,8 @@ class _StreamPageState extends State<StreamPage> {
       background-color: #444444;
     }
     .icon {
-      width: 25px;  /* Increased from 18px */
-      height: 25px; /* Increased from 18px */
+      width: ${(AppSizeW.s25).toString()}px;  /* Increased from 18px */
+      height: ${(AppSizeH.s25).toString()}px; /* Increased from 18px */
       fill: white;
     }
   </style>
@@ -360,26 +353,26 @@ class _StreamPageState extends State<StreamPage> {
     <canvas id="canvas"></canvas>
   </div>
   <video id="remoteVideo" autoplay playsinline muted></video>
-<button id="unmuteButton">
+  <button id="unmuteButton">
     <svg class="icon" id="muteIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-mute-fill" viewBox="0 0 16 16">
-  <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06m7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0"/>
-</svg>
+      <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06m7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0"/>
+    </svg>
   </button>
   <button id="pauseButton">
-  <svg class="icon" viewBox="0 0 16 16" id="pauseIcon" xmlns="http://www.w3.org/2000/svg">
-    <path fill="currentColor" d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5m4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5"/>
-  </svg>
+    <svg class="icon" viewBox="0 0 16 16" id="pauseIcon" xmlns="http://www.w3.org/2000/svg">
+      <path fill="currentColor" d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5m4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5"/>
+    </svg>
   </button>
   
-  <!-- Click overlay that appears when isOverlayShown is true -->
-  <div id="clickOverlay" class="${isOverlayShown ? '' : 'hidden'}">
+  <!-- Click overlay that appears when stream appear in the UI -->
+  <div id="clickOverlay" class="hidden">
    <div id="overlayContent" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
       <!-- Lottie animation container -->
       <dotlottie-player
         src="https://lottie.host/d15d7dc8-a86d-48d4-b115-447eb4b08451/fxxjJTYabP.lottie"
         background="transparent"
         speed="1"
-        style="width: 50px; height: 50px"
+        style="width: ${(AppSizeW.s50).toString()}px; height: ${(AppSizeH.s50).toString()}px"
         loop
         autoplay
       ></dotlottie-player>
@@ -523,6 +516,8 @@ class _StreamPageState extends State<StreamPage> {
       // Only show controls after video is fully loaded
       pauseButton.style.display = 'flex';
       unmuteButton.style.display = hasAudioTracks ? 'flex' : 'none';
+      // Also show the overlay at the same time
+      clickOverlay.classList.remove('hidden');
     }
 
     pauseButton.addEventListener('click', togglePause);

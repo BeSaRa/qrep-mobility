@@ -122,7 +122,7 @@ class _ReraTextFaildState extends State<ReraTextFaild> {
           child: _showClearIcon
               ? GestureDetector(
                   onTap: _clearText,
-                  child: const Icon(Icons.close, size: 20),
+                  child:  Icon(Icons.close, size: AppSizeW.s20),
                 )
               : widget.suffixIcon,
         ),

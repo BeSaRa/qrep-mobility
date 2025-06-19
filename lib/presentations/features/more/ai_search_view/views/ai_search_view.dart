@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:ebla/domain/models/requests/ai_search_models/ai_search_model.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/rera_text_faild.dart';
+import 'package:ebla/presentations/features/main/cubit/bottom_nav_cubit.dart';
 import 'package:ebla/presentations/features/more/ai_search_view/blocs/ai_search_bloc.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
@@ -12,7 +13,12 @@ import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:ebla/presentations/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:haptic_feedback/haptic_feedback.dart';
+import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../chatbot/blocs/record_cubit/voice_cubit.dart';
 
 class AiSearchView extends StatefulWidget {
   const AiSearchView({super.key});
@@ -127,6 +133,8 @@ class _AiSearchViewState extends State<AiSearchView> {
             GestureDetector(
               onTap: () {
                 Navigator.maybePop(context);
+                // context.read<BottomNavCubit>().changePage(0);
+                // context.goNamed(context.read<BottomNavCubit>().paths[0]);
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -155,16 +163,62 @@ class _AiSearchViewState extends State<AiSearchView> {
             horizontal: AppSizeW.s15, vertical: AppSizeH.s20),
         child: Column(
           children: [
-            ReraTextFaild(
-              controller: _searchController,
-              onChange: (p0) {
-                _onSearchChanged(p0);
+            LayoutBuilder(
+              builder: (context, constraints) {
+                return Row(
+                  children: [
+                    // // Record button
+                    // BlocConsumer<VoiceCubit, VoiceState>(
+                    //   listener: (context, voiceState) {
+                    //     final message = voiceState.text;
+                    //     if (!voiceState.isListening && message.isNotEmpty) {
+                    //       WidgetsBinding.instance.addPostFrameCallback((_) {
+                    //         _searchController.text = message;
+                    //         context.read<VoiceCubit>().clearText();
+                    //       });
+                    //     }
+                    //   },
+                    //   builder: (context, voiceState) {
+                    //     return GestureDetector(
+                    //       onTap: () async {
+                    //         final can = await Haptics.canVibrate();
+                    //         if (!can) return;
+                    //         await Haptics.vibrate(HapticsType.heavy);
+                    //         if (voiceState.isListening) {
+                    //           context.read<VoiceCubit>().stopListening();
+                    //         } else {
+                    //           context
+                    //               .read<VoiceCubit>()
+                    //               .checkAndRequestPermissionToStart();
+                    //         }
+                    //       },
+                    //       child: voiceState.isListening
+                    //           ? SizedBox(
+                    //               height: AppSizeH.s40,
+                    //               width: AppSizeH.s40,
+                    //               child: Lottie.asset(
+                    //                   ImageAssets.chatBotRecordingIndecetor),
+                    //             )
+                    //           : const Icon(Icons.mic_none),
+                    //     );
+                    //   },
+                    // ),
+
+                    // Text field
+                    Expanded(
+                      child: ReraTextFaild(
+                        controller: _searchController,
+                        onChange: _onSearchChanged,
+                        hint: AppStrings().searchHere,
+                        suffixIcon: Icon(
+                          Icons.search_rounded,
+                          color: Theme.of(context).cardColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
               },
-              hint: AppStrings().searchHere,
-              suffixIcon: Icon(
-                Icons.search_rounded,
-                color: Theme.of(context).cardColor,
-              ),
             ),
             BlocBuilder<AiSearchBloc, AiSearchState>(builder: (context, state) {
               return Padding(
