@@ -197,6 +197,8 @@ abstract class Repository {
       
   Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendFeedback(
       int feedback,String convId);
+      
+  Future<Result<String, FailureCloseStreamModel>> getAiSearchPdfUrl(String blobUrl);
   Future<Result<List<ChatbotFAQResponseModel>, FailureModel>> getChatFAQ(String botName);
 
       //---- platform chatbot -----

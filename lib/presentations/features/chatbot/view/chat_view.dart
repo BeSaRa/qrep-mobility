@@ -26,6 +26,7 @@ import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
+import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
 import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,6 +54,8 @@ class _ChatViewState extends State<ChatView>
   final ValueNotifier<bool> isSendEnabled = ValueNotifier<bool>(false);
   final ValueNotifier<bool> isAvatarExpanded = ValueNotifier<bool>(true);
   //zak
+  final ValueNotifier<bool> _isPDFFileLoadingForSAS =
+      ValueNotifier<bool>(false);
   final ValueNotifier<bool> isStreamFullReady = ValueNotifier<bool>(false);
   final ValueNotifier<bool> isRecordMode = ValueNotifier<bool>(true);
   bool isMessageSending = false;
@@ -289,6 +292,8 @@ class _ChatViewState extends State<ChatView>
                                           child: Stack(
                                         children: [
                                           ChatMessagesListWidget(
+                                            isPDFFileLoadingForSAS:
+                                                _isPDFFileLoadingForSAS,
                                             scrollController: scrollController,
                                             isSending: isMessageSending,
                                             isAvatarPressed: isAvatarPressed,
@@ -378,6 +383,8 @@ class _ChatViewState extends State<ChatView>
                                             MediaQuery.sizeOf(context).height *
                                                 .2,
                                         child: ChatMessagesListWidget(
+                                          isPDFFileLoadingForSAS:
+                                              _isPDFFileLoadingForSAS,
                                           scrollController: scrollController,
                                           isSending: isMessageSending,
                                           isAvatarPressed: isAvatarPressed,
@@ -453,8 +460,7 @@ class _ChatViewState extends State<ChatView>
                                                                 ),
                                                               ),
                                                             )
-                                                          :
-                                                          AiAvatarIconWidget(
+                                                          : AiAvatarIconWidget(
                                                               isRecordModeActive:
                                                                   isRecordMode,
                                                               isAvatarExpanded:
@@ -527,33 +533,49 @@ class _ChatViewState extends State<ChatView>
                                                                   .addMessage(
                                                                       userMessage);
                                                               if (chatState
-                                                                          .activeChat ==
-                                                                      ChatTypeEnum
-                                                                          .authority
-                                                                  ) {
+                                                                      .activeChat ==
+                                                                  ChatTypeEnum
+                                                                      .authority) {
                                                                 // Send the user's message as a ChatMessage instance
                                                                 chatBotBloc.add(SendMessageEvent.started(ChatbotRequestModel(
-                                                                    streamId:streamIdCubit.state.streamId,
-                                                                    messages: context.read<ChatHistoryCubit>().state.authorityMessages)));
+                                                                    streamId: streamIdCubit
+                                                                        .state
+                                                                        .streamId,
+                                                                    messages: context
+                                                                        .read<
+                                                                            ChatHistoryCubit>()
+                                                                        .state
+                                                                        .authorityMessages)));
                                                               }
-                                                              _controller.clear();
-                                                              context.read<VoiceCubit>().clearText();
+                                                              _controller
+                                                                  .clear();
+                                                              context
+                                                                  .read<
+                                                                      VoiceCubit>()
+                                                                  .clearText();
                                                             }
                                                             //---------------------------------------------------------------
                                                           },
-                                                          bloc: BlocProvider.of<VoiceCubit>(context),
-                                                          builder: (context, voiceState) {
+                                                          bloc: BlocProvider.of<
+                                                                  VoiceCubit>(
+                                                              context),
+                                                          builder: (context,
+                                                              voiceState) {
                                                             return GestureDetector(
                                                               onLongPressStart:
                                                                   isAvatarPressed &&
                                                                           isStreamFullReadyValue
                                                                       ? (_) async {
-                                                                          final can =await Haptics.canVibrate();
+                                                                          final can =
+                                                                              await Haptics.canVibrate();
                                                                           if (!can) {
                                                                             return;
                                                                           }
-                                                                          await Haptics.vibrate(HapticsType.heavy);
-                                                                          context.read<VoiceCubit>().checkAndRequestPermissionToStart();
+                                                                          await Haptics.vibrate(
+                                                                              HapticsType.heavy);
+                                                                          context
+                                                                              .read<VoiceCubit>()
+                                                                              .checkAndRequestPermissionToStart();
                                                                         }
                                                                       : null,
                                                               onLongPressEnd:
@@ -565,7 +587,8 @@ class _ChatViewState extends State<ChatView>
                                                                           } catch (e) {
                                                                             log("⚠️ Error during audio release sequence: $e");
                                                                           }
-                                                                          showHoldMessage.value = false;
+                                                                          showHoldMessage.value =
+                                                                              false;
                                                                         }
                                                                       : null,
                                                               onTap: isAvatarPressed
@@ -575,15 +598,24 @@ class _ChatViewState extends State<ChatView>
                                                                         }
                                                                       : null
                                                                   : () async {
-                                                                      final can =await Haptics.canVibrate();
+                                                                      final can =
+                                                                          await Haptics
+                                                                              .canVibrate();
                                                                       if (!can) {
                                                                         return;
                                                                       }
-                                                                      await Haptics.vibrate(HapticsType.heavy);
-                                                                      if (voiceState.isListening) {
-                                                                        context.read<VoiceCubit>().stopListening();
+                                                                      await Haptics.vibrate(
+                                                                          HapticsType
+                                                                              .heavy);
+                                                                      if (voiceState
+                                                                          .isListening) {
+                                                                        context
+                                                                            .read<VoiceCubit>()
+                                                                            .stopListening();
                                                                       } else {
-                                                                        context.read<VoiceCubit>().checkAndRequestPermissionToStart();
+                                                                        context
+                                                                            .read<VoiceCubit>()
+                                                                            .checkAndRequestPermissionToStart();
                                                                       }
                                                                     },
                                                               child: isAvatarPressed
@@ -635,52 +667,84 @@ class _ChatViewState extends State<ChatView>
                                                           onTap:
                                                               isStreamFullReadyValue
                                                                   ? () {
-                                                                      isRecordMode.value =!isRecordMode.value;
+                                                                      isRecordMode
+                                                                              .value =
+                                                                          !isRecordMode
+                                                                              .value;
                                                                     }
                                                                   : null,
-                                                          child: ValueListenableBuilder<bool>(
-                                                              valueListenable:isRecordMode,
-                                                              builder: (context,isRecordModeEnabled,child) {
+                                                          child: ValueListenableBuilder<
+                                                                  bool>(
+                                                              valueListenable:
+                                                                  isRecordMode,
+                                                              builder: (context,
+                                                                  isRecordModeEnabled,
+                                                                  child) {
                                                                 return Container(
-                                                                  width:AppSizeW.s40,
-                                                                  height:AppSizeH.s40,
+                                                                  width:
+                                                                      AppSizeW
+                                                                          .s40,
+                                                                  height:
+                                                                      AppSizeH
+                                                                          .s40,
                                                                   decoration: BoxDecoration(
-                                                                      borderRadius:BorderRadius.circular(AppSizeR.s5),
-                                                                      color: ColorManager.lightSilver.withValues(alpha: .3)),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(AppSizeR
+                                                                              .s5),
+                                                                      color: ColorManager
+                                                                          .lightSilver
+                                                                          .withValues(
+                                                                              alpha: .3)),
                                                                   child: isRecordModeEnabled
                                                                       ? const Icon(
-                                                                          Icons.keyboard)
+                                                                          Icons
+                                                                              .keyboard)
                                                                       : const Icon(
-                                                                          Icons.mic_none),
+                                                                          Icons
+                                                                              .mic_none),
                                                                 );
                                                               }),
                                                         ),
                                                       SizedBox(
-                                                        width:
-                                                            isRecordModeEnabled
-                                                                ? !isAvatarPressed?AppSizeW.s5: AppSizeW.s0
-                                                                : AppSizeW.s5,
+                                                        width: isRecordModeEnabled
+                                                            ? !isAvatarPressed
+                                                                ? AppSizeW.s5
+                                                                : AppSizeW.s0
+                                                            : AppSizeW.s5,
                                                       ),
                                                       /*========================TextFaild========================= */
                                                       if (!isRecordModeEnabled ||
                                                           !isAvatarPressed)
                                                         Expanded(
-                                                          child: BlocBuilder<VoiceCubit,VoiceState>(
-                                                          bloc: BlocProvider.of<VoiceCubit>(context),
-                                                              builder: (context,voiceBuilderState) {
+                                                          child: BlocBuilder<
+                                                                  VoiceCubit,
+                                                                  VoiceState>(
+                                                              bloc: BlocProvider
+                                                                  .of<VoiceCubit>(
+                                                                      context),
+                                                              builder: (context,
+                                                                  voiceBuilderState) {
                                                                 WidgetsBinding
                                                                     .instance
                                                                     .addPostFrameCallback(
                                                                         (_) {
-                                                                  if (_controller.text !=voiceBuilderState.text) {
-                                                                    _controller.text =voiceBuilderState.text;
+                                                                  if (_controller
+                                                                          .text !=
+                                                                      voiceBuilderState
+                                                                          .text) {
+                                                                    _controller
+                                                                            .text =
+                                                                        voiceBuilderState
+                                                                            .text;
                                                                   }
                                                                 });
                                                                 return ReraTextFaild(
                                                                   onChange:
                                                                       (p0) {},
-                                                                  controller:_controller,
-                                                                  readOnly:false,
+                                                                  controller:
+                                                                      _controller,
+                                                                  readOnly:
+                                                                      false,
                                                                   enabled: true,
                                                                   suffixIcon:
                                                                       GestureDetector(
@@ -758,12 +822,12 @@ class _ChatViewState extends State<ChatView>
                                         right: AppSizeW.s15,
                                         left: AppSizeW.s15,
                                       ),
-                                      child:Text(AppStrings().aiNote,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .headlineMedium),
+                                      child: Text(AppStrings().aiNote,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headlineMedium),
                                       //  Row(
-                                  
+
                                       //   children: [
                                       //     // Text("${AppStrings().note}: ",
                                       //     //     style: Theme.of(context)
@@ -791,6 +855,13 @@ class _ChatViewState extends State<ChatView>
           //   scrollController: scrollController,
           // ),
 //========================== End Menu Button  ==============================================
+          ValueListenableBuilder<bool>(
+              valueListenable: _isPDFFileLoadingForSAS,
+              builder: (context, isPDFFileLoading, child) {
+                return isPDFFileLoading
+                    ? const AnimatedPulesLogo()
+                    : const SizedBox.shrink();
+              })
         ],
       ),
     );

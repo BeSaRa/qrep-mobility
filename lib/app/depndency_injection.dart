@@ -32,12 +32,14 @@ import '../data/network/general_dio_interceptor.dart';
 import '../data/network/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
+import '../domain/usecases/ai_search/get_ai_search_pdf_url_usecase.dart';
 import '../domain/usecases/favourite_usecases/delete_favourite_usecase.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/auth/authes.dart';
 import '../presentations/features/chatbot/blocs/stream_id_cubit.dart/stream_id_cubit.dart';
 import '../presentations/features/info/infos.dart';
 import '../presentations/features/main/mains.dart';
+import '../presentations/features/more/ai_search_view/blocs/sas_pdf_blocs/sas_pdf_bloc.dart';
 import '../presentations/features/more/mores.dart';
 import '../presentations/features/mortagage/mortgages.dart';
 import '../presentations/features/real_estate_brokers/real_estates.dart';
@@ -265,13 +267,6 @@ Future<void> initChatbotModule() async {
   if (!GetIt.I.isRegistered<StreamIdCubit>()) {
     instance.registerFactory(() => StreamIdCubit());
   }
-  // if (!GetIt.I.isRegistered<StartStreamBloc>()) {
-  //   instance.registerFactory(() => StartStreamBloc(instance()));
-  // }
-  // if (!GetIt.I.isRegistered<SendAnswerAndCandidateBloc>()) {
-  //   instance.registerFactory(
-  //       () => SendAnswerAndCandidateBloc(instance(), instance()));
-  // }
 }
 
 Future<void> initHomeModule() async {
@@ -320,6 +315,14 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<SendFeedbackBloc>()) {
     instance
         .registerFactory<SendFeedbackBloc>(() => SendFeedbackBloc(instance()));
+  }
+    if (!GetIt.I.isRegistered<GetAiSearchPdfUrlUsecase>()) {
+    instance.registerFactory<GetAiSearchPdfUrlUsecase>(
+        () => GetAiSearchPdfUrlUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<SasPdfBloc>()) {
+    instance.registerFactory<SasPdfBloc>(
+        () => SasPdfBloc(instance()));
   }
 }
 

@@ -1,9 +1,14 @@
+import 'dart:developer';
+import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/platform_chat_widgets.dart';
+import 'package:ebla/presentations/features/more/ai_search_view/blocs/sas_pdf_blocs/sas_pdf_bloc.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
@@ -13,6 +18,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ShownMessageWidget extends StatelessWidget {
@@ -21,10 +28,12 @@ class ShownMessageWidget extends StatelessWidget {
     required this.message,
     required this.isAvatarShow,
     required this.currentMessageIndex,
+    required this.isPDFFileLoadingForSAS,
   });
   final MessageRequestModel message;
   final bool isAvatarShow;
   final int currentMessageIndex;
+  final ValueNotifier<bool> isPDFFileLoadingForSAS;
 
   @override
   Widget build(BuildContext context) {
@@ -102,10 +111,13 @@ class ShownMessageWidget extends StatelessWidget {
                                   : Radius.circular(AppSizeR.s15),
                               bottomLeft: Radius.circular(AppSizeR.s15),
                               bottomRight: Radius.circular(AppSizeR.s15))),
-                  child: FormattedDataWidget(
-                    isMessageInArabic: isMessageInArabic,
-                    message: message,
-                    currentMessageIndex: currentMessageIndex,
+                  child: BlocProvider(
+                    create: (context) => instance<SasPdfBloc>(),
+                    child: FormattedDataWidget(
+                        isMessageInArabic: isMessageInArabic,
+                        message: message,
+                        currentMessageIndex: currentMessageIndex,
+                        isPDFFileLoadingForSAS: isPDFFileLoadingForSAS),
                   )
 
                   //  _formatedDataFun(isMessageInArabic, context),
@@ -129,12 +141,13 @@ class FormattedDataWidget extends StatelessWidget {
   final bool isMessageInArabic;
   final MessageRequestModel message;
   final int currentMessageIndex;
-
+  final ValueNotifier<bool> isPDFFileLoadingForSAS;
   const FormattedDataWidget({
     super.key,
     required this.isMessageInArabic,
     required this.message,
     required this.currentMessageIndex,
+    required this.isPDFFileLoadingForSAS,
   });
 
 //------------------- function to check if the number come to the chart is has more than 5 digits ---------------
@@ -208,10 +221,20 @@ class FormattedDataWidget extends StatelessWidget {
           ),
           recognizer: TapGestureRecognizer()
             ..onTap = () async {
-              if (await canLaunchUrl(Uri.parse(url))) {
-                await launchUrl(Uri.parse(url),
-                    mode: LaunchMode.externalApplication);
+              if (url.contains('blob.core.windows')) {
+                context
+                    .read<SasPdfBloc>()
+                    .add(SasPdfEvent.getSasPdf(request: url));
+              } else {
+                if (await canLaunchUrl(Uri.parse(url))) {
+                  await launchUrl(Uri.parse(url),
+                      mode: LaunchMode.externalApplication);
+                }
               }
+              // if (await canLaunchUrl(Uri.parse(url))) {
+              //   await launchUrl(Uri.parse(url),
+              //       mode: LaunchMode.externalApplication);
+              // }
             },
         ));
       } else {
@@ -239,13 +262,66 @@ class FormattedDataWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (message.content is String) {
-      return Text.rich(
-        TextSpan(
-          children: _buildStringContentWithLinks(message, context),
+      return BlocListener<SasPdfBloc, SasPdfState>(
+        listener: (context, sasState) {
+          sasState.mapOrNull(
+              //   loading: (value) {
+              //   // Show loading dialog
+              //   showDialog(
+              //     context: context,
+              //     barrierDismissible: false,
+              //     builder: (context) => const Center(
+              //       child: CircularProgressIndicator(),
+              //     ),
+              //   );
+              // },
+              loading: (value) {
+            isPDFFileLoadingForSAS.value = true;
+          }, done: (value) async {
+            try {
+              // Temporary file path
+              final tempDir = await getTemporaryDirectory();
+              final filePath = '${tempDir.path}/temp_pdf.pdf';
+
+              // Download the file
+              final response = await Dio().get(
+                value.response,
+                options: Options(responseType: ResponseType.bytes),
+              );
+
+              // Save to temporary file
+              final file = File(filePath);
+              await file.writeAsBytes(response.data);
+
+              // Open with open_file - this will trigger the system bottom sheet
+              isPDFFileLoadingForSAS.value = false;
+              await OpenFile.open(filePath);
+            } catch (e) {
+              log("Error opening PDF: $e");
+              // Fallback to launchUrl
+              final uri = Uri.parse(value.response);
+              if (await canLaunchUrl(uri)) {
+                await launchUrl(uri, mode: LaunchMode.externalApplication);
+              }
+            } finally {
+              isPDFFileLoadingForSAS.value = false;
+            }
+            // finally {
+            //   // Close loading dialog using the captured context
+            //   if (Navigator.canPop(dialogContext)) {
+            //     Navigator.of(dialogContext).pop();
+            //   }
+            // }
+          });
+        },
+        child: Text.rich(
+          TextSpan(
+            children: _buildStringContentWithLinks(message, context),
+          ),
+          textDirection:
+              isMessageInArabic ? ui.TextDirection.rtl : ui.TextDirection.ltr,
+          textAlign: message.role == 'user' ? TextAlign.center : null,
         ),
-        textDirection:
-            isMessageInArabic ? ui.TextDirection.rtl : ui.TextDirection.ltr,
-        textAlign: message.role == 'user' ? TextAlign.center : null,
       );
     } else if (message.content is PlatformChatbotResponseModel) {
       final platformResponse = message.content as PlatformChatbotResponseModel;

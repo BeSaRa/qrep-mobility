@@ -1510,6 +1510,34 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
+  Future<HttpResponse<String>> getAiSearchPdfUrl(String blobUrl) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'blob_url': blobUrl};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result =
+        await _dio.fetch<String>(_setStreamType<HttpResponse<String>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'https://apigatewaystg.aqarat.gov.qa/api-afnqcscbai01/api/v1/admin/sas-token',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = _result.data!;
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
   Future<HttpResponse<SendAnswerResponseModel>> closeStream(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

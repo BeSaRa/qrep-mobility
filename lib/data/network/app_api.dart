@@ -232,6 +232,10 @@ abstract class AppServiceClient {
       '${Constant.authorityChatBotBaseUrl}/api/v1/chat-history/add-conversation-feedback')
   Future<HttpResponse<SendAnswerResponseModel>> sendFeedback(
       @Query("conv_id") String convId, @Query("feedback") int feedback);
+  @GET(
+      '${Constant.authorityChatBotBaseUrl}/api/v1/admin/sas-token')
+  Future<HttpResponse<String>> getAiSearchPdfUrl(
+      @Query("blob_url") String blobUrl);
 
   /// ******* close stream *******
   @DELETE("${Constant.authorityChatBotBaseUrl}/api/v1/avatar/close-stream/{id}")

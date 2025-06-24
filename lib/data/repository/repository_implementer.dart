@@ -1996,6 +1996,79 @@ class RepositoryImplementer extends Repository {
   }
 
   @override
+  Future<Result<String, FailureCloseStreamModel>> getAiSearchPdfUrl(
+      String blobUrl) async {
+    if (await networkInfo.isConnected) {
+      log("Network connected. Sending request...");
+
+      try {
+        final AppPreferences appPreferences = AppPreferences(instance());
+        final dio = Dio();
+
+        // 🔹 backend API URL
+        String apiUrl =
+            '${Constant.authorityChatBotBaseUrl}/api/v1/admin/sas-token?blob_url=$blobUrl';
+
+        // 🔹 get stored language
+        String language = await appPreferences.getAppLanguage();
+
+        Map<String, String> headers = {
+          CONTENT_TYPE: APPLICATION_JSON,
+          ACCEPT: APPLICATION_JSON,
+          DEFAULT_LANGUAGE: language,
+          AUTHORIZATION: 'Bearer ${Constant.publicAccessToken}',
+          //NOTE: We must add this key to make the chat work
+          "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
+        };
+        // 🔹 make a POST request
+        final response = await dio.get(
+          apiUrl,
+          options: Options(
+            headers: headers,
+            validateStatus: (status) =>
+                status! < 500, // Prevents Dio from throwing for 401
+          ),
+        );
+
+        log("API Response received. Status code: ${response.statusCode}");
+        log("Response data: ${response.data}");
+
+        if (response.statusCode == 200) {
+          log("Success response: ${response.data}");
+          return Success(response.data);
+        } else if (response.statusCode == 401) {
+          log("⚠️ Unauthorized: Token might be invalid or expired.");
+          return const Error(FailureCloseStreamModel(
+              message: "Unauthorized: Please check your credentials."));
+        } else {
+          log("Non-200 status code. Parsing error...");
+          return Error(FailureCloseStreamModel.fromJson(response.data));
+        }
+      } on DioException catch (e) {
+        log("DioException occurred: ${e.message}");
+        log("DioException response: ${e.response?.data}");
+
+        // Handle non-JSON responses
+        if (e.response != null && e.response?.data is! Map<String, dynamic>) {
+          return const Error(
+              FailureCloseStreamModel(message: "Unexpected server response"));
+        }
+
+        return Error(
+            FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        log("Unexpected error: $e");
+        return Error(
+            FailureCloseStreamModel(message: AppStrings().defaultError));
+      }
+    } else {
+      log("No internet connection.");
+      return Error(
+          FailureCloseStreamModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
   // Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendFeedback(
   //     int feedback, String convId) async {
   //   if (await networkInfo.isConnected) {

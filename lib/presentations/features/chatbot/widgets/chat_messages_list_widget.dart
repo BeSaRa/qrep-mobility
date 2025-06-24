@@ -18,11 +18,13 @@ class ChatMessagesListWidget extends StatelessWidget {
     // required this.isHadBeenRated,
     required this.isAvatarPressed,
     required this.scrollController,
+    required this.isPDFFileLoadingForSAS,
   });
 
   final ScrollController scrollController;
   final bool isSending;
   final bool isAvatarPressed;
+  final ValueNotifier<bool> isPDFFileLoadingForSAS;
   // bool isHadBeenRated = false;
 
   @override
@@ -73,6 +75,7 @@ class ChatMessagesListWidget extends StatelessWidget {
                           : CrossAxisAlignment.start,
                       children: [
                         ShownMessageWidget(
+                          isPDFFileLoadingForSAS:isPDFFileLoadingForSAS,
                             currentMessageIndex: index,
                             isAvatarShow: isAvatarPressed,
                             message: message),
