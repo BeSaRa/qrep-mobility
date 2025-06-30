@@ -2165,33 +2165,33 @@ abstract class _ICEServerModel implements ICEServerModel {
       throw _privateConstructorUsedError;
 }
 
-SendAnswerResponseModel _$SendAnswerResponseModelFromJson(
+MainChatbotResponseModel _$MainChatbotResponseModelFromJson(
     Map<String, dynamic> json) {
-  return _SendAnswerResponseModel.fromJson(json);
+  return _MainChatbotResponseModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$SendAnswerResponseModel {
+mixin _$MainChatbotResponseModel {
   @JsonKey(name: "status_code")
   int get statusCode => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
 
-  /// Serializes this SendAnswerResponseModel to a JSON map.
+  /// Serializes this MainChatbotResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of SendAnswerResponseModel
+  /// Create a copy of MainChatbotResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $SendAnswerResponseModelCopyWith<SendAnswerResponseModel> get copyWith =>
+  $MainChatbotResponseModelCopyWith<MainChatbotResponseModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SendAnswerResponseModelCopyWith<$Res> {
-  factory $SendAnswerResponseModelCopyWith(SendAnswerResponseModel value,
-          $Res Function(SendAnswerResponseModel) then) =
-      _$SendAnswerResponseModelCopyWithImpl<$Res, SendAnswerResponseModel>;
+abstract class $MainChatbotResponseModelCopyWith<$Res> {
+  factory $MainChatbotResponseModelCopyWith(MainChatbotResponseModel value,
+          $Res Function(MainChatbotResponseModel) then) =
+      _$MainChatbotResponseModelCopyWithImpl<$Res, MainChatbotResponseModel>;
   @useResult
   $Res call(
       {@JsonKey(name: "status_code") int statusCode,
@@ -2200,17 +2200,17 @@ abstract class $SendAnswerResponseModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SendAnswerResponseModelCopyWithImpl<$Res,
-        $Val extends SendAnswerResponseModel>
-    implements $SendAnswerResponseModelCopyWith<$Res> {
-  _$SendAnswerResponseModelCopyWithImpl(this._value, this._then);
+class _$MainChatbotResponseModelCopyWithImpl<$Res,
+        $Val extends MainChatbotResponseModel>
+    implements $MainChatbotResponseModelCopyWith<$Res> {
+  _$MainChatbotResponseModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SendAnswerResponseModel
+  /// Create a copy of MainChatbotResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -2237,12 +2237,12 @@ class _$SendAnswerResponseModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$SendAnswerResponseModelImplCopyWith<$Res>
-    implements $SendAnswerResponseModelCopyWith<$Res> {
-  factory _$$SendAnswerResponseModelImplCopyWith(
-          _$SendAnswerResponseModelImpl value,
-          $Res Function(_$SendAnswerResponseModelImpl) then) =
-      __$$SendAnswerResponseModelImplCopyWithImpl<$Res>;
+abstract class _$$MainChatbotResponseModelImplCopyWith<$Res>
+    implements $MainChatbotResponseModelCopyWith<$Res> {
+  factory _$$MainChatbotResponseModelImplCopyWith(
+          _$MainChatbotResponseModelImpl value,
+          $Res Function(_$MainChatbotResponseModelImpl) then) =
+      __$$MainChatbotResponseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2252,16 +2252,16 @@ abstract class _$$SendAnswerResponseModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$SendAnswerResponseModelImplCopyWithImpl<$Res>
-    extends _$SendAnswerResponseModelCopyWithImpl<$Res,
-        _$SendAnswerResponseModelImpl>
-    implements _$$SendAnswerResponseModelImplCopyWith<$Res> {
-  __$$SendAnswerResponseModelImplCopyWithImpl(
-      _$SendAnswerResponseModelImpl _value,
-      $Res Function(_$SendAnswerResponseModelImpl) _then)
+class __$$MainChatbotResponseModelImplCopyWithImpl<$Res>
+    extends _$MainChatbotResponseModelCopyWithImpl<$Res,
+        _$MainChatbotResponseModelImpl>
+    implements _$$MainChatbotResponseModelImplCopyWith<$Res> {
+  __$$MainChatbotResponseModelImplCopyWithImpl(
+      _$MainChatbotResponseModelImpl _value,
+      $Res Function(_$MainChatbotResponseModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SendAnswerResponseModel
+  /// Create a copy of MainChatbotResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -2270,7 +2270,7 @@ class __$$SendAnswerResponseModelImplCopyWithImpl<$Res>
     Object? status = null,
     Object? message = null,
   }) {
-    return _then(_$SendAnswerResponseModelImpl(
+    return _then(_$MainChatbotResponseModelImpl(
       statusCode: null == statusCode
           ? _value.statusCode
           : statusCode // ignore: cast_nullable_to_non_nullable
@@ -2289,14 +2289,14 @@ class __$$SendAnswerResponseModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SendAnswerResponseModelImpl implements _SendAnswerResponseModel {
-  const _$SendAnswerResponseModelImpl(
+class _$MainChatbotResponseModelImpl implements _MainChatbotResponseModel {
+  const _$MainChatbotResponseModelImpl(
       {@JsonKey(name: "status_code") this.statusCode = 0,
       this.status = '',
       this.message = ''});
 
-  factory _$SendAnswerResponseModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SendAnswerResponseModelImplFromJson(json);
+  factory _$MainChatbotResponseModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MainChatbotResponseModelImplFromJson(json);
 
   @override
   @JsonKey(name: "status_code")
@@ -2310,14 +2310,14 @@ class _$SendAnswerResponseModelImpl implements _SendAnswerResponseModel {
 
   @override
   String toString() {
-    return 'SendAnswerResponseModel(statusCode: $statusCode, status: $status, message: $message)';
+    return 'MainChatbotResponseModel(statusCode: $statusCode, status: $status, message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SendAnswerResponseModelImpl &&
+            other is _$MainChatbotResponseModelImpl &&
             (identical(other.statusCode, statusCode) ||
                 other.statusCode == statusCode) &&
             (identical(other.status, status) || other.status == status) &&
@@ -2328,31 +2328,31 @@ class _$SendAnswerResponseModelImpl implements _SendAnswerResponseModel {
   @override
   int get hashCode => Object.hash(runtimeType, statusCode, status, message);
 
-  /// Create a copy of SendAnswerResponseModel
+  /// Create a copy of MainChatbotResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SendAnswerResponseModelImplCopyWith<_$SendAnswerResponseModelImpl>
-      get copyWith => __$$SendAnswerResponseModelImplCopyWithImpl<
-          _$SendAnswerResponseModelImpl>(this, _$identity);
+  _$$MainChatbotResponseModelImplCopyWith<_$MainChatbotResponseModelImpl>
+      get copyWith => __$$MainChatbotResponseModelImplCopyWithImpl<
+          _$MainChatbotResponseModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SendAnswerResponseModelImplToJson(
+    return _$$MainChatbotResponseModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _SendAnswerResponseModel implements SendAnswerResponseModel {
-  const factory _SendAnswerResponseModel(
+abstract class _MainChatbotResponseModel implements MainChatbotResponseModel {
+  const factory _MainChatbotResponseModel(
       {@JsonKey(name: "status_code") final int statusCode,
       final String status,
-      final String message}) = _$SendAnswerResponseModelImpl;
+      final String message}) = _$MainChatbotResponseModelImpl;
 
-  factory _SendAnswerResponseModel.fromJson(Map<String, dynamic> json) =
-      _$SendAnswerResponseModelImpl.fromJson;
+  factory _MainChatbotResponseModel.fromJson(Map<String, dynamic> json) =
+      _$MainChatbotResponseModelImpl.fromJson;
 
   @override
   @JsonKey(name: "status_code")
@@ -2362,41 +2362,40 @@ abstract class _SendAnswerResponseModel implements SendAnswerResponseModel {
   @override
   String get message;
 
-  /// Create a copy of SendAnswerResponseModel
+  /// Create a copy of MainChatbotResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SendAnswerResponseModelImplCopyWith<_$SendAnswerResponseModelImpl>
+  _$$MainChatbotResponseModelImplCopyWith<_$MainChatbotResponseModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-FailureCloseStreamModel _$FailureCloseStreamModelFromJson(
-    Map<String, dynamic> json) {
-  return _FailureCloseStreamModel.fromJson(json);
+FailureAIModel _$FailureAIModelFromJson(Map<String, dynamic> json) {
+  return _FailureAIModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$FailureCloseStreamModel {
+mixin _$FailureAIModel {
   List<String>? get errorDescription => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   String? get detail => throw _privateConstructorUsedError;
   int? get statusCode => throw _privateConstructorUsedError;
 
-  /// Serializes this FailureCloseStreamModel to a JSON map.
+  /// Serializes this FailureAIModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of FailureCloseStreamModel
+  /// Create a copy of FailureAIModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $FailureCloseStreamModelCopyWith<FailureCloseStreamModel> get copyWith =>
+  $FailureAIModelCopyWith<FailureAIModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FailureCloseStreamModelCopyWith<$Res> {
-  factory $FailureCloseStreamModelCopyWith(FailureCloseStreamModel value,
-          $Res Function(FailureCloseStreamModel) then) =
-      _$FailureCloseStreamModelCopyWithImpl<$Res, FailureCloseStreamModel>;
+abstract class $FailureAIModelCopyWith<$Res> {
+  factory $FailureAIModelCopyWith(
+          FailureAIModel value, $Res Function(FailureAIModel) then) =
+      _$FailureAIModelCopyWithImpl<$Res, FailureAIModel>;
   @useResult
   $Res call(
       {List<String>? errorDescription,
@@ -2406,17 +2405,16 @@ abstract class $FailureCloseStreamModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FailureCloseStreamModelCopyWithImpl<$Res,
-        $Val extends FailureCloseStreamModel>
-    implements $FailureCloseStreamModelCopyWith<$Res> {
-  _$FailureCloseStreamModelCopyWithImpl(this._value, this._then);
+class _$FailureAIModelCopyWithImpl<$Res, $Val extends FailureAIModel>
+    implements $FailureAIModelCopyWith<$Res> {
+  _$FailureAIModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FailureCloseStreamModel
+  /// Create a copy of FailureAIModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -2448,12 +2446,11 @@ class _$FailureCloseStreamModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$FailureCloseStreamModelImplCopyWith<$Res>
-    implements $FailureCloseStreamModelCopyWith<$Res> {
-  factory _$$FailureCloseStreamModelImplCopyWith(
-          _$FailureCloseStreamModelImpl value,
-          $Res Function(_$FailureCloseStreamModelImpl) then) =
-      __$$FailureCloseStreamModelImplCopyWithImpl<$Res>;
+abstract class _$$FailureAIModelImplCopyWith<$Res>
+    implements $FailureAIModelCopyWith<$Res> {
+  factory _$$FailureAIModelImplCopyWith(_$FailureAIModelImpl value,
+          $Res Function(_$FailureAIModelImpl) then) =
+      __$$FailureAIModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2464,16 +2461,14 @@ abstract class _$$FailureCloseStreamModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$FailureCloseStreamModelImplCopyWithImpl<$Res>
-    extends _$FailureCloseStreamModelCopyWithImpl<$Res,
-        _$FailureCloseStreamModelImpl>
-    implements _$$FailureCloseStreamModelImplCopyWith<$Res> {
-  __$$FailureCloseStreamModelImplCopyWithImpl(
-      _$FailureCloseStreamModelImpl _value,
-      $Res Function(_$FailureCloseStreamModelImpl) _then)
+class __$$FailureAIModelImplCopyWithImpl<$Res>
+    extends _$FailureAIModelCopyWithImpl<$Res, _$FailureAIModelImpl>
+    implements _$$FailureAIModelImplCopyWith<$Res> {
+  __$$FailureAIModelImplCopyWithImpl(
+      _$FailureAIModelImpl _value, $Res Function(_$FailureAIModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FailureCloseStreamModel
+  /// Create a copy of FailureAIModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -2483,7 +2478,7 @@ class __$$FailureCloseStreamModelImplCopyWithImpl<$Res>
     Object? detail = freezed,
     Object? statusCode = freezed,
   }) {
-    return _then(_$FailureCloseStreamModelImpl(
+    return _then(_$FailureAIModelImpl(
       errorDescription: freezed == errorDescription
           ? _value._errorDescription
           : errorDescription // ignore: cast_nullable_to_non_nullable
@@ -2506,16 +2501,16 @@ class __$$FailureCloseStreamModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$FailureCloseStreamModelImpl implements _FailureCloseStreamModel {
-  const _$FailureCloseStreamModelImpl(
+class _$FailureAIModelImpl implements _FailureAIModel {
+  const _$FailureAIModelImpl(
       {final List<String>? errorDescription = const [],
       this.message = null,
       this.detail = null,
       this.statusCode = 0})
       : _errorDescription = errorDescription;
 
-  factory _$FailureCloseStreamModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FailureCloseStreamModelImplFromJson(json);
+  factory _$FailureAIModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FailureAIModelImplFromJson(json);
 
   final List<String>? _errorDescription;
   @override
@@ -2541,14 +2536,14 @@ class _$FailureCloseStreamModelImpl implements _FailureCloseStreamModel {
 
   @override
   String toString() {
-    return 'FailureCloseStreamModel(errorDescription: $errorDescription, message: $message, detail: $detail, statusCode: $statusCode)';
+    return 'FailureAIModel(errorDescription: $errorDescription, message: $message, detail: $detail, statusCode: $statusCode)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailureCloseStreamModelImpl &&
+            other is _$FailureAIModelImpl &&
             const DeepCollectionEquality()
                 .equals(other._errorDescription, _errorDescription) &&
             (identical(other.message, message) || other.message == message) &&
@@ -2566,32 +2561,32 @@ class _$FailureCloseStreamModelImpl implements _FailureCloseStreamModel {
       detail,
       statusCode);
 
-  /// Create a copy of FailureCloseStreamModel
+  /// Create a copy of FailureAIModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailureCloseStreamModelImplCopyWith<_$FailureCloseStreamModelImpl>
-      get copyWith => __$$FailureCloseStreamModelImplCopyWithImpl<
-          _$FailureCloseStreamModelImpl>(this, _$identity);
+  _$$FailureAIModelImplCopyWith<_$FailureAIModelImpl> get copyWith =>
+      __$$FailureAIModelImplCopyWithImpl<_$FailureAIModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$FailureCloseStreamModelImplToJson(
+    return _$$FailureAIModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _FailureCloseStreamModel implements FailureCloseStreamModel {
-  const factory _FailureCloseStreamModel(
+abstract class _FailureAIModel implements FailureAIModel {
+  const factory _FailureAIModel(
       {final List<String>? errorDescription,
       final String? message,
       final String? detail,
-      final int? statusCode}) = _$FailureCloseStreamModelImpl;
+      final int? statusCode}) = _$FailureAIModelImpl;
 
-  factory _FailureCloseStreamModel.fromJson(Map<String, dynamic> json) =
-      _$FailureCloseStreamModelImpl.fromJson;
+  factory _FailureAIModel.fromJson(Map<String, dynamic> json) =
+      _$FailureAIModelImpl.fromJson;
 
   @override
   List<String>? get errorDescription;
@@ -2602,12 +2597,12 @@ abstract class _FailureCloseStreamModel implements FailureCloseStreamModel {
   @override
   int? get statusCode;
 
-  /// Create a copy of FailureCloseStreamModel
+  /// Create a copy of FailureAIModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailureCloseStreamModelImplCopyWith<_$FailureCloseStreamModelImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$FailureAIModelImplCopyWith<_$FailureAIModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 PlatformChatbotResponseModel _$PlatformChatbotResponseModelFromJson(

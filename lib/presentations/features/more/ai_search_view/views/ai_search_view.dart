@@ -126,7 +126,14 @@ class _AiSearchViewState extends State<AiSearchView> {
                 try {
                   // Temporary file path
                   final tempDir = await getTemporaryDirectory();
-                  final filePath = '${tempDir.path}/temp_pdf.pdf';
+                  final rawTitle = value.fileName;
+                  final safeFileName = rawTitle
+                      .replaceAll(
+                          RegExp(r'[\\/:*?"<>|]'), '') // Remove illegal chars
+                      .replaceAll(' ', '_') // Replace spaces
+                      .trim();
+
+                  final filePath = '${tempDir.path}/$safeFileName.pdf';
 
                   // Download the file
                   final response = await Dio().get(
@@ -257,7 +264,7 @@ class _AiSearchViewState extends State<AiSearchView> {
                                                 } else {
                                                   await context
                                                       .read<VoiceCubit>()
-                                                      .checkAndRequestPermissionToStart();
+                                                      .checkAndRequestPermissionToStart(context);
                                                 }
                                               },
                                               child: AnimatedSwitcher(
@@ -419,9 +426,18 @@ class _AiSearchViewState extends State<AiSearchView> {
                                                                       if (refUrlType
                                                                               .toLowerCase() ==
                                                                           "pdf") {
-                                                                        context
-                                                                            .read<SasPdfBloc>()
-                                                                            .add(SasPdfEvent.getSasPdf(request: refUrl));
+                                                                        final fileName = value
+                                                                            .previousResults[
+                                                                                index]
+                                                                            .title
+                                                                            .replaceAll(' ',
+                                                                                '_'); // safe name
+
+                                                                        context.read<SasPdfBloc>().add(SasPdfEvent.getSasPdf(
+                                                                            request:
+                                                                                refUrl,
+                                                                            fileName:
+                                                                                fileName));
                                                                       } else {
                                                                         await launchUrl(
                                                                             uri,

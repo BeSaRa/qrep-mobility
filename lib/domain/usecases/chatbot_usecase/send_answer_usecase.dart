@@ -6,15 +6,17 @@ import '../../repository/repository.dart';
 import '../base_usecases/base_usecase.dart';
 
 class SendAnswerUsecase
-    implements BaseUseCaseCloseStreamFailureResponse<MainSendAnswerRequestModelById, SendAnswerResponseModel> {
+    implements
+        BaseUseCaseCloseStreamFailureResponse<MainSendAnswerRequestModelById,
+            MainChatbotResponseModel> {
   final Repository repository;
 
   SendAnswerUsecase(this.repository);
 
   @override
-  Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> execute(
-     MainSendAnswerRequestModelById request) async {
-    return await repository.sendAnswer(request.request,request.id);
+  Future<Result<MainChatbotResponseModel, FailureAIModel>> execute(
+      MainSendAnswerRequestModelById request) async {
+    return await repository.sendAnswer(request.request, request.id);
   }
 }
 

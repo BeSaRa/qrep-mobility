@@ -22,8 +22,6 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
           failureOrSuccess.when((news) {
             newsList.clear();
             newsList.addAll(news);
-            log("zak news ${news.length}");
-            log("zak newsList ${newsList.length}");
             emit(NewsState.loaded(news: news));
           }, (error) {
             emit(NewsState.error(message: error.message));

@@ -79,6 +79,10 @@ class _FAQListWidgetState extends State<FAQListWidget> {
                                     );
                                   }
                                 });
+                                // Send the user's message as a ChatMessage instance
+                                context
+                                    .read<ChatHistoryCubit>()
+                                    .sanitizeAuthorityMessages();
                                 final userMessage = MessageRequestModel(
                                     content: message, role: 'user');
                                 context
@@ -126,7 +130,7 @@ class _FAQListWidgetState extends State<FAQListWidget> {
                                       value.response[index].actualQuestion,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .displayMedium
+                                          .displaySmall
                                           ?.copyWith(
                                             color: Colors.white,
                                           ),

@@ -12,6 +12,7 @@ class CloseStreamState with _$CloseStreamState {
   // }) = _Initial;
   const factory CloseStreamState.initial() = _Initial;
   const factory CloseStreamState.loading() = _Loading;
-  const factory CloseStreamState.done({required SendAnswerResponseModel response}) = _Done;
+  const factory CloseStreamState.done(
+      {required MainChatbotResponseModel response}) = _Done;
   const factory CloseStreamState.error(String message) = _Error;
 }

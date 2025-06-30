@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
@@ -48,7 +49,7 @@ class VoiceCubit extends Cubit<VoiceState> {
   //     ));
   //   }
   // }
-  Future<void> checkAndRequestPermissionToStart() async {
+  Future<void> checkAndRequestPermissionToStart(BuildContext context) async {
     PermissionStatus status = await Permission.microphone.status;
 
     if (status.isDenied || status.isPermanentlyDenied) {
@@ -57,7 +58,7 @@ class VoiceCubit extends Cubit<VoiceState> {
 
       if (isGranted) {
         initializeSpeech();
-        startListening();
+        startListening(context);
       } else {
         // Handle case when permission is permanently denied or not granted
         emit(VoiceState(
@@ -69,12 +70,12 @@ class VoiceCubit extends Cubit<VoiceState> {
     } else {
       // If permission is already granted
 
-      startListening();
+      startListening(context);
     }
   }
 //-----------------------------START---------------------------------
 
-  void startListening() {
+  void startListening(BuildContext context) {
     if (!_speech.isAvailable) {
       // if (isClosed) return; // Check if the Cubit is closed
       emit(VoiceState(
@@ -125,7 +126,7 @@ class VoiceCubit extends Cubit<VoiceState> {
           stopListening();
         }
       },
-      localeId: "ar_DZ",
+      localeId:         Localizations.localeOf(context).languageCode == 'ar'   ? "ar_DZ" : "en_US",
       // localeId: selectedLocale,
       // localeId: selectedLocale,
       listenMode: stt.ListenMode.dictation,

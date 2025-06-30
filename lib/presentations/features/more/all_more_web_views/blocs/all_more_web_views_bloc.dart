@@ -59,16 +59,14 @@ class AboutTheAuthorityBloc
 
     on<InitializeAboutAuthWebView>((event, emit) async {
       try {
-        //zak2
         emit(AboutTheAuthorityLoading(urlHistory: [event.url]));
-        log("zak init");
         controller
           ..setJavaScriptMode(JavaScriptMode.unrestricted)
           ..setNavigationDelegate(NavigationDelegate(
             onPageStarted: (url) => add(PageStarted(url)),
             onPageFinished: (url) => add(PageLoaded(url)),
 
-            ///zak Here I solve the problem of the event/ usrls
+            ///Here I solve the problem of the event/ usrls
 
             // onWebResourceError: (error) =>
             //     add(PageDidnNotLoad(error.errorCode, error.description)),
@@ -108,13 +106,10 @@ class AboutTheAuthorityBloc
 
     // Update existing events to maintain history
     on<PageStarted>((event, emit) {
-      log("zak started");
       emit(AboutTheAuthorityLoading(urlHistory: state.urlHistory));
     });
 
     on<PageLoaded>((event, emit) {
-      log("zak loaded");
-      //zak2
       if (state is AboutTheAuthorityError) return;
       emit(AboutTheAuthorityLoaded(urlHistory: state.urlHistory));
     });
@@ -143,7 +138,6 @@ class AboutTheAuthorityBloc
     }
 
     on<PageDidnNotLoad>((event, emit) async {
-      log("zak didnt load");
       // Create detailed error message
       final errorDetails = '''
   WebView Error Occurred:

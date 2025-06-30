@@ -12,10 +12,12 @@ class AiAvatarIconWidget extends StatefulWidget {
     super.key,
     required this.isAvatarExpanded,
     required this.isRecordModeActive,
+    required this.isAvatarSpeaking,
   });
 
   final ValueNotifier<bool> isRecordModeActive;
   final ValueNotifier<bool> isAvatarExpanded;
+  final ValueNotifier<bool> isAvatarSpeaking;
 
   @override
   State<AiAvatarIconWidget> createState() => _AiAvatarIconWidgetState();
@@ -52,6 +54,7 @@ class _AiAvatarIconWidgetState extends State<AiAvatarIconWidget> {
                           !widget.isAvatarExpanded.value;
                       widget.isRecordModeActive.value = true;
                     }
+                    widget.isAvatarSpeaking.value = false;
                   },
                                               );
                                             }, builder: (context, closeState) {

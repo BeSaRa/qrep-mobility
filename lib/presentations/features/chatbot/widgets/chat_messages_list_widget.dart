@@ -75,7 +75,7 @@ class ChatMessagesListWidget extends StatelessWidget {
                           : CrossAxisAlignment.start,
                       children: [
                         ShownMessageWidget(
-                          isPDFFileLoadingForSAS:isPDFFileLoadingForSAS,
+                            isPDFFileLoadingForSAS: isPDFFileLoadingForSAS,
                             currentMessageIndex: index,
                             isAvatarShow: isAvatarPressed,
                             message: message),

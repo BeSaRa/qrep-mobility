@@ -223,23 +223,21 @@ abstract class AppServiceClient {
   Future<HttpResponse<StartStreamModel>> startStream();
 
   @PUT('${Constant.authorityChatBotBaseUrl}/api/v1/avatar/send-answer/{id}')
-  Future<HttpResponse<SendAnswerResponseModel>> sendAnswer(
+  Future<HttpResponse<MainChatbotResponseModel>> sendAnswer(
       @Path("id") String id, @Body() MainSendAnswerRequestModel body);
   @POST('${Constant.authorityChatBotBaseUrl}/api/v1/avatar/send-candidate/{id}')
-  Future<HttpResponse<SendAnswerResponseModel>> sendCandidate(
+  Future<HttpResponse<MainChatbotResponseModel>> sendCandidate(
       @Path("id") String id, @Body() MainSendCandidateRequestModel body);
   @POST(
       '${Constant.authorityChatBotBaseUrl}/api/v1/chat-history/add-conversation-feedback')
-  Future<HttpResponse<SendAnswerResponseModel>> sendFeedback(
+  Future<HttpResponse<MainChatbotResponseModel>> sendFeedback(
       @Query("conv_id") String convId, @Query("feedback") int feedback);
-  @GET(
-      '${Constant.authorityChatBotBaseUrl}/api/v1/admin/sas-token')
-  Future<HttpResponse<String>> getAiSearchPdfUrl(
-      @Query("blob_url") String blobUrl);
+  @GET('${Constant.authorityChatBotBaseUrl}/api/v1/admin/sas-token')
+  Future<HttpResponse<String>> getSASPdfUrl(@Query("blob_url") String blobUrl);
 
   /// ******* close stream *******
   @DELETE("${Constant.authorityChatBotBaseUrl}/api/v1/avatar/close-stream/{id}")
-  Future<HttpResponse<SendAnswerResponseModel>> closeStream(
+  Future<HttpResponse<MainChatbotResponseModel>> closeStream(
       @Path("id") String id);
 
   /// ******* chat FAQ *******

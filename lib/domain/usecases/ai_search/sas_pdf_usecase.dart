@@ -7,15 +7,14 @@ import '../../models/chatboot/chatbot_response_model.dart';
 import '../../repository/repository.dart';
 import '../base_usecases/base_usecase.dart';
 
-class GetAiSearchPdfUrlUsecase
+class SasPdfUsecase
     implements BaseUseCaseCloseStreamFailureResponse<String, String> {
   final Repository repository;
 
-  GetAiSearchPdfUrlUsecase(this.repository);
+  SasPdfUsecase(this.repository);
 
   @override
-  Future<Result<String, FailureCloseStreamModel>> execute(
-      String blobUrl) async {
-    return await repository.getAiSearchPdfUrl(blobUrl);
+  Future<Result<String, FailureAIModel>> execute(String blobUrl) async {
+    return await repository.getSASPdfUrl(blobUrl);
   }
 }

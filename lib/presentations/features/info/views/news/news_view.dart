@@ -40,7 +40,6 @@ class _NewsViewState extends State<NewsView> {
 
   @override
   Widget build(BuildContext context) {
-    log("zak filterd news ${filteredNews.length}");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,

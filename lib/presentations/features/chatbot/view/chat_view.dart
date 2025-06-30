@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
+import 'package:ebla/domain/models/chatboot/new_chatbot_response_models/new_chatbot_response_model.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/send_answer_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/send_candidate_usecase.dart';
@@ -12,6 +13,7 @@ import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/
 import 'package:ebla/presentations/features/chatbot/blocs/record_cubit/voice_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_feedback_bloc/send_feedback_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_message_bloc/chat_bloc.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/stop_render/stop_render_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/stream_bloc/stream_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/stream_bloc/stream_state.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/stream_id_cubit.dart/stream_id_cubit.dart';
@@ -50,21 +52,22 @@ class _ChatViewState extends State<ChatView>
   final TextEditingController _controller = TextEditingController();
   late ChatBotBloc chatBotBloc;
   late CloseStreamBloc closeStreamBloc;
+  late StopRenderBloc stopRenderBloc;
   late StreamIdCubit streamIdCubit;
   final ValueNotifier<bool> isSendEnabled = ValueNotifier<bool>(false);
   final ValueNotifier<bool> isAvatarExpanded = ValueNotifier<bool>(true);
-  //zak
   final ValueNotifier<bool> _isPDFFileLoadingForSAS =
       ValueNotifier<bool>(false);
   final ValueNotifier<bool> isStreamFullReady = ValueNotifier<bool>(false);
   final ValueNotifier<bool> isRecordMode = ValueNotifier<bool>(true);
+  //for Stop Speak button
+  final ValueNotifier<bool> isAvatarSpeaking = ValueNotifier(false);
   bool isMessageSending = false;
   final ScrollController scrollController = ScrollController();
 /*================ timer for close stream after 2 minutes of no action ================*/
   Timer? inactivityTimer;
   // final Duration inactivityDuration = const Duration(minutes: 1, seconds: 45);
   final ValueNotifier<bool> showScrollDownButton = ValueNotifier(false);
-
   final ValueNotifier<bool> isOpen = ValueNotifier(false);
   final ValueNotifier<bool> showHoldMessage = ValueNotifier(false);
   Timer? holdMessageTimer;
@@ -83,6 +86,7 @@ class _ChatViewState extends State<ChatView>
     super.initState();
     chatBotBloc = instance<ChatBotBloc>();
     closeStreamBloc = instance<CloseStreamBloc>();
+    stopRenderBloc = instance<StopRenderBloc>();
     streamIdCubit = instance<StreamIdCubit>();
     _controller.addListener(() {
       isSendEnabled.value = _controller.text.trim().isNotEmpty;
@@ -198,6 +202,7 @@ class _ChatViewState extends State<ChatView>
                                 }
                               },
                               child: StreamPage(
+                                  isAvatarSpeaking: isAvatarSpeaking,
                                   isAvatarExpanded: isAvatarExpanded,
                                   isStreamFullReady: isStreamFullReady),
                             ))
@@ -220,6 +225,7 @@ class _ChatViewState extends State<ChatView>
                                     BlocProvider.of<ChatHistoryCubit>(context)),
                             BlocProvider.value(value: chatBotBloc),
                             BlocProvider.value(value: closeStreamBloc),
+                            BlocProvider.value(value: stopRenderBloc),
                             BlocProvider.value(
                                 value: BlocProvider.of<VoiceCubit>(context)),
                             BlocProvider.value(
@@ -230,7 +236,6 @@ class _ChatViewState extends State<ChatView>
                             BlocProvider<SendFeedbackBloc>.value(
                                 value:
                                     BlocProvider.of<SendFeedbackBloc>(context)),
-                            //zak
                             BlocProvider(
                               create: (context) => StreamBloc(
                                 startStreamUsecase:
@@ -245,43 +250,102 @@ class _ChatViewState extends State<ChatView>
                           child: BlocConsumer<ChatBotBloc, ChatBotState>(
                               listener: (context, sendState) {
                                 sendState.map(
-                                    initial: (val) {},
-                                    loading: (val) {
-                                      isMessageSending = true;
-                                    },
-                                    done: (val) {
-                                      //----- if i'm in authority-----
-                                      if (val.response != null) {
-                                        context
-                                            .read<ChatHistoryCubit>()
-                                            .addMessage(MessageRequestModel(
-                                                role: 'assistant',
-                                                contextData: val.response!
-                                                    .message.contextModel,
-                                                content: val
-                                                    .response!.message.content,
-                                                //i will add the conv id for thefeedback
+                                  initial: (val) {},
+                                  loading: (val) {
+                                    isMessageSending = true;
+                                  },
+                                  streaming: (value) {
+                                    final messages = context
+                                        .read<ChatHistoryCubit>()
+                                        .state
+                                        .authorityMessages;
+
+                                    // If this is the first streaming event, add a new message
+                                    if (messages.isEmpty ||
+                                        messages.last.role != 'assistant') {
+                                      context
+                                          .read<ChatHistoryCubit>()
+                                          .addMessage(
+                                            MessageRequestModel(
+                                              role: 'assistant',
+                                              content: NewChatbotResponseModel(
+                                                event: 'streaming',
+                                                data: DataResponseModel(
+                                                  content:
+                                                      value.accumulatedContent,
+                                                  citations: value.citations,
+                                                  conversationId:
+                                                      value.conversationId,
+                                                  streamId: value.streamId,
+                                                  userId: value.userId,
+                                                  actionResults:
+                                                      value.actionResults,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                    } else {
+                                      final lastMessage = messages.last;
+                                      final updatedMessage =
+                                          lastMessage.copyWith(
+                                        content: NewChatbotResponseModel(
+                                          event: 'streaming',
+                                          data: DataResponseModel(
+                                            content: value.accumulatedContent,
+                                            citations: value.citations,
+                                            conversationId:
+                                                value.conversationId,
+                                            streamId: value.streamId,
+                                            userId: value.userId,
+                                            actionResults: value.actionResults,
+                                          ),
+                                        ),
+                                      );
+                                      context
+                                          .read<ChatHistoryCubit>()
+                                          .updateLastMessage(updatedMessage);
+                                    }
+                                  },
+                                  done: (val) {
+                                    if (val.response != null) {
+                                      final messages = context
+                                          .read<ChatHistoryCubit>()
+                                          .state
+                                          .authorityMessages;
+
+                                      if (messages.isNotEmpty &&
+                                          messages.last.role == 'assistant') {
+                                        final lastMessage = messages.last;
+                                        final updatedMessage =
+                                            lastMessage.copyWith(
+                                                content: val.response!,
                                                 authorityConvId: val.response!
-                                                    .message.conversationId));
-                                      }
-                                      //----- if i'm in platform-----
-                                      else {
+                                                    .data.conversationId);
                                         context
                                             .read<ChatHistoryCubit>()
-                                            .addMessage(MessageRequestModel(
+                                            .updateLastMessage(updatedMessage);
+                                      }
+                                    } else {
+                                      // Handle platform response
+                                      context
+                                          .read<ChatHistoryCubit>()
+                                          .addMessage(
+                                            MessageRequestModel(
                                               role: 'assistant',
                                               content: val.platformResponse,
-                                            ));
-                                      }
-                                      isMessageSending = false;
-                                    },
-                                    error: (val) {
-                                      if (mounted) {
-                                        errorToast(
-                                            AppStrings().defaultError, context);
-                                      }
-                                      isMessageSending = false;
-                                    });
+                                            ),
+                                          );
+                                    }
+                                    isMessageSending = false;
+                                  },
+                                  error: (val) {
+                                    if (mounted) {
+                                      errorToast(
+                                          AppStrings().defaultError, context);
+                                    }
+                                    isMessageSending = false;
+                                  },
+                                );
                               },
                               bloc: chatBotBloc,
                               builder: (context, sendState) {
@@ -321,7 +385,6 @@ class _ChatViewState extends State<ChatView>
                                                           onTap: () {
                                                             if (scrollController
                                                                 .hasClients) {
-                                                              // setState(() {
                                                               scrollController
                                                                   .animateTo(
                                                                 scrollController
@@ -373,9 +436,7 @@ class _ChatViewState extends State<ChatView>
                                         ],
                                       )),
 
-                                    //zak
                                     //===================================
-                                    //zaknewstream
                                     if (isAvatarPressed &&
                                         isStreamFullReadyValue)
                                       SizedBox(
@@ -391,14 +452,27 @@ class _ChatViewState extends State<ChatView>
                                         ),
                                       ),
 //=================================== START FAQ ======================================
-                                    sendState.maybeMap(
-                                      loading: (value) =>
-                                          const SizedBox.shrink(),
-                                      orElse: () {
-                                        return FAQListWidget(
-                                            scrollController: scrollController);
-                                      },
-                                    ),
+                                    ValueListenableBuilder<bool>(
+                                        valueListenable: isAvatarSpeaking,
+                                        builder: (context, isAvatarSpeakingVal,
+                                            child) {
+                                          return sendState.maybeMap(
+                                            loading: (value) =>
+                                                const SizedBox.shrink(),
+                                            orElse: () {
+                                              if ((isAvatarPressed &&
+                                                      isStreamFullReadyValue &&
+                                                      !isAvatarSpeakingVal) ||
+                                                  !isAvatarPressed) {
+                                                return FAQListWidget(
+                                                    scrollController:
+                                                        scrollController);
+                                              } else {
+                                                return const SizedBox.shrink();
+                                              }
+                                            },
+                                          );
+                                        }),
 //=================================== END FAQ ======================================
 
                                     BlocBuilder<VoiceCubit, VoiceState>(
@@ -461,6 +535,8 @@ class _ChatViewState extends State<ChatView>
                                                               ),
                                                             )
                                                           : AiAvatarIconWidget(
+                                                              isAvatarSpeaking:
+                                                                  isAvatarSpeaking,
                                                               isRecordModeActive:
                                                                   isRecordMode,
                                                               isAvatarExpanded:
@@ -561,100 +637,125 @@ class _ChatViewState extends State<ChatView>
                                                               context),
                                                           builder: (context,
                                                               voiceState) {
-                                                            return GestureDetector(
-                                                              onLongPressStart:
-                                                                  isAvatarPressed &&
-                                                                          isStreamFullReadyValue
-                                                                      ? (_) async {
-                                                                          final can =
-                                                                              await Haptics.canVibrate();
-                                                                          if (!can) {
-                                                                            return;
+                                                            return ValueListenableBuilder<
+                                                                    bool>(
+                                                                valueListenable:
+                                                                    isAvatarSpeaking,
+                                                                builder: (context,
+                                                                    isAvatarSpeakingVal,
+                                                                    child) {
+                                                                  return GestureDetector(
+                                                                    onLongPressStart: isAvatarPressed &&
+                                                                            isStreamFullReadyValue
+                                                                        ? (_) async {
+                                                                            if (isAvatarSpeakingVal) {
+                                                                              //don't do anything
+                                                                            } else {
+                                                                              final can = await Haptics.canVibrate();
+                                                                              if (!can) {
+                                                                                return;
+                                                                              }
+                                                                              await Haptics.vibrate(HapticsType.heavy);
+                                                                              context.read<VoiceCubit>().checkAndRequestPermissionToStart(context);
+                                                                            }
                                                                           }
-                                                                          await Haptics.vibrate(
-                                                                              HapticsType.heavy);
-                                                                          context
-                                                                              .read<VoiceCubit>()
-                                                                              .checkAndRequestPermissionToStart();
-                                                                        }
-                                                                      : null,
-                                                              onLongPressEnd:
-                                                                  isAvatarPressed &&
-                                                                          isStreamFullReadyValue
-                                                                      ? (_) async {
-                                                                          try {
-                                                                            await context.read<VoiceCubit>().stopListening();
-                                                                          } catch (e) {
-                                                                            log("⚠️ Error during audio release sequence: $e");
+                                                                        : null,
+                                                                    onLongPressEnd: isAvatarPressed &&
+                                                                            isStreamFullReadyValue
+                                                                        ? (_) async {
+                                                                            if (isAvatarSpeakingVal) {
+                                                                              //don't do anything
+                                                                            } else {
+                                                                              try {
+                                                                                await context.read<VoiceCubit>().stopListening();
+                                                                              } catch (e) {
+                                                                                log("⚠️ Error during audio release sequence: $e");
+                                                                              }
+                                                                              showHoldMessage.value = false;
+                                                                            }
                                                                           }
-                                                                          showHoldMessage.value =
-                                                                              false;
-                                                                        }
-                                                                      : null,
-                                                              onTap: isAvatarPressed
-                                                                  ? isStreamFullReadyValue
-                                                                      ? () {
-                                                                          showHoldHint();
-                                                                        }
-                                                                      : null
-                                                                  : () async {
-                                                                      final can =
-                                                                          await Haptics
-                                                                              .canVibrate();
-                                                                      if (!can) {
-                                                                        return;
-                                                                      }
-                                                                      await Haptics.vibrate(
-                                                                          HapticsType
-                                                                              .heavy);
-                                                                      if (voiceState
-                                                                          .isListening) {
-                                                                        context
-                                                                            .read<VoiceCubit>()
-                                                                            .stopListening();
-                                                                      } else {
-                                                                        context
-                                                                            .read<VoiceCubit>()
-                                                                            .checkAndRequestPermissionToStart();
-                                                                      }
-                                                                    },
-                                                              child: isAvatarPressed
-                                                                  ? isRecordModeEnabled
-                                                                      ? AnimatedContainer(
-                                                                          duration: const Duration(milliseconds: 200),
-                                                                          decoration: BoxDecoration(
-                                                                              boxShadow: [
-                                                                                BoxShadow(
-                                                                                  blurStyle: BlurStyle.outer,
-                                                                                  color: ColorManager.primary.withValues(alpha: .7),
-                                                                                  blurRadius: 30,
-                                                                                  spreadRadius: 1,
-                                                                                ),
-                                                                              ],
-                                                                              gradient: LinearGradient(
-                                                                                colors: [
-                                                                                  isStreamFullReadyValue ? ColorManager.primary : ColorManager.primary.withValues(alpha: .5),
-                                                                                  ColorManager.primary.withValues(alpha: isStreamFullReadyValue ? .7 : .2),
-                                                                                ],
-                                                                                begin: Alignment.topLeft,
-                                                                                end: Alignment.bottomRight,
-                                                                              ),
-                                                                              color: voiceState.isListening ? ColorManager.primary.withValues(alpha: 0.3) : Theme.of(context).primaryColor,
-                                                                              borderRadius: BorderRadius.circular(AppSizeR.s100)),
-                                                                          height: AppSizeH.s60,
-                                                                          width: AppSizeH.s120,
-                                                                          child: Icon(
-                                                                            Icons.mic_none,
-                                                                            color:
-                                                                                ColorManager.white,
-                                                                          ))
-                                                                      : const SizedBox.shrink()
-                                                                  :
-                                                                  //we will see this widget when the avatar is not enabled
-                                                                  voiceState.isListening
-                                                                      ? SizedBox(height: AppSizeH.s40, width: AppSizeH.s40, child: Lottie.asset(ImageAssets.chatBotRecordingIndecetor))
-                                                                      : const Icon(Icons.mic_none),
-                                                            );
+                                                                        : null,
+                                                                    onTap: isAvatarPressed
+                                                                        ? isStreamFullReadyValue
+                                                                            ? () {
+                                                                                if (isAvatarSpeakingVal) {
+                                                                                  if (streamIdCubit.state.streamId != null) {
+                                                                                    stopRenderBloc.add(StopRenderEvent.stopRender(streamIdCubit.state.streamId!));
+                                                                                  }
+                                                                                } else {
+                                                                                  showHoldHint();
+                                                                                }
+                                                                              }
+                                                                            : null
+                                                                        : () async {
+                                                                            final can =
+                                                                                await Haptics.canVibrate();
+                                                                            if (!can) {
+                                                                              return;
+                                                                            }
+                                                                            await Haptics.vibrate(HapticsType.heavy);
+                                                                            if (voiceState.isListening) {
+                                                                              context.read<VoiceCubit>().stopListening();
+                                                                            } else {
+                                                                              context.read<VoiceCubit>().checkAndRequestPermissionToStart(context);
+                                                                            }
+                                                                          },
+                                                                    child: isAvatarPressed
+                                                                        ? isRecordModeEnabled
+                                                                            ? BlocConsumer<StopRenderBloc, StopRenderState>(listener: (context, stopState) {
+                                                                                stopState.mapOrNull(
+                                                                                  error: (value) {
+                                                                                    errorToast(value.message, context);
+                                                                                  },
+                                                                                  done: (value) {
+                                                                                    isAvatarSpeaking.value = false;
+                                                                                    successToast(value.response.message, context);
+                                                                                  },
+                                                                                );
+                                                                              }, builder: (context, stopState) {
+                                                                                return AnimatedContainer(
+                                                                                    duration: const Duration(milliseconds: 200),
+                                                                                    decoration: BoxDecoration(
+                                                                                        boxShadow: [
+                                                                                          BoxShadow(
+                                                                                            blurStyle: BlurStyle.outer,
+                                                                                            color: ColorManager.primary.withValues(alpha: .7),
+                                                                                            blurRadius: 30,
+                                                                                            spreadRadius: 1,
+                                                                                          ),
+                                                                                        ],
+                                                                                        gradient: LinearGradient(
+                                                                                          colors: [
+                                                                                            isStreamFullReadyValue ? ColorManager.primary : ColorManager.primary.withValues(alpha: .5),
+                                                                                            ColorManager.primary.withValues(alpha: isStreamFullReadyValue ? .7 : .2),
+                                                                                          ],
+                                                                                          begin: Alignment.topLeft,
+                                                                                          end: Alignment.bottomRight,
+                                                                                        ),
+                                                                                        color: voiceState.isListening ? ColorManager.primary.withValues(alpha: 0.3) : Theme.of(context).primaryColor,
+                                                                                        borderRadius: BorderRadius.circular(AppSizeR.s100)),
+                                                                                    height: AppSizeH.s60,
+                                                                                    width: isAvatarSpeakingVal ? AppSizeW.s60 : AppSizeW.s120,
+                                                                                    child: stopState.maybeMap(
+                                                                                        loading: (_) => const Center(
+                                                                                              child: CircularProgressIndicator(
+                                                                                                strokeWidth: 3,
+                                                                                                color: Colors.white,
+                                                                                              ),
+                                                                                            ),
+                                                                                        orElse: () => Icon(
+                                                                                              isAvatarSpeakingVal ? Icons.stop : Icons.mic_none,
+                                                                                              color: ColorManager.white,
+                                                                                            )));
+                                                                              })
+                                                                            : const SizedBox.shrink()
+                                                                        :
+                                                                        //we will see this widget when the avatar is not enabled
+                                                                        voiceState.isListening
+                                                                            ? SizedBox(height: AppSizeH.s40, width: AppSizeH.s40, child: Lottie.asset(ImageAssets.chatBotRecordingIndecetor))
+                                                                            : const Icon(Icons.mic_none),
+                                                                  );
+                                                                });
                                                           }),
                                                       SizedBox(
                                                         width:
@@ -795,16 +896,24 @@ class _ChatViewState extends State<ChatView>
                                                             builder: (context,
                                                                 enabled,
                                                                 child) {
-                                                              return SendButtonWidget(
-                                                                isAvatarShown:
-                                                                    isAvatarPressed,
-                                                                scrollController:
-                                                                    scrollController,
-                                                                enabled:
-                                                                    enabled,
-                                                                controller:
-                                                                    _controller,
-                                                              );
+                                                              return ValueListenableBuilder<
+                                                                      bool>(
+                                                                  valueListenable:
+                                                                      isAvatarSpeaking,
+                                                                  builder: (context,
+                                                                      isAvatarSpeakingVal,
+                                                                      child) {
+                                                                    return SendButtonWidget(
+                                                                      isAvatarSpeaking:
+                                                                          isAvatarSpeakingVal,
+                                                                      scrollController:
+                                                                          scrollController,
+                                                                      enabled:
+                                                                          enabled,
+                                                                      controller:
+                                                                          _controller,
+                                                                    );
+                                                                  });
                                                             }),
                                                     ],
                                                   ),

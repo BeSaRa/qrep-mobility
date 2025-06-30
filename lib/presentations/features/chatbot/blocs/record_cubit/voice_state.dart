@@ -6,7 +6,6 @@ class VoiceState {
   final double confidence;
   final String errorMessage;
   final String selectedLocale;
-  //zak
   final String? audioPath;
   final List<stt.LocaleName>? availableLocales;
     final bool hasFinalResult;
@@ -34,4 +33,4 @@ class VoiceState {
 //     this.recordedText="",
 //     this.audioPath,
 //   });
-// }//zak
+// }

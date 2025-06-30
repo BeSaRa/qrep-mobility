@@ -18,11 +18,12 @@ abstract class BaseUseCaseEmptyInputFailureResponse<Out> {
 abstract class BaseUseCaseFailureResponse<In, Out> {
   Future<Result<Out, FailureResponse>> execute(In input);
 }
+
 //----------------------------------- Close stream ------------------------
 abstract class BaseUseCaseEmptyInputCloseStreamFailureResponse<Out> {
-  Future<Result<Out, FailureCloseStreamModel>> execute();
+  Future<Result<Out, FailureAIModel>> execute();
 }
 
 abstract class BaseUseCaseCloseStreamFailureResponse<In, Out> {
-  Future<Result<Out, FailureCloseStreamModel>> execute(In input);
+  Future<Result<Out, FailureAIModel>> execute(In input);
 }

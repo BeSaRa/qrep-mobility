@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:ebla/presentations/features/chatbot/blocs/stream_bloc/stream_bloc.dart';
@@ -19,12 +20,15 @@ import '../blocs/stream_id_cubit.dart/stream_id_cubit.dart';
 
 // ignore: must_be_immutable
 class StreamPage extends StatefulWidget {
-  ValueNotifier<bool> isStreamFullReady;
-  ValueNotifier<bool> isAvatarExpanded;
-  StreamPage({
+  final ValueNotifier<bool> isStreamFullReady;
+  final ValueNotifier<bool> isAvatarExpanded;
+  //This for Stop speak button
+ final ValueNotifier<bool> isAvatarSpeaking;
+  const StreamPage({
     Key? key,
     required this.isStreamFullReady,
     required this.isAvatarExpanded,
+    required this.isAvatarSpeaking,
   }) : super(key: key);
 
   @override
@@ -32,6 +36,8 @@ class StreamPage extends StatefulWidget {
 }
 
 class _StreamPageState extends State<StreamPage> {
+  // final ValueNotifier<bool> _isAvatarSpeaking = ValueNotifier(false);
+  Timer? _speakingTimer;
   late final WebViewController _controller;
   String _webRtcId = '';
 
@@ -47,6 +53,7 @@ class _StreamPageState extends State<StreamPage> {
 
   @override
   void dispose() {
+    _speakingTimer?.cancel();
     super.dispose();
   }
 
@@ -73,6 +80,17 @@ class _StreamPageState extends State<StreamPage> {
           if (!mounted) return;
           if (message.message == 'streamReady') {
             widget.isStreamFullReady.value = true;
+          }
+          try {
+            final data = jsonDecode(message.message);
+            if (data['type'] == 'speaking_status') {
+              final isSpeaking = data['isSpeaking'] as bool;
+              if (mounted) {
+                widget.isAvatarSpeaking.value = isSpeaking;
+              }
+            }
+          } catch (e) {
+            debugPrint('Error parsing speaking status: $e');
           }
         },
       )
@@ -166,7 +184,7 @@ class _StreamPageState extends State<StreamPage> {
                 RTCSessionDescription? rtcOffer;
                 if (offerModel != null) {
                   rtcOffer = RTCSessionDescription(
-                    offerModel.sdp ,
+                    offerModel.sdp,
                     offerModel.type,
                   );
                 }
@@ -463,7 +481,75 @@ class _StreamPageState extends State<StreamPage> {
     let hasAudioTracks = false;
     let isMuted = true;
     let isPaused = false;
+//zak-----------
+// Audio analysis variables (put these at the top)
+let audioContext;
+let analyser;
+let microphone;
+let scriptProcessor;
+let isSpeaking = false;
+let speakingTimeout;
+const SPEAKING_THRESHOLD = -30;  // dB threshold for speech detection
+const SPEAKING_PAUSE_DELAY = 3000; // 3 seconds delay
 
+function setupAudioAnalysis(stream) {
+  try {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = audioContext.createAnalyser();
+    microphone = audioContext.createMediaStreamSource(stream);
+    scriptProcessor = audioContext.createScriptProcessor(2048, 1, 1);
+    
+    microphone.connect(analyser);
+    analyser.connect(scriptProcessor);
+    scriptProcessor.connect(audioContext.destination);
+    
+    scriptProcessor.onaudioprocess = function() {
+      const array = new Uint8Array(analyser.frequencyBinCount);
+      analyser.getByteFrequencyData(array);
+      
+      let values = 0;
+      const length = array.length;
+      for (let i = 0; i < length; i++) {
+        values += array[i];
+      }
+      const average = values / length;
+      const db = 20 * Math.log10(average / 255);
+
+      const currentlySpeaking = db > SPEAKING_THRESHOLD;
+      
+      if (currentlySpeaking) {
+        // Clear any existing timeout when speech is detected
+        clearTimeout(speakingTimeout);
+        speakingTimeout = null;
+        
+        if (!isSpeaking) {
+          isSpeaking = true;
+          FlutterBridge.postMessage(JSON.stringify({
+            type: 'speaking_status',
+            isSpeaking: true
+          }));
+        }
+      } else if (isSpeaking && !speakingTimeout) {
+        // Only set timeout if we're currently marked as speaking
+        speakingTimeout = setTimeout(() => {
+          isSpeaking = false;
+          FlutterBridge.postMessage(JSON.stringify({
+            type: 'speaking_status',
+            isSpeaking: false
+          }));
+          speakingTimeout = null;
+        }, SPEAKING_PAUSE_DELAY);
+      }
+    };
+  } catch (e) {
+    console.error('Audio analysis setup failed:', e);
+    bridge.postMessage(JSON.stringify({
+      type: 'audio_error',
+      message: 'Audio analysis failed: ' + e.message
+    }));
+  }
+}
+//zak-----------
     // Initialize both buttons as hiddenf
     unmuteButton.style.display = 'none';
     pauseButton.style.display = 'none';
@@ -538,7 +624,12 @@ class _StreamPageState extends State<StreamPage> {
       pc.ontrack = (event) => {
         const stream = event.streams[0];
         remoteVideo.srcObject = stream;
-
+//zak----------
+// Set up audio analysis if there are audio tracks
+  if (stream.getAudioTracks().length > 0) {
+    setupAudioAnalysis(stream);
+  }
+//zak----------
         remoteVideo.onloadeddata = () => {
           loadingContainer.style.display = 'none';
           remoteVideo.style.display = 'block';

@@ -99,7 +99,6 @@ class AllMoreWebViews extends StatelessWidget {
                         bloc.state.urlHistory.length == 1) {
                       bloc.add(WebViewNavigationRequested(
                           bloc.state.urlHistory.last));
-                      log("zak ${bloc.state.urlHistory.last}");
                     } else {
                       bloc.add(InitializeAboutAuthWebView(
                           _getInitUrl(context, pageName)));
@@ -148,7 +147,6 @@ class AllMoreWebViews extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-            //zak
             onTap: () {
               if (pageName == "realEstateCalendar" &&
                   bloc.state.urlHistory.length == 1) {

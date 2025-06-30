@@ -1414,7 +1414,7 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<HttpResponse<SendAnswerResponseModel>> sendAnswer(
+  Future<HttpResponse<MainChatbotResponseModel>> sendAnswer(
     String id,
     MainSendAnswerRequestModel body,
   ) async {
@@ -1423,7 +1423,7 @@ class _AppServiceClient implements AppServiceClient {
     final _headers = <String, dynamic>{};
     final _data = body;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<SendAnswerResponseModel>>(Options(
+        _setStreamType<HttpResponse<MainChatbotResponseModel>>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
@@ -1439,13 +1439,13 @@ class _AppServiceClient implements AppServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = SendAnswerResponseModel.fromJson(_result.data!);
+    final value = MainChatbotResponseModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<SendAnswerResponseModel>> sendCandidate(
+  Future<HttpResponse<MainChatbotResponseModel>> sendCandidate(
     String id,
     MainSendCandidateRequestModel body,
   ) async {
@@ -1454,7 +1454,7 @@ class _AppServiceClient implements AppServiceClient {
     final _headers = <String, dynamic>{};
     final _data = body;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<SendAnswerResponseModel>>(Options(
+        _setStreamType<HttpResponse<MainChatbotResponseModel>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1470,13 +1470,13 @@ class _AppServiceClient implements AppServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = SendAnswerResponseModel.fromJson(_result.data!);
+    final value = MainChatbotResponseModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<SendAnswerResponseModel>> sendFeedback(
+  Future<HttpResponse<MainChatbotResponseModel>> sendFeedback(
     String convId,
     int feedback,
   ) async {
@@ -1488,7 +1488,7 @@ class _AppServiceClient implements AppServiceClient {
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<SendAnswerResponseModel>>(Options(
+        _setStreamType<HttpResponse<MainChatbotResponseModel>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1504,13 +1504,13 @@ class _AppServiceClient implements AppServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = SendAnswerResponseModel.fromJson(_result.data!);
+    final value = MainChatbotResponseModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<String>> getAiSearchPdfUrl(String blobUrl) async {
+  Future<HttpResponse<String>> getSASPdfUrl(String blobUrl) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'blob_url': blobUrl};
     final _headers = <String, dynamic>{};
@@ -1538,13 +1538,13 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<HttpResponse<SendAnswerResponseModel>> closeStream(String id) async {
+  Future<HttpResponse<MainChatbotResponseModel>> closeStream(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<SendAnswerResponseModel>>(Options(
+        _setStreamType<HttpResponse<MainChatbotResponseModel>>(Options(
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
@@ -1560,7 +1560,7 @@ class _AppServiceClient implements AppServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = SendAnswerResponseModel.fromJson(_result.data!);
+    final value = MainChatbotResponseModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -1783,7 +1783,7 @@ class _CmsServiceClient implements CmsServiceClient {
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
-  
+
   @override
   Future<HttpResponse<UserResponse>> getUserInfo() async {
     const _extra = <String, dynamic>{};

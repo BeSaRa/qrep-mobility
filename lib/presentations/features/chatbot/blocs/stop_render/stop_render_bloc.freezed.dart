@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'sas_pdf_bloc.dart';
+part of 'stop_render_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,247 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$SasPdfEvent {
-  String get request => throw _privateConstructorUsedError;
-  String get fileName => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String request, String fileName) getSasPdf,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String request, String fileName)? getSasPdf,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String request, String fileName)? getSasPdf,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetSasPdf value) getSasPdf,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetSasPdf value)? getSasPdf,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetSasPdf value)? getSasPdf,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of SasPdfEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SasPdfEventCopyWith<SasPdfEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SasPdfEventCopyWith<$Res> {
-  factory $SasPdfEventCopyWith(
-          SasPdfEvent value, $Res Function(SasPdfEvent) then) =
-      _$SasPdfEventCopyWithImpl<$Res, SasPdfEvent>;
-  @useResult
-  $Res call({String request, String fileName});
-}
-
-/// @nodoc
-class _$SasPdfEventCopyWithImpl<$Res, $Val extends SasPdfEvent>
-    implements $SasPdfEventCopyWith<$Res> {
-  _$SasPdfEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of SasPdfEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? request = null,
-    Object? fileName = null,
-  }) {
-    return _then(_value.copyWith(
-      request: null == request
-          ? _value.request
-          : request // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileName: null == fileName
-          ? _value.fileName
-          : fileName // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$GetSasPdfImplCopyWith<$Res>
-    implements $SasPdfEventCopyWith<$Res> {
-  factory _$$GetSasPdfImplCopyWith(
-          _$GetSasPdfImpl value, $Res Function(_$GetSasPdfImpl) then) =
-      __$$GetSasPdfImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String request, String fileName});
-}
-
-/// @nodoc
-class __$$GetSasPdfImplCopyWithImpl<$Res>
-    extends _$SasPdfEventCopyWithImpl<$Res, _$GetSasPdfImpl>
-    implements _$$GetSasPdfImplCopyWith<$Res> {
-  __$$GetSasPdfImplCopyWithImpl(
-      _$GetSasPdfImpl _value, $Res Function(_$GetSasPdfImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SasPdfEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? request = null,
-    Object? fileName = null,
-  }) {
-    return _then(_$GetSasPdfImpl(
-      request: null == request
-          ? _value.request
-          : request // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileName: null == fileName
-          ? _value.fileName
-          : fileName // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$GetSasPdfImpl implements _GetSasPdf {
-  const _$GetSasPdfImpl({required this.request, required this.fileName});
-
-  @override
-  final String request;
-  @override
-  final String fileName;
-
-  @override
-  String toString() {
-    return 'SasPdfEvent.getSasPdf(request: $request, fileName: $fileName)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetSasPdfImpl &&
-            (identical(other.request, request) || other.request == request) &&
-            (identical(other.fileName, fileName) ||
-                other.fileName == fileName));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, request, fileName);
-
-  /// Create a copy of SasPdfEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GetSasPdfImplCopyWith<_$GetSasPdfImpl> get copyWith =>
-      __$$GetSasPdfImplCopyWithImpl<_$GetSasPdfImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String request, String fileName) getSasPdf,
-  }) {
-    return getSasPdf(request, fileName);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String request, String fileName)? getSasPdf,
-  }) {
-    return getSasPdf?.call(request, fileName);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String request, String fileName)? getSasPdf,
-    required TResult orElse(),
-  }) {
-    if (getSasPdf != null) {
-      return getSasPdf(request, fileName);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetSasPdf value) getSasPdf,
-  }) {
-    return getSasPdf(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetSasPdf value)? getSasPdf,
-  }) {
-    return getSasPdf?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetSasPdf value)? getSasPdf,
-    required TResult orElse(),
-  }) {
-    if (getSasPdf != null) {
-      return getSasPdf(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetSasPdf implements SasPdfEvent {
-  const factory _GetSasPdf(
-      {required final String request,
-      required final String fileName}) = _$GetSasPdfImpl;
-
-  @override
-  String get request;
-  @override
-  String get fileName;
-
-  /// Create a copy of SasPdfEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GetSasPdfImplCopyWith<_$GetSasPdfImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$SasPdfState {
+mixin _$StopRenderState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String response, String fileName) done,
+    required TResult Function(MainChatbotResponseModel response) done,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -263,7 +28,7 @@ mixin _$SasPdfState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String response, String fileName)? done,
+    TResult? Function(MainChatbotResponseModel response)? done,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -271,7 +36,7 @@ mixin _$SasPdfState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String response, String fileName)? done,
+    TResult Function(MainChatbotResponseModel response)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -304,23 +69,23 @@ mixin _$SasPdfState {
 }
 
 /// @nodoc
-abstract class $SasPdfStateCopyWith<$Res> {
-  factory $SasPdfStateCopyWith(
-          SasPdfState value, $Res Function(SasPdfState) then) =
-      _$SasPdfStateCopyWithImpl<$Res, SasPdfState>;
+abstract class $StopRenderStateCopyWith<$Res> {
+  factory $StopRenderStateCopyWith(
+          StopRenderState value, $Res Function(StopRenderState) then) =
+      _$StopRenderStateCopyWithImpl<$Res, StopRenderState>;
 }
 
 /// @nodoc
-class _$SasPdfStateCopyWithImpl<$Res, $Val extends SasPdfState>
-    implements $SasPdfStateCopyWith<$Res> {
-  _$SasPdfStateCopyWithImpl(this._value, this._then);
+class _$StopRenderStateCopyWithImpl<$Res, $Val extends StopRenderState>
+    implements $StopRenderStateCopyWith<$Res> {
+  _$StopRenderStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SasPdfState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -333,13 +98,13 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$SasPdfStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$StopRenderStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SasPdfState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -350,7 +115,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'SasPdfState.initial()';
+    return 'StopRenderState.initial()';
   }
 
   @override
@@ -367,7 +132,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String response, String fileName) done,
+    required TResult Function(MainChatbotResponseModel response) done,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -378,7 +143,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String response, String fileName)? done,
+    TResult? Function(MainChatbotResponseModel response)? done,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -389,7 +154,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String response, String fileName)? done,
+    TResult Function(MainChatbotResponseModel response)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -437,7 +202,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements SasPdfState {
+abstract class _Initial implements StopRenderState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -450,13 +215,13 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$SasPdfStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$StopRenderStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SasPdfState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -467,7 +232,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'SasPdfState.loading()';
+    return 'StopRenderState.loading()';
   }
 
   @override
@@ -484,7 +249,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String response, String fileName) done,
+    required TResult Function(MainChatbotResponseModel response) done,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -495,7 +260,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String response, String fileName)? done,
+    TResult? Function(MainChatbotResponseModel response)? done,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -506,7 +271,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String response, String fileName)? done,
+    TResult Function(MainChatbotResponseModel response)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -554,7 +319,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements SasPdfState {
+abstract class _Loading implements StopRenderState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -564,50 +329,55 @@ abstract class _$$DoneImplCopyWith<$Res> {
           _$DoneImpl value, $Res Function(_$DoneImpl) then) =
       __$$DoneImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String response, String fileName});
+  $Res call({MainChatbotResponseModel response});
+
+  $MainChatbotResponseModelCopyWith<$Res> get response;
 }
 
 /// @nodoc
 class __$$DoneImplCopyWithImpl<$Res>
-    extends _$SasPdfStateCopyWithImpl<$Res, _$DoneImpl>
+    extends _$StopRenderStateCopyWithImpl<$Res, _$DoneImpl>
     implements _$$DoneImplCopyWith<$Res> {
   __$$DoneImplCopyWithImpl(_$DoneImpl _value, $Res Function(_$DoneImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SasPdfState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? response = null,
-    Object? fileName = null,
   }) {
     return _then(_$DoneImpl(
       response: null == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as String,
-      fileName: null == fileName
-          ? _value.fileName
-          : fileName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MainChatbotResponseModel,
     ));
+  }
+
+  /// Create a copy of StopRenderState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MainChatbotResponseModelCopyWith<$Res> get response {
+    return $MainChatbotResponseModelCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$DoneImpl implements _Done {
-  const _$DoneImpl({required this.response, required this.fileName});
+  const _$DoneImpl({required this.response});
 
   @override
-  final String response;
-  @override
-  final String fileName;
+  final MainChatbotResponseModel response;
 
   @override
   String toString() {
-    return 'SasPdfState.done(response: $response, fileName: $fileName)';
+    return 'StopRenderState.done(response: $response)';
   }
 
   @override
@@ -616,15 +386,13 @@ class _$DoneImpl implements _Done {
         (other.runtimeType == runtimeType &&
             other is _$DoneImpl &&
             (identical(other.response, response) ||
-                other.response == response) &&
-            (identical(other.fileName, fileName) ||
-                other.fileName == fileName));
+                other.response == response));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, response, fileName);
+  int get hashCode => Object.hash(runtimeType, response);
 
-  /// Create a copy of SasPdfState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -637,10 +405,10 @@ class _$DoneImpl implements _Done {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String response, String fileName) done,
+    required TResult Function(MainChatbotResponseModel response) done,
     required TResult Function(String message) error,
   }) {
-    return done(response, fileName);
+    return done(response);
   }
 
   @override
@@ -648,10 +416,10 @@ class _$DoneImpl implements _Done {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String response, String fileName)? done,
+    TResult? Function(MainChatbotResponseModel response)? done,
     TResult? Function(String message)? error,
   }) {
-    return done?.call(response, fileName);
+    return done?.call(response);
   }
 
   @override
@@ -659,12 +427,12 @@ class _$DoneImpl implements _Done {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String response, String fileName)? done,
+    TResult Function(MainChatbotResponseModel response)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (done != null) {
-      return done(response, fileName);
+      return done(response);
     }
     return orElse();
   }
@@ -707,15 +475,13 @@ class _$DoneImpl implements _Done {
   }
 }
 
-abstract class _Done implements SasPdfState {
-  const factory _Done(
-      {required final String response,
-      required final String fileName}) = _$DoneImpl;
+abstract class _Done implements StopRenderState {
+  const factory _Done({required final MainChatbotResponseModel response}) =
+      _$DoneImpl;
 
-  String get response;
-  String get fileName;
+  MainChatbotResponseModel get response;
 
-  /// Create a copy of SasPdfState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DoneImplCopyWith<_$DoneImpl> get copyWith =>
@@ -733,13 +499,13 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$SasPdfStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$StopRenderStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SasPdfState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -765,7 +531,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'SasPdfState.error(message: $message)';
+    return 'StopRenderState.error(message: $message)';
   }
 
   @override
@@ -779,7 +545,7 @@ class _$ErrorImpl implements _Error {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of SasPdfState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -792,7 +558,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String response, String fileName) done,
+    required TResult Function(MainChatbotResponseModel response) done,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -803,7 +569,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String response, String fileName)? done,
+    TResult? Function(MainChatbotResponseModel response)? done,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -814,7 +580,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String response, String fileName)? done,
+    TResult Function(MainChatbotResponseModel response)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -862,14 +628,230 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements SasPdfState {
+abstract class _Error implements StopRenderState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;
 
-  /// Create a copy of SasPdfState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$StopRenderEvent {
+  String get id => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) stopRender,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id)? stopRender,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? stopRender,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_StopRender value) stopRender,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_StopRender value)? stopRender,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StopRender value)? stopRender,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  /// Create a copy of StopRenderEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $StopRenderEventCopyWith<StopRenderEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StopRenderEventCopyWith<$Res> {
+  factory $StopRenderEventCopyWith(
+          StopRenderEvent value, $Res Function(StopRenderEvent) then) =
+      _$StopRenderEventCopyWithImpl<$Res, StopRenderEvent>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class _$StopRenderEventCopyWithImpl<$Res, $Val extends StopRenderEvent>
+    implements $StopRenderEventCopyWith<$Res> {
+  _$StopRenderEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of StopRenderEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$StopRenderImplCopyWith<$Res>
+    implements $StopRenderEventCopyWith<$Res> {
+  factory _$$StopRenderImplCopyWith(
+          _$StopRenderImpl value, $Res Function(_$StopRenderImpl) then) =
+      __$$StopRenderImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$StopRenderImplCopyWithImpl<$Res>
+    extends _$StopRenderEventCopyWithImpl<$Res, _$StopRenderImpl>
+    implements _$$StopRenderImplCopyWith<$Res> {
+  __$$StopRenderImplCopyWithImpl(
+      _$StopRenderImpl _value, $Res Function(_$StopRenderImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of StopRenderEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$StopRenderImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$StopRenderImpl implements _StopRender {
+  const _$StopRenderImpl(this.id);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'StopRenderEvent.stopRender(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StopRenderImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  /// Create a copy of StopRenderEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StopRenderImplCopyWith<_$StopRenderImpl> get copyWith =>
+      __$$StopRenderImplCopyWithImpl<_$StopRenderImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) stopRender,
+  }) {
+    return stopRender(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id)? stopRender,
+  }) {
+    return stopRender?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? stopRender,
+    required TResult orElse(),
+  }) {
+    if (stopRender != null) {
+      return stopRender(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_StopRender value) stopRender,
+  }) {
+    return stopRender(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_StopRender value)? stopRender,
+  }) {
+    return stopRender?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StopRender value)? stopRender,
+    required TResult orElse(),
+  }) {
+    if (stopRender != null) {
+      return stopRender(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StopRender implements StopRenderEvent {
+  const factory _StopRender(final String id) = _$StopRenderImpl;
+
+  @override
+  String get id;
+
+  /// Create a copy of StopRenderEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$StopRenderImplCopyWith<_$StopRenderImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
