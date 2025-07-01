@@ -643,7 +643,7 @@ function setupAudioAnalysis(stream) {
           });
         };
       };
-/* ========= Start Note from Zak: Here I try to hundle the faild webrtc  connection, which hppaen when the stream closed from backend side ============= */
+/* ========= Start Note from Zak: Here I try to handle the faild webrtc  connection, which hppaen when the stream closed from backend side ============= */
  // Replace your current error handling with this:
 pc.onconnectionstatechange = () => {
   console.log('Connection state changed to:', pc.connectionState);
