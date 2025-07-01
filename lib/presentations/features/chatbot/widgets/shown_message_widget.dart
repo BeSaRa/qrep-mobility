@@ -415,6 +415,10 @@ class _FormattedDataWidgetState extends State<FormattedDataWidget>
                 });
               },
               child: Text.rich(
+                style: TextStyle(
+                    color: widget.message.role == "user"
+                        ? ColorManager.white
+                        : null),
                 TextSpan(
                   children: parseMarkdownLinks(widget.message.content, context),
                   // children: _buildStringContentWithLinks(widget.message, context),

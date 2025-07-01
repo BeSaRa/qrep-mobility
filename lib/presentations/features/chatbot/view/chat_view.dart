@@ -24,6 +24,7 @@ import 'package:ebla/presentations/features/chatbot/widgets/check_box_widget.dar
 import 'package:ebla/presentations/features/chatbot/widgets/rera_text_faild.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/send_button_widget.dart';
 import 'package:ebla/presentations/features/chatbot/view/stream_page.dart';
+import 'package:ebla/presentations/features/main/cubit/bottom_nav_cubit.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/strings_manager.dart';
@@ -32,6 +33,7 @@ import 'package:ebla/presentations/widgets/animated_pulse_logo.dart';
 import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:haptic_feedback/haptic_feedback.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:ui' as ui;
@@ -48,7 +50,7 @@ class ChatView extends StatefulWidget {
 }
 
 class _ChatViewState extends State<ChatView>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   final TextEditingController _controller = TextEditingController();
   late ChatBotBloc chatBotBloc;
   late CloseStreamBloc closeStreamBloc;
@@ -64,13 +66,14 @@ class _ChatViewState extends State<ChatView>
   final ValueNotifier<bool> isAvatarSpeaking = ValueNotifier(false);
   bool isMessageSending = false;
   final ScrollController scrollController = ScrollController();
-/*================ timer for close stream after 2 minutes of no action ================*/
-  Timer? inactivityTimer;
-  // final Duration inactivityDuration = const Duration(minutes: 1, seconds: 45);
   final ValueNotifier<bool> showScrollDownButton = ValueNotifier(false);
   final ValueNotifier<bool> isOpen = ValueNotifier(false);
   final ValueNotifier<bool> showHoldMessage = ValueNotifier(false);
   Timer? holdMessageTimer;
+  /*================ timer for close stream when App in foreground ================*/
+  DateTime? _lastPausedTime;
+  Timer? _resumeTimer;
+/*================ timer for close stream after ================*/
 
   void showHoldHint() {
     if (!context.read<VoiceCubit>().state.isListening) {
@@ -84,6 +87,7 @@ class _ChatViewState extends State<ChatView>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     chatBotBloc = instance<ChatBotBloc>();
     closeStreamBloc = instance<CloseStreamBloc>();
     stopRenderBloc = instance<StopRenderBloc>();
@@ -129,9 +133,32 @@ class _ChatViewState extends State<ChatView>
     isAvatarExpanded.dispose();
     isRecordMode.dispose();
     scrollController.dispose();
-    inactivityTimer?.cancel();
     streamIdCubit.close();
+    _resumeTimer?.cancel();
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    if (state == AppLifecycleState.paused) {
+      // App went to background
+      _lastPausedTime = DateTime.now();
+    } else if (state == AppLifecycleState.resumed) {
+      // App came back to foreground
+      if (_lastPausedTime != null) {
+        final duration = DateTime.now().difference(_lastPausedTime!);
+        if (duration.inSeconds >= 106) {
+          // 1.8 minutes = 108 seconds
+          if (mounted) {
+            context.read<BottomNavCubit>().changePage(0);
+            context.goNamed(context.read<BottomNavCubit>().paths[0]);
+          }
+        }
+      }
+    }
   }
 
   void closeStreamAfterTimerOrBack() {
