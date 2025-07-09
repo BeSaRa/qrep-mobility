@@ -216,9 +216,15 @@ class SplashScaffold extends StatelessWidget {
                   alignment: FractionalOffset.bottomCenter,
                   onEnd: () {
                     Future.delayed(const Duration(milliseconds: 1000))
-                        .then((value) async {
+                        .then((_) async {
                       await initHomeModule();
-                      context.goNamed(RoutesNames.home);
+                      final AppPreferences prefs = instance<AppPreferences>();
+                      final bool hasSeenOnboarding = await prefs.getOnboardingSeen();
+                      if (hasSeenOnboarding) {
+                        context.goNamed(RoutesNames.home);
+                      } else {
+                        context.goNamed(RoutesNames.onboarding);
+                      }
                     });
                   },
                   child: SizedBox(

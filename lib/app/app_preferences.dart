@@ -24,6 +24,7 @@ class AppPreferences {
       'PREFS_KEY_LOCALIZATIONS_LAST_UPDATE';
   String PREFS_KEY_MAP_COOKIE = 'PREFS_KEY_MAP_COOKIE';
   String PREF_KEY_XMAP_LOCALE = 'PREF_KEY_XMAP_LOCALE';
+  String PREFS_KEY_ONBOARDING_SEEN = 'PREFS_KEY_ONBOARDING_SEEN';
 
   Future<String> getAppLanguage() async {
     String? language = _sharedPreferences.getString(PREFS_KEY_LANG) ?? '';
@@ -145,5 +146,12 @@ class AppPreferences {
 
   setTheme({required ThemeData themeData}) {
     _sharedPreferences.setString(PREFS_KEY_THEME, themeData.getValue());
+  }
+  Future<bool> getOnboardingSeen() async {
+    return _sharedPreferences.getBool(PREFS_KEY_ONBOARDING_SEEN) ?? false;
+  }
+
+  Future<void> setOnboardingSeen(bool val) async {
+    await _sharedPreferences.setBool(PREFS_KEY_ONBOARDING_SEEN, val);
   }
 }

@@ -21,6 +21,7 @@ dependencies:
   dropdown_button2: ^2.3.9
   easy_localization: ^3.0.3
   equatable: ^2.0.5
+  excel: ^4.0.6
   file_picker: ^8.3.3
   firebase_analytics: ^10.8.0
   firebase_core: ^2.21.0
@@ -41,11 +42,13 @@ dependencies:
   freezed_annotation: ^2.4.1
   get_it: ^7.6.4
   go_router: ^11.0.0
+  haptic_feedback: ^0.5.1+1
   json_annotation: ^4.8.1
   latlong2: ^0.9.1
   local_auth: ^2.1.7
   lottie: ^2.6.0
   multiple_result: ^5.1.0
+  open_file: ^3.3.2
   package_info_plus: ^8.1.3
   path_provider: ^2.1.1
   pdf: ^3.11.2
@@ -60,11 +63,9 @@ dependencies:
   speech_to_text: ^7.0.0
   syncfusion_flutter_datepicker: ^23.1.40
   url_launcher: ^6.2.0
+  video_player: ^2.10.0
   webview_flutter: ^4.10.0
-  open_file: ^3.3.2
-  excel: ^4.0.6
   webview_flutter_plus: ^0.4.15
-  haptic_feedback: ^0.5.1+1
   youtube_player_flutter: ^9.1.1
 
 dev_dependencies:
@@ -97,7 +98,8 @@ flutter:
     - assets/xmap/
     - assets/xmap/assets/
     - assets/silhouette.js
-#    - .env
+    - assets/videos/
+  #    - .env
   fonts:
     - family: Lusail
       fonts:

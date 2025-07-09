@@ -271,6 +271,7 @@ class AppStrings {
   String noResultFounded = "no_result_founded".tr();
   String allCategories = "All_Categories".tr();
   String clickAnywhereMessage = "click_anywhere_message".tr();
+  String aiAvatar = "ai_avatar".tr();
 
   //--------------ai_search---------------
   String aiSearch = "ai_search".tr();
@@ -286,4 +287,19 @@ class AppStrings {
   String manageUser = "manage_user".tr();
   String manageAccount = "manage_account".tr();
   String privacyPolicy = "privacy_policy".tr();
+
+  //------------ onBoarding --------
+  String searchTheWebsite = "search_the_website".tr();
+  String investorJourneySubtitle = "investor_journey_subtitle".tr();
+  String realEstateIndicators = "real_estate_indicators".tr();
+  String onboardingOwnProject = "onboarding_own_project".tr();
+  String onboardingChooseProject = "onboarding_choose_project".tr();
+  String onboardingContactWithExperts = "onboarding_contact_with_experts".tr();
+  String onboardingManageRealestate = "onboarding_manage_realestate".tr();
+  String skip = "skip".tr();
+  String getStarted = "get_started".tr();
+  String ownYourRealEstate = "own_your_real_estate".tr();
+  String onBoardingInddecatorsSubtitle = "onBoarding_inddecators_subtitle".tr();
+  String onBoardingXmapSubtitle = "onBoarding_xmap_subtitle".tr();
+
 }
