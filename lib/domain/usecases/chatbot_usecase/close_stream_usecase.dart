@@ -3,14 +3,17 @@ import 'package:multiple_result/multiple_result.dart';
 import '../../repository/repository.dart';
 import '../usecases.dart';
 
-class CloseStreamUsecase implements BaseUseCaseCloseStreamFailureResponse<String, SendAnswerResponseModel> {
+class CloseStreamUsecase
+    implements
+        BaseUseCaseCloseStreamFailureResponse<String,
+            MainChatbotResponseModel> {
   final Repository repository;
 
   CloseStreamUsecase(this.repository);
 
   @override
-  Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> execute(String id) async {
-
+  Future<Result<MainChatbotResponseModel, FailureAIModel>> execute(
+      String id) async {
     return await repository.closeStream(id);
   }
 }

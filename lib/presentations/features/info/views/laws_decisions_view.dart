@@ -122,7 +122,7 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                       ),
                     ),
                     Text(
-                      AppStrings().lawsAndDecisions,
+                      AppStrings().laws,
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     GestureDetector(

@@ -35,7 +35,7 @@ class _MainScaffoldState extends State<MainScaffold>
   late ChatHistoryCubit chatHistoryCubit;
   late DropdownCubit dropdownCubit;
   late SendFeedbackBloc sendFeedbackBloc;
-  final voiceCubit=VoiceCubit();
+  final voiceCubit = VoiceCubit();
 
   @override
   void initState() {
@@ -111,7 +111,7 @@ class _MainScaffoldState extends State<MainScaffold>
                   size: AppSizeR.s30,
                 ),
                 onPressed: () {
-                  context.pushNamed(RoutesNames.aiSearch);
+                  context.pushNamed(RoutesNames.aiSearch, extra: voiceCubit);
                 },
               )
             ],
@@ -134,7 +134,7 @@ class _MainScaffoldState extends State<MainScaffold>
                   case 1:
                     break;
                   case 2:
-                                      await initChatbotModule();
+                    await initChatbotModule();
                     break;
                   case 3:
                     break;
@@ -143,7 +143,7 @@ class _MainScaffoldState extends State<MainScaffold>
                     await initSellModule();
                     await initRentModule();
                     await initHomeModule();
-                    // await initChatbotModule();
+                  // await initChatbotModule();
                   // initLoginModule();
 
                   default:
@@ -155,7 +155,7 @@ class _MainScaffoldState extends State<MainScaffold>
                   context.goNamed(
                     context.read<BottomNavCubit>().paths[index],
                     extra: RouteExtras(
-                      voiceCubit: voiceCubit,
+                        voiceCubit: voiceCubit,
                         chatHistoryCubit: chatHistoryCubit,
                         dropdownCubit: dropdownCubit,
                         sendFeedbackBloc: sendFeedbackBloc),

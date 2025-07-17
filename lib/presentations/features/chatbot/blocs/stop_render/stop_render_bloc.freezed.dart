@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'send_answer_and_candidate_bloc.dart';
+part of 'stop_render_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,12 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$SendAnswerAndCandidateState {
+mixin _$StopRenderState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SendAnswerResponseModel startStreamResponse) done,
+    required TResult Function(MainChatbotResponseModel response) done,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$SendAnswerAndCandidateState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SendAnswerResponseModel startStreamResponse)? done,
+    TResult? Function(MainChatbotResponseModel response)? done,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$SendAnswerAndCandidateState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SendAnswerResponseModel startStreamResponse)? done,
+    TResult Function(MainChatbotResponseModel response)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -69,26 +69,23 @@ mixin _$SendAnswerAndCandidateState {
 }
 
 /// @nodoc
-abstract class $SendAnswerAndCandidateStateCopyWith<$Res> {
-  factory $SendAnswerAndCandidateStateCopyWith(
-          SendAnswerAndCandidateState value,
-          $Res Function(SendAnswerAndCandidateState) then) =
-      _$SendAnswerAndCandidateStateCopyWithImpl<$Res,
-          SendAnswerAndCandidateState>;
+abstract class $StopRenderStateCopyWith<$Res> {
+  factory $StopRenderStateCopyWith(
+          StopRenderState value, $Res Function(StopRenderState) then) =
+      _$StopRenderStateCopyWithImpl<$Res, StopRenderState>;
 }
 
 /// @nodoc
-class _$SendAnswerAndCandidateStateCopyWithImpl<$Res,
-        $Val extends SendAnswerAndCandidateState>
-    implements $SendAnswerAndCandidateStateCopyWith<$Res> {
-  _$SendAnswerAndCandidateStateCopyWithImpl(this._value, this._then);
+class _$StopRenderStateCopyWithImpl<$Res, $Val extends StopRenderState>
+    implements $StopRenderStateCopyWith<$Res> {
+  _$StopRenderStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SendAnswerAndCandidateState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -101,13 +98,13 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$SendAnswerAndCandidateStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$StopRenderStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SendAnswerAndCandidateState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -118,7 +115,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'SendAnswerAndCandidateState.initial()';
+    return 'StopRenderState.initial()';
   }
 
   @override
@@ -135,7 +132,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SendAnswerResponseModel startStreamResponse) done,
+    required TResult Function(MainChatbotResponseModel response) done,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -146,7 +143,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SendAnswerResponseModel startStreamResponse)? done,
+    TResult? Function(MainChatbotResponseModel response)? done,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -157,7 +154,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SendAnswerResponseModel startStreamResponse)? done,
+    TResult Function(MainChatbotResponseModel response)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -205,7 +202,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements SendAnswerAndCandidateState {
+abstract class _Initial implements StopRenderState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -218,13 +215,13 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$SendAnswerAndCandidateStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$StopRenderStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SendAnswerAndCandidateState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -235,7 +232,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'SendAnswerAndCandidateState.loading()';
+    return 'StopRenderState.loading()';
   }
 
   @override
@@ -252,7 +249,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SendAnswerResponseModel startStreamResponse) done,
+    required TResult Function(MainChatbotResponseModel response) done,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -263,7 +260,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SendAnswerResponseModel startStreamResponse)? done,
+    TResult? Function(MainChatbotResponseModel response)? done,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -274,7 +271,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SendAnswerResponseModel startStreamResponse)? done,
+    TResult Function(MainChatbotResponseModel response)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -322,7 +319,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements SendAnswerAndCandidateState {
+abstract class _Loading implements StopRenderState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -332,41 +329,40 @@ abstract class _$$DoneImplCopyWith<$Res> {
           _$DoneImpl value, $Res Function(_$DoneImpl) then) =
       __$$DoneImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({SendAnswerResponseModel startStreamResponse});
+  $Res call({MainChatbotResponseModel response});
 
-  $SendAnswerResponseModelCopyWith<$Res> get startStreamResponse;
+  $MainChatbotResponseModelCopyWith<$Res> get response;
 }
 
 /// @nodoc
 class __$$DoneImplCopyWithImpl<$Res>
-    extends _$SendAnswerAndCandidateStateCopyWithImpl<$Res, _$DoneImpl>
+    extends _$StopRenderStateCopyWithImpl<$Res, _$DoneImpl>
     implements _$$DoneImplCopyWith<$Res> {
   __$$DoneImplCopyWithImpl(_$DoneImpl _value, $Res Function(_$DoneImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SendAnswerAndCandidateState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? startStreamResponse = null,
+    Object? response = null,
   }) {
     return _then(_$DoneImpl(
-      startStreamResponse: null == startStreamResponse
-          ? _value.startStreamResponse
-          : startStreamResponse // ignore: cast_nullable_to_non_nullable
-              as SendAnswerResponseModel,
+      response: null == response
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as MainChatbotResponseModel,
     ));
   }
 
-  /// Create a copy of SendAnswerAndCandidateState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SendAnswerResponseModelCopyWith<$Res> get startStreamResponse {
-    return $SendAnswerResponseModelCopyWith<$Res>(_value.startStreamResponse,
-        (value) {
-      return _then(_value.copyWith(startStreamResponse: value));
+  $MainChatbotResponseModelCopyWith<$Res> get response {
+    return $MainChatbotResponseModelCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
     });
   }
 }
@@ -374,14 +370,14 @@ class __$$DoneImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DoneImpl implements _Done {
-  const _$DoneImpl({required this.startStreamResponse});
+  const _$DoneImpl({required this.response});
 
   @override
-  final SendAnswerResponseModel startStreamResponse;
+  final MainChatbotResponseModel response;
 
   @override
   String toString() {
-    return 'SendAnswerAndCandidateState.done(startStreamResponse: $startStreamResponse)';
+    return 'StopRenderState.done(response: $response)';
   }
 
   @override
@@ -389,14 +385,14 @@ class _$DoneImpl implements _Done {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DoneImpl &&
-            (identical(other.startStreamResponse, startStreamResponse) ||
-                other.startStreamResponse == startStreamResponse));
+            (identical(other.response, response) ||
+                other.response == response));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, startStreamResponse);
+  int get hashCode => Object.hash(runtimeType, response);
 
-  /// Create a copy of SendAnswerAndCandidateState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -409,10 +405,10 @@ class _$DoneImpl implements _Done {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SendAnswerResponseModel startStreamResponse) done,
+    required TResult Function(MainChatbotResponseModel response) done,
     required TResult Function(String message) error,
   }) {
-    return done(startStreamResponse);
+    return done(response);
   }
 
   @override
@@ -420,10 +416,10 @@ class _$DoneImpl implements _Done {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SendAnswerResponseModel startStreamResponse)? done,
+    TResult? Function(MainChatbotResponseModel response)? done,
     TResult? Function(String message)? error,
   }) {
-    return done?.call(startStreamResponse);
+    return done?.call(response);
   }
 
   @override
@@ -431,12 +427,12 @@ class _$DoneImpl implements _Done {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SendAnswerResponseModel startStreamResponse)? done,
+    TResult Function(MainChatbotResponseModel response)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (done != null) {
-      return done(startStreamResponse);
+      return done(response);
     }
     return orElse();
   }
@@ -479,14 +475,13 @@ class _$DoneImpl implements _Done {
   }
 }
 
-abstract class _Done implements SendAnswerAndCandidateState {
-  const factory _Done(
-          {required final SendAnswerResponseModel startStreamResponse}) =
+abstract class _Done implements StopRenderState {
+  const factory _Done({required final MainChatbotResponseModel response}) =
       _$DoneImpl;
 
-  SendAnswerResponseModel get startStreamResponse;
+  MainChatbotResponseModel get response;
 
-  /// Create a copy of SendAnswerAndCandidateState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DoneImplCopyWith<_$DoneImpl> get copyWith =>
@@ -504,13 +499,13 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$SendAnswerAndCandidateStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$StopRenderStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SendAnswerAndCandidateState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -536,7 +531,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'SendAnswerAndCandidateState.error(message: $message)';
+    return 'StopRenderState.error(message: $message)';
   }
 
   @override
@@ -550,7 +545,7 @@ class _$ErrorImpl implements _Error {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of SendAnswerAndCandidateState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -563,7 +558,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SendAnswerResponseModel startStreamResponse) done,
+    required TResult Function(MainChatbotResponseModel response) done,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -574,7 +569,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SendAnswerResponseModel startStreamResponse)? done,
+    TResult? Function(MainChatbotResponseModel response)? done,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -585,7 +580,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SendAnswerResponseModel startStreamResponse)? done,
+    TResult Function(MainChatbotResponseModel response)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -633,12 +628,12 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements SendAnswerAndCandidateState {
+abstract class _Error implements StopRenderState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;
 
-  /// Create a copy of SendAnswerAndCandidateState
+  /// Create a copy of StopRenderState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
@@ -646,168 +641,174 @@ abstract class _Error implements SendAnswerAndCandidateState {
 }
 
 /// @nodoc
-mixin _$SendAnswerAndCandidateEvent {
-  Object get request => throw _privateConstructorUsedError;
+mixin _$StopRenderEvent {
+  String get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(MainSendAnswerRequestModelById request)
-        sendAnswer,
-    required TResult Function(MainSendCandidateRequestModelById request)
-        sendCandidate,
+    required TResult Function(String id) stopRender,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(MainSendAnswerRequestModelById request)? sendAnswer,
-    TResult? Function(MainSendCandidateRequestModelById request)? sendCandidate,
+    TResult? Function(String id)? stopRender,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(MainSendAnswerRequestModelById request)? sendAnswer,
-    TResult Function(MainSendCandidateRequestModelById request)? sendCandidate,
+    TResult Function(String id)? stopRender,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SendAnswer value) sendAnswer,
-    required TResult Function(_SendCandidate value) sendCandidate,
+    required TResult Function(_StopRender value) stopRender,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SendAnswer value)? sendAnswer,
-    TResult? Function(_SendCandidate value)? sendCandidate,
+    TResult? Function(_StopRender value)? stopRender,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SendAnswer value)? sendAnswer,
-    TResult Function(_SendCandidate value)? sendCandidate,
+    TResult Function(_StopRender value)? stopRender,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  /// Create a copy of StopRenderEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $StopRenderEventCopyWith<StopRenderEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SendAnswerAndCandidateEventCopyWith<$Res> {
-  factory $SendAnswerAndCandidateEventCopyWith(
-          SendAnswerAndCandidateEvent value,
-          $Res Function(SendAnswerAndCandidateEvent) then) =
-      _$SendAnswerAndCandidateEventCopyWithImpl<$Res,
-          SendAnswerAndCandidateEvent>;
+abstract class $StopRenderEventCopyWith<$Res> {
+  factory $StopRenderEventCopyWith(
+          StopRenderEvent value, $Res Function(StopRenderEvent) then) =
+      _$StopRenderEventCopyWithImpl<$Res, StopRenderEvent>;
+  @useResult
+  $Res call({String id});
 }
 
 /// @nodoc
-class _$SendAnswerAndCandidateEventCopyWithImpl<$Res,
-        $Val extends SendAnswerAndCandidateEvent>
-    implements $SendAnswerAndCandidateEventCopyWith<$Res> {
-  _$SendAnswerAndCandidateEventCopyWithImpl(this._value, this._then);
+class _$StopRenderEventCopyWithImpl<$Res, $Val extends StopRenderEvent>
+    implements $StopRenderEventCopyWith<$Res> {
+  _$StopRenderEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SendAnswerAndCandidateEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$SendAnswerImplCopyWith<$Res> {
-  factory _$$SendAnswerImplCopyWith(
-          _$SendAnswerImpl value, $Res Function(_$SendAnswerImpl) then) =
-      __$$SendAnswerImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({MainSendAnswerRequestModelById request});
-}
-
-/// @nodoc
-class __$$SendAnswerImplCopyWithImpl<$Res>
-    extends _$SendAnswerAndCandidateEventCopyWithImpl<$Res, _$SendAnswerImpl>
-    implements _$$SendAnswerImplCopyWith<$Res> {
-  __$$SendAnswerImplCopyWithImpl(
-      _$SendAnswerImpl _value, $Res Function(_$SendAnswerImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SendAnswerAndCandidateEvent
+  /// Create a copy of StopRenderEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? request = null,
+    Object? id = null,
   }) {
-    return _then(_$SendAnswerImpl(
-      null == request
-          ? _value.request
-          : request // ignore: cast_nullable_to_non_nullable
-              as MainSendAnswerRequestModelById,
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$StopRenderImplCopyWith<$Res>
+    implements $StopRenderEventCopyWith<$Res> {
+  factory _$$StopRenderImplCopyWith(
+          _$StopRenderImpl value, $Res Function(_$StopRenderImpl) then) =
+      __$$StopRenderImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$StopRenderImplCopyWithImpl<$Res>
+    extends _$StopRenderEventCopyWithImpl<$Res, _$StopRenderImpl>
+    implements _$$StopRenderImplCopyWith<$Res> {
+  __$$StopRenderImplCopyWithImpl(
+      _$StopRenderImpl _value, $Res Function(_$StopRenderImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of StopRenderEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$StopRenderImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SendAnswerImpl implements _SendAnswer {
-  const _$SendAnswerImpl(this.request);
+class _$StopRenderImpl implements _StopRender {
+  const _$StopRenderImpl(this.id);
 
   @override
-  final MainSendAnswerRequestModelById request;
+  final String id;
 
   @override
   String toString() {
-    return 'SendAnswerAndCandidateEvent.sendAnswer(request: $request)';
+    return 'StopRenderEvent.stopRender(id: $id)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SendAnswerImpl &&
-            (identical(other.request, request) || other.request == request));
+            other is _$StopRenderImpl &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, request);
+  int get hashCode => Object.hash(runtimeType, id);
 
-  /// Create a copy of SendAnswerAndCandidateEvent
+  /// Create a copy of StopRenderEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SendAnswerImplCopyWith<_$SendAnswerImpl> get copyWith =>
-      __$$SendAnswerImplCopyWithImpl<_$SendAnswerImpl>(this, _$identity);
+  _$$StopRenderImplCopyWith<_$StopRenderImpl> get copyWith =>
+      __$$StopRenderImplCopyWithImpl<_$StopRenderImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(MainSendAnswerRequestModelById request)
-        sendAnswer,
-    required TResult Function(MainSendCandidateRequestModelById request)
-        sendCandidate,
+    required TResult Function(String id) stopRender,
   }) {
-    return sendAnswer(request);
+    return stopRender(id);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(MainSendAnswerRequestModelById request)? sendAnswer,
-    TResult? Function(MainSendCandidateRequestModelById request)? sendCandidate,
+    TResult? Function(String id)? stopRender,
   }) {
-    return sendAnswer?.call(request);
+    return stopRender?.call(id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(MainSendAnswerRequestModelById request)? sendAnswer,
-    TResult Function(MainSendCandidateRequestModelById request)? sendCandidate,
+    TResult Function(String id)? stopRender,
     required TResult orElse(),
   }) {
-    if (sendAnswer != null) {
-      return sendAnswer(request);
+    if (stopRender != null) {
+      return stopRender(id);
     }
     return orElse();
   }
@@ -815,189 +816,42 @@ class _$SendAnswerImpl implements _SendAnswer {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SendAnswer value) sendAnswer,
-    required TResult Function(_SendCandidate value) sendCandidate,
+    required TResult Function(_StopRender value) stopRender,
   }) {
-    return sendAnswer(this);
+    return stopRender(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SendAnswer value)? sendAnswer,
-    TResult? Function(_SendCandidate value)? sendCandidate,
+    TResult? Function(_StopRender value)? stopRender,
   }) {
-    return sendAnswer?.call(this);
+    return stopRender?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SendAnswer value)? sendAnswer,
-    TResult Function(_SendCandidate value)? sendCandidate,
+    TResult Function(_StopRender value)? stopRender,
     required TResult orElse(),
   }) {
-    if (sendAnswer != null) {
-      return sendAnswer(this);
+    if (stopRender != null) {
+      return stopRender(this);
     }
     return orElse();
   }
 }
 
-abstract class _SendAnswer implements SendAnswerAndCandidateEvent {
-  const factory _SendAnswer(final MainSendAnswerRequestModelById request) =
-      _$SendAnswerImpl;
+abstract class _StopRender implements StopRenderEvent {
+  const factory _StopRender(final String id) = _$StopRenderImpl;
 
   @override
-  MainSendAnswerRequestModelById get request;
+  String get id;
 
-  /// Create a copy of SendAnswerAndCandidateEvent
+  /// Create a copy of StopRenderEvent
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SendAnswerImplCopyWith<_$SendAnswerImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SendCandidateImplCopyWith<$Res> {
-  factory _$$SendCandidateImplCopyWith(
-          _$SendCandidateImpl value, $Res Function(_$SendCandidateImpl) then) =
-      __$$SendCandidateImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({MainSendCandidateRequestModelById request});
-}
-
-/// @nodoc
-class __$$SendCandidateImplCopyWithImpl<$Res>
-    extends _$SendAnswerAndCandidateEventCopyWithImpl<$Res, _$SendCandidateImpl>
-    implements _$$SendCandidateImplCopyWith<$Res> {
-  __$$SendCandidateImplCopyWithImpl(
-      _$SendCandidateImpl _value, $Res Function(_$SendCandidateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SendAnswerAndCandidateEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? request = null,
-  }) {
-    return _then(_$SendCandidateImpl(
-      null == request
-          ? _value.request
-          : request // ignore: cast_nullable_to_non_nullable
-              as MainSendCandidateRequestModelById,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$SendCandidateImpl implements _SendCandidate {
-  const _$SendCandidateImpl(this.request);
-
-  @override
-  final MainSendCandidateRequestModelById request;
-
-  @override
-  String toString() {
-    return 'SendAnswerAndCandidateEvent.sendCandidate(request: $request)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SendCandidateImpl &&
-            (identical(other.request, request) || other.request == request));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, request);
-
-  /// Create a copy of SendAnswerAndCandidateEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SendCandidateImplCopyWith<_$SendCandidateImpl> get copyWith =>
-      __$$SendCandidateImplCopyWithImpl<_$SendCandidateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(MainSendAnswerRequestModelById request)
-        sendAnswer,
-    required TResult Function(MainSendCandidateRequestModelById request)
-        sendCandidate,
-  }) {
-    return sendCandidate(request);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(MainSendAnswerRequestModelById request)? sendAnswer,
-    TResult? Function(MainSendCandidateRequestModelById request)? sendCandidate,
-  }) {
-    return sendCandidate?.call(request);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(MainSendAnswerRequestModelById request)? sendAnswer,
-    TResult Function(MainSendCandidateRequestModelById request)? sendCandidate,
-    required TResult orElse(),
-  }) {
-    if (sendCandidate != null) {
-      return sendCandidate(request);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SendAnswer value) sendAnswer,
-    required TResult Function(_SendCandidate value) sendCandidate,
-  }) {
-    return sendCandidate(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SendAnswer value)? sendAnswer,
-    TResult? Function(_SendCandidate value)? sendCandidate,
-  }) {
-    return sendCandidate?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SendAnswer value)? sendAnswer,
-    TResult Function(_SendCandidate value)? sendCandidate,
-    required TResult orElse(),
-  }) {
-    if (sendCandidate != null) {
-      return sendCandidate(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SendCandidate implements SendAnswerAndCandidateEvent {
-  const factory _SendCandidate(
-      final MainSendCandidateRequestModelById request) = _$SendCandidateImpl;
-
-  @override
-  MainSendCandidateRequestModelById get request;
-
-  /// Create a copy of SendAnswerAndCandidateEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SendCandidateImplCopyWith<_$SendCandidateImpl> get copyWith =>
+  _$$StopRenderImplCopyWith<_$StopRenderImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

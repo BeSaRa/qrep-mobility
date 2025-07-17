@@ -30,6 +30,8 @@
 	<true/>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>MediaPlaybackRequiresUserAction</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>tel</string>
@@ -43,9 +45,20 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true/>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
 	</dict>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
+	<key>allowsInlineMediaPlayback</key>
+	<true/>
+	<key>mediaPlaybackRequiresUserAction</key>
+	<false/>
+
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>AQARAT needs Bluetooth access to connect with external audio devices.</string>
 	<key>NSCameraUsageDescription</key>

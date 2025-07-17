@@ -20,7 +20,7 @@ mixin _$CloseStreamState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SendAnswerResponseModel response) done,
+    required TResult Function(MainChatbotResponseModel response) done,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$CloseStreamState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SendAnswerResponseModel response)? done,
+    TResult? Function(MainChatbotResponseModel response)? done,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$CloseStreamState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SendAnswerResponseModel response)? done,
+    TResult Function(MainChatbotResponseModel response)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -132,7 +132,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SendAnswerResponseModel response) done,
+    required TResult Function(MainChatbotResponseModel response) done,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -143,7 +143,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SendAnswerResponseModel response)? done,
+    TResult? Function(MainChatbotResponseModel response)? done,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -154,7 +154,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SendAnswerResponseModel response)? done,
+    TResult Function(MainChatbotResponseModel response)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -249,7 +249,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SendAnswerResponseModel response) done,
+    required TResult Function(MainChatbotResponseModel response) done,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -260,7 +260,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SendAnswerResponseModel response)? done,
+    TResult? Function(MainChatbotResponseModel response)? done,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -271,7 +271,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SendAnswerResponseModel response)? done,
+    TResult Function(MainChatbotResponseModel response)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -329,9 +329,9 @@ abstract class _$$DoneImplCopyWith<$Res> {
           _$DoneImpl value, $Res Function(_$DoneImpl) then) =
       __$$DoneImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({SendAnswerResponseModel response});
+  $Res call({MainChatbotResponseModel response});
 
-  $SendAnswerResponseModelCopyWith<$Res> get response;
+  $MainChatbotResponseModelCopyWith<$Res> get response;
 }
 
 /// @nodoc
@@ -352,7 +352,7 @@ class __$$DoneImplCopyWithImpl<$Res>
       response: null == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as SendAnswerResponseModel,
+              as MainChatbotResponseModel,
     ));
   }
 
@@ -360,8 +360,8 @@ class __$$DoneImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SendAnswerResponseModelCopyWith<$Res> get response {
-    return $SendAnswerResponseModelCopyWith<$Res>(_value.response, (value) {
+  $MainChatbotResponseModelCopyWith<$Res> get response {
+    return $MainChatbotResponseModelCopyWith<$Res>(_value.response, (value) {
       return _then(_value.copyWith(response: value));
     });
   }
@@ -373,7 +373,7 @@ class _$DoneImpl implements _Done {
   const _$DoneImpl({required this.response});
 
   @override
-  final SendAnswerResponseModel response;
+  final MainChatbotResponseModel response;
 
   @override
   String toString() {
@@ -405,7 +405,7 @@ class _$DoneImpl implements _Done {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SendAnswerResponseModel response) done,
+    required TResult Function(MainChatbotResponseModel response) done,
     required TResult Function(String message) error,
   }) {
     return done(response);
@@ -416,7 +416,7 @@ class _$DoneImpl implements _Done {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SendAnswerResponseModel response)? done,
+    TResult? Function(MainChatbotResponseModel response)? done,
     TResult? Function(String message)? error,
   }) {
     return done?.call(response);
@@ -427,7 +427,7 @@ class _$DoneImpl implements _Done {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SendAnswerResponseModel response)? done,
+    TResult Function(MainChatbotResponseModel response)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -476,10 +476,10 @@ class _$DoneImpl implements _Done {
 }
 
 abstract class _Done implements CloseStreamState {
-  const factory _Done({required final SendAnswerResponseModel response}) =
+  const factory _Done({required final MainChatbotResponseModel response}) =
       _$DoneImpl;
 
-  SendAnswerResponseModel get response;
+  MainChatbotResponseModel get response;
 
   /// Create a copy of CloseStreamState
   /// with the given fields replaced by the non-null parameter values.
@@ -558,7 +558,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(SendAnswerResponseModel response) done,
+    required TResult Function(MainChatbotResponseModel response) done,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -569,7 +569,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(SendAnswerResponseModel response)? done,
+    TResult? Function(MainChatbotResponseModel response)? done,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -580,7 +580,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(SendAnswerResponseModel response)? done,
+    TResult Function(MainChatbotResponseModel response)? done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

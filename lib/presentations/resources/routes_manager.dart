@@ -2,6 +2,7 @@ import 'package:ebla/app/routing_observer.dart';
 import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/drobdown_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/record_cubit/voice_cubit.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_feedback_bloc/send_feedback_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/routes_extras.dart';
 import 'package:ebla/presentations/features/chatbot/view/chat_view.dart';
@@ -456,7 +457,6 @@ class AppRouter {
             child: const SalesView(),
           ),
         ),
-        //zak
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.videoLib,
@@ -582,8 +582,14 @@ class AppRouter {
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.aiSearch,
           path: RoutesPaths.aiSearch,
-          builder: (context, state) => BlocProvider<AiSearchBloc>(
-              create: (context) => instance<AiSearchBloc>(),
+          builder: (context, state) => MultiBlocProvider(
+            providers: [
+              BlocProvider<AiSearchBloc>(
+              create: (context) => instance<AiSearchBloc>(),),
+               BlocProvider<VoiceCubit>.value(
+                        value: state.extra as VoiceCubit,
+                      ),
+            ],
               child: const AiSearchView()),
         ),
         //-------------- Chatbot ----------------

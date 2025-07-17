@@ -9,6 +9,7 @@ import 'package:ebla/domain/usecases/chatbot_usecase/send_answer_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/send_candidate_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/send_feedback_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/start_stream_usecase.dart';
+import 'package:ebla/domain/usecases/chatbot_usecase/stop_render_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/create_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/update_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/user_favourite_usecase.dart';
@@ -16,11 +17,9 @@ import 'package:ebla/domain/usecases/laws_usecases/laws_usecases.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/chat_faq_bloc/chat_faq_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/close_stream/close_stream_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
-import 'package:ebla/presentations/features/chatbot/blocs/send_answer_and_candidate_bloc/send_answer_and_candidate_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_feedback_bloc/send_feedback_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/send_message_bloc/chat_bloc.dart';
-import 'package:ebla/presentations/features/chatbot/blocs/start_stream_bloc/start_stream_bloc.dart';
-import 'package:ebla/presentations/features/chatbot/blocs/web_rtc_cubit/web_rtc_cubit.dart';
+import 'package:ebla/presentations/features/chatbot/blocs/stop_render/stop_render_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/UpdateFav/update_favourite_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/create_favourite_bloc/create_favourite_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/get_favourite_bloc/get_favourite_bloc.dart';
@@ -35,12 +34,14 @@ import '../data/network/general_dio_interceptor.dart';
 import '../data/network/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
+import '../domain/usecases/ai_search/sas_pdf_usecase.dart';
 import '../domain/usecases/favourite_usecases/delete_favourite_usecase.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/auth/authes.dart';
 import '../presentations/features/chatbot/blocs/stream_id_cubit.dart/stream_id_cubit.dart';
 import '../presentations/features/info/infos.dart';
 import '../presentations/features/main/mains.dart';
+import '../presentations/features/more/ai_search_view/blocs/sas_pdf_blocs/sas_pdf_bloc.dart';
 import '../presentations/features/more/mores.dart';
 import '../presentations/features/mortagage/mortgages.dart';
 import '../presentations/features/real_estate_brokers/real_estates.dart';
@@ -187,6 +188,18 @@ Future<void> initAppModule() async {
           createFavouriteUseCase: instance(),
         ));
   }
+  // if (!GetIt.I.isRegistered<StartStreamUsecase>()) {
+  //   instance.registerFactory<StartStreamUsecase>(
+  //       () => StartStreamUsecase(instance()));
+  // }
+  // if (!GetIt.I.isRegistered<SendAnswerUsecase>()) {
+  //   instance.registerFactory<SendAnswerUsecase>(
+  //       () => SendAnswerUsecase(instance()));
+  // }
+  // if (!GetIt.I.isRegistered<SendCandidateUsecase>()) {
+  //   instance.registerFactory<SendCandidateUsecase>(
+  //       () => SendCandidateUsecase(instance()));
+  // }
 }
 
 Future<void> initTranslationsModule() async {
@@ -222,10 +235,18 @@ Future<void> initChatbotModule() async {
     instance.registerFactory<CloseStreamUsecase>(
         () => CloseStreamUsecase(instance()));
   }
-    if (!GetIt.I.isRegistered<Chatfaqusecase>()) {
+  if (!GetIt.I.isRegistered<StopRenderUsecase>()) {
+    instance.registerFactory<StopRenderUsecase>(
+        () => StopRenderUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<StopRenderBloc>()) {
+    instance.registerFactory<StopRenderBloc>(
+        () => StopRenderBloc(instance()));
+  }
+  if (!GetIt.I.isRegistered<Chatfaqusecase>()) {
     instance.registerFactory<Chatfaqusecase>(() => Chatfaqusecase(instance()));
   }
-    if (!GetIt.I.isRegistered<ChatFaqBloc>()) {
+  if (!GetIt.I.isRegistered<ChatFaqBloc>()) {
     instance.registerFactory<ChatFaqBloc>(() => ChatFaqBloc(instance()));
   }
 
@@ -242,18 +263,8 @@ Future<void> initChatbotModule() async {
   if (!GetIt.I.isRegistered<ChatBotBloc>()) {
     instance.registerFactory(() => ChatBotBloc(instance(), instance()));
   }
-  if (!GetIt.I.isRegistered<WebRTCCubit>()) {
-    instance.registerFactory(() => WebRTCCubit());
-  }
   if (!GetIt.I.isRegistered<StreamIdCubit>()) {
     instance.registerFactory(() => StreamIdCubit());
-  }
-  if (!GetIt.I.isRegistered<StartStreamBloc>()) {
-    instance.registerFactory(() => StartStreamBloc(instance()));
-  }
-  if (!GetIt.I.isRegistered<SendAnswerAndCandidateBloc>()) {
-    instance.registerFactory(
-        () => SendAnswerAndCandidateBloc(instance(), instance()));
   }
 }
 
@@ -303,6 +314,12 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<SendFeedbackBloc>()) {
     instance
         .registerFactory<SendFeedbackBloc>(() => SendFeedbackBloc(instance()));
+  }
+  if (!GetIt.I.isRegistered<SasPdfUsecase>()) {
+    instance.registerFactory<SasPdfUsecase>(() => SasPdfUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<SasPdfBloc>()) {
+    instance.registerFactory<SasPdfBloc>(() => SasPdfBloc(instance()));
   }
 }
 

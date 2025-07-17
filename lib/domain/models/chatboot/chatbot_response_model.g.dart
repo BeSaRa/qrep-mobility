@@ -180,25 +180,24 @@ Map<String, dynamic> _$$ICEServerModelImplToJson(
       'credential': instance.credential,
     };
 
-_$SendAnswerResponseModelImpl _$$SendAnswerResponseModelImplFromJson(
+_$MainChatbotResponseModelImpl _$$MainChatbotResponseModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$SendAnswerResponseModelImpl(
+    _$MainChatbotResponseModelImpl(
       statusCode: (json['status_code'] as num?)?.toInt() ?? 0,
       status: json['status'] as String? ?? '',
       message: json['message'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$SendAnswerResponseModelImplToJson(
-        _$SendAnswerResponseModelImpl instance) =>
+Map<String, dynamic> _$$MainChatbotResponseModelImplToJson(
+        _$MainChatbotResponseModelImpl instance) =>
     <String, dynamic>{
       'status_code': instance.statusCode,
       'status': instance.status,
       'message': instance.message,
     };
 
-_$FailureCloseStreamModelImpl _$$FailureCloseStreamModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$FailureCloseStreamModelImpl(
+_$FailureAIModelImpl _$$FailureAIModelImplFromJson(Map<String, dynamic> json) =>
+    _$FailureAIModelImpl(
       errorDescription: (json['errorDescription'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -208,8 +207,8 @@ _$FailureCloseStreamModelImpl _$$FailureCloseStreamModelImplFromJson(
       statusCode: (json['statusCode'] as num?)?.toInt() ?? 0,
     );
 
-Map<String, dynamic> _$$FailureCloseStreamModelImplToJson(
-        _$FailureCloseStreamModelImpl instance) =>
+Map<String, dynamic> _$$FailureAIModelImplToJson(
+        _$FailureAIModelImpl instance) =>
     <String, dynamic>{
       'errorDescription': instance.errorDescription,
       'message': instance.message,

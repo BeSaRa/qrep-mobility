@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../app/depndency_injection.dart';
@@ -79,6 +80,10 @@ class _FAQListWidgetState extends State<FAQListWidget> {
                                     );
                                   }
                                 });
+                                // Send the user's message as a ChatMessage instance
+                                context
+                                    .read<ChatHistoryCubit>()
+                                    .sanitizeAuthorityMessages();
                                 final userMessage = MessageRequestModel(
                                     content: message, role: 'user');
                                 context
@@ -118,7 +123,11 @@ class _FAQListWidgetState extends State<FAQListWidget> {
                                           .canvasColor
                                           .withValues(alpha: 0.2),
                                       border: Border.all(
-                                          color: Colors.white, width: 1),
+                                          color: Theme.of(context).brightness ==
+                                                  Brightness.dark
+                                              ? ColorManager.white
+                                              : ColorManager.blackBG,
+                                          width: AppSizeW.s1),
                                       borderRadius:
                                           BorderRadius.circular(AppSizeR.s20),
                                     ),
@@ -126,10 +135,8 @@ class _FAQListWidgetState extends State<FAQListWidget> {
                                       value.response[index].actualQuestion,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .displayMedium
-                                          ?.copyWith(
-                                            color: Colors.white,
-                                          ),
+                                          .bodySmall
+                                          ?.copyWith(),
                                     ),
                                   ),
                                 ),

@@ -21,7 +21,7 @@ mixin _$SendFeedbackState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            SendAnswerResponseModel sendFeedbackResponse, bool isRated)
+            MainChatbotResponseModel sendFeedbackResponse, bool isRated)
         done,
     required TResult Function(String message) error,
   }) =>
@@ -31,7 +31,7 @@ mixin _$SendFeedbackState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-            SendAnswerResponseModel sendFeedbackResponse, bool isRated)?
+            MainChatbotResponseModel sendFeedbackResponse, bool isRated)?
         done,
     TResult? Function(String message)? error,
   }) =>
@@ -41,7 +41,7 @@ mixin _$SendFeedbackState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-            SendAnswerResponseModel sendFeedbackResponse, bool isRated)?
+            MainChatbotResponseModel sendFeedbackResponse, bool isRated)?
         done,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -139,7 +139,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            SendAnswerResponseModel sendFeedbackResponse, bool isRated)
+            MainChatbotResponseModel sendFeedbackResponse, bool isRated)
         done,
     required TResult Function(String message) error,
   }) {
@@ -152,7 +152,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-            SendAnswerResponseModel sendFeedbackResponse, bool isRated)?
+            MainChatbotResponseModel sendFeedbackResponse, bool isRated)?
         done,
     TResult? Function(String message)? error,
   }) {
@@ -165,7 +165,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-            SendAnswerResponseModel sendFeedbackResponse, bool isRated)?
+            MainChatbotResponseModel sendFeedbackResponse, bool isRated)?
         done,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -262,7 +262,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            SendAnswerResponseModel sendFeedbackResponse, bool isRated)
+            MainChatbotResponseModel sendFeedbackResponse, bool isRated)
         done,
     required TResult Function(String message) error,
   }) {
@@ -275,7 +275,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-            SendAnswerResponseModel sendFeedbackResponse, bool isRated)?
+            MainChatbotResponseModel sendFeedbackResponse, bool isRated)?
         done,
     TResult? Function(String message)? error,
   }) {
@@ -288,7 +288,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-            SendAnswerResponseModel sendFeedbackResponse, bool isRated)?
+            MainChatbotResponseModel sendFeedbackResponse, bool isRated)?
         done,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -347,9 +347,9 @@ abstract class _$$DoneImplCopyWith<$Res> {
           _$DoneImpl value, $Res Function(_$DoneImpl) then) =
       __$$DoneImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({SendAnswerResponseModel sendFeedbackResponse, bool isRated});
+  $Res call({MainChatbotResponseModel sendFeedbackResponse, bool isRated});
 
-  $SendAnswerResponseModelCopyWith<$Res> get sendFeedbackResponse;
+  $MainChatbotResponseModelCopyWith<$Res> get sendFeedbackResponse;
 }
 
 /// @nodoc
@@ -371,7 +371,7 @@ class __$$DoneImplCopyWithImpl<$Res>
       sendFeedbackResponse: null == sendFeedbackResponse
           ? _value.sendFeedbackResponse
           : sendFeedbackResponse // ignore: cast_nullable_to_non_nullable
-              as SendAnswerResponseModel,
+              as MainChatbotResponseModel,
       isRated: null == isRated
           ? _value.isRated
           : isRated // ignore: cast_nullable_to_non_nullable
@@ -383,8 +383,8 @@ class __$$DoneImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SendAnswerResponseModelCopyWith<$Res> get sendFeedbackResponse {
-    return $SendAnswerResponseModelCopyWith<$Res>(_value.sendFeedbackResponse,
+  $MainChatbotResponseModelCopyWith<$Res> get sendFeedbackResponse {
+    return $MainChatbotResponseModelCopyWith<$Res>(_value.sendFeedbackResponse,
         (value) {
       return _then(_value.copyWith(sendFeedbackResponse: value));
     });
@@ -397,7 +397,7 @@ class _$DoneImpl implements _Done {
   const _$DoneImpl({required this.sendFeedbackResponse, required this.isRated});
 
   @override
-  final SendAnswerResponseModel sendFeedbackResponse;
+  final MainChatbotResponseModel sendFeedbackResponse;
   @override
   final bool isRated;
 
@@ -433,7 +433,7 @@ class _$DoneImpl implements _Done {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            SendAnswerResponseModel sendFeedbackResponse, bool isRated)
+            MainChatbotResponseModel sendFeedbackResponse, bool isRated)
         done,
     required TResult Function(String message) error,
   }) {
@@ -446,7 +446,7 @@ class _$DoneImpl implements _Done {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-            SendAnswerResponseModel sendFeedbackResponse, bool isRated)?
+            MainChatbotResponseModel sendFeedbackResponse, bool isRated)?
         done,
     TResult? Function(String message)? error,
   }) {
@@ -459,7 +459,7 @@ class _$DoneImpl implements _Done {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-            SendAnswerResponseModel sendFeedbackResponse, bool isRated)?
+            MainChatbotResponseModel sendFeedbackResponse, bool isRated)?
         done,
     TResult Function(String message)? error,
     required TResult orElse(),
@@ -510,10 +510,10 @@ class _$DoneImpl implements _Done {
 
 abstract class _Done implements SendFeedbackState {
   const factory _Done(
-      {required final SendAnswerResponseModel sendFeedbackResponse,
+      {required final MainChatbotResponseModel sendFeedbackResponse,
       required final bool isRated}) = _$DoneImpl;
 
-  SendAnswerResponseModel get sendFeedbackResponse;
+  MainChatbotResponseModel get sendFeedbackResponse;
   bool get isRated;
 
   /// Create a copy of SendFeedbackState
@@ -594,7 +594,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(
-            SendAnswerResponseModel sendFeedbackResponse, bool isRated)
+            MainChatbotResponseModel sendFeedbackResponse, bool isRated)
         done,
     required TResult Function(String message) error,
   }) {
@@ -607,7 +607,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(
-            SendAnswerResponseModel sendFeedbackResponse, bool isRated)?
+            MainChatbotResponseModel sendFeedbackResponse, bool isRated)?
         done,
     TResult? Function(String message)? error,
   }) {
@@ -620,7 +620,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(
-            SendAnswerResponseModel sendFeedbackResponse, bool isRated)?
+            MainChatbotResponseModel sendFeedbackResponse, bool isRated)?
         done,
     TResult Function(String message)? error,
     required TResult orElse(),

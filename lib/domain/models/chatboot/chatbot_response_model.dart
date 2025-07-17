@@ -129,30 +129,30 @@ abstract class ICEServerModel with _$ICEServerModel {
 /*================================== send answer========================== */
 
 @freezed
-abstract class SendAnswerResponseModel with _$SendAnswerResponseModel {
-  const factory SendAnswerResponseModel({
+abstract class MainChatbotResponseModel with _$MainChatbotResponseModel {
+  const factory MainChatbotResponseModel({
     @Default(0) @JsonKey(name: "status_code") int statusCode,
     @Default('') String status,
     @Default('') String message,
 
     // @Default('') Null data,
-  }) = _SendAnswerResponseModel;
+  }) = _MainChatbotResponseModel;
 
-  factory SendAnswerResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$SendAnswerResponseModelFromJson(json);
+  factory MainChatbotResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$MainChatbotResponseModelFromJson(json);
 }
 
 @freezed
-abstract class FailureCloseStreamModel with _$FailureCloseStreamModel {
-  const factory FailureCloseStreamModel({
+abstract class FailureAIModel with _$FailureAIModel {
+  const factory FailureAIModel({
     @Default([]) List<String>? errorDescription,
     @Default(null) String? message,
     @Default(null) String? detail,
     @Default(0) int? statusCode,
-  }) = _FailureCloseStreamModel;
+  }) = _FailureAIModel;
 
-  factory FailureCloseStreamModel.fromJson(Map<String, dynamic> json) =>
-      _$FailureCloseStreamModelFromJson(json);
+  factory FailureAIModel.fromJson(Map<String, dynamic> json) =>
+      _$FailureAIModelFromJson(json);
 }
 
 //--------------------------- platform chatbot models----------------------

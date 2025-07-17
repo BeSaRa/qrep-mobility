@@ -240,6 +240,7 @@
   "view_as_table": "View as Table",
   "avatar_session_expired": "The session has expired.",
   "hold_record_message": "Hold to speak, release to send",
+  "click_anywhere_message": "Tap anywhere on the screen to begin interacting with the avatar",
   "-----------AI SEARCH----------": "--------------------------",
   "ai_search": "AI Search",
   "search_here": "Search Here...",

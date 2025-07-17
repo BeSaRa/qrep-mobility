@@ -2,6 +2,7 @@ import 'package:ebla/domain/models/Auth/auth_models.dart';
 import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
 import 'package:ebla/domain/models/ai_search_models/ai_search_model.dart';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
+import 'package:ebla/domain/models/chatboot/new_chatbot_response_models/new_chatbot_response_model.dart';
 import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 import 'package:ebla/domain/models/requests/ai_search_models/ai_search_model.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
@@ -191,30 +192,38 @@ abstract class Repository {
 
   Future<Result<FavouriteResponse, FailureModel>> createFavourite(
       FavouriteResponse id);
-      //-------chatbot---------
+  //-------chatbot---------
   Future<Result<ChatbotResponseModel, FailureModel>> sendMessageToChatbot(
       ChatbotRequestModel request);
-      
-  Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendFeedback(
-      int feedback,String convId);
-  Future<Result<List<ChatbotFAQResponseModel>, FailureModel>> getChatFAQ(String botName);
+  Future<Result<Stream<FullNewChatbotResponseModel>, FailureModel>>
+      sendMessageToChatbotStream(ChatbotRequestModel request);
 
-      //---- platform chatbot -----
-  Future<Result<PlatformChatbotResponseModel, FailureModel>> sendMessageToPlatformChatbot(
-      PlatformChatbotRequestModel request);
-      
+  Future<Result<MainChatbotResponseModel, FailureAIModel>> sendFeedback(
+      int feedback, String convId);
+
+  Future<Result<String, FailureAIModel>> getSASPdfUrl(String blobUrl);
+  Future<Result<List<ChatbotFAQResponseModel>, FailureModel>> getChatFAQ(
+      String botName);
+
+  //---- platform chatbot -----
+  Future<Result<PlatformChatbotResponseModel, FailureModel>>
+      sendMessageToPlatformChatbot(PlatformChatbotRequestModel request);
+
   Future<Result<StartStreamModel, FailureModel>> startStream();
 
-  Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendAnswer(
-      MainSendAnswerRequestModel request,String id);
+  Future<Result<MainChatbotResponseModel, FailureAIModel>> sendAnswer(
+      MainSendAnswerRequestModel request, String id);
 
-  Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendCandidate(
-      MainSendCandidateRequestModel request,String id);
+  Future<Result<MainChatbotResponseModel, FailureAIModel>> sendCandidate(
+      MainSendCandidateRequestModel request, String id);
 
-  Future<Result<SendAnswerResponseModel , FailureCloseStreamModel>> closeStream(String id);
+  Future<Result<MainChatbotResponseModel, FailureAIModel>> closeStream(
+      String id);
+  Future<Result<MainChatbotResponseModel, FailureAIModel>> stopRender(
+      String id);
   //------- Ai Search -------
-   Future<Result<AiSearchResponseModel, FailureModel>> aiSearchFun(
+  Future<Result<AiSearchResponseModel, FailureModel>> aiSearchFun(
       AiSearchRequestModel request);
-      //-----new laws----
-    Future<Result<List<LawsModel>, FailureModel>> getLaws();
+  //-----new laws----
+  Future<Result<List<LawsModel>, FailureModel>> getLaws();
 }

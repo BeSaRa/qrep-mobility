@@ -96,6 +96,7 @@ flutter:
     - assets/webviews/media_center/
     - assets/xmap/
     - assets/xmap/assets/
+    - assets/silhouette.js
 #    - .env
   fonts:
     - family: Lusail

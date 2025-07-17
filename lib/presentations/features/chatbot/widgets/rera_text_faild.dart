@@ -36,7 +36,8 @@ class ReraTextFaild extends StatefulWidget {
 
 class _ReraTextFaildState extends State<ReraTextFaild> {
   late TextEditingController _controller;
-  bool _showClearIcon = false;
+  final ValueNotifier<bool> _showClearIcon = ValueNotifier(false);
+  // bool _showClearIcon = false;
 
   @override
   void initState() {
@@ -46,9 +47,7 @@ class _ReraTextFaildState extends State<ReraTextFaild> {
   }
 
   void _handleTextChange() {
-    setState(() {
-      _showClearIcon = _controller.text.isNotEmpty;
-    });
+    _showClearIcon.value = _controller.text.isNotEmpty;
   }
 
   void _clearText() {
@@ -117,15 +116,19 @@ class _ReraTextFaildState extends State<ReraTextFaild> {
                 child: widget.prefixIcon,
               )
             : null,
-        suffixIcon: Padding(
-          padding: EdgeInsets.all(AppSizeW.s5),
-          child: _showClearIcon
-              ? GestureDetector(
-                  onTap: _clearText,
-                  child: const Icon(Icons.close, size: 20),
-                )
-              : widget.suffixIcon,
-        ),
+        suffixIcon: ValueListenableBuilder<bool>(
+            valueListenable: _showClearIcon,
+            builder: (context, isShown, child) {
+              return Padding(
+                padding: EdgeInsets.all(AppSizeW.s5),
+                child: isShown
+                    ? GestureDetector(
+                        onTap: _clearText,
+                        child: Icon(Icons.close, size: AppSizeW.s20),
+                      )
+                    : widget.suffixIcon,
+              );
+            }),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppSizeR.s15),
           borderSide: BorderSide(color: ColorManager.lightSilver, width: 0.5),
