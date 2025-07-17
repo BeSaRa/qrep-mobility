@@ -48,7 +48,7 @@ class RentBloc extends Bloc<RentEvent, RentState> {
 
   setRequestCriteria(CriteriaObject criteriaObject) {
     requestMeanValue = RentRequest(
-        zoneId: criteriaObject.zoneId ?? -1,
+        areaCode: criteriaObject.areaCode ?? -1,
         areaFrom: criteriaObject.areaFrom,
         areaTo: criteriaObject.areaTo,
         issueDateEndMonth: 12,
@@ -91,7 +91,7 @@ class RentBloc extends Bloc<RentEvent, RentState> {
       purposeList: [-1],
       rentPaymentMonthlyPerUnitFrom: null,
       rentPaymentMonthlyPerUnitTo: null,
-      zoneId: -1,
+      areaCode: -1,
       unit: 2,
       serviceType: -1,
       periodId: 1);
@@ -115,7 +115,7 @@ class RentBloc extends Bloc<RentEvent, RentState> {
       purposeList: [-1],
       rentPaymentMonthlyPerUnitFrom: null,
       rentPaymentMonthlyPerUnitTo: null,
-      zoneId: -1,
+      areaCode: -1,
       unit: 2,
       serviceType: -1,
       periodId: 1);
