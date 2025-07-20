@@ -111,7 +111,25 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-
-
+    <key>WKWebViewConfiguration</key>
+    <dict>
+        <key>allowsInlineMediaPlayback</key>
+        <true/>
+        <key>mediaTypesRequiringUserActionForPlayback</key>
+        <integer>0</integer>
+    </dict>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>AQARAT uses the local network to connect with devices during calls.</string>
+    <key>NSBonjourServices</key>
+    <array>
+        <string>_rtc._udp</string>
+    </array>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+    </dict>
+    <key>io.flutter.embedded_views_preview</key>
+    <true/>
 </dict>
 </plist>
