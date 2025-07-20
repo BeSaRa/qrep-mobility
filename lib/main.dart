@@ -48,11 +48,9 @@ Future<void> main() async {
       };
       try {
         FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-        print(FirebaseAnalytics.instance);
         analytics.logAppOpen();
       } catch (e) {
         if (kDebugMode) {
-          print("this is the $e");
         }
       }
     },
@@ -67,7 +65,6 @@ Future<void> main() async {
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
     backgroundHandler(message);
     if (kDebugMode) {
-      print("i got a background message $message");
     }
   });
   return runApp(

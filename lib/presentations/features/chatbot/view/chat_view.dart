@@ -165,7 +165,6 @@ class _ChatViewState extends State<ChatView>
     final String? streamId = streamIdCubit.state.streamId;
     if (streamId != null) {
       closeStreamBloc.add(CloseStreamEvent.closeStream(streamId));
-      log("Inactivity detected. Stream closed.");
     }
   }
 

@@ -135,4 +135,10 @@ class EndPoints {
 
   //send-feedback
   static const String sendFeedback = '/chat-history/add-feedback';
+
+  //----------------------- Training ----------------------
+  static const String getTrainingCourses = '/TrainingCourse/GetTrainingCourses';
+  static const String getAllTrainingGategories = '/Category/GetCategories';
+
+
 }

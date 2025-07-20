@@ -617,8 +617,6 @@ class _BottomSheetFilterSellWidgetState
                                         return element.lookupKey == -1;
                                       }) ??
                                       const LookupModel());
-                                  // print(
-                                  //     "fatina the list ${filterDataBymunicipalityId(valuesFiltersCubit.municapility.lookupKey, context.read<LookupBloc>().loockUpSell?.districtList ?? [])}");
                                 },
                                 list: context
                                         .read<LookupBloc>()
@@ -1305,8 +1303,6 @@ class _BottomSheetFilterSellWidgetState
                           isPrimary: true,
                           title: AppStrings().search,
                           onPress: () {
-                            // print(
-                            //     'before request ${context.read<RentBloc>().requestMeanValue}');
                             if (_formkey.currentState!.validate()) {
                               context.read<SellBloc>().requestSell = context
                                   .read<SellBloc>()
@@ -1387,9 +1383,6 @@ class _BottomSheetFilterSellWidgetState
                                   );
                               Navigator.of(context).pop(true);
                             }
-
-                            // print(
-                            //     'after request ${context.read<SellBloc>().requestSell}');
                           },
                         ),
                       );

@@ -1360,7 +1360,6 @@ class _BottomSheetFilterMortgageWidgetState
                           isPrimary: true,
                           title: AppStrings().search,
                           onPress: () {
-                            // print(
                             //     'before request ${context.read<RentBloc>().requestMeanValue}');
                             if (_formkey.currentState!.validate()) {
                               context.read<MortgageBloc>().requestMeanValue =
@@ -1483,7 +1482,6 @@ class _BottomSheetFilterMortgageWidgetState
                               Navigator.of(context).pop(true);
                             }
 
-                            // print(
                             //     'after request ${context.read<MortgageBloc>().requestMeanValue}');
                           },
                         ),

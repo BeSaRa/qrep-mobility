@@ -1,5 +1,8 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:ebla/data/network/training_dio_factory.dart';
+import 'package:ebla/data/repository/phase2_repository_implementer.dart';
+import 'package:ebla/domain/repository/phase2_repository.dart';
 import 'package:ebla/domain/usecases/ai_search/ai_search_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/chat_faq_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/chatbot_usecase.dart';
@@ -14,6 +17,8 @@ import 'package:ebla/domain/usecases/favourite_usecases/create_favourite_usecase
 import 'package:ebla/domain/usecases/favourite_usecases/update_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/user_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/laws_usecases/laws_usecases.dart';
+import 'package:ebla/domain/usecases/training_usecases/get_all_training_catigories_usecase.dart';
+import 'package:ebla/domain/usecases/training_usecases/get_all_training_courses_usecase.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/chat_faq_bloc/chat_faq_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/close_stream/close_stream_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
@@ -24,6 +29,7 @@ import 'package:ebla/presentations/features/favourite/bloc/UpdateFav/update_favo
 import 'package:ebla/presentations/features/favourite/bloc/create_favourite_bloc/create_favourite_bloc.dart';
 import 'package:ebla/presentations/features/favourite/bloc/get_favourite_bloc/get_favourite_bloc.dart';
 import 'package:ebla/presentations/features/more/ai_search_view/blocs/ai_search_bloc.dart';
+import 'package:ebla/presentations/features/training/bloc/get_all_training_courses_bloc/get_all_training_courses_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -62,6 +68,8 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<DioFactory>(() => DioFactory(instance()));
   instance
       .registerLazySingleton<CmsDioFactory>(() => CmsDioFactory(instance()));
+  instance
+      .registerLazySingleton<TrainingDioFactory >(() => TrainingDioFactory (instance()));
 
   instance.registerFactory<GeneralInterceptor>(
       () => GeneralInterceptor(instance<AppPreferences>(), dioRefreshToken));
@@ -69,12 +77,13 @@ Future<void> initAppModule() async {
       () => GeneralCMSInterceptor(instance<AppPreferences>(), dioRefreshToken));
   final dio = await instance<DioFactory>().getDio();
   final cmsDio = await instance<CmsDioFactory>().getDio();
+  final trainingDio = await instance<TrainingDioFactory>().getDio();
   instance.registerFactory<Dio>(() => dio);
 
-  instance.registerLazySingleton<AppServiceClient>(
-      () => AppServiceClient(instance<Dio>()));
-  instance
-      .registerLazySingleton<CmsServiceClient>(() => CmsServiceClient(cmsDio));
+  instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(instance<Dio>()));
+  instance.registerLazySingleton<CmsServiceClient>(() => CmsServiceClient(cmsDio));
+  //zak
+  instance.registerLazySingleton<TrainingServiceClient>(() => TrainingServiceClient(trainingDio));
 
   instance.registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImplementer(Connectivity()));
@@ -82,6 +91,10 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<Repository>(() => RepositoryImplementer(
       appServiceClient: instance<AppServiceClient>(),
       translationsServiceClient: instance<CmsServiceClient>(),
+      networkInfo: instance<NetworkInfo>()));
+//zak
+  instance.registerLazySingleton<Phase2Repository>(() => Phase2RepositoryImplementer(
+      trainingServiceClient: instance<TrainingServiceClient>(),
       networkInfo: instance<NetworkInfo>()));
 
   if (!GetIt.I.isRegistered<GetSellLookupUseCase>()) {
@@ -163,7 +176,6 @@ Future<void> initAppModule() async {
         () => MainMenuUsecase(repository: instance()));
   }
   //Blocs
-
   if (!GetIt.I.isRegistered<UserBloc>()) {
     instance.registerFactory<UserBloc>(() => UserBloc(
         userUsecase: instance<UserUsecase>(),
@@ -312,14 +324,30 @@ Future<void> initHomeModule() async {
         () => SendFeedbackUsecase(instance()));
   }
   if (!GetIt.I.isRegistered<SendFeedbackBloc>()) {
-    instance
-        .registerFactory<SendFeedbackBloc>(() => SendFeedbackBloc(instance()));
+    instance.registerFactory<SendFeedbackBloc>(() => SendFeedbackBloc(instance()));
   }
   if (!GetIt.I.isRegistered<SasPdfUsecase>()) {
     instance.registerFactory<SasPdfUsecase>(() => SasPdfUsecase(instance()));
   }
   if (!GetIt.I.isRegistered<SasPdfBloc>()) {
     instance.registerFactory<SasPdfBloc>(() => SasPdfBloc(instance()));
+  }
+  //training
+  if (!GetIt.I.isRegistered<GetAllTrainingCoursesBloc>()) {
+    instance.registerFactory<GetAllTrainingCoursesBloc>(
+        () => GetAllTrainingCoursesBloc(instance(),instance()));
+  }
+  if (!GetIt.I.isRegistered<GetAllTrainingCoursesUsecase>()) {
+    instance.registerFactory<GetAllTrainingCoursesUsecase>(
+        () => GetAllTrainingCoursesUsecase(instance()));
+  }
+  // if (!GetIt.I.isRegistered<GetAllTrainingCategoriesBloc>()) {
+  //   instance.registerFactory<GetAllTrainingCategoriesBloc>(
+  //       () => GetAllTrainingCategoriesBloc(instance()));
+  // }
+  if (!GetIt.I.isRegistered<GetAllTrainingCatigoriesUsecase>()) {
+    instance.registerFactory<GetAllTrainingCatigoriesUsecase>(
+        () => GetAllTrainingCatigoriesUsecase(instance()));
   }
 }
 

@@ -301,5 +301,5 @@ class AppStrings {
   String ownYourRealEstate = "own_your_real_estate".tr();
   String onBoardingInddecatorsSubtitle = "onBoarding_inddecators_subtitle".tr();
   String onBoardingXmapSubtitle = "onBoarding_xmap_subtitle".tr();
-
+  String realEstateTrainingPortal = "real_estate_training_portal".tr();
 }

@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:ebla/app/constants.dart';
@@ -27,11 +28,18 @@ class GeneralInterceptor extends Interceptor {
   @override
   Future onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
+    // 👇 Skip if it's a training request
+    if (options.headers['x-training-request'] == 'true') {
+      log("zak 🔐 Skipping token update for training request");
+      return handler.next(options);
+    }
     if (options.headers['authorization'] ==
         "Bearer ${await appPreferences.getUserToken()}") {
+      log("zak 1 ${options.headers}");
       return handler.next(options);
     }
 
+    log("zak 2 ${options.headers}");
     options.headers.addAll(
         {'authorization': 'Bearer ${await appPreferences.getUserToken()}'});
     return handler.next(options);

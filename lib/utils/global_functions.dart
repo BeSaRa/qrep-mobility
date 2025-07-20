@@ -68,7 +68,6 @@ List<PeriodTimeDetails> getAllMonthsInYear(BuildContext context) {
 }
 
 List<PeriodTimeDetails> getFromAprilMonths(BuildContext context) {
-  print("month change ");
   List<PeriodTimeDetails> months = [];
   for (int i = 4; i <= 12; i++) {
     DateTime date = DateTime(DateTime.april, i);

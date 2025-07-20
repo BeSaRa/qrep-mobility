@@ -83,8 +83,6 @@ class TranslationsAssetsLoader extends AssetLoader {
         result.addAll(remoteTranslations);
       } catch (e) {
         if (kDebugMode) {
-          print(
-              "something wrong happened while writing/reading/fetching remote translations ");
         }
       }
     }
@@ -109,7 +107,6 @@ class TranslationsAssetsLoader extends AssetLoader {
 
     ColoredPrinter.printColored(
         'Number of extra keys: $extraKeys', AnsiColor.cyan);
-    // print("----------------------------------------------------------");
     ColoredPrinter.printColored(
         'Number of different values for existing keys: $differentValues',
         AnsiColor.cyan);

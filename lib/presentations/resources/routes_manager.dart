@@ -29,6 +29,9 @@ import 'package:ebla/presentations/features/rent/rent_view.dart';
 import 'package:ebla/presentations/features/sell/sell_view.dart';
 import 'package:ebla/presentations/features/services/view/services_view.dart';
 import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
+import 'package:ebla/presentations/features/training/views/training_booking_view.dart';
+import 'package:ebla/presentations/features/training/views/training_details_view.dart';
+import 'package:ebla/presentations/features/training/views/training_view.dart';
 import 'package:ebla/presentations/features/video_library/video_lib_view.dart';
 import 'package:ebla/presentations/features/xmap/xmap_page.dart';
 import 'package:flutter/material.dart';
@@ -75,6 +78,9 @@ class RoutesNames {
   static const String map = "map";
   static const String comingSoon = "coming soon";
   static const String videoLib = "video lib";
+  static const String training = "training";
+  static const String trainingBooking = "training booking";
+  static const String trainingDetails = "training Details";
 }
 
 class RoutesPaths {
@@ -105,6 +111,10 @@ class RoutesPaths {
   static const String map = '/map';
   static const String comingSoon = '/comingSoon';
   static const String videoLib = '/videoLib';
+  static const String training = '/training'; 
+  static const String trainingBooking = "/trainingBooking";
+  static const String trainingDetails = "/trainingDetails";
+
 }
 
 class NavigationKeys {
@@ -466,6 +476,24 @@ class AppRouter {
           name: RoutesNames.videoLib,
           path: RoutesPaths.videoLib,
           builder: (context, state) => const VideoLibView(),
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.training,
+          path: RoutesPaths.training,
+          builder: (context, state) => const TrainingView(),
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.trainingBooking,
+          path: RoutesPaths.trainingBooking,
+          builder: (context, state) => const TrainingBookingView(),
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.trainingDetails,
+          path: RoutesPaths.trainingDetails,
+          builder: (context, state) => const TrainingDetailsView(),
         ),
 
         GoRoute(

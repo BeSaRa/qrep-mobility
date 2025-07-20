@@ -7,6 +7,8 @@ import 'package:ebla/domain/models/favourite/favourite_models.dart';
 import 'package:ebla/domain/models/requests/ai_search_models/ai_search_model.dart';
 import 'package:ebla/domain/models/requests/broker_requests/request_broker_values.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
+import 'package:ebla/domain/models/requests/training/get_all_courses_request_model.dart';
+import 'package:ebla/domain/models/training/get_all_courses_response_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../app/constants.dart';
@@ -15,6 +17,7 @@ import '../../domain/models/Auth/requests_auth/request_auth.dart';
 import '../../domain/models/cms_models/app_settings/app_settings.dart';
 import '../../domain/models/cms_models/user/requests/update_info_model.dart';
 import '../../domain/models/models.dart';
+import '../../domain/models/training/get_all_categories_response_model/get_all_categories_response_model.dart';
 
 part 'app_api.g.dart';
 
@@ -312,4 +315,17 @@ abstract class CmsServiceClient {
   //get laws
   @GET("${Constant.aqaratBaseUrl}/wp-json/legislation/v1/all")
   Future<HttpResponse<List<LawsModel>>> getLaws();
+}
+
+@RestApi(baseUrl: Constant.aqaratBackendDev)
+abstract class TrainingServiceClient {
+  factory TrainingServiceClient(Dio dio, {String baseUrl}) =
+      _TrainingServiceClient;
+
+  /// ****************** Training *************************
+  @POST("${Constant.aqaratBackendDev}${EndPoints.getTrainingCourses}")
+  Future<HttpResponse<GetAllCoursesResponseModel>> getTrainingCourses(
+      @Body() GetAllCoursesRequestModel request);
+  @POST("${Constant.aqaratBackendDev}${EndPoints.getAllTrainingGategories}")
+  Future<HttpResponse<GetAllCategoriesResponseModel>> getAllTrainingGategories(@Body() GetAllCategoriesRequestModel request);
 }

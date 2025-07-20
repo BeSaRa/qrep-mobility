@@ -69,6 +69,21 @@ class InvestorsCardsWidget extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
+                context.pushNamed(RoutesNames.training);
+                // context.pushNamed(RoutesNames.training);
+              },
+              child: InvestorsCard(
+                  color: ColorManager.golden,
+                  icon: IconAssets.training,
+                  title: AppStrings().realEstateTrainingPortal),
+            ),
+            VerticalDivider(
+              endIndent: AppSizeH.s15,
+              color: ColorManager.golden.withAlpha(50),
+              indent: AppSizeH.s15,
+            ),
+            InkWell(
+              onTap: () {
                 context.pushNamed(RoutesNames.aboutTheAuthority,
                     pathParameters: {
                       "pageName": "tasksAndResponsibilitiesOftheAuthority"

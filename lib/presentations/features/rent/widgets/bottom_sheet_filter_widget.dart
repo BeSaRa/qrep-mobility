@@ -358,7 +358,6 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                 ) ??
                 valuesFiltersCubit.yearsLists.last
             : valuesFiltersCubit.yearsLists.last;
-    print("fatina : ${context.read<LookupBloc>().lookUpRent?.halfYearList}");
     context.read<RentBloc>().requestMeanValue.periodId == 2
         ? valuesFiltersCubit.periodTimeHalfDetails = context
                 .read<LookupBloc>()

@@ -40,7 +40,6 @@ class _RentViewState extends State<RentView> {
     if (GoRouterState.of(context).extra != null) {
       criteriaObject = GoRouterState.of(context).extra as CriteriaObject;
       if (kDebugMode) {
-        print("i get the criteria");
       }
     }
   }

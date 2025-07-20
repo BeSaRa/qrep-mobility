@@ -149,7 +149,6 @@ class ValuesFiltersCubit extends Cubit<LookupModel> {
 
   void changeUnit(int newUnit) {
     unit = newUnit;
-    print("i changed unit $newUnit");
     emit(LookupModel(id: newUnit));
   }
 

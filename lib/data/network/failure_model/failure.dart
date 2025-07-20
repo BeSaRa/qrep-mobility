@@ -13,8 +13,17 @@ class FailureModel with _$FailureModel {
     @Default(0) int statusCode,
   }) = _FailureModel;
 
-  factory FailureModel.fromJson(Map<String, dynamic> json) =>
-      _$FailureModelFromJson(json);
+  factory FailureModel.fromJson(Map<String, dynamic> json) {
+    return FailureModel(
+      message: json['Message'] ?? json['message'] ?? '',
+      statusCode: json['Code'] ?? json['code'] ?? 0,
+      errorDescription: (json['errorDescription'] as List<dynamic>?)
+              ?.map((e) => e.toString())
+              .toList() ??
+          [],
+    );
+  }
+
 }
 
 Map<String, String> defaultError = {'message': AppStrings().defaultError};

@@ -226,7 +226,6 @@ class SellGridKPIsBloc extends Bloc<SellGridKPIsEvent, SellGridKPIsState> {
       }
     } else {
       if (kDebugMode) {
-        print("unknown data state type");
       }
       return 0;
     }

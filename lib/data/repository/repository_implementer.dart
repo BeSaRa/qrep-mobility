@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:ebla/app/app_preferences.dart';
 import 'package:ebla/app/depndency_injection.dart';
@@ -19,7 +18,6 @@ import 'package:ebla/domain/models/models.dart';
 import 'package:ebla/domain/models/requests/ai_search_models/ai_search_model.dart';
 import 'package:ebla/domain/models/requests/broker_requests/request_broker_values.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
-
 import 'package:flutter/foundation.dart';
 import 'package:multiple_result/multiple_result.dart';
 
@@ -63,7 +61,7 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
-
+//============================ About ===================================
   @override
   Future<Result<AboutResponse, FailureModel>> getAbout() async {
     if (await networkInfo.isConnected) {
@@ -84,7 +82,7 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
-
+//============================ News ===================================
   @override
   Future<Result<List<NewsModel>, FailureModel>> getNews() async {
     if (await networkInfo.isConnected) {
@@ -104,7 +102,7 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
-
+//============================ Faq ===================================
   @override
   Future<Result<FaqResponse, FailureModel>> getFaq(int id) async {
     if (await networkInfo.isConnected) {
@@ -124,7 +122,7 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
-
+//============================ Auth ===================================
   @override
   Future<Result<AuthResponse, FailureResponse>> login(
       RequestAuth requestAuth) async {
@@ -169,7 +167,7 @@ class RepositoryImplementer extends Repository {
           errors: [ErrorModel(message: AppStrings().noInternetError)]));
     }
   }
-
+//============================ User ===================================
   @override
   Future<Result<UserResponse, FailureModel>> getUserInfo() async {
     if (await networkInfo.isConnected) {
@@ -352,8 +350,7 @@ class RepositoryImplementer extends Repository {
     }
   }
 
-  ///---------------------rent -----------------------
-
+//============================ Rent ===================================
   @override
   Future<Result<LookupResponse, FailureModel>> getLockupRent() async {
     if (await networkInfo.isConnected) {
@@ -430,13 +427,11 @@ class RepositoryImplementer extends Repository {
         }
       } on DioException catch (e) {
         if (kDebugMode) {
-          print('ar ${e.toString()}');
         }
 
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
         if (kDebugMode) {
-          print('ar ${e.toString()}');
         }
 
         return Error(FailureModel(message: AppStrings().defaultError));
@@ -615,7 +610,6 @@ class RepositoryImplementer extends Repository {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
         if (kDebugMode) {
-          print(e);
         }
         return Error(FailureModel(message: AppStrings().defaultError));
       }
@@ -659,13 +653,11 @@ class RepositoryImplementer extends Repository {
         }
       } on DioException catch (e) {
         if (kDebugMode) {
-          print('ar ${e.toString()}');
         }
 
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
         if (kDebugMode) {
-          print('ar ${e.toString()}');
         }
 
         return Error(FailureModel(message: AppStrings().defaultError));
@@ -689,13 +681,11 @@ class RepositoryImplementer extends Repository {
         }
       } on DioException catch (e) {
         if (kDebugMode) {
-          print('ar ${e.toString()}');
         }
 
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
         if (kDebugMode) {
-          print('ar ${e.toString()}');
         }
 
         return Error(FailureModel(message: AppStrings().defaultError));
@@ -705,7 +695,7 @@ class RepositoryImplementer extends Repository {
     }
   }
 
-  // ------------------------------sell----------------------------------------
+//============================ Sell ===================================
 
   @override
   Future<Result<LookupResponse, FailureModel>> getLockupSell() async {
@@ -1015,8 +1005,7 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
-
-  //----------------------------------Mortgage----------------------------------
+//============================ Mortgage ===================================
   // KPI1
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>>
@@ -1131,8 +1120,7 @@ class RepositoryImplementer extends Repository {
     }
   }
 
-  ///------------------real estate brokers------------
-
+//============================ real estate brokers ===================================
   @override
   Future<Result<List<BaseRentResponse>, FailureModel>> realStateNumber(
       RequestSellValues requestSellValues) async {
@@ -1238,7 +1226,7 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
-
+//============================ Favourites ===================================
   @override
   Future<Result<List<FavouriteResponse>, FailureModel>> getUserFavourites(
       String id) async {
@@ -1321,52 +1309,39 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
-//// NOTE: The Public token is for azure and All AI endpoints
-//---------------- chatbot ------------------
-//   @override
-// Future<Result<ChatbotResponseModel, FailureModel>> sendMessageToChatbot(
-//     ChatbotRequestModel request) async {
-//   if (await networkInfo.isConnected) {
-//     log("Network connected. Sending request...");
-//     try {
-//       final response = await appServiceClient.sendMessageToChatbot(request);
-//       log("API Response received. Status code: ${response.response.statusCode}");
-//       log("Response data: ${response.data}");
-//       if (response.response.statusCode == 200) {
-//         log("Success response: ${response.data}");
-//         return Success(response.data);
-//       } else {
-//         log("Non-200 status code. Parsing error...");
-//         return Error(FailureModel.fromJson(response.response.data));
-//       }
-//     } on DioException catch (e) {
-//       log("DioException occurred: ${e.message}");
-//       log("DioException response: ${e.response?.data}");
-//       return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
-//     } catch (e) {
-//       log("Unexpected error: $e");
-//       return Error(FailureModel(message: AppStrings().defaultError));
-//     }
-//   } else {
-//     log("No internet connection.");
-//     return Error(FailureModel(message: AppStrings().noInternetError));
-//   }
-// }
+//============================ Laws ===================================
+  @override
+  Future<Result<List<LawsModel>, FailureModel>> getLaws() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await translationsServiceClient.getLaws();
 
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+//============================ chatbot ===================================
+  //// NOTE: The Public token is for azure and All AI endpoints
   @override
   Future<Result<ChatbotResponseModel, FailureModel>> sendMessageToChatbot(
       ChatbotRequestModel request) async {
     if (await networkInfo.isConnected) {
-      log("Network connected. Sending request...");
 
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
 
-        // 🔹 backend API URL
-        const String apiUrl =
-            '${Constant.authorityChatBotBaseUrl}/api/v1/chatbot/chat/website';
-        // 🔹 get stored language
+        const String apiUrl ='${Constant.authorityChatBotBaseUrl}/api/v1/chatbot/chat/website';
         String language = await appPreferences.getAppLanguage();
 
         Map<String, String> headers = {
@@ -1377,12 +1352,9 @@ class RepositoryImplementer extends Repository {
           //NOTE: We must add this key to make the chat work
           "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
-        // 🔹 make a POST request
         final response = await dio.post(
           apiUrl,
-          // data: jsonEncode(request), // Ensure JSON-encoded body
           data: request,
-          // data: request.toJson(),
           options: Options(
             headers: headers,
             validateStatus: (status) =>
@@ -1390,23 +1362,16 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-        log("API Response received. Status code: ${response.statusCode}");
-        log("Response data: ${response.data}");
 
         if (response.statusCode == 200) {
-          log("Success response: ${response.data}");
           return Success(ChatbotResponseModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
-          log("⚠️ Unauthorized: Token might be invalid or expired.");
           return const Error(FailureModel(
               message: "Unauthorized: Please check your credentials."));
         } else {
-          log("Non-200 status code. Parsing error...");
           return Error(FailureModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-        log("DioException occurred: ${e.message}");
-        log("DioException response: ${e.response?.data}");
 
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
@@ -1416,11 +1381,9 @@ class RepositoryImplementer extends Repository {
 
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        log("Unexpected error: $e");
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {
-      log("No internet connection.");
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
@@ -1445,17 +1408,6 @@ class RepositoryImplementer extends Repository {
           "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
 
-        // Preflight request to validate input before streaming
-        // final preflight = await dio.post(
-        //   apiUrl,
-        //   data: request,
-        //   options: Options(
-        //     headers: headers,
-        //     responseType: ResponseType.json,
-        //     validateStatus: (_) => true,
-        //   ),
-        // );
-
         // Now the streaming request
         final response = await dio.post(
           apiUrl,
@@ -1468,13 +1420,11 @@ class RepositoryImplementer extends Repository {
         );
 
         if (response.statusCode != 200) {
-          log("error body = ${response.data}");
           return Error(FailureModel.fromJson(response.data));
         }
         final responseStream = response.data as ResponseBody;
         final streamController =
             StreamController<FullNewChatbotResponseModel>();
-        final utf8Decoder = utf8.decoder;
         final buffer = StringBuffer();
 
         utf8.decoder.bind(responseStream.stream).listen(
@@ -1493,7 +1443,6 @@ class RepositoryImplementer extends Repository {
 
               if (line.isEmpty) continue;
               if (!line.startsWith('data:')) {
-                log("Skipping line: $line");
                 continue;
               }
 
@@ -1515,7 +1464,6 @@ class RepositoryImplementer extends Repository {
                       ),
                     );
                   } else {
-                    log('Expected string in chunk data: $jsonString');
                   }
                 } else if (event == 'complete') {
                   final fullData = json['data'];
@@ -1525,25 +1473,17 @@ class RepositoryImplementer extends Repository {
                           data: NewChatbotResponseModel(
                               event: event,
                               data: DataResponseModel.fromJson(fullData))
-                          // data: NewChatbotResponseModel.fromJson({
-                          //   ...fullData,
-                          //   'event': event,
-                          // }),
                           ),
                     );
                   } else {
-                    log('Expected Map in complete data: $jsonString');
                   }
                 } else {
-                  log('Unknown event type: $event');
                 }
               } catch (e) {
-                log('Error parsing line: $e - Line: $line');
               }
             }
           },
           onError: (e) {
-            log('Stream error: $e');
             streamController.addError(e);
           },
           onDone: () {
@@ -1554,10 +1494,8 @@ class RepositoryImplementer extends Repository {
 
         return Success(streamController.stream);
       } on DioException catch (e) {
-        log("DioException occurred: ${e.message}");
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        log("Unexpected error: $e");
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {
@@ -1569,16 +1507,13 @@ class RepositoryImplementer extends Repository {
   Future<Result<List<ChatbotFAQResponseModel>, FailureModel>> getChatFAQ(
       String botName) async {
     if (await networkInfo.isConnected) {
-      log("Network connected. Sending request...");
 
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
 
-        // 🔹 backend API URL
         final String apiUrl =
             '${Constant.authorityChatBotBaseUrl}/api/v1/FAQ/faqs?bot_name=$botName';
-        // 🔹 get stored language
         String language = await appPreferences.getAppLanguage();
 
         Map<String, String> headers = {
@@ -1589,7 +1524,6 @@ class RepositoryImplementer extends Repository {
           //NOTE: We must add this key to make the chat work
           "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
-        // 🔹 make a POST request
         final response = await dio.get(
           apiUrl,
           options: Options(
@@ -1599,11 +1533,8 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-        log("API Response received. Status code: ${response.statusCode}");
-        log("Response data: ${response.data}");
 
         if (response.statusCode == 200) {
-          log("Success response: ${response.data}");
           if (response.data is List) {
             final faqList = (response.data as List)
                 .map((item) => ChatbotFAQResponseModel.fromJson(item))
@@ -1614,18 +1545,13 @@ class RepositoryImplementer extends Repository {
             return const Error(
                 FailureModel(message: "Unexpected response format"));
           }
-          // return Success(response.data);
         } else if (response.statusCode == 401) {
-          log("⚠️ Unauthorized: Token might be invalid or expired.");
           return const Error(FailureModel(
               message: "Unauthorized: Please check your credentials."));
         } else {
-          log("Non-200 status code. Parsing error...");
           return Error(FailureModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-        log("DioException occurred: ${e.message}");
-        log("DioException response: ${e.response?.data}");
 
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
@@ -1635,81 +1561,25 @@ class RepositoryImplementer extends Repository {
 
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        log("Unexpected error: $e");
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {
-      log("No internet connection.");
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
 
-//----platform chatbot-----
-  @override
-  Future<Result<PlatformChatbotResponseModel, FailureModel>>
-      sendMessageToPlatformChatbot(PlatformChatbotRequestModel request) async {
-    if (await networkInfo.isConnected) {
-      log("Network connected. Sending request...");
-      try {
-        final response =
-            await appServiceClient.sendMessageToPlatformChatbot(request);
-        log("API Response received. Status code: ${response.response.statusCode}");
-        log("Response data: ${response.data}");
-        if (response.response.statusCode == 200) {
-          log("Success response: ${response.data}");
-          return Success(response.data);
-        } else {
-          log("Non-200 status code. Parsing error...");
-          return Error(FailureModel.fromJson(response.response.data));
-        }
-      } on DioException catch (e) {
-        log("DioException occurred: ${e.message}");
-        log("DioException response: ${e.response?.data.toString()}");
-        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
-      } catch (e) {
-        log("Unexpected error: $e");
-        return Error(FailureModel(message: AppStrings().defaultError));
-      }
-    } else {
-      log("No internet connection.");
-      return Error(FailureModel(message: AppStrings().noInternetError));
-    }
-  }
-
-  // @override
-  // Future<Result<StartStreamModel, FailureModel>> startStream() async {
-  //   if (await networkInfo.isConnected) {
-  //     try {
-  //       final response = await appServiceClient.startStream();
-  //       if (response.response.statusCode == 200) {
-  //         return Success(response.data);
-  //       } else {
-  //         return Error(FailureModel.fromJson(response.response.data));
-  //       }
-  //     } on DioException catch (e) {
-  //       return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
-  //     } catch (e) {
-  //       return Error(FailureModel(message: AppStrings().defaultError));
-  //     }
-  //   } else {
-  //     return Error(FailureModel(message: AppStrings().noInternetError));
-  //   }
-  // }
 //====================================================================
   @override
   Future<Result<StartStreamModel, FailureModel>> startStream() async {
     if (await networkInfo.isConnected) {
-      log("Network connected. Sending request...");
 
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
 
-        // 🔹 backend API URL
         const String apiUrl =
             '${Constant.authorityChatBotBaseUrl}/api/v1/avatar/start-stream';
 
-        // 🔹 get stored language
         String language = await appPreferences.getAppLanguage();
 
         Map<String, String> headers = {
@@ -1720,7 +1590,6 @@ class RepositoryImplementer extends Repository {
           //NOTE: We must add this key to make the chat work
           "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
-        // 🔹 make a POST request
         final response = await dio.post(
           apiUrl,
           options: Options(
@@ -1730,23 +1599,16 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-        log("API Response received. Status code: ${response.statusCode}");
-        log("Response data: ${response.data}");
 
         if (response.statusCode == 200) {
-          log("Success response: ${response.data}");
           return Success(StartStreamModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
-          log("⚠️ Unauthorized: Token might be invalid or expired.");
           return const Error(FailureModel(
               message: "Unauthorized: Please check your credentials."));
         } else {
-          log("Non-200 status code. Parsing error...");
           return Error(FailureModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-        log("DioException occurred: ${e.message}");
-        log("DioException response: ${e.response?.data}");
 
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
@@ -1756,57 +1618,26 @@ class RepositoryImplementer extends Repository {
 
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        log("Unexpected error: $e");
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {
-      log("No internet connection.");
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
 //====================================================================
-
-  // @override
-  // Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendAnswer(
-  //     MainSendAnswerRequestModel request, String id) async {
-  //   if (await networkInfo.isConnected) {
-  //     try {
-  //       final response = await appServiceClient.sendAnswer(id, request);
-  //       if (response.response.statusCode == 200) {
-  //         return Success(response.data);
-  //       } else {
-  //         return Error(
-  //             FailureCloseStreamModel.fromJson(response.response.data));
-  //       }
-  //     } on DioException catch (e) {
-  //       return Error(
-  //           FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
-  //     } catch (e) {
-  //       return Error(
-  //           FailureCloseStreamModel(message: AppStrings().defaultError));
-  //     }
-  //   } else {
-  //     return Error(
-  //         FailureCloseStreamModel(message: AppStrings().noInternetError));
-  //   }
-  // }
-//=========================================================================
 
   @override
   Future<Result<MainChatbotResponseModel, FailureAIModel>> sendAnswer(
       MainSendAnswerRequestModel request, String id) async {
     if (await networkInfo.isConnected) {
-      log("Network connected. Sending request...");
 
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
 
-        // 🔹 backend API URL
         String apiUrl =
             '${Constant.authorityChatBotBaseUrl}/api/v1/avatar/send-answer/$id';
 
-        // 🔹 get stored language
         String language = await appPreferences.getAppLanguage();
 
         Map<String, String> headers = {
@@ -1817,12 +1648,9 @@ class RepositoryImplementer extends Repository {
           //NOTE: We must add this key to make the chat work
           "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
-        // 🔹 make a POST request
         final response = await dio.put(
           apiUrl,
-          // data: jsonEncode(request), // Ensure JSON-encoded body
           data: request,
-          // data: request.toJson(),
           options: Options(
             headers: headers,
             validateStatus: (status) =>
@@ -1830,23 +1658,16 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-        log("API Response received. Status code: ${response.statusCode}");
-        log("Response data: ${response.data}");
 
         if (response.statusCode == 200) {
-          log("Success response: ${response.data}");
           return Success(MainChatbotResponseModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
-          log("⚠️ Unauthorized: Token might be invalid or expired.");
           return const Error(FailureAIModel(
               message: "Unauthorized: Please check your credentials."));
         } else {
-          log("Non-200 status code. Parsing error...");
           return Error(FailureAIModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-        log("DioException occurred: ${e.message}");
-        log("DioException response: ${e.response?.data}");
 
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
@@ -1856,55 +1677,26 @@ class RepositoryImplementer extends Repository {
 
         return Error(FailureAIModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        log("Unexpected error: $e");
         return Error(FailureAIModel(message: AppStrings().defaultError));
       }
     } else {
-      log("No internet connection.");
       return Error(FailureAIModel(message: AppStrings().noInternetError));
     }
   }
 //=========================================================================
-  // @override
-  // Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>>
-  //     sendCandidate(MainSendCandidateRequestModel request, String id) async {
-  //   if (await networkInfo.isConnected) {
-  //     try {
-  //       final response = await appServiceClient.sendCandidate(id, request);
-  //       if (response.response.statusCode == 200) {
-  //         return Success(response.data);
-  //       } else {
-  //         return Error(
-  //             FailureCloseStreamModel.fromJson(response.response.data));
-  //       }
-  //     } on DioException catch (e) {
-  //       return Error(
-  //           FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
-  //     } catch (e) {
-  //       return Error(
-  //           FailureCloseStreamModel(message: AppStrings().defaultError));
-  //     }
-  //   } else {
-  //     return Error(
-  //         FailureCloseStreamModel(message: AppStrings().noInternetError));
-  //   }
-  // }
 
   @override
   Future<Result<MainChatbotResponseModel, FailureAIModel>> sendCandidate(
       MainSendCandidateRequestModel request, String id) async {
     if (await networkInfo.isConnected) {
-      log("Network connected. Sending request...");
 
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
 
-        // 🔹 backend API URL
         String apiUrl =
             '${Constant.authorityChatBotBaseUrl}/api/v1/avatar/send-candidate/$id';
 
-        // 🔹 get stored language
         String language = await appPreferences.getAppLanguage();
 
         Map<String, String> headers = {
@@ -1915,12 +1707,9 @@ class RepositoryImplementer extends Repository {
           //NOTE: We must add this key to make the chat work
           "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
-        // 🔹 make a POST request
         final response = await dio.post(
           apiUrl,
-          // data: jsonEncode(request), // Ensure JSON-encoded body
           data: request,
-          // data: request.toJson(),
           options: Options(
             headers: headers,
             validateStatus: (status) =>
@@ -1928,23 +1717,16 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-        log("API Response received. Status code: ${response.statusCode}");
-        log("Response data: ${response.data}");
 
         if (response.statusCode == 200) {
-          log("Success response: ${response.data}");
           return Success(MainChatbotResponseModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
-          log("⚠️ Unauthorized: Token might be invalid or expired.");
           return const Error(FailureAIModel(
               message: "Unauthorized: Please check your credentials."));
         } else {
-          log("Non-200 status code. Parsing error...");
           return Error(FailureAIModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-        log("DioException occurred: ${e.message}");
-        log("DioException response: ${e.response?.data}");
 
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
@@ -1954,55 +1736,26 @@ class RepositoryImplementer extends Repository {
 
         return Error(FailureAIModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        log("Unexpected error: $e");
         return Error(FailureAIModel(message: AppStrings().defaultError));
       }
     } else {
-      log("No internet connection.");
       return Error(FailureAIModel(message: AppStrings().noInternetError));
     }
   }
 
-  // @override
-  // Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> closeStream(
-  //     String id) async {
-  //   if (await networkInfo.isConnected) {
-  //     try {
-  //       final response = await appServiceClient.closeStream(id);
-  //       if (response.response.statusCode == 200) {
-  //         return Success(response.data);
-  //       } else {
-  //         return Error(
-  //             FailureCloseStreamModel.fromJson(response.response.data));
-  //       }
-  //     } on DioException catch (e) {
-  //       return Error(
-  //           FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
-  //     } catch (e) {
-  //       return Error(
-  //           FailureCloseStreamModel(message: AppStrings().defaultError));
-  //     }
-  //   } else {
-  //     return Error(
-  //         FailureCloseStreamModel(message: AppStrings().noInternetError));
-  //   }
-  // }
   ///=======================================================================
   @override
   Future<Result<MainChatbotResponseModel, FailureAIModel>> closeStream(
       String id) async {
     if (await networkInfo.isConnected) {
-      log("Network connected. Sending request...");
 
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
 
-        // 🔹 backend API URL
         String apiUrl =
             '${Constant.authorityChatBotBaseUrl}/api/v1/avatar/close-stream/$id';
 
-        // 🔹 get stored language
         String language = await appPreferences.getAppLanguage();
 
         Map<String, String> headers = {
@@ -2013,11 +1766,8 @@ class RepositoryImplementer extends Repository {
           //NOTE: We must add this key to make the chat work
           "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
-        // 🔹 make a POST request
         final response = await dio.delete(
           apiUrl,
-          // data: jsonEncode(request), // Ensure JSON-encoded body
-          // data: request.toJson(),
           options: Options(
             headers: headers,
             validateStatus: (status) =>
@@ -2025,23 +1775,16 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-        log("API Response received. Status code: ${response.statusCode}");
-        log("Response data: ${response.data}");
 
         if (response.statusCode == 200) {
-          log("Success response: ${response.data}");
           return Success(MainChatbotResponseModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
-          log("⚠️ Unauthorized: Token might be invalid or expired.");
           return const Error(FailureAIModel(
               message: "Unauthorized: Please check your credentials."));
         } else {
-          log("Non-200 status code. Parsing error...");
           return Error(FailureAIModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-        log("DioException occurred: ${e.message}");
-        log("DioException response: ${e.response?.data}");
 
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
@@ -2051,29 +1794,25 @@ class RepositoryImplementer extends Repository {
 
         return Error(FailureAIModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        log("Unexpected error: $e");
         return Error(FailureAIModel(message: AppStrings().defaultError));
       }
     } else {
-      log("No internet connection.");
       return Error(FailureAIModel(message: AppStrings().noInternetError));
     }
   }
 
   @override
-  Future<Result<MainChatbotResponseModel, FailureAIModel>> stopRender(String id) async {
+  Future<Result<MainChatbotResponseModel, FailureAIModel>> stopRender(
+      String id) async {
     if (await networkInfo.isConnected) {
-      log("Network connected. Sending request...");
 
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
 
-        // 🔹 backend API URL
         String apiUrl =
             '${Constant.authorityChatBotBaseUrl}/api/v1/avatar/stop-render/$id';
 
-        // 🔹 get stored language
         String language = await appPreferences.getAppLanguage();
 
         Map<String, String> headers = {
@@ -2084,11 +1823,8 @@ class RepositoryImplementer extends Repository {
           //NOTE: We must add this key to make the chat work
           "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
-        // 🔹 make a POST request
         final response = await dio.delete(
           apiUrl,
-          // data: jsonEncode(request), // Ensure JSON-encoded body
-          // data: request.toJson(),
           options: Options(
             headers: headers,
             validateStatus: (status) =>
@@ -2096,23 +1832,16 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-        log("API Response received. Status code: ${response.statusCode}");
-        log("Response data: ${response.data}");
 
         if (response.statusCode == 200) {
-          log("Success response: ${response.data}");
           return Success(MainChatbotResponseModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
-          log("⚠️ Unauthorized: Token might be invalid or expired.");
           return const Error(FailureAIModel(
               message: "Unauthorized: Please check your credentials."));
         } else {
-          log("Non-200 status code. Parsing error...");
           return Error(FailureAIModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-        log("DioException occurred: ${e.message}");
-        log("DioException response: ${e.response?.data}");
 
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
@@ -2122,11 +1851,9 @@ class RepositoryImplementer extends Repository {
 
         return Error(FailureAIModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        log("Unexpected error: $e");
         return Error(FailureAIModel(message: AppStrings().defaultError));
       }
     } else {
-      log("No internet connection.");
       return Error(FailureAIModel(message: AppStrings().noInternetError));
     }
   }
@@ -2136,17 +1863,14 @@ class RepositoryImplementer extends Repository {
   Future<Result<MainChatbotResponseModel, FailureAIModel>> sendFeedback(
       int feedback, String convId) async {
     if (await networkInfo.isConnected) {
-      log("Network connected. Sending request...");
 
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
 
-        // 🔹 backend API URL
         String apiUrl =
             '${Constant.authorityChatBotBaseUrl}/api/v1/chat-history/add-conversation-feedback?conv_id=$convId&feedback=$feedback';
 
-        // 🔹 get stored language
         String language = await appPreferences.getAppLanguage();
 
         Map<String, String> headers = {
@@ -2157,7 +1881,6 @@ class RepositoryImplementer extends Repository {
           //NOTE: We must add this key to make the chat work
           "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
-        // 🔹 make a POST request
         final response = await dio.post(
           apiUrl,
           options: Options(
@@ -2167,23 +1890,16 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-        log("API Response received. Status code: ${response.statusCode}");
-        log("Response data: ${response.data}");
 
         if (response.statusCode == 200) {
-          log("Success response: ${response.data}");
           return Success(MainChatbotResponseModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
-          log("⚠️ Unauthorized: Token might be invalid or expired.");
           return const Error(FailureAIModel(
               message: "Unauthorized: Please check your credentials."));
         } else {
-          log("Non-200 status code. Parsing error...");
           return Error(FailureAIModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-        log("DioException occurred: ${e.message}");
-        log("DioException response: ${e.response?.data}");
 
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
@@ -2193,11 +1909,9 @@ class RepositoryImplementer extends Repository {
 
         return Error(FailureAIModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        log("Unexpected error: $e");
         return Error(FailureAIModel(message: AppStrings().defaultError));
       }
     } else {
-      log("No internet connection.");
       return Error(FailureAIModel(message: AppStrings().noInternetError));
     }
   }
@@ -2205,17 +1919,14 @@ class RepositoryImplementer extends Repository {
   @override
   Future<Result<String, FailureAIModel>> getSASPdfUrl(String blobUrl) async {
     if (await networkInfo.isConnected) {
-      log("Network connected. Sending request...");
 
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
 
-        // 🔹 backend API URL
         String apiUrl =
             '${Constant.authorityChatBotBaseUrl}/api/v1/admin/sas-token?blob_url=$blobUrl';
 
-        // 🔹 get stored language
         String language = await appPreferences.getAppLanguage();
 
         Map<String, String> headers = {
@@ -2226,7 +1937,6 @@ class RepositoryImplementer extends Repository {
           //NOTE: We must add this key to make the chat work
           "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
-        // 🔹 make a POST request
         final response = await dio.get(
           apiUrl,
           options: Options(
@@ -2236,23 +1946,16 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-        log("API Response received. Status code: ${response.statusCode}");
-        log("Response data: ${response.data}");
 
         if (response.statusCode == 200) {
-          log("Success response: ${response.data}");
           return Success(response.data);
         } else if (response.statusCode == 401) {
-          log("⚠️ Unauthorized: Token might be invalid or expired.");
           return const Error(FailureAIModel(
               message: "Unauthorized: Please check your credentials."));
         } else {
-          log("Non-200 status code. Parsing error...");
           return Error(FailureAIModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-        log("DioException occurred: ${e.message}");
-        log("DioException response: ${e.response?.data}");
 
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
@@ -2262,56 +1965,27 @@ class RepositoryImplementer extends Repository {
 
         return Error(FailureAIModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        log("Unexpected error: $e");
         return Error(FailureAIModel(message: AppStrings().defaultError));
       }
     } else {
-      log("No internet connection.");
       return Error(FailureAIModel(message: AppStrings().noInternetError));
     }
   }
 
-  // @override
-  // Future<Result<SendAnswerResponseModel, FailureCloseStreamModel>> sendFeedback(
-  //     int feedback, String convId) async {
-  //   if (await networkInfo.isConnected) {
-  //     try {
-  //       final response = await appServiceClient.sendFeedback(convId, feedback);
-  //       if (response.response.statusCode == 200) {
-  //         return Success(response.data);
-  //       } else {
-  //         return Error(
-  //             FailureCloseStreamModel.fromJson(response.response.data));
-  //       }
-  //     } on DioException catch (e) {
-  //       return Error(
-  //           FailureCloseStreamModel.fromJson(e.response?.data ?? defaultError));
-  //     } catch (e) {
-  //       return Error(
-  //           FailureCloseStreamModel(message: AppStrings().defaultError));
-  //     }
-  //   } else {
-  //     return Error(
-  //         FailureCloseStreamModel(message: AppStrings().noInternetError));
-  //   }
-  // }
 //----- Ai Search -----
 
   @override
   Future<Result<AiSearchResponseModel, FailureModel>> aiSearchFun(
       AiSearchRequestModel request) async {
     if (await networkInfo.isConnected) {
-      log("Network connected. Sending request...");
 
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
 
-        // 🔹 backend API URL
         const String apiUrl =
             '${Constant.authorityChatBotBaseUrl}/api/v1/search/search/website';
 
-        // 🔹 get stored language
         String language = await appPreferences.getAppLanguage();
 
         Map<String, String> headers = {
@@ -2322,12 +1996,9 @@ class RepositoryImplementer extends Repository {
           //NOTE: We must add this key to make the chat work
           "ocp-apim-subscription-key": Constant.ocpApimSubscriptionKey,
         };
-        // 🔹 make a POST request
         final response = await dio.post(
           apiUrl,
-          // data: jsonEncode(request), // Ensure JSON-encoded body
           data: jsonEncode(request),
-          // data: request.toJson(),
           options: Options(
             headers: headers,
             validateStatus: (status) =>
@@ -2335,23 +2006,16 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-        log("API Response received. Status code: ${response.statusCode}");
-        log("Response data: ${response.data}");
 
         if (response.statusCode == 200) {
-          log("Success response: ${response.data}");
           return Success(AiSearchResponseModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
-          log("⚠️ Unauthorized: Token might be invalid or expired.");
           return const Error(FailureModel(
               message: "Unauthorized: Please check your credentials."));
         } else {
-          log("Non-200 status code. Parsing error...");
           return Error(FailureModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-        log("DioException occurred: ${e.message}");
-        log("DioException response: ${e.response?.data}");
 
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
@@ -2361,23 +2025,21 @@ class RepositoryImplementer extends Repository {
 
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        log("Unexpected error: $e");
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {
-      log("No internet connection.");
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
 
-  ///=======================================================================
-  //---------------------get laws-------------------------------
+//============================ Platform chatbot ===================================
   @override
-  Future<Result<List<LawsModel>, FailureModel>> getLaws() async {
+  Future<Result<PlatformChatbotResponseModel, FailureModel>>
+      sendMessageToPlatformChatbot(PlatformChatbotRequestModel request) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await translationsServiceClient.getLaws();
-
+        final response =
+            await appServiceClient.sendMessageToPlatformChatbot(request);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {
@@ -2392,5 +2054,5 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
-  //---------------------end get laws-------------------------------
+  ///=======================================================================
 }

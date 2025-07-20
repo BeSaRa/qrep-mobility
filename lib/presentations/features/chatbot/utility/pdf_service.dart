@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 // import 'package:android_intent_plus/android_intent.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -164,10 +163,8 @@ class PdfDownloadService {
 
       // Open the file using default app
       final result = await OpenFile.open(tempFile.path);
-      log("OpenFile result: ${result.message}");
     } catch (e) {
       if (context.mounted) {
-        log("Error opening Excel: ${e.toString()}");
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Error opening Excel: ${e.toString()}')),
         );

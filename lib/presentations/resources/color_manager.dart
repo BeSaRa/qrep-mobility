@@ -13,7 +13,7 @@ class ColorManager {
   static Color greyCloud = Hex16Color.fromHex("#B7B7B7");
   static Color golden = Hex16Color.fromHex("#A29475");
   static Color cloudyGrey = Hex16Color.fromHex("#676767");
-  static Color textFieldGrey = Hex16Color.fromHex("#434343");
+  static Color textFieldGrey = Hex16Color.fromHex("#3D3D3D");
   static Color primary = Hex16Color.fromHex("#8A1538");
   static Color textBlack = Hex16Color.fromHex("#000000");
   static Color red = Hex16Color.fromHex("#FF0000");

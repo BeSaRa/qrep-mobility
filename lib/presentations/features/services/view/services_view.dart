@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/rera_text_faild.dart';
+import 'package:ebla/presentations/features/home/widgets/investors_cards_widget.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ServicesView extends StatelessWidget {
   const ServicesView({super.key});
@@ -40,7 +42,21 @@ class ServicesView extends StatelessWidget {
                   color: Theme.of(context).disabledColor,
                 ),
               ),
-
+//zak delete this
+              InkWell(
+                onTap: () {
+                  context.pushNamed(RoutesNames.training);
+                },
+                child: InvestorsCard(
+                    color: ColorManager.golden,
+                    icon: IconAssets.training,
+                    title: AppStrings().realEstateTrainingPortal),
+              ),
+              VerticalDivider(
+                endIndent: AppSizeH.s15,
+                color: ColorManager.golden.withAlpha(50),
+                indent: AppSizeH.s15,
+              ),
               // 3. Horizontal Selectable List
               const SelectableHorizontalList(),
 

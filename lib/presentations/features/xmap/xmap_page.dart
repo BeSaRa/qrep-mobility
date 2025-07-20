@@ -29,8 +29,6 @@ class _XMapViewState extends State<XMapView> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     local = Localizations.localeOf(context) == ARABIC_LOCAL ? "ar" : "en";
-    print('Current locale: $local');
-
     _initWebView(local);
   }
 

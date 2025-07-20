@@ -147,8 +147,6 @@ class VoiceCubit extends Cubit<VoiceState> {
   Future<void> stopListening() async {
     // if (isClosed) return; // Check if the Cubit is closed
     await _speech.stop();
-    print("the speech state");
-    print(_speech.isListening);
 
     emit(VoiceState(
       isListening: false,

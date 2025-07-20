@@ -31,7 +31,6 @@ class InvestorJourneyBloc
     });
 
     on<PageLoaded>((event, emit) async {
-      print("The function is being called");
       //Here i ensure that we do not emit the loaded state if an error occurred
       if (state is InvestorJourneyError) {
         return;

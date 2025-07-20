@@ -3,13 +3,11 @@ import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/presentations/features/onBoarding/cubits/current_board_cubit.dart';
 import 'package:ebla/presentations/features/onBoarding/helper/boarding_data.dart';
 import 'package:ebla/presentations/features/onBoarding/widgets/boarding_widget.dart';
-import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/resources.dart';
-import 'package:ebla/presentations/resources/routes_manager.dart';
-import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
 class BoardingView extends StatelessWidget {
   final PageController _pageController = PageController();
 
@@ -20,7 +18,7 @@ class BoardingView extends StatelessWidget {
     final totalPages = boardingData.length;
 
     return Scaffold(
-        backgroundColor: ColorManager.primary,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           automaticallyImplyLeading: false,
@@ -94,7 +92,10 @@ class BoardingView extends StatelessWidget {
                                     height: AppSizeH.s6,
                                     decoration: BoxDecoration(
                                       color: isActive
-                                          ? ColorManager.white
+                                          ? Theme.of(context).brightness ==
+                                                  Brightness.dark
+                                              ? ColorManager.white
+                                              : ColorManager.primary
                                           : Colors.grey,
                                       borderRadius:
                                           BorderRadius.circular(AppSizeR.s3),
@@ -118,8 +119,14 @@ class BoardingView extends StatelessWidget {
                                 ),
                                 child: Text(
                                   AppStrings().skip,
-                                  style:
-                                      Theme.of(context).textTheme.displaySmall,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall
+                                      ?.copyWith(
+                                          color: Theme.of(context).brightness ==
+                                                  Brightness.dark
+                                              ? null
+                                              : ColorManager.primary),
                                 ),
                               ),
                             ],
@@ -132,10 +139,10 @@ class BoardingView extends StatelessWidget {
                                   .style
                                   ?.copyWith(
                                       backgroundColor: WidgetStateProperty.all(
-                                          ColorManager.white),
+                                          ColorManager.primary),
                                       textStyle: WidgetStatePropertyAll(
                                         TextStyle(
-                                          color: ColorManager.primary,
+                                          color: ColorManager.white,
                                         ),
                                       )),
                               onPressed: () async {
@@ -159,7 +166,7 @@ class BoardingView extends StatelessWidget {
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
-                                      ?.copyWith(color: ColorManager.primary)),
+                                      ?.copyWith(color: ColorManager.white)),
                             ),
                           ),
                         ],
