@@ -31,7 +31,7 @@ class TrainingFilterCubit extends Cubit<GetAllCoursesRequestModel> {
   void resetFilters() {
     emit(const GetAllCoursesRequestModel(
       pageIndex: 1,
-      pageSize: 10,
+      pageSize: 5,
     ));
   }
 }

@@ -1,17 +1,26 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ebla/domain/models/training/get_all_courses_response_model.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
+import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class CourseInfoWidget extends StatelessWidget {
-  const CourseInfoWidget({Key? key}) : super(key: key);
+  final CourseDetailsData course;
+  const CourseInfoWidget({Key? key, required this.course}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          'تدريب العقود الذكية للوسطاء العقاريين',
+          course.lookup.translations
+              .firstWhere(
+                (e) => e.languageId == (context.locale == ARABIC_LOCAL ? 2 : 1),
+                orElse: () => course.lookup.translations.first,
+              )
+              .name,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: AppSizeSp.s20,
@@ -29,8 +38,9 @@ class CourseInfoWidget extends StatelessWidget {
               'قيمة الدورة: ',
               style: Theme.of(context).textTheme.titleSmall,
             ),
+
             Text(
-              '950.00 ريال قطري',
+              '${course.fee} ريال قطري',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: ColorManager.primary,
                     fontWeight: FontWeight.bold,

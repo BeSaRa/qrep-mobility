@@ -62,3 +62,38 @@ Map<String, dynamic> _$$GetAllCategoriesRequestModelImplToJson(
       'PageSize': instance.pageSize,
       'UserType': instance.userType,
     };
+
+_$GetCourseDetailsRequestModelImpl _$$GetCourseDetailsRequestModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$GetCourseDetailsRequestModelImpl(
+      id: (json['Id'] as num?)?.toInt() ?? 0,
+    );
+
+Map<String, dynamic> _$$GetCourseDetailsRequestModelImplToJson(
+        _$GetCourseDetailsRequestModelImpl instance) =>
+    <String, dynamic>{
+      'Id': instance.id,
+    };
+
+_$GetTrainingCourseSessionsRequestModelImpl
+    _$$GetTrainingCourseSessionsRequestModelImplFromJson(
+            Map<String, dynamic> json) =>
+        _$GetTrainingCourseSessionsRequestModelImpl(
+          trainingCourseId: (json['TrainingCourseId'] as num).toInt(),
+          pageIndex: (json['PageIndex'] as num).toInt(),
+          pageSize: (json['PageSize'] as num).toInt(),
+          language: json['Language'] as String?,
+          status: json['Status'] as String?,
+          location: json['Location'] as String?,
+        );
+
+Map<String, dynamic> _$$GetTrainingCourseSessionsRequestModelImplToJson(
+        _$GetTrainingCourseSessionsRequestModelImpl instance) =>
+    <String, dynamic>{
+      'TrainingCourseId': instance.trainingCourseId,
+      'PageIndex': instance.pageIndex,
+      'PageSize': instance.pageSize,
+      'Language': instance.language,
+      'Status': instance.status,
+      'Location': instance.location,
+    };

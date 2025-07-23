@@ -63,3 +63,28 @@ class GetAllCategoriesRequestModel with _$GetAllCategoriesRequestModel {
   factory GetAllCategoriesRequestModel.fromJson(Map<String, dynamic> json) =>
       _$GetAllCategoriesRequestModelFromJson(json);
 }
+
+
+@freezed
+class GetCourseDetailsRequestModel with _$GetCourseDetailsRequestModel {
+  const factory GetCourseDetailsRequestModel({
+    @JsonKey(name: "Id") @Default(0) int id,
+  }) = _GetCourseDetailsRequestModel;
+
+  factory GetCourseDetailsRequestModel.fromJson(Map<String, dynamic> json) =>
+      _$GetCourseDetailsRequestModelFromJson(json);
+}
+@freezed
+class GetTrainingCourseSessionsRequestModel with _$GetTrainingCourseSessionsRequestModel {
+  factory GetTrainingCourseSessionsRequestModel({
+    @JsonKey(name: "TrainingCourseId") required int trainingCourseId,
+    @JsonKey(name: "PageIndex") required int pageIndex,
+    @JsonKey(name: "PageSize") required int pageSize,
+    @JsonKey(name: "Language") String? language,
+    @JsonKey(name: "Status") String? status,
+    @JsonKey(name: "Location") String? location,
+  }) = _GetTrainingCourseSessionsRequestModel;
+
+  factory GetTrainingCourseSessionsRequestModel.fromJson(Map<String, dynamic> json) =>
+      _$GetTrainingCourseSessionsRequestModelFromJson(json);
+}

@@ -33,7 +33,7 @@ class TrainingDioFactory {
       CONTENT_TYPE: APPLICATION_JSON,
       ACCEPT: APPLICATION_JSON,
       AUTHORIZATION:
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI1IiwidW5pcXVlX25hbWUiOiJhZG1pbkBhcWFyYXQuY29tIiwiZmlyc3RfbmFtZV9lbiI6ImFkbWluIiwibGFzdF9uYW1lX2VuIjoiIiwiZmlyc3RfbmFtZV9hciI6ImFkbWluIiwibGFzdF9uYW1lX2FyIjoiIiwidXNlcl90eXBlIjoiMyIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTc1Mjg2OTI2NywiZXhwIjo0OTA4NTQyODY3LCJpYXQiOjE3NTI4NjkyNjcsImlzcyI6IkNsZWFuQXBpIiwiYXVkIjoiQ2xlYW5BcGkifQ.yTDAjpPa99T3TVcMroIIM6UyWL4lAvEzanidHMQJ7EE',
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI1IiwidW5pcXVlX25hbWUiOiJhZG1pbkBhcWFyYXQuY29tIiwiZmlyc3RfbmFtZV9lbiI6ImFkbWluIiwibGFzdF9uYW1lX2VuIjoiIiwiZmlyc3RfbmFtZV9hciI6ImFkbWluIiwibGFzdF9uYW1lX2FyIjoiIiwidXNlcl90eXBlIjoiMyIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTc1MzI4MTIyMywiZXhwIjoxNzUzMjgzMDIzLCJpYXQiOjE3NTMyODEyMjMsImlzcyI6IkNsZWFuQXBpIiwiYXVkIjoiQ2xlYW5BcGkifQ.HknnqoIsOzO0MuFOOfnzvg-W64ydJZsrxMHvsDx35YQ',
 /*Note */
       ///هون ضفت هاد الهيدر لحتى ميز انو الريكويست هو من التدريب في ال
       ///GeneralInterceptor 

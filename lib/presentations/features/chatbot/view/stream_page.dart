@@ -481,7 +481,7 @@ class _StreamPageState extends State<StreamPage> {
     let hasAudioTracks = false;
     let isMuted = true;
     let isPaused = false;
-//zak-----------
+
 // Audio analysis variables (put these at the top)
 let audioContext;
 let analyser;
@@ -549,7 +549,7 @@ function setupAudioAnalysis(stream) {
     }));
   }
 }
-//zak-----------
+
     // Initialize both buttons as hiddenf
     unmuteButton.style.display = 'none';
     pauseButton.style.display = 'none';
@@ -624,12 +624,12 @@ function setupAudioAnalysis(stream) {
       pc.ontrack = (event) => {
         const stream = event.streams[0];
         remoteVideo.srcObject = stream;
-//zak----------
+
 // Set up audio analysis if there are audio tracks
   if (stream.getAudioTracks().length > 0) {
     setupAudioAnalysis(stream);
   }
-//zak----------
+
         remoteVideo.onloadeddata = () => {
           loadingContainer.style.display = 'none';
           remoteVideo.style.display = 'block';

@@ -19,6 +19,9 @@ import 'package:ebla/domain/usecases/favourite_usecases/user_favourite_usecase.d
 import 'package:ebla/domain/usecases/laws_usecases/laws_usecases.dart';
 import 'package:ebla/domain/usecases/training_usecases/get_all_training_catigories_usecase.dart';
 import 'package:ebla/domain/usecases/training_usecases/get_all_training_courses_usecase.dart';
+import 'package:ebla/domain/usecases/training_usecases/get_course_attachments_usecase.dart';
+import 'package:ebla/domain/usecases/training_usecases/get_course_details_usecase.dart';
+import 'package:ebla/domain/usecases/training_usecases/get_training_course_sessions_usecase.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/chat_faq_bloc/chat_faq_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/close_stream/close_stream_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/messages_history_bloc/chat_history_cubit.dart';
@@ -30,6 +33,8 @@ import 'package:ebla/presentations/features/favourite/bloc/create_favourite_bloc
 import 'package:ebla/presentations/features/favourite/bloc/get_favourite_bloc/get_favourite_bloc.dart';
 import 'package:ebla/presentations/features/more/ai_search_view/blocs/ai_search_bloc.dart';
 import 'package:ebla/presentations/features/training/bloc/get_all_training_courses_bloc/get_all_training_courses_bloc.dart';
+import 'package:ebla/presentations/features/training/bloc/get_course_details_bloc/get_course_details_bloc.dart';
+import 'package:ebla/presentations/features/training/bloc/get_training_course_sessions_bloc/get_training_course_sessions_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -332,22 +337,41 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<SasPdfBloc>()) {
     instance.registerFactory<SasPdfBloc>(() => SasPdfBloc(instance()));
   }
-  //training
+  //============================== Training ===============================
+  //------------- blocs --------------
   if (!GetIt.I.isRegistered<GetAllTrainingCoursesBloc>()) {
     instance.registerFactory<GetAllTrainingCoursesBloc>(
         () => GetAllTrainingCoursesBloc(instance(),instance()));
   }
+  if (!GetIt.I.isRegistered<GetCourseDetailsBloc>()) {
+    instance.registerFactory<GetCourseDetailsBloc>(
+        () => GetCourseDetailsBloc(instance(),instance()));
+  }
+  if (!GetIt.I.isRegistered<GetTrainingCourseSessionsBloc>()) {
+    instance.registerFactory<GetTrainingCourseSessionsBloc>(
+        () => GetTrainingCourseSessionsBloc(instance()));
+  }
+
+  //------------- Usecases --------------
   if (!GetIt.I.isRegistered<GetAllTrainingCoursesUsecase>()) {
     instance.registerFactory<GetAllTrainingCoursesUsecase>(
         () => GetAllTrainingCoursesUsecase(instance()));
   }
-  // if (!GetIt.I.isRegistered<GetAllTrainingCategoriesBloc>()) {
-  //   instance.registerFactory<GetAllTrainingCategoriesBloc>(
-  //       () => GetAllTrainingCategoriesBloc(instance()));
-  // }
-  if (!GetIt.I.isRegistered<GetAllTrainingCatigoriesUsecase>()) {
-    instance.registerFactory<GetAllTrainingCatigoriesUsecase>(
-        () => GetAllTrainingCatigoriesUsecase(instance()));
+  if (!GetIt.I.isRegistered<GetAllTrainingCatigoriesUsecase >()) {
+    instance.registerFactory<GetAllTrainingCatigoriesUsecase >(
+        () => GetAllTrainingCatigoriesUsecase (instance()));
+  }
+  if (!GetIt.I.isRegistered<GetCourseDetailsUsecase>()) {
+    instance.registerFactory<GetCourseDetailsUsecase>(
+        () => GetCourseDetailsUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<GetCourseAttachmentsUsecase>()) {
+    instance.registerFactory<GetCourseAttachmentsUsecase>(
+        () => GetCourseAttachmentsUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<GetTrainingCourseSessionsUsecase>()) {
+    instance.registerFactory<GetTrainingCourseSessionsUsecase>(
+        () => GetTrainingCourseSessionsUsecase(instance()));
   }
 }
 

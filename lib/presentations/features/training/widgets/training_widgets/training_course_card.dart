@@ -20,7 +20,7 @@ class TrainingCourseCard extends StatelessWidget {
     final bool isArabic = context.locale == ARABIC_LOCAL;
     return GestureDetector(
       onTap: () {
-        context.pushNamed(RoutesNames.trainingDetails);
+        context.pushNamed(RoutesNames.trainingDetails,extra: course);
       },
       child: Container(
         margin: EdgeInsets.only(bottom: AppSizeH.s16),

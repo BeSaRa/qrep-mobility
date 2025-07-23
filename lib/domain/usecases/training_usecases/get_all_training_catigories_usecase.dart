@@ -6,13 +6,17 @@ import '../../../data/network/failure_model/failure.dart';
 import '../../models/requests/training/get_all_courses_request_model.dart';
 import '../base_usecases/base_usecase.dart';
 
-class GetAllTrainingCatigoriesUsecase implements BaseUseCase<GetAllCategoriesRequestModel,GetAllCategoriesResponseModel> {
+class GetAllTrainingCatigoriesUsecase
+    implements
+        BaseUseCase<GetAllCategoriesRequestModel,
+            GetAllCategoriesResponseModel> {
   final Phase2Repository repository;
 
   GetAllTrainingCatigoriesUsecase(this.repository);
 
   @override
-  Future<Result<GetAllCategoriesResponseModel, FailureModel>> execute(GetAllCategoriesRequestModel request) async {
-    return await repository.getAllTrainingGategories(request);
+  Future<Result<GetAllCategoriesResponseModel, FailureModel>> execute(
+      GetAllCategoriesRequestModel request) async {
+    return await repository.getAllTrainingCategories(request);
   }
 }

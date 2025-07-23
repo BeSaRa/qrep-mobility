@@ -139,6 +139,7 @@ class EndPoints {
   //----------------------- Training ----------------------
   static const String getTrainingCourses = '/TrainingCourse/GetTrainingCourses';
   static const String getAllTrainingGategories = '/Category/GetCategories';
-
-
+  static const String getCourseDetails = '/TrainingCourse/GetTrainingCourseDetails';
+  static const String getTrainingCourseAttachment = '/TrainingCourse/GetTrainingCourseAttachment';
+  static const String getTrainingCourseSessions = '/Session/GetSessions';
 }

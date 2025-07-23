@@ -6,8 +6,6 @@ import 'package:ebla/domain/models/chatboot/new_chatbot_response_models/new_chat
 import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 import 'package:ebla/domain/models/requests/ai_search_models/ai_search_model.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
-import 'package:ebla/domain/models/requests/training/get_all_courses_request_model.dart';
-import 'package:ebla/domain/models/training/get_all_courses_response_model.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 import '../../data/network/failure_model/failure.dart';

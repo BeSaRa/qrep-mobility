@@ -63,12 +63,27 @@ class _TrainingFilterChipsState extends State<TrainingFilterChips> {
                       context,
                       trackOptions,
                       (FilterOption selected) {
-                        // Update filters
+                        // Get current filters
+                        final currentFilters =
+                            context.read<TrainingFilterCubit>().state;
+                        // Update filters - preserve all existing values
                         filterCubit.updateFilters(
                           track: selected.value,
-                          pageIndex: 1,
+                          pageIndex:
+                              1, // Reset to first page when changing filters
+                          // Preserve other filters
+                          isFree: currentFilters.isFree,
+                          isActive: currentFilters.isActive,
+                          name: currentFilters.name,
+                          categories: currentFilters.categories,
+                          pageSize: currentFilters.pageSize,
                         );
-                        // Trigger new request
+                        // // Update filters
+                        // filterCubit.updateFilters(
+                        //   track: selected.value,
+                        //   pageIndex: 1,
+                        // );
+                        // // Trigger new request
                         context.read<GetAllTrainingCoursesBloc>().add(
                               GetAllTrainingCoursesEvent.applyFilters(
                                 filterCubit.state,
@@ -91,12 +106,27 @@ class _TrainingFilterChipsState extends State<TrainingFilterChips> {
                       context,
                       isFreeOptions,
                       (FilterOption selected) {
-                        // Update filters
+                        // Get current filters
+                        final currentFilters =
+                            context.read<TrainingFilterCubit>().state;
+                        // Update filters - preserve all existing values
                         filterCubit.updateFilters(
                           isFree: selected.value,
-                          pageIndex: 1,
+                          pageIndex:
+                              1, // Reset to first page when changing filters
+                          // Preserve other filters
+                          track: currentFilters.track,
+                          isActive: currentFilters.isActive,
+                          name: currentFilters.name,
+                          categories: currentFilters.categories,
+                          pageSize: currentFilters.pageSize,
                         );
-                        // Trigger new request
+                        // // Update filters
+                        // filterCubit.updateFilters(
+                        //   isFree: selected.value,
+                        //   pageIndex: 1,
+                        // );
+                        // // Trigger new request
                         context.read<GetAllTrainingCoursesBloc>().add(
                               GetAllTrainingCoursesEvent.applyFilters(
                                 filterCubit.state,
@@ -118,12 +148,27 @@ class _TrainingFilterChipsState extends State<TrainingFilterChips> {
                       context,
                       isActiveOptions,
                       (FilterOption selected) {
-                        // Update filters
+                        // Get current filters
+                        final currentFilters =
+                            context.read<TrainingFilterCubit>().state;
+                        // Update filters - preserve all existing values
                         filterCubit.updateFilters(
                           isActive: selected.value,
-                          pageIndex: 1,
+                          pageIndex:
+                              1, // Reset to first page when changing filters
+                          // Preserve other filters
+                          track: currentFilters.track,
+                          isFree: currentFilters.isFree,
+                          name: currentFilters.name,
+                          categories: currentFilters.categories,
+                          pageSize: currentFilters.pageSize,
                         );
-                        // Trigger new request
+                        // // Update filters
+                        // filterCubit.updateFilters(
+                        //   isActive: selected.value,
+                        //   pageIndex: 1,
+                        // );
+                        // // Trigger new request
                         context.read<GetAllTrainingCoursesBloc>().add(
                               GetAllTrainingCoursesEvent.applyFilters(
                                 filterCubit.state,

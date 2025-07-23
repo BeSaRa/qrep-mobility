@@ -36,7 +36,7 @@ class GetAllTrainingCoursesBloc
           final categoriesError = categoriesResult.tryGetError();
 
           if (categories != null) {
-            // Then fetch courses
+            // Then fetched courses
             final coursesResult =
                 await getAllTrainingCoursesUsecase.execute(value.request);
             final courses = coursesResult.tryGetSuccess();

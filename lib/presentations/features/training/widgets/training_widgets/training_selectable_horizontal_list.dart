@@ -77,13 +77,19 @@ class _TrainingSelectableCatigoriesListState
                                             value1.categoriesResponse.data!
                                                 .categories[index - 1].id
                                           ];
-
-                                    // Update filters
+                                    final currentFilters = context
+                                        .read<TrainingFilterCubit>()
+                                        .state;
                                     filterCubit.updateFilters(
-                                      categories: newCategories,
+                                      isActive: currentFilters.isActive,
                                       pageIndex: 1,
+                                      track: currentFilters.track,
+                                      isFree: currentFilters.isFree,
+                                      name: currentFilters.name,
+                                      categories: newCategories,
+                                      pageSize: currentFilters.pageSize,
                                     );
-                                    // Trigger new request
+
                                     context
                                         .read<GetAllTrainingCoursesBloc>()
                                         .add(

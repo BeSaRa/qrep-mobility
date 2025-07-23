@@ -80,27 +80,49 @@ class AuthorityMapView extends StatelessWidget {
           ],
         ),
       ),
-      body: FlutterMap(
-        options: const MapOptions(
-          initialCenter: LatLng(Constant.latitude, Constant.longitude),
-          initialZoom: 17,
-        ),
+      body: Stack(
         children: [
-          TileLayer(
-            urlTemplate: Constant.mapUrlTemplate,
-            tileBuilder: Theme.of(context).brightness == Brightness.dark
-                ? customDarkModeTileBuilder
-                : null,
-          ),
-          MarkerLayer(
-            markers: [
-              Marker(
-                point: const LatLng(Constant.latitude, Constant.longitude),
-                child: Icon(Icons.location_on_sharp,
-                    color: const Color(0xffEA4335), size: AppSizeW.s40),
+          FlutterMap(
+            options: const MapOptions(
+              initialCenter: LatLng(Constant.latitude, Constant.longitude),
+              initialZoom: 17,
+            ),
+            children: [
+              TileLayer(
+                // urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+                urlTemplate: Constant.mapUrlTemplate,
+                userAgentPackageName: 'com.eblacorp.qrep',
+                subdomains:const ['a', 'b', 'c', 'd'],
+                tileBuilder: Theme.of(context).brightness == Brightness.dark
+                    ? customDarkModeTileBuilder
+                    : null,
+              ),
+              MarkerLayer(
+                markers: [
+                  Marker(
+                    point: const LatLng(Constant.latitude, Constant.longitude),
+                    child: Icon(Icons.location_on_sharp,
+                        color: const Color(0xffEA4335), size: AppSizeW.s40),
+                  ),
+                ],
               ),
             ],
           ),
+        //Zak NOOOOOTE: u Must delete this 
+        //but i add it because i want to not block the app by the OpenStreetMap contributors
+        Positioned(
+  bottom: 8,
+  right: 8,
+  child: Container(
+    color: Colors.black.withOpacity(0.5),
+    padding: const EdgeInsets.all(4),
+    child: const Text(
+      textDirection: TextDirection.ltr,
+      'OpenStreetMap contributors © | Carto © ',
+      style: TextStyle(color: Colors.white, fontSize: 10),
+    ),
+  ),
+)
         ],
       ),
     );

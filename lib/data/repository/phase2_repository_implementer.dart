@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:ebla/data/network/app_api.dart';
 import 'package:ebla/data/network/failure_model/failure.dart';
@@ -42,13 +41,80 @@ class Phase2RepositoryImplementer extends Phase2Repository {
     }
   }
 
+  //========================= Training Categories =========================
   @override
   Future<Result<GetAllCategoriesResponseModel, FailureModel>>
-      getAllTrainingGategories(GetAllCategoriesRequestModel request) async {
+      getAllTrainingCategories(GetAllCategoriesRequestModel request) async {
     if (await networkInfo.isConnected) {
       try {
         final response =
-            await trainingServiceClient.getAllTrainingGategories(request);
+            await trainingServiceClient.getAllTrainingCategories(request);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  //========================= Course Details =========================
+  @override
+  Future<Result<CourseDetailsResponseModel, FailureModel>> getCourseDetails(
+      GetCourseDetailsRequestModel request) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await trainingServiceClient.getCourseDetails(request);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  //========================= Course Attachments =========================
+  @override
+  Future<Result<GetTrainingCourseAttachmentResponseModel, FailureModel>>
+      getTrainingCourseAttachment(GetCourseDetailsRequestModel request) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await trainingServiceClient.getTrainingCourseAttachment(request);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+  //========================= Course Sessions =========================
+  @override
+  Future<Result<GetTrainingCourseSessionsResponseModel, FailureModel>>getTrainingCourseSessions(GetTrainingCourseSessionsRequestModel request) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await trainingServiceClient.getTrainingCourseSessions(request);
         if (response.response.statusCode == 200) {
           return Success(response.data);
         } else {

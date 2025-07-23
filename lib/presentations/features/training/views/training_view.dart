@@ -12,6 +12,7 @@ import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
+import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,7 +51,6 @@ class _TrainingViewState extends State<TrainingView> {
                     categories: null,
                     isActive: null))),
         ),
-
       ],
       child: const TrainingViewContent(),
     );
@@ -143,30 +143,27 @@ class _TrainingViewContentState extends State<TrainingViewContent> {
               );
             },
             error: (value) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.error_outline,
-                      size: AppSizeW.s60,
-                    ),
-                    SizedBox(height: AppSizeH.s16),
-                    Text(
-                      value.message,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
+              return ErrorGlobalWidget(
+                message: value.message,
+                onPressed: () {
+                  context.read<TrainingFilterCubit>().resetFilters();
+                  context.read<GetAllTrainingCoursesBloc>().add(
+                      const GetAllTrainingCoursesEvent.started(
+                          GetAllCoursesRequestModel(
+                              pageIndex: 1,
+                              pageSize: 5,
+                              name: "",
+                              track: null,
+                              isFree: null,
+                              categories: null,
+                              isActive: null)));
+                },
               );
             },
             done: (value) {
               final courses = value.coursesResponse.data?.trainingCourses ?? [];
               final pager = value.coursesResponse.data?.pager;
               final bloc = context.read<GetAllTrainingCoursesBloc>();
-
-              // Create a ScrollController to detect scroll direction
-              // final scrollController = ScrollController();
               bool showHeader = true;
 
               return NotificationListener<UserScrollNotification>(
@@ -289,8 +286,12 @@ class _TrainingViewContentState extends State<TrainingViewContent> {
                                                           AppSizeR.s10),
                                                 ),
                                                 child: DropdownButton<int>(
-                                                  value: 10,
-                                                  items: [1, 2, 3, 10]
+                                                  value: context
+                                                      .read<
+                                                          TrainingFilterCubit>()
+                                                      .state
+                                                      .pageSize,
+                                                  items: [5, 10, 15, 20]
                                                       .map((value) {
                                                     return DropdownMenuItem<
                                                         int>(
@@ -309,7 +310,18 @@ class _TrainingViewContentState extends State<TrainingViewContent> {
                                                       ),
                                                     );
                                                   }).toList(),
-                                                  onChanged: (value) {},
+                                                  onChanged: (value) {
+                                                    final filterCubit =context.read<TrainingFilterCubit>();
+                                                    final currentFilters = filterCubit.state;
+                                                    filterCubit.updateFilters(isActive: currentFilters.isActive,pageIndex: 1,track:currentFilters.track,isFree:currentFilters.isFree,name: currentFilters.name,categories: currentFilters.categories,pageSize: value ?? 5,);
+
+                                                    context.read<GetAllTrainingCoursesBloc>().add(
+                                                          GetAllTrainingCoursesEvent
+                                                              .applyFilters(
+                                                                  filterCubit
+                                                                      .state),
+                                                        );
+                                                  },
                                                   isDense: true,
                                                   underline: const SizedBox(),
                                                   icon: const Icon(Icons
@@ -376,24 +388,4 @@ class _TrainingViewContentState extends State<TrainingViewContent> {
       ),
     );
   }
-}
-
-// Models
-class Course {
-  final String title;
-  final String description;
-
-  final String duration;
-  final String level;
-  final String category;
-  final bool isFeatured;
-
-  Course({
-    required this.title,
-    required this.description,
-    required this.duration,
-    required this.level,
-    required this.category,
-    this.isFeatured = false,
-  });
 }

@@ -326,6 +326,18 @@ abstract class TrainingServiceClient {
   @POST("${Constant.aqaratBackendDev}${EndPoints.getTrainingCourses}")
   Future<HttpResponse<GetAllCoursesResponseModel>> getTrainingCourses(
       @Body() GetAllCoursesRequestModel request);
+
   @POST("${Constant.aqaratBackendDev}${EndPoints.getAllTrainingGategories}")
-  Future<HttpResponse<GetAllCategoriesResponseModel>> getAllTrainingGategories(@Body() GetAllCategoriesRequestModel request);
+  Future<HttpResponse<GetAllCategoriesResponseModel>> getAllTrainingCategories(
+      @Body() GetAllCategoriesRequestModel request);
+
+  @POST("${Constant.aqaratBackendDev}${EndPoints.getCourseDetails}")
+  Future<HttpResponse<CourseDetailsResponseModel>> getCourseDetails(
+      @Body() GetCourseDetailsRequestModel request);
+
+  @POST("${Constant.aqaratBackendDev}${EndPoints.getTrainingCourseAttachment}")
+  Future<HttpResponse<GetTrainingCourseAttachmentResponseModel>>getTrainingCourseAttachment(@Body() GetCourseDetailsRequestModel request);
+
+  @POST("${Constant.aqaratBackendDev}${EndPoints.getTrainingCourseSessions}")
+  Future<HttpResponse<GetTrainingCourseSessionsResponseModel>>getTrainingCourseSessions(@Body() GetTrainingCourseSessionsRequestModel request);
 }

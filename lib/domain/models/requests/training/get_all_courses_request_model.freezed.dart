@@ -779,3 +779,462 @@ abstract class _GetAllCategoriesRequestModel
           _$GetAllCategoriesRequestModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+GetCourseDetailsRequestModel _$GetCourseDetailsRequestModelFromJson(
+    Map<String, dynamic> json) {
+  return _GetCourseDetailsRequestModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$GetCourseDetailsRequestModel {
+  @JsonKey(name: "Id")
+  int get id => throw _privateConstructorUsedError;
+
+  /// Serializes this GetCourseDetailsRequestModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of GetCourseDetailsRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $GetCourseDetailsRequestModelCopyWith<GetCourseDetailsRequestModel>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetCourseDetailsRequestModelCopyWith<$Res> {
+  factory $GetCourseDetailsRequestModelCopyWith(
+          GetCourseDetailsRequestModel value,
+          $Res Function(GetCourseDetailsRequestModel) then) =
+      _$GetCourseDetailsRequestModelCopyWithImpl<$Res,
+          GetCourseDetailsRequestModel>;
+  @useResult
+  $Res call({@JsonKey(name: "Id") int id});
+}
+
+/// @nodoc
+class _$GetCourseDetailsRequestModelCopyWithImpl<$Res,
+        $Val extends GetCourseDetailsRequestModel>
+    implements $GetCourseDetailsRequestModelCopyWith<$Res> {
+  _$GetCourseDetailsRequestModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of GetCourseDetailsRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$GetCourseDetailsRequestModelImplCopyWith<$Res>
+    implements $GetCourseDetailsRequestModelCopyWith<$Res> {
+  factory _$$GetCourseDetailsRequestModelImplCopyWith(
+          _$GetCourseDetailsRequestModelImpl value,
+          $Res Function(_$GetCourseDetailsRequestModelImpl) then) =
+      __$$GetCourseDetailsRequestModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: "Id") int id});
+}
+
+/// @nodoc
+class __$$GetCourseDetailsRequestModelImplCopyWithImpl<$Res>
+    extends _$GetCourseDetailsRequestModelCopyWithImpl<$Res,
+        _$GetCourseDetailsRequestModelImpl>
+    implements _$$GetCourseDetailsRequestModelImplCopyWith<$Res> {
+  __$$GetCourseDetailsRequestModelImplCopyWithImpl(
+      _$GetCourseDetailsRequestModelImpl _value,
+      $Res Function(_$GetCourseDetailsRequestModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GetCourseDetailsRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$GetCourseDetailsRequestModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$GetCourseDetailsRequestModelImpl
+    implements _GetCourseDetailsRequestModel {
+  const _$GetCourseDetailsRequestModelImpl({@JsonKey(name: "Id") this.id = 0});
+
+  factory _$GetCourseDetailsRequestModelImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$GetCourseDetailsRequestModelImplFromJson(json);
+
+  @override
+  @JsonKey(name: "Id")
+  final int id;
+
+  @override
+  String toString() {
+    return 'GetCourseDetailsRequestModel(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetCourseDetailsRequestModelImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  /// Create a copy of GetCourseDetailsRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetCourseDetailsRequestModelImplCopyWith<
+          _$GetCourseDetailsRequestModelImpl>
+      get copyWith => __$$GetCourseDetailsRequestModelImplCopyWithImpl<
+          _$GetCourseDetailsRequestModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$GetCourseDetailsRequestModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _GetCourseDetailsRequestModel
+    implements GetCourseDetailsRequestModel {
+  const factory _GetCourseDetailsRequestModel(
+      {@JsonKey(name: "Id") final int id}) = _$GetCourseDetailsRequestModelImpl;
+
+  factory _GetCourseDetailsRequestModel.fromJson(Map<String, dynamic> json) =
+      _$GetCourseDetailsRequestModelImpl.fromJson;
+
+  @override
+  @JsonKey(name: "Id")
+  int get id;
+
+  /// Create a copy of GetCourseDetailsRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetCourseDetailsRequestModelImplCopyWith<
+          _$GetCourseDetailsRequestModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+GetTrainingCourseSessionsRequestModel
+    _$GetTrainingCourseSessionsRequestModelFromJson(Map<String, dynamic> json) {
+  return _GetTrainingCourseSessionsRequestModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$GetTrainingCourseSessionsRequestModel {
+  @JsonKey(name: "TrainingCourseId")
+  int get trainingCourseId => throw _privateConstructorUsedError;
+  @JsonKey(name: "PageIndex")
+  int get pageIndex => throw _privateConstructorUsedError;
+  @JsonKey(name: "PageSize")
+  int get pageSize => throw _privateConstructorUsedError;
+  @JsonKey(name: "Language")
+  String? get language => throw _privateConstructorUsedError;
+  @JsonKey(name: "Status")
+  String? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: "Location")
+  String? get location => throw _privateConstructorUsedError;
+
+  /// Serializes this GetTrainingCourseSessionsRequestModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of GetTrainingCourseSessionsRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $GetTrainingCourseSessionsRequestModelCopyWith<
+          GetTrainingCourseSessionsRequestModel>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetTrainingCourseSessionsRequestModelCopyWith<$Res> {
+  factory $GetTrainingCourseSessionsRequestModelCopyWith(
+          GetTrainingCourseSessionsRequestModel value,
+          $Res Function(GetTrainingCourseSessionsRequestModel) then) =
+      _$GetTrainingCourseSessionsRequestModelCopyWithImpl<$Res,
+          GetTrainingCourseSessionsRequestModel>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: "TrainingCourseId") int trainingCourseId,
+      @JsonKey(name: "PageIndex") int pageIndex,
+      @JsonKey(name: "PageSize") int pageSize,
+      @JsonKey(name: "Language") String? language,
+      @JsonKey(name: "Status") String? status,
+      @JsonKey(name: "Location") String? location});
+}
+
+/// @nodoc
+class _$GetTrainingCourseSessionsRequestModelCopyWithImpl<$Res,
+        $Val extends GetTrainingCourseSessionsRequestModel>
+    implements $GetTrainingCourseSessionsRequestModelCopyWith<$Res> {
+  _$GetTrainingCourseSessionsRequestModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of GetTrainingCourseSessionsRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? trainingCourseId = null,
+    Object? pageIndex = null,
+    Object? pageSize = null,
+    Object? language = freezed,
+    Object? status = freezed,
+    Object? location = freezed,
+  }) {
+    return _then(_value.copyWith(
+      trainingCourseId: null == trainingCourseId
+          ? _value.trainingCourseId
+          : trainingCourseId // ignore: cast_nullable_to_non_nullable
+              as int,
+      pageIndex: null == pageIndex
+          ? _value.pageIndex
+          : pageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      pageSize: null == pageSize
+          ? _value.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int,
+      language: freezed == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$GetTrainingCourseSessionsRequestModelImplCopyWith<$Res>
+    implements $GetTrainingCourseSessionsRequestModelCopyWith<$Res> {
+  factory _$$GetTrainingCourseSessionsRequestModelImplCopyWith(
+          _$GetTrainingCourseSessionsRequestModelImpl value,
+          $Res Function(_$GetTrainingCourseSessionsRequestModelImpl) then) =
+      __$$GetTrainingCourseSessionsRequestModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: "TrainingCourseId") int trainingCourseId,
+      @JsonKey(name: "PageIndex") int pageIndex,
+      @JsonKey(name: "PageSize") int pageSize,
+      @JsonKey(name: "Language") String? language,
+      @JsonKey(name: "Status") String? status,
+      @JsonKey(name: "Location") String? location});
+}
+
+/// @nodoc
+class __$$GetTrainingCourseSessionsRequestModelImplCopyWithImpl<$Res>
+    extends _$GetTrainingCourseSessionsRequestModelCopyWithImpl<$Res,
+        _$GetTrainingCourseSessionsRequestModelImpl>
+    implements _$$GetTrainingCourseSessionsRequestModelImplCopyWith<$Res> {
+  __$$GetTrainingCourseSessionsRequestModelImplCopyWithImpl(
+      _$GetTrainingCourseSessionsRequestModelImpl _value,
+      $Res Function(_$GetTrainingCourseSessionsRequestModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GetTrainingCourseSessionsRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? trainingCourseId = null,
+    Object? pageIndex = null,
+    Object? pageSize = null,
+    Object? language = freezed,
+    Object? status = freezed,
+    Object? location = freezed,
+  }) {
+    return _then(_$GetTrainingCourseSessionsRequestModelImpl(
+      trainingCourseId: null == trainingCourseId
+          ? _value.trainingCourseId
+          : trainingCourseId // ignore: cast_nullable_to_non_nullable
+              as int,
+      pageIndex: null == pageIndex
+          ? _value.pageIndex
+          : pageIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      pageSize: null == pageSize
+          ? _value.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int,
+      language: freezed == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$GetTrainingCourseSessionsRequestModelImpl
+    implements _GetTrainingCourseSessionsRequestModel {
+  _$GetTrainingCourseSessionsRequestModelImpl(
+      {@JsonKey(name: "TrainingCourseId") required this.trainingCourseId,
+      @JsonKey(name: "PageIndex") required this.pageIndex,
+      @JsonKey(name: "PageSize") required this.pageSize,
+      @JsonKey(name: "Language") this.language,
+      @JsonKey(name: "Status") this.status,
+      @JsonKey(name: "Location") this.location});
+
+  factory _$GetTrainingCourseSessionsRequestModelImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$GetTrainingCourseSessionsRequestModelImplFromJson(json);
+
+  @override
+  @JsonKey(name: "TrainingCourseId")
+  final int trainingCourseId;
+  @override
+  @JsonKey(name: "PageIndex")
+  final int pageIndex;
+  @override
+  @JsonKey(name: "PageSize")
+  final int pageSize;
+  @override
+  @JsonKey(name: "Language")
+  final String? language;
+  @override
+  @JsonKey(name: "Status")
+  final String? status;
+  @override
+  @JsonKey(name: "Location")
+  final String? location;
+
+  @override
+  String toString() {
+    return 'GetTrainingCourseSessionsRequestModel(trainingCourseId: $trainingCourseId, pageIndex: $pageIndex, pageSize: $pageSize, language: $language, status: $status, location: $location)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetTrainingCourseSessionsRequestModelImpl &&
+            (identical(other.trainingCourseId, trainingCourseId) ||
+                other.trainingCourseId == trainingCourseId) &&
+            (identical(other.pageIndex, pageIndex) ||
+                other.pageIndex == pageIndex) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize) &&
+            (identical(other.language, language) ||
+                other.language == language) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.location, location) ||
+                other.location == location));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, trainingCourseId, pageIndex,
+      pageSize, language, status, location);
+
+  /// Create a copy of GetTrainingCourseSessionsRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetTrainingCourseSessionsRequestModelImplCopyWith<
+          _$GetTrainingCourseSessionsRequestModelImpl>
+      get copyWith => __$$GetTrainingCourseSessionsRequestModelImplCopyWithImpl<
+          _$GetTrainingCourseSessionsRequestModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$GetTrainingCourseSessionsRequestModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _GetTrainingCourseSessionsRequestModel
+    implements GetTrainingCourseSessionsRequestModel {
+  factory _GetTrainingCourseSessionsRequestModel(
+      {@JsonKey(name: "TrainingCourseId") required final int trainingCourseId,
+      @JsonKey(name: "PageIndex") required final int pageIndex,
+      @JsonKey(name: "PageSize") required final int pageSize,
+      @JsonKey(name: "Language") final String? language,
+      @JsonKey(name: "Status") final String? status,
+      @JsonKey(name: "Location")
+      final String? location}) = _$GetTrainingCourseSessionsRequestModelImpl;
+
+  factory _GetTrainingCourseSessionsRequestModel.fromJson(
+          Map<String, dynamic> json) =
+      _$GetTrainingCourseSessionsRequestModelImpl.fromJson;
+
+  @override
+  @JsonKey(name: "TrainingCourseId")
+  int get trainingCourseId;
+  @override
+  @JsonKey(name: "PageIndex")
+  int get pageIndex;
+  @override
+  @JsonKey(name: "PageSize")
+  int get pageSize;
+  @override
+  @JsonKey(name: "Language")
+  String? get language;
+  @override
+  @JsonKey(name: "Status")
+  String? get status;
+  @override
+  @JsonKey(name: "Location")
+  String? get location;
+
+  /// Create a copy of GetTrainingCourseSessionsRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetTrainingCourseSessionsRequestModelImplCopyWith<
+          _$GetTrainingCourseSessionsRequestModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
