@@ -283,7 +283,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
         selected: false,
         yoy: 0,
         hasPrice: false,
-        municipalityId: 0))) {
+        municipalityId: -1))) {
       listServiceTypeWithAll.insert(
           0,
           const LookupModel(
@@ -296,7 +296,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
               selected: false,
               yoy: 0,
               hasPrice: false,
-              municipalityId: 0));
+              municipalityId: -1));
     }
     listServiceTypeWithAll
         .addAll(context.read<LookupBloc>().lookUpRent?.serviceTypeList ?? []);
@@ -304,16 +304,67 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
         .read<LookupBloc>()
         .lookUpRent
         ?.copyWith(serviceTypeList: listServiceTypeWithAll);
-    valuesFiltersCubit.municapility = getObjectById(
+
+    List<LookupModel> listDistrictWithAll = [];
+    listDistrictWithAll
+        .addAll(context.read<LookupBloc>().lookUpRent?.districtList ?? []);
+    if (!listDistrictWithAll.contains(const LookupModel(
+        isActive: true,
+        lookupKey: -1,
+        arName: "الكل",
+        enName: "All",
+        id: -1))) {
+      listDistrictWithAll.insert(
+          0,
+          const LookupModel(
+              isActive: true,
+              lookupKey: -1,
+              arName: "الكل",
+              enName: "All",
+              id: -1));
+    }
+
+    context.read<LookupBloc>().lookUpRent = context
+        .read<LookupBloc>()
+        .lookUpRent
+        ?.copyWith(districtList: listDistrictWithAll);
+    List<LookupModel> listMunicipalityWithAll = [];
+    listMunicipalityWithAll
+        .addAll(context.read<LookupBloc>().lookUpRent?.municipalityList ?? []);
+    if (!listMunicipalityWithAll.contains(const LookupModel(
+        isActive: true,
+        lookupKey: -1,
+        arName: "الكل",
+        enName: "All",
+        id: -1))) {
+      listMunicipalityWithAll.insert(
+          0,
+          const LookupModel(
+              isActive: true,
+              lookupKey: -1,
+              arName: "الكل",
+              enName: "All",
+              id: -1));
+    }
+
+    context.read<LookupBloc>().lookUpRent = context
+        .read<LookupBloc>()
+        .lookUpRent
+        ?.copyWith(
+            municipalityList: listMunicipalityWithAll,
+            districtList: listDistrictWithAll);
+    //municipal and areaCode
+    valuesFiltersCubit.municapility = getObjectByLookupKey(
           context.read<LookupBloc>().lookUpRent?.municipalityList ?? [],
           context.read<RentBloc>().requestMeanValue.municipalityId ?? 1,
         ) ??
         const LookupModel();
     valuesFiltersCubit.zone = getObjectByLookupKey(
-          context.read<LookupBloc>().lookUpRent?.zoneList ?? [],
-          context.read<RentBloc>().requestMeanValue.zoneId ?? 0,
+          context.read<LookupBloc>().lookUpRent?.districtList ?? [],
+          context.read<RentBloc>().requestMeanValue.areaCode?.toInt() ?? -1,
         ) ??
         const LookupModel();
+    print("here fatina : the zone is ${valuesFiltersCubit.zone.arName}");
     valuesFiltersCubit.contract = getObjectByLookupKey(
           context.read<LookupBloc>().lookUpRent?.serviceTypeList ?? [],
           context.read<RentBloc>().requestMeanValue.serviceType ?? -1,
@@ -487,7 +538,10 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                           ) ??
                           const LookupModel();
                       valuesFiltersCubit.zone = getObjectByLookupKey(
-                            context.read<LookupBloc>().lookUpRent?.zoneList ??
+                            context
+                                    .read<LookupBloc>()
+                                    .lookUpRent
+                                    ?.districtList ??
                                 [],
                             -1,
                           ) ??
@@ -644,7 +698,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                   valuesFiltersCubit.changeZone(context
                                           .read<LookupBloc>()
                                           .lookUpRent
-                                          ?.zoneList
+                                          ?.districtList
                                           .firstWhere((element) {
                                         return element.lookupKey == -1;
                                       }) ??
@@ -681,11 +735,11 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                 },
                                 value: valuesFiltersCubit.zone,
                                 list: filterDataBymunicipalityId(
-                                    valuesFiltersCubit.municapility.id,
+                                    valuesFiltersCubit.municapility.lookupKey,
                                     context
                                             .read<LookupBloc>()
                                             .lookUpRent
-                                            ?.zoneList ??
+                                            ?.districtList ??
                                         []));
                           },
                         )
@@ -1547,7 +1601,7 @@ class _BottomSheetFilterWidgetState extends State<BottomSheetFilterWidget> {
                                                 : valuesFiltersCubit.bedRoom.id,
                                         municipalityId: valuesFiltersCubit
                                             .municapility.lookupKey,
-                                        zoneId:
+                                        areaCode:
                                             valuesFiltersCubit.zone.lookupKey,
                                         unit: valuesFiltersCubit.unit,
                                         furnitureStatus: valuesFiltersCubit
