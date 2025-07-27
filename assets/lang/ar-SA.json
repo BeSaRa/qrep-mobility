@@ -242,7 +242,7 @@
   "avatar_session_expired": "لقد انتهت صلاحية الجلسة",
   "hold_record_message": "امسك للتحدث، حرر للإرسال",
   "click_anywhere_message":"اضغط في أي مكان على الشاشة لبدء التفاعل مع الشخصية الرقمية",
-
+  "ai_avatar": "الشخصية الرقمية",
   "-----------AI SEARCH----------": "--------------------------",
   "ai_search": "البحث الذكي",
   "search_here": "ابحث هنا...",
@@ -252,5 +252,21 @@
   "Empower_ideas_and_unleash_intelligence": "تمكين الأفكار وإطلاق العنان للذكاء!",
   "see_on_google_map": "انظر على خرائط غوغل",
   "no_result_founded": "لا توجد نتائج",
-  "All_Categories": "كل التصنيفات"
+  "All_Categories": "كل التصنيفات",
+
+  "-----------ONBOARDING----------": "--------------------------",
+  "search_the_website":"البحث في الموقع",
+  "real_estate_indicators":"المؤشرات العقارية",
+  "investor_journey_subtitle":"من خلال المعلومات الدقيقة والموثقة المتوفرة على موقع الهيئة",
+  "onboarding_own_project":"",
+  "onboarding_choose_project":"توفير المعلومات عن المشاريع العقارية المرخصة في الدولة على موقع الهيئة",
+  "onboarding_contact_with_experts":"من خلال قائمة بالخبراء العقاريين المرخصين المسجلين على موقع الهيئة",
+  "onboarding_manage_realestate":"توفير قائمة بالشركات المرخصة التي تعمل في مجال إدارة العقارات على موقع الهيئة",
+  "skip":"تخطي",
+  "get_started":"لنبدأ",
+  "own_your_real_estate":"تملك عقارك",
+  
+  "onBoarding_xmap_subtitle":"الدردشة مع الذكاء الاصطناعي للعثور على الموقع المطلوب",
+  "onBoarding_inddecators_subtitle":"لدينا تحديثات لمؤشرات الأداء الرئيسية لإحصائيات البيع والإيجار والرهن العقاري"
+
 }
