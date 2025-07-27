@@ -15,7 +15,6 @@ void getNotificationPermissions() async {
   );
 
   if (kDebugMode) {
-    print('Permission granted: ${settings.authorizationStatus}');
   }
 }
 
@@ -23,18 +22,14 @@ Future<String> registerFCMToken() async {
   String token = await messaging.getToken() ?? '';
 
   if (kDebugMode) {
-    print('Registration Token=$token');
   }
   return token;
 }
 
 Future<void> forGroundHandler(RemoteMessage message) async {
   if (kDebugMode) {
-    print('Got a message whilst in the foreground!');
-    print('Message data: ${message.data}');
 
     if (message.notification != null) {
-      print('Message also contained a notification: ${message.data["id"]}');
     }
   }
 
@@ -71,7 +66,5 @@ Future<void> forGroundHandler(RemoteMessage message) async {
 Future<void> backgroundHandler(RemoteMessage message) async {
   getNotificationPermissions();
   if (kDebugMode) {
-    print(message.data.toString());
-    print(message.notification!.title);
   }
 }

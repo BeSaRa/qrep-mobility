@@ -26,14 +26,31 @@ class AppPreferences {
   String PREF_KEY_XMAP_LOCALE = 'PREF_KEY_XMAP_LOCALE';
   String PREFS_KEY_ONBOARDING_SEEN = 'PREFS_KEY_ONBOARDING_SEEN';
 
-  Future<String> getAppLanguage() async {
-    String? language = _sharedPreferences.getString(PREFS_KEY_LANG) ?? '';
-    if (language.isNotEmpty) {
-      return language;
-    } else {
-      return LanguageType.ARABIC.getValue();
-    }
+Future<String> getAppLanguage() async {
+  String? language = _sharedPreferences.getString(PREFS_KEY_LANG);
+
+  if (language != null && language.isNotEmpty) {
+    return language;
   }
+
+  // No saved language, try system locale
+  final systemLocale = WidgetsBinding.instance.window.locale.languageCode;
+
+  if (systemLocale == 'en') {
+    return LanguageType.ENGLISH.getValue();
+  } else {
+    return LanguageType.ARABIC.getValue(); 
+  }
+}
+
+  // Future<String> getAppLanguage() async {
+  //   String? language = _sharedPreferences.getString(PREFS_KEY_LANG) ?? '';
+  //   if (language.isNotEmpty) {
+  //     return language;
+  //   } else {
+  //     return LanguageType.ARABIC.getValue();
+  //   }
+  // }
 
   Future<void> setAppLanguage({required String lang}) async {
     String currentLanguage = await getAppLanguage();

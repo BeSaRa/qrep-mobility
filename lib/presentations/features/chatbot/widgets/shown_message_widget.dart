@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -645,7 +644,6 @@ class _FormattedDataWidgetState extends State<FormattedDataWidget>
       widget.isPDFFileLoadingForSAS.value = false;
       await OpenFile.open(filePath);
     } catch (e) {
-      log("Error opening PDF: $e");
       final uri = Uri.parse(value.response);
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri, mode: LaunchMode.externalApplication);

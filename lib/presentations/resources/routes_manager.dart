@@ -29,6 +29,9 @@ import 'package:ebla/presentations/features/rent/rent_view.dart';
 import 'package:ebla/presentations/features/sell/sell_view.dart';
 import 'package:ebla/presentations/features/services/view/services_view.dart';
 import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
+import 'package:ebla/presentations/features/training/views/training_booking_view.dart';
+import 'package:ebla/presentations/features/training/views/training_details_view.dart';
+import 'package:ebla/presentations/features/training/views/training_view.dart';
 import 'package:ebla/presentations/features/video_library/video_lib_view.dart';
 import 'package:ebla/presentations/features/xmap/xmap_page.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +39,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/depndency_injection.dart';
+import '../../domain/models/training/get_all_courses_response_model.dart';
 import '../features/info/blocs/news_bloc/news_bloc.dart';
 import '../features/info/views/laws_decisions_view.dart';
 import '../features/info/views/news/news_item_view.dart';
@@ -75,6 +79,9 @@ class RoutesNames {
   static const String map = "map";
   static const String comingSoon = "coming soon";
   static const String videoLib = "video lib";
+  static const String training = "training";
+  static const String trainingBooking = "training booking";
+  static const String trainingDetails = "training Details";
 }
 
 class RoutesPaths {
@@ -105,6 +112,10 @@ class RoutesPaths {
   static const String map = '/map';
   static const String comingSoon = '/comingSoon';
   static const String videoLib = '/videoLib';
+  static const String training = '/training'; 
+  static const String trainingBooking = "/trainingBooking";
+  static const String trainingDetails = "/trainingDetails";
+
 }
 
 class NavigationKeys {
@@ -467,6 +478,30 @@ class AppRouter {
           path: RoutesPaths.videoLib,
           builder: (context, state) => const VideoLibView(),
         ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.training,
+          path: RoutesPaths.training,
+          builder: (context, state) => const TrainingView(),
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.trainingBooking,
+          path: RoutesPaths.trainingBooking,
+           builder: (context, state) {
+    final course = state.extra as TrainingCourse;
+    return TrainingBookingView(course: course);
+  },
+        ),
+      GoRoute(
+  parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+  name: RoutesNames.trainingDetails,
+  path: RoutesPaths.trainingDetails,
+  builder: (context, state) {
+    final course = state.extra as TrainingCourse;
+    return TrainingDetailsView(course: course);
+  },
+),
 
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
@@ -556,7 +591,7 @@ class AppRouter {
           path: RoutesPaths.splash,
           builder: (context, state) {
             // List<Path> allPaths = buildAllPaths();
-            return SplashView(
+            return const SplashView(
               allPaths: [],
             );
           },

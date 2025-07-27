@@ -270,22 +270,27 @@ class _AqaratNavigationBarState extends State<AqaratNavigationBar> {
                     height: AppSizeH.s60,
                     width: AppSizeH.s60,
                     decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Theme.of(context).primaryColor,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 10,
-                          spreadRadius: 3,
-                        )
-                      ],
-                    ),
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).primaryColor,
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 10,
+                            spreadRadius: 3,
+                          )
+                        ],
+                        image: const DecorationImage(
+                            image: AssetImage(
+                              ImageAssets.chatBot,
+                            ),
+                            fit: BoxFit.cover)),
                     padding: EdgeInsets.all(AppSizeR.s6),
-                    child: Image(
-                      image: const AssetImage(ImageAssets.chatBot),
-                      width: AppSizeW.s54,
-                      height: AppSizeH.s54,
-                    ),
+                    // child:
+                    // Image(
+                    //   image: const AssetImage(ImageAssets.chatBot),
+                    //   width: AppSizeW.s54,
+                    //   height: AppSizeH.s54,
+                    // ),
                   ),
                   Text("عقاري",
                       style: Theme.of(context)

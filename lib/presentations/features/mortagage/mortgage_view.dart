@@ -55,7 +55,6 @@ class _MortagageViewState extends State<MortgageView> {
   getCriteria() {
     if (GoRouterState.of(context).extra != null) {
       criteriaObject = GoRouterState.of(context).extra as CriteriaObject;
-      print("i get the criteria");
     }
   }
 

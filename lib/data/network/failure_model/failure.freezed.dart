@@ -14,18 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-FailureModel _$FailureModelFromJson(Map<String, dynamic> json) {
-  return _FailureModel.fromJson(json);
-}
-
 /// @nodoc
 mixin _$FailureModel {
   List<String> get errorDescription => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   int get statusCode => throw _privateConstructorUsedError;
-
-  /// Serializes this FailureModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of FailureModel
   /// with the given fields replaced by the non-null parameter values.
@@ -125,16 +118,13 @@ class __$$FailureModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$FailureModelImpl implements _FailureModel {
   const _$FailureModelImpl(
       {final List<String> errorDescription = const [],
       this.message = '',
       this.statusCode = 0})
       : _errorDescription = errorDescription;
-
-  factory _$FailureModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FailureModelImplFromJson(json);
 
   final List<String> _errorDescription;
   @override
@@ -170,7 +160,6 @@ class _$FailureModelImpl implements _FailureModel {
                 other.statusCode == statusCode));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -185,13 +174,6 @@ class _$FailureModelImpl implements _FailureModel {
   @pragma('vm:prefer-inline')
   _$$FailureModelImplCopyWith<_$FailureModelImpl> get copyWith =>
       __$$FailureModelImplCopyWithImpl<_$FailureModelImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$FailureModelImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _FailureModel implements FailureModel {
@@ -199,9 +181,6 @@ abstract class _FailureModel implements FailureModel {
       {final List<String> errorDescription,
       final String message,
       final int statusCode}) = _$FailureModelImpl;
-
-  factory _FailureModel.fromJson(Map<String, dynamic> json) =
-      _$FailureModelImpl.fromJson;
 
   @override
   List<String> get errorDescription;

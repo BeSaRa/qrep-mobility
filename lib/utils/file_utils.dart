@@ -17,11 +17,9 @@ class FileUtils {
       await file.writeAsString(content);
 
       if (kDebugMode) {
-        print('File saved at: ${file.path}');
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Error saving file: $e');
       }
     }
   }
@@ -42,13 +40,11 @@ class FileUtils {
         return content;
       } else {
         if (kDebugMode) {
-          print('File not found: $filePath');
         }
         return ''; // Return an empty string if the file does not exist
       }
     } catch (e) {
       if (kDebugMode) {
-        print('Error reading file: $e');
       }
       return ''; // Return an empty string if there's an error
     }
@@ -70,17 +66,14 @@ class FileUtils {
         await file.delete();
 
         if (kDebugMode) {
-          print('File deleted: ${file.path}');
         }
       } else {
         if (kDebugMode) {
-          print('File not found: ${file.path}');
         }
       }
     } catch (e) {
       // Handle errors, e.g., if there's an issue accessing the file system
       if (kDebugMode) {
-        print('Error deleting file: $e');
       }
     }
   }
@@ -99,7 +92,6 @@ class FileUtils {
     } catch (e) {
       // Handle errors, e.g., if there's an issue accessing the file system
       if (kDebugMode) {
-        print('Error checking file existence: $e');
       }
       return false;
     }

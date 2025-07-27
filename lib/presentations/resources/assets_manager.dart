@@ -32,7 +32,7 @@ class ImageAssets {
   static const String test = '${IMAGE_PATH}qq.png';
   static const String logoPng = '${IMAGE_PATH}splash_logo_trimmed.png';
   static const String homeBg = '${IMAGE_PATH}home_bg.png';
-  static const String chatBot = '${IMAGE_PATH}chatgpt.png';
+  static const String chatBot = '${IMAGE_PATH}chatgpt1.png';
   static const String chatBotIndecetor =
       '${IMAGE_PATH}chat_bot_loading_indecetor.json';
   static const String chatBotRecordingIndecetor = '${IMAGE_PATH}recording.json';
@@ -47,8 +47,10 @@ class ImageAssets {
   //onboarding
   static const String whiteMessage = "${IMAGE_PATH}white_message.png";
   static const String blackMessage = "${IMAGE_PATH}black_message.png";
-  static const String realEstateIndicators = "${IMAGE_PATH}real_estate_indicators.json";
+  static const String realEstateIndicators =
+      "${IMAGE_PATH}real_estate_indicators.json";
   static const String theAvatarPerson = "${IMAGE_PATH}avatar2.png";
+  static const String trainingCity = "${IMAGE_PATH}training_city.png";
 }
 
 class IconAssets {
@@ -127,9 +129,14 @@ class IconAssets {
   static const String about = "${ICON_PATH}about.png";
   //onBoarding
   static const String onboardingSearch = "${ICON_PATH}onboarding_search.png";
-  static const String onboardingStudyIdea = "${ICON_PATH}onboarding_study_idea.png";
-  static const String contactWithExperts = "${ICON_PATH}contact_with_experts.png";
+  static const String onboardingStudyIdea =
+      "${ICON_PATH}onboarding_study_idea.png";
+  static const String contactWithExperts =
+      "${ICON_PATH}contact_with_experts.png";
   static const String chooseProject = "${ICON_PATH}choose_project.png";
   static const String manageRealestate = "${ICON_PATH}manage_realestate.png";
   static const String ownRealestate = "${ICON_PATH}own_realestate.png";
+  //training
+  static const String filter = "${ICON_PATH}filter.png";
+  static const String money = "${ICON_PATH}money.png";
 }

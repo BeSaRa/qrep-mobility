@@ -207,8 +207,8 @@ ThemeData lightTheme() {
 ThemeData darkTheme() {
   return ThemeData(
       // colorSchemeSeed: const Color(0xFF222222),
-      scaffoldBackgroundColor: const Color(0xFF222222),
-      cardTheme: CardTheme(color: ColorManager.textFieldGrey),
+      scaffoldBackgroundColor: ColorManager.textFieldGrey,
+      cardTheme: const CardTheme(color: Color(0xFF343434)),
       cardColor: ColorManager.primary,
       colorScheme: ColorScheme.dark(
           primary: ColorManager.white,

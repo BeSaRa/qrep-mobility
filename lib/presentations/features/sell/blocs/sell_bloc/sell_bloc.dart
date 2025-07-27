@@ -35,8 +35,6 @@ class SellBloc extends Bloc<SellEvent, SellState> {
   }
 
   setRequestCriteria(CriteriaObject criteriaObject) {
-    print(
-        "this is the criteria object i got ${criteriaObject.unit},${criteriaObject.areaFrom}");
     requestSell = RequestSellValues(
         areaCode: criteriaObject.areaCode ?? -1,
         areaFrom:

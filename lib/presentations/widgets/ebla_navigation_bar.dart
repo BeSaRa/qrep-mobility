@@ -32,8 +32,7 @@ class _EblaNavigationBarState extends State<EblaNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
-    print(" context.read<BottomNavCubit>().state");
-    print(context.read<BottomNavCubit>().state);
+
     return Padding(
       padding: EdgeInsetsDirectional.only(
         start: AppSizeW.s12,

@@ -44,7 +44,6 @@ class CmsDioFactory {
     dio.interceptors.add(instance<GeneralCMSInterceptor>());
     if (kReleaseMode) {
       if (kDebugMode) {
-        print('release mode no logs');
       }
     } else {
       dio.interceptors.add(
@@ -90,7 +89,6 @@ class CmsDioFactory {
 //       return Constant.guestToken;
 //     }
 //   } catch (e) {
-//     print(e.toString());
 //     return "";
 //   }
 // }

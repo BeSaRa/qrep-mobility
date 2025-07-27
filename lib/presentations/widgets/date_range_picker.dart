@@ -24,10 +24,8 @@ Future<PickerDateRange?>? showDatePickerPopup(
             confirmText: AppStrings().confirm,
             cancelText: AppStrings().cancel,
             onSubmit: (val) {
-              // print('val is $val');
               PickerDateRange? selection = val as PickerDateRange?;
               if (selection?.startDate != null && selection?.endDate != null) {
-                // print('selection $selection');
                 // context.pop(context);
                 Navigator.of(context).pop(selection);
                 // todo: update the value in the lookup bloc then request all kpis with new value

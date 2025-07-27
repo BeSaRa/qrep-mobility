@@ -45,7 +45,6 @@ class DioFactory {
     dio.interceptors.add(instance<GeneralInterceptor>());
     if (kReleaseMode) {
       if (kDebugMode) {
-        print('release mode no logs');
       }
     } else {
       dio.interceptors.add(PrettyDioLogger(
@@ -90,7 +89,6 @@ class DioFactory {
 //       return Constant.guestToken;
 //     }
 //   } catch (e) {
-//     print(e.toString());
 //     return "";
 //   }
 // }

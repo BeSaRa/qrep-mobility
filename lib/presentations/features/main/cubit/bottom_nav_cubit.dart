@@ -21,7 +21,6 @@ class BottomNavCubit extends Cubit<int> {
   //   initLoginModule()
   // ];
   void changePage(int index) {
-    print("in change page $index");
     currentPage = index;
     emit(index);
   }

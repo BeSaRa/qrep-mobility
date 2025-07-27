@@ -38,7 +38,6 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
         getRentLookupEvent: (value) async {
           if (lookUpRent == const LookupResponse()) {
             if (kDebugMode) {
-              print("this event is been called");
             }
             emit(const LookupState.loadingLookup());
             final failureOrSuccess = await getRentLookupUseCase.execute();
@@ -114,7 +113,6 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
             ovFailureOrSucces.when((success) {
               lookupBrokerOv = success;
               if (kDebugMode) {
-                print("fatina successov $success");
               }
             }, (error) {});
           }
@@ -123,11 +121,9 @@ class LookupBloc extends Bloc<LookupEvent, LookupState> {
             failureOrSuccess.when((success) {
               lookupBroker = success;
               if (kDebugMode) {
-                print("fatina success $success");
               }
             }, (error) {
               if (kDebugMode) {
-                print("fatina error $error");
               }
             });
           }

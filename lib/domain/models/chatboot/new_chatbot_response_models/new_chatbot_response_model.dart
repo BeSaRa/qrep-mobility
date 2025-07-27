@@ -1,4 +1,3 @@
-import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'new_chatbot_response_model.freezed.dart';

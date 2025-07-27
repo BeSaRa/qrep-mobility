@@ -149,7 +149,6 @@ class _AiSearchViewState extends State<AiSearchView> {
                   _isPDFFileLoading.value = false;
                   await OpenFile.open(filePath);
                 } catch (e) {
-                  log("Error opening PDF: $e");
                   // Fallback to launchUrl
                   final uri = Uri.parse(value.response);
                   if (await canLaunchUrl(uri)) {
