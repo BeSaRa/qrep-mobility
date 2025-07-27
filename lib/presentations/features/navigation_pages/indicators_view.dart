@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:ebla/app/depndency_injection.dart';
+import 'package:ebla/presentations/features/main/cubit/bottom_nav_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'dart:math' as math;
@@ -44,43 +46,50 @@ class _IndicatorsViewState extends State<IndicatorsView>
 
   @override
   Widget build(BuildContext context) {
-    return FadeTransition(
-        opacity: _opacity,
-        child: SlideTransition(
-          position: _slide,
-          child: Column(
-            spacing: AppSizeH.s12,
-            children: [
-              SizedBox(
-                height: AppSizeH.s20,
-              ),
-              IndicatorWidget(
-                title: AppStrings().sellIndicators,
-                image: IconAssets.sellHome,
-                onTap: () async {
-                  await initSellModule();
-                  context.pushNamed(RoutesNames.sales);
-                },
-              ),
-              IndicatorWidget(
-                title: AppStrings().rentIndicators,
-                image: IconAssets.rentHome,
-                onTap: () async {
-                  await initRentModule();
-                  context.pushNamed(RoutesNames.rent);
-                },
-              ),
-              IndicatorWidget(
-                title: AppStrings().mortgageIndicators,
-                image: IconAssets.mortagageHome,
-                onTap: () async {
-                  await initMortgageModule();
-                  context.pushNamed(RoutesNames.mortgage);
-                },
-              ),
-            ],
-          ),
-        ));
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        context.read<BottomNavCubit>().changePage(0);
+        context.goNamed(context.read<BottomNavCubit>().paths[0]);
+      },
+      child: FadeTransition(
+          opacity: _opacity,
+          child: SlideTransition(
+            position: _slide,
+            child: Column(
+              spacing: AppSizeH.s12,
+              children: [
+                SizedBox(
+                  height: AppSizeH.s20,
+                ),
+                IndicatorWidget(
+                  title: AppStrings().sellIndicators,
+                  image: IconAssets.sellHome,
+                  onTap: () async {
+                    await initSellModule();
+                    context.pushNamed(RoutesNames.sales);
+                  },
+                ),
+                IndicatorWidget(
+                  title: AppStrings().rentIndicators,
+                  image: IconAssets.rentHome,
+                  onTap: () async {
+                    await initRentModule();
+                    context.pushNamed(RoutesNames.rent);
+                  },
+                ),
+                IndicatorWidget(
+                  title: AppStrings().mortgageIndicators,
+                  image: IconAssets.mortagageHome,
+                  onTap: () async {
+                    await initMortgageModule();
+                    context.pushNamed(RoutesNames.mortgage);
+                  },
+                ),
+              ],
+            ),
+          )),
+    );
   }
 }
 

@@ -1,52 +1,62 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/rera_text_faild.dart';
+import 'package:ebla/presentations/features/main/cubit/bottom_nav_cubit.dart';
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ServicesView extends StatelessWidget {
   const ServicesView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
-      body: Container(
-        decoration: BoxDecoration(
-            color: Theme.of(context).brightness == Brightness.dark
-                ? Theme.of(context).scaffoldBackgroundColor
-                : Theme.of(context).canvasColor,
-            borderRadius:
-                BorderRadius.vertical(top: Radius.circular(AppSizeR.s20))),
-        width: MediaQuery.sizeOf(context).width,
-        height: MediaQuery.sizeOf(context).height,
-        child: Padding(
-          padding: EdgeInsets.all(AppSizeH.s20),
-          child: Column(
-            spacing: AppSizeH.s15,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // 1. Title
-              Text(
-                AppStrings().services,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Theme.of(context).textTheme.bodySmall?.color),
-              ),
-
-              // 2. Search Field
-              ReraTextFaild(
-                hint: "${AppStrings().search} ...",
-                prefixIcon: Icon(
-                  Icons.search_rounded,
-                  color: Theme.of(context).disabledColor,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        context.read<BottomNavCubit>().changePage(0);
+        context.goNamed(context.read<BottomNavCubit>().paths[0]);
+      },
+      child: Scaffold(
+        backgroundColor: Theme.of(context).primaryColor,
+        body: Container(
+          decoration: BoxDecoration(
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Theme.of(context).scaffoldBackgroundColor
+                  : Theme.of(context).canvasColor,
+              borderRadius:
+                  BorderRadius.vertical(top: Radius.circular(AppSizeR.s20))),
+          width: MediaQuery.sizeOf(context).width,
+          height: MediaQuery.sizeOf(context).height,
+          child: Padding(
+            padding: EdgeInsets.all(AppSizeH.s20),
+            child: Column(
+              spacing: AppSizeH.s15,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // 1. Title
+                Text(
+                  AppStrings().services,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: Theme.of(context).textTheme.bodySmall?.color),
                 ),
-              ),
 
-              // 3. Horizontal Selectable List
-              const SelectableHorizontalList(),
+                // 2. Search Field
+                ReraTextFaild(
+                  hint: "${AppStrings().search} ...",
+                  prefixIcon: Icon(
+                    Icons.search_rounded,
+                    color: Theme.of(context).disabledColor,
+                  ),
+                ),
 
-              // 4. Bordered Container with Shadow
-              const GreyShadowContainer(text: "Searched data"),
-            ],
+                // 3. Horizontal Selectable List
+                const SelectableHorizontalList(),
+
+                // 4. Bordered Container with Shadow
+                const GreyShadowContainer(text: "Searched data"),
+              ],
+            ),
           ),
         ),
       ),

@@ -192,6 +192,7 @@ class _FullScreenYoutubePlayerState extends State<FullScreenYoutubePlayer> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
+        print('zak from video lib');
         context.read<VideoLibCubit>().closeFullScreen();
         return false;
       },
