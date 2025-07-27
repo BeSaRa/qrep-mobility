@@ -42,6 +42,7 @@ mixin _$RentRequest {
   num? get rentPaymentMonthlyPerUnitTo =>
       throw _privateConstructorUsedError; // List<int>? streetNo,
   int? get zoneId => throw _privateConstructorUsedError;
+  int? get areaCode => throw _privateConstructorUsedError;
   int get unit => throw _privateConstructorUsedError;
   int get periodId => throw _privateConstructorUsedError;
 
@@ -83,6 +84,7 @@ abstract class $RentRequestCopyWith<$Res> {
       num? rentPaymentMonthlyPerUnitFrom,
       num? rentPaymentMonthlyPerUnitTo,
       int? zoneId,
+      int? areaCode,
       int unit,
       int periodId});
 }
@@ -123,6 +125,7 @@ class _$RentRequestCopyWithImpl<$Res, $Val extends RentRequest>
     Object? rentPaymentMonthlyPerUnitFrom = freezed,
     Object? rentPaymentMonthlyPerUnitTo = freezed,
     Object? zoneId = freezed,
+    Object? areaCode = freezed,
     Object? unit = null,
     Object? periodId = null,
   }) {
@@ -211,6 +214,10 @@ class _$RentRequestCopyWithImpl<$Res, $Val extends RentRequest>
           ? _value.zoneId
           : zoneId // ignore: cast_nullable_to_non_nullable
               as int?,
+      areaCode: freezed == areaCode
+          ? _value.areaCode
+          : areaCode // ignore: cast_nullable_to_non_nullable
+              as int?,
       unit: null == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
@@ -253,6 +260,7 @@ abstract class _$$RentRequestImplCopyWith<$Res>
       num? rentPaymentMonthlyPerUnitFrom,
       num? rentPaymentMonthlyPerUnitTo,
       int? zoneId,
+      int? areaCode,
       int unit,
       int periodId});
 }
@@ -291,6 +299,7 @@ class __$$RentRequestImplCopyWithImpl<$Res>
     Object? rentPaymentMonthlyPerUnitFrom = freezed,
     Object? rentPaymentMonthlyPerUnitTo = freezed,
     Object? zoneId = freezed,
+    Object? areaCode = freezed,
     Object? unit = null,
     Object? periodId = null,
   }) {
@@ -379,6 +388,10 @@ class __$$RentRequestImplCopyWithImpl<$Res>
           ? _value.zoneId
           : zoneId // ignore: cast_nullable_to_non_nullable
               as int?,
+      areaCode: freezed == areaCode
+          ? _value.areaCode
+          : areaCode // ignore: cast_nullable_to_non_nullable
+              as int?,
       unit: null == unit
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
@@ -417,6 +430,7 @@ class _$RentRequestImpl implements _RentRequest {
       this.rentPaymentMonthlyPerUnitFrom,
       this.rentPaymentMonthlyPerUnitTo,
       this.zoneId,
+      this.areaCode,
       this.unit = 2,
       this.periodId = 1})
       : _issueDateQuarterList = issueDateQuarterList,
@@ -496,6 +510,8 @@ class _$RentRequestImpl implements _RentRequest {
   @override
   final int? zoneId;
   @override
+  final int? areaCode;
+  @override
   @JsonKey()
   final int unit;
   @override
@@ -504,7 +520,7 @@ class _$RentRequestImpl implements _RentRequest {
 
   @override
   String toString() {
-    return 'RentRequest(areaFrom: $areaFrom, areaTo: $areaTo, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, halfYearDuration: $halfYearDuration, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, nationalityCode: $nationalityCode, serviceType: $serviceType, propertyTypeList: $propertyTypeList, purposeList: $purposeList, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, zoneId: $zoneId, unit: $unit, periodId: $periodId)';
+    return 'RentRequest(areaFrom: $areaFrom, areaTo: $areaTo, bedRoomsCount: $bedRoomsCount, furnitureStatus: $furnitureStatus, issueDateEndMonth: $issueDateEndMonth, issueDateFrom: $issueDateFrom, issueDateQuarterList: $issueDateQuarterList, issueDateStartMonth: $issueDateStartMonth, halfYearDuration: $halfYearDuration, issueDateTo: $issueDateTo, issueDateYear: $issueDateYear, limit: $limit, municipalityId: $municipalityId, offset: $offset, nationalityCode: $nationalityCode, serviceType: $serviceType, propertyTypeList: $propertyTypeList, purposeList: $purposeList, rentPaymentMonthlyPerUnitFrom: $rentPaymentMonthlyPerUnitFrom, rentPaymentMonthlyPerUnitTo: $rentPaymentMonthlyPerUnitTo, zoneId: $zoneId, areaCode: $areaCode, unit: $unit, periodId: $periodId)';
   }
 
   @override
@@ -554,6 +570,8 @@ class _$RentRequestImpl implements _RentRequest {
                 other.rentPaymentMonthlyPerUnitTo ==
                     rentPaymentMonthlyPerUnitTo) &&
             (identical(other.zoneId, zoneId) || other.zoneId == zoneId) &&
+            (identical(other.areaCode, areaCode) ||
+                other.areaCode == areaCode) &&
             (identical(other.unit, unit) || other.unit == unit) &&
             (identical(other.periodId, periodId) ||
                 other.periodId == periodId));
@@ -584,6 +602,7 @@ class _$RentRequestImpl implements _RentRequest {
         rentPaymentMonthlyPerUnitFrom,
         rentPaymentMonthlyPerUnitTo,
         zoneId,
+        areaCode,
         unit,
         periodId
       ]);
@@ -627,6 +646,7 @@ abstract class _RentRequest implements RentRequest {
       final num? rentPaymentMonthlyPerUnitFrom,
       final num? rentPaymentMonthlyPerUnitTo,
       final int? zoneId,
+      final int? areaCode,
       final int unit,
       final int periodId}) = _$RentRequestImpl;
 
@@ -675,6 +695,8 @@ abstract class _RentRequest implements RentRequest {
   num? get rentPaymentMonthlyPerUnitTo; // List<int>? streetNo,
   @override
   int? get zoneId;
+  @override
+  int? get areaCode;
   @override
   int get unit;
   @override

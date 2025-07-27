@@ -29,6 +29,7 @@ abstract class RentRequest with _$RentRequest {
     num? rentPaymentMonthlyPerUnitTo,
     // List<int>? streetNo,
     int? zoneId,
+    int? areaCode,
     @Default(2) int unit,
     @Default(1) int periodId,
   }) = _RentRequest;

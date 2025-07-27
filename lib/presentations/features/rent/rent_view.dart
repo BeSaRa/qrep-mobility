@@ -100,7 +100,7 @@ class _RentViewState extends State<RentView> {
                 selected: false,
                 yoy: 0,
                 hasPrice: false,
-                municipalityId: 0))) {
+                municipalityId: -1))) {
               listMunicipalityWithAll.insert(
                   0,
                   const LookupModel(
@@ -113,7 +113,7 @@ class _RentViewState extends State<RentView> {
                       selected: false,
                       yoy: 0,
                       hasPrice: false,
-                      municipalityId: 0));
+                      municipalityId: -1));
             }
             context.read<LookupBloc>().lookUpRent = context
                 .read<LookupBloc>()
@@ -214,7 +214,7 @@ class _RentViewState extends State<RentView> {
                                                         municipalityId:
                                                             municipal
                                                                 ?.lookupKey,
-                                                        zoneId: -1);
+                                                        areaCode: -1);
                                             changeStatusCubit.changeStatus();
                                             rentGridKPIsBloc.add(
                                                 RentGridKPIsEvent.getData(
@@ -411,13 +411,14 @@ class _RentViewState extends State<RentView> {
                                               context
                                                       .read<LookupBloc>()
                                                       .lookUpRent
-                                                      ?.zoneList ??
+                                                      ?.districtList ??
                                                   [],
                                               context
                                                       .read<RentBloc>()
                                                       .requestMeanValue
-                                                      .zoneId ??
-                                                  1) ??
+                                                      .areaCode
+                                                      ?.toInt() ??
+                                                  -1) ??
                                           const LookupModel(),
                                       propertyPurpose: getObjectByLookupKey(
                                               context
@@ -466,6 +467,8 @@ class _RentViewState extends State<RentView> {
                                           value: rentGridKPIsBloc),
                                       BlocProvider.value(
                                           value: changeStatusCubit),
+                                      BlocProvider.value(
+                                          value: context.read<RentBloc>()),
                                     ],
                                     child: GridItemWidget(
                                       gridItemType: GridItemType.rent,
@@ -516,12 +519,12 @@ class _RentViewState extends State<RentView> {
                                               context
                                                       .read<LookupBloc>()
                                                       .lookUpRent
-                                                      ?.zoneList ??
+                                                      ?.districtList ??
                                                   [],
                                               context
                                                       .read<RentBloc>()
                                                       .requestMeanValue
-                                                      .zoneId ??
+                                                      .areaCode ??
                                                   1) ??
                                           const LookupModel(),
                                       propertyPurpose: getObjectByLookupKey(
@@ -599,13 +602,13 @@ class _RentViewState extends State<RentView> {
                                               context
                                                       .read<LookupBloc>()
                                                       .lookUpRent
-                                                      ?.zoneList ??
+                                                      ?.districtList ??
                                                   [],
                                               context
                                                       .read<RentBloc>()
                                                       .requestMeanValue
-                                                      .zoneId ??
-                                                  1) ??
+                                                      .areaCode ??
+                                                  -1) ??
                                           const LookupModel(),
                                       propertyPurpose: getObjectByLookupKey(
                                               context

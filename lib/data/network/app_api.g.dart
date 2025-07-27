@@ -13,7 +13,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'Https://qrepbe.aqarat.gov.qa/mme-services';
+    baseUrl ??= 'https://stgqrepbe.aqarat.gov.qa/mme-services';
   }
 
   final Dio _dio;
@@ -1693,7 +1693,7 @@ class _CmsServiceClient implements CmsServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://qrepcms.aqarat.gov.qa';
+    baseUrl ??= 'https://stgqrepcms.aqarat.gov.qa';
   }
 
   final Dio _dio;

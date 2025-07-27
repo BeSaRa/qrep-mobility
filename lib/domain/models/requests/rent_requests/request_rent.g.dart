@@ -36,6 +36,7 @@ _$RentRequestImpl _$$RentRequestImplFromJson(Map<String, dynamic> json) =>
           json['rentPaymentMonthlyPerUnitFrom'] as num?,
       rentPaymentMonthlyPerUnitTo: json['rentPaymentMonthlyPerUnitTo'] as num?,
       zoneId: (json['zoneId'] as num?)?.toInt(),
+      areaCode: (json['areaCode'] as num?)?.toInt(),
       unit: (json['unit'] as num?)?.toInt() ?? 2,
       periodId: (json['periodId'] as num?)?.toInt() ?? 1,
     );
@@ -70,6 +71,7 @@ Map<String, dynamic> _$$RentRequestImplToJson(_$RentRequestImpl instance) =>
       if (instance.rentPaymentMonthlyPerUnitTo case final value?)
         'rentPaymentMonthlyPerUnitTo': value,
       if (instance.zoneId case final value?) 'zoneId': value,
+      if (instance.areaCode case final value?) 'areaCode': value,
       'unit': instance.unit,
       'periodId': instance.periodId,
     };
