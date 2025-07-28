@@ -35,3 +35,27 @@ abstract class ResetPasswordModel with _$ResetPasswordModel {
   factory ResetPasswordModel.fromJson(Map<String, dynamic> json) =>
       _$ResetPasswordModelFromJson(json);
 }
+
+@freezed
+abstract class TheRequestLoginModel with _$TheRequestLoginModel {
+  const factory TheRequestLoginModel({
+    @JsonKey(name: "Code") int? code,
+    @JsonKey(name: "Message") String? message,
+    @JsonKey(name: "Result") bool? result,
+    @JsonKey(name: "Data") RequestLoginModel? data,
+  }) = _TheRequestLoginModel;
+
+  factory TheRequestLoginModel.fromJson(Map<String, dynamic> json) =>
+      _$TheRequestLoginModelFromJson(json);
+}
+
+@freezed
+abstract class RequestLoginModel with _$RequestLoginModel {
+  const factory RequestLoginModel({
+    @JsonKey(name: "RedirectUrl") String? url,
+    @JsonKey(name: "State") String? state,
+  }) = _RequestLoginModel;
+
+  factory RequestLoginModel.fromJson(Map<String, dynamic> json) =>
+      _$RequestLoginModelFromJson(json);
+}

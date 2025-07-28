@@ -13,7 +13,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://stgqrepbe.aqarat.gov.qa/mme-services';
+    baseUrl ??= 'Https://qrepbe.aqarat.gov.qa/mme-services';
   }
 
   final Dio _dio;
@@ -1693,7 +1693,7 @@ class _CmsServiceClient implements CmsServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://stgqrepcms.aqarat.gov.qa';
+    baseUrl ??= 'https://qrepcms.aqarat.gov.qa';
   }
 
   final Dio _dio;
@@ -1701,13 +1701,13 @@ class _CmsServiceClient implements CmsServiceClient {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<AuthResponse>> login(RequestAuth requestAuth) async {
+  Future<HttpResponse<InvalidType>> login(InvalidType requestAuth) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = requestAuth;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<AuthResponse>>(Options(
+        _setStreamType<HttpResponse<InvalidType>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1723,19 +1723,19 @@ class _CmsServiceClient implements CmsServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = AuthResponse.fromJson(_result.data!);
+    final value = InvalidType.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<ResetPasswordModel>> resetPassword(String email) async {
+  Future<HttpResponse<InvalidType>> resetPassword(String email) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = email;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResetPasswordModel>>(Options(
+        _setStreamType<HttpResponse<InvalidType>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1751,20 +1751,20 @@ class _CmsServiceClient implements CmsServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ResetPasswordModel.fromJson(_result.data!);
+    final value = InvalidType.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<AuthResponse>> refreshToken(
-      RefreshToken refreshToken) async {
+  Future<HttpResponse<InvalidType>> refreshToken(
+      InvalidType refreshToken) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = refreshToken;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<AuthResponse>>(Options(
+        _setStreamType<HttpResponse<InvalidType>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1780,7 +1780,7 @@ class _CmsServiceClient implements CmsServiceClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = AuthResponse.fromJson(_result.data!);
+    final value = InvalidType.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -2120,6 +2120,34 @@ class _TrainingServiceClient implements TrainingServiceClient {
   final Dio _dio;
 
   String? baseUrl;
+
+  @override
+  Future<HttpResponse<InvalidType>> askForLogin() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<InvalidType>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/Authentication/GenerateOIDCUrl',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = InvalidType.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
 
   @override
   Future<HttpResponse<GetAllCoursesResponseModel>> getTrainingCourses(

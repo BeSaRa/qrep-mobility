@@ -1,4 +1,3 @@
-
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:flutter/cupertino.dart';

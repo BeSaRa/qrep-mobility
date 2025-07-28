@@ -43,3 +43,37 @@ Map<String, dynamic> _$$ResetPasswordModelImplToJson(
     <String, dynamic>{
       'reset_url': instance.token,
     };
+
+_$TheRequestLoginModelImpl _$$TheRequestLoginModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TheRequestLoginModelImpl(
+      code: (json['Code'] as num?)?.toInt(),
+      message: json['Message'] as String?,
+      result: json['Result'] as bool?,
+      data: json['Data'] == null
+          ? null
+          : RequestLoginModel.fromJson(json['Data'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$TheRequestLoginModelImplToJson(
+        _$TheRequestLoginModelImpl instance) =>
+    <String, dynamic>{
+      'Code': instance.code,
+      'Message': instance.message,
+      'Result': instance.result,
+      'Data': instance.data,
+    };
+
+_$RequestLoginModelImpl _$$RequestLoginModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RequestLoginModelImpl(
+      url: json['RedirectUrl'] as String?,
+      state: json['State'] as String?,
+    );
+
+Map<String, dynamic> _$$RequestLoginModelImplToJson(
+        _$RequestLoginModelImpl instance) =>
+    <String, dynamic>{
+      'RedirectUrl': instance.url,
+      'State': instance.state,
+    };

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ebla/data/network/end_points.dart';
+import 'package:ebla/data/network/phase2_end_points.dart';
 import 'package:ebla/domain/models/ai_search_models/ai_search_model.dart';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/domain/models/cms_models/user/user_model.dart';
@@ -323,6 +324,11 @@ abstract class TrainingServiceClient {
       _TrainingServiceClient;
 
   /// ****************** Training *************************
+  ///
+  ///
+  @GET(Phase2EndPoints.askForLogin)
+  Future<HttpResponse<TheRequestLoginModel>> askForLogin();
+
   @POST("${Constant.aqaratBackendDev}${EndPoints.getTrainingCourses}")
   Future<HttpResponse<GetAllCoursesResponseModel>> getTrainingCourses(
       @Body() GetAllCoursesRequestModel request);
@@ -336,8 +342,11 @@ abstract class TrainingServiceClient {
       @Body() GetCourseDetailsRequestModel request);
 
   @POST("${Constant.aqaratBackendDev}${EndPoints.getTrainingCourseAttachment}")
-  Future<HttpResponse<GetTrainingCourseAttachmentResponseModel>>getTrainingCourseAttachment(@Body() GetCourseDetailsRequestModel request);
+  Future<HttpResponse<GetTrainingCourseAttachmentResponseModel>>
+      getTrainingCourseAttachment(@Body() GetCourseDetailsRequestModel request);
 
   @POST("${Constant.aqaratBackendDev}${EndPoints.getTrainingCourseSessions}")
-  Future<HttpResponse<GetTrainingCourseSessionsResponseModel>>getTrainingCourseSessions(@Body() GetTrainingCourseSessionsRequestModel request);
+  Future<HttpResponse<GetTrainingCourseSessionsResponseModel>>
+      getTrainingCourseSessions(
+          @Body() GetTrainingCourseSessionsRequestModel request);
 }
