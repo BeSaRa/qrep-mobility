@@ -44,6 +44,11 @@ class ImageAssets {
   static const String upgrade = "${IMAGE_PATH}upgrade.json";
   static const String towers = "${IMAGE_PATH}towers_animation.json";
   static const String click = "${IMAGE_PATH}click.json";
+  //onboarding
+  static const String whiteMessage = "${IMAGE_PATH}white_message.png";
+  static const String blackMessage = "${IMAGE_PATH}black_message.png";
+  static const String realEstateIndicators = "${IMAGE_PATH}real_estate_indicators.json";
+  static const String theAvatarPerson = "${IMAGE_PATH}avatar2.png";
 }
 
 class IconAssets {
@@ -120,4 +125,11 @@ class IconAssets {
   static const String home = "${ICON_PATH}home.png";
   static const String privacyPolicy = "${ICON_PATH}privacy_policy.png";
   static const String about = "${ICON_PATH}about.png";
+  //onBoarding
+  static const String onboardingSearch = "${ICON_PATH}onboarding_search.png";
+  static const String onboardingStudyIdea = "${ICON_PATH}onboarding_study_idea.png";
+  static const String contactWithExperts = "${ICON_PATH}contact_with_experts.png";
+  static const String chooseProject = "${ICON_PATH}choose_project.png";
+  static const String manageRealestate = "${ICON_PATH}manage_realestate.png";
+  static const String ownRealestate = "${ICON_PATH}own_realestate.png";
 }

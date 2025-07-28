@@ -37,10 +37,10 @@ class _MainScaffoldState extends State<MainScaffold>
   late SendFeedbackBloc sendFeedbackBloc;
   final voiceCubit = VoiceCubit();
 
+
   @override
   void initState() {
     super.initState();
-
     // currentPage = context.read<BottomNavCubit>().currentPage;
     _controller = TabController(
       length: 5,
@@ -75,104 +75,113 @@ class _MainScaffoldState extends State<MainScaffold>
         // ));
       }
     });
-    return BlocBuilder(
-      bloc: context.read<BottomNavCubit>(),
-      builder: (context, state) {
-        return Scaffold(
-          drawer: const AqaratDrawer(),
-          appBar: AppBar(
-            surfaceTintColor: Colors.transparent,
-            toolbarHeight: AppSizeH.s80,
-            backgroundColor: Colors.transparent,
-            leading: Builder(builder: (context) {
-              return IconButton(
-                icon: Icon(
-                  Icons.menu,
-                  color: Colors.white,
-                  size: AppSizeR.s30,
-                ),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-              );
-            }),
-            title: SizedBox(
-              height: AppSizeW.s80,
-              width: AppSizeW.s226,
-              child: const Image(
-                image: AssetImage(ImageAssets.ministryOfMunicipalityDark),
-              ),
-            ),
-            actions: [
-              IconButton(
-                icon: Icon(
-                  Icons.search,
-                  color: Colors.white,
-                  size: AppSizeR.s30,
-                ),
-                onPressed: () {
-                  context.pushNamed(RoutesNames.aiSearch, extra: voiceCubit);
-                },
-              )
-            ],
-          ),
-          backgroundColor: Theme.of(context).primaryColor,
-          body: Container(
-              decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(AppSizeR.s20),
-                      topLeft: Radius.circular(AppSizeR.s20))),
-              child: widget.child),
-          bottomNavigationBar: BlocProvider.value(
-            value: chatHistoryCubit,
-            child: AqaratNavigationBar(
-              onTap: (index) async {
-                switch (index) {
-                  case 0:
-                    break;
-                  case 1:
-                    break;
-                  case 2:
-                    await initChatbotModule();
-                    break;
-                  case 3:
-                    break;
-                  case 4:
-                    await initMortgageModule();
-                    await initSellModule();
-                    await initRentModule();
-                    await initHomeModule();
-                  // await initChatbotModule();
-                  // initLoginModule();
-
-                  default:
-                    null;
-                }
-
-                context.read<BottomNavCubit>().changePage(index);
-                if (index == 2) {
-                  context.goNamed(
-                    context.read<BottomNavCubit>().paths[index],
-                    extra: RouteExtras(
-                        voiceCubit: voiceCubit,
-                        chatHistoryCubit: chatHistoryCubit,
-                        dropdownCubit: dropdownCubit,
-                        sendFeedbackBloc: sendFeedbackBloc),
-                  );
-                } else {
-                  context.goNamed(context.read<BottomNavCubit>().paths[index]);
-                }
-              },
-              body: Container(
-                color: Colors.transparent,
-              ),
-              // currentPage: context.watch<BottomNavCubit>().state,
-              controller: _controller,
-            ),
-          ),
-        );
+    return PopScope(
+      //Its important to prevent the app to close when back button pressed
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
       },
+      child: BlocBuilder(
+        bloc: context.read<BottomNavCubit>(),
+        builder: (context, state) {
+          return Scaffold(
+            drawer: const AqaratDrawer(),
+            appBar: AppBar(
+              surfaceTintColor: Colors.transparent,
+              toolbarHeight: AppSizeH.s80,
+              backgroundColor: Colors.transparent,
+              leading: Builder(builder: (context) {
+                return IconButton(
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.white,
+                    size: AppSizeR.s30,
+                  ),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                );
+              }),
+              title: SizedBox(
+                height: AppSizeW.s80,
+                width: AppSizeW.s226,
+                child: const Image(
+                  image: AssetImage(ImageAssets.ministryOfMunicipalityDark),
+                ),
+              ),
+              actions: [
+                IconButton(
+                  icon: Icon(
+                    Icons.search,
+                    color: Colors.white,
+                    size: AppSizeR.s30,
+                  ),
+                  onPressed: () {
+                    context.pushNamed(RoutesNames.aiSearch, extra: voiceCubit);
+                  },
+                )
+              ],
+            ),
+            backgroundColor: Theme.of(context).primaryColor,
+            body: Container(
+                decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(AppSizeR.s20),
+                        topLeft: Radius.circular(AppSizeR.s20))),
+                child: widget.child),
+            bottomNavigationBar: SafeArea(
+              child: BlocProvider.value(
+                value: chatHistoryCubit,
+                child: AqaratNavigationBar(
+                  onTap: (index) async {
+                    switch (index) {
+                      case 0:
+                        break;
+                      case 1:
+                        break;
+                      case 2:
+                        await initChatbotModule();
+                        break;
+                      case 3:
+                        break;
+                      case 4:
+                        await initMortgageModule();
+                        await initSellModule();
+                        await initRentModule();
+                        await initHomeModule();
+                      // await initChatbotModule();
+                      // initLoginModule();
+
+                      default:
+                        null;
+                    }
+
+                    context.read<BottomNavCubit>().changePage(index);
+                    if (index == 2) {
+                      context.goNamed(
+                        context.read<BottomNavCubit>().paths[index],
+                        extra: RouteExtras(
+                            voiceCubit: voiceCubit,
+                            chatHistoryCubit: chatHistoryCubit,
+                            dropdownCubit: dropdownCubit,
+                            sendFeedbackBloc: sendFeedbackBloc),
+                      );
+                    } else {
+                      context
+                          .goNamed(context.read<BottomNavCubit>().paths[index]);
+                    }
+                  },
+                  body: Container(
+                    color: Colors.transparent,
+                  ),
+                  // currentPage: context.watch<BottomNavCubit>().state,
+                  controller: _controller,
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

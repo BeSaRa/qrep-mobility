@@ -23,9 +23,11 @@ import 'package:ebla/presentations/features/more/all_more_web_views/view/authori
 import 'package:ebla/presentations/features/mortagage/blocs/mortgage_bloc.dart';
 import 'package:ebla/presentations/features/mortagage/mortgage_view.dart';
 import 'package:ebla/presentations/features/navigation_pages/indicators_view.dart';
+import 'package:ebla/presentations/features/onBoarding/view/boarding_view.dart';
 import 'package:ebla/presentations/features/real_estate_brokers/real_estate_brokers_view.dart';
 import 'package:ebla/presentations/features/rent/rent_view.dart';
 import 'package:ebla/presentations/features/sell/sell_view.dart';
+import 'package:ebla/presentations/features/services/view/services_view.dart';
 import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
 import 'package:ebla/presentations/features/video_library/video_lib_view.dart';
 import 'package:ebla/presentations/features/xmap/xmap_page.dart';
@@ -47,6 +49,7 @@ import '../features/sell/blocs/sell_bloc/sell_bloc.dart';
 
 class RoutesNames {
   static const String splash = 'splash';
+  static const String onboarding = 'onboarding';
   static const String main = 'main';
   static const String home = 'home';
   static const String rent = 'rent';
@@ -76,6 +79,7 @@ class RoutesNames {
 
 class RoutesPaths {
   static const String splash = '/';
+  static const String onboarding = '/onboarding';
   static const String main = '/main';
   static const String home = '/home';
   static const String rent = '/rent';
@@ -180,7 +184,7 @@ class AppRouter {
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
                   key: state.pageKey,
-                  child: const ComingSoonView(),
+                  child: const ServicesView(),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     return child;
@@ -558,6 +562,14 @@ class AppRouter {
           },
         ),
         GoRoute(
+          name: RoutesNames.onboarding,
+          path: RoutesPaths.onboarding,
+          builder: (context, state) {
+            // List<Path> allPaths = buildAllPaths();
+            return  BoardingView();
+          },
+        ),
+        GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.investorJourney,
           path: '${RoutesPaths.investorJourney}:stepNumber',
@@ -582,15 +594,14 @@ class AppRouter {
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.aiSearch,
           path: RoutesPaths.aiSearch,
-          builder: (context, state) => MultiBlocProvider(
-            providers: [
-              BlocProvider<AiSearchBloc>(
-              create: (context) => instance<AiSearchBloc>(),),
-               BlocProvider<VoiceCubit>.value(
-                        value: state.extra as VoiceCubit,
-                      ),
-            ],
-              child: const AiSearchView()),
+          builder: (context, state) => MultiBlocProvider(providers: [
+            BlocProvider<AiSearchBloc>(
+              create: (context) => instance<AiSearchBloc>(),
+            ),
+            BlocProvider<VoiceCubit>.value(
+              value: state.extra as VoiceCubit,
+            ),
+          ], child: const AiSearchView()),
         ),
         //-------------- Chatbot ----------------
 

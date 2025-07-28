@@ -241,6 +241,9 @@
   "avatar_session_expired": "The session has expired.",
   "hold_record_message": "Hold to speak, release to send",
   "click_anywhere_message": "Tap anywhere on the screen to begin interacting with the avatar",
+  "ai_avatar": "AI Avatar",
+
+  
   "-----------AI SEARCH----------": "--------------------------",
   "ai_search": "AI Search",
   "search_here": "Search Here...",
@@ -250,5 +253,21 @@
   "Empower_ideas_and_unleash_intelligence": "Empower ideas and unleash intelligence!",
   "see_on_google_map": "See on Google Map",
   "no_result_founded": "No results found",
-  "All_Categories": "All Categories"
+  "All_Categories": "All Categories",
+  
+  "-----------ONBOARDING----------": "--------------------------",
+  "search_the_website":"Search the website",
+  "real_estate_indicators":"Real Estate Indicators",
+  "investor_journey_subtitle":"Through accurate and reliable information available on the Authority's website",
+  "onboarding_own_project":"",
+  "onboarding_choose_project":"Providing information on licensed real estate projects in the country on the Authority’s website",
+  "onboarding_contact_with_experts":"Through a list of licensed real estate experts registered on the Authority's website",
+  "onboarding_manage_realestate":"Providing a list of licensed companies operating in the field of real estate management on the Authority’s website",
+  "skip":"Skip",
+  "get_started":"GET STARTED",
+  "own_your_real_estate":"Own your real estate",
+  "onBoarding_xmap_subtitle":"Chat with AI to find the required location",
+  "onBoarding_inddecators_subtitle":"We have KPIs updates for sell, rent and mortgage stats"
+
+
 }
