@@ -84,7 +84,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 title: 'Real State Qatar',
                 themeMode: theme.isDarkTheme ? ThemeMode.dark : ThemeMode.light,
                 theme: theme,
-                routerConfig: AppRouter.router,
+                //zak
+                // routerConfig: AppRouter.router,
+                routerDelegate: AppRouter.router.routerDelegate,
+                routeInformationParser: AppRouter.router.routeInformationParser,
+                routeInformationProvider:
+                    AppRouter.router.routeInformationProvider,
+                backButtonDispatcher: RootBackButtonDispatcher(), // ✅ allows WillPopScope to work
               ),
             ),
           ),

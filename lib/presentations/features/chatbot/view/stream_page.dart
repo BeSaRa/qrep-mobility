@@ -23,7 +23,7 @@ class StreamPage extends StatefulWidget {
   final ValueNotifier<bool> isStreamFullReady;
   final ValueNotifier<bool> isAvatarExpanded;
   //This for Stop speak button
- final ValueNotifier<bool> isAvatarSpeaking;
+  final ValueNotifier<bool> isAvatarSpeaking;
   const StreamPage({
     Key? key,
     required this.isStreamFullReady,
@@ -249,7 +249,32 @@ class _StreamPageState extends State<StreamPage> {
         @font-face {
         font-family: 'Lusail';
         src: url($lusailFontBase64Url) format('truetype');
-      }   
+      }
+       /* Main container with red background and rounded top corners */
+    #mainContainer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #8A1538;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      overflow: hidden;
+    }
+    
+    /* Inner content container */
+    #contentContainer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom right, #DADADA, #C6C5C3);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      overflow: hidden;
+    }   
     #loadingContainer {
       position: absolute;
       top: 0;
@@ -276,7 +301,7 @@ class _StreamPageState extends State<StreamPage> {
       font-family: 'Lusail', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #000;
+      background-color: #8A1538;
       overflow: hidden;
       touch-action: manipulation;
       -webkit-touch-callout: none;
@@ -364,9 +389,11 @@ class _StreamPageState extends State<StreamPage> {
   </style>
 </head>
 <body>
-  <div id="loadingContainer">
-    <canvas id="canvas"></canvas>
-  </div>
+ <div id="mainContainer">
+    <div id="contentContainer">
+      <div id="loadingContainer">
+        <canvas id="canvas"></canvas>
+      </div>
   <video id="remoteVideo" autoplay playsinline muted></video>
   <button id="unmuteButton">
     <svg class="icon" id="muteIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-mute-fill" viewBox="0 0 16 16">
@@ -394,7 +421,8 @@ class _StreamPageState extends State<StreamPage> {
         <p>${AppStrings().clickAnywhereMessage}</p>
     </div>
   </div>
-  
+</div>
+</div>
   <script>
     // Silhouette animation code
     $silhouetteJs

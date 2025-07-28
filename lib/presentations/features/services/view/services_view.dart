@@ -10,29 +10,35 @@ class ServicesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
-      body: Container(
-        decoration: BoxDecoration(
-            color: Theme.of(context).brightness == Brightness.dark
-                ? Theme.of(context).scaffoldBackgroundColor
-                : Theme.of(context).canvasColor,
-            borderRadius:
-                BorderRadius.vertical(top: Radius.circular(AppSizeR.s20))),
-        width: MediaQuery.sizeOf(context).width,
-        height: MediaQuery.sizeOf(context).height,
-        child: Padding(
-          padding: EdgeInsets.all(AppSizeH.s20),
-          child: Column(
-            spacing: AppSizeH.s15,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // 1. Title
-              Text(
-                AppStrings().services,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Theme.of(context).textTheme.bodySmall?.color),
-              ),
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        context.read<BottomNavCubit>().changePage(0);
+        context.goNamed(context.read<BottomNavCubit>().paths[0]);
+      },
+      child: Scaffold(
+        backgroundColor: Theme.of(context).primaryColor,
+        body: Container(
+          decoration: BoxDecoration(
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Theme.of(context).scaffoldBackgroundColor
+                  : Theme.of(context).canvasColor,
+              borderRadius:
+                  BorderRadius.vertical(top: Radius.circular(AppSizeR.s20))),
+          width: MediaQuery.sizeOf(context).width,
+          height: MediaQuery.sizeOf(context).height,
+          child: Padding(
+            padding: EdgeInsets.all(AppSizeH.s20),
+            child: Column(
+              spacing: AppSizeH.s15,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // 1. Title
+                Text(
+                  AppStrings().services,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: Theme.of(context).textTheme.bodySmall?.color),
+                ),
 
               // 2. Search Field
               ReraTextFaild(
@@ -107,9 +113,10 @@ class ServicesView extends StatelessWidget {
               // 3. Horizontal Selectable List
               const SelectableHorizontalList(),
 
-              // 4. Bordered Container with Shadow
-              const GreyShadowContainer(text: "Searched data"),
-            ],
+                // 4. Bordered Container with Shadow
+                const GreyShadowContainer(text: "Searched data"),
+              ],
+            ),
           ),
         ),
       ),

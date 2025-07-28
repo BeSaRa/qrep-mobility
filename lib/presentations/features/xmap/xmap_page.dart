@@ -1,6 +1,9 @@
 import 'package:ebla/app/app_preferences.dart';
+import 'package:ebla/presentations/features/main/cubit/bottom_nav_cubit.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:webview_flutter_plus/webview_flutter_plus.dart';
 import 'package:webview_flutter/webview_flutter.dart' as base_webview;
 
@@ -86,11 +89,18 @@ class _XMapViewState extends State<XMapView> {
 
   @override
   Widget build(BuildContext context) {
-    return _isWebViewReady
-        ? SizedBox(
-            height: _height,
-            child: WebViewWidget(controller: _controller!),
-          )
-        : const Center(child: CircularProgressIndicator());
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        context.read<BottomNavCubit>().changePage(0);
+        context.goNamed(context.read<BottomNavCubit>().paths[0]);
+      },
+      child: _isWebViewReady
+          ? SizedBox(
+              height: _height,
+              child: WebViewWidget(controller: _controller!),
+            )
+          : const Center(child: CircularProgressIndicator()),
+    );
   }
 }
