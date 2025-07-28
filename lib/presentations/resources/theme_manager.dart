@@ -237,7 +237,7 @@ ThemeData darkTheme() {
       brightness: Brightness.dark,
       drawerTheme: DrawerThemeData(backgroundColor: ColorManager.greyBg),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: ColorManager.blackBG,
+          backgroundColor: ColorManager.textBlack,
           selectedIconTheme: IconThemeData(color: ColorManager.white),
           unselectedIconTheme: IconThemeData(color: ColorManager.white),
           selectedLabelStyle: TextStyle(

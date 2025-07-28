@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/constants.dart';
@@ -96,7 +97,10 @@ class AllMoreWebViews extends StatelessWidget {
                   message: state.message,
                   onPressed: () {
                     if (pageName == "realEstateCalendar" &&
-                        bloc.state.urlHistory.length != 1) {
+                        ((bloc.state.urlHistory.length != 1 &&
+                                Platform.isAndroid) ||
+                            bloc.state.urlHistory.length == 1 &&
+                                Platform.isIOS)) {
                       bloc.add(WebViewNavigationRequested(
                           bloc.state.urlHistory.last));
                     } else {
@@ -150,7 +154,8 @@ class AllMoreWebViews extends StatelessWidget {
             onTap: () {
               log("zak ${bloc.state.urlHistory.length}");
               if (pageName == "realEstateCalendar" &&
-                  bloc.state.urlHistory.length != 1) {
+                  ((bloc.state.urlHistory.length != 1 && Platform.isAndroid) ||
+                      bloc.state.urlHistory.length == 1 && Platform.isIOS)) {
                 bloc.add(PopWebView());
               } else {
                 Navigator.maybePop(context);
@@ -169,7 +174,10 @@ class AllMoreWebViews extends StatelessWidget {
                 SizedBox(width: AppSizeW.s5),
                 Text(
                   (pageName == "realEstateCalendar" &&
-                          bloc.state.urlHistory.length != 1)
+                          ((bloc.state.urlHistory.length != 1 &&
+                                  Platform.isAndroid) ||
+                              bloc.state.urlHistory.length == 1 &&
+                                  Platform.isIOS))
                       ? AppStrings().back
                       : AppStrings().main,
                   // aiSearchUrl != null ? AppStrings().back : AppStrings().main,
