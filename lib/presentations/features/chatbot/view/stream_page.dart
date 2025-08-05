@@ -19,12 +19,12 @@ import 'package:ebla/presentations/resources/resources.dart';
 import '../blocs/stream_id_cubit.dart/stream_id_cubit.dart';
 
 // ignore: must_be_immutable
-class StreamPage extends StatefulWidget {
+class StreamView extends StatefulWidget {
   final ValueNotifier<bool> isStreamFullReady;
   final ValueNotifier<bool> isAvatarExpanded;
   //This for Stop speak button
   final ValueNotifier<bool> isAvatarSpeaking;
-  const StreamPage({
+  const StreamView({
     Key? key,
     required this.isStreamFullReady,
     required this.isAvatarExpanded,
@@ -32,10 +32,10 @@ class StreamPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<StreamPage> createState() => _StreamPageState();
+  State<StreamView> createState() => _StreamViewState();
 }
 
-class _StreamPageState extends State<StreamPage> {
+class _StreamViewState extends State<StreamView> {
   // final ValueNotifier<bool> _isAvatarSpeaking = ValueNotifier(false);
   Timer? _speakingTimer;
   late final WebViewController _controller;
@@ -150,53 +150,51 @@ class _StreamPageState extends State<StreamPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          BlocListener<CloseStreamBloc, CloseStreamState>(
-            listener: (context, state) {
-              state.maybeMap(
-                loading: (value) {},
-                orElse: () {
-                  widget.isStreamFullReady.value = false;
-                },
-              );
-            },
-            child: const SizedBox.shrink(),
-          ),
-          BlocConsumer<StreamBloc, StreamState>(
-            listener: (context, state) {
-              if (state is StreamError) {
-                _controller.clearCache();
-              }
-            },
-            builder: (context, state) {
-              if (state is StreamLoading) {
-                return _buildWebView(null, null, isLoading: true);
-              } else if (state is StreamStarted) {
-                _webRtcId = state.webRtcData.data?.id ?? '';
-                BlocProvider.of<StreamIdCubit>(context)
-                    .setStreamId(state.webRtcData.data?.id ?? "");
-                final offerModel = state.webRtcData.data?.webrtcData?.offer;
-                final iceServers =
-                    state.webRtcData.data?.webrtcData?.iceServers ?? [];
+    return Stack(
+      children: [
+        BlocListener<CloseStreamBloc, CloseStreamState>(
+          listener: (context, state) {
+            state.maybeMap(
+              loading: (value) {},
+              orElse: () {
+                widget.isStreamFullReady.value = false;
+              },
+            );
+          },
+          child: const SizedBox.shrink(),
+        ),
+        BlocConsumer<StreamBloc, StreamState>(
+          listener: (context, state) {
+            if (state is StreamError) {
+              _controller.clearCache();
+            }
+          },
+          builder: (context, state) {
+            if (state is StreamLoading) {
+              return _buildWebView(null, null, isLoading: true);
+            } else if (state is StreamStarted) {
+              _webRtcId = state.webRtcData.data?.id ?? '';
+              BlocProvider.of<StreamIdCubit>(context)
+                  .setStreamId(state.webRtcData.data?.id ?? "");
+              final offerModel = state.webRtcData.data?.webrtcData?.offer;
+              final iceServers =
+                  state.webRtcData.data?.webrtcData?.iceServers ?? [];
 
-                RTCSessionDescription? rtcOffer;
-                if (offerModel != null) {
-                  rtcOffer = RTCSessionDescription(
-                    offerModel.sdp,
-                    offerModel.type,
-                  );
-                }
-
-                return _buildWebView(rtcOffer, iceServers, isLoading: false);
-              } else {
-                return const SizedBox.shrink();
+              RTCSessionDescription? rtcOffer;
+              if (offerModel != null) {
+                rtcOffer = RTCSessionDescription(
+                  offerModel.sdp,
+                  offerModel.type,
+                );
               }
-            },
-          ),
-        ],
-      ),
+
+              return _buildWebView(rtcOffer, iceServers, isLoading: false);
+            } else {
+              return const SizedBox.shrink();
+            }
+          },
+        ),
+      ],
     );
   }
 
@@ -257,7 +255,7 @@ class _StreamPageState extends State<StreamPage> {
       left: 0;
       width: 100%;
       height: 100%;
-      background: #8A1538;
+      background:${Theme.of(context).isDarkTheme ? "#8A1538" : "#EEE8E2"};
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       overflow: hidden;
@@ -301,7 +299,7 @@ class _StreamPageState extends State<StreamPage> {
       font-family: 'Lusail', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #8A1538;
+      background-color: ${Theme.of(context).isDarkTheme ? "#8A1538" : "#EEE8E2"};
       overflow: hidden;
       touch-action: manipulation;
       -webkit-touch-callout: none;

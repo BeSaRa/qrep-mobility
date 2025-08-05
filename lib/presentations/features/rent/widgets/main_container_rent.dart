@@ -55,16 +55,16 @@ class MainRentDataContainer extends StatelessWidget {
             padding: EdgeInsets.symmetric(
                 vertical: AppSizeH.s5, horizontal: AppSizeW.s10),
             decoration: BoxDecoration(
-                color: ColorManager.golden,
+                // color: ColorManager.golden,
+                color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(AppSizeR.s10),
                     bottomRight: Radius.circular(AppSizeR.s10))),
             child: Text(
               '${AppStrings().rentContractHistory}:$history',
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall
-                  ?.copyWith(fontWeight: FontWeight.w600),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.primary),
             ),
           ),
           Padding(
@@ -79,7 +79,13 @@ class MainRentDataContainer extends StatelessWidget {
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     Text(totalPrice,
-                        style: Theme.of(context).textTheme.titleMedium),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium
+                            ?.copyWith(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .secondaryFixed)),
                   ],
                 ),
                 Row(
@@ -109,7 +115,8 @@ class MainRentDataContainer extends StatelessWidget {
                     Text(
                       descripton ?? "",
                       textDirection: TextDirection.ltr,
-                      style: Theme.of(context).textTheme.titleSmall,
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.secondaryFixed),
                     ),
                     Text(
                       "${AppStrings().contractType}: $contract",
@@ -132,7 +139,7 @@ class MainRentDataContainer extends StatelessWidget {
                 if (hasRooms)
                   Container(
                     decoration: BoxDecoration(
-                        // color: Theme.of(context).colorScheme.,
+                        color: Theme.of(context).colorScheme.secondary,
                         borderRadius: BorderRadiusDirectional.only(
                             topStart: Radius.circular(AppSizeR.s5),
                             bottomStart: Radius.circular(AppSizeR.s5))),
@@ -142,7 +149,14 @@ class MainRentDataContainer extends StatelessWidget {
                       children: [
                         Text(
                           titleInfo,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .secondaryFixed,
+                                  fontWeight: FontWeight.w600),
                         ),
                         SizedBox(
                           width: AppSizeW.s2,
@@ -154,7 +168,10 @@ class MainRentDataContainer extends StatelessWidget {
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(fontSize: AppSizeSp.s10)
-                              : Theme.of(context).textTheme.bodyMedium,
+                              : Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .secondaryFixed),
                         ),
                       ],
                     ),

@@ -37,8 +37,9 @@ class _NewsWidgetState extends State<NewsWidget> {
               Column(
                 children: [
                   Text(
-                    AppStrings().news,
+                    AppStrings().lastNews,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.onSurface,
                           fontWeight: FontWeight.w800,
                         ),
                   ),

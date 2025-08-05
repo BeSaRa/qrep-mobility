@@ -140,6 +140,9 @@ class _RentViewState extends State<RentView> {
           loadingLookup: (value) => const AnimatedPulesLogo(),
           loadedLookup: (value) {
             return Scaffold(
+              backgroundColor: Theme.of(context).isDarkTheme
+                  ? Theme.of(context).scaffoldBackgroundColor
+                  : Theme.of(context).canvasColor,
               appBar: AppBar(
                 surfaceTintColor: Colors.transparent,
                 toolbarHeight: AppSizeH.s50,
@@ -291,7 +294,10 @@ class _RentViewState extends State<RentView> {
                                               ),
                                               loadingLookup: (value) => Icon(
                                                 Icons.filter_list_sharp,
-                                                color: ColorManager.golden,
+                                                color: Theme.of(context)
+                                                        .colorScheme
+                                                        .secondaryFixed,
+                                                // color: ColorManager.golden,
                                               ),
                                               loadedLookup: (value) {
                                                 return IconButton(
@@ -344,8 +350,10 @@ class _RentViewState extends State<RentView> {
                                                     icon: Icon(
                                                       size: AppSizeW.s32,
                                                       Icons.filter_list_sharp,
-                                                      color:
-                                                          ColorManager.golden,
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .secondaryFixed,
+                                                      // ColorManager.golden,
                                                     ));
                                               },
                                             );
@@ -382,8 +390,13 @@ class _RentViewState extends State<RentView> {
                                   child: Text(
                                     AppStrings.currentPerformanceSummary
                                         .tr(args: [AppStrings().rental]),
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge
+                                        ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondaryFixed),
                                   ),
                                 ),
                                 BlocBuilder(
@@ -489,8 +502,13 @@ class _RentViewState extends State<RentView> {
                                 Center(
                                   child: Text(
                                     AppStrings().rentTopTen,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge
+                                        ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondaryFixed),
                                   ),
                                 ),
                                 BlocBuilder(
@@ -573,8 +591,13 @@ class _RentViewState extends State<RentView> {
                                 Center(
                                   child: Text(
                                     AppStrings().rentContractList,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge
+                                        ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondaryFixed),
                                   ),
                                 ),
                                 BlocBuilder(

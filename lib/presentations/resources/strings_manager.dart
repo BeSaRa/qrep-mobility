@@ -110,6 +110,7 @@ class AppStrings {
 
   //home
   String news = "news".tr();
+  String lastNews = "last_news".tr();
   String newsDetails = "news_details".tr();
   String relatedNews = "related_news".tr();
   String mortgageIndicators = "mortgage_indicators".tr();

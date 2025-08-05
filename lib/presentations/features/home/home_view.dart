@@ -75,6 +75,7 @@ class _HomeViewState extends State<HomeView>
       return false;
     }
   }
+
 //NOTE: Don't Delete this didChangeDependencies
   @override
   void didChangeDependencies() {
@@ -243,20 +244,24 @@ class _HomeViewState extends State<HomeView>
                     padding: EdgeInsets.symmetric(
                         vertical: AppSizeH.s12, horizontal: AppSizeW.s12),
                     decoration: BoxDecoration(
-                        color: Theme.of(context).cardTheme.color,
-                        borderRadius: BorderRadius.circular(AppSizeR.s14),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Theme.of(context).shadowColor,
-                              offset: const Offset(1, 1),
-                              blurRadius: AppSizeW.s2,
-                              spreadRadius: AppSizeW.s1),
-                          BoxShadow(
-                              color: Theme.of(context).shadowColor,
-                              offset: const Offset(-1, -1),
-                              blurRadius: AppSizeW.s2,
-                              spreadRadius: AppSizeW.s1),
-                        ]),
+                      color: !Theme.of(context).isDarkTheme
+                          ? ColorManager.newViewHeaderColor
+                          : Theme.of(context).cardTheme.color,
+                      // color: Theme.of(context).cardTheme.color,
+                      borderRadius: BorderRadius.circular(AppSizeR.s10),
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //       color: Theme.of(context).shadowColor,
+                      //       offset: const Offset(1, 1),
+                      //       blurRadius: AppSizeW.s2,
+                      //       spreadRadius: AppSizeW.s1),
+                      //   BoxShadow(
+                      //       color: Theme.of(context).shadowColor,
+                      //       offset: const Offset(-1, -1),
+                      //       blurRadius: AppSizeW.s2,
+                      //       spreadRadius: AppSizeW.s1),
+                      // ]
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -270,17 +275,26 @@ class _HomeViewState extends State<HomeView>
                                       .titleLarge
                                       ?.copyWith(
                                           color: Theme.of(context)
-                                              .colorScheme
-                                              .surfaceTint)),
+                                              .textTheme
+                                              .titleLarge
+                                              ?.color
+                                          // Theme.of(context)
+                                          //     .colorScheme
+                                          //     .surfaceTint
+                                          )),
                               Text(
                                 AppStrings().sellTotalTransactions,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodySmall
                                     ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .scrim),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondaryFixed,
+                                      // color: Theme.of(context)
+                                      //     .colorScheme
+                                      //     .scrim
+                                    ),
                               ),
                               Text(
                                 AppStrings().forFirstThreeQuarters,
@@ -292,8 +306,12 @@ class _HomeViewState extends State<HomeView>
                                             .colorScheme
                                             .surfaceDim),
                               ),
-                              SizedBox(
+                              // SizedBox(
+                              //   height: AppSizeH.s25,
+                              // ),
+                              Divider(
                                 height: AppSizeH.s25,
+                                color: Theme.of(context).canvasColor,
                               ),
                               Text("64,955",
                                   style: Theme.of(context)
@@ -301,17 +319,26 @@ class _HomeViewState extends State<HomeView>
                                       .titleLarge
                                       ?.copyWith(
                                           color: Theme.of(context)
-                                              .colorScheme
-                                              .surfaceTint)),
+                                              .textTheme
+                                              .titleLarge
+                                              ?.color
+                                          // color: Theme.of(context)
+                                          //     .colorScheme
+                                          //     .surfaceTint
+                                          )),
                               Text(
                                 AppStrings().totalNumberForRent,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodySmall
                                     ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .scrim),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondaryFixed,
+                                      // color: Theme.of(context)
+                                      //     .colorScheme
+                                      //     .scrim
+                                    ),
                               ),
                               Text(
                                 AppStrings().forFirstThreeQuarters,
@@ -326,6 +353,13 @@ class _HomeViewState extends State<HomeView>
                             ],
                           ),
                         ),
+                        Container(
+                          margin:
+                              EdgeInsets.symmetric(horizontal: AppSizeH.s10),
+                          width: AppSizeW.s1,
+                          height: AppSizeH.s150,
+                          color: Theme.of(context).canvasColor,
+                        ),
                         Flexible(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -338,13 +372,23 @@ class _HomeViewState extends State<HomeView>
                                           .titleLarge
                                           ?.copyWith(
                                               color: Theme.of(context)
-                                                  .colorScheme
-                                                  .surfaceTint)),
+                                                  .textTheme
+                                                  .titleLarge
+                                                  ?.color
+                                              // color: Theme.of(context)
+                                              //     .colorScheme
+                                              //     .surfaceTint
+                                              )),
                                   Text(
                                       "${Localizations.localeOf(context) == ARABIC_LOCAL ? "مليار" : "Billion"} ${AppStrings().currency} ",
                                       style: Theme.of(context)
                                           .textTheme
-                                          .titleSmall),
+                                          .titleSmall
+                                          ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .textTheme
+                                                  .titleLarge
+                                                  ?.color)),
                                 ],
                               ),
                               Text(
@@ -353,9 +397,13 @@ class _HomeViewState extends State<HomeView>
                                     .textTheme
                                     .bodySmall
                                     ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .scrim),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondaryFixed,
+                                      // color: Theme.of(context)
+                                      //     .colorScheme
+                                      //     .scrim
+                                    ),
                               ),
                               Text(
                                 AppStrings().forFirstThreeQuarters,
@@ -367,8 +415,12 @@ class _HomeViewState extends State<HomeView>
                                             .colorScheme
                                             .surfaceDim),
                               ),
-                              SizedBox(
+                              // SizedBox(
+                              //   height: AppSizeH.s25,
+                              // ),
+                              Divider(
                                 height: AppSizeH.s25,
+                                color: Theme.of(context).canvasColor,
                               ),
                               Row(
                                 children: [
@@ -378,13 +430,23 @@ class _HomeViewState extends State<HomeView>
                                           .titleLarge
                                           ?.copyWith(
                                               color: Theme.of(context)
-                                                  .colorScheme
-                                                  .surfaceTint)),
+                                                  .textTheme
+                                                  .titleLarge
+                                                  ?.color
+                                              // color: Theme.of(context)
+                                              //     .colorScheme
+                                              //     .surfaceTint
+                                              )),
                                   Text(
                                       "${Localizations.localeOf(context) == ARABIC_LOCAL ? "مليون" : "Million"} ${AppStrings().currency} ",
                                       style: Theme.of(context)
                                           .textTheme
-                                          .titleSmall),
+                                          .titleSmall
+                                          ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .textTheme
+                                                  .titleLarge
+                                                  ?.color)),
                                 ],
                               ),
                               Text(
@@ -393,9 +455,13 @@ class _HomeViewState extends State<HomeView>
                                     .textTheme
                                     .bodySmall
                                     ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .scrim),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondaryFixed,
+                                      // color: Theme.of(context)
+                                      //     .colorScheme
+                                      //     .scrim
+                                    ),
                               ),
                               Text(
                                 AppStrings().forFirstThreeQuarters,
@@ -515,8 +581,8 @@ class HomeIcons extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(AppSizeR.s12),
             decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Theme.of(context).colorScheme.surface),
+                shape: BoxShape.circle, color: ColorManager.golden),
+            // color: Theme.of(context).colorScheme.surface),
             child: ImageIcon(
               AssetImage(icon),
               color: ColorManager.white,
@@ -525,10 +591,10 @@ class HomeIcons extends StatelessWidget {
           ),
           Text(
             title,
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium
-                ?.copyWith(fontSize: AppSizeSp.s12),
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                color: Theme.of(context).colorScheme.secondaryFixed,
+                fontSize: AppSizeSp.s12,
+                fontWeight: FontWeight.w500),
           )
         ],
       ),

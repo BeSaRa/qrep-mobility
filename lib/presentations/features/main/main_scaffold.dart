@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:developer';
+
 import 'package:ebla/presentations/features/chatbot/blocs/record_cubit/voice_cubit.dart';
 import 'package:ebla/presentations/widgets/aqarat_nav_bar.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +90,9 @@ class _MainScaffoldState extends State<MainScaffold>
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    ColorManager.primary,
+                    Theme.of(context).isDarkTheme
+                        ? ColorManager.primary
+                        : ColorManager.newViewHeaderColor,
                     Theme.of(context).bottomNavigationBarTheme.backgroundColor!
                   ],
                 ),
@@ -103,7 +107,7 @@ class _MainScaffoldState extends State<MainScaffold>
                     return IconButton(
                       icon: Icon(
                         Icons.menu,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.primary,
                         size: AppSizeR.s30,
                       ),
                       onPressed: () {
@@ -114,22 +118,47 @@ class _MainScaffoldState extends State<MainScaffold>
                   title: SizedBox(
                     height: AppSizeW.s80,
                     width: AppSizeW.s226,
-                    child: const Image(
-                      image: AssetImage(ImageAssets.ministryOfMunicipalityDark),
+                    child: Image(
+                      image: AssetImage(Theme.of(context).isDarkTheme
+                          ? ImageAssets.ministryOfMunicipalityDark
+                          : ImageAssets.ministryOfMunicipalityLight),
                     ),
                   ),
                   actions: [
+                    GestureDetector(
+                      onTap: () {},
+                      child: Stack(
+                        children: [
+                          Icon(
+                            Icons.notifications_none_rounded,
+                            color: Theme.of(context).colorScheme.primary,
+                            size: AppSizeR.s30,
+                          ),
+                          Positioned(
+                            top: AppSizeH.s3,
+                            right: AppSizeW.s4,
+                            child: Container(
+                              width: AppSizeW.s10,
+                              height: AppSizeH.s10,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(1000),
+                                  color: ColorManager.golden),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                     IconButton(
                       icon: Icon(
                         Icons.search,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.primary,
                         size: AppSizeR.s30,
                       ),
                       onPressed: () {
                         context.pushNamed(RoutesNames.aiSearch,
                             extra: voiceCubit);
                       },
-                    )
+                    ),
                   ],
                 ),
                 backgroundColor: Colors.transparent,
