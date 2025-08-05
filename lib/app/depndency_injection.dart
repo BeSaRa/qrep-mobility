@@ -1,8 +1,8 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:ebla/data/network/training_dio_factory.dart';
-import 'package:ebla/data/repository/phase2_repository_implementer.dart';
-import 'package:ebla/domain/repository/phase2_repository.dart';
+import 'package:ebla/data/repository/service_and_training_repository_implementer.dart';
+import 'package:ebla/domain/repository/service_and_training_repository.dart';
 import 'package:ebla/domain/usecases/ai_search/ai_search_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/chat_faq_usecase.dart';
 import 'package:ebla/domain/usecases/chatbot_usecase/chatbot_usecase.dart';
@@ -17,10 +17,12 @@ import 'package:ebla/domain/usecases/favourite_usecases/create_favourite_usecase
 import 'package:ebla/domain/usecases/favourite_usecases/update_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/favourite_usecases/user_favourite_usecase.dart';
 import 'package:ebla/domain/usecases/laws_usecases/laws_usecases.dart';
+import 'package:ebla/domain/usecases/training_usecases/get_all_training_catigories_for_guest_usecase.dart';
 import 'package:ebla/domain/usecases/training_usecases/get_all_training_catigories_usecase.dart';
 import 'package:ebla/domain/usecases/training_usecases/get_all_training_courses_usecase.dart';
 import 'package:ebla/domain/usecases/training_usecases/get_course_attachments_usecase.dart';
 import 'package:ebla/domain/usecases/training_usecases/get_course_details_usecase.dart';
+import 'package:ebla/domain/usecases/training_usecases/get_my_training_courses_usecase.dart';
 import 'package:ebla/domain/usecases/training_usecases/get_training_course_sessions_usecase.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/chat_faq_bloc/chat_faq_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/close_stream/close_stream_bloc.dart';
@@ -34,6 +36,7 @@ import 'package:ebla/presentations/features/favourite/bloc/get_favourite_bloc/ge
 import 'package:ebla/presentations/features/more/ai_search_view/blocs/ai_search_bloc.dart';
 import 'package:ebla/presentations/features/training/bloc/get_all_training_courses_bloc/get_all_training_courses_bloc.dart';
 import 'package:ebla/presentations/features/training/bloc/get_course_details_bloc/get_course_details_bloc.dart';
+import 'package:ebla/presentations/features/training/bloc/get_my_training_courses_bloc/get_my_training_courses_bloc.dart';
 import 'package:ebla/presentations/features/training/bloc/get_training_course_sessions_bloc/get_training_course_sessions_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -98,7 +101,7 @@ Future<void> initAppModule() async {
       translationsServiceClient: instance<CmsServiceClient>(),
       networkInfo: instance<NetworkInfo>()));
 //zak
-  instance.registerLazySingleton<Phase2Repository>(() => Phase2RepositoryImplementer(
+  instance.registerLazySingleton<ServiceAndTrainingRepository>(() => ServiceAndTrainingRepositoryImplementer(
       trainingServiceClient: instance<TrainingServiceClient>(),
       networkInfo: instance<NetworkInfo>()));
 
@@ -341,7 +344,7 @@ Future<void> initHomeModule() async {
   //------------- blocs --------------
   if (!GetIt.I.isRegistered<GetAllTrainingCoursesBloc>()) {
     instance.registerFactory<GetAllTrainingCoursesBloc>(
-        () => GetAllTrainingCoursesBloc(instance(),instance()));
+        () => GetAllTrainingCoursesBloc(instance(),instance(),instance()));
   }
   if (!GetIt.I.isRegistered<GetCourseDetailsBloc>()) {
     instance.registerFactory<GetCourseDetailsBloc>(
@@ -350,6 +353,10 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<GetTrainingCourseSessionsBloc>()) {
     instance.registerFactory<GetTrainingCourseSessionsBloc>(
         () => GetTrainingCourseSessionsBloc(instance()));
+  }
+  if (!GetIt.I.isRegistered<GetMyTrainingCoursesBloc>()) {
+    instance.registerFactory<GetMyTrainingCoursesBloc>(
+        () => GetMyTrainingCoursesBloc(instance()));
   }
 
   //------------- Usecases --------------
@@ -360,6 +367,10 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<GetAllTrainingCatigoriesUsecase >()) {
     instance.registerFactory<GetAllTrainingCatigoriesUsecase >(
         () => GetAllTrainingCatigoriesUsecase (instance()));
+  }
+  if (!GetIt.I.isRegistered<GetAllTrainingCatigoriesForGuestUsecase >()) {
+    instance.registerFactory<GetAllTrainingCatigoriesForGuestUsecase >(
+        () => GetAllTrainingCatigoriesForGuestUsecase (instance()));
   }
   if (!GetIt.I.isRegistered<GetCourseDetailsUsecase>()) {
     instance.registerFactory<GetCourseDetailsUsecase>(
@@ -372,6 +383,10 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<GetTrainingCourseSessionsUsecase>()) {
     instance.registerFactory<GetTrainingCourseSessionsUsecase>(
         () => GetTrainingCourseSessionsUsecase(instance()));
+  }
+  if (!GetIt.I.isRegistered<GetMyTrainingCoursesUsecase>()) {
+    instance.registerFactory<GetMyTrainingCoursesUsecase>(
+        () => GetMyTrainingCoursesUsecase(instance()));
   }
 }
 

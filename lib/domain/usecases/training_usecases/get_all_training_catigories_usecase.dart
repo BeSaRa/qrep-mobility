@@ -1,5 +1,5 @@
 import 'package:ebla/domain/models/training/get_all_categories_response_model/get_all_categories_response_model.dart';
-import 'package:ebla/domain/repository/phase2_repository.dart';
+import 'package:ebla/domain/repository/service_and_training_repository.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 import '../../../data/network/failure_model/failure.dart';
@@ -10,7 +10,7 @@ class GetAllTrainingCatigoriesUsecase
     implements
         BaseUseCase<GetAllCategoriesRequestModel,
             GetAllCategoriesResponseModel> {
-  final Phase2Repository repository;
+  final ServiceAndTrainingRepository repository;
 
   GetAllTrainingCatigoriesUsecase(this.repository);
 

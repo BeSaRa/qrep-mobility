@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/training/bloc/training_filter_cubit/training_filter_cubit.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
+import 'package:ebla/presentations/resources/resources.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../bloc/get_all_training_courses_bloc/get_all_training_courses_bloc.dart';
 
 class TrainingSelectableCatigoriesList extends StatefulWidget {
@@ -48,7 +48,7 @@ class _TrainingSelectableCatigoriesListState
                               itemBuilder: (context, index) {
                                 final isSelected = index == value;
                                 final categoryName = index == 0
-                                    ? "الكل"
+                                    ? AppStrings().all
                                     : value1.categoriesResponse.data!
                                         .categories[index - 1].translations
                                         .firstWhere(

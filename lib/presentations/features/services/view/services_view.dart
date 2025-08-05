@@ -59,7 +59,10 @@ class ServicesView extends StatelessWidget {
                                     ColorManager.golden,
                                     BlendMode.srcIn,
                                   )
-                                : null,
+                                : ColorFilter.mode(
+                                    ColorManager.primary.withValues(alpha: .5),  
+                                    BlendMode.srcIn,
+                                  ),
                         fit: BoxFit.cover,
                       ),
                       boxShadow: [

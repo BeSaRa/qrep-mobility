@@ -16,6 +16,7 @@ import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 class TrainingView extends StatefulWidget {
   const TrainingView({super.key});
@@ -120,7 +121,7 @@ class _TrainingViewContentState extends State<TrainingViewContent> {
               ),
             ),
             Text(
-              'الدورات والامتحانات',
+              AppStrings().coursesAndExams,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
@@ -236,7 +237,7 @@ class _TrainingViewContentState extends State<TrainingViewContent> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            'الدورات والامتحانات',
+                                            AppStrings().coursesAndExams,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleLarge
@@ -249,7 +250,7 @@ class _TrainingViewContentState extends State<TrainingViewContent> {
                                           Row(
                                             children: [
                                               Text(
-                                                "Showing results",
+                                                AppStrings().showingResults,
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodySmall
@@ -269,13 +270,10 @@ class _TrainingViewContentState extends State<TrainingViewContent> {
                                                 decoration: BoxDecoration(
                                                   boxShadow: [
                                                     BoxShadow(
-                                                      offset:
-                                                          const Offset(1, 1),
+                                                      offset:const Offset(1, 1),
                                                       spreadRadius: AppSizeR.s2,
                                                       blurRadius: AppSizeR.s11,
-                                                      color: ColorManager
-                                                          .textBlack
-                                                          .withAlpha(6),
+                                                      color: ColorManager.textBlack.withAlpha(6),
                                                     ),
                                                   ],
                                                   color: Theme.of(context)
@@ -286,27 +284,13 @@ class _TrainingViewContentState extends State<TrainingViewContent> {
                                                           AppSizeR.s10),
                                                 ),
                                                 child: DropdownButton<int>(
-                                                  value: context
-                                                      .read<
-                                                          TrainingFilterCubit>()
-                                                      .state
-                                                      .pageSize,
-                                                  items: [5, 10, 15, 20]
-                                                      .map((value) {
-                                                    return DropdownMenuItem<
-                                                        int>(
+                                                  value: context.read<TrainingFilterCubit>().state.pageSize,
+                                                  items: [5, 10, 15, 20].map((value) {
+                                                    return DropdownMenuItem<int>(
                                                       value: value,
                                                       child: Text(
                                                         value.toString(),
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodySmall
-                                                            ?.copyWith(
-                                                                color: ColorManager
-                                                                    .primaryBlue,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
+                                                        style: Theme.of(context).textTheme.bodySmall?.copyWith(color: ColorManager.primaryBlue,fontWeight:FontWeight.w600),
                                                       ),
                                                     );
                                                   }).toList(),
@@ -316,11 +300,8 @@ class _TrainingViewContentState extends State<TrainingViewContent> {
                                                     filterCubit.updateFilters(isActive: currentFilters.isActive,pageIndex: 1,track:currentFilters.track,isFree:currentFilters.isFree,name: currentFilters.name,categories: currentFilters.categories,pageSize: value ?? 5,);
 
                                                     context.read<GetAllTrainingCoursesBloc>().add(
-                                                          GetAllTrainingCoursesEvent
-                                                              .applyFilters(
-                                                                  filterCubit
-                                                                      .state),
-                                                        );
+                                                          GetAllTrainingCoursesEvent.applyFilters(filterCubit.state),
+                                                    );
                                                   },
                                                   isDense: true,
                                                   underline: const SizedBox(),
@@ -333,7 +314,7 @@ class _TrainingViewContentState extends State<TrainingViewContent> {
                                         ],
                                       ),
                                       SizedBox(height: AppSizeH.s16),
-                                      const TrainingSearchBar(),
+                                      const TrainingSearchBar(isCommingFromMyCourses: false),
                                       SizedBox(height: AppSizeH.s16),
                                       const TrainingFilterChips(),
                                       SizedBox(height: AppSizeH.s5),
@@ -350,9 +331,23 @@ class _TrainingViewContentState extends State<TrainingViewContent> {
                           const SliverFillRemaining(
                             child: Center(child: CircularProgressIndicator()),
                           )
-                        else
-                          // Courses list
-                          SliverList(
+                        else...[
+                            if (courses.isEmpty)
+                            SliverFillRemaining(
+                              child:   
+                                Center(
+                                  child: Column(
+                                  children: [
+                                    SvgPicture.asset(
+                                      IconAssets.emptyData,
+                                    ),
+                                    Text(AppStrings().noCoursesEnrolled)
+                                  ],
+                                ),
+                              ),
+                            )
+                            else
+                            SliverList(
                             delegate: SliverChildBuilderDelegate(
                               (context, index) {
                                 if (index < courses.length) {
@@ -362,6 +357,7 @@ class _TrainingViewContentState extends State<TrainingViewContent> {
                                       vertical: AppSizeH.s8,
                                     ),
                                     child: TrainingCourseCard(
+                                      isCommingFromMyCourses: false,
                                         course: courses[index]),
                                   );
                                 } else if (pager?.hasNextPage == true) {
@@ -377,6 +373,8 @@ class _TrainingViewContentState extends State<TrainingViewContent> {
                                   (pager?.hasNextPage == true ? 1 : 0),
                             ),
                           ),
+                        ],
+                          // Courses list
                       ],
                     ),
                   ),

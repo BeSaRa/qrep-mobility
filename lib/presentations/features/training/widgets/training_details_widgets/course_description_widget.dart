@@ -20,7 +20,6 @@ class CourseDescriptionWidget extends StatelessWidget {
                 orElse: () => course.translations.first,
               )
               .summary,
-          // 'يتم تصميم هذه الدورة للمكاتب العقارية والوسطاء العقاريين لتقديم إرشادات مفصلة حول إدارة العقود الذكية بما في ذلك القواعد المختلفة التي يتم تطبيقها على العقود',
           textAlign: TextAlign.right,
           style: Theme.of(context)
               .textTheme

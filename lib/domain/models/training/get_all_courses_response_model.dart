@@ -48,9 +48,7 @@ class TrainingCourse with _$TrainingCourse {
   const factory TrainingCourse({
     @JsonKey(name: "Id") required int id,
     @JsonKey(name: "Lookup") required Lookup lookup,
-    @JsonKey(name: "Translations")
-    @Default([])
-    List<SummaryTranslation> translations,
+    @JsonKey(name: "Translations")@Default([])List<SummaryTranslation> translations,
     @JsonKey(name: "Categories") @Default([]) List<Category> categories,
     @JsonKey(name: "Interested") @Default(false) bool interested,
     @JsonKey(name: "Fee") @Default(0.0) double fee,
@@ -113,7 +111,7 @@ class Category with _$Category {
     @JsonKey(name: "ShowInHeader") @Default(false) bool showInHeader,
     @JsonKey(name: "IsDefault") @Default(false) bool isDefault,
     @JsonKey(name: "IsAutoSelected") @Default(false) bool isAutoSelected,
-    @JsonKey(name: "Picture") Picture? picture,
+     @Default(null)@JsonKey(name: "Picture") Picture? picture,
   }) = _Category;
 
   factory Category.fromJson(Map<String, dynamic> json) =>
@@ -135,10 +133,10 @@ class CategoryTranslation with _$CategoryTranslation {
 @freezed
 class Picture with _$Picture {
   const factory Picture({
-    @Default(0) int id,
-    @Default('') String mimeType,
-    @Default('') String base64File,
-    @Default('') String fileName,
+     @JsonKey(name: "Id") @Default(0) int id,
+     @JsonKey(name: "MimeType") @Default('') String mimeType,
+     @JsonKey(name: "Base64File") @Default('') String base64File,
+     @JsonKey(name: "FileName") @Default('') String fileName,
   }) = _Picture;
 
   factory Picture.fromJson(Map<String, dynamic> json) =>
@@ -174,11 +172,11 @@ class Provider with _$Provider {
 @freezed
 class Session with _$Session {
   const factory Session({
-    required int id,
-    required String startDate,
-    required String endDate,
-    @Default(0) int status,
-    required KeyValueTranslation statusTranslation,
+    @JsonKey(name: "Id") required int id,
+    @JsonKey(name: "StartDate")required String startDate,
+    @JsonKey(name: "EndDate")required String endDate,
+    @JsonKey(name: "Status")@Default(0) int status,
+    @JsonKey(name: "StatusTranslation")required KeyValueTranslation statusTranslation,
   }) = _Session;
 
   factory Session.fromJson(Map<String, dynamic> json) =>

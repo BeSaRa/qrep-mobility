@@ -29,6 +29,8 @@ import 'package:ebla/presentations/features/rent/rent_view.dart';
 import 'package:ebla/presentations/features/sell/sell_view.dart';
 import 'package:ebla/presentations/features/services/view/services_view.dart';
 import 'package:ebla/presentations/features/splash_screen/splash_view.dart';
+import 'package:ebla/presentations/features/training/training_route_extras.dart';
+import 'package:ebla/presentations/features/training/views/my_training_view.dart';
 import 'package:ebla/presentations/features/training/views/training_booking_view.dart';
 import 'package:ebla/presentations/features/training/views/training_details_view.dart';
 import 'package:ebla/presentations/features/training/views/training_view.dart';
@@ -82,6 +84,7 @@ class RoutesNames {
   static const String training = "training";
   static const String trainingBooking = "training booking";
   static const String trainingDetails = "training Details";
+  static const String myCourses = "my Courses";
 }
 
 class RoutesPaths {
@@ -112,10 +115,10 @@ class RoutesPaths {
   static const String map = '/map';
   static const String comingSoon = '/comingSoon';
   static const String videoLib = '/videoLib';
-  static const String training = '/training'; 
+  static const String training = '/training';
   static const String trainingBooking = "/trainingBooking";
   static const String trainingDetails = "/trainingDetails";
-
+  static const String myCourses = "/myCourses";
 }
 
 class NavigationKeys {
@@ -488,20 +491,27 @@ class AppRouter {
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
           name: RoutesNames.trainingBooking,
           path: RoutesPaths.trainingBooking,
-           builder: (context, state) {
-    final course = state.extra as TrainingCourse;
-    return TrainingBookingView(course: course);
-  },
+          builder: (context, state) {
+            final course = state.extra as TrainingCourse;
+            return TrainingBookingView(course: course);
+          },
         ),
-      GoRoute(
-  parentNavigatorKey: NavigationKeys.rootNavigatorKey,
-  name: RoutesNames.trainingDetails,
-  path: RoutesPaths.trainingDetails,
-  builder: (context, state) {
-    final course = state.extra as TrainingCourse;
-    return TrainingDetailsView(course: course);
-  },
-),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.myCourses,
+          path: RoutesPaths.myCourses,
+          builder: (context, state) => const MyTrainingView(),
+        ),
+        GoRoute(
+          parentNavigatorKey: NavigationKeys.rootNavigatorKey,
+          name: RoutesNames.trainingDetails,
+          path: RoutesPaths.trainingDetails,
+          builder: (context, state) {
+            final TrainingCourse course = (state.extra as TrainingRouteExtras).course;
+            final bool isCommingFromMyCourses= (state.extra as TrainingRouteExtras).isCommingFromMyCourses;
+            return TrainingDetailsView(course: course,isCommingFromMyCourses: isCommingFromMyCourses);
+          },
+        ),
 
         GoRoute(
           parentNavigatorKey: NavigationKeys.rootNavigatorKey,
@@ -601,7 +611,7 @@ class AppRouter {
           path: RoutesPaths.onboarding,
           builder: (context, state) {
             // List<Path> allPaths = buildAllPaths();
-            return  BoardingView();
+            return BoardingView();
           },
         ),
         GoRoute(

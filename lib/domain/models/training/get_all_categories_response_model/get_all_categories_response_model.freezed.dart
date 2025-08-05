@@ -281,7 +281,7 @@ mixin _$CategoryData {
   @JsonKey(name: 'Categories')
   List<Category> get categories => throw _privateConstructorUsedError;
   @JsonKey(name: 'Pager')
-  Pager get pager => throw _privateConstructorUsedError;
+  Pager? get pager => throw _privateConstructorUsedError;
 
   /// Serializes this CategoryData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -301,9 +301,9 @@ abstract class $CategoryDataCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'Categories') List<Category> categories,
-      @JsonKey(name: 'Pager') Pager pager});
+      @JsonKey(name: 'Pager') Pager? pager});
 
-  $PagerCopyWith<$Res> get pager;
+  $PagerCopyWith<$Res>? get pager;
 }
 
 /// @nodoc
@@ -322,17 +322,17 @@ class _$CategoryDataCopyWithImpl<$Res, $Val extends CategoryData>
   @override
   $Res call({
     Object? categories = null,
-    Object? pager = null,
+    Object? pager = freezed,
   }) {
     return _then(_value.copyWith(
       categories: null == categories
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<Category>,
-      pager: null == pager
+      pager: freezed == pager
           ? _value.pager
           : pager // ignore: cast_nullable_to_non_nullable
-              as Pager,
+              as Pager?,
     ) as $Val);
   }
 
@@ -340,8 +340,12 @@ class _$CategoryDataCopyWithImpl<$Res, $Val extends CategoryData>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $PagerCopyWith<$Res> get pager {
-    return $PagerCopyWith<$Res>(_value.pager, (value) {
+  $PagerCopyWith<$Res>? get pager {
+    if (_value.pager == null) {
+      return null;
+    }
+
+    return $PagerCopyWith<$Res>(_value.pager!, (value) {
       return _then(_value.copyWith(pager: value) as $Val);
     });
   }
@@ -357,10 +361,10 @@ abstract class _$$CategoryDataImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'Categories') List<Category> categories,
-      @JsonKey(name: 'Pager') Pager pager});
+      @JsonKey(name: 'Pager') Pager? pager});
 
   @override
-  $PagerCopyWith<$Res> get pager;
+  $PagerCopyWith<$Res>? get pager;
 }
 
 /// @nodoc
@@ -377,17 +381,17 @@ class __$$CategoryDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? categories = null,
-    Object? pager = null,
+    Object? pager = freezed,
   }) {
     return _then(_$CategoryDataImpl(
       categories: null == categories
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<Category>,
-      pager: null == pager
+      pager: freezed == pager
           ? _value.pager
           : pager // ignore: cast_nullable_to_non_nullable
-              as Pager,
+              as Pager?,
     ));
   }
 }
@@ -397,7 +401,7 @@ class __$$CategoryDataImplCopyWithImpl<$Res>
 class _$CategoryDataImpl implements _CategoryData {
   const _$CategoryDataImpl(
       {@JsonKey(name: 'Categories') final List<Category> categories = const [],
-      @JsonKey(name: 'Pager') required this.pager})
+      @JsonKey(name: 'Pager') this.pager = null})
       : _categories = categories;
 
   factory _$CategoryDataImpl.fromJson(Map<String, dynamic> json) =>
@@ -414,7 +418,7 @@ class _$CategoryDataImpl implements _CategoryData {
 
   @override
   @JsonKey(name: 'Pager')
-  final Pager pager;
+  final Pager? pager;
 
   @override
   String toString() {
@@ -455,7 +459,7 @@ class _$CategoryDataImpl implements _CategoryData {
 abstract class _CategoryData implements CategoryData {
   const factory _CategoryData(
       {@JsonKey(name: 'Categories') final List<Category> categories,
-      @JsonKey(name: 'Pager') required final Pager pager}) = _$CategoryDataImpl;
+      @JsonKey(name: 'Pager') final Pager? pager}) = _$CategoryDataImpl;
 
   factory _CategoryData.fromJson(Map<String, dynamic> json) =
       _$CategoryDataImpl.fromJson;
@@ -465,7 +469,7 @@ abstract class _CategoryData implements CategoryData {
   List<Category> get categories;
   @override
   @JsonKey(name: 'Pager')
-  Pager get pager;
+  Pager? get pager;
 
   /// Create a copy of CategoryData
   /// with the given fields replaced by the non-null parameter values.
@@ -687,9 +691,13 @@ Picture _$PictureFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Picture {
+  @JsonKey(name: "Id")
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: "MimeType")
   String get mimeType => throw _privateConstructorUsedError;
+  @JsonKey(name: "Base64File")
   String get base64File => throw _privateConstructorUsedError;
+  @JsonKey(name: "FileName")
   String get fileName => throw _privateConstructorUsedError;
 
   /// Serializes this Picture to a JSON map.
@@ -706,7 +714,11 @@ abstract class $PictureCopyWith<$Res> {
   factory $PictureCopyWith(Picture value, $Res Function(Picture) then) =
       _$PictureCopyWithImpl<$Res, Picture>;
   @useResult
-  $Res call({int id, String mimeType, String base64File, String fileName});
+  $Res call(
+      {@JsonKey(name: "Id") int id,
+      @JsonKey(name: "MimeType") String mimeType,
+      @JsonKey(name: "Base64File") String base64File,
+      @JsonKey(name: "FileName") String fileName});
 }
 
 /// @nodoc
@@ -757,7 +769,11 @@ abstract class _$$PictureImplCopyWith<$Res> implements $PictureCopyWith<$Res> {
       __$$PictureImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String mimeType, String base64File, String fileName});
+  $Res call(
+      {@JsonKey(name: "Id") int id,
+      @JsonKey(name: "MimeType") String mimeType,
+      @JsonKey(name: "Base64File") String base64File,
+      @JsonKey(name: "FileName") String fileName});
 }
 
 /// @nodoc
@@ -803,25 +819,25 @@ class __$$PictureImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PictureImpl implements _Picture {
   const _$PictureImpl(
-      {this.id = 0,
-      this.mimeType = '',
-      this.base64File = '',
-      this.fileName = ''});
+      {@JsonKey(name: "Id") this.id = 0,
+      @JsonKey(name: "MimeType") this.mimeType = '',
+      @JsonKey(name: "Base64File") this.base64File = '',
+      @JsonKey(name: "FileName") this.fileName = ''});
 
   factory _$PictureImpl.fromJson(Map<String, dynamic> json) =>
       _$$PictureImplFromJson(json);
 
   @override
-  @JsonKey()
+  @JsonKey(name: "Id")
   final int id;
   @override
-  @JsonKey()
+  @JsonKey(name: "MimeType")
   final String mimeType;
   @override
-  @JsonKey()
+  @JsonKey(name: "Base64File")
   final String base64File;
   @override
-  @JsonKey()
+  @JsonKey(name: "FileName")
   final String fileName;
 
   @override
@@ -866,20 +882,24 @@ class _$PictureImpl implements _Picture {
 
 abstract class _Picture implements Picture {
   const factory _Picture(
-      {final int id,
-      final String mimeType,
-      final String base64File,
-      final String fileName}) = _$PictureImpl;
+      {@JsonKey(name: "Id") final int id,
+      @JsonKey(name: "MimeType") final String mimeType,
+      @JsonKey(name: "Base64File") final String base64File,
+      @JsonKey(name: "FileName") final String fileName}) = _$PictureImpl;
 
   factory _Picture.fromJson(Map<String, dynamic> json) = _$PictureImpl.fromJson;
 
   @override
+  @JsonKey(name: "Id")
   int get id;
   @override
+  @JsonKey(name: "MimeType")
   String get mimeType;
   @override
+  @JsonKey(name: "Base64File")
   String get base64File;
   @override
+  @JsonKey(name: "FileName")
   String get fileName;
 
   /// Create a copy of Picture

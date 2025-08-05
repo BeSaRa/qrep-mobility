@@ -1,7 +1,7 @@
 {
     "java.configuration.updateBuildConfiguration": "disabled",
-    // "editor.formatOnSave": false,
-    // "[dart]": {
-    //     "editor.formatOnSave": false
-    // }
+    "editor.formatOnSave": false,
+    "[dart]": {
+        "editor.formatOnSave": false
+    }
 }

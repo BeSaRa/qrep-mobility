@@ -2094,7 +2094,7 @@ class _$CategoryImpl implements _Category {
       @JsonKey(name: "ShowInHeader") this.showInHeader = false,
       @JsonKey(name: "IsDefault") this.isDefault = false,
       @JsonKey(name: "IsAutoSelected") this.isAutoSelected = false,
-      @JsonKey(name: "Picture") this.picture})
+      @JsonKey(name: "Picture") this.picture = null})
       : _translations = translations;
 
   factory _$CategoryImpl.fromJson(Map<String, dynamic> json) =>
@@ -2426,9 +2426,13 @@ Picture _$PictureFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Picture {
+  @JsonKey(name: "Id")
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: "MimeType")
   String get mimeType => throw _privateConstructorUsedError;
+  @JsonKey(name: "Base64File")
   String get base64File => throw _privateConstructorUsedError;
+  @JsonKey(name: "FileName")
   String get fileName => throw _privateConstructorUsedError;
 
   /// Serializes this Picture to a JSON map.
@@ -2445,7 +2449,11 @@ abstract class $PictureCopyWith<$Res> {
   factory $PictureCopyWith(Picture value, $Res Function(Picture) then) =
       _$PictureCopyWithImpl<$Res, Picture>;
   @useResult
-  $Res call({int id, String mimeType, String base64File, String fileName});
+  $Res call(
+      {@JsonKey(name: "Id") int id,
+      @JsonKey(name: "MimeType") String mimeType,
+      @JsonKey(name: "Base64File") String base64File,
+      @JsonKey(name: "FileName") String fileName});
 }
 
 /// @nodoc
@@ -2496,7 +2504,11 @@ abstract class _$$PictureImplCopyWith<$Res> implements $PictureCopyWith<$Res> {
       __$$PictureImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String mimeType, String base64File, String fileName});
+  $Res call(
+      {@JsonKey(name: "Id") int id,
+      @JsonKey(name: "MimeType") String mimeType,
+      @JsonKey(name: "Base64File") String base64File,
+      @JsonKey(name: "FileName") String fileName});
 }
 
 /// @nodoc
@@ -2542,25 +2554,25 @@ class __$$PictureImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PictureImpl implements _Picture {
   const _$PictureImpl(
-      {this.id = 0,
-      this.mimeType = '',
-      this.base64File = '',
-      this.fileName = ''});
+      {@JsonKey(name: "Id") this.id = 0,
+      @JsonKey(name: "MimeType") this.mimeType = '',
+      @JsonKey(name: "Base64File") this.base64File = '',
+      @JsonKey(name: "FileName") this.fileName = ''});
 
   factory _$PictureImpl.fromJson(Map<String, dynamic> json) =>
       _$$PictureImplFromJson(json);
 
   @override
-  @JsonKey()
+  @JsonKey(name: "Id")
   final int id;
   @override
-  @JsonKey()
+  @JsonKey(name: "MimeType")
   final String mimeType;
   @override
-  @JsonKey()
+  @JsonKey(name: "Base64File")
   final String base64File;
   @override
-  @JsonKey()
+  @JsonKey(name: "FileName")
   final String fileName;
 
   @override
@@ -2605,20 +2617,24 @@ class _$PictureImpl implements _Picture {
 
 abstract class _Picture implements Picture {
   const factory _Picture(
-      {final int id,
-      final String mimeType,
-      final String base64File,
-      final String fileName}) = _$PictureImpl;
+      {@JsonKey(name: "Id") final int id,
+      @JsonKey(name: "MimeType") final String mimeType,
+      @JsonKey(name: "Base64File") final String base64File,
+      @JsonKey(name: "FileName") final String fileName}) = _$PictureImpl;
 
   factory _Picture.fromJson(Map<String, dynamic> json) = _$PictureImpl.fromJson;
 
   @override
+  @JsonKey(name: "Id")
   int get id;
   @override
+  @JsonKey(name: "MimeType")
   String get mimeType;
   @override
+  @JsonKey(name: "Base64File")
   String get base64File;
   @override
+  @JsonKey(name: "FileName")
   String get fileName;
 
   /// Create a copy of Picture
@@ -3060,10 +3076,15 @@ Session _$SessionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Session {
+  @JsonKey(name: "Id")
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: "StartDate")
   String get startDate => throw _privateConstructorUsedError;
+  @JsonKey(name: "EndDate")
   String get endDate => throw _privateConstructorUsedError;
+  @JsonKey(name: "Status")
   int get status => throw _privateConstructorUsedError;
+  @JsonKey(name: "StatusTranslation")
   KeyValueTranslation get statusTranslation =>
       throw _privateConstructorUsedError;
 
@@ -3082,10 +3103,11 @@ abstract class $SessionCopyWith<$Res> {
       _$SessionCopyWithImpl<$Res, Session>;
   @useResult
   $Res call(
-      {int id,
-      String startDate,
-      String endDate,
-      int status,
+      {@JsonKey(name: "Id") int id,
+      @JsonKey(name: "StartDate") String startDate,
+      @JsonKey(name: "EndDate") String endDate,
+      @JsonKey(name: "Status") int status,
+      @JsonKey(name: "StatusTranslation")
       KeyValueTranslation statusTranslation});
 
   $KeyValueTranslationCopyWith<$Res> get statusTranslation;
@@ -3156,10 +3178,11 @@ abstract class _$$SessionImplCopyWith<$Res> implements $SessionCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      String startDate,
-      String endDate,
-      int status,
+      {@JsonKey(name: "Id") int id,
+      @JsonKey(name: "StartDate") String startDate,
+      @JsonKey(name: "EndDate") String endDate,
+      @JsonKey(name: "Status") int status,
+      @JsonKey(name: "StatusTranslation")
       KeyValueTranslation statusTranslation});
 
   @override
@@ -3214,25 +3237,29 @@ class __$$SessionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SessionImpl implements _Session {
   const _$SessionImpl(
-      {required this.id,
-      required this.startDate,
-      required this.endDate,
-      this.status = 0,
-      required this.statusTranslation});
+      {@JsonKey(name: "Id") required this.id,
+      @JsonKey(name: "StartDate") required this.startDate,
+      @JsonKey(name: "EndDate") required this.endDate,
+      @JsonKey(name: "Status") this.status = 0,
+      @JsonKey(name: "StatusTranslation") required this.statusTranslation});
 
   factory _$SessionImpl.fromJson(Map<String, dynamic> json) =>
       _$$SessionImplFromJson(json);
 
   @override
+  @JsonKey(name: "Id")
   final int id;
   @override
+  @JsonKey(name: "StartDate")
   final String startDate;
   @override
+  @JsonKey(name: "EndDate")
   final String endDate;
   @override
-  @JsonKey()
+  @JsonKey(name: "Status")
   final int status;
   @override
+  @JsonKey(name: "StatusTranslation")
   final KeyValueTranslation statusTranslation;
 
   @override
@@ -3277,23 +3304,29 @@ class _$SessionImpl implements _Session {
 
 abstract class _Session implements Session {
   const factory _Session(
-      {required final int id,
-      required final String startDate,
-      required final String endDate,
-      final int status,
+      {@JsonKey(name: "Id") required final int id,
+      @JsonKey(name: "StartDate") required final String startDate,
+      @JsonKey(name: "EndDate") required final String endDate,
+      @JsonKey(name: "Status") final int status,
+      @JsonKey(name: "StatusTranslation")
       required final KeyValueTranslation statusTranslation}) = _$SessionImpl;
 
   factory _Session.fromJson(Map<String, dynamic> json) = _$SessionImpl.fromJson;
 
   @override
+  @JsonKey(name: "Id")
   int get id;
   @override
+  @JsonKey(name: "StartDate")
   String get startDate;
   @override
+  @JsonKey(name: "EndDate")
   String get endDate;
   @override
+  @JsonKey(name: "Status")
   int get status;
   @override
+  @JsonKey(name: "StatusTranslation")
   KeyValueTranslation get statusTranslation;
 
   /// Create a copy of Session

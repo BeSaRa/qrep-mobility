@@ -18,7 +18,15 @@ _$GetAllCoursesRequestModelImpl _$$GetAllCoursesRequestModelImplFromJson(
               ?.map((e) => (e as num).toInt())
               .toList() ??
           null,
+      language: (json['language'] as num?)?.toInt() ?? null,
+      startDate: json['startDate'] as String? ?? null,
+      endDate: json['endDate'] as String? ?? null,
       isActive: json['IsActive'] as bool? ?? null,
+      trainingCourseProvider: json['trainingCourseProvider'] as String? ?? null,
+      numberOfDays: json['numberOfDays'] as String? ?? null,
+      location: (json['location'] as num?)?.toInt() ?? null,
+      trainingCourseDate: json['trainingCourseDate'] as String? ?? null,
+      inMorning: json['inMorning'] as bool? ?? null,
     );
 
 Map<String, dynamic> _$$GetAllCoursesRequestModelImplToJson(
@@ -30,7 +38,15 @@ Map<String, dynamic> _$$GetAllCoursesRequestModelImplToJson(
       'Track': instance.track,
       'IsFree': instance.isFree,
       'Categories': instance.categories,
+      'language': instance.language,
+      'startDate': instance.startDate,
+      'endDate': instance.endDate,
       'IsActive': instance.isActive,
+      'trainingCourseProvider': instance.trainingCourseProvider,
+      'numberOfDays': instance.numberOfDays,
+      'location': instance.location,
+      'trainingCourseDate': instance.trainingCourseDate,
+      'inMorning': instance.inMorning,
     };
 
 _$SortModelImpl _$$SortModelImplFromJson(Map<String, dynamic> json) =>

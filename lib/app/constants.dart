@@ -50,6 +50,7 @@ class Constant {
 //============================================ Shared Data and Tokens =============================================================
 
   static const String guestToken  = "lyHWSTHj1SBm9IRECnLAHviNHnXGaS27";
+  static const String trainingGuestToken  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI4OSIsInVuaXF1ZV9uYW1lIjoiZW5nX21lemlhbkBob3RtYWlsLmNvbSIsImZpcnN0X25hbWVfZW4iOiJUQVJJUSIsImxhc3RfbmFtZV9lbiI6Ik1FWklBTiIsImZpcnN0X25hbWVfYXIiOiLYt9in2LHZgiIsImxhc3RfbmFtZV9hciI6ItmF2LLZitin2YYiLCJ1c2VyX3R5cGUiOiIxIiwicm9sZSI6IlVzZXIiLCJuYmYiOjE3NTQzMDgxNjUsImV4cCI6MTc1NDMwOTk2NSwiaWF0IjoxNzU0MzA4MTY1LCJpc3MiOiJDbGVhbkFwaSIsImF1ZCI6IkNsZWFuQXBpIn0.RSaJSaijksMyLpFp9Xf0HFr7sPe2zWFmSzxc9t8lvxo";
   
   /*For AI Endpoints*/
   static String publicAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiQURNSU4iLCJ1c2VybmFtZSI6ImNiYWl1c2VyMDEiLCJwZXJtaXNzaW9uc19pZHMiOlsiMSIsIjIiLCIzIiwiNCIsIjUiLCI2IiwiNyIsIjgiLCI5IiwiMTAiLCIxMSIsIjEyIiwiMTMiLCIxNCIsIjE1IiwiMTYiLCIxNyIsIjE4IiwiMTkiLCIyMCIsIjIxIiwiMjIiLCIyMyIsIjI0IiwiMjUiLCIyNiIsIjI3IiwiMjgiLCIyOSIsIjMwIiwiMzEiLCIzMiIsIjMzIiwiMzQiLCIzNSIsIjM2IiwiMzciLCIzOSIsIjQwIiwiNDEiLCI0MiIsIjQzIiwiNDQiLCI0NSIsIjQ2IiwiNDciLCI0OCIsIjQ5IiwiNTAiLCI1MSIsIjUyIiwiNTMiLCI1NCIsIjc3IiwiNTUiLCI1NiIsIjM4IiwiNTciLCI1OCIsIjU5IiwiNjAiLCI2MSIsIjYzIiwiNjIiLCI2NCIsIjY1IiwiNjYiLCI2NyIsIjY4IiwiNjkiLCI3MyIsIjcyIiwiNzEiLCI3MCIsIjc0IiwiNzUiLCI3NiIsIjc4IiwiNzkiLCI4MCIsIjgxIiwiOTUiLCI5NiIsIjk3IiwiOTgiXSwiZXhwIjoxODc3OTU2OTk5LCJ0b2tlbl90eXBlIjoiYWNjZXNzIn0.0NSN6RFtU2mHc14gfYidotc9Lq8GKO8r_aQKdvtAZmk";

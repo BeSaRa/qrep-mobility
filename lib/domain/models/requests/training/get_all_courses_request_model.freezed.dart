@@ -36,16 +36,31 @@ mixin _$GetAllCoursesRequestModel {
 // @Default('') String summary,
 // @Default('') String description,
   @JsonKey(name: "Categories")
-  @JsonKey(name: "Categories")
   List<int>? get categories =>
       throw _privateConstructorUsedError; // @Default(0) int trainingCourseFee,
 // @Default('') String trainingCourseRequirements,
-// @Default(0) int language,
-// String? startDate,
-// String? endDate,
-// @Default(0) int numberOfHours,
+  @JsonKey(name: "language")
+  int? get language => throw _privateConstructorUsedError;
+  @JsonKey(name: "startDate")
+  String? get startDate => throw _privateConstructorUsedError;
+  @JsonKey(name: "endDate")
+  String? get endDate =>
+      throw _privateConstructorUsedError; // @Default(0) int numberOfHours,
   @JsonKey(name: "IsActive")
-  bool? get isActive => throw _privateConstructorUsedError;
+  bool? get isActive =>
+      throw _privateConstructorUsedError; // @Default(0) int status,
+// @Default(0) int certificateType,
+// @Default('') String courseProvider,
+  @JsonKey(name: "trainingCourseProvider")
+  String? get trainingCourseProvider => throw _privateConstructorUsedError;
+  @JsonKey(name: "numberOfDays")
+  String? get numberOfDays => throw _privateConstructorUsedError;
+  @JsonKey(name: "location")
+  int? get location => throw _privateConstructorUsedError;
+  @JsonKey(name: "trainingCourseDate")
+  String? get trainingCourseDate => throw _privateConstructorUsedError;
+  @JsonKey(name: "inMorning")
+  bool? get inMorning => throw _privateConstructorUsedError;
 
   /// Serializes this GetAllCoursesRequestModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -69,10 +84,16 @@ abstract class $GetAllCoursesRequestModelCopyWith<$Res> {
       @JsonKey(name: "Name") String? name,
       @JsonKey(name: "Track") int? track,
       @JsonKey(name: "IsFree") bool? isFree,
-      @JsonKey(name: "Categories")
-      @JsonKey(name: "Categories")
-      List<int>? categories,
-      @JsonKey(name: "IsActive") bool? isActive});
+      @JsonKey(name: "Categories") List<int>? categories,
+      @JsonKey(name: "language") int? language,
+      @JsonKey(name: "startDate") String? startDate,
+      @JsonKey(name: "endDate") String? endDate,
+      @JsonKey(name: "IsActive") bool? isActive,
+      @JsonKey(name: "trainingCourseProvider") String? trainingCourseProvider,
+      @JsonKey(name: "numberOfDays") String? numberOfDays,
+      @JsonKey(name: "location") int? location,
+      @JsonKey(name: "trainingCourseDate") String? trainingCourseDate,
+      @JsonKey(name: "inMorning") bool? inMorning});
 }
 
 /// @nodoc
@@ -97,7 +118,15 @@ class _$GetAllCoursesRequestModelCopyWithImpl<$Res,
     Object? track = freezed,
     Object? isFree = freezed,
     Object? categories = freezed,
+    Object? language = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
     Object? isActive = freezed,
+    Object? trainingCourseProvider = freezed,
+    Object? numberOfDays = freezed,
+    Object? location = freezed,
+    Object? trainingCourseDate = freezed,
+    Object? inMorning = freezed,
   }) {
     return _then(_value.copyWith(
       pageIndex: null == pageIndex
@@ -124,9 +153,41 @@ class _$GetAllCoursesRequestModelCopyWithImpl<$Res,
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<int>?,
+      language: freezed == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as int?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String?,
       isActive: freezed == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      trainingCourseProvider: freezed == trainingCourseProvider
+          ? _value.trainingCourseProvider
+          : trainingCourseProvider // ignore: cast_nullable_to_non_nullable
+              as String?,
+      numberOfDays: freezed == numberOfDays
+          ? _value.numberOfDays
+          : numberOfDays // ignore: cast_nullable_to_non_nullable
+              as String?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as int?,
+      trainingCourseDate: freezed == trainingCourseDate
+          ? _value.trainingCourseDate
+          : trainingCourseDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      inMorning: freezed == inMorning
+          ? _value.inMorning
+          : inMorning // ignore: cast_nullable_to_non_nullable
               as bool?,
     ) as $Val);
   }
@@ -147,10 +208,16 @@ abstract class _$$GetAllCoursesRequestModelImplCopyWith<$Res>
       @JsonKey(name: "Name") String? name,
       @JsonKey(name: "Track") int? track,
       @JsonKey(name: "IsFree") bool? isFree,
-      @JsonKey(name: "Categories")
-      @JsonKey(name: "Categories")
-      List<int>? categories,
-      @JsonKey(name: "IsActive") bool? isActive});
+      @JsonKey(name: "Categories") List<int>? categories,
+      @JsonKey(name: "language") int? language,
+      @JsonKey(name: "startDate") String? startDate,
+      @JsonKey(name: "endDate") String? endDate,
+      @JsonKey(name: "IsActive") bool? isActive,
+      @JsonKey(name: "trainingCourseProvider") String? trainingCourseProvider,
+      @JsonKey(name: "numberOfDays") String? numberOfDays,
+      @JsonKey(name: "location") int? location,
+      @JsonKey(name: "trainingCourseDate") String? trainingCourseDate,
+      @JsonKey(name: "inMorning") bool? inMorning});
 }
 
 /// @nodoc
@@ -174,7 +241,15 @@ class __$$GetAllCoursesRequestModelImplCopyWithImpl<$Res>
     Object? track = freezed,
     Object? isFree = freezed,
     Object? categories = freezed,
+    Object? language = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
     Object? isActive = freezed,
+    Object? trainingCourseProvider = freezed,
+    Object? numberOfDays = freezed,
+    Object? location = freezed,
+    Object? trainingCourseDate = freezed,
+    Object? inMorning = freezed,
   }) {
     return _then(_$GetAllCoursesRequestModelImpl(
       pageIndex: null == pageIndex
@@ -201,9 +276,41 @@ class __$$GetAllCoursesRequestModelImplCopyWithImpl<$Res>
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<int>?,
+      language: freezed == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as int?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String?,
       isActive: freezed == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      trainingCourseProvider: freezed == trainingCourseProvider
+          ? _value.trainingCourseProvider
+          : trainingCourseProvider // ignore: cast_nullable_to_non_nullable
+              as String?,
+      numberOfDays: freezed == numberOfDays
+          ? _value.numberOfDays
+          : numberOfDays // ignore: cast_nullable_to_non_nullable
+              as String?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as int?,
+      trainingCourseDate: freezed == trainingCourseDate
+          ? _value.trainingCourseDate
+          : trainingCourseDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      inMorning: freezed == inMorning
+          ? _value.inMorning
+          : inMorning // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -218,10 +325,17 @@ class _$GetAllCoursesRequestModelImpl implements _GetAllCoursesRequestModel {
       @JsonKey(name: "Name") this.name = '',
       @JsonKey(name: "Track") this.track = null,
       @JsonKey(name: "IsFree") this.isFree = null,
-      @JsonKey(name: "Categories")
-      @JsonKey(name: "Categories")
-      final List<int>? categories = null,
-      @JsonKey(name: "IsActive") this.isActive = null})
+      @JsonKey(name: "Categories") final List<int>? categories = null,
+      @JsonKey(name: "language") this.language = null,
+      @JsonKey(name: "startDate") this.startDate = null,
+      @JsonKey(name: "endDate") this.endDate = null,
+      @JsonKey(name: "IsActive") this.isActive = null,
+      @JsonKey(name: "trainingCourseProvider")
+      this.trainingCourseProvider = null,
+      @JsonKey(name: "numberOfDays") this.numberOfDays = null,
+      @JsonKey(name: "location") this.location = null,
+      @JsonKey(name: "trainingCourseDate") this.trainingCourseDate = null,
+      @JsonKey(name: "inMorning") this.inMorning = null})
       : _categories = categories;
 
   factory _$GetAllCoursesRequestModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -252,7 +366,6 @@ class _$GetAllCoursesRequestModelImpl implements _GetAllCoursesRequestModel {
 // @Default('') String description,
   @override
   @JsonKey(name: "Categories")
-  @JsonKey(name: "Categories")
   List<int>? get categories {
     final value = _categories;
     if (value == null) return null;
@@ -263,17 +376,41 @@ class _$GetAllCoursesRequestModelImpl implements _GetAllCoursesRequestModel {
 
 // @Default(0) int trainingCourseFee,
 // @Default('') String trainingCourseRequirements,
-// @Default(0) int language,
-// String? startDate,
-// String? endDate,
+  @override
+  @JsonKey(name: "language")
+  final int? language;
+  @override
+  @JsonKey(name: "startDate")
+  final String? startDate;
+  @override
+  @JsonKey(name: "endDate")
+  final String? endDate;
 // @Default(0) int numberOfHours,
   @override
   @JsonKey(name: "IsActive")
   final bool? isActive;
+// @Default(0) int status,
+// @Default(0) int certificateType,
+// @Default('') String courseProvider,
+  @override
+  @JsonKey(name: "trainingCourseProvider")
+  final String? trainingCourseProvider;
+  @override
+  @JsonKey(name: "numberOfDays")
+  final String? numberOfDays;
+  @override
+  @JsonKey(name: "location")
+  final int? location;
+  @override
+  @JsonKey(name: "trainingCourseDate")
+  final String? trainingCourseDate;
+  @override
+  @JsonKey(name: "inMorning")
+  final bool? inMorning;
 
   @override
   String toString() {
-    return 'GetAllCoursesRequestModel(pageIndex: $pageIndex, pageSize: $pageSize, name: $name, track: $track, isFree: $isFree, categories: $categories, isActive: $isActive)';
+    return 'GetAllCoursesRequestModel(pageIndex: $pageIndex, pageSize: $pageSize, name: $name, track: $track, isFree: $isFree, categories: $categories, language: $language, startDate: $startDate, endDate: $endDate, isActive: $isActive, trainingCourseProvider: $trainingCourseProvider, numberOfDays: $numberOfDays, location: $location, trainingCourseDate: $trainingCourseDate, inMorning: $inMorning)';
   }
 
   @override
@@ -290,14 +427,44 @@ class _$GetAllCoursesRequestModelImpl implements _GetAllCoursesRequestModel {
             (identical(other.isFree, isFree) || other.isFree == isFree) &&
             const DeepCollectionEquality()
                 .equals(other._categories, _categories) &&
+            (identical(other.language, language) ||
+                other.language == language) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
             (identical(other.isActive, isActive) ||
-                other.isActive == isActive));
+                other.isActive == isActive) &&
+            (identical(other.trainingCourseProvider, trainingCourseProvider) ||
+                other.trainingCourseProvider == trainingCourseProvider) &&
+            (identical(other.numberOfDays, numberOfDays) ||
+                other.numberOfDays == numberOfDays) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.trainingCourseDate, trainingCourseDate) ||
+                other.trainingCourseDate == trainingCourseDate) &&
+            (identical(other.inMorning, inMorning) ||
+                other.inMorning == inMorning));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, pageIndex, pageSize, name, track,
-      isFree, const DeepCollectionEquality().hash(_categories), isActive);
+  int get hashCode => Object.hash(
+      runtimeType,
+      pageIndex,
+      pageSize,
+      name,
+      track,
+      isFree,
+      const DeepCollectionEquality().hash(_categories),
+      language,
+      startDate,
+      endDate,
+      isActive,
+      trainingCourseProvider,
+      numberOfDays,
+      location,
+      trainingCourseDate,
+      inMorning);
 
   /// Create a copy of GetAllCoursesRequestModel
   /// with the given fields replaced by the non-null parameter values.
@@ -323,10 +490,17 @@ abstract class _GetAllCoursesRequestModel implements GetAllCoursesRequestModel {
           @JsonKey(name: "Name") final String? name,
           @JsonKey(name: "Track") final int? track,
           @JsonKey(name: "IsFree") final bool? isFree,
-          @JsonKey(name: "Categories")
-          @JsonKey(name: "Categories")
-          final List<int>? categories,
-          @JsonKey(name: "IsActive") final bool? isActive}) =
+          @JsonKey(name: "Categories") final List<int>? categories,
+          @JsonKey(name: "language") final int? language,
+          @JsonKey(name: "startDate") final String? startDate,
+          @JsonKey(name: "endDate") final String? endDate,
+          @JsonKey(name: "IsActive") final bool? isActive,
+          @JsonKey(name: "trainingCourseProvider")
+          final String? trainingCourseProvider,
+          @JsonKey(name: "numberOfDays") final String? numberOfDays,
+          @JsonKey(name: "location") final int? location,
+          @JsonKey(name: "trainingCourseDate") final String? trainingCourseDate,
+          @JsonKey(name: "inMorning") final bool? inMorning}) =
       _$GetAllCoursesRequestModelImpl;
 
   factory _GetAllCoursesRequestModel.fromJson(Map<String, dynamic> json) =
@@ -351,16 +525,37 @@ abstract class _GetAllCoursesRequestModel implements GetAllCoursesRequestModel {
 // @Default('') String description,
   @override
   @JsonKey(name: "Categories")
-  @JsonKey(name: "Categories")
   List<int>? get categories; // @Default(0) int trainingCourseFee,
 // @Default('') String trainingCourseRequirements,
-// @Default(0) int language,
-// String? startDate,
-// String? endDate,
-// @Default(0) int numberOfHours,
+  @override
+  @JsonKey(name: "language")
+  int? get language;
+  @override
+  @JsonKey(name: "startDate")
+  String? get startDate;
+  @override
+  @JsonKey(name: "endDate")
+  String? get endDate; // @Default(0) int numberOfHours,
   @override
   @JsonKey(name: "IsActive")
-  bool? get isActive;
+  bool? get isActive; // @Default(0) int status,
+// @Default(0) int certificateType,
+// @Default('') String courseProvider,
+  @override
+  @JsonKey(name: "trainingCourseProvider")
+  String? get trainingCourseProvider;
+  @override
+  @JsonKey(name: "numberOfDays")
+  String? get numberOfDays;
+  @override
+  @JsonKey(name: "location")
+  int? get location;
+  @override
+  @JsonKey(name: "trainingCourseDate")
+  String? get trainingCourseDate;
+  @override
+  @JsonKey(name: "inMorning")
+  bool? get inMorning;
 
   /// Create a copy of GetAllCoursesRequestModel
   /// with the given fields replaced by the non-null parameter values.

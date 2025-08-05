@@ -6,13 +6,13 @@ import 'package:multiple_result/multiple_result.dart';
 import '../../../data/network/failure_model/failure.dart';
 import '../base_usecases/base_usecase.dart';
 
-class GetCourseAttachmentsUsecase implements BaseUseCase<GetCourseDetailsRequestModel, GetTrainingCourseAttachmentResponseModel> {
+class GetMyTrainingCoursesUsecase implements BaseUseCase<GetAllCoursesRequestModel, GetAllCoursesResponseModel> {
   final ServiceAndTrainingRepository repository;
 
-  GetCourseAttachmentsUsecase(this.repository);
+  GetMyTrainingCoursesUsecase(this.repository);
 
   @override
-  Future<Result<GetTrainingCourseAttachmentResponseModel, FailureModel>> execute(GetCourseDetailsRequestModel request) async {
-    return await repository.getTrainingCourseAttachment(request);
+  Future<Result<GetAllCoursesResponseModel, FailureModel>> execute(GetAllCoursesRequestModel body) async {
+    return await repository.getMyTrainingCourses(body);
   }
 }

@@ -1,9 +1,12 @@
 import 'package:bloc/bloc.dart';
+import 'package:ebla/data/network/failure_model/failure.dart';
 import 'package:ebla/domain/models/requests/training/get_all_courses_request_model.dart';
 import 'package:ebla/domain/models/training/get_all_categories_response_model/get_all_categories_response_model.dart';
 import 'package:ebla/domain/models/training/get_all_courses_response_model.dart';
+import 'package:ebla/domain/usecases/training_usecases/get_all_training_catigories_for_guest_usecase.dart';
 import 'package:ebla/domain/usecases/training_usecases/get_all_training_courses_usecase.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:multiple_result/multiple_result.dart';
 
 import '../../../../../domain/usecases/training_usecases/get_all_training_catigories_usecase.dart';
 
@@ -15,11 +18,13 @@ class GetAllTrainingCoursesBloc
     extends Bloc<GetAllTrainingCoursesEvent, GetAllTrainingCoursesState> {
   final GetAllTrainingCoursesUsecase getAllTrainingCoursesUsecase;
   final GetAllTrainingCatigoriesUsecase getAllTrainingCatigoriesUsecase;
+  final GetAllTrainingCatigoriesForGuestUsecase getAllTrainingCatigoriesForGuestUsecase;
   bool _isFetching = false;
 
   GetAllTrainingCoursesBloc(
     this.getAllTrainingCoursesUsecase,
     this.getAllTrainingCatigoriesUsecase,
+    this.getAllTrainingCatigoriesForGuestUsecase,
   ) : super(const GetAllTrainingCoursesState.initial()) {
     on<GetAllTrainingCoursesEvent>((event, emit) async {
       await event.map(
@@ -27,10 +32,17 @@ class GetAllTrainingCoursesBloc
           emit(const GetAllTrainingCoursesState.loading());
 
           // First fetch categories with proper pagination
-          final categoriesResult =
-              await getAllTrainingCatigoriesUsecase.execute(
-            const GetAllCategoriesRequestModel(),
-          );
+          Result<GetAllCategoriesResponseModel, FailureModel> categoriesResult;
+
+          // if(user is NOT logged in){
+          categoriesResult = await getAllTrainingCatigoriesForGuestUsecase.execute();
+          // }
+          // else{
+          //   categoriesResult =
+          //       await getAllTrainingCatigoriesUsecase.execute(
+          //     const GetAllCategoriesRequestModel(),
+          //   );
+          // } 
 
           final categories = categoriesResult.tryGetSuccess();
           final categoriesError = categoriesResult.tryGetError();
@@ -107,11 +119,17 @@ class GetAllTrainingCoursesBloc
                   false
                 );
               } else {
-                // Handle case where we don't have categories yet
-                final categoriesResult =
-                    await getAllTrainingCatigoriesUsecase.execute(
-                  const GetAllCategoriesRequestModel(),
-                );
+                Result<GetAllCategoriesResponseModel, FailureModel>categoriesResult;
+                // if(user is NOT logged in){
+                  categoriesResult =await getAllTrainingCatigoriesForGuestUsecase.execute();
+                // }
+                // else{
+                //   categoriesResult =
+                //       await getAllTrainingCatigoriesUsecase.execute(
+                //     const GetAllCategoriesRequestModel(),
+                //   );
+                // }
+              
 
                 return categoriesResult.when(
                   (successCategories) => GetAllTrainingCoursesState.done(

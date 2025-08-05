@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/presentations/features/training/bloc/get_course_details_bloc/get_course_details_bloc.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
+import 'package:ebla/presentations/resources/resources.dart';
 import 'package:ebla/presentations/widgets/error_widget.dart';
 import 'package:ebla/utils/global_functions.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +22,12 @@ import 'package:url_launcher/url_launcher.dart';
 
 class TrainingDetailsView extends StatefulWidget {
   final TrainingCourse course;
+  final bool isCommingFromMyCourses;
 
   const TrainingDetailsView({
     Key? key,
     required this.course,
+    required this.isCommingFromMyCourses,
   }) : super(key: key);
 
   @override
@@ -105,13 +108,18 @@ class _TrainingDetailsViewState extends State<TrainingDetailsView> {
                         CourseInfoWidget(course: value.courseDetailsResponse.data!),
                         
                         //--------- 2 -----------
-                        SizedBox(height: AppSizeH.s20),
-                        RegistrationButtonWidget(
-                          onPressed: () {
-                            context.pushNamed(RoutesNames.trainingBooking,extra: widget.course);
-                          },
-                        ),
-
+                        if(!widget.isCommingFromMyCourses)...[
+                          SizedBox(height: AppSizeH.s20),
+                          RegistrationButtonWidget(
+                            onPressed: () {
+                              context.pushNamed(RoutesNames.trainingBooking,extra: widget.course);
+                            },
+                          ),
+                        ],
+                        if(widget.isCommingFromMyCourses)...[
+                          SizedBox(height: AppSizeH.s20),
+                          MainProviderDetailsCard(widget: widget)
+                        ],
                         //--------- 3 -----------
                         SizedBox(height: AppSizeH.s10),
                         CourseDescriptionWidget(course: value.courseDetailsResponse.data!),
@@ -169,7 +177,6 @@ class _TrainingDetailsViewState extends State<TrainingDetailsView> {
                                   .title);
                             }
                             //------ C -----
-
                             List<String> categoriesItems = [];
                             for (int i = 0; i < value.courseDetailsResponse.data!.categories.length; i++) {
                               categoriesItems.add(value.courseDetailsResponse
@@ -193,7 +200,7 @@ class _TrainingDetailsViewState extends State<TrainingDetailsView> {
                                 ExpandableSectionWidget(
                                   index: 0,
                                   isLink: false,
-                                  title: 'وصف الدورة',
+                                  title: AppStrings().courseDescription,
                                   icon: Icons.menu_book,
                                   isExpanded: expanded.contains(0),
                                   onTap: () => toggleSection(0),
@@ -202,12 +209,11 @@ class _TrainingDetailsViewState extends State<TrainingDetailsView> {
                                             padding: EdgeInsets.symmetric(
                                                 vertical: AppSizeH.s4),
                                             child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 Icon(Icons.check,
-                                                    color: ColorManager.primary,
-                                                    size: AppSizeSp.s16),
+                                                  color: ColorManager.primary,
+                                                  size: AppSizeSp.s16),
                                                 SizedBox(width: AppSizeW.s8),
                                                 Expanded(
                                                   child: Text(
@@ -226,7 +232,7 @@ class _TrainingDetailsViewState extends State<TrainingDetailsView> {
                                 ExpandableSectionWidget(
                                   isLink: false,
                                   index: 1,
-                                  title: 'الفئة المستهدفة',
+                                  title: AppStrings().targetAudience,
                                   icon: Icons.group,
                                   isExpanded: expanded.contains(1),
                                   onTap: () => toggleSection(1),
@@ -260,7 +266,7 @@ class _TrainingDetailsViewState extends State<TrainingDetailsView> {
                                 ExpandableSectionWidget(
                                   index: 2,
                                   isLink: false,
-                                  title: 'شروط الدورة',
+                                  title: AppStrings().courseRequirements,
                                   icon: Icons.assignment,
                                   isExpanded: expanded.contains(2),
                                   onTap: () => toggleSection(2),
@@ -271,7 +277,7 @@ class _TrainingDetailsViewState extends State<TrainingDetailsView> {
                                                 vertical: AppSizeH.s4),
                                             child: Center(
                                               child: Text(
-                                                "لا يوجد شروط",
+                                               AppStrings().thereAreNoRequirements,
                                                 textAlign: TextAlign.right,
                                                 style: Theme.of(context)
                                                     .textTheme
@@ -307,7 +313,7 @@ class _TrainingDetailsViewState extends State<TrainingDetailsView> {
                                 ExpandableSectionWidget(
                                   index: 3,
                                   isLink: false,
-                                  title: 'وثائق الدورة',
+                                  title:AppStrings().courseDocuments,
                                   icon: Icons.assignment,
                                   isExpanded: expanded.contains(3),
                                   onTap: () => toggleSection(3),
@@ -317,7 +323,7 @@ class _TrainingDetailsViewState extends State<TrainingDetailsView> {
                                             padding: EdgeInsets.symmetric(vertical: AppSizeH.s4),
                                             child: Center(
                                               child: Text(
-                                                "لا يوجد وثائق",
+                                                AppStrings().thereAreNoDocuments,
                                                 textAlign: TextAlign.right,
                                                 style: Theme.of(context).textTheme.bodySmall,
                                               ),
@@ -353,7 +359,7 @@ class _TrainingDetailsViewState extends State<TrainingDetailsView> {
                                       log("zak Invalid course link");
                                     }
                                   },
-                                  title: 'رابط الدورة',
+                                  title: AppStrings().courseLink,
                                   icon: Icons.link_rounded,
                                   url: value.courseDetailsResponse.data!.link,
                                 ),
@@ -372,6 +378,116 @@ class _TrainingDetailsViewState extends State<TrainingDetailsView> {
     );
   }
 
+}
+
+class MainProviderDetailsCard extends StatelessWidget {
+  const MainProviderDetailsCard({
+    super.key,
+    required this.widget,
+  });
+
+  final TrainingDetailsView widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.only(bottom: AppSizeH.s16,right: AppSizeW.s15,left: AppSizeW.s15),
+      padding: EdgeInsets.symmetric(horizontal:AppSizeW.s20),
+      decoration: BoxDecoration(
+          image: DecorationImage(
+                  image: const AssetImage(ImageAssets.trainingCity),
+                  colorFilter:
+      Theme.of(context).brightness == Brightness.dark
+          ? ColorFilter.mode(
+              ColorManager.golden,  
+              BlendMode.srcIn,
+            )
+          : ColorFilter.mode(
+              ColorManager.primary.withValues(alpha: .5),  
+              BlendMode.srcIn,
+            ),
+            fit: BoxFit.cover,
+          ),
+          border: Border.all(width: 1,color: ColorManager.golden.withValues(alpha: .4)),
+      boxShadow: [
+        BoxShadow(
+          color: Theme.of(context).brightness == Brightness.dark
+              ? ColorManager.white.withValues(alpha: 0.2)
+              : ColorManager.primary.withValues(alpha: 0.2),
+          blurRadius: 2,
+          offset: const Offset(0, 1),
+        )
+      ],
+      borderRadius: BorderRadius.circular(AppSizeR.s10),
+      color: Theme.of(context).brightness == Brightness.dark
+          ? Theme.of(context).cardTheme.color
+          : Theme.of(context).scaffoldBackgroundColor),
+      child:Column(
+        children: [ 
+        if(widget.course.trackTranslation != null)
+          Container(
+            width: AppSizeW.s80,
+            alignment: Alignment.center,
+            padding: EdgeInsets.all(AppSizeW.s5),
+            decoration: BoxDecoration(
+            borderRadius: BorderRadius.vertical(bottom:Radius.circular(AppSizeR.s10)),
+            color: Theme.of(context).brightness != Brightness.dark
+                ? ColorManager.primary
+                : ColorManager.golden),
+                  child: Text(widget.course.trackTranslation!.key.firstWhere(
+                          (e) => e.languageId == (context.locale == ARABIC_LOCAL ? 2 : 1),
+                          orElse: () => widget.course.trackTranslation!.key.first,
+                        ).name,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: ColorManager.white,
+                          fontWeight: FontWeight.bold
+                          
+                      ),),
+                ),
+                SizedBox(height: AppSizeH.s20),
+        //1
+          Row(
+            spacing: AppSizeH.s5,
+            children: [
+              Text("${AppStrings().courseProvider}:",
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: ColorManager.primaryBlue
+              ),
+              ),
+    
+              Text(widget.course.trainingCourseProvider.translations.firstWhere(
+                  (e) => e.languageId == (context.locale == ARABIC_LOCAL ? 2 : 1),
+                  orElse: () => widget.course.trainingCourseProvider.translations.first,
+                ).name,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              ),)
+            ],
+          ),
+          SizedBox(height: AppSizeH.s20),
+        //2
+          Row(
+            spacing: AppSizeH.s5,
+            children: [
+              Text("${AppStrings().certificateType}:",
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: ColorManager.primaryBlue
+              ),
+              ),
+    
+              Text(widget.course.certificateTypeTranslation.key.firstWhere(
+                  (e) => e.languageId == (context.locale == ARABIC_LOCAL ? 2 : 1),
+                  orElse: () => widget.course.certificateTypeTranslation.key.first,
+                ).name,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              ),)
+            ],
+          ),
+        SizedBox(height: AppSizeH.s20),
+        ],
+      ),
+    );
+  }
 }
 class TrainingDeatilsAppBar extends StatelessWidget implements PreferredSizeWidget {
   const TrainingDeatilsAppBar({super.key});
@@ -412,7 +528,7 @@ class TrainingDeatilsAppBar extends StatelessWidget implements PreferredSizeWidg
             ),
           ),
           Text(
-            "الدورات والامتحانات",
+            AppStrings().coursesAndExams,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: Theme.of(context).textTheme.bodySmall?.color,
                 ),

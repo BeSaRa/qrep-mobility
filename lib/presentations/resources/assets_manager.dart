@@ -139,4 +139,5 @@ class IconAssets {
   //training
   static const String filter = "${ICON_PATH}filter.png";
   static const String money = "${ICON_PATH}money.png";
+  static const String emptyData = "${ICON_PATH}empty.svg";
 }

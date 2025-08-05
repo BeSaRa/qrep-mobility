@@ -17,23 +17,22 @@ class GetAllCoursesRequestModel with _$GetAllCoursesRequestModel {
     // @Default('') String description,
     @Default(null)
     @JsonKey(name: "Categories")
-    @JsonKey(name: "Categories")
     List<int>? categories,
     // @Default(0) int trainingCourseFee,
     // @Default('') String trainingCourseRequirements,
-    // @Default(0) int language,
-    // String? startDate,
-    // String? endDate,
+    @Default(null) @JsonKey(name: "language") int? language,
+        @Default(null) @JsonKey(name: "startDate")String? startDate,
+        @Default(null) @JsonKey(name: "endDate")String? endDate,
     // @Default(0) int numberOfHours,
     @Default(null) @JsonKey(name: "IsActive") bool? isActive,
     // @Default(0) int status,
     // @Default(0) int certificateType,
     // @Default('') String courseProvider,
-    // @Default('') String trainingCourseProvider,
-    // @Default(0) int numberOfDays,
-    // @Default(0) int location,
-    // String? trainingCourseDate,
-    // @Default(null)@JsonKey(name: "Categories") bool? inMorning,
+    @Default(null)@JsonKey(name: "trainingCourseProvider") String? trainingCourseProvider,
+    @Default(null)@JsonKey(name: "numberOfDays") String? numberOfDays,
+    @Default(null)@JsonKey(name: "location") int? location,
+    @Default(null)@JsonKey(name: "trainingCourseDate")String? trainingCourseDate,
+    @Default(null)@JsonKey(name: "inMorning") bool? inMorning,
   }) = _GetAllCoursesRequestModel;
 
   factory GetAllCoursesRequestModel.fromJson(Map<String, dynamic> json) =>

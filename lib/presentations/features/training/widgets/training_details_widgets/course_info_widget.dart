@@ -1,9 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/training/get_all_courses_response_model.dart';
-import 'package:ebla/presentations/resources/assets_manager.dart';
-import 'package:ebla/presentations/resources/color_manager.dart';
-import 'package:ebla/presentations/resources/language_manager.dart';
-import 'package:ebla/presentations/resources/values_manager.dart';
+import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/material.dart';
 
 class CourseInfoWidget extends StatelessWidget {
@@ -35,12 +32,15 @@ class CourseInfoWidget extends StatelessWidget {
             Image.asset(IconAssets.money, width: AppSizeSp.s25),
             SizedBox(width: AppSizeW.s5),
             Text(
-              'قيمة الدورة: ',
+              '${AppStrings().courseFees}: ',
               style: Theme.of(context).textTheme.titleSmall,
             ),
 
             Text(
-              '${course.fee} ريال قطري',
+              course.fee.toInt()==0?
+              AppStrings().free
+              :
+              '${course.fee} ${AppStrings().qr}',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: ColorManager.primary,
                     fontWeight: FontWeight.bold,

@@ -5,11 +5,13 @@ import 'package:multiple_result/multiple_result.dart';
 
 import '../models/training/get_all_categories_response_model/get_all_categories_response_model.dart';
 
-abstract class Phase2Repository {
+abstract class ServiceAndTrainingRepository {
   //------ Training --------
   Future<Result<GetAllCoursesResponseModel, FailureModel>> getTrainingCourses(GetAllCoursesRequestModel request);
 
   Future<Result<GetAllCategoriesResponseModel, FailureModel>>getAllTrainingCategories(GetAllCategoriesRequestModel request);
+  
+  Future<Result<GetAllCategoriesResponseModel, FailureModel>>getAllTrainingGategoriesForGuest();
 
   Future<Result<CourseDetailsResponseModel, FailureModel>> getCourseDetails(GetCourseDetailsRequestModel request);
 
@@ -17,4 +19,5 @@ abstract class Phase2Repository {
 
   Future<Result<GetTrainingCourseSessionsResponseModel, FailureModel>> getTrainingCourseSessions(GetTrainingCourseSessionsRequestModel request);
 
+  Future<Result<GetAllCoursesResponseModel, FailureModel>> getMyTrainingCourses(GetAllCoursesRequestModel request);
 }

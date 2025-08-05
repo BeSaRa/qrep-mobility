@@ -11,18 +11,34 @@ class TrainingFilterCubit extends Cubit<GetAllCoursesRequestModel> {
   void updateFilters({
     int? pageIndex,
     int? pageSize,
-    String? name,
-    int? track,
-    bool? isFree,
     List<int>? categories,
-    bool? isActive,
+    String? endDate,
+    bool? inMorning,
+    bool? isFree,
+    int? language,
+    int? location,
+    String? numberOfDays,
+    String? startDate,
+    String? name,
+    String? trainingCourseDate,
+    String? trainingCourseProvider,
+    int? track,//
+    bool? isActive,//
   }) {
     emit(state.copyWith(
       pageIndex: pageIndex?? 1,
       pageSize: pageSize??5,
       name: name,
       track: track,
+      startDate: startDate,
+      endDate: endDate,
       isFree: isFree,
+      inMorning: inMorning,
+      language: language,
+      location: location,
+      numberOfDays: numberOfDays,
+      trainingCourseDate: trainingCourseDate,
+      trainingCourseProvider: trainingCourseProvider,
       categories: categories,
       isActive: isActive,
     ));
@@ -32,6 +48,6 @@ class TrainingFilterCubit extends Cubit<GetAllCoursesRequestModel> {
     emit(const GetAllCoursesRequestModel(
       pageIndex: 1,
       pageSize: 5,
-    ));
+    )); 
   }
 }

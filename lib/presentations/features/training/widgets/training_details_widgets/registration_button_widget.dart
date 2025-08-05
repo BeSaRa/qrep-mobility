@@ -1,4 +1,5 @@
 import 'package:ebla/presentations/resources/color_manager.dart';
+import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 class RegistrationButtonWidget extends StatelessWidget {
@@ -23,7 +24,7 @@ class RegistrationButtonWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppSizeR.s10),
           ),
         ),
-        child: Text('سجل اهتمامك',
+        child: Text(AppStrings().registerYourInterest,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: Theme.of(context).scaffoldBackgroundColor,
                 )),

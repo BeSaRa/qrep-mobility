@@ -199,18 +199,18 @@ Map<String, dynamic> _$$CategoryTranslationImplToJson(
 
 _$PictureImpl _$$PictureImplFromJson(Map<String, dynamic> json) =>
     _$PictureImpl(
-      id: (json['id'] as num?)?.toInt() ?? 0,
-      mimeType: json['mimeType'] as String? ?? '',
-      base64File: json['base64File'] as String? ?? '',
-      fileName: json['fileName'] as String? ?? '',
+      id: (json['Id'] as num?)?.toInt() ?? 0,
+      mimeType: json['MimeType'] as String? ?? '',
+      base64File: json['Base64File'] as String? ?? '',
+      fileName: json['FileName'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$PictureImplToJson(_$PictureImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'mimeType': instance.mimeType,
-      'base64File': instance.base64File,
-      'fileName': instance.fileName,
+      'Id': instance.id,
+      'MimeType': instance.mimeType,
+      'Base64File': instance.base64File,
+      'FileName': instance.fileName,
     };
 
 _$KeyValueTranslationImpl _$$KeyValueTranslationImplFromJson(
@@ -251,21 +251,21 @@ Map<String, dynamic> _$$ProviderImplToJson(_$ProviderImpl instance) =>
 
 _$SessionImpl _$$SessionImplFromJson(Map<String, dynamic> json) =>
     _$SessionImpl(
-      id: (json['id'] as num).toInt(),
-      startDate: json['startDate'] as String,
-      endDate: json['endDate'] as String,
-      status: (json['status'] as num?)?.toInt() ?? 0,
+      id: (json['Id'] as num).toInt(),
+      startDate: json['StartDate'] as String,
+      endDate: json['EndDate'] as String,
+      status: (json['Status'] as num?)?.toInt() ?? 0,
       statusTranslation: KeyValueTranslation.fromJson(
-          json['statusTranslation'] as Map<String, dynamic>),
+          json['StatusTranslation'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$SessionImplToJson(_$SessionImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'startDate': instance.startDate,
-      'endDate': instance.endDate,
-      'status': instance.status,
-      'statusTranslation': instance.statusTranslation,
+      'Id': instance.id,
+      'StartDate': instance.startDate,
+      'EndDate': instance.endDate,
+      'Status': instance.status,
+      'StatusTranslation': instance.statusTranslation,
     };
 
 _$CourseDetailsResponseModelImpl _$$CourseDetailsResponseModelImplFromJson(

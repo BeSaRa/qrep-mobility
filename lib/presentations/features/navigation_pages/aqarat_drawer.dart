@@ -97,6 +97,14 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
                   pathParameters: {"pageName": "privacyPolicy"});
             },
           ),
+          DrawerWidget(
+            color: Theme.of(context).colorScheme.secondaryFixedDim,
+            icon: IconAssets.training,
+            title: AppStrings().myCourses,
+            onTap: () {
+              context.pushNamed(RoutesNames.myCourses);
+            },
+          ),
           const Spacer(),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: AppSizeH.s18),

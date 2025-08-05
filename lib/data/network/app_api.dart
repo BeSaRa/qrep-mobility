@@ -323,21 +323,24 @@ abstract class TrainingServiceClient {
       _TrainingServiceClient;
 
   /// ****************** Training *************************
-  @POST("${Constant.aqaratBackendDev}${EndPoints.getTrainingCourses}")
-  Future<HttpResponse<GetAllCoursesResponseModel>> getTrainingCourses(
-      @Body() GetAllCoursesRequestModel request);
+  @POST(EndPoints.getTrainingCourses)
+  Future<HttpResponse<GetAllCoursesResponseModel>> getTrainingCourses(@Body() GetAllCoursesRequestModel request);
 
-  @POST("${Constant.aqaratBackendDev}${EndPoints.getAllTrainingGategories}")
-  Future<HttpResponse<GetAllCategoriesResponseModel>> getAllTrainingCategories(
-      @Body() GetAllCategoriesRequestModel request);
+  @POST(EndPoints.getAllTrainingGategories)
+  Future<HttpResponse<GetAllCategoriesResponseModel>> getAllTrainingCategories(@Body() GetAllCategoriesRequestModel request);
 
-  @POST("${Constant.aqaratBackendDev}${EndPoints.getCourseDetails}")
-  Future<HttpResponse<CourseDetailsResponseModel>> getCourseDetails(
-      @Body() GetCourseDetailsRequestModel request);
+  @GET(EndPoints.getAllTrainingGategoriesForGuest)
+  Future<HttpResponse<GetAllCategoriesResponseModel>> getAllTrainingGategoriesForGuest();
 
-  @POST("${Constant.aqaratBackendDev}${EndPoints.getTrainingCourseAttachment}")
+  @POST(EndPoints.getCourseDetails)
+  Future<HttpResponse<CourseDetailsResponseModel>> getCourseDetails(@Body() GetCourseDetailsRequestModel request);
+
+  @POST(EndPoints.getTrainingCourseAttachment)
   Future<HttpResponse<GetTrainingCourseAttachmentResponseModel>>getTrainingCourseAttachment(@Body() GetCourseDetailsRequestModel request);
 
-  @POST("${Constant.aqaratBackendDev}${EndPoints.getTrainingCourseSessions}")
+  @POST(EndPoints.getTrainingCourseSessions)
   Future<HttpResponse<GetTrainingCourseSessionsResponseModel>>getTrainingCourseSessions(@Body() GetTrainingCourseSessionsRequestModel request);
+
+  @POST(EndPoints.getMyTrainingCourses)
+  Future<HttpResponse<GetAllCoursesResponseModel>>getMyTrainingCourses(@Body() GetAllCoursesRequestModel request);
 }

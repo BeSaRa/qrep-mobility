@@ -32,7 +32,9 @@ _$CategoryDataImpl _$$CategoryDataImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      pager: Pager.fromJson(json['Pager'] as Map<String, dynamic>),
+      pager: json['Pager'] == null
+          ? null
+          : Pager.fromJson(json['Pager'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$CategoryDataImplToJson(_$CategoryDataImpl instance) =>
@@ -59,18 +61,18 @@ Map<String, dynamic> _$$CategoryTranslationImplToJson(
 
 _$PictureImpl _$$PictureImplFromJson(Map<String, dynamic> json) =>
     _$PictureImpl(
-      id: (json['id'] as num?)?.toInt() ?? 0,
-      mimeType: json['mimeType'] as String? ?? '',
-      base64File: json['base64File'] as String? ?? '',
-      fileName: json['fileName'] as String? ?? '',
+      id: (json['Id'] as num?)?.toInt() ?? 0,
+      mimeType: json['MimeType'] as String? ?? '',
+      base64File: json['Base64File'] as String? ?? '',
+      fileName: json['FileName'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$PictureImplToJson(_$PictureImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'mimeType': instance.mimeType,
-      'base64File': instance.base64File,
-      'fileName': instance.fileName,
+      'Id': instance.id,
+      'MimeType': instance.mimeType,
+      'Base64File': instance.base64File,
+      'FileName': instance.fileName,
     };
 
 _$PagerImpl _$$PagerImplFromJson(Map<String, dynamic> json) => _$PagerImpl(

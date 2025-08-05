@@ -32,8 +32,7 @@ class TrainingDioFactory {
     Map<String, String> headers = {
       CONTENT_TYPE: APPLICATION_JSON,
       ACCEPT: APPLICATION_JSON,
-      AUTHORIZATION:
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI1IiwidW5pcXVlX25hbWUiOiJhZG1pbkBhcWFyYXQuY29tIiwiZmlyc3RfbmFtZV9lbiI6ImFkbWluIiwibGFzdF9uYW1lX2VuIjoiIiwiZmlyc3RfbmFtZV9hciI6ImFkbWluIiwibGFzdF9uYW1lX2FyIjoiIiwidXNlcl90eXBlIjoiMyIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTc1MzI4MTIyMywiZXhwIjoxNzUzMjgzMDIzLCJpYXQiOjE3NTMyODEyMjMsImlzcyI6IkNsZWFuQXBpIiwiYXVkIjoiQ2xlYW5BcGkifQ.HknnqoIsOzO0MuFOOfnzvg-W64ydJZsrxMHvsDx35YQ',
+      AUTHORIZATION: 'Bearer ${Constant.trainingGuestToken}',
 /*Note */
       ///هون ضفت هاد الهيدر لحتى ميز انو الريكويست هو من التدريب في ال
       ///GeneralInterceptor 

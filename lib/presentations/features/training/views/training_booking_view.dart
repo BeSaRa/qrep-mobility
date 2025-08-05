@@ -109,7 +109,7 @@ class _TrainingBookingViewState extends State<TrainingBookingView> {
                                   shape: BoxShape.circle,
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withOpacity(0.1),
+                                      color: Colors.black.withValues(alpha:0.1),
                                       blurRadius: 6,
                                       offset: const Offset(0, 2),
                                     ),
@@ -126,7 +126,6 @@ class _TrainingBookingViewState extends State<TrainingBookingView> {
                                 GestureDetector(
                                   onTap: () => isCalendarView.value = true,
                                   child: Container(
-                                    // width: AppSizeW.s34,
                                     alignment: Alignment.center,
                                     child: Icon(
                                       Icons.calendar_month_outlined,
@@ -141,7 +140,6 @@ class _TrainingBookingViewState extends State<TrainingBookingView> {
                                 GestureDetector(
                                   onTap: () => isCalendarView.value = false,
                                   child: Container(
-                                    // width: AppSizeW.s34,
                                     alignment: Alignment.center,
                                     child: Icon(
                                       Icons.view_compact_rounded,
@@ -222,7 +220,7 @@ class _TrainingBookingViewState extends State<TrainingBookingView> {
                       }
                     },
                   ),
-                  // Add extra space at the bottom to prevent button overlap
+                  // add extra space at the bottom to prevent button overlap
                   SizedBox(height: AppSizeH.s80),
                 ],
               ),
@@ -232,28 +230,27 @@ class _TrainingBookingViewState extends State<TrainingBookingView> {
                 
               }
             ),
-            // bottomSheet: const TwoBottomButtonsWidget(),
           ),
 
             // Fixed position buttons at bottom
-             BlocConsumer<GetTrainingCourseSessionsBloc,GetTrainingCourseSessionsState>(
+            BlocConsumer<GetTrainingCourseSessionsBloc,GetTrainingCourseSessionsState>(
               listener: (context, state) {},
                 builder: (context,state){
-      return state.maybeMap(
-            done: (value) {
-                return Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: TwoBottomButtonsWidget(
-                    selectedIndex: selectedTimeSlot.value,
-                    sessions: value.trainingCourseSessions.data.sessions,
-                  ),
-                );
+                return state.maybeMap(
+                  done: (value) {
+                    return Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: TwoBottomButtonsWidget(
+                        selectedIndex: selectedTimeSlot.value,
+                        sessions: value.trainingCourseSessions.data.sessions,
+                      ),
+                    );
                     },
-                orElse: (){
-                  return const SizedBox.shrink();
-              });
+                    orElse: (){
+                        return const SizedBox.shrink();
+                    });
               }
             ),
         ],

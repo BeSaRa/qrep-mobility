@@ -21,7 +21,8 @@ class GetAllCategoriesResponseModel with _$GetAllCategoriesResponseModel {
 class CategoryData with _$CategoryData {
   const factory CategoryData({
     @Default([]) @JsonKey(name: 'Categories') List<Category> categories,
-    @JsonKey(name: 'Pager') required Pager pager,
+    @Default(null) @JsonKey(name: 'Pager') Pager? pager,
+    // @JsonKey(name: 'Pager') required Pager pager,
   }) = _CategoryData;
 
   factory CategoryData.fromJson(Map<String, dynamic> json) =>
@@ -44,10 +45,10 @@ class CategoryTranslation with _$CategoryTranslation {
 @freezed
 class Picture with _$Picture {
   const factory Picture({
-    @Default(0) int id,
-    @Default('') String mimeType,
-    @Default('') String base64File,
-    @Default('') String fileName,
+    @JsonKey(name: "Id") @Default(0) int id,
+    @JsonKey(name: "MimeType") @Default('') String mimeType,
+    @JsonKey(name: "Base64File") @Default('') String base64File,
+    @JsonKey(name: "FileName") @Default('') String fileName,
   }) = _Picture;
 
   factory Picture.fromJson(Map<String, dynamic> json) =>

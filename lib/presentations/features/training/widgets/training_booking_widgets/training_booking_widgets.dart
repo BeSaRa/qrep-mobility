@@ -6,6 +6,7 @@ import 'package:ebla/presentations/features/training/bloc/get_training_course_se
 import 'package:ebla/presentations/resources/assets_manager.dart';
 import 'package:ebla/presentations/resources/color_manager.dart';
 import 'package:ebla/presentations/resources/language_manager.dart';
+import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:ebla/presentations/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +18,7 @@ class TimeSlotView extends StatelessWidget {
   // final TrainingSessionsDataModel  trainingSessionsDataModel ;
   final ValueChanged<int> onTimeSlotSelected;
   final TrainingCourse course;
-
+  
   const TimeSlotView({
     super.key,
     required this.selectedTimeSlot,
@@ -129,13 +130,13 @@ class MapDialog extends StatelessWidget {
               padding: EdgeInsets.all(AppSizeW.s12),
               child: ElevatedButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Close'),
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(AppSizeR.s8),
                   ),
                   minimumSize: Size(double.infinity, AppSizeW.s48),
                 ),
+                child: Text(AppStrings().close),
               ),
             ),
           ],
@@ -180,7 +181,7 @@ class SeeOnGoogleMapButton extends StatelessWidget {
           children: [
             Image.asset(IconAssets.map, width: AppSizeSp.s20),
             SizedBox(width: AppSizeW.s8),
-            Text('عرض الموقع على الخريطة',
+            Text(AppStrings().seeLocationOnMap,
                 style: Theme.of(context)
                     .textTheme
                     .bodySmall
@@ -191,6 +192,7 @@ class SeeOnGoogleMapButton extends StatelessWidget {
     );
   }
 }
+
 
 class TimeSlotsWidget extends StatelessWidget {
   final int selectedTimeSlot;
@@ -253,7 +255,6 @@ class TimeSlotsWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(AppSizeR.s100),
                       ),
                       child: Column(
-                        // mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
                             alignment: Alignment.center,
@@ -345,11 +346,14 @@ class TrainingCardWidget extends StatelessWidget {
                     Image.asset(IconAssets.money, width: AppSizeSp.s25),
                     SizedBox(width: AppSizeW.s5),
                     Text(
-                      'قيمة الدورة: ',
+                      '${AppStrings().courseFees}: ',
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     Text(
-                      '${course.fee} ريال قطري',
+                      course.fee.toInt()==0?
+              AppStrings().free
+              :
+              '${course.fee} ${AppStrings().qr}',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: ColorManager.primary,
                             fontWeight: FontWeight.bold,
@@ -360,7 +364,7 @@ class TrainingCardWidget extends StatelessWidget {
                 const Divider(),
               ],
               InfoRowWidget(
-                label: 'العنوان:',
+                label: "${AppStrings().address}:",
                 value: value.trainingCourseSessions.data
                     .sessions[selectedTimeSlot].address,
                 isLabelLocation: true,
@@ -376,27 +380,27 @@ class TrainingCardWidget extends StatelessWidget {
                     children: [
                       InfoRowWidget(
                           isLabelLocation: false,
-                          label: 'الوقت:',
+                          label: '${AppStrings().time}:',
                           value:
                               "${value.trainingCourseSessions.data.sessions[selectedTimeSlot].timeFrom} - ${value.trainingCourseSessions.data.sessions[selectedTimeSlot].timeTo}"),
                       // SizedBox(height: AppSizeH.s5),
                       InfoRowWidget(
                           isLabelLocation: false,
-                          label: 'عدد الأيام:',
+                          label: "${AppStrings().numberOfDdays}:",
                           value: value.trainingCourseSessions.data
                               .sessions[selectedTimeSlot].numberOfDays
                               .toString()),
                       // SizedBox(height: AppSizeH.s5),
                       InfoRowWidget(
                           isLabelLocation: false,
-                          label: 'آخر موعد للتسجيل:',
+                          label: '${AppStrings().registrationDeadline}:',
                           value: value.trainingCourseSessions.data
                               .sessions[selectedTimeSlot].registrationDeadline),
                       // SizedBox(height: AppSizeH.s5),
 
                       InfoRowWidget(
                           isLabelLocation: false,
-                          label: 'اللغة:',
+                          label: '${AppStrings().language}:',
                           value: value
                               .trainingCourseSessions
                               .data
@@ -426,12 +430,15 @@ class TrainingCardWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'قيمة الدورة: ',
+                          '${AppStrings().courseFees}: ',
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         Text(
-                          '${course.fee} ريال قطري',
-                          style:
+                          course.fee.toInt()==0?
+                            AppStrings().free
+                            :
+                            '${course.fee} ${AppStrings().qr}',
+                                        style:
                               Theme.of(context).textTheme.bodySmall?.copyWith(
                                     color: ColorManager.primary,
                                     fontWeight: FontWeight.bold,
@@ -535,7 +542,7 @@ class TwoBottomButtonsWidget extends StatelessWidget {
             : Theme.of(context).canvasColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha:0.1),
             blurRadius: 10,
             spreadRadius: 5,
           ),
@@ -555,7 +562,7 @@ class TwoBottomButtonsWidget extends StatelessWidget {
                 ),
               ),
               child: Text(
-                'التسجيل',
+                AppStrings().registerNow,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: ColorManager.white,
                       fontWeight: FontWeight.w800,
@@ -593,7 +600,7 @@ class TwoBottomButtonsWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'المقر: ',
+                      '${AppStrings().trainingLocation}: ',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: ColorManager.primary,
                             fontWeight: FontWeight.w800,
@@ -793,8 +800,7 @@ class _EnhancedCalendarViewState extends State<EnhancedCalendarView> {
                                 );
                               },
                               child: Table(
-                                key: ValueKey(_currentMonth
-                                    .value), // Important: triggers animation on month change
+                                key: ValueKey(_currentMonth.value), // Important: triggers animation on month change
                                 children: [
                                   for (var i = 0; i < 6; i++)
                                     TableRow(
@@ -915,7 +921,7 @@ class _EnhancedCalendarViewState extends State<EnhancedCalendarView> {
                               color: ColorManager.white,
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: Text('لا توجد جلسات في هذا اليوم',
+                            child: Text(AppStrings().noSessions,
                                 style: Theme.of(context).textTheme.bodySmall),
                           );
                   },

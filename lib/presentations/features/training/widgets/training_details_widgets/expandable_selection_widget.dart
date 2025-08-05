@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class ExpandableSectionWidget extends StatefulWidget {
   final String title;
   final IconData icon;
-  // final List<String>? items;
   final List<Widget>? items;
   final String? url;
   final bool isExpanded;
@@ -220,7 +219,6 @@ class DocumentItemWidget extends StatelessWidget {
       padding: EdgeInsets.all(AppSizeW.s10),
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
-        // color: Colors.grey.shade200,
         boxShadow: [
           BoxShadow(
             color: ColorManager.primaryBlue.withValues(alpha: 0.1),
@@ -234,10 +232,6 @@ class DocumentItemWidget extends StatelessWidget {
         textDirection: TextDirection.ltr,
         mainAxisSize: MainAxisSize.min,
         children: [
-          // IconButton(
-          //   onPressed: onDownload,
-          //   icon: Icon(Icons.download, color: ColorManager.primary),
-          // ),
           GestureDetector(
             onTap: onView,
             child: Container(
@@ -257,10 +251,6 @@ class DocumentItemWidget extends StatelessWidget {
                   color: ColorManager.primary),
             ),
           ),
-          // IconButton(
-          //   onPressed:onView ,
-          //   icon: Icon(Icons.picture_as_pdf, color: ColorManager.primary),
-          // ),
           SizedBox(width: AppSizeW.s10),
           Text(fileName,
               textAlign: TextAlign.right,
