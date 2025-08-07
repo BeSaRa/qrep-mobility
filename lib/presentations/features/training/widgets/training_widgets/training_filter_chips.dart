@@ -55,6 +55,7 @@ class _TrainingFilterChipsState extends State<TrainingFilterChips> {
   final ValueNotifier<FilterOption> selectedLocationNotifier = ValueNotifier(FilterOption(name: AppStrings().all, value: null));
   final ValueNotifier<FilterOption> selectedLangNotifier = ValueNotifier(FilterOption(name: AppStrings().all, value: null));
   final ValueNotifier<FilterOption> selectedisMorningNotifier = ValueNotifier(FilterOption(name: AppStrings().all, value: null));
+  final ValueNotifier<String?> selectedProviderNotifier = ValueNotifier(null);
   final ValueNotifier<DateTime?> startDateNotifier = ValueNotifier<DateTime?>(null);
   final ValueNotifier<DateTime?> endDateNotifier = ValueNotifier<DateTime?>(null);
   final ValueNotifier<bool> isEndDateEnabledNotifier = ValueNotifier<bool>(false);
@@ -96,23 +97,23 @@ class _TrainingFilterChipsState extends State<TrainingFilterChips> {
           return state.maybeMap(
             done: (_) {
               return Row(
-                // crossAxisAlignment: CrossAxisAlignment.end
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   ValueListenableBuilder<FilterOption>(
-                    valueListenable: selectedTrackNotifier,
-                    builder: (context, selectedTrack, _) {
+                    valueListenable: selectedLocationNotifier,
+                    builder: (context, selectedLocation, _) {
                       return TrainingFilterChip(
-                        mainLabel: AppStrings().type,
-                        label: selectedTrack.name,
+                        mainLabel: AppStrings().trainingLocation,
+                        label: selectedLocation.name,
                         onTap: () => _showFilterOptions(
                           context,
-                          trackOptions,
+                          locationOptions,
                           (FilterOption selected) {
                             // Get current filters
                             final currentFilters = context.read<TrainingFilterCubit>().state;
                             // Update filters - preserve all existing values
                             filterCubit.updateFilters(
-                              track: selected.value,
+                              location: selected.value,
                               pageIndex: 1, // Reset to first page when changing filters
                               isFree: currentFilters.isFree,
                               isActive: currentFilters.isActive,
@@ -127,7 +128,7 @@ class _TrainingFilterChipsState extends State<TrainingFilterChips> {
                                   ),
                                 );
 
-                            selectedTrackNotifier.value = selected;
+                            selectedLocationNotifier.value = selected;
                           },
                         ),
                         icon: Icons.keyboard_arrow_down,
@@ -151,6 +152,7 @@ class _TrainingFilterChipsState extends State<TrainingFilterChips> {
                               isFree: selected.value,
                               pageIndex: 1,
                               track: currentFilters.track,
+                              location: currentFilters.location,
                               isActive: currentFilters.isActive,
                               name: currentFilters.name,
                               categories: currentFilters.categories,
@@ -208,20 +210,21 @@ class _TrainingFilterChipsState extends State<TrainingFilterChips> {
                         var res = await bottomSheetWidget(
                           context,
                           child: MultiBlocProvider(
-                            providers: [BlocProvider.value(value: filterCubit)],
+                            providers: [BlocProvider.value(value: filterCubit),BlocProvider.value(value: BlocProvider.of<GetAllTrainingCoursesBloc>(context))],
                             child:  MainTrainingFilterBottomSheetWidget(
-                              startDateNotifier: startDateNotifier,
-                              endDateNotifier: endDateNotifier,
+                              // selectedProviderNotifier:selectedProviderNotifier,
+                              // startDateNotifier: startDateNotifier,
+                              // endDateNotifier: endDateNotifier,
+                              // selectedLangNotifier: selectedLangNotifier,
+                              // selectedLocationNotifier: selectedLocationNotifier,
+                              // selectedisMorningNotifier: selectedisMorningNotifier,
+                              // selectedTrackNotifier: selectedTrackNotifier,
+                              // selectedIsActiveNotifier: selectedIsActiveNotifier,
+                              // selectedIsFreeNotifier: selectedIsFreeNotifier,
                               isEndDateEnabledNotifier: isEndDateEnabledNotifier,
                               langOptions: langOptions,
                               locationOptions: locationOptions,
                               isMorningOptions: isMorningOptions,
-                              selectedLangNotifier: selectedLangNotifier,
-                              selectedLocationNotifier: selectedLocationNotifier,
-                              selectedisMorningNotifier: selectedisMorningNotifier,
-                              selectedTrackNotifier: selectedTrackNotifier,
-                              selectedIsActiveNotifier: selectedIsActiveNotifier,
-                              selectedIsFreeNotifier: selectedIsFreeNotifier,
                               isActiveOptions: isActiveOptions,
                               isFreeOptions: isFreeOptions,
                               trackOptions: trackOptions,
@@ -233,8 +236,9 @@ class _TrainingFilterChipsState extends State<TrainingFilterChips> {
                         }
                       },
                     child: Container(
+                      margin: EdgeInsets.symmetric(vertical: AppSizeH.s5),
                       padding: EdgeInsets.symmetric(
-                        horizontal: AppSizeW.s16,
+                        horizontal: AppSizeW.s10,
                         vertical: AppSizeH.s8,
                       ),
                       decoration: BoxDecoration(

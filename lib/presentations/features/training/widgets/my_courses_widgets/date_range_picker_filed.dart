@@ -162,7 +162,7 @@ class DateRangePickerField extends StatelessWidget {
                             endDateNotifier.value = null;
                             startDateNotifier.value = null;
                             isEndDateEnabledNotifier.value = false;
-                                  // Here you can integrate with your filter cubit
+                            
                             final filterCubit = context.read<TrainingFilterCubit>();
                             final currentFilters = filterCubit.state;      
                             filterCubit.updateFilters(

@@ -4,6 +4,7 @@ import 'package:ebla/data/network/failure_model/failure.dart';
 import 'package:ebla/data/network/network_info.dart';
 import 'package:ebla/domain/models/requests/training/get_all_courses_request_model.dart';
 import 'package:ebla/domain/models/training/get_all_courses_response_model.dart';
+import 'package:ebla/domain/models/training/get_training_course_providers_response_model/get_training_course_providers_response_model.dart';
 import 'package:ebla/domain/repository/service_and_training_repository.dart';
 import 'package:ebla/presentations/resources/strings_manager.dart';
 import 'package:multiple_result/multiple_result.dart';
@@ -105,6 +106,27 @@ class ServiceAndTrainingRepositoryImplementer extends ServiceAndTrainingReposito
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+  //========================= Course Providers =========================
+  @override
+  Future<Result<GetTrainingCourseProvidersResponseModel, FailureModel>> getTrainingCourseProviders(
+      GetAllCoursesRequestModel request) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await trainingServiceClient.getTrainingCourseProviders(request);
+        if (response.response.statusCode == 200) {
+          return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
 
   //========================= Course Attachments =========================
   @override
@@ -161,20 +183,14 @@ class ServiceAndTrainingRepositoryImplementer extends ServiceAndTrainingReposito
       try {
         final response = await trainingServiceClient.getMyTrainingCourses(request);
         if (response.response.statusCode == 200) {
-          print("zak ${response.data.message}");
 
           return Success(response.data);
         } else {
-          print("zak1 ${response.response.data}");
           return Error(FailureModel.fromJson(response.response.data));
         }
       } on DioException catch (e) {
-        print("zak2 ${e.message}");
-        print("zak3 ${e.error.toString()}");
-
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        print("zak3 ${e.toString()}");
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {

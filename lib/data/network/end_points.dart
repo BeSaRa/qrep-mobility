@@ -144,4 +144,5 @@ class EndPoints {
   static const String getTrainingCourseAttachment = '/TrainingCourse/GetTrainingCourseAttachment';
   static const String getTrainingCourseSessions = '/Session/GetSessions';
   static const String getMyTrainingCourses = '/TrainingCourse/GetMyTrainingCourses';
+  static const String getTrainingCourseProviders = '/TrainingCourseProvider/GetTrainingCourseProviders';
 }

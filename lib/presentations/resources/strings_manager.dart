@@ -350,5 +350,6 @@ class AppStrings {
   String cousreTime = "cousre_time".tr();
   String am = "AM".tr();
   String pm = "PM".tr();
+  String trainingDuration = "trainging_duration".tr();
 
 }

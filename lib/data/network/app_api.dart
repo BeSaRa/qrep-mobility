@@ -9,6 +9,7 @@ import 'package:ebla/domain/models/requests/broker_requests/request_broker_value
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
 import 'package:ebla/domain/models/requests/training/get_all_courses_request_model.dart';
 import 'package:ebla/domain/models/training/get_all_courses_response_model.dart';
+import 'package:ebla/domain/models/training/get_training_course_providers_response_model/get_training_course_providers_response_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../app/constants.dart';
@@ -343,4 +344,7 @@ abstract class TrainingServiceClient {
 
   @POST(EndPoints.getMyTrainingCourses)
   Future<HttpResponse<GetAllCoursesResponseModel>>getMyTrainingCourses(@Body() GetAllCoursesRequestModel request);
+
+  @POST(EndPoints.getTrainingCourseProviders)
+  Future<HttpResponse<GetTrainingCourseProvidersResponseModel>>getTrainingCourseProviders(@Body() GetAllCoursesRequestModel request);
 }

@@ -303,7 +303,7 @@
   "time":"Time",
   "number_of_days":"Number of days",
   "registration_deadline":"Registration Deadline",
-  "training_location":"Location",
+  "training_location":"Headquarters",
   "no_sessions":"There are no sessions today",
   "register_your_interest":"Register your interest",
   "paid":"Paid",
@@ -317,8 +317,10 @@
   "arabic":"Arabic",
   "cousre_time":"Course Time",
   "AM":"AM",
-  "PM":"PM"
+  "PM":"PM",
+  "trainging_duration":"Trainging Duration",
 
+"validation_days_range": "Number of days must be between {min} and {max}"
 
 
 

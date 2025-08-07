@@ -589,6 +589,7 @@ mixin _$GetAllTrainingCoursesState {
     required TResult Function(
             GetAllCoursesResponseModel coursesResponse,
             GetAllCategoriesResponseModel categoriesResponse,
+            GetTrainingCourseProvidersResponseModel providersResponse,
             bool isApplyFilterLoading)
         done,
     required TResult Function(String message) error,
@@ -601,6 +602,7 @@ mixin _$GetAllTrainingCoursesState {
     TResult? Function(
             GetAllCoursesResponseModel coursesResponse,
             GetAllCategoriesResponseModel categoriesResponse,
+            GetTrainingCourseProvidersResponseModel providersResponse,
             bool isApplyFilterLoading)?
         done,
     TResult? Function(String message)? error,
@@ -613,6 +615,7 @@ mixin _$GetAllTrainingCoursesState {
     TResult Function(
             GetAllCoursesResponseModel coursesResponse,
             GetAllCategoriesResponseModel categoriesResponse,
+            GetTrainingCourseProvidersResponseModel providersResponse,
             bool isApplyFilterLoading)?
         done,
     TResult Function(String message)? error,
@@ -715,6 +718,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(
             GetAllCoursesResponseModel coursesResponse,
             GetAllCategoriesResponseModel categoriesResponse,
+            GetTrainingCourseProvidersResponseModel providersResponse,
             bool isApplyFilterLoading)
         done,
     required TResult Function(String message) error,
@@ -730,6 +734,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(
             GetAllCoursesResponseModel coursesResponse,
             GetAllCategoriesResponseModel categoriesResponse,
+            GetTrainingCourseProvidersResponseModel providersResponse,
             bool isApplyFilterLoading)?
         done,
     TResult? Function(String message)? error,
@@ -745,6 +750,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(
             GetAllCoursesResponseModel coursesResponse,
             GetAllCategoriesResponseModel categoriesResponse,
+            GetTrainingCourseProvidersResponseModel providersResponse,
             bool isApplyFilterLoading)?
         done,
     TResult Function(String message)? error,
@@ -844,6 +850,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(
             GetAllCoursesResponseModel coursesResponse,
             GetAllCategoriesResponseModel categoriesResponse,
+            GetTrainingCourseProvidersResponseModel providersResponse,
             bool isApplyFilterLoading)
         done,
     required TResult Function(String message) error,
@@ -859,6 +866,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(
             GetAllCoursesResponseModel coursesResponse,
             GetAllCategoriesResponseModel categoriesResponse,
+            GetTrainingCourseProvidersResponseModel providersResponse,
             bool isApplyFilterLoading)?
         done,
     TResult? Function(String message)? error,
@@ -874,6 +882,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(
             GetAllCoursesResponseModel coursesResponse,
             GetAllCategoriesResponseModel categoriesResponse,
+            GetTrainingCourseProvidersResponseModel providersResponse,
             bool isApplyFilterLoading)?
         done,
     TResult Function(String message)? error,
@@ -936,10 +945,12 @@ abstract class _$$DoneImplCopyWith<$Res> {
   $Res call(
       {GetAllCoursesResponseModel coursesResponse,
       GetAllCategoriesResponseModel categoriesResponse,
+      GetTrainingCourseProvidersResponseModel providersResponse,
       bool isApplyFilterLoading});
 
   $GetAllCoursesResponseModelCopyWith<$Res> get coursesResponse;
   $GetAllCategoriesResponseModelCopyWith<$Res> get categoriesResponse;
+  $GetTrainingCourseProvidersResponseModelCopyWith<$Res> get providersResponse;
 }
 
 /// @nodoc
@@ -956,6 +967,7 @@ class __$$DoneImplCopyWithImpl<$Res>
   $Res call({
     Object? coursesResponse = null,
     Object? categoriesResponse = null,
+    Object? providersResponse = null,
     Object? isApplyFilterLoading = null,
   }) {
     return _then(_$DoneImpl(
@@ -967,6 +979,10 @@ class __$$DoneImplCopyWithImpl<$Res>
           ? _value.categoriesResponse
           : categoriesResponse // ignore: cast_nullable_to_non_nullable
               as GetAllCategoriesResponseModel,
+      null == providersResponse
+          ? _value.providersResponse
+          : providersResponse // ignore: cast_nullable_to_non_nullable
+              as GetTrainingCourseProvidersResponseModel,
       null == isApplyFilterLoading
           ? _value.isApplyFilterLoading
           : isApplyFilterLoading // ignore: cast_nullable_to_non_nullable
@@ -995,24 +1011,37 @@ class __$$DoneImplCopyWithImpl<$Res>
       return _then(_value.copyWith(categoriesResponse: value));
     });
   }
+
+  /// Create a copy of GetAllTrainingCoursesState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GetTrainingCourseProvidersResponseModelCopyWith<$Res> get providersResponse {
+    return $GetTrainingCourseProvidersResponseModelCopyWith<$Res>(
+        _value.providersResponse, (value) {
+      return _then(_value.copyWith(providersResponse: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$DoneImpl implements _Done {
-  const _$DoneImpl(
-      this.coursesResponse, this.categoriesResponse, this.isApplyFilterLoading);
+  const _$DoneImpl(this.coursesResponse, this.categoriesResponse,
+      this.providersResponse, this.isApplyFilterLoading);
 
   @override
   final GetAllCoursesResponseModel coursesResponse;
   @override
   final GetAllCategoriesResponseModel categoriesResponse;
   @override
+  final GetTrainingCourseProvidersResponseModel providersResponse;
+  @override
   final bool isApplyFilterLoading;
 
   @override
   String toString() {
-    return 'GetAllTrainingCoursesState.done(coursesResponse: $coursesResponse, categoriesResponse: $categoriesResponse, isApplyFilterLoading: $isApplyFilterLoading)';
+    return 'GetAllTrainingCoursesState.done(coursesResponse: $coursesResponse, categoriesResponse: $categoriesResponse, providersResponse: $providersResponse, isApplyFilterLoading: $isApplyFilterLoading)';
   }
 
   @override
@@ -1024,13 +1053,15 @@ class _$DoneImpl implements _Done {
                 other.coursesResponse == coursesResponse) &&
             (identical(other.categoriesResponse, categoriesResponse) ||
                 other.categoriesResponse == categoriesResponse) &&
+            (identical(other.providersResponse, providersResponse) ||
+                other.providersResponse == providersResponse) &&
             (identical(other.isApplyFilterLoading, isApplyFilterLoading) ||
                 other.isApplyFilterLoading == isApplyFilterLoading));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, coursesResponse, categoriesResponse, isApplyFilterLoading);
+  int get hashCode => Object.hash(runtimeType, coursesResponse,
+      categoriesResponse, providersResponse, isApplyFilterLoading);
 
   /// Create a copy of GetAllTrainingCoursesState
   /// with the given fields replaced by the non-null parameter values.
@@ -1048,11 +1079,13 @@ class _$DoneImpl implements _Done {
     required TResult Function(
             GetAllCoursesResponseModel coursesResponse,
             GetAllCategoriesResponseModel categoriesResponse,
+            GetTrainingCourseProvidersResponseModel providersResponse,
             bool isApplyFilterLoading)
         done,
     required TResult Function(String message) error,
   }) {
-    return done(coursesResponse, categoriesResponse, isApplyFilterLoading);
+    return done(coursesResponse, categoriesResponse, providersResponse,
+        isApplyFilterLoading);
   }
 
   @override
@@ -1063,12 +1096,13 @@ class _$DoneImpl implements _Done {
     TResult? Function(
             GetAllCoursesResponseModel coursesResponse,
             GetAllCategoriesResponseModel categoriesResponse,
+            GetTrainingCourseProvidersResponseModel providersResponse,
             bool isApplyFilterLoading)?
         done,
     TResult? Function(String message)? error,
   }) {
-    return done?.call(
-        coursesResponse, categoriesResponse, isApplyFilterLoading);
+    return done?.call(coursesResponse, categoriesResponse, providersResponse,
+        isApplyFilterLoading);
   }
 
   @override
@@ -1079,13 +1113,15 @@ class _$DoneImpl implements _Done {
     TResult Function(
             GetAllCoursesResponseModel coursesResponse,
             GetAllCategoriesResponseModel categoriesResponse,
+            GetTrainingCourseProvidersResponseModel providersResponse,
             bool isApplyFilterLoading)?
         done,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (done != null) {
-      return done(coursesResponse, categoriesResponse, isApplyFilterLoading);
+      return done(coursesResponse, categoriesResponse, providersResponse,
+          isApplyFilterLoading);
     }
     return orElse();
   }
@@ -1132,10 +1168,12 @@ abstract class _Done implements GetAllTrainingCoursesState {
   const factory _Done(
       final GetAllCoursesResponseModel coursesResponse,
       final GetAllCategoriesResponseModel categoriesResponse,
+      final GetTrainingCourseProvidersResponseModel providersResponse,
       final bool isApplyFilterLoading) = _$DoneImpl;
 
   GetAllCoursesResponseModel get coursesResponse;
   GetAllCategoriesResponseModel get categoriesResponse;
+  GetTrainingCourseProvidersResponseModel get providersResponse;
   bool get isApplyFilterLoading;
 
   /// Create a copy of GetAllTrainingCoursesState
@@ -1218,6 +1256,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(
             GetAllCoursesResponseModel coursesResponse,
             GetAllCategoriesResponseModel categoriesResponse,
+            GetTrainingCourseProvidersResponseModel providersResponse,
             bool isApplyFilterLoading)
         done,
     required TResult Function(String message) error,
@@ -1233,6 +1272,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(
             GetAllCoursesResponseModel coursesResponse,
             GetAllCategoriesResponseModel categoriesResponse,
+            GetTrainingCourseProvidersResponseModel providersResponse,
             bool isApplyFilterLoading)?
         done,
     TResult? Function(String message)? error,
@@ -1248,6 +1288,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(
             GetAllCoursesResponseModel coursesResponse,
             GetAllCategoriesResponseModel categoriesResponse,
+            GetTrainingCourseProvidersResponseModel providersResponse,
             bool isApplyFilterLoading)?
         done,
     TResult Function(String message)? error,

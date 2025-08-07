@@ -7,6 +7,7 @@ class GetAllTrainingCoursesState with _$GetAllTrainingCoursesState {
   const factory GetAllTrainingCoursesState.done(
     GetAllCoursesResponseModel coursesResponse,
     GetAllCategoriesResponseModel categoriesResponse,
+    GetTrainingCourseProvidersResponseModel providersResponse,
     bool isApplyFilterLoading,
   ) = _Done;
   const factory GetAllTrainingCoursesState.error(String message) = _Error;

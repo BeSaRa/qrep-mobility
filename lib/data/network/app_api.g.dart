@@ -1699,7 +1699,8 @@ class _CmsServiceClient implements CmsServiceClient {
   final Dio _dio;
 
   String? baseUrl;
-@override
+
+ @override
   Future<HttpResponse<AuthResponse>> login(RequestAuth requestAuth) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -1783,7 +1784,6 @@ class _CmsServiceClient implements CmsServiceClient {
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
-
 
   @override
   Future<HttpResponse<UserResponse>> getUserInfo() async {
@@ -2325,6 +2325,37 @@ class _TrainingServiceClient implements TrainingServiceClient {
               baseUrl,
             ))));
     final value = GetAllCoursesResponseModel.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<GetTrainingCourseProvidersResponseModel>>
+      getTrainingCourseProviders(GetAllCoursesRequestModel request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<GetTrainingCourseProvidersResponseModel>>(
+            Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+                .compose(
+                  _dio.options,
+                  '/TrainingCourseProvider/GetTrainingCourseProviders',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(
+                    baseUrl: _combineBaseUrls(
+                  _dio.options.baseUrl,
+                  baseUrl,
+                ))));
+    final value =
+        GetTrainingCourseProvidersResponseModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

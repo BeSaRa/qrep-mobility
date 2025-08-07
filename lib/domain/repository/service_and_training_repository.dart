@@ -1,6 +1,7 @@
 import 'package:ebla/data/network/failure_model/failure.dart';
 import 'package:ebla/domain/models/requests/training/get_all_courses_request_model.dart';
 import 'package:ebla/domain/models/training/get_all_courses_response_model.dart';
+import 'package:ebla/domain/models/training/get_training_course_providers_response_model/get_training_course_providers_response_model.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 import '../models/training/get_all_categories_response_model/get_all_categories_response_model.dart';
@@ -20,4 +21,6 @@ abstract class ServiceAndTrainingRepository {
   Future<Result<GetTrainingCourseSessionsResponseModel, FailureModel>> getTrainingCourseSessions(GetTrainingCourseSessionsRequestModel request);
 
   Future<Result<GetAllCoursesResponseModel, FailureModel>> getMyTrainingCourses(GetAllCoursesRequestModel request);
+
+  Future<Result<GetTrainingCourseProvidersResponseModel, FailureModel>> getTrainingCourseProviders(GetAllCoursesRequestModel request);
 }

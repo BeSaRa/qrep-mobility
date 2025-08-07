@@ -23,6 +23,7 @@ import 'package:ebla/domain/usecases/training_usecases/get_all_training_courses_
 import 'package:ebla/domain/usecases/training_usecases/get_course_attachments_usecase.dart';
 import 'package:ebla/domain/usecases/training_usecases/get_course_details_usecase.dart';
 import 'package:ebla/domain/usecases/training_usecases/get_my_training_courses_usecase.dart';
+import 'package:ebla/domain/usecases/training_usecases/get_training_course_providers_usecase.dart';
 import 'package:ebla/domain/usecases/training_usecases/get_training_course_sessions_usecase.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/chat_faq_bloc/chat_faq_bloc.dart';
 import 'package:ebla/presentations/features/chatbot/blocs/close_stream/close_stream_bloc.dart';
@@ -344,7 +345,7 @@ Future<void> initHomeModule() async {
   //------------- blocs --------------
   if (!GetIt.I.isRegistered<GetAllTrainingCoursesBloc>()) {
     instance.registerFactory<GetAllTrainingCoursesBloc>(
-        () => GetAllTrainingCoursesBloc(instance(),instance(),instance()));
+        () => GetAllTrainingCoursesBloc(instance(),instance(),instance(),instance()));
   }
   if (!GetIt.I.isRegistered<GetCourseDetailsBloc>()) {
     instance.registerFactory<GetCourseDetailsBloc>(
@@ -367,6 +368,10 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<GetAllTrainingCatigoriesUsecase >()) {
     instance.registerFactory<GetAllTrainingCatigoriesUsecase >(
         () => GetAllTrainingCatigoriesUsecase (instance()));
+  }
+  if (!GetIt.I.isRegistered<GetTrainingCourseProvidersUsecase >()) {
+    instance.registerFactory<GetTrainingCourseProvidersUsecase >(
+        () => GetTrainingCourseProvidersUsecase (instance()));
   }
   if (!GetIt.I.isRegistered<GetAllTrainingCatigoriesForGuestUsecase >()) {
     instance.registerFactory<GetAllTrainingCatigoriesForGuestUsecase >(

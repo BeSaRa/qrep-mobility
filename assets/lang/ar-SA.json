@@ -317,7 +317,8 @@
   "arabic":"العربية", 
   "cousre_time":"وقت الدورة",
   "AM":"صباحاً",
-  "PM":"مساءً"
-
+  "PM":"مساءً",
+  "trainging_duration":"مدة التدريب",
+  "validation_days_range": "عدد الأيام يجب أن يكون بين {min} و {max}"
   
 }
