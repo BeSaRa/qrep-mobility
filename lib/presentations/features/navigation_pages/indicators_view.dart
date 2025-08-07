@@ -106,29 +106,29 @@ class IndicatorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.symmetric(
-            horizontal: AppSizeW.s10, vertical: AppSizeH.s10),
-        height: AppSizeH.s100,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(AppSizeR.s20),
-            color: Theme.of(context).cardTheme.color,
-            boxShadow: [
-              BoxShadow(
-                  color: Theme.of(context).shadowColor,
-                  offset: const Offset(1, 1),
-                  blurRadius: AppSizeW.s2,
-                  spreadRadius: AppSizeW.s1),
-              BoxShadow(
-                  color: Theme.of(context).shadowColor,
-                  offset: const Offset(-1, -1),
-                  blurRadius: AppSizeW.s2,
-                  spreadRadius: AppSizeW.s1),
-            ]),
-        child: GestureDetector(
-          onTap: () {
-            onTap();
-          },
+    return GestureDetector(
+      onTap: () {
+        onTap();
+      },
+      child: Container(
+          margin: EdgeInsets.symmetric(
+              horizontal: AppSizeW.s10, vertical: AppSizeH.s10),
+          height: AppSizeH.s100,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppSizeR.s20),
+              color: Theme.of(context).cardTheme.color,
+              boxShadow: [
+                BoxShadow(
+                    color: Theme.of(context).shadowColor,
+                    offset: const Offset(1, 1),
+                    blurRadius: AppSizeW.s2,
+                    spreadRadius: AppSizeW.s1),
+                BoxShadow(
+                    color: Theme.of(context).shadowColor,
+                    offset: const Offset(-1, -1),
+                    blurRadius: AppSizeW.s2,
+                    spreadRadius: AppSizeW.s1),
+              ]),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -171,7 +171,7 @@ class IndicatorWidget extends StatelessWidget {
                     )),
               ),
             ],
-          ),
-        ));
+          )),
+    );
   }
 }
