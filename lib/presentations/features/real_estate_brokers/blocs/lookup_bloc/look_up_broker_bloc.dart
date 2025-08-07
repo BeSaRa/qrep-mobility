@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../../domain/models/models.dart';
+import '../../../../../domain/models/broker_models/broker_models.dart';
 import '../../../../../domain/models/requests/broker_requests/request_broker_values.dart';
 import '../../../../../domain/usecases/usecases.dart';
 

@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:ebla/app/app_preferences.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/data/network/cms_dio_factory.dart';
 import 'package:ebla/data/network/failure_model/failure.dart';
-import 'package:ebla/domain/models/Auth/auth_models.dart';
-import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
+import 'package:ebla/domain/models/auth/auth_models.dart';
+import 'package:ebla/domain/models/auth/requests_auth/request_auth.dart';
 import 'package:ebla/domain/models/ai_search_models/ai_search_model.dart';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/domain/models/chatboot/new_chatbot_response_models/new_chatbot_response_model.dart';
@@ -14,7 +15,7 @@ import 'package:ebla/domain/models/cms_models/app_settings/app_settings.dart';
 import 'package:ebla/domain/models/cms_models/user/requests/update_info_model.dart';
 import 'package:ebla/domain/models/cms_models/user/user_model.dart';
 import 'package:ebla/domain/models/favourite/favourite_models.dart';
-import 'package:ebla/domain/models/models.dart';
+
 import 'package:ebla/domain/models/requests/ai_search_models/ai_search_model.dart';
 import 'package:ebla/domain/models/requests/broker_requests/request_broker_values.dart';
 import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_model.dart';
@@ -22,6 +23,19 @@ import 'package:flutter/foundation.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 import '../../app/constants.dart';
+import '../../domain/models/broker_models/broker_models.dart';
+import '../../domain/models/cms_models/about/about_model.dart';
+import '../../domain/models/cms_models/faq/faq_model.dart';
+import '../../domain/models/cms_models/laws/laws_model.dart';
+import '../../domain/models/cms_models/main_menu_models/main_menu_models.dart';
+import '../../domain/models/cms_models/news/news_model.dart';
+import '../../domain/models/mrtgage_models/mortgage_models.dart';
+import '../../domain/models/rent_models/rent_models.dart';
+import '../../domain/models/requests/mortgage_requests/request_mortgage_values.dart';
+import '../../domain/models/requests/rent_requests/request_rent.dart';
+import '../../domain/models/requests/sell_requests/request_sell_values.dart';
+import '../../domain/models/sell_models/sell_models.dart';
+import '../../domain/models/translations_model/translations_model.dart';
 import '../../domain/repository/repository.dart';
 import '../../presentations/resources/strings_manager.dart';
 import '../network/app_api.dart';
@@ -61,6 +75,7 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
 //============================ About ===================================
   @override
   Future<Result<AboutResponse, FailureModel>> getAbout() async {
@@ -82,6 +97,7 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
 //============================ News ===================================
   @override
   Future<Result<List<NewsModel>, FailureModel>> getNews() async {
@@ -102,6 +118,7 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
 //============================ Faq ===================================
   @override
   Future<Result<FaqResponse, FailureModel>> getFaq(int id) async {
@@ -122,6 +139,7 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
 //============================ Auth ===================================
   @override
   Future<Result<AuthResponse, FailureResponse>> login(
@@ -167,6 +185,7 @@ class RepositoryImplementer extends Repository {
           errors: [ErrorModel(message: AppStrings().noInternetError)]));
     }
   }
+
 //============================ User ===================================
   @override
   Future<Result<UserResponse, FailureModel>> getUserInfo() async {
@@ -426,13 +445,11 @@ class RepositoryImplementer extends Repository {
           return Error(FailureModel.fromJson(response.response.data));
         }
       } on DioException catch (e) {
-        if (kDebugMode) {
-        }
+        if (kDebugMode) {}
 
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        if (kDebugMode) {
-        }
+        if (kDebugMode) {}
 
         return Error(FailureModel(message: AppStrings().defaultError));
       }
@@ -609,8 +626,7 @@ class RepositoryImplementer extends Repository {
       } on DioException catch (e) {
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        if (kDebugMode) {
-        }
+        if (kDebugMode) {}
         return Error(FailureModel(message: AppStrings().defaultError));
       }
     } else {
@@ -652,13 +668,11 @@ class RepositoryImplementer extends Repository {
           return Error(FailureModel.fromJson(response.response.data));
         }
       } on DioException catch (e) {
-        if (kDebugMode) {
-        }
+        if (kDebugMode) {}
 
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        if (kDebugMode) {
-        }
+        if (kDebugMode) {}
 
         return Error(FailureModel(message: AppStrings().defaultError));
       }
@@ -680,13 +694,11 @@ class RepositoryImplementer extends Repository {
           return Error(FailureModel.fromJson(response.response.data));
         }
       } on DioException catch (e) {
-        if (kDebugMode) {
-        }
+        if (kDebugMode) {}
 
         return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
       } catch (e) {
-        if (kDebugMode) {
-        }
+        if (kDebugMode) {}
 
         return Error(FailureModel(message: AppStrings().defaultError));
       }
@@ -1005,6 +1017,7 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
 //============================ Mortgage ===================================
   // KPI1
   @override
@@ -1226,6 +1239,7 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
 //============================ Favourites ===================================
   @override
   Future<Result<List<FavouriteResponse>, FailureModel>> getUserFavourites(
@@ -1309,6 +1323,7 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
 //============================ Laws ===================================
   @override
   Future<Result<List<LawsModel>, FailureModel>> getLaws() async {
@@ -1330,18 +1345,19 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
 //============================ chatbot ===================================
   //// NOTE: The Public token is for azure and All AI endpoints
   @override
   Future<Result<ChatbotResponseModel, FailureModel>> sendMessageToChatbot(
       ChatbotRequestModel request) async {
     if (await networkInfo.isConnected) {
-
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
 
-        const String apiUrl ='${Constant.authorityChatBotBaseUrl}/api/v1/chatbot/chat/website';
+        const String apiUrl =
+            '${Constant.authorityChatBotBaseUrl}/api/v1/chatbot/chat/website';
         String language = await appPreferences.getAppLanguage();
 
         Map<String, String> headers = {
@@ -1362,7 +1378,6 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-
         if (response.statusCode == 200) {
           return Success(ChatbotResponseModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
@@ -1372,7 +1387,6 @@ class RepositoryImplementer extends Repository {
           return Error(FailureModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
           return const Error(
@@ -1463,8 +1477,7 @@ class RepositoryImplementer extends Repository {
                         ),
                       ),
                     );
-                  } else {
-                  }
+                  } else {}
                 } else if (event == 'complete') {
                   final fullData = json['data'];
                   if (fullData is Map<String, dynamic>) {
@@ -1472,14 +1485,12 @@ class RepositoryImplementer extends Repository {
                       FullNewChatbotResponseModel(
                           data: NewChatbotResponseModel(
                               event: event,
-                              data: DataResponseModel.fromJson(fullData))
-                          ),
+                              data: DataResponseModel.fromJson(fullData))),
                     );
-                  } else {
-                  }
-                } else {
-                }
+                  } else {}
+                } else {}
               } catch (e) {
+                log(8);
               }
             }
           },
@@ -1507,7 +1518,6 @@ class RepositoryImplementer extends Repository {
   Future<Result<List<ChatbotFAQResponseModel>, FailureModel>> getChatFAQ(
       String botName) async {
     if (await networkInfo.isConnected) {
-
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
@@ -1533,7 +1543,6 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-
         if (response.statusCode == 200) {
           if (response.data is List) {
             final faqList = (response.data as List)
@@ -1552,7 +1561,6 @@ class RepositoryImplementer extends Repository {
           return Error(FailureModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
           return const Error(
@@ -1572,7 +1580,6 @@ class RepositoryImplementer extends Repository {
   @override
   Future<Result<StartStreamModel, FailureModel>> startStream() async {
     if (await networkInfo.isConnected) {
-
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
@@ -1599,7 +1606,6 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-
         if (response.statusCode == 200) {
           return Success(StartStreamModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
@@ -1609,7 +1615,6 @@ class RepositoryImplementer extends Repository {
           return Error(FailureModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
           return const Error(
@@ -1630,7 +1635,6 @@ class RepositoryImplementer extends Repository {
   Future<Result<MainChatbotResponseModel, FailureAIModel>> sendAnswer(
       MainSendAnswerRequestModel request, String id) async {
     if (await networkInfo.isConnected) {
-
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
@@ -1658,7 +1662,6 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-
         if (response.statusCode == 200) {
           return Success(MainChatbotResponseModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
@@ -1668,7 +1671,6 @@ class RepositoryImplementer extends Repository {
           return Error(FailureAIModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
           return const Error(
@@ -1689,7 +1691,6 @@ class RepositoryImplementer extends Repository {
   Future<Result<MainChatbotResponseModel, FailureAIModel>> sendCandidate(
       MainSendCandidateRequestModel request, String id) async {
     if (await networkInfo.isConnected) {
-
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
@@ -1717,7 +1718,6 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-
         if (response.statusCode == 200) {
           return Success(MainChatbotResponseModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
@@ -1727,7 +1727,6 @@ class RepositoryImplementer extends Repository {
           return Error(FailureAIModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
           return const Error(
@@ -1748,7 +1747,6 @@ class RepositoryImplementer extends Repository {
   Future<Result<MainChatbotResponseModel, FailureAIModel>> closeStream(
       String id) async {
     if (await networkInfo.isConnected) {
-
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
@@ -1775,7 +1773,6 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-
         if (response.statusCode == 200) {
           return Success(MainChatbotResponseModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
@@ -1785,7 +1782,6 @@ class RepositoryImplementer extends Repository {
           return Error(FailureAIModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
           return const Error(
@@ -1805,7 +1801,6 @@ class RepositoryImplementer extends Repository {
   Future<Result<MainChatbotResponseModel, FailureAIModel>> stopRender(
       String id) async {
     if (await networkInfo.isConnected) {
-
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
@@ -1832,7 +1827,6 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-
         if (response.statusCode == 200) {
           return Success(MainChatbotResponseModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
@@ -1842,7 +1836,6 @@ class RepositoryImplementer extends Repository {
           return Error(FailureAIModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
           return const Error(
@@ -1863,7 +1856,6 @@ class RepositoryImplementer extends Repository {
   Future<Result<MainChatbotResponseModel, FailureAIModel>> sendFeedback(
       int feedback, String convId) async {
     if (await networkInfo.isConnected) {
-
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
@@ -1890,7 +1882,6 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-
         if (response.statusCode == 200) {
           return Success(MainChatbotResponseModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
@@ -1900,7 +1891,6 @@ class RepositoryImplementer extends Repository {
           return Error(FailureAIModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
           return const Error(
@@ -1919,7 +1909,6 @@ class RepositoryImplementer extends Repository {
   @override
   Future<Result<String, FailureAIModel>> getSASPdfUrl(String blobUrl) async {
     if (await networkInfo.isConnected) {
-
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
@@ -1946,7 +1935,6 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-
         if (response.statusCode == 200) {
           return Success(response.data);
         } else if (response.statusCode == 401) {
@@ -1956,7 +1944,6 @@ class RepositoryImplementer extends Repository {
           return Error(FailureAIModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
           return const Error(
@@ -1978,7 +1965,6 @@ class RepositoryImplementer extends Repository {
   Future<Result<AiSearchResponseModel, FailureModel>> aiSearchFun(
       AiSearchRequestModel request) async {
     if (await networkInfo.isConnected) {
-
       try {
         final AppPreferences appPreferences = AppPreferences(instance());
         final dio = Dio();
@@ -2006,7 +1992,6 @@ class RepositoryImplementer extends Repository {
           ),
         );
 
-
         if (response.statusCode == 200) {
           return Success(AiSearchResponseModel.fromJson(response.data));
         } else if (response.statusCode == 401) {
@@ -2016,7 +2001,6 @@ class RepositoryImplementer extends Repository {
           return Error(FailureModel.fromJson(response.data));
         }
       } on DioException catch (e) {
-
         // Handle non-JSON responses
         if (e.response != null && e.response?.data is! Map<String, dynamic>) {
           return const Error(
@@ -2054,5 +2038,6 @@ class RepositoryImplementer extends Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
   ///=======================================================================
 }

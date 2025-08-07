@@ -38,7 +38,6 @@ class ChatBotBloc extends Bloc<SendMessageEvent, ChatBotState> {
 
             _streamSubscription = success.listen(
               (chunk) {
-
                 add(_StreamDataReceived(chunk.data));
               },
               onError: (error) {
@@ -53,7 +52,6 @@ class ChatBotBloc extends Bloc<SendMessageEvent, ChatBotState> {
             );
           },
           (error) {
-
             emit(ChatBotState.error(error.message));
           },
         );
@@ -97,10 +95,10 @@ class ChatBotBloc extends Bloc<SendMessageEvent, ChatBotState> {
         emit(ChatBotState.streaming(
           accumulatedContent: data.data.content,
           citations: data.data.citations ?? [],
-          conversationId: data.data.conversationId ?? '',
-          streamId: data.data.streamId ?? '',
-          userId: data.data.userId ?? '',
-          actionResults: data.data.actionResults ?? [],
+          conversationId: data.data.conversationId,
+          streamId: data.data.streamId,
+          userId: data.data.userId,
+          actionResults: data.data.actionResults,
         ));
       }
     }
@@ -111,6 +109,7 @@ class ChatBotBloc extends Bloc<SendMessageEvent, ChatBotState> {
       ));
     }
   }
+
   @override
   Future<void> close() {
     _streamSubscription?.cancel();

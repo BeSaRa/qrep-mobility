@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:ebla/data/network/app_api.dart';
 import 'package:ebla/data/network/failure_model/failure.dart';
 import 'package:ebla/data/network/network_info.dart';
+import 'package:ebla/domain/models/auth/auth_models.dart';
 import 'package:ebla/domain/models/requests/training/get_all_courses_request_model.dart';
 import 'package:ebla/domain/models/training/get_all_courses_response_model.dart';
 import 'package:ebla/domain/repository/phase2_repository.dart';
@@ -108,15 +109,38 @@ class Phase2RepositoryImplementer extends Phase2Repository {
       return Error(FailureModel(message: AppStrings().noInternetError));
     }
   }
+
   //========================= Course Sessions =========================
   @override
-  Future<Result<GetTrainingCourseSessionsResponseModel, FailureModel>>getTrainingCourseSessions(GetTrainingCourseSessionsRequestModel request) async {
+  Future<Result<GetTrainingCourseSessionsResponseModel, FailureModel>>
+      getTrainingCourseSessions(
+          GetTrainingCourseSessionsRequestModel request) async {
     if (await networkInfo.isConnected) {
       try {
         final response =
             await trainingServiceClient.getTrainingCourseSessions(request);
         if (response.response.statusCode == 200) {
           return Success(response.data);
+        } else {
+          return Error(FailureModel.fromJson(response.response.data));
+        }
+      } on DioException catch (e) {
+        return Error(FailureModel.fromJson(e.response?.data ?? defaultError));
+      } catch (e) {
+        return Error(FailureModel(message: AppStrings().defaultError));
+      }
+    } else {
+      return Error(FailureModel(message: AppStrings().noInternetError));
+    }
+  }
+
+  @override
+  Future<Result<RequestLoginModel, FailureModel>> askForLogin() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await trainingServiceClient.askForLogin();
+        if (response.response.statusCode == 200) {
+          return Success(response.data?.data ?? const RequestLoginModel());
         } else {
           return Error(FailureModel.fromJson(response.response.data));
         }

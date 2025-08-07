@@ -3,7 +3,9 @@ import 'package:ebla/domain/repository/repository.dart';
 import 'package:ebla/domain/usecases/usecases.dart';
 import 'package:multiple_result/multiple_result.dart';
 
-import '../../models/models.dart';
+import '../../models/cms_models/about/about_model.dart';
+import '../../models/cms_models/faq/faq_model.dart';
+import '../../models/cms_models/news/news_model.dart';
 
 class AboutUsecase implements BaseUseCaseEmptyInput<AboutResponse> {
   final Repository repository;

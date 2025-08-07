@@ -1,5 +1,6 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:easy_localization/easy_localization.dart' as local;
+import 'package:ebla/presentations/features/auth/blocs/ask_for_login_cubit/ask_for_login_cubit.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -26,12 +27,14 @@ class AqaratDrawer extends StatefulWidget {
 class _AqaratDrawerState extends State<AqaratDrawer> {
   final AppPreferences appPreferences = instance<AppPreferences>();
   late ChangeLanguageCubit changeLanguageCubit;
+  late AskForLoginCubit askForLoginCubit;
 
   String guestId = "1FE57C12-22F3-4AF9-9DBE-C7EB9D5063D1";
 
   @override
   void initState() {
     changeLanguageCubit = ChangeLanguageCubit(0);
+    askForLoginCubit = instance<AskForLoginCubit>();
     super.initState();
   }
 
@@ -99,23 +102,36 @@ class _AqaratDrawerState extends State<AqaratDrawer> {
           const Spacer(),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: AppSizeH.s18),
-            child: ElevatedButton(
-                onPressed: () {},
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: AppSizeW.s10,
-                  children: [
-                    Icon(
-                      Icons.login,
-                      color: ColorManager.white,
-                    ),
-                    Text(
-                      AppStrings().login,
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          color: ColorManager.white, fontSize: AppSizeSp.s14),
-                    ),
-                  ],
-                )),
+            child: BlocConsumer<AskForLoginCubit, AskForLoginState>(
+              bloc: askForLoginCubit,
+              listener: (context, state) {
+                if (state is AskForLoginDone) {}
+              },
+              builder: (context, state) {
+                if (state is AskForLoginLoading) {}
+                return ElevatedButton(
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      spacing: AppSizeW.s10,
+                      children: [
+                        Icon(
+                          Icons.login,
+                          color: ColorManager.white,
+                        ),
+                        Text(
+                          AppStrings().login,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(
+                                  color: ColorManager.white,
+                                  fontSize: AppSizeSp.s14),
+                        ),
+                      ],
+                    ));
+              },
+            ),
           ),
           EblaTabBarWidget(
             initialIndex: context.locale == ARABIC_LOCAL ? 0 : 1,

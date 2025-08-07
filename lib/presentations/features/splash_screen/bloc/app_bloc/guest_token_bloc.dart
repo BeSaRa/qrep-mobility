@@ -4,7 +4,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../app/app_preferences.dart';
 import '../../../../../app/depndency_injection.dart';
-import '../../../../../domain/models/cms_models/app_settings/app_settings.dart';
 import '../../../../../domain/usecases/usecases.dart';
 
 part 'guest_token_bloc.freezed.dart';
@@ -21,7 +20,7 @@ class GuestTokenBloc extends Bloc<GuestTokenEvent, GuestTokenState> {
     required this.appSettingsUseCase,
     required this.getCmsTokenUsecase,
   }) : super(const _Initial()) {
-    AppSettingsResponse projectDataResponse;
+    // AppSettingsResponse projectDataResponse;
     on<GuestTokenEvent>((event, emit) async {
       await event.map(
         tokenGuest: (value) async {

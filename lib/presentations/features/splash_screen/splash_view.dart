@@ -4,7 +4,7 @@ import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/presentations/features/auth/logged_in_user_cubit.dart';
 import 'package:ebla/presentations/features/more/blocs/user_bloc/user_bloc.dart';
 import 'package:ebla/presentations/features/splash_screen/widgets/animated_transparent_container.dart';
-import 'package:ebla/presentations/features/splash_screen/widgets/towers_path_widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -219,7 +219,8 @@ class SplashScaffold extends StatelessWidget {
                         .then((_) async {
                       await initHomeModule();
                       final AppPreferences prefs = instance<AppPreferences>();
-                      final bool hasSeenOnboarding = await prefs.getOnboardingSeen();
+                      final bool hasSeenOnboarding =
+                          await prefs.getOnboardingSeen();
                       if (hasSeenOnboarding) {
                         context.goNamed(RoutesNames.home);
                       } else {

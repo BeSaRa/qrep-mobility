@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/domain/models/cms_models/news/news_model.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +16,6 @@ class NewsView extends StatefulWidget {
 }
 
 class _NewsViewState extends State<NewsView> {
-
   List<NewsModel> filteredNews = [];
 
   @override

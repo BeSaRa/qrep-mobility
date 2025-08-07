@@ -1,5 +1,5 @@
-import 'package:ebla/domain/models/Auth/auth_models.dart';
-import 'package:ebla/domain/models/Auth/requests_auth/request_auth.dart';
+import 'package:ebla/domain/models/auth/auth_models.dart';
+import 'package:ebla/domain/models/auth/requests_auth/request_auth.dart';
 import 'package:ebla/domain/models/ai_search_models/ai_search_model.dart';
 import 'package:ebla/domain/models/chatboot/chatbot_response_model.dart';
 import 'package:ebla/domain/models/chatboot/new_chatbot_response_models/new_chatbot_response_model.dart';
@@ -9,11 +9,24 @@ import 'package:ebla/domain/models/requests/chatbot_requests/chatbot_request_mod
 import 'package:multiple_result/multiple_result.dart';
 
 import '../../data/network/failure_model/failure.dart';
+import '../models/broker_models/broker_models.dart';
+import '../models/cms_models/about/about_model.dart';
 import '../models/cms_models/app_settings/app_settings.dart';
+import '../models/cms_models/faq/faq_model.dart';
+import '../models/cms_models/laws/laws_model.dart';
+import '../models/cms_models/main_menu_models/main_menu_models.dart';
+import '../models/cms_models/news/news_model.dart';
 import '../models/cms_models/user/requests/update_info_model.dart';
 import '../models/favourite/favourite_models.dart';
-import '../models/models.dart';
+
+import '../models/mrtgage_models/mortgage_models.dart';
+import '../models/rent_models/rent_models.dart';
 import '../models/requests/broker_requests/request_broker_values.dart';
+import '../models/requests/mortgage_requests/request_mortgage_values.dart';
+import '../models/requests/rent_requests/request_rent.dart';
+import '../models/requests/sell_requests/request_sell_values.dart';
+import '../models/sell_models/sell_models.dart';
+import '../models/translations_model/translations_model.dart';
 
 abstract class Repository {
   //-------------CMS

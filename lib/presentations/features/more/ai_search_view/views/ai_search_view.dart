@@ -1,12 +1,12 @@
 import 'dart:async';
-import 'dart:developer';
+
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:ebla/app/depndency_injection.dart';
 import 'package:ebla/domain/models/requests/ai_search_models/ai_search_model.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/rera_text_faild.dart';
-import 'package:ebla/presentations/features/main/cubit/bottom_nav_cubit.dart';
+
 import 'package:ebla/presentations/features/more/ai_search_view/blocs/ai_search_bloc.dart';
 import 'package:ebla/presentations/features/more/ai_search_view/blocs/sas_pdf_blocs/sas_pdf_bloc.dart';
 import 'package:ebla/presentations/resources/assets_manager.dart';
@@ -17,8 +17,7 @@ import 'package:ebla/presentations/widgets/taost_widget.dart';
 import 'package:ebla/presentations/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:haptic_feedback/haptic_feedback.dart';
+
 import 'package:lottie/lottie.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -263,7 +262,8 @@ class _AiSearchViewState extends State<AiSearchView> {
                                                 } else {
                                                   await context
                                                       .read<VoiceCubit>()
-                                                      .checkAndRequestPermissionToStart(context);
+                                                      .checkAndRequestPermissionToStart(
+                                                          context);
                                                 }
                                               },
                                               child: AnimatedSwitcher(

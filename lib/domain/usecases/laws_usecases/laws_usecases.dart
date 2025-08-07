@@ -1,6 +1,7 @@
 import 'package:ebla/data/network/failure_model/failure.dart';
-import 'package:ebla/domain/models/models.dart';
+
 import 'package:multiple_result/multiple_result.dart';
+import '../../models/cms_models/laws/laws_model.dart';
 import '../../repository/repository.dart';
 import '../base_usecases/base_usecase.dart';
 

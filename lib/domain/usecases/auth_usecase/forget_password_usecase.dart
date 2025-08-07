@@ -1,7 +1,7 @@
 import 'package:multiple_result/multiple_result.dart';
 
 import '../../../data/network/failure_model/failure.dart';
-import '../../models/Auth/auth_models.dart';
+import '../../models/auth/auth_models.dart';
 import '../../repository/repository.dart';
 import '../base_usecases/base_usecase.dart';
 

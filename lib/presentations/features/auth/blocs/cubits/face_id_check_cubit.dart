@@ -25,6 +25,7 @@ class FaceIdCheckCubit extends Cubit<bool> {
     } on PlatformException catch (e) {
       canCheckBiometrics = false;
       if (kDebugMode) {
+        print(e);
       }
     }
 
@@ -38,6 +39,7 @@ class FaceIdCheckCubit extends Cubit<bool> {
     } on PlatformException catch (e) {
       availableBiometrics = <BiometricType>[];
       if (kDebugMode) {
+        print(e);
       }
     }
 
@@ -59,8 +61,7 @@ class FaceIdCheckCubit extends Cubit<bool> {
 
       isAuthenticating = false;
     } on PlatformException catch (e) {
-      if (kDebugMode) {
-      }
+      if (kDebugMode) {}
 
       isAuthenticating = false;
       authorized = 'Error - ${e.message}';
@@ -89,8 +90,7 @@ class FaceIdCheckCubit extends Cubit<bool> {
       isAuthenticating = false;
       authorized = 'Authenticating';
     } on PlatformException catch (e) {
-      if (kDebugMode) {
-      }
+      if (kDebugMode) {}
       isAuthenticating = false;
       authorized = 'Error - ${e.message}';
       return;

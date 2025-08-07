@@ -1,9 +1,11 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:ebla/presentations/features/chatbot/widgets/rera_text_faild.dart';
 import 'dart:ui' as ui;
 import 'package:ebla/presentations/resources/resources.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../main/cubit/bottom_nav_cubit.dart';
 
 class ServicesView extends StatelessWidget {
   const ServicesView({super.key});
@@ -40,78 +42,79 @@ class ServicesView extends StatelessWidget {
                       color: Theme.of(context).textTheme.bodySmall?.color),
                 ),
 
-              // 2. Search Field
-              ReraTextFaild(
-                hint: "${AppStrings().search} ...",
-                prefixIcon: Icon(
-                  Icons.search_rounded,
-                  color: Theme.of(context).disabledColor,
-                ),
-              ),
-//zak delete this
-              InkWell(
-                onTap: () {
-                  context.pushNamed(RoutesNames.training);
-                },
-                child: Container(
-                  // padding: EdgeInsets.symmetric(vertical: AppSizeH.s20),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: const AssetImage(ImageAssets.trainingCity),
-                        colorFilter:
-                            Theme.of(context).brightness == Brightness.dark
-                                ? ColorFilter.mode(
-                                    ColorManager.golden,
-                                    BlendMode.srcIn,
-                                  )
-                                : null,
-                        fit: BoxFit.cover,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? ColorManager.white.withValues(alpha: 0.2)
-                              : ColorManager.primary.withValues(alpha: 0.2),
-                          blurRadius: 2,
-                          offset: const Offset(0, 1),
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(AppSizeR.s10),
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? Theme.of(context).cardTheme.color
-                          : Theme.of(context).scaffoldBackgroundColor),
-                  child: Row(
-                    textDirection: ui.TextDirection.ltr,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      // Image.asset(IconAssets.training),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 30),
-                        child: Text(AppStrings().realEstateTrainingPortal,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge
-                                ?.copyWith(
-                                  fontWeight: FontWeight.w500,
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? ColorManager.white
-                                      : ColorManager.primaryBlue,
-                                )),
-                      ),
-                    ],
+                // 2. Search Field
+                ReraTextFaild(
+                  hint: "${AppStrings().search} ...",
+                  prefixIcon: Icon(
+                    Icons.search_rounded,
+                    color: Theme.of(context).disabledColor,
                   ),
                 ),
-              ),
-              // InvestorsCard(
-              //     color: ColorManager.golden,
-              //     icon: IconAssets.training,
-              //     title: AppStrings().realEstateTrainingPortal),
-              // ),
-              // 3. Horizontal Selectable List
-              const SelectableHorizontalList(),
+//zak delete this
+                InkWell(
+                  onTap: () {
+                    context.pushNamed(RoutesNames.training);
+                  },
+                  child: Container(
+                    // padding: EdgeInsets.symmetric(vertical: AppSizeH.s20),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: const AssetImage(ImageAssets.trainingCity),
+                          colorFilter:
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? ColorFilter.mode(
+                                      ColorManager.golden,
+                                      BlendMode.srcIn,
+                                    )
+                                  : null,
+                          fit: BoxFit.cover,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Theme.of(context).brightness ==
+                                    Brightness.dark
+                                ? ColorManager.white.withValues(alpha: 0.2)
+                                : ColorManager.primary.withValues(alpha: 0.2),
+                            blurRadius: 2,
+                            offset: const Offset(0, 1),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(AppSizeR.s10),
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Theme.of(context).cardTheme.color
+                            : Theme.of(context).scaffoldBackgroundColor),
+                    child: Row(
+                      textDirection: ui.TextDirection.ltr,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        // Image.asset(IconAssets.training),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 30),
+                          child: Text(AppStrings().realEstateTrainingPortal,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? ColorManager.white
+                                        : ColorManager.primaryBlue,
+                                  )),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                // InvestorsCard(
+                //     color: ColorManager.golden,
+                //     icon: IconAssets.training,
+                //     title: AppStrings().realEstateTrainingPortal),
+                // ),
+                // 3. Horizontal Selectable List
+                const SelectableHorizontalList(),
 
                 // 4. Bordered Container with Shadow
                 const GreyShadowContainer(text: "Searched data"),

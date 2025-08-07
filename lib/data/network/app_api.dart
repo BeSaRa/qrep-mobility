@@ -13,12 +13,25 @@ import 'package:ebla/domain/models/training/get_all_courses_response_model.dart'
 import 'package:retrofit/retrofit.dart';
 
 import '../../app/constants.dart';
-import '../../domain/models/Auth/auth_models.dart';
-import '../../domain/models/Auth/requests_auth/request_auth.dart';
+import '../../domain/models/auth/auth_models.dart';
+import '../../domain/models/auth/requests_auth/request_auth.dart';
+import '../../domain/models/broker_models/broker_models.dart';
+import '../../domain/models/cms_models/about/about_model.dart';
 import '../../domain/models/cms_models/app_settings/app_settings.dart';
+import '../../domain/models/cms_models/faq/faq_model.dart';
+import '../../domain/models/cms_models/laws/laws_model.dart';
+import '../../domain/models/cms_models/main_menu_models/main_menu_models.dart';
+import '../../domain/models/cms_models/news/news_model.dart';
 import '../../domain/models/cms_models/user/requests/update_info_model.dart';
-import '../../domain/models/models.dart';
+
+import '../../domain/models/mrtgage_models/mortgage_models.dart';
+import '../../domain/models/rent_models/rent_models.dart';
+import '../../domain/models/requests/mortgage_requests/request_mortgage_values.dart';
+import '../../domain/models/requests/rent_requests/request_rent.dart';
+import '../../domain/models/requests/sell_requests/request_sell_values.dart';
+import '../../domain/models/sell_models/sell_models.dart';
 import '../../domain/models/training/get_all_categories_response_model/get_all_categories_response_model.dart';
+import '../../domain/models/translations_model/translations_model.dart';
 
 part 'app_api.g.dart';
 

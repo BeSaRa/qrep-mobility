@@ -7,7 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../app/app_preferences.dart';
 import '../../../../app/depndency_injection.dart';
 import '../../../domain/models/favourite/favourite_models.dart';
-import '../../../domain/models/models.dart';
+
+import '../../../domain/models/rent_models/rent_models.dart';
 import '../../../utils/global_functions.dart';
 import '../../resources/resources.dart';
 import '../../widgets/widgets.dart';
@@ -311,7 +312,8 @@ class _BottomSheetFavWidgetState extends State<BottomSheetFavWidget> {
                               case Indicators.rental:
                                 initRentModule();
                                 Navigator.pop(context,
-                                    {"class": 1, "object": criteriaObject}); {}
+                                    {"class": 1, "object": criteriaObject});
+                                {}
                               case Indicators.mortgage:
                                 initMortgageModule();
                                 Navigator.pop(context,

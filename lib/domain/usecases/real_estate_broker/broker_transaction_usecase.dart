@@ -1,8 +1,8 @@
-import 'package:ebla/domain/models/models.dart';
 import 'package:ebla/domain/models/requests/broker_requests/request_broker_values.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 import '../../../data/network/failure_model/failure.dart';
+import '../../models/broker_models/broker_models.dart';
 import '../../repository/repository.dart';
 import '../base_usecases/base_usecase.dart';
 

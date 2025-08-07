@@ -127,7 +127,7 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                     ),
                     GestureDetector(
                       onTapDown: (details) async {
-                        final selected = await showMenu(
+                        await showMenu(
                           context: context,
                           position: RelativeRect.fromLTRB(
                               0, AppSizeH.s70, AppSizeW.s20, 0),

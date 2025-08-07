@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../models.dart';
+import '../rent_models/rent_models.dart';
 
 part 'broker_models.freezed.dart';
 part 'broker_models.g.dart';

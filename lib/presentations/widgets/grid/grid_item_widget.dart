@@ -219,7 +219,7 @@ class _GridItemWidgetState extends State<GridItemWidget> {
         // no default values for mortgage
         return 0;
     }
-    return 0;
+    // return 0;
   }
 
   bool isDisabled() {
@@ -640,8 +640,6 @@ class _GridItemWidgetState extends State<GridItemWidget> {
 
       case GridItemType.mortgage:
         return getLabelForMortgage(context);
-      default:
-        return '';
     }
   }
 

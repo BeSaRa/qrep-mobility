@@ -46,9 +46,11 @@ import '../data/network/network_info.dart';
 import '../data/repository/repository_implementer.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecases/ai_search/sas_pdf_usecase.dart';
+import '../domain/usecases/auth_usecase/ask_for_login_usecase.dart';
 import '../domain/usecases/favourite_usecases/delete_favourite_usecase.dart';
 import '../domain/usecases/usecases.dart';
 import '../presentations/features/auth/authes.dart';
+import '../presentations/features/auth/blocs/ask_for_login_cubit/ask_for_login_cubit.dart';
 import '../presentations/features/chatbot/blocs/stream_id_cubit.dart/stream_id_cubit.dart';
 import '../presentations/features/info/infos.dart';
 import '../presentations/features/main/mains.dart';
@@ -73,8 +75,8 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<DioFactory>(() => DioFactory(instance()));
   instance
       .registerLazySingleton<CmsDioFactory>(() => CmsDioFactory(instance()));
-  instance
-      .registerLazySingleton<TrainingDioFactory >(() => TrainingDioFactory (instance()));
+  instance.registerLazySingleton<TrainingDioFactory>(
+      () => TrainingDioFactory(instance()));
 
   instance.registerFactory<GeneralInterceptor>(
       () => GeneralInterceptor(instance<AppPreferences>(), dioRefreshToken));
@@ -85,10 +87,13 @@ Future<void> initAppModule() async {
   final trainingDio = await instance<TrainingDioFactory>().getDio();
   instance.registerFactory<Dio>(() => dio);
 
-  instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(instance<Dio>()));
-  instance.registerLazySingleton<CmsServiceClient>(() => CmsServiceClient(cmsDio));
+  instance.registerLazySingleton<AppServiceClient>(
+      () => AppServiceClient(instance<Dio>()));
+  instance
+      .registerLazySingleton<CmsServiceClient>(() => CmsServiceClient(cmsDio));
   //zak
-  instance.registerLazySingleton<TrainingServiceClient>(() => TrainingServiceClient(trainingDio));
+  instance.registerLazySingleton<TrainingServiceClient>(
+      () => TrainingServiceClient(trainingDio));
 
   instance.registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImplementer(Connectivity()));
@@ -98,9 +103,10 @@ Future<void> initAppModule() async {
       translationsServiceClient: instance<CmsServiceClient>(),
       networkInfo: instance<NetworkInfo>()));
 //zak
-  instance.registerLazySingleton<Phase2Repository>(() => Phase2RepositoryImplementer(
-      trainingServiceClient: instance<TrainingServiceClient>(),
-      networkInfo: instance<NetworkInfo>()));
+  instance.registerLazySingleton<Phase2Repository>(() =>
+      Phase2RepositoryImplementer(
+          trainingServiceClient: instance<TrainingServiceClient>(),
+          networkInfo: instance<NetworkInfo>()));
 
   if (!GetIt.I.isRegistered<GetSellLookupUseCase>()) {
     instance.registerFactory<GetSellLookupUseCase>(
@@ -257,8 +263,7 @@ Future<void> initChatbotModule() async {
         () => StopRenderUsecase(instance()));
   }
   if (!GetIt.I.isRegistered<StopRenderBloc>()) {
-    instance.registerFactory<StopRenderBloc>(
-        () => StopRenderBloc(instance()));
+    instance.registerFactory<StopRenderBloc>(() => StopRenderBloc(instance()));
   }
   if (!GetIt.I.isRegistered<Chatfaqusecase>()) {
     instance.registerFactory<Chatfaqusecase>(() => Chatfaqusecase(instance()));
@@ -305,6 +310,10 @@ Future<void> initHomeModule() async {
     instance
         .registerFactory<AiSearchUsecase>(() => AiSearchUsecase(instance()));
   }
+  if (!GetIt.I.isRegistered<AskForLoginUseCase>()) {
+    instance.registerFactory<AskForLoginUseCase>(
+        () => AskForLoginUseCase(instance()));
+  }
   //Bloc's
   if (!GetIt.I.isRegistered<AboutBloc>()) {
     instance.registerFactory(() => AboutBloc(aboutUsecase: instance()));
@@ -329,7 +338,8 @@ Future<void> initHomeModule() async {
         () => SendFeedbackUsecase(instance()));
   }
   if (!GetIt.I.isRegistered<SendFeedbackBloc>()) {
-    instance.registerFactory<SendFeedbackBloc>(() => SendFeedbackBloc(instance()));
+    instance
+        .registerFactory<SendFeedbackBloc>(() => SendFeedbackBloc(instance()));
   }
   if (!GetIt.I.isRegistered<SasPdfUsecase>()) {
     instance.registerFactory<SasPdfUsecase>(() => SasPdfUsecase(instance()));
@@ -337,15 +347,19 @@ Future<void> initHomeModule() async {
   if (!GetIt.I.isRegistered<SasPdfBloc>()) {
     instance.registerFactory<SasPdfBloc>(() => SasPdfBloc(instance()));
   }
+  if (!GetIt.I.isRegistered<AskForLoginCubit>()) {
+    instance
+        .registerFactory<AskForLoginCubit>(() => AskForLoginCubit(instance()));
+  }
   //============================== Training ===============================
   //------------- blocs --------------
   if (!GetIt.I.isRegistered<GetAllTrainingCoursesBloc>()) {
     instance.registerFactory<GetAllTrainingCoursesBloc>(
-        () => GetAllTrainingCoursesBloc(instance(),instance()));
+        () => GetAllTrainingCoursesBloc(instance(), instance()));
   }
   if (!GetIt.I.isRegistered<GetCourseDetailsBloc>()) {
     instance.registerFactory<GetCourseDetailsBloc>(
-        () => GetCourseDetailsBloc(instance(),instance()));
+        () => GetCourseDetailsBloc(instance(), instance()));
   }
   if (!GetIt.I.isRegistered<GetTrainingCourseSessionsBloc>()) {
     instance.registerFactory<GetTrainingCourseSessionsBloc>(
@@ -357,9 +371,9 @@ Future<void> initHomeModule() async {
     instance.registerFactory<GetAllTrainingCoursesUsecase>(
         () => GetAllTrainingCoursesUsecase(instance()));
   }
-  if (!GetIt.I.isRegistered<GetAllTrainingCatigoriesUsecase >()) {
-    instance.registerFactory<GetAllTrainingCatigoriesUsecase >(
-        () => GetAllTrainingCatigoriesUsecase (instance()));
+  if (!GetIt.I.isRegistered<GetAllTrainingCatigoriesUsecase>()) {
+    instance.registerFactory<GetAllTrainingCatigoriesUsecase>(
+        () => GetAllTrainingCatigoriesUsecase(instance()));
   }
   if (!GetIt.I.isRegistered<GetCourseDetailsUsecase>()) {
     instance.registerFactory<GetCourseDetailsUsecase>(
