@@ -31,12 +31,13 @@ class InvestorJourneyBloc
     });
 
     on<PageLoaded>((event, emit) async {
-      print("The function is being called");
-      //Here i ensure that we do not emit the loaded state if an error occurred
+      //to ensure that we do not emit the loaded state if an error occurred
       if (state is InvestorJourneyError) {
         return;
       }
       try {
+        //to ensure page is fully ready
+        await Future.delayed(const Duration(milliseconds: 500));
         emit(InvestorJourneyLoaded());
       } catch (e) {
         emit(InvestorJourneyError("Failed to retrieve URL: ${e.toString()}"));
@@ -49,38 +50,92 @@ class InvestorJourneyBloc
       emit(InvestorJourneyError(errorMessage));
     });
 
-    on<RunJavaScript>((
-      event,
-      emit,
-    ) async {
-      try {
-        const String webviewsURL = "assets/webviews/investor_journey";
-        if (event.isDarkMode) {
-          final String darkModeCss = await rootBundle
-              .loadString('assets/webviews/webviews_dark_styles.js');
-          await controller.runJavaScript(darkModeCss);
-        }
-        // Load JavaScript based on the step number
-        if (event.stepNumber == "0") {
-          final String investorJsCode = event.locale == ARABIC_LOCAL
-              ?
-              //This for the 2 button (back and next in the arabic screen but just in arabic)
-              await rootBundle
-                  .loadString('$webviewsURL/arabic_investor_journey.js')
-              : await rootBundle.loadString('$webviewsURL/investor_journey.js');
+    // on<RunJavaScript>((
+    //   event,
+    //   emit,
+    // ) async {
+    //   try {
+    //     const String webviewsURL = "assets/webviews/investor_journey";
+    //     if (event.isDarkMode) {
+    //       final String darkModeCss = await rootBundle
+    //           .loadString('assets/webviews/webviews_dark_styles.js');
+    //       await controller.runJavaScript(darkModeCss);
+    //     }
+    //     // Load JavaScript based on the step number
+    //     if (event.stepNumber == "0") {
+    //       final String investorJsCode = event.locale == ARABIC_LOCAL
+    //           ?
+    //           //This for the 2 button (back and next in the arabic screen but just in arabic)
+    //           await rootBundle
+    //               .loadString('$webviewsURL/arabic_investor_journey.js')
+    //           : await rootBundle.loadString('$webviewsURL/investor_journey.js');
 
-          await controller.runJavaScript(investorJsCode);
-        } else if (event.stepNumber == "1") {
-          final String propertyDeveloperJsCode =
-              await rootBundle.loadString('$webviewsURL/property_developer.js');
-          await controller.runJavaScript(propertyDeveloperJsCode);
-        } else {
-          final String professionalsJsCode =
-              await rootBundle.loadString('$webviewsURL/professionals.js');
-          await controller.runJavaScript(professionalsJsCode);
-        }
+    //       await controller.runJavaScript(investorJsCode);
+    //     } else if (event.stepNumber == "1") {
+    //       final String propertyDeveloperJsCode =
+    //           await rootBundle.loadString('$webviewsURL/property_developer.js');
+    //       await controller.runJavaScript(propertyDeveloperJsCode);
+    //     } else {
+    //       final String professionalsJsCode =
+    //           await rootBundle.loadString('$webviewsURL/professionals.js');
+    //       await controller.runJavaScript(professionalsJsCode);
+    //     }
+    //   } catch (e) {
+    //     emit(InvestorJourneyError("Failed to run JavaScript: ${e.toString()}"));
+    //   }
+    // });
+    Future<void> runJavaScriptWithRetry(String jsCode) async {
+      try {
+        await controller.runJavaScript(jsCode);
       } catch (e) {
-        emit(InvestorJourneyError("Failed to run JavaScript: ${e.toString()}"));
+        // Wait a bit and try one more time
+        await Future.delayed(const Duration(milliseconds: 300));
+        await controller.runJavaScript(jsCode);
+      }
+    }
+
+    on<RunJavaScript>((event, emit) async {
+      const maxRetries = 3;
+      int attempt = 0;
+      bool success = false;
+
+      while (attempt < maxRetries && !success) {
+        try {
+          attempt++;
+          const String webviewsURL = "assets/webviews/investor_journey";
+
+          if (event.isDarkMode) {
+            final String darkModeCss = await rootBundle
+                .loadString('assets/webviews/webviews_dark_styles.js');
+            await runJavaScriptWithRetry(darkModeCss);
+          }
+
+          // Load JavaScript based on the step number
+          if (event.stepNumber == "0") {
+            final String investorJsCode = event.locale == ARABIC_LOCAL
+                ? await rootBundle
+                    .loadString('$webviewsURL/arabic_investor_journey.js')
+                : await rootBundle
+                    .loadString('$webviewsURL/investor_journey.js');
+            await runJavaScriptWithRetry(investorJsCode);
+          } else if (event.stepNumber == "1") {
+            final String propertyDeveloperJsCode = await rootBundle
+                .loadString('$webviewsURL/property_developer.js');
+            await runJavaScriptWithRetry(propertyDeveloperJsCode);
+          } else {
+            final String professionalsJsCode =
+                await rootBundle.loadString('$webviewsURL/professionals.js');
+            await runJavaScriptWithRetry(professionalsJsCode);
+          }
+          success = true;
+        } catch (e) {
+          if (attempt >= maxRetries) {
+            emit(InvestorJourneyError(
+                "Failed to run JavaScript: ${e.toString()}"));
+          } else {
+            await Future.delayed(Duration(milliseconds: 300 * attempt));
+          }
+        }
       }
     });
   }

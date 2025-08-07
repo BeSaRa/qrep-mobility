@@ -14,7 +14,7 @@ final List<Map<String, dynamic>> boardingData = [
   {
     'title': 'Xmap',
     'subtitle': AppStrings().onBoardingXmapSubtitle,
-    'view': const OnboardingVideoPlayer(
+    'view': const OnboardingXMapVideoPlayer(
       assetPath: 'assets/videos/xmap.mp4',
     ),
   },
@@ -109,7 +109,9 @@ class _OnBoardingAiSearchState extends State<OnBoardingAiSearch>
             width: width,
             height: width,
             decoration: BoxDecoration(
-              color: ColorManager.white.withOpacity(.1),
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? ColorManager.white.withValues(alpha: .1)
+                  : ColorManager.grey.withValues(alpha: .6),
               borderRadius: BorderRadius.circular(1000),
             ),
             child: Center(
@@ -121,7 +123,9 @@ class _OnBoardingAiSearchState extends State<OnBoardingAiSearch>
                     vertical: AppSizeH.s20,
                   ),
                   decoration: BoxDecoration(
-                    color: ColorManager.primary,
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? ColorManager.primary
+                        : ColorManager.golden,
                     borderRadius: BorderRadius.circular(AppSizeR.s10),
                   ),
                   child: SizedBox(
@@ -137,7 +141,15 @@ class _OnBoardingAiSearchState extends State<OnBoardingAiSearch>
                               scale: _textScale.value,
                               child: Text(
                                 AppStrings().searchTheWebsite,
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? null
+                                            : ColorManager.primary
+                                                .withValues(alpha: .5)),
                               ),
                             ),
                           ],
@@ -355,7 +367,9 @@ class _OnBoardingInvestorJourneyWidgetState
           Container(
             padding: EdgeInsets.all(AppSizeW.s20),
             decoration: BoxDecoration(
-              color: ColorManager.blackBG.withValues(alpha: .4),
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? ColorManager.white.withValues(alpha: 0.1)
+                  : ColorManager.blackBG.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(AppSizeR.s15),
             ),
             child: ValueListenableBuilder<int>(
@@ -371,7 +385,13 @@ class _OnBoardingInvestorJourneyWidgetState
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Image.asset(item['image']!, width: AppSizeW.s40),
+                        Image.asset(
+                          item['image']!,
+                          width: AppSizeW.s40,
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? null
+                              : ColorManager.primary,
+                        ),
                         SizedBox(width: AppSizeW.s20),
                         Expanded(
                           child: Column(
@@ -379,7 +399,14 @@ class _OnBoardingInvestorJourneyWidgetState
                             children: [
                               Text(
                                 item['title']!,
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? null
+                                            : ColorManager.primary),
                               ),
                               SizedBox(height: AppSizeH.s10),
                               Text(
@@ -388,7 +415,11 @@ class _OnBoardingInvestorJourneyWidgetState
                                     .textTheme
                                     .bodySmall
                                     ?.copyWith(
-                                      color: ColorManager.greyCloud,
+                                      color: Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? ColorManager.greyCloud
+                                          : ColorManager.primary
+                                              .withValues(alpha: .5),
                                     ),
                               ),
                             ],
@@ -410,16 +441,17 @@ class _OnBoardingInvestorJourneyWidgetState
 
 //=======================================================================
 
-class OnboardingVideoPlayer extends StatefulWidget {
+class OnboardingXMapVideoPlayer extends StatefulWidget {
   final String assetPath;
 
-  const OnboardingVideoPlayer({super.key, required this.assetPath});
+  const OnboardingXMapVideoPlayer({super.key, required this.assetPath});
 
   @override
-  State<OnboardingVideoPlayer> createState() => _OnboardingVideoPlayerState();
+  State<OnboardingXMapVideoPlayer> createState() =>
+      _OnboardingXMapVideoPlayerState();
 }
 
-class _OnboardingVideoPlayerState extends State<OnboardingVideoPlayer>
+class _OnboardingXMapVideoPlayerState extends State<OnboardingXMapVideoPlayer>
     with TickerProviderStateMixin {
   late VideoPlayerController _controller;
 
@@ -533,7 +565,9 @@ class _OnboardingVideoPlayerState extends State<OnboardingVideoPlayer>
           height: AppSizeH.s150,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: ColorManager.blackBG.withValues(alpha: 0.4),
+            color: Theme.of(context).brightness == Brightness.dark
+                ? ColorManager.white.withValues(alpha: 0.1)
+                : ColorManager.blackBG.withValues(alpha: 0.1),
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(AppSizeR.s15),
             ),
@@ -739,7 +773,9 @@ class _OnboardingAiAvatarState extends State<OnboardingAiAvatar>
           height: AppSizeH.s200,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: ColorManager.blackBG.withValues(alpha: 0.4),
+            color: Theme.of(context).brightness == Brightness.dark
+                ? ColorManager.white.withValues(alpha: 0.1)
+                : ColorManager.blackBG.withValues(alpha: 0.1),
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(AppSizeR.s15),
             ),
