@@ -248,7 +248,9 @@ class _MortagageViewState extends State<MortgageView> {
                                                 loadingLookup: (value) {
                                                   return Icon(
                                                     Icons.filter_list_sharp,
-                                                    color: ColorManager.golden,
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .secondaryFixed,
                                                   );
                                                 },
                                                 loadedLookup: (value) {
@@ -294,8 +296,9 @@ class _MortagageViewState extends State<MortgageView> {
                                                       icon: Icon(
                                                         size: AppSizeW.s32,
                                                         Icons.filter_list_sharp,
-                                                        color:
-                                                            ColorManager.golden,
+                                                        color: Theme.of(context)
+                                                            .colorScheme
+                                                            .secondaryFixed,
                                                       ));
                                                 },
                                                 errorLookUp: (value) {
@@ -358,7 +361,11 @@ class _MortagageViewState extends State<MortgageView> {
                                           .tr(args: [AppStrings().mortgage]),
                                       style: Theme.of(context)
                                           .textTheme
-                                          .titleLarge,
+                                          .titleLarge
+                                          ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .secondaryFixed),
                                     ),
                                   ),
                                   BlocBuilder(
@@ -451,7 +458,11 @@ class _MortagageViewState extends State<MortgageView> {
                                       AppStrings().mortgageTransactionsList,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .titleLarge,
+                                          .titleLarge
+                                          ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .secondaryFixed),
                                     ),
                                   ),
                                   BlocBuilder(

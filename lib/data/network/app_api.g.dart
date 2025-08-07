@@ -13,7 +13,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://stgqrepbe.aqarat.gov.qa/mme-services';
+    baseUrl ??= 'Https://qrepbe.aqarat.gov.qa/mme-services';
   }
 
   final Dio _dio;
@@ -1693,13 +1693,14 @@ class _CmsServiceClient implements CmsServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://stgqrepcms.aqarat.gov.qa';
+    baseUrl ??= 'https://qrepcms.aqarat.gov.qa';
   }
 
   final Dio _dio;
 
   String? baseUrl;
-@override
+
+ @override
   Future<HttpResponse<AuthResponse>> login(RequestAuth requestAuth) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -1783,7 +1784,7 @@ class _CmsServiceClient implements CmsServiceClient {
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
-
+  
   @override
   Future<HttpResponse<UserResponse>> getUserInfo() async {
     const _extra = <String, dynamic>{};

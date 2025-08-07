@@ -264,7 +264,9 @@ class _SalesViewState extends State<SalesView> {
                                               loadingLookup: (value) {
                                                 return Icon(
                                                   Icons.filter_list_sharp,
-                                                  color: ColorManager.golden,
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .secondaryFixed,
                                                 );
                                               },
                                               loadedLookup: (value) {
@@ -313,8 +315,9 @@ class _SalesViewState extends State<SalesView> {
                                                     icon: Icon(
                                                       size: AppSizeW.s32,
                                                       Icons.filter_list_sharp,
-                                                      color:
-                                                          ColorManager.golden,
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .secondaryFixed,
                                                     ));
                                               },
                                               errorLookUp: (value) {
@@ -378,8 +381,13 @@ class _SalesViewState extends State<SalesView> {
                                   child: Text(
                                     AppStrings.currentPerformanceSummary
                                         .tr(args: [AppStrings().sell]),
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge
+                                        ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondaryFixed),
                                   ),
                                 ),
                                 BlocBuilder(
@@ -487,8 +495,13 @@ class _SalesViewState extends State<SalesView> {
                                 Center(
                                   child: Text(
                                     AppStrings().rentTopTen,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge
+                                        ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondaryFixed),
                                   ),
                                 ),
                                 BlocBuilder(
@@ -568,8 +581,13 @@ class _SalesViewState extends State<SalesView> {
                                 Center(
                                   child: Text(
                                     AppStrings().sellContractList,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge
+                                        ?.copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondaryFixed),
                                   ),
                                 ),
                                 BlocBuilder(

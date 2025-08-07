@@ -188,9 +188,8 @@ class NewsItemWidget extends StatelessWidget {
                                 margin: Margins.all(0),
                                 fontFamily: FontConstants.fontFamily,
                                 color: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.color,
+                                    .colorScheme
+                                    .secondaryFixed,
                                 fontSize: FontSize(AppSizeSp.s14),
                                 textOverflow: TextOverflow.ellipsis,
                                 maxLines: 2,

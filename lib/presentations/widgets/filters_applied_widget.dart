@@ -37,7 +37,10 @@ class FiltersApplied extends StatelessWidget {
       child: FittedBox(
         child: Text(
           '(${getNameFilter(municipality, (context.locale == ARABIC_LOCAL))}${withoutZone ?? false ? "" : getNameFilter(zone, (context.locale == ARABIC_LOCAL))}${getNameFilter(propertyType, (context.locale == ARABIC_LOCAL))}${getNameFilter(propertyPurpose, (context.locale == ARABIC_LOCAL))}$year)',
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium
+              ?.copyWith(color: Theme.of(context).colorScheme.secondaryFixed),
         ),
       ),
     );

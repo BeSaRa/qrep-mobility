@@ -278,6 +278,9 @@ class _GridItemWidgetState extends State<GridItemWidget> {
         height: AppSizeH.s144,
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
+          color: Theme.of(context).isDarkTheme
+              ? Theme.of(context).canvasColor
+              : Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.all(Radius.circular(AppSizeR.s20)),
           boxShadow: [
             BoxShadow(
@@ -285,15 +288,15 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                 blurRadius: AppSizeR.s11,
                 color: ColorManager.textBlack.withAlpha(30)),
           ],
-          gradient: LinearGradient(
-            colors: [
-              Theme.of(context).colorScheme.onSecondaryContainer,
-              Theme.of(context).scaffoldBackgroundColor,
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            stops: const [0.2, 1.0],
-          ),
+          // gradient: LinearGradient(
+          //   colors: [
+          //     Theme.of(context).colorScheme.onSecondaryContainer,
+          //     Theme.of(context).scaffoldBackgroundColor,
+          //   ],
+          //   begin: Alignment.topLeft,
+          //   end: Alignment.bottomRight,
+          //   stops: const [0.2, 1.0],
+          // ),
         ),
         child: BlocBuilder(
             bloc: context.read<ChangeStatusCubit>(),
@@ -323,7 +326,11 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleMedium
-                                            ?.copyWith(fontSize: AppSizeSp.s14),
+                                            ?.copyWith(
+                                                fontSize: AppSizeSp.s14,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .secondaryFixed),
                                       ),
                                     ),
                                   ],
@@ -405,7 +412,11 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleMedium
-                                            ?.copyWith(fontSize: AppSizeSp.s14),
+                                            ?.copyWith(
+                                                fontSize: AppSizeSp.s14,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .secondaryFixed),
                                       ),
                                     ),
                                   ],
@@ -595,7 +606,11 @@ class _GridItemWidgetState extends State<GridItemWidget> {
                                                             .copyWith(
                                                                 fontSize:
                                                                     AppSizeSp
-                                                                        .s15),
+                                                                        .s15,
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .colorScheme
+                                                                    .secondaryFixed),
                                                         textAlign:
                                                             TextAlign.end,
                                                       ),

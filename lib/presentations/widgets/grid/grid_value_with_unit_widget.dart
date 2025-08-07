@@ -55,7 +55,7 @@ class GridValueWithUnitWidget extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
-                          .copyWith(fontSize: AppSizeSp.s18, height: 1)),
+                          .copyWith(fontSize: AppSizeSp.s18, height: 1,)),
             ),
             SizedBox(width: unit.isNotEmpty ? AppSizeW.s4 : 0),
             unit.isNotEmpty

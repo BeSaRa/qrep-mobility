@@ -15,7 +15,8 @@ class InvestorsCardsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: EdgeInsets.only(top: AppSizeH.s20),
       width: MediaQuery.of(context).size.width,
       height: AppSizeH.s120,
       child: SingleChildScrollView(
@@ -103,20 +104,20 @@ class InvestorsCard extends StatelessWidget {
       children: [
         Container(
           height: AppSizeH.s150,
-          width: isTablet ? AppSizeW.s226 : AppSizeW.s140,
+          width: isTablet ? AppSizeW.s226 : AppSizeW.s80,
           padding: EdgeInsets.symmetric(
               horizontal: AppSizeH.s6, vertical: AppSizeH.s10),
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               // crossAxisAlignment: CrossAxisAlignment.start,
               spacing: AppSizeH.s15,
               children: [
                 if (icon.toLowerCase().endsWith("svg"))
                   SvgPicture.asset(
                     icon,
-                    height: AppSizeH.s42,
-                    width: AppSizeW.s42,
+                    height: AppSizeH.s30,
+                    width: AppSizeW.s30,
                     color: Theme.of(context).colorScheme.surfaceBright,
                   ),
                 if (!icon.toLowerCase().endsWith("svg"))

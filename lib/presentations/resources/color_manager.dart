@@ -11,7 +11,8 @@ class ColorManager {
   static Color silver = Hex16Color.fromHex("#C1C1C1");
   static Color lightSilver = Hex16Color.fromHex("#BDBDBD");
   static Color greyCloud = Hex16Color.fromHex("#B7B7B7");
-  static Color golden = Hex16Color.fromHex("#A29475");
+  static Color golden = Hex16Color.fromHex("#A98A6C");
+  // static Color golden = Hex16Color.fromHex("#A29475");
   static Color cloudyGrey = Hex16Color.fromHex("#676767");
   static Color textFieldGrey = Hex16Color.fromHex("#434343");
   static Color primary = Hex16Color.fromHex("#8A1538");
@@ -23,6 +24,7 @@ class ColorManager {
   static Color dune = Hex16Color.fromHex("#B09885");
   static Color duneLighter = Hex16Color.fromHex("#CBBEAC");
   static Color greyBg = Hex16Color.fromHex("#343434");
+  static Color newViewHeaderColor = Hex16Color.fromHex("#EEE8E2");
 }
 
 extension Hex16Color on Color {
