@@ -79,6 +79,8 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
             return Scaffold(
               appBar: AppBar(
                 automaticallyImplyLeading: false,
+                backgroundColor: Colors.transparent,
+                surfaceTintColor: Colors.transparent,
                 flexibleSpace: ShaderMask(
                   shaderCallback: (rect) {
                     return const LinearGradient(
@@ -94,12 +96,11 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                     fit: BoxFit.fill,
                   ),
                 ),
-                backgroundColor: Theme.of(context).brightness == Brightness.dark
-                    ? ColorManager.blackBG
-                    : ColorManager.white,
-                surfaceTintColor: Colors.transparent,
+                // backgroundColor: Theme.of(context).brightness == Brightness.dark
+                //     ? ColorManager.blackBG
+                //     : ColorManager.white,
+                // surfaceTintColor: Colors.transparent,
                 title: Row(
-                  // textDirection: ui.TextDirection.ltr,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
@@ -113,124 +114,133 @@ class _LawsDecisionsViewState extends State<LawsDecisionsView> {
                             Icons.arrow_back,
                             color: ColorManager.cloudyGrey,
                           ),
-                          // SizedBox(width: AppSizeW.s5),
-                          // Text(
-                          //   AppStrings().main,
-                          //   style: Theme.of(context).textTheme.headlineMedium,
-                          // ),
+                          SizedBox(width: AppSizeW.s5),
+                          Text(
+                            AppStrings().main,
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
                         ],
                       ),
                     ),
-                    Text(
-                      AppStrings().laws,
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ),
-                    GestureDetector(
-                      onTapDown: (details) async {
-                        final selected = await showMenu(
-                          context: context,
-                          position: RelativeRect.fromLTRB(
-                              0, AppSizeH.s70, AppSizeW.s20, 0),
-                          color: Colors.transparent,
-                          elevation: 0,
-                          items: [
-                            PopupMenuItem(
-                              enabled: false,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? ColorManager.greyBg
-                                      : Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.1),
-                                      blurRadius: 8,
-                                      offset: const Offset(0, 0),
+                    Row(
+                      children: [
+                        Text(
+                          AppStrings().laws,
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ),
+                        GestureDetector(
+                          onTapDown: (details) async {
+                            final selected = await showMenu(
+                              context: context,
+                              position: RelativeRect.fromLTRB(
+                                  0, AppSizeH.s70, AppSizeW.s20, 0),
+                              color: Colors.transparent,
+                              elevation: 0,
+                              items: [
+                                PopupMenuItem(
+                                  enabled: false,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? ColorManager.greyBg
+                                          : Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.1),
+                                          blurRadius: 8,
+                                          offset: const Offset(0, 0),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                child: StatefulBuilder(
-                                  builder: (context, setState) {
-                                    return Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          SizedBox(height: AppSizeH.s10),
-                                          Align(
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              AppStrings().allCategories,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium,
-                                            ),
-                                          ),
-                                          Divider(
-                                            endIndent: AppSizeW.s20,
-                                            indent: AppSizeW.s20,
-                                          ),
-                                          ...menuItems.map((category) {
-                                            final isArabic =
-                                                context.locale == ARABIC_LOCAL;
-                                            final isLawInArabic =
-                                                RegExp(r'[\u0600-\u06FF]')
-                                                    .hasMatch(category);
-
-                                            final show = (isArabic &&
-                                                    isLawInArabic) ||
-                                                (!isArabic && !isLawInArabic);
-
-                                            if (!show) {
-                                              return const SizedBox.shrink();
-                                            }
-
-                                            return InkWell(
-                                              onTap: () {
-                                                _toggleCategory(category);
-                                                setState(
-                                                    () {}); // Rebuild just the popup content
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  Checkbox(
-                                                    value:
-                                                        selectedCategoriesNotifier
-                                                            .value
-                                                            .contains(category),
-                                                    onChanged: (_) {
-                                                      _toggleCategory(category);
-                                                      setState(() {});
-                                                    },
-                                                  ),
-                                                  Flexible(
-                                                    child: Text(
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .labelSmall,
-                                                      category,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      maxLines: 1,
-                                                    ),
-                                                  ),
-                                                ],
+                                    child: StatefulBuilder(
+                                      builder: (context, setState) {
+                                        return Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              SizedBox(height: AppSizeH.s10),
+                                              Align(
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  AppStrings().allCategories,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium,
+                                                ),
                                               ),
-                                            );
-                                          }).toList(),
-                                        ]);
-                                  },
-                                ),
-                              ),
-                            )
-                          ],
-                        );
-                      },
-                      child: const Icon(
-                        Icons.more_vert,
-                        // color: ColorManager.primary,
-                      ),
-                    ),
+                                              Divider(
+                                                endIndent: AppSizeW.s20,
+                                                indent: AppSizeW.s20,
+                                              ),
+                                              ...menuItems.map((category) {
+                                                final isArabic =
+                                                    context.locale ==
+                                                        ARABIC_LOCAL;
+                                                final isLawInArabic =
+                                                    RegExp(r'[\u0600-\u06FF]')
+                                                        .hasMatch(category);
+
+                                                final show = (isArabic &&
+                                                        isLawInArabic) ||
+                                                    (!isArabic &&
+                                                        !isLawInArabic);
+
+                                                if (!show) {
+                                                  return const SizedBox
+                                                      .shrink();
+                                                }
+
+                                                return InkWell(
+                                                  onTap: () {
+                                                    _toggleCategory(category);
+                                                    setState(
+                                                        () {}); // Rebuild just the popup content
+                                                  },
+                                                  child: Row(
+                                                    children: [
+                                                      Checkbox(
+                                                        value:
+                                                            selectedCategoriesNotifier
+                                                                .value
+                                                                .contains(
+                                                                    category),
+                                                        onChanged: (_) {
+                                                          _toggleCategory(
+                                                              category);
+                                                          setState(() {});
+                                                        },
+                                                      ),
+                                                      Flexible(
+                                                        child: Text(
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .labelSmall,
+                                                          category,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          maxLines: 1,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              }).toList(),
+                                            ]);
+                                      },
+                                    ),
+                                  ),
+                                )
+                              ],
+                            );
+                          },
+                          child: const Icon(
+                            Icons.more_vert,
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
